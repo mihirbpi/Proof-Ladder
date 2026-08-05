@@ -13,6 +13,17 @@
     "l7": "If–then and vacuous truth",
     "l8": "If–then and vacuous truth"
   },
+  "kernelIdea": "\"If p then q\" claims only that q holds whenever p does. It is false only when p is true and q is false, so it is automatically true when p is false — this is vacuous truth.",
+  "kernels": {
+    "l1": "A promise about rain is broken in only one way: it rains and you don't have the umbrella.",
+    "l2": "An if-then promise is broken in one bad case: the if-part is true but the then-part isn't. Every other day the promise stays kept.",
+    "l3": "An if-then claim promises that whenever the 'if' part holds, the 'then' part holds too. It is false only when the 'if' part is true and the 'then' part is false.",
+    "l4": "A conditional 'if p then q' is false only when p is true and q is false. When p is false, the conditional is automatically true — this is vacuous truth.",
+    "l5": "The conditional p ⇒ q is false in exactly one case: p true and q false. When the hypothesis fails, the conditional is vacuously true.",
+    "l6": "For statements p and q, the conditional p ⇒ q is false only in the row where p is true and q is false. Every other row — including the two with p false — makes it (vacuously) true.",
+    "l7": "The conditional p ⇒ q is false only when p is true and q is false; the two rows with p false make it vacuously true. So proving p ⇒ q reduces to ruling out that one row.",
+    "l8": "The material conditional p ⇒ q is defined to be false only when p is true and q is false; every other case, including both in which p is false, makes it (vacuously) true, which is what makes universally quantified statements over empty domains automatically true."
+  },
   "kernel": "\"If p then q\" claims only that q holds whenever p does. It is false only when p is true and q is false, so it is automatically true when p is false — this is vacuous truth.",
   "objectives": [
     "Identify hypothesis and conclusion",

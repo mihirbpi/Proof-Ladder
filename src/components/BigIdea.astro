@@ -1,12 +1,18 @@
 ---
-// The invariant band. Auto-populated from _module.json.kernel.
-// Rendered by the layout, not by MDX. Exactly one per page.
+// The invariant band.  Renders the level-appropriate kernel sentence.
+// Auto-populated from _module.json.kernels[level], with legacy .kernel
+// as fallback for modules that haven't been migrated yet.
 export interface Props {
-  kernel: string;
+  sentence: string;
+  level: string;
 }
-const { kernel } = Astro.props;
+const { sentence, level } = Astro.props;
+const caption =
+  level === 'l1' || level === 'l2'
+    ? 'The big idea, said for you'
+    : 'The big idea, said for you';
 ---
 <section class="invariant-band" aria-label="The big idea">
-  <span class="band-label">The big idea — the same at every level</span>
-  <p class="band-text">{kernel}</p>
+  <span class="band-label">{caption}</span>
+  <p class="band-text">{sentence}</p>
 </section>

@@ -23,6 +23,10 @@ export interface Props {
 const { level, module, chapterSlug, chapterNumber, chapterTitle, isTouch } = Astro.props;
 const title = module.titles[level] ?? module.titles.l7 ?? module.slug;
 
+// Prefer the per-level kernel; fall back to the legacy singular kernel for
+// modules whose per-level kernels haven't been authored yet.
+const kernelSentence = module.kernels?.[level] ?? module.kernel;
+
 // Find neighbors in this chapter at the same level.
 const all = getAllModules();
 const sameChapter = all.filter((x) => x.chapter.slug === chapterSlug);
@@ -51,7 +55,7 @@ const railHref = (id: LevelId) => modulePath(id, chapterSlug, module.slug);
         <Needs ids={module.prerequisites} level={level} />
       )}
 
-      <BigIdea kernel={module.kernel} />
+      <BigIdea sentence={kernelSentence} level={level} />
 
       {isTouch && (
         <p class="touch-notice">

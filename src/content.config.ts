@@ -24,6 +24,17 @@ const moduleContract = z.object({
   chapter: z.string(),
   order: z.number(),
   titles: z.record(levelEnum, z.string()),
+  // kernelIdea is the author-side fixed sentence — used by lint and
+  // reviewers to check that every level's kernel points at the same idea.
+  // It is NOT displayed to readers.
+  kernelIdea: z.string().optional(),
+  // kernels is the per-level object; each entry is the sentence rendered
+  // on the invariant band for that level. Every level should eventually
+  // have one; missing entries fall back to `kernel` (legacy singular).
+  kernels: z.record(levelEnum, z.string().optional()).optional(),
+  // Legacy singular kernel. Kept for backwards compatibility while modules
+  // are migrated to per-level kernels; used as the fallback for any level
+  // missing from `kernels`.
   kernel: z.string(),
   objectives: z.array(z.string()),
   sourceRef: z.string(),

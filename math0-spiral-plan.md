@@ -53,9 +53,9 @@ The reader picks one of these. Each level has a fixed voice, notation budget, an
 
 Generation of content must follow these profiles exactly.
 
-**`l1` Kindergarten.** Second person, present tense, 6–12 word sentences. Everything is a physical object or a person: blocks, animals, a toy box, a friend named Sam. No hypotheticals about numbers the child hasn't met. Every module ends with **one thing to do** (a 30-second physical activity — sort the blocks, say the opposite, find the one that breaks the rule). Introduce exactly one new word per module and repeat it three times. Questions are answered, never left open.
+**`l1` Kindergarten.** Second person, present tense, **short sentences: 6–12 words**, with 8 as the median. One clause per sentence. Everything is a physical object or a person: blocks, animals, a toy box, a friend named Sam, the reader themselves. **No hypotheticals about numbers the child hasn't met** (nothing above 10, no negatives, no fractions). **No jargon** — no "case," no "conditional," no "claim," no "hypothesis," no "counterexample." Words like *promise*, *rule*, *bad*, *the one that breaks it* carry the same load, and they carry it fine. Every module ends with **one thing to do** (a 30-second physical activity — sort the blocks, say the opposite, find the one that breaks the rule). Introduce exactly one new word per module and repeat it three times. Questions are answered, never left open. If a passage reads awkwardly aloud, it is wrong — l1 is written to be read *to* a child, and the ear is the primary editor.
 
-**`l2` 2nd grade.** Same warmth, longer chains. Can hold a two-step argument ("we know this, so that, so this"). Introduces the idea that a rule must work *every* time and that one bad case breaks it. Numbers to 100, simple even/odd, sharing and grouping. Pictures still carry the argument; words now carry the reason.
+**`l2` 2nd grade.** Same warmth, longer chains. Can hold a two-step argument ("we know this, so that, so this"). Sentences 8–15 words; two-clause sentences are allowed but not preferred. Introduces the idea that a rule must work *every* time and that one bad case breaks it. Numbers to 100, simple even/odd, sharing and grouping. Formal vocabulary is still avoided (the reader sees *promise*, *the bad case*, *the one that breaks it*, not *conditional* or *counterexample*). Pictures still carry the argument; words now carry the reason.
 
 **`l3` 5th grade.** The turn to *why*. Readers can handle a variable as a stand-in, a definition stated plainly, and a short argument that ends in "so it has to be true." Introduces the Discussion/Proof shape explicitly. Examples: fractions, factors and multiples, divisibility, patterns in tables, area. First use of symbols, always glossed in words on first appearance in the module.
 
@@ -1068,7 +1068,7 @@ Each takes no props that duplicate frontmatter, and each has a defined visual tr
 
 | Component | Purpose | Notes |
 |---|---|---|
-| `<BigIdea>` | The invariant band. | Auto-populated from `_module.json.kernel` — authors do not retype it. Exactly one per page, rendered by the layout, not the MDX. |
+| `<BigIdea>` | The invariant band. | Auto-populated from `_module.json.kernels[currentLevel]` — authors do not retype it. Renders the caption *"The big idea, said for you"* above the sentence. Exactly one per page, rendered by the layout, not the MDX. A missing per-level kernel is a build error. |
 | `<Discussion>` | Math 0's planning section. | Renders "What we know / What we want / What we'll do" as a labeled three-part block. At `l1`–`l2` the labels become "What's true already / What we want to be true / How we get there." |
 | `<Proof>` | The proof itself. | Ends with □, automatically. At `l1`–`l2` titled "How we know." |
 | `<TryIt>` | The 30-second activity. | Required at `l1` and `l2`, optional above. Phase 1: not interactive, just an instruction. |
@@ -1116,7 +1116,8 @@ WCAG 2.2 AA. MathML output for KaTeX. All figures alt-texted with content. Rail 
 Write module {id} — "{title}" — at ALL EIGHT levels.
 
 CONTRACT (from _module.json):
-  kernel:        {kernel}
+  kernel idea (fixed, author-side): {kernelIdea}
+  per-level kernels (rendered on band): {kernels}
   objectives:    {objectives}
   anchor example: {anchor for this chapter, per A6}
   named move:    {namedMove or none}
@@ -1129,9 +1130,16 @@ CONTRACT (from _module.json):
 LEVEL PROFILES: {paste the relevant rows of A4 and the paragraph from A5}
 LADDER: {paste this module's ladder from Part B}
 
-FOR EACH LEVEL produce lN.mdx with valid frontmatter and a body that:
-  - carries the kernel (the exact kernel sentence is rendered separately by
-    the layout — do not restate it verbatim, build toward it)
+FIRST, if kernels[level] is missing for any level, propose one for review.
+Every level must have a kernel that:
+  - restates the fixed kernel idea faithfully,
+  - uses only the vocabulary and notation in that level's budget (A4),
+  - at l1, is readable aloud in one breath.
+
+THEN FOR EACH LEVEL produce lN.mdx with valid frontmatter and a body that:
+  - builds toward the kernel sentence for that level (the sentence itself is
+    rendered separately by the layout — do not restate it verbatim, build
+    toward it in the reader's own voice)
   - opens with the question this module answers, in that level's voice
   - uses the anchor example unless the ladder specifies otherwise
   - uses the named move by name
@@ -1140,8 +1148,9 @@ FOR EACH LEVEL produce lN.mdx with valid frontmatter and a body that:
   - at l1/l2 ends with <TryIt>; at l7/l8 ends with <WhereThisGoes>
   - contains no statement that a later level will have to contradict
 
-Then output a CONTINUITY CHECK: one line per level confirming the kernel is
-present, plus a note on anything you had to change between levels and why.
+Then output a CONTINUITY CHECK: one line per level confirming the kernel
+idea is carried and the kernel sentence stays inside the level's vocabulary
+budget, plus a note on anything you had to change between levels and why.
 ```
 
 ### D4. Content lint (`pnpm lint:content`)
@@ -1149,6 +1158,9 @@ present, plus a note on anything you had to change between levels and why.
 A Node script, run in CI and before every commit, that fails the build on:
 
 - a module missing any of its eight level files, or a file whose `level` frontmatter doesn't match its filename
+- a module missing `kernelIdea` or missing any of the eight `kernels[level]` entries
+- a `kernels[level]` sentence that uses vocabulary or notation outside that level's budget (same regex/word check as the body)
+- an l1 kernel that is longer than ~20 words or introduces a term not in that level's vocabulary
 - word count outside the level's budget by more than 20%
 - a symbol used that is outside the level's notation budget (regex per level against the allowed list in A4 — this catches `∀` sneaking into an `l3` page)
 - a `newTerms` entry with no matching `glossary.json` definition at that level
@@ -1162,7 +1174,10 @@ Also report (warn, don't fail): Flesch–Kincaid grade estimate per page against
 
 ### D5. Review checklist per module
 
-- [ ] Kernel recognizable at all eight levels
+- [ ] Kernel *idea* recognizable at all eight levels
+- [ ] Each level's kernel *sentence* uses only that level's vocabulary and notation
+- [ ] The `l1` kernel sentence is readable aloud in one breath, uses only words a kindergartner has met earlier in the ladder, and does not use any symbols
+- [ ] The `l2` kernel sentence stays inside grade-2 vocabulary and uses at most `=`, `+`, `−`, and numerals
 - [ ] Anchor example consistent down the ladder
 - [ ] Named move used with the same name at every level
 - [ ] Each level's opening question is *the same question*, asked age-appropriately
