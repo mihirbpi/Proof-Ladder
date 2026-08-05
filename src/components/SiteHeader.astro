@@ -42,6 +42,13 @@ const profile = currentLevel ? LEVELS.find((l) => l.id === currentLevel) : null;
             )}
           </span>
         </div>
+        <section class="toc-intro">
+          <a href={`${levelHome(tocLevel)}#intro`} class="toc-intro-link">
+            <span class="toc-chapter-num">Before we start</span>
+            <span class="toc-chapter-title">What mathematics actually is</span>
+          </a>
+        </section>
+
         <div class="toc-grid">
           {chapters.map((ch) => {
             const mods = getModulesForChapter(ch.slug);

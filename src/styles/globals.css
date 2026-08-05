@@ -226,6 +226,23 @@ details[open] .toc-caret { transform: rotate(180deg); }
   color: color-mix(in oklab, var(--color-ink) 65%, transparent);
   margin-top: 0.15rem;
 }
+.toc-intro {
+  margin-block: 0 1rem;
+  padding: 0.75rem 1rem;
+  background: color-mix(in oklab, var(--color-signal) 8%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-signal) 30%, transparent);
+  border-radius: 6px;
+}
+.toc-intro-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+.toc-intro-link:hover .toc-chapter-title { color: var(--color-signal); }
 .toc-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
