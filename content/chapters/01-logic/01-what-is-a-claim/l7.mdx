@@ -1,0 +1,62 @@
+---
+level: l7
+title: What is a statement?
+readingTimeMin: 8
+newTerms: ["statement", "truth value", "conjecture", "open statement"]
+anchorExample: "the cat has four legs"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Mathematics is, at its core, the systematic assignment of truth values to statements. Before any of the machinery of proof is worth writing down, we need to be precise about what counts as a "statement" — because a great deal of the discipline consists of not letting the wrong thing sneak into that category.
+
+## Definition
+
+A **statement** is a declarative sentence that is either true or false. Every statement has exactly one **truth value**, denoted T or F. There is no third possibility, though there are three related things worth *not* confusing with a third possibility: (i) our not yet knowing which of T or F holds, (ii) truth values depending on unspecified variables (open statements), and (iii) statements that are neither provable nor disprovable from a given axiom system (Gödel).
+
+Examples:
+
+- $7$ is prime. (T)
+- $\sqrt{2}$ is irrational. (T, proved in §4.7 by contradiction.)
+- $\pi$ is a root of the polynomial $x^2 - 3$. (F.)
+- Every even integer greater than $2$ is the sum of two primes. (unknown to us; T or F in the mathematical universe.)
+- $\mathbb{R}$ has the same cardinality as $\mathbb{N}$. (F, by Cantor's diagonal argument, §3.8.)
+
+Non-statements:
+
+- *Is $7$ prime?* (interrogative)
+- *Solve $x^3 = 27$.* (imperative)
+- $x + 1$ (expression, no verb)
+- The definite description "the largest prime" (a noun phrase whose referent doesn't exist)
+
+## Open statements
+
+The sentence $p(x)$ = "$x^2 \geq 0$" has a free variable and, as written, no fixed truth value. Such sentences are called **open statements** or *predicates*. They become bona fide statements once every variable is either instantiated ($p(3)$ is T) or quantified ($\forall x \in \mathbb{R}, p(x)$ is T).
+
+Everything in Chapter 1 will assume statements are closed unless they explicitly involve $\forall$ or $\exists$.
+
+## Conjectures
+
+Two live examples:
+
+- **Twin Primes.** $\exists^\infty p$ prime with $p + 2$ also prime. Recent work (Zhang 2013; Maynard 2014) proves prime pairs at bounded gap; the gap $2$ remains open.
+- **Goldbach.** $\forall n \in 2\mathbb{Z}_{\geq 2},\, \exists p, q$ prime with $n = p + q$. Verified computationally to $4 \times 10^{18}$; unproved.
+
+A **conjecture** is a statement believed true but not yet proved. Some conjectures graduate to theorems (Fermat's Last, proved by Wiles 1995); others get disproved (Euler's sum-of-powers conjecture, disproved by Lander and Parkin 1966 with a single counterexample).
+
+<Warning title="Truth is not knowability">
+"Nobody has proved $P$" and "$P$ is not true" are different sentences. Muddling them is a common source of student errors. Nothing in the definition of a statement requires that its truth value be presently accessible to us.
+</Warning>
+
+<Aside>
+Statements about infinitely many cases can't in general be checked by example. Any amount of numerical verification of Goldbach is consistent with the conjecture being false; a proof is qualitatively different information.
+</Aside>
+
+## The mathematician's job, restated
+
+- Every theorem is a statement that has been assigned a truth value by proof.
+- Every open problem is a statement whose truth value has not yet been assigned by proof.
+- Every axiom is a statement whose truth value is assigned by fiat (Chapter 7).
+
+Every other object in the course — negations, conjunctions, quantifiers, proofs, functions, sets — is a tool for constructing more statements out of existing ones, or for establishing their truth values. Fixing the definition here is the necessary first step.

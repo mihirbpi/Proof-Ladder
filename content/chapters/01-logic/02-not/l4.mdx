@@ -1,0 +1,55 @@
+---
+level: l4
+title: Negation
+readingTimeMin: 5
+newTerms: ["negation"]
+anchorExample: "x ≥ 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Warning from '@/components/Warning.astro';
+
+For any statement $p$, its **negation** — written $\neg p$ — is the statement that is true exactly when $p$ is false. Negation flips the truth value.
+
+## Truth table
+
+<TruthTable
+  variables={["p"]}
+  expressions={["¬p"]}
+  rows={[
+    { p: true,  "¬p": false },
+    { p: false, "¬p": true }
+  ]}
+/>
+
+Two immediate consequences:
+
+- $p$ and $\neg p$ are never both true.
+- $p$ and $\neg p$ are never both false.
+
+So one of them is always true and the other always false — exactly one.
+
+## Double negation
+
+If negating flips the truth value, then negating twice puts it back. That is,
+$$
+\neg\neg p \text{ has the same truth value as } p.
+$$
+This looks obvious but it is a real fact worth naming: *double negation is the identity*. It shows up whenever you find yourself in a contradiction proof (§2.5).
+
+## Negating with variables
+
+- Negation of $x \geq 1$ is $x < 1$. (Note the flip *and* the change from $\geq$ to $<$.)
+- Negation of $x \neq 0$ is $x = 0$.
+- Negation of "$n$ is even" is "$n$ is odd" — but only because every integer is one or the other. Without that background fact, the negation would just be "$n$ is not even."
+
+<Warning title="Common mistake">
+The negation of $x \geq 1$ is $x < 1$, *not* $x \leq 1$. The negation of $x > 1$ is $x \leq 1$, not $x < 1$. The boundary case flips with the inequality.
+</Warning>
+
+## Negating quantities
+
+- Negation of *there are infinitely many primes* is *there are only finitely many primes*.
+- Negation of *every number is even* is *at least one number is not even*.
+
+Both illustrate that to negate a universal claim you produce one exception — this is the "one bad apple" that module 1.11 will make formal.

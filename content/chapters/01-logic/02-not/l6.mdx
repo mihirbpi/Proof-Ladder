@@ -1,0 +1,71 @@
+---
+level: l6
+title: Negation
+readingTimeMin: 7
+newTerms: ["negation"]
+anchorExample: "x ≥ 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Warning from '@/components/Warning.astro';
+
+For any statement $p$, its **negation** $\neg p$ is the statement true exactly when $p$ is false. Simple as it sounds, negation is where most beginners lose points on early proofs — usually by producing an "opposite" that is really just a *different* statement.
+
+## Truth table
+
+<TruthTable
+  variables={["p"]}
+  expressions={["¬p"]}
+  rows={[
+    { p: true,  "¬p": false },
+    { p: false, "¬p": true }
+  ]}
+/>
+
+The statements $p$ and $\neg p$ partition every possible situation into two disjoint classes: those where $p$ is true, and those where it is false. Consequently:
+
+- $p \wedge \neg p$ is always false — a **contradiction** (module 1.3).
+- $p \vee \neg p$ is always true — a **tautology** (also 1.3).
+
+The second is called the **law of excluded middle**. The first, the **law of non-contradiction**. Both fall straight out of the truth table.
+
+## Double negation
+
+Negating twice inverts twice, which is not an inversion. So
+$$
+\neg\neg p \equiv p,
+$$
+where $\equiv$ means "same truth table." This is how proof by contradiction ends: after concluding $\neg\neg q$, one silently replaces it with $q$.
+
+## Negation errors, catalogued
+
+**Boundary flip on inequalities.**
+$$
+\neg(x \geq 1)\; \text{is}\; x < 1, \quad \neg(x > 1)\; \text{is}\; x \leq 1, \quad \neg(x = 0)\; \text{is}\; x \neq 0.
+$$
+
+**Universal → existential.**
+$$
+\neg(\forall x, p(x))\; \text{is}\; \exists x, \neg p(x).
+$$
+The negation of "*every* even integer $\geq 4$ is a sum of two primes" is "*some* even integer $\geq 4$ is not a sum of two primes," which is the shape of a hypothetical counterexample to Goldbach's conjecture.
+
+**Existential → universal.**
+$$
+\neg(\exists x, p(x))\; \text{is}\; \forall x, \neg p(x).
+$$
+The negation of "*there is* a real $x$ with $x^2 = -1$" is "*for all* real $x$, $x^2 \neq -1$," which we can prove.
+
+**Common wrong "opposite".**
+
+<Warning title="Common trap">
+The negation of "all A are B" is *not* "no A is B." Both can be false at once (imagine a room with a mix of blue and red hats — "all hats are red" and "no hat is red" are both false). The real negation is "some A is not B" — one counterexample is enough.
+</Warning>
+
+## Negation of compound statements, previewed
+
+$\neg(p \wedge q)$ is *not* $\neg p \wedge \neg q$ — it is $\neg p \vee \neg q$. This surprise is important enough to get its own module (1.4: De Morgan). Similarly $\neg(p \vee q)$ is $\neg p \wedge \neg q$. Every real negation-error at the graduate level traces back to this asymmetry.
+
+## Twin Primes, negated
+
+The Twin Primes conjecture says there are infinitely many primes $p$ with $p + 2$ prime. Its negation says: there are only finitely many such primes. A proof of the negation would come with a specific finite list of twin prime pairs, none of which we currently have — which is why we don't know whether the negation is true either.

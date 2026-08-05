@@ -1,0 +1,57 @@
+---
+level: l8
+title: What is a statement?
+readingTimeMin: 8
+newTerms: ["statement", "truth value", "conjecture", "open statement"]
+anchorExample: "the cat has four legs"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Mathematics is the systematic assignment of truth values to statements. This module sets the object of that discipline — the statement — and does so with enough care that Chapter 1's machinery has something to bite on. The subtleties (unknown truth values, open statements, undecidable propositions) are all foreshadowed here and revisited in their natural chapters.
+
+## Definition
+
+A **statement** is a declarative sentence to which exactly one of the truth values T or F attaches. Equivalently, in the language of Chapter 2, a statement is an element of a two-element Boolean algebra $\{T, F\}$. Non-declarative sentences (interrogatives, imperatives, exclamations), phrases without verbs, and definite descriptions without asserted content are not statements.
+
+Statements need not be presently *known* by us to be true or false — that would confuse the object with our access to it. Nor do they need to be *decidable* in the technical sense of computability theory. The definition is austere on purpose.
+
+Examples:
+
+- $\sqrt{2} \notin \mathbb{Q}$. (T, §4.7.)
+- $\pi \in \overline{\mathbb{Q}}$. (F: $\pi$ is transcendental, Lindemann 1882.)
+- Every even integer $\geq 4$ is the sum of two primes. (unknown; Goldbach.)
+- $\mathrm{P} = \mathrm{NP}$. (unknown; Clay Millennium problem.)
+- The continuum hypothesis. (independent of ZFC — see below.)
+
+## Open statements and predicates
+
+A sentence $p(x_1, \dots, x_n)$ containing free variables is an **open statement**, or a *predicate*. It denotes not a truth value but a function from an assignment of variables to truth values. Closed statements are obtained by (i) substitution, or (ii) quantification: $\forall x \in S,\, p(x)$ and $\exists x \in S,\, p(x)$ are closed even when $p$ is open. Module 1.10 formalises the quantifiers; module 1.12 handles their proofs.
+
+## Conjectures
+
+A **conjecture** is a closed statement widely believed true but unproved. Some notable ones:
+
+- **Riemann Hypothesis** (Riemann, 1859): all non-trivial zeros of $\zeta$ lie on $\operatorname{Re}(s) = 1/2$.
+- **Twin Primes** (attributed to de Polignac, 1849): $\exists^\infty p$ prime with $p + 2$ prime.
+- **Goldbach** (1742): every even integer $\geq 4$ is a sum of two primes.
+
+Conjectures graduate: Fermat's Last Theorem (Wiles 1995), the Poincaré conjecture (Perelman 2003), Kepler's conjecture (Hales 1998). Others are disproved by counterexample: Pólya's conjecture (Haselgrove 1958), Euler's sum-of-powers conjecture (Lander & Parkin 1966), Mertens conjecture (Odlyzko & te Riele 1985).
+
+<Warning title="Provability and truth are different notions">
+By Gödel's incompleteness theorems, any consistent axiomatic system containing Peano arithmetic admits statements that are true but not provable in that system. This does not weaken the definition of statement — it is a fact *about* the definition: truth is a semantic property, provability a syntactic one.
+</Warning>
+
+<Aside>
+The **continuum hypothesis** — $|\mathbb{R}|$ is the smallest uncountable cardinal — is famously *independent* of ZFC. Both it and its negation are consistent with the axioms (Gödel 1940; Cohen 1963). Nonetheless it is a statement.
+</Aside>
+
+## Statements over infinite domains
+
+A universally quantified statement over an infinite domain — for example, "every even integer $\geq 4$ is a sum of two primes" — cannot be established by exhaustive checking. Any finite computation is consistent with the statement's negation. A proof is a qualitatively different kind of evidence and is what the rest of this course is about producing.
+
+<WhereThisGoes level="l8">
+The object called a "statement" in this module is the base object of *classical propositional and predicate logic*. Alternative logics reject or modify parts of the setup: intuitionistic logic denies the law of excluded middle (rejecting the categorical partition into T and F), paraconsistent logics allow contradictions without triviality, and modal logics enrich statements with operators for necessity and possibility. Model theory studies the relationships between formal languages and their interpretations; proof theory studies the formal derivations themselves. The apparent simplicity here is the entrance to a large and living subject.
+</WhereThisGoes>

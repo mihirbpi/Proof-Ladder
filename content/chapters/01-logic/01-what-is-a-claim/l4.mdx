@@ -1,0 +1,52 @@
+---
+level: l4
+title: What is a statement?
+readingTimeMin: 5
+newTerms: ["statement", "truth value", "conjecture", "open statement"]
+anchorExample: "the cat has four legs"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Mathematics is the business of assigning truth values to statements via proof. Before we can play that game, we need to fix what counts as a statement.
+
+A **statement** is a sentence that is either true or false. Every statement has exactly one **truth value**: T or F.
+
+Statements:
+
+- The number $7$ is prime. (T)
+- The number $8$ is prime. (F)
+- $2 + 2 = 4$. (T)
+- Every even integer greater than $2$ is the sum of two primes. (unknown, but still T or F)
+
+Non-statements:
+
+- *Is $7$ prime?* — a question, not an assertion.
+- *Factor $x^2 - 1$.* — a command.
+- $x + 1$ — an expression, not a sentence. It has no verb, so nothing about it can be true or false.
+- *the biggest whole number* — a phrase, not a sentence. It refers to something but doesn't claim anything about it.
+
+## Open statements
+
+The sentence $x \geq 1$ has a subtle status. If we plug in $x = 3$ we get "$3 \geq 1$", which is a true statement. If we plug in $x = 0$ we get "$0 \geq 1$", which is a false one. So $x \geq 1$ becomes a statement only once we specify $x$. Sentences of this kind are called **open statements**, and the variable is called a *free variable*. Modules 1.10–1.12 will show how to turn open statements into ordinary ones with quantifiers like *for all* and *there exists*.
+
+## Unknown but still a statement
+
+The claim
+$$
+\text{There are infinitely many primes } p \text{ such that } p + 2 \text{ is also prime}
+$$
+is called the **Twin Primes conjecture**. It has been open since 1849. Nobody knows whether it is true — yet it is a statement, because it has a definite truth value: the universe of natural numbers either does or doesn't contain infinitely many such pairs. A **conjecture** is a statement mathematicians believe true but have not proved.
+
+<Warning title="Truth is not knowledge">
+A statement can have a truth value we don't yet know. That's fine. Our not knowing doesn't leave the statement in some third state; it means the mathematical work of settling it hasn't been done.
+</Warning>
+
+<Aside>
+Some conjectures become theorems. Fermat's Last Theorem was a conjecture from 1637 until Andrew Wiles proved it in 1994. Some conjectures turn out to be false — the disproof is called a *counterexample* (module 1.11).
+</Aside>
+
+## The mathematician's job
+
+Every theorem is a statement that has been given a truth value by proof. Every unsolved problem is a statement whose truth value is not yet fixed. Chapter 1 is about how the two get connected — how sentences get promoted from "just a statement" to "true statement, and here's why."

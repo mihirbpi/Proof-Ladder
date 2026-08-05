@@ -1,0 +1,44 @@
+---
+level: l3
+title: Statements
+readingTimeMin: 4
+newTerms: ["statement", "truth value", "conjecture"]
+anchorExample: "the cat has four legs"
+---
+
+import Aside from '@/components/Aside.astro';
+
+Before we can prove anything, we need to be careful about what kinds of sentences we are even trying to prove.
+
+A **statement** is a sentence that is either true or false — nothing else. Every statement has one of two **truth values**: true, or false.
+
+Here are statements:
+
+- The cat has four legs.
+- $7$ is a prime number.
+- $2 + 2 = 5$.
+- Every number bigger than 1 has a prime factor.
+
+The first two are true. The third is false. The fourth is also true, though it takes some work to see why. All four are statements.
+
+Here are things that are **not** statements:
+
+- *Is 7 a prime number?* — a question. Questions aren't true or false; they're asking.
+- *Factor $x^2 + 2x + 1$.* — a command, not a claim.
+- $x + 1$ — not even a full sentence. There's nothing here that could be true or false. What is $x$?
+
+## Open statements
+
+Something interesting: the sentence $x \geq 1$ isn't quite a statement on its own, because it depends on what $x$ is. If $x = 3$, it's true. If $x = 0$, it's false. This kind of sentence is called an **open statement**, and it becomes a real statement once you say what $x$ is (or promise to check for every $x$, which is a story for module 1.10).
+
+## Statements you can't check yet
+
+Sometimes a sentence is a statement — it's definitely either true or false — but nobody knows which. Here is one:
+
+> There are infinitely many pairs of prime numbers that are only 2 apart (like 11 and 13, or 41 and 43).
+
+This is called the **Twin Primes conjecture**. A **conjecture** is a statement that people have guessed is true but nobody has proved yet. Twin Primes has been open for more than 150 years. It's still a statement — it has a definite truth value — we just don't know it.
+
+<Aside>
+Some conjectures do eventually get answered. *Fermat's Last Theorem* was a conjecture for 358 years before it was proved in 1994.
+</Aside>

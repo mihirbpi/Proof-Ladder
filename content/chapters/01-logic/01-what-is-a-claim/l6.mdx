@@ -1,0 +1,64 @@
+---
+level: l6
+title: What is a statement?
+readingTimeMin: 7
+newTerms: ["statement", "truth value", "conjecture", "open statement"]
+anchorExample: "the cat has four legs"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You've spent the year writing two-column geometry proofs, where every line is either a *given*, a *statement*, or a *reason*. This module fixes what "statement" means precisely enough that the rest of Chapter 1 can build on it.
+
+## Definition
+
+A **statement** is a declarative sentence with exactly one **truth value**: either T (true) or F (false). Sentences without a well-defined truth value — questions, commands, or expressions — are not statements.
+
+Examples that *are* statements:
+
+- $7$ is prime. (T)
+- $8$ is prime. (F)
+- $\sqrt{2}$ is irrational. (T, and it's the whole point of §4.7)
+- Every even integer $\geq 4$ is the sum of two primes. (unknown truth value — but still a statement)
+- The polynomial $x^2 + 1$ has no real root. (T)
+
+Examples that are *not* statements:
+
+- *Is $7$ prime?* (question)
+- *Prove $\sqrt{2}$ is irrational.* (command)
+- $x^2 + 1$ (an expression — no verb, nothing to be true about)
+- "the smallest odd prime" (a noun phrase; refers to $3$, but doesn't assert anything)
+
+## Statements about variables
+
+Consider $x^2 \geq 0$. Is this a statement? On its own, no — the sentence contains a free variable $x$ whose truth-value depends on the value chosen. We call such a sentence an **open statement**. It becomes a genuine statement in two natural ways:
+
+- **Substitute:** $3^2 \geq 0$ is a statement (T).
+- **Quantify:** $\forall x \in \mathbb{R},\; x^2 \geq 0$ is a statement (T). Module 1.10 introduces the $\forall$ notation.
+
+## Conjectures
+
+Many important statements have unknown truth value. Two you should meet by name:
+
+- **Goldbach's Conjecture.** Every even integer $\geq 4$ is the sum of two primes. Verified computationally up to $4 \times 10^{18}$; unproved.
+- **Twin Primes Conjecture.** There are infinitely many primes $p$ with $p + 2$ also prime. Recent work (Zhang, 2013; Maynard, 2013) showed there are infinitely many prime pairs at bounded distance, but not that the gap can be $2$.
+
+Both are statements. Nobody has settled their truth value; that doesn't stop them from being statements. A **conjecture** is a statement believed true but not yet proved.
+
+Sometimes conjectures fall:
+
+- **Fermat's Last Theorem** (Fermat, 1637): a conjecture for 358 years, proved by Wiles in 1995.
+- **Pólya's conjecture** (1919): believed for decades, disproved by counterexample in 1958.
+
+<Warning title="Not-yet-known is not the same as not-true">
+A conjecture's truth value is a fact about the world, whether or not we've settled it. "It hasn't been proved" is a statement about *us*, not about the mathematics.
+</Warning>
+
+<Aside>
+Some statements can't be settled from a given axiom system at all — this is Gödel's insight. Chapter 7 will meet the Peano axioms; l8 of this module points at the deeper story.
+</Aside>
+
+## From here
+
+Chapter 1 studies the moves that build statements out of other statements (Modules 1.2–1.4: not, and, or), the conditional shape most theorems take (1.5–1.9), and the quantifiers that let us talk about infinitely many cases at once (1.10–1.12). All of them are ways of building statements whose truth value we intend to nail down by proof.
