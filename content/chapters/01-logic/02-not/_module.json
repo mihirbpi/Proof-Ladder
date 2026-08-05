@@ -1,0 +1,42 @@
+{
+  "id": "1.2",
+  "slug": "not",
+  "chapter": "01-logic",
+  "order": 2,
+  "titles": {
+    "l1": "The opposite",
+    "l2": "Saying the opposite",
+    "l3": "Opposites: negation",
+    "l4": "Negation",
+    "l5": "Negation",
+    "l6": "Negation",
+    "l7": "Negation",
+    "l8": "Negation"
+  },
+  "kernel": "Negation flips truth value. A statement and its negation are never both true and never both false.",
+  "objectives": [
+    "Produce the negation of a claim",
+    "State that exactly one of p and ¬p is true"
+  ],
+  "sourceRef": "Math 0 §1.1.1",
+  "vocabulary": [
+    "negation",
+    "opposite",
+    "truth value"
+  ],
+  "prerequisites": [
+    "1.1"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "the opposite",
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

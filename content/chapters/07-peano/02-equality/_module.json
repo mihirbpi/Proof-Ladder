@@ -1,0 +1,44 @@
+{
+  "id": "7.2",
+  "slug": "equality",
+  "chapter": "07-peano",
+  "order": 2,
+  "titles": {
+    "l1": "Same as",
+    "l2": "The rules for same",
+    "l3": "The rules for equality",
+    "l4": "The rules for equality",
+    "l5": "The rules for equality",
+    "l6": "The rules for equality",
+    "l7": "The rules for equality",
+    "l8": "The rules for equality"
+  },
+  "kernel": "Axioms 1–4: reflexivity (x = x), symmetry, transitivity, and closure of equality (if x ∈ ℕ and x = y then y ∈ ℕ). Reflexive + symmetric + transitive = an equivalence relation.",
+  "objectives": [
+    "State the three properties",
+    "Recognize them elsewhere (same age, same color, same remainder)",
+    "Explain closure of equality"
+  ],
+  "sourceRef": "Math 0 §7.2.1",
+  "vocabulary": [
+    "reflexive",
+    "symmetric",
+    "transitive",
+    "equivalence relation"
+  ],
+  "prerequisites": [
+    "7.1"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Counting on forever"
+}

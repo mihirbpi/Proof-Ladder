@@ -1,0 +1,46 @@
+{
+  "id": "3.1",
+  "slug": "what-is-a-function",
+  "chapter": "03-functions",
+  "order": 1,
+  "titles": {
+    "l1": "The cubby machine",
+    "l2": "Arrows from list to list",
+    "l3": "What is a function?",
+    "l4": "What is a function?",
+    "l5": "What is a function?",
+    "l6": "What is a function?",
+    "l7": "What is a function?",
+    "l8": "What is a function?"
+  },
+  "kernel": "f: S → T assigns to every s ∈ S exactly one f(s) ∈ T. Three conditions: totality (everything gets sent), well-definedness (one output each), and codomain (outputs land in T). S is the domain, T the codomain.",
+  "objectives": [
+    "Test a rule against the three conditions",
+    "Identify domain and codomain",
+    "Give a non-example of each failure"
+  ],
+  "sourceRef": "Math 0 §3.1.1",
+  "vocabulary": [
+    "function",
+    "domain",
+    "codomain",
+    "input",
+    "output"
+  ],
+  "prerequisites": [
+    "2.2",
+    "2.3"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The name tag machine"
+}

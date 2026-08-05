@@ -1,0 +1,11 @@
+---
+// A common mistake, named. Uses --color-false sparingly.
+export interface Props {
+  title?: string;
+}
+const { title = 'Common mistake' } = Astro.props;
+---
+<aside class="warning" role="note">
+  <div class="warning-title">{title}</div>
+  <slot />
+</aside>

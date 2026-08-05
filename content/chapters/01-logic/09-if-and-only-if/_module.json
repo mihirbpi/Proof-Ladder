@@ -1,0 +1,42 @@
+{
+  "id": "1.9",
+  "slug": "if-and-only-if",
+  "chapter": "01-logic",
+  "order": 9,
+  "titles": {
+    "l1": "Both promises",
+    "l2": "Two promises in one",
+    "l3": "If and only if",
+    "l4": "If and only if",
+    "l5": "If and only if",
+    "l6": "If and only if",
+    "l7": "If and only if",
+    "l8": "If and only if"
+  },
+  "kernel": "p ⇔ q means both p ⇒ q and q ⇒ p. Proving it means writing two proofs.",
+  "objectives": [
+    "Split a biconditional into its two halves",
+    "Prove both directions, using a contrapositive for one where useful"
+  ],
+  "sourceRef": "Math 0 §1.2.4",
+  "vocabulary": [
+    "biconditional",
+    "if and only if"
+  ],
+  "prerequisites": [
+    "1.5",
+    "1.8"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "check both boxes",
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

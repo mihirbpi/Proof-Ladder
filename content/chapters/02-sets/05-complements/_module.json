@@ -1,0 +1,43 @@
+{
+  "id": "2.5",
+  "slug": "complements",
+  "chapter": "02-sets",
+  "order": 5,
+  "titles": {
+    "l1": "Not in the box",
+    "l2": "Everything else",
+    "l3": "Complements and suppose not",
+    "l4": "Complements and suppose not",
+    "l5": "Complements and suppose not",
+    "l6": "Complements and suppose not",
+    "l7": "Complements and suppose not",
+    "l8": "Complements and suppose not"
+  },
+  "kernel": "The complement of A in S is everything in S not in A — so it depends on S. Proof by contradiction: assume the negation of what you want, derive an impossibility, conclude.",
+  "objectives": [
+    "Compute complements relative to a stated universe",
+    "Write a short proof by contradiction",
+    "Prove A ⊆ B implies B̄ ⊆ Ā"
+  ],
+  "sourceRef": "Math 0 §2.1.6",
+  "vocabulary": [
+    "complement",
+    "proof by contradiction"
+  ],
+  "prerequisites": [
+    "2.3",
+    "1.2"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "suppose not",
+  "anchorExample": "The toy box"
+}

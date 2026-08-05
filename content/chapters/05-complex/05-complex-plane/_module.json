@@ -1,0 +1,41 @@
+{
+  "id": "5.5",
+  "slug": "complex-plane",
+  "chapter": "05-complex",
+  "order": 5,
+  "titles": {
+    "l1": "Across then up",
+    "l2": "Plotting a walk",
+    "l3": "The complex plane",
+    "l4": "The complex plane",
+    "l5": "The complex plane",
+    "l6": "The complex plane",
+    "l7": "The complex plane",
+    "l8": "The complex plane"
+  },
+  "kernel": "a + bi is plotted at (a,b) on a plane with a real horizontal axis and imaginary vertical axis. Addition is the parallelogram rule; conjugation is reflection in the real axis.",
+  "objectives": [
+    "Plot complex numbers",
+    "Add geometrically",
+    "Explain why real numbers are fixed by conjugation"
+  ],
+  "sourceRef": "Math 0 §5.3.1",
+  "vocabulary": [
+    "complex plane"
+  ],
+  "prerequisites": [
+    "5.4"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Turning a quarter turn"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "6.7",
+  "slug": "induction-in-set-theory",
+  "chapter": "06-induction",
+  "order": 7,
+  "titles": {
+    "l1": "How many bags",
+    "l2": "Every new toy doubles it",
+    "l3": "Induction in set theory",
+    "l4": "Induction in set theory",
+    "l5": "Induction in set theory",
+    "l6": "Induction in set theory",
+    "l7": "Induction in set theory",
+    "l8": "Induction in set theory"
+  },
+  "kernel": "A set with n elements has 2ⁿ subsets. The step: pick a ∈ S, split subsets into those containing a and those not; each group is in bijection with the subsets of the k-element set S \\ {a}, giving 2ᵏ + 2ᵏ = 2^{k+1}.",
+  "objectives": [
+    "Enumerate subsets of small sets",
+    "Give the doubling argument",
+    "Write the proof"
+  ],
+  "sourceRef": "Math 0 §6.2.3",
+  "vocabulary": [
+    "power set"
+  ],
+  "prerequisites": [
+    "6.2",
+    "2.1",
+    "2.9"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "dominoes",
+  "anchorExample": "A line of dominoes"
+}

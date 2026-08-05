@@ -1,0 +1,43 @@
+{
+  "id": "4.7",
+  "slug": "irrational-sqrt2",
+  "chapter": "04-numbers",
+  "order": 7,
+  "titles": {
+    "l1": "A length no fraction fits",
+    "l2": "The diagonal you cannot write",
+    "l3": "Irrational numbers and √2",
+    "l4": "Irrational numbers and √2",
+    "l5": "Irrational numbers and √2",
+    "l6": "Irrational numbers and √2",
+    "l7": "Irrational numbers and √2",
+    "l8": "Irrational numbers and √2"
+  },
+  "kernel": "Some real numbers are not rational. √2 is one: assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms. Uses \"n² even ⇒ n even\" from 1.9.",
+  "objectives": [
+    "Reproduce the √2 proof",
+    "Identify each earlier tool it uses",
+    "State that √m is rational iff m is a perfect square"
+  ],
+  "sourceRef": "Math 0 §4.2.2",
+  "vocabulary": [
+    "irrational"
+  ],
+  "prerequisites": [
+    "4.5",
+    "1.9",
+    "2.5"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "suppose not",
+  "anchorExample": "Sharing cookies evenly"
+}

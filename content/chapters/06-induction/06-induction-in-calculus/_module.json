@@ -1,0 +1,39 @@
+{
+  "id": "6.6",
+  "slug": "induction-in-calculus",
+  "chapter": "06-induction",
+  "order": 6,
+  "titles": {
+    "l1": "Doubling and doubling",
+    "l2": "Repeating a step",
+    "l3": "Induction with repeated steps",
+    "l4": "Induction with repeated steps",
+    "l5": "Induction with repeated steps",
+    "l6": "Induction with repeated steps",
+    "l7": "Induction in calculus",
+    "l8": "Induction in calculus"
+  },
+  "kernel": "For f(x) = 1/x, f^{(n)}(x) = (−1)ⁿ n! x^{−(n+1)}. Found by computing the first few derivatives and spotting three patterns (sign, factorial, exponent); proved by induction using (k+1)! = (k+1)·k!.",
+  "objectives": [
+    "Conjecture a general formula from data",
+    "Prove it by induction",
+    "Handle the base case"
+  ],
+  "sourceRef": "Math 0 §6.2.2",
+  "vocabulary": [],
+  "prerequisites": [
+    "6.2"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "touch",
+    "l3": "touch",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "dominoes",
+  "anchorExample": "A line of dominoes"
+}

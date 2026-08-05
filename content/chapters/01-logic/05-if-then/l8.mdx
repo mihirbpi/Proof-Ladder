@@ -1,0 +1,74 @@
+---
+level: l8
+title: If–then
+readingTimeMin: 10
+newTerms: ["conditional", "hypothesis", "conclusion", "vacuously true"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Figure from '@/components/Figure.astro';
+import UmbrellaCases from '@/components/UmbrellaCases.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Almost every mathematical assertion of interest — from group axioms to the mean value theorem — is a **conditional**. Writing them, reading them, proving them: this is much of what we do. The definition looks trivial at first glance and turns out to shape all of first-order logic.
+
+## Definition
+
+For statements $p$ and $q$, the conditional $p \Rightarrow q$ is a new statement whose truth values are given by
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true  },
+    { p: true,  q: false, "p ⇒ q": false },
+    { p: false, q: true,  "p ⇒ q": true  },
+    { p: false, q: false, "p ⇒ q": true  }
+  ]}
+/>
+
+$p$ is called the **hypothesis** or *antecedent*; $q$ is the **conclusion** or *consequent*. The distinctive rows are the bottom two, in which the hypothesis is false and the conditional is nonetheless true. We call such conditionals **vacuously true**.
+
+## Why vacuous truth is the sensible choice
+
+An informal argument. Consider the promise "if it rains, I bring my umbrella." On a sunny day, no one would say the promise was broken, and there is no natural reason to say it was fulfilled either. Mathematics forces a choice — trinary logic is prohibitively expensive — and the productive choice is to call the promise *kept*. Any other convention breaks universally quantified statements.
+
+<Figure alt="Four cases of the umbrella promise. Only rain-with-no-umbrella breaks it.">
+  <UmbrellaCases />
+</Figure>
+
+A formal argument. Consider a claim like "for every $x \in \mathbb{R}$, if $x^2 < 0$ then …". The hypothesis has no witnesses. We would like every such statement to be automatically true, regardless of what follows the "then." The definition above delivers exactly that: at every $x$, the hypothesis is false, so the conditional is (vacuously) true, so the universally quantified statement is true.
+
+The definition is compact: $p \Rightarrow q$ is logically equivalent to $\neg p \vee q$, and to $\neg(p \wedge \neg q)$. Verify by comparing truth tables — the two representations are useful for different manipulations, especially when combining with De Morgan's laws (§1.4).
+
+## Worked example: $x > 1 \Rightarrow x^2 > 1$
+
+The universally quantified statement
+$$
+\forall\, x \in \mathbb{R},\; x > 1 \Rightarrow x^2 > 1
+$$
+becomes a small game of eliminating the second row of the table over every $x$. A proof consists of assuming an arbitrary $x$ with $x > 1$ and deriving $x^2 > 1$; the next module carries it out with a specific inequality lemma. Note that we do *not* need to argue anything about $x \le 1$: those values instantiate rows 3 and 4, which are true by definition.
+
+<Warning title="Live confusion 1: the conditional and its hypothesis are distinct assertions">
+"$p \Rightarrow q$ is true" and "$p$ is true" are unrelated propositions. A common student mistake is to derive "$p$ therefore $q$" from a theorem stating "$p \Rightarrow q$." The theorem does say $q$ *if* you already know $p$; it does not say $p$.
+</Warning>
+
+<Warning title="Live confusion 2: material vs indicative conditional in English">
+Natural language conditionals frequently carry a causal or temporal reading — "if it rains, the streets get wet" implies a mechanism. The mathematical (material) conditional is stripped of causation. "If $2+2=5$ then I am the Pope" is mathematically true, in a way it never is conversationally. This is not something to argue with; it is a piece of translation you eventually get used to.
+</Warning>
+
+## Consequences we will lean on
+
+The conditional's truth table underwrites four techniques you will meet repeatedly:
+
+- **Direct proof.** Assume the hypothesis; deduce the conclusion (§1.1.5).
+- **Proof by contrapositive.** $p \Rightarrow q$ and $\neg q \Rightarrow \neg p$ have the same truth table (§1.2.2 – §1.2.3).
+- **Proof by contradiction.** Assume $p \wedge \neg q$; derive an impossibility. This works precisely because $p \Rightarrow q$ is $\neg(p \wedge \neg q)$ (§2.1.6).
+- **The biconditional.** $p \Leftrightarrow q$ is $p \Rightarrow q$ and $q \Rightarrow p$, so proving it means writing two proofs (§1.2.4).
+
+<WhereThisGoes level="l8">
+The material conditional is only one of many possible implication connectives. Modal logics (necessary implication) and intuitionistic logic (constructive implication) reject the vacuous-truth convention or embed it in stronger settings. In topos theory the conditional becomes an internal $\Rightarrow$-map that satisfies exactly the identities you would want. For now: the shape of $\Rightarrow$ set here is what a mathematician means by "if–then" unless flagged otherwise.
+</WhereThisGoes>

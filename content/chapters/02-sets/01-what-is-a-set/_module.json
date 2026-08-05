@@ -1,0 +1,43 @@
+{
+  "id": "2.1",
+  "slug": "what-is-a-set",
+  "chapter": "02-sets",
+  "order": 1,
+  "titles": {
+    "l1": "The toy box",
+    "l2": "Boxes of things",
+    "l3": "What is a set?",
+    "l4": "What is a set?",
+    "l5": "What is a set?",
+    "l6": "What is a set?",
+    "l7": "What is a set?",
+    "l8": "What is a set?"
+  },
+  "kernel": "A set is a well-defined collection; x ∈ S says x belongs. Sets are unordered and repetition is irrelevant. The empty set is a set. ℕ, ℤ, ℝ are the standard number sets.",
+  "objectives": [
+    "Decide whether a collection is well-defined",
+    "Use ∈ and ∉",
+    "State that {a,b,c} = {b,c,a}",
+    "Name ℕ, ℤ, ℝ"
+  ],
+  "sourceRef": "Math 0 §2.1, §2.1.1",
+  "vocabulary": [
+    "set",
+    "element",
+    "empty set",
+    "well-defined"
+  ],
+  "prerequisites": [],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The toy box"
+}

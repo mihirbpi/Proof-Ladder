@@ -1,0 +1,44 @@
+{
+  "id": "1.12",
+  "slug": "proving-quantified-statements",
+  "chapter": "01-logic",
+  "order": 12,
+  "titles": {
+    "l1": "Four ways to be right or wrong",
+    "l2": "The four cases",
+    "l3": "Proving and disproving quantified statements",
+    "l4": "Proving and disproving quantified statements",
+    "l5": "Proving and disproving quantified statements",
+    "l6": "Proving and disproving quantified statements",
+    "l7": "Proving and disproving quantified statements",
+    "l8": "Proving and disproving quantified statements"
+  },
+  "kernel": "Prove ∀ by arguing about an arbitrary element; disprove ∀ with one counterexample. Prove ∃ by exhibiting a witness; disprove ∃ by proving the universal negation. Prove ∃! by exhibiting and then showing any two candidates coincide.",
+  "objectives": [
+    "Choose the right strategy for each of four cases",
+    "Write an arbitrary-element proof",
+    "Write a uniqueness argument"
+  ],
+  "sourceRef": "Math 0 §1.3.4",
+  "vocabulary": [
+    "proof by cases",
+    "arbitrary element",
+    "witness"
+  ],
+  "prerequisites": [
+    "1.10",
+    "1.11"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "split into cases",
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

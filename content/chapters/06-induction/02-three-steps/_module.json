@@ -1,0 +1,44 @@
+{
+  "id": "6.2",
+  "slug": "three-steps",
+  "chapter": "06-induction",
+  "order": 2,
+  "titles": {
+    "l1": "Two jobs",
+    "l2": "Push, then chain",
+    "l3": "The three steps",
+    "l4": "The three steps",
+    "l5": "The three steps",
+    "l6": "The three steps",
+    "l7": "The three steps",
+    "l8": "The three steps"
+  },
+  "kernel": "(1) State A(n) and the starting value n₀. (2) Prove the base case A(n₀). (3) Prove the inductive step: assume A(k) for some k ≥ n₀, deduce A(k+1). The inductive step is a conditional, so assuming A(k) is not circular.",
+  "objectives": [
+    "Write the three steps for a given claim",
+    "Explain why the step is not begging the question",
+    "Identify the base case"
+  ],
+  "sourceRef": "Math 0 §6.1.2",
+  "vocabulary": [
+    "base case",
+    "inductive step",
+    "inductive hypothesis"
+  ],
+  "prerequisites": [
+    "6.1",
+    "1.5"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "dominoes",
+  "anchorExample": "A line of dominoes"
+}

@@ -1,0 +1,100 @@
+{
+  "levels": [
+    {
+      "id": "l1",
+      "label": "Kindergarten",
+      "shortLabel": "K",
+      "ageRange": "5–6",
+      "grade": "Kindergarten",
+      "readingTarget": "Read aloud by adult",
+      "wordBudget": [60, 140],
+      "notation": "None. Words and pictures only. Numerals 0–10.",
+      "allowedSymbols": ["0","1","2","3","4","5","6","7","8","9"],
+      "voice": "Second person, present tense, 6–12 word sentences. Every module ends with one thing to do."
+    },
+    {
+      "id": "l2",
+      "label": "2nd grade",
+      "shortLabel": "2",
+      "ageRange": "7–8",
+      "grade": "Grade 2",
+      "readingTarget": "Grade 2",
+      "wordBudget": [140, 280],
+      "notation": "= + −, numerals. Labeled boxes and arrows.",
+      "allowedSymbols": ["=","+","-","0","1","2","3","4","5","6","7","8","9"],
+      "voice": "Warmth, two-step chains. Introduces the idea that a rule must work every time."
+    },
+    {
+      "id": "l3",
+      "label": "5th grade",
+      "shortLabel": "5",
+      "ageRange": "10–11",
+      "grade": "Grade 5",
+      "readingTarget": "Grade 5",
+      "wordBudget": [350, 600],
+      "notation": "Adds ∈, ⊆, ∪, ∩, { }, variables as letters, fractions.",
+      "allowedSymbols": ["=","+","-","·","×","÷","<",">","∈","∉","⊆","⊂","∪","∩","{","}","/"],
+      "voice": "The turn to why. Discussion/Proof shape introduced. First symbols, always glossed."
+    },
+    {
+      "id": "l4",
+      "label": "8th grade",
+      "shortLabel": "8",
+      "ageRange": "13–14",
+      "grade": "Grade 8",
+      "readingTarget": "Grade 8",
+      "wordBudget": [600, 900],
+      "notation": "Adds ¬, ∧, ∨, ⇒, ≠, ∅, set-builder, f(x).",
+      "allowedSymbols": ["=","+","-","·","×","÷","<",">","≤","≥","∈","∉","⊆","⊂","∪","∩","{","}","¬","∧","∨","⇒","≠","∅","|","/"],
+      "voice": "Pre-algebra fluency assumed. Proofs are real proofs, in paragraphs, 3–8 sentences."
+    },
+    {
+      "id": "l5",
+      "label": "9th grade",
+      "shortLabel": "9",
+      "ageRange": "14–15",
+      "grade": "Grade 9",
+      "readingTarget": "Grade 9",
+      "wordBudget": [800, 1200],
+      "notation": "Adds ∀, ∃, ⇔, | (divides), interval notation, √.",
+      "allowedSymbols": ["=","+","-","·","×","÷","<",">","≤","≥","∈","∉","⊆","⊂","∪","∩","{","}","¬","∧","∨","⇒","≠","∅","|","/","∀","∃","⇔","√","(",")","[","]"],
+      "voice": "Algebra I complete. Quantifiers introduced. Proofs a paragraph or two."
+    },
+    {
+      "id": "l6",
+      "label": "10th grade",
+      "shortLabel": "10",
+      "ageRange": "15–16",
+      "grade": "Grade 10",
+      "readingTarget": "Grade 10",
+      "wordBudget": [1000, 1500],
+      "notation": "Adds ≡, ∃!, f⁻¹, ∘, Σ, ℕ ℤ ℚ ℝ ℂ.",
+      "allowedSymbols": ["=","+","-","·","×","÷","<",">","≤","≥","∈","∉","⊆","⊂","∪","∩","{","}","¬","∧","∨","⇒","≠","∅","|","/","∀","∃","⇔","√","(",")","[","]","≡","∃!","∘","Σ","ℕ","ℤ","ℚ","ℝ","ℂ"],
+      "voice": "Geometry-year reader. Explicitly connects to two-column proofs. First abstract arguments."
+    },
+    {
+      "id": "l7",
+      "label": "12th grade",
+      "shortLabel": "12",
+      "ageRange": "17–18",
+      "grade": "Grade 12",
+      "readingTarget": "Grade 12",
+      "wordBudget": [1200, 1800],
+      "notation": "Full Math 0 notation.",
+      "allowedSymbols": ["*"],
+      "voice": "Precalculus/calculus reader. Very close to Math 0 in rigor. Complete Discussion sections."
+    },
+    {
+      "id": "l8",
+      "label": "College",
+      "shortLabel": "C",
+      "ageRange": "18+",
+      "grade": "Undergraduate",
+      "readingTarget": "Undergraduate",
+      "wordBudget": [1200, 2000],
+      "notation": "Full Math 0 notation, plus forward references.",
+      "allowedSymbols": ["*"],
+      "voice": "Math 0 as intended. WhereThisGoes closer on every module."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import LevelRail from '@/components/LevelRail.astro';
+import BigIdea from '@/components/BigIdea.astro';
+import Needs from '@/components/Needs.astro';
+import {
+  getAllModules,
+  hasModuleMDX,
+  modulePath,
+  chapterPath,
+  type LevelId,
+} from '@/lib/content';
+import type { ModuleContract } from '@/content.config';
+
+export interface Props {
+  level: LevelId;
+  module: ModuleContract;
+  chapterSlug: string;
+  chapterNumber: number;
+  chapterTitle: string;
+  isTouch: boolean;
+}
+const { level, module, chapterSlug, chapterNumber, chapterTitle, isTouch } = Astro.props;
+const title = module.titles[level] ?? module.titles.l7 ?? module.slug;
+
+// Find neighbors in this chapter at the same level.
+const all = getAllModules();
+const sameChapter = all.filter((x) => x.chapter.slug === chapterSlug);
+const idx = sameChapter.findIndex((x) => x.module.id === module.id);
+const prev = idx > 0 ? sameChapter[idx - 1] : null;
+const next = idx < sameChapter.length - 1 ? sameChapter[idx + 1] : null;
+
+const railHref = (id: LevelId) => modulePath(id, chapterSlug, module.slug);
+---
+<BaseLayout title={`${module.id} · ${title}`} level={level}
+            description={module.kernel}>
+  <div class="site-grid">
+    <LevelRail currentLevel={level} hrefFor={railHref} />
+
+    <main class="reader">
+      <header class="module-header">
+        <div class="module-eyebrow">
+          <a href={chapterPath(level, chapterSlug)}>Ch {chapterNumber} · {chapterTitle}</a>
+          {' · '}
+          <span>Module {module.id}</span>
+        </div>
+        <h1>{title}</h1>
+      </header>
+
+      {module.prerequisites.length > 0 && (
+        <Needs ids={module.prerequisites} level={level} />
+      )}
+
+      <BigIdea kernel={module.kernel} />
+
+      {isTouch && (
+        <p class="touch-notice">
+          A short, honest first look at this idea here. It's told in full from grade 5 up —
+          <a href={modulePath('l3', chapterSlug, module.slug)}> read the longer version</a>.
+        </p>
+      )}
+
+      <article>
+        <slot />
+      </article>
+
+      <nav aria-label="Neighboring modules" style="display:flex; gap:1rem; justify-content:space-between; margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--color-rule);">
+        <div>
+          {prev && (
+            <a href={modulePath(level, chapterSlug, prev.module.slug)}>
+              ← {prev.module.id} · {prev.module.titles[level] ?? prev.module.titles.l7}
+            </a>
+          )}
+        </div>
+        <div>
+          {next && (
+            <a href={modulePath(level, chapterSlug, next.module.slug)}>
+              {next.module.id} · {next.module.titles[level] ?? next.module.titles.l7} →
+            </a>
+          )}
+        </div>
+      </nav>
+    </main>
+
+    <aside class="margin-col" aria-label="Margin notes">
+      <div class="small mono" style="color: color-mix(in oklab, var(--color-ink) 60%, transparent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
+        Source
+      </div>
+      <div class="small">{module.sourceRef}</div>
+      {module.namedMove && (
+        <>
+          <div class="small mono" style="color: color-mix(in oklab, var(--color-ink) 60%, transparent); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 1.5rem; margin-bottom: 0.5rem;">
+            Named move
+          </div>
+          <div class="small"><em>{module.namedMove}</em></div>
+        </>
+      )}
+    </aside>
+  </div>
+</BaseLayout>

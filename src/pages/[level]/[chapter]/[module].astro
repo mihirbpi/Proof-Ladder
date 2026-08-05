@@ -1,0 +1,80 @@
+---
+import ModuleLayout from '@/layouts/ModuleLayout.astro';
+import {
+  LEVELS,
+  getAllModules,
+  getModule,
+  getChapter,
+  type LevelId,
+} from '@/lib/content';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const paths: {
+    params: { level: string; chapter: string; module: string };
+    props: { level: string; chapterSlug: string; moduleSlug: string };
+  }[] = [];
+  for (const l of LEVELS) {
+    for (const { chapter, module } of getAllModules()) {
+      paths.push({
+        params: { level: l.id, chapter: chapter.slug, module: module.slug },
+        props: {
+          level: l.id,
+          chapterSlug: chapter.slug,
+          moduleSlug: module.slug,
+        },
+      });
+    }
+  }
+  return paths;
+}
+
+const { level, chapterSlug, moduleSlug } = Astro.props as {
+  level: LevelId;
+  chapterSlug: string;
+  moduleSlug: string;
+};
+
+const module = getModule(chapterSlug, moduleSlug)!;
+const chapter = getChapter(chapterSlug);
+const isTouch = module.treatment[level] === 'touch';
+
+// The glob loader ids look like "01-logic/05-if-then/l4".
+const entryId = `${chapterSlug}/${moduleSlug}/${level}`;
+const collection = await getCollection('modules');
+const entry = collection.find((e) => e.id === entryId);
+
+let Content: any = null;
+if (entry) {
+  const rendered = await render(entry);
+  Content = rendered.Content;
+}
+---
+<ModuleLayout
+  level={level}
+  module={module}
+  chapterSlug={chapterSlug}
+  chapterNumber={chapter.number}
+  chapterTitle={chapter.title}
+  isTouch={isTouch}
+>
+  {Content ? (
+    <Content />
+  ) : (
+    <div style="padding: 1.5rem; background: var(--color-card); border: 1px dashed var(--color-rule); border-radius: 8px; margin-top: 1.5rem;">
+      <p class="mono small" style="color: var(--color-signal);">Content pending</p>
+      <p>
+        This module is contracted but its <span class="mono">{level}.mdx</span> body
+        has not been written yet. The kernel above is the invariant.
+      </p>
+      {module.objectives.length > 0 && (
+        <>
+          <p class="mono small" style="margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.08em;">Objectives</p>
+          <ul>
+            {module.objectives.map((o) => <li>{o}</li>)}
+          </ul>
+        </>
+      )}
+    </div>
+  )}
+</ModuleLayout>

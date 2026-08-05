@@ -1,0 +1,43 @@
+{
+  "id": "1.7",
+  "slug": "converse-inverse-contrapositive",
+  "chapter": "01-logic",
+  "order": 7,
+  "titles": {
+    "l1": "Flipping a promise",
+    "l2": "Turning it around",
+    "l3": "Converse, inverse, contrapositive",
+    "l4": "Converse, inverse, contrapositive",
+    "l5": "Converse, inverse, contrapositive",
+    "l6": "Converse, inverse, contrapositive",
+    "l7": "Converse, inverse, contrapositive",
+    "l8": "Converse, inverse, contrapositive"
+  },
+  "kernel": "From p ⇒ q you can form q ⇒ p (converse), ¬p ⇒ ¬q (inverse), and ¬q ⇒ ¬p (contrapositive). Only the contrapositive is logically equivalent to the original.",
+  "objectives": [
+    "Build all three from a given conditional",
+    "Give a counterexample showing converse and inverse can fail",
+    "State the equivalence of the contrapositive"
+  ],
+  "sourceRef": "Math 0 §1.2, §1.2.1, §1.2.2",
+  "vocabulary": [
+    "converse",
+    "inverse",
+    "contrapositive"
+  ],
+  "prerequisites": [
+    "1.5"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "flip it around",
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

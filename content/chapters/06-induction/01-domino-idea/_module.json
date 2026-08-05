@@ -1,0 +1,38 @@
+{
+  "id": "6.1",
+  "slug": "domino-idea",
+  "chapter": "06-induction",
+  "order": 1,
+  "titles": {
+    "l1": "Dominoes",
+    "l2": "A row of dominoes",
+    "l3": "The domino idea",
+    "l4": "The domino idea",
+    "l5": "The domino idea",
+    "l6": "The domino idea",
+    "l7": "The domino idea",
+    "l8": "The domino idea"
+  },
+  "kernel": "If the first domino falls, and every domino knocks over the next, then all of them fall. Pattern-spotting suggests a claim; induction is what turns the guess into knowledge.",
+  "objectives": [
+    "Explain the two conditions in the domino picture",
+    "Identify what goes wrong if either fails"
+  ],
+  "sourceRef": "Math 0 §6.1.1",
+  "vocabulary": [
+    "induction"
+  ],
+  "prerequisites": [],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "dominoes",
+  "anchorExample": "A line of dominoes"
+}

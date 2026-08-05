@@ -1,0 +1,43 @@
+{
+  "id": "7.5",
+  "slug": "inductive-sets",
+  "chapter": "07-peano",
+  "order": 5,
+  "titles": {
+    "l1": "Only the counting numbers",
+    "l2": "No extras allowed",
+    "l3": "Inductive sets and the last axiom",
+    "l4": "Inductive sets and the last axiom",
+    "l5": "Inductive sets and the last axiom",
+    "l6": "Inductive sets and the last axiom",
+    "l7": "Inductive sets and the last axiom",
+    "l8": "Inductive sets and the last axiom"
+  },
+  "kernel": "V is inductive if 0 ∈ V and x ∈ V ⇒ S(x) ∈ V. Axiom 9: if V is inductive then ℕ ⊆ V. This rules out \"too big\" models and, combined with axioms 1–8, gives ℕ = {0,1,2,…} exactly. It is the same principle as Chapter 6.",
+  "objectives": [
+    "Test a set for inductiveness",
+    "Construct the {a,b} rogue model and see how Axiom 9 kills it",
+    "Connect Axiom 9 to the domino argument"
+  ],
+  "sourceRef": "Math 0 §7.2.2 (Axiom 9)",
+  "vocabulary": [
+    "inductive set"
+  ],
+  "prerequisites": [
+    "7.4",
+    "6.2",
+    "2.6"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "dominoes",
+  "anchorExample": "Counting on forever"
+}

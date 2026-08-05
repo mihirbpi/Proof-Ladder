@@ -1,0 +1,38 @@
+{
+  "id": "7.7",
+  "slug": "defining-multiplication",
+  "chapter": "07-peano",
+  "order": 7,
+  "titles": {
+    "l1": "Groups of things",
+    "l2": "Adding again and again",
+    "l3": "Defining multiplication",
+    "l4": "Defining multiplication",
+    "l5": "Defining multiplication",
+    "l6": "Defining multiplication",
+    "l7": "Defining multiplication",
+    "l8": "Defining multiplication"
+  },
+  "kernel": "a · 0 = 0 and a · S(b) = a + (a · b). Multiplication is built on addition exactly as addition was built on the successor. a · 1 = a is a small theorem; 3 · 2 = 6 is a derivation.",
+  "objectives": [
+    "Compute a·1 and 3·2 from the definition",
+    "Describe the tower successor → addition → multiplication"
+  ],
+  "sourceRef": "Math 0 §7.3.2",
+  "vocabulary": [],
+  "prerequisites": [
+    "7.6"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Counting on forever"
+}

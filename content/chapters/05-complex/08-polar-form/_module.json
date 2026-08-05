@@ -1,0 +1,42 @@
+{
+  "id": "5.8",
+  "slug": "polar-form",
+  "chapter": "05-complex",
+  "order": 8,
+  "titles": {
+    "l1": "How far and which way",
+    "l2": "Direction and distance",
+    "l3": "Polar form",
+    "l4": "Polar form",
+    "l5": "Polar form",
+    "l6": "Polar form",
+    "l7": "Polar form",
+    "l8": "Polar form"
+  },
+  "kernel": "re^{iθ} is the point at distance r from the origin at counterclockwise angle θ. Polar form is non-unique: re^{iθ} = re^{i(θ+2πk)}. Special values: i = e^{iπ/2}, −1 = e^{iπ}, and e^{iπ} + 1 = 0.",
+  "objectives": [
+    "Convert between a + bi and re^{iθ}",
+    "Explain non-uniqueness",
+    "Evaluate the special cases"
+  ],
+  "sourceRef": "Math 0 §5.4.2",
+  "vocabulary": [
+    "polar form",
+    "radians"
+  ],
+  "prerequisites": [
+    "5.7"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Turning a quarter turn"
+}

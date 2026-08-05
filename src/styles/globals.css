@@ -1,0 +1,395 @@
+@import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/literata";
+@import "@fontsource/spline-sans-mono/400.css";
+@import "@fontsource/spline-sans-mono/500.css";
+@import "katex/dist/katex.min.css";
+
+/* -------------------------------------------------------------
+ * Design tokens — see plan §C3.
+ * Semantic names only; do not use raw hex in components.
+ * ------------------------------------------------------------- */
+
+@theme {
+  --color-ink:     #14182B;
+  --color-paper:   #EEF0EA;
+  --color-card:    #F8F9F5;
+  --color-rule:    #C6CBC0;
+  --color-signal:  #4436C7;
+  --color-true:    #2F6F4E;
+  --color-false:   #A8324A;
+  --color-shade:   #E3E7DD;
+
+  --font-display:  "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body:     "Literata Variable", Georgia, "Times New Roman", serif;
+  --font-mono:     "Spline Sans Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* -------------------------------------------------------------
+ * Level-responsive type scale.
+ * <html data-level="l1"> drives body size, line-height, measure.
+ * ------------------------------------------------------------- */
+
+:root {
+  --body-size: 18px;
+  --body-lh: 1.6;
+  --measure: 62ch;
+  --p-gap: 1em;
+}
+
+html[data-level="l1"] { --body-size: 22px; --body-lh: 1.75; --measure: 46ch; --p-gap: 1.4em; }
+html[data-level="l2"] { --body-size: 21px; --body-lh: 1.7;  --measure: 50ch; --p-gap: 1.3em; }
+html[data-level="l3"] { --body-size: 19px; --body-lh: 1.65; --measure: 58ch; --p-gap: 1.1em; }
+html[data-level="l4"] { --body-size: 18px; --body-lh: 1.6;  --measure: 62ch; --p-gap: 1em; }
+html[data-level="l5"], html[data-level="l6"] {
+  --body-size: 17.5px; --body-lh: 1.6; --measure: 66ch; --p-gap: 1em;
+}
+html[data-level="l7"], html[data-level="l8"] {
+  --body-size: 17px; --body-lh: 1.55; --measure: 68ch; --p-gap: 0.9em;
+}
+
+/* -------------------------------------------------------------
+ * Base
+ * ------------------------------------------------------------- */
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: var(--body-lh);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body { min-height: 100vh; }
+
+h1, h2, h3, h4, .display { font-family: var(--font-display); letter-spacing: -0.01em; }
+h1 { font-size: 2.1rem; line-height: 1.15; font-weight: 600; }
+h2 { font-size: 1.5rem; line-height: 1.2;  font-weight: 600; margin-top: 2em; }
+h3 { font-size: 1.15rem; line-height: 1.25; font-weight: 600; margin-top: 1.5em; }
+
+p { margin-block: 0 var(--p-gap); max-width: var(--measure); }
+ul, ol { margin-block: 0 var(--p-gap); padding-inline-start: 1.25em; max-width: var(--measure); }
+li { margin-block: 0.25em; }
+a { color: var(--color-signal); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+strong { font-weight: 600; }
+em { font-style: italic; }
+hr { border: 0; border-top: 1px solid var(--color-rule); margin-block: 2em; }
+
+.mono { font-family: var(--font-mono); }
+.small { font-size: 0.85em; }
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* -------------------------------------------------------------
+ * Layout — level rail (left), reading column (center), margin (right).
+ * ------------------------------------------------------------- */
+
+.site-grid {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) 260px;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+  align-items: start;
+}
+
+.rail {
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
+  border-inline-end: 1px solid var(--color-rule);
+  padding-inline-end: 1rem;
+}
+.rail-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: color-mix(in oklab, var(--color-ink) 65%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+.rung {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.rung:hover { background: var(--color-shade); }
+.rung[aria-current="true"] {
+  background: var(--color-signal);
+  color: var(--color-paper);
+  border-color: var(--color-signal);
+}
+.rung .rung-age {
+  font-size: 0.7rem;
+  color: color-mix(in oklab, currentColor 70%, transparent);
+}
+
+.reader { min-width: 0; }
+.margin-col {
+  position: sticky;
+  top: 2rem;
+  font-size: 0.85rem;
+  color: color-mix(in oklab, var(--color-ink) 80%, transparent);
+}
+
+@media (max-width: 900px) {
+  .site-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem 1rem 4rem;
+    gap: 1rem;
+  }
+  .rail {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-direction: row;
+    overflow-x: auto;
+    background: var(--color-paper);
+    padding: 0.5rem;
+    border-inline-end: 0;
+    border-block-end: 1px solid var(--color-rule);
+    margin: -1rem -1rem 0;
+  }
+  .rail-label { display: none; }
+  .rung { flex-shrink: 0; }
+  .margin-col { position: static; }
+}
+
+/* -------------------------------------------------------------
+ * Signature: the invariant band — the module's kernel sentence.
+ * Same size and wording at every level. See §C3.
+ * ------------------------------------------------------------- */
+
+.invariant-band {
+  border-block: 1px solid var(--color-ink);
+  padding-block: 1rem;
+  margin-block: 1.5rem 2rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.35;
+  max-width: 62ch;
+  view-transition-name: kernel-band;
+}
+.invariant-band .band-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+  margin-bottom: 0.4rem;
+}
+
+/* -------------------------------------------------------------
+ * Module page bits
+ * ------------------------------------------------------------- */
+
+.module-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.module-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: color-mix(in oklab, var(--color-ink) 65%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.needs {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: color-mix(in oklab, var(--color-ink) 75%, transparent);
+  padding: 0.5rem 0.75rem;
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+  display: inline-block;
+  margin-block: 0.5rem 1.5rem;
+}
+.needs a { color: var(--color-ink); }
+.needs a:hover { color: var(--color-signal); }
+
+/* -------------------------------------------------------------
+ * MDX components
+ * ------------------------------------------------------------- */
+
+.discussion {
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-block: 1.5rem;
+}
+.discussion h4 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: color-mix(in oklab, var(--color-ink) 65%, transparent);
+  margin-block: 0 0.25em;
+  font-weight: 500;
+}
+.discussion .discussion-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: color-mix(in oklab, var(--color-ink) 70%, transparent);
+}
+.discussion .three-parts { display: grid; gap: 0.75rem; }
+.discussion .three-parts p { margin: 0.15em 0 0; }
+
+.proof {
+  border-inline-start: 3px solid var(--color-ink);
+  padding-inline-start: 1rem;
+  margin-block: 1.5rem;
+}
+.proof .proof-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+  color: color-mix(in oklab, var(--color-ink) 70%, transparent);
+}
+.proof .tombstone {
+  float: right;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.tryit {
+  background: color-mix(in oklab, var(--color-signal) 8%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-signal) 30%, transparent);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-block: 1.5rem;
+}
+.tryit-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-signal);
+  margin-bottom: 0.5rem;
+}
+
+.aside {
+  border-inline-start: 2px solid var(--color-rule);
+  padding-inline-start: 0.85rem;
+  margin-block: 1rem;
+  font-size: 0.9rem;
+  color: color-mix(in oklab, var(--color-ink) 85%, transparent);
+}
+
+.warning {
+  background: color-mix(in oklab, var(--color-false) 8%, transparent);
+  border-inline-start: 3px solid var(--color-false);
+  padding: 0.75rem 1rem;
+  margin-block: 1.25rem;
+  border-radius: 0 6px 6px 0;
+}
+.warning-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-false);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.where-this-goes {
+  margin-block: 2rem 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px dashed var(--color-rule);
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--color-shade) 60%, transparent);
+}
+.where-this-goes-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: color-mix(in oklab, var(--color-ink) 70%, transparent);
+  margin-bottom: 0.4rem;
+}
+
+.truth-table {
+  border-collapse: collapse;
+  margin-block: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+.truth-table th, .truth-table td {
+  border: 1px solid var(--color-rule);
+  padding: 0.4rem 0.75rem;
+  text-align: center;
+}
+.truth-table th { background: var(--color-card); font-weight: 500; }
+.truth-table .t { color: var(--color-true); font-weight: 600; }
+.truth-table .f { color: var(--color-false); font-weight: 600; }
+
+.figure {
+  margin-block: 1.5rem;
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.figure svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+.figure figcaption {
+  font-size: 0.85rem;
+  color: color-mix(in oklab, var(--color-ink) 75%, transparent);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.term-inline {
+  border-bottom: 1px dotted var(--color-signal);
+  cursor: help;
+}
+
+/* Kernel reveal on touch pages */
+.touch-notice {
+  font-size: 0.85rem;
+  color: color-mix(in oklab, var(--color-ink) 75%, transparent);
+  border-inline-start: 2px solid var(--color-signal);
+  padding-inline-start: 0.75rem;
+  margin-block: 1rem 1.5rem;
+  font-style: italic;
+}
+
+/* Reduced motion — swap the morph for an instant change */
+@media (prefers-reduced-motion: reduce) {
+  .invariant-band { view-transition-name: none; }
+  * { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+}

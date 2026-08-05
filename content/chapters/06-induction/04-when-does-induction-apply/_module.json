@@ -1,0 +1,38 @@
+{
+  "id": "6.4",
+  "slug": "when-does-induction-apply",
+  "chapter": "06-induction",
+  "order": 4,
+  "titles": {
+    "l1": "Dominoes need a line",
+    "l2": "Some things are not in a line",
+    "l3": "When does induction apply?",
+    "l4": "When does induction apply?",
+    "l5": "When does induction apply?",
+    "l6": "When does induction apply?",
+    "l7": "When does induction apply?",
+    "l8": "When does induction apply?"
+  },
+  "kernel": "Induction needs a statement indexed by integers n ≥ n₀ and a way to connect case k+1 back to case k. Statements about all real numbers are not candidates.",
+  "objectives": [
+    "Judge whether a claim is a candidate for induction",
+    "Articulate the linkage requirement"
+  ],
+  "sourceRef": "Math 0 §6.1.3",
+  "vocabulary": [],
+  "prerequisites": [
+    "6.2"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "A line of dominoes"
+}

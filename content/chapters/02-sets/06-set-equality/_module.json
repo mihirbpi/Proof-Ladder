@@ -1,0 +1,41 @@
+{
+  "id": "2.6",
+  "slug": "set-equality",
+  "chapter": "02-sets",
+  "order": 6,
+  "titles": {
+    "l1": "Same stuff",
+    "l2": "When two boxes are the same",
+    "l3": "Set equality by double inclusion",
+    "l4": "Set equality by double inclusion",
+    "l5": "Set equality by double inclusion",
+    "l6": "Set equality by double inclusion",
+    "l7": "Set equality by double inclusion",
+    "l8": "Set equality by double inclusion"
+  },
+  "kernel": "S = T is defined as S ⊆ T and T ⊆ S. Every set-equality proof is therefore two proofs. When a hypothesis is an or, split into cases.",
+  "objectives": [
+    "Prove set equality by double inclusion",
+    "Use proof by cases inside such a proof"
+  ],
+  "sourceRef": "Math 0 §2.2",
+  "vocabulary": [
+    "double inclusion"
+  ],
+  "prerequisites": [
+    "2.3",
+    "1.12"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "check both boxes",
+  "anchorExample": "The toy box"
+}

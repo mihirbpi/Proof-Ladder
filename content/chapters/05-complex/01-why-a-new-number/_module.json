@@ -1,0 +1,39 @@
+{
+  "id": "5.1",
+  "slug": "why-a-new-number",
+  "chapter": "05-complex",
+  "order": 1,
+  "titles": {
+    "l1": "A place nothing lands",
+    "l2": "The gap in the squares",
+    "l3": "Why we needed a new number",
+    "l4": "Why we needed a new number",
+    "l5": "Why we needed a new number",
+    "l6": "Why we needed a new number",
+    "l7": "Why we needed a new number",
+    "l8": "Why we needed a new number"
+  },
+  "kernel": "x² ≥ 0 for every real x, so x² + 1 = 0 has no real solution and the polynomial x² + 1 has no real root. Roots of polynomials matter enough that mathematicians extended the number system rather than accept the gap.",
+  "objectives": [
+    "Explain why x² + 1 has no real root",
+    "Describe the historical move as invention-with-verification"
+  ],
+  "sourceRef": "Math 0 §5.1",
+  "vocabulary": [],
+  "prerequisites": [
+    "4.1",
+    "1.12"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Turning a quarter turn"
+}

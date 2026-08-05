@@ -1,0 +1,41 @@
+{
+  "id": "1.1",
+  "slug": "what-is-a-claim",
+  "chapter": "01-logic",
+  "order": 1,
+  "titles": {
+    "l1": "True or silly",
+    "l2": "Tellings",
+    "l3": "Statements",
+    "l4": "What is a statement?",
+    "l5": "What is a statement?",
+    "l6": "What is a statement?",
+    "l7": "What is a statement?",
+    "l8": "What is a statement?"
+  },
+  "kernel": "A statement is a sentence that is either true or false; questions, commands, and fragments are not. You do not need to know which it is for it to be a statement.",
+  "objectives": [
+    "Sort sentences into statements and non-statements",
+    "Give an example of each",
+    "Recognize that some statements have unknown truth value (conjectures)"
+  ],
+  "sourceRef": "Math 0 §1.1",
+  "vocabulary": [
+    "statement",
+    "truth value",
+    "conjecture"
+  ],
+  "prerequisites": [],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

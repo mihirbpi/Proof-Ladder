@@ -1,0 +1,12 @@
+---
+// The invariant band. Auto-populated from _module.json.kernel.
+// Rendered by the layout, not by MDX. Exactly one per page.
+export interface Props {
+  kernel: string;
+}
+const { kernel } = Astro.props;
+---
+<section class="invariant-band" aria-label="The big idea">
+  <span class="band-label">The big idea — the same at every level</span>
+  <p class="band-text">{kernel}</p>
+</section>

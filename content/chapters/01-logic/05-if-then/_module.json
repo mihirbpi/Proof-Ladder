@@ -1,0 +1,44 @@
+{
+  "id": "1.5",
+  "slug": "if-then",
+  "chapter": "01-logic",
+  "order": 5,
+  "titles": {
+    "l1": "A promise",
+    "l2": "Keeping a promise",
+    "l3": "If–then",
+    "l4": "If–then and vacuous truth",
+    "l5": "If–then and vacuous truth",
+    "l6": "If–then and vacuous truth",
+    "l7": "If–then and vacuous truth",
+    "l8": "If–then and vacuous truth"
+  },
+  "kernel": "\"If p then q\" claims only that q holds whenever p does. It is false only when p is true and q is false, so it is automatically true when p is false — this is vacuous truth.",
+  "objectives": [
+    "Identify hypothesis and conclusion",
+    "Determine the truth of a conditional in all four cases",
+    "Explain vacuous truth without discomfort"
+  ],
+  "sourceRef": "Math 0 §1.1.4",
+  "vocabulary": [
+    "conditional",
+    "hypothesis",
+    "conclusion",
+    "vacuously true"
+  ],
+  "prerequisites": [
+    "1.3"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

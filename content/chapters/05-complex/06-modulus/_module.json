@@ -1,0 +1,42 @@
+{
+  "id": "5.6",
+  "slug": "modulus",
+  "chapter": "05-complex",
+  "order": 6,
+  "titles": {
+    "l1": "How far from home",
+    "l2": "Measuring how far",
+    "l3": "Modulus",
+    "l4": "Modulus",
+    "l5": "Modulus",
+    "l6": "Modulus",
+    "l7": "Modulus",
+    "l8": "Modulus"
+  },
+  "kernel": "|z| = √(a² + b²) is the distance from 0; |z| = √(z·z̄); it extends absolute value; |z − w| is the distance between z and w; |z − w| = r describes a circle.",
+  "objectives": [
+    "Compute modulus",
+    "Connect to Pythagoras and to absolute value",
+    "Sketch the locus |z − w| = r"
+  ],
+  "sourceRef": "Math 0 §5.3.2",
+  "vocabulary": [
+    "modulus",
+    "absolute value"
+  ],
+  "prerequisites": [
+    "5.5"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Turning a quarter turn"
+}

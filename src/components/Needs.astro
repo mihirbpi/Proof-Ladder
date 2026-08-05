@@ -1,0 +1,28 @@
+---
+// The prerequisite line. Links to prereqs at the same level.
+import { getAllModules, modulePath, type LevelId } from '@/lib/content';
+export interface Props {
+  ids: string[];
+  level: LevelId;
+}
+const { ids, level } = Astro.props;
+const all = getAllModules();
+const prereqs = ids
+  .map((id) => all.find((x) => x.module.id === id))
+  .filter((x): x is NonNullable<typeof x> => Boolean(x))
+  .map((x) => ({
+    id: x.module.id,
+    title: x.module.titles[level] ?? x.module.titles.l7,
+    href: modulePath(level, x.chapter.slug, x.module.slug),
+  }));
+---
+{prereqs.length > 0 && (
+  <div class="needs" aria-label="Prerequisites">
+    You'll need:{' '}
+    {prereqs.map((p, i) => (
+      <>
+        <a href={p.href}>{p.id} · {p.title}</a>{i < prereqs.length - 1 ? ' · ' : ''}
+      </>
+    ))}
+  </div>
+)}

@@ -1,0 +1,79 @@
+---
+level: l7
+title: If–then
+readingTimeMin: 10
+newTerms: ["conditional", "hypothesis", "conclusion", "vacuously true"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Figure from '@/components/Figure.astro';
+import UmbrellaCases from '@/components/UmbrellaCases.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every theorem in this course, and nearly every theorem you will meet afterwards, has the same shape:
+
+> Whenever this holds, that holds too.
+
+Symbolically, $p \Rightarrow q$: the **conditional** with **hypothesis** $p$ and **conclusion** $q$. Understanding what the conditional actually means — including its behaviour on the cases where the hypothesis does not hold — is the entire point of this module.
+
+## Definition via truth table
+
+$p \Rightarrow q$ is defined to be true in three of the four possible cases, and false in one:
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true  },
+    { p: true,  q: false, "p ⇒ q": false },
+    { p: false, q: true,  "p ⇒ q": true  },
+    { p: false, q: false, "p ⇒ q": true  }
+  ]}
+/>
+
+The single false row — hypothesis true, conclusion false — is the only case that would count as a broken promise. Every other case is *true* by definition.
+
+The last two rows, where the hypothesis fails, are said to make the conditional **vacuously true**. The word carries no metaphysics: it is a labelling convention that keeps the truth table crisp. If we had chosen instead to leave those cases undefined, we would need three-valued logic and the rest of mathematics would become much clumsier to state.
+
+<Figure alt="Four cases of the umbrella promise: only rain with no umbrella breaks it.">
+  <UmbrellaCases />
+</Figure>
+
+The umbrella promise is the pedagogical trick that makes vacuous truth land. On a sunny day, no one thinks I broke my promise about rainy days. So on a sunny day, my promise is intact — that is, still true. When the truth table declares row 4 true, it is enshrining the same intuition.
+
+## A conditional in mathematics: $x > 1 \Rightarrow x^2 > 1$
+
+Let us pick apart a small theorem you already believe:
+$$
+\forall\, x \in \mathbb{R},\; x > 1 \Rightarrow x^2 > 1.
+$$
+
+The claim is a universally quantified conditional. For each individual $x$, we get a conditional $p(x) \Rightarrow q(x)$ where $p(x)$ is "$x > 1$" and $q(x)$ is "$x^2 > 1$." Sample:
+
+| $x$ | $p(x)$ | $q(x)$ | $p(x) \Rightarrow q(x)$ | row |
+|---|---|---|---|---|
+| $3$   | T | T | T | 1 |
+| $0.4$ | F | F | T | 4 |
+| $-2$  | F | T | T | 3 |
+| ??    | T | F | F | 2 |
+
+The universally quantified statement is true precisely when the fourth row of the table is *empty* — that is, when no $x$ produces the "hypothesis true, conclusion false" case. Proving the theorem means ruling out that row. That is exactly what a direct proof does, and the next module (§1.1.5) shows how.
+
+<Warning title="Common confusion, worth fixing early">
+Note carefully the difference between three statements:
+
+- "$p$ is true."
+- "$q$ is true."
+- "$p \Rightarrow q$ is true."
+
+The third can hold without either of the first two. In particular, if $p$ is false then $p \Rightarrow q$ is true regardless of $q$. This is not a bug; it is the shape of the definition that makes all of first-order logic run.
+</Warning>
+
+## Where this shows up next
+
+- **Direct proof.** To establish $p \Rightarrow q$, assume $p$ and derive $q$. The whole game reduces to eliminating row 2 of the truth table.
+- **Contrapositive.** The truth table for $\neg q \Rightarrow \neg p$ is identical to that for $p \Rightarrow q$. So the two statements are logically equivalent — we can prove one by proving the other. Module 1.7 makes this precise.
+- **Biconditional.** *$p$ if and only if $q$* is the conjunction of $p \Rightarrow q$ and $q \Rightarrow p$. Proving one, therefore, requires two conditional proofs (§1.9).
+- **Vacuous statements everywhere.** Any statement of the form "every element of $\emptyset$ satisfies …" is vacuously true. If you spot it in a proof, do not fight the convention; use it.

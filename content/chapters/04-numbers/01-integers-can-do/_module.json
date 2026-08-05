@@ -1,0 +1,43 @@
+{
+  "id": "4.1",
+  "slug": "integers-can-do",
+  "chapter": "04-numbers",
+  "order": 1,
+  "titles": {
+    "l1": "Whole piles stay whole",
+    "l2": "Closed",
+    "l3": "What the integers can do",
+    "l4": "What the integers can do",
+    "l5": "What the integers can do",
+    "l6": "What the integers can do",
+    "l7": "What the integers can do",
+    "l8": "What the integers can do"
+  },
+  "kernel": "ℤ is closed under addition, additive inverses, and multiplication, and satisfies the distributive law — this makes it a ring. It is not closed under multiplicative inverses: only 1 and −1 have integer reciprocals.",
+  "objectives": [
+    "State the four closure properties",
+    "Demonstrate that 1/3 ∉ ℤ",
+    "Explain what \"closed\" means"
+  ],
+  "sourceRef": "Math 0 §4.1.1",
+  "vocabulary": [
+    "closed",
+    "ring",
+    "distributive law"
+  ],
+  "prerequisites": [
+    "2.1"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Sharing cookies evenly"
+}

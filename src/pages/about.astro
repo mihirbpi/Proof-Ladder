@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+<BaseLayout title="About" description="Proof Ladder is an independent adaptation of Caltech's Math 0.">
+  <div class="site-grid" style="grid-template-columns: 1fr;">
+    <main class="reader" style="max-width: 700px; margin: 0 auto; padding-block: 3rem 1rem;">
+      <p class="module-eyebrow"><a href="/">Proof Ladder</a> · About</p>
+      <h1>About Proof Ladder</h1>
+      <p>
+        Proof Ladder is a spiral curriculum website that teaches the whole of Caltech's
+        <em>Math 0 — Transition to Mathematical Proofs</em> at eight reading levels,
+        from kindergarten to college.
+      </p>
+      <p>
+        The premise: geometric reasoning is taught five times before college. So can logic,
+        sets, functions, and induction. The Math 0 syllabus is the right spine to spiral
+        along, because it is an honest, complete list of what a person needs before real
+        mathematics starts.
+      </p>
+
+      <h2>Attribution</h2>
+      <p>
+        Based on the Math 0 notes by <strong>Bob Pelayo</strong> at Caltech. This site is an
+        independent adaptation. It is not affiliated with, endorsed by, or reviewed by
+        Caltech or Dr. Pelayo. Mathematical statements themselves are common property;
+        the prose here is written from scratch.
+      </p>
+
+      <h2>Design principles</h2>
+      <ul>
+        <li><strong>No lies-to-children.</strong> Every simplification is true but incomplete — never something a reader must later unlearn.</li>
+        <li><strong>The kernel is level-invariant.</strong> Each module has a fixed idea that survives at every level; only the vocabulary and formality change.</li>
+        <li><strong>Motivation precedes formalism.</strong> Every module opens with the question the idea answers.</li>
+        <li><strong>Proof is a kind of talking.</strong> No two-column proofs; the house style is Discussion + Proof in full sentences.</li>
+      </ul>
+
+      <p style="margin-top: 3rem;" class="small">
+        Source code will be published under MIT and content under CC BY-SA 4.0.
+      </p>
+    </main>
+  </div>
+</BaseLayout>

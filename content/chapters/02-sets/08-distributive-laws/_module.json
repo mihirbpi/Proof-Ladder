@@ -1,0 +1,42 @@
+{
+  "id": "2.8",
+  "slug": "distributive-laws",
+  "chapter": "02-sets",
+  "order": 8,
+  "titles": {
+    "l1": "Three hoops",
+    "l2": "Sharing across hoops",
+    "l3": "Distributive laws",
+    "l4": "Distributive laws",
+    "l5": "Distributive laws",
+    "l6": "Distributive laws",
+    "l7": "Distributive laws",
+    "l8": "Distributive laws"
+  },
+  "kernel": "S ∪ (T ∩ R) = (S∪T) ∩ (S∪R) and S ∩ (T ∪ R) = (S∩T) ∪ (S∩R). Unlike arithmetic, distribution works both ways.",
+  "objectives": [
+    "State both laws",
+    "Prove one by double inclusion with cases",
+    "Contrast with the single distributive law of arithmetic"
+  ],
+  "sourceRef": "Math 0 §2.2.2",
+  "vocabulary": [
+    "distributive law"
+  ],
+  "prerequisites": [
+    "2.4",
+    "2.6"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "touch",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The toy box"
+}

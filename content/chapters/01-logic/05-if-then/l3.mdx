@@ -1,0 +1,52 @@
+---
+level: l3
+title: If–then
+readingTimeMin: 5
+newTerms: ["conditional", "hypothesis", "conclusion"]
+anchorExample: "multiples of 6"
+---
+
+import Figure from '@/components/Figure.astro';
+import UmbrellaCases from '@/components/UmbrellaCases.astro';
+import Aside from '@/components/Aside.astro';
+
+Some claims come in two pieces. They tell you what happens *when* something else is true.
+
+> If a number is a multiple of 6, then it is even.
+
+This is called a **conditional** — a claim of the form *if p then q*. The *if* part is called the **hypothesis**. The *then* part is called the **conclusion**.
+
+The conditional above says: whenever you find yourself looking at a multiple of 6, you can be sure it is even. It does not say anything at all about numbers that are not multiples of 6 — those numbers might be even (like 4), they might be odd (like 5), the promise stays quiet.
+
+## When is a conditional false?
+
+The umbrella promise from before is a good way to see this.
+
+> If it rains, I bring the umbrella.
+
+There is only one way the promise gets broken: it rains, and the umbrella stays home. Every other kind of day — sun with an umbrella, sun without one, rain with the umbrella — the promise stands.
+
+<Figure alt="Four cases of the umbrella promise, drawn as a 2 by 2 grid. Only rain-with-no-umbrella breaks it.">
+  <UmbrellaCases />
+</Figure>
+
+So: a conditional *if p then q* is false in exactly one case — when p is true and q is false. In every other case, it is true.
+
+That includes the two cases where p is false. This surprises people at first: if it is a sunny day, the umbrella promise wasn't tested, so how can it be *true*? The answer is that the promise only spoke about rainy days. On a sunny day, it made no promise to break. We say the conditional is **true by default** when the hypothesis fails.
+
+<Aside>
+This "true by default" idea has a fancy name — *vacuously true* — that shows up at higher levels. For now, all it means is: no promise, no problem.
+</Aside>
+
+## Back to the numbers
+
+Take our number claim: *if a number is a multiple of 6, then it is even*.
+
+- 12 is a multiple of 6. 12 is even. Case matches, promise kept.
+- 18 is a multiple of 6. 18 is even. Case matches, promise kept.
+- 5 is not a multiple of 6. The claim never spoke about 5. Promise kept — the case wasn't tested.
+- 4 is not a multiple of 6. Same thing.
+
+To *break* this claim, you would have to find a multiple of 6 that is not even. There isn't one — every multiple of 6 is 6 times a whole number, and 6 is already even. So the claim is true.
+
+The whole rest of this chapter is going to be about writing that last sentence carefully.

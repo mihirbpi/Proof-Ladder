@@ -1,0 +1,40 @@
+{
+  "id": "5.3",
+  "slug": "complex-arithmetic",
+  "chapter": "05-complex",
+  "order": 3,
+  "titles": {
+    "l1": "Doing two instructions",
+    "l2": "Adding moves",
+    "l3": "Complex arithmetic",
+    "l4": "Complex arithmetic",
+    "l5": "Complex arithmetic",
+    "l6": "Complex arithmetic",
+    "l7": "Complex arithmetic",
+    "l8": "Complex arithmetic"
+  },
+  "kernel": "Add componentwise; multiply by FOIL with i² = −1, giving (ac − bd) + (ad + bc)i; invert by multiplying by the conjugate over itself; divide as z · (1/w). ℂ is a field.",
+  "objectives": [
+    "Add, multiply, invert, and divide complex numbers",
+    "Verify a² + b² ≠ 0 for z ≠ 0",
+    "State that ℂ is a field"
+  ],
+  "sourceRef": "Math 0 §5.2",
+  "vocabulary": [],
+  "prerequisites": [
+    "5.2",
+    "4.5"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Turning a quarter turn"
+}

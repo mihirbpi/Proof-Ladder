@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LevelRail from '@/components/LevelRail.astro';
+import {
+  LEVELS,
+  getLevel,
+  getAllChapters,
+  getModulesForChapter,
+  chapterPath,
+  modulePath,
+  levelHome,
+  type LevelId,
+} from '@/lib/content';
+
+export function getStaticPaths() {
+  return LEVELS.map((l) => ({ params: { level: l.id } }));
+}
+
+const { level } = Astro.params as { level: LevelId };
+const profile = getLevel(level);
+const chapters = getAllChapters();
+const railHref = (id: LevelId) => levelHome(id);
+---
+<BaseLayout title={`${profile.label} — course home`} level={level}
+            description={`Math 0 taught for ${profile.readingTarget}.`}>
+  <div class="site-grid">
+    <LevelRail currentLevel={level} hrefFor={railHref} />
+    <main class="reader">
+      <p class="module-eyebrow">
+        <a href="/">Proof Ladder</a> · Level {profile.shortLabel} · {profile.label}
+      </p>
+      <h1>Math 0 for {profile.readingTarget.toLowerCase()}</h1>
+      <p style="margin-top: 1rem;">{profile.voice}</p>
+
+      {chapters.map((ch) => {
+        const mods = getModulesForChapter(ch.slug);
+        return (
+          <section style="margin-top: 2.5rem;">
+            <div class="module-eyebrow">Chapter {ch.number}</div>
+            <h2 style="margin-top: 0.25rem;">
+              <a href={chapterPath(level, ch.slug)}>{ch.title}</a>
+            </h2>
+            <p class="small" style="color: color-mix(in oklab, var(--color-ink) 70%, transparent);">
+              {ch.question}
+            </p>
+            <ul style="list-style: none; padding-left: 0; margin-top: 0.75rem;">
+              {mods.map((m) => (
+                <li style="padding: 0.35rem 0; border-bottom: 1px dashed var(--color-rule);">
+                  <a href={modulePath(level, ch.slug, m.slug)}>
+                    <span class="mono small" style="color: color-mix(in oklab, var(--color-ink) 60%, transparent); margin-right: 0.5rem;">{m.id}</span>
+                    {m.titles[level] ?? m.titles.l7}
+                  </a>
+                  {m.treatment[level] === 'touch' && (
+                    <span class="small mono" style="margin-left: 0.5rem; color: var(--color-signal);">touch</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
+    </main>
+    <aside class="margin-col">
+      <div class="small mono" style="color: color-mix(in oklab, var(--color-ink) 60%, transparent); text-transform: uppercase; letter-spacing: 0.08em;">
+        Voice
+      </div>
+      <p class="small">{profile.notation}</p>
+    </aside>
+  </div>
+</BaseLayout>

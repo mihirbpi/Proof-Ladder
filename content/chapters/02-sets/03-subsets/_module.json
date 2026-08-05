@@ -1,0 +1,43 @@
+{
+  "id": "2.3",
+  "slug": "subsets",
+  "chapter": "02-sets",
+  "order": 3,
+  "titles": {
+    "l1": "A box inside a box",
+    "l2": "Part of a box",
+    "l3": "Subsets",
+    "l4": "Subsets",
+    "l5": "Subsets",
+    "l6": "Subsets",
+    "l7": "Subsets",
+    "l8": "Subsets"
+  },
+  "kernel": "A ⊆ S means every element of A is in S. To prove it, take an arbitrary x ∈ A and show x ∈ S. ∅ is a subset of everything (vacuously). Subset is transitive.",
+  "objectives": [
+    "Decide subset relations",
+    "Write an element-chasing subset proof",
+    "Explain why ∅ ⊆ S"
+  ],
+  "sourceRef": "Math 0 §2.1.3, §2.1.4",
+  "vocabulary": [
+    "subset",
+    "proper subset",
+    "transitive"
+  ],
+  "prerequisites": [
+    "2.1"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "take any one and follow it",
+  "anchorExample": "The toy box"
+}

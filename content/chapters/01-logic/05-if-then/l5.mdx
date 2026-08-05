@@ -1,0 +1,74 @@
+---
+level: l5
+title: If–then
+readingTimeMin: 8
+newTerms: ["conditional", "hypothesis", "conclusion", "vacuously true"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Figure from '@/components/Figure.astro';
+import UmbrellaCases from '@/components/UmbrellaCases.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Nearly every theorem you will ever meet has the same grammar: *if such-and-such, then thus-and-so.* Statements of this form are called **conditionals** and written
+$$
+p \Rightarrow q.
+$$
+The *if* part $p$ is the **hypothesis** and the *then* part $q$ is the **conclusion**.
+
+A conditional is a very particular kind of promise. It promises exactly one thing: whenever $p$ is true, $q$ is true. It says nothing at all when $p$ is false.
+
+## The truth table
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true  },
+    { p: true,  q: false, "p ⇒ q": false },
+    { p: false, q: true,  "p ⇒ q": true  },
+    { p: false, q: false, "p ⇒ q": true  }
+  ]}
+/>
+
+The only false row is the second: hypothesis true, conclusion false. The bottom two rows — where $p$ is false — are **vacuously true**. This is a fancy name for something ordinary: a promise about rainy days can't be broken on a sunny one.
+
+<Figure alt="Four cases of the umbrella promise. Only rain-with-no-umbrella breaks it." caption="If it rains I bring the umbrella — three cases keep the promise, one breaks it.">
+  <UmbrellaCases />
+</Figure>
+
+## A statement can be true because its hypothesis is false
+
+Consider
+$$
+25 \text{ is a multiple of } 6 \;\Rightarrow\; 25 \text{ is even.}
+$$
+Its hypothesis is false, so the whole conditional is vacuously true. We are *not* claiming that $25$ is even. We are claiming that "*if* $25$ were a multiple of $6$, *then* it would be even" — which is technically a true statement about a case that never occurs.
+
+<Warning title="Two things to keep separate">
+"The conditional $p \Rightarrow q$ is true" is *not* the same statement as "$p$ is true" or "$q$ is true." A conditional can be true even when nothing on either side is happening.
+</Warning>
+
+## A conditional with a variable
+
+Take
+$$
+x > 1 \;\Rightarrow\; x^2 > 1.
+$$
+Now $p$ and $q$ depend on the number $x$ you plug in. Test a few:
+
+- $x = 3$: hypothesis true ($3 > 1$), conclusion true ($9 > 1$). Row 1.
+- $x = \tfrac12$: hypothesis false. Conclusion also false. Row 4 — vacuously true, so the conditional itself is still true for this value of $x$.
+- $x = -2$: hypothesis false ($-2 \not> 1$). Conclusion true ($4 > 1$). Row 3 — still true.
+
+Can we find any $x$ that falls in row 2? Row 2 would require $x > 1$ and $x^2 \le 1$ at the same time. Squaring a number bigger than $1$ produces a number bigger than $1$, so no such $x$ exists. Therefore the conditional
+$$
+\forall\, x \in \mathbb{R},\; x > 1 \Rightarrow x^2 > 1
+$$
+is true for every real $x$. That is what we will prove in the next module.
+
+## Why the shape matters
+
+Almost every theorem has this shape because it is the shape of *useful* information. You spot a case where the hypothesis holds and immediately know the conclusion holds. Direct proof will be one method for establishing conditionals; the contrapositive and contradiction will be others. All of them start from the same observation: to make $p \Rightarrow q$ true, we only have to rule out row 2 of the table.

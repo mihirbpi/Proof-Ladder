@@ -1,0 +1,43 @@
+{
+  "id": "5.4",
+  "slug": "conjugation",
+  "chapter": "05-complex",
+  "order": 4,
+  "titles": {
+    "l1": "The mirror",
+    "l2": "Flip across the middle",
+    "l3": "Conjugation",
+    "l4": "Conjugation",
+    "l5": "Conjugation",
+    "l6": "Conjugation",
+    "l7": "Conjugation",
+    "l8": "Conjugation"
+  },
+  "kernel": "z̄ = a − bi. Conjugation is an involution; Re(z) = (z + z̄)/2; Im(z) = (z − z̄)/(2i); z·z̄ = a² + b² is real and ≥ 0. z is real iff z = z̄.",
+  "objectives": [
+    "Compute conjugates",
+    "Verify the Re/Im formulas",
+    "Prove the biconditional z real ⇔ z = z̄"
+  ],
+  "sourceRef": "Math 0 §5.2.1",
+  "vocabulary": [
+    "conjugate",
+    "involution"
+  ],
+  "prerequisites": [
+    "5.3",
+    "1.9"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Turning a quarter turn"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "4.2",
+  "slug": "even-odd-divides",
+  "chapter": "04-numbers",
+  "order": 2,
+  "titles": {
+    "l1": "Sharing with a partner",
+    "l2": "Even and odd",
+    "l3": "Even, odd, and divides",
+    "l4": "Even, odd, and divides",
+    "l5": "Even, odd, and divides",
+    "l6": "Even, odd, and divides",
+    "l7": "Even, odd, and divides",
+    "l8": "Even, odd, and divides"
+  },
+  "kernel": "n is even iff n = 2k for some integer k; odd iff n = 2k+1. Generalizing: m | n iff n = mk for some k ∈ ℤ. Divisibility is an existence statement, so proving it means producing the k.",
+  "objectives": [
+    "Use the algebraic definitions of even and odd",
+    "State the definition of divides",
+    "Recognize divisibility claims as ∃-statements"
+  ],
+  "sourceRef": "Math 0 §4.1.2",
+  "vocabulary": [
+    "even",
+    "odd",
+    "divides"
+  ],
+  "prerequisites": [
+    "4.1",
+    "1.10"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Sharing cookies evenly"
+}

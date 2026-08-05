@@ -1,0 +1,43 @@
+{
+  "id": "3.6",
+  "slug": "surjections",
+  "chapter": "03-functions",
+  "order": 6,
+  "titles": {
+    "l1": "Every cubby used",
+    "l2": "No arrow lands nowhere",
+    "l3": "Onto (surjections)",
+    "l4": "Onto (surjections)",
+    "l5": "Onto (surjections)",
+    "l6": "Onto (surjections)",
+    "l7": "Onto (surjections)",
+    "l8": "Onto (surjections)"
+  },
+  "kernel": "f is surjective when Im(f) = T: every t ∈ T has at least one pre-image. Surjectivity depends on the declared codomain.",
+  "objectives": [
+    "Test for surjectivity",
+    "Prove a function surjective by producing a pre-image for an arbitrary target",
+    "Explain how changing the codomain changes the answer"
+  ],
+  "sourceRef": "Math 0 §3.2.1",
+  "vocabulary": [
+    "surjective",
+    "onto"
+  ],
+  "prerequisites": [
+    "3.1",
+    "3.3"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The name tag machine"
+}

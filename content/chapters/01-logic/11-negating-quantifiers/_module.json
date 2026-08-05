@@ -1,0 +1,40 @@
+{
+  "id": "1.11",
+  "slug": "negating-quantifiers",
+  "chapter": "01-logic",
+  "order": 11,
+  "titles": {
+    "l1": "One bad apple",
+    "l2": "Finding one that breaks the rule",
+    "l3": "Negating quantifiers and counterexamples",
+    "l4": "Negating quantifiers and counterexamples",
+    "l5": "Negating quantifiers and counterexamples",
+    "l6": "Negating quantifiers and counterexamples",
+    "l7": "Negating quantifiers and counterexamples",
+    "l8": "Negating quantifiers and counterexamples"
+  },
+  "kernel": "¬(∀x p(x)) is the same as ∃x ¬p(x), and ¬(∃x p(x)) is the same as ∀x ¬p(x). A single counterexample destroys a universal claim.",
+  "objectives": [
+    "Negate quantified statements",
+    "Produce a counterexample to a false universal claim"
+  ],
+  "sourceRef": "Math 0 §1.3.3",
+  "vocabulary": [
+    "counterexample"
+  ],
+  "prerequisites": [
+    "1.10"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "one bad apple",
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

@@ -1,0 +1,39 @@
+---
+// The Math 0 planning block. Three parts.
+// At l1/l2 the labels become the child-language versions.
+export interface Props {
+  level?: string;
+}
+const { level } = Astro.props;
+const softLabels = level === 'l1' || level === 'l2';
+const labels = softLabels
+  ? {
+      title: "How we're thinking",
+      know: "What's true already",
+      want: 'What we want to be true',
+      how: 'How we get there',
+    }
+  : {
+      title: 'Discussion',
+      know: 'What we know',
+      want: 'What we want',
+      how: "What we'll do",
+    };
+---
+<aside class="discussion" role="note">
+  <div class="discussion-title">{labels.title}</div>
+  <div class="three-parts">
+    <div>
+      <h4>{labels.know}</h4>
+      <slot name="know" />
+    </div>
+    <div>
+      <h4>{labels.want}</h4>
+      <slot name="want" />
+    </div>
+    <div>
+      <h4>{labels.how}</h4>
+      <slot name="how" />
+    </div>
+  </div>
+</aside>

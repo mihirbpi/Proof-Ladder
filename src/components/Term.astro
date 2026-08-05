@@ -1,0 +1,14 @@
+---
+// Inline glossary term. Pulls the definition for the current level.
+import { findGlossaryEntry, type LevelId } from '@/lib/content';
+export interface Props {
+  name: string;
+  level: LevelId;
+}
+const { name, level } = Astro.props;
+const entry = findGlossaryEntry(name);
+const def = entry?.definitions?.[level] ?? entry?.definitions?.l7 ?? entry?.definitions?.l4;
+---
+<span class="term-inline" title={def ?? name}>
+  <slot />
+</span>

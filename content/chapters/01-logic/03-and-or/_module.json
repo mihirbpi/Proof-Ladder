@@ -1,0 +1,44 @@
+{
+  "id": "1.3",
+  "slug": "and-or",
+  "chapter": "01-logic",
+  "order": 3,
+  "titles": {
+    "l1": "And, or",
+    "l2": "Two things at once",
+    "l3": "And, or",
+    "l4": "And, or",
+    "l5": "And, or",
+    "l6": "And, or",
+    "l7": "And, or",
+    "l8": "And, or"
+  },
+  "kernel": "\"p and q\" is true only when both are; \"p or q\" is true when at least one is (inclusive or). A statement always false is a contradiction; always true, a tautology.",
+  "objectives": [
+    "Evaluate compound claims",
+    "State that mathematical or includes both",
+    "Give an example of a contradiction and a tautology"
+  ],
+  "sourceRef": "Math 0 §1.1.2",
+  "vocabulary": [
+    "and",
+    "or",
+    "contradiction",
+    "tautology"
+  ],
+  "prerequisites": [
+    "1.2"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

@@ -1,0 +1,42 @@
+{
+  "id": "2.9",
+  "slug": "product-sets",
+  "chapter": "02-sets",
+  "order": 9,
+  "titles": {
+    "l1": "Outfits",
+    "l2": "A grid of choices",
+    "l3": "Product sets",
+    "l4": "Product sets",
+    "l5": "Product sets",
+    "l6": "Product sets",
+    "l7": "Product sets",
+    "l8": "Product sets"
+  },
+  "kernel": "S × T is the set of ordered pairs (s,t) with s ∈ S and t ∈ T. Order matters, so S × T ≠ T × S in general. Anything × ∅ is ∅. Products interact cleanly with intersection.",
+  "objectives": [
+    "List a small product",
+    "Explain why order matters",
+    "Prove (A∩B)×(C∩D) = (A×C)∩(B×D)"
+  ],
+  "sourceRef": "Math 0 §2.3, §2.3.1, §2.3.2",
+  "vocabulary": [
+    "ordered pair",
+    "product set"
+  ],
+  "prerequisites": [
+    "2.1"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The toy box"
+}

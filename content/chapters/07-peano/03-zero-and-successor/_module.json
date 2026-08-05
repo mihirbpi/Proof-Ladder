@@ -1,0 +1,42 @@
+{
+  "id": "7.3",
+  "slug": "zero-and-successor",
+  "chapter": "07-peano",
+  "order": 3,
+  "titles": {
+    "l1": "The what-comes-next machine",
+    "l2": "Naming what comes next",
+    "l3": "Zero and the successor",
+    "l4": "Zero and the successor",
+    "l5": "Zero and the successor",
+    "l6": "Zero and the successor",
+    "l7": "Zero and the successor",
+    "l8": "Zero and the successor"
+  },
+  "kernel": "Axiom 5: 0 ∈ ℕ. Axiom 6: if x ∈ ℕ then S(x) ∈ ℕ. S is the \"next\" function. We cannot yet call S(x) \"x + 1\" because + is not defined.",
+  "objectives": [
+    "State both axioms",
+    "Explain why S(x) cannot yet be written x + 1",
+    "Recognize S as a function ℕ → ℕ"
+  ],
+  "sourceRef": "Math 0 §7.2.2 (Axioms 5, 6)",
+  "vocabulary": [
+    "successor"
+  ],
+  "prerequisites": [
+    "7.2",
+    "3.1"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Counting on forever"
+}

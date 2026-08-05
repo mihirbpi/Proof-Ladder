@@ -1,0 +1,39 @@
+{
+  "id": "7.4",
+  "slug": "no-loops-no-merges",
+  "chapter": "07-peano",
+  "order": 4,
+  "titles": {
+    "l1": "No coming home",
+    "l2": "Two rules for real counting",
+    "l3": "Two axioms that stop the numbers looping",
+    "l4": "Two axioms that stop the numbers looping",
+    "l5": "Two axioms that stop the numbers looping",
+    "l6": "Two axioms that stop the numbers looping",
+    "l7": "Two axioms that stop the numbers looping",
+    "l8": "Two axioms that stop the numbers looping"
+  },
+  "kernel": "Axiom 7: 0 is not the successor of anything, so counting never returns to the start. Axiom 8: S is injective, so counting never merges two numbers into one.",
+  "objectives": [
+    "Construct the bad models the axioms rule out",
+    "Restate Axiom 7 as \"the pre-image of 0 is empty\" and Axiom 8 as \"S is injective\""
+  ],
+  "sourceRef": "Math 0 §7.2.2 (Axioms 7, 8)",
+  "vocabulary": [],
+  "prerequisites": [
+    "7.3",
+    "3.5"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Counting on forever"
+}

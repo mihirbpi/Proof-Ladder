@@ -1,0 +1,43 @@
+{
+  "id": "3.5",
+  "slug": "injections",
+  "chapter": "03-functions",
+  "order": 5,
+  "titles": {
+    "l1": "Nobody shares a cubby",
+    "l2": "Arrows that never land together",
+    "l3": "One-to-one (injections)",
+    "l4": "One-to-one (injections)",
+    "l5": "One-to-one (injections)",
+    "l6": "One-to-one (injections)",
+    "l7": "One-to-one (injections)",
+    "l8": "One-to-one (injections)"
+  },
+  "kernel": "f is injective when distinct inputs give distinct outputs; equivalently (contrapositive), f(s₁) = f(s₂) ⇒ s₁ = s₂. Every element of T has at most one pre-image.",
+  "objectives": [
+    "Test a function for injectivity",
+    "Write an injectivity proof",
+    "Give a counterexample for a non-injective function"
+  ],
+  "sourceRef": "Math 0 §3.2.1",
+  "vocabulary": [
+    "injective",
+    "one-to-one"
+  ],
+  "prerequisites": [
+    "3.1",
+    "1.7"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The name tag machine"
+}

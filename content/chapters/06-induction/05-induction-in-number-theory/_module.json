@@ -1,0 +1,39 @@
+{
+  "id": "6.5",
+  "slug": "induction-in-number-theory",
+  "chapter": "06-induction",
+  "order": 5,
+  "titles": {
+    "l1": "Dominoes with sharing",
+    "l2": "Sharing evenly, always",
+    "l3": "Induction in number theory",
+    "l4": "Induction in number theory",
+    "l5": "Induction in number theory",
+    "l6": "Induction in number theory",
+    "l7": "Induction in number theory",
+    "l8": "Induction in number theory"
+  },
+  "kernel": "3 | (2^{2n} − 1) for all n ≥ 0. The step: write 2^{2k} − 1 = 3x, so 2^{2k} = 3x + 1, then 2^{2(k+1)} − 1 = 4(3x+1) − 1 = 3(4x+1). Naming the unknown factor x (not k) matters, because k is taken.",
+  "objectives": [
+    "Combine the divisibility template with induction",
+    "Manage variable naming"
+  ],
+  "sourceRef": "Math 0 §6.2.1",
+  "vocabulary": [],
+  "prerequisites": [
+    "6.2",
+    "4.2"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "touch",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "dominoes",
+  "anchorExample": "A line of dominoes"
+}

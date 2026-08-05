@@ -1,0 +1,40 @@
+{
+  "id": "7.6",
+  "slug": "defining-addition",
+  "chapter": "07-peano",
+  "order": 6,
+  "titles": {
+    "l1": "Adding is pressing next",
+    "l2": "How addition works",
+    "l3": "Defining addition",
+    "l4": "Defining addition",
+    "l5": "Defining addition",
+    "l6": "Defining addition",
+    "l7": "Defining addition",
+    "l8": "Defining addition"
+  },
+  "kernel": "a + 0 = a and a + S(b) = S(a + b). Every sum is computed by unwinding to the base case. 1 + 1 = 2 becomes a derivation, not a fact.",
+  "objectives": [
+    "Compute 1+1, 1+2, 2+3 from the definition",
+    "Explain what recursive definition means"
+  ],
+  "sourceRef": "Math 0 §7.3.1",
+  "vocabulary": [
+    "recursive definition"
+  ],
+  "prerequisites": [
+    "7.3"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Counting on forever"
+}

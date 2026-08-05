@@ -1,0 +1,43 @@
+{
+  "id": "1.6",
+  "slug": "your-first-proof",
+  "chapter": "01-logic",
+  "order": 6,
+  "titles": {
+    "l1": "Show me how you know",
+    "l2": "A reason chain",
+    "l3": "Your first proof",
+    "l4": "Your first proof",
+    "l5": "Your first proof",
+    "l6": "Your first proof",
+    "l7": "Your first proof",
+    "l8": "Your first proof"
+  },
+  "kernel": "To prove \"if p then q\", assume p and reason to q using facts already established. A proof is written in full sentences.",
+  "objectives": [
+    "Recognize the Discussion/Proof structure",
+    "Write a two- to three-step direct argument",
+    "Recognize the end-of-proof marker"
+  ],
+  "sourceRef": "Math 0 §1.1.5",
+  "vocabulary": [
+    "proof",
+    "Discussion",
+    "direct proof"
+  ],
+  "prerequisites": [
+    "1.5"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "start from what you're given",
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

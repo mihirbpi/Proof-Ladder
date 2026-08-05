@@ -1,0 +1,14 @@
+---
+// Wrapper for SVG figures with caption + alt text (required by schema at build time).
+export interface Props {
+  caption?: string;
+  alt: string;
+}
+const { caption, alt } = Astro.props;
+---
+<figure class="figure" role="figure" aria-label={alt}>
+  <div class="figure-body" role="img" aria-label={alt}>
+    <slot />
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

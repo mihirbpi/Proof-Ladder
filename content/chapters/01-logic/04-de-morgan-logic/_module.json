@@ -1,0 +1,41 @@
+{
+  "id": "1.4",
+  "slug": "de-morgan-logic",
+  "chapter": "01-logic",
+  "order": 4,
+  "titles": {
+    "l1": "Not both",
+    "l2": "Crossing out an AND",
+    "l3": "De Morgan's laws",
+    "l4": "De Morgan's laws",
+    "l5": "De Morgan's laws",
+    "l6": "De Morgan's laws",
+    "l7": "De Morgan's laws",
+    "l8": "De Morgan's laws"
+  },
+  "kernel": "¬(p ∧ q) is the same as ¬p ∨ ¬q, and ¬(p ∨ q) is the same as ¬p ∧ ¬q. Negation swaps and with or.",
+  "objectives": [
+    "Negate a compound statement correctly",
+    "Explain why the connective flips"
+  ],
+  "sourceRef": "Math 0 §1.1.3",
+  "vocabulary": [
+    "logically equivalent"
+  ],
+  "prerequisites": [
+    "1.2",
+    "1.3"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

@@ -1,0 +1,22 @@
+---
+import { LEVELS, type LevelId } from '@/lib/content';
+export interface Props {
+  currentLevel: LevelId;
+  hrefFor: (id: LevelId) => string;
+}
+const { currentLevel, hrefFor } = Astro.props;
+---
+<nav class="rail" aria-label="Reading level">
+  <div class="rail-label">Level</div>
+  {LEVELS.map((l) => (
+    <a
+      class="rung"
+      href={hrefFor(l.id)}
+      aria-current={l.id === currentLevel ? 'true' : undefined}
+      data-level={l.id}
+    >
+      <span>{l.shortLabel}</span>
+      <span class="rung-age">{l.grade}</span>
+    </a>
+  ))}
+</nav>

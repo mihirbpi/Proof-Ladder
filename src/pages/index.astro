@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { LEVELS, levelHome } from '@/lib/content';
+---
+<BaseLayout title="Home" description="Caltech's Math 0 — Transition to Mathematical Proofs — taught eight times, from kindergarten to college.">
+  <div class="site-grid" style="grid-template-columns: 1fr;">
+    <main class="reader" style="max-width: 720px; margin: 0 auto; padding-block: 3rem 1rem;">
+      <p class="mono small" style="color: color-mix(in oklab, var(--color-ink) 65%, transparent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+        Proof Ladder
+      </p>
+      <h1 style="font-size: 2.6rem; line-height: 1.1;">One course. Taught eight ways.</h1>
+      <p style="margin-top: 1.5rem;">
+        Caltech's <em>Math 0 — Transition to Mathematical Proofs</em> is written for
+        undergraduates who can integrate but have never been asked to justify anything.
+        This site teaches the whole of it — every module, every theorem — at eight reading levels,
+        from kindergarten to college. Pick a rung on the ladder and the same idea gets told again
+        in the vocabulary that fits you.
+      </p>
+      <p>
+        The kernel of each module is fixed. Everything else — the words, the examples, the
+        formality — moves with the level. Move the level any time.
+      </p>
+
+      <h2 style="margin-top: 2.5rem; font-size: 1.3rem;">Pick a level to start</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+        {LEVELS.map((l) => (
+          <a href={levelHome(l.id)}
+             style="display: block; padding: 1rem; border: 1px solid var(--color-rule); border-radius: 8px; text-decoration: none; color: var(--color-ink); background: var(--color-card);">
+            <div class="mono small" style="color: var(--color-signal); font-weight: 500;">{l.id.toUpperCase()}</div>
+            <div style="font-family: var(--font-display); font-weight: 600; margin-top: 0.25rem;">{l.label}</div>
+            <div class="small" style="color: color-mix(in oklab, var(--color-ink) 65%, transparent); margin-top: 0.25rem;">{l.ageRange}</div>
+          </a>
+        ))}
+      </div>
+
+      <p style="margin-top: 2.5rem;" class="small">
+        <a href="/about/">About the project</a> · Based on the Math 0 notes by Bob Pelayo at Caltech.
+      </p>
+    </main>
+  </div>
+</BaseLayout>

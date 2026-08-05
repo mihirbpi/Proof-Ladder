@@ -1,0 +1,40 @@
+{
+  "id": "4.8",
+  "slug": "shape-of-irrationals",
+  "chapter": "04-numbers",
+  "order": 8,
+  "titles": {
+    "l1": "Two strange numbers, one ordinary",
+    "l2": "Adding two √2s",
+    "l3": "The shape of the irrationals",
+    "l4": "The shape of the irrationals",
+    "l5": "The shape of the irrationals",
+    "l6": "The shape of the irrationals",
+    "l7": "The shape of the irrationals",
+    "l8": "The shape of the irrationals"
+  },
+  "kernel": "The irrationals are not closed under addition or multiplication and contain neither 0 nor 1 — they are not a field. But: if a is irrational so are −a and 1/a, and a nonzero rational times an irrational is irrational.",
+  "objectives": [
+    "Give counterexamples to closure",
+    "Prove rational × irrational is irrational",
+    "See the −a result as a special case"
+  ],
+  "sourceRef": "Math 0 §4.2.2",
+  "vocabulary": [],
+  "prerequisites": [
+    "4.7",
+    "2.5"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "suppose not",
+  "anchorExample": "Sharing cookies evenly"
+}

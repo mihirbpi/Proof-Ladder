@@ -1,0 +1,43 @@
+{
+  "id": "1.10",
+  "slug": "for-all-there-exists",
+  "chapter": "01-logic",
+  "order": 10,
+  "titles": {
+    "l1": "Every and some",
+    "l2": "All, some, exactly one",
+    "l3": "For all, there exists",
+    "l4": "For all, there exists",
+    "l5": "For all, there exists",
+    "l6": "For all, there exists",
+    "l7": "For all, there exists",
+    "l8": "For all, there exists"
+  },
+  "kernel": "\"For all\" claims something about every case; \"there exists\" claims at least one case. \"There exists exactly one\" claims existence and uniqueness.",
+  "objectives": [
+    "Classify a claim as universal or existential",
+    "State what evidence each demands"
+  ],
+  "sourceRef": "Math 0 §1.3.1, §1.3.2",
+  "vocabulary": [
+    "for all",
+    "there exists",
+    "unique",
+    "quantifier"
+  ],
+  "prerequisites": [
+    "1.1"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

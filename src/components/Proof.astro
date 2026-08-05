@@ -1,0 +1,17 @@
+---
+// The proof block. Ends with □. l1/l2 title is softened.
+export interface Props {
+  level?: string;
+  title?: string;
+}
+const { level, title } = Astro.props;
+const softTitle = level === 'l1' || level === 'l2' ? 'How we know' : 'Proof';
+const shown = title ?? softTitle;
+---
+<section class="proof" aria-label={shown}>
+  <div class="proof-title">{shown}</div>
+  <div class="proof-body">
+    <slot />
+    <span class="tombstone" aria-hidden="true">□</span>
+  </div>
+</section>

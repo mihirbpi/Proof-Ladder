@@ -1,0 +1,43 @@
+{
+  "id": "3.8",
+  "slug": "bijections",
+  "chapter": "03-functions",
+  "order": 8,
+  "titles": {
+    "l1": "One cubby each, one child each",
+    "l2": "Pairing up",
+    "l3": "Bijections and size",
+    "l4": "Bijections and size",
+    "l5": "Bijections and size",
+    "l6": "Bijections and size",
+    "l7": "Bijections and size",
+    "l8": "Bijections and size"
+  },
+  "kernel": "A bijection is both injective and surjective: every t has exactly one pre-image. For finite sets, injection ⇒ |S| ≤ |T|, surjection ⇒ |S| ≥ |T|, bijection ⇒ |S| = |T|. Bijections are how mathematicians compare infinite sets.",
+  "objectives": [
+    "Verify a bijection",
+    "Use bijections to compare sizes",
+    "State the identity function's properties"
+  ],
+  "sourceRef": "Math 0 §3.3",
+  "vocabulary": [
+    "bijection",
+    "identity function"
+  ],
+  "prerequisites": [
+    "3.5",
+    "3.6"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The name tag machine"
+}

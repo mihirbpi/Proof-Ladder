@@ -1,0 +1,42 @@
+{
+  "id": "2.2",
+  "slug": "set-builder",
+  "chapter": "02-sets",
+  "order": 2,
+  "titles": {
+    "l1": "A box by a rule",
+    "l2": "Rule-boxes and list-boxes",
+    "l3": "Set-builder notation",
+    "l4": "Set-builder notation",
+    "l5": "Set-builder notation",
+    "l6": "Set-builder notation",
+    "l7": "Set-builder notation",
+    "l8": "Set-builder notation"
+  },
+  "kernel": "{x | p(x)} is the set of all x making p(x) true — a set defined by a condition rather than a list.",
+  "objectives": [
+    "Read and write set-builder notation",
+    "Translate between listed sets, conditions, and intervals"
+  ],
+  "sourceRef": "Math 0 §2.1.2",
+  "vocabulary": [
+    "set-builder",
+    "interval"
+  ],
+  "prerequisites": [
+    "2.1",
+    "1.1"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The toy box"
+}

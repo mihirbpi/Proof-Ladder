@@ -1,0 +1,44 @@
+{
+  "id": "5.2",
+  "slug": "what-is-a-complex-number",
+  "chapter": "05-complex",
+  "order": 2,
+  "titles": {
+    "l1": "Across and turn",
+    "l2": "A pair of instructions",
+    "l3": "What a complex number is",
+    "l4": "What a complex number is",
+    "l5": "What a complex number is",
+    "l6": "What a complex number is",
+    "l7": "What a complex number is",
+    "l8": "What a complex number is"
+  },
+  "kernel": "ℂ = {a + bi | a,b ∈ ℝ} with i² = −1. Re(z) = a, Im(z) = b, and both are real. ℝ ⊆ ℂ via a = a + 0i, giving ℕ ⊆ ℤ ⊆ ℚ ⊆ ℝ ⊆ ℂ.",
+  "objectives": [
+    "Identify real and imaginary parts",
+    "Prove ℝ ⊆ ℂ",
+    "Place all five number systems in order"
+  ],
+  "sourceRef": "Math 0 §5.1.1, §5.1.2",
+  "vocabulary": [
+    "complex number",
+    "real part",
+    "imaginary part"
+  ],
+  "prerequisites": [
+    "5.1",
+    "2.3"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Turning a quarter turn"
+}

@@ -1,0 +1,16 @@
+---
+// The l8 closer, naming the field this module opens.
+// Rendered at l7 and l8 only. See §C6.
+export interface Props {
+  level?: string;
+  title?: string;
+}
+const { level, title = 'Where this goes' } = Astro.props;
+const shouldRender = level === 'l7' || level === 'l8';
+---
+{shouldRender && (
+  <aside class="where-this-goes" role="note">
+    <div class="where-this-goes-title">{title}</div>
+    <slot />
+  </aside>
+)}

@@ -1,0 +1,1253 @@
+# Proof Ladder — Build Plan & Syllabus
+
+**A spiral curriculum website that teaches the whole of Caltech's Math 0 (*Transition to Mathematical Proofs*) at eight reading levels, from kindergarten to college.**
+
+This document is the specification. It is written to be handed to Claude Code as the source of truth for building the site: Part A sets the pedagogy and level system, Part B is the complete syllabus (every module, every level), Part C is the technical build, Part D is the content-generation workflow, and Part E covers deployment, attribution, and later phases.
+
+---
+
+## Part A — The project
+
+### A1. The premise
+
+The US sequence runs arithmetic → geometry → algebra → trig → precalculus → calculus. Deductive reasoning appears once, in 9th-grade geometry, as a two-column ritual that arrives without motivation and then disappears again. The result is that students meet proof as a genre they have to imitate rather than a tool they needed. The existence of Math 0 — a course Caltech built because incoming freshmen who can integrate by parts have never been asked to justify anything — is the evidence.
+
+Geometric reasoning is not taught once. Shapes appear in kindergarten, again with measurement in grade 3, again with coordinates in grade 5, again with congruence in grade 8, again with formal proof in grade 10. Nobody finds this strange. The claim behind this project is that logic, sets, functions, and induction can be spiraled the same way, and that the Math 0 syllabus is the right spine to spiral along, because it is a complete and honest list of what a person needs before real mathematics starts.
+
+### A2. What the site is
+
+One course, taught eight times. A reader picks a level and gets the entire Math 0 content — all seven chapters, all 61 modules — written for that level. Switching level mid-course keeps you on the same idea and re-explains it. Nothing is hidden at any level: kindergarten gets a real (short, concrete) treatment of Peano's successor function, not a "come back in twelve years" placeholder.
+
+**Phase 1 scope (this build): content only.** No exercises, no accounts, no backend. Static site, runs locally with one command, deployable to GitHub Pages.
+
+### A3. Design principles for the content
+
+These are binding constraints on every piece of writing generated for this site.
+
+1. **No lies-to-children.** Every simplification must be *true but incomplete*, never something the reader has to unlearn. Banned: "you can't subtract a bigger number from a smaller one," "negative numbers don't have square roots," "a function is a formula," "or means one or the other." Preferred shape: "with the numbers we have so far, there's nothing that works — so mathematicians made a new number, and here's how."
+2. **The kernel is a level-adapted restatement of a fixed idea.** Each module has a *kernel idea* — the mathematical content that must survive at every level. The idea is fixed; each level carries its own *kernel sentence*, worded so a reader at that level can actually read it. A kindergartner should never see college wording on the invariant band, and a college reader should not see baby wording. What is invariant is the *thing being pointed at*, not the pointing. If a level's page doesn't carry the kernel idea, it's wrong; if a level's kernel sentence uses vocabulary or notation the reader hasn't met, it's also wrong.
+3. **Vertical alignment.** A grade-2 reader who later reads the grade-8 page should recognize the same idea, ideally with the same running example. Keep the examples consistent down the ladder wherever the mathematics allows (see A6, "anchor examples").
+4. **Motivation precedes formalism at every level.** Each module opens with the question the idea answers. The Math 0 notes already do this; preserve it.
+5. **Proof is a kind of talking, not a format.** Never present two-column proofs. Math 0's own convention — a **Discussion** section (what we know / what we want / what we'll do) followed by a **Proof** in full English sentences — is the house style and scales down beautifully. At kindergarten, "what we know / what we want / what we'll do" becomes "What's true already? What do we want to be true? How do we get there?"
+6. **Name the move.** Every proof technique gets a name the reader can use out loud: *flip it around* (contrapositive), *suppose not* (contradiction), *check both boxes* (double inclusion), *one bad apple* (counterexample), *dominoes* (induction). Names carry across levels; the formal term is introduced alongside the informal one from grade 5 up.
+7. **Honesty about difficulty.** Say when something is hard. Math 0 does this ("this proof is slightly out of the scope of these notes"). Keep it.
+
+### A4. The eight levels
+
+The reader picks one of these. Each level has a fixed voice, notation budget, and length budget. Levels 1–2 are read *to* a child by an adult; levels 3+ are read independently.
+
+| ID | Label (shown) | Age / grade | Reading target | Words / module | Notation allowed |
+|----|---------------|-------------|----------------|----------------|------------------|
+| `l1` | Kindergarten | 5–6 | Read aloud by adult | 60–140 | None. Words and pictures only. Numerals 0–10. |
+| `l2` | 2nd grade | 7–8 | Grade 2 | 140–280 | `=`, `+`, `−`, numerals. Labeled boxes and arrows in pictures. |
+| `l3` | 5th grade | 10–11 | Grade 5 | 350–600 | Adds `∈`, `⊆`, `∪`, `∩`, `{ }`, variables as letters, fractions. |
+| `l4` | 8th grade | 13–14 | Grade 8 | 600–900 | Adds `¬`, `∧`, `∨`, `⇒`, `≠`, `∅`, set-builder, function notation `f(x)`. |
+| `l5` | 9th grade | 14–15 | Grade 9 | 800–1200 | Adds `∀`, `∃`, `⇔`, `|` (divides), interval notation, `√`. |
+| `l6` | 10th grade | 15–16 | Grade 10 | 1000–1500 | Adds `≡`, `∃!`, `f⁻¹`, `∘`, summation `Σ`, `ℕ ℤ ℚ ℝ ℂ`. |
+| `l7` | 12th grade | 17–18 | Grade 12 | 1200–1800 | Full Math 0 notation. |
+| `l8` | College | 18+ | Undergraduate | 1200–2000 | Full Math 0 notation, plus forward references to abstract algebra, analysis, topology. |
+
+**A note on the level count.** Eight levels × 61 modules = 488 pages of content, which is a lot to author and a lot to keep aligned. Levels `l5`/`l6` (9th/10th) and `l7`/`l8` (12th/college) are the closest pairs — the honest difference between them is example sophistication and how much forward-looking context is offered, not mathematical content. **Recommended: build `l1`–`l4` and `l7` first (five levels, 305 pages), ship, then fill in `l5`, `l6`, `l8` by adapting neighbors.** The schema below supports all eight from day one, so this is a sequencing decision, not an architectural one. If you'd rather cut permanently, merging to six levels (K, 2, 5, 8, 9–10, 12/college) loses very little.
+
+### A5. Voice and treatment per level
+
+Generation of content must follow these profiles exactly.
+
+**`l1` Kindergarten.** Second person, present tense, 6–12 word sentences. Everything is a physical object or a person: blocks, animals, a toy box, a friend named Sam. No hypotheticals about numbers the child hasn't met. Every module ends with **one thing to do** (a 30-second physical activity — sort the blocks, say the opposite, find the one that breaks the rule). Introduce exactly one new word per module and repeat it three times. Questions are answered, never left open.
+
+**`l2` 2nd grade.** Same warmth, longer chains. Can hold a two-step argument ("we know this, so that, so this"). Introduces the idea that a rule must work *every* time and that one bad case breaks it. Numbers to 100, simple even/odd, sharing and grouping. Pictures still carry the argument; words now carry the reason.
+
+**`l3` 5th grade.** The turn to *why*. Readers can handle a variable as a stand-in, a definition stated plainly, and a short argument that ends in "so it has to be true." Introduces the Discussion/Proof shape explicitly. Examples: fractions, factors and multiples, divisibility, patterns in tables, area. First use of symbols, always glossed in words on first appearance in the module.
+
+**`l4` 8th grade.** Pre-algebra fluency assumed: variables, equations, negative numbers, exponents, coordinate plane. Proofs are real proofs, in paragraphs, 3–8 sentences. Formal vocabulary lands here: hypothesis, conclusion, converse, contrapositive, counterexample, set, subset, function, domain. Truth tables appear. This is the level at which a motivated reader could actually do 9th-grade geometry proofs afterward.
+
+**`l5` 9th grade.** Algebra I complete. Quantifiers introduced. Proofs may be a paragraph or two, with the Discussion section doing real planning work. Examples move to inequalities, systems, quadratics, sequences.
+
+**`l6` 10th grade.** Geometry-year reader. Explicitly connects to the two-column proofs they are being taught right now and shows why paragraph proofs are what mathematicians actually write. Adds function composition, inverses, and the first genuinely abstract arguments (sets of sets, functions between arbitrary sets).
+
+**`l7` 12th grade.** Precalculus/calculus reader. Very close to the Math 0 text in rigor and content; differs mainly by explaining the moves the notes leave implicit and by using calculus examples the notes assume. Complete proofs with full Discussion sections.
+
+**`l8` College.** The Math 0 experience as intended: complete, unhedged, with a **"Where this goes"** closer on each module naming the field it opens (rings and fields → abstract algebra; pre-images → topology; equivalence relations → quotient constructions; Peano → logic and foundations).
+
+### A6. Anchor examples
+
+To keep the ladder vertically aligned, each chapter has a running example that appears at every level in age-appropriate dress. Content generation must use these unless a module's kernel forbids it.
+
+| Chapter | Anchor | `l1`–`l2` form | `l3`–`l4` form | `l5`–`l8` form |
+|---|---|---|---|---|
+| 1 Logic | Rain and umbrellas; "it's a dog" | Sam's dog; if it rains, we take an umbrella | If a number is a multiple of 6, it's even | If x > 1 then x² > 1 |
+| 2 Sets | The toy box | Sorting hoops, Venn diagrams with animals | Factors of 20 and 24; multiples of 12 and 18 | Roots of sin x and cos x; complements in ℝ |
+| 3 Functions | The name tag machine | Each kid to their cubby | Letter → position in alphabet; floor function | f: ℝ → ℝ₊, f(x) = eˣ |
+| 4 Numbers | Sharing cookies evenly | Even/odd, leftovers when sharing | Divisibility, remainders | ℤ as a ring, ℚ as a field, √2 irrational |
+| 5 Complex | Turning a quarter turn | Compass directions, rotating a card | Rotation on a grid; the number that turns | e^{iθ} = cos θ + i sin θ |
+| 6 Induction | A line of dominoes | Dominoes; stacking blocks | 1+3+5+… = n²; number of subsets | Σ, divisibility, nth derivatives |
+| 7 Peano | Counting on forever | "What comes next?" machine | Defining + from "next" | Successor function, Axiom of Induction |
+
+### A7. Content model
+
+Every module has one entry per level. Directory layout:
+
+```
+content/
+  chapters/
+    01-logic/
+      _chapter.json          # chapter meta, shared across levels
+      01-what-is-a-claim/
+        _module.json         # kernel, objectives, vocab, prerequisites
+        l1.mdx  l2.mdx  l3.mdx  l4.mdx  l5.mdx  l6.mdx  l7.mdx  l8.mdx
+      02-not/
+        ...
+  glossary/
+    glossary.json            # term → per-level definition
+  levels/
+    levels.json              # level profiles (labels, budgets, notation)
+```
+
+**`_module.json` schema:**
+
+```json
+{
+  "id": "1.2",
+  "slug": "not",
+  "chapter": "01-logic",
+  "order": 2,
+  "titles": {
+    "l1": "The opposite",
+    "l2": "Saying the opposite",
+    "l3": "Opposites: negation",
+    "l4": "Negation",
+    "l5": "Negation", "l6": "Negation", "l7": "Negation", "l8": "Negation"
+  },
+  "kernelIdea": "Negating a statement always flips its truth value; the negation of a true statement is false and vice versa.",
+  "kernels": {
+    "l1": "The opposite of a true telling is a not-true telling. They can't both be right.",
+    "l2": "Every telling has an opposite. If the telling is true, its opposite is false. If the telling is false, its opposite is true.",
+    "l3": "The negation of a statement flips its truth value: the negation of a true statement is false, and the negation of a false one is true.",
+    "l4": "For a statement p, the negation ¬p is true exactly when p is false. p and ¬p are never both true and never both false.",
+    "l5": "Negating a statement flips its truth value; ¬p is true iff p is false.",
+    "l6": "For any statement p, ¬p has truth value opposite to p's. Consequently p ∧ ¬p is a contradiction and p ∨ ¬p is a tautology.",
+    "l7": "Negation is the unary connective ¬ that inverts truth value; p and ¬p partition the truth-value assignments.",
+    "l8": "Negation is the involution on the two-element Boolean algebra: ¬¬p = p, and p ⊕ ¬p is identically true."
+  },
+  "objectives": [
+    "State the negation of a given claim",
+    "Recognize that a claim and its negation cannot both be true"
+  ],
+  "sourceRef": "Math 0 §1.1.1",
+  "vocabulary": ["negation", "opposite", "truth value"],
+  "prerequisites": ["1.1"],
+  "treatment": { "l1": "touch", "l2": "core", "l3": "core", "l4": "core",
+                 "l5": "core", "l6": "core", "l7": "core", "l8": "core" },
+  "namedMove": null
+}
+```
+
+**`kernelIdea` vs `kernels`.** `kernelIdea` is a single sentence that fixes the mathematical thing every level must carry — used by authors, linters, and reviewers as the invariant to check against. It is *not* displayed. `kernels` is a per-level object: each level's entry is the sentence that will be rendered on that level's invariant band. Every level's kernel must be a faithful restatement of `kernelIdea` in vocabulary and notation the reader has met (see §A4), and every level's kernel must be present — no level is exempt. A `touch` treatment still gets a kernel; touch changes body length, not the band.
+
+`treatment` is `core` (full module) or `touch` (a short, honest, intuitive encounter — used at `l1`/`l2` for the hardest material like Taylor series or the Axiom of Induction). **No module is ever absent at any level.** A `touch` page still carries the kernel; it just carries it in 80 words and a picture.
+
+**`lN.mdx` frontmatter:**
+
+```yaml
+---
+level: l3
+title: "Opposites: negation"
+readingTimeMin: 4
+newTerms: ["negation"]
+anchorExample: "multiples of 6"
+readAloud: false
+---
+```
+
+MDX body uses a small set of custom components (defined in Part C6): `<BigIdea>`, `<Discussion>`, `<Proof>`, `<TryIt>`, `<Aside>`, `<Warning>`, `<WhereThisGoes>`, `<TruthTable>`, `<Figure>`.
+
+---
+
+## Part B — The syllabus
+
+61 modules across 7 chapters, covering every concept in the Math 0 notes. Each entry gives the **kernel** (fixed across levels), **objectives**, **source reference**, and a **ladder** describing the treatment at each level. Ladder rows group levels where the treatment differs only in polish.
+
+Legend: ● = core treatment, ○ = touch treatment.
+
+### Chapter 1 — Logic: how to say true things
+
+*Chapter question: how do you know when you actually know?*
+
+---
+
+**1.1 What is a claim?** — Math 0 §1.1
+**Kernel:** A statement is a sentence that is either true or false; questions, commands, and fragments are not. You don't need to know which it is for it to be a statement.
+**Objectives:** Sort sentences into statements/non-statements · give an example of each · recognize that some statements have unknown truth value (conjectures).
+- `l1` ● "Is that true or is that silly?" Sort spoken sentences: *the cat has four legs* (true), *the cat has nine legs* (false), *pick up the cat* (not a telling — it's an asking). One thing to do: say three tellings, one silly.
+- `l2` ● Adds: some tellings you can check right now, some you'd have to go look. Introduce "we don't know yet, but it's still a telling."
+- `l3` ● Term *statement*. Non-examples matter: `x + 1` is not a statement (no verb, nothing to be true about); "Factor x²+2x+1" is a command. Introduce open statements with a variable (`x ≥ 1`) whose truth depends on x. Introduce *conjecture* via Twin Primes, framed as "a question nobody has been able to close in 200 years."
+- `l4` ● Full Math 0 example list. Truth value as a formal notion (T/F). The job of mathematics framed as assigning truth values via proof.
+- `l5`–`l6` ● Adds: statements about infinitely many cases can't be checked by example. Goldbach and Twin Primes as live conjectures; Fermat's Last Theorem as a conjecture that became a theorem.
+- `l7`–`l8` ● Math 0 text in full. `l8` adds: decidability and the existence of statements neither provable nor disprovable (Gödel, named only).
+
+---
+
+**1.2 Not** — Math 0 §1.1.1
+**Kernel:** Negation flips truth value. A statement and its negation are never both true and never both false.
+**Named move:** *the opposite*.
+**Objectives:** Produce the negation of a claim · state that exactly one of p, ¬p is true.
+- `l1` ● Opposite game: *the door is open* / *the door is not open*. Physical: point at things, say the opposite. Establish that both can't be true at once.
+- `l2` ● Negating carefully: the opposite of *all the blocks are red* is not *all the blocks are blue* — this misconception is worth catching this early.
+- `l3` ● Term *negation*. Negating inequalities: the opposite of `x ≥ 1` is `x < 1`, not `x ≤ 1`. Negating "infinitely many" → "finitely many."
+- `l4` ● Symbol `¬p`. Truth table for negation. Double negation.
+- `l5`–`l6` ● Negation of compound and quantified language previewed. Common error drill: negation vs. opposite-extreme.
+- `l7`–`l8` ● Math 0 examples including negating Twin Primes.
+
+---
+
+**1.3 And, or** — Math 0 §1.1.2
+**Kernel:** *p and q* is true only when both are; *p or q* is true when at least one is (inclusive or). A statement always false is a contradiction; always true, a tautology.
+**Objectives:** Evaluate compound claims · state that mathematical *or* includes both · give an example of a contradiction and a tautology.
+- `l1` ● Sorting with two hoops. "Red AND round" vs "red OR round" — the child physically places the object. Establish that "or" lets you take things that are both.
+- `l2` ● Same, in sentences. Introduce "it's raining and it's cold" checking. Contradiction as "a telling that can never be true" (*the door is open and the door is not open*); tautology as "a telling that can never be false."
+- `l3` ● Terms *and*/*or* as connectives; the inclusive-or point made explicitly against everyday English ("soup or salad"). Terms *contradiction*, *tautology*, via `p ∧ ¬p` and `p ∨ ¬p` in words.
+- `l4` ● Symbols `∧`, `∨`. Full truth tables for both. Contradiction/tautology defined by their truth-table columns.
+- `l5`–`l6` ● Compound truth tables with three variables; logical equivalence introduced as "same final column."
+- `l7`–`l8` ● Math 0 text; `l8` notes the correspondence to intersection/union (forward ref to Ch. 2) and to Boolean algebra.
+
+---
+
+**1.4 De Morgan's logic laws** — Math 0 §1.1.3
+**Kernel:** ¬(p ∧ q) ≡ ¬p ∨ ¬q and ¬(p ∨ q) ≡ ¬p ∧ ¬q. Negation swaps *and* with *or*.
+**Objectives:** Negate a compound statement correctly · explain why the connective flips.
+- `l1` ○ One picture: "It is NOT true that I have a hat and a coat" — act it out, discover you might have just the hat. Conclusion in child words: *no hat, or no coat*.
+- `l2` ● Same with a checklist. Introduce the flip as a rule to remember: crossing out an AND makes an OR.
+- `l3` ● Both laws in words with worked examples (Math 0's "21 is not a multiple of 4 or 5").
+- `l4` ● Symbolic statement, verified by truth table. Term *logically equivalent*, symbol `≡`.
+- `l5`–`l6` ● Applied to negating real hypotheses; sets up contrapositives of conjunctive hypotheses.
+- `l7`–`l8` ● Math 0 text; the rational/irrational contrapositive example (§1.2.2) is previewed here.
+
+---
+
+**1.5 If–then** — Math 0 §1.1.4
+**Kernel:** *If p then q* claims only that q holds whenever p does. It is false only when p is true and q is false — so it is automatically true when p is false (vacuous truth).
+**Objectives:** Identify hypothesis and conclusion · determine the truth of a conditional in all four cases · explain vacuous truth without discomfort.
+- `l1` ● Promises. "If it rains, I'll bring the umbrella." When did I break my promise? Only rain-and-no-umbrella. If it doesn't rain, I kept my promise no matter what — this is the whole vacuous-truth idea and five-year-olds get it.
+- `l2` ● Same, with a chart of the four cases drawn as weather + umbrella pictures.
+- `l3` ● Terms *if–then / conditional*, *hypothesis*, *conclusion*. Worked with divisibility ("if a number is a multiple of 6, it is even"). Emphasize: the conditional says nothing about numbers that aren't multiples of 6.
+- `l4` ● Symbol `p ⇒ q`, full truth table, term *vacuously true*. Math 0's three worked examples with 25.
+- `l5`–`l6` ● Conditionals with variables; the difference between "this conditional is true" and "the hypothesis is true."
+- `l7`–`l8` ● Math 0 text; `l8` adds material conditional vs. implication in natural language.
+
+---
+
+**1.6 Your first proof** — Math 0 §1.1.5
+**Kernel:** To prove *if p then q*, assume p and reason to q using facts already established. A proof is written in full sentences.
+**Named move:** *start from what you're given*.
+**Objectives:** Recognize the Discussion/Proof structure · write a two-to-three step direct argument · recognize the end-of-proof marker.
+- `l1` ○ "Show me how you know." Child explains why the block tower will fall — an argument, out loud, with a because in it. Name it: *a reason chain*.
+- `l2` ● Written reason chains: *We know Sam has 4 apples. We know Sam gets 2 more. So Sam has 6.* Introduce What we know / What we want / What we'll do.
+- `l3` ● First real proof. Suggested statement: *if a number is a multiple of 6, it is even* (uses only "multiple"). Full Discussion + Proof, in English sentences. Introduce □.
+- `l4` ● Math 0's proposition: if x > 1 then x² > 1, with the multiplication-of-inequalities rule stated as the tool used. Emphasize proof-as-essay, not calculation.
+- `l5`–`l6` ● Same, plus a second worked direct proof (e.g. sum of two evens is even) and a checklist for what a finished proof must contain.
+- `l7`–`l8` ● Math 0 text verbatim in substance, plus commentary on why Discussion sections exist and disappear from published mathematics.
+
+---
+
+**1.7 Converse, inverse, contrapositive** — Math 0 §1.2, §1.2.1, §1.2.2
+**Kernel:** From p ⇒ q you can form q ⇒ p (converse), ¬p ⇒ ¬q (inverse), ¬q ⇒ ¬p (contrapositive). Only the contrapositive is logically equivalent to the original.
+**Named move:** *flip it around*.
+**Objectives:** Build all three from a given conditional · give a counterexample showing converse/inverse can fail · state the equivalence of contrapositive.
+- `l1` ○ Umbrella promise, reversed: "If I have the umbrella, is it raining?" Not necessarily — maybe I just like it. One picture, one conclusion: *flipping a promise around doesn't give you the same promise.*
+- `l2` ● Same with two or three examples, including one where the flip happens to be true too, so "sometimes true" is distinguished from "always true."
+- `l3` ● All three named. Worked with "if a polygon is a square it is a rectangle." Show the contrapositive is the one that survives.
+- `l4` ● Symbolic. Math 0's x > 1 / x² > 1 example with x = −3 as the counterexample killing both converse and inverse. Truth-table verification of `p ⇒ q ≡ ¬q ⇒ ¬p`.
+- `l5`–`l6` ● Contrapositive of a conjunctive hypothesis using De Morgan (Math 0's rational + irrational example) — this is the module where 1.4 pays off.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**1.8 Proof by contrapositive** — Math 0 §1.2.3
+**Kernel:** Proving ¬q ⇒ ¬p proves p ⇒ q. Choose it when the hypothesis you're handed is awkward to compute with.
+**Objectives:** Decide when the contrapositive is easier · write a proof that announces the switch and completes it.
+- `l1` ○ Not attempted as proof; framed as: sometimes the easiest way to show a promise is kept is to check the promise *backwards*.
+- `l2` ○ One worked backwards-check in words.
+- `l3` ● First contrapositive proof, in words: *if n² is odd then n is odd*, proved as *if n is even then n² is even* using multiples of 2 without algebra.
+- `l4` ● Math 0's proposition: if x³ < 0 then x < 0, with the Discussion explaining *why* direct proof is painful here.
+- `l5`–`l6` ● Two worked examples plus a decision rule: if the hypothesis is a negative statement or is about a composite quantity, try the contrapositive.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**1.9 If and only if** — Math 0 §1.2.4
+**Kernel:** p ⇔ q means both p ⇒ q and q ⇒ p. Proving it means writing two proofs.
+**Objectives:** Split a biconditional into its two halves · prove both directions, using a contrapositive for one where useful.
+- `l1` ○ "You get dessert exactly when you eat your peas" — two promises in one, discovered by asking both questions.
+- `l2` ● Same, made explicit as two separate promises to check.
+- `l3` ● Term *if and only if*. Worked: a number is even if and only if its last digit is 0,2,4,6,8 — both directions in words.
+- `l4` ● Symbol `⇔`. Math 0's theorem: *n is even iff n² is even*, both directions, with the second done by contrapositive. Definitions of even/odd as `n = 2k`, `n = 2k+1` land here.
+- `l5`–`l6` ● Same proof at full rigor, plus discussion of why definitions are usually biconditionals.
+- `l7`–`l8` ● Math 0 text in full; `l8` notes iff-chains and the risk of reversible-step "proofs."
+
+---
+
+**1.10 For all, there exists** — Math 0 §1.3.1, §1.3.2
+**Kernel:** *For all* claims something about every case; *there exists* claims at least one case. *There exists exactly one* claims existence and uniqueness.
+**Objectives:** Classify a claim as universal or existential · state what evidence each demands.
+- `l1` ● Two shapes of claim, physically: *every block in this box is red* (check them all) vs *there is a red block in this box* (find one). One thing to do: make each kind of claim about a real pile.
+- `l2` ● Adds "there is exactly one" — the only red block. Introduce the asymmetry: proving *every* is hard, proving *some* is easy.
+- `l3` ● Terms *for all*, *there exists*, *unique*. Examples: every square number is ≥ 0; there is a number whose double is 7.
+- `l4` ● Symbols `∀`, `∃`, `∃!`, and set membership in the quantifier (`∀x ∈ ℝ`). Math 0's `3x − 1 = 0` example.
+- `l5`–`l6` ● Nested quantifiers introduced lightly (for every x there is a y…), and order-matters demonstrated with one example.
+- `l7`–`l8` ● Math 0 text; `l8` adds quantifier order as the source of the ε–δ definition's difficulty (forward ref to analysis).
+
+---
+
+**1.11 Negating quantifiers and counterexamples** — Math 0 §1.3.3
+**Kernel:** ¬(∀x p(x)) ≡ ∃x ¬p(x) and ¬(∃x p(x)) ≡ ∀x ¬p(x). A single counterexample destroys a universal claim.
+**Named move:** *one bad apple*.
+**Objectives:** Negate quantified statements · produce a counterexample to a false universal claim.
+- `l1` ● The one-bad-apple game: I claim every animal in the picture has four legs; the child finds the bird. Establish that finding one is enough, and that this feels good.
+- `l2` ● Adds the other direction: to knock down "there is a purple block," you have to check all of them.
+- `l3` ● Term *counterexample*. Both negation rules in words. Worked: "every prime is odd" → 2.
+- `l4` ● Symbolic negation rules. Math 0's examples (`∃x, x² = −1`; "for all x, x is positive or negative" with x = 0, using De Morgan).
+- `l5`–`l6` ● Negating nested quantifiers; negating statements with both quantifiers and connectives.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**1.12 Proving and disproving quantified statements** — Math 0 §1.3.4
+**Kernel:** Prove ∀ by arguing about an arbitrary element; disprove ∀ with one counterexample. Prove ∃ by exhibiting a witness; disprove ∃ by proving the universal negation. Prove ∃! by exhibiting and then showing any two candidates coincide.
+**Objectives:** Choose the right strategy for each of four cases · write an arbitrary-element proof · write a uniqueness argument.
+- `l1` ○ Two ways to be right, two ways to be wrong — a picture chart, no proof.
+- `l2` ● The four cases as a chart, with a story for each.
+- `l3` ● Arbitrary-element proof in words: every number of the form n² − 1 with n ≥ 3 can be split into two factors (using Math 0's factoring, arithmetic only).
+- `l4` ● Math 0's four worked items: n² − 1 composite; primes-are-odd disproof; unique solution to 3x − 1 = 0; no real x with x² < 0 (proof by cases). Introduces *proof by cases* as a named move.
+- `l5`–`l6` ● Same, with the uniqueness pattern ("suppose x and y both work; show x = y") drilled as a reusable template.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds "arbitrary but fixed" as the subtle point in universal proofs.
+
+---
+
+### Chapter 2 — Sets: the boxes everything lives in
+
+*Chapter question: what is a mathematical object made of?*
+
+---
+
+**2.1 What is a set?** — Math 0 §2.1, §2.1.1
+**Kernel:** A set is a well-defined collection; `x ∈ S` says x belongs. Sets are unordered and repetition is irrelevant. The empty set is a set. ℕ, ℤ, ℝ are the standard number sets.
+**Objectives:** Decide whether a collection is well-defined · use ∈ and ∉ · state that {a,b,c} = {b,c,a} · name ℕ, ℤ, ℝ.
+- `l1` ● The toy box. Things that are in, things that are out. "Is a shoe in the toy box?" Well-defined: the rule must be one everyone agrees on ("all the red things" works; "all the nice things" doesn't).
+- `l2` ● Naming boxes with letters. Empty box is still a box. Order doesn't matter: the same three animals in a different order is the same group.
+- `l3` ● Terms *set*, *element*, symbols `∈`, `∉`, `{ }`, `∅`. Sets of numbers: counting numbers, whole numbers including negatives. Notation ℕ, ℤ, ℝ introduced with the caution that ℕ's inclusion of 0 is a convention.
+- `l4` ● Formal listing notation, the well-defined requirement, and the ℕ/ℤ/ℝ tower.
+- `l5`–`l6` ● Adds ℚ and the observation that "set" is left undefined on purpose (naive vs axiomatic).
+- `l7`–`l8` ● Math 0 text; `l8` adds Russell's paradox in a sentence, motivating why "well-defined" is doing real work.
+
+---
+
+**2.2 Set-builder notation** — Math 0 §2.1.2
+**Kernel:** `{x | p(x)}` is the set of all x making p(x) true — a set defined by a condition rather than a list. This is where Chapter 1 gets used.
+**Objectives:** Read and write set-builder notation · translate between listed sets, conditions, and intervals.
+- `l1` ○ "The box of all the round things" — a box made by a rule instead of by putting things in one at a time.
+- `l2` ● Rule-boxes vs list-boxes, with the same box described both ways.
+- `l3` ● Notation `{x | condition}` read aloud as "the set of all x such that…". Examples: `{n | n is a whole number between −2 and 5}` unpacked to a list.
+- `l4` ● Restricting a bigger set: `ℕ = {x ∈ ℤ | x ≥ 0}`. ℚ in set-builder form with the q ≠ 0 condition and the equality convention `p₁q₂ = p₂q₁`. Interval notation.
+- `l5`–`l6` ● Adds ℂ = `{a + bi | a,b ∈ ℝ}` as a forward reference, and sets defined by equations (`{x ∈ ℝ | x² − 1 = 0}`).
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**2.3 Subsets** — Math 0 §2.1.3, §2.1.4
+**Kernel:** A ⊆ S means every element of A is in S. To prove it, take an arbitrary x ∈ A and show x ∈ S. ∅ is a subset of everything (vacuously). Subset is transitive.
+**Named move:** *take any one and follow it*.
+**Objectives:** Decide subset relations · write an element-chasing subset proof · explain why ∅ ⊆ S.
+- `l1` ● A little box inside a big box: all the red blocks are inside all the blocks. Check by taking each red block and finding it in the big box.
+- `l2` ● Term *part of*. The empty box counts as a part of every box — tie back to promises with nothing to check (1.5).
+- `l3` ● Symbol `⊆`. First subset proof in words with intervals or number sets. Transitivity proved: if every A is a B and every B is a C, then every A is a C.
+- `l4` ● Math 0's interval proposition (S = (−3,5) ⊆ T = (−6,5]) with full Discussion/Proof, and the abstract transitivity proposition. Element-chasing named as *the* technique of set theory.
+- `l5`–`l6` ● Adds proper subsets, and ℤ ⊆ ℚ, ℝ ⊆ ℂ as proofs rather than assertions.
+- `l7`–`l8` ● Math 0 text in full; `l8` notes ⊂ vs ⊆ conventions.
+
+---
+
+**2.4 Union and intersection** — Math 0 §2.1.5
+**Kernel:** S ∪ T holds anything in at least one; S ∩ T holds things in both. S ⊆ S∪T and S∩T ⊆ S always. Disjoint means empty intersection.
+**Objectives:** Compute unions/intersections · connect ∪/∩ to or/and · recognize gcd and lcm as intersection phenomena.
+- `l1` ● Two hoops on the floor, overlapping. Put the toys where they belong. Union = everything in either hoop; intersection = the overlap.
+- `l2` ● Venn diagrams drawn by the reader. Disjoint = hoops that don't overlap.
+- `l3` ● Symbols `∪`, `∩`, and the explicit link: union is *or*, intersection is *and*. Math 0's divisor example (D₂₀ ∩ D₂₄ = {1,2,4}) with the observation that the largest element is the gcd — a genuine payoff at this age.
+- `l4` ● Adds multiples (M₁₂ ∩ M₁₈ and lcm), the containment facts, and disjointness.
+- `l5`–`l6` ● Math 0's trig example: roots of sin x and roots of cos x, their union and their disjointness.
+- `l7`–`l8` ● Math 0 text; `l8` adds indexed unions/intersections over arbitrary families.
+
+---
+
+**2.5 Complements and "suppose not"** — Math 0 §2.1.6
+**Kernel:** The complement of A in S is everything in S not in A — so it depends on S. Proof by contradiction: assume the negation of what you want, derive an impossibility, conclude.
+**Named move:** *suppose not*.
+**Objectives:** Compute complements relative to a stated universe · write a short proof by contradiction · prove A ⊆ B implies B̄ ⊆ Ā.
+- `l1` ● "Everything that's NOT in the box." Physically gather them. Notice: it depends what room you're in.
+- `l2` ● Complement relative to a stated whole. First *suppose not* story: prove that if all the red things are in the box, then anything outside the box isn't red — by imagining otherwise and hitting a wall.
+- `l3` ● Notation Ā with the universe named every time. Math 0's caution: {0,1} complemented in ℕ vs in ℝ. Term *proof by contradiction* introduced.
+- `l4` ● Math 0's proposition (A ⊆ B ⇒ B̄ ⊆ Ā) with the full Discussion showing why contradiction is natural for negative goals. The irrationals as ℚ̄ in ℝ.
+- `l5`–`l6` ● Adds the structure of a contradiction proof as a template and the warning against using it when a direct proof exists.
+- `l7`–`l8` ● Math 0 text in full; `l8` notes constructive vs classical objections in one line.
+
+---
+
+**2.6 What it means for two sets to be equal** — Math 0 §2.2
+**Kernel:** S = T is *defined* as S ⊆ T and T ⊆ S. Every set-equality proof is therefore two proofs. When a hypothesis is an *or*, split into cases.
+**Named move:** *check both boxes*.
+**Objectives:** Prove set equality by double inclusion · use proof by cases inside such a proof.
+- `l1` ○ Two boxes have the same stuff if nothing in one is missing from the other, and the other way round. Physically check both directions.
+- `l2` ● Same, formalized as a two-step checklist.
+- `l3` ● Double inclusion as a definition, with a worked example on divisor/multiple sets.
+- `l4` ● Math 0's sin/cos proposition (S ∪ T = R) with cases, showing the *or ⇒ cases* rule that recurs all chapter.
+- `l5`–`l6` ● Same at full rigor plus a second example; explicit statement that "obviously equal" is not a proof.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**2.7 De Morgan's set laws** — Math 0 §2.2.1
+**Kernel:** `S ∩ T = S̄ ∪ T̄` and `S ∪ T = S̄ ∩ T̄`. These are the logic laws of 1.4 with ¬→complement, ∧→∩, ∨→∪.
+**Objectives:** State both laws · prove one by double inclusion · articulate the logic/set correspondence.
+- `l1` ○ Picture only: shade the outside of two overlapping hoops, discover it's the overlap of the two outsides.
+- `l2` ● Same with the reader doing the shading, and the sentence that names the pattern.
+- `l3` ● Both laws stated with Venn diagrams as evidence, plus the explicit table mapping ¬↔complement, and↔∩, or↔∪.
+- `l4` ● Proof of `S ∪ T = S̄ ∩ T̄` by double inclusion, using the logic law at the pivot — the first proof where Chapter 1 is a *tool*.
+- `l5`–`l6` ● Both proved; reader asked to notice that the set proof is the logic proof wearing different clothes.
+- `l7`–`l8` ● Math 0 text in full; `l8` names the structure (Boolean algebra) and points to lattices.
+
+---
+
+**2.8 Distributive laws** — Math 0 §2.2.2
+**Kernel:** S ∪ (T ∩ R) = (S∪T) ∩ (S∪R) and S ∩ (T ∪ R) = (S∩T) ∪ (S∩R). Unlike arithmetic, distribution works both ways.
+**Objectives:** State both laws · prove one by double inclusion with cases · contrast with the single distributive law of arithmetic.
+- `l1` ○ Three hoops, one shading exercise, one sentence.
+- `l2` ○ Venn picture with the two sides shaded side by side and declared the same.
+- `l3` ● Both laws with diagrams, and the comparison to `a(b + c) = ab + ac` — including the striking fact that in sets, the *other* direction also holds.
+- `l4` ● Proof of the first law by double inclusion, with the case split in the forward direction and the "if not in S, then it must be in both" step in the reverse.
+- `l5`–`l6` ● Full proof with the Discussion doing the planning explicitly.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**2.9 Product sets** — Math 0 §2.3, §2.3.1, §2.3.2
+**Kernel:** S × T is the set of ordered pairs (s,t) with s ∈ S, t ∈ T. Order matters, so S × T ≠ T × S in general. Anything × ∅ is ∅. Products interact cleanly with intersection.
+**Objectives:** List a small product · explain why order matters · prove (A∩B)×(C∩D) = (A×C)∩(B×D).
+- `l1` ● Outfits: 2 shirts and 3 hats make 6 pictures. Draw the grid.
+- `l2` ● The grid formalized; count without listing. First encounter with "a thing made of two things."
+- `l3` ● Term *ordered pair*, notation `(s,t)`, `S × T`. Coordinates on graph paper as ℤ × ℤ. Why (a,x) and (x,a) are different objects.
+- `l4` ● ℝ × ℝ = ℝ², the integer lattice, S × ∅ = ∅, triple products.
+- `l5`–`l6` ● The intersection/product proposition proved, with the key habit: an arbitrary element of a product is a *pair*, so name it (x,y) immediately.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds n-fold and infinite products, and a forward ref to relations as subsets of S × S.
+
+### Chapter 3 — Functions: machines that turn one thing into another
+
+*Chapter question: what does it mean to send every thing somewhere?*
+
+---
+
+**3.1 What is a function?** — Math 0 §3.1.1
+**Kernel:** f: S → T assigns to *every* s ∈ S exactly one f(s) ∈ T. Three conditions: totality (everything gets sent), well-definedness (one output each), and codomain (outputs land in T). S is the domain, T the codomain.
+**Objectives:** Test a rule against the three conditions · identify domain and codomain · give a non-example of each failure.
+- `l1` ● The cubby machine: every child has exactly one cubby. What breaks it? A child with no cubby; a child with two cubbies. (A cubby with two children is fine — plant this now; it becomes injectivity.)
+- `l2` ● Same, drawn as arrows from one list to another. Reader draws a good machine and two broken ones.
+- `l3` ● Terms *function*, *input*, *output*, *domain*, *codomain*, notation `f(x)` and `f: S → T`. Arrow diagrams as the primary representation. Machines whose inputs aren't numbers (child → cubby, letter → position).
+- `l4` ● The three conditions stated formally, including "if f(s) = t₁ and f(s) = t₂ then t₁ = t₂." Non-examples: √ on ℝ if you allow both signs; 1/x on all of ℝ.
+- `l5`–`l6` ● Adds functions of two variables as functions on a product set (ℤ × ℤ → ℤ), tying back to 2.9. Vertical line test explained as a special case, not the definition.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds functions as subsets of S × T (the graph definition) and why "range" is ambiguous.
+
+---
+
+**3.2 A zoo of functions** — Math 0 §3.1.2
+**Kernel:** Functions need not be formulas or numeric. The floor function, Euler's totient φ, multiplication ℤ×ℤ → ℤ, and letter-position are all functions.
+**Objectives:** Evaluate the floor function · evaluate φ on small inputs · state that a function is a rule, not necessarily an expression.
+- `l1` ○ Three machines shown as pictures: name → first letter; child → cubby; toy → color.
+- `l2` ● Adds "chop off the bit after the decimal" (floor, informally, with money).
+- `l3` ● Floor function properly with number-line pictures. Letter → position. Term *well-defined* revisited.
+- `l4` ● Adds φ(n) computed for n ≤ 12 by hand, with the observation φ(p) = p − 1 for prime p. Multiplication as a function on pairs.
+- `l5`–`l6` ● Adds eˣ, ln x, 1/x with domain restrictions justified rather than asserted.
+- `l7`–`l8` ● Math 0 text in full; `l8` notes φ's role in RSA in one sentence.
+
+---
+
+**3.3 Images and pre-images** — Math 0 §3.1.3
+**Kernel:** Im(f) ⊆ T is the set of outputs actually hit. f⁻¹(U) is the set of inputs landing in U; it may be empty. f⁻¹({t}) ≠ ∅ exactly when t ∈ Im(f). Pre-images exist for any function, invertible or not.
+**Objectives:** Compute images and pre-images for given functions · distinguish codomain from image.
+- `l1` ● "Which cubbies got used?" and "who's in this cubby?" Both questions, physically.
+- `l2` ● Same on arrow diagrams: circle the arrowheads (image), trace back from one arrowhead (pre-image).
+- `l3` ● Terms *image*, *pre-image*. Worked with letter→position: image is 1…26, pre-image of 27 is nothing at all.
+- `l4` ● Set-builder definitions. Math 0's examples: f(x) = x² with f⁻¹({3}) = {−√3, √3}, f⁻¹({−5}) = ∅, f⁻¹((−2,6)) = (−√6, √6); floor with f⁻¹({4}) = [4,5).
+- `l5`–`l6` ● Pre-image of a *set* emphasized as the main object; the empty pre-image treated as normal, not an error.
+- `l7`–`l8` ● Math 0 text; `l8` flags that f⁻¹ as a pre-image operator always exists while f⁻¹ as an inverse function usually doesn't — the notational trap resolved in 3.9.
+
+---
+
+**3.4 Pre-images respect set operations** — Math 0 §3.1.4
+**Kernel:** f⁻¹(Ū) = f⁻¹(U)‾, f⁻¹(U ∪ V) = f⁻¹(U) ∪ f⁻¹(V), f⁻¹(U ∩ V) = f⁻¹(U) ∩ f⁻¹(V). The pivot in every proof is `x ∈ f⁻¹(U) ⇔ f(x) ∈ U`.
+**Objectives:** Prove one of the three identities by double inclusion · state the pivot equivalence.
+- `l1` ○ Skipped as proof; one picture showing that tracing back from two cubbies gives you the two groups of children combined.
+- `l2` ○ Same, with the sentence that names the rule.
+- `l3` ● Union version demonstrated concretely on a finite arrow diagram; stated as a rule, not proved.
+- `l4` ● Union version proved by double inclusion with cases. The pivot equivalence highlighted as the only fact used.
+- `l5`–`l6` ● Complement and union versions both proved (Math 0's two propositions).
+- `l7`–`l8` ● Math 0 text in full; `l8` notes that images do *not* respect intersection (f(A∩B) ⊆ f(A)∩f(B) only), with a counterexample — an important asymmetry the notes leave implicit — and points to the topological definition of continuity.
+
+---
+
+**3.5 One-to-one (injections)** — Math 0 §3.2.1
+**Kernel:** f is injective when distinct inputs give distinct outputs; equivalently (contrapositive), f(s₁) = f(s₂) ⇒ s₁ = s₂. Every element of T has at most one pre-image.
+**Objectives:** Test a function for injectivity · write an injectivity proof · give a counterexample for a non-injective function.
+- `l1` ● Cubbies again: does anyone have to *share*? A machine where nobody shares is a special, tidy machine.
+- `l2` ● Arrow diagrams: no two arrows landing in the same place. Reader spots sharers.
+- `l3` ● Term *one-to-one*. x² is not one-to-one because 3 and −3 collide; the alphabet map is. Horizontal-line test as a picture, not a definition.
+- `l4` ● The formal definition *and* its contrapositive, with the explicit note (from Math 0) that the contrapositive form is what you actually use in proofs. Proof that eˣ is injective.
+- `l5`–`l6` ● Adds 1/x on ℝ≠0; non-injectivity of multiplication ℤ×ℤ → ℤ via (6,4) and (2,12).
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**3.6 Onto (surjections)** — Math 0 §3.2.1
+**Kernel:** f is surjective when Im(f) = T: every t ∈ T has at least one pre-image. Surjectivity depends on the declared codomain.
+**Objectives:** Test for surjectivity · prove a function surjective by producing a pre-image for an arbitrary target · explain how changing the codomain changes the answer.
+- `l1` ● Did every cubby get used? A machine that fills every cubby is another kind of tidy.
+- `l2` ● Arrow diagrams with unused targets circled.
+- `l3` ● Term *onto*. The alphabet map is not onto ℕ (27 is unused). Floor is onto ℤ.
+- `l4` ● Formal definition. Proof that eˣ: ℝ → ℝ₊ is onto, by exhibiting ln t. The crucial point that eˣ: ℝ → ℝ is *not* onto — same rule, different answer.
+- `l5`–`l6` ● Adds 1/x onto ℝ≠0 but not onto ℝ, and multiplication ℤ×ℤ → ℤ onto via (n,1).
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**3.7 Composition** — Math 0 §3.2.2
+**Kernel:** (g∘f)(s) = g(f(s)) is defined when f's codomain is g's domain. Composition preserves injectivity and preserves surjectivity.
+**Objectives:** Compose two functions · prove that the composition of injections is an injection · same for surjections.
+- `l1` ○ Two machines in a row: name → cubby → cubby color. One picture.
+- `l2` ● Machine chains drawn and traced. Notice the middle has to match.
+- `l3` ● Notation `g ∘ f` with the right-to-left reading called out as the usual stumbling block. Worked on small finite sets.
+- `l4` ● Both preservation proofs (Math 0's two propositions), with the Discussion sections showing how the hypotheses get used one after the other.
+- `l5`–`l6` ● Same, plus the partial converses as a question to sit with (if g∘f is injective, what must f be?).
+- `l7`–`l8` ● Math 0 text in full; `l8` proves the partial converses.
+
+---
+
+**3.8 Bijections and size** — Math 0 §3.3
+**Kernel:** A bijection is both injective and surjective: every t has exactly one pre-image. For finite sets, injection ⇒ |S| ≤ |T|, surjection ⇒ |S| ≥ |T|, bijection ⇒ |S| = |T|. Bijections are how mathematicians compare infinite sets. The identity map is a bijection; compositions of bijections are bijections.
+**Objectives:** Verify a bijection · use bijections to compare sizes · state the identity function's properties.
+- `l1` ● Everyone has exactly one cubby and every cubby has exactly one child — so there are the same number of children as cubbies, *without counting*. This is the whole idea and it is age-appropriate.
+- `l2` ● Pairing up to compare two piles without counting. Extend to a big pile you couldn't count.
+- `l3` ● Term *bijection* (or "perfect matching"). Both conditions checked on finite examples. First taste of infinity: match the counting numbers with the even numbers and notice something strange.
+- `l4` ● Formal definition, the three cardinality facts, the identity function, and the theorem that compositions of bijections are bijections.
+- `l5`–`l6` ● eˣ, ln x, 1/x on ℝ≠0 as worked bijections; explicit discussion of why fixing the codomain matters.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds countable vs uncountable, ℕ ↔ ℚ, and Cantor's diagonal argument named (proved if space allows).
+
+---
+
+**3.9 Inverses** — Math 0 §3.3.1
+**Kernel:** f⁻¹ exists exactly when f is a bijection: surjectivity makes it total, injectivity makes it well-defined. The inverse of a bijection is a bijection, and its inverse is f again. `f⁻¹(t) = s` (a function) and `f⁻¹({t}) = {s}` (a set) are different statements.
+**Objectives:** Explain why bijectivity is exactly the condition for invertibility · prove the inverse of a bijection is a bijection · distinguish the two f⁻¹ notations.
+- `l1` ○ Undoing: put the toys back where they came from. Only works if nothing got mixed up.
+- `l2` ● Undo-machines; a machine can only be undone if it never shared and never skipped — this is the bijection condition in child language.
+- `l3` ● Term *inverse*. Worked on finite examples; the two failure modes shown as broken undo-machines.
+- `l4` ● The two-part argument (Math 0's discussion before the proposition) written as the reason the definition works, then eˣ/ln x and 1/x as examples.
+- `l5`–`l6` ● Full proof that f⁻¹ is a bijection, and the identity function's self-inverse property.
+- `l7`–`l8` ● Math 0 text in full, including the notation caveat at the end of §3.3.1.
+
+---
+
+### Chapter 4 — Number systems and divisibility
+
+*Chapter question: what are the rules the integers actually obey, and what can't they do?*
+
+---
+
+**4.1 What the integers can do** — Math 0 §4.1.1
+**Kernel:** ℤ is closed under addition, additive inverses, and multiplication, and satisfies the distributive law — this makes it a *ring*. It is not closed under multiplicative inverses: only 1 and −1 have integer reciprocals.
+**Objectives:** State the four closure properties · demonstrate that 1/3 ∉ ℤ · explain what "closed" means.
+- `l1` ● Adding two whole piles gives a whole pile. Sharing 7 cookies between 2 people doesn't. Physically discover the gap.
+- `l2` ● Term *closed*: you can't get out of the whole numbers by adding or multiplying, but dividing can throw you out.
+- `l3` ● Closure listed as four rules, with negative numbers included. Distributive law verified on examples and stated in letters.
+- `l4` ● Formal statements with variables. The multiplicative-inverse failure investigated: which integers have integer reciprocals, and why only ±1.
+- `l5`–`l6` ● Term *ring* introduced as a label for "a number system with these rules," with the note that the same rules govern polynomials and matrices.
+- `l7`–`l8` ● Math 0 text in full; `l8` gives the full ring axioms and names units, integral domains, and the forward path to abstract algebra.
+
+---
+
+**4.2 Even, odd, and divides** — Math 0 §4.1.2
+**Kernel:** n is even iff n = 2k for some *integer* k; odd iff n = 2k+1. Generalizing: m | n iff n = mk for some k ∈ ℤ. Divisibility is an existence statement, so proving it means producing the k.
+**Objectives:** Use the algebraic definitions of even and odd · state the definition of divides · recognize divisibility claims as ∃-statements.
+- `l1` ● Sharing between two people: sometimes it comes out even, sometimes there's one left over. Pair up the counters.
+- `l2` ● Even and odd by pairing, then by the pattern in the last digit — but with pairing as the *reason*.
+- `l3` ● The algebraic definition `n = 2k` introduced as the version you can compute with, and "k must be a whole number" stressed. Term *divides*, symbol `|`, with the direction-confusion warning (3 | 12 means 3 goes into 12).
+- `l4` ● Full definition of divisibility as an existence claim; restating earlier results in divisibility language (2 | n iff 2 | n²).
+- `l5`–`l6` ● Adds ∤ and the restatement of "if mn is odd then m and n are odd" in divisibility notation.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**4.3 Proving divisibility facts** — Math 0 §4.1.2 (examples), §4.1.3
+**Kernel:** Divisibility proofs follow one template: unpack each hypothesis into an equation with a named integer, do algebra, factor out the divisor, and confirm the cofactor is an integer using closure. Some plausible statements are false — e.g. a | bc does not imply a | b or a | c.
+**Objectives:** Prove transitivity of divisibility · prove a | bx + cy · give the 4 | 2·6 counterexample.
+- `l1` ○ Not attempted. One story: if you can share into 2 groups and each of those into 3, you can share into 6.
+- `l2` ● Same idea with counters, concretely.
+- `l3` ● Transitivity proved in words with a concrete pattern (if 3 goes into a number and that number goes into another…). Introduce naming the unknown factor.
+- `l4` ● The full template, then three proofs: a|b ∧ b|c ⇒ a|c; a|c ∧ b|d ⇒ ab|cd; a|b ∨ a|c ⇒ a|bc (including the phrase *without loss of generality*, explained).
+- `l5`–`l6` ● Adds a | bx + cy for all integers x,y and the corollary a | b+c; then the false converse with the 4 | 12 counterexample and the note that it *is* true for prime a.
+- `l7`–`l8` ● Math 0 text in full; `l8` states Euclid's lemma and points at unique factorization.
+
+---
+
+**4.4 Remainders and proof by cases** — Math 0 §4.1.3
+**Kernel:** If n ∤ m, then m = nk + r for some r with 1 ≤ r ≤ n−1 — so "not divisible" splits into n−1 cases. This makes proof by cases the standard tool for divisibility.
+**Named move:** *split into cases*.
+**Objectives:** Enumerate the cases for n ∤ m · complete a two-case divisibility proof · state the converse use (writing m = 3k+1 proves 3 ∤ m).
+- `l1` ○ Leftovers: sharing among 3, you have 0, 1, or 2 left over — never more. Do it with counters.
+- `l2` ● The leftovers rule discovered by trying many numbers; stated as "you always have fewer left over than the number of groups."
+- `l3` ● Remainders written as `m = 3k + r`. Every whole number is one of three kinds. Reader classifies a list.
+- `l4` ● Math 0's proposition: if 3 ∤ a² − 1 then 3 | a, done by contrapositive and two cases. This is the chapter's showcase proof — it uses contrapositive (1.8), cases (1.12), and closure (4.1) at once.
+- `l5`–`l6` ● Same, plus a second cases proof (every square is 3k or 3k+1) and the converse direction noted at the end of §4.1.3.
+- `l7`–`l8` ● Math 0 text in full; `l8` states the Division Algorithm properly and introduces mod-n language.
+
+---
+
+**4.5 The rationals are a field** — Math 0 §4.2.1
+**Kernel:** ℚ is closed under addition, additive inverses, multiplication, *and* multiplicative inverses of nonzero elements — this makes it a *field*. The closure proofs are just fraction arithmetic checked against the definition.
+**Objectives:** Verify each closure property with the standard fraction formulas · state the difference between a ring and a field.
+- `l1` ○ Half a cookie is still a real amount. Pieces are numbers too.
+- `l2` ● Fractions as answers to sharing problems; adding halves and quarters.
+- `l3` ● Fraction arithmetic re-read as closure statements: adding two fractions gives a fraction, and here's the formula that proves it. The reciprocal as the missing piece ℤ lacked.
+- `l4` ● All four properties stated and verified symbolically, with the q ≠ 0 conditions tracked. Term *field*.
+- `l5`–`l6` ● Ring vs field compared in a table; ℤ, ℚ, ℝ classified.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds ℤ/pℤ as a finite field in one paragraph.
+
+---
+
+**4.6 Between any two rationals** — Math 0 §4.2.1
+**Kernel:** Given rationals a < b, the midpoint (a+b)/2 is rational and lies strictly between them — so there are infinitely many rationals between any two. Density is proved, not asserted.
+**Objectives:** Prove the midpoint is rational using closure · prove both inequalities · explain the "repeat forever" consequence.
+- `l1` ○ There's always a spot between two spots on the ruler.
+- `l2` ● Halfway between: find it for whole numbers, then notice you can keep halving forever.
+- `l3` ● Midpoint formula, checked to be a fraction, and both inequalities argued from a < b. The infinite-repetition consequence stated.
+- `l4` ● Math 0's proposition with the full Discussion, including *why* closure of ℚ is what makes the midpoint legal.
+- `l5`–`l6` ● Same, with the observation that this makes ℚ feel like it fills the line — setting the trap that 4.7 springs.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds that ℚ is dense yet measure zero, and previews completeness.
+
+---
+
+**4.7 Irrational numbers and √2** — Math 0 §4.2.2
+**Kernel:** Some real numbers are not rational. √2 is one: assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms. Uses "n² even ⇒ n even" from 1.9.
+**Objectives:** Reproduce the √2 proof · identify each earlier tool it uses · state that √m is rational iff m is a perfect square.
+- `l1` ○ Some lengths can't be written as a piece-of-a-whole. One sentence, one picture of a square's diagonal.
+- `l2` ● The diagonal of a 1×1 square: measure it, notice no fraction ever fits exactly. Honest framing: grown-ups can *prove* no fraction works.
+- `l3` ● Term *irrational*. The proof told as a story: suppose you had the simplest fraction; discover both top and bottom are even; but then it wasn't the simplest. Contradiction, in words, no algebra.
+- `l4` ● The full proof with algebra, with the lowest-terms assumption flagged as the load-bearing step and the even-square lemma cited from Chapter 1.
+- `l5`–`l6` ● Same; adds √p irrational for prime p, and √m rational iff m is a perfect square (stated, sketched).
+- `l7`–`l8` ● Math 0 text in full; `l8` notes e and π are irrational and transcendental, and that the proofs are genuinely harder.
+
+---
+
+**4.8 The shape of the irrationals** — Math 0 §4.2.2
+**Kernel:** The irrationals are not closed under addition or multiplication and contain neither 0 nor 1 — they are not a field. But: if a is irrational so are −a and 1/a, and a nonzero rational times an irrational is irrational. Each is proved by contradiction using closure of ℚ.
+**Objectives:** Give counterexamples to closure · prove rational × irrational is irrational · see the −a result as a special case.
+- `l1` ○ Skipped; one line: two strange numbers can add up to a perfectly ordinary one.
+- `l2` ● √2 + (−√2) = 0 and √2 · √2 = 2 shown as the surprise.
+- `l3` ● The two failures of closure stated with those examples, and the "suppose not" proof that −a is irrational told in words.
+- `l4` ● Full proofs of −a and 1/a irrational.
+- `l5`–`l6` ● Math 0's proposition on a·b for nonzero rational a, with the observation that it generalizes the −a case.
+- `l7`–`l8` ● Math 0 text in full; `l8` notes irrational^irrational can be rational (the √2^√2 argument) as a famous nonconstructive proof.
+
+### Chapter 5 — Complex numbers: the number that turns
+
+*Chapter question: what do you do when the numbers you have aren't enough?*
+
+**Framing note for all levels.** Never say "imaginary numbers aren't real" or "you can't take the square root of a negative." The honest frame, usable from kindergarten: *mathematicians kept running into a question their numbers couldn't answer, so they invented a new number and checked carefully that it didn't break anything.* From `l3` up, the geometric reading — multiplying by i is a quarter turn — is introduced early and used as the spine, because it makes every later fact (conjugation, modulus, Euler, De Moivre) visual rather than symbolic.
+
+---
+
+**5.1 Why we needed a new number** — Math 0 §5.1
+**Kernel:** x² ≥ 0 for every real x, so x² + 1 = 0 has no real solution and the polynomial x² + 1 has no real root. Roots of polynomials matter enough that mathematicians extended the number system rather than accept the gap.
+**Objectives:** Explain why x² + 1 has no real root · describe the historical move as invention-with-verification.
+- `l1` ● Story: every time you fold a number onto itself (multiply it by itself) you land on the plus side, whether you started plus or minus. So nothing lands on −1. One thing to do: try it with counters.
+- `l2` ● Squares of positives and negatives tabulated; the gap noticed by the reader.
+- `l3` ● The equation x² = −1 stated and shown unsolvable with the two-case argument from 1.12. The invention framed honestly.
+- `l4` ● Adds the polynomial-root motivation and the parallel to earlier extensions (ℕ→ℤ to subtract, ℤ→ℚ to divide).
+- `l5`–`l6` ● Adds the quadratic formula's discriminant as the everyday place this gap shows up.
+- `l7`–`l8` ● Math 0 text; `l8` states the Fundamental Theorem of Algebra as the payoff.
+
+---
+
+**5.2 What a complex number is** — Math 0 §5.1.1, §5.1.2
+**Kernel:** ℂ = {a + bi | a,b ∈ ℝ} with i² = −1. Re(z) = a, Im(z) = b, and both are *real*. ℝ ⊆ ℂ via a = a + 0i, giving ℕ ⊆ ℤ ⊆ ℚ ⊆ ℝ ⊆ ℂ.
+**Objectives:** Identify real and imaginary parts · prove ℝ ⊆ ℂ · place all five number systems in order.
+- `l1` ● A complex number as a pair of instructions: go across, then turn. Draw one.
+- `l2` ● The number tower as nested boxes, drawn, with one example living in each.
+- `l3` ● `a + bi` notation, Re and Im, and the emphatic point that Im(3 + 4i) is 4, not 4i.
+- `l4` ● The subset proof ℝ ⊆ ℂ done properly; the full tower proved link by link (each link is a one-line subset proof from Ch. 2).
+- `l5`–`l6` ● Adds "purely imaginary" and the fact that ℂ has no order compatible with its arithmetic (stated, not proved).
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**5.3 Complex arithmetic** — Math 0 §5.2
+**Kernel:** Add componentwise; multiply by FOIL with i² = −1, giving (ac − bd) + (ad + bc)i; invert by multiplying by the conjugate over itself; divide as z · (1/w). ℂ is a field.
+**Objectives:** Add, multiply, invert, and divide complex numbers · verify a²+b² ≠ 0 for z ≠ 0 · state that ℂ is a field.
+- `l1` ○ Adding two "across and turn" instructions by doing one then the other.
+- `l2` ● Addition only, on a grid, as combining moves.
+- `l3` ● Addition and multiplication by a real number on the grid; then i·i = −1 discovered as a double quarter turn.
+- `l4` ● Full arithmetic including the FOIL derivation; inversion by the conjugate trick with the nonzero-denominator check.
+- `l5`–`l6` ● Division worked; ℂ verified against the field checklist from 4.5.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**5.4 Conjugation** — Math 0 §5.2.1
+**Kernel:** z̄ = a − bi. Conjugation is an involution; Re(z) = (z + z̄)/2; Im(z) = (z − z̄)/(2i); z·z̄ = a² + b² is real and ≥ 0. z is real iff z = z̄.
+**Objectives:** Compute conjugates · verify the Re/Im formulas · prove the biconditional z real ⇔ z = z̄.
+- `l1` ○ The mirror: flip the point across the middle line.
+- `l2` ● Reflection drawn on a grid; doing it twice gets you home.
+- `l3` ● Term *conjugate*; the involution property and z·z̄ computed on examples and noticed to be real.
+- `l4` ● All four properties verified algebraically; the biconditional proved in both directions (Math 0's proposition) — a clean payoff for 1.9.
+- `l5`–`l6` ● Adds conjugation distributing over sums and products (stated, one proved).
+- `l7`–`l8` ● Math 0 text in full; `l8` notes conjugation as a field automorphism and the conjugate-root theorem.
+
+---
+
+**5.5 The complex plane** — Math 0 §5.3.1
+**Kernel:** a + bi is plotted at (a,b) on a plane with a real horizontal axis and imaginary vertical axis. Addition is the parallelogram rule; conjugation is reflection in the real axis.
+**Objectives:** Plot complex numbers · add geometrically · explain why real numbers are fixed by conjugation.
+- `l1` ● Grid game: walk across, then walk up. Mark the spot.
+- `l2` ● Plotting and adding as combining walks; the mirror line identified.
+- `l3` ● Full plotting, addition as vectors, conjugation as reflection, with the observation that reals sit *on* the mirror so they don't move — geometry explaining 5.4's theorem.
+- `l4`–`l6` ● Same with the parallelogram made precise, plus multiplication by i shown to be a 90° rotation (verified algebraically).
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**5.6 Modulus** — Math 0 §5.3.2
+**Kernel:** |z| = √(a² + b²) is the distance from 0; |z| = √(z·z̄); it extends absolute value; |z − w| is the distance between z and w; |z − w| = r describes a circle.
+**Objectives:** Compute modulus · connect to Pythagoras and to absolute value · sketch the locus |z − w| = r.
+- `l1` ○ "How far from home?" measured with string.
+- `l2` ● Distance on a grid via right triangles (informally).
+- `l3` ● Pythagoras applied on the complex plane; |z| defined; the absolute-value connection for real z.
+- `l4` ● |z| = √(z z̄); distance between two complex numbers; the circle equation derived by squaring.
+- `l5`–`l6` ● Circles centered anywhere; regions like |z| < 1 sketched; the triangle inequality stated.
+- `l7`–`l8` ● Math 0 text in full; `l8` proves |zw| = |z||w| and points to normed spaces.
+
+---
+
+**5.7 Euler's formula** — Math 0 §5.4.1
+**Kernel:** Substituting iθ into the series for eˣ and using the cycle i, −1, −i, 1 separates into the cosine and sine series, giving e^{iθ} = cos θ + i sin θ. The rearrangement is legal because the series converge absolutely.
+**Objectives:** State the powers of i cycle · describe how the series split · state Euler's formula.
+- `l1` ○ One idea only: turning a quarter turn four times brings you back where you started. Do it physically. (No series.)
+- `l2` ○ The i-cycle as a rotation pattern: i, −1, −i, 1, repeating. Named honestly as the thing that makes the grown-up formula work.
+- `l3` ○ The i-cycle computed. Euler's formula stated as a fact with the geometric meaning (going θ around the unit circle), explicitly labeled as something proved later with calculus.
+- `l4` ● Same, plus a numerical demonstration: partial sums of the series approach cos θ and sin θ (given as a table, not derived).
+- `l5`–`l6` ● Series introduced as infinite sums with a plausibility argument; the derivation carried out with the absolute-convergence caveat stated.
+- `l7`–`l8` ● Math 0 text in full, including the warning about rearranging infinitely many terms; `l8` adds the ODE proof as an alternative.
+
+---
+
+**5.8 Polar form** — Math 0 §5.4.2
+**Kernel:** re^{iθ} is the point at distance r from the origin at counterclockwise angle θ. Polar form is non-unique: re^{iθ} = re^{i(θ+2πk)}. Special values: i = e^{iπ/2}, −1 = e^{iπ}, and e^{iπ} + 1 = 0.
+**Objectives:** Convert between a + bi and re^{iθ} · explain non-uniqueness · evaluate the special cases.
+- `l1` ○ Two ways to say where something is: *across and up*, or *how far and which way*. Act both out.
+- `l2` ● Distance-and-direction described with compass directions; the same point named two ways.
+- `l3` ● Polar description with angles in degrees, converting simple cases; non-uniqueness as "turning all the way around gets you back."
+- `l4` ● Radians introduced; re^{iθ} notation; the special cases including Euler's identity, with the five constants called out.
+- `l5`–`l6` ● Conversions both directions with trig; 3e^{iπ/3} worked as in the notes.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds arguments, principal values, and why complex log is multivalued.
+
+---
+
+**5.9 Multiplication is rotation** — Math 0 §5.4.3
+**Kernel:** r₁e^{iθ₁} · r₂e^{iθ₂} = (r₁r₂)e^{i(θ₁+θ₂)}: multiply lengths, add angles. |re^{iθ}| = r. The conjugate of re^{iθ} is re^{−iθ}. e^{a+bi} = e^a e^{ib}. Comparing e^{i(2θ)} with (e^{iθ})² yields the double-angle formulas; the general version is De Moivre's formula.
+**Objectives:** Multiply in polar form · derive the double-angle identities · state De Moivre's formula.
+- `l1` ○ Turning twice adds up the turns. Physical only.
+- `l2` ● Turn-then-turn on a compass; angles add.
+- `l3` ● Multiplying by i as a quarter turn, generalized: multiplying rotates. Verified on examples with degrees.
+- `l4` ● The polar multiplication rule stated and checked against a FOIL computation; modulus of re^{iθ} verified with the Pythagorean identity.
+- `l5`–`l6` ● Double-angle formulas derived by equating real and imaginary parts — the moment where complex numbers *pay off* in a course they've already taken. De Moivre stated.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds nth roots of unity and their geometry.
+
+---
+
+### Chapter 6 — Induction: proving infinitely many things at once
+
+*Chapter question: how can a finite argument settle infinitely many cases?*
+
+---
+
+**6.1 The domino idea** — Math 0 §6.1.1
+**Kernel:** If the first domino falls, and every domino knocks over the next, then all of them fall. Pattern-spotting suggests a claim; induction is what turns the guess into knowledge.
+**Named move:** *dominoes*.
+**Objectives:** Explain the two conditions in the domino picture · identify what goes wrong if either fails.
+- `l1` ● Actual dominoes (or blocks in a row). Knock the first. Then: what if one domino is too far from the next? What if nobody pushes the first? Both failures acted out.
+- `l2` ● Same, then applied to a claim: "every number of blocks I can build, I can build one bigger."
+- `l3` ● The odd-number pattern discovered: 1, 1+3, 1+3+5, … giving squares. Reader computes several, guesses, then is asked *how would you ever be sure?*
+- `l4` ● The pattern plus the incremental insight: knowing the k-case, you get the (k+1)-case by adding one new term. Stated informally before formalizing.
+- `l5`–`l6` ● Adds a cautionary example where a pattern holds for many cases and then fails (e.g. n² + n + 41 producing primes until n = 40), to prove that pattern-spotting is not enough.
+- `l7`–`l8` ● Math 0 §6.1.1 in full, with the same caution.
+
+---
+
+**6.2 The three steps** — Math 0 §6.1.2
+**Kernel:** (1) State A(n) and the starting value n₀. (2) Prove the base case A(n₀). (3) Prove the inductive step: assume A(k) for some k ≥ n₀, deduce A(k+1). The inductive step is a *conditional*, so assuming A(k) is not circular.
+**Objectives:** Write the three steps for a given claim · explain why the step is not begging the question · identify the base case.
+- `l1` ○ Two jobs: push the first one, and make sure each one touches the next.
+- `l2` ● The two jobs named and checked on a concrete claim.
+- `l3` ● All three steps written out for the odd-number sum, in words with a little notation. The circularity worry raised and answered at this level ("we're not saying it's true for k — we're saying *if* it were, then it'd be true for k+1").
+- `l4` ● Formal statement with A(n), n₀, base case, inductive hypothesis, inductive step. Summation notation Σ introduced here.
+- `l5`–`l6` ● Adds the well-ordering intuition for *why* induction is valid, and the common error of starting from A(k+1) and working backwards (Math 0's warning).
+- `l7`–`l8` ● Math 0 text in full, including the direction-of-proof warning and the recommendation to start from the left-hand side of A(k+1).
+
+---
+
+**6.3 The classic proof** — Math 0 §6.1.2
+**Kernel:** Σⱼ₌₁ⁿ (2j − 1) = n², proved by induction, written in the house style. The algebra k² + 2k + 1 = (k+1)² is the entire inductive step.
+**Objectives:** Write a complete induction proof · avoid the backwards-reasoning error.
+- `l1`–`l2` ○ The picture proof instead: odd numbers as L-shaped shells that build a square. Physically build 1, then 4, then 9 with tiles. (This is honest and it is the same theorem.)
+- `l3` ● The L-shell picture plus the domino argument in words: adding the next odd number adds the next shell.
+- `l4` ● Full symbolic proof with Σ; the L-shell picture retained alongside as the intuition.
+- `l5`–`l6` ● Full proof plus a second one (Σ j = n(n+1)/2) done by the reader's-eye-view.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**6.4 When does induction apply?** — Math 0 §6.1.3
+**Kernel:** Induction needs a statement indexed by integers n ≥ n₀ *and* a way to connect case k+1 back to case k. Statements about all real numbers are not candidates.
+**Objectives:** Judge whether a claim is a candidate for induction · articulate the linkage requirement.
+- `l1` ○ Dominoes need to be in a line. Some things aren't in a line.
+- `l2` ● Claims about "every number, one after another" vs claims about everything at once.
+- `l3` ● Two example claims, one suitable and one not (x² ≥ 0 for all real x), with the reason.
+- `l4`–`l6` ● Adds the second requirement: the (k+1) case must be reachable from the k case. Sums, products, and recursive definitions are the natural fits.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds strong induction and structural induction, each in a short paragraph with one example.
+
+---
+
+**6.5 Induction in number theory** — Math 0 §6.2.1
+**Kernel:** 3 | (2^{2n} − 1) for all n ≥ 0. The step: write 2^{2k} − 1 = 3x, so 2^{2k} = 3x + 1, then 2^{2(k+1)} − 1 = 4(3x+1) − 1 = 3(4x+1). Naming the unknown factor `x` (not `k`) matters, because `k` is taken.
+**Objectives:** Combine the divisibility template with induction · manage variable naming.
+- `l1`–`l2` ○ Skipped as proof; one line: dominoes also work for questions about sharing evenly.
+- `l3` ● Compute 2^{2n} − 1 for n = 0..4 (0, 3, 15, 63, 255), notice all are multiples of 3, then get the domino argument in words for why it keeps happening.
+- `l4` ● Full proof with the exponent algebra spelled out.
+- `l5`–`l6` ● Full proof plus one more (e.g. 6 | n³ − n) for the reader to see the template twice.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**6.6 Induction in calculus** — Math 0 §6.2.2
+**Kernel:** For f(x) = 1/x, f⁽ⁿ⁾(x) = (−1)ⁿ n! x^{−(n+1)}. Found by computing the first few derivatives and spotting three patterns (sign, factorial, exponent); proved by differentiating the k-th derivative and using (k+1)! = (k+1)·k!.
+**Objectives:** Conjecture a general formula from data · prove it by induction · handle the base case f⁽⁰⁾ = f.
+- `l1`–`l3` ○ Replaced with an age-appropriate pattern-then-prove exercise on repeated halving or repeated doubling, so the *method* is present even though calculus is not. Clearly labeled: "the grown-up version of this module uses calculus."
+- `l4` ● Replaced with repeated-application patterns on functions the reader knows (repeated doubling; iterated squaring), same three-pattern conjecturing discipline.
+- `l5`–`l6` ● Same substitution, or the derivative version if the reader has seen derivatives — the page states the prerequisite plainly.
+- `l7`–`l8` ● Math 0 text in full, including the factorial manipulation.
+
+---
+
+**6.7 Induction in set theory** — Math 0 §6.2.3
+**Kernel:** A set with n elements has 2ⁿ subsets. The step: pick a ∈ S, split subsets into those containing a and those not; each group is in bijection with the subsets of the k-element set S \ {a}, giving 2ᵏ + 2ᵏ = 2^{k+1}.
+**Objectives:** Enumerate subsets of small sets · give the doubling argument · write the proof.
+- `l1` ● With two toys, how many different bags could you pack? (∅, one, the other, both — four.) Do it physically with 1, 2, and 3 toys.
+- `l2` ● Tabulate 0, 1, 2, 3 elements → 1, 2, 4, 8. Notice doubling and say why: each new toy is in or out.
+- `l3` ● The doubling reason made into an argument; connects to 2.1 (∅ counts) and 2.9 (in-or-out is a choice per element).
+- `l4` ● Full induction proof following Math 0, with the split-by-membership case analysis.
+- `l5`–`l6` ● Same, plus the alternative counting argument (one binary choice per element) as a second proof, and the term *power set*.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds |P(S)| > |S| for infinite sets (Cantor), stated.
+
+---
+
+### Chapter 7 — The Peano axioms: building the numbers from nothing
+
+*Chapter question: if every proof rests on earlier facts, what do the earliest facts rest on?*
+
+---
+
+**7.1 What is an axiom?** — Math 0 §7.1
+**Kernel:** Tracing proofs backwards must terminate. Axioms are the statements taken as true without proof; a mathematical theory is its axioms plus everything derivable from them.
+**Objectives:** Explain why axioms are necessary · distinguish axiom from theorem · describe axioms as choices with consequences.
+- `l1` ● The *why* game: keep asking why until you reach something you both just agree on. Play it once. Name those agreements: *the rules we start with*.
+- `l2` ● Rules of a game as axioms: change a rule, get a different game — but the game is still fair.
+- `l3` ● Term *axiom*. The backwards chain drawn as a diagram that must stop somewhere. Different axiom sets → different mathematics (mentioned, e.g. geometry without the parallel postulate).
+- `l4`–`l6` ● Adds the criteria for a good axiom system: few, independent, consistent, and enough to generate what you want.
+- `l7`–`l8` ● Math 0 text; `l8` adds consistency and completeness as questions, with Gödel named.
+
+---
+
+**7.2 The rules for equality** — Math 0 §7.2.1
+**Kernel:** Axioms 1–4: reflexivity (x = x), symmetry, transitivity, and closure of equality (if x ∈ ℕ and x = y then y ∈ ℕ). Reflexive + symmetric + transitive = an *equivalence relation*.
+**Objectives:** State the three properties · recognize them elsewhere (same age, same color, same remainder) · explain closure of equality.
+- `l1` ● "Same as" games. A thing is the same as itself. If mine is the same as yours, yours is the same as mine. If mine matches yours and yours matches Sam's, mine matches Sam's. Act all three out.
+- `l2` ● The three rules named and checked on several "same as" relations, including one that fails (e.g. "is a friend of" — not always transitive).
+- `l3` ● Formal statement with variables; term *equivalence relation* introduced with three examples and one non-example.
+- `l4`–`l6` ● Adds the closure axiom and its purpose, plus congruence mod n as an equivalence relation (ties to 4.4).
+- `l7`–`l8` ● Math 0 text in full; `l8` adds equivalence classes and quotient sets, and notes that many Peano presentations omit these axioms as logic.
+
+---
+
+**7.3 Zero and the successor** — Math 0 §7.2.2 (Axioms 5, 6)
+**Kernel:** Axiom 5: 0 ∈ ℕ. Axiom 6: if x ∈ ℕ then S(x) ∈ ℕ. S is the "next" function. We cannot yet call S(x) "x + 1" because + is not defined.
+**Objectives:** State both axioms · explain why S(x) can't yet be written x + 1 · recognize S as a function ℕ → ℕ.
+- `l1` ● The "what comes next?" machine. Start at 0. Press the button. Keep pressing. That's all counting is.
+- `l2` ● Same, plus naming: the number after 0 we call 1, after 1 we call 2. The names are labels we chose; the machine is the real thing.
+- `l3` ● Terms *axiom*, *successor*. The careful point that we are *defining* 1 as S(0), 2 as S(1), and that we may not use addition yet.
+- `l4`–`l6` ● S treated as a function with domain and codomain ℕ (ties to Ch. 3). The self-discipline of assuming nothing made explicit.
+- `l7`–`l8` ● Math 0 text in full, including the 0-vs-1 convention note.
+
+---
+
+**7.4 Two axioms that stop the numbers looping** — Math 0 §7.2.2 (Axioms 7, 8)
+**Kernel:** Axiom 7: 0 is not the successor of anything, so counting never returns to the start. Axiom 8: S is injective, so counting never merges two numbers into one. Without them, ℕ = {0} or ℕ = {0,1} would satisfy everything so far.
+**Objectives:** Construct the bad models the axioms rule out · restate Axiom 7 as "the pre-image of 0 is empty" and Axiom 8 as "S is injective."
+- `l1` ● A counting machine that loops: 0, 1, 0, 1, 0… Act it out and notice it's *wrong* — real counting never comes home. Then a machine where two different numbers have the same next; also wrong.
+- `l2` ● Both broken machines drawn as arrow diagrams; the reader states the rule that forbids each.
+- `l3` ● Axioms stated; the two broken models built explicitly and rejected.
+- `l4`–`l6` ● Restated in Chapter 3 language: f⁻¹({0}) = ∅ and S is injective — a genuinely satisfying reuse. Shows that {0,1,2,3,…} ⊆ ℕ follows.
+- `l7`–`l8` ● Math 0 text in full.
+
+---
+
+**7.5 Inductive sets and the last axiom** — Math 0 §7.2.2 (Axiom 9)
+**Kernel:** V is *inductive* if 0 ∈ V and x ∈ V ⇒ S(x) ∈ V. Axiom 9: if V is inductive then ℕ ⊆ V. This rules out "too big" models like ℕ ∪ {a,b}, and combined with axioms 1–8 gives ℕ = {0,1,2,…} exactly. It is the same principle as Chapter 6's induction.
+**Objectives:** Test a set for inductiveness · construct the {a,b} rogue model and see how Axiom 9 kills it · connect Axiom 9 to the domino argument.
+- `l1` ○ A picture: two extra creatures sneak into the counting line, pointing at each other forever. The last rule says: nothing but the counting numbers gets in.
+- `l2` ● The rogue model drawn; the rule that excludes it stated in child words ("if a box has 0 and always has the next one, the box has all the counting numbers").
+- `l3` ● Term *inductive set*; the rogue model built and excluded; the final set equality ℕ = {0,1,2,…} obtained by double inclusion (payoff for 2.6).
+- `l4`–`l6` ● Explicit identification of Axiom 9 with mathematical induction: base case = 0 ∈ V, inductive step = closure under S.
+- `l7`–`l8` ● Math 0 text in full; `l8` notes first-order vs second-order Peano arithmetic and nonstandard models in a short aside.
+
+---
+
+**7.6 Defining addition** — Math 0 §7.3.1
+**Kernel:** a + 0 = a and a + S(b) = S(a + b). Every sum is computed by unwinding to the base case. 1 + 1 = 2 becomes a derivation, not a fact.
+**Objectives:** Compute 1+1, 1+2, 2+3 from the definition · explain what "recursive definition" means.
+- `l1` ● Adding as pressing the next-button. "Three plus two" = start at three, press twice. Do it on a number line taped to the floor.
+- `l2` ● Same, then the derivation of 1 + 1 = 2 written as a chain of steps. Reader does 2 + 2.
+- `l3` ● The two defining rules stated symbolically; two full derivations shown; term *recursive*.
+- `l4`–`l6` ● Adds: commutativity is *not* obvious here — a + b = b + a has to be *proved* by induction. State it, sketch it. This is the most surprising thing in the chapter and it should be foregrounded.
+- `l7`–`l8` ● Math 0 text in full, plus the induction proof of associativity or commutativity worked out (`l8`).
+
+---
+
+**7.7 Defining multiplication** — Math 0 §7.3.2
+**Kernel:** a · 0 = 0 and a · S(b) = a + (a · b). Multiplication is built on addition exactly as addition was built on the successor. a · 1 = a is a small theorem; 3 · 2 = 6 is a derivation.
+**Objectives:** Compute a·1 and 3·2 from the definition · describe the tower successor → addition → multiplication.
+- `l1` ● Multiplying as repeated grouping, done with counters; three groups of two.
+- `l2` ● Same, then the observation that multiplying is just adding again and again — which is exactly what the rule says.
+- `l3` ● Both rules stated; a · 1 = a derived; 3 · 2 = 6 derived step by step.
+- `l4`–`l6` ● Adds the layered picture of the whole chapter (nothing → 0 and next → addition → multiplication) and notes that the distributive law of 4.1, assumed all course, is provable from here by induction.
+- `l7`–`l8` ● Math 0 text in full; `l8` closes the course by pointing back: every result in Chapters 1–6 about ℕ now rests on nine axioms and two recursive definitions.
+
+---
+
+### B-2. Dependency map (for sequencing and prerequisite links)
+
+Each module's `prerequisites` array should encode these. The site should render a "you'll need" line at the top of each module linking to prerequisites *at the same level*.
+
+- 1.1 → 1.2 → 1.3 → 1.4; 1.3 → 1.5 → 1.6 → 1.7 → 1.8; 1.5 + 1.8 → 1.9; 1.1 → 1.10 → 1.11 → 1.12
+- 2.1 → 2.2 → 2.3 → 2.4 → 2.5 → 2.6 → {2.7, 2.8}; 2.1 → 2.9
+- 1.4 → 2.7 · 1.12 (cases) → 2.6 · 1.8 → 2.5
+- 2.2 + 2.3 → 3.1 → 3.2 → 3.3 → 3.4; 3.1 → 3.5, 3.6 → 3.7 → 3.8 → 3.9
+- 2.6 → 3.4 (double inclusion) · 1.7 → 3.5 (contrapositive form of injectivity)
+- 4.1 → 4.2 → 4.3 → 4.4; 4.1 → 4.5 → 4.6 → 4.7 → 4.8
+- 1.9 → 4.7 (even-square lemma) · 2.5 → 4.7, 4.8 (contradiction) · 1.12 → 4.4 (cases)
+- 4.1 → 5.1 → 5.2 → 5.3 → 5.4 → 5.5 → 5.6 → 5.7 → 5.8 → 5.9
+- 2.3 → 5.2 (subset proofs) · 1.9 → 5.4 (biconditional)
+- 6.1 → 6.2 → 6.3 → 6.4 → {6.5, 6.6, 6.7}; 4.2 → 6.5; 2.1 + 2.9 → 6.7
+- 7.1 → 7.2 → 7.3 → 7.4 → 7.5 → 7.6 → 7.7; 3.5 → 7.4; 6.2 → 7.5; 2.6 → 7.5
+
+### B-3. Cross-level continuity requirements
+
+For each module, the generated pages must satisfy:
+- The **kernel idea** (a single sentence in `_module.json.kernelIdea` used only by authors and reviewers) is recognizably present at all eight levels.
+- Each level has its own **kernel sentence** in `_module.json.kernels[level]`, rendered on the invariant band. The kernel sentence must be a faithful restatement of the kernel idea, worded in the vocabulary and notation the reader has met (see A4). No level is exempt; touch treatments still get a kernel sentence.
+- The l1 kernel sentence must be readable aloud in one breath and use no term the child has not met earlier in the l1 ladder.
+- The **anchor example** (A6) appears at every level unless the module's kernel forbids it.
+- **Named moves** (A3.6) use identical names at all levels; formal terms are added from `l3` up, never replacing the informal name.
+- Terms marked `newTerms` in frontmatter must appear in `glossary.json` with a definition written for that level.
+---
+
+## Part C — The build
+
+### C1. Stack
+
+| Concern | Choice | Why |
+|---|---|---|
+| Framework | **Astro 5**, `output: 'static'` | Content-collection-first, ships zero JS by default, prerenders 488 pages fast, deploys to GitHub Pages unchanged. |
+| Content | **MDX** via `@astrojs/mdx` + content collections with Zod schemas | Prose stays readable and editable; schema catches malformed frontmatter at build time. |
+| Math | `remark-math` + `rehype-katex`, KaTeX with `output: 'htmlAndMathml'` | Server-rendered math, no client JS, screen-reader-accessible via MathML. |
+| Styling | **Tailwind 4** with tokens declared in `@theme` | Tokens in one place; level-responsive type scale via a `data-level` attribute on `<html>`. |
+| Interactivity | Vanilla TypeScript + the **View Transitions API** (`@astrojs/view-transitions`) | The only interactive needs are the level switcher, progress marks, and glossary pop-ins. No framework needed. |
+| Search (phase 5) | **Pagefind** | Static index, no server, filterable by level. |
+| Diagrams | Inline SVG components, hand-authored per figure | Venn diagrams, arrow diagrams, number lines, the complex plane, and domino strips are the recurring figure types; build them as parameterized components rather than one-off images. |
+
+Node 20+, `pnpm`. `pnpm dev` for local, `pnpm build` for static output into `dist/`.
+
+### C2. Routes
+
+```
+/                                   landing + level picker
+/[level]/                           course home for that level (7 chapters, progress)
+/[level]/[chapter]/                 chapter overview + module list
+/[level]/[chapter]/[module]/        the module page
+/[level]/glossary/                  every term, defined at this level
+/[level]/notation/                  symbol reference card (only symbols this level uses)
+/about/                             the premise, the source, attribution, how to use it
+/teachers/                          how to use the ladder in a classroom (phase 5)
+```
+
+The level is in the URL, so any page is linkable at a specific level. The level switcher navigates to the same module at the new level; if that module is `touch` at the target level, it still exists — never a 404, never a redirect to the chapter index.
+
+### C3. Design direction
+
+**Subject:** the same true thing, said eight ways. The design's job is to make the *invariant* visible while everything around it changes.
+
+**Palette** (declared once in `@theme`, semantic names only — never raw hex in components):
+
+```
+--color-ink:     #14182B   /* text, rules */
+--color-paper:   #EEF0EA   /* page */
+--color-card:    #F8F9F5   /* raised surfaces */
+--color-rule:    #C6CBC0   /* hairlines, dividers */
+--color-signal:  #4436C7   /* the level rail, links, focus rings */
+--color-true:    #2F6F4E   /* T in truth tables, proved statements, ✓ */
+--color-false:   #A8324A   /* F, counterexamples, broken machines */
+--color-shade:   #E3E7DD   /* figure fills, table zebra */
+```
+
+`--color-true` and `--color-false` are not decoration: they are used consistently from kindergarten (the true/silly game) through truth tables through counterexamples, so the reader builds a color intuition for truth value across twelve years of the ladder. Nothing else in the site is allowed to use them.
+
+**Type:**
+- Display: **Bricolage Grotesque** (variable) — headings, level labels, chapter numbers. Slightly odd proportions; keeps the site from reading as a textbook PDF.
+- Body: **Literata** — designed for long reading and holds up at the 22px sizes level 1 needs.
+- Utility: **Spline Sans Mono** — symbol names, level codes, notation cards, the "you'll need" line.
+- Math: KaTeX default (Computer Modern). Its otherness is useful: symbolic mathematics should look like symbolic mathematics.
+
+**Level-responsive type scale.** `<html data-level="l1">` drives the scale. This is the design carrying the pedagogy: the page physically feels younger or older.
+
+| | l1 | l2 | l3 | l4 | l5–l6 | l7–l8 |
+|---|---|---|---|---|---|---|
+| body size | 22px | 21px | 19px | 18px | 17.5px | 17px |
+| line-height | 1.75 | 1.7 | 1.65 | 1.6 | 1.6 | 1.55 |
+| measure | 46ch | 50ch | 58ch | 62ch | 66ch | 68ch |
+| paragraph gap | 1.4em | 1.3em | 1.1em | 1em | 1em | 0.9em |
+
+**Layout.** Three columns on desktop: the level rail (fixed, left, 88px), the reading column (centered, measure per table above), and a margin column (right, 260px) for glossary pop-ins, "where this goes," and figure captions. Below 900px: rail collapses to a sticky horizontal pill strip at the top, margin notes inline as disclosure blocks.
+
+```
+┌────┬──────────────────────────────────┬─────────────┐
+│ K  │  Ch 1 · Module 5                 │             │
+│ 2  │  ── THE IDEA ────────────────    │             │
+│ 5  │  If–then claims only promise      │  margin     │
+│▓8▓ │  something about the cases        │  notes,     │
+│ 9  │  where the "if" part holds.       │  glossary,  │
+│10  │  ──────────────────────────────  │  figures    │
+│12  │  [body, rewritten per level]      │             │
+│ C  │                                   │             │
+└────┴──────────────────────────────────┴─────────────┘
+```
+
+**Signature: the invariant band.** Directly under the module title, in a fixed slot with a hairline above and below, sits the module's **kernel sentence for the current level** — set in the display face at the same size on every level. The *wording* changes with the level (a kindergartner reads a K-appropriate sentence there; a college reader reads a college one), but each level's sentence points at the same underlying mathematical idea. A short caption above the band reads *"The big idea, said for you"* so the invariance is unambiguous — especially at l1–l2, where the reader can't read the l7 sentence to compare. When the reader moves the rail, a view transition cross-fades the band together with the body, so the reader feels the wording shift while the pointed-at idea stays put. That soft morph is the whole thesis of the site in one interaction, and it is the only place motion is spent.
+
+Do not display the level-invariant *kernel idea* string; it is an author-side contract, not reader-facing content.
+
+**Restraint.** No gradients, no shadows deeper than a 1px rule, no icon set beyond ✓ and a small rail marker, no illustrations except the mathematical figures. Full keyboard operation of the rail (↑/↓ move level, Enter commits). `prefers-reduced-motion` disables the morph and swaps in an instant change.
+
+### C4. Level switching behavior
+
+- Level lives in the URL; `localStorage.proofladder.level` records the last used level and drives the redirect from `/`.
+- The rail shows all eight rungs with the current one filled. Hovering a rung shows that level's label and reading age.
+- Switching preserves the module and, where possible, scroll position anchored to the nearest heading.
+- A dismissible one-time hint on first visit: "Same idea, eight ways. Move the rail any time."
+- If a reader lands on a `touch` page, a line under the invariant band reads: *This idea gets a short, honest first look here. It's told in full from grade 5 up →* linking to the same module at `l3`. Never phrased as "too hard for you."
+
+### C5. Progress
+
+`localStorage.proofladder.progress` = `{ [levelId]: string[] }` of visited module ids. Renders as ✓ marks in chapter lists and a thin completion bar per chapter. Per level, so the same reader can be 60% through `l4` and 10% through `l7`. A "clear progress" control on the course home. No accounts, no analytics, no cookies.
+
+### C6. MDX components
+
+Each takes no props that duplicate frontmatter, and each has a defined visual treatment at every level.
+
+| Component | Purpose | Notes |
+|---|---|---|
+| `<BigIdea>` | The invariant band. | Auto-populated from `_module.json.kernel` — authors do not retype it. Exactly one per page, rendered by the layout, not the MDX. |
+| `<Discussion>` | Math 0's planning section. | Renders "What we know / What we want / What we'll do" as a labeled three-part block. At `l1`–`l2` the labels become "What's true already / What we want to be true / How we get there." |
+| `<Proof>` | The proof itself. | Ends with □, automatically. At `l1`–`l2` titled "How we know." |
+| `<TryIt>` | The 30-second activity. | Required at `l1` and `l2`, optional above. Phase 1: not interactive, just an instruction. |
+| `<Aside>` | Margin note. | Desktop: right column. Mobile: inline disclosure. |
+| `<Warning>` | A common mistake, named. | Uses `--color-false` sparingly. |
+| `<WhereThisGoes>` | `l8` closer naming the field this opens. | Only rendered at `l7`/`l8`. |
+| `<TruthTable>` | Truth table. | Takes variables and expressions; renders T/F in `--color-true`/`--color-false`. Available `l4`+. |
+| `<Figure>` | Wrapper for SVG figures with caption + alt text. | Alt text is required by the schema. |
+| `<Term>` | Inline glossary term. | Pulls the definition for the current level; renders as a dotted underline with a margin pop-in. |
+| `<Needs>` | The prerequisite line. | Auto-generated from `_module.json.prerequisites`, links at the current level. |
+
+### C7. Figure component library
+
+Build these once, parameterized, reused everywhere:
+`<VennTwo>` / `<VennThree>` (with shadeable regions) · `<ArrowDiagram>` (two labeled sets, arrows; flags for injective/surjective/broken) · `<NumberLine>` (marks, intervals, open/closed ends) · `<ComplexPlane>` (points, vectors, circles, angle arcs) · `<DominoRow>` (n dominoes, fall animation optional) · `<GridPairs>` (product sets, outfit grids) · `<LShells>` (odd numbers building a square) · `<SuccessorChain>` (0 → S(0) → …, with variants for the broken/looping models) · `<TruthGrid>` (compact 2×2 case charts for `l1`–`l3`, before formal truth tables).
+
+Every figure must render legibly at 320px wide and must have alt text carrying the mathematical content, not just "a diagram."
+
+### C8. Accessibility floor
+
+WCAG 2.2 AA. MathML output for KaTeX. All figures alt-texted with content. Rail fully keyboard-navigable with visible focus. Color never the sole carrier of meaning (truth tables also use the letters T/F). Reduced motion respected. Target contrast ≥ 7:1 for body text at `l1`–`l3` where readers are earliest. Language attribute set. A dyslexia-friendly font toggle is a phase-5 nice-to-have, not a phase-1 requirement.
+
+---
+
+## Part D — Generating the content
+
+488 pages is the bulk of the work. It must be generated systematically or the ladder will drift.
+
+### D1. The unit of generation is the module, not the page
+
+**Generate all eight levels of one module in a single pass.** This is the single most important process rule: vertical consistency (same kernel, same anchor example, same named move, same progression of terminology) is impossible to enforce if levels are written independently and stitched together later.
+
+### D2. Order of work
+
+1. Write `_module.json` for all 61 modules first, from Part B. This is the contract.
+2. Write `glossary.json` entries for every term, all levels, before prose generation — so terms are consistent from the start.
+3. Vertical slice: generate module **1.5 (If–then)** at all eight levels, build it, read all eight, and tune the voice profiles in `levels.json` against what you see. Do not proceed until this feels right.
+4. Generate the remaining 60 modules chapter by chapter, in syllabus order.
+5. After each chapter, run a **vertical review pass**: read one module at all eight levels back to back and check the continuity requirements in B-3.
+6. After each chapter, run a **horizontal review pass**: read one level across the whole chapter and check that vocabulary is introduced before use and that the reading level never spikes.
+
+### D3. Generation prompt template
+
+```
+Write module {id} — "{title}" — at ALL EIGHT levels.
+
+CONTRACT (from _module.json):
+  kernel:        {kernel}
+  objectives:    {objectives}
+  anchor example: {anchor for this chapter, per A6}
+  named move:    {namedMove or none}
+  new terms:     {vocabulary}
+  prerequisites: {prereq ids and titles}
+  treatment:     {per-level core/touch}
+  source:        Math 0 {sourceRef} — for content reference only.
+                 Write original prose. Do not reproduce the source's wording.
+
+LEVEL PROFILES: {paste the relevant rows of A4 and the paragraph from A5}
+LADDER: {paste this module's ladder from Part B}
+
+FOR EACH LEVEL produce lN.mdx with valid frontmatter and a body that:
+  - carries the kernel (the exact kernel sentence is rendered separately by
+    the layout — do not restate it verbatim, build toward it)
+  - opens with the question this module answers, in that level's voice
+  - uses the anchor example unless the ladder specifies otherwise
+  - uses the named move by name
+  - stays inside the word budget and the notation budget for that level
+  - introduces each new term in bold on first use with an inline definition
+  - at l1/l2 ends with <TryIt>; at l7/l8 ends with <WhereThisGoes>
+  - contains no statement that a later level will have to contradict
+
+Then output a CONTINUITY CHECK: one line per level confirming the kernel is
+present, plus a note on anything you had to change between levels and why.
+```
+
+### D4. Content lint (`pnpm lint:content`)
+
+A Node script, run in CI and before every commit, that fails the build on:
+
+- a module missing any of its eight level files, or a file whose `level` frontmatter doesn't match its filename
+- word count outside the level's budget by more than 20%
+- a symbol used that is outside the level's notation budget (regex per level against the allowed list in A4 — this catches `∀` sneaking into an `l3` page)
+- a `newTerms` entry with no matching `glossary.json` definition at that level
+- a `prerequisites` id that doesn't resolve
+- a `<Figure>` without alt text
+- a `<WhereThisGoes>` outside `l7`/`l8`
+- a missing `<TryIt>` at `l1`/`l2`
+- banned phrasings, from a maintained list: "you can't take the square root of a negative", "imaginary numbers aren't real", "a function is a formula", "or means one or the other", "you'll learn why later", "too advanced for", "don't worry about"
+
+Also report (warn, don't fail): Flesch–Kincaid grade estimate per page against the level target, and average sentence length.
+
+### D5. Review checklist per module
+
+- [ ] Kernel recognizable at all eight levels
+- [ ] Anchor example consistent down the ladder
+- [ ] Named move used with the same name at every level
+- [ ] Each level's opening question is *the same question*, asked age-appropriately
+- [ ] Nothing said at a lower level is contradicted at a higher one
+- [ ] `l1`/`l2` activity is genuinely doable in 30 seconds with household objects
+- [ ] `l7`/`l8` is mathematically complete — a Caltech freshman would not be shortchanged
+- [ ] Figures render at 320px and have content-bearing alt text
+
+---
+
+## Part E — Ship, attribute, extend
+
+### E1. Build phases
+
+| Phase | Deliverable | Done when |
+|---|---|---|
+| **0. Scaffold** | Astro project, tokens, layout, rail, KaTeX, content schemas, lint script, all 61 `_module.json` files, `levels.json`, `glossary.json` skeleton | `pnpm dev` shows the rail and one stub module at eight levels |
+| **1. Vertical slice** | Module 1.5 at all eight levels, fully designed, figures included | You'd be happy to show a teacher |
+| **2. Chapter 1** | 12 modules × 8 levels | Lint passes; vertical + horizontal review done |
+| **3. Chapters 2–3** | 18 modules × 8 | Same |
+| **4. Chapters 4–5** | 17 modules × 8 | Same |
+| **5. Chapters 6–7** | 14 modules × 8 | Same |
+| **6. Wrap** | Glossary pages, notation cards, `/about`, print stylesheet, Pagefind search, GitHub Pages deploy | Live URL, lighthouse ≥ 95 on all four axes |
+| **7. Exercises** | See E4 | Later |
+
+If time is short, the honest reduction is **levels before chapters**: build `l1`, `l2`, `l3`, `l4`, `l7` across all 61 modules and add the rest later. A complete course at five levels is far more useful than three chapters at eight.
+
+### E2. Deployment
+
+- `astro.config.mjs`: `site: 'https://<user>.github.io'`, `base: '/<repo>'`, `trailingSlash: 'always'`.
+- GitHub Actions workflow on push to `main`: install, `pnpm lint:content`, `pnpm build`, upload `dist/` as a Pages artifact, deploy.
+- All internal links must go through Astro's `<a href={import.meta.env.BASE_URL + ...}>` or a small `href()` helper, or the site works locally and 404s on Pages. Add a lint rule for hardcoded leading-slash links.
+- No environment variables, no secrets, no analytics.
+
+### E3. Attribution and licensing — read before publishing
+
+The Math 0 notes and the introduction are the work of Bob Pelayo and Caltech, and they are copyrighted. The site is a derivative *curriculum adaptation*, and it needs to be clean about that:
+
+- **Write original prose everywhere, including at `l7` and `l8`.** Those levels match the notes in *rigor and coverage*, not in wording. Do not paste, do not lightly reword. The syllabus in Part B deliberately gives kernels and objectives rather than source text so generation has nothing to copy from.
+- Mathematical statements themselves (De Morgan's laws, the √2 proof, the Peano axioms) are not copyrightable and the standard proofs are common property. The *expression* in the notes is not.
+- `/about` credits the source explicitly: course name, author, institution, and a description of what this site is (an independent adaptation, not affiliated, not endorsed).
+- **Before public hosting, email Dr. Pelayo.** Describe the project, ask permission to build on the syllabus, and offer to link to the original. Most authors say yes to this and are pleased; a few have constraints worth knowing about in advance. Keep the site private or local until you hear back.
+- License your own contributions (prose, code, figures) — CC BY-SA 4.0 for content and MIT for code is a reasonable pair for something you want teachers to reuse.
+
+### E4. Phase 2: exercises (schema now, build later)
+
+Design the content schema so exercises can be added without restructuring. Proposed `exercises.json` per module:
+
+```json
+{
+  "moduleId": "1.5",
+  "items": [{
+    "id": "1.5-e1",
+    "levels": ["l3","l4","l5"],
+    "type": "sort | multiple-choice | fill-the-blank | order-the-steps | free-proof | find-the-flaw",
+    "prompt": "...",
+    "data": { },
+    "answer": { },
+    "hint": "...",
+    "solution": "..."
+  }]
+}
+```
+
+Exercise types worth building, in order of value:
+1. **Order the steps** — a scrambled proof to reassemble. Works from `l3` up and teaches proof structure better than anything else.
+2. **Find the flaw** — a proof with one bad step. The single best exercise type for this subject.
+3. **Sort** — statements vs non-statements; true vs false; injective vs not. Works at `l1`.
+4. **Counterexample hunt** — given a false universal claim, find the bad apple.
+5. **Free proof with a rubric** — `l5`+, self-assessed against a checklist rather than auto-graded.
+
+### E5. Other later work, roughly in value order
+
+- **Teacher pages** — one per chapter: what the chapter is for, which standards it touches, how to run the `l1`–`l3` activities in a classroom, what students usually get wrong.
+- **Parallel view** — show two levels side by side. Powerful for parents and teachers; also the best possible demo of the site's premise.
+- **Print/PDF per level per chapter** — teachers will want paper.
+- **Audio for `l1`–`l2`** — these levels are meant to be read aloud; recorded or synthesized narration makes them usable by a non-confident adult reader.
+- **Translations** — the `lN.mdx` structure already supports adding a locale dimension; do this only after the English ladder is stable.
+- **A "what changed?" diff view** between adjacent levels, for the curious.
+
+---
+
+## Appendix — quick reference for the builder
+
+- **61 modules**: Ch1 ×12, Ch2 ×9, Ch3 ×9, Ch4 ×8, Ch5 ×9, Ch6 ×7, Ch7 ×7. Eight levels each = **488 pages**. Part B is authoritative if anything disagrees.
+- **8 levels**: l1 K · l2 G2 · l3 G5 · l4 G8 · l5 G9 · l6 G10 · l7 G12 · l8 College.
+- **9 named moves**, used verbatim at every level: the opposite · flip it around · suppose not · check both boxes · one bad apple · dominoes · split into cases · start from what you're given · take any one and follow it.
+- **The one rule**: no lies-to-children. Every simplification true but incomplete.

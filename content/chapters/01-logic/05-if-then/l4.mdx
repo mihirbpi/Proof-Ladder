@@ -1,0 +1,77 @@
+---
+level: l4
+title: If–then and vacuous truth
+readingTimeMin: 7
+newTerms: ["conditional", "hypothesis", "conclusion", "vacuously true"]
+anchorExample: "multiples of 6"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Figure from '@/components/Figure.astro';
+import UmbrellaCases from '@/components/UmbrellaCases.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Most of the interesting statements in mathematics have a shape:
+
+> If *this* is true, then *that* is true.
+
+Statements of this shape are called **conditionals**, written $p \Rightarrow q$. The *if* part $p$ is the **hypothesis**; the *then* part $q$ is the **conclusion**. The conditional makes exactly one commitment: whenever $p$ is true, $q$ is true too. It says nothing about the cases where $p$ is false.
+
+## The four cases
+
+There are four possible ways the truth values of $p$ and $q$ can line up. Only one of them breaks the conditional.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true  },
+    { p: true,  q: false, "p ⇒ q": false },
+    { p: false, q: true,  "p ⇒ q": true  },
+    { p: false, q: false, "p ⇒ q": true  }
+  ]}
+/>
+
+The second row is the only false row. If $p$ is true but $q$ is false, the promise was broken. Every other row is true.
+
+The bottom two rows are what mathematicians call **vacuously true**. The hypothesis was never met, so nothing was ever promised. It is easier to see with the umbrella example:
+
+<Figure alt="Four cases of the umbrella promise. Only rain-with-no-umbrella breaks it." caption="Only one case — rain with no umbrella — breaks the promise.">
+  <UmbrellaCases />
+</Figure>
+
+If the sky is clear, the promise about rainy days made no claim to keep or break. So we treat it as kept. This is not a technical trick; it is what the promise actually said.
+
+## Numbers, not weather
+
+Take the claim
+$$
+25 \text{ is a multiple of } 6 \Rightarrow 25 \text{ is even.}
+$$
+Is this true? It is. The hypothesis "$25$ is a multiple of $6$" is false, so the conditional is vacuously true. We are not saying $25$ is even (it isn't). We are saying the conditional as a whole didn't ask $25$ to be even, because $25$ never entered the case the conditional was talking about.
+
+Compare with
+$$
+12 \text{ is a multiple of } 6 \Rightarrow 12 \text{ is even.}
+$$
+This one is true because both parts are true — the top row of the table.
+
+And
+$$
+12 \text{ is a multiple of } 6 \Rightarrow 12 \text{ is odd.}
+$$
+This one is false. The hypothesis is true, the conclusion is false: row two.
+
+<Warning title="Confusing sentence, careful thinking">
+The English sentence "if $p$ then $q$" makes it easy to feel like the conditional says *because $p$*, or *only when $p$*. It does not. It only rules out the one case where $p$ is true and $q$ is false. Everything else is allowed.
+</Warning>
+
+## What proving a conditional will look like
+
+If we want to prove *if a number is a multiple of 6, then it is even*, we don't have to check every possible number. We only have to check the one row that could go wrong. That is,
+
+- assume the hypothesis is true — the number *is* a multiple of 6,
+- and show the conclusion must be true — the number *has to be* even.
+
+That is the shape of every direct proof you will write. The next module makes it precise.

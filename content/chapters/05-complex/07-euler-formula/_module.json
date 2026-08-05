@@ -1,0 +1,39 @@
+{
+  "id": "5.7",
+  "slug": "euler-formula",
+  "chapter": "05-complex",
+  "order": 7,
+  "titles": {
+    "l1": "Four quarter turns",
+    "l2": "The i-cycle",
+    "l3": "Euler's formula",
+    "l4": "Euler's formula",
+    "l5": "Euler's formula",
+    "l6": "Euler's formula",
+    "l7": "Euler's formula",
+    "l8": "Euler's formula"
+  },
+  "kernel": "Substituting iθ into the series for eˣ and using the cycle i, −1, −i, 1 separates into the cosine and sine series, giving e^{iθ} = cos θ + i sin θ.",
+  "objectives": [
+    "State the powers of i cycle",
+    "Describe how the series split",
+    "State Euler's formula"
+  ],
+  "sourceRef": "Math 0 §5.4.1",
+  "vocabulary": [],
+  "prerequisites": [
+    "5.6"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "touch",
+    "l3": "touch",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Turning a quarter turn"
+}

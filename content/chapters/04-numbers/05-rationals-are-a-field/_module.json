@@ -1,0 +1,41 @@
+{
+  "id": "4.5",
+  "slug": "rationals-are-a-field",
+  "chapter": "04-numbers",
+  "order": 5,
+  "titles": {
+    "l1": "Pieces are numbers too",
+    "l2": "Fractions",
+    "l3": "The rationals are a field",
+    "l4": "The rationals are a field",
+    "l5": "The rationals are a field",
+    "l6": "The rationals are a field",
+    "l7": "The rationals are a field",
+    "l8": "The rationals are a field"
+  },
+  "kernel": "ℚ is closed under addition, additive inverses, multiplication, and multiplicative inverses of nonzero elements — this makes it a field. The closure proofs are just fraction arithmetic checked against the definition.",
+  "objectives": [
+    "Verify each closure property with the standard fraction formulas",
+    "State the difference between a ring and a field"
+  ],
+  "sourceRef": "Math 0 §4.2.1",
+  "vocabulary": [
+    "field",
+    "rational number"
+  ],
+  "prerequisites": [
+    "4.1"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Sharing cookies evenly"
+}

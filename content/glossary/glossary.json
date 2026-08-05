@@ -1,0 +1,181 @@
+{
+  "entries": [
+    {
+      "term": "statement",
+      "slug": "statement",
+      "definitions": {
+        "l3": "A sentence that is either true or false. Questions and commands are not statements.",
+        "l4": "A sentence with a definite truth value: either true or false. Even if you don't know which it is, it is still a statement.",
+        "l7": "A declarative sentence that is either true or false; commands, questions, and expressions without a verb are not statements."
+      }
+    },
+    {
+      "term": "conditional",
+      "slug": "conditional",
+      "definitions": {
+        "l3": "An if–then claim. It promises that whenever the 'if' part holds, the 'then' part holds too.",
+        "l4": "A statement of the form 'if p then q', written p ⇒ q. It is false only when p is true and q is false.",
+        "l7": "A statement 'p ⇒ q' that is false in exactly one case: p true and q false. This convention makes the conditional true whenever the hypothesis fails — so-called vacuous truth."
+      }
+    },
+    {
+      "term": "hypothesis",
+      "slug": "hypothesis",
+      "definitions": {
+        "l3": "The 'if' part of an if–then claim. It is what you get to assume when proving the claim.",
+        "l4": "The 'if' clause of a conditional p ⇒ q; the assumption you're allowed to make.",
+        "l7": "The antecedent of a conditional statement — the assumed condition from which the conclusion is to be derived."
+      }
+    },
+    {
+      "term": "conclusion",
+      "slug": "conclusion",
+      "definitions": {
+        "l3": "The 'then' part of an if–then claim. It is what you must show.",
+        "l4": "The 'then' clause of a conditional; what the claim promises.",
+        "l7": "The consequent of a conditional statement — the claim that must follow from the hypothesis."
+      }
+    },
+    {
+      "term": "vacuously true",
+      "slug": "vacuously-true",
+      "definitions": {
+        "l4": "A conditional p ⇒ q is vacuously true when the hypothesis p is false — no promise is broken because the case never arose.",
+        "l7": "A universal or conditional claim is vacuously true when the domain of the claim is empty or the hypothesis never holds, so there is nothing to check."
+      }
+    },
+    {
+      "term": "negation",
+      "slug": "negation",
+      "definitions": {
+        "l3": "The opposite of a statement. Its truth value is flipped.",
+        "l4": "For a statement p, the negation ¬p is true exactly when p is false.",
+        "l7": "The logical operation ¬ that maps a statement to the statement with the opposite truth value."
+      }
+    },
+    {
+      "term": "counterexample",
+      "slug": "counterexample",
+      "definitions": {
+        "l3": "One example that shows a rule is wrong.",
+        "l4": "A single instance where a universal claim fails; enough to disprove the claim.",
+        "l7": "An element of the domain of a universally quantified statement that falsifies the statement."
+      }
+    },
+    {
+      "term": "set",
+      "slug": "set",
+      "definitions": {
+        "l3": "A well-defined collection of things.",
+        "l4": "A well-defined collection of objects; membership is either true or false, and order and repetition do not matter.",
+        "l7": "A well-defined collection of objects. Well-definedness means that for every object, it is unambiguously either in the collection or not."
+      }
+    },
+    {
+      "term": "subset",
+      "slug": "subset",
+      "definitions": {
+        "l3": "A set whose every element is also in another set.",
+        "l4": "A ⊆ S when every element of A is an element of S.",
+        "l7": "For sets A and S, A ⊆ S means ∀x (x ∈ A ⇒ x ∈ S)."
+      }
+    },
+    {
+      "term": "function",
+      "slug": "function",
+      "definitions": {
+        "l3": "A rule that gives every input exactly one output.",
+        "l4": "A rule f: S → T that sends each element of S to exactly one element of T.",
+        "l7": "A function f: S → T is a rule assigning to each s ∈ S a unique f(s) ∈ T. Equivalently, a subset of S × T meeting the totality and single-valuedness conditions."
+      }
+    },
+    {
+      "term": "injective",
+      "slug": "injective",
+      "definitions": {
+        "l4": "A function is injective if different inputs give different outputs.",
+        "l7": "f is injective (or one-to-one) if f(x₁) = f(x₂) implies x₁ = x₂."
+      }
+    },
+    {
+      "term": "surjective",
+      "slug": "surjective",
+      "definitions": {
+        "l4": "A function is surjective if every element of the codomain is actually hit.",
+        "l7": "f: S → T is surjective (or onto) if for every t ∈ T there exists s ∈ S with f(s) = t."
+      }
+    },
+    {
+      "term": "bijection",
+      "slug": "bijection",
+      "definitions": {
+        "l3": "A perfect pairing: every input goes to its own output and every output is hit exactly once.",
+        "l4": "A function that is both injective and surjective.",
+        "l7": "A function that is both injective and surjective, equivalently a function with an inverse."
+      }
+    },
+    {
+      "term": "axiom",
+      "slug": "axiom",
+      "definitions": {
+        "l3": "A rule we agree on before any proofs, so that the proofs have somewhere to start.",
+        "l4": "A statement accepted as true without proof. Everything else is proved from the axioms.",
+        "l7": "A statement of a mathematical theory taken as true without proof, forming the base from which theorems are derived."
+      }
+    },
+    {
+      "term": "even",
+      "slug": "even",
+      "definitions": {
+        "l3": "A number is even if it can be shared into two equal groups — that is, if it is 2 times some whole number.",
+        "l4": "An integer n is even iff n = 2k for some integer k.",
+        "l7": "An integer n is even iff n = 2k for some k ∈ ℤ."
+      }
+    },
+    {
+      "term": "odd",
+      "slug": "odd",
+      "definitions": {
+        "l3": "A number is odd if sharing it into two groups leaves one left over.",
+        "l4": "An integer n is odd iff n = 2k + 1 for some integer k.",
+        "l7": "An integer n is odd iff n = 2k + 1 for some k ∈ ℤ."
+      }
+    },
+    {
+      "term": "divides",
+      "slug": "divides",
+      "definitions": {
+        "l3": "We say m divides n (written m | n) if n is m times some whole number.",
+        "l4": "For integers m, n, we write m | n when there exists k ∈ ℤ with n = mk.",
+        "l7": "For m, n ∈ ℤ, m | n means ∃k ∈ ℤ with n = mk. Divisibility is an existence statement."
+      }
+    },
+    {
+      "term": "irrational",
+      "slug": "irrational",
+      "definitions": {
+        "l3": "A real number that cannot be written as a fraction of two whole numbers.",
+        "l4": "A real number that is not in ℚ.",
+        "l7": "A real number x for which no p, q ∈ ℤ with q ≠ 0 satisfy x = p/q."
+      }
+    },
+    {
+      "term": "induction",
+      "slug": "induction",
+      "definitions": {
+        "l3": "A way to prove a statement for every counting number at once, by starting at 0 and stepping up one at a time.",
+        "l4": "A proof method: verify the base case A(n₀), then prove A(k) ⇒ A(k+1) for all k ≥ n₀; conclude A(n) for all n ≥ n₀.",
+        "l7": "The principle: for any predicate A on integers ≥ n₀, if A(n₀) holds and ∀k ≥ n₀ (A(k) ⇒ A(k+1)), then ∀n ≥ n₀ A(n)."
+      }
+    },
+    {
+      "term": "successor",
+      "slug": "successor",
+      "definitions": {
+        "l3": "The successor of a number is the number that comes right after it.",
+        "l4": "The successor of x ∈ ℕ, written S(x), is 'the next natural number' — the operation we use to define addition.",
+        "l7": "The function S: ℕ → ℕ postulated by Peano to be injective, whose image excludes 0."
+      }
+    }
+  ]
+}

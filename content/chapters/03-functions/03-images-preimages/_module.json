@@ -1,0 +1,41 @@
+{
+  "id": "3.3",
+  "slug": "images-preimages",
+  "chapter": "03-functions",
+  "order": 3,
+  "titles": {
+    "l1": "Which cubbies got used?",
+    "l2": "Circling and tracing back",
+    "l3": "Images and pre-images",
+    "l4": "Images and pre-images",
+    "l5": "Images and pre-images",
+    "l6": "Images and pre-images",
+    "l7": "Images and pre-images",
+    "l8": "Images and pre-images"
+  },
+  "kernel": "Im(f) ⊆ T is the set of outputs actually hit. f⁻¹(U) is the set of inputs landing in U; it may be empty. f⁻¹({t}) ≠ ∅ exactly when t ∈ Im(f). Pre-images exist for any function, invertible or not.",
+  "objectives": [
+    "Compute images and pre-images for given functions",
+    "Distinguish codomain from image"
+  ],
+  "sourceRef": "Math 0 §3.1.3",
+  "vocabulary": [
+    "image",
+    "pre-image"
+  ],
+  "prerequisites": [
+    "3.1"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The name tag machine"
+}

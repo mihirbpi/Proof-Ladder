@@ -1,0 +1,64 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LevelRail from '@/components/LevelRail.astro';
+import {
+  LEVELS,
+  getLevel,
+  getAllChapters,
+  getChapter,
+  getModulesForChapter,
+  chapterPath,
+  modulePath,
+  levelHome,
+  type LevelId,
+} from '@/lib/content';
+
+export function getStaticPaths() {
+  const paths: { params: { level: string; chapter: string } }[] = [];
+  for (const l of LEVELS) {
+    for (const ch of getAllChapters()) {
+      paths.push({ params: { level: l.id, chapter: ch.slug } });
+    }
+  }
+  return paths;
+}
+
+const { level, chapter } = Astro.params as { level: LevelId; chapter: string };
+const profile = getLevel(level);
+const ch = getChapter(chapter);
+const mods = getModulesForChapter(chapter);
+const railHref = (id: LevelId) => chapterPath(id, chapter);
+---
+<BaseLayout title={`Ch ${ch.number} · ${ch.title} — ${profile.label}`} level={level}>
+  <div class="site-grid">
+    <LevelRail currentLevel={level} hrefFor={railHref} />
+    <main class="reader">
+      <p class="module-eyebrow">
+        <a href={levelHome(level)}>{profile.label}</a> · Chapter {ch.number}
+      </p>
+      <h1>{ch.title}</h1>
+      <p style="margin-top: 0.5rem;" class="small" ><em>{ch.subtitle}</em></p>
+      <p style="margin-top: 1.5rem; font-size: 1.15rem;">{ch.question}</p>
+
+      <ul style="list-style: none; padding-left: 0; margin-top: 2rem;">
+        {mods.map((m) => (
+          <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--color-rule);">
+            <a href={modulePath(level, chapter, m.slug)} style="font-family: var(--font-display); font-weight: 500;">
+              <span class="mono small" style="color: color-mix(in oklab, var(--color-ink) 60%, transparent); margin-right: 0.5rem;">{m.id}</span>
+              {m.titles[level] ?? m.titles.l7}
+            </a>
+            <p class="small" style="margin: 0.25rem 0 0; color: color-mix(in oklab, var(--color-ink) 70%, transparent);">
+              {m.kernel}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </main>
+    <aside class="margin-col">
+      <div class="small mono" style="color: color-mix(in oklab, var(--color-ink) 60%, transparent); text-transform: uppercase; letter-spacing: 0.08em;">
+        Anchor example
+      </div>
+      <p class="small">{ch.anchorExample}</p>
+    </aside>
+  </div>
+</BaseLayout>

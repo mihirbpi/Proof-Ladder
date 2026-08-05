@@ -1,0 +1,8 @@
+{
+  "id": "7",
+  "number": 7,
+  "title": "The Peano axioms",
+  "subtitle": "building the numbers from nothing",
+  "question": "If every proof rests on earlier facts, what do the earliest facts rest on?",
+  "anchorExample": "Counting on forever"
+}

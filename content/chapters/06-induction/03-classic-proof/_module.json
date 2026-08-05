@@ -1,0 +1,38 @@
+{
+  "id": "6.3",
+  "slug": "classic-proof",
+  "chapter": "06-induction",
+  "order": 3,
+  "titles": {
+    "l1": "Odd L-shells",
+    "l2": "Building a square with odd numbers",
+    "l3": "The classic proof",
+    "l4": "The classic proof",
+    "l5": "The classic proof",
+    "l6": "The classic proof",
+    "l7": "The classic proof",
+    "l8": "The classic proof"
+  },
+  "kernel": "Σ from j = 1 to n of (2j − 1) equals n², proved by induction, written in the house style. The algebra k² + 2k + 1 = (k+1)² is the entire inductive step.",
+  "objectives": [
+    "Write a complete induction proof",
+    "Avoid the backwards-reasoning error"
+  ],
+  "sourceRef": "Math 0 §6.1.2",
+  "vocabulary": [],
+  "prerequisites": [
+    "6.2"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "touch",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "dominoes",
+  "anchorExample": "A line of dominoes"
+}

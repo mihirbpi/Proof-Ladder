@@ -1,0 +1,34 @@
+---
+level: l1
+title: A promise
+readingTimeMin: 2
+newTerms: ["promise"]
+anchorExample: "umbrella"
+readAloud: true
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import UmbrellaCases from '@/components/UmbrellaCases.astro';
+
+You made a **promise**: *if it rains, I bring the umbrella.*
+
+When did you break your promise?
+
+Only when it rained and you had no umbrella.
+
+If it rains and you have the umbrella, promise kept.
+
+If it does not rain and you have the umbrella, promise kept.
+
+If it does not rain and you don't have the umbrella, promise kept.
+
+The only bad case is rain with no umbrella.
+
+<Figure alt="Four cases of the umbrella promise, drawn as a 2x2 grid of pictures. Three are kept; only rain with no umbrella is broken.">
+  <UmbrellaCases />
+</Figure>
+
+<TryIt>
+Say the promise out loud. Then say the one bad case out loud. Do it again.
+</TryIt>

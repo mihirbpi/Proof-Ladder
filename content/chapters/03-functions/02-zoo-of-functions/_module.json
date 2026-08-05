@@ -1,0 +1,42 @@
+{
+  "id": "3.2",
+  "slug": "zoo-of-functions",
+  "chapter": "03-functions",
+  "order": 2,
+  "titles": {
+    "l1": "Different machines",
+    "l2": "More than one kind of machine",
+    "l3": "A zoo of functions",
+    "l4": "A zoo of functions",
+    "l5": "A zoo of functions",
+    "l6": "A zoo of functions",
+    "l7": "A zoo of functions",
+    "l8": "A zoo of functions"
+  },
+  "kernel": "Functions need not be formulas or numeric. The floor function, Euler's totient φ, multiplication ℤ×ℤ → ℤ, and letter-to-position are all functions.",
+  "objectives": [
+    "Evaluate the floor function",
+    "Evaluate φ on small inputs",
+    "State that a function is a rule, not necessarily an expression"
+  ],
+  "sourceRef": "Math 0 §3.1.2",
+  "vocabulary": [
+    "floor",
+    "totient"
+  ],
+  "prerequisites": [
+    "3.1"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The name tag machine"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "3.4",
+  "slug": "preimages-respect-set-ops",
+  "chapter": "03-functions",
+  "order": 4,
+  "titles": {
+    "l1": "Tracing back two groups",
+    "l2": "Tracing back respects the hoops",
+    "l3": "Pre-images respect set operations",
+    "l4": "Pre-images respect set operations",
+    "l5": "Pre-images respect set operations",
+    "l6": "Pre-images respect set operations",
+    "l7": "Pre-images respect set operations",
+    "l8": "Pre-images respect set operations"
+  },
+  "kernel": "f⁻¹(Ū) = f⁻¹(U)‾, f⁻¹(U ∪ V) = f⁻¹(U) ∪ f⁻¹(V), and f⁻¹(U ∩ V) = f⁻¹(U) ∩ f⁻¹(V). The pivot in every proof is x ∈ f⁻¹(U) ⇔ f(x) ∈ U.",
+  "objectives": [
+    "Prove one of the three identities by double inclusion",
+    "State the pivot equivalence"
+  ],
+  "sourceRef": "Math 0 §3.1.4",
+  "vocabulary": [],
+  "prerequisites": [
+    "3.3",
+    "2.6"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "touch",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "take any one and follow it",
+  "anchorExample": "The name tag machine"
+}

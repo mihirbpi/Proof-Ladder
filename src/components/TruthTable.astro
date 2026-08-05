@@ -1,0 +1,32 @@
+---
+// Truth table. Available l4+.
+// Takes variable names and an array of rows, each row an object of the form
+// { p: true, q: false, expr: true }.
+// Column order is: variables (in given order), then expressions (in given order).
+export interface Props {
+  variables: string[];
+  expressions: string[];
+  rows: Record<string, boolean>[];
+}
+const { variables, expressions, rows } = Astro.props;
+---
+<table class="truth-table" role="table">
+  <thead>
+    <tr>
+      {variables.map((v) => <th scope="col">{v}</th>)}
+      {expressions.map((e) => <th scope="col" set:html={e} />)}
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((row) => (
+      <tr>
+        {variables.map((v) => (
+          <td class={row[v] ? 't' : 'f'}>{row[v] ? 'T' : 'F'}</td>
+        ))}
+        {expressions.map((e) => (
+          <td class={row[e] ? 't' : 'f'}>{row[e] ? 'T' : 'F'}</td>
+        ))}
+      </tr>
+    ))}
+  </tbody>
+</table>

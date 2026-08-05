@@ -1,0 +1,42 @@
+{
+  "id": "4.6",
+  "slug": "between-rationals",
+  "chapter": "04-numbers",
+  "order": 6,
+  "titles": {
+    "l1": "A spot between two spots",
+    "l2": "Halfway between",
+    "l3": "Between any two rationals",
+    "l4": "Between any two rationals",
+    "l5": "Between any two rationals",
+    "l6": "Between any two rationals",
+    "l7": "Between any two rationals",
+    "l8": "Between any two rationals"
+  },
+  "kernel": "Given rationals a < b, the midpoint (a+b)/2 is rational and lies strictly between them — so there are infinitely many rationals between any two. Density is proved, not asserted.",
+  "objectives": [
+    "Prove the midpoint is rational using closure",
+    "Prove both inequalities",
+    "Explain the \"repeat forever\" consequence"
+  ],
+  "sourceRef": "Math 0 §4.2.1",
+  "vocabulary": [
+    "density",
+    "midpoint"
+  ],
+  "prerequisites": [
+    "4.5"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Sharing cookies evenly"
+}

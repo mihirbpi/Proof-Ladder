@@ -1,0 +1,44 @@
+---
+// Four-case 2x2 grid for the umbrella promise (module 1.5).
+// Rows: it rains / it doesn't. Cols: I brought umbrella / I didn't.
+// Only rain + no umbrella breaks the promise.
+---
+<svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="Four cases of the umbrella promise: it rains and I have the umbrella (kept), it rains and I don't (broken), no rain with umbrella (kept), no rain without umbrella (kept). Only the second case breaks the promise.">
+  <style>
+    .cell { fill: var(--color-card, #F8F9F5); stroke: var(--color-rule, #C6CBC0); stroke-width: 1; }
+    .kept { fill: color-mix(in oklab, var(--color-true, #2F6F4E) 10%, transparent); stroke: var(--color-true, #2F6F4E); }
+    .broken { fill: color-mix(in oklab, var(--color-false, #A8324A) 12%, transparent); stroke: var(--color-false, #A8324A); }
+    .kept-text { font-family: var(--font-display, sans-serif); font-weight: 600; font-size: 13px; fill: var(--color-true, #2F6F4E); }
+    .broken-text { font-family: var(--font-display, sans-serif); font-weight: 600; font-size: 13px; fill: var(--color-false, #A8324A); }
+    .head { font-family: var(--font-mono, monospace); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; fill: color-mix(in oklab, var(--color-ink, #14182B) 65%, transparent); }
+    .glyph { font-size: 30px; text-anchor: middle; }
+    .row-label { font-family: var(--font-mono, monospace); font-size: 11px; fill: var(--color-ink, #14182B); }
+  </style>
+
+  <!-- column headers -->
+  <text x="180" y="24" class="head" text-anchor="middle">I brought the umbrella</text>
+  <text x="360" y="24" class="head" text-anchor="middle">I did not</text>
+
+  <!-- row 1: it rains -->
+  <text x="10" y="90" class="row-label">it rains</text>
+  <rect x="100" y="45" width="160" height="110" rx="6" class="cell kept" />
+  <text x="180" y="95" class="glyph" aria-hidden="true">🌧️ ☂️</text>
+  <text x="180" y="135" text-anchor="middle" class="kept-text">promise kept</text>
+
+  <rect x="280" y="45" width="160" height="110" rx="6" class="cell broken" />
+  <text x="360" y="95" class="glyph" aria-hidden="true">🌧️ 🚫</text>
+  <text x="360" y="135" text-anchor="middle" class="broken-text">promise broken</text>
+
+  <!-- row 2: it does not rain -->
+  <text x="10" y="230" class="row-label">no rain</text>
+  <rect x="100" y="185" width="160" height="110" rx="6" class="cell kept" />
+  <text x="180" y="235" class="glyph" aria-hidden="true">☀️ ☂️</text>
+  <text x="180" y="275" text-anchor="middle" class="kept-text">promise kept</text>
+
+  <rect x="280" y="185" width="160" height="110" rx="6" class="cell kept" />
+  <text x="360" y="235" class="glyph" aria-hidden="true">☀️ 🚫</text>
+  <text x="360" y="275" text-anchor="middle" class="kept-text">promise kept</text>
+
+  <text x="240" y="325" text-anchor="middle" class="head">only rain + no umbrella breaks the promise</text>
+</svg>

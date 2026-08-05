@@ -1,0 +1,40 @@
+{
+  "id": "7.1",
+  "slug": "what-is-an-axiom",
+  "chapter": "07-peano",
+  "order": 1,
+  "titles": {
+    "l1": "The rules we start with",
+    "l2": "Rules of the game",
+    "l3": "What is an axiom?",
+    "l4": "What is an axiom?",
+    "l5": "What is an axiom?",
+    "l6": "What is an axiom?",
+    "l7": "What is an axiom?",
+    "l8": "What is an axiom?"
+  },
+  "kernel": "Tracing proofs backwards must terminate. Axioms are the statements taken as true without proof; a mathematical theory is its axioms plus everything derivable from them.",
+  "objectives": [
+    "Explain why axioms are necessary",
+    "Distinguish axiom from theorem",
+    "Describe axioms as choices with consequences"
+  ],
+  "sourceRef": "Math 0 §7.1",
+  "vocabulary": [
+    "axiom",
+    "theorem"
+  ],
+  "prerequisites": [],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Counting on forever"
+}

@@ -1,0 +1,13 @@
+---
+// A 30-second physical activity. Required at l1/l2.
+export interface Props {
+  title?: string;
+}
+const { title = 'One thing to do' } = Astro.props;
+---
+<aside class="tryit" role="note">
+  <div class="tryit-title">{title}</div>
+  <div class="tryit-body">
+    <slot />
+  </div>
+</aside>

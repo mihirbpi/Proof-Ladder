@@ -1,0 +1,41 @@
+{
+  "id": "3.9",
+  "slug": "inverses",
+  "chapter": "03-functions",
+  "order": 9,
+  "titles": {
+    "l1": "Putting things back",
+    "l2": "Undo-machines",
+    "l3": "Inverses",
+    "l4": "Inverses",
+    "l5": "Inverses",
+    "l6": "Inverses",
+    "l7": "Inverses",
+    "l8": "Inverses"
+  },
+  "kernel": "f⁻¹ exists exactly when f is a bijection: surjectivity makes it total, injectivity makes it well-defined. The inverse of a bijection is a bijection, and its inverse is f again.",
+  "objectives": [
+    "Explain why bijectivity is exactly the condition for invertibility",
+    "Prove the inverse of a bijection is a bijection",
+    "Distinguish the two f⁻¹ notations"
+  ],
+  "sourceRef": "Math 0 §3.3.1",
+  "vocabulary": [
+    "inverse function"
+  ],
+  "prerequisites": [
+    "3.8"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The name tag machine"
+}

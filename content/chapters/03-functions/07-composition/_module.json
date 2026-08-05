@@ -1,0 +1,42 @@
+{
+  "id": "3.7",
+  "slug": "composition",
+  "chapter": "03-functions",
+  "order": 7,
+  "titles": {
+    "l1": "Two machines in a row",
+    "l2": "Machine chains",
+    "l3": "Composition",
+    "l4": "Composition",
+    "l5": "Composition",
+    "l6": "Composition",
+    "l7": "Composition",
+    "l8": "Composition"
+  },
+  "kernel": "(g∘f)(s) = g(f(s)) is defined when f's codomain is g's domain. Composition preserves injectivity and preserves surjectivity.",
+  "objectives": [
+    "Compose two functions",
+    "Prove that the composition of injections is an injection",
+    "Prove the same for surjections"
+  ],
+  "sourceRef": "Math 0 §3.2.2",
+  "vocabulary": [
+    "composition"
+  ],
+  "prerequisites": [
+    "3.5",
+    "3.6"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The name tag machine"
+}

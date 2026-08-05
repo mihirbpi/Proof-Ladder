@@ -1,0 +1,41 @@
+{
+  "id": "5.9",
+  "slug": "multiplication-is-rotation",
+  "chapter": "05-complex",
+  "order": 9,
+  "titles": {
+    "l1": "Turning twice",
+    "l2": "Adding turns",
+    "l3": "Multiplication is rotation",
+    "l4": "Multiplication is rotation",
+    "l5": "Multiplication is rotation",
+    "l6": "Multiplication is rotation",
+    "l7": "Multiplication is rotation",
+    "l8": "Multiplication is rotation"
+  },
+  "kernel": "r₁e^{iθ₁} · r₂e^{iθ₂} = (r₁r₂)e^{i(θ₁+θ₂)}: multiply lengths, add angles. Comparing e^{i(2θ)} with (e^{iθ})² yields the double-angle formulas; the general version is De Moivre's formula.",
+  "objectives": [
+    "Multiply in polar form",
+    "Derive the double-angle identities",
+    "State De Moivre's formula"
+  ],
+  "sourceRef": "Math 0 §5.4.3",
+  "vocabulary": [
+    "De Moivre's formula"
+  ],
+  "prerequisites": [
+    "5.8"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "Turning a quarter turn"
+}

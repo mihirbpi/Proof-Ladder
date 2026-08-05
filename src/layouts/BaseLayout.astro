@@ -1,0 +1,22 @@
+---
+import '@/styles/globals.css';
+export interface Props {
+  title: string;
+  level?: string;
+  description?: string;
+}
+const { title, level, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-level={level}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · Proof Ladder</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='4' y='24' font-family='sans-serif' font-size='24' font-weight='700' fill='%234436C7'%3E%E2%88%80%3C/text%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

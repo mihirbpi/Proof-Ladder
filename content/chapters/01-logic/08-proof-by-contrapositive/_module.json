@@ -1,0 +1,41 @@
+{
+  "id": "1.8",
+  "slug": "proof-by-contrapositive",
+  "chapter": "01-logic",
+  "order": 8,
+  "titles": {
+    "l1": "Backwards check",
+    "l2": "The easier way round",
+    "l3": "Proof by contrapositive",
+    "l4": "Proof by contrapositive",
+    "l5": "Proof by contrapositive",
+    "l6": "Proof by contrapositive",
+    "l7": "Proof by contrapositive",
+    "l8": "Proof by contrapositive"
+  },
+  "kernel": "Proving ¬q ⇒ ¬p proves p ⇒ q. Choose it when the hypothesis you are handed is awkward to compute with.",
+  "objectives": [
+    "Decide when the contrapositive is easier",
+    "Write a proof that announces the switch and completes it"
+  ],
+  "sourceRef": "Math 0 §1.2.3",
+  "vocabulary": [
+    "proof by contrapositive"
+  ],
+  "prerequisites": [
+    "1.6",
+    "1.7"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "touch",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": "flip it around",
+  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+}

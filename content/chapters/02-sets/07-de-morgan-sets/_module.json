@@ -1,0 +1,42 @@
+{
+  "id": "2.7",
+  "slug": "de-morgan-sets",
+  "chapter": "02-sets",
+  "order": 7,
+  "titles": {
+    "l1": "Outside both hoops",
+    "l2": "The outside of overlapping hoops",
+    "l3": "De Morgan's set laws",
+    "l4": "De Morgan's set laws",
+    "l5": "De Morgan's set laws",
+    "l6": "De Morgan's set laws",
+    "l7": "De Morgan's set laws",
+    "l8": "De Morgan's set laws"
+  },
+  "kernel": "S ∩ T = S̄ ∪ T̄ and S ∪ T = S̄ ∩ T̄. These are the logic laws of 1.4 with ¬ ↔ complement, ∧ ↔ ∩, ∨ ↔ ∪.",
+  "objectives": [
+    "State both laws",
+    "Prove one by double inclusion",
+    "Articulate the logic/set correspondence"
+  ],
+  "sourceRef": "Math 0 §2.2.1",
+  "vocabulary": [],
+  "prerequisites": [
+    "2.4",
+    "2.5",
+    "2.6",
+    "1.4"
+  ],
+  "treatment": {
+    "l1": "touch",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The toy box"
+}

@@ -1,0 +1,74 @@
+---
+level: l6
+title: If–then
+readingTimeMin: 9
+newTerms: ["conditional", "hypothesis", "conclusion", "vacuously true"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Figure from '@/components/Figure.astro';
+import UmbrellaCases from '@/components/UmbrellaCases.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You have already met if–then statements this year, likely in geometry, where they are drilled to death: *if two triangles have three pairs of congruent sides, then they are congruent.* This module fixes what those sentences actually mean.
+
+A **conditional** is a statement of the form $p \Rightarrow q$. The hypothesis is $p$; the conclusion is $q$. The whole compound statement is itself either true or false — it has its own truth value, distinct from those of $p$ and $q$ individually.
+
+## What makes a conditional true
+
+The truth table for $\Rightarrow$ is short, and once you internalise it, half of Chapter 1 falls into place.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true  },
+    { p: true,  q: false, "p ⇒ q": false },
+    { p: false, q: true,  "p ⇒ q": true  },
+    { p: false, q: false, "p ⇒ q": true  }
+  ]}
+/>
+
+Row 2 is the only "false" row. The conditional promises that we will never see a case with $p$ true and $q$ false; every other case is fine. In particular, when $p$ is false, we say the conditional is **vacuously true** — a shorthand meaning "the case the conditional worries about did not arise."
+
+The umbrella example is worth carrying with you across the chapter:
+
+<Figure alt="Four cases of the umbrella promise: only rain with no umbrella breaks the promise.">
+  <UmbrellaCases />
+</Figure>
+
+*If it rains I bring the umbrella* is broken only on a rainy day without an umbrella. On a sunny day — with or without the umbrella — the promise was never tested. We do not call the promise ambiguous or half-broken; we call it *kept*, because that is the mathematically useful convention.
+
+## A comparison to two-column proofs
+
+You have probably been writing two-column proofs where each line lists a claim and a reason. Those proofs are almost entirely conditionals: *if the alternate interior angles are equal, then the lines are parallel.* Each row of the two-column format asserts one such conditional and reaches for a "reason" that justifies it.
+
+The rest of this course prefers a longer style — **paragraph proofs** — because two columns hides the actual argument behind bookkeeping. But the underlying object being proved is nearly always $p \Rightarrow q$ for particular $p$ and $q$.
+
+## A real example: $x > 1 \Rightarrow x^2 > 1$
+
+Consider the statement, universally quantified over the reals:
+$$
+\forall\, x \in \mathbb{R},\; x > 1 \;\Rightarrow\; x^2 > 1.
+$$
+For each $x$, we get a small conditional. Let us check a few values:
+
+- $x = 3$: hypothesis holds; conclusion holds ($9 > 1$). Row 1.
+- $x = 0.4$: hypothesis fails; conclusion fails ($0.16 < 1$). Row 4 — vacuously true.
+- $x = -2$: hypothesis fails ($-2$ is not greater than $1$); conclusion happens to hold ($4 > 1$). Row 3.
+
+We can't find a value that produces row 2. Squaring a number greater than $1$ produces a number even further above $1$, so the conclusion can't fail when the hypothesis holds. That intuition is a proof waiting to happen — the next module writes it out.
+
+<Warning title="A live confusion">
+"$p \Rightarrow q$ is true" is not the same as "$p$ is true and $q$ is true." A vacuously true conditional carries no information about whether the hypothesis actually holds anywhere. If someone says "*Then the following conditional is true* … " and lists a strange-looking statement, check its hypothesis before objecting.
+</Warning>
+
+<Aside>
+The four rows of the truth table lead to four related statements: the conditional, its converse, its inverse, and its contrapositive. Only one of them — the contrapositive — has the same truth value as the original. That is the whole point of module 1.7.
+</Aside>
+
+## What comes next
+
+To prove a conditional, we get to assume its hypothesis and must derive its conclusion. That is the setup for direct proof (module 1.6). Later we will meet the contrapositive and contradiction; both of them are reflections of the same truth table, seen from different sides.

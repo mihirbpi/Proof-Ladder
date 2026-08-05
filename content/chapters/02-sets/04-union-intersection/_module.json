@@ -1,0 +1,44 @@
+{
+  "id": "2.4",
+  "slug": "union-intersection",
+  "chapter": "02-sets",
+  "order": 4,
+  "titles": {
+    "l1": "Two hoops",
+    "l2": "Venn diagrams",
+    "l3": "Union and intersection",
+    "l4": "Union and intersection",
+    "l5": "Union and intersection",
+    "l6": "Union and intersection",
+    "l7": "Union and intersection",
+    "l8": "Union and intersection"
+  },
+  "kernel": "S ∪ T holds anything in at least one; S ∩ T holds things in both. S ⊆ S∪T and S∩T ⊆ S always. Disjoint means empty intersection.",
+  "objectives": [
+    "Compute unions and intersections",
+    "Connect ∪/∩ to or/and",
+    "Recognize gcd and lcm as intersection phenomena"
+  ],
+  "sourceRef": "Math 0 §2.1.5",
+  "vocabulary": [
+    "union",
+    "intersection",
+    "disjoint"
+  ],
+  "prerequisites": [
+    "2.1",
+    "1.3"
+  ],
+  "treatment": {
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
+  },
+  "namedMove": null,
+  "anchorExample": "The toy box"
+}
