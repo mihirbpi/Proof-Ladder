@@ -88,6 +88,210 @@ hr { border: 0; border-top: 1px solid var(--color-rule); margin-block: 2em; }
 }
 
 /* -------------------------------------------------------------
+ * Site header — persistent across every page. Holds the brand,
+ * the Contents drawer, and either the current level label or a
+ * strip of level chips when no level is in the URL.
+ * ------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in oklab, var(--color-paper) 92%, transparent);
+  backdrop-filter: saturate(150%) blur(6px);
+  -webkit-backdrop-filter: saturate(150%) blur(6px);
+  border-block-end: 1px solid var(--color-rule);
+}
+.site-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.site-brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+.site-brand-mark {
+  color: var(--color-signal);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.site-brand-name {
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+.site-level {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  line-height: 1;
+}
+.site-level-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+}
+.site-level-value {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-ink);
+}
+.site-level-links {
+  margin-left: auto;
+  display: flex;
+  gap: 0.25rem;
+}
+.site-level-chip {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  color: var(--color-ink);
+  text-decoration: none;
+  background: var(--color-card);
+}
+.site-level-chip:hover {
+  background: var(--color-signal);
+  color: var(--color-paper);
+  border-color: var(--color-signal);
+}
+
+/* Contents drawer (native <details>) */
+.toc-drawer { position: relative; }
+.toc-toggle {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-ink);
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  user-select: none;
+}
+.toc-toggle::-webkit-details-marker { display: none; }
+.toc-toggle::marker { content: ''; }
+details[open] > .toc-toggle {
+  background: var(--color-signal);
+  color: var(--color-paper);
+  border-color: var(--color-signal);
+}
+.toc-caret { transition: transform 120ms ease; display: inline-block; }
+details[open] .toc-caret { transform: rotate(180deg); }
+
+.toc-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: auto;
+  width: min(920px, calc(100vw - 3rem));
+  max-height: min(70vh, 720px);
+  overflow: auto;
+  background: var(--color-paper);
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  padding: 1.25rem 1.5rem;
+}
+.toc-panel-head { margin-bottom: 1rem; }
+.toc-panel-title {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-ink);
+}
+.toc-panel-sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: color-mix(in oklab, var(--color-ink) 65%, transparent);
+  margin-top: 0.15rem;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem 1.5rem;
+}
+.toc-chapter { min-width: 0; }
+.toc-chapter-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  padding-block: 0.15rem;
+  border-block-end: 1px solid var(--color-rule);
+  margin-block-end: 0.35rem;
+}
+.toc-chapter-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+}
+.toc-chapter-title { font-size: 0.9rem; }
+.toc-modules {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-modules li a {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.15rem 0;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-ink);
+  text-decoration: none;
+  line-height: 1.3;
+}
+.toc-modules li a:hover { color: var(--color-signal); }
+.toc-mod-id {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+  min-width: 2.5rem;
+}
+.toc-panel-foot {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-rule);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: color-mix(in oklab, var(--color-ink) 65%, transparent);
+}
+.toc-panel-foot a { color: var(--color-ink); }
+
+@media (max-width: 700px) {
+  .site-header-inner { flex-wrap: wrap; padding: 0.5rem 1rem; }
+  .site-brand-name { display: none; }
+  .toc-panel { left: 0; right: 0; width: calc(100vw - 2rem); }
+  .site-level, .site-level-links { margin-left: auto; }
+}
+
+/* -------------------------------------------------------------
  * Layout — level rail (left), reading column (center), margin (right).
  * ------------------------------------------------------------- */
 
@@ -231,6 +435,31 @@ hr { border: 0; border-top: 1px solid var(--color-rule); margin-block: 2em; }
 }
 .needs a { color: var(--color-ink); }
 .needs a:hover { color: var(--color-signal); }
+
+/* -------------------------------------------------------------
+ * Course intro (top of each level's home page)
+ * ------------------------------------------------------------- */
+
+.course-intro {
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  margin-block: 1.5rem 2.5rem;
+}
+.course-intro .intro-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+  margin-bottom: 0.25rem;
+}
+.course-intro h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.35rem;
+}
+.course-intro p:last-child { margin-bottom: 0; }
 
 /* -------------------------------------------------------------
  * MDX components

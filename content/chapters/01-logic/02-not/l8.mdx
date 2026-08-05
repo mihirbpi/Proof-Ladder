@@ -1,0 +1,57 @@
+---
+level: l8
+title: Negation
+readingTimeMin: 8
+newTerms: ["negation"]
+anchorExample: "x ≥ 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Negation is the unary connective on the Boolean algebra $\{T, F\}$ that swaps the two values. It is defined by the truth table
+
+<TruthTable
+  variables={["p"]}
+  expressions={["¬p"]}
+  rows={[
+    { p: true,  "¬p": false },
+    { p: false, "¬p": true }
+  ]}
+/>
+
+and it satisfies
+
+- **involution:** $\neg\neg p \equiv p$,
+- **law of excluded middle:** $p \vee \neg p$ is a tautology,
+- **law of non-contradiction:** $p \wedge \neg p$ is a contradiction,
+- **De Morgan (§1.4):** $\neg(p \wedge q) \equiv \neg p \vee \neg q$; $\neg(p \vee q) \equiv \neg p \wedge \neg q$,
+- **quantifier alternation (§1.11):** $\neg \forall x\, p(x) \equiv \exists x\, \neg p(x)$; $\neg \exists x\, p(x) \equiv \forall x\, \neg p(x)$.
+
+## Common errors
+
+**Boundary flips on inequalities.**
+$$
+\neg(x \geq 1) \equiv x < 1, \quad \neg(x > 1) \equiv x \leq 1.
+$$
+
+**"Opposite" confused with negation.**
+"All A are B" and "no A is B" are not negations. Their common negation is "there is an A that is not B."
+
+**Negating a conditional.** The negation of $p \Rightarrow q$ is $p \wedge \neg q$, not "$p \Rightarrow \neg q$." This confuses students constantly; the truth-table check makes it obvious.
+
+<Warning title="Negating a conditional">
+$\neg(p \Rightarrow q) \equiv p \wedge \neg q$: the hypothesis holds and the conclusion fails. This is exactly the single false row of the conditional's table (§1.5).
+</Warning>
+
+## Negating live conjectures
+
+- **Twin Primes.** $\neg\bigl(\exists^\infty p \text{ prime with } p+2 \text{ prime}\bigr) \equiv \exists N,\, \forall p > N \text{ prime},\; p + 2 \text{ composite}$.
+- **Goldbach.** $\neg\bigl(\forall n \in 2\mathbb{Z}_{\geq 2},\, \exists p,q \text{ prime},\, n = p+q\bigr) \equiv \exists n \in 2\mathbb{Z}_{\geq 2},\, \forall p, q \text{ prime},\, n \neq p+q$.
+
+Note how the negation of Goldbach is a *single-case* claim: one bad $n$ suffices. This is why exhaustive numerical checking would settle Goldbach *if* the conjecture were false; the difficulty is that no such $n$ has been found even at $n = 4 \times 10^{18}$, and finite checking cannot verify the positive direction.
+
+<WhereThisGoes level="l8">
+The neat two-value picture here is one point on a much larger map. **Intuitionistic logic** — motivated by constructive mathematics and the Curry–Howard correspondence — refuses the law of excluded middle unless a witness for one side can be exhibited. **Paraconsistent logics** allow contradictions without triviality (useful for reasoning about inconsistent databases). **Modal logics** add operators $\Box$ and $\Diamond$ for necessity and possibility, with negation interacting nontrivially. In categorical logic, negation of a subobject is complementation in the subobject classifier's internal Heyting algebra, which is not Boolean in general — an entire alternative universe hides behind a single connective.
+</WhereThisGoes>

@@ -1,8 +1,10 @@
 ---
 import '@/styles/globals.css';
+import SiteHeader from '@/components/SiteHeader.astro';
+import type { LevelId } from '@/lib/content';
 export interface Props {
   title: string;
-  level?: string;
+  level?: LevelId;
   description?: string;
 }
 const { title, level, description } = Astro.props;
@@ -17,6 +19,7 @@ const { title, level, description } = Astro.props;
     <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='4' y='24' font-family='sans-serif' font-size='24' font-weight='700' fill='%234436C7'%3E%E2%88%80%3C/text%3E%3C/svg%3E" />
   </head>
   <body>
+    <SiteHeader currentLevel={level} />
     <slot />
   </body>
 </html>

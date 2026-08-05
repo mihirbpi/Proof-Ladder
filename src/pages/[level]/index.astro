@@ -9,6 +9,7 @@ import {
   chapterPath,
   modulePath,
   levelHome,
+  getIntro,
   type LevelId,
 } from '@/lib/content';
 
@@ -19,7 +20,21 @@ export function getStaticPaths() {
 const { level } = Astro.params as { level: LevelId };
 const profile = getLevel(level);
 const chapters = getAllChapters();
+const intro = getIntro(level);
 const railHref = (id: LevelId) => levelHome(id);
+
+// Very small markdown-ish renderer: escape HTML, then map **x** → <strong>
+// and *x* → <em>. Keeps intro authoring simple without pulling in a full
+// markdown pipeline.
+function renderIntroPara(src: string): string {
+  const esc = src
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  return esc
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+}
 ---
 <BaseLayout title={`${profile.label} — course home`} level={level}
             description={`Math 0 taught for ${profile.readingTarget}.`}>
@@ -30,7 +45,14 @@ const railHref = (id: LevelId) => levelHome(id);
         <a href="/">Proof Ladder</a> · Level {profile.shortLabel} · {profile.label}
       </p>
       <h1>Math 0 for {profile.readingTarget.toLowerCase()}</h1>
-      <p style="margin-top: 1rem;">{profile.voice}</p>
+
+      <section class="course-intro" aria-label="Course intro">
+        <div class="intro-label">Before we start</div>
+        <h2>{intro.title}</h2>
+        {intro.paragraphs.map((para) => (
+          <p set:html={renderIntroPara(para)} />
+        ))}
+      </section>
 
       {chapters.map((ch) => {
         const mods = getModulesForChapter(ch.slug);

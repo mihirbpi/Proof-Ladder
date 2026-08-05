@@ -1,0 +1,83 @@
+{
+  "intros": [
+    {
+      "level": "l1",
+      "title": "What we do here",
+      "paragraphs": [
+        "Some tellings are true. Some are not.",
+        "Grown-ups called mathematicians spend all day picking which ones are true. That is the whole job.",
+        "In this course, you will get to try it too. We start with the easy stuff — telling true from silly."
+      ]
+    },
+    {
+      "level": "l2",
+      "title": "What math actually is",
+      "paragraphs": [
+        "Math is deciding what is true. That's it.",
+        "Some tellings are true — like *two plus two is four*. Some are false — like *the moon is made of cheese*. And some are hard, like *there is a biggest prime number* — grown-ups have been trying to figure out that kind for a long time.",
+        "The job of a mathematician is to decide, for each telling, whether it is true or false. They do it by giving a reason strong enough that nobody can argue with it. That reason is called a **proof**.",
+        "This course teaches you how to build those reasons — starting from *and*, *or*, *not*, and *if–then*, and working all the way up to numbers, shapes, and infinity."
+      ]
+    },
+    {
+      "level": "l3",
+      "title": "What mathematics actually is",
+      "paragraphs": [
+        "In its simplest form, mathematics is the practice of assigning truth to statements.",
+        "A **statement** is a sentence that is either true or false. *7 is prime* is a statement. *2 + 2 = 5* is a statement (a false one). *There are infinitely many pairs of primes that are only 2 apart* is a statement — and nobody on Earth has figured out which one it is yet.",
+        "The job of a mathematician is exactly this: to decide, for each statement, whether it is true or false. The tool they use is called a **proof** — a chain of reasons so tight that once you follow it, you cannot doubt the answer.",
+        "This course walks you through the seven big topics you need before real proofs make sense: logic, sets, functions, numbers, complex numbers, induction, and the axioms the whole of arithmetic rests on."
+      ]
+    },
+    {
+      "level": "l4",
+      "title": "What mathematics actually is",
+      "paragraphs": [
+        "In its most basic form, mathematics is the practice of assigning truth to well-defined statements. That is the whole enterprise.",
+        "A **statement** is a sentence that is either true (T) or false (F). *7 is prime* is a statement. *The number of primes is infinite* is a statement. *Every even integer greater than 2 is a sum of two primes* is a statement — one that nobody has proven or disproven for almost 300 years.",
+        "**The job of the mathematician is to decide which statements are true and which are false using a proof.** Not to compute. Not to solve. To decide truth, with an argument you cannot argue with.",
+        "This course develops the skills you need to do that: connect what you know to what you want to know, using logic to string the pieces together. We start with the shape of statements themselves — negation, conjunction, disjunction, the if–then — and build outward through sets, functions, and the number systems that sit under all of mathematics."
+      ]
+    },
+    {
+      "level": "l5",
+      "title": "What mathematics actually is",
+      "paragraphs": [
+        "In its most basic form, mathematics is the practice of assigning truth to well-defined statements.",
+        "A **statement** is a declarative sentence with a definite truth value — one of T or F. Whether we currently know that value doesn't matter: *there are infinitely many pairs of primes differing by 2* is a statement, even though the truth-value assignment has been open since 1849.",
+        "**The job of the mathematician is to decide which statements are true and which are false using a proof.** In this course you will learn how to do that carefully — how to use known true statements to construct new true statements, one careful move at a time.",
+        "We begin with logic because logic is the glue: it is how one statement gets connected to another, and how a chain of connections becomes a proof. Then sets (the containers our mathematical objects live in), functions (the maps between them), the number systems (integers, rationals, reals, complex numbers, and their limitations), induction (the technique for proving infinitely many things at once), and the Peano axioms (the base of the whole tower)."
+      ]
+    },
+    {
+      "level": "l6",
+      "title": "What mathematics actually is",
+      "paragraphs": [
+        "You've been writing proofs this year in geometry — mostly two-column, mostly about triangles. This course reframes what those proofs are actually *for*.",
+        "In its most basic form, mathematics is the practice of assigning truth to well-defined statements. A **statement** is a declarative sentence with a definite truth value. Whether we know that value or not is a separate question — *every even integer greater than 2 is the sum of two primes* is a perfectly good statement, though nobody has settled it in 280 years.",
+        "**The job of the mathematician is to decide which statements are true and which are false using a proof.** Not to calculate, not to solve for x. To decide truth. That is a much stranger and more ambitious activity than most of school mathematics prepares you for, and this course is the transition into it.",
+        "We use logic first, because logic is the discipline of connecting one true statement to another. Once we have logic, we can talk about sets (the objects mathematics studies) and functions (the maps between them), then the number systems — integers, rationals, reals, complex — and their rules, and finally induction and the Peano axioms, which tell us why the whole thing works."
+      ]
+    },
+    {
+      "level": "l7",
+      "title": "What mathematics actually is",
+      "paragraphs": [
+        "In its most basic form, mathematics is the practice of assigning truth to well-defined statements. In this course we will develop the skills to use known true statements to build new, more complicated true statements.",
+        "The kinds of statements mathematicians study are called **logical statements**: meaningful sentences that are either true or false. Importantly, a sentence need not be known to be true or false to count as a statement — it need only be one or the other. Twin Primes is a logical statement even though no one has settled it.",
+        "**The job of the mathematician is to decide which statements are true and which are false using a proof.** Not to compute; to decide. And to decide by a specific mechanism: an argument tight enough that anyone who follows it must reach the same conclusion. That mechanism is what this course teaches.",
+        "We begin with logic because logic is how statements are connected: negation, conjunction, disjunction, the conditional, the biconditional, and the quantifiers. Once these are in hand, we can build the objects of the subject (sets, functions, number systems) and the technique for proving statements about infinitely many things at once (induction), and finally examine the axioms the natural numbers rest on (Peano). By the end of it, you will be able to read the opening of any modern mathematics text and know what game is being played."
+      ]
+    },
+    {
+      "level": "l8",
+      "title": "What mathematics actually is",
+      "paragraphs": [
+        "In its most basic form, mathematics is the practice of assigning truth to well-defined statements. Everything else — the notation, the theorems, the fields — is machinery for doing this well.",
+        "A **logical statement** is a declarative sentence with a definite truth value, one of T or F. Statements need not be presently known to us to be either. Nor need they be decidable in the technical sense: by Gödel's incompleteness theorems, any consistent extension of Peano arithmetic admits statements neither provable nor disprovable from within itself. The class of statements is nevertheless well-defined and, for the purposes of this course, well-behaved.",
+        "**The job of the mathematician is to decide which statements are true or false using a proof.** A proof is a finite sequence of statements, each of which is either an axiom or follows from earlier statements by a permitted inference rule, terminating in the statement to be established. This definition is more austere than it needs to be for our purposes — Chapter 7 will unpack what \"axiom\" and \"inference rule\" cost us — but it is the object that all of what follows is a study of.",
+        "The course walks the ladder deliberately: propositional logic (Ch. 1), the set theory that gives us objects to talk about (Ch. 2), the functions that let us relate them (Ch. 3), the number systems whose properties we spend most of our early careers exploiting (Ch. 4), the complex numbers that let algebra do what algebra should (Ch. 5), the induction principle that turns finite arguments into infinite ones (Ch. 6), and finally the axioms of arithmetic themselves (Ch. 7). Along the way we will point at where each idea reappears in modern mathematics: rings and fields in Ch. 4 open abstract algebra; pre-images and continuity in Ch. 3 open topology; Peano and Gödel in Ch. 7 open logic and foundations. The goal is not just competence with proof but literacy in the culture that produces it."
+      ]
+    }
+  ]
+}

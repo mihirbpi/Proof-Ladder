@@ -1,0 +1,69 @@
+---
+level: l7
+title: Negation
+readingTimeMin: 7
+newTerms: ["negation"]
+anchorExample: "x ≥ 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Warning from '@/components/Warning.astro';
+
+For a statement $p$, its **negation** $\neg p$ is the statement whose truth value is the opposite of $p$'s. Negation is the simplest connective in propositional logic and, precisely because it is simple, the source of most first-year proof errors.
+
+## Truth table
+
+<TruthTable
+  variables={["p"]}
+  expressions={["¬p"]}
+  rows={[
+    { p: true,  "¬p": false },
+    { p: false, "¬p": true }
+  ]}
+/>
+
+Two consequences follow immediately:
+
+- **Law of non-contradiction.** $p \wedge \neg p$ is always false.
+- **Law of excluded middle.** $p \vee \neg p$ is always true.
+
+Both look obvious in this setting; both are genuinely non-trivial once one moves to intuitionistic or paraconsistent logics, where excluded middle is not assumed. Classical mathematics, and this course, assumes both.
+
+## Double negation
+
+$\neg\neg p \equiv p$: negating twice returns you to the original. In a proof by contradiction (§2.1.6) one assumes $\neg q$, derives an impossibility, and concludes $\neg\neg q$, which is silently rewritten as $q$.
+
+## Errors, catalogued
+
+**Inequality boundaries flip.**
+$$
+\neg(x \geq 1) \equiv (x < 1), \quad \neg(x > 1) \equiv (x \leq 1), \quad \neg(x \neq 0) \equiv (x = 0).
+$$
+
+**Quantifier alternation.**
+$$
+\neg(\forall x\, p(x)) \equiv \exists x\, \neg p(x), \qquad \neg(\exists x\, p(x)) \equiv \forall x\, \neg p(x).
+$$
+Module 1.11 will prove these; they underwrite the entire practice of disproving universal claims by counterexample and existential claims by exhaustive negation.
+
+**De Morgan (previewed).**
+$$
+\neg(p \wedge q) \equiv \neg p \vee \neg q, \quad \neg(p \vee q) \equiv \neg p \wedge \neg q.
+$$
+Negation swaps $\wedge$ and $\vee$. Module 1.4 proves this and it is arguably the most-used logical identity in the course.
+
+<Warning title="Not the same as opposite">
+"All primes are odd" and "no primes are odd" are both false. The negation of the first is "some prime is not odd" — witness $2$.
+</Warning>
+
+## Twin Primes, negated
+
+The Twin Primes conjecture,
+$$
+\exists^\infty p \text{ prime with } p + 2 \text{ prime},
+$$
+has negation
+$$
+\text{there exists } N \text{ such that for all primes } p > N,\; p + 2 \text{ is not prime}.
+$$
+A proof of either would settle the conjecture. Notice the shape: negating a "$\exists^\infty$" produces an "eventually always not"; negating a $\forall$ produces an $\exists$.

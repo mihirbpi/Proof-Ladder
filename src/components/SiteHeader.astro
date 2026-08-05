@@ -1,0 +1,95 @@
+---
+// Persistent header shown on every page. Uses a native <details> element
+// so the Contents drawer works with zero JS and is keyboard-accessible.
+import {
+  LEVELS,
+  getAllChapters,
+  getModulesForChapter,
+  chapterPath,
+  modulePath,
+  levelHome,
+  type LevelId,
+} from '@/lib/content';
+
+export interface Props {
+  currentLevel?: LevelId;
+}
+const { currentLevel } = Astro.props;
+// If no level in the URL, default the TOC to l4 as a reasonable middle rung.
+const tocLevel: LevelId = currentLevel ?? 'l4';
+const chapters = getAllChapters();
+const profile = currentLevel ? LEVELS.find((l) => l.id === currentLevel) : null;
+---
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="site-brand" aria-label="Proof Ladder home">
+      <span class="site-brand-mark" aria-hidden="true">∀</span>
+      <span class="site-brand-name">Proof Ladder</span>
+    </a>
+
+    <details class="toc-drawer">
+      <summary class="toc-toggle" aria-label="Open contents">
+        <span>Contents</span>
+        <span class="toc-caret" aria-hidden="true">▾</span>
+      </summary>
+      <div class="toc-panel" role="dialog" aria-label="Table of contents">
+        <div class="toc-panel-head">
+          <span class="toc-panel-title">Table of contents</span>
+          <span class="toc-panel-sub">
+            Showing at level <strong>{tocLevel.toUpperCase()}</strong>.
+            {!currentLevel && (
+              <> Pick a rung on any page to browse at that level.</>
+            )}
+          </span>
+        </div>
+        <div class="toc-grid">
+          {chapters.map((ch) => {
+            const mods = getModulesForChapter(ch.slug);
+            return (
+              <section class="toc-chapter">
+                <a href={chapterPath(tocLevel, ch.slug)} class="toc-chapter-link">
+                  <span class="toc-chapter-num">Ch {ch.number}</span>
+                  <span class="toc-chapter-title">{ch.title}</span>
+                </a>
+                <ul class="toc-modules">
+                  {mods.map((m) => (
+                    <li>
+                      <a href={modulePath(tocLevel, ch.slug, m.slug)}>
+                        <span class="toc-mod-id">{m.id}</span>
+                        {m.titles[tocLevel] ?? m.titles.l7}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+        </div>
+        <div class="toc-panel-foot">
+          <a href="/about/">About</a>
+          {currentLevel && (
+            <>
+              {' · '}
+              <a href={levelHome(currentLevel)}>Level home</a>
+            </>
+          )}
+        </div>
+      </div>
+    </details>
+
+    {profile ? (
+      <div class="site-level">
+        <span class="site-level-label">Level</span>
+        <span class="site-level-value">{profile.shortLabel} · {profile.label}</span>
+      </div>
+    ) : (
+      <div class="site-level-links" aria-label="Jump to a level">
+        {LEVELS.map((l) => (
+          <a href={levelHome(l.id)} class="site-level-chip" title={`${l.label} — ${l.ageRange}`}>
+            {l.shortLabel}
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</header>

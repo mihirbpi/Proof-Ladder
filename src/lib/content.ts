@@ -8,6 +8,7 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const CHAPTERS_DIR = path.join(ROOT, 'content', 'chapters');
 const LEVELS_FILE = path.join(ROOT, 'content', 'levels', 'levels.json');
 const GLOSSARY_FILE = path.join(ROOT, 'content', 'glossary', 'glossary.json');
+const INTROS_FILE = path.join(ROOT, 'content', 'intros', 'intros.json');
 
 export type LevelId = 'l1' | 'l2' | 'l3' | 'l4' | 'l5' | 'l6' | 'l7' | 'l8';
 
@@ -145,6 +146,20 @@ export function findGlossaryEntry(term: string): GlossaryEntry | undefined {
   return g.entries.find(
     (e) => e.term.toLowerCase() === needle || e.slug === needle,
   );
+}
+
+// Per-level intros (course intro shown at the top of each level's home page)
+export type Intro = {
+  level: LevelId;
+  title: string;
+  paragraphs: string[];
+};
+
+export function getIntro(level: LevelId): Intro {
+  const data = readJson<{ intros: Intro[] }>(INTROS_FILE);
+  const i = data.intros.find((x) => x.level === level);
+  if (!i) throw new Error(`No intro for level ${level}`);
+  return i;
 }
 
 // URL helpers
