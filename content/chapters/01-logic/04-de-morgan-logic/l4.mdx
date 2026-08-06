@@ -1,0 +1,89 @@
+---
+level: l4
+title: De Morgan's laws
+readingTimeMin: 6
+newTerms: ["logically equivalent", "De Morgan's laws"]
+anchorExample: "multiples of 4 and 5"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You can negate a statement, and you can join two statements with $\wedge$ or $\vee$. The question this module answers is what happens when you do both: how do you correctly compute $\neg(p \wedge q)$?
+
+The answer is not "$\neg p \wedge \neg q$." Negation does not slide quietly through a connective. It changes the connective on the way.
+
+## Logical equivalence
+
+First, the tool for saying two statements are the same. Two statements are **logically equivalent**, written $\equiv$, when their truth-table columns match in every row. Equivalent statements are interchangeable: if you have proved one, you have proved the other.
+
+Note that $\equiv$ is a claim *about* statements, not a connective inside one.
+
+## The first law
+
+$$\neg(p \wedge q) \equiv \neg p \vee \neg q$$
+
+Build the table and compare the two columns of interest.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∧ q", "¬(p ∧ q)", "¬p ∨ ¬q"]}
+  rows={[
+    { p: true,  q: true,  "p ∧ q": true,  "¬(p ∧ q)": false, "¬p ∨ ¬q": false },
+    { p: true,  q: false, "p ∧ q": false, "¬(p ∧ q)": true,  "¬p ∨ ¬q": true  },
+    { p: false, q: true,  "p ∧ q": false, "¬(p ∧ q)": true,  "¬p ∨ ¬q": true  },
+    { p: false, q: false, "p ∧ q": false, "¬(p ∧ q)": true,  "¬p ∨ ¬q": true  }
+  ]}
+/>
+
+The last two columns agree in all four rows. That *is* the proof — a truth-table verification is a complete proof of a logical equivalence, because four rows exhaust every possibility.
+
+## The second law
+
+$$\neg(p \vee q) \equiv \neg p \wedge \neg q$$
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∨ q", "¬(p ∨ q)", "¬p ∧ ¬q"]}
+  rows={[
+    { p: true,  q: true,  "p ∨ q": true,  "¬(p ∨ q)": false, "¬p ∧ ¬q": false },
+    { p: true,  q: false, "p ∨ q": true,  "¬(p ∨ q)": false, "¬p ∧ ¬q": false },
+    { p: false, q: true,  "p ∨ q": true,  "¬(p ∨ q)": false, "¬p ∧ ¬q": false },
+    { p: false, q: false, "p ∨ q": false, "¬(p ∨ q)": true,  "¬p ∧ ¬q": true  }
+  ]}
+/>
+
+Together these are **De Morgan's laws**. In one sentence: *a negation distributes over a connective, but it swaps $\wedge$ and $\vee$ as it goes.*
+
+## A worked negation
+
+Let $p$: "$21$ is a multiple of $4$" and $q$: "$21$ is a multiple of $5$."
+
+The claim $p \vee q$ says $21$ is a multiple of $4$ or of $5$. It is false. De Morgan tells us what its falsity amounts to:
+$$
+\neg(p \vee q) \equiv \neg p \wedge \neg q,
+$$
+that is: $21$ is not a multiple of $4$ **and** $21$ is not a multiple of $5$. Both. Check: $21 = 4 \cdot 5 + 1$ and $21 = 5 \cdot 4 + 1$. Neither divides. Correct.
+
+Now the other one. $p \wedge q$ says $21$ is a multiple of both. Its negation is $\neg p \vee \neg q$: $21$ fails at least one of them. That is a weaker claim than "$21$ fails both," and weaker is right — the negation should demand no more than it has to.
+
+<Warning title="Do not over-negate">
+The single most common error with De Morgan is negating both parts and keeping the connective:
+$$
+\neg(p \wedge q) \;\not\equiv\; \neg p \wedge \neg q.
+$$
+Check row 2 of the first table: $p$ true, $q$ false. The left side is T, the right side is F. Different columns, so not equivalent. Keeping the connective makes the negation *too strong* — it claims both parts failed when only one had to.
+</Warning>
+
+## Why this matters more than it looks
+
+Almost every theorem you will meet has a compound hypothesis: "if $n$ is even **and** $n > 2$, then …". To prove such a theorem by contrapositive (module 1.8) you must negate that hypothesis — and if you negate it wrongly, you will spend an afternoon proving the wrong statement. De Morgan is the rule that keeps you honest:
+$$
+\neg(\text{$n$ even} \wedge n > 2) \equiv (\text{$n$ odd}) \vee (n \leq 2).
+$$
+An *or* in the hypothesis means the proof will need **cases** — and that is the shape almost every contrapositive proof of a conjunctive hypothesis takes.
+
+<Aside>
+The same laws will reappear for sets ($\overline{S \cap T} = \overline{S} \cup \overline{T}$, module 2.7) and for quantifiers ($\neg \forall$ becomes $\exists \neg$, module 1.11). It is genuinely one law showing up in three places, not three coincidences.
+</Aside>

@@ -1,0 +1,92 @@
+---
+level: l3
+title: Complements and suppose not
+readingTimeMin: 6
+newTerms: ["complement", "universe", "proof by contradiction"]
+anchorExample: "even numbers inside the whole numbers"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Union and intersection came from *and* and *or*. There is one connective left over from Chapter 1 — *not* — and it gives the third set operation.
+
+## The complement
+
+Fix a set $S$ to be the whole world for the moment. We call it the **universe**. For a set $A$ inside it, the **complement** of $A$ is everything in $S$ that is not in $A$:
+$$
+\overline{A} = \{\, x \in S \mid x \notin A \,\}.
+$$
+
+<Figure alt="Two circles inside a dashed rectangle, with the region of the rectangle outside both circles shaded." caption="Complement: everything in the universe outside the set.">
+  <VennTwo labelS="A" labelT="B" shade={["outside"]} universe="S" />
+</Figure>
+
+## The universe is not optional
+
+This is the point of the module, so here it is twice.
+
+Take $A = \{0, 1\}$.
+
+- Inside the whole numbers, $\overline{A} = \{2, 3, 4, 5, \ldots\}$.
+- Inside all the numbers on the number line, $\overline{A}$ is enormous: it contains $\tfrac12$, $-7$, $\pi$, everything except two points.
+
+Same $A$. Completely different complements. So writing $\overline{A}$ without saying what the universe is means nothing at all.
+
+A useful check: $\overline{A}$ always depends on two things, not one.
+
+## A famous complement
+
+Inside the real numbers, the complement of the fractions is called the **irrational numbers**. So $\pi$ is irrational, and $\sqrt{2}$ is irrational — a fact that takes real work to prove, and module 4.7 does it.
+
+## Suppose not
+
+Complements are naturally *negative*: to say $x \in \overline{A}$ is to say $x$ is **not** something. Negative goals are awkward to attack head-on, because "not" gives you nothing to substitute.
+
+So here is the technique that handles them, and it is one of the great ones. It is called **proof by contradiction**, and the named move is **suppose not**.
+
+> To prove a claim: assume the claim is false. Reason carefully. If you arrive at something impossible, then the assumption must have been wrong — so the claim is true.
+
+## A worked example
+
+> **Claim.** Let $S$ be the whole numbers, and let $E$ be the even ones. Then no element of $\overline{E}$ is a multiple of $4$.
+
+<Discussion>
+  <div slot="know">$\overline{E}$ is the odd numbers — the whole numbers not in $E$. And every multiple of $4$ can be written as $4 \times k$.</div>
+  <div slot="want">Nothing in $\overline{E}$ is a multiple of $4$.</div>
+  <div slot="how">The goal is a *nothing* claim, which is hard to attack directly. So suppose not: pretend some element of $\overline{E}$ *is* a multiple of $4$, and see what breaks.</div>
+</Discussion>
+
+<Proof>
+Suppose not. That is, suppose some number $n$ is in $\overline{E}$ and is also a multiple of $4$.
+
+Since $n$ is a multiple of $4$, we can write $n = 4 \times k$ for some whole number $k$.
+
+But $4 = 2 \times 2$, so $n = 2 \times (2 \times k)$, which makes $n$ a multiple of $2$ — that is, $n$ is even, so $n \in E$.
+
+Now $n$ is in $\overline{E}$ and also in $E$. But $\overline{E}$ is exactly the numbers *not* in $E$. So $n$ is both in $E$ and not in $E$, which is impossible.
+
+Our supposition led to something impossible, so it was false. No element of $\overline{E}$ is a multiple of $4$.
+</Proof>
+
+## What made that work
+
+Every *suppose not* proof has the same three beats.
+
+1. **Assume the opposite of the goal.** Say so out loud: "suppose not."
+2. **Reason honestly.** You are allowed to use the false assumption exactly like any other fact.
+3. **Hit a wall.** Something has to come out impossible — usually a statement and its own opposite, both true at once (a contradiction, module 1.3).
+
+Then you conclude that the assumption was to blame, because everything else you did was correct.
+
+<Warning title="Do not reach for it too fast">
+Contradiction is powerful, so it is tempting to use it everywhere. Resist. A direct proof is easier to read and easier to check, because the reader does not have to carry a false assumption in their head. Save *suppose not* for goals that are negative or that claim something does not exist.
+</Warning>
+
+<Aside>
+Two facts worth noticing about complements, both easy to see in the picture: $\overline{\overline{A}} = A$ — the outside of the outside is the inside — and $A \cap \overline{A} = \emptyset$, since nothing can be both in and out. These are the set versions of double negation and of $p \wedge \neg p$ being a contradiction.
+</Aside>

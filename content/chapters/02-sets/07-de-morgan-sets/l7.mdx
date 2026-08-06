@@ -1,0 +1,108 @@
+---
+level: l7
+title: De Morgan's set laws
+readingTimeMin: 9
+newTerms: ["duality"]
+anchorExample: "complements in ℝ"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Fix a universe $U$; all sets are subsets of it.
+
+$$
+\overline{S \cap T} = \overline S \cup \overline T,
+\qquad
+\overline{S \cup T} = \overline S \cap \overline T.
+$$
+
+<Figure alt="Two overlapping circles S and T inside a dashed universe box, with the region outside both circles shaded." caption="$\overline{S \cup T} = \overline S \cap \overline T$.">
+  <VennTwo labelS="S" labelT="T" shade={["outside"]} universe="U" />
+</Figure>
+
+These are §1.4's laws under the dictionary $\neg \leftrightarrow \overline{\phantom{x}}$, $\wedge \leftrightarrow \cap$, $\vee \leftrightarrow \cup$. This is the first module in which Chapter 1 functions as machinery rather than as content: the pivot of the proof is a quoted logical equivalence.
+
+## Proof
+
+<Discussion>
+  <div slot="know">$x \in \overline A \iff x \in U \wedge x \notin A$; $x \in S \cup T \iff (x\in S)\vee(x\in T)$; and $\neg(p \vee q) \equiv \neg p \wedge \neg q$.</div>
+  <div slot="want">Double inclusion (§2.6).</div>
+  <div slot="how">Unfold membership into logic, apply the logic law, refold. Because the logic law is an equivalence rather than an implication, both inclusions are the same computation read in opposite directions — so the equality can be presented as a chain of biconditionals.</div>
+</Discussion>
+
+<Proof>
+Let $x \in U$ be arbitrary. Then
+$$
+\begin{aligned}
+x \in \overline{S \cup T}
+&\iff \neg\big(x \in S \cup T\big) \\
+&\iff \neg\big((x \in S) \vee (x \in T)\big) \\
+&\iff (x \notin S) \wedge (x \notin T) &&\text{(De Morgan, §1.4)}\\
+&\iff (x \in \overline S) \wedge (x \in \overline T) \\
+&\iff x \in \overline S \cap \overline T .
+\end{aligned}
+$$
+Every step is a biconditional, so both inclusions are established simultaneously. Since $x \in U$ was arbitrary, the sets are equal.
+</Proof>
+
+The chain form is legitimate here precisely because each link is a definitional unfolding or a logical equivalence — the condition §2.6 warned about. Written as two separate inclusions the proof is twice as long and no more convincing.
+
+The first law follows either by the same argument with $\neg(p \wedge q) \equiv \neg p \vee \neg q$, or from the second by substituting $\overline S, \overline T$ and complementing, using $\overline{\overline A} = A$.
+
+## The translation is structural
+
+| Connective | Set operation |
+|---|---|
+| $\neg$ | complement |
+| $\wedge$ | $\cap$ |
+| $\vee$ | $\cup$ |
+| $\Rightarrow$ (universally) | $\subseteq$ |
+| $\Leftrightarrow$ (universally) | $=$ |
+| $\exists i$ | $\bigcup_i$ |
+| $\forall i$ | $\bigcap_i$ |
+
+The reason this dictionary is exact: the map sending a predicate $p$ to its truth set $\{x \in U \mid p(x)\}$ is a homomorphism of Boolean algebras from predicates-modulo-equivalence onto $\mathcal{P}(U)$. Every equational identity therefore transfers in both directions. It is not that the two subjects are similar; up to isomorphism they are the same algebra.
+
+## Indexed form
+
+For a family $\{A_i\}_{i \in I}$:
+$$
+\overline{\bigcup_{i \in I} A_i} = \bigcap_{i \in I} \overline{A_i},
+\qquad
+\overline{\bigcap_{i \in I} A_i} = \bigcup_{i \in I} \overline{A_i}.
+$$
+
+The proof is the same three moves, with $\neg\exists \equiv \forall\neg$ (§1.11) at the pivot instead of $\neg\vee \equiv \wedge\neg$:
+$$
+x \in \overline{\textstyle\bigcup_i A_i}
+\iff \neg \exists i,\, x \in A_i
+\iff \forall i,\, x \notin A_i
+\iff x \in \textstyle\bigcap_i \overline{A_i}.
+$$
+No induction is needed and $I$ may be uncountable — which is the point of proving it this way rather than by iterating the binary case.
+
+<Warning title="The connective must swap">
+In $U = \{1,\ldots,6\}$ with $S = \{1,2,3\}$, $T = \{3,4\}$:
+$$\overline{S \cap T} = \{1,2,4,5,6\}, \qquad \overline S \cap \overline T = \{5,6\}.$$
+A single counterexample settles that $\overline{S \cap T} \neq \overline S \cap \overline T$. In practice the error appears not as a bare identity but inside a proof, when a negated hypothesis about a union or intersection is expanded carelessly.
+</Warning>
+
+## Duality
+
+De Morgan says complementation is an **order-reversing involution** on $\mathcal{P}(U)$ exchanging $\cap$ and $\cup$ (and, by §2.5, exchanging $\subseteq$ with $\supseteq$, $\emptyset$ with $U$). Consequently every theorem about subsets has a **dual**, obtained by swapping $\cap \leftrightarrow \cup$, $\subseteq \leftrightarrow \supseteq$, $\emptyset \leftrightarrow U$ — and the dual is automatically true, with the dual proof.
+
+This halves the work in the next module: the two distributive laws of §2.8 are duals, so proving one proves both. The habit of noticing duality before starting a proof is worth acquiring now.
+
+<Aside>
+$\cup$ and $\cap$ are recoverable from each other via complement — $S \cap T = \overline{\overline S \cup \overline T}$ — so $\{\neg, \vee\}$ suffices to express everything, mirroring the functional completeness of $\{\neg, \vee\}$ for connectives. In circuit terms this is why NOR gates alone can implement any Boolean function.
+</Aside>
+
+<WhereThisGoes level="l7">
+De Morgan duality recurs wherever a structure has an order-reversing involution. In topology, complementation exchanges open and closed sets, turning "arbitrary unions of open sets are open" into "arbitrary intersections of closed sets are closed", and interior into closure. In measure theory it is why a $\sigma$-algebra closed under complement and countable union is automatically closed under countable intersection — one axiom saved. In lattice theory, De Morgan algebras are those where the involution is stipulated; Stone duality upgrades the correspondence into an equivalence between Boolean algebras and certain topological spaces, which is the reason facts about sets and facts about spaces keep translating into each other. In category theory the same phenomenon is the opposite category, under which products become coproducts, limits become colimits, and every theorem arrives with a free dual.
+</WhereThisGoes>

@@ -1,0 +1,82 @@
+---
+level: l3
+title: Proving and disproving quantified statements
+readingTimeMin: 6
+newTerms: ["arbitrary", "proof by cases"]
+anchorExample: "n² − 1 factors"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You have two kinds of quantified claim and two things you might want to do with each. That is four jobs, and each has its own method.
+
+|  | To prove | To disprove |
+|---|---|---|
+| **For all** $x$, $p(x)$ | take any one and follow it | one bad apple |
+| **There exists** $x$, $p(x)$ | exhibit one example | show every case fails |
+
+## The new move: take any one and follow it
+
+Proving a *for all* claim looks impossible — there are usually infinitely many cases. The trick is to argue about **one** case, chosen so badly that the argument works for all of them.
+
+You pick an element you know *nothing special* about. Mathematicians call such a choice **arbitrary**. Then you reason. If your reasoning never uses a special fact about your choice, then it would have worked for any other choice too — so it works for all of them.
+
+## A worked example
+
+> **Claim.** For every whole number $n$ with $n \geq 3$, the number $n \times n - 1$ can be split into two factors, both bigger than $1$.
+
+Check a couple first: $n = 3$ gives $8 = 2 \times 4$. ✓ $n = 5$ gives $24 = 4 \times 6$. ✓
+
+<Discussion>
+  <div slot="know">$n$ is a whole number, at least $3$. Nothing else.</div>
+  <div slot="want">Two factors of $n \times n - 1$, each bigger than $1$.</div>
+  <div slot="how">There is a pattern in the examples: $8 = 2 \times 4$ and $24 = 4 \times 6$. In each case the factors are $n - 1$ and $n + 1$. So try showing $n \times n - 1 = (n-1) \times (n+1)$, and then check both factors beat $1$.</div>
+</Discussion>
+
+<Proof>
+Take any whole number $n$ with $n \geq 3$. We know nothing else about $n$.
+
+Multiply out $(n - 1) \times (n + 1)$. This is $n \times n + n - n - 1$, which is $n \times n - 1$. So
+$$n \times n - 1 = (n-1) \times (n+1).$$
+
+Now check the two factors. Since $n \geq 3$, we have $n - 1 \geq 2$, so the first factor is bigger than $1$. And $n + 1 \geq 4$, so the second is too.
+
+So $n \times n - 1$ splits into two factors, both bigger than $1$. Since $n$ was any whole number at least $3$, this holds for all of them.
+</Proof>
+
+Read the proof again and notice: we never used a particular value of $n$. Every step would still be true if $n$ were $7$, or $400$, or a number nobody has ever written down. That is what makes it a proof of the *for all* claim.
+
+<Warning title="Arbitrary means you don't get to choose">
+A proof that begins "let $n = 5$" proves something about $5$. To prove a *for all* claim you must let the number be handed to you. If at any point in your argument you find yourself saying "and since $n$ is even…", stop — you assumed something you were not given. (Unless you then also handle the odd case; see below.)
+</Warning>
+
+## Splitting into cases
+
+Sometimes you cannot argue about all elements the same way. Then you may **split into cases**, as long as your cases cover everything.
+
+> **Claim.** For every whole number $n$, $n \times (n+1)$ is even.
+
+<Proof>
+Take any whole number $n$. Either $n$ is even or $n$ is odd — those are the only options.
+
+**Case 1: $n$ is even.** Then $n$ is a multiple of $2$, so $n \times (n+1)$ is a multiple of $2$ too. Even.
+
+**Case 2: $n$ is odd.** Then $n + 1$ is even, so it is a multiple of $2$, so $n \times (n+1)$ is a multiple of $2$. Even.
+
+Both cases give an even answer, and there are no other cases. So $n \times (n+1)$ is always even.
+</Proof>
+
+The rule for cases: they must **cover everything**. If you leave a case out, your proof has a hole in it.
+
+## The other three jobs
+
+- **Disprove a *for all*:** one bad apple. "Every prime is odd" dies to $2$.
+- **Prove a *there exists*:** exhibit one. "There is a number whose double is $7$" — take $3\frac12$. Done.
+- **Disprove a *there exists*:** you must show *every* case fails, which is a *for all* proof in disguise. "There is a number that times itself gives $-1$" is false, because any number times itself is $0$ or bigger.
+
+<Aside>
+Three of the four jobs have a hard version and an easy version, and the hard ones are hard for the same reason: they are secretly universal claims, and universal claims cannot be settled by looking.
+</Aside>

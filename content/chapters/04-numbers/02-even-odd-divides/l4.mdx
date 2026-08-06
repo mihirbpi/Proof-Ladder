@@ -1,0 +1,91 @@
+---
+level: l4
+title: Even, odd, and divides
+readingTimeMin: 7
+newTerms: ["even", "odd", "divides"]
+anchorExample: "divisibility"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Definitions
+
+For $n \in \mathbb{Z}$:
+$$
+n \text{ is \textbf{even}} \iff \exists k \in \mathbb{Z},\ n = 2k,
+$$
+$$
+n \text{ is \textbf{odd}} \iff \exists k \in \mathbb{Z},\ n = 2k+1.
+$$
+
+And in general, for $m, n \in \mathbb{Z}$:
+$$
+m \mid n \iff \exists k \in \mathbb{Z},\ n = mk.
+$$
+Read $m \mid n$ as "$m$ **divides** $n$", or "$m$ is a factor of $n$", or "$n$ is a multiple of $m$". Its negation is written $m \nmid n$.
+
+So "even" is precisely "$2 \mid n$", and "odd" is precisely "$2 \nmid n$" — the latter needing the division algorithm of module 4.4 to see, since it requires that a non-multiple of $2$ must have remainder exactly $1$.
+
+## Divisibility is existential
+
+This is the structural fact that determines every proof in the chapter.
+$$
+m \mid n \quad\text{is an } \exists \text{ statement.}
+$$
+
+By module 1.12:
+
+- **To prove $m \mid n$:** exhibit a **witness** $k \in \mathbb{Z}$ with $n = mk$. Both halves matter — produce $k$, *and* verify it is an integer.
+- **To disprove $m \mid n$:** prove the universal negation $\forall k \in \mathbb{Z},\ n \neq mk$. This is not a search; it needs an argument.
+
+<Warning title="Verify the witness is an integer">
+$9 = 2 \cdot \tfrac92$ does not make $9$ even, because $\tfrac92 \notin \mathbb{Z}$. The integrality requirement is the entire content of the definition — without it every integer divides every other.
+
+In practice this means every divisibility proof ends by citing closure (module 4.1): "and $3k \in \mathbb{Z}$ since $\mathbb{Z}$ is closed under multiplication."
+</Warning>
+
+<Warning title="Direction and type">
+$m \mid n$ means $m$ **goes into** $n$: the divisor is on the left. So $3 \mid 12$ is true and $12 \mid 3$ is false.
+
+Also: $m \mid n$ is a **statement** (true or false), while $m/n$ is a **number**. Writing "$3 \mid 12 = 4$" is a type error.
+</Warning>
+
+## Worked proofs
+
+> **Proposition.** For all $a, b, n \in \mathbb{Z}$: if $a \mid b$ and $b \mid n$, then $a \mid n$.
+
+<Discussion>
+  <div slot="know">$b = ak_1$ and $n = bk_2$ for some integers $k_1, k_2$. Note we must use *different* names — reusing $k$ would assert the two cofactors are equal, which was never given.</div>
+  <div slot="want">An integer $k$ with $n = ak$.</div>
+  <div slot="how">Substitute the first equation into the second; the witness is $k_1k_2$, an integer by closure.</div>
+</Discussion>
+
+<Proof>
+Suppose $a \mid b$ and $b \mid n$. Then there exist $k_1, k_2 \in \mathbb{Z}$ with $b = ak_1$ and $n = bk_2$.
+
+Substituting, $n = (ak_1)k_2 = a(k_1k_2)$.
+
+Since $\mathbb{Z}$ is closed under multiplication, $k_1k_2 \in \mathbb{Z}$. So $k_1k_2$ is a witness, and $a \mid n$.
+</Proof>
+
+> **Proposition.** For all $n \in \mathbb{Z}$: $2 \mid n \iff 2 \mid n^2$.
+
+This is module 1.9's theorem, restated in divisibility language — a good illustration that new notation often just renames results you already have. Its proof was: forward directly, backward by contrapositive.
+
+## Restating old results
+
+Divisibility notation compresses several earlier statements:
+
+| Old phrasing | Divisibility form |
+|---|---|
+| $n$ is even | $2 \mid n$ |
+| $n$ is a multiple of $6$ | $6 \mid n$ |
+| $n^2$ even $\Rightarrow$ $n$ even | $2 \mid n^2 \Rightarrow 2 \mid n$ |
+| $mn$ odd $\Rightarrow$ $m$ and $n$ odd | $2 \nmid mn \Rightarrow 2\nmid m \wedge 2 \nmid n$ |
+
+<Aside>
+Some quick facts, each provable in two lines from the definition: $m \mid 0$ for every $m$ (take $k=0$); $1 \mid n$ for every $n$; $n \mid n$; and if $m \mid n$ with $n \neq 0$ then $|m| \leq |n|$. That last one is the reason divisor sets are finite, and it uses the order on $\mathbb{Z}$ rather than the ring axioms — note that $m \mid 0$ for all $m$ is exactly the exception it needs.
+</Aside>

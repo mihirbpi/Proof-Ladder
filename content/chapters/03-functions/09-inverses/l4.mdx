@@ -1,0 +1,88 @@
+---
+level: l4
+title: Inverses
+readingTimeMin: 7
+newTerms: ["inverse function"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## The question
+
+Given $f : S \to T$, when is there a function $f^{-1} : T \to S$ that undoes it — that is, with
+$$
+f^{-1}\big(f(s)\big) = s \ \text{ for all } s \in S,
+\qquad
+f\big(f^{-1}(t)\big) = t \ \text{ for all } t \in T\,?
+$$
+
+Equivalently, $f^{-1} \circ f = \mathrm{id}_S$ and $f \circ f^{-1} = \mathrm{id}_T$.
+
+## The answer, and why it is exactly right
+
+To define $f^{-1}(t)$, we want to say: "the element $s$ with $f(s) = t$." That phrase carries two hidden obligations, and they are precisely the two properties of the last two modules.
+
+**Such an $s$ must exist**, or $f^{-1}(t)$ has no value and totality fails. Existence for every $t \in T$ is *surjectivity*.
+
+**Such an $s$ must be unique**, or $f^{-1}(t)$ has two values and well-definedness fails. Uniqueness is *injectivity*.
+
+> **Theorem.** $f : S \to T$ has an inverse function if and only if $f$ is a bijection.
+
+<Discussion>
+  <div slot="know">Bijectivity is $\forall t \in T,\ \exists!\, s \in S,\ f(s) = t$ — module 3.8's fibre condition, and note it is literally the unique-existence quantifier of module 1.10.</div>
+  <div slot="want">Both directions.</div>
+  <div slot="how">($\Rightarrow$) Define $f^{-1}(t)$ to be the unique pre-image; the two obligations are discharged by surjectivity and injectivity respectively. ($\Leftarrow$) From a two-sided inverse, read off injectivity and surjectivity directly.</div>
+</Discussion>
+
+<Proof>
+**($\Rightarrow$)** Suppose $f$ is a bijection. Let $t \in T$. Since $f$ is surjective, the set $f^{-1}(\{t\})$ is nonempty; since $f$ is injective, it has at most one element. So it has exactly one element, and we may define $f^{-1}(t)$ to be it. This is total (surjectivity) and single-valued (injectivity), so $f^{-1} : T \to S$ is a function.
+
+By construction $f(f^{-1}(t)) = t$ for all $t \in T$. And for $s \in S$, the element $f^{-1}(f(s))$ is the unique pre-image of $f(s)$, which is $s$. So $f^{-1}\circ f = \mathrm{id}_S$ and $f \circ f^{-1} = \mathrm{id}_T$.
+
+**($\Leftarrow$)** Suppose $g : T \to S$ satisfies $g \circ f = \mathrm{id}_S$ and $f \circ g = \mathrm{id}_T$.
+
+*Injective:* if $f(s_1) = f(s_2)$, apply $g$ to get $s_1 = g(f(s_1)) = g(f(s_2)) = s_2$.
+
+*Surjective:* given $t \in T$, the element $g(t) \in S$ satisfies $f(g(t)) = t$.
+
+So $f$ is a bijection.
+</Proof>
+
+Note how cleanly the two halves of "exactly one" line up with the two halves of the definition of a function. That is the payoff of module 3.1 having separated totality from well-definedness.
+
+## The inverse is a bijection
+
+> **Proposition.** If $f$ is a bijection then so is $f^{-1}$, and $(f^{-1})^{-1} = f$.
+
+<Proof>
+$f$ itself is a two-sided inverse for $f^{-1}$, since $f \circ f^{-1} = \mathrm{id}_T$ and $f^{-1}\circ f = \mathrm{id}_S$. By the theorem's ($\Leftarrow$) direction applied to $f^{-1}$, it is a bijection, and its inverse is $f$.
+</Proof>
+
+Inverses are also unique: if $g$ and $h$ both invert $f$, then $g = g \circ \mathrm{id}_T = g\circ(f\circ h) = (g\circ f)\circ h = \mathrm{id}_S \circ h = h$, using associativity from module 3.7. So "*the* inverse" is justified.
+
+## Worked examples
+
+**$\exp : \mathbb{R}\to\mathbb{R}_{>0}$** is a bijection (module 3.8), so $\exp^{-1} = \ln : \mathbb{R}_{>0}\to\mathbb{R}$. The identities $\ln(e^x) = x$ and $e^{\ln t} = t$ are exactly the two composition conditions — not separate facts to memorise.
+
+Note that $\exp : \mathbb{R}\to\mathbb{R}$ is **not** invertible, since it is not surjective. This is why $\ln$ has domain $\mathbb{R}_{>0}$: the domain of an inverse is the codomain of a bijection.
+
+**$r : \mathbb{R}\setminus\{0\} \to \mathbb{R}\setminus\{0\}$, $r(x) = 1/x$.** A bijection, and it is its own inverse: $r(r(x)) = 1/(1/x) = x$. Functions equal to their own inverse are called *involutions*; negation and complementation are others.
+
+**Squaring.** $x \mapsto x^2$ on $\mathbb{R}$ is neither injective nor surjective, so no inverse. Restricted to $[0,\infty)\to[0,\infty)$ it becomes a bijection, and its inverse is $\sqrt{\phantom{x}}$. The familiar rule that $\sqrt{x^2} = |x|$ rather than $x$ is precisely the residue of that restriction.
+
+<Warning title="Two objects, one notation">
+$$f^{-1}(U) \text{ for } U \subseteq T \quad\text{(pre-image; always exists, module 3.3)}$$
+$$f^{-1}(t) \text{ for } t \in T \quad\text{(inverse function; exists iff } f \text{ is a bijection)}$$
+
+For $f(x) = x^2$ on $\mathbb{R}$: $f^{-1}(\{9\}) = \{3,-3\}$ is a perfectly good set; $f^{-1}(9)$ is meaningless.
+
+When both exist they agree in the obvious way: $f^{-1}(\{t\}) = \{f^{-1}(t)\}$. The clash is universal and permanent; read the argument to tell them apart.
+</Warning>
+
+<Aside>
+Restricting a domain to force invertibility is why every inverse trig function has a stated principal branch: $\sin$ is inverted only on $[-\pi/2, \pi/2]$, which is a maximal interval on which it is injective. Different choices of branch give different functions, and in complex analysis the impossibility of choosing consistently is what produces branch cuts and Riemann surfaces.
+</Aside>

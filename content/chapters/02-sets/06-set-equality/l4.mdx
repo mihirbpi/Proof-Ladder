@@ -1,0 +1,101 @@
+---
+level: l4
+title: Set equality by double inclusion
+readingTimeMin: 8
+newTerms: ["double inclusion"]
+anchorExample: "roots of sin x and cos x"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## The definition
+
+$$
+S = T \quad:\Longleftrightarrow\quad S \subseteq T \;\wedge\; T \subseteq S.
+$$
+
+Set equality is **double inclusion**, and the named move is **check both boxes**. Every set-equality proof in mathematics has two halves, and they are usually different in difficulty and technique.
+
+The definition is not an arbitrary convention. Sets are extensional (module 2.1): $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$. A biconditional is two implications (module 1.9), and each implication is a subset claim. So the two inclusions were already inside the definition of equality.
+
+## Template
+
+> **($\subseteq$)** Let $x \in S$ be arbitrary. … Hence $x \in T$.
+> **($\supseteq$)** Let $x \in T$ be arbitrary. … Hence $x \in S$.
+> Therefore $S = T$. $\square$
+
+Label the halves. Unlabelled proofs of equalities routinely contain the same direction twice.
+
+## Disjunction forces cases
+
+Since $x \in S \cup T$ unfolds to $x \in S \vee x \in T$, chasing an element out of a union hands you a disjunction — and a disjunctive hypothesis must be handled by **proof by cases** (module 1.12). You do not get to choose the convenient disjunct.
+
+This single observation predicts the structure of most proofs in the rest of the chapter.
+
+## The trigonometric proposition
+
+Let
+$$
+S = \{x \in \mathbb{R} \mid \sin x = 0\}, \qquad
+T = \{x \in \mathbb{R} \mid \cos x = 0\}, \qquad
+R = \{x \in \mathbb{R} \mid \sin x \cos x = 0\}.
+$$
+
+> **Proposition.** $S \cup T = R$.
+
+<Discussion>
+  <div slot="know">$x \in S \cup T$ means $\sin x = 0$ or $\cos x = 0$. $x \in R$ means the product $\sin x \cos x$ is zero. The relevant fact about $\mathbb{R}$: a product of two reals is zero if and only if at least one factor is zero (no zero divisors).</div>
+  <div slot="want">Both inclusions.</div>
+  <div slot="how">($\subseteq$) The hypothesis is a disjunction, so split into cases; in each, one factor vanishes and the product does too. ($\supseteq$) The hypothesis is a product being zero, so the no-zero-divisors fact hands us a disjunction directly.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $x \in S \cup T$ be arbitrary. Then $\sin x = 0$ or $\cos x = 0$; we split into cases.
+
+*Case 1: $\sin x = 0$.* Then $\sin x \cos x = 0 \cdot \cos x = 0$.
+
+*Case 2: $\cos x = 0$.* Then $\sin x \cos x = \sin x \cdot 0 = 0$.
+
+In both cases $\sin x \cos x = 0$, so $x \in R$. The cases are exhaustive.
+
+**($\supseteq$)** Let $x \in R$ be arbitrary, so $\sin x \cos x = 0$. Since $\mathbb{R}$ has no zero divisors, a product is zero only if a factor is: $\sin x = 0$ or $\cos x = 0$. Hence $x \in S$ or $x \in T$, i.e. $x \in S \cup T$.
+
+Both inclusions hold, so $S \cup T = R$.
+</Proof>
+
+The two halves used different facts: the forward direction used only that $0 \cdot a = 0$; the backward direction used the substantive no-zero-divisors property. Over a ring where that fails — $\mathbb{Z}/6\mathbb{Z}$, where $2 \cdot 3 = 0$ — the backward inclusion would be false. Noticing which structural fact each half consumes is how you learn where a theorem lives.
+
+Note also that $S$ and $T$ are disjoint (module 2.4), so $R$ is partitioned by them — but disjointness played no role in the proof above. Do not import hypotheses you do not need.
+
+## A second example: absorption
+
+> **Proposition.** For all sets $S, T$: $S \cup (S \cap T) = S$.
+
+<Proof>
+**($\subseteq$)** Let $x \in S \cup (S \cap T)$. Then $x \in S$ or $x \in S \cap T$.
+
+*Case 1: $x \in S$.* Done.
+
+*Case 2: $x \in S \cap T$.* Then $x \in S$ and $x \in T$, so $x \in S$.
+
+Either way $x \in S$.
+
+**($\supseteq$)** Let $x \in S$. Then the disjunction "$x \in S$ or $x \in S \cap T$" holds, since its first disjunct does. So $x \in S \cup (S \cap T)$.
+</Proof>
+
+Observe the asymmetry that recurs throughout: proving membership in a *union* is easy (establish one disjunct), while *using* membership in a union is expensive (case split). Intersection is the mirror image — using it is free, proving it costs two arguments.
+
+<Warning title="Three failure modes">
+**Proving one direction.** The commonest. Label your halves and count them.
+
+**Reversible-step drift.** Writing a chain $x \in S \Leftrightarrow \cdots \Leftrightarrow x \in T$ is legitimate only if every step is genuinely biconditional. It usually is in set theory, since the definitions are biconditionals — but you must check, and stating two explicit inclusions is safer.
+
+**Skipping a case.** If the hypothesis is a disjunction, both disjuncts need treatment. A missing case is a hole, not a stylistic lapse.
+</Warning>
+
+<Aside>
+Double inclusion also gives antisymmetry of $\subseteq$, completing the proof from module 2.3 that $(\mathcal{P}(X), \subseteq)$ is a partial order. Reflexivity and transitivity were proved there; antisymmetry is this module's definition read backwards.
+</Aside>

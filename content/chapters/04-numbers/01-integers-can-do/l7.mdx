@@ -1,0 +1,83 @@
+---
+level: l7
+title: What the integers can do
+readingTimeMin: 9
+newTerms: ["closed", "ring", "unit", "integral domain"]
+anchorExample: "ℤ as a ring"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Every integer proof you have written invokes properties of $\mathbb{Z}$ that were never stated. Stating them serves two purposes: it closes the gaps, and it reveals that the properties, not the integers, are what the proofs are really about.
+
+## The axioms
+
+$(\mathbb{Z}, +, \cdot)$ satisfies, for all $a,b,c$:
+
+**Additive.** Associativity $(a+b)+c = a+(b+c)$; commutativity $a+b=b+a$; identity $a + 0 = a$; inverses $a + (-a) = 0$.
+
+**Multiplicative.** Associativity $(ab)c = a(bc)$; commutativity $ab = ba$; identity $a\cdot 1 = a$.
+
+**Linking.** Distributivity $a(b+c) = ab+ac$.
+
+A structure satisfying all of these is a **commutative ring with identity**. Closure is implicit in calling $+$ and $\cdot$ binary operations $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ — which, note, is a statement about functions in the sense of Chapter 3.
+
+Facts that look primitive are in fact derived, and deriving them is instructive:
+
+<Proof title="Proof that a · 0 = 0">
+$a\cdot 0 = a\cdot(0+0) = a\cdot 0 + a\cdot 0$ by distributivity. Adding $-(a\cdot 0)$ to both sides gives $0 = a\cdot 0$.
+</Proof>
+
+Similarly $(-a)b = -(ab)$ and $(-a)(-b) = ab$ follow from the axioms alone. "A negative times a negative is a positive" is a *theorem*, not a convention — a fact worth knowing, since it is usually taught as a rule to memorise.
+
+## Units
+
+$u \in \mathbb{Z}$ is a **unit** if $uv = 1$ for some $v \in \mathbb{Z}$.
+
+> **Proposition.** $\mathbb{Z}^\times = \{1, -1\}$.
+
+<Proof>
+Let $uv = 1$. Then $u, v \neq 0$, so $|u|, |v| \geq 1$, and $|u||v| = |uv| = 1$. If $|u| \geq 2$ then $|u||v| \geq 2$, contradiction. So $|u| = 1$, i.e. $u = \pm 1$; and both are units, being self-inverse.
+</Proof>
+
+The argument used the order on $\mathbb{Z}$ and the fact that no integer lies strictly between $0$ and $1$ — the discreteness of $\mathbb{Z}$, not a ring-theoretic fact. This is worth noticing: some properties of $\mathbb{Z}$ are algebraic and some are order-theoretic, and separating them is what makes the general theory possible.
+
+## Integral domain
+
+$\mathbb{Z}$ satisfies more than the ring axioms:
+$$
+ab = 0 \implies a = 0 \text{ or } b = 0,
+$$
+making it an **integral domain**. Equivalently, cancellation holds: $ab = ac$ with $a \neq 0$ gives $b = c$.
+
+<Warning title="Cancellation is not free">
+In $\mathbb{Z}/12\mathbb{Z}$, $3 \cdot 4 = 0$ with both factors nonzero, and $3 \cdot 4 = 3 \cdot 8 = 0$ while $4 \neq 8$. So cancelling a common factor is illegal there.
+
+Every proof that divides both sides by something is using cancellation, hence the domain property. In $\mathbb{Z}$ this is safe; in a general ring it is not, and knowing which you are in is the difference between a proof and an error.
+</Warning>
+
+## Why the abstraction pays
+
+The axioms are satisfied by structures with nothing else in common:
+
+| Ring | Units | Domain? |
+|---|---|---|
+| $\mathbb{Z}$ | $\{\pm1\}$ | yes |
+| $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$ | all nonzero | yes (fields) |
+| $\mathbb{Z}[x]$ | $\{\pm1\}$ | yes |
+| $M_n(\mathbb{R})$ | $\det \neq 0$ | no (and not commutative) |
+| $\mathbb{Z}/n\mathbb{Z}$ | $\gcd(a,n)=1$ | iff $n$ prime |
+| continuous functions $\mathbb{R}\to\mathbb{R}$ | nowhere-zero functions | no |
+
+Anything proved from the axioms alone holds in every row. This is the central methodological move of modern algebra, and it is why the vocabulary is worth acquiring before you need it.
+
+<Aside>
+The three number systems of Chapter 4 sit in a strict hierarchy of increasing structure: $\mathbb{Z}$ is a ring, $\mathbb{Q}$ a field, $\mathbb{R}$ a complete ordered field. Each additional axiom buys theorems and costs generality. $\mathbb{Z}$ additionally has properties $\mathbb{Q}$ lacks — it is discrete, well-ordered below, and has a division algorithm — which is why number theory is a subject about $\mathbb{Z}$ and not about $\mathbb{Q}$.
+</Aside>
+
+<WhereThisGoes level="l7">
+The tower above $\mathbb{Z}$ is the subject of commutative algebra. $\mathbb{Z}$ is a Euclidean domain (§4.4 supplies division with remainder), hence a principal ideal domain, hence a unique factorisation domain — a chain of implications whose strictness is demonstrated by carefully chosen counterexamples, and whose failure is where algebraic number theory begins. In $\mathbb{Z}[\sqrt{-5}]$, unique factorisation fails ($6 = 2\cdot 3 = (1+\sqrt{-5})(1-\sqrt{-5})$), and Dedekind's repair — replacing elements by ideals — created the modern theory of rings. In another direction, dropping commutativity gives matrix rings, group algebras, and operator algebras; dropping the identity gives ideals themselves the status of rings; and demanding that every nonzero element be a unit gives fields, and with them Galois theory.
+</WhereThisGoes>

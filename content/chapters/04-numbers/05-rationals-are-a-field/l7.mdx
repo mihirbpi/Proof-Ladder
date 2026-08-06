@@ -1,0 +1,79 @@
+---
+level: l7
+title: The rationals are a field
+readingTimeMin: 9
+newTerms: ["rational number", "field", "field of fractions", "characteristic"]
+anchorExample: "ℚ as a field"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\mathbb{Q} = \left\{ \frac pq \;\middle|\; p,q \in \mathbb{Z},\ q \neq 0 \right\},
+\qquad
+\frac{p_1}{q_1} = \frac{p_2}{q_2} \iff p_1q_2 = p_2q_1.
+$$
+
+The equality condition is the first thing to take seriously: elements of $\mathbb{Q}$ have infinitely many names, so every operation defined on representatives carries a well-definedness obligation (§3.1).
+
+> **Lemma.** Addition is well defined on $\mathbb{Q}$.
+
+<Proof>
+Suppose $\tfrac{a_1}{b_1} = \tfrac{a_2}{b_2}$, i.e. $a_1b_2 = a_2b_1$. We must show $\tfrac{a_1d + b_1c}{b_1d} = \tfrac{a_2d+b_2c}{b_2d}$, i.e.
+$$(a_1d+b_1c)(b_2d) = (a_2d+b_2c)(b_1d).$$
+Expanding, the left is $a_1b_2d^2 + b_1b_2cd$ and the right is $a_2b_1d^2 + b_1b_2cd$. These agree precisely because $a_1b_2 = a_2b_1$.
+</Proof>
+
+Formally, $\mathbb{Q}$ is the quotient of $\mathbb{Z}\times(\mathbb{Z}\setminus\{0\})$ by the equivalence relation $(a,b)\sim(c,d) \iff ad=bc$, with the operations induced from representatives. Every construction on a quotient carries this obligation, and the argument above is the model for all of them.
+
+## The field axioms, verified
+
+For $\tfrac ab, \tfrac cd \in \mathbb{Q}$:
+
+$$
+\frac ab + \frac cd = \frac{ad+bc}{bd}, \quad
+-\frac ab = \frac{-a}{b}, \quad
+\frac ab \cdot \frac cd = \frac{ac}{bd}, \quad
+\left(\frac ab\right)^{-1} = \frac ba \ (a \neq 0).
+$$
+
+Each closure verification has two steps: numerator and denominator are integers by closure of $\mathbb{Z}$ (§4.1), and the denominator is nonzero because **$\mathbb{Z}$ has no zero divisors**. That second point is where the integral domain property of $\mathbb{Z}$ is spent, and it is why the construction below requires a domain rather than an arbitrary ring.
+
+For the inverse: $\tfrac ab \neq 0$ iff $a \neq 0$, so $\tfrac ba \in \mathbb{Q}$ and $\tfrac ab \cdot \tfrac ba = \tfrac{ab}{ab} = 1$.
+
+Hence $\mathbb{Q}$ is a **field**: a commutative ring with $1 \neq 0$ in which every nonzero element is a unit.
+
+<Warning title="0⁻¹ cannot exist">
+If $0x = 1$ in a ring, then $0 = 0x = 1$ (using $0x = 0$, itself a theorem from distributivity, §4.1), and then $y = 1\cdot y = 0 \cdot y = 0$ for every $y$ — the ring is the zero ring. The axiom $1 \neq 0$ excludes this, so no field has $0^{-1}$.
+
+"You cannot divide by zero" is therefore a theorem, not a prohibition.
+</Warning>
+
+## Field of fractions
+
+The construction is general.
+
+> **Theorem.** Every integral domain $D$ embeds in a field $\operatorname{Frac}(D)$, and $\operatorname{Frac}(D)$ is the smallest such field: any injective ring homomorphism $D \to K$ into a field extends uniquely to $\operatorname{Frac}(D) \to K$.
+
+Taking $D = \mathbb{Z}$ gives $\mathbb{Q}$. Taking $D = k[x]$ gives the rational function field $k(x)$. Taking $D = \mathcal{O}(U)$, holomorphic functions on a domain, gives the meromorphic functions.
+
+The integral-domain hypothesis is necessary and the proof above shows why: in $\mathbb{Z}/6\mathbb{Z}$, one would want $\tfrac13$ to exist, but $3$ is a zero divisor and the equivalence relation degenerates.
+
+The universal property in the second sentence is the useful part. It says $\mathbb{Q}$ is characterised by what it does, not by how it was built — the same shift that §2.9 flagged for ordered pairs.
+
+## Ordered fields, and what is still missing
+
+$\mathbb{Q}$ carries a compatible order ($a < b \Rightarrow a+c < b+c$; $a<b$, $c>0 \Rightarrow ac<bc$), making it an **ordered field**. §4.6 will prove it is dense in itself.
+
+But $\mathbb{Q}$ is not **complete**: the set $\{x \in \mathbb{Q} : x^2 < 2\}$ is bounded above and has no least upper bound in $\mathbb{Q}$, because $\sqrt2 \notin \mathbb{Q}$ (§4.7). $\mathbb{R}$ is defined to be the completion, and it is the unique complete ordered field up to isomorphism — a characterisation strong enough that calculus is really a subject about that one axiom.
+
+<Aside>
+The **characteristic** of a field is the least $n > 0$ with $\underbrace{1+\cdots+1}_{n} = 0$, or $0$ if no such $n$ exists. $\mathbb{Q}, \mathbb{R}, \mathbb{C}$ have characteristic $0$; $\mathbb{Z}/p\mathbb{Z}$ has characteristic $p$. Every field of characteristic $0$ contains a copy of $\mathbb{Q}$, and every field of characteristic $p$ contains a copy of $\mathbb{Z}/p\mathbb{Z}$ — these are the *prime fields*, and $\mathbb{Q}$'s role as one of exactly two kinds of minimal field is why it is unavoidable.
+</Aside>
+
+<WhereThisGoes level="l7">
+The field axioms are the hypotheses of linear algebra: vector spaces are defined over a field precisely so that scalars can be divided, which is what makes bases, dimension, and Gaussian elimination work. Galois theory studies field extensions $K \subseteq L$ and their symmetry groups, and it settles questions posed two thousand years earlier — trisecting an angle, doubling the cube, solving the quintic by radicals — by translating them into questions about degrees of extensions of $\mathbb{Q}$. Number fields, the finite extensions of $\mathbb{Q}$, are the objects of algebraic number theory. And finite fields $\mathbb{F}_{p^n}$, whose existence and uniqueness for each prime power is a small miracle, are the arithmetic of error-correcting codes and of elliptic-curve cryptography.
+</WhereThisGoes>

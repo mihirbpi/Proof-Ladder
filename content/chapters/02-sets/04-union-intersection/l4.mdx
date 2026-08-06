@@ -1,0 +1,101 @@
+---
+level: l4
+title: Union and intersection
+readingTimeMin: 7
+newTerms: ["union", "intersection", "disjoint"]
+anchorExample: "divisors of 20 and 24"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Definitions
+
+$$
+S \cup T = \{\, x \mid x \in S \vee x \in T \,\},
+\qquad
+S \cap T = \{\, x \mid x \in S \wedge x \in T \,\}.
+$$
+
+The **union** is the $\vee$ set; the **intersection** is the $\wedge$ set. Unfolding the definitions gives the two lines that every proof in this module and the next four will use:
+$$
+x \in S \cup T \iff (x \in S) \vee (x \in T),
+\qquad
+x \in S \cap T \iff (x \in S) \wedge (x \in T).
+$$
+
+<Figure alt="Left: two overlapping circles fully shaded, the union. Right: two overlapping circles with only the lens-shaped overlap shaded, the intersection." caption="$S \cup T$ — everything in at least one.">
+  <VennTwo labelS="S" labelT="T" shade={["S-only", "T-only", "both"]} />
+</Figure>
+
+<Figure alt="Two overlapping circles with only the middle overlap shaded." caption="$S \cap T$ — the overlap only.">
+  <VennTwo labelS="S" labelT="T" shade={["both"]} />
+</Figure>
+
+Since $\vee$ is inclusive (module 1.3), $S \cup T$ contains the overlap. There is no set operation in standard use corresponding to exclusive or; the nearest is the symmetric difference $(S \cup T) \setminus (S \cap T)$, which has to be built by hand.
+
+## The logic–set dictionary
+
+| Logic | Sets |
+|---|---|
+| $\wedge$ | $\cap$ |
+| $\vee$ | $\cup$ |
+| $\neg$ | complement (module 2.5) |
+
+Every identity in the rest of this chapter is an identity from Chapter 1 read through this table. De Morgan's set laws (2.7) are De Morgan's logic laws; the distributive laws for sets (2.8) are distributivity of $\wedge$ over $\vee$. Nothing new is being discovered; a translation is being performed.
+
+## The basic containments
+
+> **Proposition.** For any sets $S, T$: (i) $S \cap T \subseteq S$, and (ii) $S \subseteq S \cup T$.
+
+<Proof>
+(i) Let $x \in S \cap T$ be arbitrary. By definition $x \in S$ and $x \in T$; in particular $x \in S$. Since $x$ was arbitrary, $S \cap T \subseteq S$.
+
+(ii) Let $x \in S$ be arbitrary. Then the disjunction "$x \in S$ or $x \in T$" holds, since its first disjunct does. Hence $x \in S \cup T$, and $S \subseteq S \cup T$.
+</Proof>
+
+Both proofs are three lines because the underlying logical facts — $p \wedge q \Rightarrow p$ and $p \Rightarrow p \vee q$ — are tautologies. That is the dictionary at work.
+
+Chaining these gives $S \cap T \subseteq S \subseteq S \cup T$ by transitivity (module 2.3).
+
+## Divisors, gcd, and lcm
+
+$$
+D_{20} = \{1,2,4,5,10,20\}, \qquad D_{24} = \{1,2,3,4,6,8,12,24\},
+$$
+$$
+D_{20} \cap D_{24} = \{1,2,4\}.
+$$
+
+The intersection is the set of **common divisors**, and its greatest element is $\gcd(20,24) = 4$. Similarly, with $M_n$ the set of positive multiples of $n$,
+$$
+M_{12} \cap M_{18} = \{36, 72, 108, \ldots\},
+$$
+whose least element is $\operatorname{lcm}(12,18) = 36$.
+
+So gcd and lcm are not independent algorithms; they are the extremal elements of an intersection. This also explains why $\gcd$ and $\operatorname{lcm}$ satisfy so many dual identities — they are the meet and join of the divisibility order, exactly as $\cap$ and $\cup$ are the meet and join of $\subseteq$.
+
+Observe too that $M_{12} \cap M_{18} = M_{36}$: the common multiples of two numbers are exactly the multiples of their lcm. That is a theorem, not a coincidence, and it is provable by double inclusion once module 2.6 supplies the method.
+
+## Disjointness
+
+$S$ and $T$ are **disjoint** when $S \cap T = \emptyset$.
+
+<Figure alt="Two separate non-touching circles labelled S and T." caption="Disjoint sets.">
+  <VennTwo labelS="S" labelT="T" disjoint={true} />
+</Figure>
+
+Examples: the even and odd integers; $(-\infty, 0)$ and $[0, \infty)$; $\{x \in \mathbb{R} \mid \sin x = 0\}$ and $\{x \in \mathbb{R} \mid \cos x = 0\}$ — a fact worth proving, since $\sin$ and $\cos$ never vanish simultaneously ($\sin^2 + \cos^2 = 1$).
+
+Proving disjointness is proving a universal negative: $\forall x,\, \neg(x \in S \wedge x \in T)$. Module 1.12 says that means an arbitrary-element argument, and it is often cleanest by contradiction (module 2.5).
+
+<Warning title="Notation collisions">
+$\cup$ and $\cap$ are set operations; $\vee$ and $\wedge$ are logical connectives. $S \wedge T$ and $x \in S \cup x \in T$ are both type errors — sets are not statements and statements are not sets. Writing them correctly is not pedantry; the distinction is what the dictionary is translating between.
+</Warning>
+
+<Aside>
+Both operations are commutative, associative, and idempotent ($S \cup S = S$), each inherited from the corresponding property of $\vee$ and $\wedge$. Associativity is what licenses $S \cup T \cup R$ without brackets. Neither operation has an inverse — you cannot "un-union" — which is exactly why $(\mathcal{P}(X), \cup, \cap)$ is a lattice rather than a group.
+</Aside>

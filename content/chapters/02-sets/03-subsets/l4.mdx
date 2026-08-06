@@ -1,0 +1,98 @@
+---
+level: l4
+title: Subsets
+readingTimeMin: 8
+newTerms: ["subset", "proper subset", "element chasing", "transitive"]
+anchorExample: "intervals in ℝ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Definition
+
+$A$ is a **subset** of $S$, written $A \subseteq S$, when every element of $A$ belongs to $S$. In the language of Chapter 1:
+$$
+A \subseteq S \quad\Longleftrightarrow\quad \forall x\;(x \in A \Rightarrow x \in S).
+$$
+
+That equivalence is the whole module. $A \subseteq S$ is a universally quantified conditional, so module 1.12 already told us how to prove it (**take any one and follow it**) and how to refute it (**one bad apple**: exhibit $x \in A$ with $x \notin S$).
+
+## Element chasing
+
+The technique has a name: **element chasing**. Its shape is fixed.
+
+> Let $x \in A$ be arbitrary. … [reason] … Therefore $x \in S$. Since $x$ was arbitrary, $A \subseteq S$.
+
+Everything between the first and last sentence uses only what $x \in A$ guarantees. If you find yourself assuming more, the proof is broken.
+
+> **Proposition.** Let $S = (-3, 5)$ and $T = (-6, 5]$. Then $S \subseteq T$.
+
+<Discussion>
+  <div slot="know">$x \in S$ means $-3 < x < 5$. $x \in T$ means $-6 < x \leq 5$.</div>
+  <div slot="want">$-6 < x$ and $x \leq 5$.</div>
+  <div slot="how">Chase the element. From $-3 < x$ and $-6 < -3$, transitivity gives $-6 < x$. From $x < 5$ we get $x \leq 5$, since strict inequality implies the weak one.</div>
+</Discussion>
+
+<Proof>
+Let $x \in S$ be arbitrary, so $-3 < x < 5$.
+
+Since $-6 < -3$ and $-3 < x$, transitivity of $<$ gives $-6 < x$.
+
+Since $x < 5$, in particular $x \leq 5$.
+
+Hence $-6 < x \leq 5$, so $x \in T$. As $x \in S$ was arbitrary, $S \subseteq T$.
+</Proof>
+
+Note that the containment is proper: $5 \in T$ but $5 \notin S$. Proper containment requires exhibiting such an element; it is not established by the subset proof alone.
+
+## Refuting a subset claim
+
+$T \subseteq S$ is false. To show it, produce one element: $5 \in T$ and $5 \notin S$. Done — a single counterexample refutes a universal claim.
+
+<Warning title="∈ versus ⊆">
+$$2 \in \{1,2,3\}, \qquad \{2\} \subseteq \{1,2,3\}.$$
+The first says a number is an element; the second says a set is contained. $2 \subseteq \{1,2,3\}$ is a type error, and $\{2\} \in \{1,2,3\}$ is false.
+
+The distinction sharpens with nested sets. For $A = \{1, \{2,3\}\}$: $1 \in A$ ✓, $\{2,3\} \in A$ ✓, $2 \in A$ ✗, $\{2,3\} \subseteq A$ ✗, $\{1\} \subseteq A$ ✓.
+</Warning>
+
+## $\emptyset \subseteq S$, vacuously
+
+> **Proposition.** For every set $S$, $\emptyset \subseteq S$.
+
+<Proof>
+We must show $\forall x\,(x \in \emptyset \Rightarrow x \in S)$. Let $x$ be arbitrary. The hypothesis $x \in \emptyset$ is false, since $\emptyset$ has no elements, so the conditional $x \in \emptyset \Rightarrow x \in S$ is vacuously true (module 1.5). This holds for every $x$, so $\emptyset \subseteq S$.
+</Proof>
+
+This is the first place vacuous truth does structural work rather than appearing as a curiosity. Reject it and $\emptyset$ becomes an exception to nearly every theorem in the chapter; accept it and everything stays uniform.
+
+## Reflexivity and transitivity
+
+$S \subseteq S$ holds trivially: $x \in S \Rightarrow x \in S$.
+
+> **Proposition.** If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
+
+<Proof>
+Let $x \in A$ be arbitrary. Since $A \subseteq B$, we have $x \in B$. Since $B \subseteq C$, we have $x \in C$. As $x$ was arbitrary, $A \subseteq C$.
+</Proof>
+
+A relation that is reflexive, transitive, and antisymmetric ($A \subseteq B$ and $B \subseteq A$ imply $A = B$ — that last one is module 2.6) is called a **partial order**. So $\subseteq$ orders sets the way $\leq$ orders numbers, with one important difference: two numbers are always comparable, but $\{1,2\}$ and $\{2,3\}$ are neither a subset of the other. That is what makes the order *partial*.
+
+## Proper subsets
+
+$A$ is a **proper subset** of $S$ if $A \subseteq S$ and $A \neq S$. Notation varies: some books write $A \subset S$ for this, others use $\subset$ as a synonym for $\subseteq$. This course writes $\subsetneq$ when properness matters and $\subseteq$ otherwise. When reading elsewhere, check.
+
+## Why every containment is now a theorem
+
+Module 2.1 asserted $\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R}$. Each of those is now a claim with a proof obligation. For instance:
+
+> $\mathbb{Z} \subseteq \mathbb{Q}$. Let $n \in \mathbb{Z}$ be arbitrary. Then $n = \tfrac{n}{1}$ with $n, 1 \in \mathbb{Z}$ and $1 \neq 0$, so $n \in \mathbb{Q}$. Hence $\mathbb{Z} \subseteq \mathbb{Q}$.
+
+And all are proper: $-1 \in \mathbb{Z} \setminus \mathbb{N}$, $\tfrac12 \in \mathbb{Q} \setminus \mathbb{Z}$, $\sqrt2 \in \mathbb{R} \setminus \mathbb{Q}$ — that last one requiring the genuinely hard proof of module 4.7.
+
+<Aside>
+The set of all subsets of $S$ is the **power set** $\mathcal{P}(S)$. For $S = \{a,b\}$, $\mathcal{P}(S) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$ — four elements, and note that its elements are sets. In general $|\mathcal{P}(S)| = 2^{|S|}$ for finite $S$, a fact module 6.3 proves by induction. Cantor's theorem says $\mathcal{P}(S)$ is always strictly bigger than $S$, even for infinite $S$, which is how one proves there is no largest infinity.
+</Aside>

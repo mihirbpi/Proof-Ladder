@@ -13,6 +13,17 @@
     "l7": "Set equality by double inclusion",
     "l8": "Set equality by double inclusion"
   },
+  "kernelIdea": "S = T is defined as S ⊆ T and T ⊆ S. Every set-equality proof is therefore two proofs. When a hypothesis is an or, split into cases.",
+  "kernels": {
+    "l1": "Two boxes hold the same stuff when nothing in one is missing from the other, both ways round.",
+    "l2": "Two boxes are the same when everything in the first is in the second, and everything in the second is in the first. That is two checks, not one, so check both boxes.",
+    "l3": "Two sets are equal exactly when each is a subset of the other. So proving a set equality means writing two subset proofs — check both boxes.",
+    "l4": "S = T is defined to mean S ⊆ T and T ⊆ S, so every set-equality proof is two element-chasing proofs. When a hypothesis contains an or, split into cases.",
+    "l5": "Set equality is double inclusion, hence two arbitrary-element arguments; a disjunctive hypothesis forces a case split in one of them.",
+    "l6": "By extensionality S = T iff the membership conditions are equivalent, and an equivalence is two implications — so double inclusion is forced, not chosen.",
+    "l7": "Set equality is defined by double inclusion, mirroring the decomposition of ⇔ into two implications; a disjunction anywhere in a hypothesis dictates proof by cases.",
+    "l8": "Extensionality reduces set equality to mutual inclusion, and antisymmetry of ⊆ is exactly that reduction; \"obviously equal\" is never a proof."
+  },
   "kernel": "S = T is defined as S ⊆ T and T ⊆ S. Every set-equality proof is therefore two proofs. When a hypothesis is an or, split into cases.",
   "objectives": [
     "Prove set equality by double inclusion",

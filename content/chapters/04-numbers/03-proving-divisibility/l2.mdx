@@ -1,0 +1,59 @@
+---
+level: l2
+title: Divide, then divide again
+readingTimeMin: 4
+newTerms: ["goes into"]
+anchorExample: "sharing cookies evenly"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+
+We say $3$ **goes into** $12$ because $12$ counters share into groups of $3$ with nothing left over.
+
+Now here is a fact worth proving.
+
+> If $2$ goes into a number, and that number goes into another number, then $2$ goes into that one too.
+
+Sounds fussy. Let's do it with counters and it will be obvious.
+
+## Try it
+
+$24$ counters. Does $4$ go into $24$? Yes — six groups of $4$.
+
+Does $24$ go into $72$? Yes — three groups of $24$.
+
+So does $4$ go into $72$?
+
+<Proof level="l2">
+Start with $72$ counters. Share them into $3$ groups of $24$.
+
+Now take one group of $24$. We know it splits into $6$ groups of $4$.
+
+So do that to all three groups. Each one becomes $6$ little groups of $4$.
+
+Now count the little groups. $6$ and $6$ and $6$. That is $18$ little groups.
+
+And every one has exactly $4$ counters, with nothing left over.
+
+So $4$ goes into $72$. □
+</Proof>
+
+## What we actually did
+
+Read the proof back and notice the shape. It has three steps, and they will be the same three steps every time.
+
+1. **Start from what you're given.** We were told about groups of $24$, so we made groups of $24$.
+2. **Break each one down further.** Each group of $24$ became six groups of $4$.
+3. **Count what you ended up with.** Little groups of $4$, and nothing left over.
+
+That is the whole trick. Take what you are given, break it down, count.
+
+<Aside>
+Watch out for one thing. Just because a number goes into a *product* does not mean it goes into either piece! $4$ goes into $12$, and $12$ is $2 \times 6$. But $4$ does not go into $2$, and $4$ does not go into $6$. It sneaked in by using a bit of each.
+</Aside>
+
+<TryIt>
+Take 30 counters. Share into 5 groups. Then split each group into smaller equal groups. What number goes into 30 that you did not start with?
+</TryIt>

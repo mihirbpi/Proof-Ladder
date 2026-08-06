@@ -1,0 +1,83 @@
+---
+level: l7
+title: Inverses
+readingTimeMin: 9
+newTerms: ["inverse function", "involution"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$g : T \to S$ is a **two-sided inverse** of $f : S \to T$ when
+$$
+g \circ f = \mathrm{id}_S \quad\text{and}\quad f \circ g = \mathrm{id}_T.
+$$
+
+> **Theorem.** $f$ admits a two-sided inverse if and only if $f$ is a bijection. The inverse is then unique and is denoted $f^{-1}$.
+
+<Discussion>
+  <div slot="know">Bijectivity states $\forall t \in T,\ \exists!\, s \in S,\ f(s) = t$ — §1.10's unique-existence quantifier, arrived at through §3.5 and §3.6.</div>
+  <div slot="want">Both implications, plus uniqueness.</div>
+  <div slot="how">Forward: define $f^{-1}(t)$ as the unique pre-image; surjectivity supplies existence (totality of $f^{-1}$), injectivity supplies uniqueness (well-definedness of $f^{-1}$). The two conditions defining a function in §3.1 are met by the two conditions defining a bijection — the correspondence is exact, and it is the point of the module. Backward: read off both properties from the two composition identities. Uniqueness: the standard associativity argument.</div>
+</Discussion>
+
+<Proof>
+**($\Rightarrow$)** Let $f$ be a bijection and $t \in T$. Surjectivity gives $f^{-1}(\{t\}) \neq \emptyset$; injectivity gives $|f^{-1}(\{t\})| \leq 1$. Hence the fibre is a singleton, and we define $g(t)$ to be its element. Totality of $g$ is surjectivity of $f$; well-definedness of $g$ is injectivity of $f$.
+
+By construction $f(g(t)) = t$. For $s \in S$, $g(f(s))$ is the unique pre-image of $f(s)$, which is $s$. So $g$ is a two-sided inverse.
+
+**($\Leftarrow$)** Given $g$ with $g\circ f = \mathrm{id}_S$, $f \circ g = \mathrm{id}_T$: if $f(s_1)=f(s_2)$ then applying $g$ gives $s_1 = s_2$, so $f$ is injective; and for $t \in T$, $f(g(t)) = t$ exhibits a pre-image, so $f$ is surjective.
+
+**Uniqueness.** If $g, h$ both invert $f$, then by associativity (§3.7)
+$$g = g \circ \mathrm{id}_T = g \circ (f \circ h) = (g\circ f)\circ h = \mathrm{id}_S \circ h = h.$$
+</Proof>
+
+The uniqueness argument uses only associativity and identities, so it holds in any category — inverses are unique wherever they exist, and that is why "*the* inverse" is legitimate everywhere.
+
+## One-sided inverses
+
+§3.5 and §3.6 gave the sharper picture:
+
+| | | requires |
+|---|---|---|
+| $f$ injective (and $S \neq \emptyset$) | $\iff$ $f$ has a **left** inverse | nothing |
+| $f$ surjective | $\iff$ $f$ has a **right** inverse | the Axiom of Choice |
+| $f$ bijective | $\iff$ $f$ has a **two-sided** inverse | AC in general |
+
+The asymmetry is genuine. A left inverse is constructed explicitly; a right inverse requires choosing a point from each fibre, with no rule to specify which. Note also that a one-sided inverse need not be unique — $f : \{a\} \to \{1,2\}$, $f(a)=1$, has two left inverses — while a two-sided inverse always is.
+
+## Corollaries
+
+$f^{-1}$ is a bijection with $(f^{-1})^{-1} = f$, since $f$ is a two-sided inverse for $f^{-1}$.
+
+For composable bijections, $(g\circ f)^{-1} = f^{-1}\circ g^{-1}$ — the order reverses. (Check: $(f^{-1}g^{-1})(gf) = f^{-1}(g^{-1}g)f = f^{-1}f = \mathrm{id}$.) The reversal is the same phenomenon as socks-then-shoes: to undo, reverse and invert each step.
+
+Consequently the bijections $X \to X$ form a **group** under composition, with $\mathrm{id}_X$ as identity — the symmetric group $S_X$. Associativity came from §3.7, identities from §3.8, inverses from here.
+
+## Examples
+
+$\exp : \mathbb{R} \to \mathbb{R}_{>0}$ has inverse $\ln : \mathbb{R}_{>0}\to\mathbb{R}$, and the identities $\ln e^x = x$, $e^{\ln t}=t$ are exactly the two composition conditions. Note $\exp : \mathbb{R}\to\mathbb{R}$ has no inverse (not surjective), which is why $\ln$ has the domain it has.
+
+$r(x) = 1/x$ on $\mathbb{R}^\times$ satisfies $r \circ r = \mathrm{id}$: it is an **involution**, i.e. its own inverse. So are negation on $\mathbb{R}$, complementation on $\mathcal{P}(X)$ (§2.5), conjugation on $\mathbb{C}$ (§5.4), and transposition of matrices.
+
+$x \mapsto x^2$ has no inverse on $\mathbb{R}$, but restricted to $[0,\infty) \to [0,\infty)$ it is a bijection with inverse $\sqrt{\phantom{x}}$. The identity $\sqrt{x^2} = |x|$ — rather than $x$ — is precisely the residue of that restriction, and it is the standard place students meet the consequence of choosing a branch.
+
+<Warning title="f⁻¹ names two different objects">
+The **pre-image operator** $f^{-1} : \mathcal{P}(T)\to\mathcal{P}(S)$ exists for every $f$ (§3.3). The **inverse function** $f^{-1} : T \to S$ exists only for bijections.
+
+For $f(x)=x^2$ on $\mathbb{R}$: $f^{-1}(\{9\}) = \{\pm3\}$ is defined; $f^{-1}(9)$ is not. When $f$ is a bijection the two agree, in the sense that $f^{-1}(\{t\}) = \{f^{-1}(t)\}$.
+
+The collision is permanent. Disambiguate by the argument: a subset means pre-image, an element means inverse.
+</Warning>
+
+<Aside>
+Choosing a branch is unavoidable rather than lazy. $\sin$ is inverted on $[-\pi/2,\pi/2]$ by convention; $\exp$ on $\mathbb{C}$ is $2\pi i$-periodic, so no injective restriction covers $\mathbb{C}^\times$, and the complex logarithm exists only on a cut plane — or, honestly, on a Riemann surface. The impossibility of a global choice there is not a notational nuisance but the beginning of monodromy and covering space theory.
+</Aside>
+
+<WhereThisGoes level="l7">
+"Invertible" is the definition of isomorphism, and each subject detects it by its own criterion: a linear map is invertible iff its determinant is nonzero, iff its rank is full, iff its kernel is trivial and it is surjective — the invertible matrix theorem is a long list of conditions all equivalent to the bijectivity proved here. A continuous bijection need *not* have continuous inverse, so homeomorphism is strictly stronger than bijection, and the compact-to-Hausdorff theorem is precious because it supplies the missing implication. In analysis, the inverse function theorem gives local invertibility from an invertible derivative, and the implicit function theorem is its dressed-up form; both are the local versions of this module's global statement. In algebra, units in a ring are exactly the invertible elements, and a field is a ring where every nonzero element is one — so the question "when can this be undone?" is, structurally, most of what distinguishes one algebraic system from another.
+</WhereThisGoes>

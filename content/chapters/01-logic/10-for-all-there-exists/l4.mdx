@@ -1,0 +1,102 @@
+---
+level: l4
+title: For all, there exists
+readingTimeMin: 7
+newTerms: ["quantifier", "universal quantifier", "existential quantifier", "unique"]
+anchorExample: "3x − 1 = 0"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.1 noted that $x \geq 1$ is not a statement: it has a free variable, so it has no truth value until $x$ is pinned down. There are two ways to pin it down, and they are called **quantifiers**.
+
+## The universal quantifier
+
+The symbol $\forall$ is read "for all" or "for every". The **universal quantifier** asserts a property of every element of a stated set:
+$$
+\forall x \in \mathbb{R},\; x^2 \geq 0.
+$$
+Read: "for all real numbers $x$, $x^2$ is at least $0$." True.
+
+The set matters. Compare:
+$$
+\forall x \in \mathbb{Z},\; x \geq 1 \quad \text{(false: } x = 0 \text{)}
+\qquad
+\forall x \in \mathbb{Z},\; x \geq 1 \text{ or } x \leq 0 \quad \text{(true)}
+$$
+A quantified statement without a stated domain is incomplete. Write the $\in$.
+
+## The existential quantifier
+
+The symbol $\exists$ is read "there exists". The **existential quantifier** asserts that at least one element has the property:
+$$
+\exists x \in \mathbb{R},\; 3x - 1 = 0.
+$$
+True, with $x = \tfrac{1}{3}$. Contrast
+$$
+\exists x \in \mathbb{Z},\; 3x - 1 = 0,
+$$
+which is **false** — no integer works. Same predicate, different domain, different truth value.
+
+<Warning title="∃ never means exactly one">
+$\exists x \in \mathbb{R},\, x^2 = 4$ is true, and there are two such $x$. The existential quantifier says *at least* one; it is completely silent on how many. If you want exactly one, you must say so.
+</Warning>
+
+## Unique existence
+
+The symbol $\exists!$ is read "there exists exactly one" or "there exists a unique". By definition,
+$$
+\exists! x \in S,\, p(x)
+\quad\text{means}\quad
+\big(\exists x \in S,\, p(x)\big) \;\wedge\; \big(\text{any two elements satisfying } p \text{ are equal}\big).
+$$
+
+Two obligations, and both must be discharged.
+
+> **Claim.** $\exists! x \in \mathbb{R}$ such that $3x - 1 = 0$.
+
+**Existence.** $x = \tfrac13$ satisfies $3 \cdot \tfrac13 - 1 = 0$.
+
+**Uniqueness.** Suppose $a, b \in \mathbb{R}$ both satisfy the equation: $3a - 1 = 0$ and $3b - 1 = 0$. Then $3a = 1 = 3b$, so $3a = 3b$, and dividing by $3$ gives $a = b$. So there are not two distinct solutions.
+
+The uniqueness pattern — *suppose two things both work, then prove they are equal* — is the standard one, and you will reuse it constantly.
+
+## The evidence each quantifier demands
+
+| Statement | To prove | To disprove |
+|---|---|---|
+| $\forall x \in S,\, p(x)$ | argue for arbitrary $x \in S$ | exhibit one $x \in S$ with $\neg p(x)$ |
+| $\exists x \in S,\, p(x)$ | exhibit one $x \in S$ with $p(x)$ | prove $\forall x \in S,\, \neg p(x)$ |
+
+The two rows are mirror images, and the mirror is negation — which is module 1.11. What matters now is the practical consequence: **you cannot prove a universal claim by examples, and you cannot disprove an existential claim by examples.** In each of those cells the work is a general argument, not a search.
+
+## Quantifiers are hidden everywhere
+
+Most theorems are universally quantified conditionals whose $\forall$ is left unwritten:
+
+> If $x > 1$ then $x^2 > 1$
+
+means
+
+$$\forall x \in \mathbb{R},\; (x > 1 \Rightarrow x^2 > 1).$$
+
+That invisible $\forall$ is why the proof in module 1.6 had to reason about a nameless $x$ rather than checking a few values. Making the quantifier visible is often the first useful step on a problem you are stuck on.
+
+## Two quantifiers at once
+
+Statements often carry more than one, and then **order matters**:
+
+$$\forall x \in \mathbb{R},\; \exists y \in \mathbb{R},\; x + y = 0$$
+
+says: whatever $x$ you hand me, I can find a $y$ that cancels it. True — take $y = -x$, which is allowed to depend on $x$.
+
+$$\exists y \in \mathbb{R},\; \forall x \in \mathbb{R},\; x + y = 0$$
+
+says: there is a single $y$ that cancels *every* $x$ at once. False — no fixed $y$ works for both $x = 1$ and $x = 2$.
+
+Same symbols, same predicate, opposite truth values. The rule of thumb: an inner quantifier may depend on the outer ones; an outer one may not depend on the inner ones.
+
+<Aside>
+This ordering subtlety is not a technicality; it is the single hardest thing in first-year analysis. "Continuous" and "uniformly continuous" differ by exactly one swap of $\forall$ and $\exists$, and students who have not internalised this module cannot see the difference at all.
+</Aside>

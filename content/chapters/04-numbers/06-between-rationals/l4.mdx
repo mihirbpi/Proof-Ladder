@@ -1,0 +1,61 @@
+---
+level: l4
+title: Between any two rationals
+readingTimeMin: 6
+newTerms: ["midpoint", "dense"]
+anchorExample: "ℚ as a field"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+> **Proposition.** Let $a, b \in \mathbb{Q}$ with $a < b$. Then $\dfrac{a+b}{2} \in \mathbb{Q}$ and
+> $$a < \frac{a+b}{2} < b.$$
+
+<Discussion>
+  <div slot="know">$a, b \in \mathbb{Q}$, $a < b$. Available: closure of $\mathbb{Q}$ under $+$ and $\times$ and under inverses of nonzero elements (module 4.5); and the ordered-field rules that adding a constant preserves $<$ and multiplying by a positive preserves $<$.</div>
+  <div slot="want">Three claims: membership in $\mathbb{Q}$, and two strict inequalities.</div>
+  <div slot="how">Membership is pure closure and must be stated, not assumed. The inequalities come from $a<b$ by adding $a$ to both sides in one case and $b$ in the other, then halving.</div>
+</Discussion>
+
+<Proof>
+**Rationality.** $a + b \in \mathbb{Q}$ by closure under addition. Since $2 \in \mathbb{Q}$ and $2 \neq 0$, its inverse $\tfrac12 \in \mathbb{Q}$, and $\tfrac{a+b}{2} = (a+b)\cdot\tfrac12 \in \mathbb{Q}$ by closure under multiplication.
+
+**Lower bound.** From $a < b$, adding $a$ to both sides gives $2a < a+b$. Multiplying by $\tfrac12 > 0$ preserves the inequality, so $a < \tfrac{a+b}{2}$.
+
+**Upper bound.** From $a < b$, adding $b$ gives $a + b < 2b$. Multiplying by $\tfrac12 > 0$ gives $\tfrac{a+b}{2} < b$.
+</Proof>
+
+<Warning title="Closure is the load-bearing step">
+The proposition is false in $\mathbb{Z}$: the midpoint of $3$ and $4$ is $\tfrac72 \notin \mathbb{Z}$, and indeed nothing lies strictly between consecutive integers.
+
+So the argument cannot merely produce the number $\tfrac{a+b}{2}$; it must certify that the number lies in the system under discussion. Field closure (module 4.5) is what supplies that, and it is what $\mathbb{Z}$ lacks.
+</Warning>
+
+## Density
+
+> **Corollary.** Between any two distinct rationals lie infinitely many rationals.
+
+<Proof>
+Let $a < b$ in $\mathbb{Q}$. Define $m_1 = \tfrac{a+b}{2}$, and recursively $m_{k+1} = \tfrac{a + m_k}{2}$.
+
+By the proposition, each $m_k \in \mathbb{Q}$ and $a < m_{k+1} < m_k$. So $m_1 > m_2 > m_3 > \cdots$ is a strictly decreasing sequence of rationals, all lying strictly between $a$ and $b$.
+
+A strictly decreasing sequence has pairwise distinct terms, so this exhibits infinitely many rationals in $(a,b)$.
+</Proof>
+
+A set with this property is **dense in itself**. $\mathbb{Q}$ is also dense in $\mathbb{R}$: every real interval, however short, contains a rational — a fact used constantly in analysis, and provable from the Archimedean property.
+
+Contrast $\mathbb{Z}$, which is **discrete**: consecutive integers have nothing between them, and every integer has a nearest neighbour. That difference is why $\mathbb{Z}$ supports the division algorithm and induction while $\mathbb{Q}$ does not, and why $\mathbb{Q}$ supports limits and $\mathbb{Z}$ does not.
+
+## The trap this sets
+
+Density makes $\mathbb{Q}$ *feel* like it fills the number line. No gap can be exhibited by pointing: name any two rationals and infinitely many more sit between them.
+
+The feeling is wrong. There are gaps — points on the line no rational occupies — and they cannot be found by this kind of local inspection, because locally the rationals look complete. Module 4.7 exhibits one, using a proof that does not look at the line at all.
+
+<Aside>
+The reconciliation is that density and *size* are unrelated. $\mathbb{Q}$ is dense in $\mathbb{R}$, yet countable (module 3.8) while $\mathbb{R}$ is not — so in a precise sense almost every real is irrational. It is even possible to cover all of $\mathbb{Q}$ by intervals of total length as small as you like, which is a way of saying $\mathbb{Q}$ occupies no length at all despite being everywhere. Both facts are true; only intuition objects.
+</Aside>

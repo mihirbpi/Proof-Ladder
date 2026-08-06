@@ -1,0 +1,106 @@
+---
+level: l7
+title: Negating quantifiers and counterexamples
+readingTimeMin: 10
+newTerms: ["counterexample", "prenex normal form"]
+anchorExample: "every prime is odd"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\neg\big(\forall x \in S,\; p(x)\big) \;\equiv\; \exists x \in S,\; \neg p(x),
+\qquad
+\neg\big(\exists x \in S,\; p(x)\big) \;\equiv\; \forall x \in S,\; \neg p(x).
+$$
+
+These are the De Morgan laws of §1.4 at infinite arity, and they are the mechanical heart of working with quantified statements. Everything in this module is an application.
+
+## Justification
+
+Semantically: $\forall x \in S,\, p(x)$ is true iff $p$ holds at every element of $S$; it fails iff some element escapes, which is $\exists x \in S,\, \neg p(x)$. Dually, $\exists x \in S,\, p(x)$ fails iff no element satisfies $p$, i.e. every element satisfies $\neg p$.
+
+For finite $S = \{a_1, \ldots, a_n\}$ this is literally §1.4 iterated, since $\forall$ contracts to $\wedge$ and $\exists$ to $\vee$; induction on $n$ (Chapter 6) supplies the general finite case. For infinite $S$ the finitary argument does not apply, and the laws are consequences of the semantics of the quantifiers rather than of §1.4 — but the analogy is exact, and it is the right thing to remember.
+
+Note the domain is inert: negating $\forall x \in \mathbb{Z}$ produces $\exists x \in \mathbb{Z}$, not a quantifier over some other set.
+
+## Counterexamples
+
+A **counterexample** to $\forall x \in S,\, p(x)$ is an element $c \in S$ with $\neg p(c)$. The negation law is what makes a counterexample a *disproof* rather than mere evidence: producing $c$ establishes $\exists x \in S,\, \neg p(x)$, which is precisely the negation of the claim.
+
+Most theorems have the form $\forall x \in S,\, (p(x) \Rightarrow q(x))$, and since $\neg(p \Rightarrow q) \equiv p \wedge \neg q$ (§1.7), the negation is
+$$
+\exists x \in S,\; p(x) \wedge \neg q(x).
+$$
+
+**A counterexample must satisfy the hypothesis and violate the conclusion.** This is the single most useful consequence of the module. An element that fails the hypothesis makes the conditional vacuously true and refutes nothing.
+
+> *Claim:* $\forall x \in \mathbb{R},\; x^2 > 1 \Rightarrow x > 1$.
+> *Counterexample:* $x = -3$ (satisfies $x^2 = 9 > 1$; violates $x > 1$).
+> *Not a counterexample:* $x = 0$ (fails the hypothesis; the conditional is vacuously true there).
+
+## Worked negations
+
+**Compound predicate.** $\forall x \in \mathbb{R},\, (x > 0) \vee (x < 0)$. Negating:
+$$
+\exists x \in \mathbb{R},\; \neg\big((x>0) \vee (x<0)\big)
+\;\equiv\;
+\exists x \in \mathbb{R},\; (x \leq 0) \wedge (x \geq 0),
+$$
+satisfied uniquely by $x = 0$. Two rules were used in sequence — the quantifier law, then De Morgan — because negation is pushed inward one connective at a time.
+
+**Twin Primes.** The conjecture is
+$$
+\forall N \in \mathbb{N}\; \exists p > N,\; p \text{ and } p+2 \text{ both prime}.
+$$
+Its negation:
+$$
+\exists N \in \mathbb{N}\; \forall p > N,\; \neg(p \text{ and } p+2 \text{ both prime}),
+$$
+i.e. there is a threshold past which no twin prime pair occurs. Note what a refutation of Twin Primes would have to look like: not a computation, but an exhibited $N$ together with a *universal* proof about everything above it. This is why extensive computation neither proves nor disproves the conjecture, and why Zhang's 2013 theorem — bounded gaps infinitely often — was a genuine advance in the right direction without settling gap $2$.
+
+**Unique existence.** $\exists! x \in S,\, p(x)$ unfolds to $\big(\exists x, p(x)\big) \wedge \big(\forall x, y,\, (p(x) \wedge p(y)) \Rightarrow x = y\big)$, so its negation is
+$$
+\big(\forall x \in S,\, \neg p(x)\big) \;\vee\; \big(\exists x, y \in S,\; p(x) \wedge p(y) \wedge x \neq y\big):
+$$
+either nothing works, or two distinct things do. Both failure modes must be excluded to establish uniqueness, and both are available when refuting it.
+
+## Nested quantifiers and prenex form
+
+Negation passes through a quantifier prefix by flipping each quantifier in turn:
+$$
+\neg\big(\forall x\, \exists y\, \forall z\; p(x,y,z)\big)
+\;\equiv\;
+\exists x\, \forall y\, \exists z\; \neg p(x,y,z).
+$$
+
+A formula with all quantifiers at the front is in **prenex normal form**, and every first-order formula is equivalent to one. Pushing negations all the way in — until $\neg$ applies only to atomic predicates — is the routine that turns an opaque statement into a checkable one.
+
+The canonical exercise: negate continuity of $f$ at $a$.
+$$
+\forall \varepsilon > 0\; \exists \delta > 0\; \forall x\; \big(|x-a| < \delta \Rightarrow |f(x)-f(a)| < \varepsilon\big)
+$$
+becomes
+$$
+\exists \varepsilon > 0\; \forall \delta > 0\; \exists x\; \big(|x-a| < \delta \;\wedge\; |f(x)-f(a)| \geq \varepsilon\big).
+$$
+
+Read it: some tolerance $\varepsilon$ is unattainable — for every candidate $\delta$, however small, there is a point within $\delta$ of $a$ whose image is at least $\varepsilon$ away. That sentence is the definition of discontinuity, and it was produced entirely mechanically. Students who cannot negate reliably cannot prove discontinuity, non-convergence, non-uniform-continuity, or unboundedness, and those are half the negative results in a first analysis course.
+
+<Warning title="Failure modes">
+**Over-negation.** $\neg \forall x\, p(x) \not\equiv \forall x\, \neg p(x)$. "Not every prime is odd" is not "every prime is even."
+
+**Forgetting the inner connectives.** After flipping the quantifiers you must still negate the matrix, and if it contains $\Rightarrow$, $\wedge$, or $\vee$, further rules apply. A half-pushed negation is a common source of proofs of the wrong statement.
+
+**Changing the domain.** Bounded quantifiers such as $\forall \varepsilon > 0$ abbreviate $\forall \varepsilon\,(\varepsilon > 0 \Rightarrow \ldots)$; negating gives $\exists \varepsilon\,(\varepsilon > 0 \wedge \ldots)$, i.e. $\exists \varepsilon > 0$. The bound survives; it does not become $\exists \varepsilon \leq 0$.
+</Warning>
+
+<Aside>
+Euler conjectured (1769) that no $k$-th power is a sum of fewer than $k$ positive $k$-th powers. Lander and Parkin refuted the case $k=5$ in 1966 with a two-sentence paper containing $27^5 + 84^5 + 110^5 + 133^5 = 144^5$. Elkies later refuted $k = 4$ using elliptic curves, producing infinitely many counterexamples where a search had found none. The asymmetry is stark: two centuries of accumulated belief, undone by one element of the domain.
+</Aside>
+
+<WhereThisGoes level="l7">
+The number of alternations between $\forall$ and $\exists$ in a prenex formula is a genuine measure of logical complexity, and it stratifies mathematics in two directions. In computability theory it produces the arithmetical hierarchy: $\Sigma^0_1$ statements ("there is a proof") are semi-decidable, $\Pi^0_1$ statements ("for all $n$, …") are refutable but not in general provable by search, and Gödel's incompleteness theorem is a statement about a specific $\Pi^0_1$ sentence. In complexity theory the same alternation count gives the polynomial hierarchy, with NP as the one-quantifier level. Prenex normalisation and negation-pushing are also the first steps of every automated theorem prover and SMT solver — the mechanical routine you just learned by hand is the one machines run first.
+</WhereThisGoes>

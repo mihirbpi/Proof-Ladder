@@ -1,0 +1,90 @@
+---
+level: l4
+title: And, or
+readingTimeMin: 6
+newTerms: ["conjunction", "disjunction", "contradiction", "tautology"]
+anchorExample: "multiples of 6"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+A single statement is rarely what a theorem is about. Theorems say things like "if $n$ is even *and* $n > 2$, then …" — compound statements built from simpler ones. This module fixes the meaning of the two basic connectives that do the building.
+
+Throughout, $p$ and $q$ stand for statements.
+
+## Conjunction: $p \wedge q$
+
+The **conjunction** of $p$ and $q$, written $p \wedge q$ and read "$p$ and $q$," is true exactly when both are true.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∧ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∧ q": true  },
+    { p: true,  q: false, "p ∧ q": false },
+    { p: false, q: true,  "p ∧ q": false },
+    { p: false, q: false, "p ∧ q": false }
+  ]}
+/>
+
+One true row out of four. Conjunction is demanding.
+
+Example: let $p$ be "$12$ is a multiple of $3$" (T) and $q$ be "$12$ is a multiple of $5$" (F). Then $p \wedge q$ is false. Half of a conjunction being true earns nothing.
+
+## Disjunction: $p \vee q$
+
+The **disjunction** of $p$ and $q$, written $p \vee q$ and read "$p$ or $q$," is true exactly when at least one is true.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∨ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∨ q": true  },
+    { p: true,  q: false, "p ∨ q": true  },
+    { p: false, q: true,  "p ∨ q": true  },
+    { p: false, q: false, "p ∨ q": false }
+  ]}
+/>
+
+Three true rows. Disjunction is generous — and note the very first row: when *both* are true, $p \vee q$ is still true.
+
+<Warning title="Inclusive or">
+English often uses *or* exclusively: "you may have soup or salad" means one, not both. Mathematics never does. $\vee$ is the **inclusive or**: at least one, both permitted. If a mathematician wants exclusive or, they say so explicitly — "exactly one of $p$, $q$ holds."
+</Warning>
+
+## Two special columns
+
+Some compound statements have a truth-table column that never changes.
+
+<TruthTable
+  variables={["p"]}
+  expressions={["¬p", "p ∧ ¬p", "p ∨ ¬p"]}
+  rows={[
+    { p: true,  "¬p": false, "p ∧ ¬p": false, "p ∨ ¬p": true },
+    { p: false, "¬p": true,  "p ∧ ¬p": false, "p ∨ ¬p": true }
+  ]}
+/>
+
+- $p \wedge \neg p$ is false in every row. A statement false under every assignment of truth values is a **contradiction**.
+- $p \vee \neg p$ is true in every row. A statement true under every assignment is a **tautology**.
+
+Neither depends on what $p$ actually says. "$12$ is prime and $12$ is not prime" is false; so is "the moon is cheese and the moon is not cheese." The *shape* decides.
+
+<Aside>
+$p \vee \neg p$ has a name — the *law of the excluded middle* — and it is doing real work every time you say "either it is, or it isn't." Module 2.5 turns contradictions into a proof technique: assume the negation of your goal, derive a contradiction, and conclude the goal.
+</Aside>
+
+## Reading compound statements carefully
+
+Consider: "$n$ is a multiple of $2$ **and** $n$ is a multiple of $3$."
+
+- $n = 6$: T $\wedge$ T = T.
+- $n = 8$: T $\wedge$ F = F.
+- $n = 9$: F $\wedge$ T = F.
+- $n = 7$: F $\wedge$ F = F.
+
+Only $n$ divisible by both survives — the multiples of $6$. Compare with *or*, which would keep $6, 8, 9$ and drop only $7$.
+
+That comparison is worth holding onto. In Chapter 2 you will meet $\cap$ (intersection) and $\cup$ (union) and discover that they are $\wedge$ and $\vee$ wearing different clothes: an element is in $S \cap T$ when it is in $S$ **and** in $T$, and in $S \cup T$ when it is in $S$ **or** in $T$. Every fact you learn about the connectives here will come back as a fact about sets.

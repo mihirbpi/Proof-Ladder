@@ -1,0 +1,101 @@
+---
+level: l7
+title: If and only if
+readingTimeMin: 10
+newTerms: ["biconditional", "if and only if"]
+anchorExample: "n even iff n² even"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+The **biconditional** is defined by
+$$
+p \Leftrightarrow q \;:\equiv\; (p \Rightarrow q) \wedge (q \Rightarrow p),
+$$
+and read "$p$ if and only if $q$", abbreviated *iff*. Its truth table is T exactly where $p$ and $q$ agree:
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q", "q ⇒ p", "p ⇔ q"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true,  "q ⇒ p": true,  "p ⇔ q": true  },
+    { p: true,  q: false, "p ⇒ q": false, "q ⇒ p": true,  "p ⇔ q": false },
+    { p: false, q: true,  "p ⇒ q": true,  "q ⇒ p": false, "p ⇔ q": false },
+    { p: false, q: false, "p ⇒ q": true,  "q ⇒ p": true,  "p ⇔ q": true  }
+  ]}
+/>
+
+Note the relationship to §1.3's $\equiv$: $\varphi \equiv \psi$ holds precisely when $\varphi \Leftrightarrow \psi$ is a tautology. The symbol $\Leftrightarrow$ is a connective inside statements; $\equiv$ is an assertion about statements. In practice this distinction is often elided, but it is why "$p \Leftrightarrow q$" can be false while "$\equiv$" claims never are.
+
+Because the definition is a conjunction, **a proof of a biconditional is two proofs**. The named move is **check both boxes**.
+
+## The theorem
+
+> **Theorem.** For all $n \in \mathbb{Z}$: $n$ is even $\iff$ $n^2$ is even.
+
+<Discussion>
+  <div slot="know">Definitions: $n$ even iff $\exists k \in \mathbb{Z},\, n = 2k$; $n$ odd iff $\exists k \in \mathbb{Z},\, n = 2k+1$; every integer is exactly one of the two (this is the division algorithm for $d = 2$, §4.4). Direction ($\Rightarrow$) has a hypothesis that unfolds into a usable equation. Direction ($\Leftarrow$) has hypothesis $n^2 = 2k$, from which no information about $n$ is extractable without inverting the squaring map.</div>
+  <div slot="want">Both implications.</div>
+  <div slot="how">($\Rightarrow$) directly. ($\Leftarrow$) by contrapositive: prove $n$ odd $\Rightarrow n^2$ odd, whose hypothesis unfolds usefully.</div>
+</Discussion>
+
+<Proof>
+($\Rightarrow$) Suppose $n$ is even. Then $n = 2k$ for some $k \in \mathbb{Z}$, so $n^2 = 4k^2 = 2(2k^2)$. Since $2k^2 \in \mathbb{Z}$, $n^2$ is even.
+
+($\Leftarrow$) We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n = 2k+1$ with $k \in \mathbb{Z}$. Then
+$$
+n^2 = 4k^2 + 4k + 1 = 2\big(2k^2 + 2k\big) + 1,
+$$
+and $2k^2 + 2k \in \mathbb{Z}$, so $n^2$ is odd. Since every integer is even or odd and not both, contraposition gives: $n^2$ even $\Rightarrow$ $n$ even.
+
+Both implications hold, hence the biconditional.
+</Proof>
+
+Two observations. First, the directions required different methods — this is typical, and it is why the two halves must be written separately rather than merged into a chain. Second, the ($\Leftarrow$) direction used the trichotomy "every integer is even or odd, not both". That fact is not free; it is the $d=2$ case of the division algorithm, and a fully careful treatment proves it (§4.4) before using it here.
+
+## Definitions are stipulative biconditionals
+
+Every mathematical definition is a biconditional, written with "if" by convention:
+
+> $n$ is *even* **if** $n = 2k$ for some $k \in \mathbb{Z}$.
+
+means
+
+> $n \text{ is even} \iff \exists k \in \mathbb{Z},\, n = 2k.$
+
+The consequence is practical: a definition may be used in **both directions**, and virtually every proof does. Unfolding ("$n$ is even, so write $n = 2k$") uses one; folding ("we have shown $n^2 = 2m$ with $m \in \mathbb{Z}$, so $n^2$ is even") uses the other. When a proof stalls, the first diagnostic is whether every definition in sight has been unfolded.
+
+<Warning title="Iff-chains and reversibility">
+A chain
+$$
+p \iff r_1 \iff r_2 \iff \cdots \iff q
+$$
+proves $p \iff q$ only if every link is genuinely a biconditional. The failure mode is writing $\iff$ where only $\Rightarrow$ holds:
+
+- $x = y \;\Rightarrow\; x^2 = y^2$, but not conversely.
+- $a = b \;\Rightarrow\; ac = bc$, and conversely **only if** $c \neq 0$.
+- $x > 0 \wedge y > 0 \Rightarrow xy > 0$, but not conversely.
+
+Solving equations is where this bites. "Solve $\sqrt{x+2} = x$" by squaring gives $x^2 - x - 2 = 0$, i.e. $x \in \{2, -1\}$ — but $x = -1$ fails the original. The squaring step was $\Rightarrow$, not $\iff$, so the final set is a superset of the solution set and must be filtered. Extraneous roots are precisely converse failures.
+</Warning>
+
+## Proving several statements equivalent
+
+When three or more statements are to be shown pairwise equivalent, proving all $\binom{n}{2}$ biconditionals is wasteful. Instead prove a **cycle** of implications:
+$$
+p \Rightarrow q \Rightarrow r \Rightarrow p.
+$$
+Three implications rather than six, and every pairwise equivalence follows by composing around the cycle. Theorems of the form "the following are equivalent (TFAE)" — ubiquitous in linear algebra, topology, and algebra — are almost always proved this way, and choosing the cycle order so that each individual implication is easy is a real part of the work.
+
+<Aside>
+$p \Leftrightarrow q$ is also expressible as $\neg(p \oplus q)$, the negation of exclusive or, and as $(p \wedge q) \vee (\neg p \wedge \neg q)$. The first form is why $\Leftrightarrow$ is associative in a way that surprises people: $(p \Leftrightarrow q) \Leftrightarrow r$ and $p \Leftrightarrow (q \Leftrightarrow r)$ agree, both being true exactly when an even number of $p, q, r$ are false. Unlike $\Rightarrow$, the biconditional chains associatively — but chained $\Leftrightarrow$ in mathematical writing means a conjunction of adjacent biconditionals, not iterated application, so do not rely on this.
+</Aside>
+
+<WhereThisGoes level="l7">
+The habit of proving two directions separately is the shape of most structural theorems in later mathematics. "A linear map is injective iff its kernel is trivial", "a subset of $\mathbb{R}^n$ is compact iff it is closed and bounded", "an integer is a unit mod $n$ iff it is coprime to $n$" — each is a biconditional whose two halves use different machinery. The TFAE cycle scales further: the equivalence of the many characterisations of a Noetherian ring, or of the several definitions of continuity, is invariably packaged as one cycle of implications. Learning to hunt for the cheapest cycle is a skill you will use in every algebra course you take.
+</WhereThisGoes>

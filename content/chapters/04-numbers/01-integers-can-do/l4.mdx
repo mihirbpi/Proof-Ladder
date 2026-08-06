@@ -1,0 +1,80 @@
+---
+level: l4
+title: What the integers can do
+readingTimeMin: 7
+newTerms: ["closed", "ring", "distributive law", "unit"]
+anchorExample: "divisibility"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every proof you write about integers uses facts about $\mathbb{Z}$ that you have never stated. This module states them, because a proof that cites an unstated fact is a proof with a hole in it.
+
+$$
+\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}.
+$$
+
+## Closure
+
+$S$ is **closed** under a binary operation when applying it to elements of $S$ always yields an element of $S$.
+
+For all $a, b \in \mathbb{Z}$:
+
+| Property | Statement |
+|---|---|
+| closed under addition | $a + b \in \mathbb{Z}$ |
+| closed under additive inverses | $-a \in \mathbb{Z}$ |
+| closed under multiplication | $ab \in \mathbb{Z}$ |
+| distributive law | $a(b+c) = ab + ac$ |
+
+Closure under subtraction follows: $a - b = a + (-b)$, an integer by the first two.
+
+These are exactly the facts you have been invoking silently. When a proof says "$n = 2(2k^2)$, and $2k^2 \in \mathbb{Z}$, so $n$ is even", the step "$2k^2 \in \mathbb{Z}$" is closure under multiplication used twice. From now on, cite it.
+
+## Failure of multiplicative inverses
+
+$\mathbb{Z}$ is **not** closed under division. Sharper: an integer $n$ is a **unit** if there is an integer $m$ with $nm = 1$.
+
+> **Proposition.** The only units in $\mathbb{Z}$ are $1$ and $-1$.
+
+<Proof>
+Suppose $n, m \in \mathbb{Z}$ with $nm = 1$. Then $n \neq 0$, since $0 \cdot m = 0 \neq 1$.
+
+Since $nm = 1 \neq 0$, both $n$ and $m$ are nonzero, so $|n| \geq 1$ and $|m| \geq 1$. Taking absolute values, $|n|\,|m| = 1$.
+
+If $|n| \geq 2$ then $|n|\,|m| \geq 2 \cdot 1 = 2 > 1$, a contradiction. Hence $|n| = 1$, so $n \in \{1, -1\}$.
+
+Conversely $1 \cdot 1 = 1$ and $(-1)(-1) = 1$, so both are units.
+</Proof>
+
+Two units out of infinitely many elements. This single deficiency is what motivates everything else in the chapter: module 4.5 constructs $\mathbb{Q}$, where every nonzero element is a unit.
+
+<Warning title="Closure is a universal claim">
+$6 \div 2 = 3 \in \mathbb{Z}$, so division sometimes stays inside. Closure requires *always*, so a single counterexample refutes it (module 1.11). $7 \div 2 \notin \mathbb{Z}$ is that counterexample.
+</Warning>
+
+## Rings
+
+A set with two operations satisfying the properties above — plus associativity and commutativity of $+$, an additive identity $0$, associativity of $\times$, and a multiplicative identity $1$ — is called a **ring**.
+
+$\mathbb{Z}$ is a ring. So is $\mathbb{Q}$, and $\mathbb{R}$. So are things that are not numbers:
+
+- **Polynomials** with integer coefficients. Add two, get a polynomial; multiply two, get a polynomial; distribution holds.
+- **$2\times2$ matrices** of integers. Same closures — though here $AB \neq BA$ in general, so this ring is not commutative.
+- **Clock arithmetic** mod $12$. Add and multiply, then take the remainder. Closed, distributive, and finite.
+
+The word earns its keep because of this: **any theorem proved using only the ring properties is automatically true for all of them at once.** You prove it once, about a nameless ring, and get infinitely many theorems free.
+
+<Aside>
+$\mathbb{Z}$ has a property beyond the ring axioms that matters enormously: it has **no zero divisors** — if $ab = 0$ then $a = 0$ or $b = 0$. A commutative ring with this property is an *integral domain*. It fails in clock arithmetic mod $12$, where $3 \times 4 = 0$ with neither factor zero, and its failure is precisely why cancellation ("$ab = ac$ and $a \neq 0$ imply $b = c$") is legal in $\mathbb{Z}$ and illegal mod $12$.
+</Aside>
+
+## What is missing
+
+$$
+\text{ring} + \text{every nonzero element is a unit} = \text{field}.
+$$
+
+$\mathbb{Z}$ is a ring and not a field. $\mathbb{Q}$ will be a field (module 4.5). Recognising which of the two you are working in tells you which manipulations are legal — in particular, whether you are allowed to divide.

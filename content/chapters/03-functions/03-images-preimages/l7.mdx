@@ -1,0 +1,114 @@
+---
+level: l7
+title: Images and pre-images
+readingTimeMin: 9
+newTerms: ["image", "pre-image", "fibre"]
+anchorExample: "f(x) = x²"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+For $f : S \to T$ and $A \subseteq S$, $U \subseteq T$:
+
+$$
+f(A) = \{ f(s) \mid s \in A \} \subseteq T,
+\qquad
+f^{-1}(U) = \{ s \in S \mid f(s) \in U \} \subseteq S,
+$$
+and $\operatorname{Im}(f) = f(S)$.
+
+These are operators $\mathcal{P}(S) \to \mathcal{P}(T)$ and $\mathcal{P}(T) \to \mathcal{P}(S)$ respectively. The distinction matters: they act on *subsets*, not on elements, and the pre-image operator exists for every $f$ whatsoever.
+
+Two unfoldings, of which the second is the one that does all the work:
+$$
+t \in f(A) \iff \exists s \in A,\ f(s) = t,
+\qquad
+s \in f^{-1}(U) \iff f(s) \in U. \tag{$\ast$}
+$$
+
+The asymmetry is already visible. Membership in an image carries an existential quantifier; membership in a pre-image carries none. That single fact explains everything in §3.4 about why pre-images are better behaved.
+
+## Image and codomain
+
+$\operatorname{Im}(f) \subseteq T$, with equality iff $f$ is surjective (§3.6). The codomain is part of the data of $f$; the image is determined by $f$.
+
+The word **range** is genuinely ambiguous — some authors mean image, others codomain — and should be avoided in careful writing.
+
+Examples:
+$$
+f : \mathbb{R}\to\mathbb{R},\ f(x)=x^2 \implies \operatorname{Im}(f) = [0,\infty);
+$$
+$$
+\exp : \mathbb{R}\to\mathbb{R} \implies \operatorname{Im}(\exp) = (0,\infty);
+$$
+$$
+\lfloor\cdot\rfloor : \mathbb{R}\to\mathbb{Z} \implies \operatorname{Im} = \mathbb{Z}.
+$$
+
+## Fibres
+
+The **fibre** of $f$ over $t \in T$ is $f^{-1}(\{t\})$. Fibres partition the domain:
+$$
+S = \bigsqcup_{t \in \operatorname{Im}(f)} f^{-1}(\{t\}),
+$$
+disjointly, because each $s$ has exactly one value $f(s)$ — which is precisely well-definedness. So a function *is* a partition of its domain, labelled by elements of its codomain, and the entire remaining chapter is a study of fibre sizes:
+
+| Property | Condition on fibres $f^{-1}(\{t\})$, $t \in T$ |
+|---|---|
+| injective | $\lvert f^{-1}(\{t\})\rvert \leq 1$ |
+| surjective | $\lvert f^{-1}(\{t\})\rvert \geq 1$ |
+| bijective | $\lvert f^{-1}(\{t\})\rvert = 1$ |
+
+That $\operatorname{Im}(f)$ is exactly $\{t : f^{-1}(\{t\}) \neq \emptyset\}$ is immediate from $(\ast)$.
+
+## Worked computations
+
+$f(x) = x^2$ on $\mathbb{R}$:
+$$
+f^{-1}(\{3\}) = \{\pm\sqrt3\},\quad
+f^{-1}(\{0\}) = \{0\},\quad
+f^{-1}(\{-5\}) = \emptyset,\quad
+f^{-1}\big((-2,6)\big) = (-\sqrt6,\sqrt6).
+$$
+In the last, the constraint $-2 < x^2$ is vacuous and only $x^2 < 6$ bites. Note that the pre-image of an open set is open here — the defining property of continuity in topology, met in a special case.
+
+Floor: $\lfloor\cdot\rfloor^{-1}(\{n\}) = [n, n+1)$. Fibres are intervals; infinitely many inputs share each output.
+
+## The adjunction
+
+The two operators are not inverse but they are related, for all $A \subseteq S$, $U \subseteq T$:
+$$
+A \subseteq f^{-1}(f(A)),
+\qquad
+f(f^{-1}(U)) \subseteq U,
+$$
+with equality in the first iff $f$ is injective on the relevant part, and in the second iff $U \subseteq \operatorname{Im}(f)$.
+
+<Proof>
+For the first: let $a \in A$. Then $f(a) \in f(A)$, so by $(\ast)$, $a \in f^{-1}(f(A))$.
+
+For the second: let $t \in f(f^{-1}(U))$. Then $t = f(s)$ for some $s \in f^{-1}(U)$, and $s \in f^{-1}(U)$ means $f(s) \in U$; hence $t \in U$.
+</Proof>
+
+Strictness in the first: $f(x)=x^2$, $A = \{2\}$ gives $f^{-1}(f(A)) = \{\pm2\} \supsetneq A$. In the second: $U = \{-5\}$ gives $f(f^{-1}(U)) = \emptyset \subsetneq U$.
+
+Compactly, $f(A) \subseteq U \iff A \subseteq f^{-1}(U)$ — the image operator is left adjoint to the pre-image operator, which is the structural reason for both inclusions and for everything in §3.4.
+
+<Warning title="Two meanings of f⁻¹">
+$f^{-1}(U)$ for $U \subseteq T$ — the pre-image — exists for every function. $f^{-1} : T \to S$ — the inverse function — exists only for bijections (§3.9).
+
+With $f(x) = x^2$ on $\mathbb{R}$: $f^{-1}(\{9\}) = \{-3,3\}$ is defined; $f^{-1}(9)$ is not, since $f$ is not injective.
+
+The notational clash is universal and permanent. Read the argument: a set means pre-image, an element means inverse function.
+</Warning>
+
+<Aside>
+Images fail to commute with intersection: $f(A \cap B) \subseteq f(A) \cap f(B)$ always, and $f(x)=x^2$ with $A=\{2\}$, $B=\{-2\}$ gives $\emptyset \subsetneq \{4\}$. Equality for all $A, B$ holds exactly when $f$ is injective. Pre-images have no such defect, and §3.4 proves it.
+</Aside>
+
+<WhereThisGoes level="l7">
+The fibre decomposition is the first appearance of an idea that runs through modern mathematics: study a map by studying its fibres. In algebra, the fibres of a group homomorphism are the cosets of its kernel, and the first isomorphism theorem says the induced map on fibres is an isomorphism. In geometry, a fibre bundle is a map all of whose fibres are isomorphic, and the whole of characteristic class theory measures how such bundles twist. In algebraic geometry, a morphism of schemes is analysed fibre by fibre, and flatness is the condition that fibres vary continuously. The pre-image operator, meanwhile, becomes the definition of continuity ($f^{-1}(\text{open})$ open) and of measurability ($f^{-1}(\text{Borel})$ measurable) — both stated with $f^{-1}$ rather than $f$ for exactly the reason the aside above gives.
+</WhereThisGoes>

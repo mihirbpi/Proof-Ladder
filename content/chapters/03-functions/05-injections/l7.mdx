@@ -1,0 +1,94 @@
+---
+level: l7
+title: One-to-one (injections)
+readingTimeMin: 9
+newTerms: ["injective", "one-to-one", "left inverse"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$f : S \to T$ is **injective** when
+$$
+\forall s_1, s_2 \in S,\ s_1 \neq s_2 \Rightarrow f(s_1) \neq f(s_2),
+$$
+equivalently, by contraposition,
+$$
+\forall s_1, s_2 \in S,\ f(s_1) = f(s_2) \Rightarrow s_1 = s_2. \tag{I}
+$$
+
+Form (I) is the working definition. The reason is §1.8's decision rule: the first version has a negation as hypothesis and supplies nothing to compute with, while (I) hands you an equation. Every injectivity proof in mathematics opens by assuming $f(s_1) = f(s_2)$.
+
+Equivalently again, in fibre language (§3.3): $|f^{-1}(\{t\})| \leq 1$ for all $t \in T$.
+
+## Proving injectivity
+
+> **Proposition.** $\exp : \mathbb{R}\to\mathbb{R}$ is injective.
+
+<Discussion>
+  <div slot="know">$e^a = e^b$. Available: $\exp$ is strictly increasing on $\mathbb{R}$, a consequence of $\exp' = \exp > 0$.</div>
+  <div slot="want">$a = b$.</div>
+  <div slot="how">Strict monotonicity forbids equal values at distinct points. Proving the general lemma is no harder than the instance, so prove the lemma.</div>
+</Discussion>
+
+<Proof title="Proof (general lemma)">
+Let $f : I \to \mathbb{R}$ be strictly increasing on an interval $I$, and suppose $f(a) = f(b)$ with $a, b \in I$. By trichotomy, either $a < b$, $a = b$, or $a > b$. If $a < b$ then $f(a) < f(b)$, contradicting equality; if $a > b$ then $f(a) > f(b)$, likewise. Hence $a = b$, so $f$ is injective.
+
+Applying this to $\exp$, which is strictly increasing since $\exp' = \exp > 0$ everywhere, gives injectivity of $\exp$.
+</Proof>
+
+Strict monotonicity is the standard route to injectivity for real functions, and the derivative test ($f' > 0$ throughout an interval) is the standard route to strict monotonicity. Note the implication is one-way: $f(x) = x^3$ is injective with $f'(0) = 0$, so $f' > 0$ everywhere is sufficient but not necessary.
+
+## Disproof is cheap
+
+Injectivity is universally quantified, so one collision refutes it (§1.11):
+
+| $f$ | Collision |
+|---|---|
+| $x^2$ on $\mathbb{R}$ | $f(3) = f(-3)$ |
+| $\lfloor \cdot \rfloor$ | $\lfloor 3.1\rfloor = \lfloor 3.9\rfloor$ |
+| $m(a,b) = ab$ on $\mathbb{Z}^2$ | $m(6,4) = m(2,12)$ |
+| $\sin$ on $\mathbb{R}$ | $\sin 0 = \sin \pi$ |
+
+Always spend a moment hunting for a collision before attempting a proof.
+
+<Warning title="Injectivity is a property of the function, hence of its domain">
+$x \mapsto x^2$ is not injective on $\mathbb{R}$ but is injective on $[0,\infty)$: if $a,b \geq 0$ and $a^2 = b^2$ then $(a-b)(a+b) = 0$, and $a+b = 0$ with $a,b \geq 0$ forces $a = b = 0$; otherwise $a = b$.
+
+Since domain and codomain are part of the function (§3.1), this is not a change of answer but a change of question. It is also exactly why $\sqrt{\phantom{x}}$ is defined as the inverse of squaring restricted to $[0,\infty)$.
+</Warning>
+
+## Equivalent formulations
+
+> **Proposition.** For $f : S \to T$ with $S \neq \emptyset$, the following are equivalent:
+> 1. $f$ is injective;
+> 2. $f$ has a **left inverse**: some $g : T \to S$ with $g \circ f = \mathrm{id}_S$;
+> 3. $f$ is left-cancellable: for all $h, k : R \to S$, $f \circ h = f \circ k \Rightarrow h = k$;
+> 4. $f(A \cap B) = f(A) \cap f(B)$ for all $A, B \subseteq S$;
+> 5. $f^{-1}(f(A)) = A$ for all $A \subseteq S$.
+
+<Proof title="Proof of (1) ⇔ (2)">
+($\Rightarrow$) Suppose $f$ is injective. Fix any $s_0 \in S$ (possible since $S \neq \emptyset$) and define
+$$
+g(t) = \begin{cases} \text{the unique } s \text{ with } f(s) = t, & t \in \operatorname{Im}(f),\\ s_0, & \text{otherwise.}\end{cases}
+$$
+Uniqueness — hence well-definedness of $g$ — is exactly injectivity. For $s \in S$ we have $g(f(s)) = s$, so $g \circ f = \mathrm{id}_S$.
+
+($\Leftarrow$) Suppose $g \circ f = \mathrm{id}_S$ and $f(s_1) = f(s_2)$. Applying $g$: $s_1 = g(f(s_1)) = g(f(s_2)) = s_2$.
+</Proof>
+
+Items (4) and (5) were flagged in §3.4: all the misbehaviour of the image operator is exactly the failure of injectivity. Item (3) is the categorical formulation — an injection is a **monomorphism** — and it is the version that survives when "elements" are unavailable.
+
+The hypothesis $S \neq \emptyset$ in (2) is needed only for the trivial reason that a left inverse must be defined somewhere; the empty function $\emptyset \to T$ is injective but has no left inverse when $T \neq \emptyset$.
+
+<Aside>
+Injectivity is what "no information is lost" means precisely. An injective $f$ can be undone on its image, so $s$ is recoverable from $f(s)$. This is why injectivity is the condition for an encoding to be decodable, for a hash function to be collision-free, and for a change of variables to be legitimate.
+</Aside>
+
+<WhereThisGoes level="l7">
+Injectivity reappears under a new name in every algebraic subject, and each time it is detected differently. A group homomorphism is injective iff its kernel is trivial; a linear map is injective iff its nullity is zero, which by rank–nullity ties injectivity to surjectivity for endomorphisms of finite-dimensional spaces. A ring homomorphism into an integral domain is injective iff its kernel is not a nonzero ideal, and an injective ring map is exactly an embedding of one structure in another — which is how field extensions are built. In topology, injective continuous maps from compact spaces to Hausdorff spaces are automatically embeddings, one of the most-used lemmas in the subject. In category theory, the monomorphism condition (3) is taken as the definition, and it is a real theorem, not a triviality, that in **Set** it coincides with the element-wise version.
+</WhereThisGoes>

@@ -1,0 +1,96 @@
+---
+level: l4
+title: Set-builder notation
+readingTimeMin: 7
+newTerms: ["set-builder notation", "interval"]
+anchorExample: "multiples of 12"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Listing works for small finite sets and fails for everything else. **Set-builder notation** replaces the list with a condition:
+$$
+\{\, x \in A \mid p(x) \,\}
+$$
+read: "the set of all $x$ in $A$ such that $p(x)$." The bar is "such that". $A$ is the ambient set the elements are drawn from; $p$ is an open statement (module 1.1) that decides membership.
+
+$$
+x \in \{\, y \in A \mid p(y) \,\}
+\quad\Longleftrightarrow\quad
+x \in A \;\wedge\; p(x).
+$$
+
+That biconditional is the definition, and it is the line to reach for whenever a proof involves a set-builder set: it converts a membership claim into a logical one, where Chapter 1's machinery applies.
+
+## Chapter 1 is now a tool
+
+This is the module where the two chapters join. The condition $p(x)$ is exactly the kind of open statement that module 1.1 refused to call a statement — it has a free variable and no truth value. Set-builder notation does not fix that; it *exploits* it. The predicate sorts the ambient set into two parts, and the set is the part where $p$ comes out true.
+
+Consequently every logical operation on conditions becomes a set operation:
+
+- $p(x) \wedge q(x)$ gives the intersection (module 2.4),
+- $p(x) \vee q(x)$ gives the union,
+- $\neg p(x)$ gives the complement (module 2.5).
+
+Chapter 2 is largely Chapter 1 rewritten in a new alphabet, and this notation is the dictionary.
+
+## Restricting a bigger set
+
+The commonest use is carving a subset out of a known set:
+$$
+\mathbb{N} = \{\, x \in \mathbb{Z} \mid x \geq 0 \,\},
+\qquad
+E = \{\, n \in \mathbb{Z} \mid n = 2k \text{ for some } k \in \mathbb{Z} \,\},
+$$
+$$
+M_{12} = \{\, n \in \mathbb{Z} \mid 12 \text{ divides } n \,\} = \{\ldots, -24, -12, 0, 12, 24, \ldots\}.
+$$
+
+And the rationals:
+$$
+\mathbb{Q} = \left\{\, \frac{p}{q} \;\middle|\; p, q \in \mathbb{Z},\; q \neq 0 \,\right\}.
+$$
+
+Two features of that last one repay attention. The condition $q \neq 0$ is not decoration — without it the description is meaningless. And the elements are not uniquely named: $\tfrac{1}{2}$, $\tfrac{2}{4}$ and $\tfrac{-3}{-6}$ are the same rational number. The convention is that
+$$
+\frac{p_1}{q_1} = \frac{p_2}{q_2} \quad\text{exactly when}\quad p_1 q_2 = p_2 q_1,
+$$
+which is a rule about when two *descriptions* pick out the same element. Sets are extensional (module 2.1): they do not care how often an element is described, only which elements are present.
+
+## Intervals
+
+Subsets of $\mathbb{R}$ defined by inequalities are frequent enough to earn their own shorthand, **interval notation**:
+
+| Notation | Set-builder | Endpoints |
+|---|---|---|
+| $(a, b)$ | $\{x \in \mathbb{R} \mid a < x < b\}$ | both excluded |
+| $[a, b]$ | $\{x \in \mathbb{R} \mid a \leq x \leq b\}$ | both included |
+| $(a, b]$ | $\{x \in \mathbb{R} \mid a < x \leq b\}$ | left excluded |
+| $[a, \infty)$ | $\{x \in \mathbb{R} \mid x \geq a\}$ | right unbounded |
+
+A round bracket excludes the endpoint; a square bracket includes it. $\infty$ always gets a round bracket, because it is not a real number and cannot be an element of anything.
+
+<Warning title="$(a,b)$ is overloaded">
+$(1, 5)$ is an interval here. In module 2.9 it will be an ordered pair. The notation is genuinely ambiguous and context is the only guide — if the surrounding discussion is about subsets of $\mathbb{R}$, it is an interval; if it is about $\mathbb{R} \times \mathbb{R}$, it is a point.
+</Warning>
+
+## When the condition is satisfied by nothing
+
+$$
+\{\, x \in \mathbb{R} \mid x^2 < 0 \,\} = \emptyset.
+$$
+A perfectly well-formed description that happens to select nothing. This is an answer, not an error, and module 1.12 already proved it: no real number has a negative square.
+
+## The ambient set is not optional
+
+$$
+\{\, x \mid x^2 = 2 \,\}
+$$
+is $\emptyset$ over $\mathbb{Z}$ and $\{\sqrt2, -\sqrt2\}$ over $\mathbb{R}$. Without the ambient set, the notation does not denote anything.
+
+There is also a deeper reason to insist on it, beyond ambiguity. Allowing $\{x \mid p(x)\}$ for *arbitrary* $p$, with no ambient set, makes set theory inconsistent: take $p(x)$ to be "$x \notin x$" and ask whether the resulting collection contains itself. Restricting to $\{x \in A \mid p(x)\}$ — separating a subset out of a set you already have — is precisely the repair.
+
+<Aside>
+Some authors write a colon instead of a bar, $\{x : p(x)\}$, and it means the same thing. Books that use $\mid$ for divisibility (module 4.2) usually prefer the colon here so that $\{n : 3 \mid n\}$ does not need two different bars.
+</Aside>

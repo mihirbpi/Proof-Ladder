@@ -1,0 +1,56 @@
+---
+level: l2
+title: The outside of overlapping hoops
+readingTimeMin: 4
+newTerms: ["the swap"]
+anchorExample: "two hoops on the floor"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Warning from '@/components/Warning.astro';
+
+Back in module 1.4 you found a rule with a hat and a coat: crossing out an AND gives you an OR. Now watch the same rule show up in a picture.
+
+Two hoops: $S$ and $T$.
+
+## Outside both hoops
+
+<Figure alt="Two overlapping circles S and T inside a dashed box, with only the region outside both circles shaded." caption="Outside $S$ and outside $T$ — at the same time.">
+  <VennTwo labelS="S" labelT="T" shade={["outside"]} universe="everything" />
+</Figure>
+
+Shade everything that is not in $S$ and not in $T$. You get the border around the edge.
+
+Now here is the same shape said another way: it is everything that is **not in ($S$ or $T$)**. If a thing is not in either hoop, it is out there in the border.
+
+So:
+
+> Outside ($S$ **or** $T$) = outside $S$ **and** outside $T$.
+
+The OR turned into an AND!
+
+## Outside the overlap
+
+Now try the other one. Shade everything that is **not in the overlap**.
+
+That is a lot of shading. Everything except the little middle lens.
+
+Who is out there? Things in $S$ but not $T$. Things in $T$ but not $S$. And things in neither. What do all of those have in common?
+
+Each one is missing at least one hoop. It is not in $S$, **or** it is not in $T$.
+
+> Outside ($S$ **and** $T$) = outside $S$ **or** outside $T$.
+
+The AND turned into an OR!
+
+<Warning title="The swap, again">
+This is exactly the hat-and-coat rule from module 1.4. When you go to the outside, the little joining word always flips. AND becomes OR. OR becomes AND.
+
+It is the same rule. Once you learn it with hats, you know it with hoops.
+</Warning>
+
+<TryIt>
+Draw two circles that cross. Shade everything outside both. Now, on a new drawing, shade everything outside just the middle lens. Compare the two pictures — they are not the same!
+</TryIt>

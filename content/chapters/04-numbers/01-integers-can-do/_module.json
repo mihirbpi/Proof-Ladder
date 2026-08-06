@@ -13,6 +13,17 @@
     "l7": "What the integers can do",
     "l8": "What the integers can do"
   },
+  "kernelIdea": "ℤ is closed under addition, additive inverses, and multiplication, and satisfies the distributive law — this makes it a ring. It is not closed under multiplicative inverses: only 1 and −1 have integer reciprocals.",
+  "kernels": {
+    "l1": "Adding whole piles keeps them whole. Sharing them out does not.",
+    "l2": "Adding and multiplying whole numbers always gives you back a whole number. Dividing can throw you out of the whole numbers altogether.",
+    "l3": "The integers are closed under adding, taking the opposite, and multiplying — those operations never take you outside. Dividing does, so the integers are missing something.",
+    "l4": "ℤ is closed under addition, additive inverses, and multiplication, and satisfies the distributive law. It is not closed under multiplicative inverses: only 1 and −1 have integer reciprocals.",
+    "l5": "Closure under +, −, and × plus distributivity makes ℤ a ring; failure of multiplicative inverses is what stops it being a field.",
+    "l6": "ℤ is a commutative ring with identity; the same axioms govern polynomials and square matrices, which is why the word ring earns its keep.",
+    "l7": "ℤ is closed under addition, negation, and multiplication and satisfies the distributive law, making it a commutative ring with identity; only ±1 are units, so ℤ is not a field.",
+    "l8": "ℤ is an integral domain whose units are ±1; the ring axioms are exactly the properties used in every integer proof, and abstraction of them is the starting point of algebra."
+  },
   "kernel": "ℤ is closed under addition, additive inverses, and multiplication, and satisfies the distributive law — this makes it a ring. It is not closed under multiplicative inverses: only 1 and −1 have integer reciprocals.",
   "objectives": [
     "State the four closure properties",

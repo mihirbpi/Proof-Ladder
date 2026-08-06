@@ -1,0 +1,99 @@
+---
+level: l7
+title: Your first proof
+readingTimeMin: 10
+newTerms: ["proof", "Discussion", "direct proof"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Everything so far has been about what statements *mean*. This module is about what it takes to establish one — and, just as importantly, about what a written proof is for.
+
+A **proof** of a statement $S$ is a finite sequence of assertions, ending in $S$, in which each assertion is either an axiom, a previously established theorem, a hypothesis of $S$, or a consequence of earlier assertions by a rule of inference. That is the definition a logician gives. It is correct, and it is not how anybody writes. What people actually write is prose, in which the logical skeleton is carried by connective words — *since*, *hence*, *because*, *so*, *therefore* — and the reader is trusted to reconstruct the skeleton. Learning to write proofs is learning how much of the skeleton to leave to the reader.
+
+## Direct proof of a conditional
+
+Nearly every theorem has the form $p \Rightarrow q$, and §1.5 established that $p \Rightarrow q$ is false in exactly one case: $p$ true, $q$ false. To prove the conditional is therefore to rule that case out. The **direct proof** does so head-on: assume $p$, and derive $q$.
+
+The named move is **start from what you're given**.
+
+## The proposition
+
+> **Proposition.** For all $x \in \mathbb{R}$, if $x > 1$ then $x^2 > 1$.
+
+The statement is a universally quantified conditional, so a proof must handle an arbitrary $x$ — we may not choose a convenient one. (Module 1.12 makes the arbitrary-element discipline precise.)
+
+We will use two ordered-field facts about $\mathbb{R}$, and it is worth naming them rather than letting them pass unremarked:
+
+- **(O1)** If $a > b$ and $c > 0$ then $ac > bc$.
+- **(O2)** $>$ is transitive: $a > b$ and $b > c$ imply $a > c$.
+
+## Discussion
+
+<Discussion>
+  <div slot="know">$x \in \mathbb{R}$ and $x > 1$. Available tools: (O1) and (O2), and the fact that $1 > 0$.</div>
+  <div slot="want">$x^2 > 1$.</div>
+  <div slot="how">The goal involves $x^2 = x \cdot x$, and the hypothesis is a statement about $x$ alone. The natural bridge is to multiply the hypothesis by $x$ — legal by (O1) provided $x > 0$, which follows from $x > 1 > 0$ by (O2). That gives $x^2 > x$; combining with $x > 1$ by (O2) again finishes.</div>
+</Discussion>
+
+The Discussion is where the *choice* happens: we noticed the mismatch between what the hypothesis is about ($x$) and what the goal is about ($x^2$), and we picked the operation that closes the gap. The proof records the route; the Discussion records why that route.
+
+## Proof
+
+<Proof>
+Let $x \in \mathbb{R}$ satisfy $x > 1$.
+
+Since $x > 1$ and $1 > 0$, transitivity (O2) gives $x > 0$.
+
+Applying (O1) to the inequality $x > 1$ with the positive multiplier $x$, we obtain $x \cdot x > 1 \cdot x$, i.e.
+$$x^2 > x.$$
+
+Combining $x^2 > x$ with the hypothesis $x > 1$, transitivity (O2) yields $x^2 > 1$, as required.
+</Proof>
+
+## Why the Discussion is separate — and why it disappears
+
+Open any research paper and you will find no Discussion sections. Published proofs present the route and suppress the search. This is not secrecy; it is compression. A referee needs to verify correctness, and the shortest correct presentation is the easiest to verify.
+
+The cost is real, though: a student reading a published proof sees a sequence of steps each of which is *checkable* but none of which is *motivated*, and concludes that mathematicians simply know which step to take. They do not. They tried three things that failed. The Discussion section is a pedagogical restoration of the deleted search, and Math 0 keeps it for exactly that reason. Write one for every proof you produce this year; you will stop needing to write them down long before you stop needing to do them.
+
+<Warning title="Three ways a proof goes wrong at the level of structure">
+**Assuming the conclusion.** Any proof that begins "Suppose $x^2 > 1$" is not proving $x > 1 \Rightarrow x^2 > 1$.
+
+**Reversible-step drift.** Starting from the goal and manipulating until you reach something true proves nothing unless every step is reversible *and you say so*. "$x^2 > 1 \Leftrightarrow x^2 - 1 > 0 \Leftrightarrow \ldots$" is legitimate only if each $\Leftrightarrow$ is genuinely a biconditional; students frequently write $\Leftrightarrow$ where only $\Rightarrow$ holds. Safer: run the chain forwards.
+
+**Unchecked side conditions.** (O1) requires $c > 0$. A proof that multiplies an inequality by $x$ without establishing $x > 0$ has a hole, even if the conclusion happens to be true. Most incorrect proofs die here rather than at a spectacular logical error.
+</Warning>
+
+## A second proof, for the shape
+
+> **Proposition.** If $m$ and $n$ are even integers, then $m + n$ is even.
+
+<Proof>
+Suppose $m$ and $n$ are even. By definition, there exist integers $j, k$ with $m = 2j$ and $n = 2k$.
+
+Then
+$$m + n = 2j + 2k = 2(j + k).$$
+Since $j + k \in \mathbb{Z}$, the integer $m + n$ is twice an integer, hence even by definition.
+</Proof>
+
+Both proofs share a rhythm worth naming explicitly:
+
+1. Assume the hypothesis and **immediately translate it into usable form** via the relevant definition ("even" becomes "$= 2j$ for some integer $j$").
+2. Manipulate.
+3. **Recognise the target form** and cite the definition in the other direction.
+
+A very large fraction of introductory proofs are exactly this: unfold definitions, do algebra, refold definitions. If a proof feels impossible, check first whether you have actually written down what the words in it mean.
+
+<Aside>
+The existential quantifier in "there exist integers $j,k$" is doing quiet work. Because $j$ and $k$ are *fixed but unknown* after we name them, we may compute with them freely; because they were obtained from the hypothesis rather than chosen by us, the argument applies to every even $m, n$. §1.12 names this move.
+</Aside>
+
+<WhereThisGoes level="l7">
+The notion of proof used here is informal — rigorous by mathematical practice, not mechanically checkable. Making it mechanical is the subject of **proof theory**: fix a formal language, a list of axioms, and finitely many inference rules, and a proof becomes a finite object a machine can verify. That programme delivered Gödel's completeness theorem (everything semantically valid is derivable), his incompleteness theorems (any sufficiently strong consistent system leaves true statements underivable), and, in practice, proof assistants such as Lean, Coq, and Isabelle, in which substantial modern theorems have now been formalised. The gap between the paragraph you just read and its formal counterpart is roughly two orders of magnitude in length — which is a precise measure of how much a working proof leaves to the reader.
+</WhereThisGoes>

@@ -1,0 +1,57 @@
+---
+level: l2
+title: Tracing back respects the hoops
+readingTimeMin: 3
+newTerms: ["trace back"]
+anchorExample: "the cubby machine"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Aside from '@/components/Aside.astro';
+
+<Figure alt="Four children on the left with one arrow each; Sam goes to cubby 1, Pip and Ada to cubby 2, Bo to cubby 3." caption="Four children, three cubbies.">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada", "Bo"]} right={["1", "2", "3"]}
+    edges={[[0,0],[1,1],[2,1],[3,2]]} />
+</Figure>
+
+## One cubby at a time
+
+**Trace back** from cubby 1: you get Sam.
+
+Trace back from cubby 2: you get Pip and Ada.
+
+## Two cubbies at once
+
+Now put cubbies 1 and 2 together into one little group. Trace back from that whole group.
+
+Who lands in cubby 1 or cubby 2? Sam, Pip, and Ada.
+
+And look — that is exactly Sam, joined with Pip and Ada.
+
+> Trace back from a group = trace back from each one, then join.
+
+## Try the overlap
+
+Now try it the other way. Take the *overlap* of two groups instead of joining them.
+
+Cubbies $\{1, 2\}$ and cubbies $\{2, 3\}$ overlap at cubby 2.
+
+- Trace back from $\{1,2\}$: Sam, Pip, Ada.
+- Trace back from $\{2,3\}$: Pip, Ada, Bo.
+- What is in *both* of those answers? Pip and Ada.
+- And tracing back from the overlap $\{2\}$ gives: Pip and Ada. Same!
+
+It works for overlaps too. And it works for outsides too.
+
+Tracing back gets along with hoops perfectly, every single time.
+
+<Aside>
+Going *forwards* is not so tidy. If you circle two groups of children and look at where they land, the overlap can go wrong — two different children can land in the same cubby. You will see that carefully in a few years. For now: backwards is the well-behaved direction.
+</Aside>
+
+<TryIt>
+Draw a machine with 4 things going to 3 things. Pick two targets. Trace back from each, then from both at once. Check you got the same answer.
+</TryIt>

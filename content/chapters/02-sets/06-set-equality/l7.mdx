@@ -1,0 +1,108 @@
+---
+level: l7
+title: Set equality by double inclusion
+readingTimeMin: 10
+newTerms: ["double inclusion", "extensionality"]
+anchorExample: "roots of sin x and cos x"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+## Equality is mutual inclusion
+
+$$
+S = T \quad\Longleftrightarrow\quad S \subseteq T \;\wedge\; T \subseteq S.
+$$
+
+This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$, a biconditional decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
+
+Equivalently: **double inclusion is antisymmetry of $\subseteq$**, the third partial-order axiom whose proof was deferred in §2.3.
+
+The named move is **check both boxes**. The template:
+
+> ($\subseteq$) Let $x \in S$ be arbitrary; … ; hence $x \in T$.
+> ($\supseteq$) Let $x \in T$ be arbitrary; … ; hence $x \in S$.
+
+## Disjunction dictates cases
+
+$x \in S \cup T$ unfolds to a disjunction, and a disjunctive hypothesis must be discharged by cases (§1.12). This is the structural fact that shapes nearly every proof remaining in the chapter, and it comes with a useful asymmetry:
+
+| | Proving membership | Using membership |
+|---|---|---|
+| $S \cup T$ | cheap — establish one disjunct | expensive — case split |
+| $S \cap T$ | expensive — establish both conjuncts | cheap — take the conjunct you want |
+
+Reading a goal in this light usually tells you in advance which direction of a double inclusion will be the hard one.
+
+## The proposition
+
+$$
+S = \{x \in \mathbb{R} \mid \sin x = 0\},\quad
+T = \{x \in \mathbb{R} \mid \cos x = 0\},\quad
+R = \{x \in \mathbb{R} \mid \sin x \cos x = 0\}.
+$$
+
+> **Proposition.** $S \cup T = R$.
+
+<Discussion>
+  <div slot="know">Membership in $S \cup T$ is a disjunction; membership in $R$ is a single equation. The bridge is that $\mathbb{R}$ is an integral domain: $ab = 0 \Rightarrow a = 0 \vee b = 0$.</div>
+  <div slot="want">Both inclusions.</div>
+  <div slot="how">($\subseteq$) hypothesis is a disjunction — split, and use only $0 \cdot a = 0$, which holds in any ring. ($\supseteq$) hypothesis is a vanishing product — the integral-domain property produces the disjunction directly. The two halves therefore consume different amounts of structure.</div>
+</Discussion>
+
+<Proof>
+($\subseteq$) Let $x \in S \cup T$, so $\sin x = 0$ or $\cos x = 0$.
+
+*Case 1: $\sin x = 0$.* Then $\sin x \cos x = 0 \cdot \cos x = 0$.
+*Case 2: $\cos x = 0$.* Then $\sin x \cos x = \sin x \cdot 0 = 0$.
+
+The cases are exhaustive, and in each $x \in R$.
+
+($\supseteq$) Let $x \in R$, so $\sin x \cos x = 0$. Since $\mathbb{R}$ is an integral domain, a product vanishes only if a factor does, so $\sin x = 0$ or $\cos x = 0$; that is, $x \in S \cup T$.
+
+Both inclusions hold, hence $S \cup T = R$.
+</Proof>
+
+The dependence of the reverse inclusion on the absence of zero divisors is the mathematically interesting feature. Over $\mathbb{Z}/6\mathbb{Z}$ the analogous statement fails, since $2 \cdot 3 = 0$ with neither factor zero. Tracking which half of a proof consumes which hypothesis is how one learns the natural generality of a theorem.
+
+One may also identify $R$ explicitly: $\sin x \cos x = \tfrac12 \sin 2x$, so $R = \{n\pi/2 \mid n \in \mathbb{Z}\}$. Proving *that* equality is another double inclusion, and it is where $S = \{n\pi\}$ and $T = \{\pi/2 + n\pi\}$ get identified individually.
+
+## A chain of equivalences, done carefully
+
+Sometimes both inclusions can be run simultaneously:
+$$
+x \in S \cup (S \cap T)
+\iff (x \in S) \vee \big((x \in S) \wedge (x \in T)\big)
+\iff x \in S,
+$$
+the last step by the absorption law $p \vee (p \wedge q) \equiv p$. This is legitimate — every step is a genuine biconditional — and it proves $S \cup (S \cap T) = S$ in one line.
+
+<Warning title="When the chain is not safe">
+An $\iff$ chain replaces two inclusions only if **every** link is reversible. In set theory the links are usually definitional unfoldings, which are biconditional, so the technique is generally sound. It stops being sound the moment a step is an implication in disguise — applying a non-injective operation, or using a lemma with a converse you have not proved.
+
+Two further failure modes, both endemic:
+- **Proving one direction.** Label ($\subseteq$) and ($\supseteq$) and count.
+- **Omitting a case.** A disjunctive hypothesis needs every disjunct treated. "Similarly" is acceptable only when the argument really is symmetric.
+</Warning>
+
+## Why "obviously equal" is never enough
+
+Two descriptions of a set may be extensionally identical and syntactically unrecognisable as such:
+$$
+\{x \in \mathbb{R} \mid \sin x = 0\} = \{n\pi \mid n \in \mathbb{Z}\},
+\qquad
+\{n \in \mathbb{Z} \mid 12 \mid n \text{ and } 18 \mid n\} = \{n \in \mathbb{Z} \mid 36 \mid n\}.
+$$
+Each is a theorem with two halves, and in each case one half is substantially harder than the other. The value of double inclusion is precisely that it does not consult your intuition about whether two descriptions "look the same".
+
+<Aside>
+The method generalises far beyond sets. Proving two subgroups, two ideals, two topologies, or two $\sigma$-algebras equal is always mutual inclusion. Proving two functions equal is the pointwise analogue: same domain, same codomain, and $f(x) = g(x)$ for every $x$ — which is extensionality one level up (§3.1).
+</Aside>
+
+<WhereThisGoes level="l7">
+Extensionality — the principle that an object is determined by what it contains, or by what it does — is a design decision, not a theorem, and different foundations decide differently. In intensional type theory two functions with the same values need not be judgmentally equal, and function extensionality must be assumed as an axiom; this is why formalising ordinary "obvious" set identities in Coq or Agda is more work than it looks. Homotopy type theory reframes the whole question via the univalence axiom, under which equality of structures *is* isomorphism, and double inclusion becomes a special case of a much broader principle about identifying equivalent objects.
+</WhereThisGoes>

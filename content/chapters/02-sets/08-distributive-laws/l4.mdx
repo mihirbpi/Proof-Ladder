@@ -1,0 +1,99 @@
+---
+level: l4
+title: Distributive laws
+readingTimeMin: 7
+newTerms: ["distributive law"]
+anchorExample: "three hoops on the floor"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+S \cap (T \cup R) = (S \cap T) \cup (S \cap R) \tag{D1}
+$$
+$$
+S \cup (T \cap R) = (S \cup T) \cap (S \cup R) \tag{D2}
+$$
+
+(D1) is the familiar shape, with $\cap$ where $\times$ goes and $\cup$ where $+$ goes. (D2) has no arithmetic counterpart: $a + bc \neq (a+b)(a+c)$ in general. In sets, **both** operations distribute over the other, and neither is subordinate.
+
+Both laws are transcriptions of logical equivalences (module 1.3):
+$$
+p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r),
+\qquad
+p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r),
+$$
+each verifiable by an eight-row truth table.
+
+## Proof of (D1)
+
+<Discussion>
+  <div slot="know">$x \in S \cap (T \cup R) \iff (x \in S) \wedge \big((x \in T) \vee (x \in R)\big)$, and $x \in (S \cap T) \cup (S \cap R) \iff \big((x\in S)\wedge(x\in T)\big) \vee \big((x\in S)\wedge(x\in R)\big)$.</div>
+  <div slot="want">Double inclusion.</div>
+  <div slot="how">Both directions carry a disjunction in the hypothesis, so both need a case split (module 1.12). The forward split is on $T$ versus $R$; the backward split is on which of the two intersections $x$ lies in.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $x \in S \cap (T \cup R)$ be arbitrary. Then $x \in S$, and $x \in T$ or $x \in R$. Split on that disjunction.
+
+*Case 1: $x \in T$.* With $x \in S$, we get $x \in S \cap T \subseteq (S\cap T) \cup (S \cap R)$.
+
+*Case 2: $x \in R$.* With $x \in S$, we get $x \in S \cap R \subseteq (S\cap T) \cup (S \cap R)$.
+
+The cases are exhaustive, so $x \in (S \cap T) \cup (S \cap R)$.
+
+**($\supseteq$)** Let $x \in (S \cap T) \cup (S \cap R)$ be arbitrary, and split on the outer disjunction.
+
+*Case 1: $x \in S \cap T$.* Then $x \in S$ and $x \in T$; the latter gives $x \in T \cup R$. Hence $x \in S \cap (T \cup R)$.
+
+*Case 2: $x \in S \cap R$.* Then $x \in S$ and $x \in R$, so $x \in T \cup R$, and again $x \in S \cap (T \cup R)$.
+
+Both inclusions hold, so (D1) is proved.
+</Proof>
+
+## Proof of (D2)
+
+The reverse inclusion here contains the one genuinely interesting step in the module.
+
+<Proof>
+**($\subseteq$)** Let $x \in S \cup (T \cap R)$; split.
+
+*Case 1: $x \in S$.* Then $x \in S \cup T$ and $x \in S \cup R$, so $x \in (S \cup T) \cap (S \cup R)$.
+
+*Case 2: $x \in T \cap R$.* Then $x \in T$, giving $x \in S \cup T$; and $x \in R$, giving $x \in S \cup R$. Again $x$ lies in the intersection.
+
+**($\supseteq$)** Let $x \in (S \cup T) \cap (S \cup R)$, so $x \in S \cup T$ **and** $x \in S \cup R$. We must show $x \in S$ or $x \in T \cap R$. Split on whether $x \in S$.
+
+*Case 1: $x \in S$.* Then immediately $x \in S \cup (T \cap R)$.
+
+*Case 2: $x \notin S$.* From $x \in S \cup T$ and $x \notin S$ we get $x \in T$. From $x \in S \cup R$ and $x \notin S$ we get $x \in R$. Hence $x \in T \cap R$, so $x \in S \cup (T \cap R)$.
+
+Both inclusions hold, so (D2) is proved.
+</Proof>
+
+The move in Case 2 — *from $p \vee q$ and $\neg p$, conclude $q$* — is called **disjunctive syllogism**, and it is the standard way to extract value from a union hypothesis when one side can be ruled out. Note also the shape of the case split itself: it was on $x \in S$ versus $x \notin S$, a split licensed by $p \vee \neg p$ rather than by anything in the hypothesis. That is always available, and it is often the right move when nothing else presents itself.
+
+## The two laws are duals
+
+Swapping $\cap \leftrightarrow \cup$ turns (D1) into (D2). Module 2.7 explains why this is not a coincidence: complementation is an involution exchanging $\cap$ and $\cup$, so complementing both sides of (D1) and applying De Morgan yields (D2). Concretely:
+$$
+\overline{S \cap (T \cup R)} = \overline S \cup \overline{(T \cup R)} = \overline S \cup (\overline T \cap \overline R),
+$$
+and doing the same to the right-hand side of (D1) gives $(\overline S \cup \overline T) \cap (\overline S \cup \overline R)$. So (D1) for $S,T,R$ *is* (D2) for $\overline S, \overline T, \overline R$. One proof, two theorems.
+
+<Warning title="Arithmetic intuition is only half right">
+$\cap$ behaves like $\times$ and $\cup$ like $+$ in (D1), and that analogy will get you through many manipulations. It breaks in three places worth remembering:
+
+- $S \cup S = S$, but $a + a \neq a$;
+- (D2) holds for sets but not for numbers;
+- there is no subtraction: $S \cup T = S \cup R$ does not imply $T = R$.
+
+Verify set identities by element chasing, not by analogy.
+</Warning>
+
+<Aside>
+Together with commutativity, associativity, absorption, De Morgan, and the complement laws, these make $(\mathcal{P}(X), \cup, \cap, \overline{\phantom{x}}, \emptyset, X)$ a **Boolean algebra**. The distributive laws are the ones that fail in the nearest interesting non-example: the subspaces of a vector space form a lattice under $+$ and $\cap$ that is **not** distributive — take three distinct lines through the origin in $\mathbb{R}^2$ and check (D1) yourself. That failure is the algebraic reason quantum logic is not classical logic.
+</Aside>

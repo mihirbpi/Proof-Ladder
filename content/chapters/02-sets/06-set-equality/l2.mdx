@@ -1,0 +1,58 @@
+---
+level: l2
+title: When two boxes are the same
+readingTimeMin: 4
+newTerms: ["check both boxes"]
+anchorExample: "two toy boxes"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Warning from '@/components/Warning.astro';
+
+Two boxes are **the same box** when they hold exactly the same things. Not similar. Not close. Exactly.
+
+And to show that, you have to **check both boxes** — the same move you learned in module 1.9.
+
+| Check | What you do |
+|---|---|
+| ☐ 1 | Everything in box $A$ is also in box $B$. |
+| ☐ 2 | Everything in box $B$ is also in box $A$. |
+
+Both checks, or nothing.
+
+## Why one check is not enough
+
+Say $A$ is the box with a cat and a dog. Say $B$ is the box with a cat, a dog, and a duck.
+
+Check 1: is everything in $A$ also in $B$? Cat — yes. Dog — yes. **Passed!**
+
+If you stopped now, you would say the boxes are the same. But they are not! $B$ has a duck.
+
+Check 2 catches it: the duck is in $B$ and not in $A$. **Failed.**
+
+That is why you always do both.
+
+## A number one
+
+Let $A$ be the box of numbers you get by doubling: $2, 4, 6, 8, 10, \ldots$
+
+Let $B$ be the box of even numbers.
+
+Are they the same box?
+
+<Proof level="l2">
+**Check 1.** Take any one thing from $A$. It is some number doubled. Doubling makes two equal piles, so it is even. So it is in $B$. ✓
+
+**Check 2.** Take any one thing from $B$. It is even, so it splits into two equal piles. Take one pile — that is the number we doubled. So it is in $A$. ✓
+
+Both checks passed. So $A$ and $B$ are the same box.
+</Proof>
+
+<Warning title="Looking the same is not the same">
+Two boxes can be described in totally different words and still be the same box. *Doubled numbers* and *even numbers* sound different. They are not. The only thing that matters is what is inside.
+</Warning>
+
+<TryIt>
+Describe a group of things two different ways — say, *the things I can eat* and *the things in the fruit bowl*. Then do check 1 and check 2 and see if the boxes really match.
+</TryIt>

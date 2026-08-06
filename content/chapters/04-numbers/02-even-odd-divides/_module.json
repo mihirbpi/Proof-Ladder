@@ -13,6 +13,17 @@
     "l7": "Even, odd, and divides",
     "l8": "Even, odd, and divides"
   },
+  "kernelIdea": "n is even iff n = 2k for some integer k; odd iff n = 2k+1. Generally m | n iff n = mk for some k ∈ ℤ. Divisibility is an existence statement, so proving it means producing the k.",
+  "kernels": {
+    "l1": "Some piles share fairly between two people. Some leave one over.",
+    "l2": "A number is even when it splits into two equal piles with nothing left over, and odd when exactly one is left over. That is the reason behind the last-digit trick.",
+    "l3": "A number is even exactly when it equals 2 times a whole number, and odd when it equals 2 times a whole number plus 1. More generally m divides n when n equals m times a whole number.",
+    "l4": "n is even iff n = 2k for some k ∈ ℤ, odd iff n = 2k+1. In general m | n iff n = mk for some k ∈ ℤ. Divisibility is an existence claim, so proving it means producing the k.",
+    "l5": "Divisibility m | n is the existential statement ∃k ∈ ℤ, n = mk; the k must be an integer, and exhibiting it is the whole proof.",
+    "l6": "Even, odd, and divides are all existential statements about integers; the quantifier structure is what dictates how they are proved and disproved.",
+    "l7": "Parity and divisibility are existential statements over ℤ: m | n means ∃k ∈ ℤ with n = mk. Proving divisibility means exhibiting the cofactor and confirming it is an integer.",
+    "l8": "Divisibility is the preorder on ℤ induced by the multiplicative monoid; it is the shadow of the ideal containment (n) ⊆ (m), which is how the notion generalises to arbitrary rings."
+  },
   "kernel": "n is even iff n = 2k for some integer k; odd iff n = 2k+1. Generalizing: m | n iff n = mk for some k ∈ ℤ. Divisibility is an existence statement, so proving it means producing the k.",
   "objectives": [
     "Use the algebraic definitions of even and odd",

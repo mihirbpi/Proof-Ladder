@@ -1,0 +1,72 @@
+---
+level: l2
+title: Arrows that never land together
+readingTimeMin: 4
+newTerms: ["no-sharing machine"]
+anchorExample: "the cubby machine"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Warning from '@/components/Warning.astro';
+
+Some machines are tidier than others. Here is the tidiness this module is about.
+
+## A sharing machine
+
+<Figure alt="Three children on the left; Sam and Pip both have arrows landing on cubby 2, Ada goes to cubby 1, and cubby 3 is unused." caption="Sam and Pip both land on cubby 2. That is sharing.">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,1],[2,0]]} />
+</Figure>
+
+Two arrows land on cubby 2. That is a **sharing** machine.
+
+## A no-sharing machine
+
+<Figure alt="Three children on the left, each with an arrow landing on a different cubby; no two arrows land together." caption="Every arrow lands somewhere different. No sharing!">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0],[2,2]]} />
+</Figure>
+
+Now no two arrows land in the same place. This is a **no-sharing machine**.
+
+## How to spot one
+
+Look at the *right* side. Count the arrows landing on each thing.
+
+- 0 arrows? Fine.
+- 1 arrow? Fine.
+- 2 or more arrows? **Sharing.** Not a no-sharing machine.
+
+So: every landing spot must have at most one arrow.
+
+## Why it matters
+
+In a no-sharing machine, you can always work backwards.
+
+Somebody hands you a coat from cubby 2. Whose is it? In the tidy machine, there is exactly one answer. In the sharing machine, you are stuck.
+
+<Warning title="Check the right side, not the left">
+In module 3.1, you checked the *left* side to see if something was a machine at all. Now you check the *right* side to see if it is tidy. Different question, different side.
+</Warning>
+
+## A number one
+
+Try the doubling machine: put in a number, get double.
+
+$1 \to 2$. $2 \to 4$. $3 \to 6$.
+
+Does anything share? Could two different numbers double to the same thing? No! If your answers are the same, you must have started with the same number.
+
+So doubling is a no-sharing machine.
+
+Now try the machine that ignores the minus sign: $3 \to 3$, and $-3 \to 3$ too.
+
+Uh oh. Two different starts, one answer. **Sharing!**
+
+<TryIt>
+Draw a machine with 4 arrows. Make it share once on purpose. Then fix it so nothing shares.
+</TryIt>

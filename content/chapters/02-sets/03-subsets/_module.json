@@ -13,6 +13,17 @@
     "l7": "Subsets",
     "l8": "Subsets"
   },
+  "kernelIdea": "A ⊆ S means every element of A is in S. To prove it, take an arbitrary x ∈ A and show x ∈ S. ∅ is a subset of everything (vacuously). Subset is transitive.",
+  "kernels": {
+    "l1": "A little box is inside a big box when every single thing in the little one is also in the big one.",
+    "l2": "One box is part of another when everything in the first box is also in the second. To check, take any one thing from the little box and follow it into the big box. An empty box is part of every box.",
+    "l3": "A ⊆ S means every element of A is also an element of S. To prove it, take any one and follow it: pick an element of A that you know nothing special about, and show it lands in S. The empty set is a subset of every set.",
+    "l4": "A ⊆ S means ∀x, x ∈ A ⇒ x ∈ S. The proof method is element chasing: take an arbitrary x ∈ A and follow it to S. ∅ ⊆ S vacuously, and ⊆ is transitive.",
+    "l5": "Subset is a universally quantified conditional, so its proof is an arbitrary-element argument; ∅ ⊆ S holds vacuously and ⊆ is transitive and reflexive.",
+    "l6": "A ⊆ S is the statement ∀x (x ∈ A ⇒ x ∈ S); element chasing is the proof technique it dictates, and ⊆ partially orders any collection of sets.",
+    "l7": "A ⊆ S abbreviates ∀x (x ∈ A ⇒ x ∈ S), so proving it means taking an arbitrary element of A and following it into S. Vacuous truth gives ∅ ⊆ S for every S, and ⊆ is a partial order.",
+    "l8": "⊆ is the partial order underlying the Boolean algebra of subsets; element chasing is the proof technique that all of naive set theory reduces to, and ∅ ⊆ S is vacuous truth in action."
+  },
   "kernel": "A ⊆ S means every element of A is in S. To prove it, take an arbitrary x ∈ A and show x ∈ S. ∅ is a subset of everything (vacuously). Subset is transitive.",
   "objectives": [
     "Decide subset relations",

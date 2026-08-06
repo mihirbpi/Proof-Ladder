@@ -1,0 +1,86 @@
+---
+level: l4
+title: One-to-one (injections)
+readingTimeMin: 7
+newTerms: ["injective", "one-to-one"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Definition
+
+$f : S \to T$ is **injective** (or **one-to-one**) when
+$$
+\forall s_1, s_2 \in S,\quad s_1 \neq s_2 \;\Rightarrow\; f(s_1) \neq f(s_2).
+$$
+
+Equivalently, by contraposition (module 1.7),
+$$
+\forall s_1, s_2 \in S,\quad f(s_1) = f(s_2) \;\Rightarrow\; s_1 = s_2. \tag{I}
+$$
+
+**Use form (I).** The two are logically identical, but the first has a negation as its hypothesis and negations give you nothing to substitute; the second hands you an equation. This is module 1.8's decision rule applied to a definition, and it is the reason essentially every injectivity proof in mathematics opens with "suppose $f(s_1) = f(s_2)$."
+
+In fibre language (module 3.3): $f$ is injective iff $|f^{-1}(\{t\})| \leq 1$ for every $t \in T$.
+
+## Proving injectivity
+
+The template is fixed:
+
+> Let $s_1, s_2 \in S$ with $f(s_1) = f(s_2)$. … Therefore $s_1 = s_2$. Hence $f$ is injective.
+
+> **Proposition.** $f : \mathbb{R} \to \mathbb{R}$, $f(x) = e^x$, is injective.
+
+<Discussion>
+  <div slot="know">$e^{a} = e^{b}$ for some reals $a, b$. Available: $e^x$ is strictly increasing, or equivalently $\ln$ is defined on $\mathbb{R}_{>0}$ and inverts $e^x$.</div>
+  <div slot="want">$a = b$.</div>
+  <div slot="how">Apply $\ln$ to both sides. Or, avoiding $\ln$: use strict monotonicity, which gives injectivity for any strictly increasing function.</div>
+</Discussion>
+
+<Proof>
+Let $a, b \in \mathbb{R}$ with $e^a = e^b$.
+
+Suppose $a \neq b$; without loss of generality $a < b$. Since $e^x$ is strictly increasing, $a < b$ implies $e^a < e^b$, contradicting $e^a = e^b$.
+
+Hence $a = b$, and $f$ is injective.
+</Proof>
+
+That argument proves something more general and worth stating: **every strictly monotone function is injective.** If $a < b$ forces $f(a) < f(b)$ (or always $f(a) > f(b)$), then distinct inputs cannot share an output. This is by far the commonest way injectivity gets established in practice.
+
+## Disproving injectivity
+
+One collision suffices — module 1.11's *one bad apple*, since injectivity is a universal claim.
+
+**$f(x) = x^2$ on $\mathbb{R}$:** $f(3) = f(-3) = 9$ with $3 \neq -3$. Not injective.
+
+**$m : \mathbb{Z}\times\mathbb{Z} \to \mathbb{Z}$, $m(a,b) = ab$:** $m(6,4) = 24 = m(2,12)$ with $(6,4) \neq (2,12)$. Not injective.
+
+**Floor:** $\lfloor 3.1 \rfloor = \lfloor 3.9 \rfloor = 3$. Not injective.
+
+Notice how cheap disproof is compared to proof. That asymmetry is module 1.12's table, and it is why you should always spend thirty seconds hunting for a collision before attempting a proof.
+
+<Warning title="Injectivity depends on the domain">
+$f(x) = x^2$ is not injective on $\mathbb{R}$. Restricted to $[0,\infty)$ it *is* injective: if $a, b \geq 0$ and $a^2 = b^2$ then $a^2 - b^2 = (a-b)(a+b) = 0$, and since $a + b > 0$ unless $a = b = 0$, we get $a = b$ in every case.
+
+Changing the domain changes the function (module 3.1), so it can change the answer. This is exactly why $\sqrt{\phantom{x}}$ is defined as the inverse of squaring *on the non-negatives*.
+</Warning>
+
+## Injectivity and the pre-image
+
+Injective functions are the ones whose images behave. Module 3.4 noted that $f(A \cap B) \subseteq f(A) \cap f(B)$ can be strict; equality for all $A, B$ holds precisely when $f$ is injective. Likewise $A = f^{-1}(f(A))$ for all $A \subseteq S$ exactly when $f$ is injective.
+
+So "injective" is not merely a curiosity about arrows. It is the condition under which the forward direction stops losing information.
+
+<Aside>
+The horizontal line test is (I) drawn on axes: a horizontal line meeting the graph twice exhibits two inputs with one output. Contrast the vertical line test, which asks whether the graph is a function at all (module 3.1). Two lines, two questions, frequently confused.
+</Aside>
+
+## What is still missing
+
+Injectivity says every $t \in T$ has *at most* one pre-image. It says nothing about whether every $t$ has *at least* one — some targets may be unhit. $e^x : \mathbb{R} \to \mathbb{R}$ is injective, yet no input produces $-1$.
+
+That other half is module 3.6, and having both at once is module 3.8.

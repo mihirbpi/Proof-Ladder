@@ -1,0 +1,118 @@
+---
+level: l7
+title: Pre-images respect set operations
+readingTimeMin: 9
+newTerms: []
+anchorExample: "f(x) = x²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Theorem.** Let $f : S \to T$. For all $U, V \subseteq T$ and every family $\{U_i\}_{i \in I}$ of subsets of $T$:
+> $$
+> f^{-1}\Big(\bigcup_i U_i\Big) = \bigcup_i f^{-1}(U_i),
+> \quad
+> f^{-1}\Big(\bigcap_i U_i\Big) = \bigcap_i f^{-1}(U_i),
+> \quad
+> f^{-1}\big(\overline U\big) = \overline{f^{-1}(U)}.
+> $$
+
+No hypotheses on $f$. The pre-image operator $f^{-1} : \mathcal{P}(T) \to \mathcal{P}(S)$ is a homomorphism of Boolean algebras, and it also preserves $\emptyset$, $T \mapsto S$, and inclusions.
+
+## The pivot
+
+Every proof reduces to
+$$
+x \in f^{-1}(U) \iff f(x) \in U, \tag{$\ast$}
+$$
+which is the definition. $(\ast)$ contains **no quantifier**, and that is the entire reason the theorem holds unconditionally.
+
+<Discussion>
+  <div slot="know">$(\ast)$; the unfoldings of $\bigcup$, $\bigcap$, and complement into $\exists$, $\forall$, $\neg$.</div>
+  <div slot="want">Three set equalities.</div>
+  <div slot="how">Chase an arbitrary $x \in S$ through a chain of biconditionals: apply $(\ast)$, unfold the set operation into a logical one, then apply $(\ast)$ pointwise to move back. Because every link is an equivalence, one chain proves both inclusions.</div>
+</Discussion>
+
+<Proof>
+Let $x \in S$ be arbitrary.
+
+*Unions.*
+$$
+x \in f^{-1}\Big(\bigcup_i U_i\Big)
+\iff f(x) \in \bigcup_i U_i
+\iff \exists i,\ f(x) \in U_i
+\iff \exists i,\ x \in f^{-1}(U_i)
+\iff x \in \bigcup_i f^{-1}(U_i).
+$$
+
+*Intersections.* Identical with $\forall$ in place of $\exists$.
+
+*Complements.*
+$$
+x \in f^{-1}(\overline U)
+\iff f(x) \in \overline U
+\iff \neg\big(f(x) \in U\big)
+\iff \neg\big(x \in f^{-1}(U)\big)
+\iff x \in \overline{f^{-1}(U)}.
+$$
+
+Each chain consists of biconditionals, so each establishes both inclusions.
+</Proof>
+
+Two features worth noting. The proofs work for arbitrary index sets $I$, since the quantifiers $\exists i$ and $\forall i$ never had to be finite. And the complements are taken in different universes — $T$ inside, $S$ outside — which is precisely why §2.5 insisted the universe be named.
+
+## The image operator, and its failures
+
+$$
+f\Big(\bigcup_i A_i\Big) = \bigcup_i f(A_i) \quad\text{always},
+$$
+$$
+f(A \cap B) \subseteq f(A) \cap f(B),\qquad
+f\big(\overline A\big) \text{ and } \overline{f(A)} \text{ unrelated.}
+$$
+
+The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f(a) = t$. Existential quantifiers commute with $\vee$ (hence with $\bigcup$) but not with $\wedge$: from $\exists a \in A,\ f(a)=t$ and $\exists b \in B,\ f(b)=t$ one cannot conclude that a *single* element of $A \cap B$ maps to $t$.
+
+**Counterexample.** $f(x)=x^2$ on $\mathbb{R}$, $A = \{2\}$, $B = \{-2\}$: $f(A \cap B) = \emptyset$ but $f(A) \cap f(B) = \{4\}$.
+
+> **Proposition.** $f(A \cap B) = f(A) \cap f(B)$ for all $A, B \subseteq S$ if and only if $f$ is injective.
+
+<Proof>
+($\Leftarrow$) Suppose $f$ injective. The inclusion $\subseteq$ always holds. For $\supseteq$: let $t \in f(A) \cap f(B)$, so $t = f(a) = f(b)$ with $a \in A$, $b \in B$. Injectivity gives $a = b$, so this common element lies in $A \cap B$ and $t \in f(A \cap B)$.
+
+($\Rightarrow$) Suppose $f$ is not injective, say $f(a) = f(b) = t$ with $a \neq b$. Take $A = \{a\}$, $B = \{b\}$. Then $f(A \cap B) = f(\emptyset) = \emptyset$ while $f(A)\cap f(B) = \{t\} \neq \emptyset$.
+</Proof>
+
+So every misbehaviour of the image operator is a symptom of non-injectivity, and all of it disappears for bijections.
+
+## The adjunction, stated properly
+
+For all $A \subseteq S$, $U \subseteq T$:
+$$
+f(A) \subseteq U \iff A \subseteq f^{-1}(U).
+$$
+That is, the image operator is **left adjoint** to the pre-image operator between the posets $(\mathcal{P}(S), \subseteq)$ and $(\mathcal{P}(T),\subseteq)$.
+
+This single fact explains the whole module. A left adjoint preserves all joins (unions) and need not preserve meets — which is exactly the behaviour of $f$. A right adjoint preserves all meets — and $f^{-1}$, being simultaneously a right adjoint to $f$ and a left adjoint to the operator $U \mapsto \{t : f^{-1}(\{t\}) \subseteq U\}$, preserves both. Being adjoint on both sides is a strong condition, and it is why $f^{-1}$ is the well-behaved operator.
+
+<Warning title="State conditions with pre-images">
+This is why continuity reads
+$$
+f \text{ continuous} \iff f^{-1}(\text{open}) \text{ is open},
+$$
+not $f(\text{open})$ open. The latter defines *open maps*, a genuinely different class: $f(x) = x^2$ is continuous but not open, since $f\big((-1,1)\big) = [0,1)$.
+
+The same choice appears in measure theory ($f^{-1}(\text{Borel})$ measurable), in the definition of the initial topology, and in the pullback of differential forms — which is contravariant, and well behaved, for exactly this reason.
+</Warning>
+
+<Aside>
+Because $f^{-1}$ reverses direction — a map $S \to T$ induces $\mathcal{P}(T) \to \mathcal{P}(S)$ — the assignment $S \mapsto \mathcal{P}(S)$ is a *contravariant* functor. Contravariance is the general phenomenon here: pullbacks of functions, of forms, of cohomology classes, and of sheaves are all contravariant, and all better behaved than their covariant counterparts.
+</Aside>
+
+<WhereThisGoes level="l7">
+The adjunction $f \dashv f^{-1}$ is the first example of an adjoint pair, and adjunctions are among the organising concepts of modern mathematics: free groups are left adjoint to forgetting, tensor product is left adjoint to hom, existential quantification is left adjoint to substitution, and limits are right adjoint to diagonal maps. The general theorem — left adjoints preserve colimits, right adjoints preserve limits — has as its smallest instance exactly the fact you just proved, that images respect unions and pre-images respect everything. The topological consequence is equally durable: defining continuity by pre-images is what makes it composable, and what lets the same definition serve for metric spaces, manifolds, schemes, and spaces of functions alike.
+</WhereThisGoes>

@@ -13,6 +13,17 @@
     "l7": "The rationals are a field",
     "l8": "The rationals are a field"
   },
+  "kernelIdea": "ℚ is closed under addition, additive inverses, multiplication, and multiplicative inverses of nonzero elements — this makes it a field.",
+  "kernels": {
+    "l1": "Half a cookie is a real amount. Pieces are numbers too.",
+    "l2": "When sharing does not come out whole, the answer is a piece of a whole — a fraction. Adding and multiplying fractions always gives you another fraction.",
+    "l3": "Adding, subtracting, multiplying, and dividing fractions always gives another fraction, as long as you never divide by zero. The reciprocal is exactly what the whole numbers were missing.",
+    "l4": "ℚ is closed under addition, additive inverses, multiplication, and multiplicative inverses of nonzero elements — this makes ℚ a field. A ring lacks the last property; a field has it.",
+    "l5": "ℚ satisfies every ring axiom plus the existence of multiplicative inverses for nonzero elements, which is what a field is; ℤ is a ring but not a field.",
+    "l6": "Fields are rings in which every nonzero element is a unit; ℚ and ℝ are fields, ℤ is not, and the closure proofs are just fraction arithmetic checked against the definitions.",
+    "l7": "ℚ is closed under all four field operations, with division defined for nonzero denominators, so ℚ is a field; the proofs are the standard fraction formulas read as closure statements.",
+    "l8": "ℚ is the field of fractions of ℤ, the smallest field containing it; finite fields ℤ/pℤ show that fields need not be infinite, and characteristic distinguishes them."
+  },
   "kernel": "ℚ is closed under addition, additive inverses, multiplication, and multiplicative inverses of nonzero elements — this makes it a field. The closure proofs are just fraction arithmetic checked against the definition.",
   "objectives": [
     "Verify each closure property with the standard fraction formulas",

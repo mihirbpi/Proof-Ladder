@@ -1,0 +1,34 @@
+---
+level: l1
+title: Two hoops
+readingTimeMin: 2
+newTerms: ["overlap"]
+anchorExample: "two hoops on the floor"
+readAloud: true
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+
+Two hoops on the floor. They cross in the middle.
+
+Left hoop: soft toys. Right hoop: blue toys.
+
+<Figure alt="Two overlapping circles. The left one holds soft toys, the right one holds blue toys, and the middle overlap holds toys that are both soft and blue.">
+  <VennTwo labelS="soft" labelT="blue" shade={["both"]} />
+</Figure>
+
+Here is a blue bunny. Soft? Yes. Blue? Yes. It goes in the middle — the **overlap**.
+
+Here is a blue truck. Blue but hard. Right hoop only.
+
+Here is a brown bear. Soft but not blue. Left hoop only.
+
+The **overlap** is the fussy part. Only things that pass *both* tests get to sit there.
+
+And everything in either hoop, all together? That is the whole pile.
+
+<TryIt>
+Make two hoops with string. Pick two rules. Now sort five toys and see how many land in the overlap.
+</TryIt>

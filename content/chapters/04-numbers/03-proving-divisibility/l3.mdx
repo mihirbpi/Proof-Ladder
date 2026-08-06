@@ -1,0 +1,89 @@
+---
+level: l3
+title: Proving divisibility facts
+readingTimeMin: 6
+newTerms: ["cofactor"]
+anchorExample: "divisibility"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 4.2 gave you a definition you can compute with: $m \mid n$ means $n = m \times k$ for some whole number $k$. This module turns that definition into a routine you can follow every time.
+
+## The template
+
+Every divisibility proof has four steps. Learn them once.
+
+1. **Unpack.** Turn each thing you are given into an equation, and give the hidden whole number a name. Use a **different** name for each one.
+2. **Do algebra.** Substitute, expand, rearrange.
+3. **Factor out.** Pull out the number you want to divide.
+4. **Check the leftover.** Say out loud that what remains is a whole number, and why.
+
+That last piece — the **cofactor** — is the witness you promised to produce. Do not skip step 4.
+
+## Divisibility passes along a chain
+
+> **Claim.** If $a \mid b$ and $b \mid c$, then $a \mid c$.
+
+<Discussion>
+  <div slot="know">$b$ is $a$ times something, and $c$ is $b$ times something. Two different somethings — so two different names.</div>
+  <div slot="want">$c$ is $a$ times some whole number.</div>
+  <div slot="how">Substitute the first equation into the second and see what multiplies $a$.</div>
+</Discussion>
+
+<Proof>
+Suppose $a \mid b$ and $b \mid c$. Unpacking, there are whole numbers $j$ and $k$ with
+$$b = a \times j \qquad \text{and} \qquad c = b \times k.$$
+
+Substituting the first into the second:
+$$c = (a \times j) \times k = a \times (j \times k).$$
+
+The cofactor is $j \times k$, and it is a whole number, because multiplying two whole numbers gives a whole number (module 4.1).
+
+So $c$ is $a$ times a whole number, which means $a \mid c$.
+</Proof>
+
+<Warning title="Use different letters">
+If you had written $b = a \times k$ and $c = b \times k$ with the *same* $k$, you would be claiming the two hidden numbers are equal — which nobody told you. That mistake produces a proof of something narrower than the claim, and it is very easy to make.
+</Warning>
+
+## Divisibility survives adding
+
+> **Claim.** If $a \mid b$ and $a \mid c$, then $a \mid (b + c)$.
+
+<Proof>
+Unpack: there are whole numbers $j$ and $k$ with $b = a \times j$ and $c = a \times k$.
+
+Then
+$$b + c = a \times j + a \times k = a \times (j + k),$$
+using the distributive law backwards.
+
+And $j + k$ is a whole number, since adding whole numbers gives a whole number.
+
+So $a \mid (b+c)$.
+</Proof>
+
+Same four steps. Unpack, algebra, factor out, check.
+
+## Something that looks true and is not
+
+> **Claim?** If $a \mid (b \times c)$, then $a \mid b$ or $a \mid c$.
+
+This feels reasonable. It is false.
+
+Take $a = 4$, $b = 2$, $c = 6$. Then $b \times c = 12$, and $4 \mid 12$. ✓
+
+But $4 \nmid 2$, and $4 \nmid 6$. ✗
+
+One counterexample and the claim is dead (module 1.11). What went wrong? $4$ is $2 \times 2$, and $12$ had one factor of $2$ from the $2$ and another from the $6$. Neither piece had enough on its own; $4$ sneaked in by borrowing from both.
+
+<Aside>
+The claim becomes true if $a$ is prime — a prime cannot be split across two factors, because it has no pieces to split. That fact is called Euclid's lemma, and it turns out to be the reason every whole number factors into primes in exactly one way.
+</Aside>
+
+## The habit
+
+Whenever you see a divisibility claim, ask yourself: what am I given, and what is the hidden whole number in each piece? Name them, and the algebra almost always finishes itself.

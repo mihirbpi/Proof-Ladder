@@ -1,0 +1,75 @@
+---
+level: l3
+title: Between any two rationals
+readingTimeMin: 5
+newTerms: ["midpoint", "dense"]
+anchorExample: "divisibility"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Between $4$ and $5$ there is no integer at all. The integers have gaps.
+
+Do the rationals have gaps? Pick two of them, as close together as you like, and ask whether anything fits between.
+
+The answer is no — and it is worth proving rather than assuming.
+
+## The claim
+
+> **Claim.** If $a$ and $b$ are rational numbers with $a < b$, then $\dfrac{a+b}{2}$ is a rational number and
+> $$a < \frac{a+b}{2} < b.$$
+
+The number $\tfrac{a+b}{2}$ is called the **midpoint** of $a$ and $b$.
+
+<Discussion>
+  <div slot="know">$a$ and $b$ are rational, and $a < b$. From module 4.5, $\mathbb{Q}$ is closed under adding and dividing by a non-zero number.</div>
+  <div slot="want">Three things: the midpoint is rational, it beats $a$, and it loses to $b$. Three separate checks.</div>
+  <div slot="how">Rationality is pure closure. For the two inequalities, start from $a < b$ and add the right thing to both sides.</div>
+</Discussion>
+
+## The proof
+
+<Proof>
+**The midpoint is rational.** $a + b$ is rational, because $\mathbb{Q}$ is closed under addition. Dividing by $2$ is multiplying by $\tfrac12$, which is rational, and $\mathbb{Q}$ is closed under multiplication. So $\tfrac{a+b}{2} \in \mathbb{Q}$.
+
+**It is bigger than $a$.** Start from $a < b$. Add $a$ to both sides:
+$$a + a < a + b, \quad\text{so}\quad 2a < a + b.$$
+Now divide both sides by $2$, which is positive so the inequality is preserved:
+$$a < \frac{a+b}{2}.$$
+
+**It is smaller than $b$.** Start from $a < b$ again, but this time add $b$ to both sides:
+$$a + b < b + b = 2b.$$
+Divide by $2$:
+$$\frac{a+b}{2} < b.$$
+
+All three checks pass, so the claim holds.
+</Proof>
+
+Notice the symmetry of the two inequality arguments: one adds $a$, the other adds $b$. Neither is harder; you just have to think of doing both.
+
+<Warning title="Rationality is not free">
+The first paragraph of the proof is doing real work. If we were working inside the *integers*, the midpoint of $3$ and $4$ would be $3\tfrac12$, which is not an integer — and the whole claim would collapse.
+
+Closure of $\mathbb{Q}$ (module 4.5) is exactly what makes the midpoint legal. Cite it.
+</Warning>
+
+## Infinitely many, in every gap
+
+Now repeat. Between $a$ and $b$ sits $m_1 = \tfrac{a+b}{2}$. Between $a$ and $m_1$ sits another rational $m_2$. Between $a$ and $m_2$ sits $m_3$.
+
+There is nothing to stop this. Every step produces a new rational strictly between $a$ and $b$, and the process never terminates.
+
+So: **between any two distinct rationals there are infinitely many rationals.** A set with this property is called **dense**.
+
+## The trap
+
+Dense sounds like *complete*. It is very tempting to conclude that the rationals fill the number line with nothing missing — after all, they leave no gap you can point to.
+
+Hold that thought. Module 4.7 shows it is false, and the demonstration is one of the most famous proofs in mathematics.
+
+<Aside>
+Here is how strange the situation is. The rationals are dense — every interval, however tiny, contains infinitely many. And yet there are *vastly* more numbers on the line that are not rational than are. Both facts are true at once, and reconciling them is genuinely difficult. Density and abundance are different things.
+</Aside>

@@ -13,6 +13,17 @@
     "l7": "And, or",
     "l8": "And, or"
   },
+  "kernelIdea": "\"p and q\" is true only when both are; \"p or q\" is true when at least one is (inclusive or). A statement always false is a contradiction; always true, a tautology.",
+  "kernels": {
+    "l1": "AND means both of them. OR means at least one of them — and both still counts.",
+    "l2": "A telling with AND in it is true only when both parts are true. A telling with OR in it is true when at least one part is true, and both parts being true is still fine.",
+    "l3": "Joining two statements with and gives a statement that is true only when both are true. Joining them with or gives one that is true when at least one is true — including when both are. A statement that is always false is a contradiction; one that is always true is a tautology.",
+    "l4": "p ∧ q is true exactly when p and q are both true. p ∨ q is true exactly when at least one of them is true, so it is still true when both are. A statement whose truth-table column is all F is a contradiction; all T, a tautology.",
+    "l5": "The connective ∧ is true only on the row where both conjuncts are true; ∨ is false only on the row where both disjuncts are false. Always-false statements are contradictions, always-true ones tautologies.",
+    "l6": "∧ and ∨ are binary connectives defined by their truth tables: p ∧ q holds iff both hold, p ∨ q holds iff at least one holds. p ∧ ¬p is a contradiction and p ∨ ¬p is a tautology, for every p.",
+    "l7": "Conjunction is true only when both conjuncts are; disjunction is inclusive, false only when both disjuncts fail. A contradiction is a statement false under every assignment; a tautology, one true under every assignment.",
+    "l8": "∧ and ∨ are the meet and join of the two-element Boolean algebra; contradictions and tautologies are its bottom and top elements, and they anticipate ∩ and ∪ on sets."
+  },
   "kernel": "\"p and q\" is true only when both are; \"p or q\" is true when at least one is (inclusive or). A statement always false is a contradiction; always true, a tautology.",
   "objectives": [
     "Evaluate compound claims",

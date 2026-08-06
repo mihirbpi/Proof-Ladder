@@ -1,0 +1,123 @@
+---
+level: l7
+title: Union and intersection
+readingTimeMin: 10
+newTerms: ["union", "intersection", "disjoint", "indexed family"]
+anchorExample: "roots of sin x and cos x"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+S \cup T = \{x \mid x \in S \vee x \in T\},
+\qquad
+S \cap T = \{x \mid x \in S \wedge x \in T\}.
+$$
+
+The definitions are transcriptions of $\vee$ and $\wedge$, and the working forms — the ones every proof in Chapter 2 unfolds to — are
+$$
+x \in S \cup T \iff (x \in S) \vee (x \in T),
+\qquad
+x \in S \cap T \iff (x \in S) \wedge (x \in T). \tag{$\ast$}
+$$
+
+<Figure alt="Two overlapping circles S and T, fully shaded: the union." caption="$S \cup T$">
+  <VennTwo labelS="S" labelT="T" shade={["S-only", "T-only", "both"]} />
+</Figure>
+
+<Figure alt="Two overlapping circles S and T with only the lens-shaped overlap shaded: the intersection." caption="$S \cap T$">
+  <VennTwo labelS="S" labelT="T" shade={["both"]} />
+</Figure>
+
+Since $\vee$ is inclusive, the union contains the intersection. Venn diagrams are legitimate for building intuition and for checking whether a proposed identity is plausible; they are not proofs, because a diagram of two or three sets encodes an assumption about which regions are nonempty that a general argument may not make.
+
+## Basic algebra
+
+All of the following are immediate from $(\ast)$ plus the corresponding fact about the connective:
+
+| Property | Statement | Logical source |
+|---|---|---|
+| Commutativity | $S \cup T = T \cup S$ | $\vee$ symmetric |
+| Associativity | $(S \cup T) \cup R = S \cup (T \cup R)$ | $\vee$ associative |
+| Idempotence | $S \cup S = S$ | $p \vee p \equiv p$ |
+| Identity | $S \cup \emptyset = S$, $S \cap X = S$ for $S \subseteq X$ | $p \vee F \equiv p$ |
+| Absorption | $S \cup (S \cap T) = S$ | $p \vee (p \wedge q) \equiv p$ |
+
+Associativity licenses $\bigcup$ over finitely many sets without parentheses.
+
+> **Proposition.** $S \cap T \subseteq S \subseteq S \cup T$.
+
+<Proof>
+Let $x \in S \cap T$. Then $x \in S \wedge x \in T$, so in particular $x \in S$. Hence $S \cap T \subseteq S$.
+
+Let $x \in S$. Then $(x \in S) \vee (x \in T)$ holds, its first disjunct being true; so $x \in S \cup T$. Hence $S \subseteq S \cup T$. Transitivity of $\subseteq$ chains the two.
+</Proof>
+
+The proofs are short because $p \wedge q \Rightarrow p$ and $p \Rightarrow p \vee q$ are tautologies. In lattice language, $S \cap T$ is the **greatest lower bound** of $S$ and $T$ in $(\mathcal{P}(X), \subseteq)$ and $S \cup T$ the **least upper bound** — meet and join. The two propositions above are half of that characterisation; the other half is that any set contained in both $S$ and $T$ is contained in $S \cap T$, which is equally quick.
+
+## Disjointness
+
+$S, T$ are **disjoint** when $S \cap T = \emptyset$. This is a universal negative, $\forall x\, \neg(x \in S \wedge x \in T)$, so §1.12 dictates an arbitrary-element argument.
+
+> **Proposition.** In $\mathbb{R}$, the zero sets of $\sin$ and $\cos$ are disjoint.
+
+<Discussion>
+  <div slot="know">$\sin^2 x + \cos^2 x = 1$ for all $x \in \mathbb{R}$.</div>
+  <div slot="want">No $x$ satisfies both $\sin x = 0$ and $\cos x = 0$.</div>
+  <div slot="how">Suppose some $x$ did. Substituting into the Pythagorean identity forces $0 = 1$. This is *suppose not* (§2.5) in its shortest possible form.</div>
+</Discussion>
+
+<Proof>
+Suppose, for contradiction, that some $x \in \mathbb{R}$ satisfies $\sin x = 0$ and $\cos x = 0$. Then
+$$1 = \sin^2 x + \cos^2 x = 0 + 0 = 0,$$
+which is false. Hence no such $x$ exists, and $\{x \mid \sin x = 0\} \cap \{x \mid \cos x = 0\} = \emptyset$.
+</Proof>
+
+Their union, by contrast, is not all of $\mathbb{R}$ — $x = \pi/4$ lies in neither. It *is* the zero set of $\sin x \cos x$, i.e. of $\tfrac12 \sin 2x$, giving $\{n\pi/2 \mid n \in \mathbb{Z}\}$; proving that equality is a double inclusion (§2.6).
+
+## gcd and lcm are meets and joins
+
+With $D_n$ the positive divisors and $M_n$ the positive multiples of $n$:
+$$
+D_{20} \cap D_{24} = \{1,2,4\}, \quad \max = 4 = \gcd(20,24),
+$$
+$$
+M_{12} \cap M_{18} = \{36,72,\ldots\} = M_{36}, \quad \min = 36 = \operatorname{lcm}(12,18).
+$$
+
+The second display contains a genuine theorem: the common multiples of $a$ and $b$ are exactly the multiples of $\operatorname{lcm}(a,b)$. Dually, $D_a \cap D_b = D_{\gcd(a,b)}$. These say that $\gcd$ and $\operatorname{lcm}$ are the meet and join of the divisibility partial order on $\mathbb{Z}_{>0}$ — a second lattice, and the reason gcd/lcm identities mirror $\cap$/$\cup$ identities so exactly. Both distributive laws hold there too, and for the same structural reason.
+
+## Indexed families
+
+For a family $\{A_i\}_{i \in I}$ of sets indexed by a set $I$:
+$$
+\bigcup_{i \in I} A_i = \{x \mid \exists i \in I,\; x \in A_i\},
+\qquad
+\bigcap_{i \in I} A_i = \{x \mid \forall i \in I,\; x \in A_i\}.
+$$
+
+The binary operations were $\vee$ and $\wedge$; the indexed ones are $\exists$ and $\forall$. This is the same escalation §1.11 described — quantifiers as infinitary connectives — and it is why De Morgan for indexed families,
+$$
+\overline{\bigcup_{i} A_i} = \bigcap_i \overline{A_i},
+$$
+is proved by exactly the argument that gives $\neg \exists \equiv \forall \neg$.
+
+Examples: $\bigcap_{n \in \mathbb{N}} (-\tfrac1{n+1}, \tfrac1{n+1}) = \{0\}$, and $\bigcup_{n \in \mathbb{N}} [-n, n] = \mathbb{R}$. Both require proof by double inclusion, and the first is the standard illustration that an infinite intersection of open sets need not be open — the observation that forces topology to close only under *finite* intersections.
+
+<Warning title="Venn diagrams are heuristics">
+A two-circle diagram presupposes that all four regions are nonempty. If you are proving an identity, the diagram may still guide you, but the proof must be element chasing. For three or more sets the diagrams stop being reliable anyway: no arrangement of circles produces all $2^n$ regions for $n \geq 4$.
+</Warning>
+
+<Aside>
+$(\mathcal{P}(X), \cup, \cap, \overline{\phantom{x}}, \emptyset, X)$ is a Boolean algebra, and every identity in this chapter is one of its axioms or a consequence. Stone's representation theorem says the converse: every Boolean algebra is isomorphic to an algebra of sets. So the intuition you build here about $\cup$ and $\cap$ is not one example among many — up to isomorphism it is the only example.
+</Aside>
+
+<WhereThisGoes level="l7">
+Which unions and intersections a family of subsets is closed under is the definition of the structures that organise modern mathematics. A **topology** on $X$ is a family closed under arbitrary unions and *finite* intersections — the asymmetry is exactly the $\bigcap (-1/n, 1/n) = \{0\}$ phenomenon above. A **$\sigma$-algebra** is closed under complement and countable unions, and it is the domain on which measures, and hence probability, are defined. A **filter** is a family closed upward and under finite intersection, used to make "eventually" precise in convergence arguments. In each case the underlying operations are the ones defined here; what differs is only which infinite operations are permitted, and that choice determines the whole subject.
+</WhereThisGoes>

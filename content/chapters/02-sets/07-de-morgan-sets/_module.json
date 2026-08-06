@@ -13,6 +13,17 @@
     "l7": "De Morgan's set laws",
     "l8": "De Morgan's set laws"
   },
+  "kernelIdea": "The complement of S ∩ T is S̄ ∪ T̄, and the complement of S ∪ T is S̄ ∩ T̄. These are the logic laws of 1.4 with ¬ ↔ complement, ∧ ↔ ∩, ∨ ↔ ∪.",
+  "kernels": {
+    "l1": "Outside both hoops is the same as outside this one and outside that one.",
+    "l2": "The outside of the overlap is the outside of one hoop joined with the outside of the other. The outside of both hoops together is where the two outsides overlap.",
+    "l3": "The outside of an intersection is the union of the outsides, and the outside of a union is the intersection of the outsides. Taking the outside swaps ∩ with ∪, exactly the way saying not swaps and with or.",
+    "l4": "The complement of S ∩ T is S̄ ∪ T̄, and the complement of S ∪ T is S̄ ∩ T̄. These are De Morgan's logic laws with ¬ read as complement, ∧ as ∩, and ∨ as ∪.",
+    "l5": "Complementation exchanges ∩ and ∪; each law is proved by double inclusion, with the logic law of 1.4 doing the work at the pivot.",
+    "l6": "Complementation is an order-reversing involution swapping meet and join in P(X); this is De Morgan duality one level up from Chapter 1.",
+    "l7": "Complementation exchanges intersection and union: the complement of S ∩ T is the union of the complements, and dually. The proof is a double inclusion whose pivot step is the logic law of §1.4.",
+    "l8": "De Morgan for sets is the same identity as for connectives, because P(X) and the two-element Boolean algebra satisfy the same equational theory; the laws extend verbatim to indexed families via ¬∀ ≡ ∃¬."
+  },
   "kernel": "S ∩ T = S̄ ∪ T̄ and S ∪ T = S̄ ∩ T̄. These are the logic laws of 1.4 with ¬ ↔ complement, ∧ ↔ ∩, ∨ ↔ ∪.",
   "objectives": [
     "State both laws",

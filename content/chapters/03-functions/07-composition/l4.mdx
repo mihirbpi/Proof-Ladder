@@ -1,0 +1,100 @@
+---
+level: l4
+title: Composition
+readingTimeMin: 7
+newTerms: ["composition"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Definition
+
+Given $f : S \to T$ and $g : T \to R$, the **composition** $g \circ f : S \to R$ is defined by
+$$
+(g \circ f)(s) = g\big(f(s)\big).
+$$
+
+It is defined **only** when the codomain of $f$ equals the domain of $g$:
+$$
+S \xrightarrow{\;f\;} T \xrightarrow{\;g\;} R.
+$$
+
+That $g \circ f$ is itself a function needs no separate check: it is total because $f$ and $g$ are, single-valued for the same reason, and lands in $R$ because $g$ does.
+
+<Warning title="Read right to left">
+$g \circ f$ means "$f$ first, then $g$" — read it as "$g$ after $f$". The order matches $g(f(s))$, where the inner function is evaluated first.
+
+Composition is not commutative. With $f(x) = x+1$ and $g(x) = 2x$ on $\mathbb{R}$:
+$$(g\circ f)(x) = 2(x+1) = 2x+2, \qquad (f \circ g)(x) = 2x + 1.$$
+Different functions. And frequently one of the two does not exist at all, because the codomains do not line up.
+</Warning>
+
+## Associativity
+
+For $f : S \to T$, $g : T \to R$, $h : R \to Q$:
+$$
+h \circ (g \circ f) = (h \circ g) \circ f,
+$$
+since both send $s$ to $h(g(f(s)))$. So $h \circ g \circ f$ needs no parentheses. Together with the identity functions $\mathrm{id}_S(s) = s$, which satisfy $f \circ \mathrm{id}_S = f = \mathrm{id}_T \circ f$, composition gives functions the structure of an algebraic system in their own right.
+
+## Composition preserves injectivity
+
+> **Proposition.** If $f : S \to T$ and $g : T \to R$ are both injective, so is $g \circ f$.
+
+<Discussion>
+  <div slot="know">Injectivity in the usable form (module 3.5): $f(s_1) = f(s_2) \Rightarrow s_1 = s_2$, and likewise for $g$.</div>
+  <div slot="want">$(g\circ f)(s_1) = (g\circ f)(s_2) \Rightarrow s_1 = s_2$.</div>
+  <div slot="how">Unfold the composition. The hypothesis becomes $g(f(s_1)) = g(f(s_2))$. Apply injectivity of $g$ to the arguments $f(s_1)$ and $f(s_2)$, which gives $f(s_1) = f(s_2)$; then apply injectivity of $f$. The two hypotheses get used in turn, outermost first.</div>
+</Discussion>
+
+<Proof>
+Let $s_1, s_2 \in S$ with $(g \circ f)(s_1) = (g \circ f)(s_2)$, i.e. $g(f(s_1)) = g(f(s_2))$.
+
+Since $f(s_1), f(s_2) \in T$ and $g$ is injective, $f(s_1) = f(s_2)$.
+
+Since $f$ is injective, $s_1 = s_2$.
+
+Hence $g \circ f$ is injective.
+</Proof>
+
+## Composition preserves surjectivity
+
+> **Proposition.** If $f : S \to T$ and $g : T \to R$ are both surjective, so is $g \circ f$.
+
+<Discussion>
+  <div slot="know">Every $r \in R$ has a $g$-pre-image in $T$; every $t \in T$ has an $f$-pre-image in $S$.</div>
+  <div slot="want">Every $r \in R$ has a $(g\circ f)$-pre-image in $S$.</div>
+  <div slot="how">Start from an arbitrary $r$ and pull back twice. This time the hypotheses are used innermost last: $g$ first to reach $T$, then $f$ to reach $S$ — the reverse of the injectivity proof, which is worth noticing.</div>
+</Discussion>
+
+<Proof>
+Let $r \in R$ be arbitrary. Since $g$ is surjective, there is $t \in T$ with $g(t) = r$. Since $f$ is surjective, there is $s \in S$ with $f(s) = t$.
+
+Then $(g \circ f)(s) = g(f(s)) = g(t) = r$.
+
+As $r$ was arbitrary, $g \circ f$ is surjective.
+</Proof>
+
+Combining the two: **a composition of bijections is a bijection** (module 3.8).
+
+## The partial converses
+
+The converses fail, but something weaker is true and worth sitting with.
+
+Suppose $g \circ f$ is injective. Must $f$ be? Must $g$?
+
+Try $S = \{a\}$, $T = \{1,2\}$, $R = \{x\}$ with $f(a) = 1$ and $g(1) = g(2) = x$. Then $g \circ f$ is injective (its domain has one element!) but $g$ is not.
+
+What is true: **if $g \circ f$ is injective then $f$ is injective**. (If $f(s_1) = f(s_2)$, apply $g$ to both sides to get $(g\circ f)(s_1) = (g \circ f)(s_2)$, hence $s_1 = s_2$.)
+
+Dually: **if $g \circ f$ is surjective then $g$ is surjective**, and $f$ need not be.
+
+The pattern is worth remembering: the composite's injectivity constrains the *first* function; its surjectivity constrains the *second*.
+
+<Aside>
+Composition is the reason functions form a *structure* rather than a collection. Bijections from a set to itself, under composition, form a **group** — the symmetric group — with the identity function as the identity element and inverses supplied by module 3.9. The associativity proved above is one of the group axioms, obtained for free.
+</Aside>

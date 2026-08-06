@@ -1,0 +1,98 @@
+---
+level: l7
+title: Set-builder notation
+readingTimeMin: 9
+newTerms: ["set-builder notation", "interval", "separation"]
+anchorExample: "roots of sin x and cos x"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Extensional description — listing — is available only for small finite sets. **Set-builder notation** describes a set intensionally, by a condition:
+$$
+\{\, x \in A \mid p(x) \,\},
+$$
+"the set of $x$ in $A$ such that $p(x)$", with defining property
+$$
+y \in \{x \in A \mid p(x)\} \;\Longleftrightarrow\; y \in A \wedge p(y). \tag{$\ast$}
+$$
+
+Equation $(\ast)$ is the workhorse of the entire chapter. Every proof about a set-builder set begins by applying it, converting a membership assertion into a logical one where Chapter 1 applies, and ends by applying it in reverse.
+
+## The interface between the chapters
+
+The condition $p$ is a predicate — an open statement with a free variable, the object §1.1 declined to call a statement. Set-builder notation does not close it with a quantifier; it uses it as a sorting device on $A$. The consequence is a systematic dictionary:
+
+| Logic (Ch. 1) | Sets (Ch. 2) |
+|---|---|
+| $p(x) \wedge q(x)$ | $\cap$ |
+| $p(x) \vee q(x)$ | $\cup$ |
+| $\neg p(x)$ | complement |
+| $p(x) \Rightarrow q(x)$ for all $x$ | $\subseteq$ |
+| $p(x) \Leftrightarrow q(x)$ for all $x$ | $=$ |
+
+Every theorem in the rest of this chapter is a theorem of Chapter 1 read through this table. De Morgan for sets (§2.7) is De Morgan for connectives; distributivity of $\cap$ over $\cup$ (§2.8) is distributivity of $\wedge$ over $\vee$; double inclusion (§2.6) is the decomposition of $\Leftrightarrow$ into two implications.
+
+## Separation, and why the ambient set is mandatory
+
+Naive comprehension — the principle that $\{x \mid p(x)\}$ is a set for every predicate $p$ — is inconsistent. Taking $p(x) \equiv x \notin x$ yields Russell's contradiction. Zermelo's repair, the **Axiom Schema of Separation**, permits only
+$$
+\{\, x \in A \mid p(x) \,\} \quad\text{for $A$ already known to be a set,}
+$$
+and this is exactly the notation above. Written with the ambient set, set-builder notation is not merely unambiguous; it is the syntactic form of a consistency-preserving axiom.
+
+Running Russell's argument inside separation is instructive rather than fatal. For any set $A$ put $R_A = \{x \in A \mid x \notin x\}$. If $R_A \in A$ then $R_A \in R_A \Leftrightarrow R_A \notin R_A$, absurd; hence $R_A \notin A$. So no set contains all sets — a theorem, obtained from what was a paradox.
+
+<Warning title="Dropping the ambient set changes the object">
+$\{x \mid x^2 = 2\}$ is $\emptyset$ over $\mathbb{Q}$ and $\{\pm\sqrt2\}$ over $\mathbb{R}$. $\{x \mid x^2 = -1\}$ is $\emptyset$ over $\mathbb{R}$ and $\{\pm i\}$ over $\mathbb{C}$. Writers do omit the ambient set when it is fixed by context, and that is acceptable; writing it is safer, and inside a proof it is close to mandatory.
+</Warning>
+
+## Image-style notation
+
+A second common form describes elements by a formula rather than a filter:
+$$
+\{\, f(x) \mid x \in A \,\},
+\qquad\text{e.g.}\qquad
+\{\, n\pi \mid n \in \mathbb{Z} \,\},
+\quad
+\{\, 2k \mid k \in \mathbb{Z} \,\}.
+$$
+Here the bar separates a *term* from the range of its parameter, so
+$$
+y \in \{f(x) \mid x \in A\} \;\Longleftrightarrow\; \exists x \in A,\; y = f(x).
+$$
+Note the existential quantifier — it is what makes this form behave differently in proofs from the filter form, whose unfolding is a conjunction. Formally this is Replacement rather than Separation, and it is the notation for the image of a function (§3.3).
+
+The two forms often describe the same set, and proving that they do is real work:
+$$
+\{\, x \in \mathbb{R} \mid \sin x = 0 \,\} \;=\; \{\, n\pi \mid n \in \mathbb{Z} \,\}.
+$$
+The left is a filter; the right is an image. Extensionality says they are equal iff each contains the other, so the proof is a double inclusion (§2.6) — one direction needs the fact that $\sin$ vanishes only at integer multiples of $\pi$, the other only that $\sin(n\pi) = 0$.
+
+## Intervals
+
+For subsets of $\mathbb{R}$ defined by inequalities:
+$$
+(a,b) = \{x \in \mathbb{R} \mid a < x < b\}, \quad
+[a,b] = \{x \in \mathbb{R} \mid a \leq x \leq b\},
+$$
+with half-open variants, and $\infty$ always taking a round bracket since it is not an element of $\mathbb{R}$. Note that $(a,b) = \emptyset$ whenever $a \geq b$, and $[a,a] = \{a\}$ — degenerate cases that a careful proof must handle rather than dismiss.
+
+## Sets that are empty for a reason
+
+$$
+\{\, x \in \mathbb{R} \mid x^2 < 0 \,\} = \emptyset,
+\qquad
+\{\, n \in \mathbb{Z} \mid 2n = 1 \,\} = \emptyset.
+$$
+Both are legitimate descriptions selecting nothing. A set-builder expression is not required to be inhabited, and proving that one is empty is proving a universal negative — a $\forall x,\, \neg p(x)$ statement, with all the work §1.12 assigns to that task.
+
+<Aside>
+$\mathbb{Q} = \{p/q \mid p,q \in \mathbb{Z},\, q \neq 0\}$ hides a subtlety: the map $(p,q) \mapsto p/q$ is not injective, since $p_1/q_1$ and $p_2/q_2$ name the same rational exactly when $p_1q_2 = p_2q_1$. Constructed properly, $\mathbb{Q}$ is the set of equivalence classes of $\mathbb{Z} \times (\mathbb{Z}\setminus\{0\})$ under that relation. Extensionality is why the sloppy description still denotes the right set: repeated names of an element are invisible to a set.
+</Aside>
+
+<WhereThisGoes level="l7">
+Separation and Replacement are two of the ZF axiom schemas, and the fact that they are *schemas* — one axiom per predicate $p$, infinitely many axioms — is not an accident of presentation: no finite axiomatisation of ZF exists. Which predicates are permitted is itself a live question. Restricting to predicates with only bounded quantifiers gives Kripke–Platek set theory; allowing quantification over sets of sets gives second-order comprehension and the reverse-mathematics hierarchy, whose subsystems calibrate exactly how much set existence each classical theorem requires. In a different direction, the intensional/extensional distinction visible in this module — a set versus a description of it — is the central distinction of computability theory, where a set of naturals may be perfectly well defined and have no algorithm deciding membership.
+</WhereThisGoes>

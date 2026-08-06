@@ -1,0 +1,97 @@
+---
+level: l7
+title: Subsets
+readingTimeMin: 10
+newTerms: ["subset", "proper subset", "element chasing", "partial order", "power set"]
+anchorExample: "intervals in ℝ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+A \subseteq S \quad:\Longleftrightarrow\quad \forall x\;(x \in A \Rightarrow x \in S).
+$$
+
+The definition is a universally quantified conditional, and everything in this module is a consequence of that single observation. §1.12 fixed the proof template for such statements; applied to sets it acquires the name **element chasing**, and it is the technique on which essentially all of naive set theory runs.
+
+## The template
+
+> Let $x \in A$ be arbitrary. [Use only what $x \in A$ entails.] Therefore $x \in S$. Since $x$ was arbitrary, $A \subseteq S$.
+
+The discipline of §1.12 applies verbatim: the element is arbitrary but fixed, and any assumption about $x$ beyond membership in $A$ invalidates the generalisation.
+
+> **Proposition.** $S = (-3,5) \subseteq T = (-6,5]$.
+
+<Discussion>
+  <div slot="know">$x \in S \iff -3 < x < 5$; $x \in T \iff -6 < x \leq 5$. Available: transitivity of $<$, and that $a < b$ implies $a \leq b$.</div>
+  <div slot="want">$-6 < x$ and $x \leq 5$.</div>
+  <div slot="how">Both conjuncts follow from the two halves of the hypothesis by a single step each. Note $T$ is the weaker constraint on both ends, so the containment should be immediate — and it should be *proper*, witnessed by the endpoint $5$.</div>
+</Discussion>
+
+<Proof>
+Let $x \in S$ be arbitrary; then $-3 < x < 5$.
+
+From $-6 < -3$ and $-3 < x$, transitivity gives $-6 < x$. From $x < 5$ we obtain $x \leq 5$.
+
+Hence $-6 < x \leq 5$, i.e. $x \in T$. Since $x$ was arbitrary, $S \subseteq T$.
+</Proof>
+
+The containment is proper: $5 \in T \setminus S$. Properness is a separate claim requiring a separate witness, and a subset proof never establishes it.
+
+## Refutation
+
+$\neg(A \subseteq S)$ is, by §1.11,
+$$
+\exists x\;(x \in A \wedge x \notin S),
+$$
+so refuting a containment means exhibiting one element of $A$ outside $S$ — and nothing less. Here $5 \in T$, $5 \notin S$ refutes $T \subseteq S$.
+
+<Warning title="Membership and inclusion are different relations">
+$\in$ relates an object to a set; $\subseteq$ relates two sets. With $A = \{1, \{2,3\}, \emptyset\}$:
+
+$1 \in A$ ✓ · $\{2,3\} \in A$ ✓ · $2 \in A$ ✗ · $\emptyset \in A$ ✓ (it was listed) · $\emptyset \subseteq A$ ✓ (always) · $\{1\} \subseteq A$ ✓ · $\{2,3\} \subseteq A$ ✗ (since $2 \notin A$).
+
+Note that $\emptyset \in A$ and $\emptyset \subseteq A$ are both true here for entirely different reasons. Note also that $\in$ is *not* transitive: $2 \in \{2,3\}$ and $\{2,3\} \in A$, but $2 \notin A$. Inclusion is transitive; membership is not, and conflating them is the standard source of nonsense in early set-theoretic writing.
+</Warning>
+
+## Vacuity
+
+> **Proposition.** $\emptyset \subseteq S$ for every set $S$.
+
+<Proof>
+Let $x$ be arbitrary. The antecedent of $x \in \emptyset \Rightarrow x \in S$ is false, so the conditional is true (§1.5). Since $x$ was arbitrary, $\forall x\,(x \in \emptyset \Rightarrow x \in S)$, i.e. $\emptyset \subseteq S$.
+</Proof>
+
+This is vacuous truth carrying structural weight. Every distributive, De Morgan, and product identity in this chapter holds without exception for $\emptyset$ precisely because of it; a convention that made $\emptyset \subseteq S$ fail would introduce a special case into every theorem that follows.
+
+## $\subseteq$ is a partial order
+
+Three properties:
+
+- **Reflexive.** $S \subseteq S$, since $x \in S \Rightarrow x \in S$.
+- **Transitive.** If $A \subseteq B$ and $B \subseteq C$ then $A \subseteq C$: chase $x \in A$ into $B$, then into $C$.
+- **Antisymmetric.** If $A \subseteq B$ and $B \subseteq A$ then $A = B$ — this is extensionality, and it is the content of §2.6.
+
+Hence $(\mathcal{P}(X), \subseteq)$ is a **partial order** for any set $X$. It is not total: $\{1,2\}$ and $\{2,3\}$ are incomparable. That failure of comparability is not a defect — it is the reason set inclusion carries more information than a linear ordering, and it is why lattice-theoretic language ($\cap$ as meet, $\cup$ as join) is the right one for §2.4.
+
+## The power set
+
+$$
+\mathcal{P}(X) = \{\, A \mid A \subseteq X \,\}.
+$$
+
+For $X = \{a,b\}$: $\mathcal{P}(X) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$. For finite $X$, $|\mathcal{P}(X)| = 2^{|X|}$ — each element is independently in or out, giving $2^{|X|}$ characteristic functions $X \to \{0,1\}$, whence the notation $2^X$. §6.3 proves the count by induction.
+
+Two remarks worth carrying. First, $\mathcal{P}(X)$ is a set whose elements are sets, and keeping track of which level you are on is a real skill: $a \in X$, $\{a\} \in \mathcal{P}(X)$, $\{\{a\}\} \subseteq \mathcal{P}(X)$. Second, **Cantor's theorem**: there is no surjection $X \to \mathcal{P}(X)$, so $|\mathcal{P}(X)| > |X|$ for every set, finite or not. The proof is a diagonal argument — given $f : X \to \mathcal{P}(X)$, the set $D = \{x \in X \mid x \notin f(x)\}$ is not in the image — and it is Russell's construction used constructively rather than destructively. It follows that there is no largest cardinal, and no set of all sets.
+
+<Aside>
+The relation $\subseteq$ is definable from $\in$ alone, which is why axiomatic set theory needs only one primitive relation. Everything in this chapter — union, intersection, complement, product, function — is likewise built from $\in$ by explicit definition. That economy is the point of taking sets as the foundation.
+</Aside>
+
+<WhereThisGoes level="l7">
+Element chasing is the universal method of naive set theory, and its limitations mark where different mathematics begins. In category theory one deliberately gives it up: objects have no elements, and containment is replaced by monomorphisms, so every proof must be conducted by composing arrows. Learning both styles is worthwhile, because arguments that are three lines of element chasing can be one diagram, and conversely. The partial-order structure of $\mathcal{P}(X)$ opens into lattice theory and, with complement, Boolean algebra — Stone's theorem says every Boolean algebra is isomorphic to an algebra of sets, so the intuition you build here about $\subseteq$ is not merely an example but the general case. Cantor's theorem opens cardinal arithmetic and the continuum hypothesis, whose independence from ZFC is among the deepest results in foundations.
+</WhereThisGoes>

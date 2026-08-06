@@ -13,6 +13,17 @@
     "l7": "Complements and suppose not",
     "l8": "Complements and suppose not"
   },
+  "kernelIdea": "The complement of A in S is everything in S not in A — so it depends on S. Proof by contradiction: assume the negation of what you want, derive an impossibility, conclude.",
+  "kernels": {
+    "l1": "Everything not in the box depends on what room you are in.",
+    "l2": "The outside of a box is everything else — but you have to say what everything else means first. And here is a new trick: to show something is true, suppose not, and watch it go wrong.",
+    "l3": "The complement of A is everything in the surrounding set that is not in A, so it changes when the surrounding set changes. To prove something by contradiction, suppose not: assume the opposite, follow it until it says something impossible, and conclude the opposite was wrong.",
+    "l4": "The complement Ā of A in a universe S is {x ∈ S | x ∉ A}, so the universe must be named. Proof by contradiction: suppose not — assume ¬p, derive a contradiction, and conclude p.",
+    "l5": "Complement is relative to a stated universe. A proof by contradiction assumes the negation of the goal and derives an impossibility, which is the natural method when the goal is itself a negation.",
+    "l6": "Ā depends on the ambient set; suppose not is licensed by the tautology p ∨ ¬p together with the fact that a contradiction refutes its assumption.",
+    "l7": "Complementation is defined relative to a universe and is the set-level image of negation. Proof by contradiction — suppose not — assumes ¬p, derives a contradiction, and concludes p; it is indicated when the goal is negative or asserts nonexistence.",
+    "l8": "Complement makes P(X) a Boolean algebra; reductio ad absurdum is classically valid but constructively suspect, and distinguishing it from proof of a negation is the constructive fault line."
+  },
   "kernel": "The complement of A in S is everything in S not in A — so it depends on S. Proof by contradiction: assume the negation of what you want, derive an impossibility, conclude.",
   "objectives": [
     "Compute complements relative to a stated universe",

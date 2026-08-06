@@ -1,0 +1,97 @@
+---
+level: l4
+title: Proving and disproving quantified statements
+readingTimeMin: 8
+newTerms: ["arbitrary element", "witness", "proof by cases"]
+anchorExample: "n² − 1 is composite"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Four tasks, four templates. Which one you need is decided entirely by the outermost quantifier and by whether you are proving or refuting.
+
+| Goal | Method |
+|---|---|
+| Prove $\forall x \in S,\, p(x)$ | **take any one and follow it** — argue about an arbitrary $x \in S$ |
+| Disprove $\forall x \in S,\, p(x)$ | **one bad apple** — exhibit $c \in S$ with $\neg p(c)$ |
+| Prove $\exists x \in S,\, p(x)$ | exhibit a **witness** $c \in S$ with $p(c)$ |
+| Disprove $\exists x \in S,\, p(x)$ | prove $\forall x \in S,\, \neg p(x)$ |
+
+The two right-hand cells in the disproof column are exactly the negation laws of module 1.11. Nothing new is being asserted; the table just names the work.
+
+## Task 1: the arbitrary element
+
+To prove $\forall x \in S,\, p(x)$, introduce an **arbitrary element** of $S$ — a specific object, fixed for the duration of the argument, about which you assume *nothing beyond membership in $S$*. Then prove $p$ of it. Since the argument used no special feature, it applies verbatim to every element.
+
+> **Proposition.** For every integer $n \geq 3$, the integer $n^2 - 1$ is composite.
+
+("Composite" means: expressible as a product of two integers each greater than $1$.)
+
+<Discussion>
+  <div slot="know">$n \in \mathbb{Z}$, $n \geq 3$. Nothing else about $n$.</div>
+  <div slot="want">A factorisation $n^2 - 1 = ab$ with $a, b > 1$.</div>
+  <div slot="how">$n^2 - 1$ is a difference of squares, so it factors as $(n-1)(n+1)$ identically. Then check both factors exceed $1$, which is where the hypothesis $n \geq 3$ is spent.</div>
+</Discussion>
+
+<Proof>
+Let $n \in \mathbb{Z}$ be arbitrary with $n \geq 3$.
+
+By the difference of squares identity, $n^2 - 1 = (n-1)(n+1)$.
+
+Since $n \geq 3$, we have $n - 1 \geq 2 > 1$ and $n + 1 \geq 4 > 1$. So $n^2 - 1$ is a product of two integers each greater than $1$, hence composite.
+
+As $n$ was an arbitrary integer $\geq 3$, the claim holds for all such $n$.
+</Proof>
+
+Note the hypothesis $n \geq 3$ is not decoration: at $n = 2$ the factorisation gives $1 \cdot 3$, and $3$ is prime. Universal claims fail at their boundaries, and the boundary is where you should always test.
+
+<Warning title="Arbitrary means unchosen">
+"Let $n$ be arbitrary" and "let $n = 5$" are different openings. The moment your proof asserts something about $n$ that was not given — that it is even, that it is positive, that it is not $0$ — the element has stopped being arbitrary, and you have proved a restricted claim. If you genuinely need such an assumption, you must split into cases and handle the others.
+</Warning>
+
+## Task 2: counterexample
+
+> **Claim.** Every prime is odd.
+
+$2$ is prime and even. Refuted. By the negation law, exhibiting one failure *is* a proof of the negation, so this is a complete disproof rather than evidence.
+
+For claims of the form $\forall x,\, (p(x) \Rightarrow q(x))$, the counterexample must satisfy $p$ and violate $q$ — module 1.11 derived this from $\neg(p \Rightarrow q) \equiv p \wedge \neg q$.
+
+## Task 3: witness
+
+> **Claim.** $\exists! x \in \mathbb{R}$ with $3x - 1 = 0$.
+
+<Proof>
+*Existence.* Take $x = \tfrac13$; then $3 \cdot \tfrac13 - 1 = 0$.
+
+*Uniqueness.* Suppose $a, b \in \mathbb{R}$ both satisfy the equation. Then $3a - 1 = 0 = 3b - 1$, so $3a = 3b$, and dividing by $3$ gives $a = b$.
+</Proof>
+
+The uniqueness half has a fixed shape worth memorising: **suppose two objects both have the property, then prove they are equal.** Not "suppose there are two different ones and get a contradiction" — that works too, but the direct version is shorter and does not need contradiction.
+
+## Task 4: disproving an existential, and proof by cases
+
+> **Claim.** $\exists x \in \mathbb{R}$ with $x^2 < 0$.
+
+To refute this we must prove $\forall x \in \mathbb{R},\, x^2 \geq 0$ — a universal claim, so back to task 1. But no single argument covers all reals here, so we **split into cases**.
+
+<Proof>
+Let $x \in \mathbb{R}$ be arbitrary. Exactly one of $x > 0$, $x = 0$, $x < 0$ holds.
+
+*Case 1: $x > 0$.* A product of two positive reals is positive, so $x^2 > 0$.
+
+*Case 2: $x = 0$.* Then $x^2 = 0$.
+
+*Case 3: $x < 0$.* Then $-x > 0$, and $x^2 = (-x)(-x)$ is a product of two positives, hence positive.
+
+In every case $x^2 \geq 0$. The cases are exhaustive, so $\forall x \in \mathbb{R},\, x^2 \geq 0$, and therefore no real $x$ satisfies $x^2 < 0$.
+</Proof>
+
+**Proof by cases** is licensed by any exhaustive disjunction — here trichotomy. Two obligations: the cases must **cover** the domain (missing one leaves a gap), and each must be proved separately. They need not be disjoint, though it is tidier when they are.
+
+<Aside>
+Where does a disjunction to split on come from? Usually from an *or* in a hypothesis, or from a known trichotomy or parity fact. This is why module 1.3's inclusive *or* matters: a hypothesis "$p$ or $q$" hands you two cases, and you must prove the goal in both — you do not get to pick the convenient one.
+</Aside>

@@ -1,0 +1,60 @@
+---
+level: l3
+title: And, or
+readingTimeMin: 4
+newTerms: ["contradiction", "tautology"]
+anchorExample: "multiples of 6"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+One statement at a time is not enough. Real mathematics glues statements together, and there are two ways to do the gluing: **and** and **or**. They behave differently, and the difference matters.
+
+## And
+
+Take two statements and join them with *and*. The new statement is true only when **both** pieces are true.
+
+> $12$ is a multiple of $3$ **and** $12$ is a multiple of $4$.
+
+Both pieces are true, so the whole thing is true.
+
+> $12$ is a multiple of $3$ **and** $12$ is a multiple of $5$.
+
+The second piece is false, so the whole thing is false — even though half of it was fine. With *and*, half credit is no credit.
+
+## Or
+
+Join them with *or* instead, and the new statement is true when **at least one** piece is true.
+
+> $12$ is a multiple of $3$ **or** $12$ is a multiple of $5$.
+
+The first piece is true. That is enough. The whole statement is true.
+
+Now the important case:
+
+> $12$ is a multiple of $3$ **or** $12$ is a multiple of $4$.
+
+Both pieces are true. Is the *or* statement still true? **Yes.**
+
+<Warning title="Mathematical or is not menu or">
+Everyday English uses *or* to mean "one but not the other" — "soup or salad." Mathematics never does. Mathematical *or* is **inclusive**: it means "at least one, and both is allowed." Nobody in mathematics will ever say *or* and secretly mean "but not both."
+</Warning>
+
+## Two statements you can settle without knowing anything
+
+Some statements are true no matter what the world is like. Some are false no matter what.
+
+> $7$ is prime **and** $7$ is not prime.
+
+Whatever a number is, it cannot be both prime and not prime. This statement is false, and it would still be false if we swapped $7$ for any other number. A statement like this — false in every possible situation — is called a **contradiction**. Its shape is *something and its negation*.
+
+> $7$ is prime **or** $7$ is not prime.
+
+This one is true. And it would still be true for any number, and for any statement at all. A statement true in every possible situation is called a **tautology**. Its shape is *something or its negation*.
+
+<Aside>
+Contradictions look useless, but they are one of the sharpest tools in mathematics. In module 2.5 you will prove things by *assuming the opposite of what you want and steering straight into a contradiction*.
+</Aside>
+
+Notice what just happened: to decide those last two, you did not have to know a single thing about $7$. Their shape settled them. That is the first hint that logic is a subject of its own.

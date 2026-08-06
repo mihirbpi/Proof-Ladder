@@ -1,0 +1,84 @@
+---
+level: l7
+title: A zoo of functions
+readingTimeMin: 9
+newTerms: ["floor function", "Euler's totient", "well-defined"]
+anchorExample: "the floor function"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+§3.1's definition mentions neither formulas nor numbers. This module exercises that generality, because the tacit identification of *function* with *expression* is the single most limiting misconception a student brings into a proofs course.
+
+## Floor
+
+$$
+\lfloor \cdot \rfloor : \mathbb{R} \to \mathbb{Z}, \qquad \lfloor x \rfloor = \max\{ n \in \mathbb{Z} \mid n \leq x \}.
+$$
+
+That the maximum exists — that $\{n \in \mathbb{Z} \mid n \leq x\}$ is nonempty and bounded above, and that a nonempty set of integers bounded above has a greatest element — is the Archimedean property together with well-ordering. Floor is not a triviality; it is a consequence of the completeness of $\mathbb{R}$.
+
+The working characterisation:
+$$
+\lfloor x \rfloor = n \iff n \in \mathbb{Z} \text{ and } n \leq x < n+1.
+$$
+From it: $\lfloor x + m \rfloor = \lfloor x \rfloor + m$ for $m \in \mathbb{Z}$; $x - 1 < \lfloor x \rfloor \leq x$; and $\lfloor -2.3 \rfloor = -3$, not $-2$. Floor is not truncation, and conflating them is a standard source of off-by-one errors.
+
+Floor is neither injective ($\lfloor 3.1 \rfloor = \lfloor 3.9 \rfloor$) nor continuous, but it is surjective onto $\mathbb{Z}$ and monotone — an illustration that useful functions need not be well behaved.
+
+## Euler's totient
+
+$$
+\varphi(n) = \big|\{ k \in \mathbb{Z} \mid 1 \leq k \leq n,\ \gcd(k,n)=1 \}\big|.
+$$
+
+Values: $\varphi(1)=1$, $\varphi(6)=2$, $\varphi(8)=4$, $\varphi(9)=6$, $\varphi(12)=4$.
+
+> **Proposition.** $\varphi(p) = p-1$ for $p$ prime.
+
+<Proof>
+Let $p$ be prime and let $1 \leq k \leq p$. If $k < p$ then $\gcd(k,p)$ divides $p$, so it is $1$ or $p$; it cannot be $p$ since $p \nmid k$ for $0 < k < p$. Hence $\gcd(k,p) = 1$, and all $p-1$ such $k$ are counted. Finally $\gcd(p,p) = p \neq 1$, so $k = p$ is not counted. Therefore $\varphi(p) = p-1$.
+</Proof>
+
+$\varphi$ is *multiplicative*: $\varphi(mn) = \varphi(m)\varphi(n)$ when $\gcd(m,n)=1$, which with $\varphi(p^k) = p^k - p^{k-1}$ yields
+$$
+\varphi(n) = n \prod_{p \mid n}\left(1 - \frac1p\right).
+$$
+Note that this "formula" presupposes the factorisation of $n$; it is not an evaluation procedure. The gap between *characterised* and *computable* is exactly where cryptography lives.
+
+## Functions on products, and currying
+
+$m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$, $m(a,b) = ab$, is a function whose domain is a product set (§2.9). Treating binary operations as functions is what lets §3.5–3.6 apply to them: $m$ fails injectivity ($m(6,4)=m(2,12)$) and satisfies surjectivity ($m(n,1)=n$).
+
+Equivalently, by currying, $m$ corresponds to $\hat m : \mathbb{Z} \to (\mathbb{Z} \to \mathbb{Z})$ sending $a$ to multiplication-by-$a$. The two views are interchangeable, and the second is how one sees at a glance that $\hat m(0)$ is the constant zero map while $\hat m(a)$ for $a \neq 0$ is injective.
+
+## Domain restrictions are theorems
+
+$$
+r : \mathbb{R}\setminus\{0\} \to \mathbb{R},\ r(x)=1/x;
+\qquad
+\ell : \mathbb{R}_{>0} \to \mathbb{R},\ \ell(x) = \ln x.
+$$
+
+The excluded points are not conventions. There is no real $y$ with $0 \cdot y = 1$, so $1/0$ names nothing; and $\exp(\mathbb{R}) = \mathbb{R}_{>0}$, so $\ln x$ has no value for $x \leq 0$. In each case the domain is the largest set on which totality holds, and identifying it is a small theorem.
+
+<Warning title="Well-definedness on quotients">
+When the domain has elements with several names, a rule must be checked to be name-independent.
+
+- **Not a function.** $f(p/q) = p+q$ on $\mathbb{Q}$: $\tfrac12 = \tfrac24$ but $3 \neq 6$.
+- **A function.** $g : \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$, $g([a]) = [a^2]$, because $a \equiv b \pmod n$ implies $a^2 \equiv b^2 \pmod n$.
+- **Not a function.** $h : \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}$, $h([a]) = a$: no representative is canonical, so the "value" depends on the name.
+
+Every definition on a quotient structure — modular arithmetic, $\mathbb{Q}$ as a quotient of $\mathbb{Z} \times \mathbb{Z}_{\neq 0}$, quotient groups, quotient topologies — carries this obligation, and it is the step first-year algebra students skip most often.
+</Warning>
+
+<Aside>
+Functions can act on functions. Differentiation $D : C^1(\mathbb{R}) \to C^0(\mathbb{R})$ and definite integration $I : C^0([a,b]) \to \mathbb{R}$ are functions whose domains are sets of functions. Nothing in §3.1 forbids this, and the whole of functional analysis lives there.
+</Aside>
+
+<WhereThisGoes level="l7">
+Two of these functions open subjects. $\varphi$ is the gateway to multiplicative number theory: Euler's theorem $a^{\varphi(n)} \equiv 1 \pmod n$ for $\gcd(a,n)=1$ generalises Fermat's little theorem and is exactly the fact RSA rests on — encryption raises to a public exponent $e$, decryption to $d$ with $ed \equiv 1 \pmod{\varphi(n)}$, and the security assumption is that $\varphi(n)$ is unobtainable without factoring $n$. Floor opens the analytic side: $\sum_{n \leq x} 1 = \lfloor x \rfloor$ makes it the elementary tool for counting lattice points and estimating sums, and its sawtooth $x - \lfloor x \rfloor - \tfrac12$ is the kernel of Euler–Maclaurin summation, which connects discrete sums to integrals and is how the analytic theory of the Riemann zeta function begins.
+</WhereThisGoes>

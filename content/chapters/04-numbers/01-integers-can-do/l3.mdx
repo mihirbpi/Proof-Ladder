@@ -1,0 +1,78 @@
+---
+level: l3
+title: What the integers can do
+readingTimeMin: 6
+newTerms: ["closed", "distributive law", "integers"]
+anchorExample: "divisibility"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You have been using the **integers** — the whole numbers together with their negatives — for years. This chapter asks a question nobody usually asks: *what rules do they actually obey?*
+
+$$
+\mathbb{Z} = \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}
+$$
+
+The point is not to doubt arithmetic. It is that once you list the rules, you can check whether other things obey them too — and that turns out to be how a great deal of mathematics gets organised.
+
+## Closed
+
+A set is **closed** under an operation when performing that operation on members of the set always lands you back inside the set.
+
+$\mathbb{Z}$ is closed under **addition**: add any two integers and you get an integer. Try to escape — you cannot.
+
+$\mathbb{Z}$ is closed under **opposites**: the opposite of $7$ is $-7$, and the opposite of $-7$ is $7$. Both integers.
+
+$\mathbb{Z}$ is closed under **multiplication**: $(-3) \times 4 = -12$, an integer.
+
+These three facts get used constantly, and usually without being mentioned. Every time a proof ends "and since $2k^2$ is an integer, the number is even," it is closure being cited.
+
+## The distributive law
+
+There is a fourth rule, and it is the one that ties adding and multiplying together:
+$$
+a \times (b + c) = a \times b + a \times c.
+$$
+
+Check it: $3 \times (4 + 5) = 3 \times 9 = 27$, and $3 \times 4 + 3 \times 5 = 12 + 15 = 27$. ✓
+
+This is the **distributive law**. You have used it since you first learned to multiply — it is why $3 \times 12$ can be done as $3 \times 10 + 3 \times 2$.
+
+## What the integers cannot do
+
+Now the gap. Is $\mathbb{Z}$ closed under **division**?
+
+No. $7 \div 2$ is not an integer.
+
+A sharper way to say it: which integers have an integer *reciprocal*? That is, for which $n$ is there an integer $m$ with $n \times m = 1$?
+
+<Proof>
+Suppose $n$ and $m$ are integers with $n \times m = 1$.
+
+Neither can be $0$, since $0$ times anything is $0$, not $1$.
+
+If $n$ were $2$ or bigger, then $m$ would have to be $\tfrac{1}{n}$, which sits strictly between $0$ and $1$ — and there are no integers strictly between $0$ and $1$.
+
+The same argument rules out $n$ being $-2$ or smaller.
+
+That leaves only $n = 1$ (with $m = 1$) and $n = -1$ (with $m = -1$).
+</Proof>
+
+So out of infinitely many integers, exactly **two** have integer reciprocals. The integers are almost entirely without division.
+
+<Warning title="Closed means always">
+$6 \div 2 = 3$ is an integer, so division *sometimes* works. Closure requires it to work *every* time. One escape — $7 \div 2$ — settles the matter, by one bad apple (module 1.11).
+</Warning>
+
+## Where this is going
+
+That missing division is a hole, and the rest of this chapter is about it.
+
+Module 4.5 fills the hole by building the fractions, which *are* closed under division (except by zero). And then module 4.7 finds a hole in the fractions, and fills it with something stranger still.
+
+<Aside>
+A number system with these four rules — closed under $+$, opposites, and $\times$, and obeying the distributive law — has a name. Mathematicians call it a *ring*. The word is worth knowing because the same rules are obeyed by things that are not numbers at all: polynomials, and grids of numbers, and clock arithmetic. Anything you prove using only these rules is automatically true for all of them at once.
+</Aside>

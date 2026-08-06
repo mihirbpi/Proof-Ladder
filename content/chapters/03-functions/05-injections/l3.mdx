@@ -1,0 +1,83 @@
+---
+level: l3
+title: One-to-one
+readingTimeMin: 5
+newTerms: ["one-to-one", "injective"]
+anchorExample: "letter to position in the alphabet"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every function sends each input to exactly one output. But nothing stops two *different* inputs from landing on the same output. When that never happens, the function is special.
+
+A function is **one-to-one** (also called **injective**) when different inputs always give different outputs.
+
+<Figure alt="Three elements on the left, each arrow landing on a different element on the right." caption="One-to-one: no two arrows land together.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0],[2,2]]} />
+</Figure>
+
+<Figure alt="Three elements on the left; two of the arrows land on the same element on the right." caption="Not one-to-one: a and b collide.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,1],[2,0]]} />
+</Figure>
+
+## Two ways to say it
+
+The natural way to say it is forwards:
+
+> if $s_1 \neq s_2$, then $f(s_1) \neq f(s_2)$.
+
+But that is awkward to *use*, because it starts from two things being different, and "different" gives you nothing to compute with.
+
+So flip it around (module 1.7). The contrapositive is:
+
+> if $f(s_1) = f(s_2)$, then $s_1 = s_2$.
+
+Same statement, and this one is usable, because now you start from an *equation*. This is the form you should always reach for in a proof, and the form you should memorise.
+
+## Checking examples
+
+**The alphabet function** — letter to position. Different letters have different positions, so nothing collides. One-to-one. ✓
+
+**The squaring function** — $x \to x \times x$. Try $3$ and $-3$:
+$$
+3 \times 3 = 9, \qquad (-3) \times (-3) = 9.
+$$
+Two different inputs, one output. **Not** one-to-one. And notice how little work that took: one collision is enough to settle it, because "one-to-one" is a *for all* claim, and one bad apple destroys it (module 1.11).
+
+**Doubling** — $x \to 2 \times x$. Is it one-to-one?
+
+<Proof>
+Suppose two numbers $a$ and $b$ have the same double: $2 \times a = 2 \times b$.
+
+Divide both sides by $2$. Then $a = b$.
+
+So the only way to get the same answer is to start with the same number. Doubling is one-to-one.
+</Proof>
+
+Look at the shape of that proof. It started from $f(a) = f(b)$ and ended at $a = b$ — exactly the flipped-around form. That is what every injectivity proof looks like.
+
+## The picture test
+
+For a function you can graph, there is a quick check: draw horizontal lines across the graph. If any horizontal line hits the graph twice, two inputs share an output, so the function is not one-to-one.
+
+For $y = x \times x$, the horizontal line at height $9$ crosses twice — at $3$ and at $-3$. There is your collision, drawn.
+
+<Warning title="Two different tests, two different lines">
+The **vertical** line test asks whether something is a function at all (module 3.1): one output per input.
+
+The **horizontal** line test asks whether a function is one-to-one: at most one input per output.
+
+Different lines, different questions. Do not mix them up.
+</Warning>
+
+<Aside>
+Being one-to-one is exactly what module 3.3 called "every pre-image has at most one element." Trace back from any output and you find one thing, or nothing — never a crowd. That is why one-to-one functions are the ones you have a hope of undoing, which is where module 3.9 is heading.
+</Aside>

@@ -1,0 +1,52 @@
+---
+level: l2
+title: Part of a box
+readingTimeMin: 4
+newTerms: ["part of", "take any one and follow it"]
+anchorExample: "red blocks and all blocks"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Warning from '@/components/Warning.astro';
+
+One box is **part of** another when *everything* in the first box is also in the second.
+
+- The box of red blocks is part of the box of all blocks. ✓
+- The box of all blocks is **not** part of the box of red blocks, because of that blue one. ✗
+
+## How to check
+
+You cannot just glance and hope. Here is the move, and it is the same one from module 1.12: **take any one and follow it.**
+
+Reach into the little box. Do not pick your favorite — grab whatever your hand lands on. Now go find that same thing in the big box. If you can *always* do it, no matter what you grabbed, then the little box is part of the big one.
+
+<Proof level="l2">
+Say $A$ is the box of even numbers from 1 to 10. Say $B$ is the box of all numbers from 1 to 10.
+
+Take any one thing out of $A$. Whatever it is, it is an even number between 1 and 10.
+
+Is it a number between 1 and 10? Yes — we just said so.
+
+So it is in $B$. And that works no matter which one you grabbed.
+
+So $A$ is part of $B$.
+</Proof>
+
+## The empty box is part of every box
+
+This one is strange, and it is true.
+
+Is the empty box part of the box of blocks? To check, you would take any one thing out of the empty box and follow it.
+
+But there is nothing to take out! You can never fail, because you never even get started. So the check never breaks.
+
+It is just like the umbrella promise on a sunny day (module 1.5). No rain, no broken promise. No things, no failed check.
+
+<Warning title="Part of is not the same as in">
+A red block is **in** the box of blocks. The box of *red blocks* is **part of** the box of blocks. One is a single thing. The other is a whole box. Do not mix them up — a block is not a box.
+</Warning>
+
+<TryIt>
+Make a big pile and a small pile that is part of it. Now take any one thing from the small pile and follow it. Then try to find something in the small pile that is not in the big one. You will not be able to!
+</TryIt>

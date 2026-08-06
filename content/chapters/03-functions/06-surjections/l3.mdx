@@ -1,0 +1,86 @@
+---
+level: l3
+title: Onto
+readingTimeMin: 5
+newTerms: ["onto", "surjective"]
+anchorExample: "letter to position in the alphabet"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 3.5 asked whether outputs get shared. This module asks whether outputs get *used*.
+
+A function $f : S \to T$ is **onto** (also called **surjective**) when every element of $T$ is actually hit — that is, when
+$$
+\text{Im}(f) = T.
+$$
+
+Nothing in the codomain is left over.
+
+<Figure alt="Three elements on the left with arrows landing on only two of the three elements on the right." caption="Not onto: nothing lands on 3.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,0],[1,1],[2,1]]} />
+</Figure>
+
+<Figure alt="Three elements on the left, each arrow landing on a different one of the three elements on the right, so all are hit." caption="Onto: every element of T is hit.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0],[2,2]]} />
+</Figure>
+
+## How to prove it
+
+To show $f$ is onto, you have to handle *every* element of $T$. So use the move from module 1.12: take any one and follow it — except here you take an arbitrary **target** and produce an input that reaches it.
+
+> Let $t$ be any element of $T$. [Find some $s$.] Then $f(s) = t$. So $f$ is onto.
+
+The whole difficulty is the middle step, where you have to *build* an input from the target you were handed. That is what a proof of surjectivity actually costs.
+
+## A worked example
+
+> **Claim.** The doubling function from the whole numbers to the **even** numbers is onto.
+
+<Proof>
+Let $t$ be any even number.
+
+Since $t$ is even, it is $2$ times some whole number — say $t = 2 \times k$.
+
+Now feed $k$ into the doubling machine. The output is $2 \times k$, which is $t$.
+
+So we found an input reaching $t$. Since $t$ was any even number, every even number is hit, and the function is onto.
+</Proof>
+
+Read that again and notice what the proof had to do: it was handed $t$ and it *constructed* $k$. Every surjectivity proof works this way.
+
+## The codomain decides the answer
+
+Here is the thing that makes surjectivity different from one-to-one.
+
+Take the very same doubling rule, but declare the codomain to be **all** the whole numbers instead of just the even ones.
+
+Now $7$ is in the codomain, and nothing doubles to $7$. So this version is **not** onto.
+
+Same rule, different codomain, different answer.
+
+<Warning title="Onto is not a property of the rule alone">
+You cannot ask "is doubling onto?" and expect an answer. You have to ask "is doubling, as a function to *this* set, onto?"
+
+Compare with one-to-one, which depends only on the arrows and never on the codomain. That is the real difference between the two properties, and it is worth holding on to.
+</Warning>
+
+## Checking a few
+
+**The alphabet function**, letters to counting numbers. Not onto: $27$ is never hit. But if we shrink the codomain to $\{1, 2, \ldots, 26\}$, it becomes onto.
+
+**The floor function**, numbers to whole numbers. Onto! Given any whole number $n$, feed in $n$ itself and get $n$ back.
+
+**Squaring**, numbers to numbers. Not onto: nothing squares to $-1$.
+
+<Aside>
+Every function can be *made* onto for free — just shrink the codomain down to the image. So surjectivity is really a statement about how honestly the codomain was declared, and this is why mathematicians are careful to state codomains rather than leaving them to be guessed.
+</Aside>

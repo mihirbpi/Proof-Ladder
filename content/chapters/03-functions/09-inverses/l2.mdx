@@ -1,0 +1,68 @@
+---
+level: l2
+title: Undo-machines
+readingTimeMin: 4
+newTerms: ["undo-machine"]
+anchorExample: "the cubby machine"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Warning from '@/components/Warning.astro';
+
+Some machines can be run backwards. That backwards version is called an **undo-machine**.
+
+## When it works
+
+<Figure alt="Three children on the left, each with one arrow, landing on three different cubbies so every cubby is used exactly once." caption="A perfect pairing. This one can be undone.">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,2],[2,0]]} />
+</Figure>
+
+Turn every arrow around. Now put in a cubby and get out a child.
+
+Cubby 2 → Sam. Cubby 3 → Pip. Cubby 1 → Ada.
+
+It works! And notice: turning the arrows around gave us another perfectly good machine.
+
+## Two ways it can fail
+
+**Failure one: sharing.**
+
+<Figure alt="Sam and Pip both have arrows landing on cubby 2; cubby 3 is unused." caption="Sam and Pip share cubby 2. Turn the arrows around and cubby 2 has two answers.">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,1],[2,0]]} />
+</Figure>
+
+Turn the arrows around and cubby 2 now points at *two* children. But a machine must give exactly **one** answer. Broken.
+
+**Failure two: something left out.**
+
+Look at that same picture. Cubby 3 has no arrow at all. Turn it around and cubby 3 points at nobody. But a machine must work for *everything* on its list. Broken again.
+
+## The rule
+
+> An **undo-machine** exists only when the first machine never shared and never left anything out.
+
+Both. Not one or the other. And that is exactly the perfect pairing from module 3.8.
+
+<Warning title="Undo twice and you are back">
+Take a machine you can undo. Undo it. Now undo *that*.
+
+You are back where you started! Undoing the undo-machine gives you the original machine. Try it on the picture above and see.
+</Warning>
+
+## Undo with numbers
+
+The doubling machine, going from whole numbers to even numbers, is a perfect pairing. So it has an undo-machine.
+
+What is it? **Halving.** Put in $10$, get $5$. Put in $6$, get $3$.
+
+And check: double $5$ is $10$, then halve $10$ and you are back to $5$. Undone.
+
+<TryIt>
+Draw a perfect pairing with 4 things on each side. Now draw it again with all the arrows turned around. Is the second one still a good machine?
+</TryIt>

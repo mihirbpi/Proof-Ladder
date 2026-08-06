@@ -1,0 +1,62 @@
+---
+level: l2
+title: Machine chains
+readingTimeMin: 4
+newTerms: ["machine chain"]
+anchorExample: "the cubby machine"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Warning from '@/components/Warning.astro';
+
+Run one machine. Take its answer. Feed it straight into a second machine. That is a **machine chain**.
+
+## Trace it through
+
+<Figure alt="Three children on the left with arrows to three cubbies in the middle." caption="Machine one: child to cubby.">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,2],[1,0],[2,1]]} />
+</Figure>
+
+<Figure alt="Three cubbies on the left with arrows to colors on the right; cubby 1 goes to red, cubby 2 to blue, cubby 3 to green." caption="Machine two: cubby to color.">
+  <ArrowDiagram labelLeft="cubbies" labelRight="colors"
+    left={["1", "2", "3"]} right={["red", "blue", "green"]}
+    edges={[[0,0],[1,1],[2,2]]} />
+</Figure>
+
+Now chain them.
+
+- Sam → cubby 3 → **green**.
+- Pip → cubby 1 → **red**.
+- Ada → cubby 2 → **blue**.
+
+The chain is one new machine: child in, colour out. You never have to mention cubbies at all once you have traced it through.
+
+## The middle has to match
+
+Here is the one rule you must obey.
+
+The second machine takes **cubbies**. So the first machine had better hand it cubbies.
+
+If machine one gave out colors and machine two only takes cubbies, the chain breaks. The second machine would not know what to do with a color.
+
+So: **what comes out of the first must be what goes into the second.** Check the middle before you chain.
+
+## Order matters
+
+Chaining is not like adding. Swapping the machines gives a completely different chain — and usually it does not work at all.
+
+Try it: cubby → color → ...? Now we would need a machine that takes colors. We do not have one. Chain broken!
+
+<Warning title="Which one goes first?">
+When you write down a chain, mathematicians write the *last* machine on the left. It looks backwards, and it is: you read it right to left, the way you read the inside of a bracket first.
+
+You will meet that notation properly in module 3.7 at higher levels. For now, just remember: the machine that runs first is the one nearest the thing going in.
+</Warning>
+
+<TryIt>
+Set up your own two-machine chain with things in the room. Then try to run it backwards and see it fail.
+</TryIt>

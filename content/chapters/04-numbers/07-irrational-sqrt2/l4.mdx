@@ -1,0 +1,87 @@
+---
+level: l4
+title: Irrational numbers and √2
+readingTimeMin: 7
+newTerms: ["irrational"]
+anchorExample: "√2 irrational"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+A real number is **irrational** if it is not in $\mathbb{Q}$. The irrationals are $\mathbb{R}\setminus\mathbb{Q}$ — a complement, and hence a set defined negatively, which is why every proof about it uses contradiction (module 2.5).
+
+> **Theorem.** $\sqrt2 \notin \mathbb{Q}$.
+
+## Why direct proof is unavailable
+
+The claim is a universal negative: $\forall p, q \in \mathbb{Z}$ with $q \neq 0$, $(p/q)^2 \neq 2$. There is nothing to construct and infinitely many cases to exclude. Module 2.5's diagnostic fires: **suppose not**.
+
+## The lemma
+
+From module 1.9:
+
+> For $n \in \mathbb{Z}$: $n^2$ is even $\iff$ $n$ is even.
+
+We use the ($\Rightarrow$) direction, which was proved there by contrapositive — a direct attempt fails, because "$n^2$ even" gives $n^2 = 2k$ and no handle on $n$.
+
+## The proof
+
+<Discussion>
+  <div slot="know">Every nonzero rational has a representation in lowest terms: $r = p/q$ with $p,q \in \mathbb{Z}$, $q \neq 0$, and $\gcd(p,q) = 1$. This follows from cancelling common factors, which terminates because the numerators strictly decrease.</div>
+  <div slot="want">A contradiction from the assumption $\sqrt2 \in \mathbb{Q}$.</div>
+  <div slot="how">Assume $\sqrt2 = p/q$ in lowest terms. Squaring gives $p^2 = 2q^2$, so $p$ is even by the lemma. Substituting $p = 2k$ and simplifying gives $q^2 = 2k^2$, so $q$ is even too. Then $2 \mid \gcd(p,q)$, contradicting $\gcd(p,q)=1$.</div>
+</Discussion>
+
+<Proof>
+Suppose, for contradiction, that $\sqrt2 \in \mathbb{Q}$. Then $\sqrt2 = \tfrac pq$ for some $p, q \in \mathbb{Z}$ with $q \neq 0$ and $\gcd(p,q) = 1$.
+
+Squaring and clearing denominators:
+$$p^2 = 2q^2. \tag{$\star$}$$
+
+Then $p^2$ is even, so by the lemma $p$ is even; write $p = 2k$ with $k \in \mathbb{Z}$.
+
+Substituting into $(\star)$: $4k^2 = 2q^2$, hence
+$$q^2 = 2k^2.$$
+
+So $q^2$ is even, and by the lemma again $q$ is even.
+
+Thus $2 \mid p$ and $2 \mid q$, so $2 \mid \gcd(p,q) = 1$, which is false.
+
+The assumption is therefore untenable, and $\sqrt2 \notin \mathbb{Q}$.
+</Proof>
+
+<Warning title="The lowest-terms hypothesis is the whole proof">
+Without $\gcd(p,q)=1$, the argument still shows $p$ and $q$ are both even — and that is not a contradiction, merely an observation you could repeat forever.
+
+Two ways to make the finish rigorous:
+
+1. **Lowest terms** (used above). The contradiction is immediate.
+2. **Infinite descent.** Without assuming lowest terms, you obtain from $(p,q)$ a strictly smaller pair $(p/2, q/2)$ with the same property, and repeat. This yields an infinite strictly decreasing sequence of positive integers, contradicting well-ordering.
+
+Both are legitimate; the second is Fermat's method and generalises further. What is *not* legitimate is stopping at "both even" and calling it a contradiction.
+</Warning>
+
+## Tools used
+
+| Tool | Module | Where |
+|---|---|---|
+| proof by contradiction | 2.5 | the overall shape |
+| $n^2$ even $\Rightarrow$ $n$ even | 1.9 | twice, at the pivots |
+| proof by contrapositive | 1.8 | inside that lemma |
+| definition of even as $\exists k$ | 4.2 | writing $p = 2k$ |
+| closure of $\mathbb{Z}$ | 4.1 | $k^2 \in \mathbb{Z}$ |
+
+Five modules, one theorem. This is the proof the chapter has been building toward.
+
+## Consequences
+
+$\mathbb{Q}$ is **incomplete**: the set $\{x \in \mathbb{Q} : x > 0, x^2 < 2\}$ is bounded above but has no least upper bound in $\mathbb{Q}$, because the only candidate is $\sqrt2$. This is precisely the defect that $\mathbb{R}$ is constructed to repair, and it is why calculus needs $\mathbb{R}$.
+
+Geometrically: the diagonal of a unit square has length $\sqrt2$, so a perfectly constructible length is not a ratio of whole numbers. The Pythagoreans, who held that all lengths were such ratios, are said to have found this genuinely disturbing.
+
+<Aside>
+The argument generalises. Replacing "even" by "divisible by $p$" shows $\sqrt p$ is irrational for every prime $p$. More generally, $\sqrt m$ is rational iff $m$ is a perfect square, and the rational root theorem extends this to all polynomial roots: any rational root of $x^n + a_{n-1}x^{n-1}+\cdots+a_0$ with integer coefficients must be an integer dividing $a_0$. So $\sqrt[3]{2}$, $\sqrt2+\sqrt3$, and the golden ratio are all irrational by a single mechanism.
+</Aside>

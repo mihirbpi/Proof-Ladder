@@ -13,6 +13,17 @@
     "l7": "Pre-images respect set operations",
     "l8": "Pre-images respect set operations"
   },
+  "kernelIdea": "f⁻¹ commutes with complement, union, and intersection. The pivot in every proof is x ∈ f⁻¹(U) ⇔ f(x) ∈ U.",
+  "kernels": {
+    "l1": "Trace back from two cubbies at once and you get the two groups of children put together.",
+    "l2": "If you trace back from two arrowheads together, you get the same children as tracing back from each one and joining the answers.",
+    "l3": "Tracing back respects the hoops: the pre-image of a union is the union of the pre-images, and the same holds for intersections and for outsides.",
+    "l4": "f⁻¹(U ∪ V) = f⁻¹(U) ∪ f⁻¹(V), and likewise for ∩ and complement. Every proof pivots on the single equivalence x ∈ f⁻¹(U) ⇔ f(x) ∈ U.",
+    "l5": "Pre-image commutes with all the Boolean set operations, and each proof reduces to the pivot equivalence x ∈ f⁻¹(U) ⇔ f(x) ∈ U.",
+    "l6": "The pre-image operator is a Boolean homomorphism P(T) → P(S); the direct image is not, which is the asymmetry worth remembering.",
+    "l7": "Pre-image commutes with union, intersection, and complement, each proof turning on x ∈ f⁻¹(U) ⇔ f(x) ∈ U. Direct image commutes only with union.",
+    "l8": "f⁻¹ is a Boolean algebra homomorphism P(T) → P(S) and sits between the two image operators as an adjoint; this is why continuity is stated with pre-images."
+  },
   "kernel": "f⁻¹(Ū) = f⁻¹(U)‾, f⁻¹(U ∪ V) = f⁻¹(U) ∪ f⁻¹(V), and f⁻¹(U ∩ V) = f⁻¹(U) ∩ f⁻¹(V). The pivot in every proof is x ∈ f⁻¹(U) ⇔ f(x) ∈ U.",
   "objectives": [
     "Prove one of the three identities by double inclusion",

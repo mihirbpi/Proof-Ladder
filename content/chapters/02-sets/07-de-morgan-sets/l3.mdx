@@ -1,0 +1,82 @@
+---
+level: l3
+title: De Morgan's set laws
+readingTimeMin: 5
+newTerms: []
+anchorExample: "two hoops on the floor"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.4 gave you a rule about words: saying *not* to a joined statement swaps *and* with *or*. This module says the same thing about sets, because $\cap$ *is* and, $\cup$ *is* or, and complement *is* not.
+
+## The two laws
+
+Fix a universe. For sets $S$ and $T$:
+
+$$
+\overline{S \cap T} = \overline{S} \cup \overline{T}
+\qquad\qquad
+\overline{S \cup T} = \overline{S} \cap \overline{T}
+$$
+
+In words:
+
+- The outside of the overlap is the union of the outsides.
+- The outside of the whole thing is the overlap of the outsides.
+
+## The pictures
+
+<Figure alt="Two overlapping circles S and T inside a dashed universe box, with only the region outside both circles shaded." caption="$\overline{S \cup T}$ — outside everything. It is also $\overline{S} \cap \overline{T}$.">
+  <VennTwo labelS="S" labelT="T" shade={["outside"]} universe="U" />
+</Figure>
+
+Look at that shaded border and ask: what is true of a point sitting there? It is not in $S$. It is also not in $T$. Both at once. So it belongs to $\overline{S}$ **and** to $\overline{T}$ — that is, to $\overline{S} \cap \overline{T}$.
+
+For the other law, imagine shading everything *except* the middle lens. A point out there is missing at least one of the two circles — it is not in $S$, **or** it is not in $T$. So it belongs to $\overline{S} \cup \overline{T}$.
+
+## Checking with numbers
+
+Let the universe be the whole numbers from $1$ to $12$. Let
+$$
+S = \{1, 2, 3, 4, 6, 12\} \quad(\text{divisors of } 12),
+\qquad
+T = \{2, 4, 6, 8, 10, 12\} \quad(\text{even numbers}).
+$$
+
+Then $S \cap T = \{2, 4, 6, 12\}$, so
+$$
+\overline{S \cap T} = \{1, 3, 5, 7, 8, 9, 10, 11\}.
+$$
+
+Now the other side. $\overline{S} = \{5, 7, 8, 9, 10, 11\}$ and $\overline{T} = \{1, 3, 5, 7, 9, 11\}$, so
+$$
+\overline{S} \cup \overline{T} = \{1, 3, 5, 7, 8, 9, 10, 11\}.
+$$
+
+The same set. That is not a proof — it is one example — but it is a good sanity check, and if the two sides had *differed*, you would have found a counterexample and known something was wrong.
+
+## The dictionary
+
+Here is the table that makes this module almost free.
+
+| Chapter 1 (words) | Chapter 2 (sets) |
+|---|---|
+| not | complement |
+| and | $\cap$ |
+| or | $\cup$ |
+| if–then, for all $x$ | $\subseteq$ |
+| if and only if, for all $x$ | $=$ |
+
+Read De Morgan's logic laws through this table and you get De Morgan's set laws. Nothing new happened. The same fact was written in a different alphabet.
+
+<Warning title="Do not forget to swap">
+$\overline{S \cap T}$ is **not** $\overline{S} \cap \overline{T}$. Check with the numbers above: $\overline{S} \cap \overline{T} = \{5,7,9,11\}$, which is much smaller than $\overline{S \cap T}$. Keeping the connective is the same over-negation mistake you met in module 1.4, and the picture makes it obvious once you look.
+</Warning>
+
+<Aside>
+Why does this correspondence exist at all? Because sets are *built* from conditions (module 2.2). A set operation is just what happens to the condition. When you complement a set you negate its condition, and when you negate a condition you must apply the logic law. So the set law is the logic law, forced through the definition.
+</Aside>

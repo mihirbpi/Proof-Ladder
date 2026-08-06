@@ -1,0 +1,90 @@
+---
+level: l3
+title: The rationals are a field
+readingTimeMin: 6
+newTerms: ["rational number", "reciprocal"]
+anchorExample: "divisibility"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 4.1 found a hole in the integers: they are not closed under division. This module builds the number system that fills it.
+
+A **rational number** is a number that can be written as $\tfrac{p}{q}$ where $p$ and $q$ are integers and $q \neq 0$. The set of them is written $\mathbb{Q}$.
+
+Every integer is rational — write $n$ as $\tfrac{n}{1}$. So $\mathbb{Z} \subseteq \mathbb{Q}$, and $\mathbb{Q}$ is strictly bigger, since $\tfrac12 \notin \mathbb{Z}$.
+
+## Checking closure
+
+You know how to add and multiply fractions. What you may not have noticed is that those formulas are *closure proofs* — each one shows the answer is still a fraction.
+
+**Adding.**
+$$
+\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}.
+$$
+
+<Proof>
+Start with two rationals: $\tfrac{a}{b}$ and $\tfrac{c}{d}$, with $b \neq 0$ and $d \neq 0$.
+
+Their sum is $\tfrac{ad+bc}{bd}$.
+
+Is that a rational number? Look at the top: $ad + bc$ is built from integers by multiplying and adding, so it is an integer (module 4.1).
+
+Look at the bottom: $bd$ is a product of integers, so it is an integer. And it is not zero, because neither $b$ nor $d$ is zero, and a product of two non-zero numbers is never zero.
+
+Integer on top, non-zero integer on the bottom. So the sum is rational.
+</Proof>
+
+Read that proof again. It never did any arithmetic — it just checked that the pieces were the right *kind* of thing. That is what closure proofs look like.
+
+**Multiplying.**
+$$
+\frac{a}{b} \times \frac{c}{d} = \frac{ac}{bd}.
+$$
+Same check: $ac$ is an integer, $bd$ is a non-zero integer. Closed. ✓
+
+**Opposites.**
+$$
+-\frac{a}{b} = \frac{-a}{b}.
+$$
+$-a$ is an integer, $b$ is a non-zero integer. Closed. ✓
+
+## The new one: reciprocals
+
+Here is what $\mathbb{Q}$ has and $\mathbb{Z}$ does not.
+
+The **reciprocal** of a number is what you multiply it by to get $1$. In $\mathbb{Z}$, only $1$ and $-1$ have one (module 4.1). In $\mathbb{Q}$, *everything except zero* does.
+
+<Proof>
+Take any rational $\tfrac{a}{b}$ that is not zero. Since it is not zero, $a \neq 0$. And $b \neq 0$ already.
+
+Flip it over: $\tfrac{b}{a}$. This is a rational number, because $b$ is an integer and $a$ is a non-zero integer.
+
+Multiply: $\tfrac{a}{b} \times \tfrac{b}{a} = \tfrac{ab}{ba} = 1$.
+
+So every non-zero rational has a reciprocal inside $\mathbb{Q}$.
+</Proof>
+
+<Warning title="Zero has no reciprocal, and that is not a gap">
+There is no number you can multiply by $0$ to get $1$, because $0$ times anything is $0$. So $\tfrac10$ does not exist — not in $\mathbb{Q}$, not anywhere.
+
+This is not a hole waiting to be filled by a cleverer number system. Any system in which $\tfrac10$ existed would have $0 = 1$, and then every number would equal every other. Excluding zero is the price of everything else working.
+</Warning>
+
+## Ring and field
+
+Module 4.1 mentioned the word *ring* for a system closed under $+$, opposites, and $\times$, obeying the distributive law.
+
+A **field** is a ring with one extra property: every non-zero element has a reciprocal.
+
+$$
+\mathbb{Z} \text{ is a ring, not a field.} \qquad \mathbb{Q} \text{ is a field.}
+$$
+
+That single difference is why you can solve $3x = 1$ in $\mathbb{Q}$ and not in $\mathbb{Z}$ — and, more generally, why you may divide both sides of an equation by a non-zero number in $\mathbb{Q}$.
+
+<Aside>
+$\mathbb{Q}$ is not the only field. The numbers on the whole number line, $\mathbb{R}$, form one. So does clock arithmetic with a prime number of hours — a field with only finitely many elements, which is a genuinely strange object and the basis of a lot of modern cryptography.
+</Aside>

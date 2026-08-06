@@ -13,6 +13,17 @@
     "l7": "Inverses",
     "l8": "Inverses"
   },
+  "kernelIdea": "f⁻¹ exists exactly when f is a bijection: surjectivity makes it total, injectivity makes it well-defined. The inverse of a bijection is a bijection.",
+  "kernels": {
+    "l1": "You can undo a machine only if nothing got mixed up and nothing got skipped.",
+    "l2": "An undo-machine exists only when the first machine never shared and never skipped. Then every answer leads back to exactly one thing.",
+    "l3": "A function can be undone exactly when it is a bijection. Being onto is what makes the undo-machine work on every answer, and being one-to-one is what makes each answer lead back to only one input.",
+    "l4": "f⁻¹ exists exactly when f is a bijection: surjectivity makes f⁻¹ total, injectivity makes it well-defined. The inverse of a bijection is a bijection, and its inverse is f again.",
+    "l5": "Invertibility is equivalent to bijectivity, and the two halves of the definition of function correspond exactly to the two halves of bijectivity.",
+    "l6": "f⁻¹ is a two-sided inverse under composition and exists iff f is a bijection; the notation f⁻¹ for pre-images is a different object.",
+    "l7": "A function is invertible exactly when it is bijective — surjectivity gives totality of the inverse, injectivity gives well-definedness. The inverse is itself a bijection with inverse f, and f⁻¹(t) as a value must not be confused with f⁻¹({t}) as a set.",
+    "l8": "Invertibility is being an isomorphism in Set; f⁻¹ as inverse function and f⁻¹ as pre-image operator coincide notationally but not conceptually, the latter existing always."
+  },
   "kernel": "f⁻¹ exists exactly when f is a bijection: surjectivity makes it total, injectivity makes it well-defined. The inverse of a bijection is a bijection, and its inverse is f again.",
   "objectives": [
     "Explain why bijectivity is exactly the condition for invertibility",

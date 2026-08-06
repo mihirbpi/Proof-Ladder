@@ -1,0 +1,59 @@
+---
+level: l2
+title: Pairing up
+readingTimeMin: 4
+newTerms: ["perfect pairing"]
+anchorExample: "the cubby machine"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Aside from '@/components/Aside.astro';
+
+Put the last two modules together.
+
+- No sharing: no two arrows land in the same place.
+- Nothing left out: every landing spot has an arrow.
+
+A machine with **both** is a **perfect pairing**.
+
+<Figure alt="Three children on the left, each with one arrow, landing on three different cubbies so that every cubby is used exactly once." caption="One arrow into every cubby. Nothing shared, nothing left out.">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,2],[2,0]]} />
+</Figure>
+
+Every cubby has exactly one arrow. Not zero. Not two. Exactly one.
+
+## Counting without counting
+
+Here is why this matters so much.
+
+Suppose you have a huge pile of forks and a huge pile of knives. Which pile is bigger?
+
+You *could* count them both. Slow, and you might lose your place.
+
+Or you could pair them up. Take a fork, take a knife, put them together. Again. Again.
+
+- Ran out of forks first? More knives.
+- Ran out of knives first? More forks.
+- Ran out at the same time? **Same number!**
+
+You never counted. You just paired.
+
+## Why this is a big deal
+
+Little kids do this before they can count at all, and grown-up mathematicians do it too — because sometimes counting is not just slow, it is impossible.
+
+How many whole numbers are there? You cannot count them. They never stop.
+
+But you can still *pair them up* with things. And when mathematicians want to compare two never-ending piles, pairing is the only tool that works.
+
+<Aside>
+Here is something strange to think about. Pair up every whole number with its double: 1 with 2, 2 with 4, 3 with 6, and so on forever. Nothing is shared and nothing is left out on the right, because every even number is somebody's double. So there are just as many even numbers as there are whole numbers — even though the even numbers seem like only half of them! Never-ending piles do not behave like ordinary piles.
+</Aside>
+
+<TryIt>
+Grab two handfuls of different things without counting. Pair them up one by one. Which handful ran out first?
+</TryIt>

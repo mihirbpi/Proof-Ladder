@@ -1,0 +1,89 @@
+---
+level: l4
+title: De Morgan's set laws
+readingTimeMin: 7
+newTerms: []
+anchorExample: "two hoops on the floor"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Fix a universe $U$ and let $S, T \subseteq U$.
+
+$$
+\overline{S \cap T} = \overline{S} \cup \overline{T},
+\qquad
+\overline{S \cup T} = \overline{S} \cap \overline{T}.
+$$
+
+<Figure alt="Two overlapping circles S and T inside a dashed universe box, with only the region outside both circles shaded." caption="$\overline{S \cup T} = \overline{S} \cap \overline{T}$.">
+  <VennTwo labelS="S" labelT="T" shade={["outside"]} universe="U" />
+</Figure>
+
+This is the first proof in the course where **Chapter 1 is used as a tool** rather than as subject matter. The pivot step of the argument below is a logical equivalence, quoted and applied.
+
+## Proof of the second law
+
+<Discussion>
+  <div slot="know">$x \in \overline{A} \iff x \in U \wedge x \notin A$. $x \in S \cup T \iff (x \in S) \vee (x \in T)$. And De Morgan for connectives (module 1.4): $\neg(p \vee q) \equiv \neg p \wedge \neg q$.</div>
+  <div slot="want">$\overline{S \cup T} \subseteq \overline{S} \cap \overline{T}$ and the reverse.</div>
+  <div slot="how">Chase an arbitrary element. Unfold the set notation into logic, apply the logic law, and fold back up. Both directions are the same unfolding read in opposite orders — because the logic law is an equivalence, not an implication.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $x \in \overline{S \cup T}$ be arbitrary. Then $x \in U$ and $x \notin S \cup T$, i.e.
+$$\neg\big((x \in S) \vee (x \in T)\big).$$
+By De Morgan's logic law, this is equivalent to
+$$(x \notin S) \wedge (x \notin T).$$
+Since also $x \in U$, we get $x \in \overline{S}$ and $x \in \overline{T}$, so $x \in \overline{S} \cap \overline{T}$.
+
+**($\supseteq$)** Let $x \in \overline{S} \cap \overline{T}$ be arbitrary. Then $x \in U$, $x \notin S$, and $x \notin T$, that is $(x \notin S) \wedge (x \notin T)$. By the same logic law this is equivalent to $\neg\big((x \in S) \vee (x \in T)\big)$, i.e. $x \notin S \cup T$. With $x \in U$, this gives $x \in \overline{S \cup T}$.
+
+Both inclusions hold, so $\overline{S \cup T} = \overline{S} \cap \overline{T}$.
+</Proof>
+
+The first law is proved identically, using $\neg(p \wedge q) \equiv \neg p \vee \neg q$ instead. Alternatively it follows from the second by substituting $\overline S, \overline T$ for $S, T$ and complementing both sides, using $\overline{\overline A} = A$.
+
+## Why the two chapters keep matching
+
+The correspondence is not luck. Sets in this course are specified by conditions (module 2.2), and a set operation is defined *as* an operation on conditions:
+
+| Connective | Set operation | Definition |
+|---|---|---|
+| $\wedge$ | $\cap$ | $x \in S \cap T \iff (x \in S) \wedge (x \in T)$ |
+| $\vee$ | $\cup$ | $x \in S \cup T \iff (x \in S) \vee (x \in T)$ |
+| $\neg$ | $\overline{\phantom{S}}$ | $x \in \overline{S} \iff \neg(x \in S)$ (within $U$) |
+| $\Rightarrow$ | $\subseteq$ | $S \subseteq T \iff \forall x\,(x \in S \Rightarrow x \in T)$ |
+| $\Leftrightarrow$ | $=$ | $S = T \iff \forall x\,(x \in S \Leftrightarrow x \in T)$ |
+
+So every logical identity produces a set identity by mechanical translation, and the proof is always the same three moves: unfold, apply the logic law, fold. Once you have seen it twice, the remaining laws of this chapter are exercises.
+
+<Warning title="The connective must swap">
+$\overline{S \cap T} \neq \overline{S} \cap \overline{T}$ in general. Concretely, in $U = \{1,\ldots,6\}$ with $S = \{1,2,3\}$, $T = \{3,4\}$:
+$$\overline{S \cap T} = \overline{\{3\}} = \{1,2,4,5,6\},$$
+$$\overline{S} \cap \overline{T} = \{4,5,6\} \cap \{1,2,5,6\} = \{5,6\}.$$
+Different sets. Keeping the connective is the same over-negation error as in module 1.4, and one counterexample settles it.
+</Warning>
+
+## Where you will use it
+
+Whenever a proof needs the complement of something built from $\cup$ or $\cap$ — which is often, since complements arise from any hypothesis phrased negatively. Two immediate consequences worth recording:
+
+$$
+S \setminus (T \cup R) = (S \setminus T) \cap (S \setminus R),
+\qquad
+S \setminus (T \cap R) = (S \setminus T) \cup (S \setminus R),
+$$
+
+obtained by taking $U = S$. These are the forms you actually meet in practice, since set difference is more common than absolute complement.
+
+<Aside>
+The laws extend to arbitrarily many sets. For a family $A_1, \ldots, A_n$,
+$$\overline{A_1 \cup \cdots \cup A_n} = \overline{A_1} \cap \cdots \cap \overline{A_n},$$
+provable by induction (Chapter 6). Pushed to infinite families, the connectives become quantifiers and this becomes $\neg \exists \equiv \forall \neg$ — module 1.11 again. One law, three levels of generality.
+</Aside>

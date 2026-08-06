@@ -1,0 +1,78 @@
+---
+level: l4
+title: Proof by contrapositive
+readingTimeMin: 7
+newTerms: ["proof by contrapositive"]
+anchorExample: "x³ < 0 implies x < 0"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.7 established $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$. Because the two are equivalent, a proof of either is a proof of both. **Proof by contrapositive** exploits this: when the hypothesis $p$ is awkward, prove $\neg q \Rightarrow \neg p$ instead.
+
+## The proposition
+
+> **Proposition.** For all $x \in \mathbb{R}$, if $x^3 < 0$ then $x < 0$.
+
+## Why direct proof is unpleasant here
+
+Try it. Assume $x^3 < 0$. Now what? To get information about $x$ you would want to take a cube root — but "$x$ has a negative cube, therefore $x$ is negative" is essentially the statement we are trying to prove, so invoking it would be circular. Alternatively you could factor: $x^3 < 0$ means $x \cdot x^2 < 0$, and since $x^2 \geq 0$ always, you would need $x < 0$ and $x^2 > 0$ — that argument can be made to work, but it needs a case analysis on whether $x^2 = 0$, and it is fiddly.
+
+The contrapositive avoids all of it.
+
+<Discussion>
+  <div slot="know">The contrapositive of "$x^3 < 0 \Rightarrow x < 0$" is "$x \geq 0 \Rightarrow x^3 \geq 0$." Note the negation of $x < 0$ is $x \geq 0$, not $x > 0$.</div>
+  <div slot="want">$x^3 \geq 0$, given $x \geq 0$.</div>
+  <div slot="how">The new hypothesis $x \geq 0$ is something we can multiply with: the product of non-negative reals is non-negative. Apply it twice.</div>
+</Discussion>
+
+## Proof
+
+<Proof>
+We prove the contrapositive: for all $x \in \mathbb{R}$, if $x \geq 0$ then $x^3 \geq 0$.
+
+Let $x \in \mathbb{R}$ with $x \geq 0$. The product of two non-negative real numbers is non-negative, so $x \cdot x = x^2 \geq 0$. Applying the same fact to $x^2 \geq 0$ and $x \geq 0$ gives $x^2 \cdot x = x^3 \geq 0$.
+
+Hence $x \geq 0 \Rightarrow x^3 \geq 0$. Since this is the contrapositive of the proposition, and a conditional is logically equivalent to its contrapositive, the proposition follows.
+</Proof>
+
+Three lines, no cases, no circularity.
+
+<Warning title="Negate the inequality correctly">
+$\neg(x < 0)$ is $x \geq 0$. Writing $x > 0$ loses the case $x = 0$, and a proof that never handles $x = 0$ does not prove the proposition. The same trap: $\neg(x \leq 5)$ is $x > 5$; $\neg(x = 3)$ is $x \neq 3$. Get the negation wrong and you prove a strictly weaker statement while believing otherwise.
+</Warning>
+
+## A second example
+
+> **Proposition.** For $n \in \mathbb{Z}$, if $n^2$ is odd then $n$ is odd.
+
+Definitions: $n$ is **even** iff $n = 2k$ for some $k \in \mathbb{Z}$; **odd** iff $n = 2k + 1$ for some $k \in \mathbb{Z}$.
+
+<Proof>
+We prove the contrapositive: if $n$ is even then $n^2$ is even.
+
+Suppose $n$ is even, so $n = 2k$ for some integer $k$. Then
+$$n^2 = (2k)^2 = 4k^2 = 2(2k^2).$$
+Since $2k^2 \in \mathbb{Z}$, the integer $n^2$ is twice an integer and hence even.
+
+This proves the contrapositive, and therefore the proposition.
+</Proof>
+
+Compare the two hypotheses. "$n^2$ is odd" gives you $n^2 = 2k+1$ — an equation about $n^2$, from which extracting $n$ requires a square root you cannot control. "$n$ is even" gives you $n = 2k$ — an equation about $n$ itself, which you can substitute forward. The contrapositive moved the usable information into the hypothesis.
+
+## A decision rule
+
+Reach for the contrapositive when:
+
+- **The hypothesis is a negation.** "$x$ is not rational," "$n$ is odd" (= not even), "$f$ is not injective." Negative hypotheses give you nothing to substitute.
+- **The conclusion is a negation.** Its negation will be positive, and positive statements are usable.
+- **The hypothesis is about a composite quantity and the conclusion about a simple one.** As above: $n^2$ in the hypothesis, $n$ in the conclusion. Flipping puts the simple quantity where you can act on it.
+
+Otherwise, try directly first. Contraposition is a tool, not a default.
+
+<Aside>
+Proof by contrapositive is often confused with proof by contradiction (module 2.5). They differ: contraposition assumes $\neg q$ and derives $\neg p$, finishing with a legitimate implication. Contradiction assumes both $p$ **and** $\neg q$ and derives an impossibility. Every contrapositive proof can be dressed up as a contradiction proof, but the reverse is not true, and the contrapositive version is cleaner when it is available. If your "contradiction" proof never actually uses $p$, you wrote a contrapositive proof — say so.
+</Aside>

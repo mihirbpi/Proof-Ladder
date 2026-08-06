@@ -1,0 +1,74 @@
+---
+level: l4
+title: What is a function?
+readingTimeMin: 7
+newTerms: ["function", "domain", "codomain", "well-defined"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+A **function** $f : S \to T$ assigns to every element of $S$ exactly one element of $T$. The set $S$ is the **domain**, $T$ is the **codomain**, and the element assigned to $s$ is written $f(s)$.
+
+Unpacked, "exactly one, to every" is three separate requirements.
+
+| Condition | Statement | Failure looks like |
+|---|---|---|
+| **Totality** | $\forall s \in S,\ \exists t \in T,\ f(s) = t$ | an input with no output |
+| **Well-definedness** | $f(s) = t_1 \wedge f(s) = t_2 \Rightarrow t_1 = t_2$ | an input with two outputs |
+| **Codomain** | every output lies in $T$ | an output escaping $T$ |
+
+Combining the first two: $\forall s \in S,\ \exists!\, t \in T,\ f(s) = t$ — the unique-existence quantifier of module 1.10, which is exactly what "exactly one" means.
+
+<Figure alt="Three elements on the left with exactly one arrow leaving each, landing among three elements on the right." caption="A function. Exactly one arrow leaves each element of the domain.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0],[2,2]]} />
+</Figure>
+
+<Figure alt="Two elements on the left both have arrows landing on the same element on the right; each still has exactly one arrow leaving." caption="Also a function. Nothing forbids two inputs sharing an output.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,1],[2,0]]} />
+</Figure>
+
+The conditions constrain the **domain side** only. Two arrows landing together is permitted (module 3.5 studies when it does not happen); a target with no arrow is permitted (module 3.6 studies when that does not happen).
+
+## Non-examples
+
+**Square root taken with both signs.** Define $g : \mathbb{R}_{\geq 0} \to \mathbb{R}$ by "$g(x)$ is a number with $g(x)^2 = x$." Then $g(9)$ could be $3$ or $-3$: well-definedness fails. The repair is to *choose*, and the standard choice is the non-negative root, which is why $\sqrt{9} = 3$ and not $\pm 3$. That convention is a decision made to keep $\sqrt{\phantom{x}}$ a function.
+
+**Reciprocal on all of $\mathbb{R}$.** Define $h : \mathbb{R} \to \mathbb{R}$ by $h(x) = 1/x$. Totality fails at $x = 0$. The repair is to shrink the domain: $h : \mathbb{R} \setminus \{0\} \to \mathbb{R}$ is a genuine function.
+
+**Codomain escape.** Define $k : \mathbb{Z} \to \mathbb{N}$ by $k(n) = n - 1$. Then $k(0) = -1 \notin \mathbb{N}$. The rule is fine; the declared codomain is wrong.
+
+Each failure has a standard repair, and the repair always changes the domain, the codomain, or the rule. That is the sense in which those three things *are* the function.
+
+<Warning title="The domain and codomain are data, not decoration">
+$f : \mathbb{R} \to \mathbb{R}$, $f(x) = e^x$ and $g : \mathbb{R} \to \mathbb{R}_{>0}$, $g(x) = e^x$ are **different functions**. Same rule, different codomain. In module 3.6 you will find that one of them is surjective and the other is not — so the distinction has consequences, not just bookkeeping.
+</Warning>
+
+## Well-definedness when the input has several names
+
+The word *well-defined* does more work than the table suggests. Consider defining $f : \mathbb{Q} \to \mathbb{Z}$ by
+$$
+f\!\left(\frac{p}{q}\right) = p + q.
+$$
+This looks like a rule. But $\tfrac12 = \tfrac24$, and the rule gives $1 + 2 = 3$ for the first name and $2 + 4 = 6$ for the second. The *same rational number* receives two answers, so $f$ is not well-defined and hence not a function.
+
+Whenever elements of the domain have more than one name — fractions, remainders mod $n$, equivalence classes generally — checking well-definedness is a genuine proof obligation, not a formality.
+
+## Functions of two variables
+
+Multiplication is a function. Its inputs are *pairs*, so its domain is a product set (module 2.9):
+$$
+m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}, \qquad m\big((a,b)\big) = ab.
+$$
+Every pair of integers gets exactly one product, so all three conditions hold. Everyone writes $m(a,b)$ rather than $m((a,b))$, but the domain really is a set of ordered pairs. This is why module 2.9 came before this chapter.
+
+<Aside>
+The vertical line test is condition 2 drawn on axes: if a vertical line meets a curve twice, some input has two outputs. It is a useful check on graphs of real functions, and it is not the definition — the cubby machine is a function with no graph to test.
+</Aside>

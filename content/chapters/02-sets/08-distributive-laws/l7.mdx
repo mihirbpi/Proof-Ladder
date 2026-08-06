@@ -1,0 +1,106 @@
+---
+level: l7
+title: Distributive laws
+readingTimeMin: 9
+newTerms: ["distributive law", "distributive lattice"]
+anchorExample: "complements in ℝ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+S \cap (T \cup R) = (S \cap T) \cup (S \cap R), \tag{D1}
+$$
+$$
+S \cup (T \cap R) = (S \cup T) \cap (S \cup R). \tag{D2}
+$$
+
+Both are transcriptions of logical equivalences,
+$$
+p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r),
+\qquad
+p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r),
+$$
+each checkable on eight rows. The mathematically notable feature is that **both** hold. In a ring, $\times$ distributes over $+$ and not conversely; in $\mathcal{P}(X)$ the two operations are on equal footing, and neither is the "additive" one.
+
+## Proof of (D2)
+
+(D1) is the routine one; (D2)'s reverse inclusion contains the only step worth slowing down for.
+
+<Discussion>
+  <div slot="know">$x \in (S\cup T) \cap (S \cup R)$ gives two disjunctions simultaneously.</div>
+  <div slot="want">$x \in S$ or $x \in T \cap R$.</div>
+  <div slot="how">Nothing in the hypothesis suggests a case split, so split on excluded middle: either $x \in S$ or not. If not, disjunctive syllogism extracts $T$ from the first disjunction and $R$ from the second.</div>
+</Discussion>
+
+<Proof>
+($\subseteq$) Let $x \in S \cup (T \cap R)$.
+
+*Case $x \in S$:* then $x \in S \cup T$ and $x \in S \cup R$, hence $x$ lies in their intersection.
+*Case $x \in T \cap R$:* then $x \in T \subseteq S \cup T$ and $x \in R \subseteq S \cup R$, same conclusion.
+
+($\supseteq$) Let $x \in (S \cup T) \cap (S \cup R)$, so $x \in S \cup T$ and $x \in S \cup R$. Either $x \in S$ or $x \notin S$.
+
+*Case $x \in S$:* then $x \in S \cup (T \cap R)$ at once.
+*Case $x \notin S$:* from $x \in S \cup T$ and $x \notin S$, disjunctive syllogism gives $x \in T$; likewise $x \in R$. Hence $x \in T \cap R$, so $x \in S \cup (T \cap R)$.
+
+Both inclusions hold.
+</Proof>
+
+Two techniques are worth extracting. **Splitting on excluded middle** ($x \in S$ or not) is always available when the hypothesis offers no natural case division, and it is the standard opening for reverse inclusions of this shape. **Disjunctive syllogism** — from $p \vee q$ and $\neg p$ infer $q$ — is how a union hypothesis is converted into usable information once one side is excluded.
+
+## Duality makes one proof do
+
+Complementation is an involution exchanging $\cap$ and $\cup$ (§2.7). Complementing (D1) and applying De Morgan throughout:
+$$
+\overline{S \cap (T \cup R)} = \overline S \cup (\overline T \cap \overline R),
+\qquad
+\overline{(S\cap T) \cup (S \cap R)} = (\overline S \cup \overline T) \cap (\overline S \cup \overline R),
+$$
+so (D1) applied to arbitrary $S,T,R$ yields (D2) for $\overline S, \overline T, \overline R$ — and since complementation is a bijection on $\mathcal{P}(X)$, that is (D2) in full generality. Proving one law proves both.
+
+This is worth internalising as a habit: in any structure with an order-reversing involution, half the theorems are free.
+
+## What distributivity is doing
+
+A lattice satisfying (D1) — equivalently (D2), the two being equivalent in any lattice — is a **distributive lattice**. Distributivity is exactly the property that fails in the most important non-example.
+
+Let $V$ be a vector space and $L(V)$ its lattice of subspaces, with meet $\cap$ and join $U + W$. Take three distinct lines $A, B, C$ through the origin in $\mathbb{R}^2$. Then
+$$
+A \cap (B + C) = A \cap \mathbb{R}^2 = A,
+$$
+but
+$$
+(A \cap B) + (A \cap C) = \{0\} + \{0\} = \{0\}.
+$$
+Distributivity fails, and fails badly. $L(V)$ is *modular* but not distributive, and that single algebraic fact is the formal difference between classical and quantum logic: in the lattice of closed subspaces of a Hilbert space, "$A$ and ($B$ or $C$)" is genuinely not "($A$ and $B$) or ($A$ and $C$)", which is the lattice-theoretic residue of superposition.
+
+<Warning title="The ring analogy has limits">
+$\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for (D1) and a false friend elsewhere. Set operations are **idempotent** ($S \cup S = S$) and **have no inverses** ($S \cup T = S \cup R$ does not force $T = R$), so $(\mathcal{P}(X), \cup)$ is not a group and $\mathcal{P}(X)$ is not a ring under these operations.
+
+It *is* a ring under symmetric difference and intersection — $(\mathcal{P}(X), \triangle, \cap)$ is a commutative ring in which every element is idempotent, a *Boolean ring* — and that is the correct algebraic packaging when ring-theoretic tools are wanted.
+</Warning>
+
+## General form
+
+Both laws extend to indexed families:
+$$
+S \cap \bigcup_{i \in I} A_i = \bigcup_{i \in I} (S \cap A_i),
+\qquad
+S \cup \bigcap_{i \in I} A_i = \bigcap_{i \in I} (S \cup A_i),
+$$
+with $I$ arbitrary. The proofs are the same element chases, with $\exists$ and $\forall$ replacing $\vee$ and $\wedge$ at the pivot; no induction is needed, so infinite $I$ costs nothing.
+
+Infinite distributivity of this kind is not automatic in a general lattice — a **frame** (or complete Heyting algebra) is by definition a complete lattice in which finite meets distribute over arbitrary joins, and the open sets of a topological space form one. That the corresponding law for arbitrary meets over joins fails there is exactly the asymmetry in the topology axioms.
+
+<Aside>
+In a lattice, (D1) and (D2) are equivalent, but the proof of the equivalence is not the duality argument above — that used complements, which a general lattice lacks. It is a short direct computation, and it fails for the weaker *modular* law, which is why modular non-distributive lattices exist.
+</Aside>
+
+<WhereThisGoes level="l7">
+Distributivity is the dividing line between several subjects. Birkhoff's representation theorem says every finite distributive lattice is a lattice of sets, so distributivity is precisely the condition under which set intuition is reliable — and its failure in $L(V)$ is why linear algebra needs its own intuition rather than borrowing set-theoretic pictures. In measure theory, distributivity over countable unions is what makes inclusion–exclusion and continuity of measure work. In logic, the distributive laws are the rewriting rules that produce conjunctive and disjunctive normal form, and hence the input format of every SAT solver; the exponential blow-up in that conversion is one of the practical facts of automated reasoning.
+</WhereThisGoes>

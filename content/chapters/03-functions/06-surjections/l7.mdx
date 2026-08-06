@@ -1,0 +1,101 @@
+---
+level: l7
+title: Onto (surjections)
+readingTimeMin: 9
+newTerms: ["surjective", "onto", "right inverse"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$f : S \to T$ is **surjective** when
+$$
+\forall t \in T,\ \exists s \in S,\ f(s) = t,
+$$
+equivalently $\operatorname{Im}(f) = T$, equivalently every fibre $f^{-1}(\{t\})$ is nonempty.
+
+Injectivity bounded fibres above by $1$; surjectivity bounds them below. §3.8 imposes both.
+
+## Proof shape: arbitrary target, exhibited witness
+
+The definition is $\forall\exists$, so §1.12 dictates: fix arbitrary $t \in T$, construct $s \in S$ depending on $t$, verify $f(s) = t$. Two obligations are routinely skipped — that the construction is *defined* for every $t \in T$, and that the result *lies in $S$*.
+
+> **Proposition.** $g : \mathbb{R} \to \mathbb{R}_{>0}$, $g(x) = e^x$, is surjective.
+
+<Discussion>
+  <div slot="know">$t > 0$; $\ln : \mathbb{R}_{>0} \to \mathbb{R}$ exists and satisfies $e^{\ln t} = t$.</div>
+  <div slot="want">A real $x$ with $e^x = t$.</div>
+  <div slot="how">Take $x = \ln t$. The hypothesis $t > 0$ is precisely the condition under which $\ln t$ is defined — so the choice of codomain is not incidental to the proof, it is what makes the proof possible.</div>
+</Discussion>
+
+<Proof>
+Let $t \in \mathbb{R}_{>0}$ be arbitrary. Since $t > 0$, $x := \ln t$ is a well-defined real number, so $x \in \mathbb{R}$. Then $g(x) = e^{\ln t} = t$. As $t$ was arbitrary, $g$ is surjective.
+</Proof>
+
+A construction-free alternative, worth knowing because it generalises: $\exp$ is continuous on $\mathbb{R}$ with $\lim_{x\to-\infty} e^x = 0$ and $\lim_{x\to+\infty} e^x = +\infty$, so by the intermediate value theorem its image contains every $t > 0$. This is non-constructive in flavour but often the only available route.
+
+## Codomain dependence
+
+> $f : \mathbb{R}\to\mathbb{R}$, $f(x) = e^x$, is **not** surjective: $e^x > 0$ for all $x$, so $-1$ is unattained.
+
+Same rule, same domain as $g$; only the codomain differs, and the answer flips. Since domain and codomain are constitutive of a function (§3.1), $f$ and $g$ are different functions, and this is the cleanest demonstration of why that convention is not pedantry.
+
+<Warning title="An asymmetry between the two properties">
+Injectivity depends on the rule and the domain only — enlarging the codomain cannot create collisions. Surjectivity depends essentially on the codomain.
+
+So "is $f$ injective?" is well-posed given rule and domain; "is $f$ surjective?" is not well-posed until the codomain is declared. Students who report that surjectivity is the harder notion are usually reporting this asymmetry.
+</Warning>
+
+## Refutation
+
+By §1.11 the negation is
+$$
+\exists t \in T,\ \forall s \in S,\ f(s) \neq t.
+$$
+Exhibiting the unhit $t$ is only half; the other half is a *universal* argument that nothing reaches it. In the example, $t = -1$ with the universal fact $e^x > 0$.
+
+## Equivalent formulations
+
+> **Proposition.** For $f : S \to T$, the following are equivalent:
+> 1. $f$ is surjective;
+> 2. $f$ has a **right inverse**: some $h : T \to S$ with $f \circ h = \mathrm{id}_T$;
+> 3. $f$ is right-cancellable: for all $u, v : T \to R$, $u \circ f = v \circ f \Rightarrow u = v$;
+> 4. $f(f^{-1}(U)) = U$ for all $U \subseteq T$.
+
+<Proof title="Proof of (1) ⇔ (2)">
+($\Rightarrow$) Suppose $f$ is surjective. For each $t \in T$ the fibre $f^{-1}(\{t\})$ is nonempty; **choose** an element $h(t)$ from each. Then $f(h(t)) = t$ for all $t$, so $f \circ h = \mathrm{id}_T$.
+
+($\Leftarrow$) Suppose $f \circ h = \mathrm{id}_T$ and let $t \in T$. Then $f(h(t)) = t$ with $h(t) \in S$, so $t \in \operatorname{Im}(f)$.
+</Proof>
+
+<Aside>
+The word **choose** in that proof is doing more work than it appears to. Selecting one element from each of possibly infinitely many nonempty fibres, with no rule specifying which, is exactly the **Axiom of Choice** — and in fact "every surjection has a right inverse" is *equivalent* to AC over ZF. Contrast the corresponding fact for injections (§3.5), whose left inverse was constructed explicitly and needs no choice at all. The asymmetry is real: injectivity is constructive, surjectivity is not.
+</Aside>
+
+## Surjectivity by adjusting the codomain
+
+Every $f : S \to T$ restricts to a surjection $S \to \operatorname{Im}(f)$, giving the canonical factorisation
+$$
+S \twoheadrightarrow \operatorname{Im}(f) \hookrightarrow T
+$$
+of any function as a surjection followed by an injection. This is the set-theoretic shadow of the first isomorphism theorem, which in group theory reads $G/\ker\varphi \cong \operatorname{im}\varphi$ and in linear algebra becomes rank–nullity.
+
+## Table
+
+| $f$ | Surjective? | Witness or obstruction |
+|---|---|---|
+| $\lfloor\cdot\rfloor : \mathbb{R}\to\mathbb{Z}$ | yes | $n \mapsto n$ |
+| $m : \mathbb{Z}^2 \to \mathbb{Z}$, $(a,b)\mapsto ab$ | yes | $n \mapsto (n,1)$ |
+| $x^2 : \mathbb{R}\to\mathbb{R}$ | no | $-1$ unhit, $x^2 \geq 0$ |
+| $x^2 : \mathbb{R}\to[0,\infty)$ | yes | $t \mapsto \sqrt t$ |
+| $1/x : \mathbb{R}^\times \to \mathbb{R}$ | no | $0$ unhit |
+| $1/x : \mathbb{R}^\times \to \mathbb{R}^\times$ | yes | $t \mapsto 1/t$ |
+| $\sin : \mathbb{R}\to[-1,1]$ | yes | IVT |
+
+<WhereThisGoes level="l7">
+Surjectivity is the existence half of solving equations: "$f$ is surjective" says $f(x) = t$ is solvable for every $t$, and injectivity says solutions are unique. Almost every existence-and-uniqueness theorem in mathematics is a bijectivity statement in disguise — the fundamental theorem of algebra is surjectivity of a polynomial map onto $\mathbb{C}$, the Picard–Lindelöf theorem is bijectivity of a solution operator, and the invertible matrix theorem is a list of eighteen conditions all equivalent to bijectivity of a linear map. The choice-theoretic content flagged above also persists: in category theory, epimorphisms need not be split, and the categories where every epi splits are exactly those with enough projectives — a condition that controls homological algebra.
+</WhereThisGoes>

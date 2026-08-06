@@ -1,0 +1,88 @@
+---
+level: l3
+title: The shape of the irrationals
+readingTimeMin: 5
+newTerms: []
+anchorExample: "divisibility"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+The rationals are a beautifully behaved number system: closed under adding, subtracting, multiplying, and dividing (module 4.5). What about the irrationals — the numbers left over?
+
+They are a mess. And the mess is instructive.
+
+## Closure fails, twice
+
+**Adding.** $\sqrt2$ is irrational, and so is $-\sqrt2$. But
+$$\sqrt2 + (-\sqrt2) = 0,$$
+and $0$ is rational. So the irrationals are **not closed under addition**.
+
+**Multiplying.** $\sqrt2$ is irrational, and
+$$\sqrt2 \times \sqrt2 = 2,$$
+which is rational. So they are **not closed under multiplication** either.
+
+One counterexample each, and both closure claims are dead (module 1.11).
+
+**And there is no zero, and no one.** $0$ and $1$ are both rational, so neither is in the set at all. Without them, there is not much of a number system left.
+
+<Warning title="Not closed, but not always broken">
+$\sqrt2 + \sqrt3$ *is* irrational, as it happens. So irrational plus irrational sometimes stays irrational and sometimes does not.
+
+That is exactly what "not closed" means (module 4.1): it fails at least once. It does not fail always, and you can never predict which without doing the work.
+</Warning>
+
+## What does survive
+
+Three things are always true, and each is proved the same way: **suppose not**, and use closure of $\mathbb{Q}$ to get a contradiction.
+
+> **Claim 1.** If $a$ is irrational, then $-a$ is irrational.
+
+<Proof>
+Suppose not — suppose $-a$ is rational.
+
+The rationals are closed under taking opposites (module 4.5), so $-(-a)$ is rational.
+
+But $-(-a) = a$. So $a$ is rational.
+
+That contradicts the hypothesis that $a$ is irrational. So $-a$ must be irrational.
+</Proof>
+
+> **Claim 2.** If $a$ is irrational and $a \neq 0$, then $\tfrac1a$ is irrational.
+
+<Proof>
+Suppose not — suppose $\tfrac1a$ is rational. Note $\tfrac1a \neq 0$.
+
+The rationals are closed under reciprocals of non-zero elements, so $\tfrac{1}{1/a}$ is rational.
+
+But $\tfrac{1}{1/a} = a$. So $a$ is rational — contradiction.
+</Proof>
+
+> **Claim 3.** If $r$ is a non-zero rational and $a$ is irrational, then $r \times a$ is irrational.
+
+<Proof>
+Suppose not — suppose $r \times a$ is rational.
+
+Since $r \neq 0$, its reciprocal $\tfrac1r$ is rational.
+
+The rationals are closed under multiplication, so $\tfrac1r \times (r \times a)$ is rational.
+
+But $\tfrac1r \times (r\times a) = a$. So $a$ is rational — contradiction.
+</Proof>
+
+## The pattern
+
+Look at all three proofs. They have the identical shape:
+
+1. Suppose the thing is rational.
+2. Apply an operation the rationals are closed under.
+3. Land back on $a$, proving $a$ rational.
+4. Contradiction.
+
+The engine is always the same: **$\mathbb{Q}$ is closed, so anything you can build from rationals is rational.** Irrationality is a statement about *not* being reachable that way, and contradiction is the natural tool for it.
+
+<Aside>
+Claim 1 is really a special case of Claim 3, with $r = -1$. Noticing this is worth more than the two separate proofs — one general result covering both is usually better mathematics than two specific ones.
+</Aside>

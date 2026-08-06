@@ -1,0 +1,74 @@
+---
+level: l3
+title: For all, there exists
+readingTimeMin: 6
+newTerms: ["for all", "there exists", "unique"]
+anchorExample: "square numbers"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Back in module 1.1 we met a sentence that was not quite a statement:
+
+$$x \geq 1$$
+
+It is not true and it is not false, because we were never told what $x$ is. Sentences like this are called *open statements*. This module shows the two ways to close them.
+
+## For all
+
+Put the words **for all** in front and you get a real statement:
+
+> **For all** whole numbers $x$, $x \geq 1$.
+
+Now it has a definite truth value. (It is false, since $x = 0$ is a whole number smaller than $1$.) A **for all** claim says: this holds in every single case, no exceptions.
+
+Here is a true one:
+
+> **For all** numbers $x$, $x \times x \geq 0$.
+
+Every number times itself lands at zero or above. Positive times positive is positive; negative times negative is positive; zero times zero is zero. No exceptions.
+
+## There exists
+
+The other way to close an open statement is with **there exists**:
+
+> **There exists** a number $x$ with $2 \times x = 7$.
+
+This claims at least one case works. It does not claim they all do — most numbers fail this. It just says: somewhere out there, one of them does the job.
+
+Is it true? Yes: $x = 3\frac{1}{2}$. Because $2 \times 3\frac{1}{2} = 7$. One example, and the claim is settled forever.
+
+Notice how different the work was.
+
+## The asymmetry — this is the important part
+
+| Claim | To prove it | To disprove it |
+|---|---|---|
+| **For all** $x$, $p(x)$ | argue about *every* case at once | find **one** case where $p$ fails |
+| **There exists** $x$, $p(x)$ | find **one** case where $p$ holds | argue that *every* case fails |
+
+Proving a *for all* is hard and knocking it down is easy. Proving a *there exists* is easy and knocking it down is hard. The difficulty is always on one side, and which side depends entirely on the first two words.
+
+This is not a small observation. It is why a single strange example can destroy a claim that a hundred examples had supported — module 1.11 is all about that.
+
+## Exactly one
+
+There is a third shape, greedier than the other two:
+
+> There exists a **unique** number $x$ with $3 \times x - 1 = 0$.
+
+**Unique** means *exactly one*: at least one, and no more than one. Settling it takes two separate jobs.
+
+1. **At least one.** Show something works: $x = \frac{1}{3}$ gives $3 \times \frac{1}{3} - 1 = 0$. ✓
+2. **At most one.** Show nothing else could. Suppose $x$ and $y$ both work. Then $3x - 1 = 0$ and $3y - 1 = 0$, so $3x = 1$ and $3y = 1$, so $3x = 3y$, so $x = y$. They were the same number all along.
+
+Both jobs done, so the number is unique.
+
+<Warning title="Say which set you mean">
+"For all $x$, $x \geq 1$" is *false* if $x$ ranges over whole numbers ($x=0$ breaks it) but *true* if $x$ ranges over whole numbers bigger than zero. Changing the collection changes the claim. Always say what $x$ is allowed to be — a quantified claim without a stated collection is not a finished sentence.
+</Warning>
+
+<Aside>
+Almost every theorem you will ever meet is a *for all* statement in disguise. "If $x > 1$ then $x^2 > 1$" really means "for all numbers $x$, if $x > 1$ then $x^2 > 1$." The *for all* is invisible but it is doing all the work — it is why the proof had to argue about a nameless $x$ instead of checking $x = 3$.
+</Aside>

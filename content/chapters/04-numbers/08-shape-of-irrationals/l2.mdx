@@ -1,0 +1,65 @@
+---
+level: l2
+title: Adding two √2s
+readingTimeMin: 4
+newTerms: ["not-a-fraction"]
+anchorExample: "sharing cookies evenly"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Warning from '@/components/Warning.astro';
+import Aside from '@/components/Aside.astro';
+
+Module 4.7 introduced the diagonal of a square — a length that is a **not-a-fraction**. Let us give it a short name and call it $d$.
+
+In module 4.1 you learned that whole numbers are *closed*: add two and you get another whole number, every time.
+
+Are the not-a-fractions closed? Let's find out.
+
+## Adding
+
+Take $d$. Now take the opposite of $d$, which is $-d$. Both are not-a-fractions.
+
+Add them:
+$$d + (-d) = 0.$$
+
+Zero! And zero is $\tfrac01$, which is definitely a fraction.
+
+So two not-a-fractions added up to a fraction. **Not closed.**
+
+## Multiplying
+
+Try again with multiplying. Take $d$ and $d$.
+
+Now, $d$ is the number whose square is $2$. So
+$$d \times d = 2.$$
+
+And $2$ is $\tfrac21$, a perfectly good fraction!
+
+So two not-a-fractions multiplied to a fraction. **Not closed either.**
+
+<Warning title="The not-a-fractions are a messy group">
+The whole numbers are tidy — you cannot escape them by adding or multiplying. The fractions are even tidier.
+
+The not-a-fractions are not tidy at all. You can escape them in one move, going either way. They do not even contain $0$ or $1$, since both of those are fractions.
+</Warning>
+
+## But something does survive
+
+Not everything falls apart. Here is one thing that always works.
+
+If $d$ is a not-a-fraction, then so is $-d$.
+
+Why? Think about it backwards. Suppose $-d$ *were* a fraction. Then you could take its opposite and get $d$ — and the opposite of a fraction is always a fraction. So $d$ would be a fraction too.
+
+But $d$ is not. So $-d$ cannot be a fraction either.
+
+That is **suppose not** again (module 2.5), used in three sentences.
+
+<Aside>
+Same story with doubling. If $d$ is a not-a-fraction, so is $2 \times d$. Because if $2d$ were a fraction, you could halve it — and half of a fraction is a fraction — and you would get $d$ back, which is impossible.
+</Aside>
+
+<TryIt>
+Take the number $d$ from the square. Write down three new numbers built from it: $-d$, $2d$, and $d + d$. Which of these are still not-a-fractions?
+</TryIt>

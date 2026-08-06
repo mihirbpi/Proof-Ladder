@@ -1,0 +1,76 @@
+---
+level: l3
+title: Set-builder notation
+readingTimeMin: 5
+newTerms: ["set-builder notation"]
+anchorExample: "multiples of 12"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Listing a set works fine when it is small:
+$$
+A = \{2, 4, 6, 8, 10\}.
+$$
+
+It works badly when the set is large, and not at all when it is infinite. You cannot write down the set of all even numbers by listing it. You will run out of paper, and then you will run out of life.
+
+So there is a second way to describe a set: give a **condition** that decides membership. This is **set-builder notation**.
+
+## Reading the notation
+
+$$
+A = \{\, x \mid x \text{ is a whole number, } x \text{ is even, and } 0 < x < 12 \,\}
+$$
+
+The vertical bar $\mid$ is read "**such that**". So the whole thing reads:
+
+> "$A$ is the set of all $x$ such that $x$ is a whole number, $x$ is even, and $x$ is between $0$ and $12$."
+
+The part before the bar says what kind of thing we are collecting. The part after the bar is the test. Anything that passes the test is in; anything that fails is out.
+
+Unpacking this one gives $A = \{2, 4, 6, 8, 10\}$ — the same set as before, described differently.
+
+## Where Chapter 1 comes back
+
+Look carefully at what sits after the bar. It is an **open statement** — a sentence with a variable in it, exactly the kind you met in module 1.1. On its own it is neither true nor false. But feed it a specific $x$ and it becomes a statement you can settle:
+
+- $x = 6$: "6 is a whole number, even, and between 0 and 12." True. So $6 \in A$.
+- $x = 7$: "7 is a whole number, even, …" False at the second clause. So $7 \notin A$.
+
+This is the join between the two chapters. **Chapter 1 built the conditions; Chapter 2 turns them into objects.** Every set-builder description is a predicate wearing braces.
+
+## Sets you could not write any other way
+
+$$
+E = \{\, x \mid x \text{ is a whole number and } x \text{ is even} \,\}
+$$
+
+Infinitely many elements, eleven symbols. There is no list-version of this set.
+
+$$
+M_{12} = \{\, x \mid x \text{ is a multiple of } 12 \,\} = \{0, 12, 24, 36, 48, \ldots\}
+$$
+
+Here the "$\ldots$" is a promise about a pattern; the set-builder version is the precise statement of what that pattern is.
+
+## Translating both directions
+
+You will need to move between the two forms constantly.
+
+| Set-builder | List |
+|---|---|
+| $\{x \mid x$ is a whole number, $-2 < x < 5\}$ | $\{-1, 0, 1, 2, 3, 4\}$ |
+| $\{x \mid x$ is a whole number and $x \times x = 9\}$ | $\{3, -3\}$ |
+| $\{x \mid x$ is a whole number and $x \times x = 2\}$ | $\emptyset$ |
+
+That last row is worth staring at. The condition is perfectly clear, and nothing satisfies it — no whole number squares to $2$. A condition satisfied by nothing gives the empty set. It is not an error; it is an answer.
+
+<Warning title="Say what x is allowed to be">
+$\{x \mid x \times x = 2\}$ is ambiguous, and dangerously so. Among whole numbers it is empty. Among all numbers on the number line it has two elements. Always state the pool $x$ is drawn from — the condition alone does not determine the set.
+</Warning>
+
+<Aside>
+The bar $\mid$ is sometimes written as a colon: $\{x : x \text{ is even}\}$. Same meaning. Books that use $\mid$ for "divides" (module 4.2) often switch to the colon here to avoid a collision.
+</Aside>

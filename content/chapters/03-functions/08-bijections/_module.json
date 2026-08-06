@@ -13,6 +13,17 @@
     "l7": "Bijections and size",
     "l8": "Bijections and size"
   },
+  "kernelIdea": "A bijection is injective and surjective: every t has exactly one pre-image. Bijections are how mathematicians compare sizes, including infinite ones.",
+  "kernels": {
+    "l1": "If every child has one cubby and every cubby has one child, there are just as many of each — and you never had to count.",
+    "l2": "When you can pair up two piles perfectly, with nothing left over on either side, the piles are the same size. You do not have to count them.",
+    "l3": "A bijection is a perfect matching: one-to-one and onto at the same time. Two sets have the same size exactly when a bijection between them exists, and this works even for sets too big to count.",
+    "l4": "f is bijective when it is injective and surjective, so every t ∈ T has exactly one pre-image. For finite sets a bijection forces |S| = |T|; for infinite sets, existence of a bijection is what \"same size\" means.",
+    "l5": "A bijection pairs the two sets perfectly; cardinality is defined by the existence of a bijection, which is why ℕ and the even numbers have the same size.",
+    "l6": "Bijections are the isomorphisms of Set; the identity is one, and compositions of bijections are bijections.",
+    "l7": "A bijection is simultaneously injective and surjective, so every element of the codomain has exactly one pre-image. Equinumerosity is defined by the existence of a bijection, which extends the notion of size to infinite sets.",
+    "l8": "Bijections are the isomorphisms of Set and define cardinality; the diagonal argument shows no bijection ℕ → ℝ exists, so infinities come in different sizes."
+  },
   "kernel": "A bijection is both injective and surjective: every t has exactly one pre-image. For finite sets, injection ⇒ |S| ≤ |T|, surjection ⇒ |S| ≥ |T|, bijection ⇒ |S| = |T|. Bijections are how mathematicians compare infinite sets.",
   "objectives": [
     "Verify a bijection",

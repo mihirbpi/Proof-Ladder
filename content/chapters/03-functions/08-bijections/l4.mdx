@@ -1,0 +1,99 @@
+---
+level: l4
+title: Bijections and size
+readingTimeMin: 7
+newTerms: ["bijection", "identity function", "cardinality"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Definition
+
+$f : S \to T$ is a **bijection** when it is both injective and surjective. Equivalently, in fibre language (module 3.3),
+$$
+|f^{-1}(\{t\})| = 1 \quad \text{for every } t \in T.
+$$
+
+The three modules assemble:
+
+| Property | $|f^{-1}(\{t\})|$ for all $t \in T$ |
+|---|---|
+| injective | $\leq 1$ |
+| surjective | $\geq 1$ |
+| bijective | $= 1$ |
+
+## Proving a bijection
+
+Two separate proofs, one for each half. There is no shortcut.
+
+> **Proposition.** $g : \mathbb{R} \to \mathbb{R}_{>0}$, $g(x) = e^x$, is a bijection.
+
+<Proof>
+*Injective.* Suppose $e^a = e^b$. Since $\exp$ is strictly increasing, $a < b$ would give $e^a < e^b$ and $a > b$ would give $e^a > e^b$; both contradict equality. Hence $a = b$.
+
+*Surjective.* Let $t \in \mathbb{R}_{>0}$. Since $t > 0$, $x = \ln t$ is a real number and $g(x) = e^{\ln t} = t$.
+
+Both hold, so $g$ is a bijection.
+</Proof>
+
+Note again that $f : \mathbb{R} \to \mathbb{R}$ with the same rule is **not** a bijection, because it is not surjective. Codomain matters (module 3.6).
+
+## The identity, and closure under composition
+
+The **identity function** $\mathrm{id}_S : S \to S$, $\mathrm{id}_S(s) = s$, is a bijection: injective because $s_1 = s_2$ is the hypothesis, surjective because $s$ is its own pre-image.
+
+> **Proposition.** If $f : S \to T$ and $g : T \to R$ are bijections, so is $g \circ f$.
+
+<Proof>
+By module 3.7, a composition of injections is injective and a composition of surjections is surjective. Since $f$ and $g$ are both, $g \circ f$ is both, hence a bijection.
+</Proof>
+
+## Cardinality
+
+Write $|S| = |T|$ when a bijection $S \to T$ exists. For finite sets this agrees with counting. Its point is that it keeps working when counting does not.
+
+Three facts about finite sets, which match intuition:
+
+- an injection $S \to T$ forces $|S| \leq |T|$;
+- a surjection $S \to T$ forces $|S| \geq |T|$;
+- a bijection forces $|S| = |T|$.
+
+The first is the **pigeonhole principle** in disguise: if $|S| > |T|$, some two elements of $S$ must share an output.
+
+## Infinite sets break the intuition
+
+> **Proposition.** $|\mathbb{N}| = |2\mathbb{N}|$, where $2\mathbb{N}$ is the set of even naturals.
+
+<Proof>
+Define $f : \mathbb{N}\to 2\mathbb{N}$ by $f(n) = 2n$.
+
+*Injective:* $2a = 2b \Rightarrow a = b$.
+*Surjective:* any even natural is $2k$ for some $k \in \mathbb{N}$, and $f(k) = 2k$.
+
+So $f$ is a bijection and the two sets have the same cardinality.
+</Proof>
+
+$2\mathbb{N}$ is a **proper subset** of $\mathbb{N}$ — it omits every odd number — and yet it has the same size. For finite sets this is impossible, and in fact it is a workable *definition*: a set is **infinite** exactly when it is in bijection with a proper subset of itself.
+
+<Warning title="Do not compare infinite sets by inclusion">
+$2\mathbb{N} \subsetneq \mathbb{N}$ but $|2\mathbb{N}| = |\mathbb{N}|$. Containment and cardinality are different relations, and for infinite sets they come apart.
+
+The only legitimate way to compare sizes is to ask what functions exist between the sets. Intuition trained on finite piles will mislead you here, and knowing that in advance is most of the battle.
+</Warning>
+
+## Not all infinities are equal
+
+Hilbert's hotel and the even numbers might suggest that all infinite sets have the same size. They do not.
+
+The rationals $\mathbb{Q}$ are in bijection with $\mathbb{N}$ — surprisingly, since between any two rationals there are infinitely many more. Sets in bijection with $\mathbb{N}$ are called **countable**.
+
+But $\mathbb{R}$ is **not** countable. There is no bijection $\mathbb{N}\to\mathbb{R}$, and no injection $\mathbb{R}\to\mathbb{N}$ either. The proof — Cantor's diagonal argument — assumes a list of all real numbers and constructs a real number differing from the $n$-th entry in the $n$-th decimal place, so the list was incomplete. It is *suppose not* (module 2.5) applied to a claim about lists.
+
+So there are at least two different sizes of infinity, and in fact infinitely many.
+
+<Aside>
+Cantor published this in 1874, and it was genuinely controversial — Kronecker fought it, and Poincaré called it a disease. It is now the foundation of set theory. The moral worth carrying: when a definition is extended to a new domain, it may produce answers that offend intuition, and the right response is usually to check the proof rather than to reject the definition.
+</Aside>

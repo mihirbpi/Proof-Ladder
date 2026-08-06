@@ -1,0 +1,87 @@
+---
+level: l7
+title: Remainders and proof by cases
+readingTimeMin: 9
+newTerms: ["remainder", "division algorithm", "congruence"]
+anchorExample: "ℤ as a ring"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Theorem (Division algorithm).** For $m \in \mathbb{Z}$, $n \in \mathbb{Z}_{>0}$, there exist **unique** $q, r \in \mathbb{Z}$ with
+> $$m = nq + r, \qquad 0 \leq r < n.$$
+
+<Discussion>
+  <div slot="know">$n > 0$. Consider $S = \{m - nk : k \in \mathbb{Z}\} \cap \mathbb{Z}_{\geq 0}$, the non-negative numbers of that form.</div>
+  <div slot="want">Existence and uniqueness of $(q,r)$.</div>
+  <div slot="how">Existence: $S$ is nonempty (take $k$ very negative) and consists of non-negative integers, so by well-ordering it has a least element $r$; minimality forces $r < n$. Uniqueness: two representations differ by a multiple of $n$ smaller than $n$ in absolute value, hence by $0$.</div>
+</Discussion>
+
+<Proof>
+*Existence.* Let $S = \{m - nk \mid k \in \mathbb{Z}\}\cap \mathbb{Z}_{\geq 0}$. Taking $k = -|m|$ gives $m + n|m| \geq m + |m| \geq 0$, so $S \neq \emptyset$. By the well-ordering principle, $S$ has a least element $r = m - nq$ for some $q \in \mathbb{Z}$, and $r \geq 0$.
+
+If $r \geq n$ then $r - n = m - n(q+1) \geq 0$ lies in $S$ and is smaller than $r$, contradicting minimality. Hence $0 \leq r < n$.
+
+*Uniqueness.* Suppose $m = nq_1 + r_1 = nq_2 + r_2$ with $0 \leq r_1, r_2 < n$. Then $n(q_1 - q_2) = r_2 - r_1$, so $n \mid (r_2 - r_1)$. But $|r_2 - r_1| < n$, and the only multiple of $n$ of absolute value less than $n$ is $0$. So $r_1 = r_2$, and then $n(q_1-q_2)=0$ with $n \neq 0$ gives $q_1 = q_2$.
+</Proof>
+
+The proof rests on **well-ordering** — every nonempty set of non-negative integers has a least element — which is equivalent to induction (Chapter 6) and is the property distinguishing $\mathbb{Z}$ from $\mathbb{Q}$. Note also that uniqueness used the absence of zero divisors (§4.1).
+
+## Non-divisibility becomes a finite disjunction
+
+$$
+n \nmid m \iff \exists r \in \{1,\ldots,n-1\},\ \exists q \in \mathbb{Z},\ m = nq + r.
+$$
+
+A negative hypothesis, useless as such, becomes finitely many positive ones. This is the whole method: **residues turn negation into cases**.
+
+Writing $a \equiv b \pmod n$ for $n \mid (a-b)$, the residue classes $[0], \ldots, [n-1]$ partition $\mathbb{Z}$, and congruence is compatible with $+$ and $\times$ — so one may compute with representatives, which is what the case analyses below do.
+
+## The showcase proposition
+
+> **Proposition.** For all $a \in \mathbb{Z}$: $3 \nmid a^2 - 1 \implies 3 \mid a$.
+
+<Discussion>
+  <div slot="know">A negative hypothesis about the composite quantity $a^2 - 1$, with a conclusion about $a$. Both of §1.8's indicators fire.</div>
+  <div slot="want">$3 \mid a$.</div>
+  <div slot="how">Contrapose to $3 \nmid a \Rightarrow 3 \mid a^2 - 1$, then convert the still-negative hypothesis into the two cases $a \equiv 1$ and $a \equiv 2 \pmod 3$ and compute.</div>
+</Discussion>
+
+<Proof>
+We prove the contrapositive. Suppose $3 \nmid a$. By the division algorithm $a = 3k+r$ with $r \in \{0,1,2\}$, and $r = 0$ is excluded since it gives $3 \mid a$.
+
+If $r=1$: $a^2 - 1 = 9k^2+6k = 3(3k^2+2k)$.
+If $r=2$: $a^2 - 1 = 9k^2+12k+3 = 3(3k^2+4k+1)$.
+
+In both cases the cofactor is an integer by closure, so $3 \mid a^2-1$. The cases are exhaustive, so the contrapositive holds, and hence so does the proposition.
+</Proof>
+
+The proof composes five separate tools — contraposition (§1.8), the division algorithm, case analysis (§1.12), closure (§4.1), and divisibility-as-existence (§4.2). None is clever; the skill is selection and order.
+
+<Warning title="Case discipline">
+State the exhaustive list, then eliminate the impossible ones explicitly. An unmentioned excluded case is indistinguishable, to a reader, from a forgotten one — and forgotten cases are the commonest structural defect in this style of proof.
+</Warning>
+
+## Residues as an obstruction
+
+> **Proposition.** $a^2 \equiv 0$ or $1 \pmod 3$ for every $a \in \mathbb{Z}$; never $2$.
+
+<Proof>
+With $a = 3k+r$, $r \in \{0,1,2\}$: $a^2 = 9k^2$, $9k^2+6k+1$, $9k^2+12k+4$ respectively, with remainders $0, 1, 1$.
+</Proof>
+
+Consequences are immediate and sharp: no integer of the form $3n+2$ is a perfect square; the equation $a^2+b^2 = 3c^2$ has only the trivial solution (reduce mod 3 and use that a sum of two elements of $\{0,1\}$ is $0$ only when both are); and mod $4$, the same technique shows $a^2+b^2 = 4^k(8m+7)$ is unsolvable, which is the negative half of the three-squares theorem.
+
+Squares mod $8$ lie in $\{0,1,4\}$; cubes mod $9$ lie in $\{0,1,8\}$; fourth powers mod $16$ lie in $\{0,1\}$. **Reduce modulo a well-chosen $n$** is the standard first move against a Diophantine equation, and the art is picking $n$.
+
+<Aside>
+This method proves non-existence, never existence. An equation solvable modulo every $n$ may still have no integer solutions — the failure of the *Hasse principle*, first exhibited by Selmer's curve $3x^3+4y^3+5z^3=0$, which has nontrivial solutions modulo every $n$ and none in $\mathbb{Z}$. Congruence obstructions are necessary conditions, not sufficient ones.
+</Aside>
+
+<WhereThisGoes level="l7">
+The division algorithm makes $\mathbb{Z}$ a **Euclidean domain**, and everything downstream follows: the Euclidean algorithm terminates, gcds exist and are integer linear combinations (Bézout), every ideal is principal, and factorisation into primes is unique. The same argument applied to $k[x]$ with $\deg$ in place of $|\cdot|$ gives polynomial division and hence the whole theory of field extensions. The residue classes themselves form the ring $\mathbb{Z}/n\mathbb{Z}$, which is a field exactly when $n$ is prime; finite fields underpin coding theory, cryptography, and combinatorial design. And the habit of solving a problem modulo many primes and reassembling — the local-global principle — is one of the organising strategies of modern number theory, with the Hasse–Minkowski theorem for quadratic forms as its cleanest success.
+</WhereThisGoes>

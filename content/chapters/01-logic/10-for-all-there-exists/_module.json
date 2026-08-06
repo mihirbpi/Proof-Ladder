@@ -13,6 +13,17 @@
     "l7": "For all, there exists",
     "l8": "For all, there exists"
   },
+  "kernelIdea": "\"For all\" claims something about every case; \"there exists\" claims at least one case. \"There exists exactly one\" claims existence and uniqueness.",
+  "kernels": {
+    "l1": "Every means check them all. There is one means find just one.",
+    "l2": "An every telling talks about all of them, so you have to check them all. A some telling only needs one, so you just have to find one. An exactly one telling needs you to find one and make sure there are no others.",
+    "l3": "A for all claim says something about every case, and only a full argument can settle it. A there exists claim says something about at least one case, and a single example settles it. Exactly one claims both that a case exists and that no second case does.",
+    "l4": "∀ claims a property for every element of a stated set; ∃ claims it for at least one; ∃! claims it for one and no more. The quantifier decides what evidence the claim demands.",
+    "l5": "Quantifiers turn open statements into statements. ∀x ∈ S, p(x) demands an argument covering all of S; ∃x ∈ S, p(x) is settled by one witness; ∃! adds uniqueness.",
+    "l6": "∀ and ∃ bind free variables in a predicate; the truth of a quantified statement depends on the domain quantified over, and with nested quantifiers the order changes the claim.",
+    "l7": "Quantifiers convert predicates into statements: ∀ asserts the predicate on every element of the domain, ∃ on at least one, ∃! on exactly one. The domain is part of the claim, and with nested quantifiers the order is part of the claim too.",
+    "l8": "∀ and ∃ are the infinitary conjunction and disjunction over a domain; quantifier order is the essential content of ε–δ definitions and the difference between pointwise and uniform properties."
+  },
   "kernel": "\"For all\" claims something about every case; \"there exists\" claims at least one case. \"There exists exactly one\" claims existence and uniqueness.",
   "objectives": [
     "Classify a claim as universal or existential",

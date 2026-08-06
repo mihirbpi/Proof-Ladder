@@ -1,0 +1,81 @@
+---
+level: l4
+title: What is a set?
+readingTimeMin: 7
+newTerms: ["set", "element", "empty set", "well-defined"]
+anchorExample: "factors of 20 and 24"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Chapter 1 gave us statements. This chapter gives us the objects statements are about. The remarkable fact — and one worth noticing before the details bury it — is that essentially every object in mathematics can be built from this one notion.
+
+A **set** is a well-defined collection of objects, called its **elements**. Membership is written with $\in$:
+$$
+x \in S \quad\text{($x$ is an element of $S$)}, \qquad x \notin S \quad\text{($x$ is not)}.
+$$
+
+For each object $x$ and set $S$, "$x \in S$" is a statement in the sense of module 1.1: definitely true or definitely false.
+
+## Listing notation
+
+$$
+D_{20} = \{1, 2, 4, 5, 10, 20\}, \qquad D_{24} = \{1, 2, 3, 4, 6, 8, 12, 24\}
+$$
+are the sets of positive divisors of $20$ and of $24$. So $4 \in D_{20}$, $5 \notin D_{24}$.
+
+## Sets are determined by their elements
+
+This single principle — **extensionality** — generates the two facts that surprise everybody:
+
+**Order is irrelevant.** $\{1, 2, 3\} = \{3, 1, 2\}$. A set is not a list; it has no first element.
+
+**Repetition is irrelevant.** $\{1, 1, 2\} = \{1, 2\}$. A set is not a tally; it records membership, not multiplicity.
+
+If you need order, you want an ordered pair or a sequence (module 2.9). If you need counts, you want a multiset. Sets deliberately forget both.
+
+## Well-definedness
+
+A collection is a set only if, for every object, membership is unambiguous.
+
+- $\{n \in \mathbb{Z} \mid n \text{ is even}\}$ — well-defined.
+- "the set of large numbers" — not a set. Is $10^6$ large? The question has no mathematical answer, so "$10^6 \in S$" is not a statement, so $S$ is not a set.
+
+This is a real requirement, not a stylistic preference: if membership isn't a statement, no proof about the collection can get started.
+
+## The empty set
+
+$$\emptyset = \{\,\}$$
+is the set with no elements. It exists, it is unique, and it is not the number $0$.
+
+<Warning title="Three things that are not the same">
+$0$ — a number.
+$\emptyset$ — a set with no elements.
+$\{\emptyset\}$ — a set with exactly **one** element, namely $\emptyset$.
+
+The last two get confused constantly. $\emptyset$ has $0$ elements; $\{\emptyset\}$ has $1$.
+</Warning>
+
+## The standard number sets
+
+| Symbol | Name | Description |
+|---|---|---|
+| $\mathbb{N}$ | naturals | $\{0, 1, 2, 3, \ldots\}$ |
+| $\mathbb{Z}$ | integers | $\{\ldots, -2, -1, 0, 1, 2, \ldots\}$ |
+| $\mathbb{Q}$ | rationals | all $\tfrac{p}{q}$ with $p, q \in \mathbb{Z}$, $q \neq 0$ |
+| $\mathbb{R}$ | reals | every point on the number line |
+
+These nest: every natural number is an integer, every integer is a rational ($n = \tfrac{n}{1}$), every rational is real. Module 2.3 turns "nest" into the precise notion of a subset, and each of these containments becomes something you can prove rather than assert.
+
+Each set is built to fix a defect in the one before. $\mathbb{N}$ cannot subtract freely ($3 - 5$ escapes it), so $\mathbb{Z}$ was built. $\mathbb{Z}$ cannot divide freely ($3 \div 5$ escapes it), so $\mathbb{Q}$ was built. $\mathbb{Q}$ has gaps — no rational squares to $2$, as module 4.7 proves — so $\mathbb{R}$ was built. And $\mathbb{R}$ cannot solve $x^2 = -1$, which is why Chapter 5 builds $\mathbb{C}$. The pattern is the same every time: a legitimate operation escapes the system, so the system is enlarged.
+
+<Aside>
+Whether $0 \in \mathbb{N}$ is a convention. Set theorists and computer scientists say yes; many number theorists say no. This course says yes. When reading elsewhere, check — it changes the statements of theorems, not their content.
+</Aside>
+
+## "Set" is left undefined on purpose
+
+Notice that "a well-defined collection of objects" is not really a definition: *collection* is just a synonym for *set*. This is deliberate. Every mathematical theory has to start with undefined primitives, or definitions would regress forever. In set theory the primitives are "set" and "$\in$", and instead of defining them we state axioms governing how they behave — the same strategy Chapter 7 uses to build $\mathbb{N}$ from the Peano axioms.
+
+The requirement of well-definedness is where the real content hides. Take it too casually — allow *every* describable collection to be a set — and the theory collapses. Consider the collection of all sets that are not elements of themselves. Is it an element of itself? Either answer contradicts the other. This is Russell's paradox, and it is why "well-defined" is doing more work than it looks like.

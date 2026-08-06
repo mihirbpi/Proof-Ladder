@@ -1,0 +1,85 @@
+---
+level: l4
+title: The rationals are a field
+readingTimeMin: 7
+newTerms: ["rational number", "field", "reciprocal"]
+anchorExample: "ℚ as a field"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+\mathbb{Q} = \left\{\, \frac{p}{q} \;\middle|\; p, q \in \mathbb{Z},\ q \neq 0 \,\right\}.
+$$
+
+$\mathbb{Z} \subseteq \mathbb{Q}$ via $n = \tfrac n1$, and the containment is proper since $\tfrac12 \notin \mathbb{Z}$.
+
+Recall that a rational has many names: $\tfrac{p_1}{q_1} = \tfrac{p_2}{q_2}$ iff $p_1q_2 = p_2q_1$. Any operation defined via representatives must be checked to be well defined — module 3.1's obligation. The formulas below all pass that check, and verifying one of them is a worthwhile exercise.
+
+## The four closure properties
+
+Throughout, $\tfrac ab, \tfrac cd \in \mathbb{Q}$ with $b, d \neq 0$.
+
+> **(F1) Addition.** $\dfrac ab + \dfrac cd = \dfrac{ad+bc}{bd} \in \mathbb{Q}$.
+
+<Proof>
+The numerator $ad + bc$ is an integer, being built from integers by multiplication and addition ($\mathbb{Z}$ is closed under both, module 4.1).
+
+The denominator $bd$ is an integer for the same reason, and $bd \neq 0$: since $\mathbb{Z}$ has no zero divisors, a product of nonzero integers is nonzero.
+
+So the sum has integer numerator and nonzero integer denominator, hence lies in $\mathbb{Q}$.
+</Proof>
+
+Notice the proof does no arithmetic. It verifies that the pieces are of the right *type*. Every closure proof looks like this, and the step that could fail — $bd \neq 0$ — is exactly the one that uses $\mathbb{Z}$ being an integral domain.
+
+> **(F2) Additive inverses.** $-\dfrac ab = \dfrac{-a}{b} \in \mathbb{Q}$, since $-a \in \mathbb{Z}$ and $b \neq 0$.
+
+> **(F3) Multiplication.** $\dfrac ab \cdot \dfrac cd = \dfrac{ac}{bd} \in \mathbb{Q}$, by the same two observations as (F1).
+
+> **(F4) Multiplicative inverses.** If $\dfrac ab \neq 0$ then $\dfrac ba \in \mathbb{Q}$ and $\dfrac ab \cdot \dfrac ba = 1$.
+
+<Proof>
+$\tfrac ab \neq 0$ means $a \neq 0$ (a fraction is zero exactly when its numerator is). Together with $b \neq 0$ from the hypothesis, $\tfrac ba$ has integer numerator and nonzero integer denominator, so $\tfrac ba \in \mathbb{Q}$.
+
+Then $\tfrac ab \cdot \tfrac ba = \tfrac{ab}{ba} = 1$.
+</Proof>
+
+Track the two nonzero conditions: $b \neq 0$ was needed for $\tfrac ab$ to be a rational at all, and $a \neq 0$ was needed for the reciprocal to exist. They do different jobs and both are essential.
+
+## Ring versus field
+
+| | closed under $+$, $-$, $\times$ | distributive | every nonzero element invertible |
+|---|---|---|---|
+| $\mathbb{Z}$ (ring) | ✓ | ✓ | ✗ (only $\pm1$) |
+| $\mathbb{Q}$ (field) | ✓ | ✓ | ✓ |
+| $\mathbb{R}$ (field) | ✓ | ✓ | ✓ |
+| $\mathbb{Z}/6\mathbb{Z}$ (ring) | ✓ | ✓ | ✗ ($2, 3, 4$ fail) |
+| $\mathbb{Z}/5\mathbb{Z}$ (field) | ✓ | ✓ | ✓ |
+
+A **field** is a ring in which every nonzero element has a multiplicative inverse. The single extra axiom is what licenses division, and hence:
+
+- solving $ax = b$ for $a \neq 0$ (impossible in $\mathbb{Z}$: $3x = 1$ has no solution);
+- cancelling: $ab = ac$ with $a \neq 0$ gives $b = c$ (multiply by $a^{-1}$);
+- the entire apparatus of linear algebra, which is built over a field for exactly this reason.
+
+<Warning title="Zero is excluded permanently">
+$0^{-1}$ does not exist in any field, and this is forced rather than conventional. If $0 \cdot x = 1$ for some $x$, then since $0 \cdot x = 0$ (a theorem, module 4.1) we would have $0 = 1$; multiplying by any $y$ then gives $y = 0$, so the field has one element. The axioms explicitly require $0 \neq 1$ to exclude this.
+
+So "you cannot divide by zero" is not a rule imposed from outside; it is what the other axioms force.
+</Warning>
+
+## What $\mathbb{Q}$ still cannot do
+
+$\mathbb{Q}$ fixed division. It did not fix everything.
+
+- $x^2 = 2$ has no solution in $\mathbb{Q}$ (module 4.7). $\mathbb{R}$ fixes this.
+- $x^2 = -1$ has no solution in $\mathbb{R}$. $\mathbb{C}$ fixes this (Chapter 5).
+- $\mathbb{Q}$ has gaps in a precise analytic sense: a sequence of rationals can approach a limit that is not rational. That defect is what completeness of $\mathbb{R}$ repairs, and it is why calculus is done over $\mathbb{R}$ rather than $\mathbb{Q}$.
+
+The pattern established in module 4.1 continues: an operation escapes the system, so the system is enlarged.
+
+<Aside>
+$\mathbb{Q}$ is the *smallest* field containing $\mathbb{Z}$ — any field containing $\mathbb{Z}$ must contain all quotients $p/q$, hence all of $\mathbb{Q}$. This construction generalises: any integral domain has a smallest field containing it, its *field of fractions*, built by exactly the recipe above. Applied to polynomials $k[x]$, it produces the rational functions $k(x)$.
+</Aside>

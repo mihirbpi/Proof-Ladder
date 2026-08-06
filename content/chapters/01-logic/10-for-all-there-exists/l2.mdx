@@ -1,0 +1,49 @@
+---
+level: l2
+title: All, some, exactly one
+readingTimeMin: 4
+newTerms: ["every", "some", "exactly one"]
+anchorExample: "a box of blocks"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Warning from '@/components/Warning.astro';
+
+Some tellings are about **all** of something. Some are about **some** of it. And some are about **exactly one**. Three shapes, three different jobs.
+
+## Every
+
+> **Every** block in this box is red.
+
+To show this is true, you have to check every single block. Miss one and you have not finished.
+
+To show it is false, you only need to find one block that is not red. One! That is much easier.
+
+## Some
+
+> **Some** block in this box is red. (There is at least one red block.)
+
+Now it flips around. To show this is true, you find one red block and hold it up. Done.
+
+To show it is false, you have to check every single block and show that none of them is red. Now *that* is the hard job.
+
+## Exactly one
+
+> There is **exactly one** red block in this box.
+
+This one is greedy. It wants two things:
+
+1. Find a red block. (There is at least one.)
+2. Show there are no others. (There is at most one.)
+
+If you find two red blocks, the telling is false. If you find zero, it is also false. It has to be exactly one.
+
+<Warning title="The hard job swaps sides">
+Look at the pattern. For an **every** telling, proving it is hard and knocking it down is easy. For a **some** telling, proving it is easy and knocking it down is hard.
+
+The job is always hard on one side and easy on the other. Which side depends on the word at the front.
+</Warning>
+
+<TryIt>
+Line up 6 things. Make one *every* claim, one *some* claim, and one *exactly one* claim. Have somebody try to knock each one down. Count how many things they had to pick up each time.
+</TryIt>

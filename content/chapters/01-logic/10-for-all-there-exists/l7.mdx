@@ -1,0 +1,108 @@
+---
+level: l7
+title: For all, there exists
+readingTimeMin: 11
+newTerms: ["quantifier", "universal quantifier", "existential quantifier", "unique"]
+anchorExample: "3x − 1 = 0"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+An **open statement** (or predicate) $p(x)$ is a sentence with a free variable; it has no truth value until the variable is bound. There are exactly two ways to bind it, and everything that makes mathematical statements hard to read comes from how they interact.
+
+## The two quantifiers
+
+$$
+\forall x \in S,\; p(x)
+\qquad\qquad
+\exists x \in S,\; p(x)
+$$
+
+The first, the **universal quantifier**, asserts $p$ holds at every element of $S$; the second, the **existential quantifier**, asserts $p$ holds at at least one. Both produce genuine statements: given $S$ and $p$, each is definitely true or definitely false.
+
+Two structural remarks that matter more than they look.
+
+**The domain is part of the claim.** $\exists x,\, 3x - 1 = 0$ is true over $\mathbb{Q}$, over $\mathbb{R}$, and over $\mathbb{C}$; false over $\mathbb{Z}$. $\forall x,\, x^2 \geq 0$ is true over $\mathbb{R}$ and false over $\mathbb{C}$ (where $\geq$ is not even defined, which is a different and worse kind of failure). Writing $\forall x, \ldots$ without a domain is not shorthand; it is an incomplete sentence, and in a proof it is where errors hide.
+
+**Quantifiers generalise the connectives.** Over a finite domain $S = \{a_1, \ldots, a_n\}$,
+$$
+\forall x \in S,\, p(x) \;\equiv\; p(a_1) \wedge \cdots \wedge p(a_n),
+\qquad
+\exists x \in S,\, p(x) \;\equiv\; p(a_1) \vee \cdots \vee p(a_n).
+$$
+So $\forall$ is an infinitary $\wedge$ and $\exists$ an infinitary $\vee$. Every fact about quantifiers in this chapter — including the negation rules of §1.11 — is the corresponding fact about $\wedge$ and $\vee$ pushed to infinity.
+
+A consequence worth stating: over $S = \emptyset$, $\forall x \in \emptyset,\, p(x)$ is **true** (an empty conjunction) and $\exists x \in \emptyset,\, p(x)$ is **false** (an empty disjunction), for every $p$. The first is vacuous truth (§1.5) in quantifier form.
+
+## Unique existence
+
+$$
+\exists! x \in S,\, p(x)
+\;:\equiv\;
+\big(\exists x \in S,\, p(x)\big) \wedge \big(\forall x, y \in S,\, (p(x) \wedge p(y)) \Rightarrow x = y\big).
+$$
+
+Existence and uniqueness are independent obligations, discharged separately.
+
+> **Proposition.** $\exists! x \in \mathbb{R}$ with $3x - 1 = 0$.
+
+<Proof>
+*Existence.* Take $x = \tfrac13$. Then $3 \cdot \tfrac13 - 1 = 0$.
+
+*Uniqueness.* Suppose $a, b \in \mathbb{R}$ satisfy $3a - 1 = 0$ and $3b - 1 = 0$. Subtracting, $3a - 3b = 0$, so $3(a - b) = 0$. Since $\mathbb{R}$ has no zero divisors and $3 \neq 0$, we get $a - b = 0$, i.e. $a = b$.
+</Proof>
+
+Note where the uniqueness argument actually spent its hypothesis: on $\mathbb{R}$ having no zero divisors. Over $\mathbb{Z}/6\mathbb{Z}$, the equation $3x = 3$ has solutions $x = 1, 3, 5$, and the "same" argument fails at exactly that step. Uniqueness proofs are where the ambient structure shows through.
+
+## The evidence asymmetry
+
+| Statement | Proof requires | Disproof requires |
+|---|---|---|
+| $\forall x \in S,\, p(x)$ | an argument valid for arbitrary $x \in S$ | a single **counterexample** |
+| $\exists x \in S,\, p(x)$ | a single **witness** | an argument valid for arbitrary $x \in S$ |
+
+The diagonal structure is the reason mathematics is asymmetric in difficulty. A universal claim about an infinite domain can never be established by computation, however extensive: Goldbach's conjecture has been verified past $4 \times 10^{18}$, and that is not one step of a proof. Conversely, a universal claim can be destroyed by a single number, which is why counterexample-hunting is a real research activity.
+
+<Warning title="The two moves that look like proofs and are not">
+**Proving $\forall$ by example.** "The claim holds for $n = 1, 2, 3, \ldots, 40$, so it holds." Euler's polynomial $n^2 + n + 41$ is prime for $n = 0, \ldots, 39$ and composite at $n = 40$. Pólya's conjecture survives to $n \approx 9 \times 10^{8}$.
+
+**Disproving $\exists$ by failed search.** "I tried many values and none worked, so none exists." This is an argument about your search, not about the domain. Disproving $\exists x, p(x)$ requires proving $\forall x, \neg p(x)$ — a universal claim, with all the work that entails.
+</Warning>
+
+## Nested quantifiers: order is content
+
+Quantifiers of different kinds do not commute.
+
+$$
+\forall x \in \mathbb{R}\; \exists y \in \mathbb{R},\; x + y = 0
+\qquad\text{versus}\qquad
+\exists y \in \mathbb{R}\; \forall x \in \mathbb{R},\; x + y = 0
+$$
+
+The first is true: given $x$, choose $y = -x$. The choice of $y$ is permitted to depend on $x$ because $y$ is bound *inside* the scope of $x$. The second is false: it demands one $y$ that works for all $x$ simultaneously, and $x = 1, x = 2$ already conflict.
+
+The governing principle: **an inner quantifier may depend on the outer ones; an outer one may not depend on the inner ones.** When you read a nested statement, read it as a game — the $\forall$ variables are chosen by an adversary, the $\exists$ variables by you, in the order written, and the statement is true iff you have a winning strategy.
+
+Same-kind quantifiers *do* commute: $\forall x \forall y$ is $\forall y \forall x$, and likewise for $\exists$. Mixed ones never do, in general.
+
+## Why this is the module that decides analysis
+
+$$
+f \text{ is continuous on } S: \quad \forall \varepsilon > 0\; \forall a \in S\; \exists \delta > 0\; \forall x \in S,\; |x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon
+$$
+$$
+f \text{ is uniformly continuous on } S: \quad \forall \varepsilon > 0\; \exists \delta > 0\; \forall a \in S\; \forall x \in S,\; |x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon
+$$
+
+The two differ by moving $\exists \delta$ across $\forall a$. In the first, $\delta$ may depend on the point $a$; in the second it may not. That single transposition is the difference between $f(x) = 1/x$ on $(0,1)$ — continuous, not uniformly so — and every continuous function on a closed bounded interval, which the Heine–Cantor theorem says is uniformly continuous. Students who find analysis impenetrable are almost always students for whom quantifier order is not yet load-bearing.
+
+<Aside>
+The game reading is not merely a mnemonic. It is formalised in the semantics of first-order logic as an Ehrenfeucht–Fraïssé or Hintikka game, where the truth of a quantified formula is literally the existence of a winning strategy for the verifier. The number of quantifier alternations in a formula is a genuine complexity measure — it stratifies the arithmetical hierarchy, and it stratifies the polynomial hierarchy in complexity theory.
+</Aside>
+
+<WhereThisGoes level="l7">
+First-order logic — the language of $\forall$, $\exists$, and the connectives — is the standard medium in which mathematics is stated, and its metatheory is a field of its own. Gödel's completeness theorem says its semantic and syntactic notions of validity coincide; the compactness and Löwenheim–Skolem theorems, both consequences, are the engine of model theory and produce genuinely strange objects (non-standard models of arithmetic, infinitesimals in non-standard analysis). Restricting quantifiers to range over elements rather than sets is what makes it *first*-order; allowing quantification over subsets gives second-order logic, which is expressively stronger and metatheoretically much worse behaved. The choice between them is exactly the choice that makes the Peano axioms of Chapter 7 characterise $\mathbb{N}$ up to isomorphism, or not.
+</WhereThisGoes>

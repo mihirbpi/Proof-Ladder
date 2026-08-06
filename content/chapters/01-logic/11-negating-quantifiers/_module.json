@@ -13,6 +13,17 @@
     "l7": "Negating quantifiers and counterexamples",
     "l8": "Negating quantifiers and counterexamples"
   },
+  "kernelIdea": "¬(∀x p(x)) is the same as ∃x ¬p(x), and ¬(∃x p(x)) is the same as ∀x ¬p(x). A single counterexample destroys a universal claim.",
+  "kernels": {
+    "l1": "To knock down an every claim, find one bad apple. Just one is enough.",
+    "l2": "The opposite of an every telling is a some telling: one bad apple breaks it. The opposite of a some telling is an every telling: you have to check them all.",
+    "l3": "The opposite of \"every case works\" is \"some case fails,\" and the opposite of \"some case works\" is \"every case fails.\" So one bad apple — a single counterexample — is enough to destroy a for all claim.",
+    "l4": "¬(∀x, p(x)) ≡ ∃x, ¬p(x) and ¬(∃x, p(x)) ≡ ∀x, ¬p(x). Negation swaps the quantifier and negates the predicate, so a single counterexample refutes a universal statement.",
+    "l5": "Negating a quantified statement swaps ∀ with ∃ and negates what follows; applied to nested quantifiers, the swap happens at every level.",
+    "l6": "Pushing ¬ inward through a quantified formula toggles each quantifier in turn and negates the matrix; one bad apple is the ∃ witness the negation produces.",
+    "l7": "Negation exchanges ∀ and ∃ and passes to the negated predicate — the De Morgan laws at infinite arity. Consequently refuting a universal statement means exhibiting a single counterexample.",
+    "l8": "The quantifier duality ¬∀ ≡ ∃¬ is De Morgan duality for the infinitary meet and join; pushing negations inward to prenex normal form is the routine that makes quantified statements computable with."
+  },
   "kernel": "¬(∀x p(x)) is the same as ∃x ¬p(x), and ¬(∃x p(x)) is the same as ∀x ¬p(x). A single counterexample destroys a universal claim.",
   "objectives": [
     "Negate quantified statements",

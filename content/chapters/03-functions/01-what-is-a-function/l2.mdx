@@ -1,0 +1,64 @@
+---
+level: l2
+title: Arrows from list to list
+readingTimeMin: 4
+newTerms: ["machine", "arrow diagram"]
+anchorExample: "the cubby machine"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Warning from '@/components/Warning.astro';
+
+A **machine** takes each thing on one list and sends it to exactly one thing on another list.
+
+The best way to draw one is an **arrow diagram**. Put the first list on the left, the second on the right, and draw an arrow from each thing to where it goes.
+
+## A good machine
+
+<Figure alt="Three children Sam, Pip and Ada on the left, three cubbies 1, 2 and 3 on the right, with exactly one arrow leaving each child." caption="Every child leaves. Each one has exactly one arrow.">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0],[2,2]]} />
+</Figure>
+
+Check it: every child on the left has an arrow leaving. And nobody has two arrows. Good machine!
+
+## Broken machine one: somebody got skipped
+
+<Figure alt="Three children on the left but Ada has no arrow leaving her; the other two have one arrow each." caption="Ada has no cubby. Broken!">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0]]} />
+</Figure>
+
+Ada has nowhere to put her coat. A machine has to work for *everybody* on the first list.
+
+## Broken machine two: two arrows
+
+<Figure alt="Sam has two arrows leaving, going to two different cubbies; the second one is drawn dashed to mark it as the problem." caption="Sam has two cubbies. Which one? Broken!">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,0],[0,1],[1,2],[2,1]]} broken={[1]} />
+</Figure>
+
+Now nobody knows where Sam's boots go. A machine has to give **one** answer.
+
+## Not broken: sharing
+
+<Figure alt="Sam and Pip both have arrows landing on cubby 2, while Ada has her own; every child still has exactly one arrow leaving." caption="Two arrows land on the same cubby. That is allowed!">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,1],[2,0]]} />
+</Figure>
+
+This one *looks* wrong but it is fine. The rule is about arrows **leaving**, not arrows landing. Every child still has exactly one cubby. They just have to squeeze.
+
+<Warning title="Check the left, not the right">
+To test a machine, look only at the left list. Does every thing have an arrow leaving? Is it exactly one? Then you are done. What happens on the right is a different question, and it gets its own module later on.
+</Warning>
+
+<TryIt>
+Draw two lists of 3 things and connect them with arrows. Then draw a broken one on purpose and dare somebody to spot what is wrong.
+</TryIt>

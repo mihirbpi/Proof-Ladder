@@ -13,6 +13,17 @@
     "l7": "What is a function?",
     "l8": "What is a function?"
   },
+  "kernelIdea": "f: S → T assigns to every s ∈ S exactly one f(s) ∈ T. Three conditions: totality, well-definedness, and codomain. S is the domain, T the codomain.",
+  "kernels": {
+    "l1": "A good machine gives every child exactly one cubby. Not none, and not two.",
+    "l2": "A machine takes each thing on the first list and sends it to exactly one thing on the second list. Nothing gets skipped, and nothing gets sent to two places.",
+    "l3": "A function f from S to T gives every element of S exactly one partner in T. Three things must hold: nothing in S is skipped, nothing gets two answers, and every answer lands inside T.",
+    "l4": "A function f: S → T assigns to every s ∈ S exactly one f(s) ∈ T. Totality: every input is used. Well-definedness: f(s) = t₁ and f(s) = t₂ force t₁ = t₂. Codomain: outputs land in T.",
+    "l5": "A function is a rule that is total on its domain, single-valued, and lands inside its declared codomain; changing the domain or codomain changes the function.",
+    "l6": "f: S → T is total, single-valued, and codomain-respecting; the vertical line test is a picture of single-valuedness, not the definition.",
+    "l7": "A function f: S → T assigns to each element of its domain exactly one element of its codomain — totality, well-definedness, and codomain membership. The domain and codomain are part of the function, not annotations on it.",
+    "l8": "A function is a subset f ⊆ S × T such that each s ∈ S is the first coordinate of exactly one pair; domain and codomain are data, and \"range\" is ambiguous between image and codomain."
+  },
   "kernel": "f: S → T assigns to every s ∈ S exactly one f(s) ∈ T. Three conditions: totality (everything gets sent), well-definedness (one output each), and codomain (outputs land in T). S is the domain, T the codomain.",
   "objectives": [
     "Test a rule against the three conditions",

@@ -1,0 +1,89 @@
+---
+level: l4
+title: Onto (surjections)
+readingTimeMin: 7
+newTerms: ["surjective", "onto"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Definition
+
+$f : S \to T$ is **surjective** (or **onto**) when
+$$
+\forall t \in T,\ \exists s \in S,\ f(s) = t,
+$$
+equivalently $\operatorname{Im}(f) = T$, equivalently $|f^{-1}(\{t\})| \geq 1$ for every $t \in T$.
+
+Compare with injectivity, which said *at most* one pre-image. Injectivity and surjectivity are the two halves of "exactly one", and having both is module 3.8.
+
+## The shape of the proof
+
+The definition is $\forall \exists$, so by module 1.12 the proof is: take an arbitrary $t \in T$, then **exhibit a witness** $s$. The witness is almost always built out of $t$, and finding the formula for it is where the work lies.
+
+> Let $t \in T$ be arbitrary. Set $s = \ldots$ [built from $t$]. Then $s \in S$, and $f(s) = t$. Hence $f$ is surjective.
+
+Note the small obligation that is easy to skip: you must check the witness actually lies in $S$.
+
+> **Proposition.** $g : \mathbb{R} \to \mathbb{R}_{>0}$, $g(x) = e^x$, is surjective.
+
+<Discussion>
+  <div slot="know">$t > 0$. Available: $\ln$ is defined on $\mathbb{R}_{>0}$, takes real values, and satisfies $e^{\ln t} = t$.</div>
+  <div slot="want">Some real $x$ with $e^x = t$.</div>
+  <div slot="how">The witness is $x = \ln t$. The hypothesis $t > 0$ is exactly what makes $\ln t$ defined, so it is doing real work — this is where the choice of codomain enters.</div>
+</Discussion>
+
+<Proof>
+Let $t \in \mathbb{R}_{>0}$ be arbitrary. Since $t > 0$, the number $x = \ln t$ is a well-defined real number, so $x \in \mathbb{R}$.
+
+Then $g(x) = e^{\ln t} = t$.
+
+As $t$ was an arbitrary element of $\mathbb{R}_{>0}$, every element of the codomain is attained, so $g$ is surjective.
+</Proof>
+
+## The codomain decides
+
+> **The same rule with a different codomain.** $f : \mathbb{R} \to \mathbb{R}$, $f(x) = e^x$, is **not** surjective.
+
+<Proof>
+Take $t = -1 \in \mathbb{R}$. For every $x \in \mathbb{R}$ we have $e^x > 0 > -1$, so no $x$ satisfies $f(x) = -1$. Hence $\operatorname{Im}(f) \neq \mathbb{R}$.
+</Proof>
+
+$f$ and $g$ have the same rule and the same domain, and differ only in the declared codomain — and one is surjective while the other is not. Module 3.1 insisted that domain and codomain are part of the function; this is the sharpest illustration of why.
+
+<Warning title="Injectivity and surjectivity are not symmetric in this respect">
+Injectivity depends only on the rule and the domain: enlarging the codomain cannot create a collision. Surjectivity depends on the codomain essentially.
+
+Consequently "is $f$ injective?" is a well-posed question once you know the rule and domain, while "is $f$ surjective?" is not well-posed until the codomain is stated.
+</Warning>
+
+## Disproving surjectivity
+
+The negation of $\forall t\, \exists s,\ f(s) = t$ is, by module 1.11,
+$$
+\exists t \in T,\ \forall s \in S,\ f(s) \neq t.
+$$
+So you exhibit **one** unhit target — and then prove *nothing* hits it, which is a universal claim requiring an argument, not a search. That second half is what people forget.
+
+In the $e^x$ example above, the unhit target was $-1$ and the universal argument was "$e^x > 0$ for all $x$."
+
+## More examples
+
+| Function | Surjective? | Why |
+|---|---|---|
+| $\lfloor\cdot\rfloor : \mathbb{R}\to\mathbb{Z}$ | Yes | given $n \in \mathbb{Z}$, take $x = n$ |
+| $m : \mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$, $m(a,b)=ab$ | Yes | given $n$, take $(n,1)$ |
+| $f : \mathbb{R}\to\mathbb{R}$, $f(x)=x^2$ | No | $-1$ is unhit, since $x^2 \geq 0$ |
+| $f : \mathbb{R}\to[0,\infty)$, $f(x)=x^2$ | Yes | given $t \geq 0$, take $x = \sqrt t$ |
+| $r : \mathbb{R}\setminus\{0\} \to \mathbb{R}$, $r(x)=1/x$ | No | $0$ is unhit |
+| $r : \mathbb{R}\setminus\{0\} \to \mathbb{R}\setminus\{0\}$ | Yes | given $t \neq 0$, take $x = 1/t$ |
+
+Three of these pairs are the same rule twice, with the codomain adjusted. That is the module in one table.
+
+<Aside>
+Any function becomes surjective if you replace its codomain by its image: $f : S \to \operatorname{Im}(f)$ is surjective by construction. So surjectivity measures whether the declared codomain was honest, and the standard factorisation $S \twoheadrightarrow \operatorname{Im}(f) \hookrightarrow T$ writes any function as a surjection followed by an injection.
+</Aside>

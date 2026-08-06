@@ -1,0 +1,77 @@
+---
+level: l3
+title: A zoo of functions
+readingTimeMin: 5
+newTerms: ["floor function", "well-defined"]
+anchorExample: "letter to position in the alphabet"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+If your only experience of functions is $y = 2x + 3$, you probably think a function is a formula. It is not. A function is a rule that gives every input exactly one output — and a great many important rules are not formulas at all.
+
+Here is a small zoo.
+
+## The alphabet function
+
+Let $S$ be the alphabet and $T$ the counting numbers. Define
+$$
+f(\text{a}) = 1, \quad f(\text{b}) = 2, \quad \ldots, \quad f(\text{z}) = 26.
+$$
+
+There is no formula here — just a list of 26 rules. It is still a function, because every letter has exactly one position.
+
+Notice something: not every counting number gets used. Nothing maps to $27$, or to $100$. That is completely allowed. The codomain is a pool you draw from, not a quota you must fill.
+
+## The floor function
+
+The **floor function** rounds *down* to the nearest whole number. It is written with square half-brackets:
+$$
+\lfloor 3.7 \rfloor = 3, \qquad
+\lfloor 5 \rfloor = 5, \qquad
+\lfloor 0.99 \rfloor = 0.
+$$
+
+Careful with negatives, because "down" means *down the number line*, not "towards zero":
+$$
+\lfloor -2.3 \rfloor = -3.
+$$
+Ask yourself: what is the largest whole number that is still at or below $-2.3$? Walking left from $-2.3$, the first whole number you meet is $-3$. So $-3$ it is.
+
+This is a genuine function from all the numbers to the whole numbers: every number has exactly one floor.
+
+## Cubbies and colours
+
+The cubby function sends each child to their cubby. The colour function sends each toy to its colour. Neither side is a number, and both are perfectly good functions.
+
+This matters more than it might seem. Later in this course, and throughout mathematics, functions will act on sets, on shapes, on other functions. Nothing in the definition ever mentioned numbers.
+
+## The multiplication function
+
+Multiplication is a function too. Its inputs are *pairs* of numbers:
+$$
+m(3, 4) = 12, \qquad m(7, 0) = 0.
+$$
+The domain is the product set of module 2.9 — the set of all pairs. Every pair has exactly one product, so $m$ is a function.
+
+## A rule that is not a function
+
+Here is one to watch out for. Try defining a function on fractions by
+$$
+f\!\left(\frac{p}{q}\right) = p + q.
+$$
+
+Feed it $\tfrac12$: the answer is $1 + 2 = 3$.
+
+Now feed it $\tfrac24$. But $\tfrac24$ *is* $\tfrac12$ — the same number with a different name! And this rule gives $2 + 4 = 6$.
+
+So the same input gets two different answers, depending on how you wrote it down. That breaks the "exactly one output" rule, so $f$ is not a function.
+
+<Warning title="Well-defined">
+A rule is **well-defined** when it gives the same answer no matter how the input was written. Whenever an input can have several names — fractions especially — you have to check this. It is not automatic, and skipping the check is a real mistake, not a formality.
+</Warning>
+
+<Aside>
+The number of counting numbers up to $n$ that share no factor with $n$ is written $\varphi(n)$. So $\varphi(6) = 2$, because only $1$ and $5$ qualify below $6$. There is no formula for $\varphi$ that you can just evaluate — you have to go and check the factors. It is still a function, and it is one of the most useful in all of number theory.
+</Aside>

@@ -13,6 +13,17 @@
     "l7": "Irrational numbers and √2",
     "l8": "Irrational numbers and √2"
   },
+  "kernelIdea": "Some real numbers are not rational. √2 is one: assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms.",
+  "kernels": {
+    "l1": "Some lengths cannot be written as a piece of a whole.",
+    "l2": "The slanted line across a square is a real length, but no fraction ever fits it exactly. Grown-ups can prove that no fraction ever will.",
+    "l3": "There are numbers that are not fractions at all. The square root of 2 is one: if it were the simplest fraction, both its top and bottom would have to be even, and then it was not the simplest after all.",
+    "l4": "No rational number squares to 2. Assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms — so √2 is irrational.",
+    "l5": "The irrationality of √2 is proved by contradiction from the lowest-terms assumption, using the lemma that n² even implies n even.",
+    "l6": "√2 ∉ ℚ; the same argument shows √p ∉ ℚ for every prime p, and √m is rational exactly when m is a perfect square.",
+    "l7": "No rational squares to 2: the lowest-terms hypothesis together with the lemma n² even ⇒ n even yields a contradiction. The argument generalises to √p for prime p.",
+    "l8": "Irrationality of √2 is the failure of ℚ to be integrally closed in ℝ at that point; the rational root theorem generalises it, and e and π are irrational for genuinely harder reasons."
+  },
   "kernel": "Some real numbers are not rational. √2 is one: assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms. Uses \"n² even ⇒ n even\" from 1.9.",
   "objectives": [
     "Reproduce the √2 proof",

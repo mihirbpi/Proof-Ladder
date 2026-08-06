@@ -1,0 +1,83 @@
+---
+// Two overlapping circles with shadeable regions.
+// shade: any subset of ["S-only", "T-only", "both", "outside"]
+//   "S-only"  = S \ T        "T-only"  = T \ S
+//   "both"    = S ∩ T        "outside" = complement of S ∪ T in the universe box
+// Set to disjoint for two circles that do not overlap.
+export interface Props {
+  labelS?: string;
+  labelT?: string;
+  shade?: string[];
+  disjoint?: boolean;
+  universe?: string | null;
+}
+const {
+  labelS = 'S',
+  labelT = 'T',
+  shade = [],
+  disjoint = false,
+  universe = null,
+} = Astro.props;
+
+const on = (r: string) => shade.includes(r);
+// Circle geometry. Overlapping: centres 176/244. Disjoint: 140/300.
+const cx1 = disjoint ? 140 : 176;
+const cx2 = disjoint ? 300 : 244;
+const r = 84;
+---
+<svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" class="venn-two">
+  <style>
+    .venn-two .box { fill: none; stroke: var(--color-rule, #C6CBC0); stroke-width: 1; stroke-dasharray: 4 4; }
+    .venn-two .ring { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 1.6; }
+    .venn-two .fill { fill: var(--color-signal, #3F6DB5); fill-opacity: 0.24; }
+    .venn-two .lbl { font-family: var(--font-mono, monospace); font-size: 13px; fill: var(--color-ink, #14182B); }
+    .venn-two .ulbl { font-family: var(--font-mono, monospace); font-size: 11px; fill: color-mix(in oklab, var(--color-ink, #14182B) 60%, transparent); }
+  </style>
+
+  <defs>
+    <clipPath id={`vt-s-${cx1}-${cx2}`}><circle cx={cx1} cy={124} r={r} /></clipPath>
+    <clipPath id={`vt-t-${cx1}-${cx2}`}><circle cx={cx2} cy={124} r={r} /></clipPath>
+    <mask id={`vt-not-t-${cx1}-${cx2}`}>
+      <rect x="0" y="0" width="420" height="240" fill="white" />
+      <circle cx={cx2} cy={124} r={r} fill="black" />
+    </mask>
+    <mask id={`vt-not-s-${cx1}-${cx2}`}>
+      <rect x="0" y="0" width="420" height="240" fill="white" />
+      <circle cx={cx1} cy={124} r={r} fill="black" />
+    </mask>
+    <mask id={`vt-outside-${cx1}-${cx2}`}>
+      <rect x="0" y="0" width="420" height="240" fill="white" />
+      <circle cx={cx1} cy={124} r={r} fill="black" />
+      <circle cx={cx2} cy={124} r={r} fill="black" />
+    </mask>
+  </defs>
+
+  <rect x="14" y="30" width="392" height="188" rx="8" class="box" />
+
+  {on('outside') && (
+    <rect x="14" y="30" width="392" height="188" rx="8" class="fill"
+          mask={`url(#vt-outside-${cx1}-${cx2})`} />
+  )}
+  {on('S-only') && (
+    <circle cx={cx1} cy={124} r={r} class="fill" mask={`url(#vt-not-t-${cx1}-${cx2})`} />
+  )}
+  {on('T-only') && (
+    <circle cx={cx2} cy={124} r={r} class="fill" mask={`url(#vt-not-s-${cx1}-${cx2})`} />
+  )}
+  {on('both') && !disjoint && (
+    <g clip-path={`url(#vt-s-${cx1}-${cx2})`}>
+      <circle cx={cx2} cy={124} r={r} class="fill" />
+    </g>
+  )}
+
+  <circle cx={cx1} cy={124} r={r} class="ring" />
+  <circle cx={cx2} cy={124} r={r} class="ring" />
+
+  <text x={cx1 - r + 14} y={56} class="lbl">{labelS}</text>
+  <text x={cx2 + r - 26} y={56} class="lbl">{labelT}</text>
+  {universe && <text x="24" y="212" class="ulbl">{universe}</text>}
+</svg>
+
+<style>
+  .venn-two { width: 100%; height: auto; max-width: 420px; display: block; margin: 0 auto; }
+</style>

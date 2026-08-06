@@ -1,0 +1,94 @@
+---
+level: l7
+title: Composition
+readingTimeMin: 9
+newTerms: ["composition", "identity function"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+For $f : S \to T$ and $g : T \to R$, the **composition** $g \circ f : S \to R$ is
+$$
+(g\circ f)(s) = g(f(s)),
+$$
+defined exactly when the codomain of $f$ equals the domain of $g$. That $g \circ f$ is a function requires no verification: totality, single-valuedness, and codomain membership are inherited.
+
+Read $g \circ f$ as "$g$ after $f$". The convention matches the nesting in $g(f(s))$ and is universal in mathematics; the opposite convention $f;g$ appears in computer science and in some category-theory texts, and clashes between them are a standard source of sign and order errors when moving between fields.
+
+## Algebraic structure
+
+**Associativity.** For $f : S\to T$, $g : T \to R$, $h : R \to Q$,
+$$
+\big(h \circ (g\circ f)\big)(s) = h(g(f(s))) = \big((h\circ g)\circ f\big)(s),
+$$
+so parentheses may be dropped.
+
+**Identities.** $\mathrm{id}_S : S \to S$, $\mathrm{id}_S(s) = s$, satisfies $f \circ \mathrm{id}_S = f = \mathrm{id}_T \circ f$.
+
+**Non-commutativity.** $f(x)=x+1$, $g(x)=2x$ on $\mathbb{R}$ give $g\circ f = 2x+2$ and $f \circ g = 2x+1$. Often only one composite is even defined.
+
+These three facts are exactly the axioms of a **category**: objects (sets), arrows (functions), an associative composition, and identities. Everything proved below is a categorical statement, and that is why it recurs verbatim for groups, spaces, and modules.
+
+## Preservation theorems
+
+> **Proposition.** If $f, g$ are injective, so is $g \circ f$. If $f, g$ are surjective, so is $g\circ f$.
+
+<Discussion>
+  <div slot="know">Injectivity in the form $f(a)=f(b) \Rightarrow a=b$; surjectivity in the form $\forall t\,\exists s$.</div>
+  <div slot="want">The same properties for the composite.</div>
+  <div slot="how">The injectivity argument peels the hypotheses from the outside in — $g$ first, then $f$. The surjectivity argument pulls back from the outside in as well — $g$ first, then $f$. In both, the *outer* function is used first, which is a useful mnemonic.</div>
+</Discussion>
+
+<Proof>
+*Injectivity.* Suppose $(g\circ f)(s_1) = (g\circ f)(s_2)$, i.e. $g(f(s_1)) = g(f(s_2))$. As $g$ is injective, $f(s_1) = f(s_2)$; as $f$ is injective, $s_1 = s_2$.
+
+*Surjectivity.* Let $r \in R$. As $g$ is surjective, there is $t \in T$ with $g(t) = r$. As $f$ is surjective, there is $s \in S$ with $f(s) = t$. Then $(g\circ f)(s) = g(t) = r$.
+</Proof>
+
+Consequently a composition of bijections is a bijection (§3.8).
+
+## Partial converses
+
+> **Proposition.** Let $f : S \to T$, $g : T \to R$.
+> 1. If $g \circ f$ is injective, then $f$ is injective.
+> 2. If $g \circ f$ is surjective, then $g$ is surjective.
+> 3. Neither conclusion can be strengthened to the other factor.
+
+<Proof>
+(1) Suppose $f(s_1) = f(s_2)$. Applying $g$, $(g\circ f)(s_1) = (g\circ f)(s_2)$, so injectivity of the composite gives $s_1 = s_2$.
+
+(2) Let $r \in R$. By surjectivity of $g \circ f$ there is $s \in S$ with $g(f(s)) = r$; then $t := f(s) \in T$ satisfies $g(t) = r$.
+
+(3) Take $S = \{a\}$, $T = \{1,2\}$, $R = \{x\}$, $f(a)=1$, $g(1)=g(2)=x$. Then $g\circ f$ is both injective and surjective, while $g$ is not injective and $f$ is not surjective.
+</Proof>
+
+The pattern is worth memorising: **injectivity of a composite constrains the first map; surjectivity constrains the second.** It generalises directly — in any category, if $g\circ f$ is monic then $f$ is monic, and if $g \circ f$ is epic then $g$ is epic — and it is the reason retracts and sections behave the way they do.
+
+<Warning title="Domain bookkeeping">
+$g \circ f$ requires $\operatorname{cod}(f) = \operatorname{dom}(g)$ *exactly*, not merely $\operatorname{Im}(f) \subseteq \operatorname{dom}(g)$. In practice people compose whenever the image fits, silently replacing $f$ by its corestriction. This is harmless but worth being conscious of, because it changes the function (§3.1) and can change whether it is surjective.
+</Warning>
+
+## Composition and pre-images
+
+$$
+(g\circ f)^{-1}(U) = f^{-1}\big(g^{-1}(U)\big) \quad\text{for } U \subseteq R.
+$$
+
+<Proof>
+$s \in (g\circ f)^{-1}(U) \iff g(f(s)) \in U \iff f(s) \in g^{-1}(U) \iff s \in f^{-1}(g^{-1}(U))$, each step being the pivot equivalence of §3.3.
+</Proof>
+
+Note the reversal of order: the pre-image operator is contravariant (§3.4). This one line is why continuity is closed under composition — if $g^{-1}$ and $f^{-1}$ both carry open sets to open sets, so does $(g\circ f)^{-1}$ — and the same argument gives closure of measurability, of smoothness, and of homomorphism properties under composition.
+
+<Aside>
+The bijections from a set $X$ to itself form a group under composition: associativity is proved above, the identity is $\mathrm{id}_X$, and inverses come from §3.9. This is the **symmetric group** $S_X$, and Cayley's theorem says every group embeds in one — so the study of groups is, up to isomorphism, the study of sets of bijections closed under composition.
+</Aside>
+
+<WhereThisGoes level="l7">
+Composition is the operation that makes mathematics structural rather than object-by-object. Once you have associativity and identities you have a category, and the definitions that follow — functor, natural transformation, adjunction, limit — are stated purely in terms of composition, never in terms of elements. That is what lets a single theorem apply simultaneously to sets and functions, groups and homomorphisms, spaces and continuous maps, and chain complexes and chain maps. Closer to hand, composition is the chain rule's home ($(g\circ f)' = (g'\circ f)\cdot f'$), the reason matrix multiplication is defined as it is (it is composition of linear maps in coordinates, and its non-commutativity is the non-commutativity proved above), and the mechanism behind dynamical systems, where iterating $f \circ f \circ \cdots \circ f$ is the entire subject.
+</WhereThisGoes>

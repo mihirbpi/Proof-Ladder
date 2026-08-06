@@ -13,6 +13,17 @@
     "l7": "Union and intersection",
     "l8": "Union and intersection"
   },
+  "kernelIdea": "S ∪ T holds anything in at least one; S ∩ T holds things in both. S ⊆ S∪T and S∩T ⊆ S always. Disjoint means empty intersection.",
+  "kernels": {
+    "l1": "The overlap holds what is in both hoops. Everything in either hoop, all together, is the big pile.",
+    "l2": "Put two hoops on the floor. The overlap is the things in both hoops. Everything in either hoop, counted once, is the whole collection. If the hoops never overlap, nothing is in both.",
+    "l3": "S ∪ T, the union, holds everything that is in S or in T or both. S ∩ T, the intersection, holds only what is in both. Union goes with the word or; intersection goes with the word and.",
+    "l4": "S ∪ T = {x | x ∈ S ∨ x ∈ T} and S ∩ T = {x | x ∈ S ∧ x ∈ T}. Union is ∨ and intersection is ∧. Always S ⊆ S ∪ T and S ∩ T ⊆ S; disjoint means S ∩ T = ∅.",
+    "l5": "Union and intersection are the set-level images of ∨ and ∧; the containments S ∩ T ⊆ S ⊆ S ∪ T hold for all S and T.",
+    "l6": "∪ and ∩ are the join and meet of the inclusion order on subsets, corresponding to ∨ and ∧ under the logic–set dictionary.",
+    "l7": "Union and intersection are defined by disjunction and conjunction of membership conditions; S ∩ T ⊆ S ⊆ S ∪ T always, and S, T are disjoint exactly when S ∩ T = ∅.",
+    "l8": "∪ and ∩ are the join and meet in the Boolean lattice P(X), and they extend to arbitrary indexed families, where the quantifier form ∃i / ∀i replaces ∨ / ∧."
+  },
   "kernel": "S ∪ T holds anything in at least one; S ∩ T holds things in both. S ⊆ S∪T and S∩T ⊆ S always. Disjoint means empty intersection.",
   "objectives": [
     "Compute unions and intersections",

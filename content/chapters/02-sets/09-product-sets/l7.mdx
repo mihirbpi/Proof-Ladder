@@ -1,0 +1,106 @@
+---
+level: l7
+title: Product sets
+readingTimeMin: 9
+newTerms: ["ordered pair", "product set", "relation"]
+anchorExample: "the integer lattice ℤ × ℤ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+## Ordered pairs
+
+The ordered pair is characterised by a single property:
+$$
+(a,b) = (c,d) \iff a = c \wedge b = d. \tag{$\ast$}
+$$
+
+Anything satisfying $(\ast)$ will do; the standard implementation is Kuratowski's,
+$$
+(a,b) := \{\{a\}, \{a,b\}\},
+$$
+from which $(\ast)$ is a short exercise in extensionality. The implementation is deliberately forgettable — what matters is $(\ast)$, and a different encoding satisfying it would serve equally well. This is the first appearance of a pattern that dominates modern mathematics: objects are characterised by the properties they satisfy, not by what they are made of.
+
+## The cartesian product
+
+$$
+S \times T = \{(s,t) \mid s \in S \wedge t \in T\},
+\qquad
+(x,y) \in S \times T \iff x \in S \wedge y \in T. \tag{$\dagger$}
+$$
+
+Basic facts, all immediate:
+
+- $|S \times T| = |S|\,|T|$ for finite sets — multiplication as the size of a grid.
+- $S \times T \neq T \times S$ unless $S = T$ or one is empty; $(\ast)$ is what obstructs the identification. There is nevertheless a canonical bijection $S \times T \to T \times S$, and much of the time that is all one needs.
+- $S \times \emptyset = \emptyset$: the second coordinate has nothing to be.
+- $\times$ is not associative on the nose either — $(a,(b,c))$, $((a,b),c)$ and $(a,b,c)$ are formally distinct — but the canonical bijections between them are so routine that everyone writes $S \times T \times R$ and moves on.
+
+<Warning title="Name an arbitrary element as a pair, immediately">
+Every proof about products opens the same way:
+
+> Let $z \in A \times C$ be arbitrary. Then $z = (x,y)$ with $x \in A$ and $y \in C$.
+
+Until $z$ is decomposed, $(\dagger)$ cannot be applied and the argument has nothing to work with. Failing to decompose is the characteristic error in this module, as failing to unfold a definition is in the previous ones.
+</Warning>
+
+## Interaction with intersection
+
+> **Proposition.** $(A \cap B) \times (C \cap D) = (A \times C) \cap (B \times D)$.
+
+<Discussion>
+  <div slot="know">Both sides unfold, via $(\dagger)$ and the definition of $\cap$, to a conjunction of the same four atomic statements.</div>
+  <div slot="want">Set equality.</div>
+  <div slot="how">Decompose an arbitrary element into coordinates, unfold both sides, and observe that they differ only by the order of conjuncts. Commutativity and associativity of $\wedge$ finish it, and since every step is biconditional the two inclusions come together.</div>
+</Discussion>
+
+<Proof>
+Every element of either side is an ordered pair, so let $(x,y)$ be arbitrary. Then
+$$
+\begin{aligned}
+(x,y) \in (A\cap B)\times(C\cap D)
+&\iff (x \in A \wedge x \in B)\wedge(y \in C \wedge y \in D)\\
+&\iff (x \in A \wedge y \in C)\wedge(x \in B \wedge y \in D)\\
+&\iff (x,y) \in (A\times C)\cap(B\times D),
+\end{aligned}
+$$
+the middle step by commutativity and associativity of $\wedge$.
+</Proof>
+
+The theorem is commutativity of conjunction in costume. Recognising that is more valuable than the theorem.
+
+## Why the union analogue fails
+
+$$
+(A \cup B)\times(C \cup D) \;\supsetneq\; (A \times C)\cup(B\times D) \quad\text{in general.}
+$$
+
+With $A = C = \{1\}$, $B = D = \{2\}$: the left contains $(1,2)$; the right is $\{(1,1),(2,2)\}$. The containment $\supseteq$ always holds, and the failure of $\subseteq$ is exactly that a pair may draw its coordinates from different summands. The correct identity is
+$$
+(A\cup B)\times(C\cup D) = (A\times C)\cup(A\times D)\cup(B\times C)\cup(B\times D),
+$$
+which distributes properly — and whose four terms are the cross-terms the naive version omits. Meanwhile $A \times (C \cup D) = (A\times C)\cup(A\times D)$ does hold, so $\times$ distributes over $\cup$ in each variable separately; it is only the simultaneous version that fails.
+
+## Relations
+
+A **relation** from $S$ to $T$ is by definition any subset $R \subseteq S \times T$, with $sRt$ meaning $(s,t) \in R$. This is the definition that makes the rest of the course possible:
+
+- **Functions** (Chapter 3) are relations $f \subseteq S \times T$ such that each $s \in S$ occurs as the first coordinate of exactly one pair. A function *is* its graph; there is no separate notion.
+- **Orders** are relations on $S \times S$ that are reflexive, antisymmetric, transitive — $\subseteq$ from §2.3 being the example at hand.
+- **Equivalence relations** are reflexive, symmetric, transitive relations, and their quotients construct $\mathbb{Z}$ from $\mathbb{N}$, $\mathbb{Q}$ from $\mathbb{Z}$, and $\mathbb{Z}/n\mathbb{Z}$ from $\mathbb{Z}$.
+
+So everything from here forward is a subset of a product set with a condition attached.
+
+$\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$ makes this concrete: a line is $\{(x,y) \mid y = mx+c\}$, a circle is $\{(x,y) \mid x^2+y^2 = r^2\}$. Coordinate geometry is set-builder notation applied to a product.
+
+<Aside>
+Infinite products require care. For a family $\{A_i\}_{i \in I}$, $\prod_{i \in I} A_i$ is the set of functions $f$ on $I$ with $f(i) \in A_i$ — note the definition uses functions, so the order of development in this course is a pedagogical convenience rather than a logical necessity. Whether this product is nonempty whenever every $A_i$ is nonempty is precisely the **Axiom of Choice**, which is independent of the other axioms of set theory.
+</Aside>
+
+<WhereThisGoes level="l7">
+The cartesian product is the first example of a **universal property**: $S \times T$ together with its projections $\pi_1, \pi_2$ is characterised by the fact that any pair of maps $f : X \to S$, $g : X \to T$ factors uniquely through it. That characterisation, not the construction, is what generalises — to products of groups, rings, topological spaces, and to arbitrary categories, where it dualises to the coproduct (disjoint union for sets, direct sum for vector spaces, free product for groups). The step from "here is how to build $S \times T$" to "here is what $S \times T$ does" is the step from set theory to category theory, and $(\ast)$ above is the first time you see the construction being explicitly declared irrelevant.
+</WhereThisGoes>

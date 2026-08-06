@@ -1,0 +1,82 @@
+---
+level: l7
+title: Irrational numbers and √2
+readingTimeMin: 9
+newTerms: ["irrational", "infinite descent", "transcendental"]
+anchorExample: "√2 irrational"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$x \in \mathbb{R}$ is **irrational** when $x \notin \mathbb{Q}$. The irrationals are the complement $\mathbb{R}\setminus\mathbb{Q}$ — defined negatively, which is why every theorem about them is proved by contradiction (§2.5).
+
+> **Theorem.** $\sqrt 2 \notin \mathbb{Q}$.
+
+## Setup
+
+The statement is a universal negative — $\forall p,q \in \mathbb{Z},\ q\neq0 \Rightarrow p^2 \neq 2q^2$ — so there is nothing to construct and §2.5's diagnostic applies.
+
+The lemma, from §1.9, is $n^2$ even $\iff$ $n$ even, whose forward direction was itself proved by contraposition (§1.8) because "$n^2 = 2k$" yields no handle on $n$.
+
+We also need: every nonzero rational has a representation in lowest terms. This is not free — it follows from well-ordering, since among all representations $p/q$ with $q > 0$ there is one with least $q$, and that one has $\gcd(p,q)=1$.
+
+<Discussion>
+  <div slot="know">$\sqrt2 = p/q$ with $\gcd(p,q)=1$, $q \neq 0$.</div>
+  <div slot="want">A contradiction.</div>
+  <div slot="how">Square, apply the parity lemma to $p$, substitute, apply it again to $q$, and observe that $2$ divides both — contradicting coprimality. The lemma is used twice, symmetrically.</div>
+</Discussion>
+
+<Proof>
+Suppose for contradiction $\sqrt2 \in \mathbb{Q}$, say $\sqrt2 = p/q$ with $p,q\in\mathbb{Z}$, $q\neq0$, $\gcd(p,q)=1$.
+
+Squaring: $p^2 = 2q^2$. Hence $p^2$ is even, so $p$ is even by the lemma; write $p = 2k$, $k \in \mathbb{Z}$.
+
+Substituting: $4k^2 = 2q^2$, so $q^2 = 2k^2$. Hence $q^2$ is even, so $q$ is even.
+
+Then $2 \mid p$ and $2 \mid q$, so $2 \mid \gcd(p,q) = 1$ — impossible.
+
+Therefore $\sqrt2 \notin \mathbb{Q}$.
+</Proof>
+
+<Warning title="Where the contradiction actually lives">
+Deducing "$p$ and $q$ are both even" is not by itself absurd. It contradicts something only because coprimality was assumed *in advance*. A proof that omits the lowest-terms hypothesis and stops at "both even" has proved nothing.
+
+The alternative finish is **infinite descent**: from any solution $(p,q)$ in positive integers, construct the strictly smaller solution $(p/2, q/2)$; iterating gives an infinite strictly decreasing sequence of positive integers, contradicting well-ordering. Both routes are valid, and both ultimately rest on well-ordering — the lowest-terms version simply front-loads it.
+</Warning>
+
+## Generality
+
+**$\sqrt p$ for prime $p$.** Replace "even" by "divisible by $p$"; the lemma becomes $p \mid n^2 \Rightarrow p \mid n$, which is Euclid's lemma (§4.3) — and note that primality is essential, since $4 \mid 6^2$ but $4 \nmid 6$.
+
+**Rational root theorem.** If $x = a/b$ in lowest terms satisfies $c_nx^n + \cdots + c_0 = 0$ with $c_i \in \mathbb{Z}$, then $a \mid c_0$ and $b \mid c_n$. For monic polynomials $b = \pm1$, so **any rational root of a monic integer polynomial is an integer**. Since $\sqrt2$ is a root of $x^2 - 2$ and neither $\pm1$ nor $\pm2$ works, $\sqrt2 \notin \mathbb{Q}$ — a second proof, and one that immediately yields $\sqrt[3]2$, $\sqrt2+\sqrt3$, and the golden ratio.
+
+**$\sqrt m$ is rational iff $m$ is a perfect square**, by the same theorem.
+
+## Consequences for $\mathbb{Q}$
+
+$$
+S = \{x \in \mathbb{Q} : x > 0,\ x^2 < 2\}
+$$
+is nonempty and bounded above in $\mathbb{Q}$ but has no supremum there: any rational upper bound $u$ admits a smaller one, and any element admits a larger. The candidate is $\sqrt2$, which the theorem removes.
+
+So $\mathbb{Q}$ fails the **least upper bound property**, and $\mathbb{R}$ is precisely the completion that supplies it — unique up to isomorphism as a complete ordered field. Density (§4.6) could not detect this gap because completeness is not a local condition.
+
+## Beyond algebraic irrationality
+
+$\sqrt2$ is **algebraic**: a root of a nonzero integer polynomial. A real number that is not is **transcendental**.
+
+- $e$ is irrational (Euler, 1737; the proof via the series for $e$ is short and elegant) and transcendental (Hermite, 1873).
+- $\pi$ is irrational (Lambert, 1761) and transcendental (Lindemann, 1882) — which settles the impossibility of squaring the circle, since constructible lengths are algebraic.
+- Almost every real is transcendental: the algebraic numbers are countable (each polynomial has finitely many roots, and there are countably many polynomials), while $\mathbb{R}$ is not (§3.8). So the transcendentals have full measure, yet Liouville had to *construct* one in 1844 to exhibit a single example — an unusually stark case of a property being generic and hard to verify.
+
+<Aside>
+Irrationality proofs remain hard. $\zeta(3) = \sum n^{-3}$ was only shown irrational in 1978 (Apéry), to general astonishment; whether $\zeta(5)$ is irrational is open, as are the irrationality of $e + \pi$, $\pi e$, and the Euler–Mascheroni constant $\gamma$. That $e+\pi$ and $e\pi$ cannot *both* be algebraic is easy — they are the coefficients of $(x-e)(x-\pi)$ — but no one knows which.
+</Aside>
+
+<WhereThisGoes level="l7">
+This theorem is where the tower of number systems reveals its logic. $\mathbb{Q}$ is not algebraically closed and not order-complete; $\mathbb{R}$ fixes completeness but is still not algebraically closed ($x^2+1$ has no root); $\mathbb{C}$ fixes that and is algebraically closed, at the cost of the order. Between $\mathbb{Q}$ and $\mathbb{R}$ sits the field $\overline{\mathbb{Q}}$ of algebraic numbers, whose finite extensions are the number fields of algebraic number theory and whose absolute Galois group is arguably the central object of modern arithmetic. Meanwhile the descent method used above is Fermat's, and it is the technique behind the proof that $x^4+y^4=z^4$ has no nontrivial solutions — the one case of Fermat's Last Theorem Fermat could actually prove.
+</WhereThisGoes>

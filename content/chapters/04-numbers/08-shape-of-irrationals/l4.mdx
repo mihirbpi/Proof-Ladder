@@ -1,0 +1,75 @@
+---
+level: l4
+title: The shape of the irrationals
+readingTimeMin: 6
+newTerms: []
+anchorExample: "√2 irrational"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$\mathbb{Q}$ is a field (module 4.5). Is $\mathbb{R}\setminus\mathbb{Q}$ anything?
+
+No. And identifying exactly how it fails is the point of the module.
+
+## Three failures
+
+**No identities.** $0, 1 \in \mathbb{Q}$, so neither lies in $\mathbb{R}\setminus\mathbb{Q}$. A set without an additive or multiplicative identity cannot be a field, or a ring, or a group.
+
+**Not closed under $+$.** $\sqrt2$ and $-\sqrt2$ are irrational, but $\sqrt2 + (-\sqrt2) = 0 \in \mathbb{Q}$.
+
+**Not closed under $\times$.** $\sqrt2 \cdot \sqrt2 = 2 \in \mathbb{Q}$.
+
+Each is a single counterexample, which suffices (module 1.11).
+
+<Warning title="Not closed means sometimes, not always">
+$\sqrt2 + \sqrt3$ is irrational; $\sqrt2 + (2 - \sqrt2) = 2$ is not. Sums of irrationals can go either way, and there is no shortcut for deciding which — proving $\sqrt2+\sqrt3 \notin \mathbb{Q}$ takes a genuine argument (square it twice).
+
+Never write "irrational + irrational = irrational". Never write the opposite either.
+</Warning>
+
+## What is stable
+
+> **Proposition.** Let $a \in \mathbb{R}\setminus\mathbb{Q}$ and let $r \in \mathbb{Q}$ with $r \neq 0$. Then:
+> (i) $-a$ is irrational; (ii) $1/a$ is irrational; (iii) $ra$ is irrational; (iv) $r + a$ is irrational.
+
+<Discussion>
+  <div slot="know">$a \notin \mathbb{Q}$; $\mathbb{Q}$ is closed under all four field operations.</div>
+  <div slot="want">Four negative statements.</div>
+  <div slot="how">Each goal is a negation, so contradiction is indicated (module 2.5). In every case: assume the constructed quantity is rational, apply a closure property of $\mathbb{Q}$ to recover $a$, and contradict $a \notin \mathbb{Q}$. Statement (iii) with $r = -1$ gives (i), so prove the general one.</div>
+</Discussion>
+
+<Proof>
+**(iii)** Suppose for contradiction that $ra \in \mathbb{Q}$. Since $r \in \mathbb{Q}$ and $r \neq 0$, we have $r^{-1} \in \mathbb{Q}$ by closure under multiplicative inverses. Since $\mathbb{Q}$ is closed under multiplication,
+$$r^{-1}(ra) = a \in \mathbb{Q},$$
+contradicting the irrationality of $a$. Hence $ra \notin \mathbb{Q}$.
+
+**(i)** Apply (iii) with $r = -1$.
+
+**(ii)** Note $a \neq 0$ since $0 \in \mathbb{Q}$. Suppose $1/a \in \mathbb{Q}$; it is nonzero, so its inverse is rational by closure, and that inverse is $a$ — contradiction.
+
+**(iv)** Suppose $r + a \in \mathbb{Q}$. Then $(r+a) - r = a \in \mathbb{Q}$ by closure under subtraction — contradiction.
+</Proof>
+
+Every proof has the identical three-step shape:
+
+1. assume the constructed quantity is rational;
+2. apply a closure property of $\mathbb{Q}$ to recover $a$;
+3. contradict $a \notin \mathbb{Q}$.
+
+The engine is always closure of $\mathbb{Q}$. Irrationality is defined by *non-membership*, so the only handle available is what membership would imply.
+
+## A structural reading
+
+The proposition says the irrationals are stable under the operations that have rational inverses, and unstable otherwise. Precisely: $\mathbb{Q}$ acts on $\mathbb{R}$, and the irrationals are a union of cosets $a + \mathbb{Q}$ — so translating or scaling by a rational moves you within the irrationals, while combining two irrationals can land you back in $\mathbb{Q}$.
+
+The general fact behind all of it: **the complement of a subfield is never a subfield**, because it omits $0$ and $1$.
+
+<Aside>
+Here is a famous consequence of the messiness. Consider $\sqrt2^{\sqrt2}$. Either it is rational — in which case irrational$^{\text{irrational}}$ can be rational, taking $a=b=\sqrt2$ — or it is irrational, in which case take $a = \sqrt2^{\sqrt2}$ and $b = \sqrt2$, giving
+$$a^b = \left(\sqrt2^{\sqrt2}\right)^{\sqrt2} = \sqrt2^{\,2} = 2.$$
+Either way, such a pair exists. The proof does not say which case holds, and does not need to. It is the standard example of a non-constructive existence proof (module 1.12) — and, as it happens, $\sqrt2^{\sqrt2}$ is irrational, by a very deep theorem of Gelfond and Schneider that this argument entirely avoids needing.
+</Aside>

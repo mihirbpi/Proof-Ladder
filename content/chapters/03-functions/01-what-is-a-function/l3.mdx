@@ -1,0 +1,86 @@
+---
+level: l3
+title: What is a function?
+readingTimeMin: 6
+newTerms: ["function", "input", "output", "domain", "codomain"]
+anchorExample: "each kid to their cubby"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+A **function** is a machine. You feed it something, and it hands you back exactly one thing. Every time, no exceptions, no arguing.
+
+We write
+$$
+f : S \to T
+$$
+and read it "$f$ is a function from $S$ to $T$." The set $S$ is the **domain** — everything you are allowed to feed in. The set $T$ is the **codomain** — the pool that the answers come out of. If you feed in $s$, the answer is written $f(s)$.
+
+## The three conditions
+
+For $f$ to really be a function, all three of these must hold.
+
+**1. Nothing gets skipped.** Every single element of $S$ gets an answer. If even one input has no output, $f$ is not a function.
+
+**2. Nothing gets two answers.** Each input gets exactly one output. If $f(3)$ could be either $5$ or $9$ depending on the day, $f$ is not a function.
+
+**3. The answers land in $T$.** Whatever comes out has to belong to the codomain you declared.
+
+## Pictures
+
+<Figure alt="Three children on the left with exactly one arrow each going to cubbies on the right." caption="A function: one arrow leaves each element of the domain.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0],[2,2]]} />
+</Figure>
+
+<Figure alt="Three children on the left, but Ada has no arrow leaving her." caption="Not a function: Ada is skipped.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0]]} />
+</Figure>
+
+<Figure alt="Sam has two arrows leaving him to two different cubbies, the second drawn dashed." caption="Not a function: Sam gets two answers.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,0],[0,1],[1,2],[2,1]]} broken={[1]} />
+</Figure>
+
+<Figure alt="Sam and Pip both have arrows landing on cubby 2; every element on the left still has exactly one arrow leaving." caption="This one IS a function. Two arrows landing together is allowed.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,1],[2,0]]} />
+</Figure>
+
+That last one catches people out. The three conditions are all about arrows *leaving* the domain. Nothing at all is required about the codomain side — a target may be hit twice, or never. Those two situations get their own modules (3.5 and 3.6) because they turn out to matter enormously.
+
+## Functions need not be about numbers
+
+The cubby machine sends children to cubbies. Neither side is a number, and it is still a perfectly good function.
+
+Here is another. Let $S$ be the alphabet and $T$ the counting numbers, and let $f$ send each letter to its position:
+$$
+f(\text{a}) = 1, \quad f(\text{b}) = 2, \quad \ldots, \quad f(\text{z}) = 26.
+$$
+Every letter has exactly one position, so $f$ is a function. And notice: not every counting number gets used — nothing maps to $27$. That is fine. The codomain is a pool to draw from, not a promise to use it all up.
+
+## A rule that fails
+
+Let $S$ be the numbers and try the rule "send $x$ to a number whose square is $x$."
+
+Feed in $9$. The answer could be $3$, or it could be $-3$. Two answers, so condition 2 fails. This is **not** a function.
+
+You can repair it by choosing: "send $x$ to the *positive* number whose square is $x$." Now each input has one answer, and it is a function. (It still fails condition 1 on negative inputs, so you would also have to shrink the domain.)
+
+<Warning title="The domain and codomain are part of the function">
+"$f(x) = 1/x$" is not yet a function, because $0$ has no answer. "$f : S \to T$ where $S$ is all the numbers except $0$" *is* a function.
+
+Changing the domain or the codomain gives you a different function, even with the same rule. Always write down all three: the rule, the domain, and the codomain.
+</Warning>
+
+<Aside>
+There is a picture test you may have seen: a graph is a function if no vertical line crosses it twice. That is exactly condition 2 — one output per input — drawn on axes. It is a handy check for graphs of numbers, but it is not the definition, and it says nothing about the cubby machine, which has no graph at all.
+</Aside>

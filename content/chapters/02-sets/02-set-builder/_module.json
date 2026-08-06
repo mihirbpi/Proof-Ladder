@@ -13,6 +13,17 @@
     "l7": "Set-builder notation",
     "l8": "Set-builder notation"
   },
+  "kernelIdea": "{x | p(x)} is the set of all x making p(x) true — a set defined by a condition rather than a list.",
+  "kernels": {
+    "l1": "You can make a box by naming a rule instead of putting things in one at a time.",
+    "l2": "There are two ways to make a box: list what goes in it, or give a rule that decides. The same box can be made both ways.",
+    "l3": "You can describe a set by listing its elements, or by giving a condition: {x | x is a whole number between 0 and 5} means \"the set of all x such that…\". The condition does the choosing for you.",
+    "l4": "{x ∈ A | p(x)} denotes the set of elements of A that satisfy p. A condition replaces a list, which is the only way to describe sets too large to write down.",
+    "l5": "Set-builder notation {x ∈ A | p(x)} turns an open statement into a set; this is where Chapter 1's predicates become Chapter 2's objects.",
+    "l6": "A set may be specified by an extensional list or by an intensional condition on a stated ambient set; the ambient set is not optional.",
+    "l7": "Set-builder notation {x ∈ A | p(x)} converts a predicate into a set by separation from an existing set A. The condition is a statement in the sense of Chapter 1, which is where Chapter 1 becomes a tool.",
+    "l8": "Set-builder is the Axiom Schema of Separation in notation; unrestricted comprehension {x | p(x)} is inconsistent, which is why the ambient set may not be dropped."
+  },
   "kernel": "{x | p(x)} is the set of all x making p(x) true — a set defined by a condition rather than a list.",
   "objectives": [
     "Read and write set-builder notation",

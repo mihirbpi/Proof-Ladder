@@ -1,0 +1,56 @@
+---
+level: l2
+title: Circling and tracing back
+readingTimeMin: 4
+newTerms: ["circle the arrowheads", "trace back"]
+anchorExample: "the cubby machine"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Aside from '@/components/Aside.astro';
+
+There are two questions you can ask about any machine, and they go in opposite directions.
+
+<Figure alt="Four children on the left with one arrow each; two arrows land on cubby 2, one lands on cubby 1, one on cubby 4, and cubby 3 has no arrow." caption="Four children, four cubbies. Look at where the arrows land.">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada", "Bo"]} right={["1", "2", "3", "4"]}
+    edges={[[0,1],[1,1],[2,0],[3,3]]} />
+</Figure>
+
+## Going forwards: circle the arrowheads
+
+Look at the right side. Which cubbies have an arrow landing on them?
+
+Cubby 1 — yes. Cubby 2 — yes, twice! Cubby 4 — yes. Cubby 3 — no arrows at all.
+
+**Circle the arrowheads** and you get $\{1, 2, 4\}$. Those are the answers the machine can actually give.
+
+Cubby 3 is not in the circle. The machine simply never sends anybody there.
+
+## Going backwards: trace back
+
+Now pick a cubby and follow the arrows the wrong way.
+
+- Trace back from cubby 2: you land on Sam and Pip. Two children!
+- Trace back from cubby 1: you land on Ada. One child.
+- Trace back from cubby 3: you land on... nobody. Zero children.
+
+All three of those are real answers. "Nobody" is an answer, not a mistake.
+
+## The two questions are different
+
+*Which cubbies got used?* is about the whole right side at once.
+
+*Who is in cubby 3?* is about one cubby.
+
+Both are useful, and later on they turn into two of the most important ideas in the whole chapter.
+
+<Aside>
+Notice that tracing back can give you 0 things, 1 thing, or lots of things. The machine going forwards is very tidy — always exactly one answer. Going backwards is messy. That difference is what modules 3.5 and 3.6 are all about.
+</Aside>
+
+<TryIt>
+Draw a machine with 4 things on each side. Circle the arrowheads that got used. Then pick one arrowhead and trace back. Then pick an unused one and trace back from that.
+</TryIt>

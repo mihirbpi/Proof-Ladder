@@ -1,0 +1,112 @@
+---
+level: l7
+title: Complements and suppose not
+readingTimeMin: 10
+newTerms: ["complement", "universe", "proof by contradiction", "set difference"]
+anchorExample: "irrationals as the complement of ℚ in ℝ"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+## Complementation
+
+Relative to a fixed **universe** $S$ and for $A \subseteq S$,
+$$
+\overline{A} \;=\; S \setminus A \;=\; \{\, x \in S \mid x \notin A \,\},
+\qquad
+x \in \overline A \iff x \in S \wedge x \notin A.
+$$
+
+<Figure alt="Two circles inside a dashed rectangle labelled S, with the region of the rectangle outside both circles shaded." caption="Complementation is relative to the dashed universe $S$.">
+  <VennTwo labelS="A" labelT="B" shade={["outside"]} universe="S" />
+</Figure>
+
+Complement is the set-level image of $\neg$, completing the dictionary begun in §2.4. It is a *unary* operation only after a universe has been fixed; the binary **set difference** $S \setminus A$ carries its universe with it and is preferable whenever the ambient set is not standing constant.
+
+The relativity is not a technicality. $\{0,1\}$ has complement $\{2,3,\ldots\}$ in $\mathbb{N}$, and $\mathbb{R} \setminus \{0,1\}$ in $\mathbb{R}$. Most importantly:
+$$
+\text{the irrationals} \;=\; \mathbb{R} \setminus \mathbb{Q},
+$$
+a set defined negatively, which is exactly why every theorem about it is proved by contradiction.
+
+## Identities
+
+$$
+\overline{\overline A} = A, \qquad
+A \cap \overline A = \emptyset, \qquad
+A \cup \overline A = S, \qquad
+\overline{\emptyset} = S, \qquad \overline S = \emptyset,
+$$
+each transcribing a logical fact ($\neg\neg p \equiv p$; $p \wedge \neg p$ contradictory; $p \vee \neg p$ tautologous). The middle two say $\{A, \overline A\}$ partitions $S$ — the set-theoretic form of excluded middle, and the reason **proof by cases on membership** is always available.
+
+§2.7 supplies the interaction with $\cup$ and $\cap$ (De Morgan).
+
+## Reductio ad absurdum
+
+**Proof by contradiction**, named move **suppose not**: to establish $p$, assume $\neg p$, derive a contradiction $r \wedge \neg r$, and conclude $p$. Formally the rule is
+$$
+\big(\neg p \Rightarrow (r \wedge \neg r)\big) \;\Longrightarrow\; p,
+$$
+valid since $\neg p \Rightarrow F$ forces $\neg p$ false, and excluded middle then yields $p$.
+
+It is worth separating two things that both get called contradiction:
+
+- **Proof of a negation.** To prove $\neg p$, assume $p$ and derive absurdity. This is just the definition of negation in use, and it is constructively valid.
+- **Reductio proper.** To prove $p$ (not a negation), assume $\neg p$ and derive absurdity. This concludes $p$ from $\neg\neg p$, and requires double-negation elimination.
+
+Classically both are fine. Constructively only the first is, and the distinction is exactly where intuitionistic logic parts company with classical.
+
+## The proposition
+
+> **Proposition.** For $A, B \subseteq S$: $A \subseteq B \implies \overline B \subseteq \overline A$.
+
+<Discussion>
+  <div slot="know">$\forall x\,(x \in A \Rightarrow x \in B)$. Goal is a subset claim, so element chasing (§2.3).</div>
+  <div slot="want">$\forall x\,(x \in \overline B \Rightarrow x \in \overline A)$, i.e. $x \notin B \Rightarrow x \notin A$.</div>
+  <div slot="how">The target $x \notin A$ is a negation; there is nothing to construct. Assume $x \in A$ and use the hypothesis to contradict $x \notin B$. Note this is a proof *of a negation*, so it is constructively unproblematic.</div>
+</Discussion>
+
+<Proof>
+Let $x \in \overline B$ be arbitrary; then $x \in S$ and $x \notin B$.
+
+Suppose, for contradiction, that $x \in A$. Since $A \subseteq B$, we get $x \in B$, contradicting $x \notin B$.
+
+Hence $x \notin A$, so $x \in \overline A$. As $x$ was arbitrary, $\overline B \subseteq \overline A$.
+</Proof>
+
+Complementation **reverses inclusion**: it is an order-reversing involution on $(\mathcal{P}(S), \subseteq)$. The proposition is contraposition (§1.7) translated by the dictionary, and the converse holds too, so in fact $A \subseteq B \iff \overline B \subseteq \overline A$.
+
+## When contradiction is the right tool
+
+Reach for it when the goal is a **nonexistence** or **impossibility** claim, where a direct proof has nothing to build:
+
+- $\sqrt 2 \notin \mathbb{Q}$ (§4.7). Assume $\sqrt2 = a/b$ in lowest terms; derive that $a$ and $b$ are both even.
+- There are infinitely many primes. Assume finitely many $p_1, \ldots, p_n$; consider $p_1\cdots p_n + 1$.
+- There is no surjection $X \to \mathcal{P}(X)$ (Cantor). Assume $f$ is one; consider $\{x \mid x \notin f(x)\}$.
+- $\{x \mid \sin x = 0\} \cap \{x \mid \cos x = 0\} = \emptyset$ (§2.4). Assume a common zero; contradict $\sin^2 + \cos^2 = 1$.
+
+In every case the theorem asserts that something is *not there*, so there is nothing for a direct argument to construct, and the assumption of existence is the only handle available.
+
+<Warning title="Symptoms of misuse">
+**The unused assumption.** If the contradictory hypothesis never appears in the derivation, you wrote a direct proof and wrapped it. Unwrap it.
+
+**The disguised contrapositive.** Assuming $p \wedge \neg q$ and deriving $\neg p$ is a contrapositive proof (§1.8). It reads better stated as one, since the reader need not carry a false assumption.
+
+**The mis-negation.** The assumption must be the exact negation of the goal, computed by §1.11. "Suppose $f$ is not continuous" is useless until expanded to $\exists \varepsilon > 0\, \forall \delta > 0\, \exists x\,(\ldots)$.
+
+**Hidden circularity.** Under a false assumption, everything is derivable — including your goal, by a route that quietly assumes it. Contradiction proofs need more care than direct ones, not less.
+</Warning>
+
+<Aside>
+$(\mathcal{P}(S), \cup, \cap, \overline{\phantom{x}})$ is a Boolean algebra, with complement the operation that distinguishes it from a mere lattice. Drop the law $\overline{\overline A} = A$ and keep the rest and you have a Heyting algebra — the algebraic semantics of intuitionistic logic, whose canonical example is the open sets of a topological space with $\overline A$ read as the interior of the complement. There $A \cup \overline A = S$ genuinely fails: on $\mathbb{R}$, take $A = (-\infty,0) \cup (0,\infty)$.
+</Aside>
+
+<WhereThisGoes level="l7">
+The classical/constructive distinction visible here is not philosophical decoration. Under the Curry–Howard correspondence a proof is a program and a proof of $\exists x\, p(x)$ is a program returning a witness; reductio produces no witness, so a classical existence proof compiles to nothing. This is why proof assistants built on type theory (Lean, Coq, Agda) treat excluded middle as an axiom to be invoked explicitly rather than a background assumption, and why the constructive content of a classical proof is a real question with real answers — Gödel's double-negation translation embeds classical arithmetic into intuitionistic arithmetic, and proof mining extracts explicit bounds from proofs that appeared purely non-constructive. Meanwhile complementation relative to a universe is the operation that makes measure theory work: a $\sigma$-algebra is required to be closed under it, and that closure is what makes "the probability of not-$A$" well defined.
+</WhereThisGoes>

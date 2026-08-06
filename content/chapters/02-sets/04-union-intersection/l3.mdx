@@ -1,0 +1,106 @@
+---
+level: l3
+title: Union and intersection
+readingTimeMin: 6
+newTerms: ["union", "intersection", "disjoint"]
+anchorExample: "divisors of 20 and 24"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You can combine two sets in two natural ways, and they correspond exactly to the two words you met in module 1.3.
+
+## Union: the *or* set
+
+The **union** of $S$ and $T$, written $S \cup T$, is the set of everything that is in $S$ **or** in $T$ (or both).
+$$
+S \cup T = \{\, x \mid x \in S \text{ or } x \in T \,\}
+$$
+
+<Figure alt="Two overlapping circles S and T with both entirely shaded, representing the union." caption="$S \cup T$: everything in at least one circle.">
+  <VennTwo labelS="S" labelT="T" shade={["S-only", "T-only", "both"]} />
+</Figure>
+
+Example: $\{1,2,3\} \cup \{3,4\} = \{1,2,3,4\}$.
+
+Notice $3$ appears once, not twice. Sets do not count repeats (module 2.1).
+
+## Intersection: the *and* set
+
+The **intersection** of $S$ and $T$, written $S \cap T$, is the set of everything in $S$ **and** in $T$.
+$$
+S \cap T = \{\, x \mid x \in S \text{ and } x \in T \,\}
+$$
+
+<Figure alt="Two overlapping circles S and T with only the middle overlap shaded, representing the intersection." caption="$S \cap T$: only the overlap.">
+  <VennTwo labelS="S" labelT="T" shade={["both"]} />
+</Figure>
+
+Example: $\{1,2,3\} \cap \{3,4\} = \{3\}$.
+
+## The dictionary
+
+| Word from Chapter 1 | Set operation |
+|---|---|
+| **or** | $\cup$ union |
+| **and** | $\cap$ intersection |
+
+This is not a coincidence or a memory aid. It is the definition. The set operations were *built* from the words, so every fact you know about *and* and *or* is about to become a fact about $\cap$ and $\cup$.
+
+In particular, remember that mathematical *or* is inclusive. So $S \cup T$ definitely includes the overlap. The union is not "one or the other but not both".
+
+## A real payoff: divisors
+
+Let $D_{20}$ and $D_{24}$ be the sets of positive divisors:
+$$
+D_{20} = \{1, 2, 4, 5, 10, 20\}, \qquad D_{24} = \{1, 2, 3, 4, 6, 8, 12, 24\}.
+$$
+
+Their intersection is the numbers dividing **both**:
+$$
+D_{20} \cap D_{24} = \{1, 2, 4\}.
+$$
+
+These are called the common divisors of $20$ and $24$. And look at the biggest one: $4$. That is the **greatest common divisor** of $20$ and $24$ — a thing you have probably computed before without knowing it lived inside an intersection.
+
+The same trick works upward. Let $M_{12}$ and $M_{18}$ be the positive multiples:
+$$
+M_{12} = \{12, 24, 36, 48, 60, \ldots\}, \qquad M_{18} = \{18, 36, 54, 72, \ldots\}.
+$$
+$$
+M_{12} \cap M_{18} = \{36, 72, 108, \ldots\}
+$$
+and the *smallest* element, $36$, is the least common multiple.
+
+So gcd and lcm are not separate tricks. They are the extreme elements of an intersection.
+
+## Two facts that are always true
+
+Look at the pictures again and you will believe both of these instantly:
+
+$$
+S \cap T \subseteq S \qquad\text{and}\qquad S \subseteq S \cup T.
+$$
+
+In words: intersecting can only shrink a set, and unioning can only grow it. Both are provable by taking any one and following it — if $x$ is in both $S$ and $T$, then certainly $x$ is in $S$; if $x$ is in $S$, then certainly $x$ is in $S$ or $T$.
+
+## Disjoint sets
+
+If $S \cap T = \emptyset$ — nothing at all is in both — we say $S$ and $T$ are **disjoint**.
+
+<Figure alt="Two separate circles S and T that do not touch, representing disjoint sets." caption="Disjoint sets: the intersection is empty.">
+  <VennTwo labelS="S" labelT="T" disjoint={true} />
+</Figure>
+
+The even numbers and the odd numbers are disjoint. So are the positive numbers and the negative numbers. Drawing disjoint sets as separate circles is the honest picture; drawing them overlapping and then writing "empty" in the middle is confusing.
+
+<Warning title="∪ and ∩ are easy to swap">
+A trick that works: $\cap$ looks like the letter **A** with its legs, for **A**nd. And $\cup$ looks like a cup — a cup holds *everything* you pour in.
+</Warning>
+
+<Aside>
+Both operations are commutative ($S \cup T = T \cup S$) and associative, so writing $S \cup T \cup R$ without brackets is safe. Both facts are inherited directly from the corresponding facts about *or* and *and*.
+</Aside>

@@ -1,0 +1,98 @@
+---
+level: l4
+title: Remainders and proof by cases
+readingTimeMin: 8
+newTerms: ["remainder", "division algorithm"]
+anchorExample: "divisibility"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Division with remainder
+
+> **Division algorithm.** For $m \in \mathbb{Z}$ and $n \in \mathbb{Z}_{>0}$ there exist unique $k, r \in \mathbb{Z}$ with
+> $$m = nk + r, \qquad 0 \leq r < n.$$
+
+$r$ is the **remainder**. In particular $n \mid m$ iff $r = 0$, so
+$$
+n \nmid m \iff m = nk + r \text{ for some } r \in \{1, 2, \ldots, n-1\}.
+$$
+
+That equivalence is the point of the module. A negative hypothesis — $n \nmid m$ — is useless as it stands (module 1.8's diagnostic). Division with remainder converts it into a **finite disjunction** of positive, usable forms. And a disjunction means **split into cases** (module 1.12).
+
+## Residue classes
+
+For $n = 3$, every integer has exactly one of three forms:
+
+| Remainder | Form | Examples |
+|---|---|---|
+| $0$ | $3k$ | $\ldots,-3,0,3,6,\ldots$ |
+| $1$ | $3k+1$ | $\ldots,-2,1,4,7,\ldots$ |
+| $2$ | $3k+2$ | $\ldots,-1,2,5,8,\ldots$ |
+
+These three sets are disjoint and cover $\mathbb{Z}$ — a partition. Exhaustiveness is what makes case analysis a complete method rather than a sampling.
+
+## The showcase proposition
+
+> **Proposition.** For all $a \in \mathbb{Z}$: if $3 \nmid a^2 - 1$, then $3 \mid a$.
+
+<Discussion>
+  <div slot="know">$3 \nmid a^2 - 1$: a negative statement about a composite quantity. Module 1.8's rule fires on both counts — negative hypothesis, and hypothesis about $a^2$ while the conclusion is about $a$. Contrapose.</div>
+  <div slot="want">$3 \mid a$.</div>
+  <div slot="how">The contrapositive is: if $3 \nmid a$ then $3 \mid a^2 - 1$. Its hypothesis is still negative, but division with remainder converts it into two positive cases, $a = 3k+1$ and $a = 3k+2$. Each is a direct computation.</div>
+</Discussion>
+
+<Proof>
+We prove the contrapositive: if $3 \nmid a$ then $3 \mid a^2 - 1$.
+
+Suppose $3 \nmid a$. By the division algorithm, $a = 3k + r$ with $r \in \{0,1,2\}$; the case $r = 0$ is excluded, since $a = 3k$ would give $3 \mid a$. Two cases remain.
+
+**Case $r = 1$:** $a = 3k+1$, so
+$$a^2 - 1 = 9k^2 + 6k + 1 - 1 = 3(3k^2 + 2k).$$
+Since $3k^2 + 2k \in \mathbb{Z}$ by closure, $3 \mid a^2 - 1$.
+
+**Case $r = 2$:** $a = 3k+2$, so
+$$a^2 - 1 = 9k^2 + 12k + 4 - 1 = 3(3k^2 + 4k + 1).$$
+Since $3k^2 + 4k + 1 \in \mathbb{Z}$, $3 \mid a^2 - 1$.
+
+The cases are exhaustive, so $3 \nmid a \Rightarrow 3 \mid a^2 -1$. By contraposition, $3 \nmid a^2 - 1 \Rightarrow 3 \mid a$.
+</Proof>
+
+This is the chapter's showcase because of how many tools it uses at once:
+
+| Tool | Where |
+|---|---|
+| contrapositive (1.8) | choosing what to prove |
+| division algorithm (4.4) | converting $3 \nmid a$ into cases |
+| proof by cases (1.12) | the two branches |
+| closure of $\mathbb{Z}$ (4.1) | "$3k^2+2k \in \mathbb{Z}$" |
+| divisibility as $\exists$ (4.2) | producing the cofactor |
+
+No single step is clever. The proof is a correct assembly of five ordinary moves, and recognising *which* move to reach for is the skill being built.
+
+<Warning title="Exclude the excluded case explicitly">
+The proof said why $r = 0$ is impossible. Omitting that sentence leaves a reader unsure whether a case was forgotten — and an omitted case is the most common structural error in case proofs. State the exhaustive list, then eliminate.
+</Warning>
+
+## A second one
+
+> **Proposition.** For every $a \in \mathbb{Z}$, $a^2$ has remainder $0$ or $1$ on division by $3$ — never $2$.
+
+<Proof>
+By the division algorithm, $a = 3k + r$ with $r \in \{0,1,2\}$.
+
+- $r=0$: $a^2 = 9k^2 = 3(3k^2)$, remainder $0$.
+- $r=1$: $a^2 = 9k^2+6k+1 = 3(3k^2+2k)+1$, remainder $1$.
+- $r=2$: $a^2 = 9k^2+12k+4 = 3(3k^2+4k+1)+1$, remainder $1$.
+
+The cases are exhaustive, so $a^2$ never has remainder $2$ modulo $3$.
+</Proof>
+
+This has teeth. It shows immediately that $3n + 2$ is never a perfect square, and that no integers satisfy $a^2 + b^2 = 3c^2$ except $a=b=c=0$. Restricting to residues is one of the standard ways to prove an equation has no solutions.
+
+<Aside>
+The converse use is worth noting: writing $m = 3k+1$ *proves* $3 \nmid m$, by uniqueness of the remainder. So the division algorithm is not only a case-generator but also a certificate of non-divisibility — often the shortest route to a negative claim.
+</Aside>

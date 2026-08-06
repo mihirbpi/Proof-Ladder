@@ -1,0 +1,95 @@
+---
+level: l3
+title: Subsets
+readingTimeMin: 6
+newTerms: ["subset", "proper subset", "transitive"]
+anchorExample: "divisors of 20"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Some sets sit inside others. Every even number is a whole number. Every divisor of $20$ is a divisor of $20$ or $40$. This relationship has a name and a symbol, and — much more importantly — a proof technique that the whole of set theory runs on.
+
+## The definition
+
+$A$ is a **subset** of $S$, written
+$$A \subseteq S,$$
+if every element of $A$ is also an element of $S$.
+
+Examples:
+- $\{2, 4\} \subseteq \{1, 2, 3, 4, 5\}$ ✓
+- $\{2, 7\} \subseteq \{1, 2, 3, 4, 5\}$ ✗ — because $7$ is in the first and not the second.
+- $\mathbb{N} \subseteq \mathbb{Z}$ ✓ — every counting number is an integer.
+- $\mathbb{Z} \subseteq \mathbb{N}$ ✗ — because $-3$ is an integer and not a counting number.
+
+Notice that one bad element is enough to destroy a subset claim. That is module 1.11 again: $A \subseteq S$ is a *for all* claim, so a single counterexample kills it.
+
+## The proof move: take any one and follow it
+
+Because $A \subseteq S$ says something about *every* element of $A$, you cannot prove it by checking a few. You prove it the way module 1.12 taught: **take any one and follow it.**
+
+Pick an element of $A$ that you know nothing special about. Follow it, using only what membership in $A$ guarantees, until it arrives in $S$.
+
+> **Claim.** Let $D_{20}$ be the set of positive divisors of $20$ and $D_{40}$ the positive divisors of $40$. Then $D_{20} \subseteq D_{40}$.
+
+<Discussion>
+  <div slot="know">An element of $D_{20}$ is a positive whole number that divides $20$ exactly. Also, $40 = 20 \times 2$.</div>
+  <div slot="want">That same number divides $40$ exactly.</div>
+  <div slot="how">Take any one and follow it. If $d$ goes into $20$ a whole number of times, then it goes into $40$ twice as many times.</div>
+</Discussion>
+
+<Proof>
+Let $d$ be any element of $D_{20}$. Then $d$ is a positive whole number and $20 = d \times k$ for some whole number $k$.
+
+Now $40 = 20 \times 2 = (d \times k) \times 2 = d \times (k \times 2)$.
+
+Since $k \times 2$ is a whole number, $d$ divides $40$. So $d \in D_{40}$.
+
+As $d$ was any element of $D_{20}$, every element of $D_{20}$ is in $D_{40}$. Hence $D_{20} \subseteq D_{40}$.
+</Proof>
+
+Read the proof again and notice how it starts and ends. It starts with "let $d$ be **any** element", and it ends by pointing out that nothing special was assumed. That frame is what turns one argument into infinitely many.
+
+## The empty set is a subset of everything
+
+$$\emptyset \subseteq S \quad \text{for every set } S.$$
+
+This feels wrong the first time. Here is why it is right. To break $\emptyset \subseteq S$, you would have to produce an element of $\emptyset$ that is not in $S$. But $\emptyset$ has no elements at all, so you can never produce one, so you can never break the claim.
+
+It is the umbrella promise from module 1.5 all over again: a promise about rainy days is unbroken on a sunny day. A promise about elements of $\emptyset$ is unbroken because there are none.
+
+## Every set is a subset of itself
+
+$S \subseteq S$, always: every element of $S$ is an element of $S$. True and boring, but it matters — it is why "subset" does not mean "smaller".
+
+If you want to insist that $A$ is inside $S$ *and different from it*, say $A$ is a **proper subset** of $S$: $A \subseteq S$ and $A \neq S$.
+
+## Subsets chain: transitivity
+
+> **Claim.** If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
+
+<Proof>
+Take any one element $x$ of $A$, and follow it.
+
+Since $A \subseteq B$, every element of $A$ is in $B$. So $x \in B$.
+
+Since $B \subseteq C$, every element of $B$ is in $C$. So $x \in C$.
+
+We started in $A$ and arrived in $C$, using nothing special about $x$. So $A \subseteq C$.
+</Proof>
+
+A relation with this behaviour — chaining down the line — is called **transitive**. So $\mathbb{N} \subseteq \mathbb{Z}$ and $\mathbb{Z} \subseteq \mathbb{R}$ give $\mathbb{N} \subseteq \mathbb{R}$ with no extra work.
+
+<Warning title="∈ and ⊆ are different symbols">
+$2 \in \{1,2,3\}$ — the number $2$ is an *element*.
+$\{2\} \subseteq \{1,2,3\}$ — the *set* $\{2\}$ is a subset.
+
+$2 \subseteq \{1,2,3\}$ is nonsense: $2$ is not a set. $\{2\} \in \{1,2,3\}$ is false: the elements of $\{1,2,3\}$ are numbers, not sets. Getting these two symbols mixed up is the most common error in this chapter.
+</Warning>
+
+<Aside>
+Element chasing — take any one and follow it — is *the* technique of set theory. Almost every proof in this chapter is one, and several are two of them back to back (module 2.6). Once you can write it fluently, most of Chapter 2 is bookkeeping.
+</Aside>

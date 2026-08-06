@@ -1,0 +1,53 @@
+---
+level: l2
+title: Venn diagrams
+readingTimeMin: 4
+newTerms: ["overlap", "all together", "never overlap"]
+anchorExample: "two hoops on the floor"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+
+When you draw two hoops that cross, the picture has a name: a **Venn diagram**. It is one of the most useful pictures in all of math, and you can draw it in about four seconds.
+
+Let box $S$ be the animals with four legs. Let box $T$ be the animals with fur.
+
+## The overlap: in both
+
+<Figure alt="Two overlapping circles labeled S and T with only the middle overlap region shaded." caption="The overlap: in S and in T.">
+  <VennTwo labelS="S" labelT="T" shade={["both"]} />
+</Figure>
+
+A cat has four legs **and** fur, so the cat sits in the **overlap**.
+
+A snake has fur? No. A bird has four legs? No. Neither one gets into the middle.
+
+The overlap is picky. To get in, you have to pass both tests.
+
+## All together: in at least one
+
+<Figure alt="Two overlapping circles labeled S and T with both circles entirely shaded." caption="All together: in S or in T, or both.">
+  <VennTwo labelS="S" labelT="T" shade={["S-only", "T-only", "both"]} />
+</Figure>
+
+Now shade both hoops completely. That is everything in $S$ **or** in $T$ — **all together**.
+
+A cat gets in (both!). A bird gets in (four legs? no — but wait, a bird has two legs. Let's say a horse instead). A horse gets in. A hairless cat gets in, because it still has four legs.
+
+Remember module 1.3: *or* means at least one, and both is fine. So the overlap is part of "all together" too.
+
+## Hoops that never overlap
+
+<Figure alt="Two circles side by side that do not touch, labeled S and T." caption="These two never overlap: nothing is in both.">
+  <VennTwo labelS="S" labelT="T" disjoint={true} />
+</Figure>
+
+Now let $S$ be the even numbers and $T$ be the odd numbers. Is anything in both?
+
+No! No number is both even and odd. These two hoops **never overlap**. Draw them apart, not crossing.
+
+<TryIt>
+Draw two circles that cross. Pick two rules about the things in your room. Write three things in the overlap if you can. If you cannot find any, your hoops never overlap!
+</TryIt>

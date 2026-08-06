@@ -1,0 +1,99 @@
+---
+level: l4
+title: Negating quantifiers and counterexamples
+readingTimeMin: 7
+newTerms: ["counterexample"]
+anchorExample: "every prime is odd"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Two rules, and they are the De Morgan laws of module 1.4 at infinite scale:
+
+$$
+\neg\big(\forall x \in S,\; p(x)\big) \;\equiv\; \exists x \in S,\; \neg p(x)
+$$
+$$
+\neg\big(\exists x \in S,\; p(x)\big) \;\equiv\; \forall x \in S,\; \neg p(x)
+$$
+
+In words: **negation swaps the quantifier and negates the predicate.** The domain $S$ is untouched.
+
+## Why these are De Morgan
+
+Over a finite domain $S = \{a_1, \ldots, a_n\}$, a universal statement is a conjunction and an existential one a disjunction:
+$$
+\forall x \in S,\, p(x) \equiv p(a_1) \wedge \cdots \wedge p(a_n),
+\qquad
+\exists x \in S,\, p(x) \equiv p(a_1) \vee \cdots \vee p(a_n).
+$$
+Applying $\neg(\varphi \wedge \psi) \equiv \neg\varphi \vee \neg\psi$ repeatedly turns the negation of the first into $\neg p(a_1) \vee \cdots \vee \neg p(a_n)$, which is $\exists x \in S, \neg p(x)$. Same law, more terms.
+
+## Counterexamples
+
+> **Claim.** Every prime number is odd.
+
+Negation: $\exists p$ prime with $p$ not odd. Witness: $p = 2$. Prime, even. Claim refuted.
+
+A single element refuting a universal claim is a **counterexample**, and the named move is **one bad apple**. Note what the negation rule guarantees: to refute $\forall x, p(x)$, exhibiting one $x$ with $\neg p(x)$ is not merely *good evidence* — it is a complete disproof, because the negation rule says that is exactly what the negation asserts.
+
+## Compound predicates: use De Morgan inside too
+
+> **Claim.** $\forall x \in \mathbb{R}$, $x$ is positive or $x$ is negative.
+
+Negate:
+$$
+\neg\big(\forall x \in \mathbb{R},\, (x > 0) \vee (x < 0)\big)
+\;\equiv\;
+\exists x \in \mathbb{R},\, \neg\big((x>0) \vee (x<0)\big)
+$$
+and now De Morgan on the inside:
+$$
+\equiv\; \exists x \in \mathbb{R},\; (x \leq 0) \wedge (x \geq 0).
+$$
+So the negation asks for a real number that is both $\leq 0$ and $\geq 0$. There is exactly one: $x = 0$. The original claim is false, and $0$ is the counterexample.
+
+Notice that we needed *two* rules in sequence: the quantifier rule to get past $\forall$, then De Morgan to get past $\vee$. Negation is pushed inward one layer at a time.
+
+## Negating a conditional inside a quantifier
+
+Most theorems look like $\forall x \in S,\, (p(x) \Rightarrow q(x))$. Since $\neg(p \Rightarrow q) \equiv p \wedge \neg q$ (module 1.7), the negation is
+$$
+\exists x \in S,\; p(x) \wedge \neg q(x).
+$$
+That is the precise recipe for a counterexample to a theorem: **an element satisfying the hypothesis but failing the conclusion.** Not an element failing the hypothesis — such an element makes the conditional vacuously true and refutes nothing.
+
+Example. "$\forall x \in \mathbb{R},\, x^2 > 1 \Rightarrow x > 1$" is false, and the counterexample must satisfy $x^2 > 1$ *and* $x \leq 1$: take $x = -3$. Offering $x = 0.5$ would be useless — it fails the hypothesis.
+
+<Warning title="Three standard errors">
+**Over-negation.** $\neg(\forall x,\, p(x))$ is not $\forall x,\, \neg p(x)$. "Not every prime is odd" ≠ "every prime is even."
+
+**Negating the domain.** $\neg(\forall x \in \mathbb{Z},\, p(x))$ is $\exists x \in \mathbb{Z},\, \neg p(x)$ — still over $\mathbb{Z}$. The set does not change.
+
+**Wrong counterexample shape.** To refute $p \Rightarrow q$ you need $p \wedge \neg q$. An element where both fail proves nothing.
+</Warning>
+
+## Nested quantifiers
+
+Push the negation in one quantifier at a time, flipping each as you pass:
+$$
+\neg\big(\forall x\, \exists y,\; p(x,y)\big)
+\equiv \exists x\, \neg\big(\exists y,\, p(x,y)\big)
+\equiv \exists x\, \forall y,\; \neg p(x,y).
+$$
+Concretely: the negation of "every real has an additive inverse" is "some real has no additive inverse at all" — the inner $\forall y$ says *no* $y$ works for that particular $x$.
+
+This mechanical procedure is what makes $\varepsilon$–$\delta$ statements tractable. The negation of continuity at $a$,
+$$
+\forall \varepsilon > 0\; \exists \delta > 0\; \forall x,\; |x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon,
+$$
+is
+$$
+\exists \varepsilon > 0\; \forall \delta > 0\; \exists x,\; |x - a| < \delta \;\wedge\; |f(x) - f(a)| \geq \varepsilon,
+$$
+which reads: some tolerance $\varepsilon$ can never be met, no matter how small you make $\delta$. Every symbol was produced by the two rules of this module plus $\neg(p \Rightarrow q) \equiv p \wedge \neg q$. Nothing was invented.
+
+<Aside>
+Euler conjectured in 1769 that a $k$-th power is never a sum of fewer than $k$ positive $k$-th powers. In 1966 Lander and Parkin refuted the $k = 5$ case with a computer search and published a paper two sentences long, containing $27^5 + 84^5 + 110^5 + 133^5 = 144^5$. Two centuries of a universal claim, ended by one bad apple.
+</Aside>

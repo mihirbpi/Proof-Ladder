@@ -1,0 +1,98 @@
+---
+level: l7
+title: And, or
+readingTimeMin: 9
+newTerms: ["conjunction", "disjunction", "contradiction", "tautology", "logically equivalent"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Statements alone are inert. What makes logic a subject is the small set of operations that build new statements from old ones, together with the rule that the truth value of the result depends on nothing but the truth values of the inputs. That last property is called **truth-functionality**, and it is why a finite table can define a connective completely.
+
+Negation (§1.2) was the unary case. Here are the two basic binary connectives.
+
+## Conjunction
+
+For statements $p, q$, the **conjunction** $p \wedge q$ is the statement asserting both. Its definition is its truth table:
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∧ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∧ q": true  },
+    { p: true,  q: false, "p ∧ q": false },
+    { p: false, q: true,  "p ∧ q": false },
+    { p: false, q: false, "p ∧ q": false }
+  ]}
+/>
+
+Conjunction matches English "and" almost perfectly, with one caveat: English "and" sometimes carries temporal or causal order ("she got dressed and left" is not the same story as "she left and got dressed"), while $\wedge$ is symmetric — $p \wedge q$ and $q \wedge p$ have identical columns, so they are **logically equivalent**.
+
+## Disjunction
+
+The **disjunction** $p \vee q$ asserts at least one:
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∨ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∨ q": true  },
+    { p: true,  q: false, "p ∨ q": true  },
+    { p: false, q: true,  "p ∨ q": true  },
+    { p: false, q: false, "p ∨ q": false }
+  ]}
+/>
+
+<Warning title="Inclusive by convention, and by necessity">
+$\vee$ is inclusive. Row 1 — both true — evaluates to true. The convention is not arbitrary: almost every disjunction that arises naturally in mathematics is inclusive. "$x \geq 0$ or $x \leq 0$" is true for every real $x$, including $x = 0$, where both disjuncts hold. If $\vee$ were exclusive, that statement would be false at exactly one point, and every theorem quoting it would need a special case.
+
+Exclusive or exists and is written $\oplus$; it equals $(p \vee q) \wedge \neg(p \wedge q)$. Mathematics uses it rarely and always names it.
+</Warning>
+
+## Contradictions and tautologies
+
+A statement whose truth-table column is identically F is a **contradiction**; identically T, a **tautology**.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∧ ¬p", "p ∨ ¬p", "(p ∧ q) ⇒ p"]}
+  rows={[
+    { p: true,  q: true,  "p ∧ ¬p": false, "p ∨ ¬p": true, "(p ∧ q) ⇒ p": true },
+    { p: true,  q: false, "p ∧ ¬p": false, "p ∨ ¬p": true, "(p ∧ q) ⇒ p": true },
+    { p: false, q: true,  "p ∧ ¬p": false, "p ∨ ¬p": true, "(p ∧ q) ⇒ p": true },
+    { p: false, q: false, "p ∧ ¬p": false, "p ∨ ¬p": true, "(p ∧ q) ⇒ p": true }
+  ]}
+/>
+
+Three observations worth carrying forward:
+
+1. **$p \wedge \neg p$ is the engine of proof by contradiction.** If assuming $\neg S$ lets you derive some statement of the form $r \wedge \neg r$, then $\neg S$ cannot hold, so $S$ does. Chapter 2 §2.5 makes this a technique.
+2. **$p \vee \neg p$ — excluded middle — licenses proof by cases.** Whenever you write "either $x$ is rational or it is not," you are quoting this tautology, and then you are entitled to prove your goal separately in each branch.
+3. **Tautologies are exactly the valid inference patterns.** $(p \wedge q) \Rightarrow p$ being a tautology is precisely the statement that "from $p$ and $q$, infer $p$" is a sound rule. Every rule of inference you use is a tautology in disguise.
+
+## Two statements, same column
+
+$p \wedge q$ and $q \wedge p$ have identical columns; so do $\neg(\neg p)$ and $p$. Two statements are **logically equivalent**, written $\equiv$, when their truth-table columns agree in every row. Equivalence is what licenses substitution: anywhere one appears in a proof, you may put the other.
+
+The two most important non-obvious equivalences involving $\wedge$ and $\vee$ are De Morgan's laws, and they are the whole of §1.4:
+$$
+\neg(p \wedge q) \equiv \neg p \vee \neg q, \qquad
+\neg(p \vee q) \equiv \neg p \wedge \neg q.
+$$
+Both can be checked by writing out four rows, which is what §1.4 does. Notice already that negation does not distribute quietly over these connectives — it *swaps* them.
+
+<Aside>
+The number of distinct binary connectives is $2^4 = 16$, since a connective is nothing more than a choice of truth value for each of four input rows. Remarkably, every one of the sixteen can be written using $\neg$ and $\wedge$ alone (or $\neg$ and $\vee$ alone). Even more remarkably, a single connective suffices: NAND, $\neg(p \wedge q)$, generates all sixteen by itself.
+</Aside>
+
+## Precedence, so that parentheses stay honest
+
+By convention $\neg$ binds tightest, then $\wedge$, then $\vee$, then $\Rightarrow$ and $\Leftrightarrow$. So $\neg p \wedge q$ means $(\neg p) \wedge q$, not $\neg(p \wedge q)$ — a distinction with different truth tables and, in a proof, different consequences. When in doubt, parenthesize. Published mathematics does.
+
+<WhereThisGoes level="l7">
+The pair $(\wedge, \vee)$ with $\neg$ turns the two-element set $\{T, F\}$ into a **Boolean algebra**, and every fact in this module is an identity in that algebra. Replace $\{T,F\}$ by the subsets of a fixed set, $\wedge$ by $\cap$, $\vee$ by $\cup$, and $\neg$ by complement, and every identity survives — which is why Chapter 2 will feel like Chapter 1 repeated. Push further and you get lattice theory, Stone's representation theorem (every Boolean algebra is an algebra of sets), and the algebraic semantics of logic. In a different direction, dropping excluded middle gives intuitionistic logic and Heyting algebras — the setting in which "prove it" means "construct it," and in which $p \vee \neg p$ is no longer free.
+</WhereThisGoes>

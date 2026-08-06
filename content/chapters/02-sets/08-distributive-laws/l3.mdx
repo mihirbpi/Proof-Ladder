@@ -1,0 +1,79 @@
+---
+level: l3
+title: Distributive laws
+readingTimeMin: 6
+newTerms: ["distributive law"]
+anchorExample: "three hoops on the floor"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You already know one distributive law, from arithmetic:
+$$
+a \times (b + c) = (a \times b) + (a \times c).
+$$
+Multiplication *spreads across* addition. Sets have the same kind of law — and then something extra that arithmetic cannot match.
+
+## The two laws
+
+$$
+S \cap (T \cup R) = (S \cap T) \cup (S \cap R)
+$$
+$$
+S \cup (T \cap R) = (S \cup T) \cap (S \cup R)
+$$
+
+The first looks exactly like the arithmetic law with $\cap$ playing $\times$ and $\cup$ playing $+$.
+
+The second is the striking one. **Read it again.** It says $\cup$ spreads across $\cap$ as well. There is no arithmetic version of this: $a + (b \times c)$ is definitely *not* $(a+b) \times (a+c)$. Try $a=1, b=2, c=3$: the left is $7$, the right is $12$.
+
+So sets are more symmetric than numbers. Neither operation is the "outer" one.
+
+## Proving the first law
+
+<Discussion>
+  <div slot="know">$x \in S \cap (T \cup R)$ means $x \in S$, and also $x \in T$ or $x \in R$.</div>
+  <div slot="want">$x$ is in $S \cap T$, or in $S \cap R$.</div>
+  <div slot="how">Check both boxes — two subset proofs. In the forward direction the hypothesis contains an *or*, so split into cases.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $x \in S \cap (T \cup R)$. Then $x \in S$, and $x \in T \cup R$ — that is, $x \in T$ or $x \in R$. Since that is an *or*, we split into cases.
+
+*Case 1: $x \in T$.* Together with $x \in S$, this gives $x \in S \cap T$, so $x$ is in the union $(S \cap T) \cup (S \cap R)$.
+
+*Case 2: $x \in R$.* Together with $x \in S$, this gives $x \in S \cap R$, so again $x$ is in the union.
+
+Both cases land in the right place, and there are no others.
+
+**($\supseteq$)** Let $x \in (S \cap T) \cup (S \cap R)$. Again an *or*, so cases.
+
+*Case 1: $x \in S \cap T$.* Then $x \in S$ and $x \in T$. Since $x \in T$, certainly $x \in T \cup R$. So $x \in S \cap (T \cup R)$.
+
+*Case 2: $x \in S \cap R$.* Then $x \in S$ and $x \in R$, so $x \in T \cup R$, so $x \in S \cap (T \cup R)$.
+
+Both inclusions hold, so the sets are equal.
+</Proof>
+
+Notice that **both** directions needed a case split, and both splits came from the same source: a union in the hypothesis. Whenever you chase an element out of a union, expect cases.
+
+## The second law, in words
+
+The proof of $S \cup (T \cap R) = (S \cup T) \cap (S \cup R)$ has the same shape, but one step is worth previewing because it surprises people.
+
+Chasing forward, you assume $x \in S \cup (T \cap R)$ and split. In the case $x \in S$, you need $x \in S \cup T$ and $x \in S \cup R$ — both immediate. In the case $x \in T \cap R$, you get $x \in T$ and $x \in R$, so again both.
+
+Chasing backward is the interesting direction. You know $x \in S \cup T$ and $x \in S \cup R$, and you want $x \in S$ or $x \in T \cap R$. So ask: is $x$ in $S$? If yes, done. **If not**, then from $x \in S \cup T$ it must be $T$ that holds, and from $x \in S \cup R$ it must be $R$ — so $x \in T \cap R$. Done either way.
+
+That "if not, then it must be the other one" move is a small, extremely reusable trick: when a union hands you a disjunction and you can rule out one side, the other side is yours.
+
+<Warning title="Do not import arithmetic habits">
+It is tempting to write $\cap$ as $\times$ and $\cup$ as $+$ and "simplify" using algebra you already know. Sometimes that works and sometimes it does not, because sets satisfy laws numbers do not ($S \cup S = S$, and the second distributive law) and fail laws numbers satisfy (there is no subtraction inverse). Prove set identities by chasing elements, not by analogy.
+</Warning>
+
+<Aside>
+The two laws are mirror images: swap every $\cap$ with $\cup$ in one and you get the other. That mirror is real, and module 2.7 explains it — complementation swaps $\cap$ and $\cup$, so every true statement about sets has a true twin. Proving one law really does prove the other.
+</Aside>

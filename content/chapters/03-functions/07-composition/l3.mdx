@@ -1,0 +1,83 @@
+---
+level: l3
+title: Composition
+readingTimeMin: 5
+newTerms: ["composition"]
+anchorExample: "letter to position in the alphabet"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+If you have two functions, you can run them one after the other. The result is a new function, and this operation — **composition** — is what makes functions into a subject rather than a list of examples.
+
+## The definition
+
+Suppose $f : S \to T$ and $g : T \to R$. Then the **composition** $g \circ f$ is the function from $S$ to $R$ given by
+$$
+(g \circ f)(s) = g\big(f(s)\big).
+$$
+
+Feed $s$ into $f$; take the answer; feed it into $g$.
+
+<Figure alt="Three elements a b c on the left mapping to 1 2 3 in the middle." caption="First $f : S \to T$.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,2],[1,0],[2,1]]} />
+</Figure>
+
+<Figure alt="Elements 1 2 3 on the left mapping to x y z on the right." caption="Then $g : T \to R$.">
+  <ArrowDiagram labelLeft="T" labelRight="R"
+    left={["1", "2", "3"]} right={["x", "y", "z"]}
+    edges={[[0,0],[1,1],[2,2]]} />
+</Figure>
+
+Tracing through: $a \to 3 \to z$, so $(g \circ f)(a) = z$. Similarly $(g\circ f)(b) = x$ and $(g\circ f)(c) = y$.
+
+## Right to left
+
+The notation $g \circ f$ means "**$f$ first, then $g$**." The one that runs first is written on the right.
+
+This looks backwards and catches everybody out at least once. The reason for it is that it matches how you read $g(f(s))$: you evaluate the inside first, and the inside is $f$.
+
+A phrase that helps: read $g \circ f$ as "$g$ **after** $f$."
+
+## The middle must match
+
+$g \circ f$ only makes sense when the codomain of $f$ is the domain of $g$. Otherwise $g$ is being handed something it cannot accept.
+
+$$
+S \xrightarrow{\ f\ } T \xrightarrow{\ g\ } R
+$$
+
+The $T$ has to be the same $T$ on both sides. Check this before you write anything else.
+
+## A worked example
+
+Let $f$ send a letter to its position in the alphabet, and let $g$ double a number.
+
+- $(g \circ f)(\text{c}) = g(f(\text{c})) = g(3) = 6$.
+- $(g \circ f)(\text{a}) = g(1) = 2$.
+
+The chain sends letters to even numbers.
+
+Now try to build $f \circ g$ instead. That would mean doubling first, then feeding a *number* into the alphabet machine — but the alphabet machine only takes letters. So $f \circ g$ does not exist at all.
+
+## Order matters even when both work
+
+Sometimes both compositions exist, and they are still different. Let $f$ add $1$ and let $g$ double, both on numbers.
+
+- $(g \circ f)(5) = g(6) = 12$. (Add first, then double.)
+- $(f \circ g)(5) = f(10) = 11$. (Double first, then add.)
+
+Different answers. Composition is not like addition — you cannot swap the order.
+
+<Warning title="Composition is not multiplication">
+$g \circ f$ has nothing to do with multiplying $g$ and $f$. The circle is not a times sign. $(g\circ f)(x)$ means $g(f(x))$, not $g(x) \times f(x)$.
+</Warning>
+
+<Aside>
+Chaining preserves tidiness. If neither machine shares, the chain does not share either. And if neither machine leaves anything out, the chain leaves nothing out. Both facts have real proofs, and you will write them at the next level up.
+</Aside>

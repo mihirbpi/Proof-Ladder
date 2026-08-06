@@ -1,0 +1,84 @@
+---
+// Two labelled sets with dots and arrows between them.
+// left / right: arrays of short labels (strings).
+// edges: array of [leftIndex, rightIndex] pairs.
+// Optional flags change the arrow colouring so a broken machine reads as broken.
+// broken: array of edge indices drawn in --color-false.
+export interface Props {
+  labelLeft?: string;
+  labelRight?: string;
+  left: string[];
+  right: string[];
+  edges: [number, number][];
+  broken?: number[];
+}
+const {
+  labelLeft = 'S',
+  labelRight = 'T',
+  left,
+  right,
+  edges,
+  broken = [],
+} = Astro.props;
+
+const rowGap = 42;
+const top = 52;
+const n = Math.max(left.length, right.length);
+const height = top + n * rowGap + 20;
+const lx = 108;
+const rx = 312;
+const ovalPad = 26;
+
+const ly = (i: number) => top + i * rowGap + (n - left.length) * rowGap / 2;
+const ry = (i: number) => top + i * rowGap + (n - right.length) * rowGap / 2;
+---
+<svg viewBox={`0 0 420 ${height}`} xmlns="http://www.w3.org/2000/svg" class="arrowdiag">
+  <style>
+    .arrowdiag .oval { fill: none; stroke: var(--color-rule, #C6CBC0); stroke-width: 1.4; }
+    .arrowdiag .dot { fill: var(--color-ink, #14182B); }
+    .arrowdiag .elt { font-family: var(--font-mono, monospace); font-size: 12px; fill: var(--color-ink, #14182B); }
+    .arrowdiag .setlbl { font-family: var(--font-mono, monospace); font-size: 12px; font-weight: 600; fill: color-mix(in oklab, var(--color-ink, #14182B) 70%, transparent); }
+    .arrowdiag .edge { stroke: var(--color-signal, #3F6DB5); stroke-width: 1.4; fill: none; }
+    .arrowdiag .edge-bad { stroke: var(--color-false, #A8324A); stroke-width: 1.4; fill: none; stroke-dasharray: 5 3; }
+  </style>
+
+  <defs>
+    <marker id="ad-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="var(--color-signal, #3F6DB5)" />
+    </marker>
+    <marker id="ad-head-bad" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="var(--color-false, #A8324A)" />
+    </marker>
+  </defs>
+
+  <rect x={lx - 46} y={top - ovalPad} width="92"
+        height={(left.length - 1) * rowGap + ovalPad * 2} rx="42" class="oval" />
+  <rect x={rx - 46} y={top - ovalPad} width="92"
+        height={(right.length - 1) * rowGap + ovalPad * 2} rx="42" class="oval" />
+
+  <text x={lx} y={top - ovalPad - 10} class="setlbl" text-anchor="middle">{labelLeft}</text>
+  <text x={rx} y={top - ovalPad - 10} class="setlbl" text-anchor="middle">{labelRight}</text>
+
+  {edges.map(([i, j], k) => (
+    <line x1={lx + 16} y1={ly(i)} x2={rx - 20} y2={ry(j)}
+          class={broken.includes(k) ? 'edge-bad' : 'edge'}
+          marker-end={broken.includes(k) ? 'url(#ad-head-bad)' : 'url(#ad-head)'} />
+  ))}
+
+  {left.map((s, i) => (
+    <>
+      <circle cx={lx} cy={ly(i)} r="3.5" class="dot" />
+      <text x={lx - 12} y={ly(i) + 4} class="elt" text-anchor="end">{s}</text>
+    </>
+  ))}
+  {right.map((s, j) => (
+    <>
+      <circle cx={rx} cy={ry(j)} r="3.5" class="dot" />
+      <text x={rx + 12} y={ry(j) + 4} class="elt">{s}</text>
+    </>
+  ))}
+</svg>
+
+<style>
+  .arrowdiag { width: 100%; height: auto; max-width: 420px; display: block; margin: 0 auto; }
+</style>

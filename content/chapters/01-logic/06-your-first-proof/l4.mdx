@@ -1,0 +1,84 @@
+---
+level: l4
+title: Your first proof
+readingTimeMin: 7
+newTerms: ["proof", "Discussion", "direct proof"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+From module 1.5: $p \Rightarrow q$ is false in exactly one situation — $p$ true, $q$ false. So proving $p \Rightarrow q$ means ruling that situation out. The cleanest way to do it is to *assume $p$ and show $q$ follows*, because then the bad row can never occur.
+
+That strategy is called a **direct proof**, and the named move is **start from what you're given**.
+
+## The proposition
+
+> **Proposition.** For every real number $x$, if $x > 1$ then $x^2 > 1$.
+
+Spot-check: $x = 3$ gives $9 > 1$. ✓ $x = 1.01$ gives $1.0201 > 1$. ✓ But there are infinitely many real numbers greater than $1$, so spot-checking cannot finish the job. We need an argument valid for all of them at once.
+
+## Discussion
+
+Real proofs get planned before they get written. Math 0's house style is a **Discussion** section: what we know, what we want, what we'll do. It is scratch work made legible, and it is thrown away when a proof is published.
+
+<Discussion>
+  <div slot="know">$x$ is a real number and $x > 1$. We also know a fact about inequalities: if $a > b$ and $c > 0$, then $ac > bc$ — multiplying both sides of an inequality by a positive number preserves it.</div>
+  <div slot="want">$x^2 > 1$, i.e. $x \cdot x > 1$.</div>
+  <div slot="how">We want $x \cdot x$, and we have $x > 1$. Multiply both sides of $x > 1$ by $x$. That is legal provided $x$ is positive — and it is, since $x > 1 > 0$.</div>
+</Discussion>
+
+Notice where the work happened. The Discussion is where we found the tool (multiplication of inequalities) and checked its side condition ($x > 0$). The proof below is short only because the Discussion was honest.
+
+## Proof
+
+<Proof>
+Let $x$ be a real number with $x > 1$.
+
+Since $x > 1$ and $1 > 0$, we have $x > 0$.
+
+Multiplying both sides of the inequality $x > 1$ by the positive number $x$ preserves the inequality, so
+$$x \cdot x > 1 \cdot x,$$
+that is, $x^2 > x$.
+
+But $x > 1$, so by transitivity $x^2 > x > 1$, and therefore $x^2 > 1$.
+</Proof>
+
+The □ marks the end. Some authors write *Q.E.D.*; the box is now standard.
+
+## Anatomy
+
+Every direct proof of $p \Rightarrow q$ has these parts:
+
+| Part | In our proof |
+|---|---|
+| Assume the hypothesis | "Let $x$ be a real number with $x > 1$." |
+| Name the tools used | multiplication of inequalities; transitivity of $>$ |
+| Check side conditions | $x > 0$, so the multiplication is legal |
+| Chain forward | $x^2 > x$, then $x^2 > 1$ |
+| Land on the conclusion | "therefore $x^2 > 1$" |
+| Stop | □ |
+
+<Warning title="Never assume what you are proving">
+A tempting bad proof looks like this: "Suppose $x^2 > 1$. Then $x > 1$…" — that assumes the conclusion. Another one: start with $x^2 > 1$ and manipulate until you reach a true statement. Working backwards is fine as *scratch work* (it belongs in the Discussion), but the written proof must run forwards, from hypothesis to conclusion, with every step valid in that direction.
+</Warning>
+
+## Proof is prose
+
+A proof is an argument addressed to a reader, so it is written in sentences with verbs. Compare:
+
+- ✗ $x>1 \Rightarrow x \cdot x > 1 \cdot x \Rightarrow x^2 > x > 1$
+- ✓ "Since $x > 1$ and $x > 0$, multiplying both sides by $x$ gives $x^2 > x$. As $x > 1$, transitivity yields $x^2 > 1$."
+
+The first is a record of a computation. The second explains *why each step is allowed*, which is the only thing the reader could not have worked out alone.
+
+<Aside>
+Two-column proofs, if you have met them, are a teaching scaffold, not a genre working mathematicians use. Everything a two-column proof records — statement, reason — is present in a paragraph proof; it is just carried by the words *since*, *because*, *so*, and *therefore*. Learning to write those words correctly is learning to write proofs.
+</Aside>
+
+## What comes next
+
+The direct proof is the default, but it is not always the convenient route. When the hypothesis is awkward to compute with, you can prove $\neg q \Rightarrow \neg p$ instead — the *contrapositive*, which module 1.7 shows is logically equivalent, and module 1.8 turns into a technique. When even that fails, you can assume the negation of your goal and derive a contradiction (module 2.5).

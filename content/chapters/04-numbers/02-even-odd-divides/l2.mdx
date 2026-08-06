@@ -1,0 +1,63 @@
+---
+level: l2
+title: Even and odd
+readingTimeMin: 4
+newTerms: ["even", "odd"]
+anchorExample: "sharing cookies evenly"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+
+A number is **even** when you can pair everything up with nothing left over. It is **odd** when exactly one is left over.
+
+$8$ counters: four pairs, nothing left. **Even.**
+
+$9$ counters: four pairs and a lonely one. **Odd.**
+
+## The real reason for the last-digit trick
+
+You probably know the trick: look at the last digit. If it is $0, 2, 4, 6$ or $8$, the number is even.
+
+That trick works, but it is not the *reason*. The reason is pairing.
+
+Here is why the trick works, using pairing.
+
+<Proof level="l2">
+Take any number, say $46$. Split it into the tens part and the last digit: $46$ is $40$ and $6$.
+
+The tens part is always made of $10$s. And $10$ pairs up perfectly — five pairs, nothing left. So *any* number of tens pairs up perfectly.
+
+That means the tens part never leaves anything over. Only the last digit can.
+
+So the whole number is even exactly when its last digit is.
+</Proof>
+
+Now you know why, not just what.
+
+## Doubles
+
+Here is another way to say even. A number is even exactly when it is somebody's **double**.
+
+$8$ is double $4$. $12$ is double $6$. $0$ is double $0$.
+
+And $9$? Nothing doubles to $9$. So $9$ is not even.
+
+This version is the one that grown-up mathematicians use, because "$n$ is double something" gives you an actual thing to work with, and "$n$ pairs up nicely" does not.
+
+<Aside>
+Careful with that word *something*. It has to be a **whole number**. Is $9$ double something? Well, $9$ is double $4\tfrac12$ — but $4\tfrac12$ is not a whole number, so it does not count. The whole-number part is doing all the work.
+</Aside>
+
+## Going into
+
+Pairing is about sharing between $2$. But you can share between any number.
+
+$12$ shared between $3$: four each, nothing left. We say $3$ **goes into** $12$.
+
+$13$ shared between $3$: four each, one left over. So $3$ does **not** go into $13$.
+
+<TryIt>
+Take 12 counters. Share them between 2, then 3, then 4, then 5. Which ones come out with nothing left over?
+</TryIt>

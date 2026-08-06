@@ -1,0 +1,79 @@
+---
+level: l3
+title: Inverses
+readingTimeMin: 5
+newTerms: ["inverse function"]
+anchorExample: "letter to position in the alphabet"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Some functions can be run backwards. The backwards version is called the **inverse function**, written $f^{-1}$.
+
+The question this module answers is: *when does an inverse exist?* And the answer is beautifully exact.
+
+## Turning the arrows around
+
+<Figure alt="Three elements on the left, each with one arrow, landing on three different elements on the right so that every one is used exactly once." caption="A bijection. Turn every arrow around and you get another function.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,2],[2,0]]} />
+</Figure>
+
+Here $f(a) = 2$, $f(b) = 3$, $f(c) = 1$. Turn the arrows around:
+$$
+f^{-1}(2) = a, \qquad f^{-1}(3) = b, \qquad f^{-1}(1) = c.
+$$
+
+Every element of $T$ has exactly one arrow coming in, so when we reverse them, every element of $T$ has exactly one arrow going out — which is precisely what a function needs.
+
+## Two ways it can go wrong
+
+**If $f$ is not one-to-one**, some element of $T$ has *two* arrows coming in. Reversed, that element would have two arrows going out, and a function must give exactly one answer. Broken.
+
+**If $f$ is not onto**, some element of $T$ has *no* arrows coming in. Reversed, that element would have no answer at all. But a function must work for everything in its domain. Broken.
+
+So the two failure modes match the two properties exactly:
+
+| For $f^{-1}$ to be a function you need… | Which is… |
+|---|---|
+| every $t$ to have **at least** one answer | $f$ is **onto** |
+| every $t$ to have **at most** one answer | $f$ is **one-to-one** |
+
+## The theorem
+
+> $f$ has an inverse function exactly when $f$ is a bijection.
+
+That is a satisfying result. The two properties of the last three modules were not arbitrary — they are precisely the two halves of what it takes to run a function backwards. Onto gives you *an* answer; one-to-one gives you *only one*.
+
+## Examples
+
+**Doubling**, from whole numbers to even numbers. It is a bijection (module 3.8), so it has an inverse: halving. Check it — double $7$ to get $14$, then halve $14$ to get $7$. Back where you started.
+
+**The alphabet function**, letters to $\{1, \ldots, 26\}$. A bijection, so its inverse exists: it takes a number and gives you the letter at that position. $f^{-1}(3) = \text{c}$.
+
+**Squaring**, from all numbers to all numbers. Not one-to-one ($3$ and $-3$ collide) and not onto (nothing gives $-1$). So no inverse. If you shrink both sides to the numbers that are zero or bigger, it becomes a bijection, and *then* the inverse exists — and it is what you already call the square root.
+
+## Undoing the undo
+
+If $f$ is a bijection, then $f^{-1}$ is also a bijection, and
+$$
+\big(f^{-1}\big)^{-1} = f.
+$$
+Turning the arrows around twice puts them back the way they were.
+
+<Warning title="Two different things are both written f⁻¹">
+Module 3.3 wrote $f^{-1}(U)$ for the **pre-image** of a *set*. That exists for every function, no matter how messy.
+
+This module writes $f^{-1}(t)$ for the **inverse function** applied to an *element*. That exists only for bijections.
+
+For the squaring function, $f^{-1}(\{9\}) = \{3, -3\}$ makes perfect sense, while $f^{-1}(9)$ does not, because there is no single answer. Look at what is inside the brackets: a set means pre-image, an element means inverse function.
+</Warning>
+
+<Aside>
+Every "undo" you know is an inverse function, and every one needs its domain trimmed to make it work. Squaring undoes with square root — but only for numbers that are not negative. Exponential undoes with logarithm — but only for positive numbers. Those restrictions are not fussiness; they are exactly the trimming needed to make the original function a bijection.
+</Aside>

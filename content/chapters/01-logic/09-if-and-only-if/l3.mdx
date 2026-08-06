@@ -1,0 +1,66 @@
+---
+level: l3
+title: If and only if
+readingTimeMin: 6
+newTerms: ["if and only if", "biconditional"]
+anchorExample: "even numbers and last digits"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+An if–then claim runs one way only. *If a shape is a square, it is a rectangle* — and module 1.7 showed the reverse can fail badly.
+
+But sometimes both directions really do hold. When they do, we say the two statements are true **if and only if** each other, and we have a special name for such a claim: a **biconditional**.
+
+> "$A$ if and only if $B$" means both of these at once:
+> - if $A$ then $B$,
+> - if $B$ then $A$.
+
+Two claims glued together. So proving one takes two proofs. The named move is **check both boxes**.
+
+## Our claim
+
+> **Claim.** A whole number is even **if and only if** its last digit is $0$, $2$, $4$, $6$, or $8$.
+
+Everyone believes this. Almost nobody has proved it. Let's do both boxes.
+
+<Discussion>
+  <div slot="know">Every whole number can be written as a bunch of tens plus a last digit: $746 = 74 \times 10 + 6$. In general, a number $n$ is $(\text{tens part}) \times 10 + d$, where $d$ is the last digit.</div>
+  <div slot="want">Box 1: even $\Rightarrow$ last digit is one of $0,2,4,6,8$. Box 2: last digit is one of those $\Rightarrow$ even.</div>
+  <div slot="how">The key observation is that $10$ is even, so *whatever the tens part is*, $(\text{tens part}) \times 10$ is even. That means whether $n$ is even depends only on $d$.</div>
+</Discussion>
+
+## The proof
+
+<Proof>
+Write $n = t \times 10 + d$, where $t$ is the tens part and $d$ is the last digit, so $d$ is one of $0,1,2,\ldots,9$.
+
+Since $10 = 2 \times 5$, we have $t \times 10 = 2 \times (t \times 5)$, so $t \times 10$ is even no matter what $t$ is.
+
+**Box 1: if $n$ is even, then $d$ is one of $0,2,4,6,8$.**
+Suppose $n$ is even. Then $d = n - t \times 10$ is a difference of two even numbers, and a difference of two even numbers is even. So $d$ is an even digit, which means $d$ is $0$, $2$, $4$, $6$, or $8$.
+
+**Box 2: if $d$ is one of $0,2,4,6,8$, then $n$ is even.**
+Suppose $d$ is one of those. Then $d$ is even, and $t \times 10$ is even, so $n = t \times 10 + d$ is a sum of two even numbers, hence even.
+
+Both boxes are checked, so the claim holds in both directions.
+</Proof>
+
+## Definitions are usually biconditionals
+
+Here is something worth noticing. When we say
+
+> a number is **even** if it is a multiple of $2$,
+
+we really mean *if and only if*. A number is even exactly when it is a multiple of $2$ — nothing else counts as even, and no multiple of $2$ misses out. Mathematicians write "if" in definitions out of long habit, but they always mean "if and only if". Once a definition is written down, you may use it in both directions, and you constantly will.
+
+<Warning title="Half a proof is not a proof">
+The commonest mistake with a biconditional is proving one direction, feeling satisfied, and stopping. If you have shown *even $\Rightarrow$ last digit is $0,2,4,6,8$*, you have not ruled out some number ending in $3$ sneaking in as even. Label your two halves. Count them before you write □.
+</Warning>
+
+<Aside>
+The two directions often need different tools. In module 1.8 you proved *if $n \times n$ is odd then $n$ is odd* by flipping it around, because a direct attempt went nowhere. The other direction, *if $n$ is odd then $n \times n$ is odd*, goes through directly with no trouble at all. Same biconditional, two different techniques.
+</Aside>

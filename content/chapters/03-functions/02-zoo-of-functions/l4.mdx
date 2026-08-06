@@ -1,0 +1,102 @@
+---
+level: l4
+title: A zoo of functions
+readingTimeMin: 7
+newTerms: ["floor function", "Euler's totient", "well-defined"]
+anchorExample: "the floor function"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+The definition in module 3.1 mentioned no formulas and no numbers. This module is a collection of functions that exercise that generality, because the belief that "function = formula" quietly breaks everything that follows.
+
+## The floor function
+
+$$
+\lfloor \cdot \rfloor : \mathbb{R} \to \mathbb{Z}, \qquad
+\lfloor x \rfloor = \text{the largest integer } n \text{ with } n \leq x.
+$$
+
+$$
+\lfloor 3.7 \rfloor = 3, \quad \lfloor 5 \rfloor = 5, \quad \lfloor -2.3 \rfloor = -3, \quad \lfloor -5 \rfloor = -5.
+$$
+
+The negative cases are where people slip. $\lfloor -2.3\rfloor$ is not $-2$: floor rounds *down the number line*, so it is $-3$. Truncation towards zero is a different function, and confusing the two produces off-by-one errors in every subject that uses either.
+
+Two facts that make floor usable in proofs:
+$$
+\lfloor x \rfloor \leq x < \lfloor x \rfloor + 1,
+\qquad
+\lfloor n + x \rfloor = n + \lfloor x \rfloor \text{ for } n \in \mathbb{Z}.
+$$
+
+Floor is total and single-valued on all of $\mathbb{R}$, so it is a function $\mathbb{R} \to \mathbb{Z}$ — but it is given by a *characterisation*, not by an arithmetic expression.
+
+## Euler's totient
+
+For $n \geq 1$, **Euler's totient** $\varphi(n)$ counts the integers in $\{1, \ldots, n\}$ sharing no common factor with $n$ other than $1$:
+$$
+\varphi(n) = \big|\{\, k \in \mathbb{Z} \mid 1 \leq k \leq n,\ \gcd(k,n) = 1 \,\}\big|.
+$$
+
+Computing the first twelve by hand:
+
+| $n$ | coprime $k \leq n$ | $\varphi(n)$ |
+|---|---|---|
+| $1$ | $1$ | $1$ |
+| $2$ | $1$ | $1$ |
+| $3$ | $1,2$ | $2$ |
+| $4$ | $1,3$ | $2$ |
+| $5$ | $1,2,3,4$ | $4$ |
+| $6$ | $1,5$ | $2$ |
+| $7$ | $1,\ldots,6$ | $6$ |
+| $8$ | $1,3,5,7$ | $4$ |
+| $9$ | $1,2,4,5,7,8$ | $6$ |
+| $10$ | $1,3,7,9$ | $4$ |
+| $11$ | $1,\ldots,10$ | $10$ |
+| $12$ | $1,5,7,11$ | $4$ |
+
+A pattern jumps out of rows $2, 3, 5, 7, 11$:
+$$
+\varphi(p) = p - 1 \quad\text{for } p \text{ prime.}
+$$
+And it is easy to see why: if $p$ is prime, its only divisors are $1$ and $p$, so every one of $1, \ldots, p-1$ is coprime to it, and $p$ itself is not.
+
+$\varphi$ is a function $\mathbb{Z}_{\geq 1} \to \mathbb{Z}_{\geq 1}$ defined by a counting procedure. No closed-form expression is used, and none is needed.
+
+## Multiplication as a function on a product
+
+$$
+m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}, \qquad m(a,b) = ab.
+$$
+
+The domain is the product set of module 2.9. Viewing binary operations this way is not a formality: it lets the whole vocabulary of this chapter apply to them. For instance $m$ is not injective ($m(6,4) = m(2,12) = 24$) but is surjective ($m(n,1) = n$), facts that only make sense once $m$ is regarded as a function.
+
+## Domain restrictions are consequences, not conventions
+
+$$
+r(x) = \frac{1}{x}, \qquad \ell(x) = \ln x.
+$$
+
+Neither is a function on $\mathbb{R}$. For $r$, totality fails at $0$ — there is no real number $1/0$, so no value can be assigned. For $\ell$, totality fails on $(-\infty, 0]$, because $e^y > 0$ for every real $y$, so no $y$ satisfies $e^y = x$ when $x \leq 0$.
+
+In both cases the correct move is to declare the domain honestly:
+$$
+r : \mathbb{R}\setminus\{0\} \to \mathbb{R}, \qquad \ell : \mathbb{R}_{>0} \to \mathbb{R}.
+$$
+The excluded points were never arbitrary; they are precisely where the assignment fails to exist.
+
+<Warning title="Well-definedness must be checked, not assumed">
+A rule on a domain whose elements have multiple names must give the same answer for every name.
+
+**Not a function:** $f : \mathbb{Q} \to \mathbb{Z}$, $f(p/q) = p + q$. Since $\tfrac12 = \tfrac24$ but $1+2 \neq 2+4$, the same input receives two outputs.
+
+**A function:** $g : \mathbb{Q} \to \mathbb{Q}$, $g(p/q) = p^2/q^2$. Here if $p_1/q_1 = p_2/q_2$ then $p_1q_2 = p_2q_1$, so $p_1^2q_2^2 = p_2^2q_1^2$, so $p_1^2/q_1^2 = p_2^2/q_2^2$ — the check is a short proof, and it is required.
+
+Every definition on fractions, on remainders modulo $n$, or on equivalence classes of any kind carries this obligation.
+</Warning>
+
+<Aside>
+$\varphi$ is easy to compute if you know how $n$ factors and, as far as anyone knows, hard otherwise. That asymmetry is the basis of RSA encryption: publishing $n = pq$ reveals almost nothing about $\varphi(n) = (p-1)(q-1)$ unless you can factor $n$, and factoring large integers is believed to be computationally infeasible.
+</Aside>

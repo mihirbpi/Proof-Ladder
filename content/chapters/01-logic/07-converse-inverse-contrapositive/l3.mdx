@@ -1,0 +1,73 @@
+---
+level: l3
+title: Converse, inverse, contrapositive
+readingTimeMin: 6
+newTerms: ["converse", "inverse", "contrapositive"]
+anchorExample: "squares and rectangles"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Take any if–then claim. You can **flip it around** in three different ways, and the three results are not interchangeable. Two of them can be false while the original is true. One of them is always exactly as true as the original.
+
+Knowing which is which will save you from a mistake that people make in arguments every single day.
+
+## Our example
+
+> **Original.** If a shape is a square, then it is a rectangle.
+
+True. A square has four sides and four right angles, which is what being a rectangle asks for.
+
+## The converse: swap the parts
+
+> **Converse.** If a shape is a rectangle, then it is a square.
+
+The **converse** swaps the *if* part and the *then* part.
+
+Is it true? No. Draw a rectangle $2$ units by $5$ units. It is a rectangle. It is not a square. One shape is enough to sink it.
+
+So: the original is true and its converse is false. They are different claims.
+
+## The inverse: negate both parts
+
+> **Inverse.** If a shape is not a square, then it is not a rectangle.
+
+The **inverse** keeps the order but says *not* to both parts.
+
+Is it true? No — and the same $2 \times 5$ rectangle shows why. It is not a square, but it *is* a rectangle. Sunk.
+
+## The contrapositive: swap **and** negate
+
+> **Contrapositive.** If a shape is not a rectangle, then it is not a square.
+
+The **contrapositive** does both moves at once: swap the parts, then negate both.
+
+Is it true? Yes. Think it through. Suppose some shape is not a rectangle. Could it be a square? If it were, the original claim would force it to be a rectangle — and it isn't one. So it cannot be a square.
+
+## The rule
+
+> A claim and its **contrapositive** are always worth the same. If one is true, so is the other. If one is false, so is the other.
+>
+> A claim and its **converse** are different claims. So are a claim and its **inverse**.
+
+Here is a table you can keep:
+
+| Name | Shape | Same as the original? |
+|---|---|---|
+| Original | if $A$ then $B$ | — |
+| Converse | if $B$ then $A$ | Not always |
+| Inverse | if not $A$ then not $B$ | Not always |
+| Contrapositive | if not $B$ then not $A$ | **Always** |
+
+<Warning title="The everyday version of this mistake">
+"If you studied, you passed the test." Somebody passed. Did they study? Not necessarily — maybe they already knew it. Believing the converse of a true claim is one of the most common reasoning errors there is, and it has a name: *affirming the consequent*.
+</Warning>
+
+<Aside>
+The converse and the inverse are not unrelated: each is the contrapositive of the other. So they always share a truth value with each other, even though neither shares one with the original. That is why our single $2 \times 5$ rectangle managed to kill both at once.
+</Aside>
+
+## Why you will care
+
+The contrapositive is not a curiosity. Because it always has the same truth value as the original, you are allowed to **prove the contrapositive instead**, whenever it looks easier. That is the whole of module 1.8, and it is one of the most useful tricks in this course.

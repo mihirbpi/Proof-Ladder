@@ -1,0 +1,40 @@
+---
+level: l2
+title: The easier way round
+readingTimeMin: 3
+newTerms: ["backwards check"]
+anchorExample: "even and odd"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+
+In module 1.7 you learned the good flip: swap the two parts and say *not* to both. That flip always means the same thing.
+
+Here is why that is useful. If the flipped promise is easier to check, you can check that one instead. Same promise, less work. We call it a **backwards check**.
+
+## A backwards check with numbers
+
+> If two apples cannot be shared fairly between two people, then there was an odd number of apples.
+
+Hmm. Starting from "cannot be shared fairly" is hard. Where do you even begin?
+
+So flip it around the good way:
+
+> If there was an even number of apples, then they can be shared fairly.
+
+Oh! That one is easy. Even means you can make groups of two.
+
+<Proof level="l2">
+Say the number of apples is even. Even means you can put all the apples into pairs, with none left over.
+
+Now hand one apple from each pair to each person. Everyone gets the same number. Nothing is left over.
+
+So they were shared fairly.
+</Proof>
+
+We proved the flipped one. And because the flipped one always means the same thing as the first one, we proved the first one too. That is the whole trick.
+
+<TryIt>
+Get an even pile of things — 8 crayons, say. Share them into two equal groups. Now take one away and try again. What goes wrong? That is the odd case.
+</TryIt>

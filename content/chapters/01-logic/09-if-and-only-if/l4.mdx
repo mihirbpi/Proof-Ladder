@@ -1,0 +1,79 @@
+---
+level: l4
+title: If and only if
+readingTimeMin: 7
+newTerms: ["biconditional", "if and only if"]
+anchorExample: "n even iff n² even"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+The **biconditional** $p \Leftrightarrow q$, read "$p$ if and only if $q$", is by definition
+$$p \Leftrightarrow q \;\;\equiv\;\; (p \Rightarrow q) \wedge (q \Rightarrow p).$$
+
+It asserts that $p$ and $q$ stand or fall together. Its truth table follows from the definition:
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q", "q ⇒ p", "p ⇔ q"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true,  "q ⇒ p": true,  "p ⇔ q": true  },
+    { p: true,  q: false, "p ⇒ q": false, "q ⇒ p": true,  "p ⇔ q": false },
+    { p: false, q: true,  "p ⇒ q": true,  "q ⇒ p": false, "p ⇔ q": false },
+    { p: false, q: false, "p ⇒ q": true,  "q ⇒ p": true,  "p ⇔ q": true  }
+  ]}
+/>
+
+$p \Leftrightarrow q$ is true exactly on the rows where $p$ and $q$ agree. Since the conjunction has two conjuncts, proving a biconditional means writing **two proofs**. The named move is **check both boxes**.
+
+## The theorem
+
+> **Theorem.** For every integer $n$: $n$ is even **if and only if** $n^2$ is even.
+
+Definitions (and note these are themselves biconditionals): $n$ is **even** iff $n = 2k$ for some $k \in \mathbb{Z}$; $n$ is **odd** iff $n = 2k+1$ for some $k \in \mathbb{Z}$. Every integer is exactly one of the two.
+
+<Discussion>
+  <div slot="know">Both directions to prove. ($\Leftarrow$) has hypothesis "$n$ even", which unfolds to $n = 2k$ — immediately usable. ($\Rightarrow$) has hypothesis "$n^2$ even", which unfolds to $n^2 = 2k$ — and there is no way to get from that to a statement about $n$ without inverting a square.</div>
+  <div slot="want">$n$ even $\Rightarrow$ $n^2$ even, and $n^2$ even $\Rightarrow$ $n$ even.</div>
+  <div slot="how">Prove the easy direction directly. For the hard one, flip it around: the contrapositive of "$n^2$ even $\Rightarrow$ $n$ even" is "$n$ odd $\Rightarrow$ $n^2$ odd", whose hypothesis unfolds to $n = 2k+1$ — usable.</div>
+</Discussion>
+
+## Proof
+
+<Proof>
+**($\Rightarrow$) If $n$ is even then $n^2$ is even.**
+Suppose $n$ is even, so $n = 2k$ for some $k \in \mathbb{Z}$. Then $n^2 = 4k^2 = 2(2k^2)$, and $2k^2 \in \mathbb{Z}$, so $n^2$ is even.
+
+**($\Leftarrow$) If $n^2$ is even then $n$ is even.**
+We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n$ is odd, so $n = 2k+1$ for some $k \in \mathbb{Z}$. Then
+$$n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1,$$
+and $2k^2 + 2k \in \mathbb{Z}$, so $n^2$ is odd. By contraposition, $n^2$ even implies $n$ even.
+
+Both directions hold, so $n$ is even $\Leftrightarrow$ $n^2$ is even.
+</Proof>
+
+Notice that the two halves needed different techniques. That is normal, and it is the reason a biconditional cannot be proved by a single symmetrical argument.
+
+<Warning title="Two halves, two labels">
+Always label the directions — ($\Rightarrow$) and ($\Leftarrow$), or "forward" and "backward". Two things go wrong without labels: you prove the same direction twice without noticing, or you prove one and stop. Both errors are common and both are invisible in unlabelled prose.
+</Warning>
+
+## Definitions are biconditionals
+
+Mathematical definitions are stated with "if" but always mean "if and only if":
+
+> An integer $n$ is *even* if $n = 2k$ for some integer $k$.
+
+That is: even $\Leftrightarrow$ $\exists k \in \mathbb{Z}, n = 2k$. Both directions are available to you. When you assume "$n$ is even" and write $n = 2k$, you are using one direction; when you finish a computation at $2(\text{something integer})$ and declare the result even, you are using the other. Most proofs in this course use both directions of some definition, usually within four lines of each other.
+
+<Aside>
+Other phrasings of the same thing, all of which you will meet: "$p$ is *necessary and sufficient* for $q$"; "$p$ *exactly when* $q$"; "$p$ iff $q$". And a warning about the last one: some authors write a chain $p \Leftrightarrow r \Leftrightarrow s \Leftrightarrow q$. This is legitimate only if every single link is genuinely reversible. Chains built with $\Rightarrow$ steps that were quietly written as $\Leftrightarrow$ are a rich source of false proofs — squaring both sides of an equation is the classic non-reversible step.
+</Aside>
+
+## This theorem matters later
+
+The result just proved is not a toy. It is the lemma that makes the proof of the irrationality of $\sqrt{2}$ work (module 4.7): there, one shows $a^2$ is even, concludes $a$ is even, and that step is exactly the ($\Leftarrow$) direction above — the one that needed the contrapositive.

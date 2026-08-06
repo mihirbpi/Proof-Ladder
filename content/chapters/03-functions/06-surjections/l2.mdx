@@ -1,0 +1,64 @@
+---
+level: l2
+title: No arrow lands nowhere
+readingTimeMin: 4
+newTerms: ["all used up"]
+anchorExample: "the cubby machine"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 3.5 asked whether anything **shares**. Now we ask a completely different question: does anything get **left out**?
+
+## A machine with a leftover
+
+<Figure alt="Three children on the left with arrows landing on cubbies 1 and 2; cubby 3 has no arrow landing on it." caption="Cubby 3 never gets used. Left out!">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,0],[1,1],[2,1]]} />
+</Figure>
+
+Cubby 3 is sitting there with no coat. The machine never sends anybody to it.
+
+## A machine with nothing left out
+
+<Figure alt="Three children on the left, each arrow landing on a different cubby, so all three cubbies are used." caption="Every cubby has an arrow landing on it. All used up!">
+  <ArrowDiagram labelLeft="children" labelRight="cubbies"
+    left={["Sam", "Pip", "Ada"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0],[2,2]]} />
+</Figure>
+
+Now every cubby is used. Nothing on the right side is left out. We say the machine is **all used up**.
+
+## How to check
+
+Look at the right side. Count the arrows landing on each thing.
+
+- 1 arrow? Good.
+- 5 arrows? Also good! Sharing is allowed here.
+- 0 arrows? **Left out.** Not all used up.
+
+So the rule is: every landing spot needs at *least* one arrow.
+
+## Careful — it depends on the right-hand list!
+
+Here is the sneaky part. Take the doubling machine: put in a whole number, get double.
+
+If the right-hand list is **the even numbers**, then every one gets used. $4$? That is double $2$. $10$? That is double $5$. All used up! ✓
+
+But if the right-hand list is **all the numbers**, then $7$ is sitting there unused, because nothing doubles to $7$. Left out! ✗
+
+Same machine. Different right-hand list. Different answer.
+
+<Warning title="Say what the right-hand list is">
+Before you can answer "is it all used up?" you have to know what list you are trying to use up. Change the list and the answer changes.
+
+This never happens with sharing. Sharing only depends on the arrows.
+</Warning>
+
+<TryIt>
+Draw 3 things on the left and 4 on the right, with one arrow each. Is anything left out? Now rub out the leftover and ask again.
+</TryIt>

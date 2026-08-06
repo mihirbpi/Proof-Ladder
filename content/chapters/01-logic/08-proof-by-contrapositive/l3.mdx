@@ -1,0 +1,66 @@
+---
+level: l3
+title: Proof by contrapositive
+readingTimeMin: 6
+newTerms: ["proof by contrapositive"]
+anchorExample: "even and odd numbers"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.7 gave you a fact: a claim and its contrapositive are always worth the same. This module turns that fact into a tool.
+
+The tool is simple. If you are asked to prove *if $A$ then $B$*, and the $A$ you were handed is unpleasant to work with, **flip it around** and prove *if not $B$ then not $A$* instead. Prove either one and you have proved both. This is called a **proof by contrapositive**.
+
+## Two definitions first
+
+- A whole number is **even** if it is a multiple of $2$ — that is, if it can be split into groups of $2$ with nothing left over.
+- A whole number is **odd** if it is not even — there is always exactly one left over.
+
+## The claim
+
+> **Claim.** If $n \times n$ is odd, then $n$ is odd.
+
+Check it: $3 \times 3 = 9$, odd, and $3$ is odd. ✓ $5 \times 5 = 25$, odd, and $5$ is odd. ✓
+
+Now try to prove it directly. You start with "$n \times n$ is odd," which means $n \times n$ leaves one left over when you group by two. What does that tell you about $n$? Nothing obvious. You are stuck at the first step, and that is the signal.
+
+## Plan the flip
+
+<Discussion>
+  <div slot="know">Nothing usable yet. Starting from "$n \times n$ is odd" gives us no handle on $n$ itself.</div>
+  <div slot="want">To show $n$ is odd.</div>
+  <div slot="how">Flip it around. The contrapositive is: *if $n$ is not odd, then $n \times n$ is not odd* — that is, **if $n$ is even, then $n \times n$ is even.** Now the hypothesis is "$n$ is even", which tells us $n$ is a pile of $2$s. That we can work with.</div>
+</Discussion>
+
+Do you see why the flip helped? "Even" is a *positive* description — it tells you what $n$ is made of. "Odd" only tells you what $n$ isn't. Positive descriptions are easier to compute with, so if the odd one is in your hypothesis, flip.
+
+## The proof
+
+<Proof>
+We prove the contrapositive: if $n$ is even, then $n \times n$ is even.
+
+Suppose $n$ is even. Then $n$ is a multiple of $2$, say $n = 2 \times k$ for some whole number $k$.
+
+Then
+$$n \times n = (2 \times k) \times n = 2 \times (k \times n).$$
+
+Since $k \times n$ is a whole number, $n \times n$ is $2$ times a whole number, so $n \times n$ is even.
+
+We have proved the contrapositive, so the original claim — if $n \times n$ is odd, then $n$ is odd — is proved as well.
+</Proof>
+
+## The habit to build
+
+Always **announce the switch**. The first line of the proof said "we prove the contrapositive," and the last line said what that means for the original claim. A reader who missed the announcement would think you had proved the wrong thing.
+
+<Warning title="Flip the good way, not any way">
+The contrapositive swaps the parts **and** negates both. If you only swap, you get the converse — a different claim that might be false. If you only negate, you get the inverse — also a different claim. Getting this wrong means proving something true and concluding something unproven.
+</Warning>
+
+<Aside>
+A rough rule for when to reach for the contrapositive: look at the *if* part. If it is a "not" statement — not odd, not equal, not a multiple — the contrapositive will turn it into a plain statement, and plain statements are easier to use.
+</Aside>

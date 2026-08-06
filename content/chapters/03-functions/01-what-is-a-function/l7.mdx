@@ -1,0 +1,90 @@
+---
+level: l7
+title: What is a function?
+readingTimeMin: 10
+newTerms: ["function", "domain", "codomain", "well-defined", "graph"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+A **function** $f : S \to T$ assigns to each $s \in S$ exactly one $f(s) \in T$. Formally, three conditions:
+
+- **Totality.** $\forall s \in S,\ \exists t \in T,\ f(s) = t$.
+- **Well-definedness.** $f(s) = t_1 \wedge f(s) = t_2 \Rightarrow t_1 = t_2$.
+- **Codomain.** All values lie in $T$.
+
+Together the first two are $\forall s \in S,\ \exists!\, t \in T,\ f(s) = t$ — §1.10's unique-existence quantifier, and the reason that module preceded this one.
+
+Note what is *not* required. Nothing constrains the codomain side: distinct inputs may share an output (§3.5 studies its absence), and elements of $T$ may be unhit (§3.6). Beginners routinely import symmetry that is not there.
+
+<Figure alt="Three elements on the left with exactly one arrow leaving each; two of the arrows land on the same element on the right." caption="A function. Sharing an output is permitted; sharing an input is not.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,1],[2,0]]} />
+</Figure>
+
+## The graph definition
+
+The description above uses "assigns", which is no more defined than "function". The set-theoretic definition removes the circularity, using §2.9:
+
+> A **function** from $S$ to $T$ is a triple $(S, T, \Gamma)$ where $\Gamma \subseteq S \times T$ satisfies
+> $$\forall s \in S,\ \exists!\, t \in T,\ (s,t) \in \Gamma.$$
+> One writes $f(s)$ for that unique $t$, and $\Gamma$ is the **graph** of $f$.
+
+So a function *is* its graph, together with its domain and codomain. Three consequences worth stating:
+
+1. **Functions are equal when their graphs and their domains and codomains are equal.** Hence $f = g$ iff they agree pointwise and have the same domain and codomain — extensionality one level up from §2.6.
+2. **The codomain is data, not derivable.** $\Gamma$ determines the image but not $T$, which is why $T$ must be carried in the triple. Authors who define a function as just $\Gamma$ cannot state surjectivity, and this is a real defect.
+3. **The vertical line test is this definition drawn on axes.** Not a separate criterion.
+
+## Domain and codomain are constitutive
+
+$$
+f : \mathbb{R} \to \mathbb{R},\ f(x) = e^x
+\qquad\text{and}\qquad
+g : \mathbb{R} \to \mathbb{R}_{>0},\ g(x) = e^x
+$$
+are different functions with the same graph. $g$ is surjective and $f$ is not (§3.6); $g$ is invertible and $f$ is not (§3.9). Same rule, genuinely different mathematical objects.
+
+The habit to acquire: never write down a rule without writing down its domain and codomain. Most of the confusion students report about injectivity and surjectivity dissolves once this is automatic.
+
+<Warning title="Well-definedness is a proof obligation, not a formality">
+When elements of the domain admit multiple names, a rule must be checked to give the same answer for all of them.
+
+$f : \mathbb{Q} \to \mathbb{Z}$, $f(p/q) = p + q$ is **not** a function: $\tfrac12 = \tfrac24$ but $1+2 \neq 2+4$.
+
+$f : \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$, $f([a]) = [a^2]$ **is** a function, and proving it requires showing $a \equiv b \pmod n \Rightarrow a^2 \equiv b^2 \pmod n$ — a genuine argument, not an observation.
+
+Every construction on a quotient carries this obligation. It is the single most commonly skipped step in first algebra courses.
+</Warning>
+
+## Functions on product sets
+
+A function of two variables is a function whose domain is a product:
+$$
+m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}, \qquad m(a,b) = ab.
+$$
+The notation $m(a,b)$ abbreviates $m\big((a,b)\big)$; the argument is a single element of $\mathbb{Z} \times \mathbb{Z}$. This viewpoint makes §3.5 and §3.6 apply verbatim to multi-variable functions — for instance $m$ is not injective, since $m(6,4) = m(2,12) = 24$, but it is surjective, since $m(n,1) = n$.
+
+<Aside>
+There is a second viewpoint, **currying**: a function $S \times T \to R$ corresponds bijectively to a function $S \to (T \to R)$, i.e. to a function returning a function. The correspondence is a bijection between $R^{S \times T}$ and $(R^T)^S$, which is the set-theoretic content of the exponent law $r^{st} = (r^t)^s$. It is the default in functional programming and in category theory, where it becomes the definition of a cartesian closed category.
+</Aside>
+
+## Partial functions, and why they are a different thing
+
+$x \mapsto 1/x$ is not a function $\mathbb{R} \to \mathbb{R}$; totality fails at $0$. Two standard responses:
+
+- **Restrict the domain.** $f : \mathbb{R}\setminus\{0\} \to \mathbb{R}$ is a genuine function. This is what mathematics does.
+- **Allow partiality.** A *partial function* $S \rightharpoonup T$ is a function defined on some subset of $S$. This is what computability theory does, because the halting problem makes partiality unavoidable: the function "output of program $p$ on input $n$" is genuinely undefined when the program does not halt, and there is no way to shrink the domain effectively.
+
+Ordinary mathematics takes the first road, and "the domain of $1/x$" means the largest set on which the formula makes sense.
+
+<WhereThisGoes level="l7">
+The graph definition looks like the last word, and in one sense it is: everything else in this course is built from it. But it makes functions into static sets of pairs, and much of modern mathematics needs functions to be primitive rather than derived. Category theory takes objects and arrows as undefined, with composition and identities as the only axioms, and never asks what an arrow is made of — which is what lets the same theorems apply to sets, groups, spaces, and types alike. Type theory likewise takes functions as primitive, with $f$ a program rather than a graph, so that function extensionality (equal values implies equal functions) becomes an *axiom* rather than a triviality. Which of these you adopt determines whether "the same function" means "the same graph" or "the same computation", and in the constructive setting those genuinely differ.
+</WhereThisGoes>

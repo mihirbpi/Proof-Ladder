@@ -1,0 +1,75 @@
+---
+level: l4
+title: Converse, inverse, contrapositive
+readingTimeMin: 7
+newTerms: ["converse", "inverse", "contrapositive"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Given a conditional $p \Rightarrow q$, there are three other conditionals you can build from the same two statements by swapping them, negating them, or both. **Flip it around** is the named move, and the point of the module is that only one of the three flips is safe.
+
+| Name | Statement |
+|---|---|
+| Original | $p \Rightarrow q$ |
+| **Converse** | $q \Rightarrow p$ |
+| **Inverse** | $\neg p \Rightarrow \neg q$ |
+| **Contrapositive** | $\neg q \Rightarrow \neg p$ |
+
+## The truth table settles it
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q", "q ⇒ p", "¬p ⇒ ¬q", "¬q ⇒ ¬p"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true,  "q ⇒ p": true,  "¬p ⇒ ¬q": true,  "¬q ⇒ ¬p": true  },
+    { p: true,  q: false, "p ⇒ q": false, "q ⇒ p": true,  "¬p ⇒ ¬q": true,  "¬q ⇒ ¬p": false },
+    { p: false, q: true,  "p ⇒ q": true,  "q ⇒ p": false, "¬p ⇒ ¬q": false, "¬q ⇒ ¬p": true  },
+    { p: false, q: false, "p ⇒ q": true,  "q ⇒ p": true,  "¬p ⇒ ¬q": true,  "¬q ⇒ ¬p": true  }
+  ]}
+/>
+
+Read the columns:
+
+- $p \Rightarrow q$ and $\neg q \Rightarrow \neg p$ are identical. So
+  $$p \Rightarrow q \;\equiv\; \neg q \Rightarrow \neg p.$$
+- $q \Rightarrow p$ and $\neg p \Rightarrow \neg q$ are identical to each other — the converse and inverse are each other's contrapositive — but they differ from the original in rows 2 and 3.
+
+That is the entire content of the module, and it is proved.
+
+## A worked case
+
+Recall the proposition from module 1.6:
+
+> If $x > 1$ then $x^2 > 1$. **(True.)**
+
+**Converse:** if $x^2 > 1$ then $x > 1$. Take $x = -3$. Then $x^2 = 9 > 1$, but $x = -3 \not> 1$. The hypothesis holds and the conclusion fails, so the converse is **false**.
+
+**Inverse:** if $x \leq 1$ then $x^2 \leq 1$. The same $x = -3$: it satisfies $-3 \leq 1$, yet $x^2 = 9 \not\leq 1$. **False.** (Of course — it is the contrapositive of the converse, so it had to fail too.)
+
+**Contrapositive:** if $x^2 \leq 1$ then $x \leq 1$. **True**, and it must be, since the original is.
+
+One number, $x = -3$, killed both the converse and the inverse. That is not luck; it is the equivalence of those two doing its work.
+
+<Warning title="Affirming the consequent">
+The most common reasoning error in the world is treating a true conditional as though its converse were also true.
+
+*If it rained, the ground is wet.* The ground is wet. Did it rain? Perhaps a sprinkler ran. The conditional gives you no licence to conclude $p$ from $q$.
+
+In mathematics this shows up as a proof that establishes the wrong direction and stops. If the problem says "prove $p \Rightarrow q$" and your argument begins by assuming $q$, you have proved the converse. Check which direction you are travelling before you write the last line.
+</Warning>
+
+## Why the contrapositive equivalence is believable
+
+The truth table proves it, but here is the reason it *feels* right. $p \Rightarrow q$ says: the situation "$p$ true, $q$ false" never occurs. And $\neg q \Rightarrow \neg p$ says: the situation "$\neg q$ true, $\neg p$ false" — that is, "$q$ false, $p$ true" — never occurs. Those are the same forbidden situation, described from opposite ends. Two statements that forbid exactly the same thing are the same statement.
+
+<Aside>
+Negating a conditional is a related but different operation. $\neg(p \Rightarrow q)$ is not another conditional at all: it is $p \wedge \neg q$ — the assertion that the one forbidden row *does* occur. This is why disproving "if $p$ then $q$" always means exhibiting a case where $p$ holds and $q$ fails, never producing a rival conditional.
+</Aside>
+
+## What this buys you
+
+Because $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$, proving either one proves both. When the hypothesis $p$ is awkward — negative, or about a complicated expression — you may switch to the contrapositive, whose hypothesis is $\neg q$ instead. Module 1.8 turns this observation into a technique and gives you a rule for deciding when to reach for it.

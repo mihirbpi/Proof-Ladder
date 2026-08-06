@@ -1,0 +1,95 @@
+---
+level: l7
+title: Bijections and size
+readingTimeMin: 10
+newTerms: ["bijection", "identity function", "cardinality", "countable"]
+anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$f : S \to T$ is a **bijection** when it is injective and surjective, equivalently when every fibre $f^{-1}(\{t\})$ is a singleton.
+
+| | $\lvert f^{-1}(\{t\})\rvert$ |
+|---|---|
+| injective | $\leq 1$ |
+| surjective | $\geq 1$ |
+| bijective | $=1$ |
+
+## Bijections as isomorphisms
+
+> **Proposition.** $f : S \to T$ is a bijection iff there exists $g : T \to S$ with $g \circ f = \mathrm{id}_S$ and $f \circ g = \mathrm{id}_T$.
+
+This is §3.9's theorem, but it is worth stating here because it is the *right* definition: a bijection is a function with a two-sided inverse, i.e. an **isomorphism** in the category of sets. Under this reading the facts below are automatic — identities are isomorphisms, composites of isomorphisms are isomorphisms, and isomorphism is an equivalence relation.
+
+$\mathrm{id}_S$ is a bijection, and by §3.7 a composite of bijections is a bijection.
+
+> **Proposition.** $\exp : \mathbb{R}\to\mathbb{R}_{>0}$ is a bijection.
+
+<Proof>
+*Injective.* $\exp$ is strictly increasing (as $\exp' = \exp > 0$), and strictly monotone functions are injective (§3.5).
+
+*Surjective.* Given $t > 0$, $x = \ln t \in \mathbb{R}$ satisfies $e^x = t$. Alternatively, $\exp$ is continuous with $\lim_{x\to-\infty}e^x = 0$, $\lim_{x\to\infty}e^x=\infty$, so the intermediate value theorem gives every positive value.
+</Proof>
+
+Changing the codomain to $\mathbb{R}$ destroys surjectivity and hence bijectivity — the same rule, a different function (§3.1).
+
+## Cardinality
+
+Define $S \sim T$ ("equinumerous") when a bijection $S \to T$ exists. This is an equivalence relation: reflexive by $\mathrm{id}$, symmetric by inverses, transitive by composition — the three facts above, restated.
+
+**Cardinality** $|S|$ is the equivalence class, and $|S| = |T|$ means $S \sim T$. For finite sets this agrees with counting; the content is that it continues to make sense when counting does not.
+
+Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this is antisymmetric — $|S|\leq|T|$ and $|T|\leq|S|$ imply $|S|=|T|$ — is the **Schröder–Bernstein theorem**, and it is genuinely nontrivial: from injections both ways one must *construct* a bijection, and the construction (partitioning by orbits of the two maps) is the standard first surprise of the subject.
+
+## Dedekind infinity
+
+> **Proposition.** $|\mathbb{N}| = |2\mathbb{N}|$.
+
+<Proof>
+$f : \mathbb{N}\to 2\mathbb{N}$, $f(n)=2n$. Injective: $2a=2b \Rightarrow a=b$. Surjective: any even natural is $2k$, and $f(k)=2k$.
+</Proof>
+
+$2\mathbb{N} \subsetneq \mathbb{N}$ yet the two are equinumerous. Dedekind turned this into a definition: a set is **infinite** iff it admits a bijection with a proper subset of itself. (That this coincides with "not finite" requires a weak form of choice, which is one of the places set theory's subtleties surface early.)
+
+<Warning title="Inclusion is not size">
+For infinite sets, $A \subsetneq B$ does not imply $|A| < |B|$. Comparisons must be made by exhibiting functions, never by inspection or by inclusion. Nearly every incorrect claim students make about infinite cardinalities comes from importing finite intuition here.
+</Warning>
+
+## Countable and uncountable
+
+$S$ is **countable** when $|S| \leq |\mathbb{N}|$. Countable sets include $\mathbb{Z}$ (interleave positives and negatives), $\mathbb{N}\times\mathbb{N}$ (diagonal enumeration), and hence $\mathbb{Q}$ — despite $\mathbb{Q}$ being dense in $\mathbb{R}$, which is a good demonstration that cardinality and topology measure different things.
+
+> **Theorem (Cantor).** $\mathbb{R}$ is uncountable.
+
+<Discussion>
+  <div slot="know">Every real in $(0,1)$ has a decimal expansion, unique if we forbid trailing nines.</div>
+  <div slot="want">No surjection $\mathbb{N}\to(0,1)$ exists.</div>
+  <div slot="how">Suppose not (§2.5). Given a claimed enumeration, construct a real differing from the $n$-th listed number in its $n$-th digit. It cannot be on the list, contradicting surjectivity.</div>
+</Discussion>
+
+<Proof>
+Suppose, for contradiction, that $f : \mathbb{N}\to(0,1)$ is surjective. Write the decimal expansion of $f(n)$ as $0.a_{n1}a_{n2}a_{n3}\ldots$, choosing the expansion without trailing nines.
+
+Define $b_n = 5$ if $a_{nn} \neq 5$, and $b_n = 4$ if $a_{nn} = 5$, and set $x = 0.b_1b_2b_3\ldots$. Then $x \in (0,1)$, and its expansion contains no nines and is not eventually zero, so it is the unique expansion of $x$.
+
+For each $n$, $x$ differs from $f(n)$ in the $n$-th decimal place, so $x \neq f(n)$. Hence $x \notin \operatorname{Im}(f)$, contradicting surjectivity.
+
+Therefore no surjection $\mathbb{N}\to(0,1)$ exists, and $\mathbb{R} \supseteq (0,1)$ is uncountable.
+</Proof>
+
+The care with trailing nines is not pedantry: $0.4999\ldots = 0.5$, and without excluding one of the two expansions the constructed $x$ might coincide with a listed number.
+
+Cantor's theorem generalises: $|S| < |\mathcal{P}(S)|$ for every $S$, by the same diagonal applied to $D = \{s : s \notin f(s)\}$ (§2.3). So there is no largest cardinal, and the hierarchy of infinities is unbounded.
+
+<Aside>
+The diagonal argument is one construction with three faces. Applied to $\mathcal{P}(S)$ it gives Cantor's theorem; applied to the collection of all sets it gives Russell's paradox (§2.1); applied to programs enumerating computable functions it gives the undecidability of the halting problem and Gödel's incompleteness theorems. Recognising the pattern is worth more than any one of the results.
+</Aside>
+
+<WhereThisGoes level="l7">
+Whether any cardinality lies strictly between $|\mathbb{N}|$ and $|\mathbb{R}|$ is the **continuum hypothesis**. Gödel (1940) showed it cannot be disproved from ZFC; Cohen (1963), inventing forcing to do it, showed it cannot be proved either. It is therefore independent — a mathematical question with a definite-sounding statement and no answer available from the standard axioms, and the discovery that such questions exist reshaped foundations. Beyond it lie large cardinal axioms, which extend ZFC upward and are ordered by consistency strength, and descriptive set theory, which studies the sets of reals simple enough to be immune to these pathologies. Meanwhile the bijection-as-isomorphism reading generalises: an isomorphism of groups is a bijective homomorphism, a homeomorphism is a bijective continuous map with continuous inverse, and in each case "the same size" becomes "the same structure".
+</WhereThisGoes>

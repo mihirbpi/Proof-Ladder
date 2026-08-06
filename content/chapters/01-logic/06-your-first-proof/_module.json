@@ -13,6 +13,17 @@
     "l7": "Your first proof",
     "l8": "Your first proof"
   },
+  "kernelIdea": "To prove \"if p then q\", assume p and reason to q using facts already established. A proof is written in full sentences.",
+  "kernels": {
+    "l1": "To show how you know, start from what you're given and say a because.",
+    "l2": "To show a promise is kept, start from what you're given and take small steps you are already sure about, until you get where you wanted to go.",
+    "l3": "To prove an if–then claim, start from what you're given: assume the if part is true, then take steps you already know are correct until you reach the then part. Write it in full sentences.",
+    "l4": "To prove p ⇒ q, start from what you're given — assume p — and derive q using definitions and facts already established. The finished proof is prose, not calculation, and ends with □.",
+    "l5": "A direct proof of p ⇒ q assumes p and reaches q by a chain of justified steps. Each step must cite a definition or an established result.",
+    "l6": "A direct proof of p ⇒ q assumes the hypothesis and derives the conclusion through steps each licensed by a definition, axiom, or prior theorem; the Discussion plans it and the Proof presents it.",
+    "l7": "A direct proof of p ⇒ q assumes p and derives q by a finite chain of justified inferences, eliminating the only row of the truth table that could falsify the conditional. Proofs are written as prose in complete sentences.",
+    "l8": "A direct proof of p ⇒ q is a finite derivation of q from p together with the ambient axioms and previously proved theorems; the Discussion is scaffolding that published mathematics deletes."
+  },
   "kernel": "To prove \"if p then q\", assume p and reason to q using facts already established. A proof is written in full sentences.",
   "objectives": [
     "Recognize the Discussion/Proof structure",

@@ -1,0 +1,50 @@
+---
+level: l2
+title: Turning it around
+readingTimeMin: 4
+newTerms: ["flip it around"]
+anchorExample: "umbrella"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Warning from '@/components/Warning.astro';
+
+Start with a promise:
+
+> If it rains, I bring the umbrella.
+
+There are a few ways to **flip it around**. Let's try all of them and see which ones survive.
+
+## Flip 1: swap the two parts
+
+> If I bring the umbrella, it rains.
+
+Nope. Sunny days happen, and sometimes you carry the umbrella anyway. This flip is a *different* promise, and it can be false even when the first one is true.
+
+## Flip 2: say "not" to both parts
+
+> If it does not rain, I do not bring the umbrella.
+
+Also nope, and for the very same reason. You are allowed to carry an umbrella on a sunny day.
+
+## Flip 3: swap the parts **and** say "not" to both
+
+> If I do not have the umbrella, it is not raining.
+
+Now hold on. Think about this one carefully.
+
+If you are standing there with no umbrella, and it *were* raining, you would have broken your first promise. But you did not break it. So it cannot be raining.
+
+This flip says exactly the same thing as the promise you started with! Same meaning, different words.
+
+<Warning title="Sometimes a flip is true by luck">
+Try this one: *If a shape is a square, it has four sides.* Flip 1 gives *if a shape has four sides, it is a square* — and that is false, because rectangles have four sides too. But some promises do flip to something true. "Sometimes true" is not the same as "always true," and only Flip 3 is *always* true.
+</Warning>
+
+## The one to remember
+
+Swap the parts and say not to both. That flip always keeps the meaning. The other two do not.
+
+<TryIt>
+Say: *If Biscuit is a dog, Biscuit has four legs.* Now do Flip 1, Flip 2, and Flip 3 out loud. Then find a four-legged animal that is not a dog. That one animal breaks Flip 1.
+</TryIt>

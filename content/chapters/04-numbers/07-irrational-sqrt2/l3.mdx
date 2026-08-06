@@ -1,0 +1,86 @@
+---
+level: l3
+title: Irrational numbers and √2
+readingTimeMin: 6
+newTerms: ["irrational"]
+anchorExample: "divisibility"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 4.6 showed the rationals are dense — between any two there are infinitely many more. It is tempting to conclude they fill the number line completely.
+
+They do not. This module exhibits a hole.
+
+A number that is *not* rational — not equal to any fraction of whole numbers — is called **irrational**.
+
+## The claim
+
+> **Claim.** There is no fraction whose square is $2$.
+
+The number whose square is $2$ is written $\sqrt2$, and it is the length of the diagonal of a square with sides $1$. It is a perfectly good length. It is just not a fraction.
+
+## The plan
+
+Direct proof is hopeless here. To show *no* fraction works, you would have to check infinitely many, and you cannot.
+
+So use **suppose not** (module 2.5). Assume a fraction *does* work, and follow it until something impossible happens.
+
+<Discussion>
+  <div slot="know">Every fraction can be written in lowest terms — with the top and bottom sharing no common factor. If they did share one, you could cancel it.</div>
+  <div slot="want">To show no fraction squares to $2$.</div>
+  <div slot="how">Suppose one does, written in lowest terms. Then show that the top *and* the bottom are both even — meaning they shared a factor of $2$ after all. That contradicts "lowest terms."</div>
+</Discussion>
+
+We need one tool from module 1.9:
+
+> If $n \times n$ is even, then $n$ is even.
+
+(You proved it there by flipping it around: if $n$ is odd, then $n \times n$ is odd.)
+
+## The proof
+
+<Proof>
+Suppose not. Suppose there is a fraction $\tfrac{p}{q}$ with $\left(\tfrac{p}{q}\right)^2 = 2$, and suppose it is written in **lowest terms**, so $p$ and $q$ share no common factor.
+
+Multiplying both sides by $q \times q$:
+$$p \times p = 2 \times (q \times q). \tag{$\star$}$$
+
+So $p \times p$ is even. By our tool, **$p$ is even**. Write $p = 2 \times k$.
+
+Substitute that into $(\star)$:
+$$(2k)\times(2k) = 2 \times (q\times q), \quad\text{so}\quad 4 \times (k \times k) = 2 \times (q\times q).$$
+
+Divide both sides by $2$:
+$$2 \times (k \times k) = q \times q.$$
+
+So $q \times q$ is even. By our tool again, **$q$ is even**.
+
+But now $p$ is even and $q$ is even, so they share the common factor $2$.
+
+And we said the fraction was in lowest terms — no shared factors. Contradiction!
+
+Our supposition must have been wrong. No fraction squares to $2$, so $\sqrt2$ is irrational.
+</Proof>
+
+## What the proof used
+
+Count the tools. This short argument leans on nearly the whole course so far.
+
+- **Suppose not** (module 2.5) — the shape of the whole thing.
+- **Flip it around** (module 1.8) — hidden inside the even-square tool.
+- **Definition of even** (module 4.2) — writing $p = 2k$.
+- **Lowest terms** — the load-bearing assumption. Without it, no contradiction.
+
+<Warning title="Lowest terms is doing all the work">
+If you drop the lowest-terms assumption, nothing goes wrong! You would simply learn that $p$ and $q$ are both even, cancel, and repeat forever. That is not a contradiction — it is just an endless process.
+
+The contradiction only appears because we *said in advance* that no cancelling was possible. That single sentence is what makes the proof work.
+</Warning>
+
+<Aside>
+The same argument works for $\sqrt3$, $\sqrt5$, and $\sqrt{p}$ for any prime — you replace "even" with "divisible by $p$". It also shows exactly which square roots are rational: $\sqrt m$ is a fraction precisely when $m$ is a perfect square. So $\sqrt{16} = 4$ is fine, and every other square root of a whole number is irrational.
+</Aside>

@@ -1,0 +1,89 @@
+---
+level: l7
+title: Proving divisibility facts
+readingTimeMin: 9
+newTerms: ["cofactor", "without loss of generality", "Euclid's lemma"]
+anchorExample: "ℤ as a ring"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Divisibility is existential, so every proof follows one template. What is worth attention is not the template but the two places it can go wrong: the integrality check, and the plausible statements that turn out to be false.
+
+## Template
+
+1. **Unpack** each hypothesis $a \mid b$ as $b = ak$, with a fresh cofactor name.
+2. **Compute.**
+3. **Factor** out the target divisor.
+4. **Verify** the remaining cofactor lies in $\mathbb{Z}$, citing closure (§4.1).
+
+Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides every element, so the entire subject rests on the cofactor being required to be an *integer*.
+
+## The core propositions
+
+> **Proposition.** For $a,b,c,d \in \mathbb{Z}$:
+> (i) $a \mid b \wedge b \mid c \Rightarrow a \mid c$;
+> (ii) $a \mid c \wedge b \mid d \Rightarrow ab \mid cd$;
+> (iii) $a \mid b \wedge a \mid c \Rightarrow a \mid (bx + cy)$ for all $x,y \in \mathbb{Z}$;
+> (iv) $a \mid b \vee a \mid c \Rightarrow a \mid bc$.
+
+<Proof>
+(i) $b = aj$, $c = bk$ give $c = a(jk)$ with $jk \in \mathbb{Z}$.
+
+(ii) $c = aj$, $d = bk$ give $cd = (ab)(jk)$ with $jk \in \mathbb{Z}$.
+
+(iii) $b = aj$, $c = ak$ give $bx + cy = a(jx + ky)$ with $jx+ky \in \mathbb{Z}$.
+
+(iv) The hypothesis is a disjunction; the two cases are interchanged by swapping the names $b$ and $c$, which leaves the conclusion $a \mid bc$ invariant since $bc = cb$. **Without loss of generality**, assume $a \mid b$; then $b = ak$ and $bc = a(kc)$ with $kc \in \mathbb{Z}$.
+</Proof>
+
+Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{Z}$ is closed under integer linear combinations, i.e. is an **ideal**. That single structural fact drives the Euclidean algorithm, Bézout's identity, and everything downstream.
+
+<Warning title="Two disciplines">
+**Fresh names.** From $a \mid b$ and $b \mid c$, the cofactors are unrelated; reusing one letter asserts they are equal and proves a weaker statement.
+
+**WLOG has a licence.** It is legitimate exactly when the omitted case follows from the treated one by a relabelling under which hypotheses and conclusion are invariant — and you must say what the relabelling is. Asserted without justification, WLOG is how a case gets silently dropped, and it is the most common structural defect in submitted proofs.
+</Warning>
+
+## The false converse, and its repair
+
+$$
+a \mid bc \;\not\Rightarrow\; a \mid b \ \vee\ a\mid c.
+$$
+Counterexample: $4 \mid 12 = 2\cdot 6$, yet $4 \nmid 2$ and $4 \nmid 6$. The divisor $4 = 2^2$ draws one factor of $2$ from each of $b, c$.
+
+> **Euclid's lemma.** If $p$ is prime and $p \mid bc$, then $p \mid b$ or $p \mid c$.
+
+<Discussion>
+  <div slot="know">$p$ prime, $p \mid bc$. Suppose $p \nmid b$ — we must reach $p \mid c$. Since $p$ is prime and does not divide $b$, we have $\gcd(p,b) = 1$, as the only divisors of $p$ are $1$ and $p$.</div>
+  <div slot="want">$p \mid c$.</div>
+  <div slot="how">Bézout: $\gcd(p,b) = 1$ gives integers $x,y$ with $px + by = 1$. Multiply by $c$ and apply (iii) to the two terms, each of which $p$ divides.</div>
+</Discussion>
+
+<Proof>
+Suppose $p \mid bc$ and $p \nmid b$. The divisors of $p$ are $\pm1, \pm p$, and $p \nmid b$, so $\gcd(p,b) = 1$. By Bézout's identity there exist $x,y \in \mathbb{Z}$ with
+$$px + by = 1.$$
+Multiplying by $c$:
+$$pcx + bcy = c.$$
+Now $p \mid pcx$ trivially, and $p \mid bcy$ since $p \mid bc$. By (iii), $p$ divides the linear combination $pcx + bcy = c$.
+
+Hence $p \mid c$, and the lemma is proved.
+</Proof>
+
+Note that Euclid's lemma is *not* a triviality about primes; its proof consumes Bézout, which consumes the division algorithm (§4.4). The chain is
+$$
+\text{division algorithm} \Rightarrow \text{Euclidean algorithm} \Rightarrow \text{Bézout} \Rightarrow \text{Euclid's lemma} \Rightarrow \text{unique factorisation}.
+$$
+Each arrow is short; the sequence is the whole of elementary number theory's foundation, and it is worth being able to recite.
+
+<Aside>
+Unique factorisation is often taught as obvious. It is not. Existence of a factorisation follows by strong induction (Chapter 6); *uniqueness* is exactly where Euclid's lemma is spent, and in rings where the lemma fails, so does uniqueness. In $\mathbb{Z}[\sqrt{-5}]$, $2$ is irreducible but $2 \mid 6 = (1+\sqrt{-5})(1-\sqrt{-5})$ while dividing neither factor — so $2$ is not prime there, and $6$ has two genuinely different factorisations.
+</Aside>
+
+<WhereThisGoes level="l7">
+The distinction the counterexample exposes — between *irreducible* (no proper factorisation) and *prime* (satisfies Euclid's lemma) — is invisible in $\mathbb{Z}$, where the two coincide, and is central everywhere else. Rings where they coincide are exactly the unique factorisation domains; $\mathbb{Z}$, $k[x]$, and $\mathbb{Z}[i]$ are UFDs, while $\mathbb{Z}[\sqrt{-5}]$ is not. Dedekind's response — factor ideals rather than elements, restoring uniqueness in every ring of algebraic integers — created algebraic number theory, and the **class group** measures precisely how far a ring is from unique factorisation. Kummer's near-proof of Fermat's Last Theorem foundered on exactly this point, which is a fair measure of how much is hiding in a four-line counterexample.
+</WhereThisGoes>

@@ -1,0 +1,58 @@
+---
+level: l2
+title: What is left over
+readingTimeMin: 4
+newTerms: ["left over", "split into cases"]
+anchorExample: "sharing cookies evenly"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Warning from '@/components/Warning.astro';
+
+Share some counters among $3$ friends and see what is **left over**.
+
+| Counters | Each friend gets | Left over |
+|---|---|---|
+| $9$ | $3$ | $0$ |
+| $10$ | $3$ | $1$ |
+| $11$ | $3$ | $2$ |
+| $12$ | $4$ | $0$ |
+| $13$ | $4$ | $1$ |
+| $14$ | $4$ | $2$ |
+| $15$ | $5$ | $0$ |
+
+Look down the last column. $0, 1, 2, 0, 1, 2, 0$. Round and round forever.
+
+## Why it never reaches 3
+
+Suppose you had $3$ left over. Then you could give one more to each friend! So it would not be left over any more.
+
+That is the rule:
+
+> **What is left over is always smaller than the number of friends.**
+
+Three friends? Leftovers are $0$, $1$, or $2$. Never $3$ or more.
+
+Five friends? Leftovers are $0$, $1$, $2$, $3$, or $4$.
+
+## Why this is so useful
+
+Because it means there are only a *few kinds* of number.
+
+If you are sharing among $3$, then every number in the world is one of exactly three kinds:
+
+- the ones with $0$ left over,
+- the ones with $1$ left over,
+- the ones with $2$ left over.
+
+That is all of them. Nothing is missed.
+
+So if you want to prove something about *every* number, you only have to check three things. That move is called **splitting into cases**, and you met it in module 1.12.
+
+<Warning title="You must check them all">
+Splitting into cases only works if your cases cover everything. If you check the $0$-left-over numbers and the $1$-left-over numbers and stop, the $2$-left-over ones are still out there, unchecked. A gap is a gap.
+</Warning>
+
+<TryIt>
+Pick any number under 20. Share it among 4 friends and say the leftover. Now find a number with each of the leftovers 0, 1, 2, and 3.
+</TryIt>

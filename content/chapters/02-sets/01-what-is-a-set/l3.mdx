@@ -1,0 +1,83 @@
+---
+level: l3
+title: What is a set?
+readingTimeMin: 6
+newTerms: ["set", "element", "empty set", "well-defined"]
+anchorExample: "sorting hoops"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Chapter 1 was about sentences. This chapter is about the *things* those sentences talk about. Almost every object in mathematics — a number, a shape, a function, a solution — is built out of one idea, and this is it.
+
+A **set** is a collection of things. The things in it are its **elements**.
+
+We write sets between curly braces, listing the elements:
+$$
+A = \{\text{cat}, \text{dog}, \text{duck}\},
+\qquad
+B = \{1, 2, 3, 4, 5\}.
+$$
+
+## The two symbols
+
+To say something is in a set, we use $\in$, read "**is in**" or "is an element of":
+$$
+\text{cat} \in A, \qquad 3 \in B.
+$$
+
+To say it isn't, we cross out the symbol: $\notin$, read "is not in":
+$$
+\text{shoe} \notin A, \qquad 7 \notin B.
+$$
+
+That is the whole language of sets. Everything else is built from $\in$.
+
+## Well-defined
+
+A set must be **well-defined**: for every object in the world, it must be completely clear whether the object is in or out. No arguing.
+
+- $\{$ all the whole numbers between $3$ and $9$ $\}$ — well-defined. Anyone can check.
+- $\{$ all the interesting numbers $\}$ — **not** a set. Is $17$ interesting? People will disagree, and a set cannot depend on who you ask.
+
+This is not fussiness. If membership is unclear, then $x \in A$ is not a statement (module 1.1), so nothing about $A$ can be proved.
+
+## Two facts that surprise people
+
+**Order does not matter.**
+$$\{a, b, c\} = \{c, a, b\} = \{b, c, a\}.$$
+All the same set. A set has no first element, no last element, no arrangement at all. It only knows who belongs.
+
+**Repetition does not matter.**
+$$\{a, a, b\} = \{a, b\}.$$
+A set does not count. Listing $a$ twice tells us nothing new: $a$ was already in.
+
+Both facts follow from a single principle: **a set is completely determined by which things are in it.** Two sets with exactly the same elements are the same set, no matter how they were written down.
+
+## The empty set
+
+The set with nothing in it is the **empty set**, written
+$$\emptyset \quad \text{or} \quad \{\,\}.$$
+
+It is a genuine set. It is *not* the same as the number $0$, and it is not "nothing" — it is a perfectly good box that happens to be empty. It will turn out to be one of the most useful objects in the chapter.
+
+<Warning title="∅ and {∅} are different">
+$\emptyset$ is a box with nothing in it. $\{\emptyset\}$ is a box with one thing in it, and that thing happens to be an empty box. A lunchbox containing an empty lunchbox is not an empty lunchbox.
+</Warning>
+
+## The number sets
+
+Some sets are used so often they get permanent names.
+
+| Symbol | Name | What's in it |
+|---|---|---|
+| $\mathbb{N}$ | the natural numbers | $0, 1, 2, 3, \ldots$ (counting numbers) |
+| $\mathbb{Z}$ | the integers | $\ldots, -2, -1, 0, 1, 2, \ldots$ |
+| $\mathbb{R}$ | the real numbers | every number on the number line, including fractions like $\tfrac{3}{4}$ and endless ones like $\pi$ |
+
+So $5 \in \mathbb{N}$, and $-5 \in \mathbb{Z}$ but $-5 \notin \mathbb{N}$, and $\tfrac{1}{2} \in \mathbb{R}$ but $\tfrac{1}{2} \notin \mathbb{Z}$.
+
+<Aside>
+Whether $0 \in \mathbb{N}$ is a **convention**, not a fact — some books start the natural numbers at $1$. Neither camp is wrong; they made different choices about what the word means. This course puts $0$ in. When you read another book, check its first page.
+</Aside>

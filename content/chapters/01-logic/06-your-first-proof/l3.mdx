@@ -1,0 +1,66 @@
+---
+level: l3
+title: Your first proof
+readingTimeMin: 6
+newTerms: ["proof", "Discussion", "direct proof"]
+anchorExample: "multiples of 6"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You know what an if–then claim promises (module 1.5). Now: how do you show that one is actually true?
+
+Here is the claim we will prove. Read it and check a few numbers first.
+
+> **Claim.** If a number is a multiple of $6$, then it is even.
+
+Try $12$: even. Try $18$: even. Try $42$: even. Try $6$: even. It is looking good.
+
+But checking examples is not enough. There are infinitely many multiples of $6$, and you will never finish the list. To be *sure*, you need an argument that covers all of them at once. That argument is called a **proof**.
+
+## Planning first
+
+Mathematicians write a **Discussion** before the proof — a short note about what they have, what they are aiming for, and what route they will take. It is the map, not the trip.
+
+<Discussion>
+  <div slot="know">Our number is a multiple of $6$. That means it is $6$ times some whole number — say $6$ groups of something, repeated.</div>
+  <div slot="want">To show it is even. Even means it is $2$ times some whole number.</div>
+  <div slot="how">Start from what you're given. A group of $6$ is really two groups of $3$. So a pile of $6$s can be re-cut into a pile of $2$s.</div>
+</Discussion>
+
+Notice the shape: we wrote down what *even* and *multiple of 6* actually mean. Almost every proof begins by unpacking a definition. If you are stuck, that is usually the reason.
+
+## The proof
+
+<Proof>
+Let $n$ be a multiple of $6$. Then $n$ is $6$ added to itself some number of times — say $k$ times, so $n = 6 \times k$.
+
+Now $6 = 2 \times 3$. So $n = 2 \times 3 \times k$.
+
+Group the last two factors together: $n = 2 \times (3 \times k)$. Since $3 \times k$ is a whole number, $n$ is $2$ times a whole number.
+
+A number that is $2$ times a whole number is even. So $n$ is even.
+</Proof>
+
+That little square at the end — □ — is the **end-of-proof marker**. It means: the argument is finished and nothing is missing. You will see it for the rest of your mathematical life.
+
+## What made that a proof
+
+Three things, and they are the same three every time.
+
+1. **It started from what you're given.** The first sentence assumed the *if* part. It did not assume the *then* part; that would be cheating.
+2. **Every step was allowed.** Rewriting $6$ as $2 \times 3$ is just arithmetic. Regrouping factors is allowed. Nothing snuck in.
+3. **It ended on the conclusion.** The last sentence said the thing the claim promised.
+
+A proof built this way — assume the *if*, walk forward, arrive at the *then* — is called a **direct proof**. It is the first and most common kind.
+
+<Warning title="Examples are not proofs">
+Checking $12$, $18$, $42$ and $6$ shows the claim has not failed *yet*. It does not show the claim can never fail. One counterexample would sink the claim (module 1.11), but no number of examples can float it. That gap is the reason proofs exist.
+</Warning>
+
+<Aside>
+Proofs are written in full sentences on purpose. A proof is an explanation addressed to a reader, and a page of bare equations does not explain anything. If you cannot read your proof aloud as English, it is not finished.
+</Aside>

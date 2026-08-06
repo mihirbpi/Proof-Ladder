@@ -1,0 +1,95 @@
+---
+level: l3
+title: Bijections and size
+readingTimeMin: 6
+newTerms: ["bijection", "identity function"]
+anchorExample: "letter to position in the alphabet"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Two modules ago you met one-to-one: no output is shared. One module ago you met onto: no output is left out. A function with both properties is called a **bijection**.
+
+For a bijection, every element of the codomain has **exactly one** thing pointing at it. Not zero, not two. Exactly one.
+
+<Figure alt="Three elements on the left, each with one arrow, landing on three different elements on the right so every one is used exactly once." caption="A bijection: a perfect matching between S and T.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,2],[2,0]]} />
+</Figure>
+
+Here is the table that ties the last three modules together:
+
+| Property | Every element of $T$ has… |
+|---|---|
+| one-to-one | **at most** one arrow |
+| onto | **at least** one arrow |
+| bijection | **exactly** one arrow |
+
+## Counting without counting
+
+This is the idea that makes bijections important, and it is older than counting itself.
+
+Suppose you want to know whether two piles are the same size. You could count both. Or you could pair them up — and if a perfect pairing exists, the piles are the same size.
+
+That is not a trick. It is what "same size" *means*:
+
+> Two sets have the same size exactly when there is a bijection between them.
+
+For small piles the two methods agree, so nothing is gained. For piles you cannot count, pairing is the only method there is.
+
+## The identity function
+
+The simplest bijection of all sends everything to itself:
+$$
+\text{id}(s) = s.
+$$
+This is the **identity function**. It is one-to-one (if $s_1 = s_2$ then... well, they were equal already) and onto (given any $s$, feed in $s$). So every set has a bijection with itself, which is reassuring — a set had better be the same size as itself.
+
+## A finite example
+
+Let $f$ send each letter to its position, with codomain $\{1, 2, \ldots, 26\}$.
+
+<Proof>
+**One-to-one.** Different letters sit at different places in the alphabet, so no two letters share a position.
+
+**Onto.** Given any number from $1$ to $26$, count that far into the alphabet and you land on a letter that maps to it.
+
+Both hold, so $f$ is a bijection.
+</Proof>
+
+And so there are exactly as many letters as there are numbers from $1$ to $26$. Which we knew — but now we know it *without counting either side*.
+
+## Now something strange
+
+Let $f$ send each counting number to its double:
+$$
+1 \to 2, \quad 2 \to 4, \quad 3 \to 6, \quad 4 \to 8, \quad \ldots
+$$
+with the codomain being the **even** counting numbers.
+
+<Proof>
+**One-to-one.** If two numbers have the same double, divide by $2$ — they were the same number.
+
+**Onto.** Take any even number. It is $2$ times something, and that something is a counting number, and it doubles to what we wanted.
+
+So $f$ is a bijection.
+</Proof>
+
+Read what that says. There are **exactly as many even numbers as counting numbers.**
+
+But the even numbers are *inside* the counting numbers, and they miss half of them! Every odd number is left out!
+
+<Warning title="Infinite piles do not behave like finite ones">
+For a finite pile, throwing things away always makes it smaller. For an infinite pile, it need not. You can remove infinitely many things from the counting numbers and be left with a pile the same size as the original.
+
+This is not a mistake in the definition. It is a genuine discovery about infinity, and mathematicians spent a long time being uncomfortable with it before accepting that "same size" simply behaves differently up there.
+</Warning>
+
+<Aside>
+Once you accept that bijections measure size, you can ask which infinite sets are the same size. Whole numbers and even numbers: same. Whole numbers and fractions: also the same, surprisingly. Whole numbers and all the numbers on the number line: **not** the same — there are strictly more of those, and the proof of that is one of the most famous arguments in mathematics.
+</Aside>

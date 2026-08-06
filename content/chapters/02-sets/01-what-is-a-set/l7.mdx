@@ -1,0 +1,86 @@
+---
+level: l7
+title: What is a set?
+readingTimeMin: 10
+newTerms: ["set", "element", "empty set", "well-defined", "extensionality"]
+anchorExample: "roots of sin x and cos x"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Chapter 1 supplied a language for making claims. This chapter supplies the objects the claims are about. The organising fact is that mathematics has settled on a single kind of object — the set — from which numbers, functions, relations, spaces, and groups are all constructed.
+
+A **set** is a well-defined collection of objects, its **elements**. The membership relation is written
+$$
+x \in S, \qquad x \notin S,
+$$
+and for every object $x$ and set $S$, "$x \in S$" is a statement in the sense of §1.1: it has a definite truth value.
+
+## Extensionality
+
+The governing principle is that **a set is determined by its elements and nothing else**:
+$$
+S = T \quad\Longleftrightarrow\quad \forall x\;(x \in S \Leftrightarrow x \in T).
+$$
+
+Everything idiosyncratic about sets follows:
+
+- $\{1,2,3\} = \{3,2,1\}$: sets carry no order.
+- $\{1,1,2\} = \{1,2\}$: sets carry no multiplicity.
+- $\{x \in \mathbb{R} \mid x^2 = 1\} = \{1, -1\}$: how a set is *described* is irrelevant to what it *is*.
+
+The last point deserves emphasis. Two wildly different descriptions may denote the same set, and proving that they do is often the entire content of a theorem. The trigonometric identity $\{x \mid \sin x = 0\} = \{n\pi \mid n \in \mathbb{Z}\}$ is such a statement.
+
+Note also that extensionality is what makes §2.6's double-inclusion method correct: since $S = T$ means the two membership conditions are equivalent, and an equivalence is two implications (§1.9), a set equality is exactly two subset proofs.
+
+## Well-definedness, and what it is protecting against
+
+A collection qualifies as a set only when membership is unambiguous for every candidate object. "The set of large integers" fails: "$10^6$ is large" is not a statement, so nothing about the collection can be proved.
+
+But the requirement is doing far more work than excluding vague adjectives. Suppose every describable collection were a set. Define
+$$
+R = \{x \mid x \notin x\}.
+$$
+Then $R \in R \Leftrightarrow R \notin R$ — a contradiction with no escape route. This is **Russell's paradox** (1901), and it destroyed Frege's foundations of arithmetic while the second volume was in press.
+
+The modern repair is that unrestricted comprehension is not permitted. In Zermelo–Fraenkel set theory you may not form $\{x \mid p(x)\}$ out of nothing; you may only *separate* a subcollection out of a set you already have:
+$$
+\{x \in A \mid p(x)\} \quad\text{is a set, whenever $A$ is.}
+$$
+Run Russell's construction under this restriction and you get, for any set $A$, that $R_A = \{x \in A \mid x \notin x\} \notin A$ — no contradiction, just the useful theorem that no set contains everything.
+
+<Warning title="Distinguish three objects">
+$0$ is a number. $\emptyset$ is the set with no elements. $\{\emptyset\}$ is a set with exactly one element, that element being $\emptyset$. So $|\emptyset| = 0$ but $|\{\emptyset\}| = 1$, and $\emptyset \in \{\emptyset\}$ while $\emptyset \notin \emptyset$.
+
+The distinction is not pedantry: the von Neumann construction of the naturals is $0 := \emptyset$, $1 := \{\emptyset\}$, $2 := \{\emptyset, \{\emptyset\}\}$, and if you cannot keep these apart the construction is unreadable.
+</Warning>
+
+## The empty set is unique
+
+There is exactly one empty set. Suppose $\emptyset_1$ and $\emptyset_2$ both have no elements. By extensionality they are equal iff $\forall x\,(x \in \emptyset_1 \Leftrightarrow x \in \emptyset_2)$. Both sides of the biconditional are false for every $x$, so the biconditional holds vacuously (§1.5) for every $x$, so the sets are equal. The article in "*the* empty set" is earned, not assumed — and note that the argument is a small piece of vacuous reasoning doing real work.
+
+## The standard number systems
+
+$$
+\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}
+$$
+
+Each is constructed to repair a failure of closure in its predecessor: $\mathbb{Z}$ makes subtraction total, $\mathbb{Q}$ makes division by nonzero elements total, $\mathbb{R}$ fills the order-theoretic gaps ($\sqrt 2 \notin \mathbb{Q}$, §4.7), $\mathbb{C}$ makes every non-constant polynomial have a root. Chapter 4 treats the algebraic structure of these; Chapter 5 builds $\mathbb{C}$; Chapter 7 builds $\mathbb{N}$ from nothing.
+
+Strictly, the containments are abuses of notation: the integer $3$ and the rational $3/1$ and the real $3.000\ldots$ are constructed as different objects, and what actually holds is that each system embeds canonically in the next. Everyone writes $\subseteq$ and identifies along the embeddings. It is worth knowing that this is what is being done.
+
+<Aside>
+Whether $0 \in \mathbb{N}$ is a convention that splits by field: set theory, logic, and computer science include it; much of number theory does not. This course includes it. The convention affects statements, never content — but it affects enough statements that checking a book's first page is a habit worth having.
+</Aside>
+
+## "Set" is a primitive
+
+"A well-defined collection" is not a definition — *collection* is a synonym. This is unavoidable and deliberate. Any axiomatic theory must begin with undefined primitives; in ZF these are "set" and "$\in$", and their meaning is fixed not by definition but by the axioms they satisfy. Chapter 7 does the same for $\mathbb{N}$: *zero* and *successor* go undefined, and the Peano axioms pin down their behaviour.
+
+This is the mature attitude toward mathematical objects generally. What a set *is* turns out to matter far less than what can be proved about it.
+
+<WhereThisGoes level="l7">
+The naive theory here suffices for all of undergraduate mathematics, but the axiomatic theory beneath it is a live subject. ZFC — Zermelo–Fraenkel with Choice — is the default foundation, and its independence phenomena are among the most striking results in mathematics: Gödel and Cohen showed that the continuum hypothesis, the assertion that no cardinality lies strictly between $|\mathbb{N}|$ and $|\mathbb{R}|$, is neither provable nor refutable from ZFC. The Axiom of Choice is likewise independent, and it is equivalent to Zorn's lemma, to the well-ordering theorem, and to the existence of a basis for every vector space — while also entailing the Banach–Tarski decomposition. Alternative foundations exist and are increasingly used: type theory, in which "set" is replaced by "type" and membership by typing, underlies every modern proof assistant, and category theory relocates the primitive from membership to composition of maps.
+</WhereThisGoes>
