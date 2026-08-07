@@ -1,0 +1,114 @@
+---
+level: l6
+title: Converse, inverse, contrapositive
+readingTimeMin: 9
+newTerms: ["converse", "inverse", "contrapositive"]
+anchorExample: "vertical angles and the base-angle theorem"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Your geometry course is full of theorem pairs where one direction is proved and the other is proved separately, and full of warnings that a theorem "does not work backwards." This module says exactly which flips are safe.
+
+Given $p \Rightarrow q$:
+
+| Name | Statement |
+|---|---|
+| Original | $p \Rightarrow q$ |
+| **Converse** | $q \Rightarrow p$ |
+| **Inverse** | $\neg p \Rightarrow \neg q$ |
+| **Contrapositive** | $\neg q \Rightarrow \neg p$ |
+
+The named move is **flip it around**.
+
+## The truth table settles it
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q", "q ⇒ p", "¬p ⇒ ¬q", "¬q ⇒ ¬p"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true,  "q ⇒ p": true,  "¬p ⇒ ¬q": true,  "¬q ⇒ ¬p": true  },
+    { p: true,  q: false, "p ⇒ q": false, "q ⇒ p": true,  "¬p ⇒ ¬q": true,  "¬q ⇒ ¬p": false },
+    { p: false, q: true,  "p ⇒ q": true,  "q ⇒ p": false, "¬p ⇒ ¬q": false, "¬q ⇒ ¬p": true  },
+    { p: false, q: false, "p ⇒ q": true,  "q ⇒ p": true,  "¬p ⇒ ¬q": true,  "¬q ⇒ ¬p": true  }
+  ]}
+/>
+
+$$
+p \Rightarrow q \;\equiv\; \neg q \Rightarrow \neg p,
+\qquad
+q \Rightarrow p \;\equiv\; \neg p \Rightarrow \neg q,
+$$
+
+and the two pairs disagree in rows 2 and 3.
+
+**Only the contrapositive is equivalent to the original.** The converse and inverse are equivalent to each other — each is the contrapositive of the other — which is why one counterexample usually kills both at once.
+
+## A geometry example
+
+> **Theorem.** If a triangle is equilateral, then it is isosceles. **(True.)**
+
+**Converse:** if a triangle is isosceles, then it is equilateral. Take a triangle with sides $5, 5, 8$. Isosceles ✓, equilateral ✗. **False.**
+
+**Inverse:** if a triangle is not equilateral, then it is not isosceles. The same $5, 5, 8$ triangle: not equilateral ✓, but it *is* isosceles. **False** — necessarily, being the converse's contrapositive.
+
+**Contrapositive:** if a triangle is not isosceles, then it is not equilateral. **True**, and necessarily, since the original is.
+
+One triangle refuted two statements. That economy is a good diagnostic: when you find a counterexample to a converse, check it also refutes the inverse. If it does not, one of your three flips is misformed.
+
+## Why the equivalence is believable
+
+$p \Rightarrow q$ says the situation "$p$ true, $q$ false" never occurs.
+
+$\neg q \Rightarrow \neg p$ says "$\neg q$ true, $\neg p$ false" — that is, "$q$ false, $p$ true" — never occurs.
+
+Same forbidden situation, described from opposite ends. Two statements forbidding exactly the same thing are the same statement.
+
+## The theorem-and-converse pattern in your course
+
+Now look at your textbook with this in mind. It keeps stating theorem pairs:
+
+- *If two sides of a triangle are congruent, the angles opposite them are congruent* — and its converse, *if two angles are congruent, the sides opposite them are congruent.*
+- *If a quadrilateral is a parallelogram, its diagonals bisect each other* — and the converse.
+- *If two lines are parallel, alternate interior angles are congruent* — and the converse.
+
+**Each pair needs two proofs.** The book is not being repetitive; it is being honest, because the converse genuinely does not follow. Module 1.9 gives the pair a name — a biconditional — and shows how the two halves usually need different techniques.
+
+And note which pairs your book does *not* state twice. It never proves both "if vertical, then congruent" and its converse — because the converse ("if two angles are congruent, they are vertical") is wildly false.
+
+## Contraposing a compound hypothesis
+
+This is where module 1.4 earns its place.
+
+> If $\overline{AB}\cong\overline{DE}$ **and** $\angle B\cong\angle E$ **and** $\overline{BC}\cong\overline{EF}$, then $\triangle ABC \cong \triangle DEF$.
+
+By De Morgan the contrapositive is:
+
+> If $\triangle ABC \not\cong \triangle DEF$, then $\overline{AB}\not\cong\overline{DE}$ **or** $\angle B\not\cong\angle E$ **or** $\overline{BC}\not\cong\overline{EF}$.
+
+At least one correspondence fails, and you are not told which. That *or* is exactly right — and it is why any proof using this contrapositive will need cases.
+
+<Warning title="Affirming the consequent">
+Treating a true conditional as though its converse also held is the most common reasoning error there is.
+
+*If two lines are parallel, they do not intersect.* These two lines do not intersect — are they parallel? In a plane, yes. **In space, no** — they might be skew. The conditional gives no licence to conclude $p$ from $q$, and here the licence genuinely fails.
+
+In algebra it appears as: squaring both sides of an equation and forgetting to check. Squaring is a $\Rightarrow$, not a $\Leftrightarrow$, and the extraneous roots it introduces are converse failures.
+</Warning>
+
+<Aside>
+Negating a conditional is a different operation from any of these flips:
+$$\neg(p \Rightarrow q) \equiv p \wedge \neg q.$$
+The negation is not a conditional at all — which is exactly why refuting "if $p$ then $q$" always means exhibiting one case where $p$ holds and $q$ fails, never proposing a rival conditional.
+</Aside>
+
+## Necessary and sufficient
+
+If $p \Rightarrow q$, then $p$ is a **sufficient** condition for $q$, and $q$ is a **necessary** condition for $p$. The contrapositive is just the second reading of the same fact — which is why they are equivalent.
+
+Being equilateral is *sufficient* for being isosceles; being isosceles is *necessary* for being equilateral. Module 1.9's biconditional asserts both roles at once.
+
+And because the contrapositive always shares a truth value with the original, you may **prove it instead** whenever it looks easier. Your course already does this — it is what "indirect proof" often amounts to — and module 1.8 makes it a technique with a decision rule.

@@ -1,0 +1,87 @@
+---
+level: l7
+title: Euler's formula
+readingTimeMin: 8
+newTerms: ["absolute convergence"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+e^{i\theta} = \cos\theta + i\sin\theta \qquad (\theta \in \mathbb{R}).
+$$
+
+## The definition being used
+
+$e^z$ for complex $z$ is **defined** by the series
+$$
+e^z := \sum_{n=0}^{\infty}\frac{z^n}{n!},
+$$
+which converges absolutely for every $z \in \mathbb{C}$ by comparison with $\sum |z|^n/n!$, itself convergent by the ratio test. This is not a theorem about a previously known function — for complex arguments there is nothing else $e^z$ could mean, and the definition is justified by the fact that it agrees with the real exponential on $\mathbb{R}$ and satisfies $e^{z+w} = e^ze^w$.
+
+Similarly $\cos$ and $\sin$ are taken as their series, which converge absolutely everywhere.
+
+## Proof
+
+<Proof>
+The powers of $i$ satisfy $i^{2k} = (-1)^k$ and $i^{2k+1} = (-1)^k i$, immediately from $i^2 = -1$ and induction.
+
+Substituting $z = i\theta$:
+$$
+e^{i\theta} = \sum_{n=0}^\infty \frac{(i\theta)^n}{n!}.
+$$
+
+The series converges absolutely, since $\sum |i\theta|^n/n! = \sum |\theta|^n/n! = e^{|\theta|} < \infty$. Absolute convergence permits arbitrary rearrangement, so we may split into even and odd $n$:
+$$
+e^{i\theta} = \sum_{k=0}^\infty \frac{(i\theta)^{2k}}{(2k)!} + \sum_{k=0}^\infty\frac{(i\theta)^{2k+1}}{(2k+1)!}
+= \sum_{k=0}^\infty \frac{(-1)^k\theta^{2k}}{(2k)!} + i\sum_{k=0}^\infty\frac{(-1)^k\theta^{2k+1}}{(2k+1)!}.
+$$
+
+The two series are precisely those defining $\cos\theta$ and $\sin\theta$. Hence $e^{i\theta} = \cos\theta + i\sin\theta$.
+</Proof>
+
+<Warning title="The rearrangement needs justification">
+Splitting an infinite series into two subseries and summing separately is **not** valid in general. Riemann's rearrangement theorem: a conditionally convergent real series can be rearranged to converge to any prescribed value, or to diverge. The standard example is the alternating harmonic series.
+
+Absolute convergence is exactly the hypothesis that makes rearrangement safe, and it is why the estimate $\sum|\theta|^n/n! < \infty$ appears in the proof rather than being taken as read. A derivation that omits it is a formal manipulation, not a proof.
+</Warning>
+
+## An alternative proof
+
+<Proof title="Proof via a differential equation">
+Fix $\theta$ and define $f(\theta) = e^{-i\theta}(\cos\theta + i\sin\theta)$. Differentiating (term-by-term differentiation of a power series being valid inside its disc of convergence):
+$$
+f'(\theta) = -ie^{-i\theta}(\cos\theta + i\sin\theta) + e^{-i\theta}(-\sin\theta + i\cos\theta) = e^{-i\theta}\big(-i\cos\theta + \sin\theta - \sin\theta + i\cos\theta\big) = 0.
+$$
+So $f$ is constant, and $f(0) = 1\cdot 1 = 1$. Hence $\cos\theta + i\sin\theta = e^{i\theta}$.
+</Proof>
+
+The two proofs make different points. The series proof shows *why* the identity holds — the cycle of $i$ sorts the terms. The ODE proof shows that $e^{i\theta}$ is the unique solution of $y' = iy$, $y(0)=1$, which is the conceptual reason: multiplication by $i$ is rotation by a right angle (§5.5), so a point whose velocity is always $i$ times its position moves perpendicular to its radius — i.e. in a circle at unit speed.
+
+## Consequences
+
+$$
+|e^{i\theta}|^2 = \cos^2\theta + \sin^2\theta = 1,
+$$
+so $e^{i\theta}$ lies on the unit circle, and $\theta \mapsto e^{i\theta}$ is a surjective homomorphism $(\mathbb{R},+) \to (S^1,\times)$ with kernel $2\pi\mathbb{Z}$. Hence $\mathbb{R}/2\pi\mathbb{Z} \cong S^1$, which is the structural statement behind the non-uniqueness of polar form (§5.8).
+
+$$
+\cos\theta = \frac{e^{i\theta}+e^{-i\theta}}{2}, \qquad \sin\theta = \frac{e^{i\theta}-e^{-i\theta}}{2i},
+$$
+which are §5.4's $\operatorname{Re}$ and $\operatorname{Im}$ formulas applied to $e^{i\theta}$, and which convert every trigonometric identity into an exponential one. Most trigonometric manipulations are easier this way, and §5.9 exploits it.
+
+Note also $\overline{e^{i\theta}} = e^{-i\theta}$ and $e^{a+bi} = e^a e^{ib} = e^a(\cos b + i\sin b)$, so the complex exponential is $2\pi i$-periodic — a property the real exponential does not have, and the source of the multivaluedness of complex $\log$.
+
+<Aside>
+$e^{i\pi} + 1 = 0$ is Euler's identity. Its aesthetic reputation is deserved but the mathematical content is the periodicity: $e^{i\pi} = -1$ says half a turn is a reflection, and $e^{2\pi i}=1$ says a full turn is the identity. The identity is the statement that the exponential wraps the line around the circle.
+</Aside>
+
+<WhereThisGoes level="l7">
+Euler's formula is the hinge between analysis and geometry, and its consequences run in every direction. Fourier analysis writes functions as superpositions of $e^{in\theta}$, and the resulting theory underlies signal processing, PDEs, and quantum mechanics. In group theory, $\theta \mapsto e^{i\theta}$ is the exponential map of the Lie group $S^1$, and the general Lie-theoretic exponential $\exp: \mathfrak g \to G$ is modelled on it — with the same series, now of matrices. In number theory, characters $n \mapsto e^{2\pi i n/q}$ are the tool for detecting congruence conditions, and the analytic proof of Dirichlet's theorem on primes in arithmetic progressions runs entirely on them. And $e^{i\theta}$ is the reason electrical engineering computes with phasors: differentiating becomes multiplication by $i\omega$, turning differential equations into algebra.
+</WhereThisGoes>

@@ -61,14 +61,16 @@ You will need to move between the two forms constantly.
 
 | Set-builder | List |
 |---|---|
-| $\{x \mid x$ is a whole number, $-2 < x < 5\}$ | $\{-1, 0, 1, 2, 3, 4\}$ |
-| $\{x \mid x$ is a whole number and $x \times x = 9\}$ | $\{3, -3\}$ |
-| $\{x \mid x$ is a whole number and $x \times x = 2\}$ | $\emptyset$ |
+| $\{x \mid x$ is a counting number less than $5\}$ | $\{0, 1, 2, 3, 4\}$ |
+| $\{x \mid x$ is a counting number and $3$ goes into it, and it is less than $10\}$ | $\{0, 3, 6, 9\}$ |
+| $\{x \mid x$ is a counting number bigger than $0$, less than $5$, that both $2$ and $3$ go into$\}$ | $\emptyset$ |
 
-That last row is worth staring at. The condition is perfectly clear, and nothing satisfies it — no whole number squares to $2$. A condition satisfied by nothing gives the empty set. It is not an error; it is an answer.
+That last row is worth staring at. The condition is perfectly clear, and nothing satisfies it: a number that both $2$ and $3$ go into has to be a multiple of $6$, and there are none between $0$ and $5$.
+
+A condition satisfied by nothing gives the empty set. That is not an error; it is an answer.
 
 <Warning title="Say what x is allowed to be">
-$\{x \mid x \times x = 2\}$ is ambiguous, and dangerously so. Among whole numbers it is empty. Among all numbers on the number line it has two elements. Always state the pool $x$ is drawn from — the condition alone does not determine the set.
+$\{x \mid x$ is less than $1\}$ is ambiguous, and dangerously so. Among counting numbers it holds only $0$. Among all numbers on the number line it holds infinitely many, including every fraction below $1$. Always say what pool you are drawing from — the condition alone does not determine the set.
 </Warning>
 
 <Aside>

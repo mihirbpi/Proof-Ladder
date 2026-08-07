@@ -1,0 +1,104 @@
+---
+level: l4
+title: Multiplication is rotation
+readingTimeMin: 6
+newTerms: ["De Moivre's formula"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## The multiplication rule
+
+$$
+\big(r_1e^{i\theta_1}\big)\big(r_2e^{i\theta_2}\big) = r_1r_2\,e^{i(\theta_1+\theta_2)}.
+$$
+
+**Moduli multiply; arguments add.** The proof is the exponent law $e^Ae^B = e^{A+B}$ together with commutativity, and it can also be checked directly against the Cartesian formula:
+
+<Proof>
+Expanding both sides via Euler's formula:
+$$
+\begin{aligned}
+r_1e^{i\theta_1}\cdot r_2e^{i\theta_2}
+&= r_1r_2(\cos\theta_1 + i\sin\theta_1)(\cos\theta_2 + i\sin\theta_2)\\
+&= r_1r_2\big[(\cos\theta_1\cos\theta_2 - \sin\theta_1\sin\theta_2) + i(\cos\theta_1\sin\theta_2 + \sin\theta_1\cos\theta_2)\big]\\
+&= r_1r_2\big[\cos(\theta_1+\theta_2) + i\sin(\theta_1+\theta_2)\big] = r_1r_2 e^{i(\theta_1+\theta_2)},
+\end{aligned}
+$$
+the third line by the addition formulas for $\cos$ and $\sin$.
+</Proof>
+
+Note what that computation shows: **the polar multiplication rule and the trigonometric addition formulas are the same fact.** Either can be derived from the other.
+
+Two consequences already established: $|z_1z_2| = |z_1||z_2|$ (module 5.6), and $\overline{re^{i\theta}} = re^{-i\theta}$, since conjugation reflects in the real axis and so negates the angle.
+
+## Geometric reading
+
+Multiplication by $z = re^{i\theta}$ is: **rotate by $\theta$, then scale by $r$.**
+
+- $|z| = 1$: pure rotation.
+- $\theta = 0$, $r > 0$: pure scaling.
+- $z = i$: rotation by $\pi/2$.
+- $z = -1$: rotation by $\pi$.
+
+<Figure alt="Four points at compass positions on a dashed unit circle labelled one, i, minus one and minus i." caption="Multiplication by $i$ adds $\pi/2$ to the argument.">
+  <ComplexPlane circle={1} points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+$i^2 = -1$ now reads: *two quarter turns make a half turn*. The defining property of $i$ is a geometric identity, and every remarkable feature of $\mathbb{C}$ traces back to it.
+
+## De Moivre's formula
+
+Iterating the rule with $r=1$:
+
+> **De Moivre's formula.** For $n \in \mathbb{Z}$,
+> $$\big(\cos\theta + i\sin\theta\big)^n = \cos(n\theta) + i\sin(n\theta).$$
+
+<Proof>
+Equivalently $\big(e^{i\theta}\big)^n = e^{in\theta}$. For $n \geq 0$ this is induction: true at $n=0$, and if $(e^{i\theta})^k = e^{ik\theta}$ then
+$$(e^{i\theta})^{k+1} = (e^{i\theta})^k e^{i\theta} = e^{ik\theta}e^{i\theta} = e^{i(k+1)\theta}$$
+by the multiplication rule. For $n < 0$, note $(e^{i\theta})^{-1} = e^{-i\theta}$ since their product is $e^0 = 1$.
+</Proof>
+
+## The payoff: multiple-angle formulas
+
+Comparing De Moivre's two sides and equating real and imaginary parts (module 5.2) produces trigonometric identities on demand.
+
+**$n = 2$:**
+$$
+\cos2\theta + i\sin2\theta = (\cos\theta+i\sin\theta)^2 = (\cos^2\theta - \sin^2\theta) + i(2\sin\theta\cos\theta),
+$$
+so
+$$
+\cos2\theta = \cos^2\theta - \sin^2\theta, \qquad \sin2\theta = 2\sin\theta\cos\theta.
+$$
+
+**$n = 3$:** expanding $(\cos\theta + i\sin\theta)^3$ gives
+$$
+\cos3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta, \qquad
+\sin3\theta = 3\cos^2\theta\sin\theta - \sin^3\theta.
+$$
+
+This is the moment complex numbers repay a course you have already taken. Identities that were memorised now have a one-line derivation, and **two identities come out of every computation**, because a single complex equation carries a real part and an imaginary part.
+
+<Warning title="Moduli multiply, arguments add">
+$2e^{i\pi/6}\cdot 3e^{i\pi/4} = 6e^{i(\pi/6+\pi/4)} = 6e^{5i\pi/12}$. The arguments are added, never multiplied.
+
+Also, $\arg$ adds only **modulo $2\pi$** (module 5.8): principal arguments can sum past $\pi$ and need reducing.
+</Warning>
+
+<Aside>
+Setting $z^n = 1$ and solving in polar form gives the **$n$th roots of unity**: $z_k = e^{2\pi i k/n}$ for $k = 0, \ldots, n-1$. There are exactly $n$ of them, equally spaced around the unit circle at the vertices of a regular $n$-gon.
+
+So a purely algebraic question — the solutions of $z^n = 1$ — has a purely geometric answer, and it is the reason ruler-and-compass constructibility of regular polygons turns out to be a question about number fields.
+</Aside>

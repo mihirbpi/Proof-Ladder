@@ -13,6 +13,17 @@
     "l7": "Induction in calculus",
     "l8": "Induction in calculus"
   },
+  "kernelIdea": "Conjecture a general formula from the first few cases by spotting several patterns at once, then prove it by induction, handling the base case carefully.",
+  "kernels": {
+    "l1": "Double it, then double it again. The pattern keeps going.",
+    "l2": "If you keep doing the same step over and over, a pattern appears. Guess the pattern, then use the domino idea to be sure it never breaks.",
+    "l3": "Compute the first few cases of a repeated process, look for a formula covering all of them, then prove the formula by the domino argument. Guessing and proving are two different jobs.",
+    "l4": "Repeated application of a step produces data; conjecture a closed formula by spotting each pattern separately, then prove it by induction. The base case is the zeroth application, which is the original object.",
+    "l5": "Conjecture-then-prove is the working mathematician’s loop: compute cases, isolate each pattern, assemble a formula, prove by induction.",
+    "l6": "The nth derivative of 1/x follows this pattern: sign, factorial, and exponent are three separate patterns assembled into one formula and proved by induction.",
+    "l7": "For f(x) = 1/x, f^{(n)}(x) = (−1)ⁿ n! x^{−(n+1)}, conjectured by isolating three patterns in the first few derivatives and proved by induction using (k+1)! = (k+1)·k!.",
+    "l8": "Induction on the order of differentiation is the standard route to Leibniz’s rule, Taylor coefficients, and closed forms for higher derivatives generally."
+  },
   "kernel": "For f(x) = 1/x, f^{(n)}(x) = (−1)ⁿ n! x^{−(n+1)}. Found by computing the first few derivatives and spotting three patterns (sign, factorial, exponent); proved by induction using (k+1)! = (k+1)·k!.",
   "objectives": [
     "Conjecture a general formula from data",

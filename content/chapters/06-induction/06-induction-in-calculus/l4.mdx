@@ -1,0 +1,114 @@
+---
+level: l4
+title: Induction with repeated steps
+readingTimeMin: 6
+newTerms: ["factorial"]
+anchorExample: "1+3+5+… = n²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every proof so far started from a claim someone handed you. Real work starts one step earlier: you must **conjecture** the claim, then prove it. This module drills both.
+
+*This is the pre-calculus version of the module. The grown-up version applies the same method to repeated differentiation; nothing about the method changes.*
+
+## Factorials
+
+$$
+n! = 1 \times 2 \times 3 \times \cdots \times n, \qquad 0! := 1.
+$$
+
+The defining recursion, and the only fact needed below:
+$$
+(k+1)! = (k+1)\cdot k!.
+$$
+
+The convention $0! = 1$ is forced by that recursion at $k=0$: $1! = 1\cdot 0!$ requires $0! = 1$.
+
+## Conjecturing from data
+
+Iterate the operation "multiply by the step number, then negate", starting from $1$:
+
+| $n$ | $a_n$ |
+|---|---|
+| $0$ | $1$ |
+| $1$ | $-1$ |
+| $2$ | $2$ |
+| $3$ | $-6$ |
+| $4$ | $24$ |
+| $5$ | $-120$ |
+
+The sequence $1, -1, 2, -6, 24, -120$ is opaque taken whole. **Split it into independent patterns.**
+
+**Sign.** $+,-,+,-,+,-$: this is $(-1)^n$.
+
+**Magnitude.** $1,1,2,6,24,120$: each is the previous times $n$, which is $n!$.
+
+Combining:
+$$
+a_n = (-1)^n\, n!.
+$$
+
+Verify at $n=4$: $(-1)^4 \cdot 24 = 24$. ✓ At $n=5$: $(-1)^5 \cdot 120 = -120$. ✓
+
+<Warning title="Isolate patterns, then combine">
+Trying to see a single formula in $1,-1,2,-6,24,-120$ is hopeless; seeing "alternating" and "factorial" separately is easy.
+
+This is the general discipline for conjecturing. Look for sign, then magnitude, then any exponent — one at a time. A formula assembled from independently identified patterns is far more likely to be right than one guessed whole.
+</Warning>
+
+## Proving the conjecture
+
+<Discussion>
+  <div slot="know">The recursion $a_{n+1} = -(n+1)a_n$, and $(k+1)! = (k+1)k!$.</div>
+  <div slot="want">$a_n = (-1)^n n!$ for all $n \geq 0$.</div>
+  <div slot="how">Base at $n=0$. In the step, apply the recursion to $a_k$, substitute (IH), and reassemble the sign and factorial separately — the same split that produced the conjecture.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ be: $a_n = (-1)^n n!$.
+
+**Base.** $a_0 = 1$ and $(-1)^0 \cdot 0! = 1\cdot 1 = 1$. ✓
+
+**Step.** Fix $k \geq 0$ and assume $a_k = (-1)^k k!$. By the recursion,
+$$
+a_{k+1} = -(k+1)\,a_k = -(k+1)\cdot(-1)^k k! = (-1)^{k+1}\,(k+1)\,k! = (-1)^{k+1}(k+1)!,
+$$
+using $(-1)\cdot(-1)^k = (-1)^{k+1}$ and $(k+1)k! = (k+1)!$. This is $A(k+1)$.
+
+By induction, $A(n)$ holds for all $n \geq 0$.
+</Proof>
+
+Notice that the two facts consumed in the step are exactly the two patterns identified during conjecturing. That is typical: **the structure that let you guess the formula is the structure that proves it.**
+
+## The calculus version
+
+If you have met derivatives, here is the same module in its native habitat.
+
+Take the rule $y = 1/x$, written $y = x^{-1}$, and differentiate it over and over. Writing $y'$ for the first derivative, $y''$ for the second, and so on:
+
+| $n$ | $f^{(n)}(x)$ |
+|---|---|
+| $0$ | $x^{-1}$ |
+| $1$ | $-x^{-2}$ |
+| $2$ | $2x^{-3}$ |
+| $3$ | $-6x^{-4}$ |
+| $4$ | $24x^{-5}$ |
+
+Three patterns: alternating sign, factorial coefficient, and exponent $-(n+1)$. Hence the conjecture
+$$
+f^{(n)}(x) = (-1)^n\, n!\, x^{-(n+1)}.
+$$
+
+The base case is $f^{(0)} = f$, which is the convention that differentiating zero times does nothing. The step differentiates $(-1)^k k! x^{-(k+1)}$ by the power rule to get $(-1)^k k! \cdot \big(-(k+1)\big)x^{-(k+2)} = (-1)^{k+1}(k+1)!\,x^{-(k+2)}$ — precisely $A(k+1)$.
+
+Same three patterns, same recursion, same proof.
+
+<Aside>
+Induction verifies formulas; it never suggests them. Discovery comes from computing cases, from analogy, or from luck.
+
+The one systematic aid is to look for a **step rule**: if each term is the previous term multiplied by something simple, then the closed form is that something, multiplied together over and over. Step rules of that kind produce factorials, powers, and the numbers in Pascal's triangle. Recognising the step rule is usually the whole battle.
+</Aside>

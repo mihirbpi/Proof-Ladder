@@ -1,0 +1,86 @@
+---
+level: l3
+title: The complex plane
+readingTimeMin: 5
+newTerms: ["complex plane", "real axis", "imaginary axis"]
+anchorExample: "the number that turns"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+A complex number is determined by two ordinary numbers — its across part and its turn part. So it can be plotted as a point: go across by the first, and up by the second.
+
+That picture is called the **complex plane**.
+
+<Figure alt="A grid with axes crossing at the origin and three points plotted: 3 plus 2i, minus 2 plus i, and 4 on the horizontal axis." caption="Plotting a complex number: across by the first part, up by the second.">
+  <ComplexPlane points={[
+    {re: 3, im: 2, label: "3+2i"},
+    {re: -2, im: 1, label: "-2+i"},
+    {re: 4, im: 0, label: "4"}
+  ]} range={5} />
+</Figure>
+
+The horizontal axis is called the **real axis**, and the ordinary numbers live along it. The vertical axis is the **imaginary axis**, where the numbers $bi$ live.
+
+## Addition is joining arrows
+
+Draw each complex number as an arrow from the origin. To add, put the tail of the second arrow at the head of the first. The result is where you finish.
+
+<Figure alt="Two arrows from the origin, one to 3 plus i and one to 1 plus 2i, with a point marked at 4 plus 3i." caption="$(3+i) + (1+2i) = 4+3i$: the arrows join nose to tail.">
+  <ComplexPlane
+    vectors={[{re: 3, im: 1}, {re: 1, im: 2}]}
+    points={[{re: 4, im: 3, label: "4+3i"}]}
+    range={5} />
+</Figure>
+
+Why does this work? Because adding complex numbers adds the parts separately (module 5.3) — and going $3$ across then $1$ across is going $4$ across. The picture and the algebra are the same statement.
+
+## Conjugation is reflection
+
+The conjugate keeps the across part and flips the sign of the up part. On the plane, that is a **reflection in the real axis**.
+
+<Figure alt="A point at 3 plus 2i above the horizontal axis and its mirror image at 3 minus 2i below it." caption="$z$ and $\bar z$ are mirror images in the real axis.">
+  <ComplexPlane points={[
+    {re: 3, im: 2, label: "z"},
+    {re: 3, im: -2, label: "z̄"}
+  ]} range={4} />
+</Figure>
+
+Now look at module 5.4's theorem again: *$z$ is real if and only if $z = \bar z$*.
+
+In the picture it is obvious. A reflection leaves a point alone exactly when the point is on the mirror line — and the mirror line *is* the real axis.
+
+So the geometry explains the algebra. That is worth noticing: a fact that took a two-direction proof becomes visible in one glance.
+
+## Multiplying by $i$ turns a quarter turn
+
+Follow $1$ as you multiply by $i$ repeatedly:
+$$
+1 \to i \to -1 \to -i \to 1.
+$$
+
+<Figure alt="Four points marked on a grid at one across, one up, one across the other way, and one down, arranged like compass points around the origin." caption="Multiplying by $i$ sends each compass point to the next, counterclockwise.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+Each step is a quarter turn counterclockwise. Four steps and you are home.
+
+And now $i \times i = -1$ makes sense as a picture: two quarter turns is a half turn, and a half turn is what multiplying by $-1$ does. The rule that defined $i$ turns out to be a fact about turning.
+
+<Warning title="This is not the usual graph">
+The complex plane is not a graph of a function. There is no input axis and output axis here — each *point* is a single number, not a pair of related quantities.
+
+Plotting a complex function properly would need four dimensions, which is why complex functions are usually drawn as two planes side by side, or with colours.
+</Warning>
+
+<Aside>
+This picture was not obvious. Complex numbers were used for two centuries before Wessel, Argand, and Gauss drew them around 1800 — and the drawing is what made everyone stop worrying about whether they were legitimate. Once you can see a number, it is hard to keep calling it imaginary.
+</Aside>

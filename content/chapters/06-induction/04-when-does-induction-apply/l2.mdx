@@ -1,0 +1,60 @@
+---
+level: l2
+title: Some things are not in a line
+readingTimeMin: 4
+newTerms: ["one after another"]
+anchorExample: "a line of dominoes"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Warning from '@/components/Warning.astro';
+import Aside from '@/components/Aside.astro';
+
+The domino trick is powerful, but it does not work on everything. Here is how to tell.
+
+## Claims that come one after another
+
+> Every whole number, doubled, is even.
+
+Check the shape of this. There is a case for $1$, a case for $2$, a case for $3$, and so on. They come **one after another**, and you can count them.
+
+Dominoes work here.
+
+> Adding up odd numbers gives a square number.
+
+Same shape. A case for the first odd number, then the first two, then the first three. One after another. Dominoes work.
+
+## Claims that are not in a line
+
+> Every number on the number line, times itself, is zero or bigger.
+
+Now try to line these up. What is the first case? Is it $0$? Then what comes next — $0.1$? But $0.05$ is smaller and also needs checking. And $0.001$. And smaller still, forever.
+
+**There is no next one.** Between any two numbers on the line there is always another (module 4.6).
+
+No line, no dominoes.
+
+(That claim is true, by the way. But you prove it a different way — take any one and follow it, as in module 1.12.)
+
+## Two questions to ask
+
+Before reaching for dominoes, ask:
+
+1. **Can I count the cases?** First, second, third... If not, dominoes are the wrong tool.
+2. **Does each case help with the next?** If knowing case $5$ tells you nothing at all about case $6$, the chain has a gap.
+
+Both must be yes.
+
+<Warning title="Dominoes are one tool, not the only tool">
+If dominoes do not apply, that does not mean the claim is false. It means you need a different method.
+
+Module 1.12 gave you *take any one and follow it*, which works when the cases do not need to be lined up. Chapter 2 gave you *check both boxes*. Module 2.5 gave you *suppose not*. Choosing the right one is a real skill.
+</Warning>
+
+<Aside>
+Question 2 catches people out more often than question 1. You can have perfectly countable cases with no useful link between them. If case $k+1$ has nothing to do with case $k$, then even after assuming case $k$ you are no closer, and the inductive step will not go through.
+</Aside>
+
+<TryIt>
+Say a claim about "every whole number." Then say one about "every number on the number line." Which one comes in a line?
+</TryIt>

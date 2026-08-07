@@ -1,0 +1,143 @@
+---
+level: l6
+title: Remainders and proof by cases
+readingTimeMin: 8
+newTerms: ["remainder"]
+anchorExample: "coordinates, lengths, and the Pythagorean theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 4.2 left a gap. Proving $a\mid b$ is easy — exhibit the witness. Proving $a\nmid b$ means ruling out every integer $k$, and there are infinitely many.
+
+Division with remainder closes the gap by replacing infinitely many candidates with finitely many cases.
+
+## The division algorithm
+
+> **Theorem.** For any integer $m$ and any positive integer $n$, there exist **unique** integers $q$ and $r$ with
+> $$m = nq + r \quad\text{and}\quad 0 \leq r < n.$$
+
+$q$ is the **quotient** and $r$ the **remainder**. The name "algorithm" is historical; it is a theorem, and its existence half is proved by induction in Chapter 6.
+
+Note the two halves — existence and uniqueness, module 1.10's $\exists!$. Uniqueness is what makes "the remainder" a legitimate phrase, and it is what makes the case split below exclusive rather than merely exhaustive.
+
+The constraint $0\le r<n$ is not decoration. Without it, $17 = 5\cdot 2 + 7$ and $17 = 5\cdot 3 + 2$ are both true, and neither $q$ nor $r$ would be determined.
+
+## Divisibility restated
+
+$$
+n \mid m \quad\Longleftrightarrow\quad \text{the remainder of } m \text{ on division by } n \text{ is } 0.
+$$
+
+So $n \nmid m$ means the remainder is one of $1, 2, \dots, n-1$ — **finitely many possibilities**, each of which can be examined. The infinite search is gone.
+
+## Residue classes
+
+Every integer falls into exactly one of $n$ classes according to its remainder mod $n$. For $n = 3$:
+
+$$\mathbb{Z} = \{3k\} \ \cup\ \{3k+1\}\ \cup\ \{3k+2\}.$$
+
+Three sets, pairwise disjoint, covering everything — a **partition** in the sense of module 2.4. Exhaustive from existence, exclusive from uniqueness.
+
+**That is exactly the licence proof by cases needs** (module 1.12). Splitting on the remainder is not a heuristic; it is a complete method, guaranteed by the theorem.
+
+The named move is **split into cases**.
+
+## Choosing the modulus
+
+The number of cases is yours to pick, and picking well is most of the work.
+
+> **Proposition.** For every integer $n$, $n^2 + n$ is even.
+
+<Discussion>
+  <div slot="know">The conclusion concerns divisibility by $2$, so split on the remainder mod $2$.</div>
+  <div slot="want">$n^2+n = 2\cdot(\text{integer})$ in each case.</div>
+  <div slot="how">Substitute the case form and factor out a $2$. Two cases, and both should be short — if one runs long, the modulus was probably wrong.</div>
+</Discussion>
+
+<Proof>
+Let $n$ be an arbitrary integer. By the division algorithm with divisor $2$, either $n = 2k$ or $n = 2k+1$ for some integer $k$.
+
+**Case 1: $n = 2k$.** Then
+$$n^2 + n = 4k^2 + 2k = 2(2k^2+k),$$
+and $2k^2+k\in\mathbb{Z}$ by closure.
+
+**Case 2: $n = 2k+1$.** Then
+$$n^2 + n = (4k^2+4k+1) + (2k+1) = 4k^2+6k+2 = 2(2k^2+3k+1),$$
+and $2k^2+3k+1\in\mathbb{Z}$ by closure.
+
+The cases are exhaustive, so $n^2+n$ is even for every integer $n$.
+</Proof>
+
+Now a harder one, where the modulus is not the number in the conclusion.
+
+> **Proposition.** For every integer $n$, $3 \mid (n^3 - n)$.
+
+<Proof>
+Let $n$ be arbitrary. By the division algorithm, $n = 3k$, $n = 3k+1$, or $n = 3k+2$.
+
+**Case 1: $n = 3k$.** Then $n^3 - n = 27k^3 - 3k = 3(9k^3-k)$.
+
+**Case 2: $n = 3k+1$.** Then $n^3 = 27k^3 + 27k^2+9k+1$, so
+$$n^3 - n = 27k^3+27k^2+9k+1 - 3k - 1 = 3(9k^3+9k^2+2k).$$
+
+**Case 3: $n = 3k+2$.** Then $n^3 = 27k^3+54k^2+36k+8$, so
+$$n^3 - n = 27k^3+54k^2+36k+8-3k-2 = 3(9k^3+18k^2+11k+2).$$
+
+Each bracket is an integer by closure, and the cases are exhaustive. Hence $3\mid(n^3-n)$.
+</Proof>
+
+**Three cases because the conclusion was about $3$.** Splitting mod $2$ would have produced two cases neither of which resolved, and the wrong modulus is the usual reason a case proof fails to close.
+
+<Warning title="Exhaustive, not merely plausible">
+The claim that the cases cover everything is an obligation, and the division algorithm is what discharges it. Say so.
+
+A proof of "$3\mid(n^3-n)$" that checks $n=1,2,3,4,5$ and stops has not proved anything — module 1.10's warning. Cases are not examples. What makes a case argument valid is the theorem guaranteeing there are no others.
+</Warning>
+
+## Reading the pattern backwards
+
+The correspondence runs both directions:
+
+$$m = 3k+1 \text{ for some } k \quad\Longleftrightarrow\quad m \text{ has remainder } 1 \text{ mod } 3 \quad\Longrightarrow\quad 3\nmid m.$$
+
+So writing an integer in the form $3k+1$ **proves** it is not divisible by $3$, by uniqueness of the remainder. This is how non-divisibility gets established without an infinite search, and it is the tool module 4.7 will need.
+
+## Choosing the modulus, in practice
+
+There is a way to pick the modulus before doing any algebra: **look at what the conclusion is about.**
+
+To prove $n^2+n$ is even, the conclusion mentions $2$, so split mod $2$. To prove $3\mid(n^3-n)$, split mod $3$. To prove $4\mid(n^2-1)$ for odd $n$, the hypothesis already restricts you to the odd class mod $2$, and writing $n = 2k+1$ is the whole setup.
+
+Sometimes the right modulus is larger than the number in the conclusion. To prove $24 \mid (n^2-1)$ for $n$ coprime to $6$, splitting mod $6$ gives the useful cases, because the hypothesis is a statement about remainders mod $6$.
+
+**When a case proof produces cases that will not close, the modulus is usually wrong.** Try a different one before trying harder algebra.
+
+## Refuting divisibility
+
+The division algorithm also settles non-divisibility in one line.
+
+> **Claim.** $3\nmid 100$.
+>
+> **Proof.** $100 = 3\cdot33+1$, and $0\leq1<3$. By uniqueness of the remainder, the remainder of $100$ mod $3$ is $1$, not $0$. Hence $3\nmid100$. $\square$
+
+Compare with what module 4.2 left you: ruling out every integer $k$ with $100 = 3k$. The division algorithm replaced an infinite search with an arithmetic fact, and **uniqueness is the part doing the work** — without it, finding *one* representation with non-zero remainder would not exclude another with remainder zero.
+
+That is why the theorem was stated with $\exists!$ rather than $\exists$.
+
+## Where geometry meets this
+
+Regular polygons supply a natural application. A regular $n$-gon has rotational symmetry through $360°/n$, and its rotations compose by adding angles **mod $n$** — rotating by three steps then two steps gives five steps, and if $n=4$ that is one step.
+
+The symmetry group of a regular $n$-gon is therefore built from exactly the residue classes of this module. Composing rotations *is* addition of remainders, which is why a clock returns to $3$ after twelve hours and why the same arithmetic governs both.
+
+<Aside>
+Writing $a \equiv b \pmod n$ for "$a$ and $b$ have the same remainder mod $n$" turns the case proofs above into one-liners.
+
+For $3\mid(n^3-n)$: every $n$ is $\equiv 0$, $1$, or $2$, and cubing gives $0^3\equiv0$, $1^3\equiv1$, $2^3 = 8\equiv 2$. In each case $n^3\equiv n$, so $n^3-n\equiv0$.
+
+The three cases became three multiplications, because congruences can be added and multiplied like equations. Fermat's little theorem generalises this: for any prime $p$ and any $n$, $p \mid (n^p - n)$.
+</Aside>

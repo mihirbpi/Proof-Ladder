@@ -1,0 +1,109 @@
+---
+level: l7
+title: Defining addition
+readingTimeMin: 8
+newTerms: ["recursive definition", "recursion theorem"]
+anchorExample: "successor function"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\textbf{(A1)}\ a+0 = a, \qquad \textbf{(A2)}\ a + S(b) = S(a+b).
+$$
+
+Recursion on the **second** argument, with the first held fixed. Every asymmetry below traces to that choice.
+
+## Why the definition is legitimate
+
+Writing down a recursion does not by itself define anything: one must know that a function satisfying the clauses exists and is unique.
+
+> **Recursion theorem.** Let $A$ be a set, $c \in A$, $f : A \to A$. Then there is a **unique** $h : \mathbb{N}\to A$ with $h(0) = c$ and $h(S(n)) = f(h(n))$.
+
+Uniqueness is an induction: if $h_1, h_2$ both satisfy the clauses, $\{n : h_1(n)=h_2(n)\}$ is inductive, so is all of $\mathbb{N}$ by A9. Existence requires constructing $h$ as a set of pairs and verifying it is a function — also by induction.
+
+Addition is then $a + {-} := h_a$ where $h_a(0) = a$ and $h_a(S(n)) = S(h_a(n))$, i.e. $A = \mathbb{N}$, $c = a$, $f = S$.
+
+So the ninth axiom underwrites not only inductive *proof* but recursive *definition*. Both directions of §6.4's observation — recursion and induction are one structure — are theorems here.
+
+## Derivations
+
+<Proof>
+$1+1 = 1+S(0) = S(1+0) = S(1) = 2$.
+
+$2+3 = 2+S(2) = S(2+2) = S(S(2+1)) = S(S(S(2+0))) = S^3(2) = 5$.
+</Proof>
+
+> **Proposition.** $a+1 = S(a)$.
+
+<Proof>
+$a+1 = a+S(0) = S(a+0) = S(a)$.
+</Proof>
+
+This is the theorem §7.3 promised. The notational identification of $S(a)$ with $a+1$, forbidden until addition existed, is now licensed.
+
+## The monoid laws
+
+None of these is an axiom; each requires induction.
+
+> **Lemma 1.** $0 + a = a$.
+
+<Discussion>
+  <div slot="know">(A1) gives $a+0=a$; it says nothing about $0+a$, since the recursion peels the second argument.</div>
+  <div slot="want">$0+a = a$.</div>
+  <div slot="how">Induct on $a$.</div>
+</Discussion>
+
+<Proof>
+*Base.* $0+0=0$ by (A1). *Step.* $0+S(k) = S(0+k) = S(k)$ by (A2) and (IH).
+</Proof>
+
+> **Lemma 2.** $S(a)+b = S(a+b)$.
+
+<Proof>
+Induct on $b$. *Base.* $S(a)+0 = S(a) = S(a+0)$. *Step.* $S(a)+S(k) = S(S(a)+k) = S(S(a+k)) = S(a+S(k))$, using (A2), (IH), (A2).
+</Proof>
+
+> **Theorem (commutativity).** $a+b = b+a$.
+
+<Proof>
+Induct on $b$. *Base.* $a+0 = a = 0+a$ by (A1) and Lemma 1. *Step.* $a+S(k) = S(a+k) = S(k+a) = S(k)+a$, using (A2), (IH), Lemma 2.
+</Proof>
+
+> **Theorem (associativity).** $(a+b)+c = a+(b+c)$.
+
+<Proof>
+Induct on $c$. *Base.* $(a+b)+0 = a+b = a+(b+0)$. *Step.*
+$$(a+b)+S(k) = S\big((a+b)+k\big) = S\big(a+(b+k)\big) = a + S(b+k) = a+(b+S(k)),$$
+by (A2), (IH), (A2) twice.
+</Proof>
+
+> **Theorem (cancellation).** $a + c = b + c \Rightarrow a = b$.
+
+<Proof>
+Induct on $c$. *Base.* Immediate from (A1). *Step.* $a+S(k) = b+S(k)$ gives $S(a+k) = S(b+k)$, so $a+k = b+k$ by **A8** (injectivity of $S$), and (IH) gives $a=b$.
+</Proof>
+
+$(\mathbb{N},+,0)$ is therefore a commutative, cancellative monoid — and note that cancellation is where A8 is finally spent. Every axiom now has a job.
+
+<Warning title="Familiarity is not derivation">
+Nothing in (A1)–(A2) yields $a+b=b+a$; the definition is manifestly asymmetric. Three inductions were required.
+
+The general discipline: in an axiomatic development, the question is never whether a statement is obvious but whether it has been derived. Chapters 1–6 used commutativity freely, and were — strictly — incomplete until this module.
+</Warning>
+
+<Aside>
+Had addition been defined by recursion on the first argument, Lemma 1 would be immediate and (A1) would need proof. The asymmetry lives entirely in the definition, and commutativity is precisely the theorem that the operation does not inherit it.
+
+Chapter 4's assumptions are now discharged for $\mathbb{N}$: closure under $+$ is (A1)–(A2), associativity and commutativity are above, and the distributive law follows in §7.7. The ring axioms of §4.1 are theorems here.
+</Aside>
+
+<WhereThisGoes level="l7">
+Recursion on inductive structure is how every proof assistant defines functions, and the termination requirement is exactly the well-foundedness of §6.4 — Coq and Agda reject a recursive definition whose argument does not visibly decrease. Which functions are definable by which recursion schemes is a subject of its own: primitive recursion (recursion on the predecessor, as here) captures a large class but omits Ackermann's function, whose definition nests recursions; the Grzegorczyk hierarchy stratifies the primitive recursive functions by how deeply nested their recursions are, and the levels correspond to the growth rates a given fragment of arithmetic can prove total.
+
+The construction also generalises past $\mathbb{N}$. Transfinite recursion along the ordinals — justified by transfinite induction and the replacement axiom — is what builds the cumulative hierarchy $V_\alpha$ and hence the universe of sets. Definition by recursion is not an arithmetic convenience; it is how mathematical objects get built at every scale.
+</WhereThisGoes>

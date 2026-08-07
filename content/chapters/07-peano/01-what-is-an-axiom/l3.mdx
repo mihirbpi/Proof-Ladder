@@ -1,0 +1,85 @@
+---
+level: l3
+title: What is an axiom?
+readingTimeMin: 5
+newTerms: ["axiom", "theorem"]
+anchorExample: "counting on forever"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every proof in this course rests on something earlier.
+
+Module 4.7 proved $\sqrt2$ is not a fraction, using module 1.9's fact about even squares. That used the definition of even from module 4.2. Which used closure of the integers from module 4.1.
+
+Which used... what?
+
+## The chain has to stop
+
+Draw the chain of justification backwards. Each result points at the results it depends on, and those point further back.
+
+Two possibilities:
+
+**The chain goes back forever.** Then nothing is ever actually established — you can always ask "and why is *that* true?" and never get to the bottom.
+
+**The chain stops.** Then there are statements at the bottom that were never proved.
+
+It stops. It has to. And the statements at the bottom have a name.
+
+> An **axiom** is a statement accepted as true without proof.
+>
+> A **theorem** is a statement proved from the axioms.
+
+A mathematical theory is its axioms, plus everything you can derive from them. Nothing else.
+
+## What has been assumed so far
+
+You have used plenty of unproved things this year:
+
+- Adding two integers gives an integer (module 4.1).
+- $3 \times (4+5) = 3\times4 + 3\times5$, and the same for any three numbers (module 4.1).
+- Every nonempty set of whole numbers has a smallest element (used in module 4.4).
+- Two sets are equal exactly when they have the same elements (module 2.6).
+
+None of these was proved. They were stated and used — honestly, but without foundation. This chapter goes to the bottom and picks a small list to start from.
+
+## Axioms are chosen
+
+This is the part people find surprising.
+
+Axioms are not discovered facts about a pre-existing world. They are **choices**. Somebody writes a list down, and the mathematics that follows is whatever those axioms generate.
+
+Change the list, get different mathematics.
+
+<Aside>
+The famous example is geometry. Euclid had five axioms, and the fifth — roughly, "through a point not on a line, there is exactly one parallel line" — always looked less obvious than the others. For two thousand years people tried to prove it from the first four.
+
+In the 1800s, several mathematicians tried assuming it was **false** and looked for a contradiction. They never found one. Instead they found a complete, consistent, perfectly sensible geometry in which parallel lines behave differently.
+
+And then Einstein found that the universe uses one of the new geometries, not Euclid's.
+</Aside>
+
+## What makes a list of axioms good
+
+Not any list will do. Mathematicians ask four things.
+
+**Few.** The shorter the list, the more you have genuinely explained.
+
+**Independent.** No axiom should be provable from the others — otherwise it is not an axiom, it is a theorem you forgot to prove.
+
+**Consistent.** They must not lead to a contradiction. This is the crucial one: from a contradiction you can prove *anything*, so an inconsistent theory is worthless.
+
+**Enough.** They must actually generate the mathematics you wanted. A list of two axioms that proves nothing is very short and no use at all.
+
+<Warning title="Axioms are not obvious truths">
+It is tempting to think axioms should be things nobody could doubt. That is a nice bonus and it is not the requirement.
+
+What matters is that they are clearly stated, consistent, and productive. Some perfectly good axioms are wildly unobvious — and some obvious-looking ones turned out to be optional all along.
+</Warning>
+
+## Where this chapter goes
+
+The rest of Chapter 7 does the job for the whole numbers. Nine axioms, about two objects — *zero* and *next*. From them come addition, multiplication, and every fact about the counting numbers you have used all year.
+
+It is a striking demonstration of how little you need at the bottom.

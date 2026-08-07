@@ -1,90 +1,101 @@
 ---
 level: l3
-title: The rationals are a field
+title: What fractions can do
 readingTimeMin: 6
-newTerms: ["rational number", "reciprocal"]
-anchorExample: "divisibility"
+newTerms: ["reciprocal"]
+anchorExample: "factors and multiples"
 ---
 
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 4.1 found a hole in the integers: they are not closed under division. This module builds the number system that fills it.
+Module 4.1 found a gap in the counting numbers: they are not closed under dividing. $7 \div 2$ runs off the edge.
 
-A **rational number** is a number that can be written as $\tfrac{p}{q}$ where $p$ and $q$ are integers and $q \neq 0$. The set of them is written $\mathbb{Q}$.
+This module looks at the number system built to fill that gap.
 
-Every integer is rational — write $n$ as $\tfrac{n}{1}$. So $\mathbb{Z} \subseteq \mathbb{Q}$, and $\mathbb{Q}$ is strictly bigger, since $\tfrac12 \notin \mathbb{Z}$.
+## Fractions
+
+A **fraction** is a number written as one counting number over another, with the bottom never zero:
+$$
+\tfrac34, \qquad \tfrac{7}{2}, \qquad \tfrac{12}{5}, \qquad \tfrac{5}{1}.
+$$
+
+That last one is worth noticing. $\tfrac51$ is just $5$. So **every counting number is already a fraction** — write it over $1$. The fractions do not replace the counting numbers; they contain them and add more.
+
+And there really are more: $\tfrac12$ is a fraction and is not a counting number.
 
 ## Checking closure
 
-You know how to add and multiply fractions. What you may not have noticed is that those formulas are *closure proofs* — each one shows the answer is still a fraction.
+You know how to add and multiply fractions. What you may not have noticed is that those procedures are *closure proofs* — each one shows the answer is still a fraction.
 
 **Adding.**
 $$
-\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}.
+\tfrac34 + \tfrac25 = \tfrac{15}{20} + \tfrac{8}{20} = \tfrac{23}{20}.
 $$
 
 <Proof>
-Start with two rationals: $\tfrac{a}{b}$ and $\tfrac{c}{d}$, with $b \neq 0$ and $d \neq 0$.
+Take any two fractions and follow them. Each is a counting number over a counting number, with neither bottom zero.
 
-Their sum is $\tfrac{ad+bc}{bd}$.
+To add them, rewrite both over a common bottom — multiplying the two bottoms together always gives one that works.
 
-Is that a rational number? Look at the top: $ad + bc$ is built from integers by multiplying and adding, so it is an integer (module 4.1).
+The new top is a sum of products of counting numbers, and the new bottom is a product of counting numbers. Both are counting numbers, because counting numbers are closed under adding and multiplying (module 4.1).
 
-Look at the bottom: $bd$ is a product of integers, so it is an integer. And it is not zero, because neither $b$ nor $d$ is zero, and a product of two non-zero numbers is never zero.
+And the new bottom is not zero, since neither original bottom was zero, and multiplying two non-zero numbers never gives zero.
 
-Integer on top, non-zero integer on the bottom. So the sum is rational.
+Counting number on top, non-zero counting number underneath. So the sum is a fraction.
 </Proof>
 
-Read that proof again. It never did any arithmetic — it just checked that the pieces were the right *kind* of thing. That is what closure proofs look like.
+Read that proof again. It never actually added anything — it just checked that the pieces were the right *kind* of thing. That is what a closure proof looks like.
 
-**Multiplying.**
+**Multiplying.** $\tfrac34 \times \tfrac25 = \tfrac{6}{20}$. Same check: top times top is a counting number, bottom times bottom is a non-zero counting number. Closed. ✓
+
+**Dividing.** $\tfrac34 \div \tfrac25 = \tfrac34 \times \tfrac52 = \tfrac{15}{8}$. Also closed — as long as you never divide by zero.
+
+## The new thing fractions have
+
+Here is what fractions have and the counting numbers do not.
+
+The **reciprocal** of a number is what you multiply it by to get $1$.
+
+Among counting numbers, only $1$ has one (module 4.1) — there is nothing you can multiply $5$ by to get $1$ and stay whole.
+
+Among fractions, **everything except zero** has one. Just turn it upside down:
 $$
-\frac{a}{b} \times \frac{c}{d} = \frac{ac}{bd}.
+\tfrac34 \times \tfrac43 = \tfrac{12}{12} = 1. \qquad \tfrac{7}{2}\times\tfrac{2}{7} = 1. \qquad 5 \times \tfrac15 = 1.
 $$
-Same check: $ac$ is an integer, $bd$ is a non-zero integer. Closed. ✓
-
-**Opposites.**
-$$
--\frac{a}{b} = \frac{-a}{b}.
-$$
-$-a$ is an integer, $b$ is a non-zero integer. Closed. ✓
-
-## The new one: reciprocals
-
-Here is what $\mathbb{Q}$ has and $\mathbb{Z}$ does not.
-
-The **reciprocal** of a number is what you multiply it by to get $1$. In $\mathbb{Z}$, only $1$ and $-1$ have one (module 4.1). In $\mathbb{Q}$, *everything except zero* does.
 
 <Proof>
-Take any rational $\tfrac{a}{b}$ that is not zero. Since it is not zero, $a \neq 0$. And $b \neq 0$ already.
+Take any fraction that is not zero, and follow it. A fraction is zero exactly when its top is zero — so our top is not zero, and our bottom was never zero.
 
-Flip it over: $\tfrac{b}{a}$. This is a rational number, because $b$ is an integer and $a$ is a non-zero integer.
+Turn it upside down. The old bottom is now on top, and the old top is now underneath. Both are counting numbers, and the new bottom is not zero.
 
-Multiply: $\tfrac{a}{b} \times \tfrac{b}{a} = \tfrac{ab}{ba} = 1$.
+So the upside-down version is a fraction too.
 
-So every non-zero rational has a reciprocal inside $\mathbb{Q}$.
+Multiply them: top times bottom over bottom times top. The same two numbers appear above and below, so the answer is $1$.
 </Proof>
 
 <Warning title="Zero has no reciprocal, and that is not a gap">
-There is no number you can multiply by $0$ to get $1$, because $0$ times anything is $0$. So $\tfrac10$ does not exist — not in $\mathbb{Q}$, not anywhere.
+There is nothing you can multiply $0$ by to get $1$, because $0$ times anything is $0$. So $\tfrac10$ does not exist — not among fractions, not anywhere.
 
-This is not a hole waiting to be filled by a cleverer number system. Any system in which $\tfrac10$ existed would have $0 = 1$, and then every number would equal every other. Excluding zero is the price of everything else working.
+This is not a hole waiting for a cleverer number system. If $\tfrac10$ existed, you could show that $0 = 1$, and then every number would equal every other one and arithmetic would collapse.
+
+Leaving zero out is the price of everything else working.
 </Warning>
 
-## Ring and field
+## What got fixed and what did not
 
-Module 4.1 mentioned the word *ring* for a system closed under $+$, opposites, and $\times$, obeying the distributive law.
+| | closed under $+$ | closed under $\times$ | every non-zero one has a reciprocal |
+|---|---|---|---|
+| counting numbers | ✓ | ✓ | ✗ |
+| fractions | ✓ | ✓ | ✓ |
 
-A **field** is a ring with one extra property: every non-zero element has a reciprocal.
+That single difference in the last column is why you can solve "three times what gives $1$?" with fractions and not with counting numbers.
 
-$$
-\mathbb{Z} \text{ is a ring, not a field.} \qquad \mathbb{Q} \text{ is a field.}
-$$
-
-That single difference is why you can solve $3x = 1$ in $\mathbb{Q}$ and not in $\mathbb{Z}$ — and, more generally, why you may divide both sides of an equation by a non-zero number in $\mathbb{Q}$.
+But fractions did not fix everything. Module 4.7 finds a length you can *draw* — the slanted line across a square — that no fraction can measure exactly. The gap-and-repair story is not over.
 
 <Aside>
-$\mathbb{Q}$ is not the only field. The numbers on the whole number line, $\mathbb{R}$, form one. So does clock arithmetic with a prime number of hours — a field with only finitely many elements, which is a genuinely strange object and the basis of a lot of modern cryptography.
+A number system where you can add, multiply, and take reciprocals of everything except zero has a name. Mathematicians call it a **field**.
+
+The counting numbers are not a field. The fractions are. That one word summarises the whole module.
 </Aside>

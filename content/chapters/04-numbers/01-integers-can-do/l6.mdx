@@ -1,0 +1,113 @@
+---
+level: l6
+title: What the integers can do
+readingTimeMin: 8
+newTerms: ["closed", "ring", "distributive law"]
+anchorExample: "coordinates, lengths, and the Pythagorean theorem"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Your geometry course rests on postulates — sentences assumed without proof, from which everything else follows. The Ruler Postulate, the Parallel Postulate, the Angle Addition Postulate.
+
+Arithmetic has postulates too, and your proofs have been quoting them all year in the reason column: *Addition Property of Equality*, *Distributive Property*, *Substitution*. This chapter states them properly and starts proving things from them.
+
+## Closure
+
+A set is **closed** under an operation when applying it to elements of the set produces an element of the set.
+
+$\mathbb{Z}$ is closed under addition, subtraction, and multiplication:
+
+$$a, b \in \mathbb{Z} \implies a+b,\ a-b,\ ab \in \mathbb{Z}.$$
+
+It is **not** closed under division: $1, 3\in\mathbb{Z}$ but $\tfrac13\notin\mathbb{Z}$.
+
+That looks like a small observation. It is the engine of the entire chapter — every divisibility proof ends with a line like *"and $2k^2+2k$ is an integer, since $\mathbb{Z}$ is closed under multiplication and addition."* Without closure, the witness you constructed might not be the kind of object the definition requires.
+
+<Warning title="Closure is a claim about the set, not the answer">
+"Closed under subtraction" does not mean subtraction is always possible — it means the answer stays inside.
+
+$\mathbb{N} = \{0,1,2,\dots\}$ is **not** closed under subtraction: $3 - 5 = -2$ is a perfectly good number, and it is not in $\mathbb{N}$.
+
+This is why $\mathbb{Z}$ exists. Each number system in this chapter is built by taking the previous one and closing it under an operation it lacked — and Chapter 5 does it once more.
+</Warning>
+
+## The properties
+
+For all $a,b,c\in\mathbb{Z}$:
+
+| Property | Addition | Multiplication |
+|---|---|---|
+| Closure | $a+b\in\mathbb{Z}$ | $ab\in\mathbb{Z}$ |
+| Associative | $(a+b)+c = a+(b+c)$ | $(ab)c = a(bc)$ |
+| Commutative | $a+b=b+a$ | $ab=ba$ |
+| Identity | $a + 0 = a$ | $a\cdot 1 = a$ |
+| Inverse | $a + (-a) = 0$ | — |
+
+Plus the one that links them, the **distributive law**:
+$$a(b+c) = ab+ac.$$
+
+Multiplication has no inverse row. There is no integer $b$ with $3b=1$, and that single absence is the difference between this module and module 4.5.
+
+## These are your reason column
+
+Look at what you have been writing beside two-column steps:
+
+- *"Subtraction Property of Equality"* — from $a = b$ conclude $a - c = b-c$. This is the additive inverse property plus substitution.
+- *"Distributive Property"* — the last line of the table.
+- *"Commutative Property"* — row three.
+
+Your geometry proofs assume all of this. The Segment Addition Postulate says $AB + BC = AC$; deducing $AB = AC - BC$ from it uses additive inverses, and the step is legitimate because $\mathbb{R}$ has them.
+
+**The reason column is a list of axioms.** Naming them is what this module does.
+
+## A proof from the axioms
+
+> **Proposition.** For every $a \in \mathbb{Z}$: $a\cdot 0 = 0$.
+
+<Proof>
+Start with $0 + 0 = 0$, which holds since $0$ is the additive identity.
+
+Multiplying both sides by $a$:
+$$a(0+0) = a\cdot 0.$$
+
+By the distributive law the left side is $a\cdot 0 + a\cdot 0$, so
+$$a\cdot 0 + a\cdot 0 = a\cdot 0.$$
+
+Now add $-(a\cdot 0)$ to both sides. On the left, $a\cdot 0 + \big(a\cdot0 - a\cdot0\big) = a\cdot 0$; on the right, $a\cdot 0 - a\cdot 0 = 0$. Hence
+$$a\cdot 0 = 0.$$
+</Proof>
+
+Read that again. **Nothing about zero was assumed except that it is the additive identity** — the fact that multiplying by it annihilates is a *theorem*, derived from distributivity and additive inverses.
+
+You have used $a\cdot0=0$ since primary school as if it were obvious. It is not obvious; it is provable, and knowing which is which is what this chapter is for.
+
+<Aside>
+A set with two operations satisfying the whole table is called a **commutative ring with identity**. $\mathbb{Z}$ is the standard example, and it is not the only one.
+
+**Polynomials** with integer coefficients form a ring. Add them, multiply them, distribute — every row of the table holds, and there is no division, since $1/x$ is not a polynomial.
+
+**Square matrices** form a ring too, with one row failing: matrix multiplication is not commutative. So they form a *non-commutative* ring, and the theorems that need commutativity have to be re-examined.
+
+That is the point of naming the structure. The proof above that $a\cdot 0 = 0$ used only closure, distributivity, and additive inverses — so it is simultaneously a theorem about integers, about polynomials, and about matrices. One proof, three subjects.
+</Aside>
+
+## Where geometry needs it
+
+The distance formula
+$$d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$$
+is the Pythagorean theorem with coordinates, and every algebraic step in its derivation is an axiom from the table. Expanding $(x_2-x_1)^2$ uses distributivity twice; collecting terms uses commutativity and associativity.
+
+Coordinate proofs work because $\mathbb{R}$ obeys these laws, and your book's insistence that you may "place the figure conveniently on the axes" is a claim about translations being bijections (module 3.9) plus the algebra staying valid wherever you put it.
+
+<Warning title="Which properties actually hold?">
+Do not assume a property because it feels natural. Check.
+
+- Subtraction is **not** associative: $(8-3)-2 = 3$ and $8-(3-2)=7$.
+- Subtraction is **not** commutative: $5-3\neq 3-5$.
+- Division does not distribute from the left: $\frac{8}{2+2} \neq \frac82 + \frac82$.
+
+Every one of these is a real error people make. The safe habit is to work with $+$ and $\times$ — writing $a - b$ as $a + (-b)$ — because those are the operations the axioms are stated for.
+</Warning>

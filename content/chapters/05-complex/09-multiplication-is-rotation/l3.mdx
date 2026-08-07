@@ -1,0 +1,109 @@
+---
+level: l3
+title: Multiplication is rotation
+readingTimeMin: 5
+newTerms: []
+anchorExample: "the number that turns"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Multiplying complex numbers in grid form means expanding brackets and collecting terms (module 5.3). In polar form (module 5.8) it becomes something much simpler.
+
+## The rule
+
+$$
+\big(r_1 e^{i\theta_1}\big)\big(r_2 e^{i\theta_2}\big) = (r_1 r_2)\, e^{i(\theta_1 + \theta_2)}.
+$$
+
+In words:
+
+> **Multiply the distances. Add the angles.**
+
+That is the entire rule for multiplication.
+
+## Check it on the simplest case
+
+Multiplying by $i$ means multiplying by the number at distance $1$, angle a quarter turn.
+
+- Distance: multiply by $1$ — unchanged.
+- Angle: add a quarter turn.
+
+So multiplying by $i$ **rotates by a quarter turn and does nothing else**. That is exactly what module 5.5 found by plotting points.
+
+<Figure alt="Four points at the compass positions labelled one, i, minus one, minus i around the origin on a dashed unit circle." caption="Each multiplication by $i$ adds a quarter turn.">
+  <ComplexPlane circle={1} points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+And $i \times i$: distances $1 \times 1 = 1$, angles a quarter plus a quarter equals a half. Distance $1$ at a half turn is $-1$. ✓
+
+**So $i^2 = -1$ is a statement about turning.** It was never an arbitrary rule.
+
+## A worked example
+
+Multiply $2e^{i \cdot 60°}$ by $3e^{i\cdot 90°}$.
+
+- Distances: $2 \times 3 = 6$.
+- Angles: $60° + 90° = 150°$.
+
+Answer: $6e^{i\cdot 150°}$.
+
+Try doing that by expanding brackets and you will appreciate the polar version.
+
+## Why the rule is true
+
+The reason is a fact about exponents that you already know:
+$$
+e^{A} \times e^{B} = e^{A+B}.
+$$
+Multiplying powers means adding the exponents. Here the exponents are $i\theta_1$ and $i\theta_2$, so they add to $i(\theta_1+\theta_2)$ — and the angles add.
+
+The distances $r_1$ and $r_2$ are just ordinary numbers out front, so they multiply as usual.
+
+## The payoff: a trigonometry identity for free
+
+Take a number at distance $1$ and angle $\theta$, and square it.
+
+<Proof>
+By the rule, squaring doubles the angle and leaves the distance at $1$:
+$$
+\big(e^{i\theta}\big)^2 = e^{i(2\theta)}.
+$$
+
+Now write both sides out using Euler's formula (module 5.7).
+
+**Right side:** $e^{i(2\theta)} = \cos(2\theta) + i\sin(2\theta)$.
+
+**Left side:** $\big(\cos\theta + i\sin\theta\big)^2$. Expand it:
+$$
+= \cos^2\theta + 2i\cos\theta\sin\theta + i^2\sin^2\theta
+= \big(\cos^2\theta - \sin^2\theta\big) + i\big(2\cos\theta\sin\theta\big).
+$$
+
+The two sides are equal, so their real parts match and their imaginary parts match (module 5.2):
+$$
+\cos(2\theta) = \cos^2\theta - \sin^2\theta, \qquad
+\sin(2\theta) = 2\cos\theta\sin\theta.
+$$
+</Proof>
+
+Those are the **double-angle formulas**. If you have met them before, you probably memorised them. Here they fell out of one line of algebra — and *both at once*, because one complex equation carries two real ones.
+
+<Warning title="Distances multiply, angles add">
+Do not multiply the angles. $2e^{i\cdot30°} \times 3e^{i\cdot 40°}$ is $6e^{i\cdot70°}$, not $6e^{i\cdot 1200°}$.
+
+The two components behave differently, and that asymmetry is the whole point of the rule.
+</Warning>
+
+<Aside>
+The same trick with cubes gives the triple-angle formulas, and with $n$th powers gives all of them. The general statement is called De Moivre's formula, and it means you never have to memorise a multiple-angle identity again — you can derive any of them in a minute.
+</Aside>

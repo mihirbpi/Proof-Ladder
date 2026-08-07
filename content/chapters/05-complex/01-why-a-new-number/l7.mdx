@@ -1,0 +1,73 @@
+---
+level: l7
+title: Why we needed a new number
+readingTimeMin: 8
+newTerms: ["algebraically closed"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Proposition.** $x^2 \geq 0$ for all $x \in \mathbb{R}$; hence $x^2 + 1$ has no real root.
+
+<Proof>
+Let $x \in \mathbb{R}$. By trichotomy, $x>0$, $x=0$, or $x<0$. In the first case $x^2 > 0$ as a product of positives; in the second $x^2 = 0$; in the third $-x > 0$ and $x^2 = (-x)(-x) > 0$. The cases are exhaustive, so $x^2 \geq 0$ and $x^2 + 1 \geq 1 > 0$.
+</Proof>
+
+The proof used only the **ordered field** axioms, and that is the substantive point: the obstruction is not about $\mathbb{R}$ specifically but about order. In any ordered field, squares are non-negative, so $x^2+1$ has no root. Consequently **$\mathbb{C}$ cannot be ordered compatibly with its arithmetic** — the price of adjoining $i$ is the loss of $<$, and it is unavoidable rather than an oversight.
+
+## The extension sequence
+
+| System | Defect | Repair |
+|---|---|---|
+| $\mathbb{N}$ | not a group under $+$ | $\mathbb{Z}$ |
+| $\mathbb{Z}$ | not a field | $\mathbb{Q}$ |
+| $\mathbb{Q}$ | not order-complete | $\mathbb{R}$ |
+| $\mathbb{R}$ | not algebraically closed | $\mathbb{C}$ |
+
+Each step adjoins what is missing and verifies the axioms survive. Note the last two failures are of different kinds — one analytic, one algebraic — and correspondingly $\mathbb{R}$ is built by completion and $\mathbb{C}$ by algebraic adjunction.
+
+## The construction, done properly
+
+Declaring "let $i$ be a number with $i^2 = -1$" is a *definition by fiat*, and by itself it guarantees nothing: one may equally declare a number $j$ with $j \cdot 0 = 1$, and that declaration is inconsistent. What legitimises $i$ is a construction inside existing mathematics.
+
+Two standard ones:
+
+**As a quotient ring.** $\mathbb{C} := \mathbb{R}[x]/(x^2+1)$. Since $x^2+1$ is irreducible over $\mathbb{R}$, the ideal $(x^2+1)$ is maximal, so the quotient is a field; $i$ is the class of $x$, and $i^2 = -1$ holds because $x^2 + 1 \equiv 0$.
+
+**As pairs.** $\mathbb{C} := \mathbb{R}^2$ with
+$$(a,b)+(c,d) = (a+c, b+d), \qquad (a,b)(c,d) = (ac-bd,\ ad+bc).$$
+Verifying the field axioms is a finite computation; $i := (0,1)$ satisfies $i^2 = (-1,0)$.
+
+Either way $\mathbb{C}$ exists as an object built from $\mathbb{R}$, so no new consistency assumption is made. **If $\mathbb{R}$ is consistent, so is $\mathbb{C}$** — and that, not the fiat, is what makes $i$ legitimate.
+
+<Warning title="Two persistent misstatements">
+**"Imaginary numbers aren't real."** A pun on terminology Descartes coined dismissively. Every extension in the table above was resisted in its time; negative numbers were called "absurd" into the eighteenth century.
+
+**"You can't take the square root of a negative number."** The correct statement is that no element of an ordered field has negative square. In $\mathbb{C}$, every element has exactly two square roots, including $-1$.
+
+**A real caution, though:** $\sqrt{ab} = \sqrt a \sqrt b$ **fails** on $\mathbb{C}$. The classic trap is
+$$-1 = i^2 = \sqrt{-1}\sqrt{-1} \overset{?}{=} \sqrt{(-1)(-1)} = \sqrt1 = 1.$$
+The identity holds for non-negative reals and not in general, because $\sqrt{\phantom{x}}$ on $\mathbb{C}$ requires a branch choice (§5.8). Write $i$, never $\sqrt{-1}$.
+</Warning>
+
+## Algebraic closure
+
+A field $K$ is **algebraically closed** if every non-constant polynomial in $K[x]$ has a root in $K$.
+
+> **Fundamental Theorem of Algebra.** $\mathbb{C}$ is algebraically closed.
+
+The striking content is not that $x^2+1$ acquires a root but that adjoining *one* root of *one* polynomial suffices for all of them, including polynomials with complex coefficients. Compare $\mathbb{Q}$, where adjoining $\sqrt2$ leaves $\sqrt3$ missing and no finite extension ever closes: $\overline{\mathbb{Q}}$ is infinite-dimensional over $\mathbb{Q}$, while $\mathbb{C}$ is two-dimensional over $\mathbb{R}$.
+
+No purely algebraic proof exists, and this is not a gap in knowledge — it cannot exist. The reals are defined by a completeness axiom, which is analytic, so any proof must use some analytic or topological input. Standard proofs use Liouville's theorem, the argument principle, or a compactness argument on $|p(z)|$.
+
+<Aside>
+Historically, quadratics were not the motivation. Cardano's formula for $x^3 = 15x + 4$ passes through $\sqrt{-121}$ and emerges at $x = 4$ — an integer answer reachable only via a detour outside $\mathbb{R}$. Bombelli's 1572 analysis of that computation is where complex numbers were first taken seriously, precisely because they could not be dismissed as answers to unanswerable questions: here they were intermediate steps toward answers everyone accepted.
+</Aside>
+
+<WhereThisGoes level="l7">
+Adjoining roots of irreducible polynomials is the general construction $K[x]/(p)$, and iterating it builds the algebraic closure $\overline K$ of any field — a theorem requiring Zorn's lemma. Galois theory studies the symmetries of such extensions, and the smallness of $\mathbb{C}$ over $\mathbb{R}$ is dramatic: the Artin–Schreier theorem says that if $\overline K \neq K$ is a finite extension then $[\overline K : K] = 2$ and $K$ is real-closed, so $\mathbb{R} \subset \mathbb{C}$ is essentially the *only* way this can happen. In another direction, giving up more structure gives more number systems: the quaternions $\mathbb{H}$ abandon commutativity, the octonions abandon associativity, and Hurwitz's theorem says the sequence $\mathbb{R}, \mathbb{C}, \mathbb{H}, \mathbb{O}$ stops there — the four normed division algebras over $\mathbb{R}$, and no more.
+</WhereThisGoes>

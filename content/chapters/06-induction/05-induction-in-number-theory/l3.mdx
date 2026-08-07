@@ -1,0 +1,84 @@
+---
+level: l3
+title: Induction with factors
+readingTimeMin: 5
+newTerms: []
+anchorExample: "1+3+5+… builds squares"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Induction is not only for running totals. This module combines it with the factor work of Chapter 4.
+
+## Spot the pattern
+
+Start at $1$ and keep multiplying by $4$. Then subtract $1$ from each answer.
+
+| Multiplications by 4 | You have | Subtract 1 | Does 3 go into it? |
+|---|---|---|---|
+| $0$ | $1$ | $0$ | yes — zero $3$s |
+| $1$ | $4$ | $3$ | yes — one $3$ |
+| $2$ | $16$ | $15$ | yes — five $3$s |
+| $3$ | $64$ | $63$ | yes — twenty-one $3$s |
+| $4$ | $256$ | $255$ | yes — eighty-five $3$s |
+
+Every single one is a multiple of $3$. That is a guess worth proving.
+
+> **Claim.** Start at $1$, multiply by $4$ as many times as you like, then subtract $1$. The answer is always a multiple of $3$.
+
+<Discussion>
+  <div slot="know">"Multiple of $3$" means a whole number of copies of $3$, with nothing left over (module 4.2). And each new number is four times the previous one.</div>
+  <div slot="want">The claim for every case.</div>
+  <div slot="how">Dominoes. The link is that each number is four times the one before, so the next case is built out of the current one — requirement 2 of module 6.4 is satisfied.</div>
+</Discussion>
+
+## The proof
+
+<Proof>
+**Base case.** With no multiplications you have $1$, and subtracting $1$ gives $0$. Is $0$ a multiple of $3$? Yes — it is zero copies of $3$, and zero is a whole number. ✓
+
+**Inductive step.** Suppose the claim holds for the case you are on. So the number you have, minus $1$, is some whole number of $3$s.
+
+That means the number you have is *a pile of $3$s, plus one extra*.
+
+Now do one more multiplication by $4$. You now have four copies of everything: four copies of the pile of $3$s, and four copies of the extra one.
+
+Four copies of a pile of $3$s is still a pile of $3$s — just four times as many, and four times a whole number is a whole number.
+
+And four copies of the extra one is $4$, which is one $3$ plus one.
+
+So altogether you have a pile of $3$s, plus one extra.
+
+Subtract $1$. The extra goes away, and only $3$s remain.
+
+So the next answer is a multiple of $3$ as well. ✓
+
+Both conditions hold, so the claim is true for every case.
+</Proof>
+
+<Warning title="Keep the two counts apart">
+The proof talked about *the count of $3$s in your pile* and *how many times you have multiplied by four*. Those are two completely different numbers.
+
+In the table, after three multiplications the count of $3$s is twenty-one. Three and twenty-one are not the same, and a proof that muddles them is a proof of nothing.
+
+This is module 4.3's fresh-names discipline, and it matters more here because two different kinds of count are in play at once.
+</Warning>
+
+## Two techniques, working together
+
+Read the proof again and notice that it is two chapters at once.
+
+**From Chapter 6:** the domino structure — base case, then "if this case works, so does the next."
+
+**From Chapter 4:** the factor template — describe what you have as *this many copies of that*, regroup, and confirm the new count is a whole number.
+
+Neither alone would do it. The factor work cannot handle infinitely many cases; the dominoes have nothing to compute with until the factors are unpacked.
+
+<Aside>
+Another one to try the same way: **take any counting number, multiply it by itself, multiply by itself again, then subtract the original number. The answer is always a multiple of $6$.**
+
+Check a few first ($2$ gives $6$; $3$ gives $24$; $4$ gives $60$), then run the dominoes.
+</Aside>

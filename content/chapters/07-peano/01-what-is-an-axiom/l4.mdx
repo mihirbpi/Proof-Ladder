@@ -1,0 +1,72 @@
+---
+level: l4
+title: What is an axiom?
+readingTimeMin: 6
+newTerms: ["axiom", "theorem", "primitive", "consistent"]
+anchorExample: "successor function"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+*Chapter question: if every proof rests on earlier facts, what do the earliest facts rest on?*
+
+## The regress
+
+Trace any theorem backwards. $\sqrt2\notin\mathbb{Q}$ (module 4.7) rests on "$n^2$ even $\Rightarrow$ $n$ even" (1.9), which rests on the definition of even (4.2) and closure of $\mathbb{Z}$ (4.1), which rests on…
+
+The chain cannot be infinite: an infinite regress justifies nothing, since no link is ever anchored. So it terminates, and what it terminates in are statements accepted without proof.
+
+> An **axiom** is a statement assumed true without proof. A **theorem** is a statement derived from the axioms by valid inference. A theory is the deductive closure of its axioms.
+
+## Undefined terms too
+
+The regress applies to *definitions* as well as to statements. "A set is a well-defined collection" defines *set* in terms of *collection*, which is a synonym. Every definition uses earlier terms, so some terms must be **primitive** — undefined, with their behaviour fixed entirely by the axioms.
+
+| Theory | Primitives | Axioms |
+|---|---|---|
+| Set theory (ZF) | set, $\in$ | extensionality, separation, … |
+| Euclidean geometry | point, line, incidence | Euclid's five |
+| Peano arithmetic | $0$, $S$ | the nine of this chapter |
+| Group theory | the set, the operation | associativity, identity, inverses |
+
+Hilbert made the point sharply: it should be possible to replace "point, line, plane" by "table, chair, beer mug" throughout Euclid without affecting a single proof. The axioms carry all the content; the names carry none.
+
+## What this course has assumed
+
+- Closure and the distributive law on $\mathbb{Z}$ (4.1).
+- Well-ordering of $\mathbb{Z}_{\geq0}$, used to prove the division algorithm (4.4).
+- Induction (Chapter 6).
+- Extensionality for sets (2.1, 2.6).
+
+None was proved. Chapter 7 reduces the arithmetic ones to nine axioms about two primitives.
+
+## Criteria for an axiom system
+
+**Consistency.** No contradiction is derivable. This is not one desideratum among several — it is the only indispensable one, because from a contradiction everything follows: given $p \wedge \neg p$, module 1.5's conditional makes every statement derivable, so an inconsistent theory proves all statements and distinguishes nothing.
+
+**Independence.** No axiom follows from the others. Demonstrating independence requires exhibiting a model satisfying the others and failing the one in question — which is exactly how non-Euclidean geometry was born.
+
+**Completeness.** Every statement in the language is provable or refutable. Desirable, and — for any system strong enough to describe arithmetic — unattainable, by Gödel.
+
+**Adequacy.** The axioms generate the mathematics you wanted. Trivially consistent systems that prove nothing are useless.
+
+<Warning title="Axioms need not be self-evident">
+The traditional gloss "an axiom is an obvious truth" is wrong and historically damaging. Euclid's parallel postulate was assumed to be obvious for two millennia, and mathematicians wasted enormous effort trying to derive it.
+
+The truth is stranger and better: assume its negation and you get hyperbolic geometry, entirely consistent. The postulate is not a truth about space at all — it is a choice defining which geometry you are studying. And general relativity says the universe made a different choice.
+
+The requirement is clarity, consistency, and productivity. Obviousness is neither necessary nor sufficient.
+</Warning>
+
+## Independence, demonstrated
+
+To show axiom $A$ is independent of $B_1,\ldots,B_n$, build a **model** satisfying all the $B_i$ and violating $A$. Since the $B_i$ cannot prove something false in a structure where they hold, they cannot prove $A$.
+
+Module 7.4 does exactly this: it exhibits small structures satisfying Peano's axioms 1–6 and failing 7 or 8, thereby proving those axioms are not redundant. Independence proofs are model constructions, and this is the technique that settled the parallel postulate, the Axiom of Choice, and the continuum hypothesis.
+
+<Aside>
+Gödel's incompleteness theorems (1931) show the limits. Any consistent, effectively axiomatised theory strong enough for arithmetic (i) has true statements it cannot prove, and (ii) cannot prove its own consistency.
+
+So the completeness criterion above is unachievable in principle for arithmetic, and the consistency criterion cannot be verified from inside. This did not end mathematics; it changed what foundations are for. Chapter 7 builds $\mathbb{N}$ from nine axioms knowing in advance that those axioms cannot settle every question about it.
+</Aside>

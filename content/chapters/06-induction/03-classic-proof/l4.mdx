@@ -1,0 +1,91 @@
+---
+level: l4
+title: The classic proof
+readingTimeMin: 6
+newTerms: []
+anchorExample: "1+3+5+… = n²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+> **Proposition.** For every integer $n \geq 1$:
+> $$1 + 3 + 5 + \cdots + (2n-1) = n^2.$$
+
+<Discussion>
+  <div slot="know">The sum for $k+1$ terms is the sum for $k$ terms plus the next odd number, $2(k+1)-1 = 2k+1$. Also the identity $(k+1)^2 = k^2 + 2k + 1$.</div>
+  <div slot="want">$A(n)$ for all $n \geq 1$, where $A(n)$ is the displayed equation.</div>
+  <div slot="how">Base at $n=1$. For the step, start from the left-hand side of $A(k+1)$, split off the last term, apply (IH), and simplify. The entire content is $k^2 + 2k+1 = (k+1)^2$ — everything else is bookkeeping.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ denote $1 + 3 + \cdots + (2n-1) = n^2$.
+
+**Base case.** $A(1)$: the left side is the single term $2(1)-1 = 1$; the right side is $1^2 = 1$. ✓
+
+**Inductive step.** Fix $k \geq 1$ and assume
+$$1 + 3 + \cdots + (2k-1) = k^2. \tag{IH}$$
+Then, splitting the last term off the $(k+1)$-term sum,
+$$
+\begin{aligned}
+1 + 3 + \cdots + (2k-1) + \big(2(k+1)-1\big)
+&= \Big(1 + 3 + \cdots + (2k-1)\Big) + (2k+1)\\
+&= k^2 + (2k+1) &&\text{by (IH)}\\
+&= (k+1)^2,
+\end{aligned}
+$$
+establishing $A(k+1)$.
+
+By induction, $A(n)$ holds for all $n \geq 1$.
+</Proof>
+
+## The picture, kept
+
+The identity has a wordless proof. Odd numbers are exactly the L-shaped shells between consecutive squares: growing a $k \times k$ square to $(k+1)\times(k+1)$ takes $k$ tiles up the side, $k$ across the top, and $1$ in the corner — that is $2k+1$ tiles.
+
+So the shells are odd for a structural reason (twice something plus one — module 4.2), and the inductive step $k^2 + (2k+1) = (k+1)^2$ *is* the tiling statement in algebra.
+
+Keeping both is worthwhile. The picture explains why; the induction certifies that the pattern cannot fail at some large $n$ where drawing stops being practical. Module 6.1's prime-generating polynomial is the reminder that this second guarantee is not free.
+
+<Warning title="Direction of proof">
+The invalid version, which is written surprisingly often:
+
+> "We must show $1 + 3 + \cdots + (2k+1) = (k+1)^2$. Subtracting $2k+1$ from both sides gives $1 + 3 + \cdots + (2k-1) = k^2$, which is (IH). ∎"
+
+This begins by assuming the conclusion. It can be repaired — every step there happens to be reversible — but as written it proves nothing, and a reader must verify reversibility themselves.
+
+**Rule:** the inductive step starts at the left-hand side of $A(k+1)$ and proceeds by a chain of equalities to the right-hand side. Never manipulate both sides of the target.
+</Warning>
+
+## A second, for the pattern
+
+> **Proposition.** $\;1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}$ for all $n \geq 1$.
+
+<Proof>
+Let $B(n)$ be the displayed identity.
+
+**Base.** $B(1)$: the left side is $1$; the right side is $\tfrac{1\cdot2}{2} = 1$. ✓
+
+**Step.** Assume $B(k)$: $\;1 + 2 + \cdots + k = \tfrac{k(k+1)}{2}$. Then
+$$
+1 + 2 + \cdots + k + (k+1) = \frac{k(k+1)}{2} + (k+1) = (k+1)\left(\frac k2 + 1\right) = \frac{(k+1)(k+2)}{2},
+$$
+which is $B(k+1)$.
+</Proof>
+
+The shape is identical: split, substitute, factor, recognise. Once you have written three of these the mechanics become automatic, and the only real work in an induction proof is finding the statement to prove.
+
+<Aside>
+This second identity has a famous non-inductive proof. Write the sum forwards and backwards, one above the other:
+$$
+\begin{aligned}
+&1 + 2 + \cdots + (n-1) + n\\
+&n + (n-1) + \cdots + 2 + 1
+\end{aligned}
+$$
+Every column adds to $n+1$, and there are $n$ columns — so twice the sum is $n(n+1)$. Halve it. Gauss is said to have found this as a schoolboy.
+
+Induction proves the formula but does not suggest it; Gauss's pairing does both. That is the usual trade — induction is a verification method, not a discovery method, which is why module 6.6 treats conjecturing as a separate skill.
+</Aside>

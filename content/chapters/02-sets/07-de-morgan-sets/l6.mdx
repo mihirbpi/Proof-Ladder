@@ -1,0 +1,117 @@
+---
+level: l6
+title: De Morgan's set laws
+readingTimeMin: 8
+newTerms: []
+anchorExample: "the quadrilateral family and loci of points"
+---
+
+import VennTwo from '@/components/VennTwo.astro';
+import Figure from '@/components/Figure.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+\overline{S \cap T} = \overline{S} \cup \overline{T}
+\qquad\qquad
+\overline{S \cup T} = \overline{S} \cap \overline{T}
+$$
+
+You have seen these before. In module 1.4 they were about $\wedge$ and $\vee$; here they are about $\cap$ and $\cup$. Nothing new is being discovered — a translation is being performed, and this module is where you watch a Chapter 1 proof become a Chapter 2 proof line by line.
+
+## The pictures
+
+<Figure alt="Two overlapping circles inside a dashed rectangle, with everything shaded except the overlapping lens." caption="The complement of S ∩ T: everything outside the overlap.">
+  <VennTwo labelS="S" labelT="T" shade={["S-only", "T-only", "outside"]} universe="U" />
+</Figure>
+
+<Figure alt="Two overlapping circles inside a dashed rectangle, with only the region outside both circles shaded." caption="The complement of S ∪ T: only what is outside both.">
+  <VennTwo labelS="S" labelT="T" shade={["outside"]} universe="U" />
+</Figure>
+
+The diagrams make the laws believable. They do not prove them — a two-circle picture shows one arrangement, and a proof must cover all of them. Diagrams are for finding the statement; element chasing is for establishing it.
+
+## Proof
+
+> **Theorem.** $\overline{S \cap T} = \overline{S} \cup \overline{T}$.
+
+<Proof>
+**($\subseteq$)** Let $x \in \overline{S\cap T}$. Then $x \in U$ and $x \notin S \cap T$.
+
+Suppose $x \in S$ and $x \in T$. Then $x \in S\cap T$, contradicting $x \notin S \cap T$. So it is not the case that both hold, and therefore $x \notin S$ or $x \notin T$.
+
+Hence $x \in \overline S$ or $x \in \overline T$, that is, $x \in \overline S \cup \overline T$.
+
+**($\supseteq$)** Let $x \in \overline S \cup \overline T$. Then $x \in \overline S$ or $x \in \overline T$; we take cases.
+
+*Case 1: $x \in \overline S$,* so $x \notin S$. Then $x \notin S \cap T$, since membership in the intersection would require $x \in S$.
+
+*Case 2: $x \in \overline T$,* so $x \notin T$. Then $x \notin S \cap T$ for the same reason.
+
+The cases are exhaustive, so in both $x \in \overline{S \cap T}$.
+
+Therefore $\overline{S\cap T} = \overline S \cup \overline T$.
+</Proof>
+
+Two features are worth naming, because they recur:
+
+**The $\subseteq$ half used contradiction.** The hypothesis was a negation — $x \notin S \cap T$ — and negations give you nothing to build with, so "suppose not" supplied something (module 2.5).
+
+**The $\supseteq$ half used cases.** The hypothesis was a $\cup$, and you were not told which side. Module 1.12's rule again.
+
+This is the same pairing as the last module's, and once you have seen it twice you can predict the structure of the next such proof before writing a word.
+
+## The second law
+
+$\overline{S \cup T} = \overline S \cap \overline T$ can be proved the same way, but there is a better route: **derive it from the first.**
+
+Apply the first law to $\overline S$ and $\overline T$ in place of $S$ and $T$:
+$$
+\overline{\overline S \cap \overline T} = \overline{\overline S} \cup \overline{\overline T} = S \cup T,
+$$
+using $\overline{\overline S} = S$. Now complement both sides:
+$$
+\overline S \cap \overline T = \overline{S \cup T}.
+$$
+
+**One law implies the other.** Complementation is a mirror that exchanges $\cap$ and $\cup$, and each law is the other seen in it. Deriving is better than re-proving here — it is shorter, and it shows *why* the two laws come as a pair rather than by coincidence.
+
+## The dictionary
+
+| Logic (Ch. 1) | Sets (Ch. 2) |
+|---|---|
+| $\wedge$ | $\cap$ |
+| $\vee$ | $\cup$ |
+| $\neg$ | complement |
+| $\Rightarrow$ | $\subseteq$ |
+| $\equiv$ | $=$ |
+| tautology | $U$ |
+| contradiction | $\emptyset$ |
+
+Every row is a genuine correspondence, and the table is worth memorising because it converts work you have already done into results you would otherwise prove again. The absorption law, commutativity, associativity, distributivity — all transfer.
+
+<Warning title="What the diagrams cannot do">
+A two-circle Venn diagram assumes $S$ and $T$ overlap, with each region non-empty. Real pairs of sets might be disjoint, or nested, or equal.
+
+For these particular laws the picture happens to generalise. For other claims it does not, and a diagram is exactly the wrong instrument: three sets need eight regions and a carefully drawn figure, four sets cannot be drawn with circles at all.
+
+Element chasing has none of these limits, which is the practical argument for learning it.
+</Warning>
+
+<Aside>
+The same laws hold for quantifiers, and by now the pattern should be predictable:
+$$\overline{\bigcap_i S_i} = \bigcup_i \overline{S_i}, \qquad \overline{\bigcup_i S_i} = \bigcap_i \overline{S_i}.$$
+
+Since $\bigcap$ is a $\forall$ and $\bigcup$ is an $\exists$, this is module 1.11 written a third time.
+
+Three appearances — connectives, sets, quantifiers — of one law. That kind of recurrence is what mathematicians mean when they call a result *fundamental*: it is not that the law is difficult, but that it keeps being the same law in every new setting.
+</Aside>
+
+## A geometric reading
+
+Take $U$ to be the plane, $S$ the interior of one circle and $T$ the interior of another.
+
+$\overline{S \cap T}$ is everything outside the lens where the disks overlap — including points inside one disk. $\overline S \cup \overline T$ is the set of points outside at least one disk. Convince yourself those are the same description, and you have the first law in a form you can see.
+
+The lesson your book keeps applying: the negation of *both* is *at least one fails*, and the region that fails to be in both is much larger than the region outside everything.

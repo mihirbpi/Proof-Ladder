@@ -1,0 +1,88 @@
+---
+level: l3
+title: The classic proof
+readingTimeMin: 5
+newTerms: []
+anchorExample: "1+3+5+… builds squares"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Time to write the proof properly. This is the first complete induction proof in the course, and its shape is the shape of all of them.
+
+## The picture first
+
+Odd numbers build squares out of L-shaped shells.
+
+Start with $1$ tile — a $1$-by-$1$ square. To grow it to $2$-by-$2$, add $1$ down the side, $1$ across the top, and $1$ in the corner: **3 tiles**.
+
+To grow $2$-by-$2$ into $3$-by-$3$: $2$ down the side, $2$ across the top, $1$ corner — **5 tiles**.
+
+Then $3+3+1 = $ **7**, then $4+4+1 = $ **9**.
+
+The shell sizes are $1, 3, 5, 7, 9$ — and they are odd for a *reason*. Each shell is (side) $+$ (side) $+$ (corner): two equal amounts plus one, which is exactly what odd means (module 4.2).
+
+So the picture already contains the whole argument. The proof below is that picture written in sentences.
+
+## The claim
+
+> **Claim.** Add up the first few odd numbers. The total is always the count multiplied by itself.
+
+$1 = 1\times1$. And $1+3 = 4 = 2\times2$. And $1+3+5 = 9 = 3\times3$.
+
+<Discussion>
+  <div slot="know">Each new odd number is the L-shaped shell that grows a square by one on each side.</div>
+  <div slot="want">The claim, for every case.</div>
+  <div slot="how">Three steps (module 6.2). The base is a one-line check. The step needs the total for the next case written as *the previous total plus one new odd number* — then the inductive hypothesis replaces the first part, and the shell picture finishes it.</div>
+</Discussion>
+
+## The proof
+
+<Proof>
+**Statement.** For each case, the claim is: *adding up that many odd numbers gives that count multiplied by itself.* We prove it for every case from the first onwards.
+
+**Base case.** The first case says the first odd number is $1 \times 1$. The first odd number is $1$, and $1\times1 = 1$. ✓
+
+**Inductive step.** Suppose the claim holds for the case you are on — that adding up that many odd numbers gives that count multiplied by itself.
+
+We must show the next case works: adding one more odd number gives *one more* multiplied by itself.
+
+Begin with what you have. By the inductive hypothesis, your total is a square, with as many tiles along each side as your count.
+
+Now add the next odd number. As we saw above, going from a square to the next square up needs one new tile along the side, one along the top, and one in the corner — and that count is precisely the next odd number in the list.
+
+So adding it turns your square into the next square exactly, with one more tile along each side than before.
+
+That is the claim for the next case. ✓
+
+Base case and inductive step both hold, so the claim is true for every case.
+</Proof>
+
+## What to copy
+
+Look at the shape, because you will reuse it constantly.
+
+1. The claim was written down before anything was checked.
+2. The base case was checked at the stated starting point.
+3. The step **began with what you already have** and worked forwards.
+4. The inductive hypothesis was used, and the proof said where.
+5. The conclusion named both conditions before claiming the result.
+
+<Warning title="Do not start from the answer">
+Here is the tempting bad version:
+
+> "The next total is the next count multiplied by itself. Take away the new odd number from both sides. That leaves the old total, which is right by the hypothesis. Done."
+
+That argument starts from what it wants to prove. It only works if every step is reversible, and a reader has to check that themselves — so it is not a proof as written.
+
+Start from what you have. Walk forwards. Arrive.
+</Warning>
+
+<Aside>
+Two proofs of the same theorem is not waste. The shell picture tells you *why* it is true — each odd number is precisely the gap between consecutive squares. The dominoes tell you the picture cannot break at some enormous case where you stopped drawing.
+
+Different questions, both worth answering.
+</Aside>

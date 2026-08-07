@@ -1,0 +1,131 @@
+---
+level: l6
+title: Complex arithmetic
+readingTimeMin: 8
+newTerms: []
+anchorExample: "rotations of the coordinate plane"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+There is one rule: **do ordinary algebra, and replace $i^2$ with $-1$ whenever it appears.**
+
+Everything below follows from that plus the field axioms of module 4.1.
+
+## Addition and subtraction
+
+$$(a+bi)+(c+di) = (a+c) + (b+d)i$$
+$$(a+bi)-(c+di) = (a-c)+(b-d)i$$
+
+Collect like terms. Real parts add to real parts, imaginary to imaginary — which is exactly how vectors add in your coordinate work, and module 5.5 shows that is not a coincidence.
+
+$$(3+4i)+(1-6i) = 4 - 2i.$$
+
+## Multiplication
+
+Expand, then simplify:
+
+$$
+\begin{aligned}
+(a+bi)(c+di) &= ac + adi + bci + bdi^2\\
+&= ac + adi+bci - bd\\
+&= (ac - bd) + (ad+bc)i.
+\end{aligned}
+$$
+
+The only non-obvious step is $i^2 = -1$, which turned $bd$ into $-bd$ and moved it into the real part.
+
+$$(3+4i)(1-6i) = 3 - 18i + 4i - 24i^2 = 3 - 14i + 24 = 27 - 14i.$$
+
+**Do not memorise the formula.** Expand and simplify; it is faster and less error-prone, and it is what you would do with $(3+4x)(1-6x)$ anyway.
+
+## Powers of $i$
+
+$$i^1 = i,\quad i^2=-1,\quad i^3 = -i,\quad i^4 = 1,\quad i^5 = i,\ \dots$$
+
+The pattern has period $4$. To compute $i^{n}$, take the remainder of $n$ on division by $4$ — module 4.4's residue classes, applied here.
+
+$$i^{2026}:\quad 2026 = 4\cdot506 + 2, \quad\text{so } i^{2026} = i^2 = -1.$$
+
+Geometrically the cycle is four quarter-turns returning to the start, and that reading is module 5.9's subject.
+
+## Division
+
+Division is where the conjugate earns its place.
+
+$$\frac{1}{a+bi} \quad\text{— is this even a complex number?}$$
+
+Multiply above and below by $a - bi$:
+
+$$
+\frac{1}{a+bi}\cdot\frac{a-bi}{a-bi} = \frac{a-bi}{(a+bi)(a-bi)} = \frac{a-bi}{a^2+b^2},
+$$
+
+since $(a+bi)(a-bi) = a^2 - (bi)^2 = a^2+b^2$. So
+
+$$
+\frac{1}{a+bi} = \frac{a}{a^2+b^2} - \frac{b}{a^2+b^2}\,i,
+$$
+
+which is of the form (real) $+$ (real)$\,i$. **The denominator became real**, and that is the whole trick — it is the same move as rationalising $\frac{1}{2+\sqrt3}$ in your algebra course.
+
+$$\frac{3+4i}{1-6i} = \frac{(3+4i)(1+6i)}{(1-6i)(1+6i)} = \frac{3+18i+4i-24}{1+36} = \frac{-21+22i}{37} = -\frac{21}{37}+\frac{22}{37}i.$$
+
+<Warning title="Where the reals are needed">
+The formula requires $a^2+b^2\neq0$. Here is the proof that this holds whenever $z \neq 0$.
+
+Let $a, b$ be real and not both zero. Since squares of reals are non-negative (module 5.1), $a^2\geq0$ and $b^2\geq0$, so $a^2+b^2\geq0$. If the sum were $0$, both terms would have to be $0$, forcing $a = b = 0$ — excluded.
+
+So $a^2+b^2>0$, and the division is legitimate.
+
+**This step uses the order on $\mathbb{R}$**, which $\mathbb{C}$ does not have (module 5.2). The reals are not decoration inside $\mathbb{C}$; they are what makes its arithmetic work.
+</Warning>
+
+## $\mathbb{C}$ is a field
+
+> **Theorem.** $\mathbb{C}$ satisfies every field axiom of module 4.5.
+
+<Discussion>
+  <div slot="know">The four operations, defined above. The field axioms for $\mathbb{R}$, which we may use freely.</div>
+  <div slot="want">Closure, associativity, commutativity, identities, and inverses.</div>
+  <div slot="how">Each axiom reduces to real-number algebra on the components. Closure and inverses are the informative ones; the rest are routine expansion, and one is shown here as a representative.</div>
+</Discussion>
+
+<Proof>
+**Closure** under $+, -, \times$ is immediate from the formulas above: each output has the form (real) $+$ (real)$\,i$, since $\mathbb{R}$ is closed under its operations (module 4.1).
+
+**Identities.** $0 = 0+0i$ satisfies $z + 0 = z$, and $1 = 1+0i$ satisfies $z\cdot1 = z$ by the multiplication formula.
+
+**Additive inverses.** $-(a+bi) = (-a)+(-b)i$, and the sum is $0$.
+
+**Multiplicative inverses.** For $z\neq0$ the computation above gives $z^{-1}$, valid because $a^2+b^2\neq0$.
+
+**Commutativity of multiplication.** $(a+bi)(c+di) = (ac-bd)+(ad+bc)i$ and $(c+di)(a+bi) = (ca-db)+(cb+da)i$. These agree because multiplication and addition in $\mathbb{R}$ are commutative.
+
+Associativity and distributivity are verified the same way: expand both sides and compare components, using the corresponding laws in $\mathbb{R}$.
+</Proof>
+
+**Every axiom for $\mathbb{C}$ reduced to the axiom for $\mathbb{R}$.** That is what makes the extension legitimate — nothing was assumed about $i$ beyond $i^2=-1$, and nothing new had to be granted.
+
+## What is gained and lost
+
+| | $\mathbb{R}$ | $\mathbb{C}$ |
+|---|---|---|
+| Field | ✓ | ✓ |
+| Ordered | ✓ | ✗ |
+| Every polynomial has a root | ✗ | ✓ |
+
+Two out of three, and the trade is worth it for algebra. Your geometry course cares about the missing row, since lengths and angle measures need comparing — which is why module 5.6 builds a real-valued measure of size on top of $\mathbb{C}$.
+
+<Aside>
+Could we go further and build a system beyond $\mathbb{C}$?
+
+Hamilton spent years trying to multiply triples of reals and failed — there is no such system. In 1843 he found that **four** dimensions work, giving the **quaternions**, at the cost of commutativity: for quaternions $pq \neq qp$ in general.
+
+Push to eight dimensions and you lose associativity too. Push further and you lose the ability to divide at all. A theorem of Hurwitz from 1898 says the only division algebras over $\mathbb{R}$ have dimension $1, 2, 4$, or $8$.
+
+Quaternions are not a curiosity. They are how three-dimensional rotations are represented in computer graphics and spacecraft navigation, because they compose without the degeneracies that Euler angles suffer — the same reason complex numbers handle plane rotations so cleanly (module 5.9).
+</Aside>

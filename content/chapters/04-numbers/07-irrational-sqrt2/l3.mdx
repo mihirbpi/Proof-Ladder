@@ -1,9 +1,9 @@
 ---
 level: l3
-title: Irrational numbers and √2
+title: A length that is not a fraction
 readingTimeMin: 6
 newTerms: ["irrational"]
-anchorExample: "divisibility"
+anchorExample: "factors and multiples"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -11,17 +11,17 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 4.6 showed the rationals are dense — between any two there are infinitely many more. It is tempting to conclude they fill the number line completely.
+Module 4.6 showed the fractions are dense — between any two there are infinitely many more. It is tempting to conclude they fill the number line completely.
 
 They do not. This module exhibits a hole.
 
-A number that is *not* rational — not equal to any fraction of whole numbers — is called **irrational**.
+A number on the number line that is **not** a fraction is called **irrational**.
 
 ## The claim
 
-> **Claim.** There is no fraction whose square is $2$.
+> **Claim.** There is no fraction that, multiplied by itself, gives $2$.
 
-The number whose square is $2$ is written $\sqrt2$, and it is the length of the diagonal of a square with sides $1$. It is a perfectly good length. It is just not a fraction.
+The length that does this is the diagonal of a square with sides $1$ — you can draw it in five seconds. It is a perfectly good length. It is just not a fraction.
 
 ## The plan
 
@@ -30,40 +30,41 @@ Direct proof is hopeless here. To show *no* fraction works, you would have to ch
 So use **suppose not** (module 2.5). Assume a fraction *does* work, and follow it until something impossible happens.
 
 <Discussion>
-  <div slot="know">Every fraction can be written in lowest terms — with the top and bottom sharing no common factor. If they did share one, you could cancel it.</div>
-  <div slot="want">To show no fraction squares to $2$.</div>
-  <div slot="how">Suppose one does, written in lowest terms. Then show that the top *and* the bottom are both even — meaning they shared a factor of $2$ after all. That contradicts "lowest terms."</div>
+  <div slot="know">Every fraction can be written in **lowest terms** — with top and bottom sharing no common factor. If they shared one, you could cancel it out.</div>
+  <div slot="want">To show no fraction multiplied by itself gives $2$.</div>
+  <div slot="how">Suppose one does, written in lowest terms. Then show that the top *and* the bottom must both be even — meaning they shared a factor of $2$ after all. That contradicts "lowest terms."</div>
 </Discussion>
 
 We need one tool from module 1.9:
 
-> If $n \times n$ is even, then $n$ is even.
+> If a number multiplied by itself is even, then the number itself is even.
 
-(You proved it there by flipping it around: if $n$ is odd, then $n \times n$ is odd.)
+(You proved it there by flipping it around: if a number is odd, then multiplied by itself it is odd.)
 
 ## The proof
 
 <Proof>
-Suppose not. Suppose there is a fraction $\tfrac{p}{q}$ with $\left(\tfrac{p}{q}\right)^2 = 2$, and suppose it is written in **lowest terms**, so $p$ and $q$ share no common factor.
+Suppose not. Suppose there is a fraction which, multiplied by itself, gives $2$. Write it in **lowest terms**, so its top and bottom share no common factor.
 
-Multiplying both sides by $q \times q$:
-$$p \times p = 2 \times (q \times q). \tag{$\star$}$$
+Multiplying the fraction by itself means multiplying top by top and bottom by bottom. For the answer to be $2$, the new top must be twice the new bottom.
 
-So $p \times p$ is even. By our tool, **$p$ is even**. Write $p = 2 \times k$.
+So: **the top multiplied by itself is twice the bottom multiplied by itself.**
 
-Substitute that into $(\star)$:
-$$(2k)\times(2k) = 2 \times (q\times q), \quad\text{so}\quad 4 \times (k \times k) = 2 \times (q\times q).$$
+That makes the top-times-top an even number. By our tool, **the top is even.** So the top is twice something.
 
-Divide both sides by $2$:
-$$2 \times (k \times k) = q \times q.$$
+Now put that back in. The top-times-top is twice-something multiplied by twice-something, which is four times (something multiplied by itself).
 
-So $q \times q$ is even. By our tool again, **$q$ is even**.
+And we said top-times-top is twice bottom-times-bottom. So four times (something times itself) equals twice (bottom times bottom).
 
-But now $p$ is even and $q$ is even, so they share the common factor $2$.
+Halve both sides: twice (something times itself) equals bottom-times-bottom.
 
-And we said the fraction was in lowest terms — no shared factors. Contradiction!
+That makes bottom-times-bottom even. By our tool again, **the bottom is even.**
 
-Our supposition must have been wrong. No fraction squares to $2$, so $\sqrt2$ is irrational.
+But now the top is even and the bottom is even — so they share the common factor $2$.
+
+And we said the fraction was in lowest terms, with no shared factors. Contradiction!
+
+Our supposition must have been wrong. No fraction multiplied by itself gives $2$.
 </Proof>
 
 ## What the proof used
@@ -71,16 +72,18 @@ Our supposition must have been wrong. No fraction squares to $2$, so $\sqrt2$ is
 Count the tools. This short argument leans on nearly the whole course so far.
 
 - **Suppose not** (module 2.5) — the shape of the whole thing.
-- **Flip it around** (module 1.8) — hidden inside the even-square tool.
-- **Definition of even** (module 4.2) — writing $p = 2k$.
+- **Flip it around** (module 1.8) — hidden inside the even-number tool.
+- **Even means a pile of $2$s** (module 4.2) — used twice.
 - **Lowest terms** — the load-bearing assumption. Without it, no contradiction.
 
 <Warning title="Lowest terms is doing all the work">
-If you drop the lowest-terms assumption, nothing goes wrong! You would simply learn that $p$ and $q$ are both even, cancel, and repeat forever. That is not a contradiction — it is just an endless process.
+Drop the lowest-terms assumption and nothing goes wrong! You would simply learn that top and bottom are both even, cancel a $2$, and repeat forever. That is not a contradiction — it is just an endless process.
 
 The contradiction only appears because we *said in advance* that no cancelling was possible. That single sentence is what makes the proof work.
 </Warning>
 
 <Aside>
-The same argument works for $\sqrt3$, $\sqrt5$, and $\sqrt{p}$ for any prime — you replace "even" with "divisible by $p$". It also shows exactly which square roots are rational: $\sqrt m$ is a fraction precisely when $m$ is a perfect square. So $\sqrt{16} = 4$ is fine, and every other square root of a whole number is irrational.
+The same argument works for the length whose square is $3$, and for $5$, and for the square root of any prime — you replace "even" with "divisible by that prime."
+
+It also settles exactly which square roots *are* fractions: only the square roots of perfect squares. So the square root of $16$ is $4$, and the square root of $25$ is $5$, and the square root of every other counting number is irrational.
 </Aside>

@@ -1,0 +1,75 @@
+---
+level: l7
+title: The domino idea
+readingTimeMin: 8
+newTerms: ["induction", "well-ordering"]
+anchorExample: "Σ(2j−1) = n²"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Principle of Mathematical Induction.** Let $A(n)$ be a statement for each integer $n \geq n_0$. If $A(n_0)$ holds, and $A(k)\Rightarrow A(k+1)$ for every $k \geq n_0$, then $A(n)$ holds for all $n \geq n_0$.
+
+The domino picture is faithful: the base is the push, the step is the spacing. Both are load-bearing.
+
+- **No base.** "$n = n+1$ for all $n$" satisfies the step vacuously-correctly ($k = k+1$ implies $k+1 = k+2$) and is false.
+- **No step.** $A(n)$: "$n < 5$" has base $A(1)$ true and is false for $n \geq 5$.
+
+## Induction is not a theorem about $\mathbb{N}$; it defines $\mathbb{N}$
+
+Induction cannot be proved from "more basic" facts about the integers, because it *is* one of the basic facts. Chapter 7 identifies it as Peano's ninth axiom: $\mathbb{N}$ is the smallest set containing $0$ and closed under successor. Everything above $0$ is reachable by finitely many successor steps, and induction is the formal expression of that.
+
+Equivalently:
+
+> **Well-ordering.** Every nonempty subset of $\mathbb{Z}_{\geq n_0}$ has a least element.
+
+<Proof title="Induction ⇒ well-ordering">
+Suppose $S \subseteq \mathbb{Z}_{\geq n_0}$ is nonempty with no least element. Let $A(n)$ be "no element of $S$ is $\leq n$".
+
+$A(n_0)$ holds: otherwise $n_0 \in S$ would be least. If $A(k)$ holds and $k+1 \in S$, then $k+1$ would be least in $S$; so $A(k+1)$ holds.
+
+By induction $A(n)$ holds for all $n$, so $S = \emptyset$ — contradiction.
+</Proof>
+
+The converse also holds, so induction, well-ordering, and the least-counterexample method are three presentations of one principle. Module 4.4 used well-ordering to prove the division algorithm; that proof could equally have been written as an induction.
+
+## The motivating example
+
+$$\sum_{j=1}^n (2j-1) = n^2.$$
+
+Data: $1, 4, 9, 16, 25$. The structural observation licensing induction is that
+$$
+\sum_{j=1}^{k+1}(2j-1) = \left(\sum_{j=1}^{k}(2j-1)\right) + (2k+1),
+$$
+so the $(k+1)$-case decomposes into the $k$-case plus a computable increment. Module 6.4 identifies this decomposability as the second requirement for induction to apply.
+
+Given it, the step is one line: $k^2 + (2k+1) = (k+1)^2$.
+
+## Why conjecture is not proof
+
+<Warning title="Long-lived false patterns">
+| Claim | Holds up to | Fails at |
+|---|---|---|
+| $n^2+n+41$ prime | $n = 39$ | $n=40$ |
+| Pólya's conjecture | $\sim 9\times10^8$ | $906{,}150{,}257$ |
+| Mertens conjecture $\lvert M(n)\rvert < \sqrt n$ | all tested values | disproved 1985, no explicit counterexample known |
+| $\gcd(n^{17}+9,(n+1)^{17}+9)=1$ | $\sim 8\times10^{51}$ | first counterexample has 52 digits |
+| $\operatorname{li}(x) > \pi(x)$ | all computed $x$ | Skewes: crossing exists below $10^{316}$ |
+
+The Mertens case is the sharpest: the conjecture is *false*, and no counterexample has ever been exhibited. Computational evidence and truth are genuinely different things.
+</Warning>
+
+By §1.11 this is structural, not anecdotal: $\forall n\,A(n)$ is refuted by one witness and confirmed by none. Verification is how conjectures are generated and how false ones are killed; it is never how true ones are established.
+
+The practical discipline runs both ways. Compute cases first — to find the right statement, and to avoid attempting to prove something false — then prove.
+
+<Aside>
+The step is a conditional, $A(k)\Rightarrow A(k+1)$, so proving it legitimately assumes $A(k)$ (§1.5). This is not circularity, and the worry that it is dissolves once the quantifier structure is written out: what is proved is $\forall k\,\big(A(k)\Rightarrow A(k+1)\big)$, and nothing in that asserts $A(k)$ for any particular $k$. §6.2 belabours this because it is the sticking point for essentially every student.
+</Aside>
+
+<WhereThisGoes level="l7">
+Induction generalises along two axes. **Strong induction** assumes $A(n_0),\ldots,A(k)$ to prove $A(k+1)$ — equivalent to ordinary induction, but the natural form when the decomposition is not into the immediate predecessor, as in the existence half of prime factorisation. **Structural induction** replaces $\mathbb{N}$ by any well-founded order, which is how one proves theorems about trees, formulas, and terms — the basis of every compiler correctness proof and of the semantics of programming languages. Pushing further, **transfinite induction** runs along the ordinals and requires the recursion theorem to justify; it is the engine of set theory, of the construction of the cumulative hierarchy, and of proofs by ordinal analysis in proof theory, where the ordinal $\varepsilon_0$ measures exactly the strength of Peano arithmetic — a theorem of Gentzen that is one of the deepest results connecting induction to the limits of formal systems.
+</WhereThisGoes>

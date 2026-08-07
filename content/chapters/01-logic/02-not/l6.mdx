@@ -1,17 +1,22 @@
 ---
 level: l6
 title: Negation
-readingTimeMin: 7
+readingTimeMin: 8
 newTerms: ["negation"]
-anchorExample: "x ≥ 1"
+anchorExample: "vertical angles and the base-angle theorem"
 ---
 
 import TruthTable from '@/components/TruthTable.astro';
+import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-For any statement $p$, its **negation** $\neg p$ is the statement true exactly when $p$ is false. Simple as it sounds, negation is where most beginners lose points on early proofs — usually by producing an "opposite" that is really just a *different* statement.
+Every indirect proof in your geometry course begins the same way: *assume the opposite of what you want to prove.*
 
-## Truth table
+Getting that opposite right is the whole game. Get it wrong and the proof establishes something else, usually something weaker, and the contradiction you eventually reach proves nothing about the theorem you were after.
+
+## Definition
+
+For a statement $p$, the **negation** $\neg p$ is the statement that is true exactly when $p$ is false.
 
 <TruthTable
   variables={["p"]}
@@ -22,50 +27,87 @@ For any statement $p$, its **negation** $\neg p$ is the statement true exactly w
   ]}
 />
 
-The statements $p$ and $\neg p$ partition every possible situation into two disjoint classes: those where $p$ is true, and those where it is false. Consequently:
+Two rows, and everything else in this module follows from them.
 
-- $p \wedge \neg p$ is always false — a **contradiction** (module 1.3).
-- $p \vee \neg p$ is always true — a **tautology** (also 1.3).
+$p$ and $\neg p$ split every situation into two groups with no overlap and no gap. Two consequences, both used constantly:
 
-The second is called the **law of excluded middle**. The first, the **law of non-contradiction**. Both fall straight out of the truth table.
+- $p \wedge \neg p$ is false in every row — a **contradiction**, and the engine of indirect proof.
+- $p\vee\neg p$ is true in every row — a **tautology**, called the **law of the excluded middle**, and the licence for every case split you write.
+
+When your proof says *"either $P$ is inside the triangle or it is not,"* it is quoting the second, and it then owes an argument in each branch.
 
 ## Double negation
 
-Negating twice inverts twice, which is not an inversion. So
-$$
-\neg\neg p \equiv p,
-$$
-where $\equiv$ means "same truth table." This is how proof by contradiction ends: after concluding $\neg\neg q$, one silently replaces it with $q$.
+$$\neg\neg p \equiv p.$$
 
-## Negation errors, catalogued
+Inverting twice is not an inversion. This is the last step of every indirect proof: having shown $\neg q$ leads to a contradiction, you conclude $\neg\neg q$, and silently replace it with $q$.
 
-**Boundary flip on inequalities.**
-$$
-\neg(x \geq 1)\; \text{is}\; x < 1, \quad \neg(x > 1)\; \text{is}\; x \leq 1, \quad \neg(x = 0)\; \text{is}\; x \neq 0.
-$$
+Your book usually leaves that replacement unstated. It is worth knowing it is happening.
 
-**Universal → existential.**
-$$
-\neg(\forall x, p(x))\; \text{is}\; \exists x, \neg p(x).
-$$
-The negation of "*every* even integer $\geq 4$ is a sum of two primes" is "*some* even integer $\geq 4$ is not a sum of two primes," which is the shape of a hypothetical counterexample to Goldbach's conjecture.
+## Negating inequalities and measures
 
-**Existential → universal.**
-$$
-\neg(\exists x, p(x))\; \text{is}\; \forall x, \neg p(x).
-$$
-The negation of "*there is* a real $x$ with $x^2 = -1$" is "*for all* real $x$, $x^2 \neq -1$," which we can prove.
+The boundary is where negations go wrong.
 
-**Common wrong "opposite".**
+$$\neg(x \geq 1) \text{ is } x<1, \qquad \neg(x>1) \text{ is } x \leq 1, \qquad \neg(x = 0) \text{ is } x\neq0.$$
 
-<Warning title="Common trap">
-The negation of "all A are B" is *not* "no A is B." Both can be false at once (imagine a room with a mix of blue and red hats — "all hats are red" and "no hat is red" are both false). The real negation is "some A is not B" — one counterexample is enough.
+**The negation of $>$ is $\leq$, not $<$.** Dropping the equality case is the standard slip, and it produces a proof with a hole exactly at the boundary — which is where the interesting cases usually live.
+
+In geometry the same care applies:
+
+| Statement | Negation |
+|---|---|
+| $\angle A$ is acute | $m\angle A \geq 90°$ |
+| $\triangle ABC$ is equilateral | at least one pair of sides is not congruent |
+| $\ell_1 \parallel \ell_2$ | $\ell_1$ and $\ell_2$ are not parallel |
+| $P$ is on $\overline{AB}$ | $P$ is not on $\overline{AB}$ |
+
+<Warning title="Not-acute is not obtuse">
+$\neg(\text{acute})$ is **not** *obtuse*. An angle can be right, and right is neither.
+
+Similarly, $\neg(\text{equilateral})$ is not *scalene* — an isosceles triangle is neither equilateral nor scalene. And $\neg(\ell_1\parallel\ell_2)$ is not *"$\ell_1$ and $\ell_2$ intersect"*: in space they might be skew, meeting nowhere and still not parallel.
+
+**The negation of a statement is not its opposite extreme.** The opposite extreme is a different, stronger claim, and assuming it in an indirect proof means assuming more than you are entitled to — which invalidates the proof even if you reach a contradiction.
+
+This is the single most common error in indirect proofs, and it is why the first line of one deserves care.
 </Warning>
 
-## Negation of compound statements, previewed
+## Negating quantified statements
 
-$\neg(p \wedge q)$ is *not* $\neg p \wedge \neg q$ — it is $\neg p \vee \neg q$. This surprise is important enough to get its own module (1.4: De Morgan). Similarly $\neg(p \vee q)$ is $\neg p \wedge \neg q$. Every real negation-error at the graduate level traces back to this asymmetry.
+$$\neg\big(\forall x,\ P(x)\big) \equiv \exists x,\ \neg P(x)$$
+$$\neg\big(\exists x,\ P(x)\big) \equiv \forall x,\ \neg P(x)$$
 
-## Twin Primes, negated
+Push the negation inward, flip the quantifier. Module 1.11 develops this; two consequences are worth having now.
 
-The Twin Primes conjecture says there are infinitely many primes $p$ with $p + 2$ prime. Its negation says: there are only finitely many such primes. A proof of the negation would come with a specific finite list of twin prime pairs, none of which we currently have — which is why we don't know whether the negation is true either.
+**The negation of a universal is a counterexample claim.** *"Every rhombus is a rectangle"* is negated by *"some rhombus is not a rectangle"* — and a single rhombus with a $60°$ angle settles it.
+
+**The negation of "all A are B" is not "no A is B."** Both can be false together: in a room of mixed hats, *"all hats are red"* and *"no hat is red"* both fail. The genuine negation is *"some A is not B"*, and one instance suffices.
+
+Applied to your book: *"every parallelogram is a rectangle"* is false. Its negation is not *"no parallelogram is a rectangle"* — which is also false — but *"some parallelogram is not a rectangle,"* which is true and easy to witness.
+
+## Negating compound statements
+
+$$\neg(p\wedge q) \equiv \neg p \vee \neg q, \qquad \neg(p\vee q) \equiv \neg p \wedge \neg q.$$
+
+**Not $\neg p \wedge \neg q$.** The connective swaps as the negation passes through, and module 1.4 proves it.
+
+The practical consequence appears immediately in congruence criteria. To negate
+
+> $\overline{AB}\cong\overline{DE}$ **and** $\angle B\cong\angle E$ **and** $\overline{BC}\cong\overline{EF}$
+
+you get *at least one of the three fails* — an **or**, not an **and**. Assuming all three fail would be assuming far more than the hypothesis gives, and any proof built on it is broken.
+
+## Negation in an indirect proof
+
+> **Proposition.** A triangle cannot have two right angles.
+
+Negate: *suppose a triangle has two right angles.* Then those two alone sum to $180°$, so the third angle measures $0°$ — impossible, since an angle of a triangle has positive measure.
+
+Notice the negation was straightforward here because the claim was already negative. That is module 1.8's observation, and it is a reason to reach for the indirect route: **the negation of a negative claim is a positive one, and positive claims give you something to work with.**
+
+<Aside>
+Twin Primes says there are infinitely many primes $p$ with $p+2$ also prime.
+
+Its negation says there are only **finitely many** such pairs — which would mean a complete, finite list exists.
+
+That is a genuinely different kind of claim, and it shows what negation is for: it tells you what a refutation would have to look like. Nobody has produced such a list, and nobody has proved one cannot exist, which is exactly why the conjecture is open in both directions.
+</Aside>

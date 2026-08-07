@@ -1,0 +1,90 @@
+---
+level: l4
+title: The complex plane
+readingTimeMin: 6
+newTerms: ["complex plane", "real axis", "imaginary axis"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Since $z = a+bi$ is determined by the pair $(a,b) \in \mathbb{R}^2$ (module 5.2), $\mathbb{C}$ can be drawn as a plane: $\operatorname{Re}(z)$ horizontal, $\operatorname{Im}(z)$ vertical.
+
+<Figure alt="A grid with axes crossing at the origin and three plotted points labelled 3 plus 2i, minus 2 plus i, and 4." caption="The complex plane. The real axis is horizontal, the imaginary axis vertical.">
+  <ComplexPlane points={[
+    {re: 3, im: 2, label: "3+2i"},
+    {re: -2, im: 1, label: "-2+i"},
+    {re: 4, im: 0, label: "4"}
+  ]} range={5} />
+</Figure>
+
+The **real axis** is $\{z : \operatorname{Im} z = 0\} = \mathbb{R}$; the **imaginary axis** is $\{z : \operatorname{Re} z = 0\}$.
+
+## Addition is vector addition
+
+$(a+bi)+(c+di) = (a+c)+(b+d)i$ is componentwise, so it is exactly vector addition in $\mathbb{R}^2$: the **parallelogram rule**.
+
+<Figure alt="Two arrows drawn from the origin to 3 plus i and to 1 plus 2i, with the sum marked at 4 plus 3i." caption="$(3+i)+(1+2i) = 4+3i$.">
+  <ComplexPlane
+    vectors={[{re: 3, im: 1}, {re: 1, im: 2}]}
+    points={[{re: 4, im: 3, label: "4+3i"}]}
+    range={5} />
+</Figure>
+
+So as an *additive* structure, $\mathbb{C}$ is nothing but $\mathbb{R}^2$. Everything distinctive comes from multiplication, which $\mathbb{R}^2$ does not have.
+
+## Conjugation is reflection
+
+$\bar z = a - bi$ negates the second coordinate: reflection in the real axis.
+
+<Figure alt="A point at 3 plus 2i and its reflection at 3 minus 2i below the horizontal axis." caption="Conjugation reflects in the real axis.">
+  <ComplexPlane points={[
+    {re: 3, im: 2, label: "z"},
+    {re: 3, im: -2, label: "z̄"}
+  ]} range={4} />
+</Figure>
+
+This makes module 5.4's theorem geometric. A reflection fixes exactly the points of its mirror line; the mirror is the real axis; hence $z = \bar z \iff z \in \mathbb{R}$. The two-direction algebraic proof and the one-line geometric argument establish the same fact, and having both is the point.
+
+Note also that $\overline{\bar z} = z$ is now visibly the statement that reflecting twice is the identity.
+
+## Multiplication by $i$ is rotation by $90°$
+
+> **Proposition.** For every $z \in \mathbb{C}$, the point $iz$ is $z$ rotated $90°$ counterclockwise about the origin.
+
+<Proof>
+Let $z = a+bi$. Then
+$$
+iz = i(a+bi) = ai + bi^2 = -b + ai,
+$$
+so $z$ at $(a,b)$ maps to $(-b, a)$.
+
+Rotation by $90°$ counterclockwise sends $(a,b)$ to $(-b,a)$ — check the basis vectors: $(1,0) \mapsto (0,1)$ and $(0,1)\mapsto(-1,0)$, which is exactly this map. Hence multiplication by $i$ is that rotation.
+</Proof>
+
+<Figure alt="Four points marked at the compass positions one, i, minus one, and minus i around the origin." caption="Repeated multiplication by $i$ cycles the compass points.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+So $i^2 = -1$ says: *two quarter turns equal a half turn*. The defining algebraic property of $i$ is a geometric identity, and module 5.9 shows this is the special case of a general rule — every complex multiplication rotates and scales.
+
+In matrix terms, multiplication by $i$ is $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$, the standard rotation matrix for $90°$, and its square is $-I$.
+
+<Warning title="Not a function graph">
+The complex plane plots the *domain*, not a graph. Each point is one complex number.
+
+Graphing $f : \mathbb{C}\to\mathbb{C}$ would require four real dimensions, so complex functions are visualised instead by domain colouring, by drawing source and target planes side by side, or by plotting $|f|$ as a surface. Expecting a curve is a category error.
+</Warning>
+
+<Aside>
+The plane representation is due to Wessel (1799), Argand (1806), and Gauss, and it is what ended the controversy over whether complex numbers exist. That question dissolves once you can point at them — which is a reasonable general lesson about mathematical objects: legitimacy comes from a construction, and a picture is a construction you can see.
+</Aside>

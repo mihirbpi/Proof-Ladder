@@ -1,0 +1,106 @@
+---
+level: l6
+title: Irrational numbers and √2
+readingTimeMin: 9
+newTerms: ["irrational"]
+anchorExample: "coordinates, lengths, and the Pythagorean theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Draw a square with side $1$. Its diagonal has length $\sqrt2$, by the Pythagorean theorem — you have computed this many times.
+
+This module proves that no fraction equals that length. Not that no one has found one: that none exists.
+
+## Statement
+
+A real number is **irrational** when it is not rational.
+
+> **Theorem.** $\sqrt2$ is irrational.
+
+<Discussion>
+  <div slot="know">$\sqrt2$ is the positive real with $(\sqrt2)^2 = 2$. Available: module 4.4's cases, module 1.9's even-square result, and closure.</div>
+  <div slot="want">A negative claim — no fraction works — with infinitely many fractions to rule out.</div>
+  <div slot="how">Suppose not. The negation supplies a specific fraction to work with, which is exactly the trade module 2.5 described. Then insist the fraction be in lowest terms; that extra assumption is free, and it is what the contradiction will attack.</div>
+</Discussion>
+
+<Proof>
+Suppose not: suppose $\sqrt2$ is rational. Then $\sqrt2 = \frac ab$ for integers $a, b$ with $b \neq 0$, and we may take the fraction in lowest terms — so $a$ and $b$ have no common factor other than $1$.
+
+Squaring, $2 = \dfrac{a^2}{b^2}$, hence
+$$a^2 = 2b^2.$$
+
+So $a^2$ is even. By the result of module 1.9, **$a$ is even**, say $a = 2k$ with $k\in\mathbb{Z}$.
+
+Substituting:
+$$(2k)^2 = 2b^2 \implies 4k^2 = 2b^2 \implies b^2 = 2k^2.$$
+
+So $b^2$ is even, and therefore **$b$ is even**.
+
+But now $a$ and $b$ are both even, so both are divisible by $2$ — contradicting that the fraction was in lowest terms.
+
+Hence $\sqrt2$ is not rational.
+</Proof>
+
+## The tools it used
+
+This proof is a summary of the course so far, and it is worth reading a second time with the list beside it.
+
+| Step | Tool | From |
+|---|---|---|
+| "Suppose not" | proof by contradiction | 2.5 |
+| "$\sqrt2 = \frac ab$" | unpacking an existential | 4.2 |
+| "in lowest terms" | a legitimate extra assumption | below |
+| "$a^2$ even $\Rightarrow a$ even" | biconditional, proved by contrapositive | 1.8, 1.9 |
+| "$a = 2k$" | unpacking evenness | 4.2 |
+| "$k^2\in\mathbb{Z}$" | closure | 4.1 |
+| "contradiction" | discharging the assumption | 2.5 |
+
+Seven modules, one theorem. Nothing here is a trick, and each step is a technique you have already practised in isolation.
+
+<Warning title="The lowest-terms assumption is free, and it is the target">
+Why may we assume $\frac ab$ is in lowest terms? Because every fraction *can* be reduced — cancel common factors until none remain, a process that terminates since the numerator strictly decreases.
+
+So assuming it costs nothing. And it is where the contradiction lands: the argument shows any such fraction must have both parts even, which is exactly what lowest terms forbids.
+
+Without that assumption the proof still works, in a different form: $a$ and $b$ are both even, so $\frac{a/2}{b/2}$ is a smaller representation, and repeating forever gives an infinite decreasing sequence of positive integers — impossible. That version is called *infinite descent*, and Fermat used it constantly.
+</Warning>
+
+## The crucial lemma
+
+Everything hinged on: **$a^2$ even $\Rightarrow$ $a$ even**.
+
+Directly, this is hard — you would have to extract information about $a$ from information about $a^2$. Contraposed, it is easy: if $a$ is odd then $a = 2k+1$ and
+$$a^2 = 4k^2+4k+1 = 2(2k^2+2k)+1,$$
+which is odd. Module 1.8's decision rule flagged exactly this situation, and here is the payoff.
+
+## Generalising
+
+The same argument shows $\sqrt3$, $\sqrt5$, $\sqrt7$ are irrational — but the even/odd lemma must be replaced. For $\sqrt3$ you need *$3\mid a^2 \Rightarrow 3\mid a$*, and the case analysis mod $3$ from module 4.4 supplies it.
+
+**It does not generalise to every integer.** $\sqrt4 = 2$ is rational, and if you run the argument on $\sqrt4$ it fails at the lemma: $4\mid a^2$ does not imply $4\mid a$, since $a = 2$ is a counterexample. That failure is not a flaw in the method — it is the method correctly detecting that $4$ is a perfect square.
+
+The general theorem:
+
+> $\sqrt{m}$ is rational **if and only if** $m$ is a perfect square.
+
+So $\sqrt{2}, \sqrt3, \sqrt5, \sqrt6, \sqrt7, \sqrt8$ are all irrational and $\sqrt9=3$ is not. Most square roots are irrational; the rational ones are the exceptions.
+
+## Consequences for geometry
+
+The diagonal of a unit square is irrational. So is the diagonal of a unit cube, $\sqrt3$. So is the hypotenuse of most right triangles with integer legs — the ones where it comes out rational are the Pythagorean triples, and they are rare.
+
+That is the sense in which $\mathbb{Q}$ has holes. A plane with rational coordinates contains the vertices of a unit square and **not** the point where its diagonal meets the circle of radius $\sqrt2$. Two figures that visibly cross would have no intersection point.
+
+Your Ruler Postulate uses $\mathbb{R}$ precisely to prevent that. Without it, the compass-and-straightedge constructions in your first unit would fail to produce points.
+
+<Aside>
+The Pythagoreans, around 500 BCE, believed every length was a ratio of whole numbers. The diagonal of the square is the counterexample, and its discovery — reportedly by Hippasus — is one of the first crises in the history of mathematics.
+
+The story that he was drowned at sea for revealing it is probably legend. The mathematical damage was real: an entire school's theory of proportion collapsed, and Eudoxus took a century to build the replacement, which is essentially the theory of real numbers you use today.
+
+What survives is the method. "Suppose not, derive a contradiction" was the technique that broke the theory, and it is the technique in the proof above.
+</Aside>

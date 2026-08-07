@@ -6,7 +6,7 @@
   "titles": {
     "l1": "Sharing with a partner",
     "l2": "Even and odd",
-    "l3": "Even, odd, and divides",
+    "l3": "Even, odd, and goes into",
     "l4": "Even, odd, and divides",
     "l5": "Even, odd, and divides",
     "l6": "Even, odd, and divides",
@@ -17,7 +17,7 @@
   "kernels": {
     "l1": "Some piles share fairly between two people. Some leave one over.",
     "l2": "A number is even when it splits into two equal piles with nothing left over, and odd when exactly one is left over. That is the reason behind the last-digit trick.",
-    "l3": "A number is even exactly when it equals 2 times a whole number, and odd when it equals 2 times a whole number plus 1. More generally m divides n when n equals m times a whole number.",
+    "l3": "A number is even when it is a whole number of 2s with nothing left over, and odd when exactly one is left over. One number goes into another when the second is a whole number of copies of the first — so proving it means producing that count.",
     "l4": "n is even iff n = 2k for some k ∈ ℤ, odd iff n = 2k+1. In general m | n iff n = mk for some k ∈ ℤ. Divisibility is an existence claim, so proving it means producing the k.",
     "l5": "Divisibility m | n is the existential statement ∃k ∈ ℤ, n = mk; the k must be an integer, and exhibiting it is the whole proof.",
     "l6": "Even, odd, and divides are all existential statements about integers; the quantifier structure is what dictates how they are proved and disproved.",

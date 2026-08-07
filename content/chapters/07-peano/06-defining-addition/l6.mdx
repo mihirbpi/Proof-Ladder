@@ -1,0 +1,139 @@
+---
+level: l6
+title: Defining addition
+readingTimeMin: 8
+newTerms: ["recursive definition"]
+anchorExample: "the parallel postulate"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Nine axioms, and none of them mentions addition. It has to be built.
+
+## The definition
+
+$$
+x + 0 := x
+$$
+$$
+x + S(y) := S(x+y)
+$$
+
+Two lines. The first handles adding zero; the second reduces adding $S(y)$ to adding $y$ and taking one more successor.
+
+This is a **recursive definition**: each case is defined in terms of a smaller case, with a base case to stop the regress. The second line is a step, the first is a base, and the pattern is Chapter 6's exactly.
+
+**Why it works:** to compute $x + y$, the second rule reduces $y$ by one successor at a time until it reaches $0$, where the first rule applies. Axiom 9 guarantees every $y$ is reachable from $0$ this way, so the computation always terminates — **the induction axiom is what makes the definition legitimate.**
+
+## Computing
+
+> $1 + 1 = 2$.
+
+$$
+\begin{aligned}
+1 + 1 &= 1 + S(0) && \text{definition of } 1\\
+&= S(1+0) && \text{second rule}\\
+&= S(1) && \text{first rule}\\
+&= 2 && \text{definition of } 2
+\end{aligned}
+$$
+
+Four steps, and each cites a definition. **This is the famous one**, and the length is the point: nothing was assumed about addition, so everything had to be derived.
+
+> $2 + 3 = 5$.
+
+$$
+\begin{aligned}
+2+3 &= 2 + S(2) = S(2+2)\\
+2+2 &= 2+S(1) = S(2+1)\\
+2+1 &= 2+S(0) = S(2+0) = S(2) = 3
+\end{aligned}
+$$
+
+Working back up: $2+2 = S(3) = 4$, and $2+3 = S(4)=5$.
+
+The computation peeled the second argument down to $0$ and then rebuilt. That is what recursion does.
+
+## $S(x) = x+1$
+
+The identity module 7.3 forbade is now a theorem.
+
+<Proof>
+$$x + 1 = x + S(0) = S(x+0) = S(x),$$
+using the definition of $1$, the second rule, and the first rule.
+</Proof>
+
+One line, and it retires the successor notation: from here on $x+1$ may be written instead of $S(x)$, because they have been **proved** equal.
+
+That is the shape of the whole chapter — familiar notation earned rather than assumed.
+
+## The laws are theorems
+
+Here is what genuinely surprises people. The definition treats the two arguments completely differently: it recurses on the second and leaves the first alone. So **commutativity is not built in**, and it has to be proved.
+
+> **Theorem.** $x + y = y + x$ for all $x, y \in \mathbb{N}$.
+
+The proof is by induction on $y$, and it needs two lemmas first — each itself proved by induction:
+
+$$0 + x = x \qquad\text{(the definition only gives } x+0=x)$$
+$$S(x)+y = S(x+y) \qquad\text{(the definition only gives } x+S(y) = S(x+y))$$
+
+Both lemmas say "the rule also works on the other side," and neither is available from the definition. Once they are established, the main induction goes through.
+
+<Warning title="Obvious is not the same as free">
+$x+y = y+x$ is the first fact anyone learns about addition, and here it costs three inductions.
+
+The lesson is worth stating plainly: **the difficulty of a proof has nothing to do with how obvious the statement is.** Obviousness measures familiarity, and a proof measures distance from the axioms.
+
+Your geometry course has the same phenomenon. *Vertical angles are congruent* takes seven lines from the postulates and no student doubts it for a moment.
+</Warning>
+
+**Associativity** $(x+y)+z = x+(y+z)$ is likewise a theorem, by induction on $z$, and it is easier than commutativity because the definition already recurses on the right.
+
+## Proving one of the lemmas
+
+Take the first: $0 + x = x$ for every $x$.
+
+The definition gives $x + 0 = x$ — the zero on the **right**. Getting it on the left is a separate claim, and there is no rule for it. So: induct on $x$.
+
+**Base case.** $0 + 0 = 0$, by the first rule with $x = 0$. ✓
+
+**Inductive step.** Assume $0 + k = k$. Then
+$$0 + S(k) = S(0+k) = S(k),$$
+using the second rule and then the hypothesis. That is the claim for $S(k)$.
+
+By Axiom 9, $0+x = x$ for every $x$.
+
+**Four lines to prove that adding zero on the left does nothing.** The proof is short, and the fact that it is needed at all is the interesting part: the definition is asymmetric, so every symmetric-looking fact requires an argument.
+
+## Order
+
+Order is defined from addition:
+
+$$
+x \leq y \quad :\Longleftrightarrow\quad \exists z\in\mathbb{N} \text{ with } x + z = y.
+$$
+
+Then $x<y$ means $x\leq y$ and $x\neq y$.
+
+Every property of $\leq$ becomes provable. Reflexivity: take $z=0$. Transitivity: if $x+z_1 = y$ and $y+z_2 = z$, then $x + (z_1+z_2) = z$ by associativity — **module 4.3's transitivity proof, in a new setting**, and structurally identical.
+
+Antisymmetry needs more work, and it needs Axiom 7: if $x+z_1 = y$ and $y+z_2=x$ then $x + (z_1+z_2) = x$, forcing $z_1+z_2 = 0$, and the only way a sum of naturals is $0$ is if both are — which is where "$0$ is not a successor" enters.
+
+<Warning title="The order is not an extra assumption">
+$\leq$ was **defined**, not postulated. Nothing was added to the nine axioms.
+
+Compare your geometry course, where betweenness and the ordering of points on a line require their own postulates. Arithmetic gets its order for free from addition; geometry does not, and that difference is one reason the two axiom systems look so different.
+</Warning>
+
+<Aside>
+Recursive definitions are how computation works.
+
+A program computing $x+y$ by this definition would call itself, reducing $y$ each time, until $y$ reaches $0$. That is a **recursive function**, and every programming language supports the pattern.
+
+The termination guarantee is Axiom 9. A recursion that reduces its argument towards a base case always finishes, because the counting numbers are well-ordered — there is no infinite descending chain to fall down.
+
+Recursions without that guarantee can run forever, and deciding in general which ones do is the halting problem from module 3.2's aside. **Provably-terminating recursion is exactly recursion on a well-ordered structure**, which is why this axiom keeps reappearing wherever computation is analysed.
+</Aside>

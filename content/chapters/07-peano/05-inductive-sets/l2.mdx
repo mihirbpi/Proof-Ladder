@@ -1,0 +1,82 @@
+---
+level: l2
+title: No extras allowed
+readingTimeMin: 4
+newTerms: ["a good box"]
+anchorExample: "counting on forever"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Warning from '@/components/Warning.astro';
+import Aside from '@/components/Aside.astro';
+
+Module 7.4 gave four rules and there is still a problem. Here it is.
+
+## The rogue model
+
+<Figure alt="Two dots labelled a and b with arrows pointing to each other, separate from the counting numbers." caption="Two extra objects, pointing at each other, off to one side.">
+  <ArrowDiagram labelLeft="extras" labelRight="extras"
+    left={["a", "b"]} right={["a", "b"]}
+    edges={[[0,1],[1,0]]} />
+</Figure>
+
+Take all the counting numbers — $0, 1, 2, 3, \ldots$ — and then add two extras, $a$ and $b$, with $a$ pointing to $b$ and $b$ pointing back to $a$.
+
+Check the four rules.
+
+Is $0$ there? ✓
+
+Does everything have a next one? ✓ (even $a$ and $b$ do)
+
+Does nothing point at $0$? ✓ ($a$ and $b$ point at each other, not at $0$)
+
+Do different things have different next ones? ✓
+
+**All four rules pass**, and there are two things in there that are clearly not numbers.
+
+## The fix
+
+Call a box **a good box** if:
+
+- $0$ is in it, and
+- whenever something is in it, that thing's next one is in it too.
+
+Now here is the last rule:
+
+> **Every good box contains all the counting numbers.**
+
+## Why that kicks out the extras
+
+Make a box and put in $0$, $1$, $2$, $3$, and so on — all the ordinary counting numbers, and *nothing* else. No $a$, no $b$.
+
+Is that a good box? Zero is in it ✓. And the next one after any number in it is also in it ✓.
+
+Yes! It is a good box.
+
+So by the new rule, that box contains all the counting numbers.
+
+But $a$ is not in the box. So **$a$ is not a counting number**. Out it goes, and $b$ with it.
+
+## This is the domino rule again
+
+Look closely at what a good box is.
+
+$0$ is in it — that is *push the first domino*.
+
+Whenever something is in, the next one is in — that is *each domino knocks over the next*.
+
+So a good box is exactly a row of dominoes that all fall! And the rule says: if your box does that, it has everything.
+
+**This is the same rule as Chapter 6.** Induction is not a separate trick. It is the last axiom of arithmetic, wearing different clothes.
+
+<Warning title="Five rules, and now we are done">
+Zero exists. Everything has a next. Nothing points at zero. Different things have different nexts. And no extras.
+
+Five rules, and now the counting numbers are pinned down exactly.
+</Warning>
+
+<TryIt>
+Draw a box. Put 0 in it. Now put in the next one, and the next. Could you ever draw Blip inside? Say why not.
+</TryIt>

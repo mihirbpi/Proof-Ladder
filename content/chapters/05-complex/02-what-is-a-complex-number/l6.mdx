@@ -1,0 +1,110 @@
+---
+level: l6
+title: What a complex number is
+readingTimeMin: 8
+newTerms: ["complex number", "real part", "imaginary part"]
+anchorExample: "rotations of the coordinate plane"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+\mathbb{C} = \{\,a + bi \;:\; a, b \in \mathbb{R}\,\}, \qquad i^2 = -1.
+$$
+
+Set-builder notation from module 2.2, with $\mathbb{R}$ as the ambient set for both coefficients.
+
+For $z = a+bi$:
+
+$$\operatorname{Re}(z) = a \qquad\text{the \textbf{real part}}$$
+$$\operatorname{Im}(z) = b \qquad\text{the \textbf{imaginary part}}$$
+
+Both are **real numbers**. $\operatorname{Im}(3+4i) = 4$, not $4i$ — the $i$ is not included, and this trips people up constantly.
+
+## Two functions
+
+$\operatorname{Re}$ and $\operatorname{Im}$ are functions $\mathbb{C}\to\mathbb{R}$ in the sense of module 3.1. They are surjective and not injective: $\operatorname{Re}(3+4i)=\operatorname{Re}(3+7i)=3$.
+
+Naming them as functions is not pedantry — module 5.9 will *equate real and imaginary parts* of two complex numbers, and that step is legitimate because $\operatorname{Re}$ and $\operatorname{Im}$ are well defined, which requires the uniqueness result below.
+
+## Equality
+
+$$
+a + bi = c+di \quad\Longleftrightarrow\quad a = c \ \text{ and }\ b = d.
+$$
+
+**One complex equation is two real equations.** This is the same defining property as ordered pairs (module 2.9), and it is what makes $\operatorname{Re}$ and $\operatorname{Im}$ single-valued: a complex number has exactly one real part.
+
+The technique it licenses — *equate real and imaginary parts* — is one of the most useful in the subject, and module 5.9 uses it to derive trigonometric identities you learned by rote.
+
+## $\mathbb{R}$ sits inside $\mathbb{C}$
+
+> **Proposition.** $\mathbb{R}\subseteq\mathbb{C}$.
+
+<Proof>
+Let $x$ be an arbitrary real number. Then
+$$x = x + 0i,$$
+which has the form $a + bi$ with $a = x\in\mathbb{R}$ and $b = 0\in\mathbb{R}$.
+
+So $x \in\mathbb{C}$. Since $x$ was arbitrary, $\mathbb{R}\subseteq\mathbb{C}$.
+</Proof>
+
+Element chasing from module 2.3, three lines. The containment is **proper**: $i = 0+1i$ is complex and not real, since module 5.1 showed no real number squares to $-1$.
+
+Chapter 4's chain now extends:
+$$\mathbb{N}\subsetneq\mathbb{Z}\subsetneq\mathbb{Q}\subsetneq\mathbb{R}\subsetneq\mathbb{C}.$$
+
+Five systems, each properly containing the last, each built to repair a specific failure of its predecessor. Every containment here is a theorem, and every properness claim needs a witness — $-1$, $\frac12$, $\sqrt2$, $i$.
+
+## Purely imaginary
+
+$z$ is **purely imaginary** when $\operatorname{Re}(z)=0$ and $z\neq0$: the numbers $bi$ with $b$ real and non-zero.
+
+$$\text{real: } \operatorname{Im}(z) = 0 \qquad\text{purely imaginary: } \operatorname{Re}(z)=0,\ z\neq0$$
+
+The two sets are disjoint, and their union is not all of $\mathbb{C}$ — $3+4i$ is neither. That is different from the even/odd split of module 4.2, where the two cases were exhaustive. Here most complex numbers are in neither class.
+
+<Warning title="Nothing is being added to a real number">
+"$3+4i$" looks like an unfinished sum, and students want to simplify it. There is nothing to simplify.
+
+The $+$ is genuine addition — module 5.3 defines it — but $3$ and $4i$ are not like terms, exactly as $3x$ and $4y$ are not. The expression is already in simplest form, and the two components are independent.
+
+Compare $(3,4)$ as an ordered pair. Nobody expects to combine the entries, and $3+4i$ is the same object with different notation.
+</Warning>
+
+## No order
+
+$\mathbb{R}$ is an ordered field. **$\mathbb{C}$ is a field with no compatible order at all.**
+
+The argument was in module 5.1: in an ordered field every square is $\geq 0$, and $i^2 = -1$ makes that impossible. So the following are meaningless:
+
+$$i > 0, \qquad i<0, \qquad 3+4i > 2+9i.$$
+
+Not false — meaningless, like asking whether one triangle is greater than another.
+
+This is a genuine loss. Inequalities are how analysis works, and every theorem you will meet about increasing functions, maxima, and limits from the left refers to an order. **Module 5.6 supplies the replacement**: the modulus $|z|$ is a real number measuring distance from the origin, and comparing moduli is comparing reals, which is legitimate.
+
+Your geometry course already prefers distances to coordinates for the same reason — distance is one number and comparable, position is two numbers and is not.
+
+<Aside>
+$a+bi$ still leaves $i$ unexplained. There is a construction that does not.
+
+Define $\mathbb{C}$ to be $\mathbb{R}^2$ — ordered pairs of reals, module 2.9 — with
+
+$$(a,b)+(c,d) = (a+c,\ b+d)$$
+$$(a,b)\cdot(c,d) = (ac-bd,\ ad+bc)$$
+
+That multiplication looks arbitrary until you check $(0,1)\cdot(0,1) = (-1, 0)$. So the pair $(0,1)$ squares to $(-1,0)$, and if we agree to write $(x,0)$ as $x$ and $(0,1)$ as $i$, then $(a,b) = a+bi$ and $i^2=-1$.
+
+**No new objects were assumed.** Everything is built from real numbers and pairs, both of which existed already, so $\mathbb{C}$ is exactly as legitimate as $\mathbb{R}$ — which is what answers module 5.1's "isn't this cheating?"
+
+Hamilton gave this construction in 1837, roughly three centuries after complex numbers came into use.
+</Aside>
+
+## The plane, previewed
+
+$\mathbb{C}$ is $\mathbb{R}^2$ with a multiplication. As a *set*, it is the coordinate plane you have been working in all year.
+
+That means every complex number is a point, every complex equation describes a locus, and the transformations of module 3.1 can be written as complex arithmetic. Module 5.5 develops this, and it is where the chapter starts paying for itself in your own subject.

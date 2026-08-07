@@ -1,0 +1,108 @@
+---
+level: l4
+title: Euler's formula
+readingTimeMin: 6
+newTerms: []
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## The cycle
+
+$$
+i^0 = 1, \quad i^1 = i, \quad i^2 = -1, \quad i^3 = -i, \quad i^4 = 1, \ldots
+$$
+
+The powers of $i$ are periodic with period $4$, so
+$$
+i^n = i^{\,n \bmod 4}.
+$$
+
+For instance $i^{23} = i^{3} = -i$, since $23 = 4\cdot5 + 3$. This is module 4.4's division algorithm applied to exponents, and the four residue classes mod $4$ are exactly the four values.
+
+<Figure alt="Four points at the compass positions labelled with the powers of i." caption="Powers of $i$ cycle counterclockwise with period 4.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "i⁰=i⁴"},
+    {re: 0, im: 1, label: "i¹"},
+    {re: -1, im: 0, label: "i²"},
+    {re: 0, im: -1, label: "i³"}
+  ]} range={2} />
+</Figure>
+
+## The formula
+
+$$
+e^{i\theta} = \cos\theta + i\sin\theta.
+$$
+
+## Where it comes from
+
+The exponential function has a series expansion valid for all $x$:
+$$
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots
+$$
+and so do sine and cosine:
+$$
+\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots, \qquad
+\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
+$$
+
+Substitute $x = i\theta$ into the first:
+$$
+e^{i\theta} = 1 + i\theta + \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!} + \frac{(i\theta)^4}{4!} + \cdots
+$$
+
+Now apply the cycle to each power: $(i\theta)^2 = -\theta^2$, $(i\theta)^3 = -i\theta^3$, $(i\theta)^4 = \theta^4$, and so on. Writing them out:
+$$
+e^{i\theta} = 1 + i\theta - \frac{\theta^2}{2!} - i\frac{\theta^3}{3!} + \frac{\theta^4}{4!} + i\frac{\theta^5}{5!} - \cdots
+$$
+
+**Every even power lands on $\pm1$ and every odd power lands on $\pm i$.** So the terms sort themselves into two groups: those with no $i$, and those with one $i$.
+
+Collecting them:
+$$
+e^{i\theta} = \underbrace{\left(1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \cdots\right)}_{\cos\theta} + i\underbrace{\left(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \cdots\right)}_{\sin\theta}.
+$$
+
+The cycle of $i$ is what makes the separation clean, and the alternating signs in the cosine and sine series are exactly the alternation $+1, -1, +1, -1$ in the even powers of $i$.
+
+<Warning title="Rearranging infinitely many terms is not automatic">
+Reordering a finite sum is free. Reordering an *infinite* sum is not — there are convergent series that can be rearranged to sum to any value you like.
+
+The step above is legal because these series converge **absolutely**, a condition under which rearrangement is provably safe. Stating that condition is not pedantry: without it the derivation is a manipulation of symbols rather than a proof, and this is the module where that distinction first bites.
+</Warning>
+
+## Numerical check
+
+Take $\theta = 1$ (radian). Partial sums of the two bracketed series:
+
+| terms | $\cos$ series | $\sin$ series |
+|---|---|---|
+| 1 | $1.0000$ | $1.0000$ |
+| 2 | $0.5000$ | $0.8333$ |
+| 3 | $0.5417$ | $0.8417$ |
+| 4 | $0.5403$ | $0.8415$ |
+
+And $\cos 1 = 0.5403$, $\sin 1 = 0.8415$. The convergence is rapid, and it is worth doing once by hand to see that the identity is doing real work.
+
+## The geometric meaning
+
+$|e^{i\theta}|^2 = \cos^2\theta + \sin^2\theta = 1$, so $e^{i\theta}$ always lies on the **unit circle**. As $\theta$ increases, the point travels counterclockwise from $1$.
+
+<Figure alt="A dashed unit circle with a point marked at the top." caption="$e^{i\theta}$ traces the unit circle.">
+  <ComplexPlane circle={1} points={[{re: 0, im: 1, label: "e^{iπ/2} = i"}]} range={2} />
+</Figure>
+
+Check against the cycle: $e^{i\pi/2} = \cos(\pi/2) + i\sin(\pi/2) = i$ ✓, $e^{i\pi} = -1$ ✓, $e^{3i\pi/2} = -i$ ✓, $e^{2\pi i} = 1$ ✓.
+
+So the formula turns the four-step cycle into a continuous rotation. That is the bridge module 5.8 and 5.9 walk across.
+
+<Aside>
+At $\theta = \pi$: $e^{i\pi} = -1$, i.e.
+$$e^{i\pi} + 1 = 0.$$
+Euler's identity. $e$ arose from compound interest, $\pi$ from circles, $i$ from unsolvable quadratics — three unrelated origins, tied together by a single equation. The formula is not a coincidence but it is a genuine surprise, and it is a reasonable illustration of why mathematicians expect deep structures to connect.
+</Aside>

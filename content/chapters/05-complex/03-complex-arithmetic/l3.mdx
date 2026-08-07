@@ -1,0 +1,80 @@
+---
+level: l3
+title: Complex arithmetic
+readingTimeMin: 5
+newTerms: []
+anchorExample: "the number that turns"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You have a new number $i$ that turns you a quarter turn, and numbers written as an across part plus a turn part. Now: how do you calculate with them?
+
+The answer is reassuring. **You already know how.** Use every rule you already have, and whenever $i \times i$ appears, replace it with $-1$.
+
+## Adding
+
+Keep the parts separate and add them. Add the across parts together, add the turn parts together, and do not mix them up.
+
+Example: $(3 + 2i) + (1 + 5i) = 4 + 7i$.
+
+## Multiplying by an ordinary number
+
+$$
+5 \times (2 + 3i) = 10 + 15i.
+$$
+Just multiply both parts. On the grid, this stretches your walk by a factor of $5$ — same direction, five times as far.
+
+## Multiplying two complex numbers
+
+Expand the brackets exactly as you would in algebra, then use $i \times i = -1$.
+
+$$
+(2 + 3i)(4 + 5i)
+$$
+
+Expand every pair:
+$$
+= 2\times4 \;+\; 2\times 5i \;+\; 3i \times 4 \;+\; 3i \times 5i
+$$
+$$
+= 8 + 10i + 12i + 15(i \times i).
+$$
+
+Now the key step. $i \times i = -1$, so $15(i\times i) = -15$.
+
+$$
+= 8 + 10i + 12i - 15 = (8 - 15) + (10+12)i = -7 + 22i.
+$$
+
+That is the whole method. Expand, replace $i\times i$ by $-1$, collect the parts.
+
+## The most important multiplication
+
+What happens when you multiply by $i$ itself?
+
+Start at $1$ — that is one step across, no step up. Multiply by $i$:
+$$
+1 \times i = i,
+$$
+which is *no* steps across and *one* step up. You were pointing across; now you are pointing up. **A quarter turn.**
+
+Do it again:
+$$
+i \times i = -1,
+$$
+which is one step backwards. Another quarter turn — now you are pointing the opposite way.
+
+Two quarter turns make a half turn, and a half turn is exactly what "multiply by $-1$" does. So $i \times i = -1$ is not a strange rule imposed from outside. **It is what a quarter turn has to be**, if doing it twice is to reverse you.
+
+<Warning title="Watch the sign">
+The most common slip is forgetting that $i \times i$ is $-1$ rather than $1$. When $3i$ meets $5i$ you get $15 \times (-1) = -15$, and that minus sign is easy to lose.
+
+Whenever your answer looks too big and too positive, check whether you dropped a sign there.
+</Warning>
+
+<Aside>
+Dividing works too, and there is a trick for it that you will meet in module 5.4. Once division is available, the complex numbers turn out to satisfy every rule that fractions do — they are a *field*, in the sense of module 4.5. That check is exactly the "we made sure nothing broke" that module 5.1 promised.
+</Aside>

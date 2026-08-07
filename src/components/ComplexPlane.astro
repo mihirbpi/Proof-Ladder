@@ -1,0 +1,89 @@
+---
+// Axes with plotted points, optional vectors from the origin, and an optional circle.
+// points: [{re, im, label?, muted?}]
+// vectors: [{re, im}] drawn as arrows from 0
+// circle: radius r centred at origin (dashed)
+// range: half-width of the visible grid in complex units
+export interface Props {
+  points?: { re: number; im: number; label?: string; muted?: boolean }[];
+  vectors?: { re: number; im: number }[];
+  circle?: number | null;
+  range?: number;
+  reLabel?: string;
+  imLabel?: string;
+}
+const {
+  points = [],
+  vectors = [],
+  circle = null,
+  range = 5,
+  reLabel = 'real',
+  imLabel = 'imaginary',
+} = Astro.props;
+
+const W = 400;
+const H = 320;
+const cx = W / 2;
+const cy = H / 2;
+const unit = Math.min((W - 70) / (2 * range), (H - 60) / (2 * range));
+const X = (re: number) => cx + re * unit;
+const Y = (im: number) => cy - im * unit;
+
+const ticks: number[] = [];
+for (let k = -range; k <= range; k++) if (k !== 0) ticks.push(k);
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="cplane">
+  <style>
+    .cplane .axis { stroke: var(--color-ink, #14182B); stroke-width: 1.2; }
+    .cplane .grid { stroke: var(--color-rule, #C6CBC0); stroke-width: 0.5; }
+    .cplane .tick { stroke: var(--color-ink, #14182B); stroke-width: 1; }
+    .cplane .pt { fill: var(--color-signal, #3F6DB5); }
+    .cplane .pt-muted { fill: color-mix(in oklab, var(--color-ink, #14182B) 35%, transparent); }
+    .cplane .vec { stroke: var(--color-signal, #3F6DB5); stroke-width: 1.6; fill: none; }
+    .cplane .circ { stroke: var(--color-signal, #3F6DB5); stroke-width: 1.2; fill: none; stroke-dasharray: 5 4; opacity: 0.7; }
+    .cplane .lbl { font-family: var(--font-mono, monospace); font-size: 11px; fill: var(--color-ink, #14182B); }
+    .cplane .axlbl { font-family: var(--font-mono, monospace); font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; fill: color-mix(in oklab, var(--color-ink, #14182B) 60%, transparent); }
+  </style>
+  <defs>
+    <marker id="cp-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="var(--color-signal, #3F6DB5)" />
+    </marker>
+  </defs>
+
+  {ticks.map((k) => (
+    <>
+      <line x1={X(k)} y1={12} x2={X(k)} y2={H - 12} class="grid" />
+      <line x1={20} y1={Y(k)} x2={W - 20} y2={Y(k)} class="grid" />
+    </>
+  ))}
+
+  <line x1={20} y1={cy} x2={W - 20} y2={cy} class="axis" />
+  <line x1={cx} y1={12} x2={cx} y2={H - 12} class="axis" />
+
+  {ticks.map((k) => (
+    <>
+      <line x1={X(k)} y1={cy - 3} x2={X(k)} y2={cy + 3} class="tick" />
+      <line x1={cx - 3} y1={Y(k)} x2={cx + 3} y2={Y(k)} class="tick" />
+    </>
+  ))}
+
+  {circle !== null && <circle cx={cx} cy={cy} r={circle * unit} class="circ" />}
+
+  {vectors.map((v) => (
+    <line x1={cx} y1={cy} x2={X(v.re)} y2={Y(v.im)} class="vec" marker-end="url(#cp-arrow)" />
+  ))}
+
+  {points.map((p) => (
+    <>
+      <circle cx={X(p.re)} cy={Y(p.im)} r="4" class={p.muted ? 'pt-muted' : 'pt'} />
+      {p.label && <text x={X(p.re) + 8} y={Y(p.im) - 7} class="lbl">{p.label}</text>}
+    </>
+  ))}
+
+  <text x={W - 22} y={cy - 8} class="axlbl" text-anchor="end">{reLabel}</text>
+  <text x={cx + 8} y={20} class="axlbl">{imLabel}</text>
+</svg>
+
+<style>
+  .cplane { width: 100%; height: auto; max-width: 400px; display: block; margin: 0 auto; }
+</style>

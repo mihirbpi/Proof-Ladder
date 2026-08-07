@@ -1,0 +1,95 @@
+---
+level: l7
+title: The three steps
+readingTimeMin: 8
+newTerms: ["base case", "inductive step", "inductive hypothesis"]
+anchorExample: "Σ(2j−1) = n²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+## The template
+
+1. **Statement.** Define $A(n)$ precisely and fix $n_0$.
+2. **Base case.** Prove $A(n_0)$.
+3. **Inductive step.** Prove $\forall k \geq n_0,\ A(k)\Rightarrow A(k+1)$, the antecedent being the **inductive hypothesis**.
+
+Step 1 is not ceremony. A large fraction of failed induction proofs fail because $A(n)$ was never written down, so it is unclear what the base case is checking or what the step is transforming.
+
+## Worked proof
+
+> **Proposition.** $\displaystyle\sum_{j=1}^{n}(2j-1) = n^2$ for all $n \geq 1$.
+
+<Discussion>
+  <div slot="know">$\sum_{j=1}^{k+1}a_j = \sum_{j=1}^k a_j + a_{k+1}$ with $a_{k+1} = 2k+1$.</div>
+  <div slot="want">$A(n)$ for all $n \geq 1$.</div>
+  <div slot="how">Peel the last term off the left-hand side of $A(k+1)$, substitute (IH), and simplify. The entire mathematical content is $k^2 + 2k + 1 = (k+1)^2$.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ denote $\sum_{j=1}^n(2j-1) = n^2$.
+
+*Base.* $A(1)$: both sides equal $1$.
+
+*Step.* Fix $k \geq 1$ and assume $A(k)$: $\sum_{j=1}^k(2j-1) = k^2$. Then
+$$
+\sum_{j=1}^{k+1}(2j-1) = \sum_{j=1}^{k}(2j-1) + (2k+1) \overset{\text{(IH)}}{=} k^2 + 2k + 1 = (k+1)^2,
+$$
+which is $A(k+1)$.
+
+By induction, $A(n)$ holds for all $n \geq 1$.
+</Proof>
+
+## Non-circularity, stated precisely
+
+The step establishes
+$$
+\forall k \geq n_0\ \big(A(k)\Rightarrow A(k+1)\big),
+$$
+a universally quantified conditional. Nothing in it asserts $A(k)$ for any particular $k$; discharging the hypothesis to prove a conditional is §1.6's standard method.
+
+The worry is worth taking seriously precisely because dissolving it requires reading the quantifier structure carefully — which is what Chapter 1 was for.
+
+Independence of the two hypotheses is easy to exhibit:
+
+| $A(n)$ | base | step | true? |
+|---|---|---|---|
+| $n = n+1$ | ✗ | ✓ | no |
+| $n < 5$ | ✓ | ✗ | no |
+| $\sum(2j-1)=n^2$ | ✓ | ✓ | yes |
+
+## Validity
+
+<Proof title="Induction from well-ordering">
+Suppose $A(n_0)$ holds and $A(k)\Rightarrow A(k+1)$ for all $k \geq n_0$, but $S = \{n \geq n_0 : \neg A(n)\}$ is nonempty.
+
+By well-ordering, $S$ has a least element $m$. Since $A(n_0)$ holds, $m > n_0$, so $m - 1 \geq n_0$. By minimality of $m$, $m-1 \notin S$, so $A(m-1)$ holds. The step gives $A(m)$, contradicting $m \in S$.
+
+Hence $S = \emptyset$.
+</Proof>
+
+This is the **least counterexample** formulation, and it is often the more convenient one to write — particularly for statements where the decomposition of case $n$ is not into case $n-1$.
+
+Conversely well-ordering follows from induction (§6.1), so the two are equivalent over the remaining Peano axioms. Chapter 7 identifies induction as Axiom 9 and shows it is what forces $\mathbb{N}$ to contain nothing beyond $0$ and its successors.
+
+<Warning title="Three failure modes">
+**Backwards reasoning.** Starting from $A(k+1)$ and manipulating to something true proves nothing unless every step is reversible. Write the chain forwards from the left-hand side of $A(k+1)$.
+
+**Unused hypothesis.** If (IH) never appears in the step, either the result was provable directly — so induction was unnecessary — or the step is wrong.
+
+**Base at the wrong place.** $2^n > n^2$ fails at $n = 2,3,4$ and holds from $n = 5$. Attempting a base case at $n=1$ wastes an afternoon; identifying $n_0$ is part of step 1.
+
+A fourth, subtler: the step must hold for **every** $k \geq n_0$. An argument that tacitly assumes $k \geq 2$ leaves a gap at $k = n_0$, and the classic fake proof that "all horses are the same colour" turns on exactly that gap.
+</Warning>
+
+<Aside>
+Strong induction assumes $A(n_0),\ldots,A(k)$ rather than just $A(k)$, and is equivalent to ordinary induction: apply ordinary induction to $B(n) := A(n_0)\wedge\cdots\wedge A(n)$. It is the right form when case $k+1$ decomposes into cases far below $k$ — as in the existence half of prime factorisation, where $n = ab$ with $a, b$ possibly much smaller than $n-1$.
+</Aside>
+
+<WhereThisGoes level="l7">
+The template generalises to any well-founded relation, and that generality is what makes it a tool of computer science rather than only of number theory. Structural induction over syntax trees proves compiler correctness and type safety; well-founded recursion is how a functional program is shown to terminate; and the two together are the basis of every proof assistant's handling of inductive types, where `Nat` is *defined* by its constructors and induction is the automatically generated elimination rule. On the logical side, Gentzen proved the consistency of Peano arithmetic using transfinite induction up to $\varepsilon_0$ — a result that both circumvents and illuminates Gödel's second incompleteness theorem, since the induction used is precisely the amount PA itself cannot justify.
+</WhereThisGoes>

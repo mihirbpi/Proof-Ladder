@@ -1,0 +1,123 @@
+---
+level: l5
+title: If and only if
+readingTimeMin: 8
+newTerms: ["biconditional", "if and only if"]
+anchorExample: "n even iff n² even"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.7 showed a conditional and its converse are different claims. Sometimes both hold — and when they do, the pair gets a name.
+
+The **biconditional** $p \Leftrightarrow q$, read "$p$ if and only if $q$", is defined by
+$$
+p \Leftrightarrow q \;\;\equiv\;\; (p \Rightarrow q) \wedge (q \Rightarrow p).
+$$
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q", "q ⇒ p", "p ⇔ q"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true,  "q ⇒ p": true,  "p ⇔ q": true  },
+    { p: true,  q: false, "p ⇒ q": false, "q ⇒ p": true,  "p ⇔ q": false },
+    { p: false, q: true,  "p ⇒ q": true,  "q ⇒ p": false, "p ⇔ q": false },
+    { p: false, q: false, "p ⇒ q": true,  "q ⇒ p": true,  "p ⇔ q": true  }
+  ]}
+/>
+
+$p \Leftrightarrow q$ is true exactly on the rows where $p$ and $q$ **agree**.
+
+Since the definition is a conjunction, **proving a biconditional means writing two proofs**. The named move is **check both boxes**.
+
+## The theorem
+
+> **Theorem.** For every integer $n$: $n$ is even $\iff$ $n^2$ is even.
+
+<Discussion>
+  <div slot="know">Definitions: $n$ even iff $n = 2k$ for some $k \in \mathbb{Z}$; odd iff $n = 2k+1$. Every integer is exactly one of the two.
+  <br />Direction ($\Rightarrow$) has hypothesis "$n$ even", which unfolds to a usable equation about $n$.
+  <br />Direction ($\Leftarrow$) has hypothesis "$n^2$ even", which unfolds to $n^2 = 2k$ — no handle on $n$ without inverting a square.</div>
+  <div slot="want">Both implications.</div>
+  <div slot="how">Prove the easy direction directly. For the hard one, flip it around (module 1.8): the contrapositive of "$n^2$ even $\Rightarrow$ $n$ even" is "$n$ odd $\Rightarrow$ $n^2$ odd", whose hypothesis unfolds usefully.</div>
+</Discussion>
+
+<Proof>
+**($\Rightarrow$) If $n$ is even then $n^2$ is even.**
+
+Suppose $n$ is even, so $n = 2k$ for some $k \in \mathbb{Z}$. Then $n^2 = 4k^2 = 2(2k^2)$, and $2k^2 \in \mathbb{Z}$, so $n^2$ is even.
+
+**($\Leftarrow$) If $n^2$ is even then $n$ is even.**
+
+We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n = 2k+1$ with $k \in \mathbb{Z}$. Then
+$$
+n^2 = 4k^2+4k+1 = 2(2k^2+2k)+1,
+$$
+and $2k^2+2k \in \mathbb{Z}$, so $n^2$ is odd. Since every integer is even or odd and not both, contraposition gives $n^2$ even $\Rightarrow$ $n$ even.
+
+Both directions hold, so $n$ is even $\iff$ $n^2$ is even.
+</Proof>
+
+The two halves needed **different techniques** — one direct, one by contrapositive. That asymmetry is normal, and it is exactly why a biconditional cannot be proved by one symmetrical argument.
+
+Note also where the ($\Leftarrow$) direction leaned: on "every integer is even or odd, not both". That fact is not free — it is the $d=2$ case of the division algorithm, proved in module 4.4.
+
+<Warning title="Label the directions and count them">
+Always mark ($\Rightarrow$) and ($\Leftarrow$), or "forward" and "backward".
+
+Two errors are invisible in unlabelled prose: proving the same direction twice, and proving one and stopping. Both are common, and both look like finished proofs.
+</Warning>
+
+## Definitions are biconditionals
+
+Mathematical definitions are written with "if" and always mean "if and only if":
+
+> An integer $n$ is *even* **if** $n = 2k$ for some integer $k$.
+
+means
+$$
+n \text{ even} \iff \exists k \in \mathbb{Z},\ n = 2k.
+$$
+
+The consequence is practical: **a definition may be used in both directions**, and virtually every proof uses both, often within four lines of each other. Assuming "$n$ is even" and writing $n = 2k$ uses one; finishing a computation at $2(\text{something integer})$ and declaring the result even uses the other.
+
+Look back at the proof above and you will find each definition unfolded and refolded.
+
+## Chains of equivalences
+
+Sometimes both directions run simultaneously as a chain
+$$
+p \iff r_1 \iff r_2 \iff \cdots \iff q,
+$$
+and this is legitimate **only if every link is genuinely a biconditional**.
+
+<Warning title="Where iff-chains go wrong">
+The failure is writing $\iff$ where only $\Rightarrow$ holds:
+
+- $x = y \Rightarrow x^2 = y^2$, but not conversely;
+- $a = b \Rightarrow ac = bc$, and conversely **only if** $c \neq 0$;
+- $x > 0 \wedge y > 0 \Rightarrow xy > 0$, but not conversely.
+
+Solving equations is where this bites. "Solve $\sqrt{x+2} = x$": squaring gives $x^2 - x - 2 = 0$, so $x \in \{2,-1\}$ — but $x = -1$ fails the original. The squaring step was $\Rightarrow$, not $\iff$, so the final set is a *superset* of the solution set and must be filtered.
+
+Extraneous roots are converse failures (module 1.7), and checking your answers is not busywork — it is discharging the direction you did not prove.
+</Warning>
+
+## Proving several statements equivalent
+
+When three or more statements are to be shown pairwise equivalent, proving all $\binom n2$ biconditionals is wasteful. Prove a **cycle** instead:
+$$
+p \Rightarrow q \Rightarrow r \Rightarrow p.
+$$
+
+Three implications rather than six, and every pairwise equivalence follows by going round the cycle. Theorems phrased "the following are equivalent" — ubiquitous in linear algebra and later algebra — are almost always proved this way, and choosing the cycle order so each individual implication is easy is a real part of the work.
+
+<Aside>
+Other phrasings of the same thing: "$p$ is *necessary and sufficient* for $q$"; "$p$ exactly when $q$"; "$p$ iff $q$".
+
+And a forward pointer: the theorem proved above is the lemma that makes $\sqrt2$ irrational (module 4.7). There one shows $a^2$ is even and concludes $a$ is even — the ($\Leftarrow$) direction, the one that needed the contrapositive.
+</Aside>

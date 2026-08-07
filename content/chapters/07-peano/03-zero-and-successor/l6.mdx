@@ -1,0 +1,128 @@
+---
+level: l6
+title: Zero and the successor
+readingTimeMin: 8
+newTerms: ["successor"]
+anchorExample: "the parallel postulate"
+---
+
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Figure from '@/components/Figure.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Two more axioms, and they are the ones that make the numbers exist.
+
+> **Axiom 5.** $0$ is a natural number.
+>
+> **Axiom 6.** For every natural number $x$, the **successor** $S(x)$ is a natural number.
+
+Axiom 5 supplies a starting point. Axiom 6 supplies a way to keep going.
+
+## The numbers
+
+From those two axioms, $\mathbb{N}$ contains
+
+$$0,\quad S(0),\quad S(S(0)),\quad S(S(S(0))),\ \dots$$
+
+and we introduce **names** for them:
+
+$$1 := S(0), \qquad 2 := S(1), \qquad 3 := S(2),\ \dots$$
+
+The symbol $:=$ means *is defined to be*. These are abbreviations — nothing has been assumed about $1$ except that it is the successor of $0$.
+
+<Warning title="S(x) is not yet x + 1">
+Addition has not been defined. It arrives in module 7.6, and it is *defined using* $S$.
+
+So writing $S(x) = x+1$ here would be circular, and the discipline of the chapter is to use only what has been stated. $S$ is an undefined operation constrained by axioms, exactly as *point* is an undefined term constrained by postulates.
+
+Once addition exists, $S(x)=x+1$ becomes a **theorem** — module 7.6 proves it. Until then it is unavailable, and using it early would hide the fact that the whole tower is being built from nothing.
+</Warning>
+
+## $S$ is a function
+
+Axiom 6 says $S$ takes a natural number and returns a natural number:
+
+$$S : \mathbb{N}\to\mathbb{N}.$$
+
+Read against module 3.1's three conditions:
+
+- **Total** — every $x$ has a successor. That is what "for every $x$" asserts.
+- **Single-valued** — each $x$ has one successor. Implicit in calling $S(x)$ *the* successor.
+- **Codomain-respecting** — $S(x)\in\mathbb{N}$. That is the content of Axiom 6.
+
+<Figure alt="Two columns of dots with arrows from each left-hand dot to the dot below its counterpart on the right, forming a chain." caption="The successor function: each number maps to the next.">
+  <ArrowDiagram
+    labelLeft="ℕ"
+    labelRight="ℕ"
+    left={["0", "1", "2"]}
+    right={["1", "2", "3"]}
+    edges={[[0,0],[1,1],[2,2]]}
+  />
+</Figure>
+
+Chapter 3 was written to make this readable. The axioms to come describe $S$ using vocabulary from that chapter — and once you see that, the remaining axioms stop looking arbitrary.
+
+## What is still missing
+
+Axioms 5 and 6 guarantee the chain $0, S(0), S(S(0)),\dots$ exists. They do **not** guarantee it behaves.
+
+Nothing so far rules out:
+
+**Looping.** A system with $S(2) = 0$, so the numbers cycle $0,1,2,0,1,2,\dots$. Axioms 5 and 6 hold — $0$ is there, every element has a successor in the system.
+
+**Merging.** A system with $S(3) = S(5)$, where two different numbers share a successor. Again both axioms hold.
+
+**Extras.** A system containing $0,1,2,\dots$ *and* a separate parallel chain $a, S(a), S(S(a)),\dots$ that the counting numbers never reach. Both axioms hold once more.
+
+Three bad systems, all satisfying every axiom stated so far. **Axioms 7, 8, and 9 exist to eliminate exactly these three**, and modules 7.4 and 7.5 do so in order.
+
+This is worth pausing on, because it shows what an axiom is for. Each one rules out unwanted models, and you find out which axioms you need by constructing the systems you want to exclude.
+
+## Why start at zero
+
+Some books start the counting numbers at $1$ instead. Both conventions exist, and neither is wrong.
+
+Starting at $0$ makes the definitions in modules 7.6 and 7.7 cleaner — $x+0 = x$ and $x\cdot0 = 0$ are the natural base cases, and starting at $1$ forces the base cases to be $x+1 = S(x)$ and $x\cdot1 = x$, which are less obviously *base* cases.
+
+It also matches set theory, where $0$ is the empty set and each number is built from the ones before it.
+
+**The choice is a convention, and it changes nothing that matters.** What does matter is stating it, because a theorem proved "for all $n\in\mathbb{N}$" means different things under the two conventions, and a base case at the wrong place breaks an induction.
+
+## Notation is not content
+
+$1, 2, 3$ are abbreviations for $S(0)$, $S(S(0))$, $S(S(S(0)))$. So are the Roman numerals I, II, III, and so are tally marks.
+
+None of them is the number. The number is whatever the axioms describe, and the numerals are names for it — the same relationship as between a point and the letter you label it with in a diagram.
+
+This matters because it explains why base-ten arithmetic is not part of this chapter. That $7+5 = 12$ has a $1$ in the tens place is a fact about **notation**, not about the numbers, and it depends on a choice of base that Peano's axioms know nothing about. Computers use base two and get the same arithmetic.
+
+**The axioms describe the numbers; the numerals are a separate, later, and entirely optional invention.**
+
+## The same situation in your geometry
+
+Your course's early postulates have the same character.
+
+*Two points determine a line* and *a line contains at least two points* do not pin down the plane. A system with exactly three points and three lines satisfies both — it is a valid **finite geometry**, and it is not the geometry you want.
+
+Ruling it out takes more postulates: that every line has infinitely many points, that the plane is not exhausted by one line, and eventually the parallel postulate. **Each postulate eliminates models.**
+
+That is what your book is doing when it lists postulates that seem too obvious to state. It is not being pedantic; it is closing off systems that would otherwise satisfy everything written down.
+
+<Aside>
+Peano's axioms describe the numbers. Set theory can **build** them, using the successor
+$$S(x) = x\cup\{x\}.$$
+
+Start from $\emptyset$:
+
+$$0 := \emptyset$$
+$$1 := \{\emptyset\}$$
+$$2 := \big\{\emptyset,\{\emptyset\}\big\}$$
+$$3 := \Big\{\emptyset,\{\emptyset\},\big\{\emptyset,\{\emptyset\}\big\}\Big\}$$
+
+Each number is the set of all smaller numbers, so $n$ has exactly $n$ elements — the number *is* its own count.
+
+Verifying Peano's axioms for this construction is real work, and it can be done. The result is that arithmetic needs no new assumptions beyond set theory: **the counting numbers can be built from the empty set alone.**
+
+That is as far down as the tower goes, and it is why the empty set of module 2.1 deserved the careful treatment it got.
+</Aside>

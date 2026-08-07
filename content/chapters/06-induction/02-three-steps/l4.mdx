@@ -1,0 +1,106 @@
+---
+level: l4
+title: The three steps
+readingTimeMin: 6
+newTerms: ["base case", "inductive step", "inductive hypothesis"]
+anchorExample: "1+3+5+… = n²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Writing a long sum
+
+A sum with a pattern is written with dots in the middle:
+$$
+1 + 3 + 5 + \cdots + (2n-1).
+$$
+
+The dots mean *keep going the same way*. The last term tells you where to stop, and the first two or three establish the pattern. Here the terms are the odd numbers, and the $n$th odd number is $2n-1$ — check it at $n=1$, $n=2$, $n=3$.
+
+The one fact about long sums that every induction proof uses:
+
+> The sum up to the $(k+1)$th term **is** the sum up to the $k$th term, plus one more term.
+
+Peeling off that last term is what connects the $(k+1)$-case to the $k$-case.
+
+## The three steps
+
+**1. State $A(n)$ and $n_0$.** Write the claim precisely and say where it starts.
+
+**2. Base case.** Prove $A(n_0)$.
+
+**3. Inductive step.** Prove that $A(k) \Rightarrow A(k+1)$ for every $k \geq n_0$. The assumption $A(k)$ is the **inductive hypothesis**.
+
+Conclude: $A(n)$ for all $n \geq n_0$.
+
+Step 1 is not ceremony. A large share of failed induction proofs fail because $A(n)$ was never written down, so it is unclear what the base case is checking or what the step is transforming.
+
+## Full proof
+
+> **Proposition.** For all $n \geq 1$: $\;1 + 3 + 5 + \cdots + (2n-1) = n^2$.
+
+<Discussion>
+  <div slot="know">The sum for $k+1$ terms is the sum for $k$ terms plus the next odd number, which is $2(k+1)-1 = 2k+1$.</div>
+  <div slot="want">$A(n)$ for all $n \geq 1$.</div>
+  <div slot="how">Base at $n=1$ is a one-line check. For the step, start from the left-hand side of $A(k+1)$, split off the last term, substitute the inductive hypothesis, and simplify. The algebra is $k^2 + 2k+1 = (k+1)^2$ and nothing else.</div>
+</Discussion>
+
+<Proof>
+**Statement.** Let $A(n)$ be the claim
+$$1 + 3 + 5 + \cdots + (2n-1) = n^2.$$
+We prove $A(n)$ for all $n \geq 1$.
+
+**Base case.** $A(1)$: the sum is just $2(1)-1 = 1$, and $1^2 = 1$. ✓
+
+**Inductive step.** Let $k \geq 1$ and assume $A(k)$:
+$$1 + 3 + \cdots + (2k-1) = k^2. \tag{IH}$$
+
+Now take the sum for $k+1$ terms and split off its final term:
+$$
+\underbrace{1 + 3 + \cdots + (2k-1)}_{\text{the first } k \text{ terms}} \;+\; \underbrace{\big(2(k+1)-1\big)}_{= \,2k+1}.
+$$
+
+By (IH) the bracketed part equals $k^2$, so the whole thing is
+$$
+k^2 + 2k + 1 = (k+1)^2,
+$$
+which is exactly $A(k+1)$.
+
+By induction, $A(n)$ holds for all $n \geq 1$.
+</Proof>
+
+## Why the step is not circular
+
+The inductive step proves the **conditional** $A(k)\Rightarrow A(k+1)$, quantified over all $k$. Written out, what step 3 establishes is
+$$
+\text{for every } k \geq n_0: \quad A(k) \Rightarrow A(k+1),
+$$
+and nothing in that asserts $A(k)$ for any particular $k$. Proving a conditional by assuming its hypothesis is module 1.6's *start from what you're given*, the standard method for every conditional in the course.
+
+The base case supplies truth at one point. The step propagates it. Neither is redundant:
+
+- $A(n)$: "$n = n+1$" satisfies the step and fails the base — and is false.
+- $A(n)$: "$n < 5$" satisfies the base and fails the step — and is false for $n \geq 5$.
+
+<Warning title="Direction of the argument">
+The commonest structural error is starting from the equation $A(k+1)$ and manipulating both sides until something true appears. That proves nothing unless every step is reversible, and students rarely check.
+
+**Correct shape:** begin with the left-hand side of $A(k+1)$, transform it using the inductive hypothesis, and arrive at the right-hand side. The chain of equalities above runs in one direction only.
+
+A related error: forgetting to *use* the inductive hypothesis. If your step never invokes (IH), you have either proved something directly — in which case induction was unnecessary — or made a mistake.
+</Warning>
+
+## Why induction is valid
+
+Suppose the base and step both hold but $A(n)$ fails for some $n$. Then the set of counterexamples is a nonempty set of integers $\geq n_0$, so by **well-ordering** it has a least element $m$.
+
+$m \neq n_0$, since $A(n_0)$ holds. So $m-1 \geq n_0$, and by minimality $A(m-1)$ holds. But the step then gives $A(m)$ — contradicting $m$ being a counterexample.
+
+So no counterexample exists. Induction and well-ordering are two views of one principle, and module 4.4 already used the well-ordering form to prove the division algorithm.
+
+<Aside>
+The base case need not be $n=1$. The claim $2^n > n^2$ is false at $n = 2, 3, 4$ and true from $n = 5$ onward, so its base case is $n_0 = 5$ — and the step then only has to work for $k \geq 5$, which it does. Stating $n_0$ explicitly is part of step 1 for exactly this reason.
+</Aside>

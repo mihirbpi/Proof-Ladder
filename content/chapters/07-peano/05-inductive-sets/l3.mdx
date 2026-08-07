@@ -1,0 +1,93 @@
+---
+level: l3
+title: Inductive sets and the last axiom
+readingTimeMin: 5
+newTerms: ["inductive set"]
+anchorExample: "counting on forever"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Four axioms are not enough, and module 7.4 said why: they force $0, 1, 2, 3, \ldots$ to all be there and all be different, but they do not stop extra objects sneaking in.
+
+## The rogue model, precisely
+
+Let the collection be
+$$
+\{0, 1, 2, 3, \ldots\} \cup \{a, b\}
+$$
+with the usual successor on the numbers, plus $S(a) = b$ and $S(b) = a$.
+
+| Axiom | Holds? |
+|---|---|
+| 5: $0$ is in it | ✓ |
+| 6: successors stay inside | ✓ — including $S(a)=b$ |
+| 7: nothing has $0$ as successor | ✓ — $a$ and $b$ point at each other |
+| 8: different things, different successors | ✓ — $S$ is still one-to-one |
+
+All four pass, and $a$ and $b$ are plainly not counting numbers. They sit off to one side in their own little loop, and you can never reach them by starting at $0$ and pressing next.
+
+## Inductive sets
+
+A set $V$ is **inductive** if:
+
+1. $0 \in V$, and
+2. whenever $x \in V$, also $S(x) \in V$.
+
+In words: it contains the starting point, and it is closed under taking the next one.
+
+## Axiom 9
+
+> **Axiom 9.** If $V$ is inductive, then every counting number is in $V$.
+
+That is the whole thing. It says the counting numbers are the *smallest* inductive set — they sit inside every single one.
+
+## How it kills the rogues
+
+<Proof>
+Let $V = \{0,1,2,3,\ldots\}$ — the numbers reachable from $0$ by pressing next, and nothing else.
+
+**Is $V$ inductive?** $0 \in V$ ✓. And if $x \in V$ then $x$ is reachable, so pressing next once more makes $S(x)$ reachable too, so $S(x)\in V$ ✓.
+
+Yes, $V$ is inductive.
+
+**So by Axiom 9,** every counting number is in $V$.
+
+But $a \notin V$. So $a$ is not a counting number. Same for $b$.
+</Proof>
+
+The rogues are gone, and now we can say exactly what the counting numbers are:
+$$
+\text{the counting numbers} = \{0, 1, 2, 3, \ldots\}
+$$
+with nothing missing and nothing extra.
+
+Notice the shape of that conclusion. Axioms 5–6 show that everything in $\{0,1,2,\ldots\}$ is a counting number. Axiom 9 shows that every counting number is in $\{0,1,2,\ldots\}$. Two containments, one equality — **check both boxes**, from module 2.6.
+
+## This is induction
+
+Look at the definition of *inductive* again with Chapter 6 in mind.
+
+$0 \in V$ — that is the **base case**.
+
+whenever something is in $V$, its next one is in $V$ too — that is the **inductive step**.
+
+$V$ contains every counting number — that is the **conclusion**.
+
+**Axiom 9 is the principle of mathematical induction.** Chapter 6 taught it as a proof technique; here it turns out to be one of the axioms that define what a counting number *is*.
+
+To prove a claim about every counting number, collect into a box all the numbers the claim is true for. Showing the base case and the step is exactly showing that box is inductive — and Axiom 9 then says the box contains every counting number.
+
+<Warning title="Induction is not a trick you were taught">
+It is easy to think of induction as a clever method somebody invented. It is not.
+
+It is the axiom that says the counting numbers contain **nothing but** $0$ and its successors. If induction failed, there would be rogue numbers you could never reach — and the fact that there are none is precisely what induction asserts.
+</Warning>
+
+<Aside>
+This is why induction cannot be proved from the other axioms. Module 7.4's rogue model satisfies Axioms 5–8, and in it induction *fails* — the set $\{0,1,2,\ldots\}$ is inductive but does not contain $a$.
+
+So no argument from Axioms 5–8 can establish induction, because there is a structure where those axioms hold and induction does not.
+</Aside>

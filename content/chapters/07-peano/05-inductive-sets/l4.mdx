@@ -1,0 +1,103 @@
+---
+level: l4
+title: Inductive sets and the last axiom
+readingTimeMin: 6
+newTerms: ["inductive set"]
+anchorExample: "successor function"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## The gap A5–A8 leave
+
+$$
+\mathbb{N}' = \{0,1,2,\ldots\}\ \sqcup\ \{a,b\}, \qquad S(a)=b,\ S(b)=a,
+$$
+with the standard successor on the numerals, satisfies A5–A8 (module 7.4). The elements $a,b$ lie outside the orbit of $0$ and are unreachable from it.
+
+A5–A8 constrain only what $\mathbb{N}$ must **contain**; nothing yet forbids extra components. The final axiom is a **minimality** condition.
+
+## Inductive sets
+
+> $V$ is **inductive** if $0 \in V$ and $\forall x\,(x\in V \Rightarrow S(x)\in V)$.
+
+$$
+\textbf{A9}\quad V \text{ inductive} \implies \mathbb{N}\subseteq V.
+$$
+
+So $\mathbb{N}$ is contained in every inductive set: it is the *smallest* one.
+
+## Excluding the rogues
+
+<Proof>
+In $\mathbb{N}'$ above, let $V = \{0,1,2,3,\ldots\}$, the orbit of $0$ under $S$.
+
+$V$ is inductive: $0 \in V$, and if $x \in V$ then $x = S^m(0)$ for some $m$, so $S(x) = S^{m+1}(0)\in V$.
+
+By A9, $\mathbb{N}\subseteq V$. Since $a \notin V$, we get $a \notin\mathbb{N}$, and likewise $b \notin \mathbb{N}$.
+</Proof>
+
+Combining with module 7.4:
+
+$$
+\{0,1,2,\ldots\}\subseteq \mathbb{N} \quad\text{(A5, A6)}, \qquad
+\mathbb{N}\subseteq\{0,1,2,\ldots\} \quad\text{(A9)},
+$$
+$$
+\therefore\quad \mathbb{N} = \{0,1,2,3,\ldots\}.
+$$
+
+A set equality established by **double inclusion** (module 2.6) — the two directions coming from opposite ends of the axiom list.
+
+## A9 *is* induction
+
+Rewrite A9 with $V = \{n \in \mathbb{N} : A(n)\}$ for a statement $A$:
+
+| Inductive set condition | Induction |
+|---|---|
+| $0 \in V$ | base case $A(0)$ |
+| $x \in V \Rightarrow S(x)\in V$ | inductive step $A(k)\Rightarrow A(S(k))$ |
+| $\mathbb{N}\subseteq V$ | $A(n)$ for all $n$ |
+
+They are the same statement. **Chapter 6's proof technique is Chapter 7's ninth axiom.**
+
+This resolves a question left open in module 6.1: induction cannot be proved from more basic facts about $\mathbb{N}$, because it is one of the facts that define $\mathbb{N}$.
+
+<Warning title="Induction is genuinely independent">
+Module 7.4's rogue model satisfies A5–A8 and **violates** A9: there $V = \{0,1,2,\ldots\}$ is inductive but does not contain $a$.
+
+By the model method (module 7.1), no derivation of A9 from A5–A8 exists. Induction is an axiom, not a theorem.
+</Warning>
+
+## Equivalent forms
+
+Given A5–A8, the following are equivalent:
+
+- **A9** (induction): every inductive set contains $\mathbb{N}$.
+- **Well-ordering:** every nonempty subset of $\mathbb{N}$ has a least element.
+- **Strong induction:** if $A(m)$ for all $m<k$ implies $A(k)$, then $A$ holds throughout.
+- **No infinite descent:** there is no strictly decreasing infinite sequence in $\mathbb{N}$.
+
+Module 6.2 proved induction $\Rightarrow$ well-ordering; module 6.4 proved strong induction $\Leftrightarrow$ induction. Module 4.4's division algorithm used well-ordering, and module 4.7's irrationality proof can be written either with lowest terms or with descent — so several arguments in this course were quietly using A9 in disguise.
+
+## The nine axioms
+
+| # | Statement |
+|---|---|
+| 1–3 | $=$ is reflexive, symmetric, transitive |
+| 4 | equals belong to the same sets |
+| 5 | $0 \in \mathbb{N}$ |
+| 6 | $x\in\mathbb{N}\Rightarrow S(x)\in\mathbb{N}$ |
+| 7 | $S(x)\neq 0$ |
+| 8 | $S$ is injective |
+| 9 | induction |
+
+That is the entire foundation. Modules 7.6 and 7.7 build addition and multiplication on it, and everything else in arithmetic follows.
+
+<Aside>
+A9 quantifies over **sets** $V$, not over numbers — it is a *second-order* axiom, and that is what gives it its strength: A5–A9 determine $\mathbb{N}$ uniquely up to isomorphism.
+
+Restricting to sets definable by first-order formulas gives an infinite schema instead, one axiom per formula, and that weaker system does **not** pin $\mathbb{N}$ down. Nonstandard models exist, containing elements larger than every numeral, satisfying every first-order theorem of arithmetic and not isomorphic to $\mathbb{N}$.
+</Aside>

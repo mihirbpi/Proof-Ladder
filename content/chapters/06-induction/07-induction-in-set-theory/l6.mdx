@@ -1,0 +1,128 @@
+---
+level: l6
+title: Induction in set theory
+readingTimeMin: 8
+newTerms: ["power set"]
+anchorExample: "the polygon angle-sum theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## The power set
+
+For a set $S$, the **power set** $\mathcal{P}(S)$ is the set of all subsets of $S$.
+
+$$
+\mathcal{P}(\{a,b\}) = \big\{\ \emptyset,\ \{a\},\ \{b\},\ \{a,b\}\ \big\}.
+$$
+
+Four elements, and each of them is itself a set — module 2.1's point that sets can contain sets, now made systematic.
+
+Note that $\emptyset$ and $S$ are always members, since $\emptyset\subseteq S$ and $S \subseteq S$ (module 2.3).
+
+## Counting
+
+| $|S|$ | subsets | $|\mathcal{P}(S)|$ |
+|---|---|---|
+| $0$ | $\emptyset$ | $1$ |
+| $1$ | $\emptyset, \{a\}$ | $2$ |
+| $2$ | $\emptyset,\{a\},\{b\},\{a,b\}$ | $4$ |
+| $3$ | — | $8$ |
+
+**Conjecture:** $|\mathcal{P}(S)| = 2^{|S|}$ for finite $S$.
+
+The doubling is visible in the construction. Going from $\{a,b\}$ to $\{a,b,c\}$, every old subset stays a subset, and every old subset with $c$ added is a new one. Old ones plus new ones is twice as many.
+
+## The proof
+
+<Discussion>
+  <div slot="know">$A(k)$: every $k$-element set has $2^k$ subsets. Available: bijections as the way to compare sizes (module 3.8).</div>
+  <div slot="want">Every $(k+1)$-element set has $2^{k+1}$ subsets.</div>
+  <div slot="how">Remove one element $a$ from the $(k+1)$-set, leaving a $k$-set the hypothesis applies to. Then split the subsets of the big set into those containing $a$ and those not, and match each group with the subsets of the small set.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ be: *every set with $n$ elements has exactly $2^n$ subsets*, for $n\geq0$.
+
+**Base case.** $A(0)$: the only set with $0$ elements is $\emptyset$, whose only subset is $\emptyset$ itself. So it has $1 = 2^0$ subsets. ✓
+
+**Inductive step.** Let $k\geq0$ and assume $A(k)$. Let $S$ be a set with $k+1$ elements, and fix $a\in S$. Then $S\setminus\{a\}$ has $k$ elements.
+
+Split the subsets of $S$ into two groups:
+
+**Group 1: subsets not containing $a$.** These are exactly the subsets of $S\setminus\{a\}$, so by $A(k)$ there are $2^k$ of them.
+
+**Group 2: subsets containing $a$.** Each has the form $T\cup\{a\}$ for a unique $T\subseteq S\setminus\{a\}$. The map $T\mapsto T\cup\{a\}$ is a bijection from Group 1 to Group 2 — injective because $T$ is recovered by removing $a$, surjective because every subset containing $a$ arises this way. So Group 2 also has $2^k$ members.
+
+The groups are disjoint and together contain every subset, so
+$$|\mathcal{P}(S)| = 2^k + 2^k = 2\cdot2^k = 2^{k+1},$$
+which is $A(k+1)$.
+
+By induction, $|\mathcal{P}(S)| = 2^{|S|}$ for every finite set $S$.
+</Proof>
+
+**Three earlier ideas were used**: the inductive hypothesis, a bijection to show two groups have equal size (module 3.8), and the fact that disjoint groups covering everything can be counted by addition (module 2.4).
+
+<Warning title="Disjoint and exhaustive">
+The final addition requires both conditions.
+
+**Disjoint:** no subset is in both groups, since a subset either contains $a$ or does not — never both. Module 1.3's excluded middle.
+
+**Exhaustive:** every subset is in one group, for the same reason.
+
+Adding the counts of overlapping groups double-counts, and adding the counts of groups with a gap undercounts. Both checks belong in the proof, and neither is automatic.
+</Warning>
+
+## A second proof, without induction
+
+Build a subset by walking through the elements of $S$ and deciding, for each one, whether to include it.
+
+That is $|S|$ independent yes/no choices, each with $2$ options, so the number of ways is
+$$\underbrace{2\times2\times\cdots\times2}_{|S| \text{ times}} = 2^{|S|}.$$
+
+Different subsets come from different choice-sequences, and every subset arises from one — so this is a bijection between $\mathcal{P}(S)$ and the sequences of $|S|$ binary choices.
+
+**Shorter, and it explains the $2$.** The base is $2$ because each element faces two options, which the induction proof never quite says.
+
+Stated in the language of Chapter 3, this is a bijection
+$$\mathcal{P}(S) \ \longleftrightarrow\ \{\text{functions } S \to \{0,1\}\},$$
+sending a subset to the function that is $1$ on its members and $0$ elsewhere. That function is called the *indicator*, and it is why $\mathcal{P}(S)$ is sometimes written $2^S$.
+
+<Aside>
+Two proofs of one theorem, and neither is redundant.
+
+The induction **verifies**: it confirms the formula, mechanically, given the pattern.
+
+The counting argument **explains**: it says why $2$, and why exponentiation, in a way that would let you predict the answer for a variant problem.
+
+Mathematicians collect proofs of the same theorem for this reason. Each one connects the result to a different part of the subject, and it is usually the *explanatory* proof that generalises — as here, where the choice argument extends immediately to sets where each element has three options, giving $3^{|S|}$, while the induction would have to be rewritten.
+</Aside>
+
+## Beyond the finite
+
+For infinite $S$ the formula has no meaning as stated, and the underlying comparison does.
+
+> **Cantor's theorem.** For every set $S$, there is no surjection $S\to\mathcal{P}(S)$.
+
+So $\mathcal{P}(S)$ is strictly larger than $S$ — always, including when $S$ is infinite. Applying it to $\mathbb{N}$ gives an infinite set strictly bigger than $\mathbb{N}$; applying it again gives a bigger one still.
+
+**There is no largest infinity.** Module 3.8 showed $\mathbb{R}$ is bigger than $\mathbb{N}$; this says the tower continues forever, and the proof is the diagonal argument from that module in general form.
+
+Note what the induction could *not* do. It proved the finite case and stops there, because module 6.4's chain has no rung labelled *infinite*. The finite formula and the infinite theorem are genuinely different results, and only one of them is an induction.
+
+## Chapter summary
+
+| Module | What it added |
+|---|---|
+| 6.1 | The domino idea; patterns are not proofs |
+| 6.2 | The three steps; why assuming $A(k)$ is not circular |
+| 6.3 | The classic proof; forwards, not backwards |
+| 6.4 | When induction applies; the link is the hard part |
+| 6.5 | Combining with divisibility; name the witness carefully |
+| 6.6 | Conjecturing from data, one pattern at a time |
+| 6.7 | Counting subsets; a second proof that explains |
+
+Chapter 7 asks where induction itself comes from — and the answer is that it is an axiom, on the same footing as the Parallel Postulate in your geometry course.

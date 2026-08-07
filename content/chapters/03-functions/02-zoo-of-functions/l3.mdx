@@ -57,21 +57,26 @@ The domain is the product set of module 2.9 — the set of all pairs. Every pair
 
 ## A rule that is not a function
 
-Here is one to watch out for. Try defining a function on fractions by
-$$
-f\!\left(\frac{p}{q}\right) = p + q.
-$$
+Here is one to watch out for. Try this rule for fractions:
 
-Feed it $\tfrac12$: the answer is $1 + 2 = 3$.
+> Put in a fraction. Add its top to its bottom, and give back the answer.
 
-Now feed it $\tfrac24$. But $\tfrac24$ *is* $\tfrac12$ — the same number with a different name! And this rule gives $2 + 4 = 6$.
+Feed it $\tfrac12$: top plus bottom is $1 + 2 = 3$.
 
-So the same input gets two different answers, depending on how you wrote it down. That breaks the "exactly one output" rule, so $f$ is not a function.
+Now feed it $\tfrac24$. Top plus bottom is $2 + 4 = 6$.
+
+But $\tfrac24$ **is** $\tfrac12$ — the same number, just written differently! So the very same input got two different answers, depending on how somebody happened to write it down.
+
+That breaks the "exactly one output" rule. This is not a machine at all.
 
 <Warning title="Well-defined">
 A rule is **well-defined** when it gives the same answer no matter how the input was written. Whenever an input can have several names — fractions especially — you have to check this. It is not automatic, and skipping the check is a real mistake, not a formality.
 </Warning>
 
 <Aside>
-The number of counting numbers up to $n$ that share no factor with $n$ is written $\varphi(n)$. So $\varphi(6) = 2$, because only $1$ and $5$ qualify below $6$. There is no formula for $\varphi$ that you can just evaluate — you have to go and check the factors. It is still a function, and it is one of the most useful in all of number theory.
+Here is a machine with no formula at all. Put in a counting number; count how many numbers below it share no factor with it; give back that count.
+
+Put in $6$: only $1$ and $5$ qualify, so you get $2$. Put in $7$: all of $1$ through $6$ qualify, so you get $6$.
+
+There is no shortcut — you have to go and check the factors every time. It is still a machine, and it is one of the most useful in all of number theory.
 </Aside>

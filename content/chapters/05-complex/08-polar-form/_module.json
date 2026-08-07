@@ -13,6 +13,17 @@
     "l7": "Polar form",
     "l8": "Polar form"
   },
+  "kernelIdea": "re^{iθ} is the point at distance r from the origin at counterclockwise angle θ. Polar form is non-unique: re^{iθ} = re^{i(θ+2πk)}. Special values include e^{iπ} + 1 = 0.",
+  "kernels": {
+    "l1": "There are two ways to say where something is: across and up, or how far and which way.",
+    "l2": "You can name a spot by how far across and up it is, or by how far away it is and which direction to face. Both names point at the same spot.",
+    "l3": "A complex number can be described by distance and direction instead of across and up. Turning all the way around brings you back, so the direction has many names for the same point.",
+    "l4": "re^{iθ} denotes the point at distance r from the origin at counterclockwise angle θ. The description is not unique, since re^{iθ} = re^{i(θ+2πk)}, and the special values give i = e^{iπ/2} and e^{iπ} + 1 = 0.",
+    "l5": "Polar form encodes a complex number as modulus and argument; conversion uses trigonometry, and the argument is determined only up to multiples of 2π.",
+    "l6": "Polar coordinates on ℂ make modulus and argument the natural data; non-uniqueness of the argument is what forces principal values.",
+    "l7": "re^{iθ} is the point of modulus r and argument θ; the argument is defined only modulo 2π, which is why principal values must be chosen and why complex log is multivalued.",
+    "l8": "Polar form is the polar decomposition ℂˣ ≅ ℝ_{>0} × S¹; the multivaluedness of arg is the reason log has branch cuts and the beginning of covering space theory."
+  },
   "kernel": "re^{iθ} is the point at distance r from the origin at counterclockwise angle θ. Polar form is non-unique: re^{iθ} = re^{i(θ+2πk)}. Special values: i = e^{iπ/2}, −1 = e^{iπ}, and e^{iπ} + 1 = 0.",
   "objectives": [
     "Convert between a + bi and re^{iθ}",

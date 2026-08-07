@@ -1,0 +1,90 @@
+---
+level: l4
+title: Induction in set theory
+readingTimeMin: 6
+newTerms: ["power set"]
+anchorExample: "Σ(2j−1) = n²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+The **power set** of $S$ is
+$$
+\mathcal{P}(S) = \{\, A \mid A \subseteq S \,\}.
+$$
+
+Its elements are sets. For $S = \{a,b\}$:
+$$
+\mathcal{P}(S) = \big\{\, \emptyset,\ \{a\},\ \{b\},\ \{a,b\} \,\big\},
+$$
+so $|\mathcal{P}(S)| = 4$.
+
+> **Theorem.** If $|S| = n$ then $|\mathcal{P}(S)| = 2^n$.
+
+## Proof by induction
+
+<Discussion>
+  <div slot="know">Every subset of $S$ either contains a fixed element $a$ or does not — excluded middle (module 1.3), giving an exhaustive and disjoint split.</div>
+  <div slot="want">$|\mathcal{P}(S)| = 2^{k+1}$ for $|S| = k+1$, given the result for size $k$.</div>
+  <div slot="how">Fix $a \in S$ and set $S' = S\setminus\{a\}$, of size $k$. Partition $\mathcal{P}(S)$ by membership of $a$. The subsets avoiding $a$ *are* $\mathcal{P}(S')$; the subsets containing $a$ are in bijection with $\mathcal{P}(S')$ via $A \mapsto A\setminus\{a\}$.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ be: every set of size $n$ has exactly $2^n$ subsets.
+
+**Base.** $A(0)$: the only set of size $0$ is $\emptyset$, whose only subset is $\emptyset$. So $|\mathcal{P}(\emptyset)| = 1 = 2^0$. ✓
+
+**Step.** Assume $A(k)$. Let $|S| = k+1$, fix $a \in S$, and put $S' = S\setminus\{a\}$, so $|S'| = k$.
+
+Partition $\mathcal{P}(S)$ into
+$$
+\mathcal{U} = \{A \subseteq S : a \notin A\}, \qquad
+\mathcal{V} = \{A \subseteq S : a \in A\}.
+$$
+These are disjoint and their union is $\mathcal{P}(S)$, since $a \in A$ or $a \notin A$ for each $A$.
+
+*Counting $\mathcal{U}$.* $A \subseteq S$ with $a \notin A$ holds precisely when $A \subseteq S'$. So $\mathcal{U} = \mathcal{P}(S')$, and $|\mathcal{U}| = 2^k$ by (IH).
+
+*Counting $\mathcal{V}$.* Define $\varphi : \mathcal{V}\to\mathcal{P}(S')$ by $\varphi(A) = A\setminus\{a\}$, and $\psi : \mathcal{P}(S')\to\mathcal{V}$ by $\psi(B) = B\cup\{a\}$. Then $\varphi(\psi(B)) = B$ and $\psi(\varphi(A)) = A$ for $A \in \mathcal{V}$, so $\varphi$ is a bijection (module 3.9). Hence $|\mathcal{V}| = |\mathcal{P}(S')| = 2^k$.
+
+Therefore
+$$
+|\mathcal{P}(S)| = |\mathcal{U}| + |\mathcal{V}| = 2^k + 2^k = 2^{k+1},
+$$
+establishing $A(k+1)$.
+</Proof>
+
+Note that the step used a **bijection** to transfer a count between two sets, rather than recounting. That is module 3.8's principle — same size means a bijection exists — doing real work.
+
+## Proof by counting choices
+
+<Proof title="Second proof">
+A subset $A \subseteq S$ is determined by, and determines, its **characteristic function**
+$$
+\chi_A : S \to \{0,1\}, \qquad \chi_A(x) = \begin{cases}1 & x \in A\\ 0 & x \notin A.\end{cases}
+$$
+Matching each subset with its characteristic function is a bijection from $\mathcal{P}(S)$ to the set of all functions $S \to \{0,1\}$. Going back the other way, each function is matched with the set of elements it sends to $1$.
+
+To specify such a function, choose a value in $\{0,1\}$ independently for each of the $n$ elements — $2$ choices, $n$ times, so $2^n$ functions.
+
+Hence $|\mathcal{P}(S)| = 2^n$.
+</Proof>
+
+This proof explains the notation $2^S$ for the power set: it is literally the set of functions from $S$ into a two-element set, and the exponential notation for function spaces makes the cardinality formula automatic.
+
+<Warning title="∅ and S are subsets">
+$\emptyset \in \mathcal{P}(S)$ and $S \in \mathcal{P}(S)$ always. Omitting either breaks the count immediately: without $\emptyset$ a two-element set would have $3$ subsets.
+
+Watch the levels, too. For $S = \{a,b\}$: $a \in S$ but $a \notin \mathcal{P}(S)$; $\{a\} \subseteq S$ and $\{a\} \in \mathcal{P}(S)$. The elements of $\mathcal{P}(S)$ are sets, and module 2.3's $\in$-versus-$\subseteq$ distinction is what keeps this straight.
+</Warning>
+
+<Aside>
+The theorem extends to infinite sets in a strong form. **Cantor's theorem:** for every set $S$, there is no surjection $S \to \mathcal{P}(S)$, so $|\mathcal{P}(S)| > |S|$ always.
+
+The proof is not an induction and cannot be. Given any way of matching each element of $S$ with a subset of $S$, collect the elements that are **not** members of the subset they were matched with. That collection is a subset of $S$, and it cannot have been matched with anything — because whichever element you claim it was matched with lands in the collection exactly when it does not.
+
+So $2^n > n$ has an infinite analogue, and there is no largest infinity (module 3.8).
+</Aside>

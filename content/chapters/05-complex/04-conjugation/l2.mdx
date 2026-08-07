@@ -1,0 +1,63 @@
+---
+level: l2
+title: Flip across the middle
+readingTimeMin: 4
+newTerms: ["flip"]
+anchorExample: "turning a quarter turn"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Warning from '@/components/Warning.astro';
+import Aside from '@/components/Aside.astro';
+
+The **flip** takes a complex number and reflects it across the middle line.
+
+The across part stays exactly the same. The up part turns into a down part.
+
+$$3 + 4i \quad\text{flips to}\quad 3 - 4i.$$
+
+$$1 + 5i \quad\text{flips to}\quad 1 - 5i.$$
+
+$$5 + 0i \quad\text{flips to}\quad 5 - 0i = 5.$$
+
+That last one did not change! Because $5$ is an ordinary number, sitting right on the middle line.
+
+## Flip twice and you are home
+
+Take $3 + 4i$. Flip: $3 - 4i$. Flip again: $3 + 4i$.
+
+You are back where you started. Every time. Two flips always undo each other, just like looking in a mirror at a mirror.
+
+## Which numbers do not move?
+
+A number stays put under the flip exactly when it has **no up part** — that is, exactly when it is an ordinary number.
+
+Makes sense: those are the ones sitting on the mirror line itself.
+
+<Warning title="Only the up part changes sign">
+$3 + 4i$ flips to $3 - 4i$. The across part is left completely **alone** — it stays at $3$.
+
+Only the up part changes. If you changed both, you would have spun the point halfway round the page instead of folding it over.
+</Warning>
+
+## A surprise
+
+Now try something. Take a spot and its flip, and put them together the multiplying way.
+
+For $3 + 4i$ and its flip, the answer comes out **$25$** — a perfectly ordinary number, with no up part left at all.
+
+For $1 + 2i$ and its flip, the answer is **$5$**. Ordinary again!
+
+The up parts cancel out completely, every single time.
+
+A number times its own flip is always ordinary. That turns out to be extremely useful, and you will see why in a couple of modules.
+
+<Aside>
+Look closely at $25$. It is $9 + 16$ — a $3$-by-$3$ square plus a $4$-by-$4$ square. And $5$ is $1 + 4$ — a $1$-by-$1$ square plus a $2$-by-$2$ square.
+
+Every time, you get a square built on the across part plus a square built on the up part. If that reminds you of something about right triangles, hold that thought until module 5.6.
+</Aside>
+
+<TryIt>
+Pick a spot on a grid. Fold the paper along the flat line and mark where it lands — that is its flip. Now fold again and check you are back where you started.
+</TryIt>

@@ -1,76 +1,86 @@
 ---
 level: l3
-title: Even, odd, and divides
+title: Even, odd, and goes into
 readingTimeMin: 6
-newTerms: ["even", "odd", "divides"]
-anchorExample: "divisibility"
+newTerms: ["even", "odd", "goes into"]
+anchorExample: "factors and multiples"
 ---
 
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-You have known about even and odd since you were small. This module gives you the versions you can *compute with* — and that difference is bigger than it sounds.
+You have known about even and odd since you were small, and you know how to find factors and multiples. This module gives you the versions you can *compute with* — and that difference is bigger than it sounds.
 
-## The algebraic definitions
+## Even and odd, said usefully
 
-> A whole number $n$ is **even** when $n = 2k$ for some whole number $k$.
+> A counting number is **even** when it is some number of $2$s with nothing left over.
 >
-> A whole number $n$ is **odd** when $n = 2k + 1$ for some whole number $k$.
+> A counting number is **odd** when it is some number of $2$s with exactly one left over.
 
-Compare with "even means it pairs up nicely." Both are correct. But if a proof hands you "$n$ pairs up nicely," you can do nothing with it. If it hands you "$n = 2k$," you can substitute, multiply, and rearrange. That is why this version wins.
+Compare with "even means it pairs up nicely." Both are correct. But if a proof hands you "this number pairs up nicely", you can do nothing with it. If it hands you "this number is a pile of $2$s", you can count the $2$s, split them, group them, and rearrange them.
 
-Examples: $12$ is even because $12 = 2 \times 6$. $13$ is odd because $13 = 2 \times 6 + 1$.
+That is why this version wins: it gives you something to hold.
 
-<Warning title="k must be a whole number">
-Is $9$ even? Certainly $9 = 2 \times 4\tfrac12$. But $4\tfrac12$ is not a whole number, so this does not qualify. The requirement that $k$ be a whole number is carrying the entire definition — drop it and every number becomes even.
+$12$ is even, because $12$ is six $2$s. $13$ is odd, because $13$ is six $2$s with one left over.
+
+<Warning title="The pile has to be a whole number of 2s">
+Is $9$ even? You might say $9$ is "four and a half $2$s". But half a $2$ is not a $2$, and the definition asks for a **whole** number of them.
+
+That word *whole* is carrying the entire definition. Drop it and every number becomes even.
 </Warning>
 
-## Divides
+## Goes into
 
 Pairing was about $2$. Nothing is special about $2$, so here is the general version.
 
-> $m$ **divides** $n$, written $m \mid n$, when $n = m \times k$ for some whole number $k$.
+> One number **goes into** another when the second is some whole number of copies of the first, with nothing left over.
 
-So "even" is just "$2 \mid n$." And $3 \mid 12$, because $12 = 3 \times 4$. But $3 \nmid 13$, because no whole number times $3$ gives $13$.
+So "even" is just "$2$ goes into it."
+
+$3$ goes into $12$, because $12$ is four copies of $3$. ✓
+$3$ does not go into $13$, because four copies of $3$ leaves one over and five copies overshoots. ✗
+
+You already have two words for this. If $3$ goes into $12$, then $3$ is a **factor** of $12$, and $12$ is a **multiple** of $3$. Three phrases, one idea, and it is worth being able to switch between them freely.
 
 <Warning title="Which way round?">
-$3 \mid 12$ says **3 goes into 12**. The small one comes first.
+"$3$ goes into $12$" is true. "$12$ goes into $3$" is false.
 
-It does *not* mean $3 \div 12$, and it is not a fraction. The vertical bar here is a whole word — "divides" — not a division sign.
-
-A memory aid: the symbol looks like the divisor standing up straight, ready to march into the bigger number.
+The small one goes into the big one, and saying it backwards changes the claim completely. When you read a divisibility statement, check the direction before anything else.
 </Warning>
 
-## Divisibility is a hunt for a number
+## Going into is a hunt for a number
 
 Here is the most useful thing in this module.
 
-Look again at the definition: $m \mid n$ means *there exists* a whole number $k$ with $n = mk$. That is a **there exists** claim — module 1.10.
+Look again at the definition: *the second number is some whole number of copies of the first.* That is a **there exists** claim — module 1.10. It says: there is a number of copies, and here it is.
 
-And module 1.12 told you exactly how to prove one of those: **exhibit a witness.** Produce the $k$.
+And module 1.12 told you exactly how to prove one of those: **produce the number.**
 
-So every divisibility proof has the same ending: *here is the number, and here is why it is a whole number.*
+So every "goes into" proof has the same ending: *here is how many copies, and here is why that count is a whole number.*
 
 ## A worked example
 
-> **Claim.** If $6 \mid n$, then $2 \mid n$.
+> **Claim.** If $6$ goes into a number, then $2$ goes into it too.
 
 <Proof>
-Suppose $6 \mid n$. By the definition, there is a whole number $k$ with $n = 6k$.
+Take any number that $6$ goes into, and follow it. Being a multiple of $6$, it is some whole number of copies of $6$.
 
-Now $6 = 2 \times 3$, so
-$$n = 2 \times 3 \times k = 2 \times (3k).$$
+Now look at a single copy of $6$. It is three $2$s.
 
-To show $2 \mid n$ we must produce a whole number that $2$ multiplies to give $n$. Our witness is $3k$.
+So replace every copy of $6$ by three $2$s. Nothing is added and nothing is lost — you have just described the same pile differently.
 
-And $3k$ is a whole number, because multiplying two whole numbers gives a whole number (module 4.1).
+Now the whole thing is made of $2$s, and there are three times as many of them as there were $6$s.
 
-So $n = 2 \times (3k)$ with $3k$ a whole number, which means $2 \mid n$.
+Three times a whole number is a whole number, so the count is fine. And nothing is left over, because nothing was left over before and we only re-grouped.
+
+So the number is a whole number of $2$s, which means $2$ goes into it.
+
+And we never said *which* multiple of $6$ we started with — so this works for all of them.
 </Proof>
 
-Read the last two paragraphs again. The proof did not stop at $n = 2 \times (3k)$; it explicitly said *and $3k$ is a whole number, by closure.* That step is easy to skip and it is not optional — the whole definition depends on it.
+Read the last two paragraphs again. The proof did not stop at "it is made of $2$s"; it explicitly said *and the count is a whole number*, and *we never used which number it was*. Those two sentences are what make it a proof rather than an example.
 
 <Aside>
-Almost everything in the rest of this chapter is this one move repeated: unpack what you are given into an equation, do algebra, and pull out the divisor you want at the end. Module 4.3 turns it into a template you can follow every time.
+Almost everything in the rest of this chapter is this one move repeated: take what you are given, re-group it, and pull out the factor you want at the end. Module 4.3 turns it into a template you can follow every time.
 </Aside>

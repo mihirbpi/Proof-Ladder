@@ -1,0 +1,123 @@
+---
+level: l6
+title: Conjugation
+readingTimeMin: 8
+newTerms: ["conjugate", "involution"]
+anchorExample: "rotations of the coordinate plane"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 5.3 used $a-bi$ to make a denominator real. That operation has a name and a great many properties.
+
+## Definition
+
+For $z = a+bi$, the **conjugate** is
+$$\bar z = a - bi.$$
+
+Flip the sign of the imaginary part. $\overline{3+4i} = 3-4i$, $\overline{5} = 5$, $\overline{2i} = -2i$.
+
+## It is a reflection
+
+In the plane of module 5.5, $z = a+bi$ is the point $(a,b)$ and $\bar z$ is $(a,-b)$.
+
+**That is reflection in the real axis** — the same transformation your course writes as $(x,y)\mapsto(x,-y)$ (module 3.1).
+
+Everything below follows from that reading, and the geometry explains the algebra rather than merely illustrating it.
+
+## Involution
+
+$$\overline{\bar z} = z.$$
+
+<Proof>
+$\overline{\overline{a+bi}} = \overline{a - bi} = a-(-b)i = a+bi$.
+</Proof>
+
+Conjugating twice returns you to where you started, which is what a reflection does (module 3.9). An operation that is its own inverse is called an **involution**, and you have met two others: $\overline{\overline S}=S$ for set complements (module 2.5) and $\neg\neg p \equiv p$ for negation (module 1.2).
+
+## The fixed points
+
+> **Proposition.** $z$ is real **if and only if** $z = \bar z$.
+
+<Discussion>
+  <div slot="know">$z = a+bi$ with $a,b$ real. "Real" means $b = 0$.</div>
+  <div slot="want">Both directions — module 1.9's check both boxes.</div>
+  <div slot="how">Forward is a computation. Backward uses the equality rule from module 5.2: equal complex numbers have equal imaginary parts, giving $b = -b$, and only $0$ satisfies that in $\mathbb{R}$.</div>
+</Discussion>
+
+<Proof>
+Write $z = a+bi$ with $a,b\in\mathbb{R}$.
+
+**($\Rightarrow$)** Suppose $z$ is real, so $b = 0$ and $z = a$. Then $\bar z = a - 0i = a = z$.
+
+**($\Leftarrow$)** Suppose $z = \bar z$, that is, $a+bi = a-bi$. Equating imaginary parts gives $b = -b$, so $2b = 0$ and hence $b = 0$.
+
+Therefore $z = a$ is real.
+</Proof>
+
+**The geometry says the same thing.** The fixed points of a reflection are exactly the points on the mirror (module 3.3), and here the mirror is the real axis. A complex number is unmoved by conjugation precisely when it lies on the real line.
+
+Two derivations of one fact — one algebraic, one geometric — and the second explains the first.
+
+## Recovering the parts
+
+$$\operatorname{Re}(z) = \frac{z+\bar z}{2}, \qquad \operatorname{Im}(z) = \frac{z-\bar z}{2i}.$$
+
+<Proof>
+With $z = a+bi$: $z + \bar z = (a+bi)+(a-bi) = 2a$, so $\frac{z+\bar z}{2} = a = \operatorname{Re}(z)$.
+
+And $z - \bar z = 2bi$, so $\frac{z-\bar z}{2i} = b = \operatorname{Im}(z)$.
+</Proof>
+
+The first formula is a midpoint: $\frac{z+\bar z}{2}$ is the midpoint of $z$ and its mirror image, which lands on the mirror. That is the midpoint formula from your coordinate work, and it is the same reason the perpendicular bisector construction works.
+
+## Conjugation respects arithmetic
+
+$$\overline{z+w} = \bar z + \bar w, \qquad \overline{zw} = \bar z\,\bar w, \qquad \overline{z/w} = \bar z/\bar w \ (w\neq0).$$
+
+<Proof>
+Let $z = a+bi$ and $w = c+di$.
+
+**Sums.** $\overline{z+w} = \overline{(a+c)+(b+d)i} = (a+c)-(b+d)i$, and $\bar z + \bar w = (a-bi)+(c-di) = (a+c)-(b+d)i$. Equal.
+
+**Products.** $zw = (ac-bd)+(ad+bc)i$, so $\overline{zw} = (ac-bd)-(ad+bc)i$.
+
+Meanwhile $\bar z\bar w = (a-bi)(c-di) = ac - adi - bci + bdi^2 = (ac-bd) - (ad+bc)i$.
+
+Equal.
+</Proof>
+
+**A map preserving the operations is a homomorphism**, and one that is also a bijection fixing $\mathbb{R}$ pointwise is an automorphism. Conjugation is the only non-trivial one $\mathbb{C}$ has that behaves continuously — which is a way of saying $i$ and $-i$ are genuinely interchangeable, and nothing in the algebra can tell them apart.
+
+<Warning title="Which root is i?">
+$i$ was introduced as *a* square root of $-1$. There are two, $i$ and $-i$, and no algebraic property distinguishes them: replace $i$ by $-i$ everywhere and every true equation stays true.
+
+That is exactly what the product rule says. Conjugation is the swap, and it preserves everything.
+
+The choice of which root to call $i$ is a labelling convention — like choosing which rotation direction to call counterclockwise. It has no mathematical content, and the fact that nothing depends on it is a theorem.
+</Warning>
+
+## Two consequences
+
+**Real coefficients give paired roots.** If $p$ is a polynomial with real coefficients and $p(z)=0$, then $p(\bar z)=0$.
+
+The reason is the product and sum rules: conjugating $a_nz^n+\dots+a_0 = 0$ term by term gives $a_n\bar z^n + \dots + a_0 = 0$, since each real coefficient is its own conjugate.
+
+You have seen this without the explanation. The quadratic formula with negative discriminant produces $\frac{-b}{2a}\pm\frac{\sqrt{4ac-b^2}}{2a}i$ — a conjugate pair, always. **Non-real roots of a real polynomial come in pairs**, which is why a cubic with real coefficients always has at least one real root: three roots cannot pair up evenly.
+
+**The modulus.** $z\bar z = (a+bi)(a-bi) = a^2+b^2$, a non-negative real. Module 5.6 defines $|z| = \sqrt{z\bar z}$ on the strength of this, and the Pythagorean theorem is visible in the formula.
+
+<Aside>
+Conjugation gives a compact way to write loci in the plane.
+
+$z\bar z = r^2$ is the circle of radius $r$ centred at the origin, since $z\bar z = a^2+b^2$.
+
+$z = \bar z$ is the real axis, by the proposition above. $z = -\bar z$ is the imaginary axis.
+
+$|z - w| = |z - v|$ is the perpendicular bisector of the segment joining $w$ and $v$ — module 2.2's locus, written in one complex equation instead of two real ones.
+
+Complex notation compresses coordinate geometry substantially, and the compression is not cosmetic: transformations that need a matrix in real coordinates are often a single multiplication in $\mathbb{C}$.
+</Aside>

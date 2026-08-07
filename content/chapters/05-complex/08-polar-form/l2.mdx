@@ -1,0 +1,70 @@
+---
+level: l2
+title: Direction and distance
+readingTimeMin: 4
+newTerms: ["direction", "distance"]
+anchorExample: "turning a quarter turn"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every spot on the grid can be named in two different ways.
+
+**Grid way.** How far across, how far up. This is $3 + 4i$.
+
+**Compass way.** Which **direction** to face, and what **distance** to walk.
+
+## The compass way
+
+Stand at the middle. Face east — that is to the right, along the flat line.
+
+Now turn a bit to the left, and walk. Wherever you stop, that is your number.
+
+For $3 + 4i$: you turn a little bit north of east, and you walk $5$ steps. (Module 5.6 worked out that the distance is $5$.)
+
+So the same number is:
+
+- **grid way:** $3$ across, $4$ up;
+- **compass way:** distance $5$, direction "a bit north of east".
+
+## Some easy ones
+
+| Spot | Distance | Direction |
+|---|---|---|
+| $1$ | $1$ | east |
+| $i$ | $1$ | north |
+| a quarter turn past $i$ | $1$ | west |
+| one more quarter turn | $1$ | south |
+| $2i$ | $2$ | north |
+
+Look at the first four. All distance $1$! They sit on a circle around the middle, one step out. Only their direction differs.
+
+## Turning all the way around
+
+Here is something the compass way does that the grid way does not.
+
+Face north. Now turn all the way around — a full circle — and stop.
+
+Where are you facing? **North again!**
+
+So "north" and "north after a full spin" are the same direction. And "north after two full spins" too.
+
+That means a spot has **many** compass names, all correct. The distance is always the same, but the direction can be described in lots of ways.
+
+<Warning title="One name or many?">
+The grid way gives every spot exactly *one* name. $3+4i$ and nothing else.
+
+The compass way gives every spot *many* names, because you can always add another full spin.
+
+Neither is better. They are good at different jobs, and grown-up mathematicians switch between them constantly.
+</Warning>
+
+<Aside>
+The compass way is brilliant for one particular job: multiplying. It turns out that to multiply two complex numbers you just multiply the distances and add the turns. You will meet that in module 5.9, and it is much easier than the grid way.
+</Aside>
+
+<TryIt>
+Face one wall. Turn all the way around and stop. Are you facing the same wall? Now do it twice. Still the same!
+</TryIt>

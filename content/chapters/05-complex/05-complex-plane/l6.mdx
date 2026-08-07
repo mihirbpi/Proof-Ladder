@@ -1,0 +1,130 @@
+---
+level: l6
+title: The complex plane
+readingTimeMin: 8
+newTerms: ["complex plane"]
+anchorExample: "rotations of the coordinate plane"
+---
+
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Figure from '@/components/Figure.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Plot $z = a+bi$ at the point $(a,b)$.
+
+That single instruction turns every algebraic fact of this chapter into a geometric one, and it is why complex numbers stopped being controversial around 1800.
+
+<Figure alt="A coordinate plane with the horizontal axis labelled real and the vertical axis labelled imaginary, showing plotted points." caption="The complex plane. Horizontal axis: real part. Vertical axis: imaginary part.">
+  <ComplexPlane
+    points={[
+      { re: 3, im: 4, label: "3+4i" },
+      { re: -2, im: 1, label: "-2+i" },
+      { re: 3, im: -4, label: "3-4i" },
+      { re: 0, im: 1, label: "i" }
+    ]}
+    range={5}
+  />
+</Figure>
+
+The horizontal axis is the **real axis** and carries $\mathbb{R}$; the vertical axis is the **imaginary axis** and carries the purely imaginary numbers. The picture is called the **complex plane**, or the Argand diagram.
+
+## As a set, this is your coordinate plane
+
+$\mathbb{C}$ and $\mathbb{R}^2$ have the same elements — pairs of reals — and the same addition:
+
+$$(a+bi)+(c+di) = (a+c)+(b+d)i \quad\longleftrightarrow\quad (a,b)+(c,d) = (a+c, b+d).$$
+
+Component-wise, both. **Complex addition is vector addition**, and the parallelogram rule from your work with vectors applies unchanged.
+
+**What is new is the multiplication.** $\mathbb{R}^2$ has no useful one; $\mathbb{C}$ does, and modules 5.6 and 5.9 show that this multiplication encodes rotation and dilation — the two transformations your geometry course spends a unit on.
+
+That is the whole story of the chapter in two sentences: same points, new operation, and the new operation *is* transformation geometry.
+
+## Reading the operations
+
+| Algebra | Geometry |
+|---|---|
+| $z + w$ | translate $z$ by $w$ |
+| $-z$ | rotate $z$ by $180°$ about the origin |
+| $\bar z$ | reflect $z$ in the real axis |
+| $iz$ | rotate $z$ by $90°$ counterclockwise |
+| $kz$ ($k$ real, $k>0$) | dilate $z$ by factor $k$ |
+
+Every entry is a transformation you have studied. The last two combine into module 5.9's general rule.
+
+**Translation** is worth dwelling on. Adding a fixed $w$ to every point of a figure translates the figure by the vector $w$ — and your course's translation $(x,y)\mapsto(x+a,y+b)$ is precisely $z \mapsto z + (a+bi)$.
+
+## Multiplying by $i$
+
+<Figure alt="A coordinate plane showing the point 3+4i and the point -4+3i, each joined to the origin." caption="Multiplying by i: the point 3+4i moves to −4+3i, a quarter turn counterclockwise.">
+  <ComplexPlane
+    points={[
+      { re: 3, im: 4, label: "z" },
+      { re: -4, im: 3, label: "iz" }
+    ]}
+    vectors={[{ re: 3, im: 4 }, { re: -4, im: 3 }]}
+    range={5}
+  />
+</Figure>
+
+$$i(3+4i) = 3i + 4i^2 = -4+3i.$$
+
+The point $(3,4)$ went to $(-4,3)$, which is the rotation $(x,y)\mapsto(-y,x)$ from module 3.1 — a quarter turn counterclockwise about the origin.
+
+In general $i(a+bi) = -b+ai$, so multiplying by $i$ **is** that rotation, for every point at once.
+
+And now $i^2 = -1$ reads geometrically: two quarter turns is a half turn, and a half turn sends $z$ to $-z$. **The defining property of $i$ is a statement about composing rotations**, which by module 3.7 is a statement about composing functions.
+
+<Warning title="The picture is not the proof">
+Plotting is a way to see what a theorem says and to guess what might be true. It is not a substitute for the algebra.
+
+The rotation claim above was verified by computing $i(a+bi) = -b+ai$ for arbitrary $a,b$ — take any one and follow it, module 1.12. The two figures show two instances, and instances do not establish a universal claim.
+
+Use the plane to find statements. Use the algebra to prove them. This is the same division of labour as between a geometry diagram and the two-column proof beside it.
+</Warning>
+
+## Conjugation is the mirror
+
+<Figure alt="A coordinate plane showing 3+4i above the real axis and 3−4i symmetrically below it." caption="Conjugation reflects in the real axis. Real numbers lie on the mirror.">
+  <ComplexPlane
+    points={[
+      { re: 3, im: 4, label: "z" },
+      { re: 3, im: -4, label: "z̄" },
+      { re: 2, im: 0, label: "2", muted: true }
+    ]}
+    range={5}
+  />
+</Figure>
+
+Module 5.4 proved algebraically that $z = \bar z$ exactly when $z$ is real. The picture explains it: the fixed points of a reflection are the points of the mirror, and here the mirror is the real axis.
+
+That is the third time this chapter that a geometric reading has explained an algebraic theorem — and each time, the geometry came from transformations you already know.
+
+## Loci
+
+Complex equations describe curves, and they do so more compactly than real coordinates do.
+
+$$|z| = 3 \quad\text{— the circle of radius } 3 \text{ centred at the origin}$$
+$$|z - (2+i)| = 3 \quad\text{— the circle of radius } 3 \text{ centred at } 2+i$$
+$$|z-w| = |z-v| \quad\text{— the perpendicular bisector of the segment } wv$$
+$$\operatorname{Im}(z) = 0 \quad\text{— the real axis}$$
+
+The second one is the equation of a circle in one symbol where real coordinates need $(x-2)^2+(y-1)^2 = 9$. Module 5.6 defines $|z|$ and proves it is the distance you expect.
+
+The third is module 2.2's locus definition of the perpendicular bisector, and it is now a single equation rather than a two-part locus theorem.
+
+<Aside>
+Wessel described the plane in 1799, Argand in 1806, Gauss in 1831 — three independent discoveries within a generation, three centuries after complex numbers came into use.
+
+Before the picture, $\sqrt{-1}$ was a formal symbol that worked and nobody could justify. After it, complex numbers were points in a plane, and the objection that they were unreal became hard to state: a point is as real as a point.
+
+The lesson is worth carrying. A good representation does not merely illustrate — it can settle a question about whether the objects exist at all. Descartes did the same for geometry in 1637 by turning points into pairs of numbers, and this is the same move in the other direction.
+</Aside>
+
+## What comes next
+
+The plane gives two natural quantities for a point: its **distance from the origin** and its **direction**. Those are modulus and argument, and modules 5.6 and 5.8 develop them.
+
+In those terms multiplication becomes simple — multiply distances, add angles — and the two transformation types of your geometry course, rotation and dilation, become one operation. That is module 5.9, and it is the payoff for everything here.

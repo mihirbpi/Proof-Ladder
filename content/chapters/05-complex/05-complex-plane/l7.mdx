@@ -1,0 +1,92 @@
+---
+level: l7
+title: The complex plane
+readingTimeMin: 8
+newTerms: ["complex plane", "real axis", "imaginary axis"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+The bijection $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ identifies $\mathbb{C}$ with $\mathbb{R}^2$ as sets and as real vector spaces (§5.2). Drawing that identification is the **complex plane** or Argand diagram.
+
+<Figure alt="A grid with axes crossing at the origin and points plotted at 3 plus 2i, minus 2 plus i, and 4." caption="Real axis horizontal, imaginary axis vertical.">
+  <ComplexPlane points={[
+    {re: 3, im: 2, label: "3+2i"},
+    {re: -2, im: 1, label: "-2+i"},
+    {re: 4, im: 0, label: "4"}
+  ]} range={5} />
+</Figure>
+
+## The three operations, geometrically
+
+**Addition** is componentwise, hence vector addition — the parallelogram rule. Nothing about $\mathbb{C}$ beyond its additive group structure is involved.
+
+**Conjugation** negates the second coordinate: reflection in the real axis. Its fixed set is the mirror line, which recovers §5.4's theorem $z = \bar z \iff z \in \mathbb{R}$ without computation, and $\overline{\bar z} = z$ becomes "reflecting twice is the identity."
+
+**Multiplication** is where $\mathbb{C}$ departs from $\mathbb{R}^2$.
+
+> **Proposition.** Multiplication by $z = a+bi$ is the $\mathbb{R}$-linear map with matrix
+> $$M_z = \begin{pmatrix} a & -b \\ b & a\end{pmatrix},$$
+> a rotation by $\arg z$ composed with a scaling by $|z|$.
+
+<Proof>
+For $w = x+yi$, $zw = (ax - by) + (bx + ay)i$, so in coordinates $(x,y) \mapsto (ax-by,\ bx+ay)$, which is $M_z$ applied to $(x,y)^T$.
+
+Writing $r = \sqrt{a^2+b^2}$ and, for $z \neq 0$, $\cos\theta = a/r$, $\sin\theta = b/r$,
+$$
+M_z = r\begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix},
+$$
+the product of a scaling by $r$ and the standard rotation matrix through $\theta$.
+</Proof>
+
+Taking $z = i$ gives $M_i = \begin{pmatrix}0&-1\\1&0\end{pmatrix}$, rotation by $\pi/2$, and $M_i^2 = -I$ is the matrix form of $i^2 = -1$. Note also $\det M_z = a^2+b^2 = |z|^2$, so multiplication by $z$ scales areas by $|z|^2$ — a fact that reappears in the change-of-variables formula for complex integrals.
+
+<Figure alt="Four points marked at the compass positions one, i, minus one, and minus i." caption="Multiplication by $i$ cycles the compass points counterclockwise.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+This proposition is the geometric content of the whole chapter, and §5.8–5.9 develop it into polar form and De Moivre.
+
+## What the plane makes visible
+
+Sets defined by algebraic conditions become curves and regions:
+
+| Condition | Locus |
+|---|---|
+| $\operatorname{Im} z = 0$ | real axis |
+| $\lvert z\rvert = r$ | circle of radius $r$ about $0$ |
+| $\lvert z - w\rvert = r$ | circle of radius $r$ about $w$ |
+| $\lvert z - p\rvert = \lvert z - q\rvert$ | perpendicular bisector of $pq$ |
+| $\lvert z\rvert < 1$ | open unit disc |
+| $z\bar z = 1$ | unit circle (§5.6) |
+
+Conversely, geometric theorems become algebraic identities. The parallelogram law
+$$
+|z+w|^2 + |z-w|^2 = 2|z|^2 + 2|w|^2
+$$
+is a two-line computation with conjugates and a genuine theorem of Euclidean geometry. This translation in both directions is what makes complex numbers a standard tool in plane geometry.
+
+<Warning title="The plane is the domain, not a graph">
+A graph of $f : \mathbb{C}\to\mathbb{C}$ lives in $\mathbb{R}^4$. Standard substitutes are domain colouring (hue = argument, brightness = modulus), plotting $|f|$ as a surface, and drawing source and target planes side by side with the images of a grid.
+
+Relatedly: $\mathbb{C}$ carries the topology of $\mathbb{R}^2$, not of $\mathbb{R}$. Convergence $z_n \to z$ means $|z_n - z| \to 0$, and approach may occur along any path — which is exactly why complex differentiability is so restrictive.
+</Warning>
+
+<Aside>
+Adjoining a single point at infinity gives the **Riemann sphere** $\mathbb{C}\cup\{\infty\}$, homeomorphic to $S^2$ via stereographic projection. On it, Möbius transformations $z \mapsto \frac{az+b}{cz+d}$ act as the full group of conformal automorphisms, circles and lines become one family (a line is a circle through $\infty$), and division by zero acquires a consistent meaning. It is the natural home for rational functions.
+</Aside>
+
+<WhereThisGoes level="l7">
+The observation that multiplication by $z$ is a rotation-scaling is the germ of complex analysis. A complex-differentiable function has derivative $f'(z_0) \in \mathbb{C}$, so its linearisation is a rotation-scaling — which means holomorphic maps preserve angles: they are **conformal**. That single geometric fact powers conformal mapping in fluid dynamics and electrostatics, the Riemann mapping theorem (every simply connected proper open subset of $\mathbb{C}$ is conformally a disc), and the classification of Riemann surfaces by uniformisation. In the other direction, the matrix realisation $M_z$ places $\mathbb{C}$ inside $M_2(\mathbb{R})$ and generalises to Clifford algebras and to the quaternions, whose unit sphere acts on $\mathbb{R}^3$ by rotations — which is how spacecraft and graphics engines actually store orientation.
+</WhereThisGoes>

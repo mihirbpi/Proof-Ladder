@@ -1,0 +1,91 @@
+---
+level: l3
+title: Polar form
+readingTimeMin: 5
+newTerms: ["polar form"]
+anchorExample: "the number that turns"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+So far you have named complex numbers by *across* and *up*. There is a second way, and for some jobs it is much better.
+
+## Distance and angle
+
+Every point in the plane is fixed by two facts:
+
+- how far it is from the origin — that is the modulus $|z|$, from module 5.6;
+- what angle you turn through to face it, measuring counterclockwise from the positive real axis.
+
+Call the distance $r$ and the angle $\theta$. Then $z$ is written
+$$
+z = r\,e^{i\theta},
+$$
+and this is called **polar form**. (The $e^{i\theta}$ notation comes from Euler's formula in module 5.7 — it is the point at angle $\theta$ on the circle of radius $1$, and multiplying by $r$ pushes it out to distance $r$.)
+
+<Figure alt="A dashed circle of radius 2 with a point marked on it at the top, and an arrow from the origin to the point." caption="A point at distance 2 and angle a quarter turn: $2e^{i\theta}$ with $\theta$ a quarter turn.">
+  <ComplexPlane circle={2} vectors={[{re: 0, im: 2}]} points={[{re: 0, im: 2, label: "2i"}]} range={3} />
+</Figure>
+
+## Reading off the easy ones
+
+Using degrees for now:
+
+| Number | $r$ | $\theta$ |
+|---|---|---|
+| $1$ | $1$ | $0°$ |
+| $i$ | $1$ | $90°$ |
+| $-1$ | $1$ | $180°$ |
+| $-i$ | $1$ | $270°$ |
+| $3$ | $3$ | $0°$ |
+| $-2$ | $2$ | $180°$ |
+
+Notice the top four all have $r = 1$. They are the four compass points on the unit circle, and only the angle distinguishes them.
+
+## Converting
+
+**From polar to grid.** Euler's formula says $e^{i\theta} = \cos\theta + i\sin\theta$, so
+$$
+re^{i\theta} = r\cos\theta + i\,r\sin\theta.
+$$
+The across part is $r\cos\theta$ and the up part is $r\sin\theta$ — which is exactly what trigonometry says about a right triangle with hypotenuse $r$ and angle $\theta$.
+
+**From grid to polar.** Given the across part and the turn part, the distance comes from Pythagoras (module 5.6), and the angle is whatever turn points you at that spot.
+
+Example: $3 + 4i$ has $r = 5$, and $\theta$ is the angle whose cosine is $\tfrac35$ — roughly $53°$.
+
+## The same point, many names
+
+Here is what makes polar form different from grid form.
+
+$$
+re^{i\theta} = re^{i(\theta + 360°)} = re^{i(\theta + 720°)} = \cdots
+$$
+
+Turning an extra full circle leaves you facing the same way. So $i$ can be described as $90°$, or $450°$, or $-270°$ — all correct.
+
+Grid form has no such freedom: $3+4i$ is $3+4i$, full stop.
+
+<Warning title="Non-uniqueness is not sloppiness">
+It is tempting to feel that many names for one point is a defect. It is not — it is a fact about turning, and every honest description of angles has it.
+
+What it does mean is that if you need *one* angle, you have to say which range you are picking from (usually $0°$ up to but not including $360°$). Mathematicians call that choice the *principal* value, and it must be stated, not assumed.
+</Warning>
+
+## Special values
+
+$$
+i = e^{i \cdot 90°}, \qquad -1 = e^{i\cdot 180°}, \qquad -i = e^{i\cdot 270°}, \qquad 1 = e^{i\cdot 0°}.
+$$
+
+The second one is worth staring at. In the units mathematicians actually use, half a turn is called $\pi$, and the equation becomes
+$$
+e^{i\pi} = -1, \qquad\text{or}\qquad e^{i\pi} + 1 = 0.
+$$
+
+<Aside>
+Why bother with a second notation? Because multiplication becomes easy. In grid form, multiplying means expanding brackets and collecting terms. In polar form, you multiply the distances and add the angles — and that is the whole rule. Module 5.9 does exactly this.
+</Aside>

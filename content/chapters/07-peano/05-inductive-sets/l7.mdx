@@ -1,0 +1,78 @@
+---
+level: l7
+title: Inductive sets and the last axiom
+readingTimeMin: 8
+newTerms: ["inductive set", "categoricity", "nonstandard model"]
+anchorExample: "successor function"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+A5–A8 are *closure* conditions: they say what $\mathbb{N}$ must contain. The rogue model $\{0,1,2,\ldots\}\sqcup\{a,b\}$ with $S(a)=b$, $S(b)=a$ satisfies all four (§7.4). What is missing is a **minimality** condition.
+
+## Axiom 9
+
+> $V$ is **inductive** if $0 \in V$ and $\forall x\,(x \in V \Rightarrow S(x)\in V)$.
+>
+> $$\textbf{A9}\quad V \text{ inductive} \implies \mathbb{N}\subseteq V.$$
+
+$\mathbb{N}$ is the intersection of all inductive sets — the smallest one.
+
+<Proof title="Exclusion of rogue elements">
+In the rogue model, $V = \{S^m(0) : m \geq 0\}$ is inductive. By A9, $\mathbb{N}\subseteq V$, and $a \notin V$, so $a \notin\mathbb{N}$.
+
+With A5–A6 giving $V \subseteq\mathbb{N}$, double inclusion (§2.6) yields $\mathbb{N} = \{S^m(0) : m\geq 0\}$.
+</Proof>
+
+## A9 is induction
+
+Instantiating $V = \{n : A(n)\}$:
+
+$$
+\underbrace{0 \in V}_{A(0)}\ \wedge\ \underbrace{\forall x (x\in V \Rightarrow S(x)\in V)}_{A(k)\Rightarrow A(S(k))}\ \implies\ \underbrace{\mathbb{N}\subseteq V}_{\forall n\, A(n)}.
+$$
+
+Chapter 6's technique is this axiom. That answers §6.1's question of why induction cannot be derived from more primitive facts: it is constitutive of $\mathbb{N}$, and the rogue model demonstrates its independence from A5–A8 by the method of §7.1.
+
+Equivalent over A5–A8: well-ordering, strong induction, and the non-existence of infinite descending sequences. §4.4's division algorithm and §4.7's descent argument were both applications.
+
+## Second-order categoricity
+
+A9 quantifies over **subsets** of $\mathbb{N}$, so the system is second-order.
+
+> **Theorem (Dedekind, 1888).** Any two structures satisfying A5–A9 are isomorphic.
+
+<Proof title="Proof sketch">
+Let $(\mathbb{N},0,S)$ and $(\mathbb{N}',0',S')$ both satisfy the axioms. Define $h(0) = 0'$ and $h(S(n)) = S'(h(n))$; the recursion theorem (§7.6) supplies a unique such $h$.
+
+$h$ is injective: the set $\{n : \forall m\,(h(n)=h(m)\Rightarrow n=m)\}$ is inductive, using A7 and A8 in both structures.
+
+$h$ is surjective: $\operatorname{Im}(h)$ contains $0'$ and is closed under $S'$, hence is inductive in $\mathbb{N}'$, so A9 for $\mathbb{N}'$ gives $\mathbb{N}'\subseteq\operatorname{Im}(h)$.
+</Proof>
+
+So the axioms determine $\mathbb{N}$ **up to isomorphism** — they are *categorical*. Whatever "the natural numbers" are made of is irrelevant; only the structure is determined, which is the same lesson as §2.9's ordered pairs.
+
+<Warning title="First-order arithmetic is not categorical">
+Replacing A9 by the first-order **schema** — one axiom $\big(\varphi(0)\wedge\forall x(\varphi(x)\to\varphi(Sx))\big)\to\forall x\,\varphi(x)$ for each formula $\varphi$ — gives Peano Arithmetic (PA), and categoricity fails.
+
+Add a constant $c$ and axioms $c \neq \overline n$ for each numeral $\overline n$. Every finite subset of this theory is satisfiable in $\mathbb{N}$ (interpret $c$ as a large enough number), so by **compactness** the whole theory has a model. That model contains an element exceeding every numeral: a **nonstandard model** of arithmetic.
+
+Such models satisfy every first-order theorem of $\mathbb{N}$ and are not isomorphic to it. The property "is a natural number" is therefore not first-order expressible, and Löwenheim–Skolem gives nonstandard models of every infinite cardinality.
+</Warning>
+
+The trade-off is exact. Second-order A9 is categorical but its logic has no complete proof system (semantic consequence outruns derivability). First-order PA has a complete, effective proof system and non-isomorphic models. One cannot have both — a fact that is itself a theorem.
+
+<Aside>
+Whether A9's quantification over "all subsets" is meaningful depends on what subsets there are, which is a set-theoretic question. Second-order categoricity is thus relative to the ambient set theory; the argument does not fix $\mathbb{N}$ absolutely so much as transfer the indeterminacy upward.
+
+In ZF, the Axiom of Infinity asserts that *some* inductive set exists, and $\omega$ is defined as the intersection of all of them — which is A9 with existence supplied. That $\omega$ satisfies A5–A9 is then a theorem of ZF, so arithmetic is interpretable in set theory and inherits its consistency.
+</Aside>
+
+<WhereThisGoes level="l7">
+Nonstandard models are a tool rather than a defect. Robinson's nonstandard analysis builds an ordered field $^*\mathbb{R}$ containing genuine infinitesimals, in which $\lim$ and $\varepsilon$–$\delta$ arguments become algebraic manipulations, and the transfer principle guarantees that first-order theorems move between $\mathbb{R}$ and $^*\mathbb{R}$ intact — vindicating Leibniz's calculus three centuries late. Nonstandard models of arithmetic have order type $\mathbb{N} + (\mathbb{Z}\times D)$ for a dense order $D$, and studying them is a substantial part of model theory; Paris and Harrington used them to exhibit a statement of finite combinatorics that is true, natural, and unprovable in PA — a Gödel sentence that no one would mistake for a logician's artefact.
+
+Meanwhile the second-order/first-order tension recurs throughout foundations: $\mathbb{R}$ is categorical as a complete ordered field only under second-order completeness, and any first-order axiomatisation admits nonstandard models. Categoricity and effective proof are simply not simultaneously available.
+</WhereThisGoes>

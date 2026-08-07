@@ -1,0 +1,119 @@
+---
+level: l6
+title: Pre-images respect set operations
+readingTimeMin: 8
+newTerms: []
+anchorExample: "rigid motions of the plane"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Pre-images commute with every set operation:
+
+$$
+f^{-1}(B\cup C) = f^{-1}(B)\cup f^{-1}(C)
+$$
+$$
+f^{-1}(B\cap C) = f^{-1}(B)\cap f^{-1}(C)
+$$
+$$
+f^{-1}(\overline{B}) = \overline{f^{-1}(B)}
+$$
+
+Three identities, no hypotheses on $f$. Images do not behave this well, and the contrast is the content of the module.
+
+## The pivot
+
+Everything follows from one line:
+
+$$
+s \in f^{-1}(B) \quad\Longleftrightarrow\quad f(s)\in B.
+$$
+
+Membership in a pre-image is *directly* a condition on $f(s)$ — no quantifier, no search. Because of that, whatever $\cup$, $\cap$, and complement do to $B$ transfers verbatim, and the proofs are short.
+
+## Proof of one
+
+> **Proposition.** $f^{-1}(B\cap C) = f^{-1}(B)\cap f^{-1}(C)$.
+
+<Discussion>
+  <div slot="know">The pivot equivalence, and the definitions of $\cap$ on both sides.</div>
+  <div slot="want">Double inclusion (module 2.6).</div>
+  <div slot="how">Each direction is one application of the pivot followed by unpacking $\cap$. In fact the chain is reversible at every step — but write it as two inclusions, so the reversibility is visible rather than assumed.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $s \in f^{-1}(B\cap C)$. Then $f(s)\in B\cap C$, so $f(s)\in B$ and $f(s)\in C$.
+
+From $f(s)\in B$ we get $s \in f^{-1}(B)$; from $f(s)\in C$ we get $s\in f^{-1}(C)$. Hence $s \in f^{-1}(B)\cap f^{-1}(C)$.
+
+**($\supseteq$)** Let $s \in f^{-1}(B)\cap f^{-1}(C)$. Then $s \in f^{-1}(B)$, so $f(s)\in B$; and $s \in f^{-1}(C)$, so $f(s)\in C$.
+
+Therefore $f(s)\in B\cap C$, giving $s \in f^{-1}(B\cap C)$.
+</Proof>
+
+**No property of $f$ was used** — not injectivity, not surjectivity, nothing. The identity holds for every function there is, which is unusual and worth noticing.
+
+The other two identities have the same shape. Try the complement one; it is four lines, and the only step that needs care is that $s \in \overline{f^{-1}(B)}$ means $s \in S$ and $f(s)\notin B$.
+
+## Images do not cooperate
+
+$$
+f(A\cup A') = f(A)\cup f(A') \qquad \checkmark
+$$
+$$
+f(A\cap A') \subseteq f(A)\cap f(A') \qquad \text{— containment only}
+$$
+
+**Counterexample.** Let $f(x)=x^2$, $A = \{2\}$, $A'=\{-2\}$.
+
+Then $A \cap A' = \emptyset$, so $f(A\cap A') = \emptyset$. But $f(A) = \{4\}$ and $f(A')=\{4\}$, so $f(A)\cap f(A') = \{4\}$.
+
+$$\emptyset \subsetneq \{4\}.$$
+
+The right side found $4$ in both images, from *different* sources. The left side needed one source in both sets, and there was none.
+
+<Warning title="Why the asymmetry exists">
+Compare the two membership conditions:
+
+$$s \in f^{-1}(B) \iff f(s)\in B \qquad\text{(no quantifier)}$$
+$$t \in f(A) \iff \exists a\in A,\ f(a)=t \qquad\text{(existential)}$$
+
+The image condition hides an $\exists$, and $\exists$ distributes over $\vee$ but **not** over $\wedge$ — "something is in $A$ or $A'$" splits cleanly; "something is in both" does not follow from "something is in each."
+
+That is why union works for images and intersection does not. The failure is a quantifier fact from Chapter 1, not a fact about functions.
+</Warning>
+
+Complements are worse. In general $f(\overline A)$ and $\overline{f(A)}$ are unrelated — neither contains the other. For $f(x)=x^2$ and $A = [0,\infty)$: $f(\overline A) = (0,\infty)$ while $\overline{f(A)} = (-\infty, 0)$, and these are disjoint.
+
+## When images do cooperate
+
+If $f$ is **injective**, all three image identities hold. The reason is exactly the counterexample above: injectivity forbids two different sources sharing an output, so "found in both images" forces "found from one common source."
+
+Rigid motions are injective — a reflection cannot send two distinct points to the same place — so for a reflection $\sigma$:
+$$\sigma(A\cap A') = \sigma(A)\cap\sigma(A').$$
+
+**This is why transformation proofs work.** When your course says "the image of the intersection of two figures is the intersection of their images," it is relying on a property that holds for rigid motions and fails for functions in general. Dilations preserve it too; projections do not, and that is why projecting a three-dimensional figure onto a plane loses information.
+
+<Aside>
+There is a name for this. A map preserving $\cap$, $\cup$, and complement is a **Boolean homomorphism**, and the theorem of this module is:
+
+> For any $f: S\to T$, the pre-image operator $f^{-1} : \mathcal{P}(T)\to\mathcal{P}(S)$ is a Boolean homomorphism. The image operator is not.
+
+Note the direction: $f$ runs $S\to T$, and $f^{-1}$ runs $\mathcal{P}(T)\to\mathcal{P}(S)$ — backwards. Structure-preserving maps very often run backwards, and a great deal of mathematics is organised around that observation.
+
+It is also the practical reason continuity is defined by pre-images: *$f$ is continuous when the pre-image of every open set is open.* Defining it with images instead would fail immediately, for the reason this module gives.
+</Aside>
+
+## Using it
+
+The identities let you rewrite conditions before working with them.
+
+Suppose $T$ is a transformation of the plane and you want the set of points whose image lies inside the unit circle **and** above the $x$-axis. That set is
+$$T^{-1}(D \cap H) = T^{-1}(D)\cap T^{-1}(H),$$
+so you may handle the two conditions separately and intersect at the end. The identity guarantees the two routes agree.
+
+Attempting the same split with images would be an error, and the counterexample above is what you would run into.

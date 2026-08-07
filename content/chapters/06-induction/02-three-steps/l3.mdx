@@ -1,0 +1,86 @@
+---
+level: l3
+title: The three steps
+readingTimeMin: 5
+newTerms: ["base case", "inductive step", "inductive hypothesis"]
+anchorExample: "1+3+5+… builds squares"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 6.1 gave the picture. This module gives the recipe, and it has three steps.
+
+## The recipe
+
+**Step 1. Say exactly what the claim is, and where it starts.**
+
+Write down what is being claimed about *each* case, and say which case is first. Skipping this is the commonest reason an induction proof goes wrong: if you do not know precisely what is being claimed, you cannot check anything about it.
+
+**Step 2. Prove the base case.**
+
+Check that the claim is true for the very first case. This is usually easy, and it is never optional.
+
+**Step 3. Prove the inductive step.**
+
+Show: *if* the claim holds for some case, *then* it holds for the next one. The assumption you get to make — that it holds for the case you are on — has a name: the **inductive hypothesis**.
+
+Do all three and the claim is true for every case from the start onwards.
+
+## Worked out in full
+
+> **Claim.** Add up the first few odd numbers, however many you like. You always get a square number, and it is the square of how many you added.
+
+<Discussion>
+  <div slot="know">The odd numbers in order are $1, 3, 5, 7, 9, \ldots$ — each one is $2$ more than the one before.</div>
+  <div slot="want">However many odd numbers you add, the total is that count multiplied by itself.</div>
+  <div slot="how">Three steps. The step will work because adding one more odd number means adding exactly one new L-shaped shell to a square.</div>
+</Discussion>
+
+<Proof>
+**Step 1.** The claim, case by case: *adding up the first one odd number gives $1 \times 1$; adding the first two gives $2 \times 2$; adding the first three gives $3 \times 3$;* and so on. We claim this for every case, starting from the first.
+
+**Step 2 — base case.** The first case says the first odd number alone is $1 \times 1$. And the first odd number is $1$, and $1 \times 1 = 1$. ✓
+
+**Step 3 — inductive step.** Suppose the claim holds for the case you are on. That is, suppose adding up that many odd numbers really does give that count multiplied by itself.
+
+That total is a square number, so picture it as a square of tiles, with as many tiles along each side as the count.
+
+Now add the next odd number. How big is it? Going from one square to the next, you need one new tile along the side, one along the top, and one for the corner. That is *side* $+$ *side* $+ 1$ — two equal amounts plus one, which is exactly what an odd number is (module 4.2).
+
+So the next odd number is precisely the strip needed to grow the square by one on each side.
+
+Adding it gives the next square up, and its side is one bigger than before — which is what the next case claims. ✓
+
+All three steps are done, so the claim is true for every case.
+</Proof>
+
+## The circularity worry
+
+Nearly everybody has this worry the first time, so let's settle it.
+
+*In step 3 you assumed the claim was true. But that is what we are trying to prove!*
+
+Look carefully at what step 3 actually claims. It does **not** claim the pattern holds. It claims:
+
+> **If** it holds for the case you are on, **then** it holds for the next one.
+
+That is an if–then statement (module 1.5). And the way you prove an if–then is by assuming the *if* part and reasoning to the *then* part — that is module 1.6, *start from what you're given*.
+
+So step 3 asserts nothing about whether the claim holds anywhere. It only says truth **spreads**.
+
+Step 2 is what makes the claim true somewhere. Step 3 makes it spread from there. Neither alone is enough, and together they leave no gap.
+
+<Warning title="Work forwards, not backwards">
+A tempting bad habit: start with what you want for the next case, and shuffle it around until you reach something true.
+
+That is backwards reasoning, and it proves nothing unless every step is reversible — the same warning as module 1.9.
+
+**Start from what you actually have** — the total for the case you are on — then add the new piece and see what you land on. The proof above does exactly that, and it is the shape to copy.
+</Warning>
+
+<Aside>
+The base case does not have to be the very first counting number. Some claims only start being true partway along — and that is fine, as long as you say where. What matters is that you push *some* first domino, and then the chain runs from there.
+</Aside>

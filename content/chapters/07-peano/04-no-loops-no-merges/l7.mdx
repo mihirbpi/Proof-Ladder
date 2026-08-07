@@ -1,0 +1,75 @@
+---
+level: l7
+title: Two axioms that stop the numbers looping
+readingTimeMin: 7
+newTerms: ["Dedekind infinite"]
+anchorExample: "successor function"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\textbf{A7}\quad \forall x,\ S(x) \neq 0; \qquad\qquad
+\textbf{A8}\quad \forall x,y,\ S(x)=S(y)\Rightarrow x=y.
+$$
+
+Structurally: $0 \notin \operatorname{Im}(S)$ (§3.3) and $S$ is injective (§3.5). Together $S$ is an injection $\mathbb{N}\hookrightarrow\mathbb{N}\setminus\{0\}$.
+
+## Independence by models
+
+<Figure alt="Two dots labelled 0 and 1 with arrows forming a two-cycle." caption="$M_1 = \{0,1\}$, $S(0)=1$, $S(1)=0$: satisfies A5, A6, A8; refutes A7.">
+  <ArrowDiagram labelLeft="M₁" labelRight="M₁"
+    left={["0", "1"]} right={["0", "1"]}
+    edges={[[0,1],[1,0]]} />
+</Figure>
+
+<Figure alt="Three dots with two arrows landing on the same target." caption="$M_2 = \{0,1,2\}$, $S(0)=1$, $S(1)=S(2)=2$: satisfies A5, A6, A7; refutes A8.">
+  <ArrowDiagram labelLeft="M₂" labelRight="M₂"
+    left={["0", "1", "2"]} right={["0", "1", "2"]}
+    edges={[[0,1],[1,2],[2,2]]} />
+</Figure>
+
+By soundness (§7.1), a structure satisfying $\Gamma$ and refuting $\varphi$ witnesses $\Gamma\not\vdash\varphi$. So neither A7 nor A8 is derivable from the remaining axioms, and both earn their place.
+
+More generally, the models of A5–A6 alone are exactly the *pointed dynamical systems* $(M, 0, S)$ — any set with a distinguished point and any endofunction whatsoever. A7 and A8 cut that class down to those in which the orbit of $0$ is an infinite simple path.
+
+## The numerals are distinct
+
+> **Proposition.** Under A5–A8, $S^m(0) \neq S^n(0)$ for $m \neq n$.
+
+<Proof>
+Suppose $S^m(0)=S^n(0)$ with $m<n$. Applying A8 $m$ times cancels, giving $0 = S^{\,n-m}(0)$ with $n-m\geq 1$. Then $0 = S\big(S^{\,n-m-1}(0)\big)$ is a successor, contradicting A7.
+</Proof>
+
+A8 supplied the cancellation, A7 the contradiction. The two models above show that neither contribution can be dispensed with.
+
+Consequently $n \mapsto S^n(0)$ is an injection $\mathbb{N}_{\text{meta}} \hookrightarrow \mathbb{N}$, and $\mathbb{N}$ is infinite.
+
+Moreover $S : \mathbb{N}\to\mathbb{N}$ is injective but not surjective (its image omits $0$), so $\mathbb{N}$ is in bijection with the proper subset $\mathbb{N}\setminus\{0\}$ — i.e. **Dedekind infinite** (§3.8). Dedekind took this as the *definition* of infinity in 1888, and A7–A8 are exactly the axioms making $\mathbb{N}$ satisfy it.
+
+<Warning title="A5–A8 do not pin down ℕ">
+Let $\mathbb{N}' = \{0,1,2,\ldots\} \sqcup \{a,b\}$ with the standard successor on the numerals and $S(a)=b$, $S(b)=a$.
+
+A5 ✓, A6 ✓, A7 ✓ (neither $a$ nor $b$ maps to $0$), A8 ✓ ($S$ is injective throughout).
+
+So a model may contain a full copy of $\mathbb{N}$ *plus* extra components disconnected from $0$. A5–A8 constrain the component of $0$ and say nothing about the rest.
+
+§7.5's Axiom 9 is precisely the minimality condition excluding these. The instructive point is that no *finitely many* first-order axioms of this kind can do the job — see below.
+</Warning>
+
+<Aside>
+A7 and A8 hold in models with rogue elements, and A9 will exclude them — but only in its **second-order** form, quantifying over all subsets. The first-order induction schema (one axiom per formula) cannot: by compactness, adding a constant $c$ and the axioms $c \neq \overline n$ for every numeral $\overline n$ yields a consistent theory, hence a model containing an element exceeding every numeral.
+
+These are the **nonstandard models** of arithmetic. They satisfy every first-order theorem of $\mathbb{N}$ and are not isomorphic to it — so the notion "natural number" is not first-order definable. Skolem constructed the first in 1934.
+</Aside>
+
+<WhereThisGoes level="l7">
+A7 and A8 say the orbit of $0$ under $S$ is an embedded copy of a ray, and that shape recurs whenever a structure is generated freely by one operation: free monoids on one generator, the integers as a free group on one generator, and polynomial rings $R[x]$ as free $R$-algebras on one generator are all the same phenomenon — no relations beyond those forced. Categorically, freeness is a universal property, and $\mathbb{N}$ is the free monoid on one generator, the initial algebra for $X \mapsto 1+X$, and the natural numbers object of **Set**, all of which are the same statement.
+
+The failure of first-order axioms to pin down $\mathbb{N}$ is the other thread. Nonstandard models are not pathologies to be avoided; Robinson's nonstandard analysis uses the analogous models of $\mathbb{R}$ to make infinitesimals rigorous, giving a treatment of calculus in which $dx$ is a genuine number and the classical proofs become the intuitive ones Leibniz wrote.
+</WhereThisGoes>

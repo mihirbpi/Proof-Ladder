@@ -1,0 +1,99 @@
+---
+level: l5
+title: Proof by contrapositive
+readingTimeMin: 8
+newTerms: ["proof by contrapositive"]
+anchorExample: "x³ < 0 implies x < 0"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.7 established $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$. Since the two are equivalent, proving either proves both.
+
+**Proof by contrapositive** is the deliberate exercise of that choice: when the hypothesis you are handed is awkward, prove the contrapositive instead. The named move is **flip it around**.
+
+The interesting content of this module is not the equivalence — that is already proved — but knowing *when* to invoke it.
+
+## First proposition
+
+> **Proposition.** For all $x \in \mathbb{R}$: if $x^3 < 0$ then $x < 0$.
+
+<Discussion>
+  <div slot="know">Directly, the hypothesis $x^3 < 0$ constrains a cube. To extract information about $x$ we would need to invert the cubing — but "$x^3 < 0$ implies $x < 0$" *is* the proposition, so invoking it is circular. Factoring $x^3 = x\cdot x^2$ works but forces a case split on whether $x^2 = 0$.</div>
+  <div slot="want">$x < 0$.</div>
+  <div slot="how">Contrapose. The negation of the conclusion is $x \geq 0$ — a positive, usable hypothesis — and the negation of the hypothesis is $x^3 \geq 0$, reachable in two steps from the ordered-field fact that a product of non-negatives is non-negative.</div>
+</Discussion>
+
+<Proof>
+We prove the contrapositive: for all $x \in \mathbb{R}$, if $x \geq 0$ then $x^3 \geq 0$.
+
+Let $x \geq 0$. Since the product of two non-negative reals is non-negative, applying this to $x$ and $x$ gives $x^2 \geq 0$; applying it to $x^2$ and $x$ gives $x^3 \geq 0$.
+
+Thus $x \geq 0 \Rightarrow x^3 \geq 0$. Since this is the contrapositive of the proposition, and a conditional is logically equivalent to its contrapositive, the proposition follows.
+</Proof>
+
+Three lines, no cases, no circularity. Note the last sentence: **announce the switch and announce the conclusion.** A reader who misses the announcement will think you proved the wrong statement.
+
+<Warning title="Negate inequalities correctly">
+$\neg(x < 0)$ is $x \geq 0$, **not** $x > 0$. Writing $x > 0$ silently drops the case $x = 0$, and a proof that never handles it does not prove the proposition.
+
+Similarly $\neg(x \leq 5)$ is $x > 5$, and $\neg(x = 3)$ is $x \neq 3$. A contrapositive built on a mis-negation proves a different — usually weaker — statement, which is why the error survives casual checking.
+</Warning>
+
+## Second proposition
+
+> **Proposition.** For $n \in \mathbb{Z}$: if $n^2$ is even then $n$ is even.
+
+Definitions: $n$ is **even** iff $n = 2k$ for some $k \in \mathbb{Z}$; **odd** iff $n = 2k+1$ for some $k \in \mathbb{Z}$. Every integer is exactly one of the two.
+
+<Discussion>
+  <div slot="know">The hypothesis "$n^2$ even" unfolds to $n^2 = 2k$ — an equation about $n^2$, from which extracting $n$ needs a square root we cannot control.</div>
+  <div slot="want">$n$ even.</div>
+  <div slot="how">Contrapose: if $n$ is odd then $n^2$ is odd. Now the hypothesis unfolds to $n = 2k+1$, an equation about $n$ itself, which substitutes forward.</div>
+</Discussion>
+
+<Proof>
+We prove the contrapositive: if $n$ is odd then $n^2$ is odd.
+
+Suppose $n$ is odd, so $n = 2k+1$ for some $k \in \mathbb{Z}$. Then
+$$
+n^2 = 4k^2 + 4k + 1 = 2(2k^2+2k)+1,
+$$
+and $2k^2+2k \in \mathbb{Z}$, so $n^2$ is odd.
+
+Since every integer is even or odd and not both, contraposition gives: $n^2$ even $\Rightarrow$ $n$ even.
+</Proof>
+
+This is not an exercise — it is the lemma the irrationality of $\sqrt2$ turns on (module 4.7), and the contrapositive step here is exactly what makes that proof possible.
+
+## A decision rule
+
+Reach for the contrapositive when:
+
+**1. The hypothesis is a negation.** "$x$ is not rational", "$n$ is odd" (= not even), "$f$ is not injective". A negation licenses no substitution — you cannot write down what an irrational number *is*, only what it is not. Contraposition moves the negation to the conclusion, where "prove $\neg P$" is a manageable goal.
+
+**2. The hypothesis is about a composite quantity and the conclusion about a simple one.** In "$n^2$ even $\Rightarrow$ $n$ even", the hypothesis constrains $n^2$ while you want a constraint on $n$; inverting the squaring is the difficulty. Flipping puts the simple quantity where you can act on it.
+
+**3. Both parts are negations.** Then the contrapositive has none, and is almost certainly easier.
+
+Otherwise try directly first. Contraposition is a tool, not a default — and when the hypothesis is already a positive existence statement ("there is a $k$ with $n = 2k$"), direct proof is shorter and reads better.
+
+## Contraposition versus contradiction
+
+These are routinely conflated. The difference:
+
+| | assume | derive | conclude |
+|---|---|---|---|
+| Contrapositive | $\neg q$ | $\neg p$ | $p \Rightarrow q$ |
+| Contradiction | $p \wedge \neg q$ | some $r \wedge \neg r$ | $p \Rightarrow q$ |
+
+Contradiction gives you a strictly larger set of assumptions, which is occasionally decisive — but it costs clarity, since the reader must carry a false hypothesis for the length of the argument, and the contradiction reached may be far from where the trouble started.
+
+**Self-check:** write your contradiction proof, then look at whether the assumption $p$ was ever used. If it was not, you wrote a contrapositive proof inside a contradiction wrapper. Remove the wrapper.
+
+<Aside>
+Compound hypotheses need De Morgan (module 1.4) before contraposing. For "if $x$ is rational and $y$ is irrational then $x+y$ is irrational", the contrapositive hypothesis is $x+y \in \mathbb{Q}$ and the conclusion is the *disjunction* $x \notin\mathbb{Q}$ or $y\in\mathbb{Q}$ — strictly weaker than the naive conjunction, and provable. Mis-negating here sets an impossible target.
+</Aside>

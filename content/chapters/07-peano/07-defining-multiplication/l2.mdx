@@ -1,0 +1,81 @@
+---
+level: l2
+title: Adding again and again
+readingTimeMin: 4
+newTerms: ["two rules for times"]
+anchorExample: "counting on forever"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+
+Module 7.6 built adding out of the next-button. Now we build **times** out of adding.
+
+Again, **two rules for times**.
+
+**Rule M1.** Anything times zero is zero. Zero groups means nothing at all.
+
+**Rule M2.** To do *something times the next-one-after-$b$*, do *something times $b$* first, and then add one more copy.
+
+## Doing three groups of two
+
+<Proof level="l2">
+Remember: $2$ is the next one after $1$, and $1$ is the next one after $0$.
+
+We want *three, two times over*. By Rule M2, do *three, one time over* first, then add one more $3$.
+
+*Three, one time over*. By Rule M2 again, do *three, zero times over* first, then add one more $3$.
+
+*Three, zero times over* is $0$, by Rule M1.
+
+Add a $3$: that gives $3$. So *three, one time over* is $3$.
+
+Add another $3$: that gives $6$. So *three, two times over* is $6$. □
+</Proof>
+
+Six! Which is what your counters said.
+
+## Times one
+
+Here is a small thing worth proving.
+
+<Proof level="l2">
+Take any number and multiply it by $1$.
+
+$1$ is the next one after $0$. So by Rule M2: do (the number) times $0$ first, then add one more copy.
+
+Times zero gives $0$, by Rule M1.
+
+Then add one copy of the number. Starting from zero and adding the number gives... the number!
+
+So anything times one is itself. □
+</Proof>
+
+You have always known that. Now you have a reason.
+
+## The tower
+
+Look at what has been built, and in what order.
+
+**Bottom:** zero, and a next-button. That is all we started with.
+
+**Next floor up:** adding. Built out of pressing next, over and over.
+
+**Top floor:** times. Built out of adding, over and over.
+
+Each floor stands on the one below. And the whole tower rests on two little things: a starting point and a button.
+
+<Aside>
+Every rule you have ever used in arithmetic sits somewhere in that tower.
+
+Three groups of four having the same total as four groups of three? A theorem. Three rows of ($2$ red and $5$ blue) matching three rows of red plus three rows of blue? A theorem.
+
+Each one has a proof, and each proof uses the dominoes from Chapter 6.
+
+Nothing was ever just true because somebody said so.
+</Aside>
+
+<TryIt>
+Do *two, three times over* with the two rules, out loud. Unwind to Rule M1, then add your way back up.
+</TryIt>

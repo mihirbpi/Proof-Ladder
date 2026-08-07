@@ -1,0 +1,127 @@
+---
+level: l6
+title: Defining multiplication
+readingTimeMin: 8
+newTerms: []
+anchorExample: "the parallel postulate"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Addition was built from the successor. Multiplication is built from addition, by the same recursive pattern.
+
+## The definition
+
+$$
+x \cdot 0 := 0
+$$
+$$
+x\cdot S(y) := x\cdot y + x
+$$
+
+The second line is repeated addition, stated recursively: multiplying by one more means adding one more copy.
+
+Note that the definition **uses addition**, which was itself defined from $S$. The dependency runs in one direction and never circles:
+
+$$S \ \longrightarrow\ + \ \longrightarrow\ \times$$
+
+## Computing
+
+> $x\cdot 1 = x$.
+
+<Proof>
+$$x\cdot1 = x\cdot S(0) = x\cdot0 + x = 0 + x = x,$$
+using the definition of $1$, the second rule, the first rule, and the lemma $0+x = x$ from module 7.6.
+</Proof>
+
+**$1$ was not assumed to be a multiplicative identity** — it was proved to be one, and the proof needed a lemma about addition. The tower's layers show through.
+
+> $3\cdot2 = 6$.
+
+$$
+\begin{aligned}
+3\cdot 2 &= 3\cdot S(1) = 3\cdot1 + 3 = 3+3\\
+&= 3 + S(2) = S(3+2)\\
+3+2 &= 3+S(1) = S(3+1) = S(4) = 5
+\end{aligned}
+$$
+
+so $3\cdot2 = S(5) = 6$.
+
+Every step is a definition or an earlier theorem. Nothing was looked up in a times table.
+
+## Every law is a theorem
+
+The whole of module 4.1's table is now provable:
+
+| Law | Proved by |
+|---|---|
+| $x\cdot0 = 0$ | definition |
+| $x\cdot1 = x$ | above |
+| $x(y+z) = xy+xz$ | induction on $z$ |
+| $(xy)z = x(yz)$ | induction on $z$, using distributivity |
+| $xy = yx$ | induction, with lemmas |
+
+**Distributivity comes before associativity**, because the proof of associativity uses it. Order matters when building from axioms, and it is not the order in which the laws are usually taught.
+
+Chapter 4 called these the ring axioms and used them freely. **They were theorems all along.** What Chapter 4 assumed, Chapter 7 proves — and the nine Peano axioms are the only things left assumed.
+
+<Warning title="Commutativity is genuinely not free">
+The definition recurses on the second argument. $x\cdot S(y)$ is defined; $S(x)\cdot y$ is not directly defined at all, and must be established.
+
+So $xy = yx$ requires proof, and the proof requires lemmas, and it takes several inductions.
+
+That is not a defect of the definition. It is a fact about which structures commute — and plenty do not. Module 4.1's aside noted that matrix multiplication is non-commutative, and module 3.7 showed composition of transformations is too: reflecting then translating differs from translating then reflecting.
+
+**Commutativity is a property to be checked, not a law of thought.** Arithmetic has it; a great deal of mathematics does not.
+</Warning>
+
+## The tower
+
+$$
+\text{Peano axioms} \to S \to + \to \times \to \mathbb{Z}\to\mathbb{Q}\to\mathbb{R}\to\mathbb{C}
+$$
+
+Every level built from the one before, and every level a construction rather than an assumption:
+
+- $S$ is undefined, constrained by Axioms 5–9.
+- $+$ is defined recursively from $S$ (module 7.6).
+- $\times$ is defined recursively from $+$.
+- $\mathbb{Z}$ is built from pairs of naturals, so subtraction closes (module 4.1).
+- $\mathbb{Q}$ is built from pairs of integers, so division closes (module 4.5).
+- $\mathbb{R}$ fills the gaps (modules 4.6–4.8).
+- $\mathbb{C}$ is $\mathbb{R}^2$ with a multiplication (Chapter 5).
+
+**Nine axioms at the bottom, and complex analysis at the top.** Each step is a construction, and no step assumes anything new.
+
+## What the course established
+
+Chapter 1 gave the language: statements, connectives, conditionals, quantifiers, and the moves that prove them.
+
+Chapter 2 gave sets, and showed the logic reappearing as set operations.
+
+Chapter 3 gave functions — and the vocabulary that Chapter 7's axioms are stated in.
+
+Chapter 4 built the number systems and the divisibility template.
+
+Chapter 5 completed them, and found transformation geometry inside the algebra.
+
+Chapter 6 gave induction, the tool for infinitely many cases.
+
+Chapter 7 went to the bottom and found nine assumptions.
+
+**And the proof techniques were the same throughout.** Double inclusion in Chapter 2 is check-both-boxes from Chapter 1. Transitivity of $\subseteq$, of $\mid$, and of $\leq$ are one argument written three times. De Morgan appeared for connectives, for sets, and for quantifiers. Injectivity of $S$ is Axiom 8.
+
+That recurrence is the point of the whole course. There are not many techniques; there are many places to use them.
+
+<Aside>
+Two more things sit on top of this tower, and both are worth knowing exist.
+
+**Exponentiation** continues the pattern: $x^0 := 1$ and $x^{S(y)} := x^y\cdot x$ — repeated multiplication, defined from multiplication exactly as multiplication was defined from addition. The sequence *successor, addition, multiplication, exponentiation* continues indefinitely, and the operations grow so fast that the fifth one applied to small inputs already exceeds the number of atoms in the observable universe.
+
+**Gödel's theorem** says the tower is incomplete. Any consistent axiom system that can express arithmetic has true statements it cannot prove, and among them is the statement of its own consistency. Adding more axioms does not fix it — the new system has its own unprovable truths.
+
+So the foundations of mathematics are not a finished building. They are a place where you can see exactly which assumptions everything rests on, which is a more useful thing to have.
+</Aside>

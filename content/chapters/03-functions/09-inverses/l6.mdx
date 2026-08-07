@@ -1,0 +1,131 @@
+---
+level: l6
+title: Inverses
+readingTimeMin: 9
+newTerms: ["inverse function"]
+anchorExample: "rigid motions of the plane"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Reflect a figure twice in the same line and it comes back. Rotate $90°$ then $-90°$ and nothing has moved. Every rigid motion can be undone, and this module says exactly which functions have that property and why.
+
+## Definition
+
+$g : T\to S$ is an **inverse** of $f : S\to T$ when
+
+$$
+g\circ f = \operatorname{id}_S \qquad\text{and}\qquad f\circ g = \operatorname{id}_T.
+$$
+
+In elements: $g(f(s))=s$ for every $s\in S$, and $f(g(t))=t$ for every $t\in T$.
+
+**Both equations are required.** One alone gives a one-sided inverse, which is a weaker and genuinely different thing.
+
+## The theorem
+
+> **Theorem.** $f : S\to T$ has an inverse if and only if $f$ is a bijection.
+
+<Discussion>
+  <div slot="know">Bijection means $\forall t\,\exists!\,s$ with $f(s)=t$ (module 3.8).</div>
+  <div slot="want">Both directions — this is a biconditional, so module 1.9 applies.</div>
+  <div slot="how">Forward: the $\exists!$ is exactly what is needed to *define* $g$, since a definition requires existence and uniqueness of the output. Backward: assume $g$ exists and use each equation to get one property.</div>
+</Discussion>
+
+<Proof>
+**($\Leftarrow$)** Suppose $f$ is a bijection. For each $t\in T$ there is exactly one $s\in S$ with $f(s)=t$; define $g(t)$ to be that $s$.
+
+This is a legitimate definition: surjectivity gives at least one such $s$, so $g$ is total, and injectivity gives at most one, so $g$ is single-valued.
+
+Now $g(f(s))$ is the unique element mapping to $f(s)$, which is $s$; and $f(g(t))=t$ by construction. So $g$ is an inverse.
+
+**($\Rightarrow$)** Suppose $g$ is an inverse of $f$.
+
+*Injective:* if $f(s_1)=f(s_2)$, apply $g$ to both sides: $g(f(s_1))=g(f(s_2))$, so $s_1 = s_2$.
+
+*Surjective:* let $t\in T$. Then $f\big(g(t)\big) = t$, so $g(t)$ is a pre-image of $t$.
+
+Hence $f$ is a bijection.
+</Proof>
+
+**The forward direction is where the definition of bijection earns its keep.** Existence and uniqueness are not two nice properties that happen to travel together — they are precisely the two conditions a rule must satisfy to be a function at all (module 3.1). Surjectivity makes $g$ total; injectivity makes it single-valued.
+
+## The inverse is unique
+
+> **Proposition.** A function has at most one inverse.
+
+<Proof>
+Suppose $g_1$ and $g_2$ are both inverses of $f$. Let $t \in T$ be arbitrary.
+
+Since $f\circ g_1 = \operatorname{id}_T$, we have $f\big(g_1(t)\big) = t$, and likewise $f\big(g_2(t)\big)=t$.
+
+So $f\big(g_1(t)\big) = f\big(g_2(t)\big)$. By the theorem $f$ is injective, hence $g_1(t)=g_2(t)$.
+
+Since $t$ was arbitrary, $g_1 = g_2$.
+</Proof>
+
+That is module 1.12's uniqueness template — suppose two, show they are one — and it is what licenses the notation **$f^{-1}$**, with a definite article. Without uniqueness, "the inverse" would be an unjustified phrase.
+
+<Warning title="Two meanings of f⁻¹">
+$f^{-1}(B)$ for a **set** $B$ is the pre-image (module 3.3). Defined for every function, always.
+
+$f^{-1}(t)$ for an **element** $t$ is the inverse function. Defined only when $f$ is a bijection.
+
+For $f(x)=x^2$ on $\mathbb{R}$: the pre-image $f^{-1}(\{4\})=\{2,-2\}$ is fine, and $f^{-1}(4)$ as an inverse value does not exist, because $f$ is not injective.
+
+The collision is unfortunate and permanent. Read the argument: a set means pre-image, an element means inverse.
+</Warning>
+
+## Rigid motions
+
+Every rigid motion is a bijection (module 3.8), so every rigid motion has an inverse — and the inverses are the ones you would guess:
+
+| Motion | Inverse |
+|---|---|
+| Reflection in $\ell$ | itself |
+| Rotation through $\theta$ about $C$ | rotation through $-\theta$ about $C$ |
+| Translation by $(a,b)$ | translation by $(-a,-b)$ |
+| Dilation by $k \neq 0$ about $C$ | dilation by $1/k$ about $C$ |
+
+A reflection being its own inverse is the property called **involution**, and it is why reflecting twice in the same line returns every point. Compare $\overline{\overline S}=S$ for complements (module 2.5) — the same phenomenon.
+
+The general rule for compositions reverses the order:
+
+$$
+(g\circ f)^{-1} = f^{-1}\circ g^{-1}.
+$$
+
+Socks then shoes; to undo, shoes off then socks off. Applied to a congruence proved by "reflect, then translate," the reverse congruence is "translate back, then reflect back" — in that order, and getting it backwards produces a different motion.
+
+## Why congruence is symmetric
+
+Your book asserts that $F\cong G$ implies $G \cong F$. Here is the proof.
+
+<Proof>
+Suppose $F\cong G$, so there is a rigid motion $f$ with $f(F)=G$.
+
+By module 3.8, $f$ is a bijection, so $f^{-1}$ exists. It is again a rigid motion: for any $P, Q$,
+$$d\big(f^{-1}(P), f^{-1}(Q)\big) = d\Big(f\big(f^{-1}(P)\big), f\big(f^{-1}(Q)\big)\Big) = d(P,Q),$$
+using that $f$ preserves distance and $f\circ f^{-1} = \operatorname{id}$.
+
+And $f^{-1}(G) = f^{-1}\big(f(F)\big) = F$. Hence $G\cong F$.
+</Proof>
+
+Three chapters of machinery, and a property your textbook takes for granted is now a theorem.
+
+## Restricting to gain an inverse
+
+$\sin$ is not injective, so it has no inverse. Restrict its domain to $[-90°, 90°]$ and its codomain to $[-1,1]$, and the restricted function is a bijection — its inverse is $\sin^{-1}$, which your trigonometry unit uses to solve triangles.
+
+That is why a calculator returns exactly one answer for $\sin^{-1}(0.5)$ even though infinitely many angles have that sine, and why solving $\sin\theta = 0.5$ over all angles requires you to add the other solutions back by hand. The restriction that created the function is also what removed them.
+
+<Aside>
+The two equations $g\circ f = \operatorname{id}_S$ and $f\circ g = \operatorname{id}_T$ can hold separately.
+
+A **left inverse** ($g\circ f = \operatorname{id}_S$) exists exactly when $f$ is injective. A **right inverse** ($f\circ g = \operatorname{id}_T$) exists exactly when $f$ is surjective. Both together give the bijection.
+
+The projection $\pi(x,y)=(x,0)$ has a right inverse — the inclusion of the $x$-axis into the plane — and no left inverse, since it merges. That matches the intuition: you can always lift a shadow back to *some* solid, but never to the one it came from.
+</Aside>

@@ -1,0 +1,117 @@
+---
+level: l6
+title: What is a function?
+readingTimeMin: 9
+newTerms: ["function", "domain", "codomain", "input", "output"]
+anchorExample: "rigid motions of the plane"
+---
+
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Figure from '@/components/Figure.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Your geometry course defines a transformation this way:
+
+> *A transformation of the plane is a rule that assigns to each point of the plane exactly one point of the plane.*
+
+Read that sentence again with Chapter 2 in mind. It says: for **each** input, **exactly one** output. That is not a definition special to geometry — it is the definition of a function, and every rotation, reflection, and translation you have used is one.
+
+## The definition
+
+A **function** $f : S \to T$ consists of:
+
+- a set $S$, the **domain**
+- a set $T$, the **codomain**
+- an assignment of exactly one element $f(s) \in T$ to each $s \in S$
+
+Three conditions are hiding in that last line, and each can fail:
+
+**Total.** Every element of $S$ gets an output — no exceptions, no gaps.
+
+**Single-valued.** No element of $S$ gets two outputs.
+
+**Codomain-respecting.** Every output lands in $T$.
+
+<Figure alt="Two columns of labelled dots with arrows from every dot on the left to exactly one dot on the right." caption="A function: every left-hand element has exactly one arrow leaving it.">
+  <ArrowDiagram
+    left={["A", "B", "C"]}
+    right={["P", "Q", "R"]}
+    edges={[[0,1],[1,0],[2,1]]}
+  />
+</Figure>
+
+Two elements may share an output — $A$ and $C$ both map to $Q$ above, and that is allowed. What is forbidden is one element having two.
+
+## Rigid motions are functions
+
+$$
+r : \mathbb{R}^2 \to \mathbb{R}^2, \qquad r(x,y) = (-y, x)
+$$
+
+That is the $90°$ counterclockwise rotation about the origin. Check the three conditions: every point in the plane gets an image (total), the formula produces one answer (single-valued), and that answer is a point of the plane (codomain-respecting). It is a function.
+
+Same for the others:
+
+| Transformation | Formula |
+|---|---|
+| Reflection in the $x$-axis | $(x,y)\mapsto(x,-y)$ |
+| Reflection in $y=x$ | $(x,y)\mapsto(y,x)$ |
+| Translation by $(a,b)$ | $(x,y)\mapsto(x+a, y+b)$ |
+| Rotation $180°$ about origin | $(x,y)\mapsto(-x,-y)$ |
+| Dilation by $k$ about origin | $(x,y)\mapsto(kx,ky)$ |
+
+The arrow $\mapsto$ is read "maps to" and describes what happens to a typical element; the arrow $\to$ between sets describes the function's type. Both are standard and they are not interchangeable.
+
+This is worth pausing on, because it changes what congruence *means*. Your course defines two figures as congruent when a sequence of rigid motions carries one to the other — and a sequence of functions is a composition (module 3.7). The whole congruence apparatus is function machinery in geometric dress.
+
+## The three failures
+
+**Not total.** $f : \mathbb{R} \to \mathbb{R}$, $f(x) = 1/x$ is **not a function**, because $f(0)$ is undefined. The repair is to shrink the domain: $f : \mathbb{R}\setminus\{0\}\to\mathbb{R}$ is a function.
+
+This is why your algebra course made you state domains. The restriction is not a side note about where the graph exists — without it, there is no function.
+
+**Not single-valued.** "Assign to each point $P$ a point $Q$ with $PQ = 3$" fails: infinitely many such $Q$ exist and the rule does not choose. Compare with "assign to each segment its midpoint," which succeeds — and succeeds *because* module 1.10 proved the midpoint is unique.
+
+Uniqueness theorems are what license definitions of functions. That is their job.
+
+**Codomain missed.** $g : \mathbb{R}\to\mathbb{R}^{+}$, $g(x) = x - 1$ is not a function into $\mathbb{R}^+$, since $g(0) = -1$.
+
+<Warning title="The vertical line test is a picture, not the definition">
+A graph passes the vertical line test when no vertical line meets it twice. That checks **single-valuedness** and nothing else.
+
+It does not check totality — a graph with a gap passes, and is not a function on the interval containing the gap. It does not check the codomain at all, since the codomain is not visible in a picture.
+
+And it only applies to functions from a set of numbers to a set of numbers. The rotation $r(x,y)=(-y,x)$ has a four-dimensional graph and cannot be drawn, yet it is a perfectly good function. The definition applies; the test does not.
+</Warning>
+
+## Well-defined
+
+When a function is described using a *choice*, you owe a proof that the answer does not depend on the choice.
+
+*"To each triangle, assign the length of its longest side."* Fine — the longest side may not be unique, but its length is, so the output is determined.
+
+*"To each triangle, assign its longest side."* Not fine. An equilateral triangle has three, and the rule does not say which.
+
+Geometry hits this whenever a construction admits choices. *"To each angle, assign the point where its bisector meets the opposite side"* — well-defined, but only because the bisector is unique and the intersection is unique. Both facts need theorems behind them, and both are in your book.
+
+<Aside>
+Chapter 2 lets us say this without the word "rule," which is vague.
+
+A function $f: S\to T$ **is** a subset $G \subseteq S\times T$ such that for every $s \in S$ there is exactly one $t \in T$ with $(s,t)\in G$.
+
+That set is the **graph**, and it is not a picture of the function — it is the function. Everything is built from sets and ordered pairs, and nothing undefined remains.
+
+Read the condition again: "for every $s$ there is exactly one $t$" is $\forall s\, \exists! t$. Totality is the $\exists$, single-valuedness is the uniqueness, and the codomain is built into where the pairs live. All three conditions, in one quantified sentence.
+</Aside>
+
+## Domain and codomain are part of the function
+
+$$f : \mathbb{R}\to\mathbb{R}, \quad f(x)=x^2 \qquad\text{and}\qquad g : \mathbb{R}\to[0,\infty),\quad g(x)=x^2$$
+
+are **different functions**. Same formula, different codomains — and modules 3.6 and 3.9 will show the difference matters: one has an inverse and the other does not.
+
+The same point in geometry: the rotation $r(x,y)=(-y,x)$ is a function $\mathbb{R}^2\to\mathbb{R}^2$. Restrict its domain to a single triangle and you get a different function — one that describes the image of that triangle, and that is the function your congruence proof is actually about.
+
+**Specifying a function means specifying all three parts.** A formula alone is not a function, in the same way that an equation alone is not a locus until you say which ambient space you are working in.

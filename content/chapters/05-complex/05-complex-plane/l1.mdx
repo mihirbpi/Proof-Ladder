@@ -1,0 +1,36 @@
+---
+level: l1
+title: Across then up
+readingTimeMin: 2
+newTerms: ["the spot"]
+anchorExample: "turning a quarter turn"
+readAloud: true
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+
+Here is a big grid. Put your finger in the middle, where the two lines cross.
+
+Now walk your finger **across** — $3$ squares to the right.
+
+Now walk it **up** — $2$ squares.
+
+Stop. That is **the spot** for the number $3 + 2i$.
+
+<Figure alt="A grid with horizontal and vertical axes crossing in the middle, and a dot marked three squares right and two squares up from the crossing point.">
+  <ComplexPlane points={[{re: 3, im: 2, label: "3 + 2i"}]} range={4} />
+</Figure>
+
+Every complex number gets its very own spot. No two numbers share.
+
+Try another one. $1 + 4i$: one across, four up.
+
+Now try $2 + 0i$. Two across, nothing up. You stay on the flat line!
+
+That is where all the ordinary numbers live. Right along the middle.
+
+<TryIt>
+Draw a big plus sign on paper. Put your finger in the middle. Walk 2 across and 3 up. Mark it. Now walk a different one.
+</TryIt>

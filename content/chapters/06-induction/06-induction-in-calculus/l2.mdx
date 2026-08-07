@@ -1,0 +1,72 @@
+---
+level: l2
+title: Repeating a step
+readingTimeMin: 4
+newTerms: ["guess then check"]
+anchorExample: "a line of dominoes"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+
+Do the same little step over and over, and a pattern shows up. Here is how to find it and then be sure of it.
+
+## Doubling
+
+Start at $1$ and keep doubling:
+
+| Doublings | You have |
+|---|---|
+| $0$ | $1$ |
+| $1$ | $2$ |
+| $2$ | $4$ |
+| $3$ | $8$ |
+| $4$ | $16$ |
+| $5$ | $32$ |
+
+## Step one: guess
+
+Look at the two columns. Can you say what you would have after $6$ doublings, without doubling?
+
+$64$. And after $7$? $128$.
+
+Here is the pattern in words:
+
+> Each doubling makes the pile twice as big as the one before.
+
+Check it: after $3$ doublings you have $2$, then $4$, then $8$. ✓
+
+## Step two: check with dominoes
+
+A guess is only a guess (module 6.1). Let's make sure.
+
+<Proof level="l2">
+**Push the first one.** Before you double anything at all, you have $1$ counter. ✓
+
+**Check the chain.** Suppose the rule has worked so far, and your pile is twice the one before it.
+
+Now do one more doubling. That means multiplying by $2$ once more.
+
+So now you have $2$ multiplied by itself $k+1$ times. Exactly what the guess says! ✓
+
+Both jobs done. The guess is right, forever.
+</Proof>
+
+## The two jobs are different jobs
+
+Notice what just happened. **Guessing** and **proving** are separate skills.
+
+Guessing means staring at the numbers until you see something. That is creative, and there is no recipe for it.
+
+Proving means running the dominoes. That is careful, and there *is* a recipe — module 6.2 gave it to you.
+
+Grown-up mathematicians do both, in that order, all the time.
+
+<Aside>
+Try the same two jobs on halving. Start with $64$ and halve: $64, 32, 16, 8, 4, 2, 1$. Guess the pattern. Then push the first domino and check the chain.
+</Aside>
+
+<TryIt>
+Start with 3 counters and triple them three times. Write down what you get each time. Guess the pattern, then say the next one before you check.
+</TryIt>

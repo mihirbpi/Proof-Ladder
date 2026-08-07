@@ -1,0 +1,85 @@
+---
+level: l3
+title: Modulus
+readingTimeMin: 5
+newTerms: ["modulus"]
+anchorExample: "the number that turns"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 5.2 noted that complex numbers cannot be put in order — you cannot ask whether $i$ is bigger than $1$. But you *can* ask how far each is from zero, and that question does have an answer.
+
+The **modulus** of a complex number, written with two upright bars around it, is its distance from the origin on the complex plane.
+
+## Pythagoras gives the formula
+
+<Figure alt="A grid with an arrow from the origin to the point three across and four up, forming a right triangle with the axes." caption="The modulus is the hypotenuse of a right triangle with legs $a$ and $b$.">
+  <ComplexPlane vectors={[{re: 3, im: 4}]} points={[{re: 3, im: 4, label: "3+4i"}]} range={5} />
+</Figure>
+
+The arrow from the origin to the point is the long side of a right triangle. Its two short sides are the across part and the turn part.
+
+So Pythagoras gives the recipe: **square the across part, square the turn part, add them, and take the square root.**
+
+Examples:
+$$|3+4i| = \sqrt{9+16} = \sqrt{25} = 5, \qquad |6+8i| = \sqrt{36+64} = 10, \qquad |i| = \sqrt{0+1} = 1.$$
+
+## It agrees with what you already had
+
+If the number is an ordinary one, its turn part is zero. So the recipe says: square it, add nothing, take the square root — which gives back how far it is from zero, ignoring which side of zero it sits on.
+
+That is exactly the distance-from-zero you already know from the number line.
+
+So the modulus is not a new idea replacing an old one — it is the *same* idea, working on more numbers. Good extensions always do this.
+
+## The link to conjugates
+
+Module 5.4 showed that multiplying a number by its conjugate gives the across part squared plus the turn part squared. And that is exactly the modulus squared. So:
+$$
+z \overline{z} = |z|^2, \qquad\text{that is,}\qquad |z| = \sqrt{z\overline z}.
+$$
+
+Two facts that arrived by different routes — one algebraic, one geometric — turn out to be the same fact. This keeps happening in this chapter, and it is a sign you are looking at something real rather than at a convention.
+
+## Distance between two numbers
+
+$|z|$ is the distance from $0$ to $z$. What is the distance from $z$ to $w$?
+
+It is
+$$
+|z - w|.
+$$
+
+Why: their difference is the arrow *from* $w$ *to* $z$ (do the walk $z$, undo the walk $w$), and the modulus of that arrow is its length.
+
+Example: the distance from $1+i$ to $4+5i$ is
+$$
+|(4+5i)-(1+i)| = |3+4i| = 5.
+$$
+
+## Circles
+
+This gives a neat way to describe circles.
+
+> $|z - w| = r$ is the set of points at distance exactly $r$ from $w$ — a **circle** of radius $r$ centred at $w$.
+
+<Figure alt="A grid with a dashed circle of radius 2 centred at the origin." caption="$|z| = 2$: a circle of radius 2 about the origin.">
+  <ComplexPlane circle={2} range={4} />
+</Figure>
+
+So $|z| = 1$ describes the unit circle, and $|z| < 1$ describes everything inside it. Whole regions of the plane get described by a single short inequality — which is why complex notation is so convenient in geometry.
+
+<Warning title="Modulus is a real number">
+$|z|$ is always an ordinary, non-negative number, even though $z$ is not. $|3+4i| = 5$, not $5i$ or $5+0i$-something-complicated.
+
+And $|z| = 0$ happens only for $z = 0$: a sum of two squares is zero only when both are.
+</Warning>
+
+<Aside>
+Modulus is what lets you do analysis with complex numbers. Saying two complex numbers are *close* means $|z-w|$ is small — and since that is an ordinary number, all the usual language of limits works. You cannot put complex numbers in order, but you can measure them, and measuring turns out to be enough.
+</Aside>

@@ -1,0 +1,102 @@
+---
+level: l7
+title: Defining multiplication
+readingTimeMin: 8
+newTerms: ["semiring", "hyperoperation"]
+anchorExample: "successor function"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\textbf{(M1)}\ a\cdot 0 = 0, \qquad \textbf{(M2)}\ a\cdot S(b) = a + (a\cdot b).
+$$
+
+Recursion on the second argument, iterating $+$ exactly as $+$ iterates $S$. In each case the base is the identity of the iterated operation:
+
+$$
+a + b = S^b(a), \qquad a\cdot b = \underbrace{a + \cdots + a}_{b}.
+$$
+
+Legitimacy comes from the recursion theorem (§7.6), hence from A9.
+
+## Basic derivations
+
+<Proof>
+$3\cdot2 = 3 + (3\cdot1) = 3 + (3 + (3\cdot0)) = 3 + (3+0) = 6$.
+
+$a\cdot1 = a\cdot S(0) = a + (a\cdot0) = a + 0 = a$.
+</Proof>
+
+## Distributivity
+
+Assumed as a ring axiom in §4.1; derivable here.
+
+> **Theorem.** $a(b+c) = ab + ac$.
+
+<Discussion>
+  <div slot="know">(M1), (M2), (A1), (A2), plus associativity and commutativity of $+$ from §7.6.</div>
+  <div slot="want">The identity for all $a,b,c \in \mathbb{N}$.</div>
+  <div slot="how">Induct on $c$, matching the recursion variable of both definitions. The rearrangement in the step consumes §7.6's theorems — so the previous module is a prerequisite in substance, not merely in sequence.</div>
+</Discussion>
+
+<Proof>
+Induct on $c$.
+
+*Base.* $a(b+0) = ab$ by (A1); $ab + a\cdot0 = ab+0 = ab$ by (M1), (A1).
+
+*Step.* Assuming $a(b+k) = ab+ak$,
+$$
+a\big(b+S(k)\big) \overset{\text{(A2)}}{=} a\,S(b+k) \overset{\text{(M2)}}{=} a + a(b+k) \overset{\text{(IH)}}{=} a + (ab+ak) = ab + (a + ak) \overset{\text{(M2)}}{=} ab + a\,S(k),
+$$
+the penultimate step by associativity and commutativity of $+$.
+</Proof>
+
+Right-distributivity $(a+b)c = ac+bc$ requires a separate induction — or follows from commutativity of $\cdot$, which itself needs distributivity, so the order of proof matters.
+
+## The remaining laws
+
+By further inductions, in this order:
+
+$$
+0\cdot a = 0, \qquad S(a)\cdot b = b + a\cdot b, \qquad a\cdot b = b\cdot a, \qquad (ab)c = a(bc).
+$$
+
+Commutativity of $\cdot$ needs the middle lemma exactly as commutativity of $+$ needed $S(a)+b = S(a+b)$ (§7.6) — the same proof shape one level up. Associativity needs distributivity.
+
+Result: $(\mathbb{N},+,\cdot,0,1)$ is a commutative **semiring** — a ring without additive inverses. $\mathbb{Z}$ is its Grothendieck completion, formed as $(\mathbb{N}\times\mathbb{N})/\!\sim$ with $(a,b)\sim(c,d)\iff a+d=b+c$ (§7.2), and the semiring laws proved here are exactly what makes that quotient's operations well defined.
+
+<Warning title="What the course assumed, now discharged">
+| Assumed | Source |
+|---|---|
+| closure, associativity, commutativity, distributivity (§4.1) | (A1)–(A2), (M1)–(M2) + induction |
+| well-ordering (§4.4) | A9 |
+| induction as technique (Ch. 6) | A9 |
+| parity and divisibility (§4.2) | definitions of $+$, $\cdot$ |
+
+Nine axioms, two recursive definitions. That is the answer to the chapter question: the earliest facts rest on stipulation, and everything above them is derived.
+</Warning>
+
+## Where the tower stops
+
+Iterating once more gives exponentiation, $a^0 = 1$, $a^{S(b)} = a\cdot a^b$, and the **hyperoperation** hierarchy continues: tetration, pentation, and so on. Growth is explosive — the diagonal function $A(n) = n \uparrow^n n$ is Ackermann's function, computable but not primitive recursive, and PA cannot prove it total without induction beyond a certain complexity.
+
+Note also that the hierarchy loses structure as it climbs. Addition is commutative and associative; multiplication is too; exponentiation is neither. The good behaviour of $+$ and $\cdot$ is not typical of iterated operations — it is special, and the theorems above are where that specialness is established.
+
+<Aside>
+Presburger arithmetic — $\mathbb{N}$ with $+$ but **no** $\cdot$ — is consistent, complete, and decidable. Adding multiplication changes everything: Gödel's incompleteness theorems apply to PA precisely because $+$ and $\cdot$ together can encode syntax, so arithmetic can talk about its own provability.
+
+Multiplication is what makes arithmetic strong enough to be incomplete. §7.7 is therefore also the module where the limits established in §7.1 become inevitable.
+</Aside>
+
+<WhereThisGoes level="l7">
+This is where the course closes, and the closing observation is that everything in Chapters 1–6 concerning $\mathbb{N}$ now rests on nine axioms and two recursive definitions. Logic supplied the language, sets the objects, functions the maps, numbers the examples, induction the method — and Chapter 7 supplied the ground.
+
+The ground is not bedrock. Gödel's theorems say PA cannot prove its own consistency, and Gentzen's proof of that consistency uses transfinite induction to $\varepsilon_0$ — an ordinal PA cannot reach. So the foundation is secure relative to stronger assumptions, and the strength required is measured exactly. This is what mathematics learned to accept in place of the certainty Hilbert hoped for, and it is a better outcome than it sounds: not a failure to find bedrock, but a precise map of what rests on what.
+
+From here the paths diverge. Model theory studies the structures satisfying these axioms; proof theory studies the derivations; computability theory studies which functions they can define; and set theory rebuilds all of it inside a larger universe. Each begins where Chapter 7 stops — which is the same place Math 0 stops, and the same place real mathematics begins.
+</WhereThisGoes>

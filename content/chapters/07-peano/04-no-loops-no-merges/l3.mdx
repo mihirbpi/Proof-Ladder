@@ -1,0 +1,96 @@
+---
+level: l3
+title: Two axioms that stop the numbers looping
+readingTimeMin: 5
+newTerms: []
+anchorExample: "counting on forever"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 7.3 ended with a problem. Axioms 5 and 6 — *$0$ is a number*, and *every number has a successor* — are satisfied by structures that are obviously not the counting numbers.
+
+This module adds the two axioms that rule them out, and it does so by building the bad examples first. That is the standard way to show an axiom is not redundant: **construct exactly what it forbids.**
+
+## Bad model 1: the loop
+
+<Figure alt="Two dots labelled 0 and 1, with an arrow from 0 to 1 and an arrow from 1 back to 0." caption="A model of Axioms 5 and 6 in which counting cycles.">
+  <ArrowDiagram labelLeft="M" labelRight="M"
+    left={["0", "1"]} right={["0", "1"]}
+    edges={[[0,1],[1,0]]} />
+</Figure>
+
+Let the numbers be just $\{0, 1\}$, with $S(0) = 1$ and $S(1) = 0$.
+
+Axiom 5? $0$ is in the set. ✓
+Axiom 6? Both successors land in the set. ✓
+
+So this passes everything so far — and counting goes $0, 1, 0, 1, \ldots$ forever, which is not counting.
+
+What went wrong: $0$ is the successor of something. **Axiom 7 forbids exactly that.**
+
+> **Axiom 7.** $0$ is not the successor of any number.
+
+Check: in the bad model, $0 = S(1)$. Axiom 7 rules it out. ✓
+
+## Bad model 2: the merge
+
+<Figure alt="Three dots on the left with arrows, two of which land on the same dot on the right." caption="A model in which two different numbers share a successor.">
+  <ArrowDiagram labelLeft="M" labelRight="M"
+    left={["0", "1", "2"]} right={["0", "1", "2"]}
+    edges={[[0,1],[1,2],[2,2]]} />
+</Figure>
+
+Let the numbers be $\{0,1,2\}$ with $S(0)=1$, $S(1)=2$, and $S(2)=2$.
+
+Axiom 5? ✓ Axiom 6? ✓ Axiom 7? Nothing has $0$ as its successor. ✓
+
+Still broken. Counting goes $0, 1, 2, 2, 2, 2, \ldots$ and gets stuck.
+
+What went wrong: two different numbers, $1$ and $2$, have the same successor. **Axiom 8 forbids exactly that.**
+
+> **Axiom 8.** Different numbers have different successors. That is: if $S(x) = S(y)$, then $x = y$.
+
+Check: in the bad model $S(1) = S(2) = 2$ but $1 \neq 2$. Axiom 8 rules it out. ✓
+
+## The Chapter 3 reading
+
+Both axioms are statements you already have vocabulary for.
+
+**Axiom 7** says $0$ is not in the image of $S$ (module 3.3) — trace back from $0$ and you find nobody.
+
+**Axiom 8** says $S$ is **one-to-one** (module 3.5). And notice the form Axiom 8 is stated in: *if $S(x)=S(y)$ then $x=y$*. That is exactly the flipped-around version module 3.5 said to use, because it is the one you can compute with.
+
+Chapter 3 was quietly preparing you for this all along.
+
+## What the four axioms give
+
+With Axioms 5–8, the numbers must contain
+$$
+0, \quad S(0), \quad S(S(0)), \quad S(S(S(0))), \quad \ldots
+$$
+all different from each other.
+
+<Proof>
+They cannot loop back to $0$: Axiom 7 says nothing has $0$ as its successor.
+
+They cannot merge into each other: Axiom 8 says two different numbers keep different successors, so once two chains are apart they stay apart.
+
+So the list marches off forever without repeating.
+</Proof>
+
+<Warning title="Still not finished">
+Four axioms guarantee that $0, 1, 2, 3, \ldots$ are all there and all different.
+
+They do **not** guarantee that nothing *else* is there. You could add two extra objects $a$ and $b$ off to one side, with $S(a) = b$ and $S(b) = a$, and all four axioms would still hold.
+
+So one more axiom is needed, and module 7.5 supplies it: nothing but the counting numbers is allowed in.
+</Warning>
+
+<Aside>
+Building a structure that satisfies some axioms and breaks one is how mathematicians prove an axiom is really needed. If you could not build the loop, Axiom 7 might have been provable from the others — and then it would not be an axiom at all, just a theorem nobody had noticed.
+</Aside>

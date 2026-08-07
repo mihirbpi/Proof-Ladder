@@ -1,0 +1,123 @@
+---
+level: l6
+title: Distributive laws
+readingTimeMin: 8
+newTerms: ["distributive law"]
+anchorExample: "the quadrilateral family and loci of points"
+---
+
+import Proof from '@/components/Proof.astro';
+import Discussion from '@/components/Discussion.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+S \cap (T \cup V) = (S \cap T) \cup (S \cap V)
+$$
+$$
+S \cup (T \cap V) = (S \cup T) \cap (S \cup V)
+$$
+
+Two laws, and the second one has no arithmetic analogue. That asymmetry is what makes this module worth a page.
+
+## Compare with arithmetic
+
+In arithmetic, multiplication distributes over addition:
+$$a(b+c) = ab + ac.$$
+
+Addition does **not** distribute over multiplication:
+$$a + bc \neq (a+b)(a+c)$$
+— take $a=1, b=1, c=1$, giving $2$ on the left and $4$ on the right.
+
+**For sets, both directions hold.** $\cap$ and $\cup$ are symmetric partners in a way that $\times$ and $+$ are not, and every identity in this chapter comes in a matched pair as a result: two De Morgan laws, two absorption laws, two distributive laws.
+
+You can already predict the reason. $\cap$ is $\wedge$ and $\cup$ is $\vee$, and the truth tables of $\wedge$ and $\vee$ are mirror images — swap every T for an F and the two tables trade places. Nothing similar relates $\times$ and $+$.
+
+## Proof of the first law
+
+<Discussion>
+  <div slot="know">$x \in S\cap(T\cup V)$ means $x \in S$ and ($x\in T$ or $x \in V$).</div>
+  <div slot="want">Both containments.</div>
+  <div slot="how">Each direction has a hypothesis containing a $\cup$, so expect cases in both — unlike the last two modules, where only one half branched. The forward direction distributes the $\wedge$ over the $\vee$ by hand; the reverse collects.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $x \in S \cap (T \cup V)$. Then $x \in S$, and $x \in T$ or $x \in V$.
+
+*Case 1: $x \in T$.* With $x \in S$, this gives $x \in S \cap T$, hence $x \in (S\cap T)\cup(S\cap V)$.
+
+*Case 2: $x \in V$.* With $x \in S$, this gives $x \in S\cap V$, hence again $x \in (S\cap T)\cup(S\cap V)$.
+
+The cases are exhaustive, so the containment holds.
+
+**($\supseteq$)** Let $x \in (S\cap T)\cup(S\cap V)$. Then $x \in S \cap T$ or $x \in S \cap V$.
+
+*Case 1: $x \in S\cap T$.* Then $x \in S$, and $x \in T$ so $x \in T \cup V$.
+
+*Case 2: $x \in S \cap V$.* Then $x \in S$, and $x \in V$ so $x \in T \cup V$.
+
+In both cases $x \in S$ and $x \in T \cup V$, so $x \in S\cap(T\cup V)$.
+
+Therefore the two sets are equal.
+</Proof>
+
+**Both halves branched**, and both branches did the same work with the letters exchanged. That repetition is a signal: whenever two cases differ only by a renaming, published proofs write *"the case $x \in V$ is identical with $T$ and $V$ interchanged."* Doing that is not laziness, provided the symmetry is genuine — but you must check that it is.
+
+<Warning title="Parentheses are load-bearing">
+$$S \cap T \cup V$$
+is meaningless. Unlike $\times$ and $+$, the operations $\cap$ and $\cup$ have **no** precedence convention, and
+
+$$(S\cap T)\cup V \quad\text{and}\quad S\cap(T\cup V)$$
+
+are genuinely different sets. Take $S = \emptyset$ and $V$ non-empty: the first is $V$, the second is $\emptyset$.
+
+Arithmetic lets you drop parentheses in $ab+c$ because $\times$ binds tighter than $+$. Nothing here does. Write them.
+</Warning>
+
+## The second law
+
+$S \cup (T \cap V) = (S\cup T)\cap(S \cup V)$ can be proved directly, but the shortcut from module 2.7 is better.
+
+Complement the first law and apply De Morgan repeatedly:
+$$
+\overline{S \cap (T\cup V)} = \overline S \cup \overline{T \cup V} = \overline S \cup (\overline T \cap \overline V),
+$$
+$$
+\overline{(S\cap T)\cup(S\cap V)} = \overline{S\cap T} \cap \overline{S \cap V} = (\overline S \cup \overline T)\cap(\overline S \cup \overline V).
+$$
+
+The two left sides are equal by the first law, so the right sides are too — which is the second law, written in $\overline S, \overline T, \overline V$. Since every set is the complement of *something*, that establishes it in general.
+
+**This is duality doing real work.** Complementation exchanges $\cap$ and $\cup$, so it converts any true identity into another true identity. Every law in this chapter has a dual partner, and half the proofs are therefore free.
+
+## Where it shows up
+
+**Loci.** Let $S$ be the interior of a circle, $T$ a half-plane, $V$ another half-plane. Then $S \cap (T \cup V)$ is the part of the disk lying in at least one half-plane, and the law says you may equally take the two pieces separately and combine them. Constructions use this whenever a region is described in two ways.
+
+**Probability.** With events instead of sets, the same identity is the reason
+$$P\big(A \cap (B \cup C)\big)$$
+can be computed by splitting into $A\cap B$ and $A \cap C$ and correcting for the overlap. The inclusion–exclusion rule is distributivity plus counting.
+
+**Number theory.** For divisor sets, $\cap$ is gcd and $\cup$ is lcm, and the distributive laws become
+$$\gcd(a, \operatorname{lcm}(b,c)) = \operatorname{lcm}(\gcd(a,b), \gcd(a,c)).$$
+That identity looks arbitrary in a number theory book. Here it is the same law you just proved.
+
+<Aside>
+A structure with two operations satisfying commutativity, associativity, absorption, and both distributive laws is called a **distributive lattice**. Add complements with $S \cap \overline S = \emptyset$ and $S \cup \overline S = U$ and it is a **Boolean algebra**.
+
+Three systems you have met are Boolean algebras: the statements of Chapter 1 under $\wedge, \vee, \neg$; the subsets of any fixed set under $\cap, \cup$, complement; and the two-value system $\{0,1\}$ under AND, OR, NOT that every digital circuit is built from.
+
+Because they satisfy the same laws, a theorem proved once holds in all three. The identity you proved above about circles and half-planes is also a theorem about logic gates.
+</Aside>
+
+## Reading the structure first
+
+By this point in the chapter you can predict a proof's shape before starting:
+
+- **$\cup$ in the hypothesis** — cases, because you are not told which side.
+- **$\cup$ in the goal** — easy, land in either part.
+- **$\cap$ in the hypothesis** — easy, you get both facts.
+- **$\cap$ in the goal** — two things to establish.
+- **complement in the hypothesis** — likely "suppose not."
+
+Reading the statement this way and sketching the skeleton before writing is how experienced mathematicians work, and it is a habit that transfers directly to the two-column proofs in front of you. The reason column is where the *tools* go; this list is about the *shape*, and the shape comes first.

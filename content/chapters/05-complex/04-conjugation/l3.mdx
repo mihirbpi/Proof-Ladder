@@ -1,0 +1,88 @@
+---
+level: l3
+title: Conjugation
+readingTimeMin: 5
+newTerms: ["conjugate"]
+anchorExample: "the number that turns"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+The **conjugate** of a complex number keeps the across part exactly as it is, and flips the sign of the turn part.
+
+Flip the sign of the imaginary part. Leave the real part alone.
+
+$$\overline{3+4i} = 3-4i, \qquad \overline{-2 + i} = -2 - i, \qquad \overline{5} = 5, \qquad \overline{2i} = -2i.$$
+
+Geometrically it is a reflection in the horizontal axis (module 5.5 draws this properly): across stays, up becomes down.
+
+## Doing it twice gets you back
+
+$$
+\overline{\overline{z}} = z.
+$$
+
+Because flipping the sign of $b$ twice returns $b$. An operation that undoes itself like this is called an *involution* — and you have met others: negation ($-(-a) = a$), taking the outside of a set (module 2.5), and turning an arrow diagram round twice (module 3.9).
+
+## $z$ times $\overline{z}$ is always real
+
+This is the property that makes conjugates useful.
+
+<Proof>
+Take any complex number and multiply it by its own conjugate. Expand the brackets as usual.
+
+You get four pieces. Two of them are the across part multiplied by itself, and the turn part multiplied by itself.
+
+The other two pieces are the mixed ones — and they are identical except for their signs, so they cancel out completely.
+
+What is left is: **the across part squared, plus the turn part squared.**
+
+Both of those are ordinary numbers multiplied by themselves, so both are zero or bigger. Their sum is an ordinary number, and it is never below zero.
+</Proof>
+
+Examples: $(3+4i)(3-4i) = 9 + 16 = 25$. And $(1+2i)(1-2i) = 1+4 = 5$.
+
+## Recovering the parts
+
+Conjugation lets you pull out the real and imaginary parts by arithmetic:
+$$
+\text{Re}(z) = \frac{z + \overline{z}}{2}.
+$$
+
+Check it: adding a number to its conjugate makes the turn parts cancel and doubles the across part. Halving then gives the across part back. ✓
+
+The imaginary part comes out similarly, though you have to divide by $2i$ rather than $2$:
+$$
+\text{Im}(z) = \frac{z - \overline{z}}{2i},
+$$
+since $z - \overline{z} = 2bi$, and dividing by $2i$ leaves $b$.
+
+## The numbers that do not move
+
+> **Claim.** $z$ is an ordinary number if and only if $z = \overline{z}$.
+
+This is an *if and only if*, so it needs both directions — **check both boxes** (module 1.9).
+
+<Proof>
+**(Box 1)** Suppose $z$ is ordinary. Then $z = a + 0i$ for some $a$, so $\overline{z} = a - 0i = a = z$. ✓
+
+**($\Leftarrow$)** Suppose $z = \overline{z}$. Writing out both sides, the across parts already match, so the two turn parts must match as well — and one is the other with its sign flipped.
+
+Comparing imaginary parts (module 5.2), $b = -b$. So $2b = 0$, and $b = 0$.
+
+Hence $z = a + 0i$, an ordinary number. ✓
+
+Both directions hold, so the claim is proved.
+</Proof>
+
+Geometrically this is obvious once drawn: the points fixed by a reflection are exactly the points on the mirror line, and the mirror line *is* the ordinary numbers. Algebra and geometry saying the same thing is a recurring feature of this chapter.
+
+<Warning title="Only the imaginary part flips">
+$\overline{3+4i} = 3 - 4i$, not $-3-4i$. Negating both parts gives $-z$, which is a half-turn about the origin, not a reflection. They are different operations with different fixed points: $\overline z = z$ picks out the reals, while $-z = z$ picks out only $0$.
+</Warning>
+
+<Aside>
+Because $z\overline z$ is always real and positive (for $z \neq 0$), you can divide by it. That is exactly the trick for computing $1/z$ — multiply top and bottom by $\overline z$ and the bottom becomes real. Conjugation is what makes division of complex numbers possible at all.
+</Aside>

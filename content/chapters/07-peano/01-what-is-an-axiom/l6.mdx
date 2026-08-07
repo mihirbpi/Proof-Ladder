@@ -1,0 +1,105 @@
+---
+level: l6
+title: What is an axiom?
+readingTimeMin: 8
+newTerms: ["axiom", "theorem"]
+anchorExample: "the parallel postulate"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Your geometry course opens with a list of postulates — statements accepted without proof. Two points determine a line. A line contains infinitely many points. Through a point not on a line there is exactly one parallel.
+
+Every theorem you have proved traces back to that list. This chapter does the same thing for the counting numbers, and it starts by asking why such a list is necessary at all.
+
+## Why proofs must stop
+
+Every proof justifies its claims by earlier claims. Those need justification too. Follow the chain back and there are three possibilities:
+
+**It goes forever.** Then no claim is ever established, since the justification is never complete.
+
+**It circles.** $P$ because $Q$, $Q$ because $P$. That establishes nothing either.
+
+**It stops.** Some statements are accepted without proof, and everything else is derived from them.
+
+Only the third works. **Axioms are where the regress terminates**, and they exist because proof requires a starting point, not because anyone thinks they are self-evident.
+
+| Term | Meaning |
+|---|---|
+| **Axiom** (or postulate) | assumed, not proved |
+| **Theorem** | proved from the axioms |
+| **Undefined term** | described by axioms, not defined |
+
+Your course has undefined terms too: *point*, *line*, *plane*. Ask what a point is and the honest answer is "whatever satisfies the postulates."
+
+## Axioms are choices
+
+Here is the part that surprises people. Axioms are not descriptions of reality that we have discovered — they are **choices**, and different choices give different mathematics, all of it valid.
+
+Your course's fifth postulate:
+
+> Through a point not on a given line, there is **exactly one** line parallel to it.
+
+Mathematicians spent two thousand years trying to derive it from the other four. Every attempt failed, and in the 1820s Bolyai and Lobachevsky discovered why: **it cannot be derived, because replacing it gives a consistent geometry.**
+
+Replace *exactly one* with *none* and you get **spherical geometry**: lines are great circles on a sphere, any two of them meet, and there are no parallels. Triangle angles sum to more than $180°$.
+
+Replace it with *infinitely many* and you get **hyperbolic geometry**. Triangle angles sum to less than $180°$.
+
+All three are consistent. All three are studied. **None is the true geometry** — they are three different subjects, and which one applies to a given situation is a question about that situation, not about mathematics.
+
+<Warning title="Consistent does not mean true">
+An axiom system is **consistent** when it proves no contradiction. That is the only internal requirement.
+
+Consistency says nothing about whether the axioms describe anything real. Spherical and Euclidean geometry are both consistent and they disagree about triangles — so consistency cannot be what makes an axiom correct.
+
+Which geometry describes physical space is a question for physics, and the answer is *neither exactly*: general relativity says spacetime is curved, and the curvature varies. Your course's geometry is an excellent approximation over a classroom and a poor one near a black hole.
+</Warning>
+
+## The parallel postulate does real work
+
+Since it is a choice, it should be possible to see which theorems depend on it. It is.
+
+**Theorems that need it:**
+
+- The angles of a triangle sum to $180°$.
+- Alternate interior angles of parallel lines are congruent.
+- The Pythagorean theorem.
+- Similar triangles exist with different sizes.
+
+**Theorems that do not:**
+
+- Vertical angles are congruent.
+- The base angles of an isosceles triangle are congruent.
+- Two sides and the included angle determine a triangle (SAS).
+
+The second list holds in all three geometries. The first list is where your geometry is *Euclidean* rather than merely geometry.
+
+The Pythagorean theorem is the striking case. It is equivalent to the parallel postulate — assume one and you can prove the other — so the distance formula, the equation of a circle, and every coordinate proof in your course rest on a choice that could have been made differently.
+
+## Axioms for arithmetic
+
+The counting numbers need the same treatment, and this chapter gives it: **nine axioms**, due to Peano in 1889, from which all of arithmetic follows.
+
+The undefined terms are $0$ and the **successor** operation — informally, "the next number." Everything else is defined: addition, multiplication, order, even the numeral $1$.
+
+Two things this chapter delivers:
+
+**A demonstration.** Every arithmetic fact you have used — $2+2=4$, $a+b=b+a$, $a\cdot0=0$ — is a theorem, provable from nine assumptions.
+
+**A shape.** The axioms in this chapter are exactly the tools of Chapters 1–6. Axiom 8 says the successor function is injective (module 3.5). Axiom 7 says its pre-image of $0$ is empty (module 3.3). Axiom 9 is the induction principle (Chapter 6). Axioms 1–4 make equality an equivalence relation (module 7.2).
+
+**The course has been building the vocabulary for this chapter all along.**
+
+<Aside>
+Might arithmetic have alternatives, as geometry does?
+
+Yes. Drop Axiom 7 — the one saying $0$ is not a successor — and you get systems where the numbers wrap around, like a clock. Those are the residue systems of module 4.4, and they are perfectly consistent.
+
+But the deeper answer is stranger. Gödel proved in 1931 that any consistent axiom system strong enough to describe arithmetic contains true statements it cannot prove. Adding those as new axioms produces a stronger system — with new unprovable truths of its own.
+
+**There is no complete list of axioms for arithmetic.** The list in this chapter is not one item short; no finite list can be sufficient, and that is a theorem.
+
+Geometry's situation is different: Euclidean geometry does have a complete axiom system, which Tarski proved in 1959. Arithmetic is harder than geometry, and the reason is that it can talk about itself.
+</Aside>

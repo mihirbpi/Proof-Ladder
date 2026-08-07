@@ -1,0 +1,107 @@
+---
+level: l6
+title: Why we needed a new number
+readingTimeMin: 8
+newTerms: []
+anchorExample: "rotations of the coordinate plane"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Chapter 4 built each number system by fixing a closure failure. $\mathbb{N}$ could not subtract, so $\mathbb{Z}$ was built. $\mathbb{Z}$ could not divide, so $\mathbb{Q}$ was built. $\mathbb{Q}$ had gaps, so $\mathbb{R}$ was built.
+
+$\mathbb{R}$ still cannot do one thing, and this chapter fixes it.
+
+## The failure
+
+> **Proposition.** The equation $x^2 + 1 = 0$ has no solution in $\mathbb{R}$.
+
+<Proof>
+Suppose not: suppose $x\in\mathbb{R}$ satisfies $x^2+1=0$, so $x^2 = -1$.
+
+Every real number is positive, negative, or zero. If $x>0$ then $x^2 = x\cdot x>0$. If $x<0$ then $x^2>0$ as well, since the product of two negatives is positive. If $x = 0$ then $x^2=0$.
+
+The cases are exhaustive, so $x^2\geq0$ for every real $x$. But $-1<0$, a contradiction.
+
+Hence no real $x$ satisfies $x^2+1=0$.
+</Proof>
+
+Three cases and a contradiction — modules 1.12 and 2.5, on the simplest possible polynomial. **The failure is not exotic.** It happens at $x^2+1$, and it is why the quadratic formula sometimes stalls.
+
+## Where you have already met it
+
+The discriminant. For $ax^2+bx+c=0$,
+
+$$x = \frac{-b\pm\sqrt{b^2-4ac}}{2a},$$
+
+and when $b^2-4ac<0$ your course says "no real solutions."
+
+Read that phrasing again. It does not say *no solutions* — it says *no real solutions*, and the qualifier has been there all along, waiting for this chapter. The parabola misses the $x$-axis, and the algebra says the roots live somewhere the real line does not reach.
+
+## The move
+
+The response is the same one Chapter 4 made three times: **build a bigger system in which the operation succeeds.**
+
+Declare a new object $i$ with the property
+$$i^2 = -1,$$
+and see what must be true of a system containing both $i$ and all the reals.
+
+If the field axioms (module 4.5) are to hold, that system must contain $a + bi$ for all real $a, b$ — closure under multiplication and addition demands it. And a short computation shows that set is already closed under all four operations, so nothing more is needed.
+
+The result is $\mathbb{C}$, the complex numbers, and module 5.3 verifies the axioms.
+
+<Warning title="This is not cheating">
+The objection is natural: you cannot just *invent* a number with the property you wanted.
+
+But the same objection applies to $-1$ and to $\frac12$ and to $\sqrt2$, and every one of them was resisted when introduced. Negative numbers were called *fictitious* into the seventeenth century; Chapter 4 showed $\sqrt2$ destroyed a school of Greek mathematics.
+
+What makes an extension legitimate is not familiarity but **consistency**: the new system must contain the old one, must satisfy the same laws, and must not prove anything false. All three can be checked, and for $\mathbb{C}$ all three hold — $\mathbb{C}$ can be built concretely from pairs of real numbers, with no new objects assumed at all (module 5.2).
+
+The word *imaginary* is a seventeenth-century insult that stuck. It describes the history, not the mathematics.
+</Warning>
+
+## The payoff
+
+Extending to $\mathbb{C}$ solves the problem completely, and that is genuinely surprising.
+
+Adding $i$ was meant to solve one equation. It solves **all** of them:
+
+> **Fundamental Theorem of Algebra.** Every non-constant polynomial with complex coefficients has a complex root.
+
+No further extension is ever needed. Compare with the earlier steps: adding negatives did not give you fractions, and adding fractions did not give you $\sqrt2$. Each of those repairs left work undone. This one does not.
+
+A system with this property is called **algebraically closed**, and $\mathbb{C}$ is the smallest field containing $\mathbb{R}$ that has it.
+
+## What it costs
+
+Extensions are not free, and this one gives up the order.
+
+$\mathbb{R}$ is an ordered field (module 4.5): any two reals compare, and the order respects the arithmetic. **$\mathbb{C}$ has no such order.**
+
+The reason is the one from the proposition above. In an ordered field, every square is non-negative — that was the three-case argument. But $i^2 = -1$, so $i$ would have a negative square, and no ordering can survive it.
+
+So "$i > 0$" and "$i<0$" are both meaningless. Asking which of two complex numbers is larger is asking a malformed question, and module 5.6 supplies the replacement: you may compare their distances from the origin, and that is a comparison of *real* numbers.
+
+## What it buys, for geometry
+
+Here is the part your course will find useful.
+
+Module 3.1 wrote the $90°$ rotation about the origin as $(x,y)\mapsto(-y,x)$. Now identify the point $(x,y)$ with the complex number $x+yi$ and multiply by $i$:
+
+$$i(x+yi) = ix + i^2y = -y + xi.$$
+
+**That is the same rotation.** Multiplying by $i$ rotates the plane a quarter turn, and $i^2 = -1$ says two quarter turns is a half turn — which is exactly the transformation $(x,y)\mapsto(-x,-y)$.
+
+The defining property of $i$, read geometrically, is a fact about rotations you already know. Module 5.9 develops this into a general rule: multiplication by any complex number is a rotation combined with a dilation, and the two transformations your geometry course treats separately turn out to be a single operation.
+
+<Aside>
+Complex numbers were discovered in the sixteenth century, and not for quadratics.
+
+Cardano and Bombelli were solving *cubics*. The formula for a cubic sometimes requires square roots of negatives **in the intermediate steps** even when all three roots are real and obvious. Bombelli found in 1572 that $x^3 = 15x + 4$ has the plain root $x=4$, and the formula produces it only by way of $\sqrt{-121}$.
+
+That is a much harder case to dismiss than a quadratic with no real roots. Here the answer is real, verifiable, and unreachable without passing through the complex numbers.
+
+The imaginary quantities were doing real work two centuries before anyone could say what they were, and the geometric interpretation — the plane of module 5.5 — arrived only around 1800.
+</Aside>

@@ -1,0 +1,75 @@
+---
+level: l4
+title: What a complex number is
+readingTimeMin: 6
+newTerms: ["complex number", "real part", "imaginary part", "purely imaginary"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+\mathbb{C} = \{\, a + bi \mid a, b \in \mathbb{R} \,\}, \qquad i^2 = -1.
+$$
+
+For $z = a+bi$, define $\operatorname{Re}(z) = a$ and $\operatorname{Im}(z) = b$. **Both are real numbers.**
+
+Equality is componentwise:
+$$
+a + bi = c + di \iff a = c \ \wedge\ b = d.
+$$
+
+This is the working fact of the chapter. A single complex equation is *two real equations*, and "comparing real and imaginary parts" is the standard way to extract them — the move that produces the double-angle identities in module 5.9.
+
+<Warning title="Im(z) carries no i">
+$\operatorname{Im}(3+4i) = 4$, not $4i$. Both $\operatorname{Re}$ and $\operatorname{Im}$ are functions $\mathbb{C}\to\mathbb{R}$ in the sense of Chapter 3 — their codomain is $\mathbb{R}$.
+
+Consequences worth checking: $z = \operatorname{Re}(z) + i\operatorname{Im}(z)$, and $z$ is real iff $\operatorname{Im}(z) = 0$.
+</Warning>
+
+## $\mathbb{R} \subseteq \mathbb{C}$
+
+> **Proposition.** $\mathbb{R} \subseteq \mathbb{C}$, properly.
+
+<Proof>
+Let $a \in \mathbb{R}$ be arbitrary. Then $a = a + 0i$ with $a, 0 \in \mathbb{R}$, so $a \in \mathbb{C}$ by definition. Since $a$ was arbitrary, $\mathbb{R}\subseteq\mathbb{C}$.
+
+For properness: $i = 0 + 1i \in \mathbb{C}$, and $i \notin \mathbb{R}$, since $i^2 = -1 < 0$ while $x^2 \geq 0$ for all real $x$ (module 5.1).
+</Proof>
+
+Three lines of element chasing (module 2.3) plus one witness (module 1.11). The pattern is worth noting: **every containment in the tower has exactly this shape.**
+
+## The complete tower
+
+$$
+\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R} \subsetneq \mathbb{C}
+$$
+
+| Link | Inclusion proof | Properness witness |
+|---|---|---|
+| $\mathbb{N} \subseteq \mathbb{Z}$ | by construction | $-1$ |
+| $\mathbb{Z}\subseteq\mathbb{Q}$ | $n = n/1$ | $1/2$ |
+| $\mathbb{Q}\subseteq\mathbb{R}$ | by construction | $\sqrt2$ (module 4.7) |
+| $\mathbb{R}\subseteq\mathbb{C}$ | $a = a+0i$ | $i$ |
+
+By transitivity of $\subseteq$ (module 2.3), $\mathbb{N}\subseteq\mathbb{C}$, and every number in this course lives somewhere in the chain. Only one properness witness required serious work, and it was $\sqrt2$.
+
+## $\mathbb{C}$ has no compatible order
+
+Something is lost at the last step, and it is worth being explicit about.
+
+$\mathbb{R}$ is an *ordered* field: $<$ interacts with $+$ and $\times$ by rules you use constantly. $\mathbb{C}$ has no such order.
+
+Why not? In any ordered field, squares are non-negative (module 5.1's proof used only the order axioms). But in $\mathbb{C}$ we have $i^2 = -1$, so we would need $-1 \geq 0$, and also $1 = 1^2 \geq 0$ — giving $1 \leq 0 \leq 1$, so $1 = 0$, which is false.
+
+So questions like "is $i$ bigger than $1$?" have no answer, and never will. This is not a gap awaiting repair: it is the price paid for algebraic closure, and it is why complex numbers are compared by *size* (module 5.6) rather than by order.
+
+## Purely imaginary
+
+$z$ is **purely imaginary** if $\operatorname{Re}(z)=0$, i.e. $z = bi$. So $\mathbb{C}$ contains two distinguished lines through the origin: the reals ($\operatorname{Im}=0$) and the purely imaginary numbers ($\operatorname{Re}=0$). Module 5.5 draws them as the two axes.
+
+<Aside>
+Since $z$ is determined by the pair $(\operatorname{Re}(z), \operatorname{Im}(z)) \in \mathbb{R}^2$, the map $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ is a bijection $\mathbb{C}\to\mathbb{R}\times\mathbb{R}$ — a product set from module 2.9. As *sets* and as *additive* structures, $\mathbb{C}$ and $\mathbb{R}^2$ are the same thing. What $\mathbb{C}$ has that $\mathbb{R}^2$ lacks is a multiplication, and every remarkable fact in this chapter comes from that multiplication.
+</Aside>

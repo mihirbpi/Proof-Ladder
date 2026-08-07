@@ -1,0 +1,107 @@
+---
+level: l6
+title: What is a set?
+readingTimeMin: 8
+newTerms: ["set", "element", "empty set", "well-defined"]
+anchorExample: "the quadrilateral family and loci of points"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Geometry is already set theory, written in different words.
+
+> *The perpendicular bisector of $\overline{AB}$ is **the set of all points** equidistant from $A$ and $B$.*
+
+> *A circle is **the set of all points** in a plane at a given distance from a given point.*
+
+Your book calls these **loci**, and the definition of a locus is a definition by membership: a point is in it exactly when it satisfies a condition. This chapter takes that idea, which you already use, and gives it a language of its own.
+
+## Membership
+
+A **set** is a collection of objects, called its **elements**. Write
+
+$$x \in S \quad\text{for}\quad \text{"$x$ is an element of $S$"},$$
+$$x \notin S \quad\text{for its negation.}$$
+
+Sets are written by listing elements in braces:
+$$V = \{A, B, C\}, \qquad \{2, 4, 6, 8\}.$$
+
+For the circle $C$ centred at $P$ with radius $3$: $Q \in C$ exactly when $PQ = 3$. Every locus theorem you have proved is a statement about membership.
+
+## Extensionality
+
+**A set is determined by nothing but its members.**
+
+$$\{A, B, C\} = \{C, A, B\} = \{A, A, B, C\}.$$
+
+Order is invisible; repetition is invisible. A set is not a list, and the notation only looks like one.
+
+This matters immediately in geometry. The vertex set of $\triangle ABC$ is $\{A,B,C\}$, and $\triangle ABC$, $\triangle BCA$, and $\triangle CAB$ are the same triangle with the same vertex set. But a *congruence statement* like $\triangle ABC \cong \triangle DEF$ is emphatically **not** a claim about sets — it asserts a correspondence, $A\leftrightarrow D$, $B \leftrightarrow E$, $C\leftrightarrow F$, and reordering it changes what it says.
+
+So: the set forgets the order, and the congruence statement remembers it. Two different jobs, two different objects. Module 2.9 builds the object that remembers order.
+
+<Warning title="A set is not its notation">
+$\{1,2,3\}$ and $\{n : n$ is a whole number with $0 < n < 4\}$ are **the same set**, described two ways.
+
+The description is not part of the object. This is the same distinction as between a line and an equation for that line: $y = 2x$ and $2y = 4x$ describe one line, and no theorem about the line depends on which you wrote.
+</Warning>
+
+## The empty set
+
+The set with no elements is the **empty set**, written $\emptyset$. For every $x$, $x \notin \emptyset$.
+
+There is exactly one — by extensionality, any two sets with no members have the same members, hence are equal. So we say *the* empty set.
+
+Geometry produces it constantly, and this is where the notation starts earning its keep. Two parallel lines: $\ell_1 \cap \ell_2 = \emptyset$. Two circles too far apart: their intersection is empty. Writing $\emptyset$ instead of "they don't meet" lets the empty case be handled by the same theorem as every other case, rather than as an exception.
+
+<Warning title="Empty is not nothing">
+$\emptyset$ is a set. It exists, it has a name, and it can be an element of another set.
+
+$\{\emptyset\}$ is **not** empty: it is a set with exactly one element, and that element happens to be the empty set. A box containing an empty box is not an empty box.
+
+This looks like a word game. It is not — Chapter 7 builds the counting numbers out of exactly this distinction.
+</Warning>
+
+## Well-defined
+
+A description defines a set only if, for every candidate object, membership is **determined**. Compare:
+
+- $\{$points on the circle of radius $3$ centred at $P\} $ — determined. Measure $PQ$; it is $3$ or it is not.
+- $\{$triangles that look about right$\}$ — not determined. There is no fact of the matter.
+
+Geometry is unusually strict about this, and you have felt the strictness: *why* does your book insist that a locus be characterised by a condition rather than by a picture? Because a picture does not determine membership at the boundary, and the boundary is where every interesting theorem lives.
+
+Two conventions keep descriptions determinate:
+
+**State the ambient set.** "All points" means all points *in the plane* unless you say otherwise — and in space, the set of points equidistant from $A$ and $B$ is a plane, not a line. The same words name different sets in different ambient spaces.
+
+**Use conditions you can check.** "Equidistant from $A$ and $B$" is checkable. "Close to the middle" is not.
+
+## Named sets
+
+Three standard names, used throughout:
+
+$$\mathbb{N} = \{0, 1, 2, 3, \dots\} \quad \text{the natural numbers}$$
+$$\mathbb{Z} = \{\dots, -2, -1, 0, 1, 2, \dots\} \quad \text{the integers}$$
+$$\mathbb{R} = \text{the real numbers}$$
+
+$\mathbb{R}$ is the one your coordinate geometry runs on: the Ruler Postulate says a line can be put in correspondence with $\mathbb{R}$, and that correspondence is what lets you compute $PQ$ from coordinates at all.
+
+<Aside>
+"Set" is left **undefined**. This is deliberate and it follows the pattern your geometry course already uses: *point*, *line*, and *plane* are undefined terms, described by postulates rather than defined from something simpler.
+
+The reason is the same in both cases. Definitions must bottom out somewhere, or they circle. Geometry stops at point and line; set theory stops at set and membership. What replaces the definition is a list of properties assumed to hold — postulates in your book, axioms in set theory — and everything else is derived.
+
+Chapter 7 shows what that looks like when carried all the way down.
+</Aside>
+
+## Sets of sets
+
+Nothing prevents a set's elements from being sets. This is not exotic; your classification chart is one.
+
+Let $Q$ be the set of all quadrilaterals. Then "the parallelograms" is a set, "the rectangles" is a set, and the collection
+$$\{\text{parallelograms},\ \text{rectangles},\ \text{rhombi},\ \text{squares},\ \text{trapezoids}\}$$
+is a set whose five elements are themselves sets of shapes.
+
+The chart on your classroom wall is a picture of how those five sets sit inside one another — which is exactly the subject of module 2.3.

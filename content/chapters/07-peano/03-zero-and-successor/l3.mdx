@@ -1,0 +1,83 @@
+---
+level: l3
+title: Zero and the successor
+readingTimeMin: 5
+newTerms: ["successor"]
+anchorExample: "counting on forever"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Modules 7.1 and 7.2 set up the method and the rules for equality. Now the numbers themselves.
+
+We start with **two undefined things**:
+
+- an object called $0$;
+- an operation called $S$, the **successor** — read "the next one after".
+
+Neither is defined. What they do is fixed entirely by the axioms.
+
+## Axioms 5 and 6
+
+**Axiom 5.** $0$ is a counting number.
+
+**Axiom 6.** If $x$ is a counting number, then $S(x)$ is a counting number.
+
+That is the entire construction. One starting point, one way to make more.
+
+## Naming the numbers
+
+Axiom 5 gives us $0$. Axiom 6 then gives $S(0)$, and $S(S(0))$, and so on, forever.
+
+We give these short names:
+$$
+1 := S(0), \qquad 2 := S(1), \qquad 3 := S(2), \qquad 4 := S(3), \ldots
+$$
+
+The symbol $:=$ means "is defined to be". These are **definitions**, not discoveries — we are choosing labels.
+
+So when you write $3$, what you really mean is $S(S(S(0)))$. Every counting number is a stack of $S$'s on top of a $0$.
+
+<Warning title="You may not write S(x) as x + 1">
+This is the discipline of the chapter, and it is worth being strict about.
+
+Addition **has not been defined**. It arrives in module 7.6, built out of $S$. So writing $S(3) = 3+1$ right now uses something that does not yet exist.
+
+Once addition is defined, $S(x) = x+1$ becomes a small **theorem** with a proof. It is not an axiom, and it is not a definition.
+
+If this feels pedantic, remember why we are here: the whole point of Chapter 7 is to see how little you need at the bottom. Sneaking in addition early hides exactly what we came to look at.
+</Warning>
+
+## $S$ is a function
+
+You met functions in Chapter 3. Look at $S$ in that light.
+
+**Domain:** the counting numbers.
+**Codomain:** the counting numbers — that is exactly what Axiom 6 says.
+
+Is it a function? Check the three conditions from module 3.1.
+
+**Nothing skipped?** Axiom 6 says every counting number has a successor. ✓
+
+**One answer each?** Yes — each number has exactly one next one. ✓
+
+**Answers land in the codomain?** Axiom 6 again. ✓
+
+So $S$ is a function from the counting numbers to the counting numbers. Chapter 3 was, among other things, preparation for this.
+
+## What is still missing
+
+The two axioms so far are not enough, and it is worth seeing why.
+
+Suppose there were only **one** number, and $S(0) = 0$. Then Axiom 5 holds ($0$ is a counting number) and Axiom 6 holds ($S(0) = 0$ is a counting number).
+
+Both axioms satisfied, and the "counting numbers" are just $\{0\}$! Counting goes $0, 0, 0, 0, \ldots$ forever.
+
+That is obviously not what we meant. Module 7.4 adds the two axioms that rule it out.
+
+<Aside>
+Notice how much is *not* being assumed. No addition, no multiplication, no order, no idea that the numbers are infinite. Just: a starting point, and a next-one machine.
+
+Everything else in arithmetic gets built from those, and watching it happen is what the rest of this chapter is for.
+</Aside>

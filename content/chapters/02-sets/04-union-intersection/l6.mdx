@@ -1,0 +1,121 @@
+---
+level: l6
+title: Union and intersection
+readingTimeMin: 8
+newTerms: ["union", "intersection", "disjoint"]
+anchorExample: "the quadrilateral family and loci of points"
+---
+
+import VennTwo from '@/components/VennTwo.astro';
+import Figure from '@/components/Figure.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every compass-and-straightedge construction you have done works the same way: draw two loci, and take the points they have in common. The centre of a circumscribed circle is where two perpendicular bisectors meet. That "where they meet" has a name.
+
+## The two operations
+
+$$
+S \cap T = \{\,x : x \in S \ \wedge\ x \in T\,\} \qquad \textbf{intersection}
+$$
+$$
+S \cup T = \{\,x : x \in S \ \vee\ x \in T\,\} \qquad \textbf{union}
+$$
+
+$\cap$ is **and**. $\cup$ is **or**. That is the entire definition, and every property in this chapter is a property of $\wedge$ and $\vee$ from Chapter 1, translated.
+
+<Figure alt="Two overlapping circles labelled S and T with only the overlapping lens shaded." caption="S ∩ T: the elements in both.">
+  <VennTwo labelS="S" labelT="T" shade={["both"]} />
+</Figure>
+
+<Figure alt="Two overlapping circles labelled S and T with the entire area of both circles shaded." caption="S ∪ T: the elements in at least one.">
+  <VennTwo labelS="S" labelT="T" shade={["S-only", "both", "T-only"]} />
+</Figure>
+
+<Warning title="Union is inclusive">
+Module 1.3 insisted that mathematical *or* includes the both case, and $\cup$ inherits that. Elements of $S \cap T$ are elements of $S \cup T$.
+
+The shaded lens in the second figure is not a mistake, and this is why $|S \cup T| = |S| + |T| - |S\cap T|$ rather than $|S| + |T|$: adding the sizes counts the overlap twice, so it must be subtracted back off.
+</Warning>
+
+## Constructions are intersections
+
+$$
+\text{Circumcentre of } \triangle ABC = \{Q : QA = QB\} \ \cap\ \{Q : QB = QC\}
+$$
+
+The two sets are perpendicular bisectors. Their intersection is the point equidistant from all three vertices — which is exactly why a circle can be drawn through $A$, $B$, and $C$.
+
+Written this way, the concurrency theorem stops being magic. A point in the first set satisfies $QA = QB$; a point in the second satisfies $QB=QC$; a point in the intersection satisfies both, hence $QA = QC$ by transitivity of equality. **The third bisector was never needed as a separate assumption** — it comes free with the $\wedge$.
+
+Compass-and-straightedge intersections everywhere:
+
+- **Angle bisector construction:** two arcs of equal radius intersect in a point on the bisector.
+- **Perpendicular through a point:** two arcs intersect in two points; the line through them is perpendicular.
+- **Incentre:** the intersection of the three angle bisectors.
+
+Each arc is a set of points, and each construction step is a $\cap$.
+
+## Disjoint sets
+
+$S$ and $T$ are **disjoint** when $S \cap T = \emptyset$.
+
+<Figure alt="Two separate non-overlapping circles labelled S and T." caption="Disjoint sets: nothing in common.">
+  <VennTwo labelS="S" labelT="T" disjoint={true} />
+</Figure>
+
+Parallel lines are disjoint sets of points. So are the interior and the exterior of a circle. And so is any classification that partitions: the acute, right, and obtuse triangles are pairwise disjoint, and their union is all triangles.
+
+That last pattern — pairwise disjoint pieces whose union is everything — is a **partition**, and it is what makes proof by cases (module 1.12) legitimate. Disjointness means no double counting; union-is-everything means no gaps.
+
+## The laws come free
+
+Because $\cap$ is $\wedge$ and $\cup$ is $\vee$, every logical equivalence from Chapter 1 becomes a set identity, with no new work:
+
+| Logic | Sets |
+|---|---|
+| $p \wedge q \equiv q \wedge p$ | $S \cap T = T \cap S$ |
+| $p \vee q \equiv q \vee p$ | $S \cup T = T \cup S$ |
+| $p \wedge p \equiv p$ | $S \cap S = S$ |
+| $p \vee (p \wedge q) \equiv p$ | $S \cup (S \cap T) = S$ |
+| associativity of $\wedge$ | $(S\cap T)\cap U = S \cap (T \cap U)$ |
+
+Verify one and you have verified the pattern. Module 2.6 shows how to write these proofs properly; the point here is that **you already proved them in Chapter 1** and are now reading the results in a second alphabet.
+
+## Ordering
+
+$$
+S \cap T \subseteq S \subseteq S \cup T.
+$$
+
+Intersecting can only shrink; uniting can only grow. In the classification chart:
+$$\{\text{rectangles}\} \cap \{\text{rhombi}\} = \{\text{squares}\}.$$
+
+A quadrilateral is a square exactly when it is both a rectangle and a rhombus — four right angles *and* four congruent sides. The chart's diamond shape, with squares at the bottom where two branches rejoin, is a picture of that intersection.
+
+Meanwhile $\{\text{rectangles}\} \cup \{\text{rhombi}\}$ is a set nobody has a name for, which is a reasonable indication of which operation classification actually uses.
+
+## Many sets at once
+
+$$
+\bigcap_{i} S_i = \{x : x \in S_i \text{ for every } i\}, \qquad \bigcup_{i} S_i = \{x : x \in S_i \text{ for at least one } i\}.
+$$
+
+The correspondence with quantifiers is exact: $\bigcap$ is a $\forall$, and $\bigcup$ is an $\exists$. That is module 1.11's De Morgan connection stated one more way, and module 2.7 will cash it in.
+
+<Aside>
+The pattern reaches beyond geometry.
+
+In probability, an **event** is a subset of the sample space. "$A$ and $B$ both occur" is $A \cap B$; "at least one occurs" is $A \cup B$; **mutually exclusive** is the probability word for *disjoint*. The addition rule
+$$P(A \cup B) = P(A) + P(B) - P(A\cap B)$$
+is the counting formula from the warning above, divided through by the size of the sample space.
+
+In number theory, the common divisors of $12$ and $18$ are $D_{12} \cap D_{18}$, and the greatest common divisor is the largest element of that intersection. Two subjects, one operation.
+</Aside>
+
+## Empty intersections carry information
+
+When a construction fails, the intersection is empty — and that is a fact worth stating rather than an error.
+
+Two circles with radii $2$ and $3$ whose centres are $9$ apart do not meet: their intersection is $\emptyset$. This is precisely why the triangle inequality appears when you construct a triangle from three given lengths. If the two arcs are disjoint, no triangle exists, and the set language lets you say so in the same sentence as the successful case.

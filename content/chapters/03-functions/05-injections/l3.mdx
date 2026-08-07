@@ -2,7 +2,7 @@
 level: l3
 title: One-to-one
 readingTimeMin: 5
-newTerms: ["one-to-one", "injective"]
+newTerms: ["one-to-one"]
 anchorExample: "letter to position in the alphabet"
 ---
 
@@ -12,18 +12,18 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Every function sends each input to exactly one output. But nothing stops two *different* inputs from landing on the same output. When that never happens, the function is special.
+Every machine sends each input to exactly one output. But nothing stops two *different* inputs from landing on the same output. When that never happens, the machine is special.
 
-A function is **one-to-one** (also called **injective**) when different inputs always give different outputs.
+A machine is **one-to-one** when different inputs always give different outputs.
 
 <Figure alt="Three elements on the left, each arrow landing on a different element on the right." caption="One-to-one: no two arrows land together.">
-  <ArrowDiagram labelLeft="S" labelRight="T"
+  <ArrowDiagram labelLeft="in" labelRight="out"
     left={["a", "b", "c"]} right={["1", "2", "3"]}
     edges={[[0,1],[1,0],[2,2]]} />
 </Figure>
 
-<Figure alt="Three elements on the left; two of the arrows land on the same element on the right." caption="Not one-to-one: a and b collide.">
-  <ArrowDiagram labelLeft="S" labelRight="T"
+<Figure alt="Three elements on the left; two of the arrows land on the same element on the right." caption="Not one-to-one: two arrows collide.">
+  <ArrowDiagram labelLeft="in" labelRight="out"
     left={["a", "b", "c"]} right={["1", "2", "3"]}
     edges={[[0,1],[1,1],[2,0]]} />
 </Figure>
@@ -32,52 +32,56 @@ A function is **one-to-one** (also called **injective**) when different inputs a
 
 The natural way to say it is forwards:
 
-> if $s_1 \neq s_2$, then $f(s_1) \neq f(s_2)$.
+> if two inputs are different, then their outputs are different.
 
-But that is awkward to *use*, because it starts from two things being different, and "different" gives you nothing to compute with.
+But that is awkward to *use*, because it starts from two things being different, and "different" gives you nothing to work with.
 
-So flip it around (module 1.7). The contrapositive is:
+So flip it around (module 1.7):
 
-> if $f(s_1) = f(s_2)$, then $s_1 = s_2$.
+> if two inputs give the same output, then they were the same input all along.
 
-Same statement, and this one is usable, because now you start from an *equation*. This is the form you should always reach for in a proof, and the form you should memorise.
+Same statement, and this one is usable, because now you start from things being *equal*. This is the form to reach for in a proof, and the form worth memorising.
 
 ## Checking examples
 
-**The alphabet function** — letter to position. Different letters have different positions, so nothing collides. One-to-one. ✓
+**The alphabet machine** — put in a letter, get its position. Different letters sit at different places, so nothing collides. One-to-one. ✓
 
-**The squaring function** — $x \to x \times x$. Try $3$ and $-3$:
-$$
-3 \times 3 = 9, \qquad (-3) \times (-3) = 9.
-$$
-Two different inputs, one output. **Not** one-to-one. And notice how little work that took: one collision is enough to settle it, because "one-to-one" is a *for all* claim, and one bad apple destroys it (module 1.11).
+**The last-digit machine** — put in a counting number, get its last digit. Put in $27$: you get $7$. Put in $17$: you also get $7$.
 
-**Doubling** — $x \to 2 \times x$. Is it one-to-one?
+Two different inputs, one output. **Not** one-to-one. ✗
+
+And notice how little work that took. One collision settles it, because "one-to-one" is a *for all* claim, and one bad apple destroys it (module 1.11).
+
+**The doubling machine** — put in a counting number, get double. Is it one-to-one?
 
 <Proof>
-Suppose two numbers $a$ and $b$ have the same double: $2 \times a = 2 \times b$.
+Take any two counting numbers whose doubles came out the same, and follow them.
 
-Divide both sides by $2$. Then $a = b$.
+If their doubles are the same, then halving those doubles gives the same answer too.
 
-So the only way to get the same answer is to start with the same number. Doubling is one-to-one.
+But halving a double gets you back to the number you started with.
+
+So the two numbers you started with are the same number.
+
+Different inputs could never have produced the same double. So doubling is one-to-one.
 </Proof>
 
-Look at the shape of that proof. It started from $f(a) = f(b)$ and ended at $a = b$ — exactly the flipped-around form. That is what every injectivity proof looks like.
+Look at the shape of that proof. It started from *the outputs are equal* and ended at *the inputs are equal* — exactly the flipped-around form. Every one-to-one proof looks like this.
 
 ## The picture test
 
-For a function you can graph, there is a quick check: draw horizontal lines across the graph. If any horizontal line hits the graph twice, two inputs share an output, so the function is not one-to-one.
-
-For $y = x \times x$, the horizontal line at height $9$ crosses twice — at $3$ and at $-3$. There is your collision, drawn.
+For a machine you can graph, there is a quick check: draw **horizontal** lines across the graph. If any horizontal line hits the graph twice, then two inputs share an output, so the machine is not one-to-one.
 
 <Warning title="Two different tests, two different lines">
-The **vertical** line test asks whether something is a function at all (module 3.1): one output per input.
+The **vertical** line test asks whether something is a machine at all (module 3.1): one output per input.
 
-The **horizontal** line test asks whether a function is one-to-one: at most one input per output.
+The **horizontal** line test asks whether a machine is one-to-one: at most one input per output.
 
 Different lines, different questions. Do not mix them up.
 </Warning>
 
 <Aside>
-Being one-to-one is exactly what module 3.3 called "every pre-image has at most one element." Trace back from any output and you find one thing, or nothing — never a crowd. That is why one-to-one functions are the ones you have a hope of undoing, which is where module 3.9 is heading.
+Being one-to-one is exactly what module 3.3 called "tracing back never finds a crowd." Follow the arrows backwards from any output and you find one thing, or nothing — never two.
+
+That is why one-to-one machines are the ones you have a hope of undoing, which is where module 3.9 is heading.
 </Aside>

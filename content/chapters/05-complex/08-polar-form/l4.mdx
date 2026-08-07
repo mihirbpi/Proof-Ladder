@@ -1,0 +1,101 @@
+---
+level: l4
+title: Polar form
+readingTimeMin: 6
+newTerms: ["polar form", "radians", "argument"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Radians
+
+Angles in this chapter are measured in **radians**: the angle subtended at the centre of a circle by an arc of length equal to the radius. A full turn is $2\pi$ radians.
+
+| Turn | Degrees | Radians |
+|---|---|---|
+| full | $360°$ | $2\pi$ |
+| half | $180°$ | $\pi$ |
+| quarter | $90°$ | $\pi/2$ |
+| eighth | $45°$ | $\pi/4$ |
+
+Radians are not a convention adopted for elegance: Euler's formula, the derivative $\tfrac{d}{d\theta}\sin\theta = \cos\theta$, and the series for $\sin$ and $\cos$ are all *false* in degrees. Degrees are the arbitrary unit; radians are the natural one.
+
+## Polar form
+
+Every $z \neq 0$ can be written
+$$
+z = re^{i\theta}, \qquad r = |z| > 0,
+$$
+where $\theta$ is an **argument** of $z$ — the counterclockwise angle from the positive real axis.
+
+By Euler's formula (module 5.7),
+$$
+re^{i\theta} = r\cos\theta + i\,r\sin\theta,
+$$
+so the conversions are
+$$
+a = r\cos\theta, \quad b = r\sin\theta; \qquad r = \sqrt{a^2+b^2}, \quad \tan\theta = \frac{b}{a}.
+$$
+
+<Figure alt="A dashed circle of radius 2 with a vector from the origin to the point 2i." caption="$2e^{i\pi/2} = 2i$.">
+  <ComplexPlane circle={2} vectors={[{re: 0, im: 2}]} points={[{re: 0, im: 2, label: "2e^{iπ/2}"}]} range={3} />
+</Figure>
+
+<Warning title="tan θ = b/a does not determine θ">
+$\tan$ has period $\pi$, so it cannot distinguish $z$ from $-z$. For $1+i$ and $-1-i$, both give $\tan\theta = 1$, yet the arguments are $\pi/4$ and $5\pi/4$.
+
+Always check which **quadrant** $z$ is in before accepting the output of $\arctan$. Calculators and programming languages provide `atan2(b, a)` for exactly this reason.
+
+Also: $z = 0$ has modulus $0$ and **no** argument. Every angle points at it, so none is distinguished. The origin is a genuine exception to polar form.
+</Warning>
+
+## Non-uniqueness
+
+$$
+re^{i\theta} = re^{i(\theta + 2\pi k)} \quad\text{for every } k \in \mathbb{Z},
+$$
+since $e^{2\pi i k} = 1$. So the argument is determined only **modulo $2\pi$**, and $\arg(z)$ denotes a set of values rather than a single number.
+
+The **principal argument** $\operatorname{Arg}(z) \in (-\pi, \pi]$ is the standard choice, and choosing it is what makes $\arg$ a function (module 3.1) — but the choice creates a discontinuity along the negative real axis, where the argument jumps from near $\pi$ to near $-\pi$. That jump is not an artefact of a bad choice; no continuous choice exists on all of $\mathbb{C}\setminus\{0\}$.
+
+Compare with Cartesian form $a + bi$, which is unique. The two representations trade uniqueness for convenience under multiplication.
+
+## Worked conversions
+
+**$1 + i$ to polar.** $r = \sqrt{1+1} = \sqrt2$. The point is in the first quadrant with equal coordinates, so $\theta = \pi/4$. Hence $1+i = \sqrt2 \,e^{i\pi/4}$.
+
+**$3e^{i\pi/3}$ to Cartesian.** $\cos(\pi/3) = \tfrac12$ and $\sin(\pi/3) = \tfrac{\sqrt3}{2}$, so
+$$
+3e^{i\pi/3} = 3\left(\tfrac12 + \tfrac{\sqrt3}{2}i\right) = \tfrac32 + \tfrac{3\sqrt3}{2}i.
+$$
+
+**$-2$ to polar.** $r = 2$, and $-2$ points along the negative real axis, so $\theta = \pi$. Hence $-2 = 2e^{i\pi}$.
+
+## Special values
+
+$$
+1 = e^{0}, \qquad i = e^{i\pi/2}, \qquad -1 = e^{i\pi}, \qquad -i = e^{i3\pi/2} = e^{-i\pi/2}.
+$$
+
+The second of these, rearranged, is **Euler's identity**:
+$$
+e^{i\pi} + 1 = 0.
+$$
+
+Five constants — $e$, $i$, $\pi$, $1$, $0$ — and three operations, in one line. Its content is that half a turn is multiplication by $-1$; its fame is that $e$ (from growth), $\pi$ (from circles), and $i$ (from algebra) had no business meeting.
+
+## Why polar form exists
+
+Cartesian form makes addition trivial and multiplication messy. Polar form does the reverse:
+$$
+r_1e^{i\theta_1} \cdot r_2e^{i\theta_2} = r_1r_2\,e^{i(\theta_1+\theta_2)}.
+$$
+Multiply the moduli, add the arguments. Module 5.9 proves this and extracts the consequences, which include most of trigonometry.
+
+<Aside>
+Because arguments only add modulo $2\pi$, the complex logarithm $\log z = \ln|z| + i\arg z$ is multivalued — it has infinitely many values differing by $2\pi i$. Choosing one requires a *branch cut*, a curve from $0$ to $\infty$ that the function is not allowed to cross. This is not a defect of notation: it is the reason $\sqrt{ab} = \sqrt a\sqrt b$ fails on $\mathbb{C}$ (module 5.3), and the honest resolution is Riemann surfaces.
+</Aside>

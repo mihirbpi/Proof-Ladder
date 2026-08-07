@@ -1,0 +1,126 @@
+---
+level: l6
+title: The three steps
+readingTimeMin: 8
+newTerms: ["base case", "inductive step", "inductive hypothesis"]
+anchorExample: "the polygon angle-sum theorem"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every induction proof has the same three parts. Writing them in the same order every time is not ceremony — it is what makes the proof checkable.
+
+## The template
+
+> **1. State the claim.** Define $A(n)$ precisely and say where it starts.
+>
+> **2. Base case.** Prove $A(n_0)$.
+>
+> **3. Inductive step.** Let $k\geq n_0$ and assume $A(k)$ — the **inductive hypothesis**. Prove $A(k+1)$.
+>
+> **Conclusion.** By induction, $A(n)$ holds for all $n \geq n_0$.
+
+## Step 1: state the claim
+
+Write $A(n)$ as a **statement**, not an expression.
+
+✗ $A(n) = 1+3+5+\cdots+(2n-1)$
+
+✓ $A(n)$: *the sum $1+3+5+\cdots+(2n-1)$ equals $n^2$.*
+
+The first is a number. A number is not true or false, so there is nothing to prove — and a proof cannot even be started until the claim has a truth value.
+
+Then say where it starts. $n_0 = 3$ for the polygon theorem; $n_0=1$ for the sum above; $n_0=0$ sometimes. **The base case must be the first case you actually claim**, and getting this wrong makes the whole chain start in the wrong place.
+
+## Step 2: base case
+
+Usually a short computation, and it must not be skipped.
+
+Consider $A(n)$: *$n = n+1$.* The inductive step is easy — assume $k = k+1$, add $1$ to both sides, get $k+1 = k+2$, which is $A(k+1)$. The chain is perfect.
+
+And every case is false, because no base case holds. **Condition 2 without condition 1 proves nothing at all**, exactly as the dominoes need a push.
+
+<Warning title="Sometimes you need more than one base case">
+If the inductive step reaches back two cases — deriving $A(k+1)$ from both $A(k)$ and $A(k-1)$ — then two base cases are required, or the chain has no footing.
+
+The Fibonacci numbers are the standard example: $F_{n+1} = F_n + F_{n-1}$, so proofs about them typically need $A(1)$ and $A(2)$ established separately.
+
+The rule: **verify as many base cases as the step consumes.** Count what the step reaches back for, and prove that many.
+</Warning>
+
+## Step 3: inductive step
+
+The hardest part to state correctly, and it is where the objection arises.
+
+> **"Isn't assuming $A(k)$ assuming what you're proving?"**
+
+No, and the reason is module 1.5. You are proving a **conditional**:
+$$\text{for every } k\geq n_0:\quad A(k)\Rightarrow A(k+1).$$
+
+Proving a conditional means assuming the hypothesis and deriving the conclusion (module 1.6). You are not claiming $A(k)$ is true; you are claiming that *if* it is, $A(k+1)$ follows.
+
+Compare with your two-column proofs. *"Given: $\overline{AB}\cong\overline{CD}$"* does not assert that the segments are congruent — it opens a conditional whose hypothesis is that they are. The inductive hypothesis is exactly the same kind of assumption.
+
+And note the $k$ is **arbitrary**, so one argument establishes every link at once. That is module 1.12's *take any one and follow it*, applied to infinitely many implications.
+
+## A complete example
+
+> **Proposition.** For every integer $n\geq1$: $1+2+3+\cdots+n = \dfrac{n(n+1)}{2}$.
+
+<Proof>
+Let $A(n)$ be the statement $1+2+\cdots+n = \frac{n(n+1)}{2}$, for $n \geq 1$.
+
+**Base case.** $A(1)$: the left side is $1$, and the right side is $\frac{1\cdot2}{2}=1$. ✓
+
+**Inductive step.** Let $k\geq1$ and assume $A(k)$, that is,
+$$1+2+\cdots+k = \frac{k(k+1)}{2}.$$
+
+Consider the sum for $k+1$. **Starting from its left side:**
+$$
+\begin{aligned}
+1+2+\cdots+k+(k+1) &= \underbrace{\big(1+2+\cdots+k\big)}_{\text{apply } A(k)} + (k+1)\\
+&= \frac{k(k+1)}{2}+(k+1)\\
+&= \frac{k(k+1) + 2(k+1)}{2}\\
+&= \frac{(k+1)(k+2)}{2},
+\end{aligned}
+$$
+which is the right side of $A(k+1)$.
+
+By induction, $A(n)$ holds for every integer $n\geq1$.
+</Proof>
+
+Three features to imitate:
+
+- The inductive hypothesis was **used**, and the point of use is marked. An inductive step that never invokes $A(k)$ is not an induction proof, and it is a sign you have proved something else.
+- The work started from the **left side of $A(k+1)$** and ran forwards.
+- The final expression was massaged into the exact form $A(k+1)$ claims, so the reader can see the target was hit.
+
+<Warning title="Do not start from A(k+1) and work backwards">
+The tempting move is to write down $A(k+1)$ as an equation, manipulate both sides, and stop when something true appears.
+
+That is module 1.6's error, and it is invalid for the same reason: you assumed what you were proving. The steps might not reverse — squaring, multiplying by something possibly zero — and even when they do, the reader cannot check a proof written backwards.
+
+Backwards work is **scratch**. It belongs in your Discussion, and the written proof runs forwards from the left side.
+</Warning>
+
+## Why induction is valid
+
+Induction is not obvious, and it can be derived from a property that is.
+
+> **Well-ordering.** Every non-empty set of non-negative integers has a least element.
+
+Suppose $A(n_0)$ holds and each $A(k)$ implies $A(k+1)$, yet some $A(n)$ fails. Let $F$ be the set of $n\geq n_0$ for which $A(n)$ fails; by assumption $F$ is non-empty, so it has a **least** element $m$.
+
+Now $m\neq n_0$, since $A(n_0)$ holds. So $m-1\geq n_0$, and $m-1\notin F$ by minimality — meaning $A(m-1)$ is true. But the inductive step then gives $A(m)$, contradicting $m\in F$.
+
+Hence no such $F$ exists. *Suppose not*, from module 2.5, applied to justify a proof technique.
+
+<Aside>
+Well-ordering and induction are equivalent — each can be derived from the other — and neither can be proved from nothing. Chapter 7 takes induction as an **axiom** of the counting numbers.
+
+That is the same status as the Parallel Postulate in your geometry course: an assumption, adopted because the mathematics you want requires it, and not derivable from the others.
+
+Note that well-ordering fails badly elsewhere. The positive rationals have no least element — for any candidate $q$, the number $q/2$ is smaller and still positive. That is the same structural fact as module 4.6's density, and it is precisely why induction has no purchase on $\mathbb{Q}$.
+</Aside>

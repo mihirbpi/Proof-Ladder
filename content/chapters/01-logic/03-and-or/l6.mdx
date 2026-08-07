@@ -1,0 +1,142 @@
+---
+level: l6
+title: And, or
+readingTimeMin: 8
+newTerms: ["conjunction", "disjunction", "contradiction", "tautology", "logically equivalent"]
+anchorExample: "vertical angles and the base-angle theorem"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Open your geometry notes at any two-column proof and look at the *statement* column. Almost none of the lines are simple. They say things like "$\overline{AB} \cong \overline{CD}$ **and** $\angle A \cong \angle C$", or "the lines are parallel **or** they meet at exactly one point."
+
+Compound statements are what proofs are actually made of. This module fixes what the two joining words mean.
+
+Throughout, $p$ and $q$ stand for statements.
+
+## Conjunction
+
+The **conjunction** $p \wedge q$ — "$p$ and $q$" — is true exactly when both are true.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∧ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∧ q": true  },
+    { p: true,  q: false, "p ∧ q": false },
+    { p: false, q: true,  "p ∧ q": false },
+    { p: false, q: false, "p ∧ q": false }
+  ]}
+/>
+
+One true row out of four. Conjunction is demanding, and geometry uses that constantly: the SAS criterion requires side, *and* included angle, *and* side. Two out of three earns nothing.
+
+## Disjunction
+
+The **disjunction** $p \vee q$ — "$p$ or $q$" — is true exactly when at least one is true.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∨ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∨ q": true  },
+    { p: true,  q: false, "p ∨ q": true  },
+    { p: false, q: true,  "p ∨ q": true  },
+    { p: false, q: false, "p ∨ q": false }
+  ]}
+/>
+
+Three true rows — and look hard at row 1. When *both* hold, $p \vee q$ is still true.
+
+<Warning title="Mathematical or is inclusive">
+In conversation, "or" often means one but not both — "soup or salad." Mathematics never does.
+
+The convention is not arbitrary. Consider a statement you use in coordinate proofs: for any real $x$, either $x \geq 0$ or $x \leq 0$. That is true for every $x$ — including $x = 0$, where **both** hold. Under an exclusive reading it would be false at exactly one point, and every theorem quoting it would need a special case.
+
+Exclusive or exists, written $\oplus$, and it equals $(p \vee q)\wedge\neg(p \wedge q)$. Mathematics uses it rarely and always names it.
+</Warning>
+
+## Logical equivalence
+
+Two statements are **logically equivalent**, written $\equiv$, when their truth-table columns agree in **every** row.
+
+This is the notion that licenses substitution: if $\varphi \equiv \psi$, you may replace one with the other anywhere in a proof and the proof stays valid.
+
+Some quick ones, each checkable in four rows:
+$$
+p \wedge q \equiv q \wedge p, \qquad \neg\neg p \equiv p, \qquad p \vee (p \wedge q) \equiv p.
+$$
+
+The last is the *absorption law*. Verify it — it is less obvious than the others, and it reappears for sets in Chapter 2.
+
+## Contradictions and tautologies
+
+Some columns never change.
+
+<TruthTable
+  variables={["p"]}
+  expressions={["¬p", "p ∧ ¬p", "p ∨ ¬p"]}
+  rows={[
+    { p: true,  "¬p": false, "p ∧ ¬p": false, "p ∨ ¬p": true },
+    { p: false, "¬p": true,  "p ∧ ¬p": false, "p ∨ ¬p": true }
+  ]}
+/>
+
+A statement false in every row is a **contradiction**; true in every row, a **tautology**.
+
+Neither depends on what $p$ says. "$\triangle ABC$ is isosceles and $\triangle ABC$ is not isosceles" is false, and so is the same sentence about any figure. The **shape** decides, not the geometry — which is the first sign that logic is a subject of its own.
+
+Both have jobs ahead of them:
+
+- $p \wedge \neg p$ is the engine of **proof by contradiction** (module 2.5). Your geometry course probably calls it *indirect proof*: assume the opposite of what you want, derive an impossibility, conclude.
+- $p \vee \neg p$ — the law of the excluded middle — licenses **proof by cases**. Every time a proof says "either the point is inside the triangle or it is not," it is quoting this tautology, and it then owes an argument in each branch.
+
+## Where the two-column format hides this
+
+A two-column proof records one statement per line with one reason beside it. That format quietly assumes each line is a *single* assertion — but lines like
+
+> $\overline{AB}\cong\overline{DE}$ and $\angle B \cong \angle E$ and $\overline{BC}\cong\overline{EF}$ — *Given*
+
+are conjunctions, and the next line applies SAS to all three at once. The format works, but it hides the logical structure inside the punctuation.
+
+Paragraph proofs make the structure visible, which is one reason mathematicians write them. Module 1.6 takes that up properly.
+
+<Aside>
+Tautologies are exactly the valid inference patterns. That $(p \wedge q)\Rightarrow p$ is a tautology *is* the statement that "from $p$ and $q$, infer $p$" is a sound rule — which is what you do every time you extract one piece of a *Given*.
+
+Every rule in the reason column of a two-column proof is a tautology or a theorem in disguise.
+</Aside>
+
+## Precedence
+
+Unlike arithmetic, the connectives have only a partial convention: $\neg$ binds tightest, then $\wedge$, then $\vee$. So
+
+$$\neg p \wedge q \quad\text{means}\quad (\neg p)\wedge q, \quad\text{not}\quad \neg(p\wedge q).$$
+
+The distinction is not academic. The first says *"$p$ fails and $q$ holds"*; the second says *"they do not both hold"* — and row 4 of a truth table separates them, since with $p$ and $q$ both false the first is F and the second is T.
+
+**When a negation is meant to govern a compound, the parentheses are required.** The same goes for mixing $\wedge$ and $\vee$: most authors parenthesise rather than rely on the convention, and you should too.
+
+## Translating your textbook
+
+The connectives are usually buried in ordinary English, and part of reading a theorem carefully is digging them out.
+
+| Book's phrasing | Structure |
+|---|---|
+| "a quadrilateral with four congruent sides and four right angles" | $\wedge$ |
+| "the lines are parallel or they intersect at exactly one point" | $\vee$ |
+| "an angle that is neither acute nor obtuse" | $\neg p \wedge \neg q$ |
+| "at least one pair of opposite sides is parallel" | $\vee$ |
+| "both pairs of opposite sides are parallel" | $\wedge$ |
+
+The distinction in the last two rows is the entire difference between a trapezoid and a parallelogram, and it is a difference between $\vee$ and $\wedge$.
+
+Notice the third row too: *neither–nor* is a conjunction of negations, and module 1.4 shows it equals the negation of a disjunction. Ordinary English encodes De Morgan's law in a single word.
+
+## Looking ahead
+
+Chapter 2 defines $S \cap T$ by "$x \in S$ **and** $x \in T$", and $S \cup T$ by "$x \in S$ **or** $x \in T$." Every fact in this module therefore becomes a fact about sets: commutativity of $\wedge$ becomes commutativity of $\cap$, and the absorption law above becomes $S \cup (S \cap T) = S$.
+
+Nothing new will be discovered there. A translation will be performed.

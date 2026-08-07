@@ -6,7 +6,7 @@
   "titles": {
     "l1": "Whole piles stay whole",
     "l2": "Closed",
-    "l3": "What the integers can do",
+    "l3": "What the counting numbers can do",
     "l4": "What the integers can do",
     "l5": "What the integers can do",
     "l6": "What the integers can do",
@@ -17,7 +17,7 @@
   "kernels": {
     "l1": "Adding whole piles keeps them whole. Sharing them out does not.",
     "l2": "Adding and multiplying whole numbers always gives you back a whole number. Dividing can throw you out of the whole numbers altogether.",
-    "l3": "The integers are closed under adding, taking the opposite, and multiplying — those operations never take you outside. Dividing does, so the integers are missing something.",
+    "l3": "The counting numbers are closed under adding and multiplying — those never take you outside. Subtracting and dividing can, and those two gaps are where new numbers come from.",
     "l4": "ℤ is closed under addition, additive inverses, and multiplication, and satisfies the distributive law. It is not closed under multiplicative inverses: only 1 and −1 have integer reciprocals.",
     "l5": "Closure under +, −, and × plus distributivity makes ℤ a ring; failure of multiplicative inverses is what stops it being a field.",
     "l6": "ℤ is a commutative ring with identity; the same axioms govern polynomials and square matrices, which is why the word ring earns its keep.",

@@ -1,0 +1,138 @@
+---
+level: l6
+title: De Morgan's laws
+readingTimeMin: 8
+newTerms: ["logically equivalent", "De Morgan's laws"]
+anchorExample: "vertical angles and the base-angle theorem"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Indirect proof — the kind your geometry course runs when a direct argument stalls — begins by assuming the *opposite* of what you want. When what you want is a compound statement, negating it correctly is not obvious, and getting it wrong wastes the whole proof.
+
+This module gives the rule.
+
+## The laws
+
+$$
+\neg(p \wedge q) \equiv \neg p \vee \neg q
+$$
+$$
+\neg(p \vee q) \equiv \neg p \wedge \neg q
+$$
+
+In one sentence: **a negation distributes over a connective, but swaps $\wedge$ and $\vee$ as it goes.**
+
+## Verification
+
+Recall that $\varphi\equiv\psi$ means the columns agree in every row (module 1.3). Four rows exhaust the possibilities, so a matching table is a complete proof — not evidence, a proof.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["¬(p ∧ q)", "¬p ∨ ¬q", "¬(p ∨ q)", "¬p ∧ ¬q"]}
+  rows={[
+    { p: true,  q: true,  "¬(p ∧ q)": false, "¬p ∨ ¬q": false, "¬(p ∨ q)": false, "¬p ∧ ¬q": false },
+    { p: true,  q: false, "¬(p ∧ q)": true,  "¬p ∨ ¬q": true,  "¬(p ∨ q)": false, "¬p ∧ ¬q": false },
+    { p: false, q: true,  "¬(p ∧ q)": true,  "¬p ∨ ¬q": true,  "¬(p ∨ q)": false, "¬p ∧ ¬q": false },
+    { p: false, q: false, "¬(p ∧ q)": true,  "¬p ∨ ¬q": true,  "¬(p ∨ q)": true,  "¬p ∧ ¬q": true  }
+  ]}
+/>
+
+Columns 1 and 2 agree; columns 3 and 4 agree.
+
+## The argument in words
+
+The table proves the laws but does not explain them. Here is the version that survives when the laws reappear for sets and quantifiers.
+
+Ask what it takes to *break* each kind of claim.
+
+**To break "both hold"**, you need only knock down one piece. One failure suffices — and "at least one fails" is $\vee$.
+
+**To break "at least one holds"**, one failure is not enough; the other piece might still carry the claim. You must knock down every piece — and "all fail" is $\wedge$.
+
+Breaking is easy where holding is hard. The swap is the bookkeeping of that trade.
+
+## Where this bites in geometry
+
+Take a theorem with a compound hypothesis — congruence criteria all have one:
+
+> If $\overline{AB}\cong\overline{DE}$ **and** $\angle B \cong \angle E$ **and** $\overline{BC}\cong\overline{EF}$, then $\triangle ABC \cong \triangle DEF$.
+
+Now suppose you want the contrapositive (module 1.7), because you know the triangles are *not* congruent and want to conclude something about the parts.
+
+Negating the hypothesis correctly gives:
+
+> $\overline{AB}\not\cong\overline{DE}$ **or** $\angle B\not\cong\angle E$ **or** $\overline{BC}\not\cong\overline{EF}$.
+
+**At least one part fails, and you do not get to say which.** That is a much weaker — and much more useful — conclusion than "all three fail," which is what a careless negation produces and which is simply not implied.
+
+<Warning title="Do not keep the connective">
+$$\neg(p \wedge q) \;\not\equiv\; \neg p \wedge \neg q.$$
+
+Check row 2 of the table: $p$ true, $q$ false. The left side is T, the right is F.
+
+Keeping the connective makes the negation **too strong**. Applied to the triangle example, it would claim all three correspondences fail when only one has to — and you would spend the proof trying to establish something the hypothesis never gave you.
+
+A second trap is scope. Since $\neg$ binds more tightly than $\wedge$, the unparenthesised $\neg p \wedge q$ means $(\neg p)\wedge q$, **not** $\neg(p\wedge q)$. When a negation is meant to govern a whole compound, the parentheses are not optional.
+</Warning>
+
+## The *or* in a hypothesis means cases
+
+De Morgan does more than restate a claim — it tells you what shape the proof will take.
+
+An *or* in a **hypothesis** forces proof by cases (module 1.12): you must handle each disjunct, because you do not get to choose which one holds. So when contraposing a conjunctive hypothesis, you can predict in advance that the resulting proof will have branches.
+
+That is exactly why indirect proofs in geometry so often split: *"Case 1: the lines meet. Case 2: the lines are parallel."*
+
+## Negating a theorem statement
+
+Here is the procedure, applied to something from your book.
+
+> **Theorem.** If a quadrilateral is a parallelogram, then its opposite sides are congruent **and** its opposite angles are congruent.
+
+To run an indirect proof of this you negate the conclusion. The conclusion is a conjunction, so its negation is a disjunction:
+
+> its opposite sides are **not** congruent, **or** its opposite angles are not congruent.
+
+**At least one fails, and you are not told which.** So the indirect proof will have two cases, and you must handle both — one where the sides fail, one where the angles do.
+
+A student who negates carelessly writes *"neither pair is congruent"* and then proves something about that. It is a true-sounding sentence, it is strictly stronger than the negation, and a contradiction derived from it establishes nothing about the theorem.
+
+**The negation is the only assumption you are entitled to.** Anything stronger is smuggling in a hypothesis.
+
+## Nested compounds
+
+Apply the laws one layer at a time, from the outside in.
+
+$$
+\begin{aligned}
+\neg\big(p \wedge (q\vee r)\big) &\equiv \neg p \vee \neg(q\vee r)\\
+&\equiv \neg p \vee (\neg q \wedge \neg r).
+\end{aligned}
+$$
+
+Each pass moves the $\neg$ one level deeper and swaps one connective. Nothing is guessed, and the parentheses track which connective the negation is currently passing.
+
+Reading the result: *the conjunction fails when $p$ fails, or when both $q$ and $r$ fail.* Check it against the original and it is plainly right — but it is not something most people produce correctly without the rules.
+
+## Duality
+
+The two laws are not independent. Substituting $\neg p, \neg q$ for $p, q$ in the first and using $\neg\neg p \equiv p$:
+$$
+\neg(\neg p \wedge \neg q) \equiv p \vee q,
+$$
+and negating both sides gives the second law.
+
+So negation is an operation that **exchanges** $\wedge$ and $\vee$. Each law is the other seen in a mirror, and proving one proves both.
+
+<Aside>
+The laws will appear twice more in this course, in near-identical form.
+
+Module 1.11 gives them for quantifiers: $\neg\forall$ becomes $\exists\neg$, and $\neg\exists$ becomes $\forall\neg$. That is the same law with infinitely many terms, since "for all" is a giant *and* and "there exists" a giant *or*.
+
+Module 2.7 gives them for sets: $\overline{S \cap T} = \overline S \cup \overline T$, with complement playing $\neg$.
+
+One law, three costumes. Learning to expect the swap is learning to predict the shape of an argument before writing it.
+</Aside>

@@ -1,0 +1,155 @@
+---
+level: l6
+title: Multiplication is rotation
+readingTimeMin: 9
+newTerms: ["De Moivre's formula"]
+anchorExample: "rotations of the coordinate plane"
+---
+
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Figure from '@/components/Figure.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+r_1e^{i\theta_1}\cdot r_2e^{i\theta_2} = (r_1r_2)\,e^{i(\theta_1+\theta_2)}.
+$$
+
+**Multiply the distances, add the angles.**
+
+That is the whole chapter's payoff, and it says something about your geometry course: the two transformations you study separately — dilation and rotation — are a single complex multiplication.
+
+## Why it holds
+
+Exponents add: $e^{x}e^{y} = e^{x+y}$, and the rule survives with imaginary exponents.
+
+Modulus was proved multiplicative in module 5.6. What is new is the angle claim, and equating the two forms of the product gives it directly.
+
+<Figure alt="Two points on a coordinate plane joined to the origin, together with their product further out and at a larger angle." caption="Multiplying by 2e^{iπ/3}: the point doubles its distance and turns 60° counterclockwise.">
+  <ComplexPlane
+    points={[
+      { re: 3, im: 0, label: "z" },
+      { re: 3, im: 5.196, label: "wz" }
+    ]}
+    vectors={[{ re: 3, im: 0 }, { re: 3, im: 5.196 }]}
+    range={7}
+  />
+</Figure>
+
+## The geometric statement
+
+> **Theorem.** Multiplication by a fixed non-zero $w$ is the transformation of the plane that rotates by $\arg w$ about the origin and dilates by $|w|$.
+
+Three special cases you already know:
+
+- $|w|=1$: a **pure rotation**. Multiplying by $e^{i\theta}$ turns the plane through $\theta$ and changes no distance.
+- $w$ real and positive: a **pure dilation**, since $\arg w = 0$.
+- $w = i$: a $90°$ rotation, since $|i|=1$ and $\arg i = \pi/2$ — module 5.5's observation, now a special case.
+
+And $w = -1$ gives a $180°$ rotation, so $i^2 = -1$ is the statement that two quarter turns make a half turn (module 5.1). Every fact about $i$ in this chapter has been the same fact about rotation.
+
+<Warning title="Rotation about the origin only">
+$z\mapsto wz$ rotates about $0$. To rotate about a different centre $c$, translate, rotate, translate back:
+
+$$z \mapsto w(z - c) + c.$$
+
+That is a composition of three transformations, in the order module 3.7 requires — and it is the general form of a rotation in the plane.
+
+Your course does the same thing when it moves a figure to the origin before applying a transformation rule. The complex version is one line where the matrix version needs three.
+</Warning>
+
+## Deriving the double-angle formulas
+
+Here is where the chapter pays a debt to a course you have already taken.
+
+<Discussion>
+  <div slot="know">$e^{i\theta} = \cos\theta+i\sin\theta$ (module 5.7), and equal complex numbers have equal real and imaginary parts (module 5.2).</div>
+  <div slot="want">Formulas for $\cos2\theta$ and $\sin2\theta$.</div>
+  <div slot="how">Compute $e^{2i\theta}$ two ways — as $e^{i(2\theta)}$ and as $(e^{i\theta})^2$ — and equate the parts. Two identities from one line of algebra.</div>
+</Discussion>
+
+<Proof>
+By Euler's formula applied to the angle $2\theta$:
+$$e^{i(2\theta)} = \cos2\theta + i\sin2\theta.$$
+
+By the exponent rule and Euler's formula applied to $\theta$:
+$$\left(e^{i\theta}\right)^2 = (\cos\theta+i\sin\theta)^2 = \cos^2\theta + 2i\cos\theta\sin\theta + i^2\sin^2\theta$$
+$$= \left(\cos^2\theta - \sin^2\theta\right) + i\left(2\cos\theta\sin\theta\right).$$
+
+These are equal, so their real parts and imaginary parts agree:
+$$\cos2\theta = \cos^2\theta-\sin^2\theta, \qquad \sin2\theta = 2\sin\theta\cos\theta.$$
+</Proof>
+
+**Two identities, from expanding a square.** You memorised these in trigonometry, and here they fall out of $i^2 = -1$ and the rule that equal complex numbers have equal parts.
+
+The same technique gives the angle-addition formulas. Expand $e^{i(\alpha+\beta)} = e^{i\alpha}e^{i\beta}$:
+
+$$\cos(\alpha+\beta) = \cos\alpha\cos\beta - \sin\alpha\sin\beta$$
+$$\sin(\alpha+\beta) = \sin\alpha\cos\beta+\cos\alpha\sin\beta$$
+
+Do the expansion yourself; it is four terms, and the split into real and imaginary is immediate. **The minus sign in the cosine formula — the one everybody misremembers — comes from $i^2 = -1$**, and knowing that is better than knowing the mnemonic.
+
+## De Moivre's formula
+
+Repeating the multiplication rule $n$ times:
+
+$$
+\left(\cos\theta+i\sin\theta\right)^n = \cos n\theta + i\sin n\theta,
+$$
+
+or in exponential form $\left(e^{i\theta}\right)^n = e^{in\theta}$.
+
+**Geometrically: rotating $n$ times through $\theta$ is rotating once through $n\theta$.** Obvious as a statement about turning, and not at all obvious as a statement about expanding a binomial to the $n$-th power.
+
+Taking $n=3$ and expanding the left side gives the triple-angle formulas in one step. Chapter 6 proves De Moivre properly, by induction on $n$ — the domino argument is exactly right for a claim indexed by the whole numbers.
+
+## Roots
+
+De Moivre run backwards solves $z^n = 1$. The solutions are
+
+$$z_k = e^{2\pi i k/n}, \qquad k = 0, 1, \dots, n-1,$$
+
+since $\left(e^{2\pi ik/n}\right)^n = e^{2\pi i k}=1$.
+
+**$n$ solutions, evenly spaced on the unit circle** — the vertices of a regular $n$-gon with one vertex at $1$.
+
+<Figure alt="Six points evenly spaced around a dashed unit circle, forming a regular hexagon." caption="The six solutions of z⁶ = 1: a regular hexagon inscribed in the unit circle.">
+  <ComplexPlane
+    points={[
+      { re: 1, im: 0 },
+      { re: 0.5, im: 0.866 },
+      { re: -0.5, im: 0.866 },
+      { re: -1, im: 0 },
+      { re: -0.5, im: -0.866 },
+      { re: 0.5, im: -0.866 }
+    ]}
+    circle={1}
+    range={1.6}
+  />
+</Figure>
+
+So the regular polygons of your geometry course are solution sets of polynomial equations, and their symmetry is the symmetry of multiplication: multiplying two vertices of the hexagon gives another vertex, because the angles add mod $2\pi$ — module 4.4's residue arithmetic, on a circle.
+
+## What the chapter established
+
+Start to finish:
+
+1. $x^2+1$ has no real root, so extend $\mathbb{R}$ (5.1).
+2. $\mathbb{C}$ is $\mathbb{R}^2$ with a multiplication, and it is a field (5.2, 5.3).
+3. Conjugation is reflection in the real axis (5.4).
+4. Points of $\mathbb{C}$ are points of the plane (5.5).
+5. Modulus is the distance formula (5.6).
+6. $e^{i\theta}$ walks round the unit circle (5.7, 5.8).
+7. Multiplication is rotation plus dilation (5.9).
+
+**An algebraic repair turned into a geometry.** The number invented to solve one equation encodes the transformation group your course spends a unit on, and the trigonometric identities you memorised are consequences of $i^2=-1$.
+
+<Aside>
+Multiplication by $w$ preserves angles between curves, even though it changes distances. A map with that property is called **conformal**, and complex multiplication is the simplest example.
+
+Conformal maps are how the Mercator projection works: it distorts area wildly — Greenland is not the size of Africa — while preserving angles exactly, which is what a navigator needs, since a constant compass bearing must appear as a straight line.
+
+The same functions describe fluid flow around an obstacle and the electric field near a charged conductor. In each case the physics is governed by an equation whose solutions are exactly the well-behaved complex functions, and problems that are hard in real coordinates become routine once the plane is treated as $\mathbb{C}$.
+</Aside>

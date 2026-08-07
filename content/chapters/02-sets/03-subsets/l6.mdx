@@ -1,0 +1,134 @@
+---
+level: l6
+title: Subsets
+readingTimeMin: 9
+newTerms: ["subset", "proper subset", "transitive"]
+anchorExample: "the quadrilateral family and loci of points"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Figure from '@/components/Figure.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every square is a rectangle. Every rectangle is a parallelogram. Every parallelogram is a quadrilateral.
+
+Your classification chart records a *relation between sets* — and this module gives that relation a symbol, a definition, and a proof technique.
+
+## Definition
+
+$$
+A \subseteq S \quad\text{means}\quad \forall x\ (x \in A \Rightarrow x \in S).
+$$
+
+Read: **$A$ is a subset of $S$.** Every element of $A$ is an element of $S$.
+
+Note what the definition unpacks into: a universal statement about a conditional. Module 1.12 already told you how to prove one — *take any one and follow it* — and applied here it has a name.
+
+> **Element chasing.** To prove $A \subseteq S$: let $x$ be an arbitrary element of $A$, and derive that $x \in S$.
+
+That opening line is not optional decoration. It is the entire structure of the proof, and writing it first usually shows you what to do next.
+
+## The chart, in symbols
+
+$$
+\{\text{squares}\} \subseteq \{\text{rectangles}\} \subseteq \{\text{parallelograms}\} \subseteq \{\text{quadrilaterals}\}
+$$
+
+Each $\subseteq$ is a theorem, and each has a one-line element-chasing proof.
+
+<Discussion>
+  <div slot="know">A rectangle is a quadrilateral with four right angles. A parallelogram is a quadrilateral with both pairs of opposite sides parallel. Available: if two lines are cut by a transversal so that co-interior angles are supplementary, the lines are parallel.</div>
+  <div slot="want">Every rectangle is a parallelogram.</div>
+  <div slot="how">Take an arbitrary rectangle — not a square, not a specific one — and show it satisfies the parallelogram definition. Right angles are supplementary in pairs, which is exactly what the parallel test needs.</div>
+</Discussion>
+
+<Proof>
+Let $R$ be an arbitrary rectangle, with vertices $A, B, C, D$ in order. By definition all four angles are right angles.
+
+Consider sides $\overline{AB}$ and $\overline{DC}$, cut by the transversal $\overline{AD}$. The co-interior angles $\angle A$ and $\angle D$ each measure $90°$, so they are supplementary, and therefore $\overline{AB}\parallel\overline{DC}$.
+
+The identical argument with transversal $\overline{AB}$ gives $\overline{AD}\parallel\overline{BC}$.
+
+So $R$ has both pairs of opposite sides parallel, hence is a parallelogram. Since $R$ was an arbitrary rectangle, every rectangle is a parallelogram.
+</Proof>
+
+The proof used *only* the definition of rectangle. That is what made it cover all of them.
+
+## Proper subsets
+
+$A \subsetneq S$ means $A \subseteq S$ **and** $A \neq S$: containment with something left over.
+
+$\{\text{rectangles}\} \subsetneq \{\text{parallelograms}\}$, because a rhombus with a $60°$ angle is a parallelogram and not a rectangle. **Proving properness needs a witness** — one object in the larger set and not the smaller — and that witness is an existential claim in the sense of module 1.10.
+
+This is why your chart's arrows point one way. Every entry is a proper containment, and each properness claim is backed by an example you have drawn.
+
+<Warning title="⊆ and ∈ are different relations">
+$\in$ relates an object to a set. $\subseteq$ relates two sets.
+
+Let $P$ be the set of all parallelograms and let $R$ be a particular rectangle you have drawn. Then:
+
+- $R \in P$ ✓ — the shape is one of the parallelograms
+- $R \subseteq P$ ✗ — a shape is not a *collection* of parallelograms
+- $\{\text{rectangles}\} \subseteq P$ ✓
+- $\{\text{rectangles}\} \in P$ ✗ — a set of shapes is not itself a shape
+
+Confusing these is the most common error in the chapter. When in doubt, ask: is the left-hand thing an *object* or a *collection*?
+</Warning>
+
+## Two facts that look strange
+
+**Every set is a subset of itself: $S \subseteq S$.** The definition asks whether every element of $S$ is in $S$. It is. Done.
+
+**The empty set is a subset of everything: $\emptyset \subseteq S$.**
+
+<Proof>
+We must show $\forall x\ (x \in \emptyset \Rightarrow x \in S)$.
+
+Let $x$ be arbitrary. The hypothesis $x \in \emptyset$ is false, since $\emptyset$ has no elements. A conditional with a false hypothesis is true (module 1.5).
+
+So the implication holds for every $x$, and $\emptyset \subseteq S$.
+</Proof>
+
+This is a **vacuous** proof, and the discomfort it causes is worth sitting with. Nothing was checked, because there was nothing to check — and the definition asked only that no element of $\emptyset$ escape $S$. None does, since there are none.
+
+The geometric analogue: *every point of the empty locus lies on line $\ell$* is true, whatever $\ell$ is.
+
+## Transitivity
+
+> **Proposition.** If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
+
+<Proof>
+Let $x$ be an arbitrary element of $A$.
+
+Since $A \subseteq B$, we have $x \in B$. Since $B \subseteq C$, we have $x \in C$.
+
+Thus every element of $A$ lies in $C$, so $A \subseteq C$.
+</Proof>
+
+Three lines, and it is the reason your classification chart works as a chart. You do not prove separately that every square is a quadrilateral — it follows from the chain, and transitivity is the theorem that licenses reading the diagram top to bottom.
+
+<Figure alt="Two overlapping circles labelled S and T with the region belonging to both shaded." caption="A ⊆ S drawn as containment: every point of A falls inside S.">
+  <VennTwo labelS="A" labelT="S" shade={["both"]} />
+</Figure>
+
+<Aside>
+$\subseteq$ behaves like $\leq$ in three ways: $S \subseteq S$, transitivity, and the fact that $A \subseteq B$ together with $B \subseteq A$ forces $A = B$ (module 2.6).
+
+But it differs in one decisive way. For numbers, **any** two are comparable: $a \leq b$ or $b \leq a$, always. For sets, neither may hold. Rhombi and rectangles are two sets of quadrilaterals, and neither contains the other — a non-square rhombus is in one, a non-square rectangle in the other.
+
+An order with incomparable pairs is called a **partial** order. Your classification chart is drawn as a branching diagram rather than a line for exactly this reason: the branches are the incomparable families.
+</Aside>
+
+## Refuting a subset claim
+
+$A \subseteq S$ is a universal statement, so by module 1.11 its negation is existential:
+$$
+A \not\subseteq S \quad\equiv\quad \exists x\ (x \in A \ \wedge\ x \notin S).
+$$
+
+**One element, in $A$ and not in $S$.** That is the entire refutation.
+
+*Is every rhombus a rectangle?* No: a rhombus with sides $4$ and an angle of $60°$ is a rhombus, and it has no right angle. One shape, and the claim is dead.

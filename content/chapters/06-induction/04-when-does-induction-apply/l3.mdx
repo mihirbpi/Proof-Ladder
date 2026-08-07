@@ -1,0 +1,86 @@
+---
+level: l3
+title: When does induction apply?
+readingTimeMin: 5
+newTerms: []
+anchorExample: "1+3+5+… builds squares"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Induction is powerful and it is not universal. This module says exactly when it is available.
+
+## Two requirements
+
+**Requirement 1: the cases come in order, counted off one after another.**
+
+There must be a first case, a second case, a third case, and so on. If you cannot line the cases up in order, there is no row of dominoes to knock over.
+
+**Requirement 2: each case is reachable from the one before.**
+
+Knowing the claim for the case you are on must actually *help* with the next one. If the two have nothing to do with each other, the inductive step cannot be proved, and the chain has a gap at every link.
+
+Both are needed. Requirement 1 alone is not enough.
+
+## A claim that qualifies
+
+> Adding up the first few odd numbers gives the count multiplied by itself.
+
+**Requirement 1?** Yes. There is one case for one odd number, one for two, one for three, and so on — you can count them off.
+
+**Requirement 2?** Yes, and this is the important part. The total for the next case is the total for the case you are on, *plus one more term*:
+$$
+\underbrace{1 + 3 + 5}_{\text{the case you are on}} \;+\; 7.
+$$
+The next case literally contains the previous one. That is as good a link as you could ask for.
+
+## A claim that does not
+
+> Every number on the number line, multiplied by itself, lands at zero or above.
+
+**Requirement 1?** No.
+
+Try to line the cases up. Start at $0$. What is the next number? There isn't one — module 4.6 showed that between any two numbers there is always another. The cases cannot be put in order at all.
+
+So induction is unavailable. Not because the claim is false — it is true, and module 1.12 proved it — but because there is no chain to run along.
+
+**The right tool here is "take any one and follow it":** grab a number, split into cases on whether it is zero or bigger than zero, and argue. The cases do not need to be lined up, because none of them depends on any other.
+
+## Requirement 2 on its own
+
+Here is a claim where the cases *are* countable and the link still fails.
+
+> Every prime number, after the first one, is odd.
+
+The cases are countable: the second prime, the third prime, and so on. Requirement 1 is fine.
+
+But knowing that one prime is odd tells you essentially nothing about the next prime — primes are not built from the previous prime by any simple rule. There is no useful link, so the inductive step cannot get started.
+
+The claim happens to be true, but induction is not the tool for it.
+
+## Where the link usually comes from
+
+Requirement 2 is satisfied naturally when the thing for the next case is *built* from the thing for the case before:
+
+- **Running totals.** The next total is this total plus one more term.
+- **Repeated multiplying.** Doubling once more means multiplying what you have by $2$.
+- **Repeated steps.** Doing something one more time is doing it this many times, then once more.
+- **Adding one more object.** A collection with one more thing in it is this collection plus that thing.
+
+If your claim has one of these shapes, induction is very likely the right method.
+
+<Warning title="Not applicable is not the same as false">
+If induction does not apply, the claim may still be perfectly true. It just needs a different proof.
+
+Your toolkit so far: *take any one and follow it* (1.12), *split into cases* (1.12), *check both boxes* (1.9 and 2.6), *flip it around* (1.8), *suppose not* (2.5), and now *dominoes*.
+
+Recognising which one a problem wants is most of the skill.
+</Warning>
+
+<Aside>
+There is a version of the domino argument where you assume the claim for *all* the earlier cases, not just the one immediately before. That is useful when the next case breaks into pieces much further back.
+
+Proving that every counting number breaks into primes needs exactly that version, because a number splits into two factors that may both be far below the case you were on.
+</Aside>

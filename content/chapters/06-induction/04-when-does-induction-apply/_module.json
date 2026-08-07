@@ -13,6 +13,17 @@
     "l7": "When does induction apply?",
     "l8": "When does induction apply?"
   },
+  "kernelIdea": "Induction needs a statement indexed by integers n ≥ n₀ and a way to connect case k+1 back to case k. Statements about all real numbers are not candidates.",
+  "kernels": {
+    "l1": "Dominoes have to be in a line. Some things are not in a line.",
+    "l2": "Dominoes only work if they are in a row, one after another. A claim about every number one at a time can be done with dominoes. A claim about everything at once cannot.",
+    "l3": "Induction needs two things: cases lined up one after another, counted by whole numbers, and a way to get from one case to the next. A claim about every number on the number line has no next case, so induction cannot touch it.",
+    "l4": "Induction requires a statement indexed by integers n ≥ n₀ and a link from case k to case k+1. Claims quantified over ℝ have no successor structure and are not candidates.",
+    "l5": "Both requirements matter: an integer index and a usable link between consecutive cases; sums, products, and recursive definitions supply the link naturally.",
+    "l6": "Where a statement is indexed by a well-ordered set with a successor, induction applies; strong induction and structural induction extend the method to other well-founded orders.",
+    "l7": "Induction applies exactly when the statements are indexed by integers n ≥ n₀ and case k+1 is reachable from case k; without a successor structure — as over ℝ — the method does not apply at all.",
+    "l8": "Induction is available on any well-founded order; strong induction, structural induction, and transfinite induction are the same principle over different orders."
+  },
   "kernel": "Induction needs a statement indexed by integers n ≥ n₀ and a way to connect case k+1 back to case k. Statements about all real numbers are not candidates.",
   "objectives": [
     "Judge whether a claim is a candidate for induction",

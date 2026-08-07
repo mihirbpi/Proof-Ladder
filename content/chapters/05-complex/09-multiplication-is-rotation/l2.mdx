@@ -1,0 +1,64 @@
+---
+level: l2
+title: Adding turns
+readingTimeMin: 4
+newTerms: ["turns add"]
+anchorExample: "turning a quarter turn"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+In module 5.8 you learned that a complex number can be described by a **distance** and a **direction**.
+
+Here is the wonderful thing that happens when you multiply them.
+
+## Turns add
+
+Face east. Multiply by $i$ — that is a quarter turn, so now you face north.
+
+Multiply by $i$ again — another quarter turn — and now you face west.
+
+A quarter and a quarter make a half. **Turns add.**
+
+## Distances multiply
+
+Now what about the distances?
+
+Start at distance $2$. Multiply by something at distance $3$.
+
+You end up at distance $6$ — three copies of the $2$, laid end to end.
+
+So the two parts behave differently, and each in the simplest possible way:
+
+> **Distances multiply. Turns add.**
+
+That is the whole rule for multiplying complex numbers, and it is much easier than expanding brackets.
+
+## A worked one
+
+Take the number at distance $2$ facing north. Multiply it by the number at distance $3$ facing north.
+
+- Distances: three copies of $2$ is $6$.
+- Turns: north and north is a quarter turn plus a quarter turn, which is a half turn. So the answer faces **west**.
+
+Answer: distance $6$, facing west.
+
+You never had to remember a single rule about $i$. You just added the turns and counted the copies.
+
+<Warning title="Add the turns, do not multiply them">
+The two parts behave differently and it is easy to mix them up.
+
+Distances: **multiply**. Turns: **add**.
+
+If you multiplied the turns you would get nonsense — turning by nothing would wipe out everything, since anything times zero is zero.
+</Warning>
+
+<Aside>
+This is why $i$ was never really strange. $i$ is the quarter turn. Two quarter turns make a half turn. And a half turn just points you the opposite way. So the rule that defined $i$ was a fact about turning all along.
+</Aside>
+
+<TryIt>
+Face east. Do a quarter turn three times, counting out loud. Which way are you facing? Now work out where **five** quarter turns would put you, without doing them.
+</TryIt>

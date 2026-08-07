@@ -1,0 +1,122 @@
+---
+level: l6
+title: Inductive sets and the last axiom
+readingTimeMin: 8
+newTerms: ["inductive set"]
+anchorExample: "the parallel postulate"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+One unwanted system remains: $\mathbb{N}$ with extra chains bolted on, unreachable by counting from $0$. The last axiom removes it, and it turns out to be something you already know.
+
+## Inductive sets
+
+A set $A\subseteq\mathbb{N}$ is **inductive** when
+
+1. $0\in A$, and
+2. for every $x$: if $x\in A$ then $S(x)\in A$.
+
+Closed under starting and closed under stepping — **the two domino conditions of module 6.1**, stated as a property of a set.
+
+Examples:
+
+- $\mathbb{N}$ itself is inductive.
+- $\{0,1,2,3\}$ is **not**: it contains $3$ and not $S(3)$.
+- The even numbers are **not**: they contain $0$ and not $S(0)$.
+- $\{0,1,2,\dots\}\cup\{a, S(a),\dots\}$ — the rogue system — **is** inductive.
+
+That last one is the problem. Being inductive is not enough to pin down $\mathbb{N}$, and the axiom must therefore say something stronger.
+
+## Axiom 9
+
+> **Axiom 9 (Induction).** If $A\subseteq\mathbb{N}$ is inductive, then $A = \mathbb{N}$.
+
+**$\mathbb{N}$ is the *smallest* inductive set.** No proper subset can be inductive, so nothing in $\mathbb{N}$ is unreachable from $0$ by stepping.
+
+## It kills the rogue system
+
+<Discussion>
+  <div slot="know">The rogue system is $R = \{0,1,2,\dots\}\cup\{a,S(a),\dots\}$, with the second chain disjoint from the first.</div>
+  <div slot="want">A contradiction with Axiom 9.</div>
+  <div slot="how">Exhibit a proper subset of $R$ that is inductive. The first chain alone is the obvious candidate — it contains $0$ and is closed under $S$, and it omits $a$.</div>
+</Discussion>
+
+<Proof>
+Suppose $R$ satisfied all nine axioms. Let $A = \{0, 1, 2, \dots\}$, the first chain alone.
+
+$0\in A$ ✓, and $A$ is closed under $S$, since the successor of any element of the first chain is again in the first chain. So $A$ is inductive.
+
+By Axiom 9, $A = R$. But $a\in R$ and $a\notin A$ — contradiction.
+
+Hence $R$ does not satisfy the axioms.
+</Proof>
+
+**Axiom 9 is exactly the statement that everything is reachable by counting.** The other eight described local behaviour — a start, a step, no loops, no merges; this one is global, and it says the chain from $0$ is all there is.
+
+## It is the induction principle
+
+Recall Chapter 6:
+
+> If $A(0)$ holds, and $A(k)\Rightarrow A(k+1)$ for all $k$, then $A(n)$ holds for all $n$.
+
+Take $A = \{n \in\mathbb{N} : A(n) \text{ is true}\}$. Then:
+
+- the base case says $0\in A$;
+- the inductive step says $A$ is closed under $S$;
+- so $A$ is inductive, and Axiom 9 gives $A = \mathbb{N}$;
+- which says $A(n)$ holds for every $n$.
+
+**Chapter 6's technique is this axiom, applied to a set defined by a statement.** Every induction proof you have written was an appeal to Axiom 9, and module 6.2's question — *why is induction valid?* — now has its final answer: it is assumed.
+
+Not proved, and not provable. It is an axiom, on the same footing as the Parallel Postulate.
+
+<Warning title="Induction is an assumption, and it is not innocuous">
+Module 6.2 derived induction from well-ordering. That derivation is honest and it does not settle anything, because well-ordering itself cannot be proved from the other axioms.
+
+The two are equivalent: assume either and the other follows. Neither is derivable from Axioms 1–8, and module 7.4's non-standard models are the proof — they satisfy Axioms 1–8 and fail Axiom 9.
+
+So a choice is being made, exactly as your geometry course chose the Parallel Postulate. The counting numbers are the system in which induction works, and that is a decision rather than a discovery.
+</Warning>
+
+## The set equality
+
+> **Theorem.** $\mathbb{N} = \{0, 1, 2, 3, \dots\}$, where the right side means all values obtained from $0$ by repeated application of $S$.
+
+<Proof>
+Let $C = \{0, S(0), S(S(0)), \dots\}$, the counting chain.
+
+**($\supseteq$)** Every element of $C$ lies in $\mathbb{N}$: $0\in\mathbb{N}$ by Axiom 5, and $\mathbb{N}$ is closed under $S$ by Axiom 6. So $C\subseteq\mathbb{N}$.
+
+**($\subseteq$)** $C$ contains $0$ and is closed under $S$ by construction, so $C$ is inductive. By Axiom 9, $C = \mathbb{N}$, hence $\mathbb{N}\subseteq C$.
+
+Therefore $\mathbb{N} = C$.
+</Proof>
+
+**Double inclusion** (module 2.6), with **Axioms 5–6 giving one direction and Axiom 9 the other.** That is a clean division of labour, and it shows what each axiom contributes: 5 and 6 make the chain exist, 9 makes it everything.
+
+## The nine axioms
+
+| # | Statement | Ruled out |
+|---|---|---|
+| 1–4 | equality is an equivalence relation, closed | incoherent equality |
+| 5 | $0\in\mathbb{N}$ | emptiness |
+| 6 | $S(x)\in\mathbb{N}$ | a chain that stops |
+| 7 | $S(x)\neq0$ | loops |
+| 8 | $S$ is injective | merges |
+| 9 | induction | unreachable extras |
+
+Nine assumptions, and from them all of arithmetic. Modules 7.6 and 7.7 build addition and multiplication and prove that the familiar laws hold.
+
+<Aside>
+Do the axioms determine $\mathbb{N}$ completely?
+
+**In one sense yes.** Any two systems satisfying all nine are isomorphic — there is a bijection between them preserving $0$ and $S$. So $\mathbb{N}$ is unique up to renaming, and it does not matter whether you build it from sets, from tally marks, or from anything else.
+
+**In another sense no.** That uniqueness proof quantifies over *all subsets* of the system, which is a stronger kind of statement than the ones formal logic usually permits. Restrict Axiom 9 to properties expressible in a formal language and uniqueness fails: non-standard models exist, containing infinite "numbers."
+
+The gap between the two senses is where Gödel's theorem from module 7.1 lives. **The axioms pin down the numbers if you are allowed to talk about arbitrary subsets, and not otherwise** — and the discovery that this distinction matters is one of the major results of twentieth-century mathematics.
+</Aside>

@@ -1,0 +1,92 @@
+---
+level: l3
+title: Why we needed a new number
+readingTimeMin: 5
+newTerms: []
+anchorExample: "rotating a card a quarter turn"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Chapter 4 ended with a pattern. Each new kind of number was built because the ones before it could not answer a reasonable question.
+
+| Number system | Question it could not answer | What got built |
+|---|---|---|
+| counting numbers | what is $7 \div 2$? | fractions |
+| fractions | how long is the diagonal of a square? | the not-fractions |
+
+This chapter is the next step in that story, and it starts with a question about **turning**.
+
+## Turning a card
+
+Put a card on the table with an arrow drawn on it, pointing right.
+
+Turn the card a **quarter turn** counterclockwise. The arrow now points up.
+
+Turn it another quarter turn. The arrow points left — the *opposite* of where it started.
+
+Two more quarter turns and you are back to the beginning. Four quarter turns, all the way round.
+
+## The question
+
+Now here is the question that needed a new number.
+
+Doing a turn twice is a bit like multiplying a number by itself. Turning a quarter turn twice gets you to *pointing backwards*.
+
+So: **is there a number which, multiplied by itself, reverses you?**
+
+Among the numbers you know, no.
+
+<Proof>
+Take any number on the number line and multiply it by itself. Where does the answer land?
+
+If your number is bigger than zero, then multiplying two numbers bigger than zero gives an answer bigger than zero.
+
+If your number is zero, the answer is zero.
+
+And there is no third possibility among the numbers you have met.
+
+So multiplying a number by itself always lands at zero or above. It never reverses you.
+</Proof>
+
+There is a whole direction — *backwards* — that squaring can never reach.
+
+## What people did about it
+
+Here is what mathematicians did **not** do: declare the question meaningless.
+
+Here is what they did do: **invent a number that answers it, and then check very carefully that nothing broke.**
+
+They called it $i$, and it has exactly one job:
+
+> Multiplying by $i$ turns you a quarter turn.
+
+Do it twice and you have turned a half turn, which points you backwards. That is the whole definition, and everything else in this chapter is squeezed out of it.
+
+<Warning title="Two things people say that are wrong">
+People sometimes say $i$ is "imaginary, so it isn't real." That is a pun on a badly chosen name, not a fact. $i$ is exactly as real as $\tfrac12$ or the diagonal of a square — both of which were once considered suspicious, and both of which are now ordinary.
+
+People also say "you can't multiply a number by itself and get a reversal." What is true is that no number *on the number line* does it. Once you step off the line and start turning, you can.
+</Warning>
+
+## The check that mattered
+
+Inventing a number is easy. Inventing one that does not break anything is hard.
+
+If $i$ had caused a contradiction — if it let you prove that $1 = 2$ — it would have been thrown away. It does not. You can add, subtract, multiply, and divide with $i$ in the mix, and every rule you already know keeps working.
+
+That check took mathematicians about two hundred years to feel comfortable with. The rest of this chapter walks through it.
+
+## Why it was worth the trouble
+
+Because the payoff turned out to be enormous.
+
+Once you have $i$, **every** equation of the kind you meet in algebra has an answer. Not just this one — all of them, forever. Nothing more ever needs inventing.
+
+That is why the story that started with counting numbers and ran through fractions finally stops here.
+
+<Aside>
+The names are unfortunate. Calling $i$ *imaginary* and the number line *real* was originally an insult, coined by people who did not believe in $i$. The names stuck. Try not to read anything into them.
+</Aside>

@@ -1,0 +1,72 @@
+---
+level: l7
+title: Complex arithmetic
+readingTimeMin: 8
+newTerms: []
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+(a+bi)+(c+di) = (a+c)+(b+d)i, \qquad
+(a+bi)(c+di) = (ac-bd)+(ad+bc)i.
+$$
+
+The multiplication formula is derived, not posited: expand by distributivity and substitute $i^2 = -1$. Read structurally, multiplication is the unique $\mathbb{R}$-bilinear map on $\mathbb{C} = \mathbb{R}\cdot1 \oplus \mathbb{R}\cdot i$ extending $1\cdot1 = 1$, $1 \cdot i = i$, $i^2 = -1$ — so the single relation $i^2=-1$ determines the whole product.
+
+## Inversion
+
+> **Proposition.** Every $z \in \mathbb{C}\setminus\{0\}$ has a multiplicative inverse in $\mathbb{C}$.
+
+<Proof>
+Let $z = a+bi \neq 0$. Then $(a+bi)(a-bi) = a^2 - b^2i^2 = a^2+b^2 \in \mathbb{R}$.
+
+Since $a,b \in \mathbb{R}$, $a^2+b^2 \geq 0$, with equality iff $a=b=0$, i.e. iff $z=0$. As $z \neq 0$, $a^2+b^2 > 0$ and we may divide by it in $\mathbb{R}$. Set
+$$
+w = \frac{a}{a^2+b^2} - \frac{b}{a^2+b^2}i \in \mathbb{C}.
+$$
+Then $zw = \dfrac{(a+bi)(a-bi)}{a^2+b^2} = \dfrac{a^2+b^2}{a^2+b^2} = 1$.
+</Proof>
+
+Two remarks. First, the hypothesis $z \neq 0$ is spent exactly at $a^2+b^2 > 0$, and that step uses the order on $\mathbb{R}$ — the same fact ($x^2 \geq 0$) that made $i$ necessary is what makes $\mathbb{C}$ a field. Second, in the notation of §5.4 and §5.6 this reads $z^{-1} = \bar z/|z|^2$, which is the memorable form.
+
+## $\mathbb{C}$ is a field
+
+All axioms hold: additive structure is componentwise from $\mathbb{R}$; multiplicative associativity, commutativity, and distributivity follow from expansion and $i^2 = -1$; inverses exist by the proposition.
+
+Structurally, $\mathbb{C} \cong \mathbb{R}[x]/(x^2+1)$, and it is a field because $x^2+1$ is irreducible over $\mathbb{R}$, hence generates a maximal ideal. That one sentence subsumes the whole verification, and it generalises: $K[x]/(p)$ is a field for any irreducible $p$, which is how every algebraic field extension is built.
+
+This is the promised verification that adjoining $i$ breaks nothing. The only casualty is the order (§5.2).
+
+<Warning title="√ is not multiplicative on ℂ">
+$$-1 = i\cdot i \overset{?}{=} \sqrt{-1}\sqrt{-1} \overset{?}{=} \sqrt{(-1)(-1)} = 1.$$
+The identity $\sqrt{ab} = \sqrt a\sqrt b$ holds for $a,b \geq 0$ real and fails on $\mathbb{C}$, because square roots there require a branch choice and no choice is consistent globally (§5.8).
+
+Practical rule: write $i$, never $\sqrt{-1}$; and never apply $\sqrt{\phantom{x}}$ to a complex number without saying which root you mean. The same caution applies to $\log$ and to fractional powers.
+</Warning>
+
+## Multiplication by $i$
+
+$$
+1 \xmapsto{\ \cdot i\ } i \xmapsto{\ \cdot i\ } -1 \xmapsto{\ \cdot i\ } -i \xmapsto{\ \cdot i\ } 1.
+$$
+
+In the plane (§5.5) these are $(1,0) \to (0,1) \to (-1,0) \to (0,-1) \to (1,0)$: rotation by $\pi/2$ counterclockwise. As a real-linear map, multiplication by $i$ has matrix $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$, whose square is $-I$ — the matrix statement of $i^2 = -1$.
+
+More generally, multiplication by $a+bi$ is the real-linear map
+$$
+\begin{pmatrix} a & -b \\ b & a\end{pmatrix},
+$$
+whose determinant is $a^2+b^2 = |z|^2$ and which is a rotation-scaling. This gives an alternative construction of $\mathbb{C}$: it is the subring of $M_2(\mathbb{R})$ consisting of such matrices, and the field axioms are then matrix facts. §5.9 develops the rotation reading in full.
+
+<Aside>
+Complex multiplication takes four real multiplications by the formula. **Karatsuba's trick** does it in three: with $t = (a+b)(c+d)$, $u = ac$, $v = bd$, the product is $(u - v) + (t - u - v)i$. The same idea applied recursively to integer multiplication gives an $O(n^{\log_2 3})$ algorithm, beating the schoolbook $O(n^2)$ — the first sign that arithmetic itself has nontrivial complexity theory.
+</Aside>
+
+<WhereThisGoes level="l7">
+The construction $K[x]/(p)$ for irreducible $p$ is the engine of field theory: iterating it produces splitting fields, and the tower of extensions built this way is what Galois theory analyses via its automorphism groups. The matrix realisation points elsewhere — to representation theory, where abstract algebraic structures are studied by realising them as matrices, and to Clifford algebras, which generalise $i^2 = -1$ to $e_ie_j = -e_je_i$ and underlie the Dirac equation and spinors. And the failure of $\sqrt{\phantom{x}}$ to be single-valued is not a defect to be patched but the entrance to Riemann surfaces, where multivalued functions become genuine single-valued functions on a cleverly chosen domain.
+</WhereThisGoes>

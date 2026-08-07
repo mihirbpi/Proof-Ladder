@@ -1,0 +1,125 @@
+---
+level: l5
+title: Converse, inverse, contrapositive
+readingTimeMin: 8
+newTerms: ["converse", "inverse", "contrapositive"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Given a conditional $p \Rightarrow q$, you can build three others by swapping the parts, negating them, or both. The named move is **flip it around**, and the point of the module is that only one flip is safe.
+
+| Name | Statement |
+|---|---|
+| Original | $p \Rightarrow q$ |
+| **Converse** | $q \Rightarrow p$ |
+| **Inverse** | $\neg p \Rightarrow \neg q$ |
+| **Contrapositive** | $\neg q \Rightarrow \neg p$ |
+
+## The truth table settles it
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q", "q ⇒ p", "¬p ⇒ ¬q", "¬q ⇒ ¬p"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true,  "q ⇒ p": true,  "¬p ⇒ ¬q": true,  "¬q ⇒ ¬p": true  },
+    { p: true,  q: false, "p ⇒ q": false, "q ⇒ p": true,  "¬p ⇒ ¬q": true,  "¬q ⇒ ¬p": false },
+    { p: false, q: true,  "p ⇒ q": true,  "q ⇒ p": false, "¬p ⇒ ¬q": false, "¬q ⇒ ¬p": true  },
+    { p: false, q: false, "p ⇒ q": true,  "q ⇒ p": true,  "¬p ⇒ ¬q": true,  "¬q ⇒ ¬p": true  }
+  ]}
+/>
+
+Reading the columns:
+
+$$
+p \Rightarrow q \;\equiv\; \neg q \Rightarrow \neg p, \qquad
+q \Rightarrow p \;\equiv\; \neg p \Rightarrow \neg q,
+$$
+
+and the two pairs disagree in rows 2 and 3, so neither pair entails the other.
+
+**Only the contrapositive is equivalent to the original.** The converse and inverse are equivalent to *each other* — each is the contrapositive of the other — which is why a single counterexample usually kills both at once.
+
+## A proof without the table
+
+The table is conclusive but does not generalise to quantified statements, so here is the argument in words.
+
+<Proof>
+Suppose $p \Rightarrow q$, and suppose $\neg q$. If $p$ held, then $q$ would follow, contradicting $\neg q$. Hence $\neg p$. This proves $\neg q \Rightarrow \neg p$.
+
+Conversely, suppose $\neg q \Rightarrow \neg p$, and suppose $p$. If $q$ failed, then $\neg p$ would follow, contradicting $p$. Hence $q$. This proves $p \Rightarrow q$.
+</Proof>
+
+## Why the equivalence is believable
+
+$p \Rightarrow q$ asserts that the situation "$p$ true, $q$ false" never occurs.
+
+$\neg q \Rightarrow \neg p$ asserts that "$\neg q$ true, $\neg p$ false" — that is, "$q$ false, $p$ true" — never occurs.
+
+Same forbidden situation, described from opposite ends. Two statements that forbid exactly the same thing are the same statement.
+
+## The anchor example
+
+> **Proposition.** For $x \in \mathbb{R}$: if $x > 1$ then $x^2 > 1$. (True — module 1.6.)
+
+**Converse:** $x^2 > 1 \Rightarrow x > 1$. Take $x = -3$: then $x^2 = 9 > 1$, but $-3 \not> 1$. Hypothesis holds, conclusion fails. **False.**
+
+**Inverse:** $x \leq 1 \Rightarrow x^2 \leq 1$. Same $x = -3$: it satisfies $-3 \leq 1$ but $9 \not\leq 1$. **False** — necessarily so, being the contrapositive of the converse.
+
+**Contrapositive:** $x^2 \leq 1 \Rightarrow x \leq 1$. **True**, and necessarily, since the original is.
+
+One number refuted two statements. That economy is a useful check: when you find a counterexample to a converse, confirm it also refutes the inverse. If it doesn't, one of your three flips is misformed.
+
+## Contraposing a compound hypothesis
+
+This is where module 1.4 pays off.
+
+> **Proposition.** If $x \in \mathbb{Q}$ and $y \notin \mathbb{Q}$, then $x + y \notin \mathbb{Q}$.
+
+The hypothesis is a conjunction, so De Morgan is required:
+$$
+\neg\big(x\in\mathbb{Q} \wedge y \notin \mathbb{Q}\big) \equiv x \notin \mathbb{Q} \vee y \in \mathbb{Q}.
+$$
+
+So the contrapositive reads:
+$$
+x+y \in \mathbb{Q} \implies \big(x \notin \mathbb{Q} \ \vee\ y \in \mathbb{Q}\big).
+$$
+
+A disjunctive conclusion is proved by assuming the negation of one disjunct and deriving the other:
+
+<Proof>
+Suppose $x + y \in \mathbb{Q}$, and suppose $x \in \mathbb{Q}$. Then $y = (x+y) - x$ is a difference of two rationals, hence rational.
+
+So either $x \notin \mathbb{Q}$, or $y \in \mathbb{Q}$ — which is the required disjunction. By contraposition, the proposition holds.
+</Proof>
+
+Had we mis-negated to "$x \notin \mathbb{Q}$ **and** $y \in \mathbb{Q}$", we would have set ourselves a strictly stronger target that is not provable from the hypothesis. Getting De Morgan right was not decoration; it decided whether the proof exists.
+
+<Warning title="Affirming the consequent">
+Treating a true conditional as though its converse also held is the most common reasoning error there is.
+
+*If it rained, the ground is wet.* The ground is wet — did it rain? Perhaps a sprinkler ran. The conditional gives no licence to conclude $p$ from $q$.
+
+In mathematics it appears in disguise:
+
+- proving one direction of a biconditional and stopping (module 1.9);
+- writing $\Leftrightarrow$ in a chain where only $\Rightarrow$ holds — $x = y \Rightarrow x^2 = y^2$ is not reversible;
+- squaring both sides of an equation and not checking the answers. Extraneous roots *are* converse failures.
+</Warning>
+
+<Aside>
+Negating a conditional is a different operation from any of these flips:
+$$\neg(p \Rightarrow q) \equiv p \wedge \neg q.$$
+The negation is not a conditional at all — which is exactly why refuting "if $p$ then $q$" always means exhibiting one case where $p$ holds and $q$ fails, never proposing a rival conditional.
+</Aside>
+
+## Vocabulary you will meet again
+
+If $p \Rightarrow q$, then $p$ is a **sufficient** condition for $q$, and $q$ is a **necessary** condition for $p$. The contrapositive is just the second reading of the same fact, which is why they are equivalent. Module 1.9's biconditional asserts both roles at once.
+
+And because the contrapositive always shares a truth value with the original, you may **prove it instead** whenever it looks easier. That is module 1.8, and it is one of the most useful techniques in the course.

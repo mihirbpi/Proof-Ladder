@@ -1,0 +1,119 @@
+---
+level: l6
+title: Product sets
+readingTimeMin: 8
+newTerms: ["ordered pair", "product set"]
+anchorExample: "the quadrilateral family and loci of points"
+---
+
+import Proof from '@/components/Proof.astro';
+import Discussion from '@/components/Discussion.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 2.1 established that sets forget order: $\{3, 5\} = \{5, 3\}$.
+
+Coordinate geometry cannot afford that. The point $(3,5)$ is not the point $(5,3)$, and every theorem you have proved with coordinates depends on the difference. So we need a second kind of object — one that remembers.
+
+## Ordered pairs
+
+An **ordered pair** $(a, b)$ has a first entry and a second entry. Its defining property is:
+
+$$
+(a,b) = (c,d) \quad\Longleftrightarrow\quad a = c \ \text{ and } \ b = d.
+$$
+
+That biconditional is the whole definition, and it is exactly what your coordinate work assumes. When you prove two points coincide, you prove their $x$-coordinates agree **and** their $y$-coordinates agree — two obligations, because the definition has two conjuncts.
+
+<Warning title="Braces forget, parentheses remember">
+$$\{3,5\} = \{5,3\} \qquad\text{but}\qquad (3,5) \neq (5,3).$$
+
+$$\{3,3\} = \{3\} \qquad\text{but}\qquad (3,3) \text{ has two entries.}$$
+
+A set is decided by *what* is in it. An ordered pair is decided by what is in it *and where*. The vertex set $\{A,B,C\}$ of a triangle and the congruence correspondence $A\leftrightarrow D$, $B \leftrightarrow E$, $C\leftrightarrow F$ are the two objects side by side — one forgetting order, one keeping it.
+</Warning>
+
+## The product set
+
+$$
+S \times T = \{\,(s,t) : s \in S \ \text{ and }\ t \in T\,\}.
+$$
+
+Every first entry from $S$, every second from $T$, in every combination.
+
+$$\{1,2,3\}\times\{a,b\} = \{(1,a),(1,b),(2,a),(2,b),(3,a),(3,b)\}.$$
+
+Six pairs, from a $3$-element set and a $2$-element set. In general
+$$|S \times T| = |S|\cdot|T|,$$
+which is where the *product* in the name comes from — and which is the same multiplication principle you use for counting outcomes.
+
+Note that $S\times T \neq T\times S$ in general: $(1,a)$ is in one and not the other. Order matters at both levels.
+
+## The coordinate plane is a product
+
+$$
+\mathbb{R}^2 = \mathbb{R}\times\mathbb{R} = \{\,(x,y) : x \in \mathbb{R}, \ y \in \mathbb{R}\,\}.
+$$
+
+This is not an analogy. **The plane, for the purposes of coordinate geometry, is literally this set of ordered pairs**, and every figure you graph is a subset of it:
+
+$$\text{line} = \{(x,y) \in \mathbb{R}^2 : y = mx+b\}$$
+$$\text{circle} = \{(x,y)\in\mathbb{R}^2 : (x-h)^2 + (y-k)^2 = r^2\}$$
+
+Two coordinates because the plane is a product of two copies of $\mathbb{R}$; three for space, $\mathbb{R}^3$. The dimension is the number of factors.
+
+Descartes' insight in 1637 was exactly this identification, and it is what makes a coordinate proof possible at all: geometric statements become algebraic ones because points *are* pairs of numbers.
+
+<Aside>
+Products give you a clean way to talk about things geometry usually leaves informal.
+
+A **congruence** $\triangle ABC \cong \triangle DEF$ asserts a correspondence — a set of ordered pairs
+$$\{(A,D),(B,E),(C,F)\} \subseteq \{A,B,C\}\times\{D,E,F\},$$
+together with the claim that corresponding parts are congruent. A *relation* between two sets is by definition a subset of their product, and Chapter 3 builds functions out of exactly this idea.
+
+The rigid motions your course uses — translations, rotations, reflections — are functions from $\mathbb{R}^2$ to $\mathbb{R}^2$, which is to say subsets of $\mathbb{R}^2\times\mathbb{R}^2$ satisfying a condition. Nothing new; just the same machinery.
+</Aside>
+
+## Products of regions
+
+For $A = [0,3]$ and $B = [0,2]$ as intervals in $\mathbb{R}$,
+$$A \times B = \{(x,y) : 0\le x\le 3,\ 0 \le y \le 2\}$$
+is a $3$-by-$2$ rectangle in the plane, sides included.
+
+Products of intervals are rectangles. This is why area is a product of lengths — the set-theoretic operation and the measurement agree, and the rectangle-area formula is the two-dimensional shadow of $|S\times T| = |S||T|$.
+
+Not every region is such a product. A disk is not: its horizontal cross-sections have different lengths, so it cannot be written as (an interval) $\times$ (an interval). The regions that *are* products are exactly the rectangles with sides parallel to the axes.
+
+## A product identity
+
+> **Proposition.** $(A\cap B)\times(C\cap D) = (A\times C)\cap(B\times D)$.
+
+<Discussion>
+  <div slot="know">Membership in a product is a claim about the two entries separately; membership in an intersection is a conjunction.</div>
+  <div slot="want">Both containments.</div>
+  <div slot="how">Both sides unwind to the same four conditions on $x$ and $y$; the proof is bookkeeping about which conjunction is written outermost. Take an arbitrary element — and note it must first be shown to *be* an ordered pair.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $p \in (A\cap B)\times(C\cap D)$. Then $p = (x,y)$ with $x \in A \cap B$ and $y \in C\cap D$; that is, $x \in A$, $x \in B$, $y \in C$, $y \in D$.
+
+From $x \in A$ and $y \in C$ we get $(x,y) \in A\times C$. From $x \in B$ and $y \in D$ we get $(x,y)\in B\times D$. Hence $p \in (A\times C)\cap(B\times D)$.
+
+**($\supseteq$)** Let $p \in (A\times C)\cap(B\times D)$. From $p \in A\times C$, $p = (x,y)$ with $x \in A$ and $y \in C$. From $p \in B\times D$, also $x \in B$ and $y \in D$ — the entries are the same $x$ and $y$, since an ordered pair determines its entries.
+
+So $x \in A\cap B$ and $y \in C\cap D$, giving $p \in (A\cap B)\times(C\cap D)$.
+
+Therefore the sets are equal.
+</Proof>
+
+The second half quietly used the defining property of ordered pairs: the pair could not have different first entries in the two readings. Small steps like that are the ones a proof must not skip.
+
+<Warning title="Products do not distribute over unions">
+$$(A\cup B)\times(C\cup D) \neq (A\times C)\cup(B\times D).$$
+
+Take $A = \{1\}$, $B=\{2\}$, $C=\{a\}$, $D=\{b\}$. The left side has four pairs; the right has two, missing $(1,b)$ and $(2,a)$.
+
+Geometrically: the left side is the bounding rectangle of two smaller rectangles, and the right side is the two rectangles themselves. The corners are what differ.
+
+The lesson is the one that closes the chapter. Identities that hold for $\cap$ and $\cup$ do not automatically hold when a new operation joins them, and the only way to find out is to check — with an element chase if it is true, with two small sets if it is not.
+</Warning>

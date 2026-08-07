@@ -1,0 +1,93 @@
+---
+level: l7
+title: Modulus
+readingTimeMin: 8
+newTerms: ["modulus", "triangle inequality", "norm"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+|z| = \sqrt{a^2+b^2} = \sqrt{z\bar z} \in \mathbb{R}_{\geq0}, \qquad z = a+bi.
+$$
+
+Geometrically the Euclidean distance from $0$ to $z$; algebraically the square root of $z\bar z$ (§5.4). The identity $|z|^2 = z\bar z$ is the working form — proofs about moduli should almost always square first and use conjugates, never manipulate radicals.
+
+## The norm axioms
+
+> **Proposition.** For all $z,w \in \mathbb{C}$:
+> (i) $|z| \geq 0$, with equality iff $z = 0$;
+> (ii) $|zw| = |z||w|$;
+> (iii) $|z+w| \leq |z| + |w|$.
+
+<Proof>
+(i) $|z|^2 = a^2+b^2$ is a sum of real squares, zero iff both vanish.
+
+(ii) $|zw|^2 = zw\overline{zw} = z\bar z\, w\bar w = |z|^2|w|^2$, using multiplicativity of conjugation. Both sides are non-negative reals with equal squares.
+
+(iii) First, $\operatorname{Re}(u) \leq |u|$ for any $u$, since $\operatorname{Re}(u)^2 \leq \operatorname{Re}(u)^2 + \operatorname{Im}(u)^2$. Then
+$$
+|z+w|^2 = (z+w)\overline{(z+w)} = |z|^2 + z\bar w + \bar z w + |w|^2 = |z|^2 + 2\operatorname{Re}(z\bar w) + |w|^2,
+$$
+using $\bar z w = \overline{z\bar w}$ and $u + \bar u = 2\operatorname{Re}(u)$. Hence
+$$
+|z+w|^2 \leq |z|^2 + 2|z\bar w| + |w|^2 = |z|^2 + 2|z||w| + |w|^2 = (|z|+|w|)^2,
+$$
+and taking non-negative square roots gives the result.
+</Proof>
+
+These three are the axioms of a **norm**, so $(\mathbb{C}, |\cdot|)$ is a normed space, and $d(z,w) = |z-w|$ is a metric.
+
+Property (ii) is stronger than a norm requires — it says the norm is *multiplicative*, making $\mathbb{C}$ a normed field. Most normed spaces have no multiplication at all.
+
+Equality in (iii) holds iff $\operatorname{Re}(z\bar w) = |z\bar w|$, i.e. iff $z\bar w \geq 0$, i.e. iff $z$ and $w$ have the same argument — the geometric statement that the triangle degenerates.
+
+Useful consequences: the reverse triangle inequality $\big||z|-|w|\big| \leq |z-w|$, and $|z^n| = |z|^n$ by induction from (ii).
+
+## Metric structure
+
+$\mathbb{C}$ with $d(z,w) = |z-w|$ is a complete metric space, isometric to $\mathbb{R}^2$ with the Euclidean metric. This is what makes analysis possible in the absence of an order (§5.2): convergence, continuity, compactness, and derivatives all require only a metric, not a total order.
+
+$$
+z_n \to z \iff |z_n - z| \to 0 \iff \operatorname{Re}z_n \to \operatorname{Re}z \text{ and } \operatorname{Im}z_n \to \operatorname{Im}z.
+$$
+
+Completeness is inherited from $\mathbb{R}$ componentwise, and it is what makes power series — hence $e^z$, hence §5.7 — converge.
+
+## Loci
+
+| Equation | Locus |
+|---|---|
+| $\lvert z - w\rvert = r$ | circle, centre $w$, radius $r$ |
+| $\lvert z - w\rvert < r$ | open disc |
+| $\lvert z - p\rvert = \lvert z-q\rvert$ | perpendicular bisector of $pq$ |
+| $\lvert z-p\rvert + \lvert z-q\rvert = 2a$ | ellipse with foci $p,q$ |
+| $\lvert z \rvert = 1$ | unit circle, the group $S^1$ |
+
+<Figure alt="A grid with a dashed circle of radius 2 centred at the origin." caption="$|z| = 2$.">
+  <ComplexPlane circle={2} range={4} />
+</Figure>
+
+The unit circle is a *group* under multiplication, by (ii): if $|z| = |w| = 1$ then $|zw| = 1$, and $|z^{-1}| = 1$. This group is $S^1$, and §5.8–5.9 identify it with $\{e^{i\theta}\}$ and show it acts on $\mathbb{C}$ by rotation.
+
+<Warning title="Square first">
+Modulus identities are proved by squaring and using $|u|^2 = u\bar u$. Attempting $|zw| = |z||w|$ by expanding $\sqrt{(ac-bd)^2+(ad+bc)^2}$ is a page of algebra; the conjugate proof is one line.
+
+Also: $|z|$ is real. Expressions like $|z| = 5i$ or $\operatorname{Re}|z|$ are type errors, and $|z|$ is not holomorphic (§5.4) — any function defined using it is not complex-differentiable.
+</Warning>
+
+<Aside>
+Expanding (ii) in coordinates gives the Brahmagupta–Fibonacci identity
+$$(a^2+b^2)(c^2+d^2) = (ac-bd)^2+(ad+bc)^2,$$
+so sums of two squares are closed under multiplication. Combined with Fermat's theorem that a prime $p \equiv 1 \pmod 4$ is a sum of two squares, this classifies exactly which integers are: those whose primes $\equiv 3 \pmod 4$ occur to even powers. The complex-analytic fact and the number-theoretic one are the same statement, and the bridge is the norm on $\mathbb{Z}[i]$.
+</Aside>
+
+<WhereThisGoes level="l7">
+Modulus is the case $n=2$ of the Euclidean norm and the prototype for normed vector spaces, Banach spaces, and Hilbert spaces, where completeness plus a norm is exactly the setting for functional analysis. Multiplicativity, $|zw| = |z||w|$, is special: it makes $\mathbb{C}$ a normed division algebra, and Hurwitz's theorem says only $\mathbb{R}, \mathbb{C}, \mathbb{H}, \mathbb{O}$ admit such a norm. In number theory the analogous multiplicative norm on rings of algebraic integers converts factorisation questions into inequalities about integers — the standard technique for proving results about units, primes, and Diophantine equations. And in complex analysis, the modulus carries the deepest theorems of the subject: the maximum modulus principle, which says $|f|$ has no interior maximum for non-constant holomorphic $f$, and Liouville's theorem, which says a bounded entire function is constant and from which the Fundamental Theorem of Algebra follows in three lines.
+</WhereThisGoes>

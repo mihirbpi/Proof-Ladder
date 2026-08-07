@@ -1,0 +1,75 @@
+---
+level: l7
+title: When does induction apply?
+readingTimeMin: 8
+newTerms: ["strong induction", "structural induction", "well-founded"]
+anchorExample: "Σ(2j−1) = n²"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Two requirements, both substantive.
+
+## An index with a successor
+
+The statements must be indexed by $\{n \in \mathbb{Z} : n \geq n_0\}$. What is being used is not merely that the index set is infinite but that it is **well-ordered with a successor operation** — every element has an immediate next, and every nonempty subset has a least element.
+
+$\mathbb{R}$ has neither, by density (§4.6). So $\forall x \in \mathbb{R},\ x^2 \geq 0$ is not an induction candidate; it is an arbitrary-element argument with a case split (§1.12).
+
+<Warning title="Look for a hidden integer parameter">
+Bernoulli's inequality $\forall x \geq -1,\ (1+x)^n \geq 1+nx$ *is* proved by induction — on $n$, with $x$ fixed but arbitrary throughout. The presence of a real variable is irrelevant; what matters is whether some integer indexes the family.
+
+Conversely, a statement may have an integer index and still resist: see below.
+</Warning>
+
+## A usable link
+
+$A(k)$ must materially assist $A(k+1)$. The link is present exactly when the object indexed by $n+1$ is *constructed* from the object indexed by $n$:
+$$
+\sum^{n+1} = \sum^n + a_{n+1},\quad a^{n+1} = a\cdot a^n,\quad (n+1)! = (n+1)n!,\quad f^{(n+1)} = \big(f^{(n)}\big)'.
+$$
+
+**Recursive definition and inductive proof are the same structure viewed from opposite ends.** Chapter 7 makes this exact: $+$ and $\times$ are *defined* by recursion on the successor, and every property of them is *proved* by induction on the same successor. The recursion theorem, which licenses definition by recursion, is itself proved from the induction axiom.
+
+Where the link fails, the index does not help. "The $n$th prime is odd" has an integer index and no usable relation between $p_k$ and $p_{k+1}$; assuming $A(k)$ contributes nothing, and no amount of cleverness in the step will fix that.
+
+## Strong induction
+
+> Assume $A(n_0),\ldots,A(k)$; prove $A(k+1)$.
+
+<Proof title="Equivalence with ordinary induction">
+Set $B(n) := \bigwedge_{m=n_0}^{n} A(m)$. The strong hypothesis is precisely $B(k)$, and $B(k)\Rightarrow A(k+1)$ yields $B(k)\Rightarrow B(k+1)$. Ordinary induction on $B$ gives $\forall n\, B(n)$, hence $\forall n\, A(n)$.
+</Proof>
+
+Indicated when $n+1$ decomposes into cases far below $k$:
+
+> **Existence of prime factorisation.** Every $n \geq 2$ is a product of primes. If $n$ is prime, done. Otherwise $n = ab$ with $2 \leq a,b < n$; both have factorisations by the strong hypothesis, and concatenating them factors $n$.
+
+Ordinary induction cannot do this, since $a$ and $b$ bear no relation to $n-1$. Note that *uniqueness* of the factorisation is a separate matter requiring Euclid's lemma (§4.3), not induction.
+
+The Fibonacci recurrence $F_{n+1} = F_n + F_{n-1}$ likewise needs two previous cases, hence two base cases — an easy and common oversight.
+
+## Well-founded induction
+
+Both forms are instances of a single principle.
+
+> **Well-founded induction.** Let $\prec$ be a well-founded relation on $S$ (no infinite descending chains). If for every $x \in S$, $\big(\forall y \prec x,\ A(y)\big) \Rightarrow A(x)$, then $A$ holds on all of $S$.
+
+Note there is **no separate base case**: minimal elements have no predecessors, so the hypothesis is vacuously satisfied for them and the implication delivers $A$ directly. Ordinary and strong induction are the cases $\prec\ =$ predecessor and $\prec\ =\ <$ on $\mathbb{N}$.
+
+**Structural induction** is the case where $S$ is a set of recursively built objects and $\prec$ is "is an immediate subterm of". To prove a property of all well-formed formulas, verify it for atoms and check that each connective preserves it. Termination arguments for recursive programs are the same principle: exhibit a well-founded measure that strictly decreases at each call.
+
+**Transfinite induction** takes $S$ to be the ordinals, and needs the replacement axiom to justify the corresponding recursion.
+
+<Aside>
+Well-foundedness is exactly what rules out circular justification. In ZF the Axiom of Foundation asserts that $\in$ is well-founded, which is what makes $\in$-induction available and forbids $x \in x$.
+
+A practical corollary: to prove termination of a recursive procedure, find a well-founded measure that strictly decreases. Ackermann's function terminates despite growing enormously, because its arguments decrease in the lexicographic order on $\mathbb{N}^2$ — well-founded, though not order-isomorphic to $\mathbb{N}$.
+</Aside>
+
+<WhereThisGoes level="l7">
+Well-founded induction is the organising principle of programming-language theory: type soundness, compiler correctness, and the semantics of recursive definitions are all structural inductions over syntax. In proof assistants this is not an analogy — an inductive type is *defined* by its constructors, and the induction principle is generated mechanically as the type's eliminator, so `Nat_rect` in Coq is literally §6.2's three steps as a term. Going up, ordinal analysis measures the strength of a formal system by the largest ordinal for which it can prove transfinite induction: $\varepsilon_0$ for Peano arithmetic (Gentzen), $\Gamma_0$ for predicative analysis. That a theory's power can be pinned to an ordinal is one of the more surprising facts in logic, and it locates exactly the induction a system cannot justify about itself.
+</WhereThisGoes>

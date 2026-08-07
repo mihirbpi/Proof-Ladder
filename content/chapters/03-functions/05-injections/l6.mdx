@@ -1,0 +1,124 @@
+---
+level: l6
+title: One-to-one (injections)
+readingTimeMin: 8
+newTerms: ["injective", "one-to-one"]
+anchorExample: "rigid motions of the plane"
+---
+
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Figure from '@/components/Figure.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+A rigid motion cannot fold the plane. Two distinct points go to two distinct points — otherwise distance would not be preserved, since two points at distance $3$ would end up at distance $0$.
+
+That property has a name, and it is the first of the two conditions that make a function undoable.
+
+## Definition
+
+$f : S\to T$ is **injective** (or **one-to-one**) when distinct inputs have distinct outputs:
+
+$$
+\forall s_1, s_2 \in S:\quad s_1 \neq s_2 \ \Rightarrow\ f(s_1)\neq f(s_2).
+$$
+
+<Figure alt="Two columns of dots with arrows; each right-hand dot receives at most one arrow." caption="Injective: no target is hit twice.">
+  <ArrowDiagram
+    left={["A", "B", "C"]}
+    right={["P", "Q", "R"]}
+    edges={[[0,1],[1,0],[2,2]]}
+  />
+</Figure>
+
+## Use the contrapositive
+
+The definition as stated is awkward to work with — its hypothesis is a negation, and module 1.8 told you what to do about that. Flip it around:
+
+$$
+\forall s_1, s_2 \in S:\quad f(s_1) = f(s_2) \ \Rightarrow\ s_1 = s_2.
+$$
+
+**This is the form you should use.** It is logically identical, and its hypothesis is an equation you can manipulate. Nearly every injectivity proof in mathematics is written this way:
+
+> Suppose $f(s_1)=f(s_2)$. … Therefore $s_1 = s_2$.
+
+That is the template. Memorise it.
+
+## A worked proof
+
+> **Proposition.** $f : \mathbb{R}\to\mathbb{R}$, $f(x)=3x-2$ is injective.
+
+<Proof>
+Suppose $f(x_1)=f(x_2)$. Then
+$$3x_1 - 2 = 3x_2 - 2.$$
+Adding $2$ to both sides gives $3x_1 = 3x_2$, and dividing by $3$ gives $x_1 = x_2$.
+
+Hence $f$ is injective.
+</Proof>
+
+Every step was reversible algebra, which is what made it work. Compare with a function where it does not.
+
+> **Proposition.** $g : \mathbb{R}\to\mathbb{R}$, $g(x)=x^2$ is **not** injective.
+
+<Proof>
+$g(2) = 4$ and $g(-2)=4$, but $2 \neq -2$.
+</Proof>
+
+**Refuting injectivity is an existential claim**, so one pair suffices — module 1.11's counterexample rule. Note also what happens if you attempt the template: $x_1^2 = x_2^2$ gives $x_1 = \pm x_2$, and the $\pm$ is exactly where the proof stalls. A stalled proof often shows you the counterexample.
+
+## Rigid motions are injective
+
+> **Proposition.** Every rigid motion of the plane is injective.
+
+<Discussion>
+  <div slot="know">A rigid motion preserves distance: $d\big(f(P),f(Q)\big) = d(P,Q)$ for all $P, Q$.</div>
+  <div slot="want">$f(P)=f(Q) \Rightarrow P = Q$.</div>
+  <div slot="how">If two points have the same image, their images are at distance zero. Distance preservation pushes that back to the originals, and distance zero means the same point.</div>
+</Discussion>
+
+<Proof>
+Let $f$ be a rigid motion and suppose $f(P) = f(Q)$.
+
+Then $d\big(f(P), f(Q)\big) = 0$. Since $f$ preserves distance, $d(P,Q) = 0$.
+
+Two points at distance zero are the same point, so $P = Q$. Hence $f$ is injective.
+</Proof>
+
+Four lines, covering translations, rotations, reflections, glide reflections, and any composition of them at once — because it used only distance preservation. **That is the argument for proving things about the general class rather than case by case.**
+
+Dilations are injective too, provided the scale factor is not zero. Their proof is the same, with $d(f(P),f(Q)) = |k| \, d(P,Q)$.
+
+<Warning title="Injectivity depends on the domain">
+$g(x)=x^2$ is not injective on $\mathbb{R}$. Restricted to $[0,\infty)$ it **is**:
+
+$$x_1^2 = x_2^2 \text{ with } x_1, x_2 \geq 0 \implies x_1 = x_2,$$
+
+since the negative root is unavailable.
+
+This is not a trick. It is why the square root function exists at all, and why your trigonometry course will restrict sine to $[-90°, 90°]$ before defining $\sin^{-1}$. Shrinking the domain is the standard repair for a failure of injectivity.
+</Warning>
+
+## The graphical test
+
+For a function $\mathbb{R}\to\mathbb{R}$: **no horizontal line meets the graph twice.**
+
+A horizontal line $y = c$ meets the graph at every $x$ with $f(x)=c$, so two meetings is two inputs sharing an output. The test is a picture of the definition.
+
+The same caution as the vertical line test applies: it works only for real-valued functions of a real variable. A rotation of the plane has no drawable graph, and the definition still applies.
+
+## Why it matters
+
+Injectivity is the condition that a function does not **lose information**. If $f$ is injective and you know $f(s)$, then $s$ is determined — there is only one thing it could have been.
+
+That is exactly what "you can undo it" requires, and it is the first half of module 3.9. It also explains a fact from module 3.3: $A = f^{-1}(f(A))$ holds for all $A$ precisely when $f$ is injective. Nothing extra is picked up on the round trip, because nothing was merged on the way out.
+
+<Aside>
+Injective functions compare sizes. If there is an injection $S\to T$, then $T$ is at least as large as $S$ — each element of $S$ claims a distinct element of $T$, so $T$ cannot run short.
+
+For finite sets that is obvious and useful: with $|S| > |T|$ no injection exists, which is the **pigeonhole principle**. Nineteen pigeons, eighteen holes, some hole gets two.
+
+For infinite sets it is neither obvious nor safe. There is an injection $\mathbb{N}\to\mathbb{N}$ given by $n \mapsto 2n$ whose image is only the even numbers — a proper subset of the domain, matched injectively with the whole thing. Module 3.8 takes that up, and the fact that it cannot happen for finite sets is one way to define what *finite* means.
+</Aside>

@@ -1,0 +1,93 @@
+---
+level: l7
+title: Polar form
+readingTimeMin: 8
+newTerms: ["polar form", "argument", "principal value", "branch cut"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Every $z \in \mathbb{C}\setminus\{0\}$ can be written
+$$
+z = re^{i\theta}, \qquad r = |z| > 0, \quad \theta \in \mathbb{R},
+$$
+and by Euler's formula $re^{i\theta} = r\cos\theta + ir\sin\theta$, so $a = r\cos\theta$, $b = r\sin\theta$.
+
+Angles are in **radians** throughout, necessarily: the series for $\sin$ and $\cos$, hence Euler's formula, hence $\sin' = \cos$, all fail in degrees.
+
+<Figure alt="A dashed unit-scaled circle of radius 2 with a vector from the origin to 2i." caption="$2e^{i\pi/2} = 2i$.">
+  <ComplexPlane circle={2} vectors={[{re: 0, im: 2}]} points={[{re: 0, im: 2, label: "2e^{iπ/2}"}]} range={3} />
+</Figure>
+
+## Existence and non-uniqueness
+
+> **Proposition.** For $z \neq 0$ there exists $\theta \in \mathbb{R}$ with $z = |z|e^{i\theta}$, and $\theta$ is unique modulo $2\pi$.
+
+<Proof>
+*Existence.* Put $w = z/|z|$, so $|w| = 1$ and $w = u + iv$ with $u^2+v^2 = 1$. The map $\theta \mapsto (\cos\theta,\sin\theta)$ is a surjection from $[0,2\pi)$ onto the unit circle, so some $\theta$ has $\cos\theta = u$, $\sin\theta = v$; then $w = e^{i\theta}$ and $z = |z|e^{i\theta}$.
+
+*Uniqueness mod $2\pi$.* If $e^{i\theta_1} = e^{i\theta_2}$ then $e^{i(\theta_1-\theta_2)} = 1$, so $\cos(\theta_1-\theta_2) = 1$ and $\sin(\theta_1-\theta_2) = 0$, which forces $\theta_1 - \theta_2 \in 2\pi\mathbb{Z}$.
+</Proof>
+
+Structurally: $\theta \mapsto e^{i\theta}$ is a surjective group homomorphism $(\mathbb{R},+)\to(S^1,\cdot)$ with kernel $2\pi\mathbb{Z}$, so
+$$
+\mathbb{R}/2\pi\mathbb{Z} \cong S^1, \qquad \mathbb{C}^\times \cong \mathbb{R}_{>0}\times S^1.
+$$
+Polar form is that isomorphism written out. The non-uniqueness of $\theta$ is not sloppiness — it is the kernel.
+
+## Principal value and the impossibility of a global choice
+
+$\arg(z)$ is properly a *set*, $\{\theta + 2\pi k : k \in \mathbb{Z}\}$. The **principal argument** is $\operatorname{Arg}(z) \in (-\pi,\pi]$.
+
+> **Proposition.** There is no continuous function $\alpha : \mathbb{C}\setminus\{0\} \to \mathbb{R}$ with $e^{i\alpha(z)} = z/|z|$ for all $z$.
+
+<Proof title="Proof sketch">
+Suppose such $\alpha$ existed. Restrict to the unit circle and traverse it once: $\gamma(t) = e^{it}$, $t \in [0,2\pi]$. Then $\alpha(\gamma(t)) - t$ is continuous and takes values in $2\pi\mathbb{Z}$, hence is constant. So $\alpha(\gamma(2\pi)) - 2\pi = \alpha(\gamma(0))$. But $\gamma(2\pi) = \gamma(0)$, so $\alpha$ takes two different values at the same point — a contradiction.
+</Proof>
+
+So the discontinuity of $\operatorname{Arg}$ across the negative real axis is unavoidable, not an artefact of a poor choice. The obstruction is topological: $\mathbb{C}\setminus\{0\}$ is not simply connected, and $\pi_1(\mathbb{C}^\times) \cong \mathbb{Z}$ counts exactly the winding that defeats any continuous choice.
+
+<Warning title="Practical hazards">
+**$\arctan(b/a)$ is not $\operatorname{Arg}(z)$.** $\tan$ has period $\pi$, so it cannot separate $z$ from $-z$; the quadrant must be checked. Use `atan2(b, a)`.
+
+**$z = 0$ has no argument.** Polar form covers $\mathbb{C}^\times$, not $\mathbb{C}$.
+
+**$\operatorname{Arg}(zw) \neq \operatorname{Arg}(z)+\operatorname{Arg}(w)$ in general.** The identity holds modulo $2\pi$; the principal values may differ by $2\pi$. Take $z = w = -1$: $\operatorname{Arg}(zw) = 0$ while the sum of the principal arguments is $2\pi$.
+</Warning>
+
+## The complex logarithm
+
+$$
+\log z = \ln|z| + i\arg z,
+$$
+multivalued, with values differing by $2\pi i k$. The **principal branch** $\operatorname{Log} z = \ln|z| + i\operatorname{Arg}(z)$ is holomorphic on $\mathbb{C}\setminus(-\infty,0]$, the removed ray being the **branch cut**.
+
+This is the precise source of the trap in §5.3: $\sqrt{ab} = \sqrt a\sqrt b$ fails on $\mathbb{C}$ because $\sqrt z = e^{\frac12\log z}$ inherits the branch ambiguity, and the two sides may pick different branches. Likewise $\log(zw) = \log z + \log w$ holds only as an identity of sets.
+
+The honest resolution is not a cleverer branch but a different domain: on the Riemann surface of $\log$ — an infinite spiral covering $\mathbb{C}^\times$ — the logarithm is single-valued and holomorphic everywhere.
+
+## Special values
+
+$$
+1 = e^{0},\quad i = e^{i\pi/2},\quad -1 = e^{i\pi},\quad -i = e^{-i\pi/2},\quad 1+i = \sqrt2\,e^{i\pi/4}.
+$$
+
+$$
+e^{i\pi} + 1 = 0.
+$$
+
+<Aside>
+$i^i$ is real. Using $i = e^{i(\pi/2 + 2\pi k)}$,
+$$i^i = e^{i\log i} = e^{i \cdot i(\pi/2 + 2\pi k)} = e^{-\pi/2 - 2\pi k},$$
+a real number for each $k$ — with principal value $e^{-\pi/2}\approx 0.2079$. Euler found this in 1746 and thought it worth writing to a friend about. By Gelfond–Schneider, every value is transcendental (§4.7).
+</Aside>
+
+<WhereThisGoes level="l7">
+The failure of a continuous argument is the entry point to several subjects at once. In topology it is the computation $\pi_1(S^1)\cong\mathbb{Z}$, from which the Brouwer fixed point theorem and the fundamental theorem of algebra both follow. In complex analysis it becomes the argument principle — the winding number of $f(\gamma)$ counts zeros minus poles — and hence Rouché's theorem and the residue calculus. In Riemann surface theory it is the reason multivalued functions are best understood as single-valued functions on a covering space, which is where algebraic curves, monodromy, and eventually the Riemann–Hilbert correspondence live. And in physics the same ambiguity is a phase, whose non-integrability produces the Aharonov–Bohm effect and Berry's phase.
+</WhereThisGoes>

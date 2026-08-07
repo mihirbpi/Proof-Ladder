@@ -13,6 +13,17 @@
     "l7": "The rules for equality",
     "l8": "The rules for equality"
   },
+  "kernelIdea": "The equality axioms: reflexivity, symmetry, transitivity, and closure of equality. Reflexive plus symmetric plus transitive is an equivalence relation.",
+  "kernels": {
+    "l1": "A thing is the same as itself. If mine matches yours, yours matches mine.",
+    "l2": "Same as has three rules. Everything is the same as itself. If this matches that, then that matches this. And if this matches that and that matches the other, this matches the other.",
+    "l3": "Equality obeys three rules: everything equals itself, equality can be read backwards, and equalities chain together. Any relation with all three is called an equivalence relation.",
+    "l4": "Equality is reflexive (x = x), symmetric (x = y ⇒ y = x), and transitive (x = y and y = z ⇒ x = z), plus closure: if x ∈ ℕ and x = y then y ∈ ℕ. Relations with the first three are equivalence relations.",
+    "l5": "Reflexive, symmetric, and transitive together define an equivalence relation; congruence mod n is the standard example, and its classes partition ℤ.",
+    "l6": "An equivalence relation partitions its set into classes, and every partition arises this way; this is the mechanism behind every quotient construction.",
+    "l7": "The equality axioms are reflexivity, symmetry, transitivity, and closure. The first three define an equivalence relation, whose classes partition the underlying set — the mechanism behind quotients.",
+    "l8": "Equivalence relations correspond exactly to partitions, and quotient sets construct ℤ from ℕ, ℚ from ℤ, and ℤ/nℤ from ℤ; many Peano presentations relegate these axioms to logic."
+  },
   "kernel": "Axioms 1–4: reflexivity (x = x), symmetry, transitivity, and closure of equality (if x ∈ ℕ and x = y then y ∈ ℕ). Reflexive + symmetric + transitive = an equivalence relation.",
   "objectives": [
     "State the three properties",

@@ -1,0 +1,130 @@
+---
+level: l6
+title: Euler's formula
+readingTimeMin: 9
+newTerms: []
+anchorExample: "rotations of the coordinate plane"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+e^{i\theta} = \cos\theta + i\sin\theta.
+$$
+
+An exponential on the left, trigonometry on the right, and nothing in either subject suggests they should meet. This module shows where the formula comes from.
+
+## Infinite sums
+
+Some functions can be written as sums that never end:
+
+$$
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!}+\cdots
+$$
+
+where $n! = n(n-1)\cdots 2\cdot 1$, and $0! = 1$.
+
+Adding infinitely many terms needs justification, and calculus provides it. The idea is that the **partial sums** — stop after two terms, three terms, four — settle down towards a definite value. For $x = 1$:
+
+| terms | partial sum |
+|---|---|
+| $2$ | $2$ |
+| $3$ | $2.5$ |
+| $4$ | $2.6\overline{6}$ |
+| $5$ | $2.708\overline{3}$ |
+| $6$ | $2.71\overline{6}$ |
+| $8$ | $2.71825$ |
+
+closing in on $e \approx 2.71828$. The factorials in the denominators grow fast enough that later terms contribute almost nothing.
+
+Two more, from the same source:
+
+$$\cos\theta = 1 - \frac{\theta^2}{2!}+\frac{\theta^4}{4!}-\frac{\theta^6}{6!}+\cdots$$
+$$\sin\theta = \theta - \frac{\theta^3}{3!}+\frac{\theta^5}{5!}-\frac{\theta^7}{7!}+\cdots$$
+
+Cosine uses only even powers; sine only odd. **Both require $\theta$ in radians**, not degrees — the series are simply false otherwise, and this is one of the reasons radians exist.
+
+## The powers of $i$
+
+$$i^0 = 1,\quad i^1 = i,\quad i^2=-1,\quad i^3=-i,\quad i^4=1,\ \dots$$
+
+Period $4$, from module 5.3. Substitute $i\theta$ into the exponential series and this cycle is what happens to each term:
+
+$$
+e^{i\theta} = 1 + i\theta + \frac{(i\theta)^2}{2!}+\frac{(i\theta)^3}{3!}+\frac{(i\theta)^4}{4!}+\cdots
+$$
+$$
+= 1 + i\theta - \frac{\theta^2}{2!} - i\frac{\theta^3}{3!}+\frac{\theta^4}{4!}+i\frac{\theta^5}{5!}-\cdots
+$$
+
+## Separating the parts
+
+Every term is real or purely imaginary — never mixed — because the $i$-cycle alternates. Group them:
+
+$$
+e^{i\theta} = \underbrace{\left(1 - \frac{\theta^2}{2!}+\frac{\theta^4}{4!}-\cdots\right)}_{\text{even powers, no } i} + i\underbrace{\left(\theta - \frac{\theta^3}{3!}+\frac{\theta^5}{5!}-\cdots\right)}_{\text{odd powers}}
+$$
+
+The first bracket is the cosine series. The second is the sine series. Therefore
+
+$$
+e^{i\theta} = \cos\theta+i\sin\theta.
+$$
+
+**The alternating signs came from the powers of $i$, and the even/odd split came from the same cycle.** Nothing was forced; the two trigonometric series were sitting inside the exponential series, waiting for $i$ to separate them.
+
+<Warning title="Rearranging infinitely many terms is not free">
+Reordering a finite sum is harmless. For infinite sums it can change the answer.
+
+The alternating harmonic series $1 - \frac12+\frac13-\frac14+\cdots$ sums to about $0.693$. Rearranged, its terms can be made to sum to **any** value you like, or to nothing at all. Riemann proved this in 1854.
+
+The grouping above is therefore a step requiring justification, and it has one: the exponential series converges **absolutely** — the sum of the sizes of its terms is itself finite. Absolutely convergent series may be rearranged freely, and that theorem is what licenses the derivation.
+
+A step that looks like bookkeeping can be the step that needs the deepest theorem. Noticing which is which is what module 1.6 meant by judging load-bearing reasons.
+</Warning>
+
+## The special values
+
+$$\theta = \pi:\qquad e^{i\pi} = \cos\pi + i\sin\pi = -1+0i = -1,$$
+
+so
+$$e^{i\pi}+1 = 0.$$
+
+**Euler's identity.** Five constants — $e$, $i$, $\pi$, $1$, $0$ — from five different parts of mathematics, in one equation with no room to spare. It is regularly voted the most beautiful formula in mathematics, and the vote is not unreasonable.
+
+$$\theta = \frac\pi2:\quad e^{i\pi/2} = i \qquad\qquad \theta = 2\pi:\quad e^{2\pi i} = 1$$
+
+## Reading it geometrically
+
+$$|e^{i\theta}| = \sqrt{\cos^2\theta+\sin^2\theta} = 1,$$
+
+by the Pythagorean identity. So $e^{i\theta}$ always lies on the unit circle (module 5.6), and its coordinates are $(\cos\theta,\sin\theta)$ — the standard parametrisation you use for the unit circle in trigonometry.
+
+**$e^{i\theta}$ is the point reached by travelling $\theta$ radians counterclockwise from $1$.** The formula is a dictionary between "how far around the circle" and a complex number.
+
+Now the special values read as geometry rather than algebra:
+
+- $e^{i\pi/2}=i$: a quarter turn lands on $i$.
+- $e^{i\pi} = -1$: a half turn lands on $-1$.
+- $e^{2\pi i}=1$: a full turn returns to the start.
+
+And $i^2 = -1$ becomes $e^{i\pi/2}\cdot e^{i\pi/2} = e^{i\pi}$ — two quarter turns make a half turn. **Multiplying exponentials adds the exponents, and adding exponents adds the angles.** That is why the formula matters, and module 5.9 develops it.
+
+## What it explains
+
+Trigonometry and exponentials looked unrelated because you met them over $\mathbb{R}$, where they behave completely differently — one oscillates, the other grows. Over $\mathbb{C}$ they are the same function looked at along different lines through the origin.
+
+Along the real axis, $e^x$ grows. Along the imaginary axis, $e^{i\theta}$ goes round in circles. Same function; the plane is what makes the connection visible, and the real line is too small a stage to see it on.
+
+<Aside>
+There is a second derivation that avoids infinite sums entirely.
+
+Let $f(\theta) = \cos\theta+i\sin\theta$. Differentiating, $f'(\theta) = -\sin\theta+i\cos\theta = i\,f(\theta)$, and $f(0)=1$.
+
+The only function satisfying $f' = if$ with $f(0)=1$ is $e^{i\theta}$ — the same uniqueness argument that identifies $e^{kx}$ as the solution of $f'=kf$.
+
+This version is cleaner and needs no rearrangement, at the cost of needing derivatives of sine and cosine, which themselves require radians.
+
+Two independent routes to one theorem is the sort of confirmation mathematicians look for. When a result can be reached from unrelated directions, it is usually pointing at something structural rather than at a coincidence of notation.
+</Aside>

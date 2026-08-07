@@ -1,0 +1,118 @@
+---
+level: l6
+title: The shape of the irrationals
+readingTimeMin: 8
+newTerms: []
+anchorExample: "coordinates, lengths, and the Pythagorean theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$\mathbb{Q}$ is a field: closed under all four operations (module 4.5). The irrationals are not, and the failures are instructive.
+
+## Closure fails, in every way
+
+Let $\mathbb{I} = \mathbb{R}\setminus\mathbb{Q}$ denote the irrationals.
+
+**Not closed under addition.** $\sqrt2$ and $-\sqrt2$ are irrational, and $\sqrt2 + (-\sqrt2) = 0$ is rational.
+
+**Not closed under multiplication.** $\sqrt2\cdot\sqrt2 = 2$.
+
+**Not closed under subtraction or division.** $\sqrt2 - \sqrt2 = 0$; $\sqrt2/\sqrt2 = 1$.
+
+Each is a single counterexample refuting a universal claim — module 1.11's rule, and it takes one line each.
+
+<Warning title="A counterexample refutes; it does not describe">
+Showing $\sqrt2 + (-\sqrt2)$ is rational does **not** mean sums of irrationals are usually rational. $\sqrt2 + \sqrt3$ is irrational, as is $\sqrt2+\pi$.
+
+The counterexample refutes the *universal* claim "every such sum is irrational" and says nothing about the general case. Both outcomes are possible, which is exactly what "not closed" means.
+
+Confusing "not always" with "never" is a De Morgan error (module 1.4): $\neg\forall$ is $\exists\neg$, not $\forall\neg$.
+</Warning>
+
+So $\mathbb{I}$ is not a field, not a ring, not closed under anything. It is a set — the complement of $\mathbb{Q}$ in $\mathbb{R}$ — and that is all.
+
+## What does hold
+
+The stable facts all take the same form, and all are proved the same way: assume the result is rational, and use closure of $\mathbb{Q}$ to contradict something.
+
+> **Proposition.** If $a$ is rational and $b$ is irrational, then $a + b$ is irrational.
+
+<Discussion>
+  <div slot="know">$a\in\mathbb{Q}$, $b\notin\mathbb{Q}$. Available: $\mathbb{Q}$ is closed under subtraction.</div>
+  <div slot="want">$a+b\notin\mathbb{Q}$ — a negative claim, with nothing to build from.</div>
+  <div slot="how">Suppose not. Then $a+b$ is rational, and so is $a$; subtracting recovers $b$ inside $\mathbb{Q}$, contradicting the hypothesis. The move is to use closure to manufacture the forbidden conclusion.</div>
+</Discussion>
+
+<Proof>
+Suppose not: suppose $a+b$ is rational. Write $s = a+b$, so $s\in\mathbb{Q}$.
+
+Since $\mathbb{Q}$ is closed under subtraction and both $s$ and $a$ are rational,
+$$s - a \in \mathbb{Q}.$$
+
+But $s - a = (a+b)-a = b$. So $b\in\mathbb{Q}$, contradicting that $b$ is irrational.
+
+Hence $a+b$ is irrational.
+</Proof>
+
+> **Proposition.** If $a$ is a **non-zero** rational and $b$ is irrational, then $ab$ is irrational.
+
+<Proof>
+Suppose not: suppose $ab$ is rational, say $ab = p\in\mathbb{Q}$.
+
+Since $a\neq0$ and $\mathbb{Q}$ is closed under division by non-zero rationals, $\frac pa\in\mathbb{Q}$.
+
+But $\frac pa = \frac{ab}{a} = b$. So $b$ is rational — a contradiction.
+
+Hence $ab$ is irrational.
+</Proof>
+
+<Warning title="Why a ≠ 0 is required">
+Drop it and the statement is false: $0\cdot\sqrt2 = 0$, which is rational.
+
+The proof shows exactly where the hypothesis is used — the division step. **When a proof needs a hypothesis, deleting the hypothesis produces a counterexample at precisely that step**, and tracing that connection is a good way to check you have understood an argument.
+</Warning>
+
+## A family of corollaries
+
+Both propositions cover a range of cases at once:
+
+- $-b$ is irrational when $b$ is — take $a = -1$ in the second.
+- $b/2$, $3b$, $b+7$, $\frac{2b}{5}-1$ are all irrational when $b$ is.
+- $5\sqrt2 - 3$ is irrational, applying both.
+
+**One theorem, many instances** — the same economy as module 4.3's linear combinations, and the same reason to prove the general statement first.
+
+## Sums of two irrationals
+
+Nothing general holds, and both outcomes occur:
+
+$$\sqrt2 + \sqrt2 = 2\sqrt2 \quad\text{irrational}$$
+$$\sqrt2 + (2-\sqrt2) = 2 \quad\text{rational}$$
+
+The method breaks down for a locatable reason. Assuming $\sqrt2+\sqrt3 = q$ rational and subtracting gives $\sqrt3 = q - \sqrt2$, and the right side is a *combination* of a rational and an irrational rather than a rational — so nothing is contradicted.
+
+Proving $\sqrt2+\sqrt3$ irrational is possible and needs a different idea: square it to get $5 + 2\sqrt6$, then apply the results above plus the irrationality of $\sqrt6$. Try it; the two propositions of this module do all the work once the squaring is done.
+
+## Both sets are dense, and only one is a field
+
+Module 4.6 showed the rationals and irrationals are thoroughly interleaved: every interval contains infinitely many of each.
+
+So the difference between them is **not** positional. It is algebraic — one is closed under the operations and the other is not — and it is a matter of size, since module 3.8's argument shows the irrationals are strictly more numerous.
+
+That is three genuinely different ways two subsets of the line can differ: where they sit, how they behave under arithmetic, and how many there are. Keeping the three apart is worth the effort, because informal talk about "how much of the line" a set occupies runs them together.
+
+<Aside>
+The irrationals split further.
+
+An **algebraic** number is a root of a polynomial with integer coefficients. $\sqrt2$ is one — it satisfies $x^2 - 2 = 0$ — and so is $\sqrt[3]{7}$, and so is every rational.
+
+A **transcendental** number is not the root of any such polynomial. $\pi$ and $e$ are transcendental, which is far harder to prove than irrationality: Hermite settled $e$ in 1873, Lindemann settled $\pi$ in 1882.
+
+Lindemann's result closed a problem that had been open since antiquity. **Squaring the circle** — constructing, with compass and straightedge, a square of the same area as a given circle — requires constructing $\sqrt\pi$, and compass-and-straightedge constructions can only produce certain algebraic numbers. $\pi$ being transcendental proves the construction impossible.
+
+Two thousand years of failed attempts, ended by a theorem about numbers rather than a theorem about figures.
+</Aside>

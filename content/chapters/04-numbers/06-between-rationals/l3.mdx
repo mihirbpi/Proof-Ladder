@@ -1,9 +1,9 @@
 ---
 level: l3
-title: Between any two rationals
+title: Between any two fractions
 readingTimeMin: 5
 newTerms: ["midpoint", "dense"]
-anchorExample: "divisibility"
+anchorExample: "factors and multiples"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -11,65 +11,62 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Between $4$ and $5$ there is no integer at all. The integers have gaps.
+Between $4$ and $5$ there is no counting number at all. The counting numbers have gaps you can point at.
 
-Do the rationals have gaps? Pick two of them, as close together as you like, and ask whether anything fits between.
+Do the fractions have gaps? Pick two of them, as close together as you like, and ask whether anything fits between.
 
 The answer is no — and it is worth proving rather than assuming.
 
 ## The claim
 
-> **Claim.** If $a$ and $b$ are rational numbers with $a < b$, then $\dfrac{a+b}{2}$ is a rational number and
-> $$a < \frac{a+b}{2} < b.$$
-
-The number $\tfrac{a+b}{2}$ is called the **midpoint** of $a$ and $b$.
+> **Claim.** Take any two different fractions. The **midpoint** — their sum, halved — is also a fraction, and it sits strictly between them.
 
 <Discussion>
-  <div slot="know">$a$ and $b$ are rational, and $a < b$. From module 4.5, $\mathbb{Q}$ is closed under adding and dividing by a non-zero number.</div>
-  <div slot="want">Three things: the midpoint is rational, it beats $a$, and it loses to $b$. Three separate checks.</div>
-  <div slot="how">Rationality is pure closure. For the two inequalities, start from $a < b$ and add the right thing to both sides.</div>
+  <div slot="know">Both numbers are fractions, and one is smaller than the other. From module 4.5, adding two fractions gives a fraction, and halving a fraction gives a fraction.</div>
+  <div slot="want">Three things: the midpoint is a fraction, it beats the smaller one, and it loses to the bigger one. Three separate checks.</div>
+  <div slot="how">Being a fraction is pure closure. For the two comparisons, think about what "halfway" means rather than computing.</div>
 </Discussion>
 
 ## The proof
 
 <Proof>
-**The midpoint is rational.** $a + b$ is rational, because $\mathbb{Q}$ is closed under addition. Dividing by $2$ is multiplying by $\tfrac12$, which is rational, and $\mathbb{Q}$ is closed under multiplication. So $\tfrac{a+b}{2} \in \mathbb{Q}$.
+Take any two different fractions and follow them. Call the smaller one the **low** number and the bigger one the **high** number.
 
-**It is bigger than $a$.** Start from $a < b$. Add $a$ to both sides:
-$$a + a < a + b, \quad\text{so}\quad 2a < a + b.$$
-Now divide both sides by $2$, which is positive so the inequality is preserved:
-$$a < \frac{a+b}{2}.$$
+**The midpoint is a fraction.** Adding two fractions gives a fraction (module 4.5). Halving is multiplying by $\tfrac12$, which is a fraction, and multiplying two fractions gives a fraction. So the midpoint is a fraction. ✓
 
-**It is smaller than $b$.** Start from $a < b$ again, but this time add $b$ to both sides:
-$$a + b < b + b = 2b.$$
-Divide by $2$:
-$$\frac{a+b}{2} < b.$$
+**It is bigger than the low number.** The midpoint is halfway from the low number to the high number. Since the high number is strictly bigger, that halfway step is a step of some real size — you actually move. So you end up past where you started. ✓
+
+**It is smaller than the high number.** Same reasoning from the other end. You started at the low number and only went *half* the way to the high one, so you did not arrive. ✓
 
 All three checks pass, so the claim holds.
 </Proof>
 
-Notice the symmetry of the two inequality arguments: one adds $a$, the other adds $b$. Neither is harder; you just have to think of doing both.
+Try it: halfway between $\tfrac14$ and $\tfrac12$ is $\tfrac38$. And $\tfrac14 < \tfrac38 < \tfrac12$. ✓
 
-<Warning title="Rationality is not free">
-The first paragraph of the proof is doing real work. If we were working inside the *integers*, the midpoint of $3$ and $4$ would be $3\tfrac12$, which is not an integer — and the whole claim would collapse.
+<Warning title="Being a fraction is not free">
+The first check is doing real work. If we were working inside the *counting numbers*, the midpoint of $3$ and $4$ would be $3\tfrac12$ — which is not a counting number, and the whole claim would collapse.
 
-Closure of $\mathbb{Q}$ (module 4.5) is exactly what makes the midpoint legal. Cite it.
+Closure of the fractions (module 4.5) is exactly what makes the midpoint legal. Cite it.
 </Warning>
 
 ## Infinitely many, in every gap
 
-Now repeat. Between $a$ and $b$ sits $m_1 = \tfrac{a+b}{2}$. Between $a$ and $m_1$ sits another rational $m_2$. Between $a$ and $m_2$ sits $m_3$.
+Now repeat. Between your two fractions sits a new one. Between the low number and *that* one sits another. Between the low number and that one, another still.
 
-There is nothing to stop this. Every step produces a new rational strictly between $a$ and $b$, and the process never terminates.
+There is nothing to stop this. Every step produces a brand-new fraction strictly between the original two, and the process never terminates.
 
-So: **between any two distinct rationals there are infinitely many rationals.** A set with this property is called **dense**.
+So: **between any two different fractions there are infinitely many fractions.** A set with this property is called **dense**.
+
+Try it starting from $0$ and $1$: $\tfrac12$, then $\tfrac14$, then $\tfrac18$, then $\tfrac1{16}$. The numbers get small fast, and they never reach zero and never run out.
 
 ## The trap
 
-Dense sounds like *complete*. It is very tempting to conclude that the rationals fill the number line with nothing missing — after all, they leave no gap you can point to.
+Dense sounds like *complete*. It is very tempting to conclude that the fractions fill the number line with nothing missing — after all, they leave no gap you can point to.
 
 Hold that thought. Module 4.7 shows it is false, and the demonstration is one of the most famous proofs in mathematics.
 
 <Aside>
-Here is how strange the situation is. The rationals are dense — every interval, however tiny, contains infinitely many. And yet there are *vastly* more numbers on the line that are not rational than are. Both facts are true at once, and reconciling them is genuinely difficult. Density and abundance are different things.
+Here is how strange the situation turns out to be. The fractions are dense — every stretch of the number line, however tiny, contains infinitely many.
+
+And yet there are *vastly* more numbers on the line that are not fractions than are. Both facts are true at once, and reconciling them is genuinely difficult. Being everywhere and being most of it are different things.
 </Aside>

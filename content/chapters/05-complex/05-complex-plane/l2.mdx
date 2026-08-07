@@ -1,0 +1,61 @@
+---
+level: l2
+title: Plotting a walk
+readingTimeMin: 4
+newTerms: ["plot", "the flat line"]
+anchorExample: "turning a quarter turn"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+
+To **plot** a complex number, start at the middle. Go across by the first part. Go up by the second part. Mark the spot.
+
+<Figure alt="A grid with three dots plotted: at 3 across 2 up, at minus 2 across 1 up, and at 4 across 0 up on the horizontal line.">
+  <ComplexPlane points={[
+    {re: 3, im: 2, label: "3+2i"},
+    {re: -2, im: 1, label: "-2+i"},
+    {re: 4, im: 0, label: "4"}
+  ]} range={5} />
+</Figure>
+
+## Adding is joining the walks
+
+Remember module 5.3: to add, you do one walk and then the other.
+
+On the grid, that means putting the second arrow's tail at the first arrow's head. Where you finish is the answer.
+
+<Figure alt="A grid with two arrows drawn from the centre, one to 3 across 1 up and one to 1 across 2 up, and a dot at 4 across 3 up showing the sum.">
+  <ComplexPlane
+    vectors={[{re: 3, im: 1}, {re: 1, im: 2}]}
+    points={[{re: 4, im: 3, label: "sum"}]}
+    range={5} />
+</Figure>
+
+$(3 + 1i) + (1 + 2i) = 4 + 3i$. And on the grid, the two arrows joined nose-to-tail land you exactly there.
+
+## The flat line
+
+Look at $4 + 0i$ in the first picture. It has no up part, so it sits right on the horizontal line.
+
+Every ordinary number sits on that line. We call it **the flat line**, and it is the old number line you have always used — now living inside a bigger picture.
+
+## The mirror is the flat line
+
+In module 5.4 you learned the flip: keep the across part, turn the up part upside down.
+
+Now look at where that happens on the grid. $3 + 2i$ is two squares above the flat line. Its flip, $3 - 2i$, is two squares *below*.
+
+The flat line is the mirror!
+
+And that explains something. Numbers sitting *on* the flat line do not move when you flip them — because they are already on the mirror. Those are exactly the ordinary numbers, which is exactly what module 5.4 proved with algebra.
+
+<Aside>
+This is one of the nicest things about the complex numbers. The algebra and the picture always agree. If a proof feels fiddly, draw it — and if a drawing feels vague, do the algebra. Each one keeps the other honest.
+</Aside>
+
+<TryIt>
+Draw a grid. Plot $2+3i$ and its flip $2-3i$. Fold the paper along the flat line and check the two dots land on each other.
+</TryIt>

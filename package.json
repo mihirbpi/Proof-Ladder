@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "NODE_OPTIONS=--max-old-space-size=8192 astro build",
     "preview": "astro preview",
     "astro": "astro",
     "lint:content": "node scripts/lint-content.mjs"

@@ -1,0 +1,74 @@
+---
+level: l2
+title: Two rules for real counting
+readingTimeMin: 4
+newTerms: ["loop", "squish"]
+anchorExample: "counting on forever"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 7.3 gave two rules: zero is a number, and every number has a next one.
+
+That is not enough! Here are two machines that follow both rules and are still wrong.
+
+## Broken machine 1: the loop
+
+<Figure alt="Two dots labelled 0 and 1, with an arrow from 0 to 1 and an arrow from 1 back to 0." caption="A counting machine that loops back to the start.">
+  <ArrowDiagram labelLeft="numbers" labelRight="next one"
+    left={["0", "1"]} right={["0", "1"]}
+    edges={[[0,1],[1,0]]} />
+</Figure>
+
+Zero is a number ✓. Every number has a next one ✓.
+
+But count with it: $0, 1, 0, 1, 0, 1, \ldots$
+
+It **loops**. And real counting never loops — you never count back to zero.
+
+**The fix.** Add a rule:
+
+> **Nothing has $0$ as its next one.**
+
+Zero is the start, and nothing points back at it. That kills the loop.
+
+## Broken machine 2: the squish
+
+<Figure alt="Three dots labelled 0, 1 and 2 on the left, with arrows from both 1 and 2 landing on the same dot." caption="Two different numbers sharing one next one.">
+  <ArrowDiagram labelLeft="numbers" labelRight="next one"
+    left={["0", "1", "2"]} right={["1", "2", "3"]}
+    edges={[[0,0],[1,2],[2,2]]} />
+</Figure>
+
+Look at the arrows. Both $1$ and $2$ point at the same place!
+
+That is a **squish**. Two different numbers, one shared next one.
+
+Real counting never squishes. Every number has its own next one, all to itself.
+
+**The fix.** Add another rule:
+
+> **Two different numbers never have the same next one.**
+
+## Both rules, together
+
+Now the machine cannot loop and cannot squish. It has to march off in a straight line forever:
+
+$$0 \to 1 \to 2 \to 3 \to 4 \to \ldots$$
+
+Never coming home. Never joining up. Just going.
+
+<Warning title="Both rules are needed">
+Take away the no-loop rule and the first broken machine sneaks back in.
+
+Take away the no-squish rule and the second one does.
+
+Neither rule can do the other's job — that is exactly why both are on the list.
+</Warning>
+
+<TryIt>
+Draw dots and arrows for a counting machine that loops. Then draw one that squishes. Then draw a proper one.
+</TryIt>

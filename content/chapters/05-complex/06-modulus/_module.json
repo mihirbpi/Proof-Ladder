@@ -13,6 +13,17 @@
     "l7": "Modulus",
     "l8": "Modulus"
   },
+  "kernelIdea": "|z| = √(a² + b²) is the distance from 0; |z| = √(z z̄); it extends absolute value on ℝ; |z − w| is the distance between z and w, and |z − w| = r describes a circle.",
+  "kernels": {
+    "l1": "How far from home? Measure it with a piece of string.",
+    "l2": "To find how far a spot is from the start, use the across part and the up part and make a right triangle. The slanted side is the distance.",
+    "l3": "The modulus |z| is the distance from 0 to z, and Pythagoras gives |a + bi| = √(a² + b²). For ordinary numbers it is just the usual distance from zero.",
+    "l4": "|z| = √(a² + b²) = √(z z̄) is the distance from the origin to z; it agrees with absolute value on ℝ, |z − w| is the distance between z and w, and |z − w| = r describes a circle.",
+    "l5": "The modulus is the Euclidean distance to the origin; distances, circles, and disks in ℂ are all described by inequalities in |z − w|.",
+    "l6": "Modulus is a norm on ℂ: it is multiplicative and satisfies the triangle inequality, making ℂ a metric space in which analysis can be done.",
+    "l7": "|z| = √(z z̄) is the Euclidean distance from 0, extends absolute value on ℝ, satisfies |zw| = |z||w| and the triangle inequality, and turns |z − w| = r into a circle.",
+    "l8": "Modulus is the norm making ℂ a complete normed field; multiplicativity is the norm of the quadratic extension, and completeness is what makes complex analysis possible."
+  },
   "kernel": "|z| = √(a² + b²) is the distance from 0; |z| = √(z·z̄); it extends absolute value; |z − w| is the distance between z and w; |z − w| = r describes a circle.",
   "objectives": [
     "Compute modulus",

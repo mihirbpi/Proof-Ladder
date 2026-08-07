@@ -3,7 +3,7 @@ level: l3
 title: If and only if
 readingTimeMin: 6
 newTerms: ["if and only if", "biconditional"]
-anchorExample: "even numbers and last digits"
+anchorExample: "squares and rectangles"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -11,56 +11,93 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-An if–then claim runs one way only. *If a shape is a square, it is a rectangle* — and module 1.7 showed the reverse can fail badly.
+An if–then claim runs one way only. *If a shape is a square, it is a rectangle* — and module 1.7 showed the reverse can fail badly, because plenty of rectangles are not squares.
 
-But sometimes both directions really do hold. When they do, we say the two statements are true **if and only if** each other, and we have a special name for such a claim: a **biconditional**.
+But sometimes both directions really do hold. When they do, we say the two statements are true **if and only if** each other, and we call such a claim a **biconditional**.
 
-> "$A$ if and only if $B$" means both of these at once:
-> - if $A$ then $B$,
-> - if $B$ then $A$.
+> "A if and only if B" means both of these at once:
+> - if A then B,
+> - if B then A.
 
-Two claims glued together. So proving one takes two proofs. The named move is **check both boxes**.
+Two claims glued together. So proving one takes two proofs, and the named move is **check both boxes**.
 
 ## Our claim
 
-> **Claim.** A whole number is even **if and only if** its last digit is $0$, $2$, $4$, $6$, or $8$.
+> **Claim.** A shape is a square **if and only if** it is a rectangle with four equal sides.
 
-Everyone believes this. Almost nobody has proved it. Let's do both boxes.
+Everyone believes this. Almost nobody has checked both directions. Let's do it.
+
+Recall the definitions you use when sorting shapes:
+
+- A **rectangle** is a four-sided shape with four square corners.
+- A **square** is a four-sided shape with four square corners and four equal sides.
 
 <Discussion>
-  <div slot="know">Every whole number can be written as a bunch of tens plus a last digit: $746 = 74 \times 10 + 6$. In general, a number $n$ is $(\text{tens part}) \times 10 + d$, where $d$ is the last digit.</div>
-  <div slot="want">Box 1: even $\Rightarrow$ last digit is one of $0,2,4,6,8$. Box 2: last digit is one of those $\Rightarrow$ even.</div>
-  <div slot="how">The key observation is that $10$ is even, so *whatever the tens part is*, $(\text{tens part}) \times 10$ is even. That means whether $n$ is even depends only on $d$.</div>
+  <div slot="know">What "square" and "rectangle" each mean, from the definitions above.</div>
+  <div slot="want">Box 1: every square is a rectangle with four equal sides. Box 2: every rectangle with four equal sides is a square.</div>
+  <div slot="how">Both boxes are short here, because both come straight from unfolding the definitions. That is normal for a definition-based claim, and it is worth seeing once before the harder examples.</div>
 </Discussion>
 
-## The proof
-
 <Proof>
-Write $n = t \times 10 + d$, where $t$ is the tens part and $d$ is the last digit, so $d$ is one of $0,1,2,\ldots,9$.
+**Box 1: if a shape is a square, then it is a rectangle with four equal sides.**
 
-Since $10 = 2 \times 5$, we have $t \times 10 = 2 \times (t \times 5)$, so $t \times 10$ is even no matter what $t$ is.
+Take any square. By the definition of square, it has four sides, four square corners, and four equal sides.
 
-**Box 1: if $n$ is even, then $d$ is one of $0,2,4,6,8$.**
-Suppose $n$ is even. Then $d = n - t \times 10$ is a difference of two even numbers, and a difference of two even numbers is even. So $d$ is an even digit, which means $d$ is $0$, $2$, $4$, $6$, or $8$.
+Having four sides and four square corners is exactly what makes a shape a rectangle. So it is a rectangle, and it has four equal sides. ✓
 
-**Box 2: if $d$ is one of $0,2,4,6,8$, then $n$ is even.**
-Suppose $d$ is one of those. Then $d$ is even, and $t \times 10$ is even, so $n = t \times 10 + d$ is a sum of two even numbers, hence even.
+**Box 2: if a shape is a rectangle with four equal sides, then it is a square.**
+
+Take any rectangle with four equal sides. Being a rectangle, it has four sides and four square corners. We were also told its four sides are equal.
+
+Four sides, four square corners, four equal sides — that is exactly the definition of a square. ✓
 
 Both boxes are checked, so the claim holds in both directions.
+</Proof>
+
+## A number one
+
+Here is a biconditional where the two halves need genuinely different work.
+
+> **Claim.** A counting number is even **if and only if** its last digit is $0$, $2$, $4$, $6$, or $8$.
+
+<Discussion>
+  <div slot="know">Every counting number is some number of tens plus a last digit — $746$ is $74$ tens and $6$. And $10$ is even, so any number of tens is even.</div>
+  <div slot="want">Both directions.</div>
+  <div slot="how">The key is that the tens part is always even, so whether the whole number is even depends only on the last digit.</div>
+</Discussion>
+
+<Proof>
+Split any counting number into its tens part and its last digit.
+
+Since $10$ splits into $2$ groups of $5$, ten is even — and so is any number of tens, because you are adding even amounts together.
+
+**Box 1: if the number is even, then the last digit is $0$, $2$, $4$, $6$, or $8$.**
+
+Suppose the whole number is even. The tens part is even. Taking an even amount away from an even amount leaves an even amount, so the last digit is even. The even digits are $0$, $2$, $4$, $6$, $8$. ✓
+
+**Box 2: if the last digit is $0$, $2$, $4$, $6$, or $8$, then the number is even.**
+
+Suppose the last digit is one of those. Then the last digit is even, and the tens part is even, and adding two even amounts gives an even amount. So the whole number is even. ✓
+
+Both boxes checked.
 </Proof>
 
 ## Definitions are usually biconditionals
 
 Here is something worth noticing. When we say
 
-> a number is **even** if it is a multiple of $2$,
+> a number is **even** if it splits into groups of $2$ with nothing left over,
 
-we really mean *if and only if*. A number is even exactly when it is a multiple of $2$ — nothing else counts as even, and no multiple of $2$ misses out. Mathematicians write "if" in definitions out of long habit, but they always mean "if and only if". Once a definition is written down, you may use it in both directions, and you constantly will.
+we really mean *if and only if*. A number is even exactly when it splits that way — nothing else counts as even, and nothing that splits that way misses out.
+
+Mathematicians write "if" in definitions out of long habit, but they always mean "if and only if." Once a definition is written down, you may use it in **both directions**, and you constantly will.
 
 <Warning title="Half a proof is not a proof">
-The commonest mistake with a biconditional is proving one direction, feeling satisfied, and stopping. If you have shown *even $\Rightarrow$ last digit is $0,2,4,6,8$*, you have not ruled out some number ending in $3$ sneaking in as even. Label your two halves. Count them before you write □.
+The commonest mistake with a biconditional is proving one direction, feeling satisfied, and stopping.
+
+If you have shown *every square is a rectangle*, you have not ruled out some rectangle sneaking in as a square. Label your two halves. Count them before you write $\square$.
 </Warning>
 
 <Aside>
-The two directions often need different tools. In module 1.8 you proved *if $n \times n$ is odd then $n$ is odd* by flipping it around, because a direct attempt went nowhere. The other direction, *if $n$ is odd then $n \times n$ is odd*, goes through directly with no trouble at all. Same biconditional, two different techniques.
+The two directions often need different tools. In module 1.8 you proved *if a number times itself is odd then the number is odd* by flipping it around, because a direct attempt went nowhere. The other direction goes through directly with no trouble. Same biconditional, two different techniques.
 </Aside>

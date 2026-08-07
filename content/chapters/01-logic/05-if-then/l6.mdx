@@ -3,7 +3,7 @@ level: l6
 title: If–then
 readingTimeMin: 9
 newTerms: ["conditional", "hypothesis", "conclusion", "vacuously true"]
-anchorExample: "x > 1 implies x² > 1"
+anchorExample: "vertical angles and the base-angle theorem"
 ---
 
 import TruthTable from '@/components/TruthTable.astro';
@@ -12,13 +12,23 @@ import UmbrellaCases from '@/components/UmbrellaCases.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-You have already met if–then statements this year, likely in geometry, where they are drilled to death: *if two triangles have three pairs of congruent sides, then they are congruent.* This module fixes what those sentences actually mean.
+Nearly every theorem in your geometry book is an if–then statement.
 
-A **conditional** is a statement of the form $p \Rightarrow q$. The hypothesis is $p$; the conclusion is $q$. The whole compound statement is itself either true or false — it has its own truth value, distinct from those of $p$ and $q$ individually.
+> *If two sides of a triangle are congruent, then the angles opposite them are congruent.*
+>
+> *If a quadrilateral is a parallelogram, then its diagonals bisect each other.*
+>
+> *If two parallel lines are cut by a transversal, then alternate interior angles are congruent.*
 
-## What makes a conditional true
+And every two-column proof you write establishes one. This module fixes exactly what such a sentence claims — which turns out to be less than most people assume.
 
-The truth table for $\Rightarrow$ is short, and once you internalise it, half of Chapter 1 falls into place.
+## Definition
+
+A **conditional** is a statement $p \Rightarrow q$. The **hypothesis** is $p$; the **conclusion** is $q$.
+
+The compound statement has its own truth value, separate from those of $p$ and $q$. That is the point to hold onto: $p\Rightarrow q$ can be true while $p$ is false, and asking "is the theorem true?" is a different question from "does the hypothesis hold here?"
+
+## The truth table
 
 <TruthTable
   variables={["p", "q"]}
@@ -31,44 +41,83 @@ The truth table for $\Rightarrow$ is short, and once you internalise it, half of
   ]}
 />
 
-Row 2 is the only "false" row. The conditional promises that we will never see a case with $p$ true and $q$ false; every other case is fine. In particular, when $p$ is false, we say the conditional is **vacuously true** — a shorthand meaning "the case the conditional worries about did not arise."
+**One false row.** $p\Rightarrow q$ fails only when the hypothesis holds and the conclusion does not.
 
-The umbrella example is worth carrying with you across the chapter:
+Everything else in Chapter 1 follows from that asymmetry: how to prove a conditional (rule out row 2), how to refute one (exhibit row 2), why the contrapositive is equivalent (same row 2), and why the converse is not.
 
-<Figure alt="Four cases of the umbrella promise: only rain with no umbrella breaks the promise.">
+<Figure alt="Four cases of the umbrella promise; only rain with no umbrella breaks the promise.">
   <UmbrellaCases />
 </Figure>
 
-*If it rains I bring the umbrella* is broken only on a rainy day without an umbrella. On a sunny day — with or without the umbrella — the promise was never tested. We do not call the promise ambiguous or half-broken; we call it *kept*, because that is the mathematically useful convention.
+*If it rains, I bring the umbrella.* Broken only on a rainy day with no umbrella. On a dry day the promise was never tested — and we call it **kept**, not ambiguous.
 
-## A comparison to two-column proofs
+## Vacuous truth
 
-You have probably been writing two-column proofs where each line lists a claim and a reason. Those proofs are almost entirely conditionals: *if the alternate interior angles are equal, then the lines are parallel.* Each row of the two-column format asserts one such conditional and reaches for a "reason" that justifies it.
+Rows 3 and 4 are the ones people resist. When the hypothesis is false, the conditional is **vacuously true**.
 
-The rest of this course prefers a longer style — **paragraph proofs** — because two columns hides the actual argument behind bookkeeping. But the underlying object being proved is nearly always $p \Rightarrow q$ for particular $p$ and $q$.
+$$\text{If } \triangle ABC \text{ has two right angles, then } \overline{AB}\cong\overline{BC}.$$
 
-## A real example: $x > 1 \Rightarrow x^2 > 1$
+True. Not because the conclusion holds, but because no triangle has two right angles, so the promise is never tested.
 
-Consider the statement, universally quantified over the reals:
-$$
-\forall\, x \in \mathbb{R},\; x > 1 \;\Rightarrow\; x^2 > 1.
-$$
-For each $x$, we get a small conditional. Let us check a few values:
+This is not a technicality invented to fill a table. Module 2.3 uses it to prove $\emptyset\subseteq S$ for every set $S$, and that fact is needed constantly. **A convention that produced anything else would break the mathematics that relies on it.**
 
-- $x = 3$: hypothesis holds; conclusion holds ($9 > 1$). Row 1.
-- $x = 0.4$: hypothesis fails; conclusion fails ($0.16 < 1$). Row 4 — vacuously true.
-- $x = -2$: hypothesis fails ($-2$ is not greater than $1$); conclusion happens to hold ($4 > 1$). Row 3.
+<Warning title="A true conditional says nothing about its hypothesis">
+*"If a quadrilateral has four congruent sides and four right angles, then its diagonals are congruent"* is true. It does not assert that any such quadrilateral exists — though of course one does.
 
-We can't find a value that produces row 2. Squaring a number greater than $1$ produces a number even further above $1$, so the conclusion can't fail when the hypothesis holds. That intuition is a proof waiting to happen — the next module writes it out.
+Two separate questions:
 
-<Warning title="A live confusion">
-"$p \Rightarrow q$ is true" is not the same as "$p$ is true and $q$ is true." A vacuously true conditional carries no information about whether the hypothesis actually holds anywhere. If someone says "*Then the following conditional is true* … " and lists a strange-looking statement, check its hypothesis before objecting.
+1. Is the conditional true? — a question about the implication.
+2. Does the hypothesis hold in this figure? — a question about the figure.
+
+Two-column proofs keep these apart with the *Given* line. Everything above the given is the theorem; the given is the claim that this figure satisfies the hypothesis.
+</Warning>
+
+## A worked example
+
+$$\forall x \in\mathbb{R}: \quad x > 1 \Rightarrow x^2 > 1.$$
+
+One conditional for each real $x$. Check a few:
+
+- $x = 3$: hypothesis T, conclusion T ($9>1$). **Row 1.**
+- $x = 0.4$: hypothesis F, conclusion F ($0.16<1$). **Row 4** — vacuously true.
+- $x = -2$: hypothesis F, conclusion T ($4>1$). **Row 3** — also true.
+
+No value produces row 2, and that is what the theorem asserts. Note that $x = -2$ satisfied the conclusion without the hypothesis; a conditional is entirely untroubled by that, and reading it as though it were is the error module 1.7 names.
+
+## Other phrasings
+
+All of these are $p\Rightarrow q$:
+
+- If $p$, then $q$
+- $p$ implies $q$
+- $q$ if $p$
+- $p$ only if $q$
+- $p$ is **sufficient** for $q$
+- $q$ is **necessary** for $p$
+- $q$ whenever $p$
+
+Two are worth care. *"$p$ only if $q$"* is $p\Rightarrow q$, **not** $q\Rightarrow p$ — the *only* is doing the same work as the word *necessary*. And a bare *"$q$ if $p$"* has the hypothesis after the *if*, so the arrow points the other way from how it reads.
+
+Your book's *necessary and sufficient* phrasing asserts both directions at once, which is module 1.9's biconditional.
+
+## What proving one requires
+
+To prove $p\Rightarrow q$, rule out row 2. The direct route is to **assume $p$ and derive $q$** — after which the bad case cannot arise.
+
+That is exactly what your two-column proofs do. The *Given* is the assumption of $p$; the last line is $q$; the rows between are the derivation. Module 1.6 writes the same thing as a paragraph and argues for why mathematicians prefer that format.
+
+To refute $p\Rightarrow q$, **exhibit row 2**: one case where the hypothesis holds and the conclusion fails. That is a counterexample, and one is enough.
+
+<Warning title="The strange rows are not optional">
+Why not leave $p\Rightarrow q$ undefined when $p$ is false?
+
+Because theorems are quantified. *"For every triangle, if it is isosceles then its base angles are congruent"* must have a truth value at **every** triangle, including scalene ones where the hypothesis fails. Leaving those undefined would leave the theorem undefined.
+
+The convention is chosen so that a universally quantified conditional works out to *"no counterexample exists"* — which is what a theorem should mean.
 </Warning>
 
 <Aside>
-The four rows of the truth table lead to four related statements: the conditional, its converse, its inverse, and its contrapositive. Only one of them — the contrapositive — has the same truth value as the original. That is the whole point of module 1.7.
+The four rows generate four related statements: the conditional, its converse $q\Rightarrow p$, its inverse $\neg p\Rightarrow\neg q$, and its contrapositive $\neg q\Rightarrow\neg p$.
+
+Exactly one of the three flips has the same truth value as the original, and module 1.7 identifies it. The consequence for your work is immediate: your book proves theorem-and-converse pairs separately because the converse genuinely does not follow — and it never bothers to prove the contrapositive, because that comes free.
 </Aside>
-
-## What comes next
-
-To prove a conditional, we get to assume its hypothesis and must derive its conclusion. That is the setup for direct proof (module 1.6). Later we will meet the contrapositive and contradiction; both of them are reflections of the same truth table, seen from different sides.

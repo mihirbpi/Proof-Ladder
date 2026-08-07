@@ -94,5 +94,13 @@ Augustus De Morgan published these in the 1840s, in the same wave of work that g
 </Aside>
 
 <WhereThisGoes level="l7">
-De Morgan duality is a structural feature, not a fact about English. It reappears as complementation on sets ($\overline{S \cap T} = \overline{S} \cup \overline{T}$, §2.7), as the exchange of $\forall$ and $\exists$ (§1.11), as the exchange of $\inf$ and $\sup$ under negation in analysis, as the exchange of interior and closure under complement in topology, and as the duality between products and coproducts in category theory. In Boolean algebra it is the statement that the map $x \mapsto \neg x$ is an isomorphism onto the opposite algebra. Learning to expect the swap is learning to expect the shape of a dual argument before you have written it.
+De Morgan's laws are what you will use to say precisely how a calculus hypothesis fails.
+
+**Discontinuity.** A function is continuous at $a$ when the left limit, the right limit, and $f(a)$ all exist **and** agree. Negate that conjunction and you get a disjunction — the classification of discontinuities you meet in the first weeks of calculus. Removable, jump, and infinite are the branches of $\neg(p\wedge q\wedge r)$, and the reason there are exactly three kinds is that there are exactly three conjuncts.
+
+**Failure of the Mean Value Theorem.** The hypothesis is *continuous on $[a,b]$ and differentiable on $(a,b)$*. Its negation is *not continuous on $[a,b]$ **or** not differentiable somewhere in $(a,b)$* — and every standard counterexample exhibits exactly one of the two disjuncts, never both. Knowing the negation is an *or* tells you a single failure point suffices.
+
+**Non-invertibility.** In linear algebra, a matrix is invertible when it is square **and** has non-zero determinant. Non-invertible therefore means non-square **or** singular, and proofs about non-invertible matrices split into those two cases.
+
+In each case the swap is doing the same work: it converts "the theorem does not apply" into a usable list of alternatives, and it tells you in advance that the proof will need cases (§1.12).
 </WhereThisGoes>

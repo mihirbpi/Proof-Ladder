@@ -1,0 +1,114 @@
+---
+level: l6
+title: Between any two rationals
+readingTimeMin: 8
+newTerms: ["density", "midpoint"]
+anchorExample: "coordinates, lengths, and the Pythagorean theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+The integers on a number line are spaced out: nothing sits between $3$ and $4$. The rationals are not like that at all, and the difference has consequences for what a number line can be.
+
+## The theorem
+
+> **Theorem.** For any rationals $a < b$, there exists a rational $c$ with $a < c< b$.
+
+A set with this property is **dense**.
+
+<Discussion>
+  <div slot="know">$a, b\in\mathbb{Q}$ with $a<b$. Available: closure (module 4.5) and the order rules.</div>
+  <div slot="want">A rational strictly between them — an existential claim, so produce a witness.</div>
+  <div slot="how">The midpoint $\frac{a+b}{2}$ is the obvious candidate. Three things then need checking: that it is rational, that it exceeds $a$, and that it falls short of $b$. All three are obligations, and the two inequalities are separate proofs.</div>
+</Discussion>
+
+<Proof>
+Let $c = \dfrac{a+b}{2}$.
+
+**$c$ is rational.** $\mathbb{Q}$ is closed under addition, so $a+b\in\mathbb{Q}$; and closed under division by non-zero rationals, so $\frac{a+b}{2}\in\mathbb{Q}$.
+
+**$a < c$.** From $a<b$, add $a$ to both sides: $2a < a+b$. Divide by $2$, which is positive and so preserves the inequality: $a < \frac{a+b}{2} = c$.
+
+**$c < b$.** From $a<b$, add $b$ to both sides: $a+b<2b$. Divide by $2$: $c = \frac{a+b}{2} < b$.
+
+Hence $a<c<b$, and $c\in\mathbb{Q}$.
+</Proof>
+
+**Three obligations, three paragraphs.** The two inequalities came from adding *different* things to $a<b$ — $a$ for one, $b$ for the other — and neither follows from the other. A proof that establishes only one has established half the theorem.
+
+This is the same discipline as module 2.6's double inclusion: when the goal is a conjunction, count the conjuncts and prove each.
+
+<Warning title="Dividing by 2 was a step, not a formality">
+The move from $2a<a+b$ to $a<\frac{a+b}{2}$ used the order rule *"multiplying by a positive preserves the inequality."*
+
+Had the divisor been negative, the inequality would flip. This is the rule that catches people out in algebra, and stating it once here is what makes the proof honest.
+</Warning>
+
+## Repeat forever
+
+The theorem applies to its own output. Between $a$ and $c$ there is another rational; between those, another.
+
+**Between any two distinct rationals there are infinitely many rationals.** No two rationals are adjacent, and the phrase "the next rational after $\frac12$" refers to nothing.
+
+Contrast the integers, where $4$ is unambiguously next after $3$. Density is a genuine structural difference, and it is why you can locate a rational to any accuracy you like by repeated bisection — the same procedure as bisecting a segment with compass and straightedge, run over and over.
+
+## The geometric version
+
+Your course has this theorem too, in different words.
+
+> *Every segment has a midpoint.* (Module 1.10 proved it, with uniqueness.)
+
+Bisect $\overline{AB}$ to get $M_1$. Bisect $\overline{AM_1}$ to get $M_2$. Continue. The construction never terminates and never repeats, which is the geometric face of density.
+
+And the Ruler Postulate is what connects the two statements: it puts the points of a line in correspondence with $\mathbb{R}$, so betweenness of points becomes betweenness of numbers, and the midpoint of a segment becomes the average of two coordinates.
+
+## Density is not completeness
+
+Here is the module's real point, and it is the one students find hardest.
+
+$\mathbb{Q}$ is dense: between any two rationals, another rational. **And $\mathbb{Q}$ still has gaps.**
+
+Those sound contradictory and are not. Density says no two rationals are adjacent. It does not say the rationals *fill* the line — and they do not, because $\sqrt2$ is a location on the line with no rational sitting at it (module 4.7).
+
+A useful image: mark every rational on a line and you have marked a set with no two points adjacent, packed everywhere you look, with infinitely many holes remaining. The holes are individually invisible — you cannot see one, because rationals crowd arbitrarily close on both sides — and there are, in the sense of module 3.8, more holes than there are rationals.
+
+<Warning title="Between and next">
+Density kills the word "next."
+
+For integers: $n+1$ is the next one. For rationals: nothing is next, and the question is malformed.
+
+This matters in Chapter 6. Induction works by stepping from $n$ to $n+1$, and it therefore works over $\mathbb{Z}$ and fails over $\mathbb{Q}$ — there is no step to take. The technique is tied to a structural property that the rationals lack.
+</Warning>
+
+## Any point between, not just the midpoint
+
+The midpoint is the obvious witness and it is not the only one. For any rational $t$ with $0<t<1$, the number
+$$c = a + t(b-a)$$
+is rational by closure and lies strictly between $a$ and $b$.
+
+$t = \frac12$ recovers the midpoint. $t = \frac13$ gives the point one-third of the way along. This is the **section formula** from your coordinate work, and it says the same thing there: the point dividing $\overline{AB}$ in a given ratio has coordinates you can compute, and it lies between the endpoints.
+
+So the theorem is stronger than stated: between any two rationals lie *infinitely many*, one for each choice of $t$, and no single argument was needed for each — the general witness covers them all.
+
+**Producing a family of witnesses rather than one is often no harder**, and it is worth doing when the extra generality is free. Module 4.3's linear-combination result had the same character.
+
+## Irrationals are dense too
+
+Between any two rationals there is also an **irrational**. Given $a<b$, the number
+$$c = a + \frac{b-a}{\sqrt2}$$
+lies strictly between them and is irrational — the proof uses module 4.8's tools.
+
+So both sets are dense, and both are riddled with the other's members. Any interval of the number line, however short, contains infinitely many rationals and infinitely many irrationals, thoroughly interleaved.
+
+<Aside>
+Density has a limit that is easy to miss: it says nothing about *how many*.
+
+Both $\mathbb{Q}$ and the irrationals are dense in $\mathbb{R}$, and module 3.8's counting shows they are not the same size. $\mathbb{Q}$ can be listed in a sequence; the irrationals cannot.
+
+The sharp version, which needs measure theory: the rationals can be covered by intervals of total length as small as you like — so in the sense of length, $\mathbb{Q}$ occupies **none** of the number line, and the irrationals occupy all of it.
+
+Dense, infinite, and of zero length. Density is a statement about position, not about quantity, and keeping those apart is worth doing now.
+</Aside>

@@ -1,0 +1,117 @@
+---
+level: l6
+title: When does induction apply?
+readingTimeMin: 8
+newTerms: []
+anchorExample: "the polygon angle-sum theorem"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Induction is powerful and it is not universal. Two conditions must hold, and recognising when they fail saves a great deal of wasted effort.
+
+## Condition 1: indexed by integers
+
+The claim must be a **family of statements** $A(n)$, one for each integer $n\geq n_0$.
+
+| Claim | Indexed? |
+|---|---|
+| A convex $n$-gon's angles sum to $(n-2)180°$ | ✓ by $n$ |
+| $3 \mid (n^3-n)$ for all integers $n$ | ✓ by $n$ |
+| $\sqrt2$ is irrational | ✗ — one statement, no index |
+| Vertical angles are congruent | ✗ — one statement |
+| For all real $x$, $x^2\geq0$ | ✗ — indexed by $\mathbb{R}$, not $\mathbb{Z}$ |
+
+The last row is the important failure. There are infinitely many cases, so the claim *feels* like an induction candidate — but the reals have no first element and no next element, so there is no chain to run. Module 4.6's density is the reason.
+
+## Condition 2: the link
+
+There must be a way to get from case $k$ to case $k+1$. This is the condition that actually decides most attempts, and it is where problems are won or lost.
+
+Look at the links used so far:
+
+- **Polygon angles:** a diagonal cuts a $(k+1)$-gon into a $k$-gon plus a triangle.
+- **Sum of odds:** the sum for $k+1$ contains the sum for $k$ as a piece.
+- **Diagonals:** removing a vertex from a $(k+1)$-gon leaves a $k$-gon.
+
+In each case, **the $(k+1)$ object visibly contains the $k$ object.** That containment is the link, and constructing it is the creative part of the proof.
+
+<Warning title="A step that never uses A(k) is not an induction proof">
+If your inductive step derives $A(k+1)$ without invoking the hypothesis, you have proved $A(n)$ directly for all $n$ — which is a fine proof, and not this one.
+
+There is nothing wrong with that, but it means the induction structure was doing no work, and it is usually a sign the problem was easier than you thought. Delete the scaffolding and present the direct argument.
+
+Conversely, if you cannot find a use for $A(k)$, that is evidence the link is missing, and no amount of algebra will supply it.
+</Warning>
+
+## Where the link fails
+
+> **Claim.** Every convex polygon can be cut into triangles by non-crossing diagonals.
+
+True, and the induction is straightforward for convex polygons — remove a vertex, apply the hypothesis, add one triangle.
+
+> **Claim.** Every polygon can be cut into triangles by non-crossing diagonals.
+
+Also true, and **the same induction does not work.** Removing a vertex from a non-convex polygon can produce a shape that is not a polygon at all, or can cut outside the figure. The link breaks.
+
+Repairing it requires proving separately that some diagonal lies entirely inside — the theorem module 6.1 mentioned, which took until 1904. **The obstruction was not the algebra; it was constructing the link.**
+
+## Strong induction
+
+Sometimes $A(k+1)$ needs more than $A(k)$. **Strong induction** allows the step to assume every earlier case:
+
+> Assume $A(n_0), A(n_0+1), \dots, A(k)$ all hold. Prove $A(k+1)$.
+
+> **Proposition.** Every integer $n\geq2$ has a prime factor.
+
+<Proof>
+Let $k\geq2$ and assume every integer $m$ with $2\leq m\leq k$ has a prime factor.
+
+Consider $k+1$. Either it is prime — in which case it is its own prime factor — or it is not, so $k+1 = ab$ with $2\leq a,b \leq k$.
+
+By the hypothesis applied to $a$, there is a prime $p$ with $p \mid a$. Since $a \mid (k+1)$, transitivity of divisibility (module 4.3) gives $p \mid (k+1)$.
+
+The base case $n=2$ holds since $2$ is prime. By strong induction, every $n\geq2$ has a prime factor.
+</Proof>
+
+**Ordinary induction would fail here.** Knowing about $k$ tells you nothing about the factors of $k+1$, which can be anywhere below it. The step needs to reach back an unpredictable distance, and strong induction is exactly the permission to do so.
+
+Strong induction is not a different principle — it is ordinary induction applied to the statement *"$A(m)$ holds for every $m\leq n$"* — but it is far more convenient when the link is irregular.
+
+## Choosing what to induct on
+
+A problem may offer several candidates.
+
+For "the sum of the angles of a convex $n$-gon", induct on $n$ — the only index available.
+
+For a claim about all pairs $(m,n)$, you may induct on $m$, on $n$, or on $m+n$. The last is often best: it reduces a two-dimensional family to a one-dimensional chain, and each step decreases the total.
+
+**Picking the induction variable is a decision, and the wrong choice makes an easy problem look impossible.** When an induction stalls, changing what you induct on is worth trying before changing the algebra.
+
+## The signals
+
+Reach for induction when you see:
+
+- **"for all integers $n\geq\ $"** — an explicit index
+- **a formula summing $n$ terms**
+- **an object built in stages** — polygons, towers, sequences
+- **a recursive definition** — each case defined from the previous
+- **a pattern you conjectured from data**
+
+Do not reach for it when:
+
+- the claim is about **all reals** — no chain
+- the claim is a **single statement** — nothing to index
+- there is **no visible link** between consecutive cases
+
+<Aside>
+Induction generalises well beyond the integers.
+
+**Structural induction** proves things about objects built by rules: to show every algebraic expression has balanced brackets, check the atomic expressions and check that each construction rule preserves the property. There is no integer $n$ anywhere.
+
+What survives is the essential requirement: the objects must be **well-founded** — no infinite regress of ever-simpler pieces. That is the abstract version of "there is a first domino," and it is exactly what well-ordering supplied for $\mathbb{Z}$ in module 6.2.
+
+Every compiler you have used relies on structural induction, since that is how a parser proves it has handled every possible program.
+</Aside>

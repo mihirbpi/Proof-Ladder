@@ -1,0 +1,129 @@
+---
+level: l5
+title: And, or
+readingTimeMin: 7
+newTerms: ["conjunction", "disjunction", "contradiction", "tautology", "logically equivalent"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Single statements are rarely what a theorem asserts. "If $x > 1$ **and** $x$ is an integer, then $x \geq 2$" joins two hypotheses; "$x \leq -1$ **or** $x \geq 1$" describes a solution set in two pieces. This module fixes the two connectives that do the joining.
+
+Throughout, $p$ and $q$ denote statements.
+
+## Conjunction
+
+The **conjunction** $p \wedge q$ ("$p$ and $q$") is true exactly when both are true.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∧ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∧ q": true  },
+    { p: true,  q: false, "p ∧ q": false },
+    { p: false, q: true,  "p ∧ q": false },
+    { p: false, q: false, "p ∧ q": false }
+  ]}
+/>
+
+One true row out of four — conjunction is demanding. Half of a conjunction being true earns nothing: with $p$ = "$12$ is a multiple of $3$" (T) and $q$ = "$12$ is a multiple of $5$" (F), $p \wedge q$ is false.
+
+## Disjunction
+
+The **disjunction** $p \vee q$ ("$p$ or $q$") is true exactly when at least one is true.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∨ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∨ q": true  },
+    { p: true,  q: false, "p ∨ q": true  },
+    { p: false, q: true,  "p ∨ q": true  },
+    { p: false, q: false, "p ∨ q": false }
+  ]}
+/>
+
+Three true rows — and note row 1 in particular. When *both* disjuncts hold, $p \vee q$ is still true.
+
+<Warning title="Mathematical or is inclusive">
+Everyday English often uses *or* exclusively: "soup or salad" means one, not both. Mathematics never does.
+
+The convention is not arbitrary. Solving $x^2 \geq 1$ gives $x \leq -1$ **or** $x \geq 1$, and you would not want that statement to become false if some $x$ satisfied both. More sharply: "$x \geq 0$ or $x \leq 0$" is true for every real $x$, including $x = 0$ where both hold. An exclusive reading would make it false at exactly one point, and every theorem quoting it would need a special case.
+
+Exclusive or exists, written $\oplus$, and equals $(p \vee q)\wedge\neg(p\wedge q)$. Mathematics uses it rarely and always names it.
+</Warning>
+
+## Compound statements and three variables
+
+Truth tables scale. With three variables there are $2^3 = 8$ rows, and the table settles any question about the compound.
+
+<TruthTable
+  variables={["p", "q", "r"]}
+  expressions={["q ∧ r", "p ∨ (q ∧ r)"]}
+  rows={[
+    { p: true,  q: true,  r: true,  "q ∧ r": true,  "p ∨ (q ∧ r)": true },
+    { p: true,  q: true,  r: false, "q ∧ r": false, "p ∨ (q ∧ r)": true },
+    { p: true,  q: false, r: true,  "q ∧ r": false, "p ∨ (q ∧ r)": true },
+    { p: true,  q: false, r: false, "q ∧ r": false, "p ∨ (q ∧ r)": true },
+    { p: false, q: true,  r: true,  "q ∧ r": true,  "p ∨ (q ∧ r)": true },
+    { p: false, q: true,  r: false, "q ∧ r": false, "p ∨ (q ∧ r)": false },
+    { p: false, q: false, r: true,  "q ∧ r": false, "p ∨ (q ∧ r)": false },
+    { p: false, q: false, r: false, "q ∧ r": false, "p ∨ (q ∧ r)": false }
+  ]}
+/>
+
+## Logical equivalence
+
+Two statements are **logically equivalent**, written $\equiv$, when their truth-table columns agree in **every** row.
+
+This is the key notion, because equivalence licenses substitution: if $\varphi \equiv \psi$, you may replace one by the other anywhere in a proof.
+
+Quick examples, each checkable in four rows:
+$$
+p \wedge q \equiv q \wedge p, \qquad
+\neg\neg p \equiv p, \qquad
+p \vee (p \wedge q) \equiv p.
+$$
+
+That last one is the *absorption law*, and it is worth verifying — it is less obvious than the first two, and it reappears for sets in Chapter 2.
+
+The two genuinely surprising equivalences involving $\wedge$ and $\vee$ are De Morgan's laws, and they are all of module 1.4:
+$$
+\neg(p\wedge q) \equiv \neg p \vee \neg q, \qquad \neg(p \vee q)\equiv \neg p \wedge \neg q.
+$$
+Notice that negation does not pass through quietly — it *swaps* the connective.
+
+## Contradictions and tautologies
+
+Some columns never change.
+
+<TruthTable
+  variables={["p"]}
+  expressions={["¬p", "p ∧ ¬p", "p ∨ ¬p"]}
+  rows={[
+    { p: true,  "¬p": false, "p ∧ ¬p": false, "p ∨ ¬p": true },
+    { p: false, "¬p": true,  "p ∧ ¬p": false, "p ∨ ¬p": true }
+  ]}
+/>
+
+A statement false in every row is a **contradiction**; true in every row, a **tautology**.
+
+Neither depends on what $p$ *says*. "$12$ is prime and $12$ is not prime" is false; so is "the moon is cheese and the moon is not cheese." The shape decides, and that is the first sign that logic is a subject in its own right rather than a commentary on other subjects.
+
+Both have jobs ahead of them:
+
+- $p \wedge \neg p$ powers **proof by contradiction** (module 2.5): if assuming $\neg S$ yields a contradiction, then $S$ holds.
+- $p \vee \neg p$ — *excluded middle* — licenses **proof by cases**. Every time you write "either $x$ is rational or it isn't," you are quoting it, and you then owe a proof in each branch.
+
+<Aside>
+Tautologies are exactly the valid inference patterns. That $(p\wedge q)\Rightarrow p$ is a tautology *is* the statement that "from $p$ and $q$, infer $p$" is a sound rule. Every rule of inference you use is a tautology wearing different clothes.
+</Aside>
+
+## Looking ahead
+
+Chapter 2 defines $S \cap T$ by "$x \in S$ **and** $x \in T$", and $S \cup T$ by "$x \in S$ **or** $x \in T$". Every fact in this module therefore becomes a fact about sets: commutativity of $\wedge$ becomes commutativity of $\cap$, De Morgan for connectives becomes De Morgan for complements, and the absorption law above becomes $S \cup (S\cap T) = S$.
+
+Nothing new will be discovered there. A translation will be performed.

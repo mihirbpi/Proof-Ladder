@@ -1,0 +1,86 @@
+---
+level: l4
+title: The domino idea
+readingTimeMin: 6
+newTerms: ["induction"]
+anchorExample: "Σ(2j−1) = n²"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.12 gave one method for universal claims: fix an arbitrary element and argue about it. That works when the cases are independent.
+
+When the cases are indexed by $\mathbb{N}$ and each is *built from its predecessor*, a second method becomes available and is usually far easier. It is **induction**, and the named move is **dominoes**.
+
+## The principle
+
+> If $A(n)$ is a statement for each integer $n \geq n_0$, and
+> **(base)** $A(n_0)$ is true, and
+> **(step)** for every $k \geq n_0$, $A(k) \Rightarrow A(k+1)$,
+> then $A(n)$ is true for every $n \geq n_0$.
+
+Both conditions are indispensable. Without the base, nothing starts: the statement "$n = n+1$ for all $n$" satisfies the step ($k = k+1$ certainly implies $k+1 = k+2$) and is false, because it has no base case. Without the step, the chain breaks at the first gap.
+
+## The motivating pattern
+
+$$
+1 + 3 + 5 + \cdots + (2n-1)
+$$
+— the first $n$ odd numbers added up. (The $n$th odd number is $2n-1$: check $n=1$, $n=2$, $n=3$.)
+
+| $n$ | sum | |
+|---|---|---|
+| 1 | 1 | $=1^2$ |
+| 2 | 4 | $=2^2$ |
+| 3 | 9 | $=3^2$ |
+| 4 | 16 | $=4^2$ |
+| 5 | 25 | $=5^2$ |
+
+Conjecture: $1 + 3 + \cdots + (2n-1) = n^2$.
+
+## The incremental insight
+
+Here is the observation that makes induction applicable. The $(k+1)$-case is not a fresh problem — it is the $k$-case plus one new term:
+$$
+\underbrace{1 + 3 + \cdots + (2k-1)}_{\text{the } k\text{-case}} + \underbrace{(2k+1)}_{\text{new term}}.
+$$
+
+So *if* the $k$-case is $k^2$, the $(k+1)$-case is $k^2 + 2k + 1 = (k+1)^2$. The algebra is a single line, and it is the entire inductive step.
+
+This is the linkage requirement: induction works when case $k+1$ is reachable from case $k$. Module 6.4 makes that precise.
+
+## Why examples are not enough
+
+<Warning title="Patterns can persist and then fail">
+**Euler's prime polynomial.** $p(n) = n^2 + n + 41$ is prime for $n = 0, 1, \ldots, 39$ — forty consecutive confirmations. At $n = 40$:
+$$40^2 + 40 + 41 = 1681 = 41^2.$$
+And of course: $p(41) = 41(41+1+1)$ is also composite. The pattern was never going to survive.
+
+**Pólya's conjecture** (1919): among $1, \ldots, n$, at least half the numbers have an odd number of prime factors. Verified for enormous ranges; the least counterexample is $n = 906{,}150{,}257$.
+
+**A cheaper one.** $\gcd(n^{17}+9,\ (n+1)^{17}+9) = 1$ holds for every $n$ up to about $8 \times 10^{51}$, and then fails.
+</Warning>
+
+Module 1.11 already established the principle: a universal claim is refuted by one counterexample and confirmed by none. Examples generate conjectures; they never settle them.
+
+The converse discipline matters too. Before attempting an induction, compute several cases — both to find the right statement and to check you are not about to prove something false.
+
+## The proof, informally
+
+**Base.** $n=1$: the sum is $1$, and $1^2 = 1$. ✓
+
+**Step.** Suppose for some $k \geq 1$ that $1 + 3 + \cdots + (2k-1) = k^2$. Then
+$$
+\underbrace{1 + 3 + \cdots + (2k-1)}_{= \,k^2 \text{ by (IH)}} + (2k+1) = k^2 + 2k + 1 = (k+1)^2. \checkmark
+$$
+
+Both conditions hold, so the identity is true for every $n \geq 1$.
+
+Note carefully what the step assumed. Not "the claim is true for $k$" as a standing fact, but "*if* it holds for $k$, then it holds for $k+1$" — a conditional (module 1.5), whose proof legitimately assumes its hypothesis. That is why induction is not circular, and module 6.2 addresses the worry head-on because it is the one everybody has.
+
+<Aside>
+Induction is not a trick; it is an axiom. Chapter 7 shows it is the ninth Peano axiom, the one that says $\mathbb{N}$ contains nothing beyond $0$ and its successors. It is also equivalent to the well-ordering principle — every nonempty set of naturals has a least element — which module 4.4 used to prove the division algorithm.
+
+So induction, well-ordering, and the definition of $\mathbb{N}$ are three faces of one fact.
+</Aside>

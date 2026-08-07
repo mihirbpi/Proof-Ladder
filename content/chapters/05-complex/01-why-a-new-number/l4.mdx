@@ -1,0 +1,76 @@
+---
+level: l4
+title: Why we needed a new number
+readingTimeMin: 6
+newTerms: []
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+> **Proposition.** For every $x \in \mathbb{R}$, $x^2 \geq 0$. Consequently $x^2 + 1 = 0$ has no real solution.
+
+<Proof>
+Let $x \in \mathbb{R}$ be arbitrary. By trichotomy exactly one of $x > 0$, $x = 0$, $x < 0$ holds.
+
+If $x > 0$: the product of two positives is positive, so $x^2 > 0$.
+If $x = 0$: $x^2 = 0$.
+If $x < 0$: then $-x > 0$, and $x^2 = (-x)(-x) > 0$.
+
+The cases are exhaustive, so $x^2 \geq 0$ for all real $x$. Hence $x^2 + 1 \geq 1 > 0$, and $x^2 + 1 = 0$ has no real solution.
+</Proof>
+
+Restated: the polynomial $x^2 + 1 \in \mathbb{R}[x]$ has **no root in $\mathbb{R}$**. And it is not an exotic polynomial — degree two, integer coefficients, the simplest possible example of the failure.
+
+## The extension pattern
+
+This is the fourth time in the course that a system has failed to answer a legitimate question.
+
+| System | Failure | Extension |
+|---|---|---|
+| $\mathbb{N}$ | $3 - 5$ has no value | $\mathbb{Z}$ |
+| $\mathbb{Z}$ | $3x = 1$ has no solution | $\mathbb{Q}$ |
+| $\mathbb{Q}$ | $x^2 = 2$ has no solution; sequences have no limits | $\mathbb{R}$ |
+| $\mathbb{R}$ | $x^2 = -1$ has no solution | $\mathbb{C}$ |
+
+The move is always the same: adjoin what is missing, then verify the arithmetic still works. The verification is the hard part — Chapter 5 is largely that verification — and the reason it is worth doing is that the payoff is bigger each time.
+
+## Where this shows up in ordinary algebra
+
+You have already met the gap without naming it. The quadratic formula
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+requires a square root of the discriminant $b^2 - 4ac$. When the discriminant is negative — as for $x^2 + x + 1$, where it is $-3$ — you were told "no real solutions" and moved on.
+
+That is accurate but incomplete. The equation has solutions; they are not on the number line. Once $i$ exists, the formula works for every quadratic without exception, and "no real solutions" becomes "two solutions, neither of them real."
+
+## The definition
+
+$$
+i \text{ is a number with } i^2 = -1.
+$$
+
+That single line is the entire content of the extension. Everything in modules 5.2–5.9 is a consequence.
+
+<Warning title="Two claims to avoid">
+**"$i$ isn't a real number, so it isn't real."** A pun on a badly chosen name. $\mathbb{R}$ is a technical term. Negative numbers, zero, and irrationals were each considered dubious in their time; $i$ is the most recent addition to a list of things that turned out to be fine.
+
+**"You can't take the square root of a negative number."** The accurate statement is that no *real* number squares to $-1$ — which the proposition above establishes. Extending the system removes the obstruction, exactly as extending $\mathbb{Z}$ to $\mathbb{Q}$ removed the obstruction to $3x=1$.
+</Warning>
+
+## The payoff
+
+$\mathbb{C}$ is the last extension needed. This is the **Fundamental Theorem of Algebra**:
+
+> Every non-constant polynomial with complex coefficients has a complex root.
+
+So adjoining a root of the single polynomial $x^2 + 1$ supplies roots for *every* polynomial at once — including polynomials whose coefficients are themselves complex. The sequence $\mathbb{N} \to \mathbb{Z} \to \mathbb{Q} \to \mathbb{R} \to \mathbb{C}$ terminates, and nothing further needs inventing.
+
+Note that the theorem is not proved by algebra alone; every known proof uses analysis or topology. It is stated here as motivation, not derived.
+
+<Aside>
+Historically the motivation came from cubics, not quadratics. Cardano's formula for $x^3 = 15x + 4$ requires square roots of negative numbers *en route*, even though the answer $x = 4$ is a perfectly ordinary integer. Sixteenth-century algebraists found they had to pass through $\sqrt{-121}$ to arrive somewhere real, and that unavoidable detour — not the unsolvable quadratic — is what forced the issue.
+</Aside>

@@ -1,0 +1,104 @@
+---
+level: l4
+title: The rules for equality
+readingTimeMin: 6
+newTerms: ["reflexive", "symmetric", "transitive", "equivalence relation", "equivalence class"]
+anchorExample: "successor function"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## Axioms 1–4
+
+For all $x, y, z$:
+
+$$
+\textbf{A1 (reflexivity)}\quad x = x
+$$
+$$
+\textbf{A2 (symmetry)}\quad x = y \Rightarrow y = x
+$$
+$$
+\textbf{A3 (transitivity)}\quad (x=y \wedge y=z) \Rightarrow x = z
+$$
+$$
+\textbf{A4 (closure)}\quad (x \in \mathbb{N} \wedge x = y) \Rightarrow y \in \mathbb{N}
+$$
+
+A4 is the *substitution* property in miniature: equals may be substituted for equals in any statement, here specifically in membership claims. Without it, "equal" objects could differ in which sets they belong to, and every proof that rewrites one expression as an equal one would be unjustified.
+
+## Equivalence relations
+
+A relation $\sim$ on a set $S$ satisfying A1–A3 is an **equivalence relation**. Recall from module 2.9 that a relation on $S$ is formally a subset of $S \times S$, with $a \sim b$ meaning $(a,b)$ belongs to it.
+
+| Relation | Refl. | Symm. | Trans. | Equivalence? |
+|---|---|---|---|---|
+| $=$ on any set | ✓ | ✓ | ✓ | yes |
+| $a \equiv b \pmod n$ | ✓ | ✓ | ✓ | yes |
+| same cardinality (module 3.8) | ✓ | ✓ | ✓ | yes |
+| $\leq$ on $\mathbb{R}$ | ✓ | ✗ | ✓ | no |
+| $<$ on $\mathbb{R}$ | ✗ | ✗ | ✓ | no |
+| $\subseteq$ (module 2.3) | ✓ | ✗ | ✓ | no |
+| "is a friend of" | ✓? | ✓ | ✗ | no |
+| $\perp$ (perpendicular) | ✗ | ✓ | ✗ | no |
+
+Note that $\leq$ and $\subseteq$ satisfy two of the three and are **partial orders** instead — reflexive, transitive, and *antisymmetric*. Swapping symmetry for antisymmetry gives an entirely different kind of structure, which is why the three properties must be checked individually.
+
+## Congruence mod $n$
+
+For $n \geq 1$, define $a \equiv b \pmod n$ to mean $n \mid (a-b)$ (module 4.2).
+
+<Proof>
+**Reflexive.** $n \mid (a - a) = 0$ for every $n$, so $a \equiv a$.
+
+**Symmetric.** If $n \mid (a-b)$, say $a - b = nk$, then $b - a = n(-k)$ with $-k \in \mathbb{Z}$, so $n \mid (b-a)$.
+
+**Transitive.** If $a - b = nj$ and $b - c = nk$, then
+$$a - c = (a-b)+(b-c) = n(j+k),$$
+and $j+k \in \mathbb{Z}$ by closure. So $n \mid (a-c)$.
+</Proof>
+
+Each step is the divisibility template of module 4.3.
+
+## Equivalence classes and partitions
+
+For $a \in S$, the **equivalence class** of $a$ is
+$$
+[a] = \{\, x \in S \mid x \sim a \,\}.
+$$
+
+> **Theorem.** The equivalence classes of $\sim$ partition $S$: every element lies in exactly one class.
+
+<Proof>
+*Every element is in a class.* $a \in [a]$ by reflexivity.
+
+*Classes are disjoint or identical.* Suppose $[a]\cap[b] \neq \emptyset$, say $c \in [a]\cap[b]$, so $c \sim a$ and $c \sim b$.
+
+Let $x \in [a]$, so $x \sim a$. From $c \sim a$ and symmetry, $a \sim c$; with transitivity, $x \sim c$; with $c \sim b$ and transitivity again, $x \sim b$, so $x \in [b]$. Hence $[a]\subseteq[b]$, and by symmetry of the argument $[b]\subseteq[a]$. So $[a]=[b]$ by double inclusion (module 2.6).
+</Proof>
+
+All three axioms were used, each exactly once — a good demonstration that none is redundant.
+
+For congruence mod $3$ the classes are
+$$
+[0] = \{\ldots,-3,0,3,6,\ldots\},\quad [1]=\{\ldots,1,4,7,\ldots\},\quad [2]=\{\ldots,2,5,8,\ldots\},
+$$
+which is exactly the partition module 4.4 produced from the division algorithm. Two routes, one partition.
+
+<Warning title="Well-definedness returns">
+Defining operations on classes requires checking independence of representatives — module 3.1's obligation.
+
+$[a]+[b] := [a+b]$ is well defined: if $a \equiv a'$ and $b\equiv b'$ then $n \mid (a-a')$ and $n\mid(b-b')$, so $n \mid (a+b)-(a'+b')$ and $[a+b]=[a'+b']$. ✓
+
+$[a] \mapsto a$ is **not** well defined: $[1] = [4]$ mod $3$, and $1 \neq 4$. There is no canonical representative.
+
+This check is required every time, and it is the step first-year algebra students skip most often.
+</Warning>
+
+<Aside>
+Quotients by equivalence relations are how number systems get built. $\mathbb{Z}$ is pairs of naturals under $(a,b)\sim(c,d) \iff a+d = b+c$, with $(a,b)$ meaning $a - b$. $\mathbb{Q}$ is pairs of integers under $(p,q)\sim(r,s)\iff ps = qr$ (module 4.5). $\mathbb{Z}/n\mathbb{Z}$ is $\mathbb{Z}$ under congruence.
+
+In each case: start with known objects, choose the right notion of *same*, and the classes are the new numbers.
+</Aside>

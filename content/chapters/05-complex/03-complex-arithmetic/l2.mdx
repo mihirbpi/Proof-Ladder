@@ -1,0 +1,54 @@
+---
+level: l2
+title: Adding moves
+readingTimeMin: 4
+newTerms: ["combine the moves"]
+anchorExample: "turning a quarter turn"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Aside from '@/components/Aside.astro';
+
+A complex number is a move: so far across, so far up. To add two of them, you **combine the moves** — do one, then the other.
+
+## On the grid
+
+Start at the corner. Do the move $3 + 2i$: three across, two up. Mark the spot.
+
+Now, from there, do the move $1 + 4i$: one more across, four more up.
+
+You have gone $3 + 1 = 4$ across altogether, and $2 + 4 = 6$ up altogether.
+
+$$(3 + 2i) + (1 + 4i) = 4 + 6i.$$
+
+## The rule
+
+Add the across parts. Add the up parts. Keep them separate.
+
+$$(a + bi) + (c + di) = (a+c) + (b+d)i.$$
+
+That is all there is to adding.
+
+## Some to try
+
+$(1 + 1i) + (2 + 3i) = 3 + 4i$.
+
+$(5 + 0i) + (0 + 2i) = 5 + 2i$. (Notice: an ordinary number plus a straight-up one.)
+
+$(3 + 2i) + (-3 - 2i) = 0 + 0i = 0$. You walked out and walked straight back!
+
+## Do not mix the parts
+
+Here is the one mistake to avoid.
+
+$$(3 + 2i) + (1 + 4i) \quad\text{is NOT}\quad 3 + 2 + 1 + 4 = 10.$$
+
+Across parts and up parts are different kinds of thing. You would not add "3 apples and 2 oranges" into "5 applesoranges." Keep them in their own columns.
+
+<Aside>
+Multiplying is more interesting, and you will meet it later. Here is a taste: multiplying by $i$ does not stretch anything — it *turns* you a quarter turn. Do it twice and you are facing backwards, which is the whole idea behind $i$.
+</Aside>
+
+<TryIt>
+Draw a grid. Do the move $2+1i$ with your finger. Then do $1+2i$ from there. Where did you land? Now do them in the other order and see if you land in the same place.
+</TryIt>

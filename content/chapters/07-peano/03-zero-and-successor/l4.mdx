@@ -1,0 +1,90 @@
+---
+level: l4
+title: Zero and the successor
+readingTimeMin: 6
+newTerms: ["successor"]
+anchorExample: "successor function"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## The primitives
+
+Two undefined terms (module 7.1):
+
+- a constant $0$;
+- a unary operation $S$, the **successor**.
+
+Their meaning is fixed entirely by the axioms below. Nothing else about them may be assumed.
+
+## Axioms 5 and 6
+
+$$
+\textbf{A5}\quad 0 \in \mathbb{N}
+$$
+$$
+\textbf{A6}\quad x \in \mathbb{N} \Rightarrow S(x)\in\mathbb{N}
+$$
+
+A5 supplies a starting point; A6 supplies closure under $S$. Together they generate
+$$
+0,\ S(0),\ S(S(0)),\ S(S(S(0))),\ \ldots
+$$
+
+## Numerals are definitions
+
+$$
+1 := S(0),\quad 2:= S(1) = S(S(0)),\quad 3 := S(2),\quad \ldots
+$$
+
+These are *stipulative definitions*, i.e. abbreviations. The object denoted by $3$ is $S(S(S(0)))$, and the decimal numeral is a naming convention with no mathematical content — base ten, Arabic digits, and the words *one, two, three* are all human choices layered on top.
+
+What is mathematically real is the structure: a distinguished element and an operation.
+
+<Warning title="S(x) may not be written x + 1">
+Addition does not exist yet. It is *defined* in module 7.6 by recursion on $S$, so using it here would be circular.
+
+After that definition, $x + 1 = x + S(0) = S(x+0) = S(x)$ becomes a two-line **theorem**. It is neither an axiom nor a definition, and deriving it is one of the small satisfactions of this chapter.
+
+The discipline matters because the entire point is to see how little is needed at the bottom. Importing addition early conceals exactly what we came to examine.
+</Warning>
+
+## $S$ as a function
+
+$S : \mathbb{N}\to\mathbb{N}$ is a function in the sense of module 3.1:
+
+| Condition | Source |
+|---|---|
+| totality — every $x \in \mathbb{N}$ has a successor | A6 |
+| well-definedness — exactly one successor each | implicit in $S$ being an operation |
+| codomain — $S(x) \in \mathbb{N}$ | A6 |
+
+Later axioms constrain it further in Chapter 3's vocabulary: A7 will say $0 \notin \operatorname{Im}(S)$, and A8 will say $S$ is injective (module 3.5). Chapter 3 is not merely a prerequisite here; it is the language the axioms are best stated in.
+
+## Why A5–A6 are insufficient
+
+<Figure alt="Two elements labelled zero and one on the left, with arrows showing zero going to one and one going back to zero, forming a loop." caption="A structure satisfying A5 and A6 in which counting loops after two steps.">
+  <ArrowDiagram labelLeft="ℕ?" labelRight="ℕ?"
+    left={["0", "1"]} right={["0", "1"]}
+    edges={[[0,1],[1,0]]} />
+</Figure>
+
+Take $\mathbb{N} = \{0\}$ with $S(0) = 0$. Then A5 holds and A6 holds — and the "counting numbers" have one element.
+
+Or take $\mathbb{N} = \{0,1\}$ with $S(0)=1$, $S(1)=0$, as drawn. Both axioms hold again, and counting cycles $0,1,0,1,\ldots$
+
+Both are legitimate **models** of A5–A6 (module 7.1), so those axioms cannot prove $\mathbb{N}$ is infinite. Two more axioms are needed, and module 7.4 supplies exactly the two that kill exactly these two pathologies:
+
+- $S$ never returns to $0$ — no looping;
+- $S$ is injective — no merging.
+
+Constructing bad models to show which axioms are missing is the standard way to see that an axiom system is doing real work. It is also how independence is proved.
+
+<Aside>
+Whether $\mathbb{N}$ starts at $0$ or $1$ is a convention (module 2.1). Starting at $0$ makes the successor structure cleanest: one constant, one operation, and $0$ is the additive identity that module 7.6's recursion needs as its base case.
+
+Peano's own 1889 formulation started at $1$; he switched to $0$ later. Nothing mathematical turns on it, and everything about the *statements* of theorems does — which is why the convention must be stated.
+</Aside>

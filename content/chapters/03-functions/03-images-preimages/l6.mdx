@@ -1,0 +1,131 @@
+---
+level: l6
+title: Images and pre-images
+readingTimeMin: 8
+newTerms: ["image", "pre-image"]
+anchorExample: "rigid motions of the plane"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+When you reflect a triangle, you do not reflect one point — you reflect the whole figure, and you call the result "the image of $\triangle ABC$."
+
+Your course uses that word constantly and never defines it precisely. This module does, and then supplies the operation that runs the other way.
+
+## Image
+
+For $f : S \to T$ and a subset $A \subseteq S$, the **image** of $A$ is
+
+$$
+f(A) = \{\,f(a) : a \in A\,\} = \{\,t \in T : \exists a \in A,\ f(a) = t\,\}.
+$$
+
+Everything you get by applying $f$ to elements of $A$.
+
+Let $\sigma$ be reflection in the $x$-axis and let $\triangle ABC$ have vertices $(1,2), (4,2), (1,6)$. Then $\sigma(\triangle ABC)$ is the triangle with vertices $(1,-2),(4,-2),(1,-6)$ — and *this is the image your worksheet calls $\triangle A'B'C'$*. The prime notation and the image notation name the same set.
+
+The two membership conditions are worth separating:
+
+$$t \in f(A) \quad\Longleftrightarrow\quad \exists a \in A \text{ with } f(a)=t.$$
+
+**An existential.** To show something is in the image, produce a source. That is module 1.12's witness rule.
+
+## The image of the whole domain
+
+$f(S)$ is called **the image of $f$**, or its **range**. It need not be all of $T$:
+
+- $f:\mathbb{R}\to\mathbb{R}$, $f(x)=x^2$ has image $[0,\infty)$, not $\mathbb{R}$.
+- The projection $(x,y)\mapsto(x,0)$ has image the $x$-axis, not the plane.
+- A rotation of the plane has image the whole plane.
+
+**Codomain and image are different.** The codomain is declared when you write $f : S\to T$; the image is computed, and may be smaller. Module 3.6 is about the functions where they coincide.
+
+<Warning title="f(A) and f(a) are different operations">
+$f(a)$ takes an **element** and returns an element. $f(A)$ takes a **subset** and returns a subset. The notation reuses the letter, and you must read the argument to know which is meant.
+
+For the reflection $\sigma$: $\sigma\big((1,2)\big) = (1,-2)$ is a point, and $\sigma(\triangle ABC)$ is a triangle. Capital letters for sets and lowercase for elements is the convention that keeps this readable.
+</Warning>
+
+## Pre-image
+
+For $B\subseteq T$, the **pre-image** is
+
+$$
+f^{-1}(B) = \{\,s \in S : f(s)\in B\,\}.
+$$
+
+Everything that lands in $B$. "Which points reflected onto this region?"
+
+$$f(x)=x^2:\qquad f^{-1}(\{4\}) = \{2,-2\},\qquad f^{-1}(\{-1\}) = \emptyset,\qquad f^{-1}([0,4]) = [-2,2].$$
+
+Three outcomes — two elements, none, an interval — and all three are legitimate. The membership condition is a plain conditional, not an existential:
+
+$$s \in f^{-1}(B) \quad\Longleftrightarrow\quad f(s)\in B.$$
+
+That difference — pre-image is a direct condition, image is an existential — is the reason the next module's asymmetry exists, and it is worth noticing now.
+
+<Warning title="f⁻¹ here does not mean an inverse function">
+$f^{-1}(B)$ is defined for **every** function, whether or not $f$ can be undone. $f(x)=x^2$ has no inverse function, and $f^{-1}([0,4]) = [-2,2]$ is perfectly well defined.
+
+Two rules keep them apart:
+
+- $f^{-1}$ applied to a **set** is always the pre-image, always defined.
+- $f^{-1}$ applied to an **element** is the inverse function, and requires $f$ to be a bijection (module 3.9).
+
+The notation is genuinely overloaded and mathematicians have not fixed it. Read the argument.
+</Warning>
+
+## Fixed points
+
+A point with $f(P) = P$ is a **fixed point**, and the set of them is $\{P : f(P)=P\}$. Rigid motions are classified by their fixed sets, which is a fact your course states and this language makes precise:
+
+| Motion | Fixed points |
+|---|---|
+| Identity | the whole plane |
+| Reflection in $\ell$ | exactly the points of $\ell$ |
+| Rotation about $C$ (not $360°$) | exactly $\{C\}$ |
+| Translation (non-zero) | $\emptyset$ |
+
+The fixed-point set is a pre-image in disguise, and reading the table as a statement about sets is what lets you prove classification theorems rather than assert them.
+
+## Two propositions
+
+> **Proposition.** For any $f : S\to T$ and $A \subseteq S$: $A \subseteq f^{-1}(f(A))$.
+
+<Proof>
+Let $a$ be an arbitrary element of $A$. Then $f(a)\in f(A)$ by definition of image.
+
+So $a$ is an element of $S$ whose output lies in $f(A)$ — which is exactly the condition for $a \in f^{-1}(f(A))$.
+
+Since $a$ was arbitrary, $A \subseteq f^{-1}(f(A))$.
+</Proof>
+
+**The reverse containment can fail.** Take $f(x)=x^2$ and $A = \{2\}$. Then $f(A)=\{4\}$ and $f^{-1}(\{4\}) = \{2,-2\}$, which is strictly larger.
+
+The pre-image picked up $-2$, which was never in $A$, because $f$ sent two inputs to the same output. **Equality holds exactly when $f$ is injective** — and that is module 3.5's subject, arriving here as a consequence rather than a definition.
+
+> **Proposition.** For any $f: S\to T$ and $B \subseteq T$: $f(f^{-1}(B)) \subseteq B$.
+
+<Proof>
+Let $t \in f\big(f^{-1}(B)\big)$. By definition of image there is some $s \in f^{-1}(B)$ with $f(s) = t$.
+
+Since $s \in f^{-1}(B)$, we have $f(s)\in B$. But $f(s)=t$, so $t \in B$.
+</Proof>
+
+This one can also be strict: with $f(x)=x^2$ and $B = \{-1, 4\}$, the pre-image is $\{2,-2\}$ and its image is $\{4\}$, missing $-1$. Nothing mapped to $-1$, so the round trip could not recover it. **Equality holds exactly when $B \subseteq f(S)$** — a surjectivity condition, module 3.6.
+
+<Aside>
+Notice how the two propositions failed in opposite ways.
+
+$A \subseteq f^{-1}(f(A))$ can be strict because $f$ **merges** — two inputs, one output. $f(f^{-1}(B))\subseteq B$ can be strict because $f$ **misses** — some target has no source.
+
+Merging and missing are the two ways a function fails to be undoable, and the next four modules are essentially a study of each one separately and then both together. When you meet injective, surjective, and bijective, you will have already seen what each rules out.
+</Aside>
+
+## Rigid motions have neither problem
+
+For a reflection $\sigma$: no two points share an image, and every point is the image of something. So $\sigma^{-1}(\sigma(A)) = A$ and $\sigma(\sigma^{-1}(B)) = B$ for **every** subset — the round trips are exact.
+
+That is what "you can undo a reflection by reflecting again" means, stated as an equation about sets. It is also why congruence is symmetric in your course: if a rigid motion carries $F$ to $G$, the same motion run backwards carries $G$ to $F$, and module 3.9 proves that the backwards motion exists.

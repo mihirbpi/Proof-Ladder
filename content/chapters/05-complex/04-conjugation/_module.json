@@ -13,6 +13,17 @@
     "l7": "Conjugation",
     "l8": "Conjugation"
   },
+  "kernelIdea": "z̄ = a − bi. Conjugation is an involution; Re(z) = (z + z̄)/2, Im(z) = (z − z̄)/(2i), and z·z̄ = a² + b² is real and ≥ 0. z is real iff z = z̄.",
+  "kernels": {
+    "l1": "Flip the point across the middle line. Flip it twice and you are home.",
+    "l2": "The mirror flips a point across the middle line: the across part stays, the up part goes the other way. Points sitting on the line do not move at all.",
+    "l3": "The conjugate of a + bi is a − bi — the mirror image across the horizontal line. Doing it twice gets you back, and a number equals its own conjugate exactly when it is an ordinary number.",
+    "l4": "The conjugate of z = a + bi is z̄ = a − bi. Conjugation is an involution, Re(z) = (z + z̄)/2, Im(z) = (z − z̄)/(2i), and z z̄ = a² + b² ≥ 0 is real. z is real iff z = z̄.",
+    "l5": "Conjugation is a reflection in the real axis that respects sums and products; z z̄ is real and non-negative, and its fixed points are exactly the reals.",
+    "l6": "Conjugation is a field automorphism of ℂ fixing ℝ pointwise; its fixed field is exactly ℝ, and it is the only nontrivial one that is continuous.",
+    "l7": "Conjugation z ↦ z̄ is an involutive field automorphism fixing exactly ℝ; z z̄ = |z|² is real and non-negative, and Re and Im are recovered from z and z̄.",
+    "l8": "Conjugation generates Gal(ℂ/ℝ) ≅ ℤ/2ℤ; the conjugate-root theorem for real polynomials is an immediate consequence of its being a ring homomorphism."
+  },
   "kernel": "z̄ = a − bi. Conjugation is an involution; Re(z) = (z + z̄)/2; Im(z) = (z − z̄)/(2i); z·z̄ = a² + b² is real and ≥ 0. z is real iff z = z̄.",
   "objectives": [
     "Compute conjugates",

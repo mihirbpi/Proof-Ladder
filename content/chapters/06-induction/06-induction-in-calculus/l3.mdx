@@ -1,0 +1,96 @@
+---
+level: l3
+title: Induction with repeated steps
+readingTimeMin: 5
+newTerms: []
+anchorExample: "1+3+5+… = n²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+So far the claims came ready-made and you proved them. Real mathematics is not like that: usually you have to **find** the claim first, and only then prove it.
+
+This module practises both halves. The grown-up version of this module uses calculus; the *method* is identical and does not need it.
+
+## Job one: gather data
+
+Start at $1$ and repeatedly multiply by $3$.
+
+| $n$ (times tripled) | Result |
+|---|---|
+| $0$ | $1$ |
+| $1$ | $3$ |
+| $2$ | $9$ |
+| $3$ | $27$ |
+| $4$ | $81$ |
+| $5$ | $243$ |
+
+## Job two: find the pattern
+
+The answer is $3$ multiplied by itself $n$ times — written $3^n$.
+
+That was easy because there was only one pattern to spot. Usually there are several tangled together, and you must isolate them one at a time.
+
+## A harder one, with three patterns at once
+
+Start at $1$ and repeatedly apply the rule: **multiply by the step number, then flip the sign.**
+
+| $n$ | Result |
+|---|---|
+| $0$ | $1$ |
+| $1$ | $-1$ |
+| $2$ | $2$ |
+| $3$ | $-6$ |
+| $4$ | $24$ |
+| $5$ | $-120$ |
+
+Staring at $1, -1, 2, -6, 24, -120$ is hopeless if you try to see it all at once. So separate the patterns.
+
+**Pattern 1: the sign.** Plus, minus, plus, minus. It alternates with $n$.
+
+**Pattern 2: the size.** $1, 1, 2, 6, 24, 120$. Each is the previous times $n$: $2 = 1\times2$, $6 = 2\times3$, $24 = 6\times4$, $120 = 24\times5$.
+
+That is $1 \times 2 \times 3 \times \cdots \times n$, which has a name: **$n$ factorial**, written $n!$.
+
+**Putting them together:** the $n$th result is $n!$ with a sign that alternates.
+
+Check $n=3$: $3! = 6$, and the sign should be minus. So $-6$. ✓
+
+## Job three: prove it
+
+<Discussion>
+  <div slot="know">Each result is the previous one times $n$, with the sign flipped. And $(k+1)! = (k+1)\times k!$.</div>
+  <div slot="want">The formula holds for every case.</div>
+  <div slot="how">Dominoes. The base is $n=0$. The step applies the rule once to the $k$th result and checks the answer matches what the formula predicts for $k+1$.</div>
+</Discussion>
+
+<Proof>
+**Base case.** At $n=0$ the result is $1$. And $0!$ is defined to be $1$, with a plus sign. ✓
+
+**Inductive step.** Suppose after $k$ steps the result is $k!$ with the appropriate sign.
+
+Apply the rule once more: multiply by $k+1$ and flip the sign.
+
+Multiplying $k!$ by $k+1$ gives $(k+1)!$ — that is exactly what factorial means.
+
+And flipping the sign once is exactly what the alternating pattern predicts for the next step.
+
+So after $k+1$ steps the result is $(k+1)!$ with the right sign, as claimed. ✓
+</Proof>
+
+<Warning title="Isolate the patterns before combining them">
+The list $1, -1, 2, -6, 24, -120$ is unreadable as a whole and easy once split into *sign* and *size*.
+
+This is the general technique. When data resists, look for two or three independent patterns and find each separately. Then multiply them together.
+</Warning>
+
+<Aside>
+The list above is not invented. In a few years, when you meet calculus, you will differentiate the function $1/x$ over and over — and the answers will carry exactly this alternating sign and exactly these factorials. The formula is
+$$
+(-1)^n \, n! \, x^{-(n+1)},
+$$
+and the proof is the induction you just did, with an extra pattern for the power of $x$.
+</Aside>

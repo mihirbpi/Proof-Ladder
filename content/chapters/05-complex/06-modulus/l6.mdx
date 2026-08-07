@@ -1,0 +1,145 @@
+---
+level: l6
+title: Modulus
+readingTimeMin: 8
+newTerms: ["modulus", "absolute value"]
+anchorExample: "rotations of the coordinate plane"
+---
+
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Figure from '@/components/Figure.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$\mathbb{C}$ has no order (module 5.2), so complex numbers cannot be compared directly. What can be compared is their **size**, and size is a real number.
+
+## Definition
+
+For $z = a+bi$, the **modulus** is
+$$|z| = \sqrt{a^2+b^2}.$$
+
+That is the distance from the origin to the point $(a,b)$ — **the distance formula**, which is the Pythagorean theorem in coordinates.
+
+<Figure alt="A right triangle in the complex plane with horizontal leg 3, vertical leg 4, and hypotenuse from the origin to the point 3+4i." caption="|3+4i| = 5, by the Pythagorean theorem on legs 3 and 4.">
+  <ComplexPlane
+    points={[{ re: 3, im: 4, label: "3+4i" }]}
+    vectors={[{ re: 3, im: 4 }]}
+    range={5}
+  />
+</Figure>
+
+$$|3+4i| = \sqrt{9+16} = 5.$$
+
+The $3$–$4$–$5$ triangle from your first geometry unit, appearing as a complex modulus.
+
+## It extends absolute value
+
+For a real number $x = x+0i$:
+$$|x| = \sqrt{x^2+0} = \sqrt{x^2} = |x|,$$
+the ordinary absolute value. So the notation is consistent — the new $|\ \cdot\ |$ agrees with the old one on $\mathbb{R}$, which is what an extension must do.
+
+## Relation to the conjugate
+
+$$
+z\bar z = (a+bi)(a-bi) = a^2+b^2 = |z|^2.
+$$
+
+So $|z| = \sqrt{z\bar z}$, and
+
+$$
+\frac1z = \frac{\bar z}{|z|^2} \quad (z\neq0),
+$$
+
+which is module 5.3's division formula in compact form. Also $|\bar z| = |z|$: reflection preserves distance, exactly as your course requires of a rigid motion.
+
+## Multiplicativity
+
+> **Theorem.** $|zw| = |z|\,|w|$.
+
+<Discussion>
+  <div slot="know">$|z|^2 = z\bar z$, and conjugation distributes over products (module 5.4).</div>
+  <div slot="want">$|zw| = |z||w|$, an equation between non-negative reals.</div>
+  <div slot="how">Squares are easier than square roots, and both sides are non-negative, so proving the squares equal is enough. Then the conjugate rule does the work in two lines — far cleaner than expanding components.</div>
+</Discussion>
+
+<Proof>
+Both $|zw|$ and $|z||w|$ are non-negative reals, so it suffices to show their squares agree.
+
+$$|zw|^2 = (zw)\overline{(zw)} = zw\,\bar z\bar w = (z\bar z)(w\bar w) = |z|^2|w|^2,$$
+
+using $\overline{zw} = \bar z\bar w$ and commutativity.
+
+Taking non-negative square roots, $|zw| = |z||w|$.
+</Proof>
+
+**Geometrically: multiplying scales distances.** Multiplying every point by $w$ multiplies every distance from the origin by $|w|$ — which is the definition of a dilation with factor $|w|$ (module 3.1).
+
+That is half of module 5.9's result. The other half is what happens to angles.
+
+<Warning title="Modulus does not distribute over sums">
+$$|z+w| \neq |z|+|w| \quad\text{in general.}$$
+
+Take $z = 3$ and $w = -3$: the left side is $0$ and the right is $6$.
+
+The correct statement is an inequality, and it is one you know.
+</Warning>
+
+## The triangle inequality
+
+> **Theorem.** $|z+w| \leq |z|+|w|$.
+
+This is the Triangle Inequality from your geometry course: *the sum of two sides of a triangle exceeds the third.*
+
+Plot $0$, $z$, and $z+w$. The three sides have lengths $|z|$, $|w|$ (the segment from $z$ to $z+w$), and $|z+w|$. The theorem says the direct route is never longer than the detour.
+
+**Equality holds exactly when $z$ and $w$ point the same way** — when the "triangle" is degenerate and the three points are collinear. That matches your course's version, where the strict inequality requires an actual triangle.
+
+The distance between two complex numbers is
+$$d(z,w) = |z-w|,$$
+and in components this is $\sqrt{(a-c)^2+(b-d)^2}$ — the distance formula, unchanged. Complex notation has not introduced a new geometry; it has compressed the one you have.
+
+## Loci by modulus
+
+$$|z| = r \quad\text{— circle, radius } r, \text{ centre } 0$$
+$$|z - c| = r \quad\text{— circle, radius } r, \text{ centre } c$$
+$$|z-c| < r \quad\text{— the open disk}$$
+$$|z-c| \leq r \quad\text{— the closed disk}$$
+$$|z-w| = |z-v| \quad\text{— perpendicular bisector of } \overline{wv}$$
+
+<Figure alt="A dashed circle of radius 3 centred at the origin with several points marked on it." caption="|z| = 3: every point at distance 3 from the origin.">
+  <ComplexPlane
+    points={[
+      { re: 3, im: 0 },
+      { re: 0, im: 3 },
+      { re: -3, im: 0 },
+      { re: 0, im: -3 }
+    ]}
+    circle={3}
+    range={4}
+  />
+</Figure>
+
+Compare with module 2.2's set-builder version:
+$$\{z\in\mathbb{C} : |z - c| = r\}.$$
+
+Same locus, and the complex form needs one variable where real coordinates need two. That economy is why complex notation is standard in fields — electrical engineering, fluid dynamics — where plane geometry is done constantly.
+
+## The unit circle
+
+$$U = \{z\in\mathbb{C} : |z| = 1\}.$$
+
+This set is closed under multiplication: if $|z|=|w|=1$ then $|zw| = 1\cdot1 = 1$, by the theorem above. It contains $1$, and each element has an inverse in the set, since $|1/z| = 1/|z| = 1$.
+
+So $U$ is closed under multiplication, has an identity, and has inverses — a **group**, in the sense of module 3.7's aside.
+
+**And it is the group of rotations of the plane.** Multiplying by a number of modulus $1$ changes no distance, so it is a rigid motion fixing the origin, which by your course's classification is a rotation. Module 5.9 makes the correspondence exact.
+
+<Aside>
+The properties proved here — $|z|\geq0$ with equality only at $0$, $|zw|=|z||w|$, and the triangle inequality — are the axioms of a **norm**.
+
+Once a set has a norm, it has distances; once it has distances, limits and continuity can be defined; and once those exist, calculus is possible. That is the route by which $\mathbb{C}$ acquires an analysis of its own, and complex analysis turns out to be *better behaved* than real analysis: a complex function differentiable once is automatically differentiable infinitely many times, which is spectacularly false over $\mathbb{R}$.
+
+The modulus is what makes any of it possible, and it is nothing but the distance formula you proved from the Pythagorean theorem.
+</Aside>

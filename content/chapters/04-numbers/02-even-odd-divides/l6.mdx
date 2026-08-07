@@ -1,0 +1,127 @@
+---
+level: l6
+title: Even, odd, and divides
+readingTimeMin: 8
+newTerms: ["even", "odd", "divides"]
+anchorExample: "coordinates, lengths, and the Pythagorean theorem"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+"Even" is a word you have used since primary school with an informal meaning: ends in $0,2,4,6,8$. That characterisation is a *theorem*, not a definition, and it is useless in a proof — you cannot manipulate a last digit algebraically.
+
+This module replaces the informal descriptions with definitions you can compute with.
+
+## The definitions
+
+> An integer $n$ is **even** when there exists an integer $k$ with $n = 2k$.
+>
+> An integer $n$ is **odd** when there exists an integer $k$ with $n = 2k+1$.
+>
+> For integers $a$ and $b$, **$a$ divides $b$** — written $a \mid b$ — when there exists an integer $k$ with $b = ak$.
+
+Even means $2\mid n$, and odd is what remains.
+
+**All three are existential statements**, and that single observation tells you how every proof in this chapter will go.
+
+## Consequences of the quantifier
+
+Module 1.12 gave the rules, and here they are in action.
+
+**To prove $a \mid b$: produce the $k$.** Not describe it, not argue it must exist — write it down and verify.
+
+> **Claim.** $7 \mid 91$.
+>
+> **Proof.** $91 = 7\cdot 13$, and $13\in\mathbb{Z}$. $\square$
+
+**To use $a\mid b$: name the $k$.** When a hypothesis says $a\mid b$, immediately write "so $b = ak$ for some integer $k$." That equation is the usable content; the symbol $\mid$ by itself supports no algebra.
+
+**To refute $a\mid b$: rule out every $k$.** This is the hard direction — a universal claim — and it is why $3\nmid 7$ takes more thought than $7\mid91$. Module 4.4 supplies the tool.
+
+<Warning title="a | b is a statement; a/b is a number">
+$$12 \mid 60 \quad\text{is a statement (true).}$$
+$$\frac{60}{12} = 5 \quad\text{is a number.}$$
+
+The vertical bar is not a division sign, and $a\mid b$ has no numerical value — it is true or false. Writing "$a\mid b = 3$" is a type error.
+
+Watch the direction, too. $a \mid b$ means $a$ is the **smaller** one, the divisor. Reading it backwards is the commonest slip in the chapter, and the phrase to hold onto is *"$a$ goes into $b$."*
+</Warning>
+
+## Small facts worth having
+
+$$a \mid 0 \text{ for every } a, \quad\text{since } 0 = a\cdot 0.$$
+$$1 \mid b \text{ for every } b, \quad\text{since } b = 1\cdot b.$$
+$$a \mid a, \quad\text{since } a = a\cdot 1.$$
+
+And $0\mid b$ only when $b=0$, since $b = 0\cdot k$ forces $b = 0$. Note this is a fact about the *statement* $0\mid b$, and says nothing about the undefined expression $b/0$ — another reason to keep the two notations apart.
+
+## A first proof
+
+> **Proposition.** The sum of two even integers is even.
+
+<Proof>
+Let $m$ and $n$ be arbitrary even integers.
+
+By definition there are integers $j$ and $k$ with $m = 2j$ and $n = 2k$. **Note the two letters** — nothing says the same $k$ works for both.
+
+Then
+$$m + n = 2j + 2k = 2(j+k).$$
+
+Since $\mathbb{Z}$ is closed under addition, $j+k$ is an integer. So $m+n$ has the form $2\cdot(\text{integer})$, and is even.
+</Proof>
+
+Three moves, and they are the three moves of the whole chapter:
+
+1. **Unpack** the hypotheses into equations.
+2. **Compute** until the target form appears.
+3. **Verify** the witness is an integer, citing closure (module 4.1).
+
+Step 3 is the one students omit, and it is the one that makes the proof correct rather than suggestive.
+
+<Warning title="Use different letters">
+Writing "$m = 2k$ and $n = 2k$" claims $m = n$, which was never given. Each existential hypothesis supplies its **own** witness, and reusing the letter silently adds an assumption.
+
+The habit that prevents it: as soon as you unpack an existential, choose a letter not yet in use.
+</Warning>
+
+## Every integer is even or odd
+
+This looks obvious and is not free. Its proof — in module 4.4 — comes from division with remainder: dividing $n$ by $2$ leaves remainder $0$ or $1$, giving $n = 2k$ or $n = 2k+1$.
+
+Two things follow, and both are used constantly:
+
+**The cases are exhaustive**, so "even or odd" is a legitimate case split (module 1.12).
+
+**The cases are exclusive**, so *not even* means *odd*. That is what lets an indirect proof assume oddness after negating evenness.
+
+## Combining the two
+
+| Claim | Proof sketch |
+|---|---|
+| even $+$ even $=$ even | $2j+2k = 2(j+k)$ |
+| odd $+$ odd $=$ even | $(2j+1)+(2k+1) = 2(j+k+1)$ |
+| even $+$ odd $=$ odd | $2j + (2k+1) = 2(j+k)+1$ |
+| even $\times$ anything $=$ even | $2j\cdot n = 2(jn)$ |
+| odd $\times$ odd $=$ odd | $(2j+1)(2k+1) = 2(2jk+j+k)+1$ |
+
+Each is three lines, each ends by citing closure, and the last one is the one that makes the $\sqrt2$ proof work in module 4.7. Write out the odd–odd computation yourself; the algebra is where the $+1$ has to be extracted, and doing it once is worth reading it twice.
+
+<Aside>
+Geometry supplies a use for parity you may not have noticed.
+
+Rigid motions come in two kinds: those preserving orientation (translations, rotations) and those reversing it (reflections). Composing them follows the parity rules exactly — a composition of an *even* number of reflections preserves orientation, an *odd* number reverses it.
+
+So "even $+$ even $=$ even" is also the statement that two orientation-preserving motions compose to an orientation-preserving one. The classification theorem for plane isometries is, in part, an argument about parity.
+</Aside>
+
+## Generalising
+
+The definition of $a\mid b$ has $2$ replaced by an arbitrary $a$, and every fact above generalises:
+
+$$a\mid b \text{ and } a\mid c \implies a \mid (b+c).$$
+
+Proof: $b = aj$, $c = ak$, so $b + c = a(j+k)$, and $j+k\in\mathbb{Z}$. The same three moves.
+
+Module 4.3 pushes this further, and the pattern will by then be automatic — which is the point of establishing it on the easiest possible case first.

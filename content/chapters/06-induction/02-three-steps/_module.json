@@ -13,6 +13,17 @@
     "l7": "The three steps",
     "l8": "The three steps"
   },
+  "kernelIdea": "State A(n) and the starting value n₀; prove the base case A(n₀); prove the inductive step A(k) ⇒ A(k+1). The inductive step is a conditional, so assuming A(k) is not circular.",
+  "kernels": {
+    "l1": "Two jobs: push the first one, and check each one touches the next.",
+    "l2": "To be sure a rule keeps working, do two jobs. Show it works the very first time. Then show that whenever it works once, it works the next time too.",
+    "l3": "An induction proof has three parts: say exactly what the claim is and where it starts, check the first case, and show that any case being true forces the next one to be true. Assuming one case is not cheating, because you are only proving an if–then.",
+    "l4": "State A(n) and n₀; prove the base case A(n₀); prove A(k) ⇒ A(k+1) for arbitrary k ≥ n₀. The step is a conditional, so assuming A(k) is a hypothesis, not a circularity.",
+    "l5": "The inductive step is a universally quantified conditional, which is why assuming A(k) is legitimate; the base case anchors the chain.",
+    "l6": "Induction is valid because ℕ is well-ordered: a least counterexample would contradict the base case or the step.",
+    "l7": "An induction proof states A(n) and n₀, establishes A(n₀), and proves the conditional A(k) ⇒ A(k+1) for arbitrary k ≥ n₀; the conditional form is why the inductive hypothesis is not circular.",
+    "l8": "Induction and well-ordering are equivalent over the other Peano axioms; the least-counterexample formulation is the contrapositive of the induction scheme."
+  },
   "kernel": "(1) State A(n) and the starting value n₀. (2) Prove the base case A(n₀). (3) Prove the inductive step: assume A(k) for some k ≥ n₀, deduce A(k+1). The inductive step is a conditional, so assuming A(k) is not circular.",
   "objectives": [
     "Write the three steps for a given claim",

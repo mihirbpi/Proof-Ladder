@@ -3,7 +3,7 @@ level: l3
 title: For all, there exists
 readingTimeMin: 6
 newTerms: ["for all", "there exists", "unique"]
-anchorExample: "square numbers"
+anchorExample: "squares and rectangles"
 ---
 
 import Aside from '@/components/Aside.astro';
@@ -11,64 +11,86 @@ import Warning from '@/components/Warning.astro';
 
 Back in module 1.1 we met a sentence that was not quite a statement:
 
-$$x \geq 1$$
+> This shape has four equal sides.
 
-It is not true and it is not false, because we were never told what $x$ is. Sentences like this are called *open statements*. This module shows the two ways to close them.
+It is not true and it is not false, because we were never told which shape. This module shows the two ways to finish such a sentence.
 
 ## For all
 
 Put the words **for all** in front and you get a real statement:
 
-> **For all** whole numbers $x$, $x \geq 1$.
+> **For all** rectangles, the shape has four equal sides.
 
-Now it has a definite truth value. (It is false, since $x = 0$ is a whole number smaller than $1$.) A **for all** claim says: this holds in every single case, no exceptions.
+Now it has a definite truth value. It is false — a $2$-by-$5$ rectangle is a rectangle and does not have four equal sides.
+
+A **for all** claim says: this holds in every single case, no exceptions.
 
 Here is a true one:
 
-> **For all** numbers $x$, $x \times x \geq 0$.
+> **For all** squares, the shape is a rectangle.
 
-Every number times itself lands at zero or above. Positive times positive is positive; negative times negative is positive; zero times zero is zero. No exceptions.
+Every square really is a rectangle, with no exceptions. That is the shape hierarchy you use when sorting quadrilaterals.
+
+And a true one about numbers:
+
+> **For all** counting numbers, the number multiplied by itself is not less than the number.
 
 ## There exists
 
-The other way to close an open statement is with **there exists**:
+The other way to finish the sentence is with **there exists**:
 
-> **There exists** a number $x$ with $2 \times x = 7$.
+> **There exists** a rectangle with four equal sides.
 
-This claims at least one case works. It does not claim they all do — most numbers fail this. It just says: somewhere out there, one of them does the job.
+This claims at least one case works. It does not claim they all do — most rectangles fail. It just says: somewhere out there, one of them does the job.
 
-Is it true? Yes: $x = 3\frac{1}{2}$. Because $2 \times 3\frac{1}{2} = 7$. One example, and the claim is settled forever.
+Is it true? Yes — a square. One example, and the claim is settled forever.
 
-Notice how different the work was.
+Here is another:
+
+> **There exists** a counting number that leaves no remainder when you share it among $3$, among $4$, and among $5$.
+
+True: $60$ works.
 
 ## The asymmetry — this is the important part
 
 | Claim | To prove it | To disprove it |
 |---|---|---|
-| **For all** $x$, $p(x)$ | argue about *every* case at once | find **one** case where $p$ fails |
-| **There exists** $x$, $p(x)$ | find **one** case where $p$ holds | argue that *every* case fails |
+| **For all** cases, … | argue about *every* case at once | find **one** case where it fails |
+| **There exists** a case where … | find **one** case that works | argue that *every* case fails |
 
 Proving a *for all* is hard and knocking it down is easy. Proving a *there exists* is easy and knocking it down is hard. The difficulty is always on one side, and which side depends entirely on the first two words.
 
 This is not a small observation. It is why a single strange example can destroy a claim that a hundred examples had supported — module 1.11 is all about that.
 
+## How you prove a *for all* without checking everything
+
+You cannot check every rectangle; there are infinitely many. So here is the move, and it is the one that makes the rest of this course possible.
+
+**Take any one and follow it.** Pick a case you know nothing special about, reason about it, and if you never used anything special, your reasoning covered all of them.
+
+> **Claim.** For all squares, the shape is a rectangle.
+>
+> *Take any one and follow it.* Whatever square you picked, being a square it has four sides and four square corners. Four sides and four square corners is what a rectangle means. So the one you picked is a rectangle — and you never used anything about *which* square it was, so this works for all of them.
+
 ## Exactly one
 
 There is a third shape, greedier than the other two:
 
-> There exists a **unique** number $x$ with $3 \times x - 1 = 0$.
+> There is **exactly one** counting number that is even and prime.
 
 **Unique** means *exactly one*: at least one, and no more than one. Settling it takes two separate jobs.
 
-1. **At least one.** Show something works: $x = \frac{1}{3}$ gives $3 \times \frac{1}{3} - 1 = 0$. ✓
-2. **At most one.** Show nothing else could. Suppose $x$ and $y$ both work. Then $3x - 1 = 0$ and $3y - 1 = 0$, so $3x = 1$ and $3y = 1$, so $3x = 3y$, so $x = y$. They were the same number all along.
+1. **At least one.** Show something works: $2$ is even, and $2$ is prime. ✓
+2. **At most one.** Show nothing else could. Any other even number splits into groups of $2$ with more than one group, so it has $2$ as a factor besides $1$ and itself — which means it is not prime.
 
 Both jobs done, so the number is unique.
 
-<Warning title="Say which set you mean">
-"For all $x$, $x \geq 1$" is *false* if $x$ ranges over whole numbers ($x=0$ breaks it) but *true* if $x$ ranges over whole numbers bigger than zero. Changing the collection changes the claim. Always say what $x$ is allowed to be — a quantified claim without a stated collection is not a finished sentence.
+<Warning title="Say which collection you mean">
+"For all shapes, the shape has four sides" is false if you mean *all* shapes, and true if you mean *all rectangles*.
+
+Changing the collection changes the claim. Always say what you are quantifying over — a *for all* claim without a stated collection is not a finished sentence.
 </Warning>
 
 <Aside>
-Almost every theorem you will ever meet is a *for all* statement in disguise. "If $x > 1$ then $x^2 > 1$" really means "for all numbers $x$, if $x > 1$ then $x^2 > 1$." The *for all* is invisible but it is doing all the work — it is why the proof had to argue about a nameless $x$ instead of checking $x = 3$.
+Almost every theorem you will ever meet is a *for all* statement in disguise. "If a shape is a square, it is a rectangle" really means "for all shapes, if the shape is a square then it is a rectangle." The *for all* is invisible but it is doing all the work — it is why the proof had to argue about a shape nobody had named.
 </Aside>

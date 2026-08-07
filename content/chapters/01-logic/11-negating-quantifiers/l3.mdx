@@ -3,7 +3,7 @@ level: l3
 title: Negating quantifiers and counterexamples
 readingTimeMin: 6
 newTerms: ["counterexample"]
-anchorExample: "every prime is odd"
+anchorExample: "squares and rectangles"
 ---
 
 import Aside from '@/components/Aside.astro';
@@ -15,39 +15,49 @@ The answer is a rule you will use every time you try to knock something down.
 
 ## The opposite of a *for all*
 
-> **Every** prime number is odd.
+> **Every** rectangle has four equal sides.
 
-What would it take for this to be false? Not for every prime to be even — that is far too strong, and obviously wrong since $3$, $5$ and $7$ are all odd primes. It would take just **one** prime that is not odd.
+What would it take for this to be false? Not for every rectangle to have unequal sides — that is far too strong, and it is wrong anyway, since squares are rectangles with four equal sides. It would take just **one** rectangle without four equal sides.
 
-> **Some** prime number is not odd.
+> **Some** rectangle does not have four equal sides.
 
-And there is one: $2$. It is prime, and it is even. The claim is dead.
+And there is one: a $2$-by-$5$ rectangle. The claim is dead.
 
 A single example that kills a *for all* claim is called a **counterexample**, and the move is called **one bad apple**.
 
-> The opposite of *for all $x$, $p(x)$* is *there exists $x$ with not $p(x)$*.
+> The opposite of *for all cases, this holds* is *there is one case where it fails*.
 
 ## The opposite of a *there exists*
 
-> **There exists** a number $x$ with $x \times x = -1$.
+> **There exists** a counting number that is bigger than every other counting number.
 
-(We are talking about ordinary numbers here — the ones on the number line. Chapter 5 will build new ones where this changes.)
+What would it take for this to be false? It would take *every* counting number failing. Not one, not most — all of them.
 
-What would it take for this to be false? It would take *every* number failing. Not one, not most — all of them.
+> **For every** counting number, it is not bigger than every other counting number.
 
-> **For every** number $x$, $x \times x$ is not $-1$.
+And that is true: whatever number you name, adding one gives a bigger one. So the original claim is false.
 
-And that is true: a positive times a positive is positive, a negative times a negative is positive, and $0 \times 0 = 0$. No number squares to a negative. So the original claim is false.
-
-> The opposite of *there exists $x$ with $p(x)$* is *for all $x$, not $p(x)$*.
+> The opposite of *there is a case where this holds* is *for all cases, it fails*.
 
 ## The rule in one line
 
-> Taking the opposite **swaps the quantifier** and then negates what comes after.
+> Taking the opposite **swaps the quantifier** and then says *not* to what comes after.
 
 *For all* becomes *there exists*. *There exists* becomes *for all*. Every time.
 
 If that feels familiar, it should. In module 1.4 you learned that saying "not" to an AND gives you an OR, and to an OR gives you an AND. This is the same law. A *for all* is a giant AND — "this one **and** that one **and** the next one, forever" — and a *there exists* is a giant OR. Same swap, bigger scale.
+
+## More counterexamples
+
+> **Every** prime number is odd.
+
+Opposite: some prime number is not odd. And there is one — $2$ is prime and even. Dead.
+
+> **Every** four-sided shape with four equal sides is a square.
+
+Opposite: some four-sided shape with four equal sides is not a square. And there is one — a rhombus that has been squashed over, with four equal sides and no square corners. Dead.
+
+That second one is worth pausing on, because it is a shape you can draw, and it is exactly the counterexample that keeps *square* and *four equal sides* from meaning the same thing.
 
 <Warning title="The over-negation trap, again">
 The opposite of "every prime is odd" is **not** "every prime is even." That is a rival claim, not the negation, and it happens to be false too — which means that if you disprove *it*, you have proved nothing about the original.
@@ -59,11 +69,15 @@ The negation of a *for all* is always a *there exists*. It claims one failure, n
 
 There is a real asymmetry in the work.
 
-- To prove *every prime is odd*, you would need an argument covering infinitely many primes.
-- To disprove it, you say: "$2$." One character.
+- To prove *every rectangle has four equal sides*, you would need an argument covering infinitely many rectangles.
+- To disprove it, you draw one $2$-by-$5$ rectangle. Done.
 
-That is not laziness — it is exactly what the negation rule licenses. A universal claim is a promise about every case, so one broken case breaks the promise. This is why mathematicians, faced with a claim they suspect is false, go hunting for small examples first.
+That is not laziness — it is exactly what the negation rule licenses. A *for all* claim is a promise about every case, so one broken case breaks the promise. This is why mathematicians, faced with a claim they suspect is false, go hunting for small examples first.
 
 <Aside>
-Counterexamples are not just for classroom exercises. In 1769 Euler conjectured that no fourth power is a sum of three fourth powers, and more generally that summing $k$-th powers needs at least $k$ terms. It stood for 200 years. In 1966 Lander and Parkin published a paper that was essentially one line long: $27^5 + 84^5 + 110^5 + 133^5 = 144^5$. One bad apple, and a two-century conjecture was over.
+Counterexamples are not just for classroom exercises. In $1769$ Euler guessed that you can never add three fourth powers and get a fourth power, and more generally that adding $k$-th powers needs at least $k$ of them. The guess stood for $200$ years.
+
+In $1966$, Lander and Parkin published a paper that was essentially one line long:
+$$27^5 + 84^5 + 110^5 + 133^5 = 144^5.$$
+One bad apple, and a two-century-old guess was over.
 </Aside>

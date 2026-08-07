@@ -1,0 +1,143 @@
+---
+level: l6
+title: Polar form
+readingTimeMin: 8
+newTerms: ["polar form", "radians"]
+anchorExample: "rotations of the coordinate plane"
+---
+
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Figure from '@/components/Figure.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+There are two ways to say where a point is: **across and up**, or **how far and which way**.
+
+$$a+bi \qquad\text{versus}\qquad re^{i\theta}$$
+
+Both name the same point. The second is better suited to multiplication, and this module is about converting between them.
+
+## Radians
+
+An angle in **radians** is the arc length it cuts on a unit circle. A full turn is $2\pi$ radians, since the circumference is $2\pi$.
+
+| degrees | radians |
+|---|---|
+| $30°$ | $\pi/6$ |
+| $45°$ | $\pi/4$ |
+| $60°$ | $\pi/3$ |
+| $90°$ | $\pi/2$ |
+| $180°$ | $\pi$ |
+| $360°$ | $2\pi$ |
+
+$$\text{radians} = \text{degrees}\times\frac{\pi}{180}.$$
+
+Radians are not a convenience. The series of module 5.7 are false in degrees, and the arc-length definition is what makes them true — an arc of $\theta$ radians on the unit circle has length $\theta$, with no conversion factor anywhere.
+
+Your geometry course meets radians in arc length and sector area: $s = r\theta$ and $A = \frac12r^2\theta$. Both formulas lose their constant factors in radians, for the same reason.
+
+## Polar form
+
+By module 5.7, $e^{i\theta} = \cos\theta+i\sin\theta$ is the point on the unit circle at angle $\theta$. Scaling by $r>0$:
+
+$$
+re^{i\theta} = r\cos\theta + ir\sin\theta,
+$$
+
+the point at **distance $r$** from the origin at **angle $\theta$** counterclockwise from the positive real axis.
+
+$r = |z|$ is the modulus. $\theta$ is the **argument**, written $\arg z$.
+
+<Figure alt="A point in the complex plane joined to the origin, with the distance and the angle from the positive real axis marked." caption="Polar form: the point at distance r and angle θ.">
+  <ComplexPlane
+    points={[{ re: 1.5, im: 2.6, label: "z = 3e^{iπ/3}" }]}
+    vectors={[{ re: 1.5, im: 2.6 }]}
+    circle={3}
+    range={4}
+  />
+</Figure>
+
+## Polar to rectangular
+
+$$
+a = r\cos\theta, \qquad b = r\sin\theta.
+$$
+
+**Right-triangle trigonometry**, exactly as in your geometry course: the horizontal leg is the hypotenuse times the cosine, the vertical leg is the hypotenuse times the sine.
+
+> **Example.** Convert $3e^{i\pi/3}$.
+>
+> $\pi/3$ is $60°$, so $\cos(\pi/3) = \frac12$ and $\sin(\pi/3)=\frac{\sqrt3}{2}$.
+>
+> $$a = 3\cdot\tfrac12 = \tfrac32, \qquad b = 3\cdot\tfrac{\sqrt3}{2} = \tfrac{3\sqrt3}{2}.$$
+>
+> So $3e^{i\pi/3} = \frac32+\frac{3\sqrt3}{2}i \approx 1.5+2.598i$.
+
+## Rectangular to polar
+
+$$
+r = \sqrt{a^2+b^2}, \qquad \tan\theta = \frac ba.
+$$
+
+The first is the distance formula. The second comes from dividing $b = r\sin\theta$ by $a = r\cos\theta$.
+
+<Warning title="The tangent does not determine the angle">
+$\tan\theta = b/a$ has **two** solutions in a full turn, half a revolution apart, and $\tan^{-1}$ returns only one of them — always in the first or fourth quadrant.
+
+$$z = -1-i:\quad \frac ba = \frac{-1}{-1}=1, \quad \tan^{-1}(1) = \frac\pi4.$$
+
+But $\pi/4$ points into the **first** quadrant, and $-1-i$ is in the third. The correct argument is $\pi/4+\pi = \frac{5\pi}{4}$.
+
+**Always plot the point and check the quadrant.** This is the single most common error in polar conversion, and it happens because $\tan$ is not injective (module 3.5) — restricting its domain to make $\tan^{-1}$ a function is precisely what threw away the other solution.
+</Warning>
+
+> **Example.** Convert $-1+i\sqrt3$.
+>
+> $r = \sqrt{1+3}=2$. And $\tan\theta = \frac{\sqrt3}{-1} = -\sqrt3$, so $\tan^{-1}$ gives $-\pi/3$ — fourth quadrant. The point is in the **second** quadrant, so add $\pi$:
+> $$\theta = -\frac\pi3+\pi = \frac{2\pi}{3}.$$
+>
+> Hence $-1+i\sqrt3 = 2e^{2\pi i/3}$. Check: $2\cos(2\pi/3) = -1$ ✓ and $2\sin(2\pi/3)=\sqrt3$ ✓.
+
+## Non-uniqueness
+
+$$
+re^{i\theta} = re^{i(\theta+2\pi k)} \quad\text{for every integer } k,
+$$
+
+since $e^{2\pi i k}=1$. Turning all the way around returns you to the same point.
+
+So the argument is **not a function** in the sense of module 3.1 — it is not single-valued. $1$ has argument $0$, $2\pi$, $4\pi$, $-2\pi$, and infinitely many others.
+
+The standard repair is to restrict the codomain: the **principal argument** $\operatorname{Arg} z$ is the one in $(-\pi,\pi]$. That choice makes $\operatorname{Arg}$ a genuine function, at the cost of a jump — points just below the negative real axis have arguments near $-\pi$, and points just above have arguments near $\pi$.
+
+This is the same repair as restricting sine's domain to define $\sin^{-1}$ (module 3.9), and it has the same side effect: a discontinuity you must remember is there.
+
+**$\theta = 0$ is a special case**: the modulus is $0$, the argument is undefined, and there is no direction to a point sitting at the origin.
+
+## Which form for which job
+
+| Task | Better form |
+|---|---|
+| add, subtract | rectangular |
+| multiply, divide | polar |
+| raise to a power | polar |
+| take roots | polar |
+| identify real/imaginary parts | rectangular |
+| identify distance/direction | polar |
+
+Adding in polar form is awful: there is no formula relating $\arg(z+w)$ to $\arg z$ and $\arg w$. Multiplying in rectangular form works and is fiddly.
+
+Choosing the representation to suit the operation is a habit worth building — the same reason your geometry course sometimes places a figure on the axes and sometimes argues synthetically.
+
+<Aside>
+The special values in polar form:
+
+$$1 = e^{0},\quad i = e^{i\pi/2},\quad -1 = e^{i\pi},\quad -i = e^{3i\pi/2}.$$
+
+Four points, evenly spaced round the unit circle at quarter turns. Multiplying by $i$ steps once round, which is module 5.5's rotation seen in polar coordinates.
+
+More generally, the solutions of $z^n = 1$ are the $n$ points $e^{2\pi ik/n}$ for $k = 0, 1, \dots, n-1$ — the vertices of a **regular $n$-gon** inscribed in the unit circle, with one vertex at $1$.
+
+So the regular polygons of your geometry course are the solution sets of the simplest possible polynomial equations. Gauss proved at nineteen that a regular $17$-gon is constructible with compass and straightedge, by studying which of these roots can be built from square roots — a result that connects construction, algebra, and number theory in one theorem.
+</Aside>

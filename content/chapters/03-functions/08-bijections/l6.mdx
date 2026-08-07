@@ -1,0 +1,119 @@
+---
+level: l6
+title: Bijections and size
+readingTimeMin: 8
+newTerms: ["bijection", "identity function"]
+anchorExample: "rigid motions of the plane"
+---
+
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Figure from '@/components/Figure.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Two defects, now both excluded.
+
+$f : S\to T$ is a **bijection** when it is injective **and** surjective. Equivalently:
+
+$$
+\forall t \in T,\ \exists!\, s \in S:\ f(s)=t.
+$$
+
+Exactly one source for every target — existence from surjectivity, uniqueness from injectivity. The $\exists!$ from module 1.10 is doing both jobs in one symbol.
+
+<Figure alt="Two columns of three dots each, with arrows pairing them off one to one." caption="A bijection: a perfect pairing.">
+  <ArrowDiagram
+    left={["A", "B", "C"]}
+    right={["P", "Q", "R"]}
+    edges={[[0,1],[1,2],[2,0]]}
+  />
+</Figure>
+
+## Rigid motions are bijections
+
+Modules 3.5 and 3.6 proved both halves separately, so this needs no new work: **every rigid motion of the plane is a bijection of the plane with itself.**
+
+That single sentence is the foundation of the transformation approach to congruence. It says a rigid motion pairs up the points of the plane perfectly — nothing merged, nothing missed — so a figure and its image have exactly the same points, relabelled.
+
+Dilations with non-zero scale factor are bijections too. Projections are not, on either count.
+
+## Verifying a bijection
+
+Prove the two properties, using the two templates:
+
+> **Injective.** Suppose $f(s_1)=f(s_2)$ … therefore $s_1 = s_2$.
+>
+> **Surjective.** Let $t\in T$ be arbitrary. Set $s = \dots$ Then $f(s)=t$.
+
+> **Proposition.** $f:\mathbb{R}\to\mathbb{R}$, $f(x)=3x-2$ is a bijection.
+
+<Proof>
+**Injective.** Suppose $3x_1 - 2 = 3x_2-2$. Adding $2$ and dividing by $3$ gives $x_1 = x_2$.
+
+**Surjective.** Let $y\in\mathbb{R}$. Set $x = \frac{y+2}{3}$. Then $f(x) = 3\cdot\frac{y+2}{3}-2 = y$.
+
+Hence $f$ is a bijection.
+</Proof>
+
+<Warning title="Both halves are required">
+$f:\mathbb{R}\to\mathbb{R},\ f(x)=e^x$ is injective and **not** surjective — nothing maps to $-1$.
+
+$f:\mathbb{R}\to[-1,1],\ f(x)=\sin x$ is surjective and **not** injective — $\sin 0 = \sin 360° = 0$.
+
+$f:\mathbb{R}\to\mathbb{R},\ f(x)=x^2$ is neither.
+
+Three functions, three different failures. Checking one property and declaring a bijection is the standard mistake.
+</Warning>
+
+## The identity, and closure
+
+$\operatorname{id}_S(s)=s$ is a bijection: injective because $s_1 = s_2$ follows immediately, surjective because each $s$ is its own source.
+
+And by module 3.7, **a composition of bijections is a bijection** — injectivity is preserved, surjectivity is preserved, so both together are.
+
+Together with inverses (module 3.9), that is the whole reason congruence behaves the way your course says it does:
+
+| Congruence property | Function fact |
+|---|---|
+| $F \cong F$ | the identity is a rigid motion |
+| $F\cong G \Rightarrow G\cong F$ | rigid motions have inverses |
+| $F\cong G$ and $G \cong H$ $\Rightarrow F\cong H$ | compositions of rigid motions are rigid motions |
+
+Your book states these three as properties of congruence, usually without proof. They are theorems about bijections, and you have now proved two of the three.
+
+## Counting
+
+For finite sets, a bijection $S\to T$ exists exactly when $|S|=|T|$.
+
+This is the principle behind every counting argument you have used without naming it. To count the diagonals of a polygon, pair them with something easier to count. To count the handshakes among $n$ people, pair each handshake with a pair of people.
+
+**Counting by pairing** is more powerful than counting one by one, and it is the only method that survives into the infinite case.
+
+## Infinite sets
+
+Define $|S|=|T|$ to mean *there is a bijection $S\to T$*. For finite sets this reproduces ordinary counting. For infinite sets it produces results that took mathematicians decades to accept.
+
+**The even numbers are as numerous as the naturals.** The function $f:\mathbb{N}\to E$, $f(n)=2n$, is a bijection: injective since $2n_1 = 2n_2$ gives $n_1=n_2$, surjective since any even $m$ is $f(m/2)$.
+
+So a set can be in bijection with a proper subset of itself. **No finite set can** — that impossibility is, in fact, a workable definition of *finite*.
+
+**The points of a short segment are as numerous as those of a long one.** Take $\overline{AB}$ of length $1$ and $\overline{CD}$ of length $5$. The map sending the point at distance $t$ along the first to the point at distance $5t$ along the second is a bijection.
+
+Draw it: place the segments parallel and join corresponding endpoints; the two connecting lines meet at a point, and projecting from that point pairs off the segments. **A dilation is the bijection**, and it is why similar figures have the same "amount" of points despite different sizes.
+
+<Aside>
+Not all infinite sets match. Cantor proved in 1874 that there is **no** bijection $\mathbb{N}\to\mathbb{R}$.
+
+The argument: suppose someone lists every real in $[0,1]$ as $r_1, r_2, r_3,\dots$. Build a new number whose first decimal digit differs from $r_1$'s first, whose second differs from $r_2$'s second, and so on. The result differs from every listed number in at least one place, so it was not on the list — contradicting that the list was complete.
+
+*Suppose not*, from module 2.5, applied to one of the most consequential theorems in mathematics. There are strictly more real numbers than counting numbers, and therefore more points on your number line than there are integers to label them with.
+</Aside>
+
+## Why bijections are the important ones
+
+A bijection is a **perfect correspondence**: it loses nothing and misses nothing, so anything true of $S$ transfers to $T$ once you rename.
+
+That is what your congruence statements assert. $\triangle ABC \cong \triangle DEF$ names a bijection $\{A,B,C\}\to\{D,E,F\}$ — which is exactly why the letters must be written in corresponding order, and why $\triangle ABC \cong \triangle EFD$ is a different claim.
+
+The final module builds the function that runs such a correspondence backwards.

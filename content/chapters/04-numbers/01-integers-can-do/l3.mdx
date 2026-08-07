@@ -1,78 +1,93 @@
 ---
 level: l3
-title: What the integers can do
+title: What the counting numbers can do
 readingTimeMin: 6
-newTerms: ["closed", "distributive law", "integers"]
-anchorExample: "divisibility"
+newTerms: ["closed", "distributive law"]
+anchorExample: "factors and multiples"
 ---
 
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-You have been using the **integers** — the whole numbers together with their negatives — for years. This chapter asks a question nobody usually asks: *what rules do they actually obey?*
-
-$$
-\mathbb{Z} = \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}
-$$
+You have been using the **counting numbers** — $0, 1, 2, 3, 4, \ldots$ — for years. This chapter asks a question nobody usually asks: *what rules do they actually obey?*
 
 The point is not to doubt arithmetic. It is that once you list the rules, you can check whether other things obey them too — and that turns out to be how a great deal of mathematics gets organised.
 
 ## Closed
 
-A set is **closed** under an operation when performing that operation on members of the set always lands you back inside the set.
+A set is **closed** under an operation when doing that operation to members of the set always lands you back inside the set.
 
-$\mathbb{Z}$ is closed under **addition**: add any two integers and you get an integer. Try to escape — you cannot.
+**Adding.** Take any two counting numbers and add them. Do you ever land outside the counting numbers?
 
-$\mathbb{Z}$ is closed under **opposites**: the opposite of $7$ is $-7$, and the opposite of $-7$ is $7$. Both integers.
+$7 + 5 = 12$. Inside. $0 + 9 = 9$. Inside. $438 + 62 = 500$. Inside.
 
-$\mathbb{Z}$ is closed under **multiplication**: $(-3) \times 4 = -12$, an integer.
+You never escape. Adding can only make counting numbers bigger, and bigger counting numbers are still counting numbers. So the counting numbers are **closed under adding**.
 
-These three facts get used constantly, and usually without being mentioned. Every time a proof ends "and since $2k^2$ is an integer, the number is even," it is closure being cited.
+**Multiplying.** Same story.
+
+$6 \times 7 = 42$. Inside. $9 \times 0 = 0$. Inside.
+
+Closed again. Multiplying is repeated adding, so if adding cannot get you out, neither can multiplying.
 
 ## The distributive law
 
-There is a fourth rule, and it is the one that ties adding and multiplying together:
+There is a third rule, and it is the one that ties adding and multiplying together.
+
 $$
-a \times (b + c) = a \times b + a \times c.
+3 \times (4 + 5) = 3 \times 4 + 3 \times 5.
 $$
 
-Check it: $3 \times (4 + 5) = 3 \times 9 = 27$, and $3 \times 4 + 3 \times 5 = 12 + 15 = 27$. ✓
+Check it: the left side is $3 \times 9 = 27$. The right side is $12 + 15 = 27$. ✓
 
-This is the **distributive law**. You have used it since you first learned to multiply — it is why $3 \times 12$ can be done as $3 \times 10 + 3 \times 2$.
+This is the **distributive law**, and you have used it since you first learned to multiply — it is why $3 \times 12$ can be done as $3 \times 10 + 3 \times 2$.
 
-## What the integers cannot do
+It holds for *any* three counting numbers, and it is worth seeing why with a picture. Draw a rectangle $3$ tall and $9$ wide. Now cut it after the fourth column. You have a $3$-by-$4$ rectangle and a $3$-by-$5$ rectangle, and together they are the whole thing. Same squares, counted two ways.
 
-Now the gap. Is $\mathbb{Z}$ closed under **division**?
+## What the counting numbers cannot do
 
-No. $7 \div 2$ is not an integer.
+Now the gaps — and there are two.
 
-A sharper way to say it: which integers have an integer *reciprocal*? That is, for which $n$ is there an integer $m$ with $n \times m = 1$?
+**Subtracting can throw you out.**
 
-<Proof>
-Suppose $n$ and $m$ are integers with $n \times m = 1$.
+$9 - 4 = 5$. Fine. But $4 - 9$? There is no counting number that answers that. You have run off the end of the number line.
 
-Neither can be $0$, since $0$ times anything is $0$, not $1$.
+**Dividing can throw you out.**
 
-If $n$ were $2$ or bigger, then $m$ would have to be $\tfrac{1}{n}$, which sits strictly between $0$ and $1$ — and there are no integers strictly between $0$ and $1$.
-
-The same argument rules out $n$ being $-2$ or smaller.
-
-That leaves only $n = 1$ (with $m = 1$) and $n = -1$ (with $m = -1$).
-</Proof>
-
-So out of infinitely many integers, exactly **two** have integer reciprocals. The integers are almost entirely without division.
+$12 \div 4 = 3$. Fine. But $7 \div 2$? Not a counting number either — you have to cut something in half.
 
 <Warning title="Closed means always">
-$6 \div 2 = 3$ is an integer, so division *sometimes* works. Closure requires it to work *every* time. One escape — $7 \div 2$ — settles the matter, by one bad apple (module 1.11).
+$9 - 4$ and $12 \div 4$ both work out fine. So subtracting and dividing *sometimes* stay inside.
+
+**Closed** means it works *every* time, with no exceptions. And one escape is enough to break it — that is one bad apple, from module 1.11.
 </Warning>
+
+## Where new numbers come from
+
+Those two gaps are exactly where new numbers get invented.
+
+The counting numbers could not answer $7 \div 2$. So people built the **fractions**, and now $7 \div 2 = \tfrac72$ has an answer.
+
+The counting numbers could not answer $4 - 9$. So people built numbers below zero, which you will meet next year.
+
+<Proof>
+Here is a small thing worth proving about the gap. Which counting numbers have a counting-number *reciprocal* — that is, something you can multiply them by to get $1$?
+
+Take any counting number bigger than $1$ — say $5$. To get $1$ you would need to multiply by something smaller than $1$, because multiplying $5$ by $1$ or more only gets bigger.
+
+But there is no counting number between $0$ and $1$. And $0$ times anything is $0$, never $1$.
+
+So the only counting number with a counting-number reciprocal is $1$ itself, since $1 \times 1 = 1$.
+
+One number out of infinitely many. The counting numbers are almost entirely without division.
+</Proof>
 
 ## Where this is going
 
-That missing division is a hole, and the rest of this chapter is about it.
+Module 4.5 fills the division gap by building the fractions properly, and shows that fractions *are* closed under dividing — as long as you never divide by zero.
 
-Module 4.5 fills the hole by building the fractions, which *are* closed under division (except by zero). And then module 4.7 finds a hole in the fractions, and fills it with something stranger still.
+And then module 4.7 finds a gap in the *fractions*, and fills it with something stranger still.
 
 <Aside>
-A number system with these four rules — closed under $+$, opposites, and $\times$, and obeying the distributive law — has a name. Mathematicians call it a *ring*. The word is worth knowing because the same rules are obeyed by things that are not numbers at all: polynomials, and grids of numbers, and clock arithmetic. Anything you prove using only these rules is automatically true for all of them at once.
+A number system closed under adding and multiplying and obeying the distributive law has a name. Mathematicians call it a *ring*. The word is worth knowing because the same rules are obeyed by things that are not numbers at all — including shapes you can rotate, and clock arithmetic. Anything you prove using only these rules is automatically true for all of them at once.
 </Aside>

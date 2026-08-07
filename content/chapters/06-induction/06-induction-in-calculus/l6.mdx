@@ -1,0 +1,147 @@
+---
+level: l6
+title: Induction with repeated steps
+readingTimeMin: 8
+newTerms: []
+anchorExample: "the polygon angle-sum theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Some formulas describe what happens when you apply an operation over and over. Finding them means computing a few cases, spotting patterns, and guessing — and then induction turns the guess into a theorem.
+
+This module is about that two-stage process, because the guessing stage has techniques of its own.
+
+## Repeated substitution
+
+Take the operation *"replace $x$ by $\frac{x}{x+1}$"*, and apply it repeatedly starting from $x$.
+
+$$
+f(x) = \frac{x}{x+1}
+$$
+
+$$
+f\big(f(x)\big) = \frac{\frac{x}{x+1}}{\frac{x}{x+1}+1} = \frac{\frac{x}{x+1}}{\frac{x + (x+1)}{x+1}} = \frac{x}{2x+1}
+$$
+
+$$
+f\big(f(f(x))\big) = \frac{\frac{x}{2x+1}}{\frac{x}{2x+1}+1} = \frac{x}{3x+1}
+$$
+
+Three data points:
+
+| times applied | result |
+|---|---|
+| $1$ | $\dfrac{x}{x+1}$ |
+| $2$ | $\dfrac{x}{2x+1}$ |
+| $3$ | $\dfrac{x}{3x+1}$ |
+
+**Conjecture:** applying $f$ $n$ times gives $\dfrac{x}{nx+1}$.
+
+Write $f^{(n)}$ for the $n$-fold composition (module 3.7).
+
+## Proving it
+
+<Discussion>
+  <div slot="know">$f^{(k)}(x) = \frac{x}{kx+1}$ by hypothesis, and $f^{(k+1)} = f\circ f^{(k)}$ — apply $f$ once more to the $k$-th result.</div>
+  <div slot="want">$f^{(k+1)}(x) = \frac{x}{(k+1)x+1}$.</div>
+  <div slot="how">Substitute the hypothesis into $f$ and simplify the compound fraction. The whole step is one algebraic simplification, as in module 6.3.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ be the statement $f^{(n)}(x) = \dfrac{x}{nx+1}$, for $n\geq1$ and all $x$ where the expressions are defined.
+
+**Base case.** $A(1)$: $f^{(1)}(x) = f(x) = \frac{x}{x+1} = \frac{x}{1\cdot x+1}$. ✓
+
+**Inductive step.** Let $k\geq1$ and assume $f^{(k)}(x) = \frac{x}{kx+1}$. Then
+
+$$
+\begin{aligned}
+f^{(k+1)}(x) &= f\big(f^{(k)}(x)\big)\\
+&= f\!\left(\frac{x}{kx+1}\right)\\
+&= \frac{\frac{x}{kx+1}}{\frac{x}{kx+1}+1}\\
+&= \frac{\frac{x}{kx+1}}{\frac{x + (kx+1)}{kx+1}}\\
+&= \frac{x}{(k+1)x+1},
+\end{aligned}
+$$
+
+which is $A(k+1)$.
+
+By induction, $f^{(n)}(x) = \frac{x}{nx+1}$ for every integer $n\geq1$.
+</Proof>
+
+**The composition rule supplied the link.** $f^{(k+1)} = f\circ f^{(k)}$ is what connects consecutive cases, and without a rule of that kind there would be no induction to run (module 6.4).
+
+## Reading three patterns at once
+
+Formulas built by repetition usually have several patterns superimposed, and pulling them apart is the skill. Consider:
+
+| $n$ | value |
+|---|---|
+| $1$ | $-1$ |
+| $2$ | $2$ |
+| $3$ | $-6$ |
+| $4$ | $24$ |
+| $5$ | $-120$ |
+
+Three separate things are happening:
+
+- **Sign** alternates, starting negative: that is $(-1)^n$.
+- **Size** is $1, 2, 6, 24, 120$ — the factorials $n!$.
+- Together: $(-1)^n\,n!$.
+
+**Handle one pattern at a time.** Trying to guess the whole formula at once is much harder than isolating the sign, then the magnitude, then reassembling — and factorials in particular are easy to miss if you are staring at $1,2,6,24$ hoping for a polynomial.
+
+The factorial identity $(k+1)! = (k+1)\cdot k!$ is what makes the induction step work for any formula containing $n!$. It is the factorial's version of the link.
+
+<Warning title="A guess is a guess">
+The table above is five data points. Infinitely many formulas agree with it and diverge afterwards — module 6.1's $n^2+n+41$ gave forty confirmations and then failed.
+
+**Conjecture from data, prove by induction.** The table is how you find the statement; the induction is what makes it true. Neither stage replaces the other, and presenting the table as a proof is precisely the error the chapter exists to correct.
+</Warning>
+
+## Compound growth
+
+> **Proposition.** For every integer $n\geq0$ and every real $r > -1$:
+> $$(1+r)^n \geq 1 + nr.$$
+
+<Proof>
+Let $A(n)$ be that statement, for $n\geq0$.
+
+**Base case.** $A(0)$: $(1+r)^0 = 1$ and $1 + 0\cdot r = 1$, so $1\geq1$. ✓
+
+**Inductive step.** Let $k\geq0$ and assume $(1+r)^k \geq 1+kr$.
+
+Since $r > -1$, the factor $1+r$ is positive, so multiplying the inequality by it preserves the direction (module 4.5):
+$$(1+r)^{k+1} = (1+r)^k(1+r) \geq (1+kr)(1+r).$$
+
+Expanding the right side:
+$$(1+kr)(1+r) = 1 + r + kr + kr^2 = 1 + (k+1)r + kr^2.$$
+
+Since $k \geq 0$ and $r^2\geq0$, the term $kr^2$ is non-negative, so
+$$1+(k+1)r+kr^2 \geq 1+(k+1)r.$$
+
+Chaining the inequalities gives $(1+r)^{k+1}\geq 1+(k+1)r$, which is $A(k+1)$.
+
+By induction, the inequality holds for all $n\geq0$.
+</Proof>
+
+Two things worth noting. **The hypothesis $r>-1$ was used**, at the step where the inequality was multiplied — drop it and the direction could flip, and the proof would be wrong (module 4.8's point about tracing hypotheses). And **inequalities are chained**, not manipulated as equations: each $\geq$ was justified separately, and the conclusion follows because $\geq$ is transitive.
+
+This result is **Bernoulli's inequality**, and it says an investment compounding at rate $r$ for $n$ periods always beats simple interest — a fact about money that turns out to be a fact about induction.
+
+<Aside>
+The example this module is usually built from needs calculus.
+
+For $f(x) = \frac1x$, differentiating repeatedly gives
+$$-x^{-2},\quad 2x^{-3},\quad -6x^{-4},\quad 24x^{-5},\ \dots$$
+and the three patterns — alternating sign, factorials, increasing exponent — assemble into
+$$f^{(n)}(x) = (-1)^n\, n!\ x^{-(n+1)}.$$
+
+That is the table from earlier in this module, with an $x$-power attached. The induction step differentiates the $k$-th formula once more and uses $(k+1)! = (k+1)\cdot k!$ — the same identity, doing the same job.
+
+When you meet derivatives, this will be waiting. The pattern-spotting you have practised here is the whole of the discovery, and the induction is unchanged.
+</Aside>

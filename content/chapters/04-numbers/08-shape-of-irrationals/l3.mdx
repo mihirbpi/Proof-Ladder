@@ -1,88 +1,86 @@
 ---
 level: l3
-title: The shape of the irrationals
+title: The shape of the not-fractions
 readingTimeMin: 5
 newTerms: []
-anchorExample: "divisibility"
+anchorExample: "factors and multiples"
 ---
 
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-The rationals are a beautifully behaved number system: closed under adding, subtracting, multiplying, and dividing (module 4.5). What about the irrationals — the numbers left over?
+Module 4.5 showed the fractions are beautifully behaved: add, multiply, or divide two of them and you always land on another fraction.
+
+What about the numbers left over — the ones on the number line that are *not* fractions, like the diagonal length from module 4.7?
 
 They are a mess. And the mess is instructive.
 
-## Closure fails, twice
+## Closure fails
 
-**Adding.** $\sqrt2$ is irrational, and so is $-\sqrt2$. But
-$$\sqrt2 + (-\sqrt2) = 0,$$
-and $0$ is rational. So the irrationals are **not closed under addition**.
+**Multiplying.** The diagonal length is not a fraction. But multiply it by itself and you get $2$ — and $2$ is a fraction, since $2 = \tfrac21$.
 
-**Multiplying.** $\sqrt2$ is irrational, and
-$$\sqrt2 \times \sqrt2 = 2,$$
-which is rational. So they are **not closed under multiplication** either.
+So two not-fractions multiplied together landed back among the fractions. The not-fractions are **not closed under multiplying**.
 
-One counterexample each, and both closure claims are dead (module 1.11).
+**Adding.** Take the diagonal length, and take the number you need to add to it to reach $3$. Neither is a fraction. But added together they give $3$, which is.
 
-**And there is no zero, and no one.** $0$ and $1$ are both rational, so neither is in the set at all. Without them, there is not much of a number system left.
+Not closed under adding either.
+
+**And there is no $1$ and no $0$.** Both are fractions, so neither is even in the collection. There is not much of a number system left.
 
 <Warning title="Not closed, but not always broken">
-$\sqrt2 + \sqrt3$ *is* irrational, as it happens. So irrational plus irrational sometimes stays irrational and sometimes does not.
+Some pairs of not-fractions *do* add to a not-fraction. So "not closed" does not mean it always fails — it means it fails at least once.
 
-That is exactly what "not closed" means (module 4.1): it fails at least once. It does not fail always, and you can never predict which without doing the work.
+That is exactly what module 4.1 said closure means, and one bad case is enough (module 1.11). You can never predict which way a particular pair will go without doing the work.
 </Warning>
 
 ## What does survive
 
-Three things are always true, and each is proved the same way: **suppose not**, and use closure of $\mathbb{Q}$ to get a contradiction.
+Not everything falls apart. Here are two things that are always true, and both are proved the same way: **suppose not**, and use the fact that fractions stay fractions.
 
-> **Claim 1.** If $a$ is irrational, then $-a$ is irrational.
-
-<Proof>
-Suppose not — suppose $-a$ is rational.
-
-The rationals are closed under taking opposites (module 4.5), so $-(-a)$ is rational.
-
-But $-(-a) = a$. So $a$ is rational.
-
-That contradicts the hypothesis that $a$ is irrational. So $-a$ must be irrational.
-</Proof>
-
-> **Claim 2.** If $a$ is irrational and $a \neq 0$, then $\tfrac1a$ is irrational.
+> **Claim 1.** Double a not-fraction and you still have a not-fraction.
 
 <Proof>
-Suppose not — suppose $\tfrac1a$ is rational. Note $\tfrac1a \neq 0$.
+Take any not-fraction and follow it. Suppose not — suppose its double *is* a fraction.
 
-The rationals are closed under reciprocals of non-zero elements, so $\tfrac{1}{1/a}$ is rational.
+Halving is multiplying by $\tfrac12$, which is a fraction. And multiplying two fractions gives a fraction (module 4.5).
 
-But $\tfrac{1}{1/a} = a$. So $a$ is rational — contradiction.
+So halving that double gives a fraction.
+
+But halving the double gets you back to the number you started with. So the number you started with is a fraction.
+
+That contradicts what we were told. So the double must not be a fraction after all.
 </Proof>
 
-> **Claim 3.** If $r$ is a non-zero rational and $a$ is irrational, then $r \times a$ is irrational.
+> **Claim 2.** Multiply a not-fraction by any fraction except zero, and you still have a not-fraction.
 
 <Proof>
-Suppose not — suppose $r \times a$ is rational.
+Take any not-fraction and any fraction that is not zero, and follow them. Suppose not — suppose the product *is* a fraction.
 
-Since $r \neq 0$, its reciprocal $\tfrac1r$ is rational.
+Since our fraction is not zero, it has a reciprocal, and that reciprocal is a fraction (module 4.5).
 
-The rationals are closed under multiplication, so $\tfrac1r \times (r \times a)$ is rational.
+Multiply the product by that reciprocal. Multiplying two fractions gives a fraction, so the answer is a fraction.
 
-But $\tfrac1r \times (r\times a) = a$. So $a$ is rational — contradiction.
+But multiplying by the reciprocal undoes the original multiplication — so the answer is the number we started with.
+
+So the not-fraction is a fraction. Contradiction. The product must not be a fraction.
 </Proof>
+
+Claim 1 is really Claim 2 with the fraction being $2$. Noticing that is worth more than the two separate proofs — one general result covering both is usually better mathematics than two specific ones.
 
 ## The pattern
 
-Look at all three proofs. They have the identical shape:
+Look at both proofs. They have the identical shape:
 
-1. Suppose the thing is rational.
-2. Apply an operation the rationals are closed under.
-3. Land back on $a$, proving $a$ rational.
+1. Suppose the thing you built *is* a fraction.
+2. Undo what you did, using an operation that keeps fractions as fractions.
+3. Land back on the number you started with, proving it is a fraction.
 4. Contradiction.
 
-The engine is always the same: **$\mathbb{Q}$ is closed, so anything you can build from rationals is rational.** Irrationality is a statement about *not* being reachable that way, and contradiction is the natural tool for it.
+The engine is always the same: **fractions are closed, so anything you can build out of fractions is a fraction.** Being a not-fraction is a statement about *not* being reachable that way — and "suppose not" is the natural tool for a claim about what cannot happen.
 
 <Aside>
-Claim 1 is really a special case of Claim 3, with $r = -1$. Noticing this is worth more than the two separate proofs — one general result covering both is usually better mathematics than two specific ones.
+There is a famous puzzle hiding here. Can a not-fraction raised to the power of a not-fraction ever come out as a fraction?
+
+It can — and the proof is startling, because it shows such a pair exists without ever telling you which pair it is. You will meet it in a few years, and it is worth the wait.
 </Aside>

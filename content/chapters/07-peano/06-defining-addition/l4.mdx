@@ -1,0 +1,110 @@
+---
+level: l4
+title: Defining addition
+readingTimeMin: 7
+newTerms: ["recursive definition"]
+anchorExample: "successor function"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## The recursion
+
+$$
+\textbf{(A1)}\ \ a + 0 = a, \qquad\qquad \textbf{(A2)}\ \ a + S(b) = S(a+b).
+$$
+
+A **recursive definition**: the base case (A1) is outright, and (A2) reduces $a + S(b)$ to $a+b$, a strictly simpler instance. Termination is guaranteed because the second argument descends to $0$ and A7 forbids going below.
+
+Recursion is on the **second** argument; the first is a spectator. That asymmetry is the source of everything interesting below.
+
+## Derivations
+
+<Proof>
+$1+1$: using $1 = S(0)$ and $2 = S(1)$,
+$$
+1 + 1 = 1 + S(0) \overset{\text{(A2)}}{=} S(1+0) \overset{\text{(A1)}}{=} S(1) = 2.
+$$
+
+$2+3$: unwind, then rebuild.
+$$
+2+3 = 2+S(2) = S(2+2) = S(S(2+1)) = S(S(S(2+0))) = S(S(S(2))) = S(S(3)) = S(4) = 5.
+$$
+</Proof>
+
+Every closed sum reduces to a stack of successors over $0$ in finitely many steps.
+
+## $a + 1 = S(a)$
+
+> **Proposition.** $a + 1 = S(a)$ for every $a \in \mathbb{N}$.
+
+<Proof>
+$a + 1 = a + S(0) \overset{\text{(A2)}}{=} S(a+0) \overset{\text{(A1)}}{=} S(a)$.
+</Proof>
+
+Module 7.3 forbade writing $S(a)$ as $a+1$; this is the theorem that finally licenses it. Two lines, no induction — but it had to wait until addition existed.
+
+## Commutativity is not free
+
+$$
+a + b = b + a
+$$
+is **not** an axiom and does not follow from (A1)–(A2) by inspection: the definition treats the two arguments asymmetrically. It requires induction, and two lemmas first.
+
+> **Lemma 1.** $0 + a = a$ for all $a$.
+
+<Discussion>
+  <div slot="know">(A1) gives $a + 0 = a$ directly. It does **not** give $0 + a = a$, because the recursion peels the second argument, and here $a$ is second.</div>
+  <div slot="want">$0 + a = a$.</div>
+  <div slot="how">Induct on $a$.</div>
+</Discussion>
+
+<Proof>
+*Base.* $0 + 0 = 0$ by (A1).
+
+*Step.* Assume $0 + k = k$. Then
+$$0 + S(k) \overset{\text{(A2)}}{=} S(0+k) \overset{\text{(IH)}}{=} S(k).$$
+</Proof>
+
+> **Lemma 2.** $S(a) + b = S(a+b)$ for all $a,b$.
+
+<Proof>
+Induct on $b$.
+
+*Base.* $S(a)+0 = S(a) = S(a+0)$, both by (A1).
+
+*Step.* Assume $S(a)+k = S(a+k)$. Then
+$$
+S(a)+S(k) \overset{\text{(A2)}}{=} S\big(S(a)+k\big) \overset{\text{(IH)}}{=} S\big(S(a+k)\big) \overset{\text{(A2)}}{=} S\big(a+S(k)\big).
+$$
+</Proof>
+
+> **Theorem.** $a + b = b + a$.
+
+<Proof>
+Induct on $b$, with $a$ arbitrary but fixed.
+
+*Base.* $a + 0 = a$ by (A1), and $0 + a = a$ by Lemma 1. Equal.
+
+*Step.* Assume $a + k = k + a$. Then
+$$
+a + S(k) \overset{\text{(A2)}}{=} S(a+k) \overset{\text{(IH)}}{=} S(k+a) \overset{\text{Lem 2}}{=} S(k)+a.
+$$
+</Proof>
+
+Three inductions for a fact you have used since childhood. Associativity $(a+b)+c = a+(b+c)$ is a fourth, by induction on $c$ — and it is the easiest of them, since the recursion already peels the last argument.
+
+<Warning title="Familiarity is not justification">
+This is the central lesson of Chapter 7. $a+b = b+a$ *feels* self-evident because it has been used ten thousand times, but nothing in (A1)–(A2) delivers it, and the derivation takes real work.
+
+The discipline generalises: when working axiomatically, the test is not whether a statement feels true but whether it has been derived. Every proof in Chapters 1–6 that silently used commutativity was, strictly, incomplete until now.
+</Warning>
+
+<Aside>
+That a recursive definition determines a unique function is itself a theorem — the **recursion theorem** — and it is proved from A9. So even the legitimacy of writing (A1)–(A2) rests on induction, and the whole edifice comes from the ninth axiom.
+
+Note also the choice of recursion variable is what breaks the symmetry. Had addition been defined by recursion on the first argument, Lemma 1 would be trivial and (A1) would need proof. The asymmetry is in the *definition*, never in the operation.
+</Aside>

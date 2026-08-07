@@ -1,0 +1,79 @@
+---
+level: l3
+title: What a complex number is
+readingTimeMin: 5
+newTerms: ["complex number", "across part", "turn part"]
+anchorExample: "rotating a card a quarter turn"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 5.1 introduced $i$, the number whose job is to turn you a quarter turn. Now we build the number system around it.
+
+## The definition
+
+A **complex number** is a pair of instructions: *go this far across*, and *go this far in the turned direction*.
+
+We write it like this:
+$$
+3 + 4i
+$$
+which means: go $3$ across, then $4$ in the direction $i$ points.
+
+<Figure alt="A grid with the origin at the crossing of the axes and a dot plotted three squares right and four squares up." caption="$3 + 4i$: three across, four up.">
+  <ComplexPlane points={[{re: 3, im: 4, label: "3 + 4i"}]} range={5} />
+</Figure>
+
+The number in front is the **across part**. The number attached to $i$ is the **turn part**.
+
+Examples: $3 + 4i$ has across part $3$ and turn part $4$. And $2 + 7i$ has across part $2$ and turn part $7$.
+
+<Warning title="The turn part is an ordinary number">
+In $3 + 4i$, the turn part is $4$ — **not** $4i$.
+
+Both parts are ordinary numbers you already know. The $i$ is a label saying *which slot this one is in*, like the word "apples" in "3 apples". The number is $3$; *apples* just tells you what kind.
+
+Getting this wrong makes every later formula come out wrong.
+</Warning>
+
+## Ordinary numbers are already in there
+
+Take any ordinary number — say $5$. Write it as
+$$
+5 + 0i,
+$$
+which means: go $5$ across, and do not turn at all.
+
+That is a complex number! So **every ordinary number is already a complex number** — the kind with no turn part.
+
+Nothing was lost when the new numbers arrived. Everything you had is still here, sitting along the across direction.
+
+And the new numbers really are new: $i$ itself is $0 + 1i$, which is no across and one turn. That is not anywhere on the old number line.
+
+## The whole tower
+
+You can now stack every number system in this course inside the next one.
+
+| Collection | Something new it adds |
+|---|---|
+| counting numbers | — |
+| fractions | pieces, like $\tfrac12$ |
+| numbers on the number line | lengths no fraction fits, like the diagonal (module 4.7) |
+| complex numbers | turning |
+
+Each one sits inside the next, and by transitivity (module 2.3) the counting numbers sit inside all of them. Every number you have ever met is somewhere in that picture.
+
+## When are two of them the same?
+
+Two complex numbers are equal exactly when **both parts match**: same across part, and same turn part.
+
+That looks obvious and it is worth stating, because it lets you do something powerful — **compare the parts.** One statement about complex numbers turns into two statements about ordinary numbers, and you get both for the price of one.
+
+You will use that constantly from module 5.9 onwards.
+
+<Aside>
+A complex number with no across part, like $7i$, is pure turn. A complex number with no turn part is just an ordinary number. Everything else is a bit of both — which is exactly why they fill a whole *plane* instead of a line.
+</Aside>

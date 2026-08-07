@@ -1,0 +1,116 @@
+---
+level: l6
+title: The domino idea
+readingTimeMin: 8
+newTerms: ["induction"]
+anchorExample: "the polygon angle-sum theorem"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Your textbook proves the polygon angle-sum theorem like this:
+
+> A triangle's angles sum to $180°$. A quadrilateral splits into two triangles, so $360°$. A pentagon splits into three, so $540°$. In general, an $n$-gon splits into $n-2$ triangles, so the sum is $(n-2)\cdot180°$.
+
+That argument is correct, and it is not complete as written. The words *in general* are doing work that has not been done — the claim covers every $n$ at once, and only finitely many have been checked.
+
+This chapter supplies the missing machinery.
+
+## Two conditions
+
+Stand up a line of dominoes. To be sure they all fall you need exactly two things:
+
+1. **The first one falls.**
+2. **Each one that falls knocks over the next.**
+
+Then domino $1$ falls, so $2$ falls, so $3$ falls — and no domino escapes, however many there are.
+
+Neither condition alone suffices. Perfectly spaced dominoes that nobody pushes stay standing. A pushed first domino with a gap after it topples one and stops.
+
+## The principle
+
+> **Principle of Mathematical Induction.** Let $A(n)$ be a statement about the integer $n$. If
+>
+> 1. $A(n_0)$ is true, and
+> 2. for every $k\geq n_0$, $A(k)\Rightarrow A(k+1)$,
+>
+> then $A(n)$ is true for every integer $n \geq n_0$.
+
+**The named move is dominoes.**
+
+Condition 1 is the first domino. Condition 2 is the chain, and note it is a **conditional** — module 1.5 — proved once for an arbitrary $k$, covering every link at once.
+
+## The polygon theorem, properly
+
+Let $A(n)$ be: *the interior angles of a convex $n$-gon sum to $(n-2)\cdot180°$.*
+
+**Base case:** $A(3)$ is the triangle angle-sum theorem, which your course proves from the parallel postulate.
+
+**Inductive step:** assume $A(k)$ for some $k\geq3$. Given a convex $(k+1)$-gon, draw a diagonal cutting off one triangle, leaving a convex $k$-gon. The angles of the $(k+1)$-gon are exactly the angles of the $k$-gon plus the angles of the triangle, so the sum is
+$$(k-2)\cdot180° + 180° = (k-1)\cdot180° = \big((k+1)-2\big)\cdot180°,$$
+which is $A(k+1)$.
+
+By induction, $A(n)$ holds for all $n\geq3$.
+
+**Your book's argument was this proof with the induction left implicit.** The phrase *"an $n$-gon splits into $n-2$ triangles"* is a claim proved by exactly the step above, and writing it out is what makes the *in general* legitimate.
+
+## Pattern-spotting is not proof
+
+Here is why the machinery is worth the trouble.
+
+Consider $f(n) = n^2+n+41$.
+
+| $n$ | $f(n)$ | prime? |
+|---|---|---|
+| $0$ | $41$ | ✓ |
+| $1$ | $43$ | ✓ |
+| $2$ | $47$ | ✓ |
+| $3$ | $53$ | ✓ |
+| $10$ | $151$ | ✓ |
+| $30$ | $971$ | ✓ |
+| $39$ | $1601$ | ✓ |
+
+Forty consecutive values, all prime. Any reasonable person would conjecture the pattern continues.
+
+$$f(40) = 1600+40+41 = 1681 = 41\times41.$$
+
+**Not prime.** The pattern was real, forty cases deep, and false.
+
+<Warning title="Confirmations are not evidence of a universal claim">
+Module 1.10 made the point in the abstract; here it is with teeth.
+
+A universal claim covers infinitely many cases, and checking finitely many — forty, or forty thousand — leaves infinitely many unchecked. There is no number of confirmations that adds up to a proof.
+
+Worse examples exist. The claim that a certain function is always negative was checked for every $n$ up to $10^{22}$ before Skewes showed it must eventually fail, and the first failure is thought to be near $10^{316}$.
+
+**Only the domino chain covers everything**, because the inductive step is proved once for an arbitrary $k$ and therefore applies to all of them.
+</Warning>
+
+## Where induction comes from
+
+Notice what the chain needs: a **first** case, and a **next** case for each one.
+
+The integers have both. $\mathbb{Q}$ has neither — module 4.6 showed no rational is next after another, since between any two lies a third. So there is no chain to run, and induction simply does not apply over $\mathbb{Q}$ or $\mathbb{R}$.
+
+That is not a limitation of the technique so much as a fact about which sets have the structure the technique needs. Module 6.4 makes the requirement precise; Chapter 7 shows that the principle is an *axiom* of the counting numbers rather than something proved about them.
+
+## Discovering versus proving
+
+Both halves of mathematical work appear in the polygon theorem.
+
+**Discovery.** Draw a quadrilateral, a pentagon, a hexagon. Count triangles: $2$, $3$, $4$. Guess $n-2$. This is pattern-spotting, and it is indispensable — nobody proves a formula they have not first guessed.
+
+**Proof.** Set up $A(n)$, do the base case, do the step. This is what turns the guess into knowledge.
+
+Skipping the first stage leaves you with nothing to prove. Skipping the second leaves you with $n^2+n+41$.
+
+<Aside>
+The polygon example has a subtlety the argument above passed over: it assumed a diagonal exists cutting off a triangle and leaving a convex polygon.
+
+For convex polygons that is true and easy. For non-convex ones the claim still holds, and the proof is harder — you must show some diagonal lies entirely inside the polygon, which is not obvious for a sufficiently spiky shape.
+
+The general result is the **polygon triangulation theorem**, and its first correct proof came only in 1904. A statement your textbook asserts in half a sentence took mathematics two thousand years to establish properly.
+
+Which is worth knowing: *in general* is where the difficulty usually hides, and induction is the tool for looking there.
+</Aside>

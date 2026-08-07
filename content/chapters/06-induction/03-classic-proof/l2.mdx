@@ -1,0 +1,65 @@
+---
+level: l2
+title: Building a square with odd numbers
+readingTimeMin: 4
+newTerms: ["shell"]
+anchorExample: "1+3+5+… = n²"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+
+Here is a fact that looks like magic and is not.
+
+> Add up odd numbers in order, and you always land on a square number.
+
+$1 = 1$. And $1+3 = 4$. And $1+3+5 = 9$. And $1+3+5+7 = 16$.
+
+$1, 4, 9, 16$ — and those are exactly the squares you can build with tiles: $1$-by-$1$, $2$-by-$2$, $3$-by-$3$, $4$-by-$4$.
+
+## Why, with tiles
+
+Build it and the reason becomes obvious.
+
+Start with $1$ tile. That is a $1$-by-$1$ square.
+
+To make it a $2$-by-$2$ square, what do you need? A tile on the right, a tile on top, and one in the corner. **3 tiles**, in an L-shape.
+
+To make *that* a $3$-by-$3$ square, you need $2$ down the side, $2$ across the top, and $1$ in the corner. **5 tiles**.
+
+Next shell: $3 + 3 + 1 = $ **7 tiles**.
+
+Then $4+4+1 = $ **9 tiles**.
+
+## The odd numbers appear on their own
+
+Look at the shell sizes: $3$, $5$, $7$, $9$. All odd!
+
+And there is a reason. Every **shell** is *some number down the side*, plus *the same number across the top*, plus *one for the corner*.
+
+Two equal piles, plus one extra. That is exactly what an odd number is (module 4.2)!
+
+So the shells *have* to be odd. They could not be anything else.
+
+## The domino argument
+
+<Proof level="l2">
+**Push the first one.** One tile is a square. ✓
+
+**Check the chain.** Suppose I have a square built out of shells so far.
+
+Adding the next odd number means adding the next shell. And a square plus its next shell is the next square up.
+
+So if I had a square, I still have a square. ✓
+
+Both jobs done. So adding up odd numbers always gives a square, forever.
+</Proof>
+
+<Aside>
+Notice that the picture and the domino argument are the *same* proof. The picture shows what each shell does; the dominoes explain why that keeps working forever. You can trust either one, and it is nice to have both.
+</Aside>
+
+<TryIt>
+Build the 5-by-5 square from shells. Count the shells: 1, 3, 5, 7, 9. Add them up. Do you get 25?
+</TryIt>

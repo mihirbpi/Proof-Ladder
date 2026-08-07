@@ -1,0 +1,104 @@
+---
+level: l6
+title: The rationals are a field
+readingTimeMin: 8
+newTerms: ["field", "rational number"]
+anchorExample: "coordinates, lengths, and the Pythagorean theorem"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$\mathbb{Z}$ failed one row of module 4.1's table: no multiplicative inverses. The repair is to build a system that has them.
+
+## Definition
+
+$$
+\mathbb{Q} = \left\{\, \frac{a}{b} \;:\; a, b\in\mathbb{Z},\ b \neq 0 \,\right\}.
+$$
+
+The **rational numbers**. Note the set-builder form from module 2.2: the ambient set is $\mathbb{Z}$, and $b\neq 0$ is part of the condition, not a footnote.
+
+A subtlety worth naming: $\frac12$ and $\frac{2}{4}$ are the same rational number written two ways. The pair $(a,b)$ is not the number — the number is what all the equivalent pairs have in common. Compare module 3.2's point that different formulas can give the same function.
+
+## Closure
+
+> **Proposition.** $\mathbb{Q}$ is closed under addition, subtraction, multiplication, and division by non-zero elements.
+
+<Proof>
+Let $x = \frac ab$ and $y = \frac cd$ with $a,b,c,d\in\mathbb{Z}$ and $b,d\neq0$.
+
+**Addition.** $x + y = \dfrac{ad+bc}{bd}$. The numerator is an integer and the denominator is an integer, both by closure of $\mathbb{Z}$ (module 4.1). And $bd\neq0$, since a product of non-zero integers is non-zero. So $x+y\in\mathbb{Q}$.
+
+**Multiplication.** $xy = \dfrac{ac}{bd}$, an integer over a non-zero integer by the same reasoning.
+
+**Subtraction.** $x - y = \dfrac{ad-bc}{bd}$, likewise.
+
+**Division.** Suppose $y \neq 0$, so $c \neq 0$. Then $\dfrac{x}{y} = \dfrac{ad}{bc}$, and $bc\neq0$ since both factors are non-zero.
+</Proof>
+
+**Every step cited closure of $\mathbb{Z}$.** The rationals inherit their good behaviour from the integers, and the whole proof is the fraction arithmetic you already know, checked against the definition rather than assumed.
+
+The step *"a product of non-zero integers is non-zero"* is doing real work and is not free — it is the statement that $\mathbb{Z}$ has no zero divisors, which fails in some rings. Matrices, for instance, have non-zero products that vanish.
+
+## Field
+
+A **field** is a set with $+$ and $\times$ satisfying every row of module 4.1's table, **including** multiplicative inverses for all non-zero elements.
+
+| | ring | field |
+|---|---|---|
+| $\mathbb{Z}$ | ✓ | ✗ |
+| $\mathbb{Q}$ | ✓ | ✓ |
+| $\mathbb{R}$ | ✓ | ✓ |
+| polynomials | ✓ | ✗ |
+
+The inverse of $\frac ab$ (with $a\neq0$) is $\frac ba$, and
+$$\frac ab \cdot \frac ba = \frac{ab}{ba} = 1.$$
+
+That single line is the difference between $\mathbb{Z}$ and $\mathbb{Q}$, and it is why you can solve $3x = 7$ over $\mathbb{Q}$ and not over $\mathbb{Z}$.
+
+<Warning title="Zero has no inverse, in any field">
+$0$ never has a multiplicative inverse. Suppose $b$ satisfied $0\cdot b = 1$. Module 4.1 proved $0\cdot b = 0$, so $0 = 1$ — false in any field, since the axioms require $0 \neq 1$.
+
+So $\frac10$ is undefined, and it is undefined for a **provable** reason rather than by convention. There is no number system that repairs it: adding an inverse for $0$ collapses everything to a single element.
+</Warning>
+
+## Why coordinate geometry needs a field
+
+Every algebraic move in a coordinate proof is a field axiom.
+
+The slope $\frac{y_2-y_1}{x_2-x_1}$ requires division. Solving $y = mx+b$ for $x$ requires dividing by $m$. The section formula, the midpoint formula, and the point of intersection of two lines all require inverses.
+
+$\mathbb{Z}$ would not do. Two lines with integer coefficients can meet at a non-integer point, so the coordinate system must be closed under division or the intersection would fall outside it.
+
+**And $\mathbb{Q}$ is not enough either.** The diagonal of a unit square has length $\sqrt2$, and module 4.7 proves $\sqrt2 \notin\mathbb{Q}$. So a plane with rational coordinates has *holes*: the circle $x^2+y^2 = 2$ and the line $y = x$ would fail to meet, even though the picture plainly shows them crossing.
+
+That is why the Ruler Postulate names $\mathbb{R}$ and not $\mathbb{Q}$. Your geometry needs a field with no gaps, and finding one took mathematicians until the 1870s.
+
+## Order
+
+$\mathbb{Q}$ also carries an order compatible with the operations:
+
+$$a < b \implies a + c < b+c \quad\text{for all } c$$
+$$a<b \text{ and } c>0 \implies ac<bc$$
+
+Both rules are used in every inequality you have manipulated, and the second one is the one that flips: multiplying by a negative reverses the inequality, because $c<0$ falls outside the stated hypothesis.
+
+An **ordered field** is a field with such an order. $\mathbb{Q}$ and $\mathbb{R}$ are ordered fields; the complex numbers of Chapter 5 are a field with **no** compatible order at all, which is a genuine loss and worth remembering when you get there.
+
+<Aside>
+Fields can be finite. Take the remainders $\{0,1,2,3,4\}$ mod $5$, with addition and multiplication done mod $5$ (module 4.4).
+
+Every non-zero element has an inverse: $2\cdot3 = 6\equiv1$, $4\cdot4=16\equiv1$, $1\cdot1=1$. So this is a field with five elements.
+
+Mod $6$ it fails: $2\cdot 3 = 6\equiv 0$, so $2$ and $3$ are non-zero elements with zero product, and neither can have an inverse. The pattern is that the remainders mod $n$ form a field exactly when $n$ is prime.
+
+Finite fields are what error-correcting codes are built from — the reason a scratched disc still plays, and the reason a QR code survives being partly obscured.
+</Aside>
+
+## What is still missing
+
+$\mathbb{Q}$ has every algebraic property you could want, and it is still not enough for geometry.
+
+The missing property is **completeness**: informally, that the number line has no gaps. $\mathbb{Q}$ has gaps at $\sqrt2$, at $\pi$, and at infinitely many other places. $\mathbb{R}$ is what you get by filling them, and the next three modules are about the difference — first that $\mathbb{Q}$ is dense, then that it is nonetheless incomplete, then what the gap-filling numbers look like.

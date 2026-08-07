@@ -1,0 +1,108 @@
+---
+level: l6
+title: A zoo of functions
+readingTimeMin: 8
+newTerms: ["floor", "totient"]
+anchorExample: "rigid motions of the plane"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Most functions you have met came with a formula. That is a bias of the curriculum, not a fact about functions — the definition in module 3.1 requires only that each input receive exactly one output, and says nothing about *how*.
+
+This module widens the picture, because the theorems in the rest of the chapter apply to all of these equally.
+
+## Functions given by formulas
+
+$$f:\mathbb{R}\to\mathbb{R},\ f(x) = 3x - 2 \qquad g:\mathbb{R}\to\mathbb{R},\ g(x)=x^2$$
+
+The familiar case. Note the domains and codomains are still stated, because they are part of the function.
+
+Some formulas force a restriction:
+
+$$h : \mathbb{R}\setminus\{0\}\to\mathbb{R},\quad h(x) = \frac1x$$
+$$k : [0,\infty)\to\mathbb{R},\quad k(x)=\sqrt{x}$$
+
+The domain of $k$ is not a convention. Extend it to all of $\mathbb{R}$ and totality fails; drop the non-negativity of the output and single-valuedness fails, since $9$ would have both $3$ and $-3$ as square roots. **The convention that $\sqrt{9}=3$ exists precisely to make $\sqrt{\ }$ a function**, and it is why the solutions of $x^2=9$ are written $x = \pm3$ rather than $x = \sqrt9$.
+
+## Functions given by geometry
+
+Transformations rarely arrive as formulas the first time.
+
+**Reflection in the line $\ell$.** For each point $P$, let $\sigma_\ell(P)$ be the point such that $\ell$ is the perpendicular bisector of $\overline{P\sigma_\ell(P)}$ — and $P$ itself if $P\in\ell$.
+
+That is a function, and the proof that it is one is a uniqueness argument: given $P \notin \ell$, exactly one point has $\ell$ as the perpendicular bisector of the segment joining them. No formula appeared, and none is needed.
+
+**Rotation about $C$ through $\theta$.** For each $P$, the point $Q$ with $CQ = CP$ and $m\angle PCQ = \theta$, measured counterclockwise. Again a function, again by uniqueness.
+
+**Nearest point on a line.** For each $P$, the foot of the perpendicular from $P$ to $\ell$. Well-defined because that foot is unique.
+
+Every one of these is defined by a *property*, and every one needed a uniqueness theorem before it could be called a function. That is the pattern module 3.1 flagged, and geometry supplies more examples of it than algebra does.
+
+<Warning title="Different formulas, same function">
+$$f(x) = (x+1)^2 \qquad\text{and}\qquad g(x) = x^2 + 2x + 1$$
+
+are the **same function** $\mathbb{R}\to\mathbb{R}$: same domain, same codomain, same output at every input.
+
+Functions are equal when they agree everywhere, not when they look alike. This matters more than it sounds — the reflection in the $y$-axis can be given as $(x,y)\mapsto(-x,y)$, or as a composition of two rotations, or as a matrix. One function, several descriptions.
+</Warning>
+
+## Functions given by tables
+
+For a finite domain, a table *is* the function. Nothing is missing.
+
+| $n$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ |
+|---|---|---|---|---|---|---|
+| $\varphi(n)$ | $1$ | $1$ | $2$ | $2$ | $4$ | $2$ |
+
+This is **Euler's totient**: $\varphi(n)$ counts how many of $1, 2, \dots, n$ share no common factor with $n$ other than $1$. For $n = 6$ the qualifying numbers are $1$ and $5$, so $\varphi(6)=2$.
+
+There is no simple formula in terms of $n$ alone, and the function is important anyway — it runs the encryption behind secure web traffic. A function does not need a formula to be useful, or even to be computable in a single step.
+
+## Functions given by cases
+
+$$
+|x| = \begin{cases} x & x \geq 0\\ -x & x < 0\end{cases}
+$$
+
+Two rules, one function. The definition is legitimate because the cases are **exhaustive** (every real is covered) and **consistent** (where they overlap, they agree — here they overlap only at $x=0$, and both give $0$).
+
+Those are exactly the two obligations from module 1.12, and they are what you must check whenever you define anything by cases.
+
+The **floor function** $\lfloor x\rfloor$ is the greatest integer not exceeding $x$: $\lfloor 3.7\rfloor = 3$, $\lfloor 5 \rfloor = 5$, $\lfloor -2.3\rfloor = -3$. That last value is the one people get wrong — $-3$ is less than $-2.3$, and $-2$ is not.
+
+## Functions whose inputs are not numbers
+
+Nothing in the definition mentions numbers.
+
+- $A : \{\text{triangles}\}\to\mathbb{R}$, sending a triangle to its area
+- $m : \{\text{angles}\}\to[0,180]$, sending an angle to its degree measure
+- $c : \{\text{segments}\}\to\{\text{points}\}$, sending a segment to its midpoint
+- $P : \{\text{polygons}\}\to\mathbb{R}$, sending a polygon to its perimeter
+
+The Angle Measure Postulate in your book is the assertion that $m$ exists — that measuring is a well-defined function. Stated as a postulate rather than proved, because it is one of the assumptions geometry starts from.
+
+## Functions whose outputs are functions
+
+$$R : \mathbb{R}\to\{\text{transformations}\}$$
+
+sending an angle $\theta$ to the rotation about the origin through $\theta$. Its inputs are numbers; its outputs are functions.
+
+This is not a curiosity. It is how you should read "the family of rotations", and Chapter 5 will use it: multiplication by a complex number of modulus $1$ *is* a rotation, and the correspondence between angles and those numbers is exactly $R$.
+
+<Aside>
+Some functions cannot be computed at all.
+
+Define $s : \mathbb{N}\to\{0,1\}$ by $s(n)=1$ if the $n$-th computer program eventually halts and $s(n)=0$ otherwise. Every input receives exactly one output — a program either halts or does not — so $s$ is a function by the definition.
+
+Turing proved in 1936 that no algorithm computes it. The function exists; no procedure produces its values.
+
+That gap between *existing* and *being computable* is invisible from the formula-based view of functions, and it is one reason the set-theoretic definition of module 3.1 is the one mathematicians adopted.
+</Aside>
+
+## Why the width matters
+
+The rest of this chapter proves theorems about injections, surjections, compositions, and inverses. **None of those proofs will mention formulas**, because none of them can — the definitions are about inputs and outputs only.
+
+That is the payoff for the abstraction. A single proof that "a composition of injections is an injection" covers rotations, the totient function, area, and every function you will meet later, because it used nothing but the definition.

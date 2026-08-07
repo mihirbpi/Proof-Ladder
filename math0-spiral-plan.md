@@ -36,52 +36,87 @@ These are binding constraints on every piece of writing generated for this site.
 
 The reader picks one of these. Each level has a fixed voice, notation budget, and length budget. Levels 1–2 are read *to* a child by an adult; levels 3+ are read independently.
 
-| ID | Label (shown) | Age / grade | Reading target | Words / module | Notation allowed |
-|----|---------------|-------------|----------------|----------------|------------------|
-| `l1` | Kindergarten | 5–6 | Read aloud by adult | 60–140 | None. Words and pictures only. Numerals 0–10. |
-| `l2` | 2nd grade | 7–8 | Grade 2 | 140–280 | `=`, `+`, `−`, numerals. Labeled boxes and arrows in pictures. |
-| `l3` | 5th grade | 10–11 | Grade 5 | 350–600 | Adds `∈`, `⊆`, `∪`, `∩`, `{ }`, variables as letters, fractions. |
-| `l4` | 8th grade | 13–14 | Grade 8 | 600–900 | Adds `¬`, `∧`, `∨`, `⇒`, `≠`, `∅`, set-builder, function notation `f(x)`. |
-| `l5` | 9th grade | 14–15 | Grade 9 | 800–1200 | Adds `∀`, `∃`, `⇔`, `|` (divides), interval notation, `√`. |
-| `l6` | 10th grade | 15–16 | Grade 10 | 1000–1500 | Adds `≡`, `∃!`, `f⁻¹`, `∘`, summation `Σ`, `ℕ ℤ ℚ ℝ ℂ`. |
-| `l7` | 12th grade | 17–18 | Grade 12 | 1200–1800 | Full Math 0 notation. |
-| `l8` | College | 18+ | Undergraduate | 1200–2000 | Full Math 0 notation, plus forward references to abstract algebra, analysis, topology. |
+**These profiles are calibrated against the Common Core State Standards for Mathematics and against Lexile grade bands, not against intuition.** §A4.1 records the calibration and its sources; §A4.2 is the binding notation gate. A page that uses notation or arithmetic the reader has not met is wrong even if the mathematics is correct, because the reader will stall on the notation and never reach the idea.
 
-**A note on the level count.** Eight levels × 61 modules = 488 pages of content, which is a lot to author and a lot to keep aligned. Levels `l5`/`l6` (9th/10th) and `l7`/`l8` (12th/college) are the closest pairs — the honest difference between them is example sophistication and how much forward-looking context is offered, not mathematical content. **Recommended: build `l1`–`l4` and `l7` first (five levels, 305 pages), ship, then fill in `l5`, `l6`, `l8` by adapting neighbors.** The schema below supports all eight from day one, so this is a sequencing decision, not an architectural one. If you'd rather cut permanently, merging to six levels (K, 2, 5, 8, 9–10, 12/college) loses very little.
+| ID | Label (shown) | Age / grade | Lexile band | Words / module | Sentence length |
+|----|---------------|-------------|-------------|----------------|-----------------|
+| `l1` | Kindergarten | 5–6 | read aloud | 60–140 | 6–12 words |
+| `l2` | 2nd grade | 7–8 | 420–650L | 140–280 | 8–12 words |
+| `l3` | 5th grade | 10–11 | 830–1010L | 350–600 | 12–16 words |
+| `l4` | 8th grade | 13–14 | 1010–1185L | 600–900 | 14–18 words |
+| `l5` | 9th grade | 14–15 | 1050–1260L | 800–1200 | 15–20 words |
+| `l6` | 10th grade | 15–16 | 1080–1305L | 1000–1500 | 15–20 words |
+| `l7` | 12th grade | 17–18 | 1180–1380L | 1200–1800 | 16–22 words |
+| `l8` | College | 18+ | 1300L+ | 1200–2000 | 16–24 words |
+
+**A note on the level count.** Eight levels × 61 modules = 488 pages, which is a lot to author and a lot to keep aligned. **Build `l2`, `l3`, `l4`, `l6`, `l7` first** — these are the five grades where a reader is most likely to arrive (2nd, 5th, 8th, 10th, 12th), and they are far enough apart that each is a genuinely different page rather than a reworded neighbour. Then add `l1` (K) for the read-aloud audience, and finally `l5` and `l8`, which are the closest neighbours of `l4`/`l6` and `l7` respectively.
+
+#### A4.1 Grade calibration — what the reader has actually met
+
+Compiled from the Common Core State Standards for Mathematics. The right-hand column is the one that matters most: **what the reader has *not* met yet is what will break the page.**
+
+| Grade | Has met, per CCSSM | Has **not** met yet |
+|---|---|---|
+| **2** | Add/subtract within 100 (fluent within 20); numbers to 1000; place value to hundreds; **even/odd by pairing** (2.OA.C.3); arrays as *repeated addition* (2.OA.C.4); partitioning shapes into halves, thirds, fourths (2.G.A.3); `>`, `=`, `<`; money and clock; triangle/quadrilateral/pentagon/hexagon/cube | **Multiplication as an operation** (grade 3); **fractions as numbers** (grade 3); division; negative numbers; variables; decimals |
+| **5** | Fraction +, −, × and ÷ by unit fractions; decimals to thousandths; **numerical expressions with parentheses** (5.OA.A.1–2); volume; coordinate plane **first quadrant only** (5.G.A.2); **classifying 2-D figures in a hierarchy by properties** (5.G.B.3–4); factors, multiples, prime/composite (grade 4) | **Variables/letters** (6.EE.A.2); **negative numbers** (6.NS.C.5); all four quadrants; exponents; ratios |
+| **8** | Integer exponents; scientific notation; `√` and `∛`; **irrational numbers, and that √2 is irrational** (8.NS.A.1, 8.EE.A.2); linear equations and systems; `y = mx + b`; **function as "a rule assigning each input exactly one output"** (8.F.A.1); congruence via rigid motions; Pythagoras and *explaining* its proof (8.G.B.6) | **Function notation `f(x)`** (high school, HSF-IF.A.2); formal proof; quantifiers; logarithms; trigonometry |
+| **10** | **Formal proof — the geometry year.** Two-column and paragraph proofs; congruence from rigid motions; ASA/SAS/SSS; proving theorems about lines, angles, triangles, parallelograms; precise definitions as load-bearing; `f(x)`, domain/range; quadratics; similarity | Trigonometric identities beyond basics; series; limits; matrices |
+| **12** | Precalculus: complex numbers **including polar form and De Moivre**; sequences and series with **Σ**; informal limits; trig identities and inverse trig; vectors and matrices; conics; parametric and polar curves; exponentials and logarithms | Formal ε–δ; abstract algebra; topology; measure theory |
+
+Sources: [CCSSM Grade 2](https://www.thecorestandards.org/Math/Content/2/introduction/) · [Grade 5](https://www.thecorestandards.org/Math/Content/5/introduction/) · [Grade 6 (negatives, variables)](https://www.thecorestandards.org/Math/Content/6/EE/) · [Grade 8](https://www.thecorestandards.org/Math/Content/8/introduction/) · [HS Geometry: Congruence](https://www.thecorestandards.org/Math/Content/HSG/CO/) · [HS Functions: Interpreting Functions](https://www.thecorestandards.org/Math/Content/HSF/IF/) · [Lexile bands by grade](https://lexile.com/educators/understanding-lexile-measures/)
+
+#### A4.2 Notation gate (binding)
+
+A symbol may appear at a level only if it is listed at that level or below. Anything introduced *at* a level must be glossed in words on first use in every module that uses it.
+
+| Level | Newly permitted | Explicitly banned |
+|---|---|---|
+| `l1` | numerals 0–10; words and pictures only | every symbol including `+` |
+| `l2` | `+`, `−`, `=`, `>`, `<`, numerals to 1000 | `×`, `÷`, fractions, negatives, letters-as-numbers, `∈` |
+| `l3` | `×`, `·`, `÷`, fractions, decimals, `{ }`, `∈`, `∉`, `⊆`, `∪`, `∩`, set names as *labels* (`A`, `S`) | letters standing for *numbers*; negatives; `ℕ ℤ ℝ`; four-quadrant grids |
+| `l4` | letters as numbers, `≠`, `≤`, `≥`, `√`, `¬`, `∧`, `∨`, `⇒`, `∅`, `ℕ ℤ ℚ ℝ`, set-builder, negatives, exponents; **and, where the module introduces them, `∀` `∃` `∃!` (1.10–1.12), `∘` (3.7–3.9), predicate notation `p(x)` (1.10+)** | `f(x)` outside Ch. 3; `Σ`; `∏` |
+| `l5` | `f(x)` everywhere, `⇔`, `∣` (divides), intervals, `f: S → T` | `Σ`, `∏` |
+| `l6` | `f⁻¹`, `≡`, `⊕`, subscripted families | `Σ`, `∏`, limits |
+| `l7` | `Σ`, `∏`, `ℂ`, `e^{iθ}`, factorials, informal limits | — |
+| `l8` | full Math 0 notation plus forward references | — |
+
+**The `l3` rule deserves emphasis.** A fifth grader has met *numerical* expressions with parentheses but not *variables*. So `l3` may write "take any one of the numbers in the box and follow it" and may name a **set** `A`, but must not write "let `n` be a whole number." Where a general argument is needed, `l3` says *any one*, *whichever one you picked*, or *that number* — the arbitrary-element move in words. This is not a workaround; it is how the idea is actually taught before algebra.
 
 ### A5. Voice and treatment per level
 
-Generation of content must follow these profiles exactly.
+Generation of content must follow these profiles exactly. Each names the **reader's current maths class**, because the strongest thing a page can do is connect to what the reader is doing this week.
 
-**`l1` Kindergarten.** Second person, present tense, **short sentences: 6–12 words**, with 8 as the median. One clause per sentence. Everything is a physical object or a person: blocks, animals, a toy box, a friend named Sam, the reader themselves. **No hypotheticals about numbers the child hasn't met** (nothing above 10, no negatives, no fractions). **No jargon** — no "case," no "conditional," no "claim," no "hypothesis," no "counterexample." Words like *promise*, *rule*, *bad*, *the one that breaks it* carry the same load, and they carry it fine. Every module ends with **one thing to do** (a 30-second physical activity — sort the blocks, say the opposite, find the one that breaks the rule). Introduce exactly one new word per module and repeat it three times. Questions are answered, never left open. If a passage reads awkwardly aloud, it is wrong — l1 is written to be read *to* a child, and the ear is the primary editor.
+**`l1` Kindergarten.** Second person, present tense, **6–12 word sentences**, median 8. One clause per sentence. Everything is a physical object or a person: blocks, animals, a toy box, Sam, Noodle the cat, the reader themselves. Nothing above 10; no negatives, no fractions, no symbols at all. **No jargon** — *promise*, *rule*, *the one that breaks it* carry the same load. Every module ends with **one thing to do**, a 30-second physical activity. One new word per module, repeated three times. If a passage reads awkwardly aloud it is wrong; the ear is the editor.
 
-**`l2` 2nd grade.** Same warmth, longer chains. Can hold a two-step argument ("we know this, so that, so this"). Sentences 8–15 words; two-clause sentences are allowed but not preferred. Introduces the idea that a rule must work *every* time and that one bad case breaks it. Numbers to 100, simple even/odd, sharing and grouping. Formal vocabulary is still avoided (the reader sees *promise*, *the bad case*, *the one that breaks it*, not *conditional* or *counterexample*). Pictures still carry the argument; words now carry the reason.
+**`l2` 2nd grade.** *Reader's class: adding and subtracting within 100, place value to hundreds, telling time, naming shapes.* Same warmth, longer chains — can hold a two-step argument ("we know this, so that, so this"). Sentences 8–12 words. **Counting and repeated adding only: no `×`, no `÷`, no fractions-as-numbers, no negatives.** Where an argument would want multiplication, use equal groups and repeated addition, which is exactly how 2.OA.C.4 frames arrays. Where it would want a fraction, use *half of the shape* or *one of the three equal pieces* — the 2.G.A.3 framing. Even/odd is available and should be used freely, because pairing is on-grade (2.OA.C.3) and is the perfect concrete model for a proof. Formal vocabulary still avoided: *promise*, *the bad case*, *the one that breaks it*. Pictures carry the argument; words carry the reason. Ends with `<TryIt>`.
 
-**`l3` 5th grade.** The turn to *why*. Readers can handle a variable as a stand-in, a definition stated plainly, and a short argument that ends in "so it has to be true." Introduces the Discussion/Proof shape explicitly. Examples: fractions, factors and multiples, divisibility, patterns in tables, area. First use of symbols, always glossed in words on first appearance in the module.
+**`l3` 5th grade.** *Reader's class: fraction arithmetic, decimals, volume, plotting points in the first quadrant, sorting shapes into a hierarchy.* The turn to *why*. Full sentences, 12–16 words, and a real argument that ends in "so it has to be true." Introduces the Discussion/Proof shape explicitly and the `□`. **No letters standing for numbers and no negative numbers** — see §A4.2. The arbitrary-element move is done in words: *take any one of them and follow it*. Set names as labels (`A`, `B`) are fine and are the first symbols the reader meets; gloss each on first use. Lean on **5.G.B.3–4**, classifying shapes into a hierarchy — every square is a rectangle is a genuine, on-grade example of a subset and of a conditional, and it should be the workhorse example of Chapters 1 and 2. Other examples: factors and multiples, fraction arithmetic, area, patterns in tables.
 
-**`l4` 8th grade.** Pre-algebra fluency assumed: variables, equations, negative numbers, exponents, coordinate plane. Proofs are real proofs, in paragraphs, 3–8 sentences. Formal vocabulary lands here: hypothesis, conclusion, converse, contrapositive, counterexample, set, subset, function, domain. Truth tables appear. This is the level at which a motivated reader could actually do 9th-grade geometry proofs afterward.
+**`l4` 8th grade.** *Reader's class: linear equations and systems, `y = mx + b`, exponents and scientific notation, irrational numbers, congruence by rigid motions, Pythagoras.* Pre-algebra fluency assumed: letters as numbers, negatives, exponents, the full coordinate plane. Proofs are real proofs, in paragraphs of 3–8 sentences. Formal vocabulary lands here: hypothesis, conclusion, converse, contrapositive, counterexample, set, subset, function, domain, codomain. Truth tables appear. **Function notation `f(x)` is *not* on-grade** (it is HSF-IF.A.2) — Chapter 3 may introduce it, but must do so explicitly as new notation with a gloss, and Chapters 1–2 should avoid it. Two on-grade anchors are worth using hard: the reader **already knows √2 is irrational** (8.EE.A.2) but has never seen why, which makes module 4.7 a genuine payoff; and the reader **already has the exact definition of a function** (8.F.A.1), which makes module 3.1 a formalisation of something familiar rather than a new idea.
 
-**`l5` 9th grade.** Algebra I complete. Quantifiers introduced. Proofs may be a paragraph or two, with the Discussion section doing real planning work. Examples move to inequalities, systems, quadratics, sequences.
+**`l5` 9th grade.** *Reader's class: Algebra I — quadratics, factoring, systems, inequalities, exponential growth.* Quantifiers introduced. Proofs a paragraph or two, with the Discussion doing real planning work. Examples move to inequalities, systems, quadratics, and sequences. Function notation is now familiar and can be used freely.
 
-**`l6` 10th grade.** Geometry-year reader. Explicitly connects to the two-column proofs they are being taught right now and shows why paragraph proofs are what mathematicians actually write. Adds function composition, inverses, and the first genuinely abstract arguments (sets of sets, functions between arbitrary sets).
+**`l6` 10th grade.** *Reader's class: Geometry — and this is the proof year.* This is the most important connection in the whole ladder: the reader is being taught two-column proofs **right now**. Every module should be explicit about the correspondence — a two-column proof's *statement* column is the chain of assertions and its *reason* column is what paragraph proofs carry in the words *since*, *because*, and *therefore*. Show at least one argument both ways in Chapter 1, then explain why working mathematicians write paragraphs. Use the reader's own theorems as examples: vertical angles, the isosceles base-angle theorem, the triangle angle sum, ASA/SAS/SSS, and the definition of congruence via rigid motions. Adds function composition, inverses, and the first genuinely abstract arguments (sets of sets, functions between arbitrary sets).
 
-**`l7` 12th grade.** Precalculus/calculus reader. Very close to the Math 0 text in rigor and content; differs mainly by explaining the moves the notes leave implicit and by using calculus examples the notes assume. Complete proofs with full Discussion sections.
+**`l7` 12th grade.** *Reader's class: Precalculus — trig identities, sequences and series with Σ, complex numbers in polar form, informal limits, vectors, conics.* Very close to the Math 0 text in rigor; differs by explaining the moves the notes leave implicit. **Draw examples from precalculus, not from later subjects.** The double-angle identities falling out of De Moivre (module 5.9), telescoping sums (6.3), and the exponential series (5.7) are on-grade and land hard. Forward references to abstract algebra, topology, and analysis belong at `l8`, not here — at `l7`, a `<WhereThisGoes>` should point at calculus and linear algebra, the courses this reader is actually about to take. Complete proofs with full Discussion sections.
 
-**`l8` College.** The Math 0 experience as intended: complete, unhedged, with a **"Where this goes"** closer on each module naming the field it opens (rings and fields → abstract algebra; pre-images → topology; equivalence relations → quotient constructions; Peano → logic and foundations).
+**`l8` College.** The Math 0 experience as intended: complete, unhedged, with a **"Where this goes"** closer naming the field each module opens (rings and fields → abstract algebra; pre-images → topology; equivalence relations → quotient constructions; Peano → logic and foundations).
 
 ### A6. Anchor examples
 
-To keep the ladder vertically aligned, each chapter has a running example that appears at every level in age-appropriate dress. Content generation must use these unless a module's kernel forbids it.
+To keep the ladder vertically aligned, each chapter has a running example that appears at every level in age-appropriate dress. **Each cell below is checked against §A4.1** — the `l3` column uses no variables and no negatives, and the `l2` column uses no multiplication and no fractions.
 
-| Chapter | Anchor | `l1`–`l2` form | `l3`–`l4` form | `l5`–`l8` form |
+| Chapter | `l1`–`l2` form | `l3` form (no variables, no negatives) | `l4` form | `l6`–`l7` form |
 |---|---|---|---|---|
-| 1 Logic | Rain and umbrellas; "it's a dog" | Sam's dog; if it rains, we take an umbrella | If a number is a multiple of 6, it's even | If x > 1 then x² > 1 |
-| 2 Sets | The toy box | Sorting hoops, Venn diagrams with animals | Factors of 20 and 24; multiples of 12 and 18 | Roots of sin x and cos x; complements in ℝ |
-| 3 Functions | The name tag machine | Each kid to their cubby | Letter → position in alphabet; floor function | f: ℝ → ℝ₊, f(x) = eˣ |
-| 4 Numbers | Sharing cookies evenly | Even/odd, leftovers when sharing | Divisibility, remainders | ℤ as a ring, ℚ as a field, √2 irrational |
-| 5 Complex | Turning a quarter turn | Compass directions, rotating a card | Rotation on a grid; the number that turns | e^{iθ} = cos θ + i sin θ |
-| 6 Induction | A line of dominoes | Dominoes; stacking blocks | 1+3+5+… = n²; number of subsets | Σ, divisibility, nth derivatives |
-| 7 Peano | Counting on forever | "What comes next?" machine | Defining + from "next" | Successor function, Axiom of Induction |
+| 1 Logic | Sam's dog; if it rains, we take an umbrella | If a shape is a square, it is a rectangle (5.G.B.3) | If x > 1 then x² > 1 | Same, plus contrapositive of a conjunctive hypothesis |
+| 2 Sets | The toy box; sorting hoops | The shape hierarchy: squares ⊆ rectangles ⊆ quadrilaterals | Intervals in ℝ; divisors of 20 and 24 | Roots of sin x and cos x |
+| 3 Functions | Each kid to their cubby | Letter → position in the alphabet | The rule "input → exactly one output" (8.F.A.1) | f: ℝ → ℝ₊, f(x) = eˣ |
+| 4 Numbers | Even/odd by pairing; leftovers when sharing | Factors, multiples, remainders | Divisibility as ∃k; √2 irrational (8.EE.A.2) | ℤ as a ring, ℚ as a field |
+| 5 Complex | Quarter turns; compass directions | Rotating a card a quarter turn on a grid | The number that turns; a + bi | e^{iθ} = cos θ + i sin θ; De Moivre |
+| 6 Induction | Dominoes; stacking blocks | 1+3+5+… as L-shaped shells building squares | Σ notation deferred; write the sum out | Σ, telescoping, nth derivatives |
+| 7 Peano | "What comes next?" machine | Counting as pressing *next*; naming what comes next | Defining + from S by recursion | Successor function, Axiom of Induction |
+
+**Chapter 1's `l3` anchor changed** from "multiple of 6 is even" to **the shape hierarchy**, because 5.G.B.3–4 puts exactly this reasoning on-grade in fifth grade: *attributes belonging to a category also belong to all subcategories.* That is a conditional, a subset claim, and a counterexample generator (a rectangle that is not a square) in one on-grade package. Divisibility examples remain available at `l3` — factors and multiples are grade-4 content — but must be phrased without variables.
 
 ### A7. Content model
 
@@ -793,7 +828,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l1` ○ Two jobs: push the first one, and make sure each one touches the next.
 - `l2` ● The two jobs named and checked on a concrete claim.
 - `l3` ● All three steps written out for the odd-number sum, in words with a little notation. The circularity worry raised and answered at this level ("we're not saying it's true for k — we're saying *if* it were, then it'd be true for k+1").
-- `l4` ● Formal statement with A(n), n₀, base case, inductive hypothesis, inductive step. Summation notation Σ introduced here.
+- `l4` ● Formal statement with A(n), n₀, base case, inductive hypothesis, inductive step. **Sums are written out longhand — `1 + 3 + 5 + ⋯ + (2n−1)` — not with Σ.** Σ is high-school notation (HSA-SSE.B.4) and is introduced at `l5`; writing the sum out costs nothing and keeps grade 8 readable.
 - `l5`–`l6` ● Adds the well-ordering intuition for *why* induction is valid, and the common error of starting from A(k+1) and working backwards (Math 0's warning).
 - `l7`–`l8` ● Math 0 text in full, including the direction-of-proof warning and the recommendation to start from the left-hand side of A(k+1).
 
@@ -1106,7 +1141,7 @@ WCAG 2.2 AA. MathML output for KaTeX. All figures alt-texted with content. Rail 
 1. Write `_module.json` for all 61 modules first, from Part B. This is the contract.
 2. Write `glossary.json` entries for every term, all levels, before prose generation — so terms are consistent from the start.
 3. Vertical slice: generate module **1.5 (If–then)** at all eight levels, build it, read all eight, and tune the voice profiles in `levels.json` against what you see. Do not proceed until this feels right.
-4. Generate the remaining 60 modules chapter by chapter, in syllabus order.
+4. Generate the remaining 60 modules chapter by chapter, in syllabus order. **Level order: `l2`, `l3`, `l4`, `l6`, `l7` first** (2nd, 5th, 8th, 10th, 12th — the five most distinct grades), then `l1`, then `l5` and `l8`.
 5. After each chapter, run a **vertical review pass**: read one module at all eight levels back to back and check the continuity requirements in B-3.
 6. After each chapter, run a **horizontal review pass**: read one level across the whole chapter and check that vocabulary is introduced before use and that the reading level never spikes.
 
@@ -1162,7 +1197,13 @@ A Node script, run in CI and before every commit, that fails the build on:
 - a `kernels[level]` sentence that uses vocabulary or notation outside that level's budget (same regex/word check as the body)
 - an l1 kernel that is longer than ~20 words or introduces a term not in that level's vocabulary
 - word count outside the level's budget by more than 20%
-- a symbol used that is outside the level's notation budget (regex per level against the allowed list in A4 — this catches `∀` sneaking into an `l3` page)
+- a symbol used that is outside the level's notation budget (regex per level against the allowed list in A4.2 — this catches `∀` sneaking into an `l3` page)
+- **grade-calibration violations, per §A4.1 — these are the ones intuition gets wrong:**
+  - `l2`: any `×`, `÷`, `\frac`, `\tfrac`, a `/` between numerals, or a minus sign used as *negation* rather than subtraction. Second grade has no multiplication, no division, no fractions-as-numbers, and no negatives.
+  - `l3`: a single letter used as a *number* (`let n`, `for any x`, `a + b` with `a`,`b` numeric), any `ℕ ℤ ℚ ℝ`, any negative numeral, or a coordinate pair with a negative entry. Fifth grade has neither variables nor negatives. Set names as labels (`A`, `S`, `T`) are permitted and must be excluded from this check.
+  - `l4`: `f(x)`, `∀`, `∃`, `∘`, `Σ`. Function notation is high school; the other three are `l5`+.
+  - `l6`: `Σ`, `∏`, limit notation.
+  - `l7`: forward references to abstract algebra, topology, or measure theory in `<WhereThisGoes>` — those belong at `l8`. At `l7` the closer points at calculus and linear algebra.
 - a `newTerms` entry with no matching `glossary.json` definition at that level
 - a `prerequisites` id that doesn't resolve
 - a `<Figure>` without alt text

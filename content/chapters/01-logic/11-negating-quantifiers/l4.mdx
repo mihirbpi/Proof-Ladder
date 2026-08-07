@@ -84,15 +84,15 @@ $$
 $$
 Concretely: the negation of "every real has an additive inverse" is "some real has no additive inverse at all" — the inner $\forall y$ says *no* $y$ works for that particular $x$.
 
-This mechanical procedure is what makes $\varepsilon$–$\delta$ statements tractable. The negation of continuity at $a$,
+The procedure is entirely mechanical, which is the point — you never have to be clever, only careful. Take:
 $$
-\forall \varepsilon > 0\; \exists \delta > 0\; \forall x,\; |x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon,
+\forall x \in \mathbb{Z}\;\; \exists y \in \mathbb{Z},\;\; \big(y > x \wedge y \text{ is prime}\big).
 $$
-is
+This says there is no largest prime. Negate it: flip both quantifiers, then push the negation through the $\wedge$ using De Morgan:
 $$
-\exists \varepsilon > 0\; \forall \delta > 0\; \exists x,\; |x - a| < \delta \;\wedge\; |f(x) - f(a)| \geq \varepsilon,
+\exists x \in \mathbb{Z}\;\; \forall y \in \mathbb{Z},\;\; \big(y \leq x \vee y \text{ is not prime}\big).
 $$
-which reads: some tolerance $\varepsilon$ can never be met, no matter how small you make $\delta$. Every symbol was produced by the two rules of this module plus $\neg(p \Rightarrow q) \equiv p \wedge \neg q$. Nothing was invented.
+Read it: there is some number past which nothing is prime — a largest prime exists. That is the correct negation, and every symbol in it was produced by the two rules of this module plus $\neg(p \wedge q) \equiv \neg p \vee \neg q$. Nothing was invented.
 
 <Aside>
 Euler conjectured in 1769 that a $k$-th power is never a sum of fewer than $k$ positive $k$-th powers. In 1966 Lander and Parkin refuted the $k = 5$ case with a computer search and published a paper two sentences long, containing $27^5 + 84^5 + 110^5 + 133^5 = 144^5$. Two centuries of a universal claim, ended by one bad apple.

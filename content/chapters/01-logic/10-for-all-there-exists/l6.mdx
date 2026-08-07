@@ -1,0 +1,125 @@
+---
+level: l6
+title: For all, there exists
+readingTimeMin: 9
+newTerms: ["for all", "there exists", "unique", "quantifier"]
+anchorExample: "vertical angles and the base-angle theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Read the theorems in your textbook carefully and you will find that almost none of them are about a particular figure.
+
+> *In a triangle, the sum of the interior angle measures is $180°$.*
+
+Not *this* triangle. Every triangle. And the postulates run the other way:
+
+> *Through any two distinct points there is exactly one line.*
+
+That one asserts something **exists**, and that it is the only one. Two different kinds of claim, demanding two different kinds of evidence. Naming them is this module's job.
+
+## The two quantifiers
+
+A **predicate** is a sentence with a blank: "$\underline{\phantom{xx}}$ is isosceles" has no truth value until the blank is filled. Write it $P(x)$.
+
+Quantifiers fill the blank *in bulk*:
+
+| Symbol | Read | Claims |
+|---|---|---|
+| $\forall x \in S,\ P(x)$ | for all $x$ in $S$ | $P$ holds for **every** element of $S$ |
+| $\exists x \in S,\ P(x)$ | there exists $x$ in $S$ | $P$ holds for **at least one** element |
+| $\exists! x \in S,\ P(x)$ | there exists a unique $x$ | for **exactly one** element |
+
+The set $S$ is the **domain**. It is not decoration — it is part of the claim, and changing it can flip the truth value:
+
+$$\forall x \in \{\text{squares}\},\ x \text{ has four right angles} \quad\text{— true}$$
+$$\forall x \in \{\text{rhombi}\},\ x \text{ has four right angles} \quad\text{— false}$$
+
+Same predicate, opposite verdicts. When you state a theorem, stating the domain is not optional.
+
+## What each one costs to prove or refute
+
+This table is the practical content of the module.
+
+| | to prove | to refute |
+|---|---|---|
+| $\forall x, P(x)$ | argue for an **arbitrary** $x$ | one **counterexample** |
+| $\exists x, P(x)$ | one **witness** | argue no $x$ works |
+
+The asymmetry is total, and it explains something you have already noticed: proving a geometry theorem takes a page, while showing a claim false takes one badly drawn picture.
+
+**Universal, proved.** The named move is **take any one and follow it**. You write "Let $\triangle ABC$ be any triangle" and then use *nothing* about it beyond that. Because the argument never touched a special feature, it covers all of them at once.
+
+**Universal, refuted.** One figure. The $5$–$5$–$8$ triangle from module 1.7 refuted a converse all by itself.
+
+**Existential, proved.** Produce the thing. A construction with compass and straightedge is exactly this: the construction of a perpendicular bisector *is* the proof that one exists.
+
+**Existential, refuted.** The expensive case — you must rule out every candidate, and there is no shortcut through examples.
+
+<Warning title="Examples do not prove universals">
+Draw twenty triangles, measure the angles, get $180°$ every time. You have not proved the angle-sum theorem.
+
+The reason is not that measurement is imprecise, though it is. The reason is structural: a universal claim covers infinitely many cases, and no finite list reaches them.
+
+Compare: *every prime is odd* survives checking $3, 5, 7, 11, 13, 17, 19$ — seven confirmations — and dies at $2$. Confirmations are not evidence of a universal claim in the way that a single counterexample is evidence against it.
+
+This is precisely why your course proves things instead of measuring them.
+</Warning>
+
+## Uniqueness is a second obligation
+
+> **Postulate.** Through any two distinct points there is exactly one line.
+
+$\exists!$ is a conjunction: **existence** ("at least one") **and** **uniqueness** ("at most one"). Proving it means proving both, and the two halves look nothing alike.
+
+The standard uniqueness argument: **suppose there are two, then show they are the same one.**
+
+> **Proposition.** A segment has exactly one midpoint.
+
+<Discussion>
+  <div slot="know">A midpoint of $\overline{AB}$ is a point $M$ on $\overline{AB}$ with $AM = MB$. Available: the Ruler Postulate, which coordinatises the line.</div>
+  <div slot="want">Existence and uniqueness — two separate arguments.</div>
+  <div slot="how">Existence: coordinatise and take the average. Uniqueness: suppose $M_1$ and $M_2$ are both midpoints, and force their coordinates to be equal.</div>
+</Discussion>
+
+<Proof>
+**Existence.** By the Ruler Postulate assign coordinates $a$ to $A$ and $b$ to $B$. Let $M$ be the point with coordinate $\frac{a+b}{2}$. This lies between $a$ and $b$, so $M$ is on $\overline{AB}$, and
+$$AM = \left|\tfrac{a+b}{2} - a\right| = \tfrac{|b-a|}{2} = \left|b - \tfrac{a+b}{2}\right| = MB.$$
+So $M$ is a midpoint.
+
+**Uniqueness.** Suppose $M_1$ and $M_2$ are both midpoints, with coordinates $m_1$ and $m_2$. From $AM_1 = M_1B$ and betweenness, $m_1 - a = b - m_1$, so $m_1 = \frac{a+b}{2}$. The identical computation gives $m_2 = \frac{a+b}{2}$. Hence $m_1 = m_2$, and the points coincide.
+</Proof>
+
+Note that the uniqueness half never assumed the two were different. It assumed there were two — possibly the same — and concluded they were. That is the shape to imitate.
+
+## Order matters
+
+Real definitions stack quantifiers, and swapping them changes the claim. Here is the pair to keep in mind.
+
+**(A)** $\forall$ students, $\exists$ a desk they can sit at.
+
+**(B)** $\exists$ a desk such that $\forall$ students, they can sit at it.
+
+(A) is a classroom with enough desks. (B) is one desk shared by everyone. **(B) implies (A); (A) does not imply (B).**
+
+The rule underneath: in $\forall x\, \exists y$, the $y$ is allowed to depend on $x$ — a different desk for each student. In $\exists y\, \forall x$, the $y$ is chosen first and must work for all $x$ at once. The second is a far stronger demand.
+
+<Aside>
+You will meet this again as the difference between continuity and *uniform* continuity, and between convergence and *uniform* convergence. In each pair the two definitions differ only in the order of a $\forall$ and an $\exists$, and the mathematics on either side of that swap is genuinely different.
+
+Analysts spent much of the nineteenth century discovering that the order mattered — Cauchy published a false theorem in 1821 that came down to exactly this confusion. Getting quantifier order right is not pedantry.
+</Aside>
+
+## Implicit quantifiers
+
+Mathematical writing suppresses quantifiers constantly, and part of reading fluently is restoring them.
+
+- "The base angles of an isosceles triangle are congruent" — universal, over all isosceles triangles.
+- "$(a+b)^2 = a^2 + 2ab + b^2$" — universal, over all reals $a, b$.
+- "$x^2 = 4$ has a solution" — existential.
+- "The perpendicular bisector of a segment" — the definite article is doing uniqueness work.
+
+When a claim confuses you, the first move is to write its quantifiers explicitly. Half the confusion usually goes away, and module 1.11 shows that negating the claim is impossible until you have.

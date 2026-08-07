@@ -1,0 +1,114 @@
+---
+level: l5
+title: Your first proof
+readingTimeMin: 8
+newTerms: ["proof", "Discussion", "direct proof"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.5 established that $p \Rightarrow q$ is false in exactly one situation: $p$ true, $q$ false. Proving the conditional therefore means ruling that situation out, and the cleanest way is to **assume $p$ and derive $q$** — after which the bad row cannot occur.
+
+That is a **direct proof**, and the named move is **start from what you're given**.
+
+## What a proof is
+
+A **proof** is an argument, addressed to a reader, that establishes a statement beyond dispute. It is written in complete sentences, and the connective words — *since*, *because*, *so*, *therefore* — carry the logical structure.
+
+That last point is not a style preference. Compare:
+
+- ✗ $x>1 \Rightarrow x\cdot x > 1\cdot x \Rightarrow x^2 > x > 1$
+- ✓ "Since $x > 1$ and $x > 0$, multiplying both sides of $x>1$ by $x$ gives $x^2 > x$. As $x > 1$, transitivity yields $x^2 > 1$."
+
+The first records a computation. The second explains *why each step is permitted*, which is the only thing the reader could not have worked out alone.
+
+## Planning before writing
+
+Mathematicians plan before they write, and Math 0's house style keeps the plan visible as a **Discussion**: what we know, what we want, what we'll do. It is scratch work made legible, and published papers delete it.
+
+## The proposition
+
+> **Proposition.** For all $x \in \mathbb{R}$, if $x > 1$ then $x^2 > 1$.
+
+Spot-check: $x = 3$ gives $9 > 1$ ✓; $x = 1.01$ gives $1.0201 > 1$ ✓. Infinitely many reals exceed $1$, so checking cannot finish the job.
+
+<Discussion>
+  <div slot="know">$x \in \mathbb{R}$ and $x > 1$. Available tools, from the ordered-field properties of $\mathbb{R}$:
+  <br />**(O1)** if $a > b$ and $c > 0$ then $ac > bc$;
+  <br />**(O2)** $>$ is transitive.</div>
+  <div slot="want">$x^2 > 1$, i.e. $x\cdot x > 1$.</div>
+  <div slot="how">The goal involves $x^2$; the hypothesis constrains $x$. The bridge is to multiply the hypothesis by $x$ — legal by (O1) provided $x > 0$, and $x > 1 > 0$ gives that by (O2). The result is $x^2 > x$, and one more use of (O2) finishes.</div>
+</Discussion>
+
+Notice where the work happened. The Discussion found the tool, checked its side condition, and chose the route. The proof below is short only because the Discussion was honest.
+
+## The proof
+
+<Proof>
+Let $x \in \mathbb{R}$ with $x > 1$.
+
+Since $x > 1$ and $1 > 0$, transitivity (O2) gives $x > 0$.
+
+Multiplying both sides of the inequality $x > 1$ by the positive number $x$ preserves it, by (O1):
+$$x\cdot x > 1\cdot x, \quad\text{that is,}\quad x^2 > x.$$
+
+Combining $x^2 > x$ with the hypothesis $x > 1$, transitivity (O2) yields $x^2 > 1$, as required.
+</Proof>
+
+The $\square$ marks the end. Some authors write *Q.E.D.*; the tombstone is now standard.
+
+## Anatomy
+
+Every direct proof of $p \Rightarrow q$ has these parts:
+
+| Part | In our proof |
+|---|---|
+| Assume the hypothesis | "Let $x \in \mathbb{R}$ with $x>1$." |
+| Name the tools | (O1), (O2) |
+| Check side conditions | $x > 0$, so multiplying is legal |
+| Chain forward | $x^2 > x$, then $x^2 > 1$ |
+| Land on the conclusion | "therefore $x^2 > 1$" |
+| Stop | $\square$ |
+
+The third row is the one students omit, and it is where most incorrect proofs actually fail — not at some spectacular logical error, but at an unchecked hypothesis of a tool.
+
+## A second proof, for the rhythm
+
+> **Proposition.** If $m$ and $n$ are even integers, then $m+n$ is even.
+
+<Proof>
+Suppose $m$ and $n$ are even. By definition, there exist integers $j,k$ with $m = 2j$ and $n = 2k$.
+
+Then
+$$m + n = 2j + 2k = 2(j+k).$$
+
+Since $j + k$ is an integer, $m+n$ is twice an integer, hence even by definition.
+</Proof>
+
+Both proofs share a rhythm worth naming:
+
+1. Assume the hypothesis and **immediately translate it via the relevant definition** ("even" becomes "$=2j$ for some integer $j$").
+2. Manipulate.
+3. **Recognise the target form** and cite the definition in the other direction.
+
+A large fraction of introductory proofs are exactly this — unfold definitions, do algebra, refold. If a proof feels impossible, check first whether you have written down what the words in it actually mean.
+
+<Warning title="Never assume what you are proving">
+Two tempting bad shapes:
+
+**Assuming the conclusion.** "Suppose $x^2 > 1$. Then $x > 1$…" proves the converse, not the proposition.
+
+**Working backwards.** Starting from $x^2 > 1$ and manipulating until something true appears is fine as *scratch work* — it belongs in the Discussion — but the written proof must run forwards, hypothesis to conclusion, with every step valid in that direction. Backwards chains are valid only when every step is reversible, and students routinely write $\Leftrightarrow$ where only $\Rightarrow$ holds.
+</Warning>
+
+<Aside>
+Two-column proofs, if you met them in geometry, are a scaffold rather than a genre working mathematicians use. Everything a two-column proof records — statement, reason — survives in a paragraph proof, carried by the words *since*, *because*, and *therefore*. Learning to place those words correctly is learning to write proofs.
+</Aside>
+
+## What comes next
+
+Direct proof is the default and not always the convenient route. When the hypothesis is awkward to compute with, you may prove $\neg q \Rightarrow \neg p$ instead — module 1.7 shows this is logically equivalent, and module 1.8 turns it into a technique with a decision rule. When even that fails, assume the negation of your goal and derive a contradiction (module 2.5).

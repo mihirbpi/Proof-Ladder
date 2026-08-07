@@ -1,0 +1,121 @@
+---
+level: l6
+title: Negating quantified statements
+readingTimeMin: 8
+newTerms: ["counterexample"]
+anchorExample: "vertical angles and the base-angle theorem"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every indirect proof begins by assuming the opposite of the goal. Module 1.4 handled compound goals. This module handles quantified ones — and quantified statements are what your theorems actually are.
+
+## The two rules
+
+$$
+\neg\big(\forall x \in S,\ P(x)\big) \;\equiv\; \exists x \in S,\ \neg P(x)
+$$
+$$
+\neg\big(\exists x \in S,\ P(x)\big) \;\equiv\; \forall x \in S,\ \neg P(x)
+$$
+
+In words: **push the negation inward and flip the quantifier.** The domain $S$ never changes.
+
+## Why they hold
+
+$\forall x\in S,\, P(x)$ says $P$ holds throughout $S$. For that to fail, some element must fail — one is enough, and one is required. That is exactly $\exists x \in S, \neg P(x)$.
+
+$\exists x \in S,\, P(x)$ says at least one element works. For that to fail, none can work — every element must fail. That is $\forall x \in S, \neg P(x)$.
+
+<Aside>
+These are De Morgan's laws from module 1.4, extended to infinitely many terms.
+
+Over a finite domain $S = \{a, b, c\}$, the universal *is* a conjunction:
+$$\forall x \in S,\ P(x) \;\equiv\; P(a)\wedge P(b) \wedge P(c),$$
+and negating it gives $\neg P(a) \vee \neg P(b) \vee \neg P(c)$ — an existential. Same law, longer.
+
+Over an infinite domain the conjunction cannot literally be written, but the rule survives unchanged. One law, wearing a third costume.
+</Aside>
+
+## The counterexample, explained
+
+Here is the payoff. To refute
+$$\forall x \in S,\ P(x)$$
+you must prove its negation, which is
+$$\exists x \in S,\ \neg P(x)$$
+— an existential claim. And existentials are proved by producing a witness.
+
+**That is what a counterexample is.** It is not a rhetorical move or a shortcut. It is a complete proof of the negation, in the form that the negation demands.
+
+Two things follow, and both matter for your homework.
+
+**One is enough, permanently.** A single valid counterexample settles the matter. There is nothing more to say, and finding a second adds no strength.
+
+**It must be checked in full.** A counterexample must lie in the domain $S$ *and* satisfy $\neg P$. Both halves need verifying. Offering a right triangle as a counterexample to a theorem about acute triangles proves nothing about the theorem.
+
+<Warning title="Do not negate the domain">
+$$
+\neg\big(\forall x \in S,\ P(x)\big) \quad\text{is}\quad \exists x \in S,\ \neg P(x)
+$$
+and **not** $\exists x \notin S,\ \neg P(x)$.
+
+A counterexample must live inside the domain. Suppose a claim is made about all parallelograms and you produce a trapezoid where it fails. You have refuted nothing — the trapezoid was never covered by the claim.
+
+This is the single most common error in refutations, and it is why the first sentence of any counterexample should verify membership: *"Let $ABCD$ be the parallelogram with vertices …"*
+</Warning>
+
+## Negating a theorem for indirect proof
+
+> **Theorem.** If two lines are cut by a transversal so that alternate interior angles are congruent, then the lines are parallel.
+
+Restore the quantifier and the conditional:
+$$\forall \text{ line pairs } (\ell_1,\ell_2) \text{ with transversal } t:\ \big(\text{alt. int. congruent} \Rightarrow \ell_1 \parallel \ell_2\big).$$
+
+To prove this indirectly, negate. First flip the quantifier:
+$$\exists \text{ a pair}:\ \neg\big(\text{alt. int. congruent} \Rightarrow \ell_1\parallel\ell_2\big),$$
+then apply $\neg(p\Rightarrow q)\equiv p \wedge \neg q$ from module 1.7:
+$$\exists \text{ a pair}:\ \text{alt. int. congruent} \ \wedge\ \ell_1 \not\parallel \ell_2.$$
+
+So the indirect proof opens: *"Suppose alternate interior angles are congruent but the lines are not parallel."* Then the lines meet, forming a triangle, and the Exterior Angle Theorem is contradicted.
+
+Notice that the two negation rules had to be applied **in order, outermost first**. Getting that sequence right is the whole skill.
+
+## Nested quantifiers
+
+Apply the rules one at a time, working from the outside in. Each pass flips one quantifier and moves the $\neg$ one level deeper.
+
+$$
+\begin{aligned}
+&\neg\ \forall x\, \exists y\, \forall z\ P(x,y,z)\\
+\equiv\ &\exists x\ \neg\ \exists y\, \forall z\ P(x,y,z)\\
+\equiv\ &\exists x\, \forall y\ \neg\ \forall z\ P(x,y,z)\\
+\equiv\ &\exists x\, \forall y\, \exists z\ \neg P(x,y,z).
+\end{aligned}
+$$
+
+**Every quantifier flips, in place, and the order is preserved.** The negation is mechanical once you trust the two rules — which is exactly why the rules are worth memorising rather than re-deriving.
+
+## Negating uniqueness
+
+$\exists!$ is not a single quantifier, so it has no single flip rule. Unfold it first:
+$$
+\exists! x,\, P(x) \quad\equiv\quad \underbrace{\exists x,\, P(x)}_{\text{existence}} \ \wedge\ \underbrace{\forall x\, \forall y\, \big((P(x)\wedge P(y)) \Rightarrow x = y\big)}_{\text{uniqueness}}.
+$$
+
+Negating a conjunction gives a disjunction (module 1.4), so the negation is:
+
+> **either** no $x$ satisfies $P$, **or** two distinct ones do.
+
+That matches intuition — "not exactly one" means "none or several" — but writing it out is what tells you the refutation has *two* available routes. If one is hard, try the other.
+
+## Checklist
+
+When you are asked to negate a statement:
+
+1. Restore every suppressed quantifier and domain.
+2. Push $\neg$ inward one layer at a time, outermost first.
+3. Flip each quantifier as the negation passes it; leave domains alone.
+4. At the innermost level, negate the predicate — with De Morgan for $\wedge/\vee$ and $p \wedge \neg q$ for $\Rightarrow$.
+5. Read the result aloud. If it does not sound like the opposite of what you started with, you dropped a step.

@@ -13,6 +13,17 @@
     "l7": "Defining multiplication",
     "l8": "Defining multiplication"
   },
+  "kernelIdea": "a · 0 = 0 and a · S(b) = a + (a · b). Multiplication is built on addition exactly as addition was built on the successor.",
+  "kernels": {
+    "l1": "Three groups of two. Count them all up.",
+    "l2": "Multiplying is adding the same number again and again. Three times two means two, and two more, and two more.",
+    "l3": "Multiplication is defined by two rules: multiplying by zero gives zero, and multiplying by the next of something adds one more copy. So multiplication is built on addition just as addition was built on next.",
+    "l4": "a · 0 = 0 and a · S(b) = a + (a · b). Multiplication is built on addition exactly as addition was built on the successor, so a · 1 = a is a small theorem and 3 · 2 = 6 is a derivation.",
+    "l5": "The tower is successor, then addition, then multiplication, each defined recursively from the one below; the distributive law assumed throughout the course is provable from here.",
+    "l6": "Every arithmetic law used earlier in the course — commutativity, associativity, distributivity — is a theorem of this system, provable by induction.",
+    "l7": "a · 0 = 0 and a · S(b) = a + (a·b) build multiplication on addition as addition was built on succession; the distributive law assumed since Chapter 4 is provable here by induction.",
+    "l8": "Nine axioms and two recursive definitions generate all of elementary arithmetic; Gödel showed that the resulting theory, if consistent, cannot prove every true statement about ℕ."
+  },
   "kernel": "a · 0 = 0 and a · S(b) = a + (a · b). Multiplication is built on addition exactly as addition was built on the successor. a · 1 = a is a small theorem; 3 · 2 = 6 is a derivation.",
   "objectives": [
     "Compute a·1 and 3·2 from the definition",

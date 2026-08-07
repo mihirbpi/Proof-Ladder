@@ -1,0 +1,102 @@
+---
+level: l7
+title: Induction in calculus
+readingTimeMin: 7
+newTerms: ["factorial"]
+anchorExample: "Σ(2j−1) = n²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Every result so far arrived pre-stated. This module runs the full loop: compute data, isolate patterns, conjecture, prove.
+
+## The problem
+
+Let $f(x) = 1/x$ on $\mathbb{R}\setminus\{0\}$. Find $f^{(n)}(x)$.
+
+$$
+\begin{array}{c|c}
+n & f^{(n)}(x)\\\hline
+0 & x^{-1}\\
+1 & -x^{-2}\\
+2 & 2x^{-3}\\
+3 & -6x^{-4}\\
+4 & 24x^{-5}\\
+5 & -120x^{-6}
+\end{array}
+$$
+
+## Isolating three patterns
+
+The coefficients $1,-1,2,-6,24,-120$ are unreadable whole. Separate them:
+
+- **Sign:** alternates, so $(-1)^n$.
+- **Magnitude:** $1,1,2,6,24,120$ — each the previous times $n$, so $n!$.
+- **Exponent:** $-1,-2,-3,\ldots$, so $-(n+1)$.
+
+$$
+\boxed{f^{(n)}(x) = (-1)^n\,n!\,x^{-(n+1)}.}
+$$
+
+<Warning title="Conjecturing is a separate skill">
+Isolate patterns one at a time and multiply them together. Attempting to see a single formula in mixed data is unreliable; identifying sign, magnitude, and exponent independently is nearly mechanical.
+
+Then verify the conjecture at a value *not used to form it* — here $n=5$: $(-1)^5\cdot120\cdot x^{-6} = -120x^{-6}$ ✓ — before committing to a proof.
+</Warning>
+
+## Proof
+
+<Discussion>
+  <div slot="know">Power rule $\frac{d}{dx}x^m = mx^{m-1}$ for $m \in \mathbb{Z}$, $x \neq 0$; the recursion $(k+1)! = (k+1)k!$; and $f^{(n+1)} = \big(f^{(n)}\big)'$, which is the link making induction applicable (§6.4).</div>
+  <div slot="want">$A(n): f^{(n)}(x) = (-1)^n n! x^{-(n+1)}$ for all $n \geq 0$, $x \neq 0$.</div>
+  <div slot="how">Base at $n=0$ using $f^{(0)} = f$. Step: differentiate the (IH) expression by the power rule and reassemble the sign and factorial — the same two patterns that produced the conjecture.</div>
+</Discussion>
+
+<Proof>
+**Base.** $f^{(0)}(x) = f(x) = x^{-1}$, and $(-1)^0\,0!\,x^{-1} = x^{-1}$. ✓
+
+**Step.** Fix $k \geq 0$ and assume
+$$f^{(k)}(x) = (-1)^k\,k!\,x^{-(k+1)}.$$
+Differentiating, and using that $(-1)^kk!$ is a constant:
+$$
+\begin{aligned}
+f^{(k+1)}(x) &= \frac{d}{dx}\Big[(-1)^k k!\,x^{-(k+1)}\Big]\\
+&= (-1)^k k!\cdot\big(-(k+1)\big)x^{-(k+2)}\\
+&= (-1)^{k+1}\,(k+1)\,k!\;x^{-(k+2)}\\
+&= (-1)^{k+1}(k+1)!\,x^{-((k+1)+1)},
+\end{aligned}
+$$
+which is $A(k+1)$.
+
+By induction, $A(n)$ holds for all $n \geq 0$.
+</Proof>
+
+Two conventions did real work and are worth naming: $f^{(0)} = f$ made the base case meaningful, and $0! = 1$ made it come out right. Both are forced by the respective recursions ($f^{(n+1)} = (f^{(n)})'$ at $n = 0$; $(k+1)! = (k+1)k!$ at $k=0$) rather than chosen for convenience.
+
+## The general shape
+
+Repeated application of any operation $T$ gives $a_n = T^n(a_0)$, and $a_{n+1} = T(a_n)$ is exactly the link §6.4 requires. When $T$ acts on a suitable family by a simple multiplier — here $x^{-m}\mapsto -mx^{-m-1}$ — the closed form is a telescoping product, and factorials appear whenever the multiplier is linear in $n$.
+
+Standard instances:
+$$
+\frac{d^n}{dx^n}e^{ax} = a^ne^{ax}, \qquad
+\frac{d^n}{dx^n}\sin x = \sin\!\left(x + \tfrac{n\pi}{2}\right), \qquad
+\frac{d^n}{dx^n}\ln x = (-1)^{n-1}(n-1)!\,x^{-n}.
+$$
+Each is proved by exactly the induction above, and each is *found* by the same three-pattern separation.
+
+<Aside>
+Higher derivatives are what Taylor series consume: $f(x) = \sum_n \frac{f^{(n)}(a)}{n!}(x-a)^n$. Applying the result above at $a=1$ gives
+$$
+\frac1x = \sum_{n\geq0}(-1)^n(x-1)^n,
+$$
+the geometric series, convergent for $|x-1|<1$. So the factorial in the derivative and the factorial in the Taylor denominator cancel exactly — which is why $1/x$ has such a clean expansion, and a reminder that the $n!$ in Taylor's theorem is there precisely to undo the $n!$ that repeated differentiation produces.
+</Aside>
+
+<WhereThisGoes level="l7">
+Induction on the order of differentiation is the standard proof technique for every higher-derivative formula: the Leibniz rule $(fg)^{(n)} = \sum\binom nk f^{(k)}g^{(n-k)}$, Faà di Bruno's formula for the derivatives of a composition, and Rodrigues' formulas for the classical orthogonal polynomials. The Leibniz rule in particular is the differential twin of the binomial theorem, and the shared $\binom nk$ is not a coincidence — both are counting the same choices, which is the observation that leads to umbral calculus and to the theory of Sheffer sequences. In a different direction, the fact that $f^{(n)}$ determines a Taylor series, and the question of when that series converges back to $f$, is where real analysis and complex analysis part company: over $\mathbb{C}$ differentiability once forces analyticity, while over $\mathbb{R}$ the function $e^{-1/x^2}$ is smooth with every derivative zero at the origin and is not the sum of its Taylor series anywhere near it.
+</WhereThisGoes>

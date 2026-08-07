@@ -1,0 +1,68 @@
+---
+level: l2
+title: Every new toy doubles it
+readingTimeMin: 4
+newTerms: ["in or out"]
+anchorExample: "a line of dominoes"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+
+How many different bags can you pack from a pile of toys? Let's count.
+
+| Toys | Bags you could pack | How many |
+|---|---|---|
+| $0$ | just the empty bag | $1$ |
+| $1$ | empty, or the bear | $2$ |
+| $2$ | empty, bear, truck, both | $4$ |
+| $3$ | (go and count!) | $8$ |
+
+$1, 2, 4, 8$. It doubles every time.
+
+## Why it doubles
+
+Here is the reason, and it is lovely.
+
+Suppose you already know all the bags you can make from your old toys. Now somebody hands you **one new toy**.
+
+Every bag you make now has to answer one question about that new toy: **in or out?**
+
+So take any old bag. You can make *two* new bags from it — one with the new toy dropped in, one without.
+
+Old bags, doubled. That is why the count doubles.
+
+## The domino argument
+
+<Proof level="l2">
+**Push the first one.** With $0$ toys, there is exactly $1$ bag — the empty one. ✓
+
+**Check the chain.** Suppose you know how many bags you can make from some pile of toys.
+
+Add one more toy. Every old bag turns into two: with the new toy, and without.
+
+So the count doubles. ✓
+
+Both jobs done. So the count keeps doubling forever.
+</Proof>
+
+## Do not forget the empty bag
+
+The empty bag is the one people forget, and leaving it out breaks the pattern.
+
+With $2$ toys you get $4$ bags, and one of them is empty. Drop it and you have $3$ — and $3$ is not double anything nice.
+
+Module 2.1 said an empty box is still a box. This is why it matters.
+
+<Aside>
+There is a second way to see it. Line your toys up and, for each one, say "in" or "out." Every list of in-and-out choices gives a different bag.
+
+With $3$ toys: the first toy gives $2$ ways. Each of those splits into $2$ when you decide about the second toy — that is $4$. Each of *those* splits into $2$ again for the third — that is $8$.
+
+Same answer, no dominoes needed. Two proofs of one fact!
+</Aside>
+
+<TryIt>
+Take 4 toys and work out how many bags — without listing them. (Double the answer for 3.) Then check by listing a few.
+</TryIt>

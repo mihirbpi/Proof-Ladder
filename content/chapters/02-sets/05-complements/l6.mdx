@@ -1,0 +1,130 @@
+---
+level: l6
+title: Complements and suppose not
+readingTimeMin: 9
+newTerms: ["complement", "proof by contradiction"]
+anchorExample: "the quadrilateral family and loci of points"
+---
+
+import VennTwo from '@/components/VennTwo.astro';
+import Figure from '@/components/Figure.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Your course calls it *indirect proof*: assume the opposite, follow it until something impossible appears, conclude the opposite was wrong. This module names the operation that produces "the opposite", and then justifies the technique — which your textbook uses without ever quite explaining why it is allowed.
+
+## Complement
+
+Fix an ambient set $U$. For $S \subseteq U$, the **complement** is
+
+$$
+\overline{S} = \{\,x \in U : x \notin S\,\}.
+$$
+
+Complement is $\neg$, exactly as $\cap$ was $\wedge$.
+
+<Figure alt="Two overlapping circles inside a dashed rectangle, with the region of the rectangle outside both circles shaded." caption="Everything in the ambient set that is outside S.">
+  <VennTwo labelS="S" labelT="T" shade={["outside", "T-only"]} universe="U" />
+</Figure>
+
+<Warning title="The ambient set decides the answer">
+Let $S$ be the points of a circle.
+
+- In the **plane**, $\overline{S}$ is the interior together with the exterior.
+- In **space**, $\overline{S}$ additionally contains every point off the plane.
+
+Same $S$, different complements. A complement without a stated $U$ is not a set — it is an unfinished description, and the dashed box in the figure is drawn precisely to keep $U$ visible.
+</Warning>
+
+Two facts, both immediate:
+
+$$\overline{\overline{S}} = S, \qquad S \cap \overline{S} = \emptyset, \qquad S \cup \overline{S} = U.$$
+
+The first is $\neg\neg p \equiv p$. The second is that $p \wedge \neg p$ is a contradiction. The third is that $p \vee \neg p$ is a tautology — the law of the excluded middle, and the licence for every case split you have ever written.
+
+## Why indirect proof works
+
+Here is the argument your textbook leaves implicit.
+
+You want to prove $q$. Suppose instead $\neg q$, and derive a contradiction — some statement $r \wedge \neg r$.
+
+A contradiction is false in every row of its truth table. If $\neg q$ implied it, then $\neg q$ cannot be true, since a true statement never implies a false one. So $\neg q$ is false, and by $\neg\neg q \equiv q$, $q$ is true.
+
+**The named move is suppose not.** In set language: you show that $\overline{Q}$ is empty, and therefore $Q$ is everything.
+
+## The standard shape
+
+> **Suppose not.** Suppose $\neg q$.
+>
+> … derivation, using $\neg q$ freely, and the hypotheses too …
+>
+> This contradicts [some established fact]. Hence $q$.
+
+Three obligations, and all three are places students lose marks:
+
+1. **State the assumption explicitly.** A reader must know which sentences are being made under a false supposition.
+2. **Name the contradiction.** Not "this is impossible" — *"this contradicts the Triangle Inequality"*, or *"this contradicts our assumption that $\ell_1 \neq \ell_2$."*
+3. **Discharge it.** The final line must return to $q$. A proof that stops at the contradiction has not stated its conclusion.
+
+## A geometry example
+
+> **Proposition.** In a plane, if $\ell_1 \parallel \ell_2$ and $\ell_2 \parallel \ell_3$, then $\ell_1 \parallel \ell_3$.
+
+<Discussion>
+  <div slot="know">Parallel means coplanar and non-intersecting. Available: through a point not on a given line there is exactly one parallel to it (the Parallel Postulate).</div>
+  <div slot="want">$\ell_1 \parallel \ell_3$.</div>
+  <div slot="how">Directly, we would have to show no point of $\ell_1$ lies on $\ell_3$ — infinitely many points to check, and no way to start. Suppose not: they meet somewhere, and that gives us a *specific point* to reason about. Uniqueness in the Parallel Postulate is what will break.</div>
+</Discussion>
+
+<Proof>
+Suppose not: suppose $\ell_1$ and $\ell_3$ are not parallel. Being coplanar, they meet at some point $P$.
+
+Then $P$ lies on $\ell_1$, which is parallel to $\ell_2$, and $P$ lies on $\ell_3$, which is also parallel to $\ell_2$.
+
+So $\ell_1$ and $\ell_3$ are two distinct lines through $P$, each parallel to $\ell_2$. This contradicts the Parallel Postulate, which gives exactly one such line.
+
+Hence $\ell_1 \parallel \ell_3$.
+</Proof>
+
+Notice what "suppose not" bought. Directly, the goal was a claim about infinitely many non-intersections. Negated, it produced a single named point $P$ — something to work with. **That trade is the reason for the technique**, and it is worth watching for: when your goal is a negative claim, its negation is usually a positive one.
+
+## A set proposition
+
+> **Proposition.** If $A \subseteq B$, then $\overline{B} \subseteq \overline{A}$.
+
+Complementation reverses inclusion. This is contraposition (module 1.8) in set clothing.
+
+<Proof>
+Let $x$ be an arbitrary element of $\overline{B}$, so $x \in U$ and $x \notin B$.
+
+Suppose, for contradiction, that $x \in A$. Since $A \subseteq B$, it follows that $x \in B$ — contradicting $x \notin B$.
+
+So $x \notin A$, and therefore $x \in \overline{A}$. Since $x$ was arbitrary, $\overline{B}\subseteq\overline{A}$.
+</Proof>
+
+<Aside>
+That proof was a contradiction wrapped around a contrapositive — exactly the pattern module 1.8 warned about. The inner argument is just: $x \in A \Rightarrow x \in B$, contraposed.
+
+Written directly: *let $x \in \overline B$. Since $A \subseteq B$ gives $x \in A \Rightarrow x \in B$, the contrapositive gives $x \notin B \Rightarrow x \notin A$. Hence $x \in \overline A$.* Shorter, and no false assumption to carry.
+
+Run the self-check on your own indirect proofs. If you never used the contradiction — if you only derived $\neg p$ from $\neg q$ — remove the wrapper.
+</Aside>
+
+## When to reach for it
+
+Contradiction earns its cost when the goal is:
+
+- **a negation** — "no triangle has two right angles"
+- **a uniqueness claim** — "suppose two, and they must coincide"
+- **an impossibility** — "$\sqrt2$ is not rational" (Chapter 4)
+- **a claim about infinitely many cases**, like the parallel proposition above
+
+In each, the negation supplies a concrete object where the original supplied none.
+
+<Warning title="Contradiction is not a default">
+The genuine cost is that every intermediate line is stated under a false assumption, so nothing you derive is true. A reader must hold that in mind throughout, and a long contradiction proof is genuinely harder to check than a long direct one.
+
+There is also a failure mode: deriving a contradiction from a mistake of your own rather than from the assumption. When a contradiction appears, look at whether the assumption really caused it — because if the error is yours, the proof establishes nothing.
+</Warning>

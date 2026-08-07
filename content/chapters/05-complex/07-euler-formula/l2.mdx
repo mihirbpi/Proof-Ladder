@@ -1,0 +1,54 @@
+---
+level: l2
+title: The i-cycle
+readingTimeMin: 3
+newTerms: ["the cycle"]
+anchorExample: "turning a quarter turn"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Aside from '@/components/Aside.astro';
+
+Multiplying by $i$ turns you a quarter turn. So what happens if you keep going?
+
+Start at $1$ — facing right.
+
+Multiply by $i$: you get $i$. Facing up.
+
+Multiply by $i$ again. Now you are facing **left** — the opposite of where you began.
+
+Again: facing **down**.
+
+Again: facing **right**. **Home!**
+
+## The pattern
+
+> **up**, then **left**, then **down**, then **right** — and then up again, forever.
+
+Four steps and it repeats. Forever. We call it **the cycle**.
+
+It never gets more complicated than those four directions. No matter how many times you multiply by $i$, you are always facing one of those four ways.
+
+## Which one will you land on?
+
+Just count around. Multiply by $i$ seven times?
+
+Seven is four and three more. The four take you all the way round, so they do not count. You only really do three: up, then left, then **down**.
+
+So you end up facing down.
+
+## Why grown-ups care
+
+There is a famous formula in mathematics with $i$ in it, and it connects turning to a completely different part of mathematics.
+
+You will not meet the formula properly for years. But when you do, the thing that makes it work is exactly **the cycle** you just found — four steps and back to the start.
+
+Sometimes the small idea a young person can hold in their hand is the same idea doing the heavy lifting in a formula on a university blackboard.
+
+<Aside>
+The formula is $e^{i\theta} = \cos\theta + i\sin\theta$, and people call it one of the most beautiful in mathematics. Every symbol in it is something you can meet later. The cycle is what splits it into two halves.
+</Aside>
+
+<TryIt>
+Start facing a wall. Make 6 quarter turns, counting out loud. Where do you end up? Now work out where 10 turns would put you — without doing them.
+</TryIt>

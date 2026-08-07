@@ -1,0 +1,132 @@
+---
+level: l6
+title: Composition
+readingTimeMin: 8
+newTerms: ["composition"]
+anchorExample: "rigid motions of the plane"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Your definition of congruence says: two figures are congruent when **a sequence of rigid motions** carries one onto the other. A sequence — reflect, then translate, then rotate.
+
+Doing one function after another is composition, and this module gives it a symbol and its properties.
+
+## Definition
+
+For $f : S\to T$ and $g : T\to U$, the **composition** $g\circ f : S \to U$ is
+
+$$
+(g\circ f)(s) = g\big(f(s)\big).
+$$
+
+Apply $f$ first, then $g$.
+
+<Warning title="Read right to left">
+In $g\circ f$, the function on the **right** acts first.
+
+The order looks backwards and there is a reason for it: it makes $(g\circ f)(s) = g(f(s))$ come out with $f$ next to $s$, matching the nesting of the parentheses. You get used to it, and everyone finds it awkward at first.
+
+The composition is defined only when the codomain of $f$ equals the domain of $g$. Otherwise $g$ receives inputs it was not defined on, and totality fails.
+</Warning>
+
+## Compositions of rigid motions
+
+Let $\sigma_1$ be reflection in the $x$-axis and $\sigma_2$ reflection in the $y$-axis.
+
+$$\sigma_1(x,y)=(x,-y), \qquad \sigma_2(x,y)=(-x,y)$$
+$$(\sigma_2\circ\sigma_1)(x,y) = \sigma_2(x,-y) = (-x,-y).$$
+
+That is the $180°$ rotation about the origin. **Two reflections composed give a rotation** — a theorem your course proves geometrically, and here it falls out of one line of algebra.
+
+More generally: reflecting in two intersecting lines gives a rotation about their intersection point through twice the angle between them. Reflecting in two parallel lines gives a translation. Every rigid motion of the plane is a composition of at most three reflections, which is a genuinely surprising classification theorem and a good reason to take composition seriously.
+
+## Order matters
+
+$$(\sigma_1\circ\sigma_2)(x,y) = \sigma_1(-x,y) = (-x,-y),$$
+
+which happens to agree here. But take $\tau(x,y)=(x+1,y)$, a translation, and $\sigma_1$ as above:
+
+$$(\sigma_1\circ\tau)(x,y) = \sigma_1(x+1,y) = (x+1,-y)$$
+$$(\tau\circ\sigma_1)(x,y) = \tau(x,-y) = (x+1,-y)$$
+
+Equal — try instead $\tau'(x,y)=(x,y+1)$:
+
+$$(\sigma_1\circ\tau')(x,y) = (x, -y-1), \qquad (\tau'\circ\sigma_1)(x,y) = (x,-y+1).$$
+
+Different. **Composition is not commutative**, and the geometric reason is visible: reflecting then sliding up is not the same as sliding up then reflecting, because the reflection changes which way "up" ends up pointing.
+
+## Associativity
+
+$$
+(h\circ g)\circ f = h\circ(g\circ f).
+$$
+
+<Proof>
+Both sides are functions from $S$ to the codomain of $h$, so it suffices to show they agree at every input.
+
+Let $s \in S$ be arbitrary. Then
+$$\big((h\circ g)\circ f\big)(s) = (h\circ g)\big(f(s)\big) = h\Big(g\big(f(s)\big)\Big),$$
+$$\big(h\circ(g\circ f)\big)(s) = h\big((g\circ f)(s)\big) = h\Big(g\big(f(s)\big)\Big).$$
+
+The results agree, and $s$ was arbitrary.
+</Proof>
+
+Both sides unwound to the same expression, and every step was a definition. Associativity is what lets you write $h\circ g\circ f$ without parentheses — and in geometric terms, it is why "a sequence of rigid motions" needs no bracketing to be meaningful.
+
+## The identity
+
+$\operatorname{id}_S : S\to S$, $\operatorname{id}_S(s)=s$, satisfies
+
+$$f\circ \operatorname{id}_S = f, \qquad \operatorname{id}_T\circ f = f.$$
+
+Geometrically it is the transformation that moves nothing. Your course includes it among the rigid motions — sometimes reluctantly — and it must be there, because it is what a rotation by $360°$ equals, and because congruence would not be reflexive without it.
+
+## Composition preserves both properties
+
+> **Proposition.** If $f: S\to T$ and $g : T\to U$ are injective, then $g\circ f$ is injective.
+
+<Discussion>
+  <div slot="know">Both injectivity hypotheses, in the contrapositive form from module 3.5: equal outputs force equal inputs.</div>
+  <div slot="want">$(g\circ f)(s_1) = (g\circ f)(s_2) \Rightarrow s_1 = s_2$.</div>
+  <div slot="how">Peel off one function at a time. Apply $g$'s injectivity first — it is the outer one — and then $f$'s.</div>
+</Discussion>
+
+<Proof>
+Suppose $(g\circ f)(s_1) = (g\circ f)(s_2)$, that is, $g\big(f(s_1)\big) = g\big(f(s_2)\big)$.
+
+Since $g$ is injective, $f(s_1) = f(s_2)$.
+
+Since $f$ is injective, $s_1 = s_2$.
+
+Hence $g\circ f$ is injective.
+</Proof>
+
+> **Proposition.** If $f$ and $g$ are surjective, then $g\circ f$ is surjective.
+
+<Proof>
+Let $u \in U$ be arbitrary.
+
+Since $g$ is surjective, there is $t \in T$ with $g(t)=u$.
+
+Since $f$ is surjective, there is $s \in S$ with $f(s)=t$.
+
+Then $(g\circ f)(s) = g\big(f(s)\big) = g(t) = u$.
+
+Since $u$ was arbitrary, $g\circ f$ is surjective.
+</Proof>
+
+Notice the two proofs run in **opposite directions**. The injectivity proof peeled outward-in; the surjectivity proof chased a witness backwards from the target. That difference is the quantifier structure of the two definitions, and it recurs every time these properties appear.
+
+Applied to geometry: since every rigid motion is injective (module 3.5) and surjective (module 3.6), **every composition of rigid motions is both**. That is what your congruence definition quietly relies on, and it is now proved rather than assumed.
+
+<Aside>
+A set with an associative operation and an identity is a **monoid**; if every element also has an inverse, it is a **group**.
+
+The rigid motions of the plane, under composition, form a group — associativity from this module, identity from this module, inverses from module 3.9. It is called the Euclidean group, and Felix Klein proposed in 1872 that geometry *is* the study of what such a group leaves unchanged.
+
+On that view, the difference between the geometry you are learning and the geometry of similar figures is nothing but the difference between two groups: allow dilations and lengths stop being preserved, but angles still are. Your course's two chapters on congruence and similarity are two groups, and the theorems in each are exactly the properties its group preserves.
+</Aside>

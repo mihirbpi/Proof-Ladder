@@ -1,0 +1,134 @@
+---
+level: l6
+title: Proving divisibility facts
+readingTimeMin: 8
+newTerms: ["without loss of generality"]
+anchorExample: "coordinates, lengths, and the Pythagorean theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every proof in this module has the same skeleton. Once you have seen it three times you can write the fourth without thinking, which is exactly what practice is for.
+
+> **The template.** Unpack each hypothesis into an equation. Do algebra until the target form $b = a\cdot(\text{something})$ appears. Check the something is an integer, citing closure.
+
+The named move is **start from what you're given**.
+
+## Transitivity
+
+> **Proposition.** If $a \mid b$ and $b\mid c$, then $a \mid c$.
+
+<Discussion>
+  <div slot="know">Two existential hypotheses, so two witnesses — and they need different letters.</div>
+  <div slot="want">An integer $m$ with $c = am$.</div>
+  <div slot="how">Substitute one equation into the other. The witness will be a product, and closure of $\mathbb{Z}$ under multiplication finishes it.</div>
+</Discussion>
+
+<Proof>
+Since $a\mid b$, there is an integer $j$ with $b = aj$.
+
+Since $b \mid c$, there is an integer $k$ with $c = bk$.
+
+Substituting,
+$$c = bk = (aj)k = a(jk),$$
+using associativity of multiplication.
+
+Since $\mathbb{Z}$ is closed under multiplication, $jk\in\mathbb{Z}$. Hence $a \mid c$.
+</Proof>
+
+Compare this with transitivity of $\subseteq$ from module 2.3, and with transitivity of congruence in your geometry course. **Same shape, three subjects** — chain two facts, and the middle object drops out.
+
+## Linear combinations
+
+> **Proposition.** If $a\mid b$ and $a\mid c$, then $a \mid (bx + cy)$ for all integers $x, y$.
+
+<Proof>
+Let $x, y$ be arbitrary integers.
+
+Since $a\mid b$, there is $j\in\mathbb{Z}$ with $b = aj$; since $a\mid c$, there is $k\in\mathbb{Z}$ with $c = ak$.
+
+Then
+$$bx + cy = ajx + aky = a(jx+ky),$$
+by the distributive law.
+
+Since $\mathbb{Z}$ is closed under multiplication and addition, $jx+ky\in\mathbb{Z}$. Hence $a\mid(bx+cy)$.
+</Proof>
+
+This one proposition contains a family of results. Take $x=y=1$: $a \mid (b+c)$. Take $x=1, y=-1$: $a\mid(b-c)$. Take $y=0$: $a \mid bx$.
+
+**Proving the general statement once is cheaper than proving four special cases**, and recognising that a batch of exercises are instances of one theorem is a skill worth developing early.
+
+## What does not hold
+
+<Warning title="Divisibility does not split across products">
+$$a \mid bc \quad\text{does not imply}\quad a\mid b \ \text{ or } \ a \mid c.$$
+
+**Counterexample.** $4 \mid 12$ and $12 = 2\cdot 6$, but $4\nmid 2$ and $4 \nmid 6$.
+
+The factor $4$ was assembled from a $2$ in each — neither factor carried it alone.
+
+The implication **does** hold when $a$ is prime, and that is a theorem (Euclid's lemma) rather than an obvious fact. Its proof is genuinely harder than anything in this module, and the $\sqrt2$ argument in module 4.7 depends on it.
+
+Two more failures worth knowing: $a\mid c$ and $b \mid c$ do not give $ab\mid c$ (take $2\mid 12$, $6\mid12$, $12\mid 12$ — that one works; but $4\mid 12$ and $6\mid 12$ while $24\nmid12$). And $a \mid (b+c)$ does not give $a\mid b$ or $a \mid c$: $5 \mid (2+3)$.
+</Warning>
+
+## Antisymmetry
+
+> **Proposition.** If $a\mid b$ and $b\mid a$ with $a,b$ positive, then $a = b$.
+
+<Proof>
+There are integers $j, k$ with $b = aj$ and $a = bk$.
+
+Substituting, $a = (aj)k = a(jk)$. Since $a$ is positive, it is non-zero, so we may cancel: $jk = 1$.
+
+The only integer factorisations of $1$ are $1\cdot1$ and $(-1)(-1)$. Since $a$ and $b$ are positive, $j$ and $k$ are positive, so $j = k = 1$.
+
+Hence $b = a\cdot 1 = a$.
+</Proof>
+
+The step *"the only integer factorisations of $1$"* is where the proof lives, and it is a fact about $\mathbb{Z}$ specifically — over the rationals, $jk=1$ has infinitely many solutions, and the proof would collapse.
+
+Together with reflexivity and transitivity, this makes $\mid$ a **partial order** on the positive integers, exactly like $\subseteq$ from module 2.3 — and with the same feature: $4$ and $6$ are incomparable, since neither divides the other.
+
+## Without loss of generality
+
+Some proofs have cases that are genuinely identical up to renaming. Writing both is waste, and there is a standard phrase for skipping one.
+
+> **Proposition.** For integers $a$ and $b$, if $ab$ is odd then both are odd.
+
+<Proof>
+We prove the contrapositive: if $a$ or $b$ is even, then $ab$ is even.
+
+**Without loss of generality**, assume $a$ is even — the other case follows by exchanging the roles of $a$ and $b$, which is legitimate because multiplication is commutative.
+
+Then $a = 2j$ for some integer $j$, so $ab = 2(jb)$ with $jb \in\mathbb{Z}$. Hence $ab$ is even.
+</Proof>
+
+<Warning title="WLOG requires a stated symmetry">
+The phrase is a promise that the omitted case is the written one with letters swapped, and it is only valid when a genuine symmetry exists. Here, commutativity of multiplication supplies it, and the proof says so.
+
+Using WLOG on cases that are not symmetric is a way of skipping the hard half. If you cannot name the symmetry in one clause, write both cases out.
+</Warning>
+
+<Aside>
+The linear-combination proposition is more important than it looks.
+
+The set $\{bx + cy : x, y \in\mathbb{Z}\}$ of all integer combinations of $b$ and $c$ turns out to be exactly the set of multiples of $\gcd(b,c)$. So the proposition says: any common divisor of $b$ and $c$ divides the gcd.
+
+That result — Bézout's identity — is what the Euclidean algorithm computes, and it is the foundation of the number theory behind public-key cryptography. The three-line proof above is the first step of a genuinely deep theorem.
+</Aside>
+
+## Checklist
+
+When your divisibility proof stalls, work through these:
+
+1. Did you unpack **every** hypothesis into an equation?
+2. Did you use **different letters** for different witnesses?
+3. Have you written the goal in the form $b = a\cdot(\ ?\ )$, so you know what to aim at?
+4. Did you verify the witness is an integer, and say which closure property?
+5. Did you assume something that only holds for primes?
+
+Most stalls are item 3. Writing the target form before doing algebra tells you what the algebra is for.

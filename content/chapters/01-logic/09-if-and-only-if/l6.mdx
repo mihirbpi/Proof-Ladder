@@ -1,0 +1,122 @@
+---
+level: l6
+title: If and only if
+readingTimeMin: 9
+newTerms: ["biconditional", "if and only if"]
+anchorExample: "vertical angles and the base-angle theorem"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.7 kept insisting that a conditional and its converse are different statements. Sometimes, though, both are true — and then you have something stronger, worth a symbol of its own.
+
+The **biconditional** $p \Leftrightarrow q$, read "$p$ if and only if $q$", abbreviates
+$$
+(p \Rightarrow q) \wedge (q \Rightarrow p).
+$$
+
+The named move is **check both boxes**.
+
+## Truth table
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ⇒ q", "q ⇒ p", "p ⇔ q"]}
+  rows={[
+    { p: true,  q: true,  "p ⇒ q": true,  "q ⇒ p": true,  "p ⇔ q": true  },
+    { p: true,  q: false, "p ⇒ q": false, "q ⇒ p": true,  "p ⇔ q": false },
+    { p: false, q: true,  "p ⇒ q": true,  "q ⇒ p": false, "p ⇔ q": false },
+    { p: false, q: false, "p ⇒ q": true,  "q ⇒ p": true,  "p ⇔ q": true  }
+  ]}
+/>
+
+$p \Leftrightarrow q$ is true exactly in the rows where $p$ and $q$ **agree**. It says nothing about whether either is true — only that they stand or fall together.
+
+Notice the last column matches the "$\equiv$" test from module 1.3, but the two are not the same kind of object. $p \Leftrightarrow q$ is a *statement*, with a truth value that can vary. $p \equiv q$ is a *claim about* two statements, asserting their columns agree in every row. Their relationship: $p\equiv q$ holds exactly when $p\Leftrightarrow q$ is a tautology.
+
+## Your textbook's definitions are biconditionals
+
+This is the practical payoff, and it is easy to miss.
+
+> A triangle is **isosceles** if it has two congruent sides.
+
+That "if" is really "if and only if". Definitions always work both ways: from *isosceles* you may conclude two congruent sides, and from two congruent sides you may conclude *isosceles*. If definitions were one-directional, you could never use them to *establish* that a figure is isosceles — only to draw consequences once someone told you it was.
+
+The convention is old and universal: **in a definition, "if" means "if and only if."** Every other "if" in your book means only what it says.
+
+<Warning title="Theorems are not definitions">
+> If a quadrilateral is a parallelogram, then its diagonals bisect each other.
+
+That is a *theorem*, and its converse also happens to be true — but only because your book proves it separately, on a different page, with a different argument. The truth of one direction never licenses the other.
+
+The test: is the sentence introducing a new word? If yes, it is a definition and runs both ways. If it relates two things you already have words for, it is a theorem and runs one way until someone proves otherwise.
+</Warning>
+
+## Proving a biconditional
+
+A biconditional is a conjunction, so it needs **two proofs**. Standard practice labels them:
+
+> **($\Rightarrow$)** Suppose $p$. … Therefore $q$.
+>
+> **($\Leftarrow$)** Suppose $q$. … Therefore $p$.
+
+The labels are not decoration. Without them a reader cannot tell which direction they are reading, and a proof of one direction twice looks exactly like a proof of both.
+
+> **Proposition.** A parallelogram is a rectangle if and only if its diagonals are congruent.
+
+<Discussion>
+  <div slot="know">Parallelogram properties: opposite sides congruent, opposite angles congruent, consecutive angles supplementary. Plus SSS and CPCTC.</div>
+  <div slot="want">Both directions, and they will not look alike.</div>
+  <div slot="how">Forward, congruent right angles plus shared sides give SAS on two triangles. Backward, congruent diagonals plus shared sides give SSS, then CPCTC produces congruent consecutive angles — and consecutive angles of a parallelogram are supplementary, so congruent-and-supplementary forces $90°$.</div>
+</Discussion>
+
+<Proof>
+Let $ABCD$ be a parallelogram.
+
+**($\Rightarrow$)** Suppose $ABCD$ is a rectangle. Then $\angle ABC$ and $\angle DCB$ are both right angles, hence congruent. Opposite sides of a parallelogram are congruent, so $\overline{AB}\cong\overline{DC}$, and $\overline{BC}$ is shared. By SAS, $\triangle ABC \cong \triangle DCB$, so by CPCTC the diagonals $\overline{AC}$ and $\overline{DB}$ are congruent.
+
+**($\Leftarrow$)** Suppose $\overline{AC}\cong\overline{DB}$. Again $\overline{AB}\cong\overline{DC}$ and $\overline{BC}$ is shared, so by SSS, $\triangle ABC \cong \triangle DCB$. By CPCTC, $\angle ABC \cong \angle DCB$. These are consecutive angles of a parallelogram, hence supplementary; two congruent supplementary angles each measure $90°$. A parallelogram with one right angle has four, so $ABCD$ is a rectangle.
+</Proof>
+
+The two halves used *different criteria* — SAS one way, SSS the other. That is typical, and it is why the two proofs cannot be merged.
+
+<Aside>
+When both directions genuinely are the same argument reversed, you may write a chain of equivalences:
+$$
+p \Leftrightarrow p_1 \Leftrightarrow p_2 \Leftrightarrow q.
+$$
+This is efficient and it is dangerous. Every link must be reversible, and steps that feel reversible often are not — squaring both sides, multiplying by a quantity that might be zero, taking a square root.
+
+Until checking reversibility is automatic, write the two directions out. A wrong iff-chain is much harder to spot than a wrong one-directional proof.
+</Aside>
+
+## One direction by contrapositive
+
+Nothing requires both halves to be direct proofs. Each direction is an independent conditional, and each may be attacked with whatever technique suits it — including flipping it around (module 1.8).
+
+> **Proposition.** For an integer $n$: $n$ is even if and only if $n^2$ is even.
+
+**($\Rightarrow$)** If $n = 2k$ then $n^2 = 4k^2 = 2(2k^2)$, even. Direct, and easy.
+
+**($\Leftarrow$)** Directly, you would have to extract information about $n$ from information about $n^2$ — the hard direction. So contrapose: if $n$ is odd, then $n = 2k+1$ and
+$$
+n^2 = 4k^2 + 4k + 1 = 2(2k^2+2k)+1,
+$$
+which is odd. Hence $n^2$ even forces $n$ even.
+
+Different techniques for the two halves is the normal case, not an exception. Chapter 4 uses precisely this proposition inside the proof that $\sqrt2$ is irrational.
+
+## Other phrasings
+
+All of these mean $p \Leftrightarrow q$:
+
+- $p$ **iff** $q$ — standard written abbreviation
+- $p$ is **necessary and sufficient** for $q$
+- $p$ **exactly when** $q$
+- $p$ and $q$ are **equivalent**
+
+Watch the last one. In everyday use "equivalent" is vague; in mathematics it is a precise two-directional claim, and a paper that says "the following are equivalent" then lists four conditions is promising you a cycle of implications covering all twelve directions — usually proved as $(1)\Rightarrow(2)\Rightarrow(3)\Rightarrow(4)\Rightarrow(1)$.

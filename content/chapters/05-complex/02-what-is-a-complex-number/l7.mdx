@@ -1,0 +1,72 @@
+---
+level: l7
+title: What a complex number is
+readingTimeMin: 8
+newTerms: ["complex number", "real part", "imaginary part", "purely imaginary"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\mathbb{C} = \{a + bi : a,b \in \mathbb{R}\}, \qquad i^2 = -1,
+$$
+with $\operatorname{Re}(a+bi) = a$ and $\operatorname{Im}(a+bi) = b$, both **real-valued**. So $\operatorname{Re}, \operatorname{Im} : \mathbb{C}\to\mathbb{R}$ are functions in the sense of Chapter 3, and $z = \operatorname{Re}(z) + i \operatorname{Im}(z)$.
+
+$$
+a+bi = c+di \iff a = c \wedge b = d.
+$$
+
+The representation is unique, which is what makes $\operatorname{Re}$ and $\operatorname{Im}$ well defined (§3.1) — and it is the source of the chapter's most productive technique: **one complex equation is two real equations**, extracted by comparing parts.
+
+<Warning title="Im(z) ∈ ℝ">
+$\operatorname{Im}(3+4i) = 4$, not $4i$. This is not a quibble: $\operatorname{Im}$ appears in $|z|^2 = \operatorname{Re}(z)^2 + \operatorname{Im}(z)^2$ and in $\operatorname{Im}(z) = (z-\bar z)/(2i)$, and both formulas are wrong by a factor of $i$ under the other convention.
+</Warning>
+
+## The tower
+
+> **Proposition.** $\mathbb{R} \subsetneq \mathbb{C}$.
+
+<Proof>
+Let $a \in \mathbb{R}$. Then $a = a + 0i \in \mathbb{C}$, so $\mathbb{R}\subseteq\mathbb{C}$.
+
+$i \in \mathbb{C}$, and $i \notin \mathbb{R}$: if $i$ were real then $i^2 \geq 0$, contradicting $i^2 = -1$.
+</Proof>
+
+$$
+\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R} \subsetneq \mathbb{C},
+$$
+each inclusion a one-line element chase and each properness a single witness ($-1$, $\tfrac12$, $\sqrt2$, $i$), with only $\sqrt2$ requiring real work (§4.7).
+
+Strictly these are **canonical embeddings** rather than literal containments: constructed carefully, the integer $3$, the rational $3/1$, the Dedekind cut $3$, and the pair $(3,0)$ are four distinct objects. What holds is that each system embeds injectively and operation-preservingly in the next, and everyone identifies along the embeddings.
+
+## $\mathbb{C}$ is not orderable
+
+> **Proposition.** There is no order on $\mathbb{C}$ making it an ordered field.
+
+<Proof>
+Suppose such an order existed. In any ordered field $x^2 \geq 0$ for all $x$, by trichotomy and the sign rules. Then $-1 = i^2 \geq 0$ and $1 = 1^2 \geq 0$, so adding, $0 = (-1) + 1 \geq 0 + 0$ gives nothing — instead argue directly: $-1 \geq 0$ implies $0 \geq 1$ by adding $1$, while $1 \geq 0$; hence $0 = 1$, contradicting the field axiom $1 \neq 0$.
+</Proof>
+
+This is a genuine loss, and the trade is explicit: $\mathbb{C}$ buys algebraic closure at the cost of order. Practically, comparisons in $\mathbb{C}$ go through the modulus $|z|$ (§5.6), which is real-valued and ordered — and $|z| < |w|$ is a statement about sizes, not a partial order on $\mathbb{C}$ compatible with multiplication.
+
+Note there *are* orders on $\mathbb{C}$ as a set (lexicographic, say). The proposition says none of them respects the arithmetic, which is the only kind worth having.
+
+## $\mathbb{C}$ versus $\mathbb{R}^2$
+
+The map $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ is a bijection $\mathbb{C}\to\mathbb{R}^2$ and an isomorphism of additive groups and of real vector spaces. $\mathbb{C}$ is a two-dimensional $\mathbb{R}$-vector space with basis $\{1, i\}$.
+
+What is new is the **multiplication**. $\mathbb{R}^2$ has no natural one; $\mathbb{C}$ has one making it a field, and it is essentially unique — the only ways to multiply on $\mathbb{R}^2$ making it a real division algebra give $\mathbb{C}$ up to isomorphism. Every distinctive fact in this chapter (rotation, Euler, De Moivre, the Fundamental Theorem of Algebra) comes from that multiplication.
+
+<Aside>
+$\mathbb{C}$ has exactly two field automorphisms fixing $\mathbb{R}$: the identity and conjugation (§5.4), so $\operatorname{Gal}(\mathbb{C}/\mathbb{R}) \cong \mathbb{Z}/2\mathbb{Z}$. There is no way to distinguish $i$ from $-i$ by any algebraic property — both satisfy $x^2 = -1$ and nothing separates them. The choice of which root to call $i$ is a labelling convention, and conjugation is the symmetry that swaps the two labels.
+
+Without continuity the situation is wilder: $\mathbb{C}$ has $2^{2^{\aleph_0}}$ field automorphisms, all but two of them pathological and requiring the Axiom of Choice to construct.
+</Aside>
+
+<WhereThisGoes level="l7">
+Regarding $\mathbb{C}$ as $\mathbb{R}^2$ with a multiplication is the first case of a rich classification. Frobenius's theorem: the only finite-dimensional associative division algebras over $\mathbb{R}$ are $\mathbb{R}$, $\mathbb{C}$, and the quaternions $\mathbb{H}$. Hurwitz's theorem adds the octonions $\mathbb{O}$ if associativity is dropped, and stops there — normed division algebras exist only in dimensions 1, 2, 4, 8. Those dimensions are not arbitrary; the same list controls which spheres are parallelisable and which appear in the Hopf fibrations, tying an algebraic classification to algebraic topology. Meanwhile the two-dimensionality of $\mathbb{C}$ over $\mathbb{R}$ is what makes complex differentiability so much stronger than real differentiability: a limit must exist along every direction in a plane rather than along a line, and the resulting Cauchy–Riemann equations force holomorphic functions to be analytic — the reason complex analysis is a rigid and beautiful subject rather than a two-variable version of calculus.
+</WhereThisGoes>

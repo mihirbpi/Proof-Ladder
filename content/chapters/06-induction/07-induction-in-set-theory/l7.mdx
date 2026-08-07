@@ -1,0 +1,91 @@
+---
+level: l7
+title: Induction in set theory
+readingTimeMin: 7
+newTerms: ["power set", "characteristic function"]
+anchorExample: "Σ(2j−1) = n²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Theorem.** For finite $S$ with $|S| = n$, $\ |\mathcal{P}(S)| = 2^n$.
+
+## Inductive proof
+
+<Discussion>
+  <div slot="know">Membership of a fixed $a$ partitions $\mathcal{P}(S)$ into two blocks — an exhaustive, disjoint split by excluded middle.</div>
+  <div slot="want">$|\mathcal{P}(S)| = 2^{k+1}$ when $|S|=k+1$.</div>
+  <div slot="how">Remove $a$. Subsets avoiding $a$ *are* $\mathcal{P}(S\setminus\{a\})$; subsets containing $a$ biject with it via $A \mapsto A\setminus\{a\}$. Add the two counts.</div>
+</Discussion>
+
+<Proof>
+*Base.* $|\mathcal{P}(\emptyset)| = |\{\emptyset\}| = 1 = 2^0$.
+
+*Step.* Assume the result for sets of size $k$. Let $|S| = k+1$, fix $a \in S$, $S' = S\setminus\{a\}$.
+
+Partition $\mathcal{P}(S) = \mathcal{U}\sqcup\mathcal{V}$ with $\mathcal{U} = \{A : a\notin A\}$, $\mathcal{V} = \{A : a \in A\}$.
+
+$\mathcal{U} = \mathcal{P}(S')$, so $|\mathcal{U}| = 2^k$ by (IH).
+
+$\varphi : \mathcal{V}\to\mathcal{P}(S')$, $A \mapsto A\setminus\{a\}$, has two-sided inverse $B \mapsto B\cup\{a\}$, hence is a bijection (§3.9); so $|\mathcal{V}| = 2^k$.
+
+Thus $|\mathcal{P}(S)| = 2^k+2^k = 2^{k+1}$.
+</Proof>
+
+The step transferred a count along a bijection rather than recounting — §3.8's principle in use.
+
+## Bijective proof
+
+<Proof title="Second proof">
+For $A \subseteq S$ define its **characteristic function** $\chi_A : S \to \{0,1\}$ by $\chi_A(x) = 1$ iff $x \in A$.
+
+The map $A \mapsto \chi_A$ is a bijection $\mathcal{P}(S)\to\{0,1\}^S$, with inverse $f \mapsto f^{-1}(\{1\})$ — the pre-image, in the sense of §3.3.
+
+A function $S \to \{0,1\}$ is specified by an independent binary choice at each of $n$ points, so $|\{0,1\}^S| = 2^n$.
+</Proof>
+
+This explains the notation $2^S$ for the power set: it is $\{0,1\}^S$, and the cardinality formula $|Y^X| = |Y|^{|X|}$ makes $|2^S| = 2^{|S|}$ automatic. The bijection also transports structure — $\chi_{A\cap B} = \chi_A\chi_B$ and $\chi_{\overline A} = 1 - \chi_A$ — so $\mathcal{P}(S)$ and $\{0,1\}^S$ are isomorphic as Boolean algebras (§2.7), not merely equinumerous.
+
+<Warning title="Level discipline">
+Elements of $\mathcal{P}(S)$ are *sets*. For $S = \{a,b\}$: $a \in S$, $\{a\}\in\mathcal{P}(S)$, $\{a\}\subseteq S$, $\{\{a\}\}\subseteq \mathcal{P}(S)$ — and $a \notin \mathcal{P}(S)$.
+
+Both $\emptyset$ and $S$ belong to $\mathcal{P}(S)$; omitting either destroys the count. And $\mathcal{P}(\emptyset) = \{\emptyset\}$ has one element, not zero — the distinction §2.1 insisted on.
+</Warning>
+
+## Refinement by size
+
+Splitting by cardinality gives
+$$
+2^n = \sum_{k=0}^{n}\binom nk,
+$$
+since $\binom nk$ counts the $k$-element subsets. The same partition argument used above, applied to $k$-subsets, yields Pascal's rule
+$$
+\binom{n}{k} = \binom{n-1}{k-1}+\binom{n-1}{k}
+$$
+— subsets containing $a$ versus not — and hence the binomial theorem by induction. The theorem of this module is the binomial theorem evaluated at $x=y=1$.
+
+## The infinite case
+
+> **Cantor's theorem.** For every set $S$, there is no surjection $S \to \mathcal{P}(S)$.
+
+<Proof>
+Let $f : S \to \mathcal{P}(S)$ and put $D = \{x \in S : x \notin f(x)\} \in \mathcal{P}(S)$.
+
+If $D = f(d)$ for some $d \in S$, then $d \in D \iff d \notin f(d) = D$ — a contradiction. So $D \notin \operatorname{im}(f)$ and $f$ is not surjective.
+</Proof>
+
+This is **not** an induction and cannot be made one: no successor structure is available on an arbitrary set. It is a diagonal argument, the same construction as Russell's paradox (§2.1) and Cantor's uncountability proof (§3.8), used constructively rather than destructively.
+
+The finite theorem says $2^n > n$; Cantor's says the strict inequality survives to every cardinal. So there is no largest set and no largest infinity.
+
+<Aside>
+$|\mathcal{P}(\mathbb{N})| = |\mathbb{R}|$, and whether any cardinal lies strictly between $|\mathbb{N}|$ and $|\mathcal{P}(\mathbb{N})|$ is the continuum hypothesis — independent of ZFC by Gödel and Cohen (§3.8). The finite case is a two-line induction; its infinite analogue is undecidable from the standard axioms. Few contrasts illustrate better that finite combinatorics and set theory are different subjects.
+</Aside>
+
+<WhereThisGoes level="l7">
+Characteristic functions are the bridge between set theory and everything computational: a subset *is* a bit vector, which is how sets are represented in every programming language, and the Boolean-algebra isomorphism above is why bitwise `and`, `or`, and `not` compute $\cap$, $\cup$, and complement. In measure theory, characteristic functions are the building blocks — simple functions are finite combinations of them, and the Lebesgue integral is defined by approximating from below. In topology and logic they generalise to the subobject classifier of a topos, where $\{0,1\}$ is replaced by an object of truth values that need not be two-valued, and the resulting internal logic is intuitionistic (§2.5) rather than classical. The humble fact that a subset is the same as a yes/no answer at each point turns out to be one of the more load-bearing observations in mathematics.
+</WhereThisGoes>

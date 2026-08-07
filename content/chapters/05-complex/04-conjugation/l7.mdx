@@ -1,0 +1,79 @@
+---
+level: l7
+title: Conjugation
+readingTimeMin: 8
+newTerms: ["conjugate", "involution", "field automorphism"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\overline{a+bi} = a - bi.
+$$
+
+Geometrically, reflection in the real axis (§5.5).
+
+## Properties
+
+> **Proposition.** For $z, w \in \mathbb{C}$:
+> $$\overline{\bar z} = z, \quad \overline{z+w} = \bar z + \bar w, \quad \overline{zw} = \bar z \bar w, \quad z\bar z = |z|^2 \in \mathbb{R}_{\geq0},$$
+> $$\operatorname{Re} z = \tfrac{z+\bar z}{2}, \quad \operatorname{Im} z = \tfrac{z-\bar z}{2i}, \quad z \in \mathbb{R} \iff z = \bar z.$$
+
+<Proof>
+Write $z = a+bi$, $w = c+di$.
+
+*Involution.* $\overline{\bar z} = \overline{a-bi} = a+bi = z$.
+
+*Additive.* $\overline{z+w} = \overline{(a+c)+(b+d)i} = (a+c)-(b+d)i = \bar z + \bar w$.
+
+*Multiplicative.* $zw = (ac-bd)+(ad+bc)i$, so $\overline{zw} = (ac-bd)-(ad+bc)i$. And $\bar z\bar w = (a-bi)(c-di) = (ac-bd)-(ad+bc)i$. Equal.
+
+*Norm.* $z\bar z = a^2 - (bi)^2 = a^2+b^2 \geq 0$, vanishing iff $z = 0$.
+
+*Parts.* $z+\bar z = 2a$ and $z - \bar z = 2bi$.
+
+*Fixed points.* If $z \in \mathbb{R}$ then $b = 0$ and $\bar z = z$. Conversely $z = \bar z$ gives $b = -b$, so $b = 0$ and $z \in \mathbb{R}$.
+</Proof>
+
+The first three properties say conjugation is a **field automorphism** of $\mathbb{C}$; the last says its fixed field is exactly $\mathbb{R}$. Since $[\mathbb{C}:\mathbb{R}] = 2$, Galois theory gives $\operatorname{Gal}(\mathbb{C}/\mathbb{R}) = \{\mathrm{id}, \bar{\ }\} \cong \mathbb{Z}/2\mathbb{Z}$.
+
+There is a philosophical point in this. Nothing algebraic distinguishes $i$ from $-i$: both are roots of $x^2+1$, and conjugation is precisely the symmetry that exchanges them. The choice of which to call $i$ is a labelling convention with no mathematical content, and conjugation is the record of that fact.
+
+## The conjugate root theorem
+
+> **Theorem.** Let $p \in \mathbb{R}[x]$ and $z \in \mathbb{C}$ with $p(z) = 0$. Then $p(\bar z) = 0$.
+
+<Proof>
+Write $p(x) = \sum_{k=0}^n c_kx^k$ with $c_k \in \mathbb{R}$. Since conjugation preserves sums and products and fixes reals,
+$$
+p(\bar z) = \sum c_k \bar z^{\,k} = \sum \overline{c_k} \,\overline{z^k} = \overline{\sum c_k z^k} = \overline{p(z)} = \bar 0 = 0.
+$$
+</Proof>
+
+Consequences: non-real roots of real polynomials occur in conjugate pairs; hence every real polynomial of odd degree has a real root; hence every real polynomial factors over $\mathbb{R}$ into linear and irreducible quadratic factors — the quadratics being $(x-z)(x-\bar z) = x^2 - 2\operatorname{Re}(z)x + |z|^2$, which has real coefficients by the proposition.
+
+That last factorisation is what makes partial fractions work over $\mathbb{R}$, and hence what makes every rational function integrable in closed form.
+
+<Warning title="Real coefficients are essential">
+$p(x) = x - i$ has root $i$ but not $\bar i = -i$. The theorem uses $\overline{c_k} = c_k$, which holds only for real coefficients.
+
+Relatedly, $\overline{f(z)} = f(\bar z)$ fails for general functions: it holds for real-coefficient polynomials and power series, and fails for, e.g., $f(z) = iz$.
+</Warning>
+
+## Conjugation is not continuous-linear
+
+$z \mapsto \bar z$ is $\mathbb{R}$-linear but not $\mathbb{C}$-linear: $\overline{iz} = -i\bar z \neq i\bar z$ in general. It is therefore not complex-differentiable anywhere, despite being smooth as a map $\mathbb{R}^2\to\mathbb{R}^2$ — the standard first example showing that complex differentiability is far stronger than real differentiability.
+
+Consequently $\operatorname{Re}$, $\operatorname{Im}$, $|z|$ and $\bar z$ are all non-holomorphic, and any expression involving them cannot be a complex-analytic function. Recognising this at a glance saves a great deal of time in complex analysis.
+
+<Aside>
+Conjugation is one of exactly two *continuous* field automorphisms of $\mathbb{C}$. Dropping continuity, $\mathbb{C}$ has $2^{2^{\aleph_0}}$ automorphisms, constructed by transfinite induction with the Axiom of Choice; all but the identity and conjugation are non-measurable and unwritable. That $\mathbb{R}$ by contrast has *only* the identity — because its order, hence its topology, is determined algebraically by which elements are squares — is a small and striking asymmetry.
+</Aside>
+
+<WhereThisGoes level="l7">
+Conjugation is the prototype of a $*$-operation, and structures carrying one are everywhere: $C^*$-algebras, where $a \mapsto a^*$ generalises it and the axiom $\|a^*a\| = \|a\|^2$ generalises $z\bar z = |z|^2$; Hilbert spaces, where the inner product is conjugate-symmetric and adjoints of operators generalise the conjugate transpose; and quantum mechanics, where self-adjoint operators ($A = A^*$) are the observables precisely because their spectra are real — the operator version of $z = \bar z \iff z \in \mathbb{R}$. In number theory, conjugation on $\mathbb{Q}(\sqrt d)$ plays the same role, and the norm $N(z) = z\bar z$ is the tool that converts questions about algebraic integers into questions about ordinary integers, which is how Pell's equation and sums of two squares are solved.
+</WhereThisGoes>

@@ -1,0 +1,69 @@
+---
+level: l2
+title: Sharing evenly, always
+readingTimeMin: 4
+newTerms: []
+anchorExample: "a line of dominoes"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+
+Here is a list of numbers. Look at it and see if you spot something.
+
+$$0, \quad 3, \quad 15, \quad 63, \quad 255, \quad 1023$$
+
+Try sharing each one among $3$ friends.
+
+$0$? Nothing to share, everyone gets nothing. Fair!
+
+$3$? One each. Fair.
+
+$15$? Five each. Fair.
+
+$63$? Twenty-one each. Fair!
+
+$255$? Eighty-five each. Fair!
+
+Every single one shares fairly among $3$.
+
+## Where the list came from
+
+Each number is made from the one before it, like this: **make four copies, then add three more**.
+
+Check it. Start with $0$. Four copies of nothing is nothing, and $3$ more is $3$. ✓
+
+Four copies of $3$ is $12$, and $3$ more is $15$. ✓
+
+Four copies of $15$ is $60$, and $3$ more is $63$. ✓
+
+So each number is **four copies of the one before, plus three**.
+
+## The domino argument
+
+<Proof level="l2">
+**Push the first one.** The first number is $0$. Does $0$ share fairly among $3$? Yes — everybody gets nothing, and nothing is left over. ✓
+
+**Check the chain.** Suppose some number in the list shares fairly among $3$.
+
+The next number is four copies of that one, plus three.
+
+Four copies of a fair pile is still fair — just give each friend four times their share!
+
+And adding three more is fair too — one extra for each friend.
+
+Fair plus fair is fair. So the next number shares fairly as well. ✓
+
+Both jobs done. So **every** number in the list shares fairly among $3$, forever.
+</Proof>
+
+You just proved something about infinitely many numbers, and you only had to think about two things.
+
+<Aside>
+The list has a hidden rule. Each number is one less than a power of four: $1-1=0$, $4-1=3$, $16-1=15$, $64-1=63$, $256-1=255$. So what you proved is: **one less than any power of four always shares fairly among three.** That is a real fact of number theory, and you got it with counters.
+</Aside>
+
+<TryIt>
+Work out the next number after 1023. (Four copies, then three more.) Now check that it shares fairly among 3.
+</TryIt>

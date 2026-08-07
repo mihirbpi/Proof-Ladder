@@ -1,0 +1,73 @@
+---
+level: l2
+title: Push, then chain
+readingTimeMin: 4
+newTerms: ["the first one", "the chain"]
+anchorExample: "a line of dominoes"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Warning from '@/components/Warning.astro';
+
+To be sure a rule keeps working forever, do two jobs.
+
+**Job one — the first one.** Show the rule works the very first time.
+
+**Job two — the chain.** Show that *whenever* it works once, it works the next time too.
+
+Then it works always. Not because you checked, but because nothing can stop it.
+
+## Let's do it
+
+> **Claim.** Adding up odd numbers always gives a square number.
+
+$1 = 1$. And $1 + 3 = 4$. And $1+3+5 = 9$. So far so good.
+
+<Proof level="l2">
+**Job one — the first one.**
+
+Take just the first odd number: $1$. Is it a square number? Yes — one tile makes a $1$-by-$1$ square. ✓
+
+**Job two — the chain.**
+
+Now suppose the rule has worked so far, and I have added up some odd numbers to get a square.
+
+I want to add in the next odd number and still get a square.
+
+Picture the square made of tiles. Adding the next odd number means adding an L-shaped strip around two sides of it — and an L-shaped strip is exactly what turns a square into the next square up!
+
+So if I had a square, I still have a square. ✓
+
+Both jobs done. So the rule works forever.
+</Proof>
+
+## Is job two cheating?
+
+Here is a worry lots of people have.
+
+*In job two, you assumed the rule worked. But that is what we were trying to show!*
+
+It is a good worry, and here is the answer.
+
+We did **not** say "the rule works." We said something much weaker:
+
+> **If** the rule works once, **then** it works the next time.
+
+That is an if–then, exactly like the promises in module 1.5. And when you prove an if–then, you are allowed to assume the *if* part — that is how if–then works.
+
+Job two never claims the rule is true anywhere. It only claims that truth *spreads*. Job one is what makes it true somewhere in the first place.
+
+Together: true at the start, and it spreads. So true everywhere.
+
+<Warning title="You really do need both">
+Here is a rule that passes job two and fails job one:
+
+> Every number is bigger than itself.
+
+If some number were bigger than itself, the next one would be too. The chain works! But nobody can push the first domino, because no number is bigger than itself. So the rule is false.
+</Warning>
+
+<TryIt>
+Build a square from 4 tiles. Now add 5 more tiles as an L-shape around two sides. Is it a bigger square? Count: 9!
+</TryIt>

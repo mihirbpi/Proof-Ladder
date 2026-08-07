@@ -1,0 +1,125 @@
+---
+level: l6
+title: Induction in number theory
+readingTimeMin: 8
+newTerms: []
+anchorExample: "the polygon angle-sum theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Two templates now combine. Chapter 4 gave the divisibility template — unpack the existential, do algebra, cite closure. Chapter 6 gave the induction template. Divisibility claims indexed by $n$ need both, nested.
+
+## First proof
+
+> **Proposition.** For every integer $n \geq 0$: $\ 3 \mid \left(2^{2n}-1\right)$.
+
+<Discussion>
+  <div slot="know">$A(k)$ says $3\mid(2^{2k}-1)$, which unpacks to $2^{2k}-1 = 3x$ for some integer $x$ — and **$x$, not $k$**, since $k$ is the induction variable.</div>
+  <div slot="want">$3 \mid (2^{2k+2}-1)$: an integer $y$ with $2^{2k+2}-1 = 3y$.</div>
+  <div slot="how">Rearrange the hypothesis to $2^{2k} = 3x+1$, then note $2^{2k+2} = 4\cdot2^{2k}$. Substituting produces the factor of $3$ directly.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ be the statement $3\mid(2^{2n}-1)$, for $n \geq 0$.
+
+**Base case.** $A(0)$: $2^0 - 1 = 0$, and $3\mid0$ since $0 = 3\cdot0$. ✓
+
+**Inductive step.** Let $k\geq0$ and assume $A(k)$. Then there is an integer $x$ with
+$$2^{2k}-1 = 3x, \qquad\text{so}\qquad 2^{2k} = 3x+1.$$
+
+Now
+$$
+\begin{aligned}
+2^{2(k+1)} - 1 &= 2^{2k+2}-1 = 4\cdot 2^{2k} - 1\\
+&= 4(3x+1)-1\\
+&= 12x + 4 - 1\\
+&= 12x+3 = 3(4x+1).
+\end{aligned}
+$$
+
+Since $\mathbb{Z}$ is closed under multiplication and addition, $4x+1\in\mathbb{Z}$. Hence $3 \mid \left(2^{2(k+1)}-1\right)$, which is $A(k+1)$.
+
+By induction, $3\mid(2^{2n}-1)$ for every integer $n\geq0$.
+</Proof>
+
+## The naming discipline
+
+<Warning title="k is taken">
+The inductive hypothesis unpacks an existential, and that existential needs a name. **It cannot be $k$.**
+
+$k$ is already the induction variable. Writing "$2^{2k}-1 = 3k$" claims something specific and false — at $k=2$ it would say $15 = 6$.
+
+Use $x$, or $m$, or $c$. Any letter not in play.
+
+This is module 4.2's rule about different letters for different witnesses, made sharper by the fact that induction has already consumed the obvious one. It is the most common error in this module.
+</Warning>
+
+Also note the rearrangement $2^{2k} = 3x+1$. Getting the hypothesis into a form you can **substitute** is usually the step that makes the algebra work — the raw form $2^{2k}-1 = 3x$ does not slot into $4\cdot2^{2k}-1$ nearly as cleanly.
+
+## Second proof
+
+> **Proposition.** For every integer $n\geq0$: $\ 6\mid(n^3-n)$.
+
+<Proof>
+Let $A(n)$ be the statement $6\mid(n^3-n)$, for $n\geq0$.
+
+**Base case.** $A(0)$: $0^3-0 = 0 = 6\cdot0$. ✓
+
+**Inductive step.** Let $k\geq0$ and assume $A(k)$, so $k^3-k = 6x$ for some integer $x$.
+
+Expand the next case:
+$$
+\begin{aligned}
+(k+1)^3-(k+1) &= k^3+3k^2+3k+1-k-1\\
+&= \big(k^3-k\big) + 3k^2+3k\\
+&= 6x + 3k(k+1).
+\end{aligned}
+$$
+
+Now $k(k+1)$ is a product of consecutive integers, hence even (module 1.12), say $k(k+1)=2y$ with $y \in\mathbb{Z}$. Then
+$$(k+1)^3-(k+1) = 6x + 3\cdot 2y = 6x+6y = 6(x+y),$$
+and $x+y\in\mathbb{Z}$ by closure. So $A(k+1)$ holds.
+
+By induction, $6\mid(n^3-n)$ for all $n\geq0$.
+</Proof>
+
+**Three earlier results were used inside one step**: the inductive hypothesis, the evenness of $k(k+1)$, and closure. Marking each is what makes the proof checkable — and marking *where* the hypothesis enters is the habit from module 6.3.
+
+Note also that the evenness fact came from a case proof back in Chapter 1. Proofs build on proofs; nothing here was rederived.
+
+## The combined template
+
+> 1. State $A(n)$ as a divisibility claim, with its starting value.
+> 2. Base case: usually a one-line arithmetic check.
+> 3. Assume $A(k)$ and **immediately unpack it** into an equation, with a fresh letter.
+> 4. Rearrange the hypothesis into a substitutable form.
+> 5. Expand the $(k+1)$ expression and substitute.
+> 6. Factor out the divisor.
+> 7. Cite closure for the cofactor.
+> 8. Conclude by induction.
+
+Steps 3 and 7 come from Chapter 4; the rest from Chapter 6. **Neither template alone suffices**, and recognising that a problem needs both is itself part of the skill.
+
+## Induction is not always the best route
+
+Module 4.4 proved $3\mid(n^3-n)$ by cases mod $3$: three cases, no induction, and it covered **negative** $n$ too.
+
+The induction proof above of $6\mid(n^3-n)$ only covers $n\geq0$. Extending it to negatives requires a separate argument — or a case proof mod $6$, which handles everything at once.
+
+**Two methods, different reaches.** Cases work when the divisor is small and the expression is a polynomial. Induction works when the expression involves powers like $2^{2n}$, where no finite case split helps.
+
+Choosing between them is the same judgement as module 1.8's decision rule for contrapositives: know both, and pick by the shape of the problem.
+
+<Aside>
+There is a third route to $3\mid(2^{2n}-1)$, and it is shorter than either.
+
+$2^{2n} = 4^n$, and $4 \equiv 1 \pmod 3$. Since congruences can be raised to powers, $4^n\equiv 1^n = 1$, so $4^n - 1\equiv 0$ and $3\mid(4^n-1)$.
+
+Two lines, no induction, no cases. The congruence notation of module 4.4 absorbed the induction into the fact that congruences multiply.
+
+That is a recurring experience: **a well-chosen notation can make an induction disappear.** The induction has not gone away — it is buried in the proof that congruences may be multiplied — but it has been done once, in general, instead of being redone for every problem.
+</Aside>

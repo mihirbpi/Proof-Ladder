@@ -1,0 +1,114 @@
+---
+level: l6
+title: The rules for equality
+readingTimeMin: 8
+newTerms: ["reflexive", "symmetric", "transitive", "equivalence relation"]
+anchorExample: "the parallel postulate"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Your two-column proofs quote these constantly:
+
+> *Reflexive Property of Congruence.* $\overline{AB}\cong\overline{AB}$.
+>
+> *Symmetric Property of Equality.* If $a=b$ then $b=a$.
+>
+> *Transitive Property.* If $a=b$ and $b=c$ then $a=c$.
+
+Your book lists them without explaining why these three, or where they come from. This module answers both questions.
+
+## The first four axioms
+
+Peano's system takes them as **axioms**. For all $x, y, z$ in $\mathbb{N}$:
+
+> **Axiom 1 (Reflexive).** $x = x$.
+>
+> **Axiom 2 (Symmetric).** If $x = y$, then $y = x$.
+>
+> **Axiom 3 (Transitive).** If $x = y$ and $y = z$, then $x = z$.
+>
+> **Axiom 4 (Closure).** If $x = y$ and $x$ is a natural number, then so is $y$.
+
+Nothing here says what equality *is*. The axioms describe how it behaves, which is all any proof ever uses — the same strategy as leaving *point* and *line* undefined.
+
+Axiom 4 looks like bookkeeping and is not. It says equality never carries you out of the system: two names for the same thing name the same kind of thing. Without it, substituting equals for equals could produce something that is not a number.
+
+## Equivalence relations
+
+A relation with the first three properties is an **equivalence relation**. Equality is one. It is not the only one, and the others are what make the concept worth naming.
+
+**Congruence of segments.** $\overline{AB}\cong\overline{AB}$ ✓, symmetric ✓, transitive ✓. Your book lists all three, and now you know why exactly three.
+
+**Similarity of triangles.** Same three properties.
+
+**Same remainder mod $n$.** From module 4.4: reflexive since $a$ and $a$ have the same remainder, symmetric, and transitive.
+
+**Same age.** Reflexive, symmetric, transitive.
+
+Compare with relations that fail:
+
+| Relation | R | S | T |
+|---|---|---|---|
+| $=$ | ✓ | ✓ | ✓ |
+| $\cong$ | ✓ | ✓ | ✓ |
+| $\leq$ | ✓ | ✗ | ✓ |
+| $<$ | ✗ | ✗ | ✓ |
+| $\subseteq$ | ✓ | ✗ | ✓ |
+| $\perp$ | ✗ | ✓ | ✗ |
+| $\parallel$ | — | ✓ | ✓ |
+
+$\leq$ and $\subseteq$ fail symmetry, and that failure is exactly what makes them **orders** rather than equivalences (module 2.3).
+
+Perpendicularity fails two: a line is not perpendicular to itself, and $\ell_1\perp\ell_2$ with $\ell_2\perp\ell_3$ gives $\ell_1\parallel\ell_3$ rather than $\ell_1\perp\ell_3$.
+
+Parallelism is the interesting one. Whether it is reflexive depends on your book's definition: if parallel lines must be *distinct*, then $\ell\not\parallel\ell$ and it fails. Most texts define $\ell\parallel\ell$ to be true precisely to make parallelism an equivalence relation — a definition chosen to get a structural property, which is a thing definitions are allowed to do.
+
+## Congruence is an equivalence relation
+
+Module 3.9 proved the three properties for congruence of figures, using rigid motions:
+
+| Property | Function fact |
+|---|---|
+| $F\cong F$ | the identity is a rigid motion |
+| $F\cong G \Rightarrow G\cong F$ | rigid motions have inverses |
+| $F\cong G,\ G\cong H \Rightarrow F\cong H$ | compositions of rigid motions are rigid motions |
+
+**Your book states these as properties; Chapter 3 proved them.** And the reason they hold is that the rigid motions form a group — identity, inverses, closure under composition, which is exactly the list above.
+
+That correspondence is not a coincidence. **An equivalence relation defined by "some transformation in a group carries one to the other" is automatically reflexive, symmetric, and transitive**, and it is automatic precisely because of the three group properties.
+
+## Partitions
+
+Here is what equivalence relations are *for*.
+
+> **Theorem.** An equivalence relation on a set splits it into disjoint classes, with every element in exactly one class. Conversely, every such splitting arises from an equivalence relation.
+
+The classes are the groups of mutually related elements.
+
+- Same remainder mod $3$ splits $\mathbb{Z}$ into three classes — module 4.4's residue classes.
+- Congruence splits the triangles into classes of mutually congruent ones.
+- Similarity splits them more coarsely: each similarity class contains many congruence classes, one for each size.
+- Equality splits a set into singletons, the finest possible splitting.
+
+**Disjoint and exhaustive**, which is module 1.12's requirement for proof by cases. So every case argument that splits by remainder is licensed by this theorem, and the licence comes from the three properties.
+
+<Warning title="Transitivity needs a genuine middle">
+From $\overline{AB}\cong\overline{CD}$ and $\overline{EF}\cong\overline{CD}$, concluding $\overline{AB}\cong\overline{EF}$ takes **two** steps: symmetry to turn the second into $\overline{CD}\cong\overline{EF}$, then transitivity.
+
+Your two-column proofs often compress this, and the compression is where errors hide. The chain must genuinely link — the object ending the first relation must be the object starting the second.
+
+The same care applies to $\leq$: from $a\leq b$ and $c \leq b$ nothing follows about $a$ and $c$, and no amount of rearranging will make it follow, because $\leq$ is not symmetric.
+</Warning>
+
+<Aside>
+Equivalence relations are how mathematicians build new objects by declaring things equal.
+
+The rational numbers are a case you have used without noticing. $\frac12$ and $\frac24$ are different pairs of integers and the same rational, because $\mathbb{Q}$ is defined as the set of pairs $(a,b)$ with $b\neq0$, under the equivalence $(a,b)\sim(c,d)$ exactly when $ad = bc$. A rational number *is* an equivalence class of pairs.
+
+Module 4.5's remark that "$\frac12$ and $\frac24$ are the same number written two ways" was this theorem, unstated.
+
+The same construction gives $\mathbb{Z}$ from $\mathbb{N}$, and $\mathbb{R}$ from $\mathbb{Q}$. Every number system you use is built by taking a simpler one and declaring some things equal — which makes this module's four axioms the machinery underneath all of Chapter 4.
+</Aside>

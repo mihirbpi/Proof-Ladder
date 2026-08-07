@@ -1,0 +1,117 @@
+---
+level: l6
+title: Proving quantified statements
+readingTimeMin: 9
+newTerms: ["arbitrary", "witness", "proof by cases"]
+anchorExample: "vertical angles and the base-angle theorem"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.10 said what each quantifier demands. This module gives the sentences that deliver it — the opening and closing lines that make a proof recognisable as a proof of the right thing.
+
+## Universal: take any one and follow it
+
+To prove $\forall x \in S,\ P(x)$:
+
+> **Let $x$ be an arbitrary element of $S$.** … **Therefore $P(x)$. Since $x$ was arbitrary, $P$ holds for all of $S$.**
+
+**Arbitrary** means the argument used nothing about $x$ beyond membership in $S$. That is the whole trick: one argument, run on a nameless element, covers every element at once — because any particular element could have been the one you named.
+
+Your two-column proofs already do this. "Given: $\triangle ABC$ is isosceles" does not mean a specific triangle; it means *any* isosceles triangle, and the proof is valid for all of them precisely because it never appeals to a measurement.
+
+<Warning title="Arbitrary means arbitrary">
+The failure mode is using a property your element was not given.
+
+Proving something about all triangles and writing "since $\angle A$ is acute" — unless acuteness follows from the hypothesis — proves the claim only for acute triangles.
+
+The diagram is where this leaks in. Your figure shows a *particular* triangle, and it is easy to read a property off the picture. **A property visible in the diagram but absent from the hypothesis is not available to you.**
+
+This is exactly why textbooks draw scalene, obtuse-looking triangles for general theorems: a suggestive picture invites an invalid step.
+</Warning>
+
+## Existential: exhibit a witness
+
+To prove $\exists x \in S,\ P(x)$:
+
+> **Let $x = $ [something specific].** … **Then $x \in S$ and $P(x)$ holds.**
+
+Two verifications, and students routinely skip the first. A witness must be *in the domain*.
+
+Where the witness came from is not the reader's business. You may have found it by trial, by solving backwards, or by luck. The proof owes only that it works.
+
+> **Proposition.** There exists a quadrilateral with exactly one pair of parallel sides.
+
+<Proof>
+Let $Q$ have vertices $(0,0)$, $(4,0)$, $(3,2)$, $(1,2)$.
+
+The side from $(0,0)$ to $(4,0)$ has slope $0$; the side from $(1,2)$ to $(3,2)$ has slope $0$. These are parallel.
+
+The remaining two sides have slopes $\frac{2-0}{3-4} = -2$ and $\frac{2-0}{1-0}=2$. These differ, so those sides are not parallel.
+
+Hence $Q$ is a quadrilateral with exactly one pair of parallel sides.
+</Proof>
+
+Construction proofs in your course are witness proofs. Bisecting an angle with compass and straightedge *is* a proof that the bisector exists — and the accompanying argument that the construction works is what makes it a proof rather than a drawing.
+
+## Uniqueness: suppose two, show they are one
+
+To prove $\exists! x \in S,\ P(x)$, prove existence as above, then:
+
+> **Suppose $x_1$ and $x_2$ both satisfy $P$.** … **Therefore $x_1 = x_2$.**
+
+Do not assume they are different and hunt for a contradiction. Assume there are two — possibly equal — and derive that they must be equal. The proof is shorter and it is direct.
+
+## Proof by cases
+
+Sometimes no single argument covers the whole domain. Then **split into cases**:
+
+1. State cases that are **exhaustive** — every element of $S$ falls into at least one.
+2. Prove the claim in each case.
+3. Conclude for all of $S$.
+
+Exhaustiveness is the obligation students forget, and the licence comes from a tautology: $p \vee \neg p$ is true, so "either the point is inside or it is not" needs no justification. Cases that are not visibly exhaustive do.
+
+Overlap between cases is harmless. Gaps are fatal.
+
+> **Proposition.** For every integer $n$, the product $n(n+1)$ is even.
+
+<Discussion>
+  <div slot="know">Every integer is even or odd — an exhaustive split, and only two cases.</div>
+  <div slot="want">$n(n+1)$ even, for every $n$.</div>
+  <div slot="how">In each case one of the two factors is visibly even, and an even factor makes the product even. The cases are exhaustive because $n$ divided by $2$ leaves remainder $0$ or $1$.</div>
+</Discussion>
+
+<Proof>
+Let $n$ be an arbitrary integer. Every integer is either even or odd.
+
+**Case 1: $n$ is even.** Then $n = 2k$ for some integer $k$, so $n(n+1) = 2k(n+1) = 2\big(k(n+1)\big)$, which is even.
+
+**Case 2: $n$ is odd.** Then $n = 2k+1$, so $n + 1 = 2k+2 = 2(k+1)$, and $n(n+1) = 2\big(n(k+1)\big)$, which is even.
+
+The cases are exhaustive, so $n(n+1)$ is even for every integer $n$.
+</Proof>
+
+Geometry does this constantly. Theorems about a point and a circle split into *inside*, *on*, *outside*; theorems about angles split into *acute*, *right*, *obtuse*. Each time, the case list must cover everything.
+
+<Aside>
+The number of cases is not fixed by the problem — it is a choice, and a good choice makes the proof short.
+
+Proofs about integers often split by remainder on division by $2$, or $3$, or $4$, depending on what the conclusion needs. Chapter 4 makes this systematic: for any $d$, the remainders $0, 1, \dots, d-1$ give an exhaustive case list, and picking the right $d$ is most of the work.
+</Aside>
+
+## Refuting
+
+Refuting a universal means proving an existential — and vice versa. That is module 1.11's rule, and it tells you which of the four sentence-patterns above to reach for.
+
+| Task | What you write |
+|---|---|
+| prove $\forall$ | "Let $x$ be arbitrary…" |
+| refute $\forall$ | "Consider $x = \dots$" (counterexample) |
+| prove $\exists$ | "Consider $x = \dots$" (witness) |
+| refute $\exists$ | "Let $x$ be arbitrary… $P(x)$ fails." |
+
+The diagonal is the thing to notice: **refuting a universal and proving an existential are the same activity**, and so are the other two. There are really only two kinds of proof here, applied to four kinds of request.

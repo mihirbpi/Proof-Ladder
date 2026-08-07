@@ -1,0 +1,60 @@
+---
+level: l2
+title: Measuring how far
+readingTimeMin: 4
+newTerms: ["distance"]
+anchorExample: "turning a quarter turn"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+
+Every complex number sits at a spot on the grid. How far is that spot from the middle?
+
+<Figure alt="A grid with an arrow from the centre to a point three across and four up." caption="Three across, four up. How long is the arrow?">
+  <ComplexPlane vectors={[{re: 3, im: 4}]} points={[{re: 3, im: 4, label: "3+4i"}]} range={5} />
+</Figure>
+
+## Make a triangle
+
+Look at the picture. The arrow, the across walk, and the up walk make a **right triangle**.
+
+The two short sides are $3$ and $4$. The long slanted side is the one we want.
+
+Here is a rule about right triangles that people have known for thousands of years:
+
+> Square the two short sides, add them up, and you get the square of the long side.
+
+So: a $3$-by-$3$ square holds $9$. A $4$-by-$4$ square holds $16$. Add them: $9 + 16 = 25$.
+
+That is the *square* of the long side. So the long side is the number that gives $25$ when you square it.
+
+A $5$-by-$5$ square holds $25$. So the **distance** is $5$!
+
+## Try another one
+
+Where is $6 + 8i$?
+
+Short sides $6$ and $8$. Squares: $36$ and $64$. Add: $100$.
+
+What squares to $100$? $10$. So the distance is $10$.
+
+## The nice surprise
+
+Remember module 5.4, where you multiplied a number by its flip?
+
+$(3+4i)(3-4i) = 9 + 16 = 25$.
+
+That is the same $25$! Multiplying a number by its own flip gives you the *square of the distance*.
+
+Two things that looked completely different turn out to be the same thing.
+
+<Aside>
+For a spot sitting right on the flat line, the distance from the middle is just how far along it is. The spot at $3$ is $3$ away. So this new measuring stick agrees with the one you already had.
+</Aside>
+
+<TryIt>
+Draw a dot at 6 across and 8 up. Make the right triangle. Work out the distance using squares. Then check with a ruler!
+</TryIt>

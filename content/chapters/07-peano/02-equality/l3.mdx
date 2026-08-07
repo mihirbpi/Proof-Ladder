@@ -1,0 +1,77 @@
+---
+level: l3
+title: The rules for equality
+readingTimeMin: 5
+newTerms: ["reflexive", "symmetric", "transitive", "equivalence relation"]
+anchorExample: "counting on forever"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Building mathematics from the bottom means writing down *everything* you assume — including what "$=$" means.
+
+## The first four axioms
+
+**Axiom 1 (reflexive).** Everything is equal to itself.
+
+**Axiom 2 (symmetric).** If one thing is equal to a second, then the second is equal to the first.
+
+**Axiom 3 (transitive).** If a first thing is equal to a second, and the second is equal to a third, then the first is equal to the third.
+
+**Axiom 4 (closure).** If something is a counting number, and something else is equal to it, then that something else is a counting number too.
+
+The first three are the famous ones. The fourth says something you would never think to doubt: equal things belong to the same collections. Without it, "equal" numbers could sit in different places, and nothing would work.
+
+## Any relation with the first three
+
+The three properties are not special to $=$. Lots of relations have them, and such a relation is called an **equivalence relation**.
+
+Here are three that qualify.
+
+**Same age as.** Reflexive: you are your own age. Symmetric: if you match Sam's age, Sam matches yours. Transitive: matches chain along. ✓
+
+**Same colour as.** All three. ✓
+
+**Leaves the same remainder when divided by 3.** Reflexive: any number leaves the same remainder as itself. Symmetric: obvious. Transitive: if $a$ and $b$ agree, and $b$ and $c$ agree, then $a$ and $c$ agree. ✓
+
+That last one comes straight from module 4.4, and it is far more interesting than it looks.
+
+## One that fails
+
+**Is a friend of.** Reflexive and symmetric are arguable, but transitivity clearly fails: your friend's friend need not be your friend.
+
+So friendship is not an equivalence relation, and you cannot reason about it the way you reason about equality.
+
+<Warning title="All three, or none of it works">
+Missing any one property breaks things.
+
+Without **reflexive**, some object is not even equal to itself.
+
+Without **symmetric**, "$a = b$" and "$b = a$" would say different things, and every equation would have a direction.
+
+Without **transitive**, chains like $a = b = c = d$ would tell you nothing about $a$ and $d$ — and almost every calculation you have ever done is such a chain.
+</Warning>
+
+## What equivalence relations do
+
+Here is the payoff, and it is the reason mathematicians care.
+
+An equivalence relation **sorts everything into groups**, with each thing in exactly one group.
+
+Take "leaves the same remainder when divided by $3$." Every whole number falls into exactly one of three groups:
+
+- remainder $0$: $\ldots, 0, 3, 6, 9, \ldots$
+- remainder $1$: $\ldots, 1, 4, 7, 10, \ldots$
+- remainder $2$: $\ldots, 2, 5, 8, 11, \ldots$
+
+No number is in two groups. No number is left out. The relation carved the whole numbers into three neat piles.
+
+That happens for *every* equivalence relation, and it is what makes them useful: they let you deliberately treat different things as interchangeable when only some feature matters.
+
+<Aside>
+This is how new number systems get built. Fractions are built by declaring $\tfrac12$ and $\tfrac24$ "the same" — an equivalence relation on pairs of whole numbers. Clock arithmetic is built by declaring $1$ o'clock and $13$ o'clock the same.
+
+In each case you start with familiar objects, choose a sensible notion of *same*, and the groups become the new numbers.
+</Aside>

@@ -1,0 +1,77 @@
+---
+level: l2
+title: How addition works
+readingTimeMin: 4
+newTerms: ["two rules for adding"]
+anchorExample: "counting on forever"
+---
+
+import TryIt from '@/components/TryIt.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+
+You have zero, and you have a next-button. That is all you have. So how do you build **adding** out of them?
+
+With **two rules for adding**.
+
+**Rule A.** Adding zero does nothing. You start somewhere and press the button zero times, so you stay put.
+
+**Rule B.** To add the next-one-after-something, add the something first, and then press once more.
+
+That is it. Every sum in the world comes from those two rules.
+
+## Doing $1 + 1$ the slow way
+
+You know the answer is $2$. But watch it get *built*.
+
+Remember what the names mean: $1$ is the next one after $0$. And $2$ is the next one after $1$.
+
+<Proof level="l2">
+We want $1 + 1$.
+
+The second $1$ is *the next one after 0*. So Rule B applies:
+
+> add $0$ first, then press once more.
+
+$1 + 0$ is just $1$, by Rule A.
+
+Now press once more. The next one after $1$ is... $2$!
+
+So $1 + 1 = 2$. □
+</Proof>
+
+## You just proved that
+
+Stop and notice what happened.
+
+$1+1 = 2$ was not something we looked up or agreed on. It came out of the rules. It is a little **theorem**, with a proof.
+
+That is the whole point of Chapter 7. Things you have known since you were tiny turn out to have reasons underneath them.
+
+## Try $2 + 2$
+
+<Proof level="l2">
+The second $2$ is the next one after $1$. So by Rule B: do $2 + 1$ first, then press once more.
+
+And $2+1$? The $1$ is the next one after $0$. So by Rule B again: do $2 + 0$ first, then press.
+
+$2 + 0 = 2$, by Rule A.
+
+Press once: that gives $3$. So $2 + 1 = 3$.
+
+Press once more: that gives $4$. So $2 + 2 = 4$. □
+</Proof>
+
+Every sum unwinds down to Rule A, and then you press your way back up.
+
+<Aside>
+Here is something that will surprise you.
+
+Is $2 + 3$ the same as $3 + 2$? You have always known it is. But look at the two rules — neither one says anything about swapping!
+
+So swapping is **not** free. It has to be proved, and the proof uses the dominoes from Chapter 6. Something you thought was obvious turns out to need work.
+</Aside>
+
+<TryIt>
+Do $3 + 2$ using the two rules, step by step, out loud. Unwind to Rule A, then press your way back.
+</TryIt>

@@ -1,0 +1,94 @@
+---
+level: l3
+title: Defining addition
+readingTimeMin: 5
+newTerms: ["recursive definition"]
+anchorExample: "counting on forever"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Nine axioms, two primitives: $0$ and $S$. No addition anywhere. This module builds it.
+
+## The definition
+
+Addition is defined by **two rules**:
+
+> **(A1)** Adding zero changes nothing. Start anywhere, add zero, and you are still there.
+>
+> **(A2)** To add *the next one after something*, first add the something, then press **next** once more.
+
+Read (A2) again slowly. It does not tell you the answer outright — it tells you how to turn a harder addition into a slightly easier one.
+
+This is a **recursive definition** — it defines addition in terms of *smaller* additions, together with a base case that needs no further unwinding.
+
+Notice which slot the recursion happens in. The second number gets peeled down to $0$; the first just sits there. That asymmetry will matter.
+
+## Deriving $1 + 1 = 2$
+
+Recall the definitions: $1 := S(0)$ and $2 := S(1)$.
+
+<Proof>
+$$
+\begin{aligned}
+1 + 1 &= 1 + S(0) && \text{since } 1 = S(0)\\
+&= S(1 + 0) && \text{by (A2)}\\
+&= S(1) && \text{by (A1)}\\
+&= 2 && \text{by definition of } 2.
+\end{aligned}
+$$
+</Proof>
+
+So $1+1=2$ is a **theorem**. Four lines, each one citing a rule.
+
+You have known this fact since you were four. Now you know why it is true, which is a different kind of knowing.
+
+## Deriving $2 + 3 = 5$
+
+<Proof>
+$$
+\begin{aligned}
+2 + 3 &= 2 + S(2) = S(2+2)\\
+2 + 2 &= 2 + S(1) = S(2+1)\\
+2 + 1 &= 2 + S(0) = S(2+0) = S(2) = 3.
+\end{aligned}
+$$
+Now build back up:
+$$
+2 + 2 = S(3) = 4, \qquad 2+3 = S(4) = 5.
+$$
+</Proof>
+
+Every sum unwinds all the way to (A1), then rebuilds by taking successors. That is what makes the definition work: the unwinding always terminates, because the second argument strictly decreases and cannot go below $0$.
+
+## The surprise
+
+Here is the thing worth sitting with.
+
+> Adding two numbers gives the same answer whichever order you take them in.
+
+You have believed this your whole life. Is it one of our rules?
+
+**No.** Look at (A1) and (A2). Neither says anything about swapping the two numbers.
+
+So commutativity is **not free**. It has to be proved, and it is not a one-liner — the proof is an induction (Chapter 6), and it needs two smaller results proved by induction first.
+
+<Warning title="Familiar is not the same as obvious">
+This is the sharpest lesson of Chapter 7.
+
+*Order does not matter when you add* feels obvious because you have used it ten thousand times. But *feeling obvious* and *following from the rules* are different things, and here the gap is real: the proof takes genuine work.
+
+The same applies to *bracketing three numbers either way gives the same sum*, and to *adding $1$ is the same as pressing next* — that last one is a nice short exercise.
+
+Try it. Adding $1$ means adding *the next one after zero*. By rule (A2), that means: add zero first, then press next. Adding zero changes nothing, so you are left with a single press of the next button. $\square$
+
+So "the successor of $a$" and "$a$ plus one" are the same thing — but only *after* you have addition, and only because you proved it.
+</Warning>
+
+<Aside>
+Why does the recursion peel the *second* number? Because you have to choose one, and choosing the second makes (A2) match the shape of $S$.
+
+That choice is exactly why commutativity needs proving. The definition treats the two arguments completely differently, so the fact that the answer does not care which is which is genuinely surprising — and genuinely a theorem.
+</Aside>

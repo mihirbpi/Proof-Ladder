@@ -1,0 +1,121 @@
+---
+level: l6
+title: Set-builder notation
+readingTimeMin: 8
+newTerms: ["set-builder", "interval"]
+anchorExample: "the quadrilateral family and loci of points"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Listing works for $\{A, B, C\}$. It does not work for a circle. Infinite sets need a notation that states a **condition** instead of an inventory — and geometry has been using one informally since the first locus theorem.
+
+## The notation
+
+$$
+\{\,x \in U \;:\; P(x)\,\}
+$$
+
+Read: *the set of all $x$ in $U$ such that $P(x)$ holds.* Some books write a vertical bar for the colon; the meaning is identical.
+
+Three parts, all required:
+
+- **$x$** — a placeholder, with no meaning outside the braces
+- **$U$** — the **ambient set** the elements are drawn from
+- **$P(x)$** — the condition, a predicate in the sense of module 1.10
+
+The defining property is a biconditional, and it is the only fact about the notation you need:
+$$
+a \in \{x \in U : P(x)\} \quad\Longleftrightarrow\quad a \in U \ \text{ and } \ P(a).
+$$
+
+**Two things to verify, always.** Membership in the ambient set, and the condition. Forgetting the first is the standard error.
+
+## Loci, rewritten
+
+Your locus definitions translate directly.
+
+$$\text{Circle centred } P,\ \text{radius } 3 \;=\; \{\,Q \in \text{plane} : PQ = 3\,\}$$
+
+$$\text{Perpendicular bisector of } \overline{AB} \;=\; \{\,Q \in \text{plane} : QA = QB\,\}$$
+
+$$\text{Bisector of } \angle ABC \;=\; \{\,Q \in \text{interior} : d(Q, \overrightarrow{BA}) = d(Q, \overrightarrow{BC})\,\}$$
+
+Now look at what the notation exposes. Each locus theorem in your book has two halves — *every point on the bisector is equidistant* and *every equidistant point is on the bisector* — and students often wonder why both are needed.
+
+The set-builder line answers it. The definition is a **biconditional**, so establishing that a geometric object equals that set requires both directions. It is module 1.9's "check both boxes," and it is forced by the notation rather than chosen by the author.
+
+<Warning title="The ambient set is not optional">
+$$\{\,Q : QA = QB\,\}$$
+is incomplete, and dangerously so.
+
+In a **plane**, that set is the perpendicular bisector — a line. In **space**, it is the perpendicular bisector *plane*. Same condition, different sets, because the ambient set differed.
+
+You have met this without the notation: your book's locus theorems say "in a plane" in their first three words, and that phrase is not filler.
+</Warning>
+
+## Coordinates
+
+Analytic geometry is set-builder notation with the condition written as an equation.
+
+$$\text{Line } y = 2x+1 \;=\; \{\,(x,y) \in \mathbb{R}^2 : y = 2x + 1\,\}$$
+
+$$\text{Circle } \;=\; \{\,(x,y) \in \mathbb{R}^2 : (x-h)^2 + (y-k)^2 = r^2\,\}$$
+
+$$\text{Closed disk} \;=\; \{\,(x,y) \in \mathbb{R}^2 : (x-h)^2+(y-k)^2 \leq r^2\,\}$$
+
+The difference between the last two is one symbol, and it is the difference between a curve and a region. Notation that fine-grained is worth having.
+
+And the equation-of-a-circle derivation you did in class is now readable as a set equality: the locus definition and the algebraic condition describe the same set, which is what the distance-formula computation proves.
+
+## Intervals
+
+For subsets of $\mathbb{R}$ there is a compressed notation:
+
+| Interval | Set-builder | Endpoints |
+|---|---|---|
+| $[a,b]$ | $\{x \in \mathbb{R} : a \leq x \leq b\}$ | both included |
+| $(a,b)$ | $\{x \in \mathbb{R} : a < x < b\}$ | both excluded |
+| $[a,b)$ | $\{x \in \mathbb{R} : a \leq x < b\}$ | left only |
+| $[a,\infty)$ | $\{x \in \mathbb{R} : x \geq a\}$ | left only |
+
+A square bracket includes the endpoint; a parenthesis excludes it. $\infty$ is not a real number, so it never gets a square bracket.
+
+The distinction is exactly the segment-versus-line business from your first unit: $\overline{AB}$ contains its endpoints, and the interior of $\overline{AB}$ does not.
+
+<Warning title="(a, b) is overloaded">
+$(2,5)$ is an open interval **or** an ordered pair, depending on context, and nothing in the symbols distinguishes them.
+
+Mathematics tolerates this because context nearly always settles it — "the point $(2,5)$" versus "the interval $(2,5)$". Some European texts write $\left]2,5\right[$ for the interval to avoid the clash. Most do not, and you learn to read the surrounding sentence.
+</Warning>
+
+## The placeholder is local
+
+$$\{\,x \in \mathbb{R} : x > 0\,\} \;=\; \{\,t \in \mathbb{R} : t > 0\,\}$$
+
+The letter has no existence outside the braces — it is **bound**, like the letter in "for all $x$" from module 1.10. Both name the positive reals, and asking "what is $x$?" afterwards is a question with no referent.
+
+This is the same convention that lets you write $\triangle ABC$ in one proof and $\triangle PQR$ in the next without the labels meaning anything permanent.
+
+<Aside>
+Unrestricted set-builder — dropping $U$ and writing $\{x : P(x)\}$ for any condition whatsoever — is inconsistent.
+
+Take $R = \{x : x \notin x\}$, the set of all sets that are not members of themselves. Is $R \in R$? If yes, then by its own condition $R \notin R$. If no, then $R$ satisfies the condition, so $R \in R$. Either answer contradicts itself.
+
+This is **Russell's paradox**, and it broke the foundations of mathematics in 1901. The repair is the ambient set: you may carve a subset out of a set you already have, but you may not conjure a set from a condition alone.
+
+So the $U$ you have been told not to omit is not bookkeeping. It is the thing standing between you and a contradiction.
+</Aside>
+
+## Conditions can be compound
+
+The predicate may use the connectives of Chapter 1, and each one has a geometric reading:
+
+$$\{\,(x,y) : x > 0 \ \wedge\ y > 0\,\} \quad \text{the open first quadrant}$$
+
+$$\{\,(x,y) : x = 0 \ \vee\ y = 0\,\} \quad \text{the two axes}$$
+
+$$\{\,Q : PQ \leq 3 \ \wedge\ QA = QB\,\} \quad \text{a chord of the disk}$$
+
+That correspondence — $\wedge$ narrowing a set, $\vee$ widening it — is the whole content of module 2.4, and you can already predict what it will say.

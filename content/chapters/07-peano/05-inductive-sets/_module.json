@@ -13,6 +13,17 @@
     "l7": "Inductive sets and the last axiom",
     "l8": "Inductive sets and the last axiom"
   },
+  "kernelIdea": "V is inductive if 0 ∈ V and x ∈ V ⇒ S(x) ∈ V. Axiom 9 says every inductive set contains ℕ, ruling out models with extra elements and giving ℕ = {0,1,2,…} exactly.",
+  "kernels": {
+    "l1": "Nothing but the counting numbers gets in.",
+    "l2": "If a box has zero in it, and always has the next one whenever it has a number, then that box has every counting number in it. Nothing extra is allowed to sneak in.",
+    "l3": "A set is inductive if it contains 0 and always contains the next of anything in it. The last axiom says the counting numbers sit inside every inductive set — which is what stops extra strangers joining the counting numbers.",
+    "l4": "V is inductive if 0 ∈ V and x ∈ V ⇒ S(x) ∈ V. Axiom 9 says every inductive set contains ℕ. This excludes models with extra elements and, with Axioms 1–8, pins ℕ down to exactly {0, 1, 2, …}.",
+    "l5": "Axiom 9 is mathematical induction: 0 ∈ V is the base case and closure under S is the inductive step.",
+    "l6": "The final set equality ℕ = {0,1,2,…} is obtained by double inclusion, with Axiom 9 supplying one direction and Axioms 5–6 the other.",
+    "l7": "Axiom 9 states that every inductive set contains ℕ; it is mathematical induction in set form, it excludes models with rogue elements, and with the earlier axioms it determines ℕ up to isomorphism.",
+    "l8": "Second-order Peano arithmetic determines ℕ up to isomorphism; the first-order induction schema does not, and the resulting nonstandard models are the subject of model theory."
+  },
   "kernel": "V is inductive if 0 ∈ V and x ∈ V ⇒ S(x) ∈ V. Axiom 9: if V is inductive then ℕ ⊆ V. This rules out \"too big\" models and, combined with axioms 1–8, gives ℕ = {0,1,2,…} exactly. It is the same principle as Chapter 6.",
   "objectives": [
     "Test a set for inductiveness",

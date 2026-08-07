@@ -13,6 +13,17 @@
     "l7": "Why we needed a new number",
     "l8": "Why we needed a new number"
   },
+  "kernelIdea": "x² ≥ 0 for every real x, so x² + 1 = 0 has no real solution. Roots of polynomials matter enough that mathematicians extended the number system rather than accept the gap.",
+  "kernels": {
+    "l1": "When you fold a number onto itself, you always land on the plus side. Nothing lands below zero.",
+    "l2": "Every number times itself comes out zero or bigger, whether you started above zero or below. So no number times itself is negative — and that is a gap somebody had to fill.",
+    "l3": "No number on the number line, multiplied by itself, gives a negative answer. So x × x = −1 has no answer among the numbers we have, and mathematicians built a new number to answer it.",
+    "l4": "For every x ∈ ℝ, x² ≥ 0, so x² = −1 has no real solution and x² + 1 has no real root. Rather than accept that gap, mathematicians extended ℝ — exactly as ℕ was extended to subtract and ℤ to divide.",
+    "l5": "x² ≥ 0 on ℝ by case analysis, so x² + 1 is a real polynomial with no real root; the discriminant of the quadratic formula is where this gap is met in practice.",
+    "l6": "The failure of ℝ to be algebraically closed is visible in the simplest possible case, x² + 1; extending the number system is the standard response to such a failure.",
+    "l7": "Since x² ≥ 0 for all real x, the polynomial x² + 1 has no real root: ℝ is not algebraically closed. Extending the number system rather than accepting the gap is the same move that produced ℤ, ℚ, and ℝ.",
+    "l8": "ℝ is not algebraically closed; ℂ is its algebraic closure, and the Fundamental Theorem of Algebra says one extension suffices for every polynomial at once."
+  },
   "kernel": "x² ≥ 0 for every real x, so x² + 1 = 0 has no real solution and the polynomial x² + 1 has no real root. Roots of polynomials matter enough that mathematicians extended the number system rather than accept the gap.",
   "objectives": [
     "Explain why x² + 1 has no real root",

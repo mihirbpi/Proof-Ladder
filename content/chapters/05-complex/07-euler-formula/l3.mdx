@@ -1,0 +1,85 @@
+---
+level: l3
+title: Euler's formula
+readingTimeMin: 5
+newTerms: []
+anchorExample: "the number that turns"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+## The cycle of powers of $i$
+
+Start with $i$ and keep multiplying:
+
+$$
+i^1 = i, \qquad
+i^2 = -1, \qquad
+i^3 = i^2 \times i = -i, \qquad
+i^4 = i^3 \times i = -i \times i = 1.
+$$
+
+And then it starts over: $i^5 = i$, $i^6 = -1$, and so on.
+
+<Figure alt="Four points marked at the compass positions one, i, minus one, and minus i around the origin." caption="The powers of $i$ walk around the four compass points and return.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "i⁴ = 1"},
+    {re: 0, im: 1, label: "i¹"},
+    {re: -1, im: 0, label: "i²"},
+    {re: 0, im: -1, label: "i³"}
+  ]} range={2} />
+</Figure>
+
+So the powers of $i$ take only **four** values, cycling forever. To find $i^{23}$, divide $23$ by $4$: it goes $5$ times with remainder $3$. The five full loops change nothing, so $i^{23} = i^3 = -i$.
+
+(That is module 4.4's remainder idea, used on turns instead of counters.)
+
+## Why the cycle matters
+
+There is a formula that ties the powers of $i$ to the sine and cosine you meet in trigonometry:
+
+$$
+e^{i\theta} = \cos\theta + i\sin\theta.
+$$
+
+This is **Euler's formula**, and it is often called the most beautiful equation in mathematics.
+
+Proving it needs calculus, so it is stated here as a fact rather than derived. But you can already see *where the two halves come from*.
+
+There is a way of writing $e^x$ as an endless sum of powers of $x$. Put $i\theta$ in place of $x$ and you get an endless sum of powers of $i\theta$. Each power of $i$ is one of the four cycle values.
+
+- The terms where $i$ came out as $+1$ or $-1$ have no $i$ left. They are the **real** terms.
+- The terms where $i$ came out as $+i$ or $-i$ each carry one $i$. They are the **imaginary** terms.
+
+Sort them into those two piles. The first pile turns out to be exactly the endless sum for $\cos\theta$, and the second is exactly the one for $\sin\theta$.
+
+**The cycle is what does the sorting.** Without it, the terms would not separate into two clean halves, and the formula would not exist.
+
+## What the formula says
+
+Geometrically, $e^{i\theta}$ is the point you reach by walking $\theta$ of the way around a circle of radius $1$, starting from $1$ and going counterclockwise.
+
+<Figure alt="A dashed unit circle centred at the origin with a point marked on it at the top." caption="$e^{i\theta}$ travels around the unit circle as $\theta$ increases.">
+  <ComplexPlane circle={1} points={[{re: 0, im: 1, label: "quarter way"}]} range={2} />
+</Figure>
+
+Check it against the cycle. A quarter of the way around should be $i$ — and $\cos$ of a quarter turn is $0$ while $\sin$ of a quarter turn is $1$, giving $0 + 1i = i$. ✓
+
+Half way around should be $-1$, and indeed $\cos$ of a half turn is $-1$ while $\sin$ is $0$. ✓
+
+All the way round is $1$ again. The four-step cycle is Euler's formula, checked at four points.
+
+<Warning title="This one is stated, not proved">
+Everything else in this course has been proved from things you already had. This is the first genuine exception, and it is worth flagging.
+
+Euler's formula needs infinite sums and the calculus that handles them safely. It is true, it has several complete proofs, and none of them can be given honestly at this stage. Take it as a promissory note rather than as something to accept on authority — the proof exists, and you will be able to read it.
+</Warning>
+
+<Aside>
+Put $\theta$ = half a turn into the formula. You get $e^{i\pi} = -1$, usually written
+$$e^{i\pi} + 1 = 0.$$
+Five of the most important constants in mathematics — $e$, $i$, $\pi$, $1$, and $0$ — in one short line, and none of them was invented with the others in mind.
+</Aside>
