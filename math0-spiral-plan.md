@@ -40,14 +40,24 @@ The reader picks one of these. Each level has a fixed voice, notation budget, an
 
 | ID | Label (shown) | Age / grade | Lexile band | Words / module | Sentence length |
 |----|---------------|-------------|-------------|----------------|-----------------|
-| `l1` | Kindergarten | 5–6 | read aloud | 60–140 | 6–12 words |
-| `l2` | 2nd grade | 7–8 | 420–650L | 140–280 | 8–12 words |
-| `l3` | 5th grade | 10–11 | 830–1010L | 350–600 | 12–16 words |
-| `l4` | 8th grade | 13–14 | 1010–1185L | 600–900 | 14–18 words |
-| `l5` | 9th grade | 14–15 | 1050–1260L | 800–1200 | 15–20 words |
-| `l6` | 10th grade | 15–16 | 1080–1305L | 1000–1500 | 15–20 words |
-| `l7` | 12th grade | 17–18 | 1180–1380L | 1200–1800 | 16–22 words |
-| `l8` | College | 18+ | 1300L+ | 1200–2000 | 16–24 words |
+| `l1` | Kindergarten | 5–6 | read aloud |  110–130 | 6–12 words |
+| `l2` | 2nd grade | 7–8 | 420–650L |  280–380 | 8–12 words |
+| `l3` | 5th grade | 10–11 | 830–1010L |  550–700 | 12–16 words |
+| `l4` | 8th grade | 13–14 | 1010–1185L |  590–750 | 14–18 words |
+| `l5` | 9th grade | 14–15 | 1050–1260L |  800–1200 | 15–20 words |
+| `l6` | 10th grade | 15–16 | 1080–1305L |  870–970 | 15–20 words |
+| `l7` | 12th grade | 17–18 | 1180–1380L |  1070–1190 | 16–22 words |
+| `l8` | College | 18+ | 1300L+ |  1200–2000 | 16–24 words |
+
+**Word budgets are derived, not decreed.** The figures above are the interquartile
+range of the written corpus at each level, rounded — the middle half of pages
+defines the norm, and the lint's ±20% tolerance then flags genuine outliers. They
+were originally a-priori estimates, and checking them against the corpus showed the
+estimates were wrong in both directions: `l2` and `l3` medians sat *above* their
+ceilings while `l6` and `l7` medians sat *below* their floors. The claimed
+`readingTimeMin` values imply roughly 100 words per minute at every level, which is
+a reasonable rate for mathematical prose, and the corpus is consistent with it.
+`l5` and `l8` are left at their estimates until enough pages exist to calibrate.
 
 **A note on the level count.** Eight levels × 61 modules = 488 pages, which is a lot to author and a lot to keep aligned. **Build `l2`, `l3`, `l4`, `l6`, `l7` first** — these are the five grades where a reader is most likely to arrive (2nd, 5th, 8th, 10th, 12th), and they are far enough apart that each is a genuinely different page rather than a reworded neighbour. Then add `l1` (K) for the read-aloud audience, and finally `l5` and `l8`, which are the closest neighbours of `l4`/`l6` and `l7` respectively.
 
@@ -65,22 +75,114 @@ Compiled from the Common Core State Standards for Mathematics. The right-hand co
 
 Sources: [CCSSM Grade 2](https://www.thecorestandards.org/Math/Content/2/introduction/) · [Grade 5](https://www.thecorestandards.org/Math/Content/5/introduction/) · [Grade 6 (negatives, variables)](https://www.thecorestandards.org/Math/Content/6/EE/) · [Grade 8](https://www.thecorestandards.org/Math/Content/8/introduction/) · [HS Geometry: Congruence](https://www.thecorestandards.org/Math/Content/HSG/CO/) · [HS Functions: Interpreting Functions](https://www.thecorestandards.org/Math/Content/HSF/IF/) · [Lexile bands by grade](https://lexile.com/educators/understanding-lexile-measures/)
 
-#### A4.2 Notation gate (binding)
+#### A4.1a Section length and jargon (binding)
 
-A symbol may appear at a level only if it is listed at that level or below. Anything introduced *at* a level must be glossed in words on first use in every module that uses it.
+Two rules that the word-per-module budget does not capture, both added after a
+review found `l7` reading as college-level despite being inside its Lexile band.
 
-| Level | Newly permitted | Explicitly banned |
+**Section cap — on running prose only.** The unit that reads as a wall of text is
+a run of unbroken prose, *not* total section length. A `<Proof>`, `<Discussion>`
+or `<Warning>` block is visually distinct on the page and does not read as one.
+
+This distinction matters more than it sounds. Measured on total section words,
+121 sections looked over-long; measuring running prose instead, **zero** were —
+a median of **79%** of a long section's words turn out to sit inside components.
+Counting them as prose overstates the problem badly and prescribes the wrong fix
+(adding subheadings to prose that was never dense).
+
+Caps on running prose between components, set just above each level's 97th
+percentile so the check flags genuine outliers rather than firing constantly:
+
+| `l1` | `l2` | `l3` | `l4` | `l5` | `l6` | `l7` | `l8` |
+|---|---|---|---|---|---|---|---|
+| 70 | 150 | 160 | 175 | 190 | 190 | 210 | 210 |
+
+Running prose medians sit at 70–104 words across every level, so a page that
+*feels* long is usually packing many components rather than running on. Whether
+that is a fault is a judgement call; the cap only polices the prose.
+
+**Gloss rule, made checkable.** §A4.2 already requires that anything introduced
+at a level be glossed on first use in every module that uses it. The check
+applies to a curated list of genuinely opaque proof-course jargon —
+*well-defined*, *vacuously*, *witness*, *contrapositive*, *canonical*,
+*trichotomy*, *involution*, *element chasing*, *excluded middle*, and similar.
+A module that **declares** a term in its `newTerms` defines it and needs no
+gloss; a module that **borrows** one must reintroduce it or cross-reference the
+module that defines it (`§2.5`, `module 1.7`). Ordinary declared vocabulary —
+*set*, *union*, *even* — is deliberately out of scope.
+
+**Destination vocabulary — one sanctioned slot per level.** Abstract algebra,
+topology and measure-theory terms (*lattice*, *Boolean algebra*, *homomorphism*,
+*automorphism*, *monoid*, *group*, *well-founded*, …) are not met by grade 12,
+so they may be **named and glossed as a glimpse ahead**, never used as working
+vocabulary. Each level has exactly one slot for that:
+
+| Level | Sanctioned slot | Everything else |
 |---|---|---|
-| `l1` | numerals 0–10; words and pictures only | every symbol including `+` |
-| `l2` | `+`, `−`, `=`, `>`, `<`, numerals to 1000 | `×`, `÷`, fractions, negatives, letters-as-numbers, `∈` |
-| `l3` | `×`, `·`, `÷`, fractions, decimals, `{ }`, `∈`, `∉`, `⊆`, `∪`, `∩`, set names as *labels* (`A`, `S`) | letters standing for *numbers*; negatives; `ℕ ℤ ℝ`; four-quadrant grids |
-| `l4` | letters as numbers, `≠`, `≤`, `≥`, `√`, `¬`, `∧`, `∨`, `⇒`, `∅`, `ℕ ℤ ℚ ℝ`, set-builder, negatives, exponents; **and, where the module introduces them, `∀` `∃` `∃!` (1.10–1.12), `∘` (3.7–3.9), predicate notation `p(x)` (1.10+)** | `f(x)` outside Ch. 3; `Σ`; `∏` |
-| `l5` | `f(x)` everywhere, `⇔`, `∣` (divides), intervals, `f: S → T` | `Σ`, `∏` |
-| `l6` | `f⁻¹`, `≡`, `⊕`, subscripted families | `Σ`, `∏`, limits |
-| `l7` | `Σ`, `∏`, `ℂ`, `e^{iθ}`, factorials, informal limits | — |
-| `l8` | full Math 0 notation plus forward references | — |
+| `l7` | `<WhereThisGoes>` | held strictly |
+| `l6` | `<Aside>` — `l6` has no `<WhereThisGoes>` component, so its Aside does that job | held strictly |
 
-**The `l3` rule deserves emphasis.** A fifth grader has met *numerical* expressions with parentheses but not *variables*. So `l3` may write "take any one of the numbers in the box and follow it" and may name a **set** `A`, but must not write "let `n` be a whole number." Where a general argument is needed, `l3` says *any one*, *whichever one you picked*, or *that number* — the arbitrary-element move in words. This is not a workaround; it is how the idea is actually taught before algebra.
+Kernels get **no** exemption at any level. A kernel is the one-sentence takeaway
+a reader meets first, so a destination term there is not a glimpse — it is the
+headline.
+
+**Part B still outranks this list.** *ring* is deliberately **not** gated: §4.1
+introduces the term at `l5`–`l6` as "a label for a number system with these
+rules", and §4.5 makes ring-vs-field an objective. A sweep that added a pattern
+for it would have put the gate back into conflict with Part B — the exact
+failure §A4.2 had to be rescued from. Check Part B before gating a term.
+
+This rule exists because the `l6` kernels were found reading as *more advanced
+than `l7`'s*: `l6` said "making P(X) a distributive lattice", "negation is an
+anti-homomorphism", "a field automorphism of ℂ", where `l7` said the same things
+in words. Six kernels and three body passages were rewritten. A level inversion
+in the kernel is the worst place to have one, since the kernel is what a reader
+uses to decide whether they are on the right rung.
+
+#### A4.2 Notation gate (binding, and **derived** — do not author directly)
+
+This table is not an independent source. It is **generated from Part B**, filtered
+through §A4.1. When it disagreed with Part B it was patched six separate times
+before anyone noticed the two had never been reconciled, so the ordering is now
+recorded explicitly:
+
+1. **§A4.1** (CCSSM grade calibration) is the authority on what a reader *has met*.
+   Nothing may appear at a level the standards put later, whatever Part B says.
+2. **Part B** is the authority on which module *introduces* each symbol, subject to 1.
+3. **§A4.2** is derived from 1 and 2. If it conflicts with Part B, Part B is right
+   and this table is stale — fix it here, and re-run `scripts/lint-content.mjs`.
+
+Deriving it caught errors in Part B too: §4.8 used `√` and negatives at `l2`, §6.7
+used `∅` at `l1`, and §6.2 forbade `Σ` at `l4` while §6.3 required it. All three are
+now fixed in Part B. The lesson is that neither document is self-checking; the lint
+is what keeps them honest.
+
+**Two rules govern use, not just level:**
+
+- **Not before.** A symbol introduced in module X.Y is available from X.Y onward —
+  the course is read in order. Using it earlier is permitted only as a **signposted
+  preview** (`§1.10`, "previewed"), because §1.1 must show what closes an open
+  statement and §1.5 must state a quantified theorem.
+- **Glossed on first use.** Anything introduced at a level is glossed in words, in
+  every module that uses it. A module that *borrows* a term must reintroduce it or
+  cross-reference the module that defines it.
+
+| Level | Newly permitted | Introduced at | Explicitly banned |
+|---|---|---|---|
+| `l1` | numerals 0–10; the mapping arrow `→` in prose (`name → first letter`) | §3.2 | every other symbol, including `+` |
+| `l2` | `+`, `−`, `=`, `>`, `<`, numerals to 1000 | — | `×`, `÷`, fractions, negatives, letters-as-numbers, `∈`, `√`, `∅` |
+| `l3` | `×`, `·`, `÷`, fractions, decimals, `{ }`, `∈`, `∉`, `⊆`, `∪`, `∩`, `≠`, `≤`, `≥`, the complement bar, set-builder `{x \| …}` with the bound letter as a **slot**; and in Chapter 3, `f(x)`, `f : S → T` (§3.1) and `g ∘ f` (§3.7); in Chapter 5, a letter naming a complex number and `√` for the modulus (§5.4, §5.6) | §2.1–2.4, §3.1, §3.7 | letters standing for *numbers* in general algebra; negatives; `ℕ ℤ ℝ`; four-quadrant grids |
+| `l4` | letters as numbers, `√`, `¬`, `∧`, `∨`, `⇒`, `∅`, `ℕ ℤ ℚ ℝ`, truth tables, negatives, exponents; `≡` (§1.4), `⇔` (§1.9), `∀ ∃ ∃!` (§1.10), intervals and `∞` (§2.2), `f⁻¹` as the **pre-image operator** (§3.3) | §1.2–1.10, §2.2, §3.3 | `Σ`, `∏` |
+| `l5` | `f(x)` outside Chapter 3, `∣` (divides), `↦` | §4.2 | `Σ`, `∏` |
+| `l6` | `f⁻¹` as an **inverse function** (§3.9), `⊕`, subscripted families | §3.9 | `Σ`, `∏`, limits |
+| `l7` | `Σ`, `∏`, `ℂ`, `e^{iθ}`, factorials, informal limits | §5.2, §6.3 | — |
+| `l8` | full Math 0 notation plus forward references | — | — |
+
+**The `l3` rule deserves emphasis.** A fifth grader has met *numerical* expressions
+with parentheses (5.OA.A.1–2) and no variables at all (6.EE.A.2 is grade 6). The
+carve-outs above are the ones Part B explicitly requires — you cannot teach §3.1
+without `f(x)`, or §3.7 without `∘` — and each is confined to the chapter that needs
+it. A letter doing *arithmetic*, or compared against a *numeral*, is still banned.
 
 ### A5. Voice and treatment per level
 
@@ -94,11 +196,35 @@ Generation of content must follow these profiles exactly. Each names the **reade
 
 **`l4` 8th grade.** *Reader's class: linear equations and systems, `y = mx + b`, exponents and scientific notation, irrational numbers, congruence by rigid motions, Pythagoras.* Pre-algebra fluency assumed: letters as numbers, negatives, exponents, the full coordinate plane. Proofs are real proofs, in paragraphs of 3–8 sentences. Formal vocabulary lands here: hypothesis, conclusion, converse, contrapositive, counterexample, set, subset, function, domain, codomain. Truth tables appear. **Function notation `f(x)` is *not* on-grade** (it is HSF-IF.A.2) — Chapter 3 may introduce it, but must do so explicitly as new notation with a gloss, and Chapters 1–2 should avoid it. Two on-grade anchors are worth using hard: the reader **already knows √2 is irrational** (8.EE.A.2) but has never seen why, which makes module 4.7 a genuine payoff; and the reader **already has the exact definition of a function** (8.F.A.1), which makes module 3.1 a formalisation of something familiar rather than a new idea.
 
-**`l5` 9th grade.** *Reader's class: Algebra I — quadratics, factoring, systems, inequalities, exponential growth.* Quantifiers introduced. Proofs a paragraph or two, with the Discussion doing real planning work. Examples move to inequalities, systems, quadratics, and sequences. Function notation is now familiar and can be used freely.
+**`l5` 9th grade.** *Reader's courses: **Algebra I complete**, and **Geometry just started**.* Quantifiers introduced. Proofs a paragraph or two, with the Discussion doing real planning work. Function notation is familiar and can be used freely.
 
-**`l6` 10th grade.** *Reader's class: Geometry — and this is the proof year.* This is the most important connection in the whole ladder: the reader is being taught two-column proofs **right now**. Every module should be explicit about the correspondence — a two-column proof's *statement* column is the chain of assertions and its *reason* column is what paragraph proofs carry in the words *since*, *because*, and *therefore*. Show at least one argument both ways in Chapter 1, then explain why working mathematicians write paragraphs. Use the reader's own theorems as examples: vertical angles, the isosceles base-angle theorem, the triangle angle sum, ASA/SAS/SSS, and the definition of congruence via rigid motions. Adds function composition, inverses, and the first genuinely abstract arguments (sets of sets, functions between arbitrary sets).
+Two supplies, and the division between them is what fixes this rung:
 
-**`l7` 12th grade.** *Reader's class: Precalculus — trig identities, sequences and series with Σ, complex numbers in polar form, informal limits, vectors, conics.* Very close to the Math 0 text in rigor; differs by explaining the moves the notes leave implicit. **Draw examples from precalculus, not from later subjects.** The double-angle identities falling out of De Moivre (module 5.9), telescoping sums (6.3), and the exponential series (5.7) are on-grade and land hard. Forward references to abstract algebra, topology, and analysis belong at `l8`, not here — at `l7`, a `<WhereThisGoes>` should point at calculus and linear algebra, the courses this reader is actually about to take. Complete proofs with full Discussion sections.
+- **From Algebra I, everything.** Quadratics, factoring, systems, inequalities, exponent rules, radicals, absolute value, exponential growth, arithmetic and geometric sequences. These carry the worked examples.
+- **From Geometry, only the opening weeks.** Undefined terms; definitions as biconditionals; segment and angle addition; midpoint and bisector; vertical angles and linear pairs; and — the important one — **the two-column proof, met for the first time and still unfamiliar.**
+
+**Where Part B was overridden at `l5`.** Part B was written against the traditional pathway, so four of its `l5` treatment lines assume material this reader has not met. §A4.1 outranks Part B (see §A4.2's authority note), so these were substituted rather than followed:
+
+| Module | Part B says | `l5` does instead |
+|---|---|---|
+| §2.4 | roots of `sin x` and `cos x` | solution sets of a **system of equations** — a better anchor anyway, since intersecting two lines *is* an intersection of sets |
+| §3.2, §3.8 | `eˣ`, `ln x` | `2ˣ`, `1/x`, `√x` — Algebra I exponentials; `ln` is Algebra II |
+| §5.7–§5.9 | core | **`touch`** — Euler's formula, polar form and De Moivre all need trigonometry and series. The geometric content (arc length on the unit circle, "multiply the distances and add the angles") is reachable and is what those pages give; the derivations are named as what later tools will deliver |
+| Chapter 6 | — | sums written longhand (`1 + 3 + ⋯ + (2n−1)`), since §A4.2 gates `Σ` to `l7` |
+
+**What `l5` may not use is the rest of the geometry course.** Triangle congruence criteria (SAS/ASA/SSS), similarity, circle theorems, the polygon angle-sum and the parallel postulate all arrive later in the year, and they are `l6`'s working toolkit. Reserving them is what keeps the two rungs apart, and it gives the pair a clean division of labour: **`l5` is meeting the two-column proof; `l6` has the whole theorem set and is ready to be shown why mathematicians abandon the two-column format.** Where `l5` wants a geometric example it should reach for a definition or a segment/angle computation, not a theorem.
+
+**`l6` 10th grade.** *Reader's course: Geometry — the proof course.* This is the most important connection in the whole ladder: the reader has met two-column proofs, and geometry is where they met them.
+
+**A note on tracking.** The grade labels straddle two real sequences. The CCSSM *traditional pathway* puts Algebra I in 9th, Geometry in 10th, Precalculus in 12th, and it is the modal US sequence: roughly 69% of Algebra I students take it in grade 9 or 10, against 25% in grade 7 or 8. The accelerated track (Algebra I in 8th, Geometry in 9th, Calculus in 12th) is common and is the *norm* in high-achieving districts.
+
+`l5` is written to the **accelerated** track — Algebra I finished, Geometry just beginning — and `l6` to a reader with the geometry course **in hand**. Those two descriptions are what the pages are calibrated to, and they order correctly under either pathway: a traditional-track 10th grader finishing Geometry and an accelerated-track 9th grader finishing it are the same reader for our purposes. The grade numbers are a label on the rung, not a claim about the reader's timetable, and the rung is defined by the course. So a meaningful minority of `l6` readers took Geometry last year, and a meaningful minority of `l7` readers are already in Calculus rather than about to start it.
+
+**Write to the course, not to the enrolment.** Phrase geometry hooks so they land whether the reader is in the course now or finished it a year ago: *"your geometry course defines…"*, *"the two-column format taught in geometry…"* — never *"you are being taught right now"* or *"this year you have been writing."* The connection is to material the reader has met, and present-tense enrolment claims are the only part that breaks under an off-by-one-year reader. The same applies at `l7`: `<WhereThisGoes>` may say calculus and linear algebra are where this goes without asserting the reader has not started them.
+
+Every module should be explicit about the correspondence — a two-column proof's *statement* column is the chain of assertions and its *reason* column is what paragraph proofs carry in the words *since*, *because*, and *therefore*. Show at least one argument both ways in Chapter 1, then explain why working mathematicians write paragraphs. Use the reader's own theorems as examples: vertical angles, the isosceles base-angle theorem, the triangle angle sum, ASA/SAS/SSS, and the definition of congruence via rigid motions. Adds function composition, inverses, and the first genuinely abstract arguments (sets of sets, functions between arbitrary sets).
+
+**`l7` 12th grade.** *Reader's course: Precalculus — trig identities, sequences and series with Σ, complex numbers in polar form, informal limits, vectors, conics.* On the accelerated track this reader is in Calculus instead, so assume precalculus as the **floor** rather than the ceiling: draw examples from it, and let calculus references land as either preview or reinforcement. Very close to the Math 0 text in rigor; differs by explaining the moves the notes leave implicit. **Draw examples from precalculus, not from later subjects.** The double-angle identities falling out of De Moivre (module 5.9), telescoping sums (6.3), and the exponential series (5.7) are on-grade and land hard. Forward references to abstract algebra, topology, and analysis belong at `l8`, not here — at `l7`, a `<WhereThisGoes>` should point at calculus and linear algebra, the courses this reader is at or near. Phrase those blocks so they work for a reader who has already started calculus — *"the chain rule is a theorem about composition"* rather than *"when you get to calculus you will meet…"*. Complete proofs with full Discussion sections.
 
 **`l8` College.** The Math 0 experience as intended: complete, unhedged, with a **"Where this goes"** closer naming the field each module opens (rings and fields → abstract algebra; pre-images → topology; equivalence relations → quotient constructions; Peano → logic and foundations).
 
@@ -682,7 +808,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 **Kernel:** The irrationals are not closed under addition or multiplication and contain neither 0 nor 1 — they are not a field. But: if a is irrational so are −a and 1/a, and a nonzero rational times an irrational is irrational. Each is proved by contradiction using closure of ℚ.
 **Objectives:** Give counterexamples to closure · prove rational × irrational is irrational · see the −a result as a special case.
 - `l1` ○ Skipped; one line: two strange numbers can add up to a perfectly ordinary one.
-- `l2` ● √2 + (−√2) = 0 and √2 · √2 = 2 shown as the surprise.
+- `l2` ● Two lengths that are each "not a fraction" can add to a whole number, and one multiplied by itself can give a whole number. Shown with the square diagonal from 4.7, in words and pictures — no root sign, no negatives (both are later grades).
 - `l3` ● The two failures of closure stated with those examples, and the "suppose not" proof that −a is irrational told in words.
 - `l4` ● Full proofs of −a and 1/a irrational.
 - `l5`–`l6` ● Math 0's proposition on a·b for nonzero rational a, with the observation that it generalizes the −a case.
@@ -839,7 +965,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 **Objectives:** Write a complete induction proof · avoid the backwards-reasoning error.
 - `l1`–`l2` ○ The picture proof instead: odd numbers as L-shaped shells that build a square. Physically build 1, then 4, then 9 with tiles. (This is honest and it is the same theorem.)
 - `l3` ● The L-shell picture plus the domino argument in words: adding the next odd number adds the next shell.
-- `l4` ● Full symbolic proof with Σ; the L-shell picture retained alongside as the intuition.
+- `l4` ● Full symbolic proof with the sum written out longhand as in 6.2 — `1 + 3 + 5 + ⋯ + (2n−1)` — since Σ is not available until l7; the L-shell picture retained alongside as the intuition.
 - `l5`–`l6` ● Full proof plus a second one (Σ j = n(n+1)/2) done by the reader's-eye-view.
 - `l7`–`l8` ● Math 0 text in full.
 
@@ -880,7 +1006,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 **6.7 Induction in set theory** — Math 0 §6.2.3
 **Kernel:** A set with n elements has 2ⁿ subsets. The step: pick a ∈ S, split subsets into those containing a and those not; each group is in bijection with the subsets of the k-element set S \ {a}, giving 2ᵏ + 2ᵏ = 2^{k+1}.
 **Objectives:** Enumerate subsets of small sets · give the doubling argument · write the proof.
-- `l1` ● With two toys, how many different bags could you pack? (∅, one, the other, both — four.) Do it physically with 1, 2, and 3 toys.
+- `l1` ● With two toys, how many different bags could you pack? (the empty bag, one, the other, both — four.) Do it physically with 1, 2, and 3 toys.
 - `l2` ● Tabulate 0, 1, 2, 3 elements → 1, 2, 4, 8. Notice doubling and say why: each new toy is in or out.
 - `l3` ● The doubling reason made into an argument; connects to 2.1 (∅ counts) and 2.9 (in-or-out is a choice per element).
 - `l4` ● Full induction proof following Math 0, with the split-by-membership case analysis.
@@ -1117,10 +1243,25 @@ Each takes no props that duplicate frontmatter, and each has a defined visual tr
 
 ### C7. Figure component library
 
-Build these once, parameterized, reused everywhere:
-`<VennTwo>` / `<VennThree>` (with shadeable regions) · `<ArrowDiagram>` (two labeled sets, arrows; flags for injective/surjective/broken) · `<NumberLine>` (marks, intervals, open/closed ends) · `<ComplexPlane>` (points, vectors, circles, angle arcs) · `<DominoRow>` (n dominoes, fall animation optional) · `<GridPairs>` (product sets, outfit grids) · `<LShells>` (odd numbers building a square) · `<SuccessorChain>` (0 → S(0) → …, with variants for the broken/looping models) · `<TruthGrid>` (compact 2×2 case charts for `l1`–`l3`, before formal truth tables).
+Parameterized, reused everywhere. **All built** — this is a description of `src/components/`, not a backlog:
 
-Every figure must render legibly at 320px wide and must have alt text carrying the mathematical content, not just "a diagram."
+| Component | Does | Key props |
+|---|---|---|
+| `<VennTwo>` | two circles, shadeable | `labelS` `labelT` `shade[]` `disjoint` `universe` |
+| `<VennThree>` | three circles, all seven regions shadeable | `labelS` `labelT` `labelR` `shade[]` `universe` |
+| `<ArrowDiagram>` | two labeled sets and arrows | `left[]` `right[]` `edges[][]` `broken[]` |
+| `<NumberLine>` | ticks, points, intervals, and a `gapAt` hole for §4.6/§4.7 | `from` `to` `ticks` `points[]` `intervals[]` `gapAt` |
+| `<ComplexPlane>` | points, vectors | `points[]` `vectors[]` `range` |
+| `<DominoRow>` | the induction picture, with `gapAfter` for the step-fails counter-picture | `count` `fallen` `gapAfter` `pushed` `trailing` |
+| `<GridPairs>` | product sets as a grid of ordered pairs | `rows[]` `cols[]` `highlight[][]` `showPairs` |
+| `<LShells>` | odd numbers building a square (§6.3) | `n` `upto` `showCounts` |
+| `<SuccessorChain>` | `0 → S(0) → …`, with `loop`/`merge`/`rogue` variants for §7.4–§7.5's broken models | `mode` `count` `labels` |
+| `<TruthGrid>` | 2×2 case chart for `l1`–`l3`, before `<TruthTable>` arrives at `l4` | `rows` `cols` `cells[][]` `okWord` `badWord` |
+| `<UmbrellaCases>` | the §1.5 promise chart — a hardcoded `<TruthGrid>` predating it | — |
+
+Every figure must render legibly at 320px wide and must have alt text carrying the mathematical content, not just "a diagram." The generic components build their own alt text from the props, so callers get a content-bearing description for free.
+
+**The lint enforces this list.** `scripts/lint-content.mjs` errors on a component that is used without an import or imported without existing on disk, and warns on an unused import. That check exists because this section used to read as a backlog, and reaching for an unbuilt `<SuccessorChain>` from it broke `astro build` with an error that never named the offending page.
 
 ### C8. Accessibility floor
 

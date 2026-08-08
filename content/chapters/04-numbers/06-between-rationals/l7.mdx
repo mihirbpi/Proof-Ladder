@@ -58,6 +58,28 @@ Hence $x < q < y$.
 
 Two ingredients deserve names. The **Archimedean property** — for every real $r$ there is $n \in \mathbb{N}$ with $n > r$ — is what guarantees $\tfrac1n$ can be made smaller than any positive gap; it fails in non-Archimedean ordered fields such as the field of rational functions ordered by growth, where infinitesimals exist and the theorem is false. And the floor function (§3.2) is what converts the Archimedean estimate into an actual rational.
 
+## Any interior point, not only the midpoint
+
+The midpoint is the obvious witness (§1.12) and far from the only one. For rational $t$ with $0<t<1$,
+$$c = a + t(b-a) = (1-t)a + tb$$
+is rational by closure and lies strictly between $a$ and $b$. Taking $t = \tfrac12$ recovers the midpoint.
+
+Producing the general witness costs no more than the specific one, and it yields a stronger theorem: **between any two distinct rationals lie infinitely many rationals**, one for each admissible $t$.
+
+The expression $(1-t)a + tb$ is worth recognising. It is the **convex combination** of $a$ and $b$, and it parametrises the segment joining them as $t$ runs over $[0,1]$. The same formula gives the section formula in coordinate geometry, the parametric equation of a line segment in $\mathbb{R}^n$, and the linear interpolation used in every numerical method — one expression, appearing under three names.
+
+That the interior of a segment is exactly the set of such combinations with $0<t<1$ is a statement you will prove again in linear algebra, where convexity becomes a definition rather than an observation.
+
+## The irrationals are dense too
+
+> **Proposition.** Between any two rationals $a < b$ there is an irrational.
+
+Take $c = a + \dfrac{b-a}{\sqrt2}$. Since $0 < \tfrac{1}{\sqrt2} < 1$, this lies strictly between $a$ and $b$. And it is irrational: if $c$ were rational then $\tfrac{b-a}{\sqrt2} = c - a$ would be rational, so $\sqrt2 = \tfrac{b-a}{c-a}$ would be a quotient of rationals — contradicting §4.7.
+
+So both sets are dense, and each is riddled with members of the other. **Every interval of the number line, however short, contains infinitely many rationals and infinitely many irrationals**, thoroughly interleaved, with no interval belonging entirely to either.
+
+That interleaving has consequences worth anticipating. The function equal to $1$ on the rationals and $0$ on the irrationals is discontinuous at every point, because every neighbourhood of every point contains both kinds. It is the standard first example of a function that is nowhere continuous, and density is the entire reason it works.
+
 ## Density is not completeness
 
 $\mathbb{Q}$ leaves no gap that can be exhibited by naming two rationals with nothing between them. Nevertheless $\mathbb{Q}$ has gaps in the order-theoretic sense: the set
@@ -69,9 +91,19 @@ is nonempty and bounded above in $\mathbb{Q}$, yet has **no least upper bound in
 The **completeness axiom** — every nonempty bounded-above set has a least upper bound — is exactly what $\mathbb{R}$ adds, and $\mathbb{R}$ is the unique complete ordered field up to isomorphism. Density is a local property; completeness is not, which is why local inspection cannot detect the failure.
 
 <Aside>
-Density and measure are independent. $\mathbb{Q}$ is dense in $\mathbb{R}$ yet countable, so it has Lebesgue measure zero: enumerate $\mathbb{Q}$ as $q_1, q_2, \ldots$ and cover $q_k$ by an interval of length $\varepsilon/2^k$; the total length is $\varepsilon$, arbitrarily small. So $\mathbb{Q}$ is everywhere and occupies no length. Conversely the Cantor set is nowhere dense and uncountable, and the fat Cantor sets are nowhere dense with positive measure. Topological size and measure-theoretic size are genuinely different notions, and this is the standard first example.
+Density and measure are independent. $\mathbb{Q}$ is dense in $\mathbb{R}$ yet countable, so it has Lebesgue measure zero: enumerate $\mathbb{Q}$ as $q_1, q_2, \ldots$ and cover $q_k$ by an interval of length $\varepsilon/2^k$; the total length is $\varepsilon$, arbitrarily small. So $\mathbb{Q}$ is everywhere and occupies no length. Conversely the Cantor set is nowhere dense and uncountable, and the fat Cantor sets are nowhere dense with positive measure. Size measured by density and size measured by length are genuinely different notions, and this is the standard first example.
 </Aside>
 
 <WhereThisGoes level="l7">
-Density is the property that makes approximation arguments work, and it is ubiquitous. Because $\mathbb{Q}$ is dense in $\mathbb{R}$, a continuous function is determined by its values on $\mathbb{Q}$ — which is why continuity plus a countable amount of data pins down an uncountable object. The Weierstrass approximation theorem says polynomials are dense in $C([a,b])$, so every continuous function is a uniform limit of polynomials; the Stone–Weierstrass theorem generalises this to arbitrary compact spaces. In functional analysis, separability — the existence of a countable dense subset — is the hypothesis that makes Hilbert spaces tractable and Fourier series converge. The construction of $\mathbb{R}$ itself is a density argument run backwards: Cauchy sequences of rationals, or Dedekind cuts, fill exactly the gaps that density could not detect.
+Density is the property that makes approximation possible, and calculus is a subject about approximation.
+
+**Every limit is an approximation argument.** The definition asks that $f(x)$ come within $\varepsilon$ of $L$ for all $x$ within $\delta$ of $a$ — and $\delta$ can be taken as small as you like precisely because $\mathbb{R}$ has no smallest positive number. Density is what guarantees the shrinking never terminates, and a number system where it did would have no limits worth the name.
+
+**The same property underwrites Riemann sums.** Partitioning $[a,b]$ into $n$ subintervals and letting $n$ grow relies on being able to subdivide indefinitely — which is this module's *repeat forever*, applied to intervals rather than pairs of rationals. Newton's method, bisection, and the Taylor remainder estimates all depend on the same structure.
+
+**And density is exactly what completeness is not.** This module's closing warning is the one that matters most for calculus: $\mathbb{Q}$ is dense and full of holes. Every theorem you will meet whose proof invokes the "least upper bound property" is invoking completeness, not density, and the distinction is why those theorems are false over $\mathbb{Q}$ even though $\mathbb{Q}$ looks like it fills the line.
+
+**In linear algebra the analogue is the ability to scale by arbitrary reals.** Because scalars can be arbitrarily small, a line through the origin contains points arbitrarily close to $\mathbf{0}$, and the geometry of subspaces is continuous rather than discrete. Over a finite field the same definitions produce vector spaces with finitely many elements, where nothing is dense and no approximation argument applies — a useful reminder that the properties calculus relies on are properties of $\mathbb{R}$ specifically.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale; **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

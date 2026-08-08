@@ -8,6 +8,8 @@ anchorExample: "three hoops on the floor"
 
 import TryIt from '@/components/TryIt.astro';
 import Aside from '@/components/Aside.astro';
+import VennThree from '@/components/VennThree.astro';
+import Figure from '@/components/Figure.astro';
 
 Three hoops: $S$, $T$, and $R$. Here is a job you can do two different ways, and both ways give the same answer.
 
@@ -37,6 +39,10 @@ So you can **share it out** whenever you like. Pick whichever way is easier to d
 <Aside>
 You have seen sharing out before. Take $3$ rows with $2$ red and $4$ blue in each. You can count all the reds and all the blues, or count each row and add up. Same answer either way. Hoops do the same thing. But hoops have a bonus that numbers do not, and module 2.8 at higher levels will show you what it is.
 </Aside>
+
+<Figure alt="Three overlapping circles labelled S, T and R, with every part of S that lies in T or in R shaded." caption="S and (T or R): the part of S caught by either of the other two.">
+  <VennThree labelS="S" labelT="T" labelR="R" shade={["ST", "SR", "STR"]} />
+</Figure>
 
 <TryIt>
 Draw three circles that all cross. Shade *$S$ and ($T$ or $R$)*. Then, on a fresh drawing, shade *($S$ and $T$)* and *($S$ and $R$)*. Hold the two drawings up to a window and check they match.

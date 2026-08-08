@@ -15,7 +15,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 The domino picture is faithful: the base is the push, the step is the spacing. Both are load-bearing.
 
-- **No base.** "$n = n+1$ for all $n$" satisfies the step vacuously-correctly ($k = k+1$ implies $k+1 = k+2$) and is false.
+- **No base.** "$n = n+1$ for all $n$" satisfies the step — $k = k+1$ does imply $k+1 = k+2$ — and is false throughout. The step holds vacuously (§1.5): a false hypothesis makes the conditional true.
 - **No step.** $A(n)$: "$n < 5$" has base $A(1)$ true and is false for $n \geq 5$.
 
 ## Induction is not a theorem about $\mathbb{N}$; it defines $\mathbb{N}$
@@ -48,6 +48,20 @@ so the $(k+1)$-case decomposes into the $k$-case plus a computable increment. Mo
 
 Given it, the step is one line: $k^2 + (2k+1) = (k+1)^2$.
 
+## The two conditions, separately
+
+Neither condition alone suffices, and constructing the failures is the fastest way to see why both are stated.
+
+**Base without step.** Verify $A(1)$ and nothing more, and you have verified $A(1)$. Nothing follows about $A(2)$.
+
+**Step without base.** Let $A(n)$ be the claim $n = n+1$. The inductive step is immediate: assume $k = k+1$ and add $1$ to both sides to get $k+1 = k+2$, which is $A(k+1)$. The chain is perfect and every case is false, because no base case holds.
+
+That second example is worth remembering, because it is the shape of the error graders actually see. A student proves the step, finds it convincing, and omits the base case as trivial — and "trivial" and "true" are different claims.
+
+**How many base cases?** As many as the step consumes. If $A(k+1)$ is derived from $A(k)$ alone, one base case suffices. If it reaches back to $A(k-1)$ as well — as every second-order recurrence does — then two are needed, or the chain has no footing.
+
+Counting what the step reaches back for, and verifying that many bases, is a mechanical check worth running before submitting any induction proof.
+
 ## Why conjecture is not proof
 
 <Warning title="Long-lived false patterns">
@@ -71,5 +85,15 @@ The step is a conditional, $A(k)\Rightarrow A(k+1)$, so proving it legitimately 
 </Aside>
 
 <WhereThisGoes level="l7">
-Induction generalises along two axes. **Strong induction** assumes $A(n_0),\ldots,A(k)$ to prove $A(k+1)$ — equivalent to ordinary induction, but the natural form when the decomposition is not into the immediate predecessor, as in the existence half of prime factorisation. **Structural induction** replaces $\mathbb{N}$ by any well-founded order, which is how one proves theorems about trees, formulas, and terms — the basis of every compiler correctness proof and of the semantics of programming languages. Pushing further, **transfinite induction** runs along the ordinals and requires the recursion theorem to justify; it is the engine of set theory, of the construction of the cumulative hierarchy, and of proofs by ordinal analysis in proof theory, where the ordinal $\varepsilon_0$ measures exactly the strength of Peano arithmetic — a theorem of Gentzen that is one of the deepest results connecting induction to the limits of formal systems.
+Induction is the technique behind the sequence and series material in calculus, and behind several of the structural proofs in linear algebra.
+
+**Closed forms for sums are proved by induction.** $\sum_{j=1}^n j = \frac{n(n+1)}{2}$, $\sum_{j=1}^n j^2 = \frac{n(n+1)(2n+1)}{6}$, and the geometric sum $\sum_{j=0}^{n-1} ar^j = a\frac{1-r^n}{1-r}$ are all indexed by $n$ with a visible link between consecutive cases, and all are proved the same way.
+
+The geometric sum is the one that matters most. Letting $n\to\infty$ with $|r|<1$ turns the finite formula into $\frac{a}{1-r}$, which is the only infinite series whose sum you can compute in closed form early on — and the finite version is the induction that makes the limit meaningful.
+
+**Riemann sums use these formulas.** Computing $\int_0^1 x^2\,dx$ from the definition means summing $\sum_{j=1}^n (j/n)^2\cdot\frac1n$ and taking a limit, and the closed form for $\sum j^2$ is what makes the limit computable. Without induction the definition of the integral would produce sums nobody could evaluate.
+
+**The cautionary example matters more than usual here.** $n^2+n+41$ produces primes for forty consecutive values and fails at the forty-first. Numerical evidence about a sequence is evidence about finitely many terms, and sequences are where the temptation to extrapolate is strongest — a sequence can agree with a pattern for a million terms and then diverge.
+
+**In linear algebra**, induction proves the facts about $n\times n$ matrices that cannot be checked case by case: the determinant expansion along a row, the formula for the determinant of a triangular matrix, and the claim that any $n+1$ vectors in $\mathbb{R}^n$ are dependent.
 </WhereThisGoes>

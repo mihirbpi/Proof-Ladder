@@ -1,0 +1,111 @@
+---
+level: l5
+title: The shape of the irrationals
+readingTimeMin: 8
+newTerms: []
+anchorExample: "√2 + (−√2) = 0"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Write $\mathbb{I}$ for the irrationals — the reals that are not rational. Module 4.7 showed $\mathbb{I}$ is not empty. This module asks what kind of set it is, and the answer is: a badly behaved one.
+
+## Closure fails, immediately
+
+$$
+\sqrt2 + \big(-\sqrt2\big) = 0, \qquad \sqrt2 \cdot \sqrt2 = 2.
+$$
+
+Both inputs irrational, both outputs rational. **$\mathbb{I}$ is closed under neither addition nor multiplication.**
+
+Nor does it contain $0$ or $1$, since both are rational. So $\mathbb{I}$ is not a field, not a ring, and not much of anything — it is simply a set, the complement of $\mathbb{Q}$ in $\mathbb{R}$ (module 2.5).
+
+This is a real contrast with $\mathbb{Q}$, and it is worth registering. **Being defined as "the ones that are not" rarely produces a well-behaved object**, and that is a general lesson rather than an accident of this case.
+
+## What is true
+
+Three things do survive, and each is proved the same way.
+
+> **Proposition.** If $a$ is irrational, so is $-a$.
+
+<Discussion>
+  <div slot="know">*Irrational* is a negation, so a direct proof has nothing to grip. Module 2.5 again: <strong>suppose not</strong>.</div>
+  <div slot="want">A contradiction from assuming $-a$ rational.</div>
+  <div slot="how">If $-a$ were rational, then closure of $\mathbb{Q}$ under negation (module 4.5) would make $a$ rational too. That contradicts the hypothesis directly.</div>
+</Discussion>
+
+<Proof>
+Let $a$ be irrational, and suppose for contradiction that $-a \in \mathbb{Q}$.
+
+Since $\mathbb{Q}$ is closed under additive inverses, $-(-a) \in \mathbb{Q}$. But $-(-a) = a$, so $a \in \mathbb{Q}$ — contradicting that $a$ is irrational.
+
+So $-a$ is irrational.
+</Proof>
+
+> **Proposition.** If $a$ is irrational and $a \neq 0$, then $1/a$ is irrational.
+
+<Proof>
+Suppose for contradiction that $1/a \in \mathbb{Q}$. Note $1/a \neq 0$.
+
+Since $\mathbb{Q}$ is closed under reciprocals of nonzero elements, $1/(1/a) \in \mathbb{Q}$. But that is $a$, contradicting irrationality of $a$.
+</Proof>
+
+**Both proofs have the same three lines.** Assume the conclusion fails; apply a closure property of $\mathbb{Q}$; land on a contradiction with the hypothesis. Once you see the pattern the third result writes itself.
+
+## The main one
+
+> **Theorem.** If $a \in \mathbb{Q}$ with $a \neq 0$, and $b$ is irrational, then $ab$ is irrational.
+
+<Discussion>
+  <div slot="know">$a$ is a nonzero rational, $b$ is irrational. Goal is again a negation.</div>
+  <div slot="want">A contradiction from $ab \in \mathbb{Q}$.</div>
+  <div slot="how">If $ab$ were rational, divide by $a$ — legal because $a \neq 0$ — and closure of $\mathbb{Q}$ under division makes $b$ rational.</div>
+</Discussion>
+
+<Proof>
+Suppose for contradiction that $ab \in \mathbb{Q}$.
+
+Since $a \in \mathbb{Q}$ and $a \neq 0$, its reciprocal $1/a$ is rational (module 4.5). Since $\mathbb{Q}$ is closed under multiplication,
+$$
+(ab) \cdot \frac1a \in \mathbb{Q}.
+$$
+But that product is $b$, so $b \in \mathbb{Q}$ — contradicting that $b$ is irrational.
+
+Hence $ab$ is irrational.
+</Proof>
+
+<Warning title="Every hypothesis is used">
+Drop $a \neq 0$ and the theorem is false: $0 \cdot \sqrt2 = 0$ is rational.
+
+Drop *$a$ rational* and it is false: $\sqrt2 \cdot \sqrt2 = 2$ is rational.
+
+**Both conditions are load-bearing**, and you can see exactly where each entered the proof — $a \neq 0$ licensed the reciprocal, and $a \in \mathbb{Q}$ made that reciprocal rational. A hypothesis you cannot locate in the proof is one to be suspicious of.
+</Warning>
+
+This theorem **generalises the first proposition**: taking $a = -1$ gives *if $b$ is irrational so is $-b$*. Having proved the general statement, the special case is free — the same economy as module 4.3.
+
+## What you can and cannot conclude
+
+$$
+\text{rational} + \text{irrational} = \text{irrational} \quad\checkmark
+$$
+$$
+\text{irrational} + \text{irrational} = \ ? \quad \text{could be either}
+$$
+
+The first is a theorem, proved just as above. The second is genuinely undetermined: $\sqrt2 + \sqrt2 = 2\sqrt2$ is irrational, while $\sqrt2 + (2 - \sqrt2) = 2$ is rational.
+
+**When both inputs are irrational, no conclusion follows.** That is not a gap in our knowledge; it is a fact about the sets, and the two examples prove it.
+
+<Aside>
+Here is the strangest thing in the module, and it is worth knowing even though the proof is out of reach for now.
+
+The rationals can be listed in an infinite sequence — first, second, third, and so on, with every rational appearing somewhere. The irrationals cannot: Cantor's argument (module 3.8's Aside) applies to them.
+
+So in the size sense of Chapter 3, **there are far more irrationals than rationals**, even though the rationals are the ones that are dense and familiar and easy to write down.
+
+The number line is almost entirely made of numbers you cannot express as a fraction. The rationals, which feel like all of it, are the exception.
+</Aside>

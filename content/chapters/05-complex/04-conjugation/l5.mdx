@@ -1,0 +1,125 @@
+---
+level: l5
+title: Conjugation
+readingTimeMin: 8
+newTerms: ["conjugate", "involution"]
+anchorExample: "z z̄ = a² + b²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 5.3 divided by multiplying top and bottom by $c - di$. That partner has a name.
+
+> For $z = a + bi$, the **conjugate** is $\bar z = a - bi$.
+
+Flip the sign of the imaginary part, leave the real part alone.
+
+$$
+\overline{3+2i} = 3-2i, \qquad \overline{-5i} = 5i, \qquad \overline{7} = 7.
+$$
+
+## The key computation
+
+$$
+z\bar z = (a+bi)(a-bi) = a^2 - (bi)^2 = a^2 + b^2.
+$$
+
+**A complex number times its conjugate is real and non-negative**, and that single fact is what made division work.
+
+It is also always $\geq 0$, and equal to $0$ only when $a = b = 0$ — that is, only when $z = 0$. Module 5.6 gives $\sqrt{z\bar z}$ a name.
+
+## Conjugation respects the arithmetic
+
+> **Proposition.** For all $z, w \in \mathbb{C}$: $\ \overline{z + w} = \bar z + \bar w$ and $\overline{zw} = \bar z\,\bar w$.
+
+<Discussion>
+  <div slot="know">Both sides are complex numbers, so proving equality means computing each in the form $a + bi$ and comparing.</div>
+  <div slot="want">Two identities.</div>
+  <div slot="how">Write $z = a+bi$, $w = c+di$, expand both sides using module 5.3's formulas, and check the results match. No cleverness — just care with signs.</div>
+</Discussion>
+
+<Proof>
+Let $z = a+bi$ and $w = c+di$ with $a,b,c,d \in \mathbb{R}$.
+
+**Sums.**
+$$
+\overline{z+w} = \overline{(a+c) + (b+d)i} = (a+c) - (b+d)i,
+$$
+$$
+\bar z + \bar w = (a - bi) + (c - di) = (a+c) - (b+d)i.
+$$
+Equal.
+
+**Products.** Using $zw = (ac-bd) + (ad+bc)i$,
+$$
+\overline{zw} = (ac-bd) - (ad+bc)i.
+$$
+And
+$$
+\bar z\,\bar w = (a-bi)(c-di) = ac - adi - bci + bd\,i^2 = (ac - bd) - (ad+bc)i.
+$$
+Equal.
+</Proof>
+
+**This is stronger than it looks.** It says conjugation does not merely happen to commute with $+$ and $\times$ on some examples — it does so for every pair of complex numbers, and the two computations establish exactly that.
+
+The practical consequence: you may conjugate a whole expression by conjugating its pieces. $\overline{z^2 + 3z + 1} = \bar z^2 + 3\bar z + 1$, since $3$ and $1$ are their own conjugates.
+
+## Doing it twice
+
+$$
+\overline{\overline{z}} = \overline{a - bi} = a + bi = z.
+$$
+
+Conjugating twice returns you to the start. An operation with that property is called an **involution** — a self-undoing operation.
+
+You have met others: negation ($-(-x) = x$), taking reciprocals, and, from module 1.2, logical negation ($\neg\neg p \equiv p$). In each case doing it twice is doing nothing.
+
+In the language of module 3.9, this says conjugation is **its own inverse**, and in particular it is a bijection $\mathbb{C} \to \mathbb{C}$.
+
+## The fixed points are exactly the reals
+
+> **Theorem.** For $z \in \mathbb{C}$: $\ z = \bar z$ if and only if $z \in \mathbb{R}$.
+
+<Discussion>
+  <div slot="know">An <em>if and only if</em>, so module 1.9 applies: two proofs, and the named move is <strong>check both boxes</strong>.</div>
+  <div slot="want">Both directions.</div>
+  <div slot="how">Write $z = a+bi$ and compare parts. Each direction is two lines.</div>
+</Discussion>
+
+<Proof>
+Let $z = a + bi$ with $a, b \in \mathbb{R}$.
+
+**($\Rightarrow$)** Suppose $z = \bar z$, so $a + bi = a - bi$. By module 5.2's uniqueness of parts, $b = -b$, so $2b = 0$ and $b = 0$. Hence $z = a \in \mathbb{R}$.
+
+**($\Leftarrow$)** Suppose $z \in \mathbb{R}$, so $b = 0$. Then $\bar z = a - 0i = a = z$.
+
+Both directions hold.
+</Proof>
+
+**A test for realness written entirely in complex arithmetic.** That is genuinely useful: an expression may be complicated enough that you cannot see whether it is real, and checking $z = \bar z$ settles it without simplifying.
+
+<Warning title="Conjugation is not the same as negation">
+$\bar z$ flips only the imaginary part. $-z$ flips both.
+
+$$
+\overline{3+2i} = 3 - 2i, \qquad -(3+2i) = -3-2i.
+$$
+
+They agree only when the real part is zero.
+</Warning>
+
+<Aside>
+The two facts of this module combine into a theorem you met in Algebra I without proof.
+
+> If a polynomial has **real coefficients** and $z$ is a root, then $\bar z$ is also a root.
+
+Why: suppose $a_n z^n + \cdots + a_0 = 0$ with all $a_k$ real. Conjugate both sides. Conjugation passes through sums and products, so the left becomes $a_n \bar z^n + \cdots + a_0$ — the coefficients are unchanged, because being real means being fixed by conjugation. The right stays $0$.
+
+So $\bar z$ satisfies the same equation.
+
+**That is why complex roots of real quadratics always come in pairs** — why the quadratic formula produces $\pm$ in front of the square root, and why you never see a real polynomial with exactly one complex root.
+</Aside>

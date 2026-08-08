@@ -1,0 +1,115 @@
+---
+level: l5
+title: What is a function?
+readingTimeMin: 9
+newTerms: ["function", "domain", "codomain", "input", "output"]
+anchorExample: "f : ℝ → ℝ, f(x) = x²"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Discussion from '@/components/Discussion.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You have been using functions since Algebra I. This module says exactly what one is, and the definition has three parts rather than the one you are probably carrying.
+
+> A **function** $f : S \to T$ assigns to **every** element of $S$ **exactly one** element of $T$.
+
+$S$ is the **domain**, $T$ the **codomain**. The three conditions hidden in that sentence:
+
+- **Totality.** Every $s \in S$ gets sent somewhere. No input may be skipped.
+- **Single-valuedness.** No $s$ gets sent to two places. One output each.
+- **Codomain.** Every output lands inside $T$.
+
+<Figure alt="Three elements on the left with exactly one arrow leaving each; two arrows land on the same element on the right." caption="A function. Sharing an output is allowed; sharing an input is not.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,1],[2,0]]} />
+</Figure>
+
+**Read the picture in one direction only.** The conditions are about arrows *leaving* the left. What happens on the right — whether two arrows land together, whether some element is missed — is unconstrained here, and modules 3.5 and 3.6 take those up as separate questions.
+
+## The two ways to fail
+
+<Figure alt="Three elements on the left, but the third has no arrow leaving it." caption="Not a function: totality fails.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,0]]} />
+</Figure>
+
+<Figure alt="Three elements on the left, the first with two arrows leaving it to different targets." caption="Not a function: single-valuedness fails.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,0],[0,1],[1,2],[2,1]]} broken={[1]} />
+</Figure>
+
+The **vertical line test** is these two conditions drawn on axes. A vertical line at $x = a$ that misses the graph means $a$ has no output — totality fails. One that meets the graph twice means $a$ has two — single-valuedness fails.
+
+So the test is not the definition. It is what the definition looks like for graphs of functions $\mathbb{R} \to \mathbb{R}$, and it says nothing about functions whose inputs are not real numbers.
+
+## Domain and codomain are part of the function
+
+This is the point most often missed, and it costs people whole chapters later.
+
+$$
+f : \mathbb{R} \to \mathbb{R},\ f(x) = x^2
+\qquad\text{and}\qquad
+g : \mathbb{R} \to [0, \infty),\ g(x) = x^2
+$$
+
+are **different functions**. Same rule, same outputs, different codomain. In module 3.6 you will find that $g$ hits everything in its codomain and $f$ does not, so one has a property the other lacks — and if they were the same function that would be impossible.
+
+**The habit to build now: never write a rule without writing its domain and codomain.** Most confusion about injectivity and surjectivity dissolves once this is automatic.
+
+<Warning title="A formula is not yet a function">
+$1/x$ is not a function $\mathbb{R} \to \mathbb{R}$. Totality fails at $x = 0$, where the formula produces nothing.
+
+There are two honest repairs, and neither is to ignore it:
+
+- **Shrink the domain.** $f : \mathbb{R}\setminus\{0\} \to \mathbb{R}$, $f(x) = 1/x$ is a genuine function.
+- **Change the rule** so it is defined everywhere.
+
+When a textbook says "the domain of $1/x$", it means the largest set on which the formula makes sense — the first repair, performed silently. Module 3.2 does several of these carefully.
+</Warning>
+
+## Functions of two variables
+
+Module 2.9 built product sets, and they pay off immediately. A function of two variables is a function whose domain is a product:
+
+$$
+m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}, \qquad m(a,b) = ab.
+$$
+
+Strictly, $m$ takes **one** argument — a single ordered pair — and $m(a,b)$ abbreviates $m\big((a,b)\big)$.
+
+That is not pedantry; it is what lets the whole of Chapter 3 apply to multi-variable functions with no changes at all. Nothing in the definition of *function* mentions numbers or formulas, so every theorem in the next eight modules holds for $m$ exactly as written.
+
+Check the three conditions on $m$. Every pair of integers has a product ✓. Each pair has only one ✓. Products of integers are integers ✓ — closure, from module 4.1. It is a function.
+
+## Equality of functions
+
+<Discussion>
+  <div slot="know">A function is determined by its domain, its codomain, and where it sends each input.</div>
+  <div slot="want">A usable test for $f = g$.</div>
+  <div slot="how">Nothing else is data, so equality can only require those three things to agree.</div>
+</Discussion>
+
+> $f = g$ exactly when they have the same domain, the same codomain, and $f(x) = g(x)$ for every $x$ in that domain.
+
+The consequence is that **how a function is written is not part of the function.**
+
+$$
+f(x) = (x+1)^2 \qquad\text{and}\qquad g(x) = x^2 + 2x + 1,
+$$
+both $\mathbb{R} \to \mathbb{R}$, are the *same function*. Different formulas, identical behaviour on every input, so there is nothing left to distinguish them.
+
+<Aside>
+There is a way to remove the vagueness from the word "assigns", which is doing a lot of work in the definition and is no better defined than "function".
+
+The trick is to identify a function with its graph. Define $f : S \to T$ to *be* a set of pairs $\Gamma \subseteq S \times T$ such that every $s \in S$ appears as the first coordinate of exactly one pair.
+
+Read that condition again: "exactly one" is totality and single-valuedness together, in four words. The definition uses only sets and pairs — objects Chapter 2 already built — and nothing undefined survives.
+
+Higher levels take this as the official definition. It is worth seeing once, because it explains why a function's graph and the function itself are so often treated as the same thing: at bottom, they are.
+</Aside>

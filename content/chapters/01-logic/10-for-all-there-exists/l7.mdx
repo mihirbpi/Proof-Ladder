@@ -23,7 +23,9 @@ $$
 
 The first, the **universal quantifier**, asserts $p$ holds at every element of $S$; the second, the **existential quantifier**, asserts $p$ holds at at least one. Both produce genuine statements: given $S$ and $p$, each is definitely true or definitely false.
 
-Two structural remarks that matter more than they look.
+### Two structural remarks
+
+Both matter more than they look.
 
 **The domain is part of the claim.** $\exists x,\, 3x - 1 = 0$ is true over $\mathbb{Q}$, over $\mathbb{R}$, and over $\mathbb{C}$; false over $\mathbb{Z}$. $\forall x,\, x^2 \geq 0$ is true over $\mathbb{R}$ and false over $\mathbb{C}$ (where $\geq$ is not even defined, which is a different and worse kind of failure). Writing $\forall x, \ldots$ without a domain is not shorthand; it is an incomplete sentence, and in a proof it is where errors hide.
 
@@ -100,9 +102,21 @@ $$
 The two differ by moving $\exists \delta$ across $\forall a$. In the first, $\delta$ may depend on the point $a$; in the second it may not. That single transposition is the difference between $f(x) = 1/x$ on $(0,1)$ — continuous, not uniformly so — and every continuous function on a closed bounded interval, which the Heine–Cantor theorem says is uniformly continuous. Students who find analysis impenetrable are almost always students for whom quantifier order is not yet load-bearing.
 
 <Aside>
-The game reading is not merely a mnemonic. It is formalised in the semantics of first-order logic as an Ehrenfeucht–Fraïssé or Hintikka game, where the truth of a quantified formula is literally the existence of a winning strategy for the verifier. The number of quantifier alternations in a formula is a genuine complexity measure — it stratifies the arithmetical hierarchy, and it stratifies the polynomial hierarchy in complexity theory.
+The game reading is not merely a mnemonic. It is formalised in logic as a two-player game, where the truth of a quantified formula is literally the existence of a winning strategy for the verifier. The number of quantifier alternations in a formula is a genuine complexity measure — it stratifies the arithmetical hierarchy, and it stratifies the polynomial hierarchy in complexity theory.
 </Aside>
 
 <WhereThisGoes level="l7">
-First-order logic — the language of $\forall$, $\exists$, and the connectives — is the standard medium in which mathematics is stated, and its metatheory is a field of its own. Gödel's completeness theorem says its semantic and syntactic notions of validity coincide; the compactness and Löwenheim–Skolem theorems, both consequences, are the engine of model theory and produce genuinely strange objects (non-standard models of arithmetic, infinitesimals in non-standard analysis). Restricting quantifiers to range over elements rather than sets is what makes it *first*-order; allowing quantification over subsets gives second-order logic, which is expressively stronger and metatheoretically much worse behaved. The choice between them is exactly the choice that makes the Peano axioms of Chapter 7 characterise $\mathbb{N}$ up to isomorphism, or not.
+**This module is the prerequisite for the definition of a limit**, and the quantifier order in it is the whole content.
+
+$$\lim_{x\to a}f(x) = L \quad\text{means}\quad \forall\varepsilon>0\ \exists\delta>0\ \forall x:\ 0<|x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon.$$
+
+Three quantifiers, alternating, and every one is load-bearing. The $\varepsilon$ comes first and is arbitrary — *however close you demand*. The $\delta$ comes second and may depend on $\varepsilon$ — *I can find a window*. Reverse those two and you get a claim that is far stronger and almost never true.
+
+This is exactly the desks-and-students pair from earlier in the module, and it is the reason that definition looks impenetrable the first time. It is not deep; it is three quantifiers in a specific order, and you now know what each demands as evidence.
+
+**The same structure runs through the sequel.** Convergence of a sequence is $\forall\varepsilon\,\exists N\,\forall n\geq N$. Continuity on an interval is $\forall a\,\forall\varepsilon\,\exists\delta$ — and moving that $\forall a$ inside the $\exists\delta$ gives *uniform* continuity, a genuinely different and stronger property. Two definitions differing only in quantifier order, with different theorems on either side.
+
+**In linear algebra** the quantifiers are shorter and no less structural. *Spanning* is $\forall\mathbf{v}\,\exists$ coefficients; *linear independence* is a uniqueness claim; *a basis* is $\forall\mathbf{v}\,\exists!$ — existence and uniqueness at once, which is exactly what makes coordinates well defined.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **linear independence** — no vector being a combination of the others; **basis** — a smallest set of vectors that builds all the others; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

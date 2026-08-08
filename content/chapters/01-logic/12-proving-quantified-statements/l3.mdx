@@ -28,7 +28,7 @@ You pick a case you know *nothing special* about. Mathematicians call such a cho
 
 > **Claim.** Take any counting number from $3$ upwards. Multiply it by itself, then subtract $1$. The answer always splits into two factors, both bigger than $1$.
 
-Check a couple first. Start with $3$: $3 \times 3 = 9$, minus $1$ is $8$, and $8 = 2 \times 4$. ✓ Start with $5$: $25 - 1 = 24$, and $24 = 4 \times 6$. ✓
+Check two. Start with $3$: $9-1=8=2\times4$ ✓. Start with $5$: $25-1=24=4\times6$ ✓.
 
 <Discussion>
   <div slot="know">Our number is a counting number, at least $3$. Nothing else.</div>
@@ -39,23 +39,21 @@ Check a couple first. Start with $3$: $3 \times 3 = 9$, minus $1$ is $8$, and $8
 <Proof>
 Take any counting number from $3$ upwards, and follow it. We know nothing else about it.
 
-Look at *one less than it* multiplied by *one more than it*. Picture a rectangle that many tall and that many wide.
+Picture a square whose side is your number. Shorten one side by $1$ and lengthen the other by $1$. You lose a strip and gain a strip, and the strips differ by exactly one tile.
 
-Now compare with a square whose side is your number. Starting from that square, shorten one side by $1$ and lengthen the other by $1$. You lose a strip and gain a strip, and the strips differ by exactly one tile.
+So *(one less)* times *(one more)* is exactly one less than your number multiplied by itself — precisely the answer we were asked about.
 
-So *(one less)* times *(one more)* is exactly one less than your number multiplied by itself. That is precisely the answer we were asked about.
+Now the two factors. Your number is at least $3$, so *one less* is at least $2$ ✓, and *one more* is at least $4$ ✓. Both beat $1$.
 
-Now check the two factors. Since your number is at least $3$, one less than it is at least $2$ — bigger than $1$ ✓. And one more than it is at least $4$ — also bigger than $1$ ✓.
-
-So the answer splits into two factors, both bigger than $1$. And since our number was any counting number from $3$ up, this holds for all of them.
+And our number was any counting number from $3$ up, so this holds for all of them.
 </Proof>
 
-Read the proof again and notice: we never used a particular number. Every step would still be true starting from $7$, or $400$, or a number nobody has ever written down. That is what makes it a proof of the *for all* claim.
+Notice we never used a particular number. Every step would hold starting from $7$, or $400$, or a number nobody has written down. That is what makes it a proof of the *for all* claim.
 
 <Warning title="Arbitrary means you don't get to choose">
 A proof that begins "start with $5$" proves something about $5$. To prove a *for all* claim you must let the case be handed to you.
 
-If at any point you find yourself saying "and since our number is even…", stop — you assumed something you were not given. Unless you then also handle the odd case; see below.
+If you catch yourself saying "and since our number is even…", stop — you assumed something you were not given, unless you also handle the odd case. See below.
 </Warning>
 
 ## Splitting into cases
@@ -67,11 +65,11 @@ Sometimes you cannot argue about all cases the same way. Then you may **split in
 <Proof>
 Take any counting number and follow it. Either it is even or it is odd — those are the only options.
 
-**Case 1: it is even.** Then it is a pile of $2$s. Making that many copies of it keeps it a pile of $2$s, so the answer is even.
+**Case 1: it is even.** Then it is a pile of $2$s, and copies of a pile of $2$s stay a pile of $2$s. Even ✓
 
-**Case 2: it is odd.** Then the next one up is even, so *that* one is a pile of $2$s. Making copies of a pile of $2$s keeps it a pile of $2$s, so the answer is even.
+**Case 2: it is odd.** Then the next one up is even — a pile of $2$s — and the same reasoning applies. Even ✓
 
-Both cases give an even answer, and there are no other cases. So the answer is always even.
+There are no other cases, so the answer is always even.
 </Proof>
 
 The rule for cases: they must **cover everything**. Leave a case out and your proof has a hole in it.
@@ -80,7 +78,7 @@ The rule for cases: they must **cover everything**. Leave a case out and your pr
 
 - **Disprove a *for all*:** one bad apple. "Every rectangle has four equal sides" dies to a $2$-by-$5$ rectangle.
 - **Prove a *there exists*:** show one. "There is a shape with four equal sides and four square corners" — a square. Done.
-- **Disprove a *there exists*:** you must show *every* case fails, which is a *for all* proof in disguise. "There is a counting number bigger than all the others" is false, because whatever you name, adding one beats it.
+- **Disprove a *there exists*:** show *every* case fails — a *for all* proof in disguise. "There is a counting number bigger than all the others" is false: whatever you name, adding one beats it.
 
 <Aside>
 Three of the four jobs have a hard version and an easy version, and the hard ones are hard for the same reason: they are secretly *for all* claims, and *for all* claims cannot be settled by looking.

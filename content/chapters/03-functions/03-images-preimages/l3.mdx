@@ -11,9 +11,9 @@ import ArrowDiagram from '@/components/ArrowDiagram.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-A function runs one way: input in, output out. But you can ask questions in both directions, and the two directions get different names.
+A machine runs one way: something goes in, something comes out. But you can ask questions in **both** directions, and the two questions have different names.
 
-<Figure alt="Four elements on the left with one arrow each; two land on the same target, one target has no arrow." caption="Some targets are hit twice, some not at all.">
+<Figure alt="Four elements on the left with one arrow each; two land on the same target, one target has no arrow." caption="Some targets get hit twice. Some get missed.">
   <ArrowDiagram labelLeft="S" labelRight="T"
     left={["a", "b", "c", "d"]} right={["1", "2", "3", "4"]}
     edges={[[0,1],[1,1],[2,0],[3,3]]} />
@@ -21,79 +21,84 @@ A function runs one way: input in, output out. But you can ask questions in both
 
 ## The image: what actually comes out
 
-The **image** of a function $f : S \to T$ is the set of answers it actually produces:
-$$
-\text{Im}(f) = \{\, f(s) \mid s \in S \,\}.
-$$
+The **image** is the set of answers the machine really produces.
 
-In the picture, $\text{Im}(f) = \{1, 2, 4\}$. The element $3$ is in the codomain but not in the image, because nothing gets sent there.
-
-So the image is always a subset of the codomain — sometimes the whole thing, often not:
+Look at the picture and collect every arrowhead. The arrows land on $1$, on $2$, and on $4$. So the image is
 $$
-\text{Im}(f) \subseteq T.
+\{1,\ 2,\ 4\}.
 $$
 
-## Codomain versus image
+Nothing lands on $3$. It sits in the target set, and the machine never produces it, so $3$ is **not** in the image.
 
-This distinction trips everybody up once, so here it is plainly.
+## The set you promised, and the set you get
 
-- The **codomain** is what you *declared* when you set the function up. It is a promise about where answers will land.
-- The **image** is what actually *happens*. It is a fact about the function, not a choice.
+These are two different things, and mixing them up is the usual mistake.
 
-You choose the codomain. You do not choose the image; you compute it.
+- The **target set** is what you *promised* when you set the machine up. Here that is $\{1, 2, 3, 4\}$.
+- The **image** is what you actually *get*. Here that is $\{1, 2, 4\}$.
 
-## Worked example: the alphabet function
+You choose the target set. You do not choose the image — you work it out by looking.
 
-Let $f$ send each letter to its position, with codomain the counting numbers:
+The image is always part of the target set:
 $$
-f(\text{a}) = 1, \quad \ldots, \quad f(\text{z}) = 26.
+\{1,\ 2,\ 4\} \subseteq \{1,\ 2,\ 3,\ 4\}.
 $$
 
-The codomain is all the counting numbers. But the image is only
+## Working it out: the alphabet machine
+
+Feed a letter in, and out comes its position in the alphabet. Call the machine $f$, so that $f(\text{a})$ means *what the machine gives back when you feed it* $\text{a}$.
+
+| in | a | b | c | … | z |
+|---|---|---|---|---|---|
+| out | 1 | 2 | 3 | … | 26 |
+
+The target set is all the counting numbers. But the image is only
 $$
-\text{Im}(f) = \{1, 2, 3, \ldots, 26\}.
+\{1,\ 2,\ 3,\ \ldots,\ 26\}.
 $$
-Nothing maps to $27$, or $100$, or a million. Same function, and the two sets are wildly different sizes.
+
+Nothing comes out as $27$. Nothing comes out as $100$, or a million. **Same machine, and the two sets are wildly different sizes.**
 
 ## The pre-image: tracing back
 
-Pick a set $U$ inside the codomain. The **pre-image** of $U$ is everything in the domain that lands inside $U$:
-$$
-f^{-1}(U) = \{\, s \in S \mid f(s) \in U \,\}.
-$$
+Now run your finger the other way. Pick something in the target set and ask: *what lands here?*
 
-From the picture: $f^{-1}(\{2\}) = \{a, b\}$, because both $a$ and $b$ point at $2$. And $f^{-1}(\{1\}) = \{c\}$.
+The answer is called the **pre-image**.
 
-Now the interesting one:
-$$
-f^{-1}(\{3\}) = \emptyset.
-$$
-Nothing lands on $3$, so tracing back from it gives you the empty set. **This is a correct answer, not an error.** Pre-images are allowed to be empty, and they often are.
+From the picture:
 
-For the alphabet function:
-$$
-f^{-1}(\{5\}) = \{\text{e}\},
-\qquad
-f^{-1}(\{27\}) = \emptyset,
-\qquad
-f^{-1}(\{1,2,3\}) = \{\text{a}, \text{b}, \text{c}\}.
-$$
+- Trace back from $2$. Both $a$ and $b$ point at it, so the pre-image of $2$ is $\{a,\ b\}$ — **two things**.
+- Trace back from $1$. Only $c$ points at it, so the pre-image of $1$ is $\{c\}$ — one thing.
+- Trace back from $3$. **Nothing at all points at it.**
 
-## Image and pre-image are linked
+That last one is the interesting case, and it is worth saying slowly. Tracing back from $3$ gives you nothing — not a mistake, not a broken machine. It is simply the honest answer, and there is even a set for it: the empty set, $\{\ \}$, from module 2.1.
+
+### The alphabet machine again
+
+For the alphabet machine:
+
+- Trace back from $5$ and you get $\{\text{e}\}$.
+- Trace back from $27$ and you get **nothing at all** — no letter sits in position $27$.
+- Trace back from the whole set $\{1, 2, 3\}$ and you get $\{\text{a},\ \text{b},\ \text{c}\}$.
+
+## The two directions are linked
 
 Here is the connection, and it is worth remembering:
-$$
-t \in \text{Im}(f) \quad\text{exactly when}\quad f^{-1}(\{t\}) \neq \emptyset.
-$$
 
-An element is in the image precisely when something traces back to it. Both statements say "$t$ gets hit"; one says it going forwards and one going backwards.
+> Something is in the **image** exactly when tracing back from it gives you **something rather than nothing**.
 
-<Warning title="f⁻¹ does not mean the function runs backwards">
-The notation $f^{-1}$ looks like it should undo $f$. It does not — not yet. Right now $f^{-1}(U)$ is defined for **every** function, tidy or messy, and it always takes a *set* and gives back a *set*.
+Both statements say *"this one gets hit."* One says it going forwards, one says it going backwards.
 
-In our picture, $f^{-1}(\{2\}) = \{a, b\}$ — two things. No single-valued undo-machine could do that. Module 3.9 sorts out exactly when a real undo-machine exists.
+<Warning title="Tracing back is not running the machine backwards">
+Tracing back from $2$ gave $\{a,\ b\}$ — **two** answers. A machine has to give exactly one answer for each thing you feed it (module 3.1), so tracing back is not itself a machine.
+
+Tracing back is a question you ask about a machine. It always has an answer, even when that answer is *nothing at all*, and even when the machine is a very messy one.
+
+Module 3.9 sorts out exactly when a real backwards-machine exists.
 </Warning>
 
 <Aside>
-Pre-images turn out to be far better behaved than images, which is why mathematicians reach for them constantly. Module 3.4 shows that pre-images get along perfectly with unions, intersections, and complements — and images do not.
+Tracing back turns out to be much better behaved than going forwards, which is why mathematicians reach for it constantly.
+
+Module 3.4 shows that tracing back gets along perfectly with unions and intersections — and that going forwards does not.
 </Aside>

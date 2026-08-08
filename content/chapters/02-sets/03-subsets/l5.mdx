@@ -1,0 +1,115 @@
+---
+level: l5
+title: Subsets
+readingTimeMin: 9
+newTerms: ["subset", "proper subset", "transitive"]
+anchorExample: "ℤ ⊆ ℚ"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+A \subseteq S \quad\text{means}\quad \forall x\ (x \in A \Rightarrow x \in S).
+$$
+
+$A$ is a **subset** of $S$ when every element of $A$ is an element of $S$.
+
+Read that definition carefully, because it is a *universally quantified conditional* — the two constructions of modules 1.5 and 1.10 stacked. And the shape of the definition dictates the shape of every proof about it, with no choices left to make:
+
+> **To prove $A \subseteq S$: take an arbitrary $x \in A$ and follow it until you reach $x \in S$.**
+
+That is the named move, **take any one and follow it**. It is Template 1 of module 1.12 with the details filled in.
+
+## A first proof
+
+> **Proposition.** $\mathbb{Z} \subseteq \mathbb{Q}$.
+
+Most books assert this. It is provable, and the proof is short.
+
+<Discussion>
+  <div slot="know">$\mathbb{Q} = \{\,a/b \mid a, b \in \mathbb{Z},\ b \neq 0\,\}$ — to be rational is to be *expressible* as such a ratio, not to be written as one.</div>
+  <div slot="want">An arbitrary integer, exhibited in that form.</div>
+  <div slot="how">Give the ratio. The only obligation is checking the denominator is nonzero.</div>
+</Discussion>
+
+<Proof>
+Let $n \in \mathbb{Z}$ be arbitrary. Then
+$$
+n = \frac{n}{1},
+$$
+and $n \in \mathbb{Z}$, $1 \in \mathbb{Z}$, $1 \neq 0$. So $n$ is a ratio of integers with nonzero denominator, hence $n \in \mathbb{Q}$.
+
+As $n$ was arbitrary, $\mathbb{Z} \subseteq \mathbb{Q}$.
+</Proof>
+
+The content is the observation that being rational is a matter of being *expressible* as a ratio. $7$ does not look like a fraction, and it is one.
+
+## Two special cases
+
+**Every set is a subset of itself.** $S \subseteq S$, since $x \in S \Rightarrow x \in S$ is trivially true. This is not a trick; it is what the definition says, and it will matter in module 2.6.
+
+**The empty set is a subset of everything.** $\emptyset \subseteq S$ for every $S$.
+
+<Warning title="∅ ⊆ S is vacuous truth, not a special rule">
+To prove $\emptyset \subseteq S$ you must show $\forall x\,(x \in \emptyset \Rightarrow x \in S)$.
+
+Take an arbitrary $x \in \emptyset$. There are none — so the hypothesis $x \in \emptyset$ is false for every $x$, and a conditional with a false hypothesis is true (module 1.5). Every case is vacuously satisfied because there are no cases.
+
+Students often want this to be a convention adopted for tidiness. It is not. It is forced by the definition of $\subseteq$ together with the truth table for $\Rightarrow$, and any other answer would contradict one of them.
+</Warning>
+
+## Proper subsets
+
+$A \subsetneq S$ means $A \subseteq S$ **and** $A \neq S$ — a **proper subset**, one that leaves something out.
+
+$$
+\mathbb{Z} \subsetneq \mathbb{Q}, \qquad \text{since } \tfrac12 \in \mathbb{Q} \text{ and } \tfrac12 \notin \mathbb{Z}.
+$$
+
+Proving properness is a second job: containment, plus **one witness** in $S \setminus A$. One element is enough, because $A \neq S$ is the negation of a set equality, and module 1.11 says a single failure refutes a universal claim.
+
+Some authors write $\subset$ for proper containment and others for containment in general, so $\subset$ is genuinely ambiguous in the literature. This course uses $\subseteq$ and $\subsetneq$, which are never ambiguous.
+
+## Two structural facts
+
+**Reflexive.** $S \subseteq S$, shown above.
+
+**Transitive.** If $A \subseteq B$ and $B \subseteq C$ then $A \subseteq C$.
+
+<Proof>
+Assume $A \subseteq B$ and $B \subseteq C$. Let $x \in A$ be arbitrary.
+
+Since $A \subseteq B$ and $x \in A$, we get $x \in B$.
+
+Since $B \subseteq C$ and $x \in B$, we get $x \in C$.
+
+As $x$ was arbitrary, $A \subseteq C$.
+</Proof>
+
+Two applications of a conditional, in sequence — the *dominoes* pattern of module 1.6, at its shortest.
+
+Transitivity is what makes a chain like
+$$
+\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R}
+$$
+mean what you expect: $\mathbb{N} \subseteq \mathbb{R}$ follows, without a separate proof.
+
+<Warning title="∈ and ⊆ are different relations">
+$\in$ relates an object to a set. $\subseteq$ relates a set to a set. Mixing them is the most common error in this chapter.
+
+Let $S = \{1, 2\}$. Then:
+
+- $1 \in S$ ✓ but $1 \subseteq S$ ✗ — $1$ is not a set.
+- $\{1\} \subseteq S$ ✓ but $\{1\} \in S$ ✗ — the elements of $S$ are $1$ and $2$, not $\{1\}$.
+
+The test is one question: *is the thing on the left an element of $S$, or a collection of them?*
+</Warning>
+
+<Aside>
+$\subseteq$ behaves like $\leq$, and the resemblance is not accidental. Both are reflexive and transitive, and both have the property that two-way comparison forces equality — $a \leq b$ and $b \leq a$ give $a = b$, and module 2.6 proves the same for $\subseteq$.
+
+One difference matters. Any two real numbers compare: either $a \leq b$ or $b \leq a$. Sets need not. Take $A = \{1,2\}$ and $B = \{2,3\}$: neither contains the other. **Sets can be genuinely incomparable**, and that is why you cannot line all subsets of a set up in a row the way you can line up numbers.
+</Aside>

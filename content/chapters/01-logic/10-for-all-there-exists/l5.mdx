@@ -1,0 +1,106 @@
+---
+level: l5
+title: For all, there exists
+readingTimeMin: 8
+newTerms: ["quantifier", "for all", "there exists", "unique"]
+anchorExample: "3x − 1 = 0"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 1.1 left a loose end. The sentence
+$$
+3x - 1 = 0
+$$
+is not a statement: it has no truth value until you say something about $x$. Plug in $x = \tfrac13$ and it is true; plug in $x = 5$ and it is false.
+
+A **quantifier** is what closes that gap. Attach one and you get a sentence with a definite truth value — a statement you can prove.
+
+## The two quantifiers
+
+$$
+\forall x \in S,\ p(x) \qquad\text{and}\qquad \exists x \in S,\ p(x)
+$$
+
+The first reads *for all $x$ in $S$, $p(x)$*, and claims $p$ holds at **every** element of $S$. The second reads *there exists $x$ in $S$ such that $p(x)$*, and claims it holds at **at least one**.
+
+Both name the set $S$ explicitly, and that is not decoration:
+
+- $\forall x \in \mathbb{R},\ x^2 \geq 0$ is **true**.
+- $\forall x \in \mathbb{C},\ x^2 \geq 0$ is not even meaningful, since $\mathbb{C}$ has no order.
+- $\exists x \in \mathbb{Z},\ 3x - 1 = 0$ is **false** — no integer works.
+- $\exists x \in \mathbb{Q},\ 3x - 1 = 0$ is **true**, witnessed by $x = \tfrac13$.
+
+The last two have the same predicate and different truth values. **The set is part of the claim**, and a quantified statement written without one is unfinished.
+
+## What each one costs to prove
+
+This is the asymmetry that shapes the rest of the course.
+
+| Claim | To prove | To disprove |
+|---|---|---|
+| $\forall x \in S,\ p(x)$ | argue about an arbitrary element | exhibit one failure |
+| $\exists x \in S,\ p(x)$ | exhibit one success | argue about an arbitrary element |
+
+One column is cheap and one is expensive, and which is which flips between the rows. Module 1.12 turns each of the four boxes into a template.
+
+## Exactly one
+
+$$
+\exists!\, x \in S,\ p(x)
+$$
+
+reads *there exists a unique $x$ in $S$ with $p(x)$*, and it is two claims bolted together: at least one, and at most one.
+
+> **Proposition.** $\exists!\, x \in \mathbb{R},\ 3x - 1 = 0$.
+
+<Discussion>
+  <div slot="know">$3x - 1 = 0$ is a linear equation with a nonzero coefficient on $x$.</div>
+  <div slot="want">Two things, separately: some real number solves it, and no two different ones do.</div>
+  <div slot="how">Existence by producing the number. Uniqueness by the standard move — suppose $a$ and $b$ both work, then force $a = b$.</div>
+</Discussion>
+
+<Proof>
+**Existence.** Take $x = \tfrac13$. Then $3\cdot\tfrac13 - 1 = 0$ ✓, and $\tfrac13 \in \mathbb{R}$.
+
+**Uniqueness.** Suppose $a$ and $b$ are real numbers with $3a - 1 = 0$ and $3b - 1 = 0$. Then $3a - 1 = 3b - 1$, so $3a = 3b$, and dividing by $3$ gives $a = b$.
+
+So exactly one real number satisfies the equation.
+</Proof>
+
+Notice the shape of the uniqueness half. It does not hunt for a second solution and fail to find one — failing to find something proves nothing. It **assumes two solutions and derives that they were the same one all along.**
+
+<Warning title="Existence and uniqueness are separate jobs">
+$\exists!$ is not a single stronger $\exists$. It is a conjunction, and module 1.9's rule applies: count the parts and prove each.
+
+Your geometry course has already done this to you. *Every segment has exactly one midpoint* is an $\exists!$ claim, and the textbook proof has two halves — construct the point, then show any point with that property is the one you constructed. The second half is the one students skip.
+</Warning>
+
+## Nesting them
+
+Quantifiers stack, and this is where reading carefully starts to matter:
+$$
+\forall x \in \mathbb{R},\ \exists y \in \mathbb{R},\ y > x.
+$$
+Read left to right: *given any real $x$, you can find a real $y$ bigger than it.* True — take $y = x + 1$.
+
+Now swap the two quantifiers, changing nothing else:
+$$
+\exists y \in \mathbb{R},\ \forall x \in \mathbb{R},\ y > x.
+$$
+*There is a single real $y$ bigger than every real $x$.* False — whatever $y$ you name, $x = y+1$ defeats it.
+
+**Same symbols, same order of $x$ and $y$ in the inequality, opposite truth values.** The only difference is which quantifier came first.
+
+The reason is what each one is allowed to depend on. In the true version $y$ is chosen *after* $x$, so it may depend on $x$ — and it does, since $y = x+1$. In the false version $y$ is fixed *before* $x$ is mentioned, so it must work for all of them at once, and no number does.
+
+<Aside>
+Order-of-quantifiers is not a technicality; it is the single hardest line in first-year calculus.
+
+*For every tolerance there is a distance that keeps you inside it* is continuity. *There is one distance that works for every tolerance* is a much stronger statement, and it is false for most continuous functions.
+
+Two statements, the same five ingredients, and swapping two words changes which one you have proved. Everything in this module is practice for reading that line correctly.
+</Aside>

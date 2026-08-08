@@ -1,0 +1,104 @@
+---
+level: l5
+title: Between any two rationals
+readingTimeMin: 8
+newTerms: ["density", "midpoint"]
+anchorExample: "the midpoint (a+b)/2"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import NumberLine from '@/components/NumberLine.astro';
+import Figure from '@/components/Figure.astro';
+
+The integers on a number line are spread out: nothing sits between $3$ and $4$. The rationals are not like that at all.
+
+## The theorem
+
+> **Theorem.** For any rationals $a < b$, there is a rational $c$ with $a < c < b$.
+
+A set with this property is called **dense**.
+
+<Discussion>
+  <div slot="know">$a, b \in \mathbb{Q}$ with $a < b$. Available: closure of $\mathbb{Q}$ (module 4.5) and the ordinary rules for inequalities.</div>
+  <div slot="want">A rational strictly between them — an existence claim, so produce a witness (module 1.12).</div>
+  <div slot="how">The <strong>midpoint</strong> $\frac{a+b}{2}$ is the obvious candidate. Three separate obligations then follow: that it is rational, that it exceeds $a$, and that it falls short of $b$.</div>
+</Discussion>
+
+<Proof>
+Let $c = \dfrac{a+b}{2}$.
+
+**$c$ is rational.** $\mathbb{Q}$ is closed under addition, so $a + b \in \mathbb{Q}$; and closed under division by the nonzero rational $2$, so $c \in \mathbb{Q}$.
+
+**$a < c$.** Add $a$ to both sides of $a < b$: $\ 2a < a+b$. Divide by $2$, which is positive and so preserves the inequality: $\ a < \frac{a+b}{2} = c$.
+
+**$c < b$.** Add $b$ to both sides of $a < b$: $\ a + b < 2b$. Divide by $2$: $\ c < b$.
+
+So $a < c < b$ with $c \in \mathbb{Q}$.
+</Proof>
+
+**Three obligations, three paragraphs.** The two inequalities came from adding *different* things to $a < b$ — $a$ for one, $b$ for the other — and neither follows from the other. A proof establishing only one has done half the job.
+
+This is module 2.6's discipline again: when the goal is several things at once, count them and prove each.
+
+<Warning title="Dividing by 2 was a step, not a formality">
+Going from $2a < a+b$ to $a < \frac{a+b}{2}$ used the rule *multiplying or dividing by a positive preserves the inequality.*
+
+Had the divisor been negative, the inequality would flip. That is the rule that catches people out all through Algebra I, and naming it once here is what makes the proof honest rather than merely correct.
+</Warning>
+
+## Repeat forever
+
+The theorem applies to its own output. Between $a$ and $c$ there is another rational; between those, another; and so on with no end.
+
+> **Between any two distinct rationals there are infinitely many rationals.**
+
+So no two rationals are next to each other, and the phrase *"the next rational after $\tfrac12$"* refers to nothing at all. Compare the integers, where $4$ is unambiguously next after $3$.
+
+Each step halves the gap, so after $n$ steps the interval has length $(b-a)/2^n$. Ten steps shrink it by more than a thousand. That is why repeated halving is a practical way to locate a number and not just a theoretical one.
+
+## Any point between, not only the midpoint
+
+The midpoint is the obvious witness and it is not the only one. For any rational $t$ with $0 < t < 1$,
+$$
+c = a + t(b-a)
+$$
+is rational by closure and lies strictly between $a$ and $b$. Taking $t = \tfrac12$ recovers the midpoint; $t = \tfrac13$ gives the point one third of the way along.
+
+**Producing a family of witnesses rather than one is often no harder**, and here it is free. Module 4.3's linear-combination theorem had the same character: the general statement cost nothing extra and delivered more.
+
+## The trap
+
+Here is the module's real point, and module 4.7 springs it.
+
+$\mathbb{Q}$ is dense. Between any two rationals lies another, and the picture in your head is probably of the rationals **filling** the number line completely, with no room left over.
+
+That picture is wrong.
+
+Density says no two rationals are adjacent. It does **not** say the rationals occupy every location — and they do not. There is a point on the line whose distance from $0$ squares to $2$, and no rational sits there.
+
+<Warning title="Dense does not mean complete">
+These are different properties, and $\mathbb{Q}$ has the first and not the second.
+
+Mark every rational on a line. You get a set with no two points adjacent, crowded everywhere you look, and **still full of holes.**
+
+<Figure alt="A number line from 1 to 2 with rationals marked densely along it, and a hollow circle at the square root of 2 showing a location with no rational at it." caption="Rationals crowd in from both sides, and √2 is still a hole.">
+  <NumberLine from={1} to={2} ticks={[1, 1.25, 1.5, 1.75, 2]} labels={[1, 2]}
+    points={[{at: 1.4, label: "7/5"}, {at: 1.42, label: "71/50"}]}
+    gapAt={{at: 1.41421, label: "√2"}} />
+</Figure>
+
+The holes are individually invisible: you cannot point at one, because rationals crowd arbitrarily close on both sides of it. That is exactly why the gap in $\mathbb{Q}$ went unnoticed for so long, and why the discovery that $\sqrt2$ is irrational was genuinely shocking.
+
+$\mathbb{R}$ is what you get by filling them.
+</Warning>
+
+<Aside>
+Density kills the word *next*, and that has a consequence worth flagging before Chapter 6.
+
+Induction works by stepping from $n$ to $n+1$. That step exists in $\mathbb{Z}$ and does not exist in $\mathbb{Q}$ — there is no next rational to step to.
+
+So induction is available over the integers and simply does not apply over the rationals. The technique is tied to a structural property, and this module is where you can see which property it is.
+</Aside>

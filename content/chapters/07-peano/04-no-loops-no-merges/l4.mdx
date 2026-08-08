@@ -28,6 +28,8 @@ In Chapter 3's language:
 
 Together, $S : \mathbb{N}\to\mathbb{N}\setminus\{0\}$ is injective.
 
+Read informally, A7 says counting never comes back to the start and A8 says counting never merges two numbers into one. Those are exactly the two ways a chain of arrows can fail to be a line: it can close into a loop, or two strands can join. Rule both out and what is left has no choice but to run forever in one direction.
+
 ## Why each is needed: bad models
 
 To show an axiom is independent of the others, exhibit a structure satisfying the others and violating it (module 7.1).
@@ -58,6 +60,10 @@ So A8 is not derivable from A5, A6, A7.
 
 Each axiom therefore does work no other axiom does. This is what an independence argument looks like, and it is why the models are worth constructing rather than merely described.
 
+### Why models, and not effort
+
+The method generalises, and it is the only method available. You cannot show an axiom is unprovable by failing to prove it — that is a fact about your effort. A model that satisfies the others and breaks the one in question settles the matter permanently, because any derivation would have to hold in every structure where the premises hold, and here is one where it does not.
+
 ## Consequence: the numerals are distinct
 
 > **Proposition.** Under A5–A8, the elements $0, S(0), S^2(0), S^3(0), \ldots$ are pairwise distinct.
@@ -71,6 +77,8 @@ Hence no two are equal.
 </Proof>
 
 Note what the two axioms contributed: A8 supplied the cancellation and A7 supplied the contradiction. Remove either and the argument fails — as the models above show it must.
+
+The proof is also a good example of choosing the right shape. The claim is that infinitely many things are pairwise distinct, which is a universal statement about pairs and cannot be checked. Assuming two of them equal turns it into a single equation you can manipulate, and A8 is precisely a tool for manipulating such equations. That is module 1.8's advice about negative claims, applied here.
 
 So $\{0,1,2,3,\ldots\} \subseteq \mathbb{N}$, with all elements distinct, and $\mathbb{N}$ is infinite.
 

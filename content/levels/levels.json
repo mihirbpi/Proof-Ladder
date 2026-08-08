@@ -7,9 +7,23 @@
       "ageRange": "5–6",
       "grade": "Kindergarten",
       "readingTarget": "Read aloud by adult",
-      "wordBudget": [60, 140],
+      "wordBudget": [
+        110,
+        130
+      ],
       "notation": "None. Words and pictures only. Numerals 0–10.",
-      "allowedSymbols": ["0","1","2","3","4","5","6","7","8","9"],
+      "allowedSymbols": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
       "voice": "Second person, present tense, 6–12 word sentences. Every module ends with one thing to do."
     },
     {
@@ -19,9 +33,28 @@
       "ageRange": "7–8",
       "grade": "Grade 2",
       "readingTarget": "Grade 2 · 420–650L",
-      "wordBudget": [140, 280],
+      "wordBudget": [
+        280,
+        380
+      ],
       "notation": "= + − > <, numerals to 1000. No ×, no ÷, no fractions as numbers, no negatives.",
-      "allowedSymbols": ["=","+","-",">","<","0","1","2","3","4","5","6","7","8","9"],
+      "allowedSymbols": [
+        "=",
+        "+",
+        "-",
+        ">",
+        "<",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
       "voice": "Warmth, two-step chains, 8–12 word sentences. Counting and repeated adding only. Even/odd by pairing is on-grade and does the work multiplication would."
     },
     {
@@ -31,9 +64,29 @@
       "ageRange": "10–11",
       "grade": "Grade 5",
       "readingTarget": "Grade 5 · 830–1010L",
-      "wordBudget": [350, 600],
+      "wordBudget": [
+        550,
+        700
+      ],
       "notation": "Adds × ÷ fractions decimals, { } ∈ ∉ ⊆ ∪ ∩, set names as labels. No letters standing for numbers, no negatives.",
-      "allowedSymbols": ["=","+","-","·","×","÷","<",">","∈","∉","⊆","∪","∩","{","}","/"],
+      "allowedSymbols": [
+        "=",
+        "+",
+        "-",
+        "·",
+        "×",
+        "÷",
+        "<",
+        ">",
+        "∈",
+        "∉",
+        "⊆",
+        "∪",
+        "∩",
+        "{",
+        "}",
+        "/"
+      ],
       "voice": "The turn to why. Discussion/Proof shape introduced. The arbitrary-element move is done in words — take any one and follow it — because variables are grade 6."
     },
     {
@@ -43,9 +96,42 @@
       "ageRange": "13–14",
       "grade": "Grade 8",
       "readingTarget": "Grade 8 · 1010–1185L",
-      "wordBudget": [600, 900],
+      "wordBudget": [
+        590,
+        750
+      ],
       "notation": "Adds letters as numbers, negatives, exponents, √, ¬ ∧ ∨ ⇒ ≠ ∅, set-builder, ℕ ℤ ℚ ℝ. Not f(x) — that is high school.",
-      "allowedSymbols": ["=","+","-","·","×","÷","<",">","≤","≥","∈","∉","⊆","⊂","∪","∩","{","}","¬","∧","∨","⇒","≠","∅","|","/","√","(",")"],
+      "allowedSymbols": [
+        "=",
+        "+",
+        "-",
+        "·",
+        "×",
+        "÷",
+        "<",
+        ">",
+        "≤",
+        "≥",
+        "∈",
+        "∉",
+        "⊆",
+        "⊂",
+        "∪",
+        "∩",
+        "{",
+        "}",
+        "¬",
+        "∧",
+        "∨",
+        "⇒",
+        "≠",
+        "∅",
+        "|",
+        "/",
+        "√",
+        "(",
+        ")"
+      ],
       "voice": "Pre-algebra fluency assumed. Proofs are real proofs, 3–8 sentences. The reader already knows √2 is irrational and already has the definition of a function — both are payoffs, not new ideas."
     },
     {
@@ -55,9 +141,47 @@
       "ageRange": "14–15",
       "grade": "Grade 9",
       "readingTarget": "Grade 9 · 1050–1260L",
-      "wordBudget": [800, 1200],
+      "wordBudget": [
+        734,
+        845
+      ],
       "notation": "Adds ∀, ∃, ⇔, | (divides), interval notation, f(x), f: S → T.",
-      "allowedSymbols": ["=","+","-","·","×","÷","<",">","≤","≥","∈","∉","⊆","⊂","∪","∩","{","}","¬","∧","∨","⇒","≠","∅","|","/","∀","∃","⇔","√","(",")","[","]"],
+      "allowedSymbols": [
+        "=",
+        "+",
+        "-",
+        "·",
+        "×",
+        "÷",
+        "<",
+        ">",
+        "≤",
+        "≥",
+        "∈",
+        "∉",
+        "⊆",
+        "⊂",
+        "∪",
+        "∩",
+        "{",
+        "}",
+        "¬",
+        "∧",
+        "∨",
+        "⇒",
+        "≠",
+        "∅",
+        "|",
+        "/",
+        "∀",
+        "∃",
+        "⇔",
+        "√",
+        "(",
+        ")",
+        "[",
+        "]"
+      ],
       "voice": "Algebra I complete. Quantifiers introduced. Examples move to inequalities, systems, quadratics, sequences."
     },
     {
@@ -67,9 +191,55 @@
       "ageRange": "15–16",
       "grade": "Grade 10",
       "readingTarget": "Grade 10 · 1080–1305L",
-      "wordBudget": [1000, 1500],
+      "wordBudget": [
+        870,
+        970
+      ],
       "notation": "Adds ≡, ∃!, f⁻¹, ∘, ℕ ℤ ℚ ℝ ℂ.",
-      "allowedSymbols": ["=","+","-","·","×","÷","<",">","≤","≥","∈","∉","⊆","⊂","∪","∩","{","}","¬","∧","∨","⇒","≠","∅","|","/","∀","∃","⇔","√","(",")","[","]","≡","∃!","∘","ℕ","ℤ","ℚ","ℝ","ℂ"],
+      "allowedSymbols": [
+        "=",
+        "+",
+        "-",
+        "·",
+        "×",
+        "÷",
+        "<",
+        ">",
+        "≤",
+        "≥",
+        "∈",
+        "∉",
+        "⊆",
+        "⊂",
+        "∪",
+        "∩",
+        "{",
+        "}",
+        "¬",
+        "∧",
+        "∨",
+        "⇒",
+        "≠",
+        "∅",
+        "|",
+        "/",
+        "∀",
+        "∃",
+        "⇔",
+        "√",
+        "(",
+        ")",
+        "[",
+        "]",
+        "≡",
+        "∃!",
+        "∘",
+        "ℕ",
+        "ℤ",
+        "ℚ",
+        "ℝ",
+        "ℂ"
+      ],
       "voice": "The proof year. Explicitly connects to the two-column proofs the reader is being taught right now, and uses their own theorems — vertical angles, base angles, ASA/SAS/SSS — as examples."
     },
     {
@@ -79,9 +249,14 @@
       "ageRange": "17–18",
       "grade": "Grade 12",
       "readingTarget": "Grade 12 · 1180–1380L",
-      "wordBudget": [1200, 1800],
+      "wordBudget": [
+        1070,
+        1190
+      ],
       "notation": "Full Math 0 notation: adds Σ, ∏, factorials, e^{iθ}.",
-      "allowedSymbols": ["*"],
+      "allowedSymbols": [
+        "*"
+      ],
       "voice": "Precalculus reader. Examples come from precalculus — De Moivre, telescoping sums, the exponential series — not from later subjects. Where this goes points at calculus and linear algebra."
     },
     {
@@ -91,9 +266,14 @@
       "ageRange": "18+",
       "grade": "Undergraduate",
       "readingTarget": "Undergraduate · 1300L+",
-      "wordBudget": [1200, 2000],
+      "wordBudget": [
+        1200,
+        2000
+      ],
       "notation": "Full Math 0 notation, plus forward references.",
-      "allowedSymbols": ["*"],
+      "allowedSymbols": [
+        "*"
+      ],
       "voice": "Math 0 as intended. WhereThisGoes closer on every module, naming the field it opens."
     }
   ]

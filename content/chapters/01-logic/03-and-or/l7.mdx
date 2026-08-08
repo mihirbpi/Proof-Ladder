@@ -68,7 +68,9 @@ A statement whose truth-table column is identically F is a **contradiction**; id
   ]}
 />
 
-Three observations worth carrying forward:
+### Three consequences
+
+Worth carrying forward:
 
 1. **$p \wedge \neg p$ is the engine of proof by contradiction.** If assuming $\neg S$ lets you derive some statement of the form $r \wedge \neg r$, then $\neg S$ cannot hold, so $S$ does. Chapter 2 §2.5 makes this a technique.
 2. **$p \vee \neg p$ — excluded middle — licenses proof by cases.** Whenever you write "either $x$ is rational or it is not," you are quoting this tautology, and then you are entitled to prove your goal separately in each branch.
@@ -91,7 +93,27 @@ The number of distinct binary connectives is $2^4 = 16$, since a connective is n
 
 ## Precedence, so that parentheses stay honest
 
-By convention $\neg$ binds tightest, then $\wedge$, then $\vee$, then $\Rightarrow$ and $\Leftrightarrow$. So $\neg p \wedge q$ means $(\neg p) \wedge q$, not $\neg(p \wedge q)$ — a distinction with different truth tables and, in a proof, different consequences. When in doubt, parenthesize. Published mathematics does.
+By convention $\neg$ binds tightest, then $\wedge$, then $\vee$, then $\Rightarrow$ and $\Leftrightarrow$ (the biconditional, §1.9). So $\neg p \wedge q$ means $(\neg p) \wedge q$, not $\neg(p \wedge q)$ — a distinction with different truth tables and, in a proof, different consequences. When in doubt, parenthesize. Published mathematics does.
+
+## Connectives inside solution sets
+
+Precalculus already computes with $\wedge$ and $\vee$ constantly, under the heading of solving inequalities, and the two connectives correspond to the two things you do with intervals.
+
+$$|x - 3| < 2 \quad\Longleftrightarrow\quad -2 < x - 3 < 2 \quad\Longleftrightarrow\quad x > 1 \ \wedge\ x < 5,$$
+
+a conjunction, whose solution set is the **intersection** $(1,5)$. Whereas
+
+$$|x-3| > 2 \quad\Longleftrightarrow\quad x < 1 \ \vee\ x > 5,$$
+
+a disjunction, whose solution set is the **union** $(-\infty,1)\cup(5,\infty)$.
+
+The reason absolute-value inequalities split into these two shapes is exactly the reason of this module: $|u|<c$ unpacks to a conjunction and $|u|>c$ to a disjunction, and De Morgan (§1.4) is what converts one into the other. Chapter 2 will make the correspondence between $\wedge/\vee$ and $\cap/\cup$ formal, but you have been using it since your first inequality.
+
+### Systems, and factored equations
+
+The same reading applies to a system of equations — the solution set is the intersection of the individual solution sets, because a solution must satisfy the first equation **and** the second — and to a factored equation, where $(x-2)(x+5)=0$ gives $x=2$ **or** $x=-5$ because a product vanishes when at least one factor does.
+
+That last inference is worth naming, since it is used more than any other in algebra: **a product of reals is zero if and only if some factor is zero.** The forward direction is a disjunction, and it is what turns every polynomial equation into a list of cases.
 
 <WhereThisGoes level="l7">
 Conjunction and disjunction are how calculus states its hypotheses, and reading them precisely is what makes the theorems usable.
@@ -101,4 +123,6 @@ Conjunction and disjunction are how calculus states its hypotheses, and reading 
 **Disjunction is where case analysis enters.** The First Derivative Test concludes that a critical point is a maximum, **or** a minimum, **or** neither — a three-way $\vee$, and the "neither" branch is not an oversight. Solving $|x-3|<2$ or $x^2>4$ produces disjunctions of intervals, and the inclusive reading is what makes $x^2\geq0$ (i.e. $x^2>0 \vee x^2 = 0$) true everywhere including the point where both would otherwise conflict.
 
 In linear algebra the same connectives structure the definitions. A set of vectors is a basis when it spans **and** is linearly independent; a square matrix is invertible **or** has determinant zero, exclusively, and the Invertible Matrix Theorem is a long list of conditions asserted to be logically equivalent — the notion of §1.9, applied to a dozen statements at once.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse; **linearly independent** — none of them a combination of the others; **basis** — a smallest set of vectors that builds all the others; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

@@ -27,6 +27,16 @@ Non-statements:
 - $x + 1$ — an expression, not a sentence. It has no verb, so nothing about it can be true or false.
 - *the biggest whole number* — a phrase, not a sentence. It refers to something but doesn't claim anything about it.
 
+## Two or false, never neither
+
+Two commitments are packed into that definition, and both do work later.
+
+**Every statement has a truth value.** Not "true, false, or undecided" — the third option is not on the table. This is the *law of the excluded middle*, and module 1.3 will name it. It is what licenses a proof that works by ruling out one possibility and concluding the other.
+
+**No statement has two.** A sentence cannot be true and false at once. A pair of statements that would force that is a *contradiction*, and Chapter 1 turns contradictions into a proof technique: derive one, and whatever you assumed must have been wrong.
+
+Neither commitment is obvious, and neither is free. Both are assumptions about how mathematical language behaves, and every proof in this course rests on them.
+
 ## Open statements
 
 The sentence $x \geq 1$ has a subtle status. If we plug in $x = 3$ we get "$3 \geq 1$", which is a true statement. If we plug in $x = 0$ we get "$0 \geq 1$", which is a false one. So $x \geq 1$ becomes a statement only once we specify $x$. Sentences of this kind are called **open statements**, and the variable is called a *free variable*. Modules 1.10–1.12 will show how to turn open statements into ordinary ones with quantifiers like *for all* and *there exists*.
@@ -47,6 +57,14 @@ A statement can have a truth value we don't yet know. That's fine. Our not knowi
 Some conjectures become theorems. Fermat's Last Theorem was a conjecture from 1637 until Andrew Wiles proved it in 1994. Some conjectures turn out to be false — the disproof is called a *counterexample* (module 1.11).
 </Aside>
 
+## Checking is not proving
+
+$2 + 2 = 4$ can be settled by counting. Goldbach's conjecture cannot be settled by counting, because there is no last even integer to stop at. Computers have verified it past $4 \times 10^{18}$, and that is evidence, not proof.
+
+The gap between those two situations is the reason this subject exists. A statement about finitely many things can be checked exhaustively. A statement about infinitely many things needs an argument that handles all of them at once — one that never mentions a particular case, and so cannot run out. Modules 1.10 through 1.12 build that argument form directly.
+
 ## The mathematician's job
 
 Every theorem is a statement that has been given a truth value by proof. Every unsolved problem is a statement whose truth value is not yet fixed. Chapter 1 is about how the two get connected — how sentences get promoted from "just a statement" to "true statement, and here's why."
+
+Everything in this chapter serves that promotion. Modules 1.2 through 1.4 fix what compound statements mean, so that there is no ambiguity about what you are proving. Modules 1.5 through 1.9 supply the argument shapes. The last three handle statements about infinitely many cases. Nothing here is preliminary — a proof that gets the statement wrong proves the wrong thing, however sound the reasoning after it.

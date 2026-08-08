@@ -6,7 +6,6 @@ newTerms: ["axiom", "theorem", "primitive", "model", "independence"]
 anchorExample: "successor function"
 ---
 
-import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
@@ -28,7 +27,7 @@ A theory is then a language (primitives plus logical apparatus), a set of axioms
 | ZF set theory | set, $\in$ |
 | Euclidean geometry | point, line, incidence, betweenness |
 | Peano arithmetic | $0$, $S$ |
-| Group theory | underlying set, binary operation |
+| The study of symmetry | underlying set, binary operation |
 
 Hilbert's dictum makes the point: one should be able to substitute "table, chair, beer mug" for "point, line, plane" throughout Euclid with no proof affected. All content lives in the axioms; none in the names. This is why the same group axioms describe symmetries, permutations, and elliptic curves at once.
 
@@ -40,7 +39,7 @@ Two notions of consequence must be distinguished.
 
 **Semantic:** $\Gamma \models \varphi$ — every structure making all of $\Gamma$ true makes $\varphi$ true.
 
-> **Gödel's completeness theorem (1929).** For first-order logic, $\Gamma\vdash\varphi \iff \Gamma\models\varphi$.
+> **Gödel’s completeness theorem (1929).** For the standard logical system, $\Gamma\vdash\varphi \iff \Gamma\models\varphi$.
 
 Provability and validity coincide. This is what licenses the model-theoretic method: to show $\varphi$ is *not* provable from $\Gamma$, exhibit a **model** of $\Gamma$ in which $\varphi$ fails.
 
@@ -51,10 +50,26 @@ To prove axiom $A$ independent of $B_1,\ldots,B_n$: construct a structure satisf
 Historically decisive instances:
 
 - **Parallel postulate.** The Beltrami–Klein and Poincaré disc models satisfy Euclid's first four axioms and refute the fifth, ending two millennia of failed derivations. Hyperbolic geometry is as consistent as Euclidean.
-- **Axiom of Choice.** Gödel's constructible universe $L$ shows ZF $\not\vdash \neg$AC; Cohen's forcing shows ZF $\not\vdash$ AC.
-- **Continuum hypothesis.** Same two techniques, same conclusion: independent of ZFC.
+- **an extra set-theoretic assumption.** Gödel's constructible universe $L$ shows ZF $\not\vdash \neg$AC; Cohen's forcing shows ZF $\not\vdash$ AC.
+- **Continuum hypothesis.** Same two techniques, same conclusion: the standard axioms settle it neither way.
 
 §7.4 uses precisely this method on Peano's axioms, exhibiting one- and two-element structures satisfying axioms 1–6 while violating 7 or 8. Independence is not a philosophical remark; it is a construction.
+
+## Why proofs must terminate
+
+Every proof justifies its claims by earlier claims, and following the chain backwards gives three possibilities.
+
+**Infinite regress.** No claim is ever established, because the justification never completes.
+
+**Circularity.** $P$ because $Q$, $Q$ because $P$. Nothing is established either.
+
+**Termination.** Some statements are accepted without proof, and everything else is derived from them.
+
+Only the third produces knowledge, so **axioms exist because proof requires a starting point** — not because anyone believes they are self-evident. That distinction matters, because the self-evidence reading is what makes the discovery of non-Euclidean geometry look paradoxical, and the termination reading makes it routine.
+
+Undefined terms are the same phenomenon for definitions. *Point*, *line*, and *plane* in geometry; *set* and *membership* in set theory; $0$ and *successor* here. Definitions must bottom out or circle, and what replaces the definition is a list of properties assumed to hold.
+
+**The practical consequence:** when reading a new axiomatic subject, the first question is which terms are undefined and which statements are assumed. Everything else is derived, and the derivation is checkable.
 
 ## Criteria
 
@@ -68,24 +83,38 @@ Historically decisive instances:
 >
 > **Second theorem.** Such a theory cannot prove its own consistency.
 
-Note the contrast with the completeness theorem above: first-order *logic* is complete; sufficiently strong first-order *theories* are not. The two results are compatible and are about different things.
+Note the contrast with the result above: the *logic* is complete; sufficiently strong *theories* are not. The two results are compatible and are about different things.
 
-**Adequacy.** The axioms must generate the intended mathematics. Trivially consistent systems proving nothing are useless, and the tension between adequacy and provable consistency is exactly what Gödel's second theorem formalises.
+### Adequacy
+
+The axioms must generate the intended mathematics. Trivially consistent systems proving nothing are useless, and the tension between adequacy and provable consistency is exactly what Gödel's second theorem formalises.
 
 <Warning title="Self-evidence is not a criterion">
-The scholastic gloss — an axiom is an obvious truth — is false and was historically costly. The parallel postulate looked obvious and is optional; the Axiom of Choice looks obvious and implies Banach–Tarski; the Axiom of Foundation looks obvious and can be consistently denied (Aczel's anti-foundation axiom, used to model circular data structures).
+The scholastic gloss — an axiom is an obvious truth — is false and was historically costly. The parallel postulate looked obvious and is optional; the an extra set-theoretic assumption looks obvious and implies Banach–Tarski; the Axiom of Foundation looks obvious and can be consistently denied (Aczel's anti-foundation axiom, used to model circular data structures).
 
 The criteria are clarity, consistency, independence, and adequacy. Intuitive plausibility is a convenience for the reader, not a mathematical property.
 </Warning>
 
 <Aside>
-Consistency is provable only relatively. "ZFC is consistent" cannot be established within ZFC (second theorem), so results take the form: *if* ZF is consistent, so is ZFC + CH. Similarly the consistency of Peano arithmetic was proved by Gentzen using transfinite induction to $\varepsilon_0$ — a principle PA cannot itself justify, exactly as the second theorem requires.
+Consistency is provable only relatively. A system strong enough to describe arithmetic cannot prove its *own* consistency (Gödel's second theorem), so results always take the conditional form: *if* this weaker system is consistent, then so is that stronger one. Similarly the consistency of Peano arithmetic was proved by Gentzen using extended induction to $\varepsilon_0$ — a principle PA cannot itself justify, exactly as the second theorem requires.
 
 Foundations does not rest on bedrock. It rests on a well-mapped network of relative consistency results, and knowing the map is what replaces the certainty that was hoped for in 1900.
 </Aside>
 
 <WhereThisGoes level="l7">
-The axiomatic method reshaped mathematics between 1880 and 1930 and is now invisible because it is universal: a group, a ring, a topological space, a manifold, and a category are each *defined* by axioms, and every theorem about them applies to every model at once. That generality is the return on the abstraction.
+The axiomatic method is what both courses ahead are organised by, and recognising it changes how you read a textbook.
 
-Its metatheory became a field. Model theory studies the structures satisfying a set of axioms, and its results are concrete: compactness, Löwenheim–Skolem, quantifier elimination for real closed fields (hence a decision procedure for Euclidean geometry), and Ax–Grothendieck, whose proof that an injective polynomial map $\mathbb{C}^n\to\mathbb{C}^n$ is surjective goes via finite fields and a transfer principle. Proof theory studies derivations as combinatorial objects and calibrates theories by ordinals. And computability theory identifies which axiom systems can be mechanically checked — the "effectively axiomatised" hypothesis in Gödel's theorem, without which the theorem fails and with which every modern proof assistant operates.
+**In linear algebra it is explicit and early.** A vector space is *defined* by eight axioms — closure, associativity, commutativity, identity, inverses for addition, and four compatibility conditions for scalar multiplication. Nothing is said about what a vector is.
+
+That silence is the point. $\mathbb{R}^n$ satisfies the axioms; so do the polynomials of degree at most $n$, the continuous functions on $[0,1]$, the $m\times n$ matrices, and the solution set of a homogeneous linear differential equation. **Every theorem proved from the axioms holds in all of them**, which is why one course covers so much ground.
+
+The return on the abstraction is concrete: proving that a solution space of a differential equation has a basis, and that the general solution is a linear combination of basis solutions, requires no new work once the axioms are checked.
+
+**In calculus the axioms are about $\mathbb{R}$.** It is the unique complete ordered field, and the three parts of that phrase do distinguishable work. The field axioms (§4.5) permit algebra; the order axioms permit inequalities; **completeness** is what makes calculus possible, and it is the axiom every major theorem quietly invokes.
+
+The Extreme Value Theorem, the Intermediate Value Theorem, the Mean Value Theorem, and the convergence of monotone bounded sequences are all false over $\mathbb{Q}$, and completeness is exactly what $\mathbb{Q}$ lacks.
+
+**The lesson from geometry transfers.** Changing an axiom changes the subject, and the resulting subject may be perfectly consistent — non-Euclidean geometry, finite-dimensional spaces over finite fields, non-Archimedean number systems. An axiom is a choice with consequences, not a self-evident truth.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale; **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>

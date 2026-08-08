@@ -20,7 +20,7 @@
     "l3": "Doing f and then g gives a new function, written g ∘ f, and read right to left. It is only defined when the answers of f are things g can take.",
     "l4": "(g ∘ f)(s) = g(f(s)) is defined when the codomain of f is the domain of g. If f and g are both injective so is g ∘ f, and if both are surjective so is g ∘ f.",
     "l5": "Composition is defined when codomain meets domain; it preserves injectivity and surjectivity, and the partial converses are worth knowing.",
-    "l6": "Composition is associative with the identity as unit, and it preserves injectivity and surjectivity separately.",
+    "l6": "Composition is associative, and composing with the identity function changes nothing on either side. It also preserves injectivity and surjectivity separately, so each has to be checked on its own.",
     "l7": "g ∘ f is defined when the codomain of f equals the domain of g; composition preserves injectivity and surjectivity, and satisfies partial converses that identify which factor must be well behaved.",
     "l8": "Composition is the associative operation making Set a category; identities are units, and preservation of mono and epi under composition is a categorical fact, not a set-theoretic one."
   },

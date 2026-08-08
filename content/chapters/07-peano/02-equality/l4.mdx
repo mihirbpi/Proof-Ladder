@@ -44,6 +44,8 @@ A relation $\sim$ on a set $S$ satisfying A1–A3 is an **equivalence relation**
 | "is a friend of" | ✓? | ✓ | ✗ | no |
 | $\perp$ (perpendicular) | ✗ | ✓ | ✗ | no |
 
+### Relations that fail
+
 Note that $\leq$ and $\subseteq$ satisfy two of the three and are **partial orders** instead — reflexive, transitive, and *antisymmetric*. Swapping symmetry for antisymmetry gives an entirely different kind of structure, which is why the three properties must be checked individually.
 
 ## Congruence mod $n$
@@ -92,7 +94,7 @@ Defining operations on classes requires checking independence of representatives
 
 $[a]+[b] := [a+b]$ is well defined: if $a \equiv a'$ and $b\equiv b'$ then $n \mid (a-a')$ and $n\mid(b-b')$, so $n \mid (a+b)-(a'+b')$ and $[a+b]=[a'+b']$. ✓
 
-$[a] \mapsto a$ is **not** well defined: $[1] = [4]$ mod $3$, and $1 \neq 4$. There is no canonical representative.
+the rule sending $[a]$ to $a$ is **not** well defined: $[1] = [4]$ mod $3$, and $1 \neq 4$. There is no canonical representative — no single standard choice fixed once and for all.
 
 This check is required every time, and it is the step first-year algebra students skip most often.
 </Warning>

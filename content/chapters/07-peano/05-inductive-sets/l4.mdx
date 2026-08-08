@@ -29,6 +29,10 @@ $$
 
 So $\mathbb{N}$ is contained in every inductive set: it is the *smallest* one.
 
+The definition is worth reading slowly, because it packs the whole domino picture into two conditions. An inductive set is one you cannot fall out of by counting: it holds $0$, and it never lets go of a successor. A9 then says $\mathbb{N}$ has nothing in it beyond what those two conditions force you to keep.
+
+Note that inductive sets are usually much larger than $\mathbb{N}$. Every set containing all the numerals plus anything else at all is still inductive, provided the extras are closed under $S$. A9 does not claim $\mathbb{N}$ is the only one — only that it sits inside all of them.
+
 ## Excluding the rogues
 
 <Proof>
@@ -64,6 +68,12 @@ Rewrite A9 with $V = \{n \in \mathbb{N} : A(n)\}$ for a statement $A$:
 They are the same statement. **Chapter 6's proof technique is Chapter 7's ninth axiom.**
 
 This resolves a question left open in module 6.1: induction cannot be proved from more basic facts about $\mathbb{N}$, because it is one of the facts that define $\mathbb{N}$.
+
+<Aside>
+This also explains why induction feels like it should need justifying and never gets any.
+
+The domino argument of module 6.1 is not a proof of induction; it is a picture of what the axiom asserts. Asking why the dominoes all fall is asking why $\mathbb{N}$ has no rogue elements sitting off the chain — and the answer is that we declared it so, because a number system with rogue elements is not the one we meant to describe.
+</Aside>
 
 <Warning title="Induction is genuinely independent">
 Module 7.4's rogue model satisfies A5–A8 and **violates** A9: there $V = \{0,1,2,\ldots\}$ is inductive but does not contain $a$.

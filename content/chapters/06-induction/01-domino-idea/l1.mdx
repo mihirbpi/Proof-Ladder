@@ -8,10 +8,16 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import DominoRow from '@/components/DominoRow.astro';
+import Figure from '@/components/Figure.astro';
 
 Stand up a long line of **dominoes**. Or blocks. Or books!
 
 Push the first one. *Click, click, click...* They all fall down!
+
+<Figure alt="A row of dominoes standing on a line. The first few have fallen, each tipping into the next, and the rest are still standing waiting their turn.">
+  <DominoRow count={6} fallen={3} pushed={true} trailing={false} />
+</Figure>
 
 Why did they all fall? Two things had to be true.
 
@@ -24,6 +30,10 @@ Now break it. Move one domino far away from the rest.
 Push the first one again. *Click, click...* stop!
 
 The line stopped at the gap. Everything after it is still standing.
+
+<Figure alt="The same row, but with a wide space after the third domino. The first three have fallen and the rest stand untouched, because the falling could not cross the gap.">
+  <DominoRow count={6} fallen={3} gapAfter={2} pushed={true} trailing={false} />
+</Figure>
 
 Now put them all back close, but do not push. Nothing happens at all.
 

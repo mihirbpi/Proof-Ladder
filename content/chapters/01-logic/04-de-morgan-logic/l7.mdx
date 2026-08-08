@@ -11,7 +11,7 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-Negation is not a homomorphism for the binary connectives. That single fact, stated carefully, is De Morgan's laws, and it is the reason that negating a real hypothesis is a step worth slowing down for.
+Negation does not simply pass through the binary connectives untouched. That single fact, stated carefully, is De Morgan's laws, and it is the reason that negating a real hypothesis is a step worth slowing down for.
 
 ## Logical equivalence
 
@@ -19,7 +19,7 @@ Two statements $\varphi, \psi$ built from the same atomic statements are **logic
 
 Two consequences worth stating explicitly:
 
-- $\varphi \equiv \psi$ if and only if $\varphi \Leftrightarrow \psi$ is a tautology. The relation $\equiv$ lives in the metalanguage; $\Leftrightarrow$ lives inside the object language. In practice mathematicians blur the two, and no harm comes of it, but the distinction is real.
+- $\varphi \equiv \psi$ if and only if $\varphi \Leftrightarrow \psi$ is a tautology — true under every assignment (§1.3). The relation $\equiv$ lives in the metalanguage; $\Leftrightarrow$ lives inside the object language. In practice mathematicians blur the two, and no harm comes of it, but the distinction is real.
 - Equivalence licenses **substitution**: if $\varphi \equiv \psi$, then replacing an occurrence of $\varphi$ inside a larger statement by $\psi$ produces an equivalent statement. This is what makes rewriting a hypothesis a legitimate move in a proof.
 
 ## The laws
@@ -43,6 +43,8 @@ $$
 
 Columns 1–2 agree; columns 3–4 agree. Since a truth table enumerates every assignment, exhaustion here is proof, not evidence.
 
+### The argument in words
+
 It is worth also seeing the argument in words, because that is the version that generalises to sets and to quantifiers:
 
 > Suppose $p \wedge q$ fails. Then it is not the case that both hold, so at least one fails — which is precisely $\neg p \vee \neg q$. Conversely, if at least one of $p, q$ fails, then certainly not both hold. The two conditions describe the same situations, hence the same truth value.
@@ -55,7 +57,7 @@ The two laws are not independent facts; each follows from the other by negating 
 $$
 \neg(\neg p \wedge \neg q) \equiv \neg\neg p \vee \neg \neg q \equiv p \vee q,
 $$
-and negating gives $\neg(p \vee q) \equiv \neg p \wedge \neg q$. So negation is an involution that exchanges $\wedge$ and $\vee$ — an **anti-homomorphism**, in the language of algebra. This exchange is called *De Morgan duality*, and it holds in every structure where the laws hold.
+and negating gives $\neg(p \vee q) \equiv \neg p \wedge \neg q$. So negation is an involution that exchanges $\wedge$ and $\vee$ — an operation that preserves the structure but flips it. This exchange is called *De Morgan duality*, and it holds in every structure where the laws hold.
 
 ## The application that motivates the module
 

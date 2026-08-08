@@ -1,0 +1,115 @@
+---
+level: l5
+title: Bijections and size
+readingTimeMin: 9
+newTerms: ["bijection", "identity function"]
+anchorExample: "ℕ and the even numbers"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+> $f : S \to T$ is a **bijection** when it is both injective and surjective.
+
+Module 3.6's table said what that means together: every $t \in T$ has **at most one** pre-image and **at least one**, hence **exactly one**.
+
+<Figure alt="Three elements on the left, each with one arrow, landing on the three elements of the right with none missed and none shared." caption="A bijection: a perfect pairing.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,2],[2,0]]} />
+</Figure>
+
+A bijection is a **perfect pairing**: each element of $S$ partnered with exactly one element of $T$, nobody left over on either side.
+
+## The identity
+
+For any set $S$, the **identity function**
+$$
+\mathrm{id}_S : S \to S, \qquad \mathrm{id}_S(x) = x
+$$
+is a bijection. Injective, since $x_1 = x_2$ immediately. Surjective, since $x$ is hit by $x$.
+
+It looks like it does nothing, and that is exactly its use: module 3.9 defines an inverse as the function that composes with $f$ to give $\mathrm{id}$.
+
+Bijections also compose: if $f$ and $g$ are bijections then so is $g \circ f$, since module 3.7 showed injectivity and surjectivity each survive composition, and a bijection is just both at once.
+
+## Two worked bijections
+
+> **Proposition.** $f : \mathbb{R} \to \mathbb{R}$, $f(x) = 3x + 2$ is a bijection.
+
+Both halves were proved in modules 3.5 and 3.6. Nothing further is needed — **a bijection proof is two proofs, and you may cite them separately.**
+
+> **Proposition.** $g : \mathbb{R}\setminus\{0\} \to \mathbb{R}\setminus\{0\}$, $g(x) = 1/x$ is a bijection.
+
+<Discussion>
+  <div slot="know">Both domain and codomain exclude $0$, which is what makes the statement plausible — $1/x$ is never $0$, so $0$ could not be hit.</div>
+  <div slot="want">Injective and surjective.</div>
+  <div slot="how">Injectivity from the equation $1/x_1 = 1/x_2$. Surjectivity by finding the witness, which is $1/y$ — and checking it lies in the domain, which is where excluding $0$ gets used.</div>
+</Discussion>
+
+<Proof>
+**Injective.** Suppose $1/x_1 = 1/x_2$ with $x_1, x_2 \neq 0$. Multiplying both sides by $x_1 x_2$ (nonzero) gives $x_2 = x_1$.
+
+**Surjective.** Let $y \in \mathbb{R}\setminus\{0\}$ be arbitrary. Then $1/y$ is defined and nonzero, so $1/y$ lies in the domain, and
+$$
+g(1/y) = \frac{1}{1/y} = y.
+$$
+
+Both hold, so $g$ is a bijection.
+</Proof>
+
+**Excluding $0$ from the codomain was essential.** With codomain $\mathbb{R}$ the function is injective and not surjective, since nothing maps to $0$ — the same rule, one declaration different, and a theorem lost.
+
+## Bijections measure size
+
+For finite sets the connection is the one you would guess:
+
+- an injection $S \to T$ forces $|S| \leq |T|$;
+- a surjection $S \to T$ forces $|S| \geq |T|$;
+- a bijection forces $|S| = |T|$.
+
+Counting a set *is* building a bijection with $\{1, 2, \ldots, n\}$ — which is what you were doing when you learned to count by pointing at things.
+
+The bold step is to run this backwards and use it as the **definition** for infinite sets:
+
+> $S$ and $T$ have the same size when a bijection $S \to T$ exists.
+
+## The consequence nobody expects
+
+> **Proposition.** $\mathbb{N}$ and the even naturals have the same size.
+
+<Proof>
+Define $f : \mathbb{N} \to \{\text{even naturals}\}$ by $f(n) = 2n$.
+
+**Injective.** $2n_1 = 2n_2 \Rightarrow n_1 = n_2$.
+
+**Surjective.** Let $m$ be an arbitrary even natural. Then $m = 2k$ for some $k \in \mathbb{N}$, and $f(k) = m$.
+
+So $f$ is a bijection, and the two sets have the same size.
+</Proof>
+
+The even numbers are a *proper subset* of $\mathbb{N}$ — half of them, in any intuitive sense — and they are the same size.
+
+<Warning title="Intuition about size does not survive infinity">
+For finite sets, a proper subset is always strictly smaller. For infinite sets this fails, and the proof above is the failure.
+
+You have two options. Declare the definition wrong, or accept the conclusion.
+
+Mathematics accepts it, for a good reason: **the definition is the only one that works.** Any notion of size for infinite sets must say when two sets match, and pairing them off is the only tool available — there is no counting to fall back on.
+
+The property "no proper subset has the same size" is in fact a *characterisation of finiteness*, not a general truth about sets.
+</Warning>
+
+<Aside>
+It is tempting to conclude that all infinite sets have the same size, since the trick above seems to work everywhere. It does not.
+
+$\mathbb{N}$ and $\mathbb{Q}$ do match — surprisingly, since the rationals are dense (module 4.6) and $\mathbb{N}$ is not.
+
+$\mathbb{N}$ and $\mathbb{R}$ do **not**. Cantor proved that no function $\mathbb{N} \to \mathbb{R}$ can be surjective: given any list of reals, you can build one that differs from the first in its first decimal place, from the second in its second, and so on forever. The number you construct is on no line of the list.
+
+So there are at least two different infinite sizes, and the argument that shows it is a single, beautiful application of everything in this chapter.
+</Aside>

@@ -90,12 +90,22 @@ When three or more statements are to be shown pairwise equivalent, proving all $
 $$
 p \Rightarrow q \Rightarrow r \Rightarrow p.
 $$
-Three implications rather than six, and every pairwise equivalence follows by composing around the cycle. Theorems of the form "the following are equivalent (TFAE)" — ubiquitous in linear algebra, topology, and algebra — are almost always proved this way, and choosing the cycle order so that each individual implication is easy is a real part of the work.
+Three implications rather than six, and every pairwise equivalence follows by composing around the cycle. Theorems of the form "the following are equivalent (TFAE)" — ubiquitous in linear algebra and in every course after it — are almost always proved this way, and choosing the cycle order so that each individual implication is easy is a real part of the work.
 
 <Aside>
 $p \Leftrightarrow q$ is also expressible as $\neg(p \oplus q)$, the negation of exclusive or, and as $(p \wedge q) \vee (\neg p \wedge \neg q)$. The first form is why $\Leftrightarrow$ is associative in a way that surprises people: $(p \Leftrightarrow q) \Leftrightarrow r$ and $p \Leftrightarrow (q \Leftrightarrow r)$ agree, both being true exactly when an even number of $p, q, r$ are false. Unlike $\Rightarrow$, the biconditional chains associatively — but chained $\Leftrightarrow$ in mathematical writing means a conjunction of adjacent biconditionals, not iterated application, so do not rely on this.
 </Aside>
 
 <WhereThisGoes level="l7">
-The habit of proving two directions separately is the shape of most structural theorems in later mathematics. "A linear map is injective iff its kernel is trivial", "a subset of $\mathbb{R}^n$ is compact iff it is closed and bounded", "an integer is a unit mod $n$ iff it is coprime to $n$" — each is a biconditional whose two halves use different machinery. The TFAE cycle scales further: the equivalence of the many characterisations of a Noetherian ring, or of the several definitions of continuity, is invariably packaged as one cycle of implications. Learning to hunt for the cheapest cycle is a skill you will use in every algebra course you take.
+The two-direction habit is the shape of the structural theorems in both courses ahead of you.
+
+**In calculus.** *A function is continuous at $a$ if and only if $\lim_{x\to a}f(x)$ exists and equals $f(a)$.* *A series of positive terms converges if and only if its partial sums are bounded above.* *A power series converges absolutely if and only if $|x-c|$ is less than the radius of convergence.* Each has two halves needing different work, and each is stated as a biconditional precisely because both directions get used.
+
+**The Invertible Matrix Theorem** is the largest example you will meet early: a list of conditions on a square matrix — invertible, determinant non-zero, columns linearly independent, columns span $\mathbb{R}^n$, $A\mathbf{x}=\mathbf{0}$ has only the trivial solution, rank $n$, and several more — all asserted to be equivalent.
+
+Proving $k$ statements pairwise equivalent would mean $k(k-1)$ implications. Proving a **cycle** $(1)\Rightarrow(2)\Rightarrow\cdots\Rightarrow(k)\Rightarrow(1)$ takes $k$, and delivers all of them by transitivity. For the eight-condition version that is $8$ proofs instead of $56$, and finding the cheapest cycle — the ordering in which each implication is easy — is a genuine piece of strategy.
+
+**And definitions stay biconditional.** *Differentiable at $a$* means the limit of the difference quotient exists; that is a stipulation, usable in both directions, which is why you may conclude differentiability from the limit as readily as the limit from differentiability.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse; **linearly independent** — none of them a combination of the others; **rank** — the number of independent columns; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

@@ -19,15 +19,9 @@ The answer is: they get along perfectly. That is this module.
 
 For a function $f : S \to T$ and sets $U$, $V$ inside $T$:
 
-$$
-f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V)
-$$
-$$
-f^{-1}(U \cap V) = f^{-1}(U) \cap f^{-1}(V)
-$$
-$$
-f^{-1}(\overline{U}) = \overline{f^{-1}(U)}
-$$
+- Trace back from $U \cup V$, and you get exactly what you get by tracing back from each and **uniting** the results.
+- Trace back from $U \cap V$, and you get exactly what you get by tracing back from each and taking what is in **both**.
+- Trace back from *everything outside $U$*, and you get exactly *everything outside* what you traced back from $U$.
 
 In words: **you can trace back before or after doing the set operation, and you get the same answer.**
 
@@ -41,24 +35,24 @@ In words: **you can trace back before or after doing the set operation, and you 
 
 Take $U = \{1\}$ and $V = \{2\}$.
 
-- $f^{-1}(U) = \{a\}$ and $f^{-1}(V) = \{b, c\}$.
+- Tracing back from $U$ gives $\{a\}$, and from $V$ gives $\{b, c\}$.
 - $U \cup V = \{1, 2\}$, and tracing back from it gives $\{a, b, c\}$.
-- And $f^{-1}(U) \cup f^{-1}(V) = \{a\} \cup \{b,c\} = \{a,b,c\}$. ✓
+- And uniting the two traced-back sets gives $\{a\} \cup \{b,c\} = \{a,b,c\}$. ✓
 
-Now the intersection. $U \cap V = \emptyset$, so $f^{-1}(U \cap V) = \emptyset$. And $f^{-1}(U) \cap f^{-1}(V) = \{a\} \cap \{b,c\} = \emptyset$. ✓
+Now the intersection. $U \cap V = \{\,\}$, so tracing back from it gives $\{\,\}$. And taking what is in both traced-back sets gives $\{a\} \cap \{b,c\} = \{\,\}$. ✓
 
 ## Why it works
 
 The reason is a single, small fact — and it is worth saying out loud, because every proof in this area comes down to it.
 
-> $x$ is in $f^{-1}(U)$ **exactly when** $f(x)$ is in $U$.
+> Something is in the traced-back set for $U$ **exactly when** its output lands in $U$.
 
 That is the whole engine. Watch it run on the union rule:
 
-- $x \in f^{-1}(U \cup V)$ means $f(x) \in U \cup V$.
+- Something is in the traced-back set for $U \cup V$ when its output lands in $U \cup V$.
 - $f(x) \in U \cup V$ means $f(x) \in U$ **or** $f(x) \in V$.
-- $f(x) \in U$ means $x \in f^{-1}(U)$; and $f(x) \in V$ means $x \in f^{-1}(V)$.
-- So $x \in f^{-1}(U)$ **or** $x \in f^{-1}(V)$, which means $x \in f^{-1}(U) \cup f^{-1}(V)$.
+- Landing in $U$ means being in the traced-back set for $U$; landing in $V$ means being in the one for $V$.
+- So it is in one traced-back set **or** the other — which is exactly their union.
 
 Every step was just applying the small fact, or the definition of $\cup$. Nothing clever happened, which is exactly why the rule is so reliable.
 
@@ -68,9 +62,9 @@ Let $f$ send each letter to its position in the alphabet.
 
 Take $U = \{1, 2, 3\}$ and $V = \{3, 4, 5\}$.
 
-- $f^{-1}(U) = \{\text{a},\text{b},\text{c}\}$, $f^{-1}(V) = \{\text{c},\text{d},\text{e}\}$.
-- $U \cap V = \{3\}$, so $f^{-1}(U \cap V) = \{\text{c}\}$.
-- $f^{-1}(U) \cap f^{-1}(V) = \{\text{c}\}$. ✓
+- Tracing back from $U$ gives $\{\text{a},\text{b},\text{c}\}$; from $V$ gives $\{\text{c},\text{d},\text{e}\}$.
+- $U \cap V = \{3\}$, so tracing back from it gives $\{\text{c}\}$.
+- And what is in both traced-back sets is also $\{\text{c}\}$. ✓
 
 <Warning title="Forwards is not so lucky">
 None of this works as neatly in the forward direction. Take the squaring function and the sets $A = \{2\}$ and $B = \{-2\}$. They have nothing in common, so their overlap is empty, and squaring an empty set gives an empty set.
@@ -81,5 +75,5 @@ Going forwards, the overlap can grow. Going backwards, it never does.
 </Warning>
 
 <Aside>
-This is why mathematicians reach for pre-images even when an image would seem more natural. In the definitions of continuity, of measurable functions, and of many other things, the condition is always stated with $f^{-1}$ — because $f^{-1}$ respects all the set operations and $f$ does not.
+This is why mathematicians reach for pre-images even when an image would seem more natural. In the definitions of continuity, of measurable functions, and of many other things, the condition is always stated in terms of tracing back — because tracing back respects all the set operations and $f$ does not.
 </Aside>

@@ -8,6 +8,8 @@ anchorExample: "shirts and hats"
 
 import TryIt from '@/components/TryIt.astro';
 import Aside from '@/components/Aside.astro';
+import GridPairs from '@/components/GridPairs.astro';
+import Figure from '@/components/Figure.astro';
 
 Sam has 2 shirts and 3 hats. To make an outfit, Sam picks one shirt **and** one hat. That is a **pair**.
 
@@ -15,12 +17,12 @@ Sam has 2 shirts and 3 hats. To make an outfit, Sam picks one shirt **and** one 
 
 Put the shirts down the side. Put the hats along the top.
 
-|  | sun hat | woolly hat | party hat |
-|---|---|---|---|
-| **red shirt** | ☐ | ☐ | ☐ |
-| **green shirt** | ☐ | ☐ | ☐ |
+<Figure alt="A grid with two rows for the shirts and three columns for the hats, giving six boxes, one for each outfit.">
+  <GridPairs rows={["red shirt", "green shirt"]} cols={["sun hat", "woolly hat", "party hat"]}
+             showPairs={false} labelRows="shirts" labelCols="hats" />
+</Figure>
 
-Every empty box is one outfit. Count them: 6 boxes, 6 outfits.
+Every box is one outfit. Count them: 6 boxes, 6 outfits.
 
 ## Counting without drawing
 

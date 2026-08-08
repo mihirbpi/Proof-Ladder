@@ -49,6 +49,20 @@ The identity $\sqrt{ab} = \sqrt a\sqrt b$ holds for $a,b \geq 0$ real and fails 
 Practical rule: write $i$, never $\sqrt{-1}$; and never apply $\sqrt{\phantom{x}}$ to a complex number without saying which root you mean. The same caution applies to $\log$ and to fractional powers.
 </Warning>
 
+## The powers of $i$, and why they cycle
+
+$$i^0 = 1,\quad i^1 = i,\quad i^2 = -1,\quad i^3 = -i,\quad i^4 = 1,\ \dots$$
+
+The pattern has period $4$, so $i^n$ depends only on $n \bmod 4$ — the residue classes of §4.4, appearing in an unexpected place.
+
+$$i^{2026}: \quad 2026 = 4\cdot506 + 2, \quad\text{so } i^{2026} = i^2 = -1.$$
+
+The cycle is the mechanism behind Euler's formula (§5.7): substituting $i\theta$ into the exponential series, the four-fold pattern is exactly what sorts the terms into two groups, one real with alternating signs and one imaginary with alternating signs. Those two groups are the cosine and sine series.
+
+**Nothing about that split is a coincidence.** The sign alternation comes from $i^2 = -1$; the even/odd separation comes from the period being $4$ rather than $2$. A number system with $j^3 = 1$ would produce a three-way split and a different pair of functions — and does, in the theory of the Fourier transform over other groups.
+
+Read geometrically, the cycle is four quarter-turns returning to the start, which is §5.9's subject and the reason the period is $4$ and not some other number.
+
 ## Multiplication by $i$
 
 $$
@@ -68,5 +82,17 @@ Complex multiplication takes four real multiplications by the formula. **Karatsu
 </Aside>
 
 <WhereThisGoes level="l7">
-The construction $K[x]/(p)$ for irreducible $p$ is the engine of field theory: iterating it produces splitting fields, and the tower of extensions built this way is what Galois theory analyses via its automorphism groups. The matrix realisation points elsewhere — to representation theory, where abstract algebraic structures are studied by realising them as matrices, and to Clifford algebras, which generalise $i^2 = -1$ to $e_ie_j = -e_je_i$ and underlie the Dirac equation and spinors. And the failure of $\sqrt{\phantom{x}}$ to be single-valued is not a defect to be patched but the entrance to Riemann surfaces, where multivalued functions become genuine single-valued functions on a cleverly chosen domain.
+Complex arithmetic is the arithmetic the next two courses will actually run.
+
+**Partial fractions over $\mathbb{C}$ are simpler than over $\mathbb{R}$.** Every denominator factors into linear terms, so every proper rational function decomposes into terms $\frac{A_k}{x - r_k}$ with no irreducible quadratics at all. The real decomposition is then obtained by pairing conjugate terms back together — which is where the $\frac{Bx+C}{x^2+px+q}$ blocks come from, and why they always arise in conjugate pairs.
+
+**Conjugate roots explain the arctangent.** Integrating $\frac{1}{x^2+1}$ gives $\arctan x$; over $\mathbb{C}$ the same integral is a difference of two logarithms with conjugate arguments, and Euler's formula (§5.7) converts one form into the other. The two answers agree, and the complex route explains why an inverse trigonometric function appears in an integral with no trigonometry in sight.
+
+**In linear algebra, complex arithmetic is what eigenvector computations require.** Solving $(A-\lambda I)\mathbf{v} = \mathbf{0}$ for a complex $\lambda$ means row-reducing a matrix with complex entries — every elimination step divides by a complex pivot, and the division formula of this module is the one that gets used.
+
+The field axioms are exactly what licenses this. **Gaussian elimination works over any field**, so verifying that $\mathbb{C}$ is one (as this module does) is what guarantees that row reduction, determinants, inverses, and rank all behave over $\mathbb{C}$ as they do over $\mathbb{R}$ — with no theorem needing restatement.
+
+The one property lost is the order, and it costs nothing here: no step of Gaussian elimination compares two scalars.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **eigenvector** — a direction a matrix stretches without turning; **rank** — the number of independent columns.*
 </WhereThisGoes>

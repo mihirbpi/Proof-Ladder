@@ -29,7 +29,7 @@ so $|\mathcal{P}(S)| = 4$.
 <Discussion>
   <div slot="know">Every subset of $S$ either contains a fixed element $a$ or does not — excluded middle (module 1.3), giving an exhaustive and disjoint split.</div>
   <div slot="want">$|\mathcal{P}(S)| = 2^{k+1}$ for $|S| = k+1$, given the result for size $k$.</div>
-  <div slot="how">Fix $a \in S$ and set $S' = S\setminus\{a\}$, of size $k$. Partition $\mathcal{P}(S)$ by membership of $a$. The subsets avoiding $a$ *are* $\mathcal{P}(S')$; the subsets containing $a$ are in bijection with $\mathcal{P}(S')$ via $A \mapsto A\setminus\{a\}$.</div>
+  <div slot="how">Fix $a \in S$ and set $S' = S\setminus\{a\}$, of size $k$. Partition $\mathcal{P}(S)$ by membership of $a$. The subsets avoiding $a$ *are* $\mathcal{P}(S')$; the subsets containing $a$ are in bijection with $\mathcal{P}(S')$ by removing $a$ from each.</div>
 </Discussion>
 
 <Proof>

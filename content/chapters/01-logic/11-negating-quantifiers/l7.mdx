@@ -2,7 +2,7 @@
 level: l7
 title: Negating quantifiers and counterexamples
 readingTimeMin: 10
-newTerms: ["counterexample", "prenex normal form"]
+newTerms: ["counterexample"]
 anchorExample: "every prime is odd"
 ---
 
@@ -35,7 +35,7 @@ $$
 \exists x \in S,\; p(x) \wedge \neg q(x).
 $$
 
-**A counterexample must satisfy the hypothesis and violate the conclusion.** This is the single most useful consequence of the module. An element that fails the hypothesis makes the conditional vacuously true and refutes nothing.
+**A counterexample must satisfy the hypothesis and violate the conclusion.** This is the single most useful consequence of the module. An element that fails the hypothesis makes the conditional vacuously true (§1.5) — true because the case never arose — and refutes nothing.
 
 > *Claim:* $\forall x \in \mathbb{R},\; x^2 > 1 \Rightarrow x > 1$.
 > *Counterexample:* $x = -3$ (satisfies $x^2 = 9 > 1$; violates $x > 1$).
@@ -67,7 +67,7 @@ $$
 $$
 either nothing works, or two distinct things do. Both failure modes must be excluded to establish uniqueness, and both are available when refuting it.
 
-## Nested quantifiers and prenex form
+## Nested quantifiers, negated in order
 
 Negation passes through a quantifier prefix by flipping each quantifier in turn:
 $$
@@ -76,7 +76,7 @@ $$
 \exists x\, \forall y\, \exists z\; \neg p(x,y,z).
 $$
 
-A formula with all quantifiers at the front is in **prenex normal form**, and every first-order formula is equivalent to one. Pushing negations all the way in — until $\neg$ applies only to atomic predicates — is the routine that turns an opaque statement into a checkable one.
+A statement with all its quantifiers gathered at the front is the easiest kind to negate, because the flipping is then purely mechanical: work left to right, flip each quantifier as the negation passes it, and finish by negating what remains. Pushing the negation all the way in — until it applies to nothing but the innermost condition — is the routine that turns an opaque statement into a checkable one.
 
 The canonical exercise: negate continuity of $f$ at $a$.
 $$
@@ -87,7 +87,7 @@ $$
 \exists \varepsilon > 0\; \forall \delta > 0\; \exists x\; \big(|x-a| < \delta \;\wedge\; |f(x)-f(a)| \geq \varepsilon\big).
 $$
 
-Read it: some tolerance $\varepsilon$ is unattainable — for every candidate $\delta$, however small, there is a point within $\delta$ of $a$ whose image is at least $\varepsilon$ away. That sentence is the definition of discontinuity, and it was produced entirely mechanically. Students who cannot negate reliably cannot prove discontinuity, non-convergence, non-uniform-continuity, or unboundedness, and those are half the negative results in a first analysis course.
+Read it: some tolerance $\varepsilon$ is unattainable — for every candidate $\delta$, however small, there is a point within $\delta$ of $a$ whose image is at least $\varepsilon$ away. That sentence is the definition of discontinuity, and it was produced entirely mechanically. Students who cannot negate reliably cannot prove discontinuity, non-convergence, non-uniform-continuity, or unboundedness, and those are half the negative results in a first calculus course.
 
 <Warning title="Failure modes">
 **Over-negation.** $\neg \forall x\, p(x) \not\equiv \forall x\, \neg p(x)$. "Not every prime is odd" is not "every prime is even."
@@ -102,5 +102,19 @@ Euler conjectured (1769) that no $k$-th power is a sum of fewer than $k$ positiv
 </Aside>
 
 <WhereThisGoes level="l7">
-The number of alternations between $\forall$ and $\exists$ in a prenex formula is a genuine measure of logical complexity, and it stratifies mathematics in two directions. In computability theory it produces the arithmetical hierarchy: $\Sigma^0_1$ statements ("there is a proof") are semi-decidable, $\Pi^0_1$ statements ("for all $n$, …") are refutable but not in general provable by search, and Gödel's incompleteness theorem is a statement about a specific $\Pi^0_1$ sentence. In complexity theory the same alternation count gives the polynomial hierarchy, with NP as the one-quantifier level. Prenex normalisation and negation-pushing are also the first steps of every automated theorem prover and SMT solver — the mechanical routine you just learned by hand is the one machines run first.
+The first real payoff is being able to say what it means for a limit **not** to exist.
+
+Negating the $\varepsilon$–$\delta$ definition mechanically, outermost first:
+
+$$\exists\varepsilon>0\ \forall\delta>0\ \exists x:\ 0<|x-a|<\delta \ \wedge\ |f(x)-L|\geq\varepsilon.$$
+
+Every quantifier flipped in place, and the implication became a conjunction. Read it back: *there is a tolerance $\varepsilon$ so tight that no window works — for every $\delta$ you propose, some $x$ inside it lands outside the tolerance.*
+
+**That sentence is the proof strategy.** To show $\lim_{x\to0}\sin(1/x)$ does not exist, take $\varepsilon = 1$; for any $\delta$, the interval $(0,\delta)$ contains points where $\sin(1/x)=1$ and points where it is $-1$, so no single $L$ can be within $1$ of both. The negation told you to produce one $\varepsilon$ and then, for each $\delta$, one $x$ — and that is exactly the shape of the argument.
+
+**Divergence of a sequence** works the same way. Negating $\forall\varepsilon\,\exists N\,\forall n\geq N$ gives $\exists\varepsilon\,\forall N\,\exists n\geq N$: *some tolerance is escaped infinitely often.* That is how you show $(-1)^n$ diverges.
+
+**In linear algebra**, negating *spanning* gives *there is a vector expressible by no combination* — an existential, settled by one witness. Negating *linear independence* gives *some non-trivial combination vanishes* — also an existential, and also settled by exhibiting one. Both refutations are single computations because the negation turned a universal into an existential.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **linear independence** — no vector being a combination of the others; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

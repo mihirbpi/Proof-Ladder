@@ -45,7 +45,7 @@ The uniqueness argument uses only associativity and identities, so it holds in a
 | | | requires |
 |---|---|---|
 | $f$ injective (and $S \neq \emptyset$) | $\iff$ $f$ has a **left** inverse | nothing |
-| $f$ surjective | $\iff$ $f$ has a **right** inverse | the Axiom of Choice |
+| $f$ surjective | $\iff$ $f$ has a **right** inverse | an extra set-theoretic assumption |
 | $f$ bijective | $\iff$ $f$ has a **two-sided** inverse | AC in general |
 
 The asymmetry is genuine. A left inverse is constructed explicitly; a right inverse requires choosing a point from each fibre, with no rule to specify which. Note also that a one-sided inverse need not be unique — $f : \{a\} \to \{1,2\}$, $f(a)=1$, has two left inverses — while a two-sided inverse always is.
@@ -56,7 +56,7 @@ $f^{-1}$ is a bijection with $(f^{-1})^{-1} = f$, since $f$ is a two-sided inver
 
 For composable bijections, $(g\circ f)^{-1} = f^{-1}\circ g^{-1}$ — the order reverses. (Check: $(f^{-1}g^{-1})(gf) = f^{-1}(g^{-1}g)f = f^{-1}f = \mathrm{id}$.) The reversal is the same phenomenon as socks-then-shoes: to undo, reverse and invert each step.
 
-Consequently the bijections $X \to X$ form a **group** under composition, with $\mathrm{id}_X$ as identity — the symmetric group $S_X$. Associativity came from §3.7, identities from §3.8, inverses from here.
+Consequently the bijections $X \to X$ are closed under composition, contain $\mathrm{id}_X$, and contain each of their inverses. Associativity came from §3.7, identities from §3.8, inverses from here.
 
 ## Examples
 
@@ -79,5 +79,21 @@ Choosing a branch is unavoidable rather than lazy. $\sin$ is inverted on $[-\pi/
 </Aside>
 
 <WhereThisGoes level="l7">
-"Invertible" is the definition of isomorphism, and each subject detects it by its own criterion: a linear map is invertible iff its determinant is nonzero, iff its rank is full, iff its kernel is trivial and it is surjective — the invertible matrix theorem is a long list of conditions all equivalent to the bijectivity proved here. A continuous bijection need *not* have continuous inverse, so homeomorphism is strictly stronger than bijection, and the compact-to-Hausdorff theorem is precious because it supplies the missing implication. In analysis, the inverse function theorem gives local invertibility from an invertible derivative, and the implicit function theorem is its dressed-up form; both are the local versions of this module's global statement. In algebra, units in a ring are exactly the invertible elements, and a field is a ring where every nonzero element is one — so the question "when can this be undone?" is, structurally, most of what distinguishes one algebraic system from another.
+**The Invertible Matrix Theorem is this module, stated for linear maps.** A square matrix $A$ is invertible if and only if it is bijective as a map $\mathbb{R}^n\to\mathbb{R}^n$ — and the theorem then lists a dozen equivalent conditions: $\det A \neq 0$, rank $n$, trivial null space, columns a basis, $A\mathbf{x}=\mathbf{b}$ uniquely solvable for every $\mathbf{b}$, and more.
+
+Read that list against §3.9 and it decomposes. Some conditions are the injective half (trivial null space, independent columns); some are the surjective half (full row rank, spanning columns); the theorem asserts that **for a square matrix each half implies the other**, which is not true for functions in general and is the genuinely non-obvious content.
+
+The two-sided requirement is visible too. $B$ is the inverse of $A$ when $AB = BA = I$ — both products, matching $g\circ f = \operatorname{id}$ and $f\circ g = \operatorname{id}$. For square matrices one product suffices, and that shortcut is itself a theorem.
+
+And $(AB)^{-1} = B^{-1}A^{-1}$ is the order-reversal proved above, with no new argument.
+
+**In calculus, inverses come with a derivative formula.**
+$$\left(f^{-1}\right)'(b) = \frac{1}{f'(a)} \quad\text{where } f(a) = b,$$
+valid when $f'(a)\neq0$. It follows by differentiating $f(f^{-1}(x)) = x$ with the chain rule — the composition identity from this module, differentiated.
+
+That formula is where $\frac{d}{dx}\ln x = \frac1x$ and $\frac{d}{dx}\sin^{-1}x = \frac{1}{\sqrt{1-x^2}}$ come from, and both derivations run through the fact that the functions in question were made bijective by restriction first.
+
+**The recurring question is the one this module asks: when can this be undone?** Its answer — injective and surjective, no exceptions — is the same in both courses, and most of what varies is how each subject detects the two halves.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse; **null space** — the vectors a matrix sends to zero; **basis** — a smallest set of vectors that builds all the others; **rank** — the number of independent columns.*
 </WhereThisGoes>

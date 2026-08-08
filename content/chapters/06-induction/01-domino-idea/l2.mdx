@@ -9,8 +9,14 @@ anchorExample: "a line of dominoes"
 import TryIt from '@/components/TryIt.astro';
 import Warning from '@/components/Warning.astro';
 import Aside from '@/components/Aside.astro';
+import DominoRow from '@/components/DominoRow.astro';
+import Figure from '@/components/Figure.astro';
 
 Line up a hundred **dominoes**. Push the first one and they all fall.
+
+<Figure alt="A row of dominoes with the first three fallen, each knocking the next, and the row continuing off to the right without end." caption="One push, and the rest take care of themselves.">
+  <DominoRow count={6} fallen={3} pushed={true} />
+</Figure>
 
 You did not push a hundred dominoes. You pushed **one**. But you set things up so that each one would take care of the next.
 

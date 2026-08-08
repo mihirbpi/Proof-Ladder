@@ -1,0 +1,96 @@
+---
+level: l5
+title: The domino idea
+readingTimeMin: 8
+newTerms: ["induction"]
+anchorExample: "n² + n + 41"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import DominoRow from '@/components/DominoRow.astro';
+import Figure from '@/components/Figure.astro';
+
+Some claims are really infinitely many claims at once.
+
+> For every integer $n \geq 1$: $\ 1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}$.
+
+That is a separate statement for each $n$. You could check $n = 1$, then $n=2$, then $n=3$, forever, and never finish. **Induction** is the technique that finishes.
+
+## Dominoes
+
+Stand a row of dominoes on end. To be sure every one falls, you need two things:
+
+1. The **first** one falls.
+2. **Whenever** a domino falls, it knocks over the next.
+
+<Figure alt="A row of dominoes, the first three fallen and each tipping into the next, continuing to the right without end." caption="Both conditions together force the whole row; neither alone does.">
+  <DominoRow count={6} fallen={3} pushed={true} />
+</Figure>
+
+Neither alone is enough. Push the first with the dominoes spaced too far apart and only one falls. Space them perfectly and never push, and none falls.
+
+Together they force the lot. And notice you do not have to *watch* them fall — the two conditions guarantee the outcome without any checking.
+
+Now replace "domino $n$ falls" with "statement $A(n)$ is true", and you have induction:
+
+> If $A(1)$ is true, and if $A(k)$ being true always forces $A(k+1)$ to be true, then $A(n)$ is true for every $n \geq 1$.
+
+Module 6.2 turns this into a written template. This module is about why you need it.
+
+## Why not just check?
+
+Because checking cases proves nothing about the cases you did not check, and the danger is not hypothetical.
+
+Consider
+$$
+f(n) = n^2 + n + 41.
+$$
+
+Compute:
+
+| $n$ | $f(n)$ | prime? |
+|---|---|---|
+| $0$ | $41$ | ✓ |
+| $1$ | $43$ | ✓ |
+| $2$ | $47$ | ✓ |
+| $3$ | $53$ | ✓ |
+| $4$ | $61$ | ✓ |
+| $5$ | $71$ | ✓ |
+
+Every one prime. Keep going and it stays prime — for $n = 10$, for $n = 25$, for **every value up to $n = 39$.** Forty consecutive confirmations.
+
+Then:
+$$
+f(40) = 1600 + 40 + 41 = 1681 = 41 \times 41.
+$$
+
+Not prime.
+
+<Warning title="Forty cases is not a proof, and neither is forty million">
+The pattern above fails at the first case anybody would have stopped checking.
+
+And it can be worse. There are statements about integers whose first counterexample is larger than the number of atoms in the observable universe — verified by computer for every case that will ever be tested, and false.
+
+**A universal claim is refuted by one counterexample and established only by an argument covering every case** (module 1.11). Checking is how you *find* things worth proving. It is never how you prove them.
+
+In fairness, $f(40)$ was predictable in hindsight: $f(41) = 41 \cdot 43$ too, since every term of $41^2 + 41 + 41$ carries a factor of $41$. That is an argument, and it is the kind of thing checking cannot give you.
+</Warning>
+
+## What induction is not
+
+**It is not circular.** The step does not assume $A(k)$ is true. It proves the *conditional* "if $A(k)$ then $A(k+1)$", which is a statement you can establish without knowing whether $A(k)$ holds — exactly as module 1.5's truth table allows. Module 6.2 returns to this, because it is the objection everyone raises.
+
+**It is not just for sums.** Module 6.4 catalogues what it works on: divisibility, inequalities, counting problems, and statements about objects built in stages.
+
+**It does not work on the rationals.** Induction steps from $n$ to $n+1$, and module 4.6 showed there is no *next* rational to step to. The technique needs a first case and a next case, and only some sets have them.
+
+<Aside>
+The domino picture is honest but it hides a real assumption.
+
+Ask why *all* the dominoes fall. Because the first falls, and each knocks the next — but stringing those together into "therefore all of them" is itself a principle, and it is not provable from more basic facts about the integers.
+
+It is an **axiom** of the number system, and Chapter 7 states it as one. That is a genuinely interesting situation: the most useful proof technique in this chapter is not a theorem at all, but part of the definition of what the integers are.
+
+For now, use it. Chapter 7 says where it comes from.
+</Aside>

@@ -8,6 +8,8 @@ anchorExample: "multiples of 6"
 
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
+import TruthGrid from '@/components/TruthGrid.astro';
+import Figure from '@/components/Figure.astro';
 
 One statement at a time is not enough. Real mathematics glues statements together, and there are two ways to do the gluing: **and** and **or**. They behave differently, and the difference matters.
 
@@ -37,6 +39,16 @@ Now the important case:
 
 Both pieces are true. Is the *or* statement still true? **Yes.**
 
+<Figure alt="A two-by-two chart for the statement 'p or q'. It is true when both parts are true, true when only the first is, true when only the second is, and false only when both are false." caption="p or q: false in exactly one of the four cases.">
+  <TruthGrid
+    rowLabel="first piece" colLabel="second piece"
+    rows={["first is true", "first is false"]}
+    cols={["second is true", "second is false"]}
+    cells={[[{ok: true}, {ok: true}], [{ok: true}, {ok: false}]]} />
+</Figure>
+
+Only one of the four cases makes an *or* statement false: the one where **both** pieces fail.
+
 <Warning title="Mathematical or is not menu or">
 Everyday English uses *or* to mean "one but not the other" — "soup or salad." Mathematics never does. Mathematical *or* is **inclusive**: it means "at least one, and both is allowed." Nobody in mathematics will ever say *or* and secretly mean "but not both."
 </Warning>
@@ -56,5 +68,7 @@ This one is true. And it would still be true for any number, and for any stateme
 <Aside>
 Contradictions look useless, but they are one of the sharpest tools in mathematics. In module 2.5 you will prove things by *assuming the opposite of what you want and steering straight into a contradiction*.
 </Aside>
+
+### Why that is worth noticing
 
 Notice what just happened: to decide those last two, you did not have to know a single thing about $7$. Their shape settled them. That is the first hint that logic is a subject of its own.

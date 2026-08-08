@@ -13,6 +13,11 @@ import Warning from '@/components/Warning.astro';
 
 A **machine** takes each thing on one list and sends it to exactly one thing on another list.
 
+Two rules, and that is the whole idea:
+
+1. Everybody on the first list goes somewhere.
+2. Nobody goes to two places.
+
 The best way to draw one is an **arrow diagram**. Put the first list on the left, the second on the right, and draw an arrow from each thing to where it goes.
 
 ## A good machine
@@ -24,6 +29,8 @@ The best way to draw one is an **arrow diagram**. Put the first list on the left
 </Figure>
 
 Check it: every child on the left has an arrow leaving. And nobody has two arrows. Good machine!
+
+Now you can ask it questions. *Where does Pip go?* Follow Pip's arrow. Cubby $1$. There is always an answer, and there is only ever one — that is what the two rules bought you.
 
 ## Broken machine one: somebody got skipped
 
@@ -58,6 +65,16 @@ This one *looks* wrong but it is fine. The rule is about arrows **leaving**, not
 <Warning title="Check the left, not the right">
 To test a machine, look only at the left list. Does every thing have an arrow leaving? Is it exactly one? Then you are done. What happens on the right is a different question, and it gets its own module later on.
 </Warning>
+
+## Machines are everywhere
+
+Once you know the shape, you start seeing it:
+
+- Every kid → their birthday.
+- Every book on the shelf → how many pages it has.
+- Every number → that number plus one.
+
+Each one sends everybody somewhere, and each one gives exactly one answer. All three are machines.
 
 <TryIt>
 Draw two lists of 3 things and connect them with arrows. Then draw a broken one on purpose and dare somebody to spot what is wrong.

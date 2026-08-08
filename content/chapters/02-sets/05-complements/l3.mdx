@@ -41,7 +41,7 @@ A useful check: $\overline{A}$ always depends on two things, not one.
 
 ## A famous complement
 
-Inside the real numbers, the complement of the fractions is called the **irrational numbers**. So $\pi$ is irrational, and $\sqrt{2}$ is irrational — a fact that takes real work to prove, and module 4.7 does it.
+Inside the real numbers, the complement of the fractions is called the **irrational numbers**. So $\pi$ is irrational, and so is the number that multiplies by itself to give $2$ — a fact that takes real work to prove, and module 4.7 does it.
 
 ## Suppose not
 
@@ -56,17 +56,17 @@ So here is the technique that handles them, and it is one of the great ones. It 
 > **Claim.** Let $S$ be the whole numbers, and let $E$ be the even ones. Then no element of $\overline{E}$ is a multiple of $4$.
 
 <Discussion>
-  <div slot="know">$\overline{E}$ is the odd numbers — the whole numbers not in $E$. And every multiple of $4$ can be written as $4 \times k$.</div>
+  <div slot="know">$\overline{E}$ is the odd numbers — the whole numbers not in $E$. And every multiple of $4$ is a pile of $4$s.</div>
   <div slot="want">Nothing in $\overline{E}$ is a multiple of $4$.</div>
   <div slot="how">The goal is a *nothing* claim, which is hard to attack directly. So suppose not: pretend some element of $\overline{E}$ *is* a multiple of $4$, and see what breaks.</div>
 </Discussion>
 
 <Proof>
-Suppose not. That is, suppose some number $n$ is in $\overline{E}$ and is also a multiple of $4$.
+Suppose not. That is, suppose some number in $\overline{E}$ is also a multiple of $4$.
 
-Since $n$ is a multiple of $4$, we can write $n = 4 \times k$ for some whole number $k$.
+Being a multiple of $4$ means it is a pile of $4$s. Split every $4$ into $2 + 2$: nothing is added and nothing thrown away, and now the pile is made of $2$s.
 
-But $4 = 2 \times 2$, so $n = 2 \times (2 \times k)$, which makes $n$ a multiple of $2$ — that is, $n$ is even, so $n \in E$.
+So the number is a multiple of $2$ — that is, it is even, and it belongs to $E$.
 
 Now $n$ is in $\overline{E}$ and also in $E$. But $\overline{E}$ is exactly the numbers *not* in $E$. So $n$ is both in $E$ and not in $E$, which is impossible.
 
@@ -88,5 +88,5 @@ Contradiction is powerful, so it is tempting to use it everywhere. Resist. A dir
 </Warning>
 
 <Aside>
-Two facts worth noticing about complements, both easy to see in the picture: $\overline{\overline{A}} = A$ — the outside of the outside is the inside — and $A \cap \overline{A} = \emptyset$, since nothing can be both in and out. These are the set versions of two things you already know: saying *not* twice gets you back where you started, and nothing can be both true and not true at once.
+Two facts worth noticing about complements, both easy to see in the picture: $\overline{\overline{A}} = A$ — the outside of the outside is the inside — and $A \cap \overline{A} = \{\,\}$, since nothing can be both in and out. These are the set versions of two things you already know: saying *not* twice gets you back where you started, and nothing can be both true and not true at once.
 </Aside>

@@ -1,0 +1,97 @@
+---
+level: l5
+title: Euler's formula
+readingTimeMin: 5
+newTerms: []
+anchorExample: "e^{iπ} = −1"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+This module states a result you cannot yet prove, because the proof needs two tools you have not met. It is here because the *statement* is reachable, and because it explains why module 5.8's polar form is written the way it is.
+
+## The question
+
+Algebra I gave you exponential functions: $2^x$, $10^x$, and the one with the special base, $e^x \approx 2.718^x$.
+
+Every one of them was defined for **real** $x$. So here is a fair question:
+
+$$
+\text{what is } e^{i} \ ?
+$$
+
+Nothing you have been taught says. Raising a number to an imaginary power is not repeated multiplication, and no rule from Algebra I covers it.
+
+It turns out there is exactly one sensible answer, and it is startling.
+
+## The answer
+
+> **Raising $e$ to an imaginary power lands you on the unit circle.**
+
+Specifically, $e^{i\theta}$ is the point at distance $1$ from the origin, reached by travelling $\theta$ units **along the circle**, counterclockwise from $1$.
+
+<Figure alt="A grid with points at one, i, minus one and minus i, all on the circle of radius one about the origin." caption="Every e^{iθ} lies on this circle. The exponent measures distance travelled around it.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+The exponent is an **arc length**, not an angle in degrees. That is all it takes to compute the famous case.
+
+## The most famous equation
+
+The unit circle has circumference $2\pi$. So travelling $\pi$ units around it — half the way — starts at $1$ and finishes at $-1$, directly opposite.
+
+$$
+\boxed{\ e^{i\pi} = -1\ }
+$$
+
+Often written $e^{i\pi} + 1 = 0$, which puts five of the most important constants in mathematics into one equation with nothing else in it: $e$, $i$, $\pi$, $1$, and $0$.
+
+Two more, by the same reading:
+
+- Travel $0$ units: you have not moved. $e^{0} = 1$ ✓, agreeing with ordinary exponents.
+- Travel $2\pi$ units: all the way round, back to the start. $e^{2\pi i} = 1$.
+
+<Warning title="This is not a coincidence to be admired and forgotten">
+It is tempting to file $e^{i\pi} = -1$ under *surprising facts*. It is better understood as a **definition doing its job**.
+
+Module 5.9 found that multiplying complex numbers **adds** their angles. Exponents also add: $e^{x}e^{y} = e^{x+y}$. Two operations with the same behaviour, and Euler's formula is the statement that they are the same operation.
+
+That is why the notation is worth having. Writing a rotation as $e^{i\theta}$ makes *"rotate by $\theta_1$, then by $\theta_2$"* into *"multiply $e^{i\theta_1}$ by $e^{i\theta_2}$"*, which the exponent rule turns into $e^{i(\theta_1+\theta_2)}$ — the angles adding, for free.
+</Warning>
+
+## What the proof needs
+
+The general statement is
+$$
+e^{i\theta} = \cos\theta + i\sin\theta,
+$$
+giving the across-and-up coordinates of the landing point. It is the conversion of module 5.8, with $r = 1$.
+
+Proving it needs two things you will meet later:
+
+- **Trigonometry**, to name the coordinates of a point on a circle.
+- **Infinite series** — the fact that $e^x$, $\cos x$ and $\sin x$ each equal an endless sum of powers.
+
+Given those, the proof is short and lovely. Substitute $i\theta$ into the series for $e^x$, and use the four-step cycle $i, -1, -i, 1$ from module 5.3 to sort the terms. The terms with real coefficients assemble into the series for $\cos\theta$, and the ones carrying an $i$ assemble into $\sin\theta$.
+
+**One series splits into two**, and the cycle of powers of $i$ is what does the splitting.
+
+<Aside>
+Polar form is normally written $re^{i\theta}$ rather than $r(\cos\theta + i\sin\theta)$, and now you can see why.
+
+In that notation module 5.9's multiplication rule is just the exponent law:
+$$
+\big(r_1 e^{i\theta_1}\big)\big(r_2 e^{i\theta_2}\big) = r_1r_2\,e^{i(\theta_1+\theta_2)},
+$$
+and De Moivre's formula is $\big(re^{i\theta}\big)^n = r^n e^{in\theta}$ — a rule you already know, applied to a new kind of exponent.
+
+**Good notation makes a theorem look like arithmetic.** The content is identical to module 5.9's; what changed is that the statement now takes one line and is impossible to misremember.
+</Aside>

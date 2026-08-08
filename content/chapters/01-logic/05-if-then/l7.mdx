@@ -9,7 +9,7 @@ anchorExample: "x > 1 implies x² > 1"
 import TruthTable from '@/components/TruthTable.astro';
 import Figure from '@/components/Figure.astro';
 import UmbrellaCases from '@/components/UmbrellaCases.astro';
-import Aside from '@/components/Aside.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
 import Warning from '@/components/Warning.astro';
 
 Every theorem in this course, and nearly every theorem you will meet afterwards, has the same shape:
@@ -34,6 +34,8 @@ $p \Rightarrow q$ is defined to be true in three of the four possible cases, and
 />
 
 The single false row — hypothesis true, conclusion false — is the only case that would count as a broken promise. Every other case is *true* by definition.
+
+### Vacuous truth
 
 The last two rows, where the hypothesis fails, are said to make the conditional **vacuously true**. The word carries no metaphysics: it is a labelling convention that keeps the truth table crisp. If we had chosen instead to leave those cases undefined, we would need three-valued logic and the rest of mathematics would become much clumsier to state.
 
@@ -68,8 +70,35 @@ Note carefully the difference between three statements:
 - "$q$ is true."
 - "$p \Rightarrow q$ is true."
 
-The third can hold without either of the first two. In particular, if $p$ is false then $p \Rightarrow q$ is true regardless of $q$. This is not a bug; it is the shape of the definition that makes all of first-order logic run.
+The third can hold without either of the first two. In particular, if $p$ is false then $p \Rightarrow q$ is true regardless of $q$. This is not a bug; it is the shape of the definition that makes the whole logical system run.
 </Warning>
+
+## The phrasings, and the two that trip people
+
+All of the following denote $p \Rightarrow q$:
+
+$$\text{if } p \text{ then } q \quad\bullet\quad p \text{ implies } q \quad\bullet\quad q \text{ if } p \quad\bullet\quad p \text{ only if } q$$
+$$p \text{ is \textbf{sufficient} for } q \quad\bullet\quad q \text{ is \textbf{necessary} for } p \quad\bullet\quad q \text{ whenever } p$$
+
+Two of these invert the visual order and are worth memorising directly.
+
+**"$p$ only if $q$"** is $p\Rightarrow q$. The *only* signals necessity: $q$ is required for $p$, so $p$ cannot hold without it. Reading it as $q \Rightarrow p$ — which the word order invites — is the standard error.
+
+**"$q$ is necessary for $p$"** is likewise $p\Rightarrow q$, and *"$p$ is sufficient for $q$"* is the same statement read from the other end. A biconditional asserts both roles at once, which is why *necessary and sufficient* means *iff* (§1.9).
+
+The necessary/sufficient vocabulary is worth becoming fluent in now, because calculus states hypotheses that way constantly. *"Continuity is necessary for differentiability"* and *"differentiability is sufficient for continuity"* are the same theorem, and neither says anything about the converse.
+
+## Conditionals with false hypotheses are everywhere
+
+Vacuous truth stops looking like a curiosity as soon as the hypothesis is a condition that can fail to be met.
+
+*"If $\{a_n\}$ converges, then it is bounded"* is a true theorem, and applying it to a divergent sequence yields nothing — not a false conclusion, simply no information. Row 3 and row 4 of the table are the cases where a theorem is silent, and recognising when a theorem is silent is as useful as recognising when it applies.
+
+The pattern is sharper in statements quantified over a set that might be empty:
+
+$$\text{every element of } \{x \in \mathbb{R} : x^2 < 0\} \text{ is rational}$$
+
+is true, and it is true because the set is empty. Chapter 2 uses exactly this to prove $\emptyset\subseteq S$ for every $S$ — a fact that would be false under any other convention, and that is needed constantly.
 
 ## Where this shows up next
 
@@ -77,3 +106,17 @@ The third can hold without either of the first two. In particular, if $p$ is fal
 - **Contrapositive.** The truth table for $\neg q \Rightarrow \neg p$ is identical to that for $p \Rightarrow q$. So the two statements are logically equivalent — we can prove one by proving the other. Module 1.7 makes this precise.
 - **Biconditional.** *$p$ if and only if $q$* is the conjunction of $p \Rightarrow q$ and $q \Rightarrow p$. Proving one, therefore, requires two conditional proofs (§1.9).
 - **Vacuous statements everywhere.** Any statement of the form "every element of $\emptyset$ satisfies …" is vacuously true. If you spot it in a proof, do not fight the convention; use it.
+
+<WhereThisGoes level="l7">
+Reading conditionals precisely is what makes the theorems of calculus applicable rather than merely memorable.
+
+**Every named theorem is a conditional with a checkable hypothesis.** Rolle's theorem, the Mean Value Theorem, the Extreme Value Theorem, the Intermediate Value Theorem, the Fundamental Theorem of Calculus — each is *if these conditions hold, then this conclusion follows*, and each is silent otherwise. The routine failure in a first course is applying a theorem whose hypothesis was never checked, and it is a failure to read a conditional.
+
+**Convergence tests are conditionals with one-way arrows.** The Ratio Test says *if $\lim|a_{n+1}/a_n| < 1$ then the series converges absolutely*. When the limit equals $1$ the test is silent — not "the series diverges," and not "the series converges." A conditional with a false hypothesis gives no information, and every textbook prints "the test is inconclusive" for exactly this reason.
+
+**In linear algebra**, the conditionals accumulate into the Invertible Matrix Theorem — twelve or so statements, each implying the next around a cycle. That structure is only readable if you keep the direction of each arrow straight, and the difference between *sufficient* and *necessary* is the difference between using the theorem correctly and inverting it.
+
+The habit to build now: whenever you meet a theorem, write its hypothesis and conclusion separately, and ask what it says when the hypothesis fails. Usually the answer is *nothing*, and knowing that is what stops you from claiming more than you have.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse.*
+</WhereThisGoes>

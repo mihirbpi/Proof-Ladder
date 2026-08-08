@@ -2,7 +2,7 @@
 level: l7
 title: Defining addition
 readingTimeMin: 8
-newTerms: ["recursive definition", "recursion theorem"]
+newTerms: ["recursive definition", "recursive-definition principle"]
 anchorExample: "successor function"
 ---
 
@@ -22,7 +22,7 @@ Recursion on the **second** argument, with the first held fixed. Every asymmetry
 
 Writing down a recursion does not by itself define anything: one must know that a function satisfying the clauses exists and is unique.
 
-> **Recursion theorem.** Let $A$ be a set, $c \in A$, $f : A \to A$. Then there is a **unique** $h : \mathbb{N}\to A$ with $h(0) = c$ and $h(S(n)) = f(h(n))$.
+> **The recursive-definition principle.** Let $A$ be a set, $c \in A$, $f : A \to A$. Then there is a **unique** $h : \mathbb{N}\to A$ with $h(0) = c$ and $h(S(n)) = f(h(n))$.
 
 Uniqueness is an induction: if $h_1, h_2$ both satisfy the clauses, $\{n : h_1(n)=h_2(n)\}$ is inductive, so is all of $\mathbb{N}$ by A9. Existence requires constructing $h$ as a set of pairs and verifying it is a function — also by induction.
 
@@ -46,7 +46,23 @@ $a+1 = a+S(0) = S(a+0) = S(a)$.
 
 This is the theorem §7.3 promised. The notational identification of $S(a)$ with $a+1$, forbidden until addition existed, is now licensed.
 
-## The monoid laws
+## Why $0 + x = x$ needs proof
+
+The definition gives $x + 0 = x$ — zero on the **right**. Zero on the left is a different statement, with no rule producing it, and it must be proved.
+
+**Base case.** $0+0 = 0$ by the first rule with $x=0$. ✓
+
+**Inductive step.** Assume $0+k = k$. Then
+$$0 + S(k) = S(0+k) = S(k),$$
+using the second rule and then the hypothesis. That is the claim at $S(k)$.
+
+By Axiom 9, $0 + x = x$ for every $x$.
+
+**Four lines to establish that adding zero on the left does nothing.** The proof is short, and the fact that it is needed at all is the point: **the definition is asymmetric**, recursing on the second argument only, so every symmetric-looking fact requires its own argument.
+
+The companion lemma $S(x)+y = S(x+y)$ has the same character — the definition supplies $x + S(y) = S(x+y)$, and the mirror image is a separate induction. Both lemmas are consumed by the proof of commutativity, which is why that proof costs three inductions rather than one.
+
+## The laws, each needing its own induction
 
 None of these is an axiom; each requires induction.
 
@@ -88,7 +104,7 @@ by (A2), (IH), (A2) twice.
 Induct on $c$. *Base.* Immediate from (A1). *Step.* $a+S(k) = b+S(k)$ gives $S(a+k) = S(b+k)$, so $a+k = b+k$ by **A8** (injectivity of $S$), and (IH) gives $a=b$.
 </Proof>
 
-$(\mathbb{N},+,0)$ is therefore a commutative, cancellative monoid — and note that cancellation is where A8 is finally spent. Every axiom now has a job.
+So $+$ on $\mathbb{N}$ is commutative and associative, has $0$ as identity, and permits cancellation — and note that cancellation is where A8 is finally spent. Every axiom now has a job.
 
 <Warning title="Familiarity is not derivation">
 Nothing in (A1)–(A2) yields $a+b=b+a$; the definition is manifestly asymmetric. Three inductions were required.
@@ -103,7 +119,17 @@ Chapter 4's assumptions are now discharged for $\mathbb{N}$: closure under $+$ i
 </Aside>
 
 <WhereThisGoes level="l7">
-Recursion on inductive structure is how every proof assistant defines functions, and the termination requirement is exactly the well-foundedness of §6.4 — Coq and Agda reject a recursive definition whose argument does not visibly decrease. Which functions are definable by which recursion schemes is a subject of its own: primitive recursion (recursion on the predecessor, as here) captures a large class but omits Ackermann's function, whose definition nests recursions; the Grzegorczyk hierarchy stratifies the primitive recursive functions by how deeply nested their recursions are, and the levels correspond to the growth rates a given fragment of arithmetic can prove total.
+Recursive definition is the pattern behind sequences, series, and iterative methods, and the termination guarantee is always the same one.
 
-The construction also generalises past $\mathbb{N}$. Transfinite recursion along the ordinals — justified by transfinite induction and the replacement axiom — is what builds the cumulative hierarchy $V_\alpha$ and hence the universe of sets. Definition by recursion is not an arithmetic convenience; it is how mathematical objects get built at every scale.
+**In calculus, recursively defined sequences are everywhere.** $a_1 = 1$, $a_{n+1} = \frac12(a_n + \frac{2}{a_n})$ is Newton's method for $\sqrt2$; the Fibonacci recurrence, compound-interest sequences, and the partial sums of any series are all defined this way — a base case, and a rule producing the next term from earlier ones.
+
+Every one of them terminates for the reason Axiom 9 supplies: the index decreases towards a base case, and $\mathbb{N}$ is well-ordered so the descent cannot continue forever.
+
+**Proofs about such sequences are inductions**, and the proof structure mirrors the definition exactly. To show $a_n$ is bounded, or increasing, or converges, you prove the property at the base and show the recursion preserves it. That correspondence — recursive definition, inductive proof — is not a coincidence: both are Axiom 9.
+
+**The commutativity result is the module's real lesson.** The definition recurses on the second argument only, so $x + y = y + x$ is a theorem requiring three inductions. **Obviousness is not the same as cheapness**, and a statement's familiarity says nothing about its distance from the axioms.
+
+**In linear algebra, the corresponding surprise is that matrix multiplication does not commute at all.** Having seen that commutativity is a property to be proved rather than assumed, the failure is less startling — and the same holds for composition of functions (§3.7), where the counterexamples are easy.
+
+**Order was defined, not postulated.** $x\leq y$ means $\exists z$ with $x+z=y$, and every property of $\leq$ follows. That the order comes free from addition is a genuine economy, and one that geometry does not enjoy.
 </WhereThisGoes>

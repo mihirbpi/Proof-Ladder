@@ -2,7 +2,7 @@
 level: l7
 title: When does induction apply?
 readingTimeMin: 8
-newTerms: ["strong induction", "structural induction", "well-founded"]
+newTerms: ["strong induction", "structural induction"]
 anchorExample: "Σ(2j−1) = n²"
 ---
 
@@ -32,7 +32,7 @@ $$
 \sum^{n+1} = \sum^n + a_{n+1},\quad a^{n+1} = a\cdot a^n,\quad (n+1)! = (n+1)n!,\quad f^{(n+1)} = \big(f^{(n)}\big)'.
 $$
 
-**Recursive definition and inductive proof are the same structure viewed from opposite ends.** Chapter 7 makes this exact: $+$ and $\times$ are *defined* by recursion on the successor, and every property of them is *proved* by induction on the same successor. The recursion theorem, which licenses definition by recursion, is itself proved from the induction axiom.
+**Recursive definition and inductive proof are the same structure viewed from opposite ends.** Chapter 7 makes this exact: $+$ and $\times$ are *defined* by recursion on the successor, and every property of them is *proved* by induction on the same successor. The recursive-definition principle, which licenses definition by recursion, is itself proved from the induction axiom.
 
 Where the link fails, the index does not help. "The $n$th prime is odd" has an integer index and no usable relation between $p_k$ and $p_{k+1}$; assuming $A(k)$ contributes nothing, and no amount of cleverness in the step will fix that.
 
@@ -52,24 +52,52 @@ Ordinary induction cannot do this, since $a$ and $b$ bear no relation to $n-1$. 
 
 The Fibonacci recurrence $F_{n+1} = F_n + F_{n-1}$ likewise needs two previous cases, hence two base cases — an easy and common oversight.
 
-## Well-founded induction
+## Choosing what to induct on
+
+A problem often offers several candidate indices, and the choice determines whether the proof is short or impossible.
+
+**A claim about pairs.** For a statement $A(m,n)$, you may induct on $m$ with $n$ fixed, on $n$ with $m$ fixed, or on $m+n$. The last reduces a two-dimensional family to a single chain and is often the only one that works, because each step decreases the total and both coordinates are free to move.
+
+**A claim about a construction.** For polygons, induct on the number of sides; for matrices, on the dimension; for expressions, on the number of operations. The index should be whatever decreases when you remove one piece.
+
+**When an induction stalls, change the index before changing the algebra.** A step that will not close is usually a sign that the wrong quantity is being decreased, and no amount of manipulation repairs that.
+
+<Warning title="The link must be constructed, not assumed">
+The most common failure is asserting a link that does not exist. *"Remove a vertex from an $(n+1)$-gon to get an $n$-gon"* is true for convex polygons and false in general — a non-convex polygon can lose its polygon status under the same operation.
+
+Establishing the link is frequently the whole difficulty of the proof, and a step that begins "clearly the $(k+1)$ case contains the $k$ case" deserves scrutiny.
+</Warning>
+
+## The single principle underneath
 
 Both forms are instances of a single principle.
 
-> **Well-founded induction.** Let $\prec$ be a well-founded relation on $S$ (no infinite descending chains). If for every $x \in S$, $\big(\forall y \prec x,\ A(y)\big) \Rightarrow A(x)$, then $A$ holds on all of $S$.
+> **General induction.** Let $\prec$ be an order on $S$ with **no infinite descending chains**. If for every $x \in S$, $\big(\forall y \prec x,\ A(y)\big) \Rightarrow A(x)$, then $A$ holds on all of $S$.
 
-Note there is **no separate base case**: minimal elements have no predecessors, so the hypothesis is vacuously satisfied for them and the implication delivers $A$ directly. Ordinary and strong induction are the cases $\prec\ =$ predecessor and $\prec\ =\ <$ on $\mathbb{N}$.
+Note there is **no separate base case**: minimal elements have no predecessors, so the hypothesis is vacuously satisfied for them (§1.5) and the implication delivers $A$ directly. Ordinary and strong induction are the cases $\prec\ =$ predecessor and $\prec\ =\ <$ on $\mathbb{N}$.
 
-**Structural induction** is the case where $S$ is a set of recursively built objects and $\prec$ is "is an immediate subterm of". To prove a property of all well-formed formulas, verify it for atoms and check that each connective preserves it. Termination arguments for recursive programs are the same principle: exhibit a well-founded measure that strictly decreases at each call.
+**Structural induction** is the case where $S$ is a set of recursively built objects and $\prec$ is "is an immediate subterm of". To prove a property of all well-formed formulas, verify it for atoms and check that each connective preserves it. Termination arguments for recursive programs are the same principle: exhibit a quantity that strictly decreases at each call and cannot decrease forever.
 
-**Transfinite induction** takes $S$ to be the ordinals, and needs the replacement axiom to justify the corresponding recursion.
+The same principle extends past $\mathbb{N}$ to longer well-ordered collections, which is how induction reaches beyond the counting numbers.
 
 <Aside>
-Well-foundedness is exactly what rules out circular justification. In ZF the Axiom of Foundation asserts that $\in$ is well-founded, which is what makes $\in$-induction available and forbids $x \in x$.
+The no-infinite-descent condition is exactly what rules out circular justification. In ZF the Axiom of Foundation asserts that $\in$ is without infinite descent, which is what makes $\in$-induction available and forbids $x \in x$.
 
-A practical corollary: to prove termination of a recursive procedure, find a well-founded measure that strictly decreases. Ackermann's function terminates despite growing enormously, because its arguments decrease in the lexicographic order on $\mathbb{N}^2$ — well-founded, though not order-isomorphic to $\mathbb{N}$.
+A practical corollary: to prove termination of a recursive procedure, find a strictly decreasing measure that strictly decreases. Ackermann's function terminates despite growing enormously, because its arguments decrease in the lexicographic order on $\mathbb{N}^2$ — which also admits no infinite descent, though it does not look like $\mathbb{N}$.
 </Aside>
 
 <WhereThisGoes level="l7">
-Well-founded induction is the organising principle of programming-language theory: type soundness, compiler correctness, and the semantics of recursive definitions are all structural inductions over syntax. In proof assistants this is not an analogy — an inductive type is *defined* by its constructors, and the induction principle is generated mechanically as the type's eliminator, so `Nat_rect` in Coq is literally §6.2's three steps as a term. Going up, ordinal analysis measures the strength of a formal system by the largest ordinal for which it can prove transfinite induction: $\varepsilon_0$ for Peano arithmetic (Gentzen), $\Gamma_0$ for predicative analysis. That a theory's power can be pinned to an ordinal is one of the more surprising facts in logic, and it locates exactly the induction a system cannot justify about itself.
+The two conditions — an integer index and a link between cases — are what determine whether induction is even the right tool, and calculus is full of claims that fail the first.
+
+**Claims about all real numbers are not induction candidates.** *For all $x$, $\sin^2 x + \cos^2 x = 1$* has infinitely many cases and no chain to run: $\mathbb{R}$ has no least element and no next element (§4.6). Attempting induction there is a category error, and the correct technique is a direct proof from the definitions.
+
+**Claims about all $n$ usually are.** Formulas for $\frac{d^n}{dx^n}$, closed forms for $\sum_{j=1}^n$, statements about the $n$th term of a recursively defined sequence, and inequalities like $2^n > n^2$ for $n\geq5$ all carry an integer index and a visible link.
+
+**The link is where the difficulty lives.** For $\frac{d^n}{dx^n}$, the link is *differentiate once more*. For a sum, the link is *add the next term*. For a recursively defined sequence, the recursion **is** the link — which is why recursive definitions and induction go together, and why §7.6 defines addition recursively and then proves its properties inductively.
+
+**Strong induction handles irregular links.** Some claims about $n$ need several earlier cases rather than the immediately preceding one. Fibonacci-type recurrences reach back two steps and need two base cases; the fact that every integer above $1$ has a prime factor reaches back an unpredictable distance and needs strong induction.
+
+**In linear algebra, induction is on dimension or on matrix size**, and the link is a construction: delete a row and column, or extend a basis by one vector. Cofactor expansion, the triangular determinant formula, and the extension of an independent set to a basis are all proved this way.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>

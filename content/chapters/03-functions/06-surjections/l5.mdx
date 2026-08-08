@@ -1,0 +1,110 @@
+---
+level: l5
+title: Onto (surjections)
+readingTimeMin: 8
+newTerms: ["surjective", "onto"]
+anchorExample: "f : ℝ → [0,∞), f(x) = x²"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 3.3 observed that $\operatorname{Im}(f) \subseteq T$ and that the containment can be strict. **Surjectivity is the condition that closes the gap.**
+
+> $f : S \to T$ is **surjective** (or **onto**) when $\operatorname{Im}(f) = T$: every $t \in T$ has at least one $s \in S$ with $f(s) = t$.
+
+<Figure alt="Three elements on the left with arrows landing on all three elements of the right, nothing missed." caption="Surjective: every target is hit.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,2],[1,0],[2,1]]} />
+</Figure>
+
+In the language of module 1.10 the definition is
+$$
+\forall t \in T,\ \exists s \in S,\ f(s) = t,
+$$
+and reading the quantifiers tells you the proof's shape before you know anything else: **take an arbitrary $t$, then produce a witness $s$ that depends on it.**
+
+## A worked proof
+
+> **Proposition.** $f : \mathbb{R} \to \mathbb{R}$, $f(x) = 3x + 2$ is surjective.
+
+<Discussion>
+  <div slot="know">An arbitrary target $y \in \mathbb{R}$, and nothing else about it.</div>
+  <div slot="want">Some real $x$ with $3x + 2 = y$.</div>
+  <div slot="how">Solve for $x$ in terms of $y$ on scratch paper. That computation is the <em>search</em>; the proof then presents the answer and verifies it, which is the only part that needs writing down.</div>
+</Discussion>
+
+<Proof>
+Let $y \in \mathbb{R}$ be arbitrary. Take
+$$
+x = \frac{y-2}{3},
+$$
+which is a real number since $3 \neq 0$. Then
+$$
+f(x) = 3\cdot\frac{y-2}{3} + 2 = (y-2) + 2 = y.
+$$
+
+So every real is hit, and $f$ is surjective.
+</Proof>
+
+Notice the structure. **The witness depended on $y$** — as it must, since $y$ was quantified first (module 1.10). And the scratch work that found $(y-2)/3$ does not appear: a witness must be verified, not motivated.
+
+## Failure, and the role of the codomain
+
+> **Proposition.** $g : \mathbb{R} \to \mathbb{R}$, $g(x) = x^2$ is not surjective.
+
+<Proof>
+Take $y = -1$. For every real $x$, $x^2 \geq 0 > -1$, so no $x$ satisfies $g(x) = -1$.
+
+Hence $-1 \in \mathbb{R}$ is not in the image, and $g$ is not surjective.
+</Proof>
+
+Disproving surjectivity is disproving a universal claim, so **one counterexample target** suffices (module 1.11) — but proving *that* target is missed requires an argument covering every input, which is why this proof has a "for every real $x$" in it and the injectivity disproof of module 3.5 did not.
+
+Now change one thing:
+
+> **Proposition.** $h : \mathbb{R} \to [0,\infty)$, $h(x) = x^2$ **is** surjective.
+
+<Proof>
+Let $y \in [0,\infty)$ be arbitrary, so $y \geq 0$. Then $\sqrt y$ is a real number, and $h(\sqrt y) = (\sqrt y)^2 = y$.
+</Proof>
+
+**Same rule. Different codomain. Different answer.**
+
+<Warning title="Surjectivity is a property of the pair, not of the formula">
+Asking "is $x^2$ onto?" is not a well-posed question. Onto *what*?
+
+This is the sharpest illustration of module 3.1's insistence that the codomain is part of the function, and it is why that insistence was not fussiness. A property that some books state as though it were about a formula is in fact about a formula together with a declared target.
+
+Note the general trick the last proof used: **restricting the codomain to the image makes any function surjective.** $f : S \to \operatorname{Im}(f)$ is always onto, by the definition of image. So surjectivity can always be arranged, and the interesting question is whether it holds for the codomain you actually wanted.
+</Warning>
+
+## The mirror image of module 3.5
+
+Put the two definitions side by side and the symmetry is exact.
+
+| | Condition | Depends on |
+|---|---|---|
+| Injective | every $t$ has **at most one** pre-image | the domain |
+| Surjective | every $t$ has **at least one** pre-image | the codomain |
+
+Both are statements about $f^{-1}(\{t\})$, the pre-image of a single element from module 3.3 — one bounds its size above, the other below.
+
+Neither implies the other, and all four combinations occur. $3x + 2$ on $\mathbb{R}$ is both. $x^2$ on $\mathbb{R} \to \mathbb{R}$ is neither. $x^2$ on $[0,\infty) \to \mathbb{R}$ is injective and not surjective. $x^2$ on $\mathbb{R} \to [0,\infty)$ is surjective and not injective.
+
+Module 3.8 studies the case where both hold at once, and the table above says what that will mean: **every $t$ has exactly one pre-image.**
+
+<Aside>
+The multiplication function $m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$, $m(a,b) = ab$, is a good test case.
+
+It is **not injective** — module 3.5 found $m(6,4) = m(2,12)$.
+
+It **is surjective**: given any $n \in \mathbb{Z}$, take the pair $(n, 1)$, and $m(n,1) = n$.
+
+One witness, chosen well, and the proof is a line. Finding the *easy* witness is a skill worth practising — $(n,1)$ works for every $n$ at once, where hunting for factorisations of each $n$ separately would get nowhere.
+</Aside>

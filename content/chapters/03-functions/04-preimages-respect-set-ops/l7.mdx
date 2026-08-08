@@ -21,7 +21,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 > f^{-1}\big(\overline U\big) = \overline{f^{-1}(U)}.
 > $$
 
-No hypotheses on $f$. The pre-image operator $f^{-1} : \mathcal{P}(T) \to \mathcal{P}(S)$ is a homomorphism of Boolean algebras, and it also preserves $\emptyset$, $T \mapsto S$, and inclusions.
+No hypotheses on $f$. The pre-image operator $f^{-1} : \mathcal{P}(T) \to \mathcal{P}(S)$ preserves every operation of the chapter — union, intersection, complement — and it also preserves $\emptyset$, $T \mapsto S$, and inclusions.
 
 ## The pivot
 
@@ -89,15 +89,15 @@ The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f
 
 So every misbehaviour of the image operator is a symptom of non-injectivity, and all of it disappears for bijections.
 
-## The adjunction, stated properly
+## The one inequality behind all of it
 
 For all $A \subseteq S$, $U \subseteq T$:
 $$
 f(A) \subseteq U \iff A \subseteq f^{-1}(U).
 $$
-That is, the image operator is **left adjoint** to the pre-image operator between the posets $(\mathcal{P}(S), \subseteq)$ and $(\mathcal{P}(T),\subseteq)$.
+Read left to right, it says an image is constrained *from above* by $U$; read right to left, a pre-image is constrained *from below* by $A$. The two operators are locked together by that one statement.
 
-This single fact explains the whole module. A left adjoint preserves all joins (unions) and need not preserve meets — which is exactly the behaviour of $f$. A right adjoint preserves all meets — and $f^{-1}$, being simultaneously a right adjoint to $f$ and a left adjoint to the operator $U \mapsto \{t : f^{-1}(\{t\}) \subseteq U\}$, preserves both. Being adjoint on both sides is a strong condition, and it is why $f^{-1}$ is the well-behaved operator.
+This single fact explains the whole module. The operator standing on the **left** of such a pairing always preserves unions and may fail on intersections — which is exactly the behaviour of $f$. The operator standing on the **right** always preserves intersections. And $f^{-1}$ stands on the right here, while standing on the left in a second such pairing — so it preserves both. Being on both sides at once is a strong condition, and it is why $f^{-1}$ is the well-behaved operator.
 
 <Warning title="State conditions with pre-images">
 This is why continuity reads
@@ -106,13 +106,29 @@ f \text{ continuous} \iff f^{-1}(\text{open}) \text{ is open},
 $$
 not $f(\text{open})$ open. The latter defines *open maps*, a genuinely different class: $f(x) = x^2$ is continuous but not open, since $f\big((-1,1)\big) = [0,1)$.
 
-The same choice appears in measure theory ($f^{-1}(\text{Borel})$ measurable), in the definition of the initial topology, and in the pullback of differential forms — which is contravariant, and well behaved, for exactly this reason.
+The same choice recurs wherever a definition has to survive composition — pre-images compose cleanly, and that is exactly why the definition is stated with them.
 </Warning>
 
 <Aside>
-Because $f^{-1}$ reverses direction — a map $S \to T$ induces $\mathcal{P}(T) \to \mathcal{P}(S)$ — the assignment $S \mapsto \mathcal{P}(S)$ is a *contravariant* functor. Contravariance is the general phenomenon here: pullbacks of functions, of forms, of cohomology classes, and of sheaves are all contravariant, and all better behaved than their covariant counterparts.
+Because $f^{-1}$ reverses direction — a map $S \to T$ induces $\mathcal{P}(T) \to \mathcal{P}(S)$ — the assignment reverses direction. That reversal is the general phenomenon here: pullbacks of functions, of forms, of cohomology classes, and of sheaves are all contravariant, and all better behaved than their covariant counterparts.
 </Aside>
 
 <WhereThisGoes level="l7">
-The adjunction $f \dashv f^{-1}$ is the first example of an adjoint pair, and adjunctions are among the organising concepts of modern mathematics: free groups are left adjoint to forgetting, tensor product is left adjoint to hom, existential quantification is left adjoint to substitution, and limits are right adjoint to diagonal maps. The general theorem — left adjoints preserve colimits, right adjoints preserve limits — has as its smallest instance exactly the fact you just proved, that images respect unions and pre-images respect everything. The topological consequence is equally durable: defining continuity by pre-images is what makes it composable, and what lets the same definition serve for metric spaces, manifolds, schemes, and spaces of functions alike.
+The asymmetry proved here is the reason several later definitions are stated with $f^{-1}$ rather than $f$, and it is worth recognising when you meet them.
+
+**Solving systems with several conditions.** The set of $\mathbf{x}$ satisfying $A\mathbf{x}\in B$ **and** $A\mathbf{x}\in C$ is
+$$A^{-1}(B\cap C) = A^{-1}(B)\cap A^{-1}(C),$$
+so the conditions may be handled separately and intersected. Attempting the same split on the output side fails, for the counterexample this module gives.
+
+That identity is what licenses solving a system one equation at a time and intersecting the solution sets — a procedure so familiar it is easy to miss that it needs justifying.
+
+**Linear maps do preserve intersections of images**, and the reason is the one flagged above: an injective map does, and a linear map's failure to be injective is measured exactly by its null space. So
+$$T(U\cap W) = T(U)\cap T(W) \quad\text{when } \operatorname{Nul} T = \{\mathbf{0}\},$$
+and in general only $\subseteq$ holds. Projections are the standard counterexample: project the $x$-axis and the $y$-axis onto the $x$-axis and both images contain $\mathbf{0}$, while the intersection of the axes maps to $\{\mathbf{0}\}$ — equal here, but the pattern fails as soon as the subspaces are chosen less symmetrically.
+
+**In calculus, the pre-image formulation is what makes domain computations composable.** The domain of the composite $g\circ f$ (§3.7) is $\{x\in\operatorname{dom} f : f(x)\in\operatorname{dom} g\} = \operatorname{dom} f \cap f^{-1}(\operatorname{dom} g)$, and computing it for a three-fold composition is a matter of intersecting pre-images — which works precisely because pre-images distribute.
+
+**The general lesson:** when a definition could be stated with images or with pre-images, it will be stated with pre-images, and this module is why.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **null space** — the vectors a matrix sends to zero; **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

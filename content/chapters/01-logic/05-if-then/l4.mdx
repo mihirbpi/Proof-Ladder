@@ -63,6 +63,21 @@ $$
 $$
 This one is false. The hypothesis is true, the conclusion is false: row two.
 
+## Other ways to write the same thing
+
+The same conditional shows up in several disguises, and all of them mean $p \Rightarrow q$:
+
+- *if $p$, then $q$*
+- *$p$ implies $q$*
+- *$q$ if $p$*
+- *$p$ only if $q$*
+- *$p$ is sufficient for $q$*
+- *$q$ is necessary for $p$*
+
+The last three are the ones that trip people up. *$p$ only if $q$* has the arrow pointing the same way as *if $p$ then $q$*, even though the word *if* sits next to $q$. And "necessary" and "sufficient" swap which side they name: $p$ being enough to force $q$ is the same fact as $q$ being unavoidable whenever $p$ holds.
+
+When a textbook theorem is stated in one of these forms, the first job is to identify $p$ and $q$. Get that backwards and you will prove the wrong statement.
+
 <Warning title="Confusing sentence, careful thinking">
 The English sentence "if $p$ then $q$" makes it easy to feel like the conditional says *because $p$*, or *only when $p$*. It does not. It only rules out the one case where $p$ is true and $q$ is false. Everything else is allowed.
 </Warning>
@@ -75,3 +90,11 @@ If we want to prove *if a number is a multiple of 6, then it is even*, we don't 
 - and show the conclusion must be true — the number *has to be* even.
 
 That is the shape of every direct proof you will write. The next module makes it precise.
+
+Notice what this buys you. The claim covers infinitely many numbers, and the proof examines none of them individually. Assuming the hypothesis gives you something to work with — *this number is $6$ times something* — and from there the conclusion follows by algebra that never mentions which number it was. That is the trade at the heart of every proof: you give up knowing the specific case, and in exchange you cover all of them at once.
+
+<Aside>
+Everyday speech uses *if–then* to signal cause: "if you drop it, it breaks." Mathematics keeps only the truth-value pattern in the table and throws the causation away.
+
+So "if $2+2=5$, then the moon is made of cheese" is a true statement. Nothing about the moon follows from it, because the hypothesis never holds — but the conditional itself is true, and it is true for the same reason a promise about rainy days survives a sunny week.
+</Aside>

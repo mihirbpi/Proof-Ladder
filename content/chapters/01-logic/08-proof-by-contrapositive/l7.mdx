@@ -86,5 +86,15 @@ There is an asymmetry the table hides. $(p \Rightarrow q) \Rightarrow (\neg q \R
 </Aside>
 
 <WhereThisGoes level="l7">
-The judgement being trained here — *which form of a statement gives me the most usable hypothesis* — is the core skill of proof strategy, and it does not stop scaling. In analysis, the $\varepsilon$–$\delta$ definition of continuity is routinely contraposed into the sequential characterisation because sequences are easier to manipulate than arbitrary neighbourhoods. In topology, "$f$ is continuous iff preimages of open sets are open" is preferred to the pointwise definition for exactly this reason, and its contrapositive form (preimages of closed sets are closed) is the version used in half of all applications. In algebra, the contrapositive of "if $R$ has no zero divisors then cancellation holds" is how integral domains get used in practice. The equivalence is trivial; knowing which side to stand on is the craft.
+The judgement being trained here — *which form of a statement gives me the most usable hypothesis* — is the core skill of proof strategy, and calculus rewards it immediately.
+
+**The $n$-th Term Test is a contrapositive.** The theorem proved is *if a series converges, its terms tend to zero.* The version you actually apply is *if the terms do not tend to zero, the series diverges.* One theorem, two forms, and the useful form is the flipped one — because in practice you are handed a series and asked whether it converges, so a hypothesis about the terms is what you can check.
+
+**Divergence tests generally.** Almost every divergence criterion in a calculus course is the contrapositive of a convergence theorem. The reason the flipped form is standard is the decision rule of this module: the direct statement has a hypothesis you cannot verify without already knowing the answer.
+
+**Non-differentiability.** To show $f$ is not differentiable at $a$, contraposing *differentiable $\Rightarrow$ continuous* gives *not continuous $\Rightarrow$ not differentiable* — and checking continuity is far easier than examining a difference quotient. Half of all non-differentiability arguments in a first course are exactly this move.
+
+In linear algebra, *a set containing the zero vector is linearly dependent* is used almost exclusively in its contrapositive form: *if a set is linearly independent, it does not contain $\mathbf{0}$*. The equivalence is one line; knowing which side to stand on is the craft.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **linearly independent** — none of them a combination of the others.*
 </WhereThisGoes>

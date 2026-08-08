@@ -2,7 +2,7 @@
 level: l7
 title: Conjugation
 readingTimeMin: 8
-newTerms: ["conjugate", "involution", "field automorphism"]
+newTerms: ["conjugate", "involution"]
 anchorExample: "e^{iθ} = cos θ + i sin θ"
 ---
 
@@ -39,7 +39,7 @@ Write $z = a+bi$, $w = c+di$.
 *Fixed points.* If $z \in \mathbb{R}$ then $b = 0$ and $\bar z = z$. Conversely $z = \bar z$ gives $b = -b$, so $b = 0$ and $z \in \mathbb{R}$.
 </Proof>
 
-The first three properties say conjugation is a **field automorphism** of $\mathbb{C}$; the last says its fixed field is exactly $\mathbb{R}$. Since $[\mathbb{C}:\mathbb{R}] = 2$, Galois theory gives $\operatorname{Gal}(\mathbb{C}/\mathbb{R}) = \{\mathrm{id}, \bar{\ }\} \cong \mathbb{Z}/2\mathbb{Z}$.
+The first three properties say conjugation **preserves both operations** — it is a relabelling of $\mathbb{C}$ that arithmetic cannot detect; the last says the numbers it leaves fixed are exactly the reals. Since $[\mathbb{C}:\mathbb{R}] = 2$, Galois theory gives $\operatorname{Gal}(\mathbb{C}/\mathbb{R}) = \{\mathrm{id}, \bar{\ }\} \cong \mathbb{Z}/2\mathbb{Z}$.
 
 There is a philosophical point in this. Nothing algebraic distinguishes $i$ from $-i$: both are roots of $x^2+1$, and conjugation is precisely the symmetry that exchanges them. The choice of which to call $i$ is a labelling convention with no mathematical content, and conjugation is the record of that fact.
 
@@ -64,6 +64,22 @@ $p(x) = x - i$ has root $i$ but not $\bar i = -i$. The theorem uses $\overline{c
 Relatedly, $\overline{f(z)} = f(\bar z)$ fails for general functions: it holds for real-coefficient polynomials and power series, and fails for, e.g., $f(z) = iz$.
 </Warning>
 
+## Conjugation as reflection
+
+Plotting $z = a+bi$ at $(a,b)$ (§5.5), the conjugate $\bar z$ is at $(a,-b)$: **reflection in the real axis.**
+
+That reading explains the algebra rather than merely illustrating it.
+
+**Why $\overline{\bar z} = z$.** Reflecting twice returns every point. The involution property is a geometric fact, and the same fact holds for set complements and for logical negation.
+
+**Why $z = \bar z$ exactly for real $z$.** The fixed points of a reflection are the points of the mirror, and the mirror is the real axis. The six-line algebraic proof and the one-line geometric observation establish the same thing, and the second explains it.
+
+**Why $|\bar z| = |z|$.** A reflection is a rigid motion; it preserves distance from the origin.
+
+**Why conjugation preserves products.** Reflecting both factors and multiplying gives the same result as multiplying and then reflecting — because multiplication adds arguments (§5.9), and reflection negates them. $-(\theta_1+\theta_2) = (-\theta_1)+(-\theta_2)$, which is the whole content.
+
+The last one is the most useful, and it is the reason the conjugate-root theorem holds: conjugating a polynomial identity term by term is legitimate precisely because conjugation respects both operations.
+
 ## Conjugation is not continuous-linear
 
 $z \mapsto \bar z$ is $\mathbb{R}$-linear but not $\mathbb{C}$-linear: $\overline{iz} = -i\bar z \neq i\bar z$ in general. It is therefore not complex-differentiable anywhere, despite being smooth as a map $\mathbb{R}^2\to\mathbb{R}^2$ — the standard first example showing that complex differentiability is far stronger than real differentiability.
@@ -71,9 +87,23 @@ $z \mapsto \bar z$ is $\mathbb{R}$-linear but not $\mathbb{C}$-linear: $\overlin
 Consequently $\operatorname{Re}$, $\operatorname{Im}$, $|z|$ and $\bar z$ are all non-holomorphic, and any expression involving them cannot be a complex-analytic function. Recognising this at a glance saves a great deal of time in complex analysis.
 
 <Aside>
-Conjugation is one of exactly two *continuous* field automorphisms of $\mathbb{C}$. Dropping continuity, $\mathbb{C}$ has $2^{2^{\aleph_0}}$ automorphisms, constructed by transfinite induction with the Axiom of Choice; all but the identity and conjugation are non-measurable and unwritable. That $\mathbb{R}$ by contrast has *only* the identity — because its order, hence its topology, is determined algebraically by which elements are squares — is a small and striking asymmetry.
+Conjugation is one of exactly two *continuous* operation-preserving relabellings of $\mathbb{C}$. Dropping continuity there are vastly more, constructed non-constructively; all but the identity and conjugation are non-measurable and unwritable. That $\mathbb{R}$ by contrast has *only* the identity — because its order, hence its notion of nearness, is determined algebraically by which elements are squares — is a small and striking asymmetry.
 </Aside>
 
 <WhereThisGoes level="l7">
-Conjugation is the prototype of a $*$-operation, and structures carrying one are everywhere: $C^*$-algebras, where $a \mapsto a^*$ generalises it and the axiom $\|a^*a\| = \|a\|^2$ generalises $z\bar z = |z|^2$; Hilbert spaces, where the inner product is conjugate-symmetric and adjoints of operators generalise the conjugate transpose; and quantum mechanics, where self-adjoint operators ($A = A^*$) are the observables precisely because their spectra are real — the operator version of $z = \bar z \iff z \in \mathbb{R}$. In number theory, conjugation on $\mathbb{Q}(\sqrt d)$ plays the same role, and the norm $N(z) = z\bar z$ is the tool that converts questions about algebraic integers into questions about ordinary integers, which is how Pell's equation and sums of two squares are solved.
+Conjugation is the operation that keeps real answers real, and both courses ahead rely on it.
+
+**Complex roots of real polynomials come in conjugate pairs.** If $p$ has real coefficients and $p(z)=0$, then conjugating term by term gives $p(\bar z) = 0$, since each real coefficient is its own conjugate.
+
+Three consequences you will use:
+
+- **A real polynomial of odd degree has a real root**, because the non-real roots pair up and an odd count cannot pair evenly. That is why every real cubic crosses the $x$-axis.
+- **Real quadratic factors come from conjugate pairs.** Multiplying $(x - z)(x-\bar z)$ gives $x^2 - 2\operatorname{Re}(z)x + |z|^2$, with real coefficients — which is exactly the irreducible quadratic block in a partial-fraction decomposition.
+- **Real solutions of differential equations are built from conjugate pairs.** When the characteristic roots are $\alpha\pm\beta i$, the real solutions are $e^{\alpha x}\cos\beta x$ and $e^{\alpha x}\sin\beta x$ — obtained from $e^{(\alpha+\beta i)x}$ and its conjugate by the formulas $\operatorname{Re}(z) = \frac{z+\bar z}{2}$ and $\operatorname{Im}(z) = \frac{z - \bar z}{2i}$ proved in this module.
+
+**In linear algebra, conjugation defines the adjoint.** The conjugate transpose $A^*$ is the complex analogue of the transpose, and the matrices with $A = A^*$ — the Hermitian ones — are the complex analogue of the symmetric matrices.
+
+The theorem that makes them important is a direct descendant of this module: **a Hermitian matrix has real eigenvalues**, proved by conjugating $A\mathbf{v} = \lambda\mathbf{v}$ and using $z = \bar z \iff z\in\mathbb{R}$. That biconditional, proved here in six lines, is what the argument turns on.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **eigenvalue** — a factor by which a matrix stretches a direction without turning it.*
 </WhereThisGoes>

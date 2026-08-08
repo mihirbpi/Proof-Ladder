@@ -1,0 +1,93 @@
+---
+// A compact 2×2 case chart for l1–l3, before formal truth tables arrive at l4.
+// <TruthTable> is the l4+ tool; this one uses words and a tick/cross rather than
+// T/F columns, because the earlier levels have not met the notation.
+//
+// rowLabel / colLabel   what the two axes vary
+// rows / cols           the two options along each axis, e.g. ["it rains", "it does not"]
+// cells                 2×2 array of { ok, text? }. ok=true renders as kept/true,
+//                       false as broken/false. `text` overrides the default word.
+// okWord / badWord      the words used, so a page can say "true"/"false" or
+//                       "promise kept"/"promise broken" as the level requires.
+export interface Props {
+  rowLabel?: string | null;
+  colLabel?: string | null;
+  rows: [string, string];
+  cols: [string, string];
+  cells: { ok: boolean; text?: string }[][];
+  okWord?: string;
+  badWord?: string;
+}
+const {
+  rowLabel = null,
+  colLabel = null,
+  rows,
+  cols,
+  cells,
+  okWord = 'true',
+  badWord = 'false',
+} = Astro.props;
+
+const CW = 168;
+const CH = 78;
+const LEFT = 118;
+const TOP = 54;
+const W = LEFT + 2 * CW + 14;
+const H = TOP + 2 * CH + 16;
+
+const wordFor = (c: { ok: boolean; text?: string }) => c.text ?? (c.ok ? okWord : badWord);
+
+const alt = `A two-by-two chart. `
+  + rows.map((r, ri) =>
+      cols.map((c, ci) => `${r} with ${c}: ${wordFor(cells[ri][ci])}`).join('; ')
+    ).join('; ')
+  + '.';
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="truth-grid"
+     role="img" aria-label={alt}>
+  <style>
+    .truth-grid .ok { fill: color-mix(in oklab, var(--color-true, #2F6F4E) 10%, transparent); stroke: var(--color-true, #2F6F4E); stroke-width: 1.4; }
+    .truth-grid .bad { fill: color-mix(in oklab, var(--color-false, #A8324A) 12%, transparent); stroke: var(--color-false, #A8324A); stroke-width: 1.4; }
+    .truth-grid .ok-text { font-family: var(--font-display, sans-serif); font-weight: 600; font-size: 13px; fill: var(--color-true, #2F6F4E); }
+    .truth-grid .bad-text { font-family: var(--font-display, sans-serif); font-weight: 600; font-size: 13px; fill: var(--color-false, #A8324A); }
+    .truth-grid .mark { font-size: 20px; }
+    .truth-grid .hdr { font-family: var(--font-mono, monospace); font-size: 11px; fill: var(--color-ink, #14182B); }
+    .truth-grid .axis { font-family: var(--font-mono, monospace); font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; fill: color-mix(in oklab, var(--color-ink, #14182B) 60%, transparent); }
+  </style>
+
+  {colLabel && <text x={LEFT + CW} y="16" class="axis" text-anchor="middle">{colLabel}</text>}
+  {rowLabel && (
+    <text x="14" y={TOP + CH} class="axis" text-anchor="middle"
+          transform={`rotate(-90 14 ${TOP + CH})`}>{rowLabel}</text>
+  )}
+
+  {cols.map((c, ci) => (
+    <text x={LEFT + ci * CW + CW / 2} y={TOP - 12} class="hdr" text-anchor="middle">{c}</text>
+  ))}
+  {rows.map((r, ri) => (
+    <text x={LEFT - 10} y={TOP + ri * CH + CH / 2 + 4} class="hdr" text-anchor="end">{r}</text>
+  ))}
+
+  {rows.map((_, ri) =>
+    cols.map((__, ci) => {
+      const cell = cells[ri][ci];
+      const x = LEFT + ci * CW;
+      const y = TOP + ri * CH;
+      return (
+        <g>
+          <rect x={x + 3} y={y + 3} width={CW - 6} height={CH - 6} rx="6"
+                class={cell.ok ? 'ok' : 'bad'} />
+          {/* A glyph as well as colour, so colour is never the sole carrier (§C8). */}
+          <text x={x + CW / 2} y={y + CH / 2 - 4} class="mark" text-anchor="middle"
+                aria-hidden="true">{cell.ok ? '✓' : '✗'}</text>
+          <text x={x + CW / 2} y={y + CH / 2 + 20} text-anchor="middle"
+                class={cell.ok ? 'ok-text' : 'bad-text'}>{wordFor(cell)}</text>
+        </g>
+      );
+    })
+  )}
+</svg>
+
+<style>
+  .truth-grid { width: 100%; height: auto; max-width: 460px; display: block; margin: 0 auto; }
+</style>

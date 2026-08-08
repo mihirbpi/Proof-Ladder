@@ -1,0 +1,102 @@
+---
+level: l5
+title: The rationals are a field
+readingTimeMin: 8
+newTerms: ["field", "rational number"]
+anchorExample: "ℚ is closed under ÷ by nonzero"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+$$
+\mathbb{Q} = \left\{\, \frac{a}{b} \ \middle|\ a, b \in \mathbb{Z},\ b \neq 0 \,\right\}
+$$
+
+A **rational number** is one *expressible* as a ratio of integers with nonzero denominator. Expressible — $7$ is rational, written $7/1$, and so is $0.25$, written $1/4$.
+
+Module 4.1 found $\mathbb{Z}$ closed under $+$, $-$, $\times$ and not under division. $\mathbb{Q}$ repairs exactly that failure, and this module proves it.
+
+## The closure proofs
+
+Each is a fraction formula from Algebra I, read as a closure statement.
+
+> **Proposition.** $\mathbb{Q}$ is closed under addition.
+
+<Discussion>
+  <div slot="know">Two arbitrary rationals, each unpacked into a ratio — and, as in module 4.3, they need <strong>different letters</strong>.</div>
+  <div slot="want">Their sum exhibited as a ratio of integers with nonzero denominator.</div>
+  <div slot="how">The common-denominator formula produces the ratio. Then two checks: numerator and denominator are integers, and the denominator is nonzero.</div>
+</Discussion>
+
+<Proof>
+Let $x, y \in \mathbb{Q}$ be arbitrary. Then $x = a/b$ and $y = c/d$ with $a,b,c,d \in \mathbb{Z}$ and $b, d \neq 0$.
+$$
+x + y = \frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}.
+$$
+By closure of $\mathbb{Z}$ (module 4.1), $ad + bc \in \mathbb{Z}$ and $bd \in \mathbb{Z}$.
+
+And $bd \neq 0$, since a product of nonzero integers is nonzero.
+
+So $x + y$ is a ratio of integers with nonzero denominator, hence rational.
+</Proof>
+
+**Note what the proof rests on**: closure of $\mathbb{Z}$, cited twice. Every fact about $\mathbb{Q}$ in this module is a fact about $\mathbb{Z}$ in disguise, which is why Chapter 4 built $\mathbb{Z}$ first.
+
+The other three run identically:
+
+$$
+-\frac ab = \frac{-a}{b}, \qquad
+\frac ab \cdot \frac cd = \frac{ac}{bd}, \qquad
+\left(\frac ab\right)^{-1} = \frac ba.
+$$
+
+Each time: apply the formula, confirm numerator and denominator are integers, confirm the denominator is nonzero.
+
+## The one that needs care
+
+<Warning title="The reciprocal needs a nonzero numerator">
+For $\left(\frac ab\right)^{-1} = \frac ba$ to be a rational number, we need $a \neq 0$.
+
+And $a \neq 0$ is exactly the condition $x \neq 0$: a fraction is zero precisely when its numerator is.
+
+So the closure statement is not "$\mathbb{Q}$ is closed under reciprocals" — it is **"$\mathbb{Q}$ is closed under reciprocals of nonzero elements."** The exception at $0$ is real and cannot be removed.
+
+This is not a blemish. **No number system can have a reciprocal for $0$.** If $0 \cdot z = 1$ for some $z$, then since $0 \cdot z = 0$ we would get $0 = 1$, and everything collapses. Division by zero is undefined in every field there is or could be.
+</Warning>
+
+## Fields
+
+A system closed under $+$, $-$, $\times$, **and** division by nonzero elements — with the distributive law — is a **field**.
+
+So the difference from a ring (module 4.1) is one property:
+
+| | closed under $+,-,\times$ | reciprocals of nonzero |
+|---|---|---|
+| $\mathbb{Z}$ | ✓ | ✗ — only $\pm1$ |
+| $\mathbb{Q}$ | ✓ | ✓ |
+| $\mathbb{R}$ | ✓ | ✓ |
+| $\mathbb{C}$ | ✓ | ✓ |
+| polynomials | ✓ | ✗ |
+
+$\mathbb{Z}$ is a ring and not a field. $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$ are fields. Polynomials are a ring — $1/x$ is not a polynomial — and the parallel with $\mathbb{Z}$ is close enough that polynomial long division works, remainders and all, exactly as in module 4.4.
+
+**A field is where ordinary algebra works.** Every manipulation you learned in Algebra I — collecting terms, clearing denominators, dividing both sides — is licensed by the field properties, and each is available precisely when the system has them.
+
+## Why this matters for solving equations
+
+$ax + b = 0$ with $a \neq 0$ has the solution $x = -b/a$.
+
+That step is a field property being used. In $\mathbb{Q}$ or $\mathbb{R}$ you may divide by $a$, so the equation always has a solution. In $\mathbb{Z}$ you may not: $3x - 1 = 0$ has no integer solution, and module 1.10 said so without explaining why.
+
+**Now there is a reason.** The equation is unsolvable in $\mathbb{Z}$ because $\mathbb{Z}$ is not a field, and it becomes solvable in $\mathbb{Q}$ for exactly the property $\mathbb{Q}$ adds.
+
+<Aside>
+$\mathbb{Q}$ is the *smallest* field containing $\mathbb{Z}$, and "smallest" can be made precise.
+
+Any field containing $\mathbb{Z}$ must contain every $a \cdot b^{-1}$ with $b \neq 0$, by closure — and those are exactly the rationals. So there is no room to fit a field strictly between $\mathbb{Z}$ and $\mathbb{Q}$.
+
+The same construction runs in general: given any ring where products of nonzero elements are nonzero, you can build the smallest field containing it by formally adjoining fractions. Applied to polynomials it produces the rational functions $p(x)/q(x)$, which is why those behave so much like ordinary fractions.
+</Aside>

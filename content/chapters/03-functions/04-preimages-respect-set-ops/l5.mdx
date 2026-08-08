@@ -1,0 +1,106 @@
+---
+level: l5
+title: Pre-images respect set operations
+readingTimeMin: 9
+newTerms: []
+anchorExample: "f⁻¹(U ∪ V) = f⁻¹(U) ∪ f⁻¹(V)"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Pre-images pass through every operation of Chapter 2 unchanged. For $f : S \to T$ and $U, V \subseteq T$:
+
+$$
+f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V)
+$$
+$$
+f^{-1}(U \cap V) = f^{-1}(U) \cap f^{-1}(V)
+$$
+$$
+f^{-1}\big(\overline{U}\big) = \overline{f^{-1}(U)}
+$$
+
+Three theorems, and **one proof technique repeated three times.** The pivot is always the same line:
+
+$$
+x \in f^{-1}(U) \iff f(x) \in U.
+$$
+
+That is just the definition of pre-image, and it is a **biconditional** — which is why these proofs come out so cleanly. A biconditional runs in both directions at once, so the ($\subseteq$) and ($\supseteq$) halves of each double inclusion are the same computation read forwards and backwards.
+
+## The union law
+
+<Discussion>
+  <div slot="know">The pivot equivalence, and the definition $x \in A \cup B \iff x \in A \vee x \in B$.</div>
+  <div slot="want">Double inclusion (module 2.6).</div>
+  <div slot="how">Unfold the left side one step at a time until it reads as a statement about $\vee$, then fold that back up into the right side. Each step is an equivalence, so both directions come out together.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $x \in f^{-1}(U \cup V)$ be arbitrary. By the pivot, $f(x) \in U \cup V$, so $f(x) \in U$ or $f(x) \in V$.
+
+*Case 1: $f(x) \in U$.* Then $x \in f^{-1}(U)$.
+
+*Case 2: $f(x) \in V$.* Then $x \in f^{-1}(V)$.
+
+Either way $x \in f^{-1}(U) \cup f^{-1}(V)$.
+
+**($\supseteq$)** Let $x \in f^{-1}(U) \cup f^{-1}(V)$ be arbitrary, so $x \in f^{-1}(U)$ or $x \in f^{-1}(V)$.
+
+In the first case $f(x) \in U$; in the second $f(x) \in V$. Either way $f(x) \in U \cup V$, so $x \in f^{-1}(U \cup V)$.
+
+Both inclusions hold.
+</Proof>
+
+The case splits appeared because a disjunction sat in each hypothesis — module 1.12's rule, showing up again. And the two directions are mirror images, because every step was reversible.
+
+## The complement law
+
+This is the one that would fail if pre-images were badly behaved, so it is the one worth doing carefully. Complements are taken in $T$ on the left and in $S$ on the right.
+
+<Proof>
+**($\subseteq$)** Let $x \in f^{-1}(\overline{U})$ be arbitrary. By the pivot, $f(x) \in \overline{U}$, so $f(x) \notin U$.
+
+Now suppose $x \in f^{-1}(U)$. That would give $f(x) \in U$, which we just ruled out. So $x \notin f^{-1}(U)$, i.e. $x \in \overline{f^{-1}(U)}$.
+
+**($\supseteq$)** Let $x \in \overline{f^{-1}(U)}$ be arbitrary, so $x \notin f^{-1}(U)$. By the pivot, $f(x) \notin U$ — for if $f(x)$ were in $U$, then $x$ would be in $f^{-1}(U)$.
+
+So $f(x) \in \overline{U}$, giving $x \in f^{-1}(\overline{U})$.
+
+Both inclusions hold.
+</Proof>
+
+Each direction used **suppose not** in miniature (module 2.5): the goal was a negative statement, so the route was to assume the positive and find it impossible.
+
+Note also that totality is quietly doing work. $f(x)$ exists for *every* $x \in S$, so every element of $S$ is either in $f^{-1}(U)$ or in $f^{-1}(\overline U)$, with no leftovers. A rule that failed to be total would break this law.
+
+## Images do not behave this way
+
+<Warning title="The image only manages union">
+The same three laws for the *forward* image are not all true.
+
+**Union — true.** $f(A \cup B) = f(A) \cup f(B)$ always.
+
+**Intersection — false.** Take $f(x) = x^2$, $A = \{-1\}$, $B = \{1\}$:
+$$
+A \cap B = \emptyset, \text{ so } f(A \cap B) = \emptyset,
+$$
+but $f(A) = f(B) = \{1\}$, so $f(A) \cap f(B) = \{1\}$.
+
+The general fact is only $f(A \cap B) \subseteq f(A) \cap f(B)$.
+
+**Complement — false**, and it does not even typecheck comfortably: $f(\overline A)$ and $\overline{f(A)}$ can overlap in any way at all.
+
+Why the difference? Collisions. Two inputs sharing an output make the image forget which one it came from, and intersection is the operation that notices. Pre-images never face this, because collecting *everything* that lands somewhere loses nothing.
+</Warning>
+
+<Aside>
+There is a name for a map that preserves $\cap$, $\cup$ and complement, and the theorem of this module is that $f^{-1}$ is always one while the forward image is usually not.
+
+Notice the direction, because it is the surprising part. The function $f$ runs $S \to T$, but the operator $f^{-1}$ that behaves well runs the other way, from subsets of $T$ to subsets of $S$. **The well-behaved construction goes backwards.**
+
+That is not a quirk of this example. A great deal of mathematics is organised around structure-preserving maps that reverse direction, and this is the first one you meet — which is a reason to notice it now, even though nothing here depends on it.
+</Aside>

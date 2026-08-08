@@ -28,9 +28,7 @@ That last step is the one people skip, and it is not optional. The definition pr
 
 > **Claim.** If a first number goes into a second, and the second goes into a third, then the first goes into the third.
 
-Try it with numbers before proving it. $4$ goes into $24$ (six copies). $24$ goes into $72$ (three copies). Does $4$ go into $72$? Yes — eighteen copies.
-
-And notice: $18 = 6 \times 3$. That is not a coincidence, and spotting it is most of the proof.
+Try numbers first. $4$ goes into $24$ (six copies); $24$ goes into $72$ (three copies); and $4$ goes into $72$ — eighteen copies. Notice $18 = 6\times3$. Not a coincidence, and spotting it is most of the proof.
 
 <Discussion>
   <div slot="know">The second number is some whole number of copies of the first. The third is some whole number of copies of the second. Two different counts — so keep them apart.</div>
@@ -41,25 +39,21 @@ And notice: $18 = 6 \times 3$. That is not a coincidence, and spotting it is mos
 <Proof>
 Take any three numbers where the first goes into the second and the second goes into the third. Follow them.
 
-The third number is some whole number of copies of the second. Call that **the outer count**.
+The third number is some whole number of copies of the second — call that **the outer count**. Each of those copies is itself some whole number of copies of the first — **the inner count**.
 
-Each of those copies is itself some whole number of copies of the first. Call that **the inner count**.
+Now break every copy of the second number into its pieces. Nothing is added and nothing is lost; you have described the same pile more finely.
 
-Now break every copy of the second number into its pieces. Nothing is added and nothing is lost — you have just described the same pile more finely.
+How many pieces altogether? The outer count, repeated the inner count of times — the two counts multiplied.
 
-How many pieces are there altogether? The outer count, repeated the inner count of times. That is the outer count multiplied by the inner count.
-
-Both counts are whole numbers, and multiplying whole numbers gives a whole number (module 4.1). So the total is a whole number of copies of the first number.
-
-That is exactly what it means for the first number to go into the third.
+Multiplying whole numbers gives a whole number (module 4.1), so the total is a whole number of copies of the first number. That is exactly what it means for the first to go into the third.
 </Proof>
 
 <Warning title="Two counts, two names">
-The proof used **two different counts** and gave them two different names. That matters.
+The proof used **two different counts** and gave them two different names.
 
-If you called them both "the count", you would be claiming the two numbers are the same — and nobody told you that. In the example, the counts were $6$ and $3$, which are plainly different.
+Call them both "the count" and you are claiming the two are the same — which nobody told you. In the example they were $6$ and $3$.
 
-Whenever a proof unpacks two things, give each unpacked piece its own name.
+Whenever a proof unpacks two things, give each piece its own name.
 </Warning>
 
 ## Going into survives adding
@@ -71,15 +65,11 @@ Check it: $5$ goes into $20$ and into $35$. Does $5$ go into $55$? Yes — eleve
 <Proof>
 Take any number that goes into two others, and follow them.
 
-The first of the two is some whole number of copies. The second is some whole number of copies as well — a different count.
+Each of the two is some whole number of copies — two different counts.
 
-Now push the two piles together. Nothing is broken up; you have simply put them side by side.
+Push the two piles together. Nothing is broken up; you have put them side by side, so the total is the first count plus the second.
 
-The total number of copies is the first count plus the second count.
-
-Adding two whole numbers gives a whole number (module 4.1), so the total count is a whole number.
-
-So the sum is a whole number of copies, which means the number goes into the sum.
+Adding whole numbers gives a whole number (module 4.1). So the sum is a whole number of copies, which means the number goes into the sum.
 </Proof>
 
 Same four steps. Unpack, regroup, pull out, check the count.
@@ -96,7 +86,7 @@ Does $4$ go into $2$? No. Does $4$ go into $6$? No. ✗
 
 One counterexample and the claim is dead (module 1.11).
 
-What went wrong? $4$ is two $2$s. The $12$ had one $2$ coming from the $2$ and another coming from the $6$. Neither piece had enough on its own — $4$ got in by borrowing from both.
+What went wrong? $4$ is two $2$s, and the $12$ got one $2$ from each side. Neither piece had enough alone — $4$ got in by borrowing from both.
 
 <Aside>
 The claim becomes true when the number doing the dividing is **prime**. A prime cannot be split into smaller factors, so it has nothing to spread across the two pieces — it has to land entirely in one of them.

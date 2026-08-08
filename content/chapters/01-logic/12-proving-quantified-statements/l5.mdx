@@ -1,0 +1,123 @@
+---
+level: l5
+title: Proving and disproving quantified statements
+readingTimeMin: 9
+newTerms: ["arbitrary element", "witness", "proof by cases"]
+anchorExample: "n² − 1 is composite for n ≥ 3"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Modules 1.10 and 1.11 fixed what quantified claims mean and how they negate. This one turns that into four templates. Which you reach for is decided entirely by two things: the outermost quantifier, and whether you are proving or refuting.
+
+|  | To prove | To disprove |
+|---|---|---|
+| $\forall x \in S,\ p(x)$ | arbitrary element | one counterexample |
+| $\exists x \in S,\ p(x)$ | exhibit a witness | prove $\forall x,\ \neg p(x)$ |
+
+The two cheap boxes are the diagonal. The two expensive ones are the other diagonal, and they are expensive for the same reason: both are secretly universal claims, and universal claims cannot be settled by looking.
+
+## Template 1: the arbitrary element
+
+To prove $\forall x \in S,\ p(x)$, take an **arbitrary element** of $S$ — one handed to you, about which you assume nothing beyond membership — and derive $p(x)$.
+
+> **Proposition.** For every integer $n \geq 3$, the number $n^2 - 1$ is composite.
+
+<Discussion>
+  <div slot="know">$n$ is an integer, $n \geq 3$, and nothing else.</div>
+  <div slot="want">Two factors of $n^2 - 1$, each greater than $1$ — that is what *composite* demands.</div>
+  <div slot="how">$n^2 - 1$ is a difference of squares, so it factors on sight. The work is then checking that both factors clear $1$, which is where $n \geq 3$ gets used.</div>
+</Discussion>
+
+<Proof>
+Let $n$ be an arbitrary integer with $n \geq 3$. Factoring,
+$$
+n^2 - 1 = (n-1)(n+1).
+$$
+Both factors are integers. Since $n \geq 3$ we have $n - 1 \geq 2 > 1$, and $n + 1 \geq 4 > 1$.
+
+So $n^2 - 1$ is a product of two integers each exceeding $1$, hence composite. As $n$ was arbitrary, this holds for every integer $n \geq 3$.
+</Proof>
+
+The proof never used a particular $n$. Every line would read identically starting from $7$, or $400$, or a number nobody has written down — **and that is the whole force of the method.** One argument, infinitely many cases.
+
+<Warning title="Arbitrary means handed to you">
+The hypothesis $n \geq 3$ may be used. Nothing else may.
+
+If you find yourself writing "and since $n$ is even…", stop: nobody said $n$ was even. Either drop the assumption or split into cases and handle both.
+
+A proof that opens "let $n = 5$" is a proof about $5$.
+</Warning>
+
+## Template 2: exhibit a witness
+
+To prove $\exists x \in S,\ p(x)$, produce one element and check it. A **witness** is that element.
+
+> **Proposition.** $\exists x \in \mathbb{R},\ x^2 - 5x + 6 = 0$.
+
+<Proof>
+Take $x = 2$. Then $4 - 10 + 6 = 0$ ✓, and $2 \in \mathbb{R}$.
+</Proof>
+
+Two lines, and it is complete. You need not say where $2$ came from, whether you factored or guessed, or whether other solutions exist. **A witness needs to be exhibited and verified, not motivated.**
+
+## Template 3: one counterexample
+
+Module 1.11 covered this: to disprove a universal claim, produce a single failing element.
+
+> *Every quadratic with integer coefficients has integer roots.*
+
+$x^2 - 2 = 0$ has roots $\pm\sqrt2$. Done.
+
+## Template 4: prove the universal negation
+
+To disprove $\exists x \in S,\ p(x)$ you must rule out every candidate — which by module 1.11 is the universal claim $\forall x \in S,\ \neg p(x)$, and so needs Template 1.
+
+> **Proposition.** There is no real $x$ with $x^2 < 0$.
+
+<Discussion>
+  <div slot="know">Every real number is negative, zero, or positive — one of exactly three, and no fourth option exists.</div>
+  <div slot="want">$x^2 \geq 0$ for every real $x$.</div>
+  <div slot="how">No single algebraic step covers all three, since the sign rule for products differs by case. So **split into cases** and check that they exhaust the possibilities.</div>
+</Discussion>
+
+<Proof>
+Let $x$ be an arbitrary real number. Exactly one of the following holds.
+
+*Case 1: $x > 0$.* A product of two positives is positive, so $x^2 > 0$.
+
+*Case 2: $x = 0$.* Then $x^2 = 0$.
+
+*Case 3: $x < 0$.* A product of two negatives is positive, so $x^2 > 0$.
+
+In every case $x^2 \geq 0$. The cases exhaust $\mathbb{R}$, and $x$ was arbitrary, so no real number has $x^2 < 0$.
+</Proof>
+
+**Splitting into cases** is the named move here, and it carries one obligation: the cases must **cover everything**. Leave a case out and the proof has a hole exactly where the missing case lived.
+
+## Uniqueness, as a reusable pattern
+
+$\exists!\, x \in S,\ p(x)$ is two jobs (module 1.10), and the second always has the same shape:
+
+> **Suppose $a$ and $b$ both satisfy $p$. Show $a = b$.**
+
+Learn it as one line, because it never varies. What varies is only the algebra in the middle.
+
+> **Proposition.** A linear equation $mx + c = 0$ with $m \neq 0$ has exactly one real solution.
+
+<Proof>
+**Existence.** $x = -c/m$ is defined since $m \neq 0$, and $m(-c/m) + c = -c + c = 0$ ✓.
+
+**Uniqueness.** Suppose $ma + c = 0$ and $mb + c = 0$. Subtracting, $m(a - b) = 0$. Since $m \neq 0$, we may divide, giving $a - b = 0$, so $a = b$.
+</Proof>
+
+Note where $m \neq 0$ was used **twice**, and differently: to build the witness, and to license the division. A hypothesis earning its keep in two distinct places is a good sign the statement is stated tightly.
+
+<Aside>
+Uniqueness proofs feel strange the first time because they never search. You do not look for a second solution and report failure — failing to find something is a fact about your search.
+
+Instead you assume two exist and squeeze them together. Your geometry course runs the same argument for the midpoint of a segment: assume two midpoints, then show the assumption forces them to be the same point.
+</Aside>

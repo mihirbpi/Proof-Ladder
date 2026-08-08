@@ -1,0 +1,118 @@
+---
+level: l5
+title: The complex plane
+readingTimeMin: 8
+newTerms: ["complex plane"]
+anchorExample: "3 + 2i plotted at (3, 2)"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 5.2 proved every complex number has exactly one pair of real parts. So $z = a + bi$ carries the same information as the ordered pair $(a,b)$ — and pairs of reals are points of the plane (module 2.9).
+
+Plot $a + bi$ at $(a, b)$. That picture is the **complex plane**.
+
+<Figure alt="A grid with axes crossing at the origin and three points plotted: 3 plus 2i, minus 2 plus i, and 4 on the horizontal axis." caption="Plot a + bi at the point (a, b).">
+  <ComplexPlane points={[
+    {re: 3, im: 2, label: "3+2i"},
+    {re: -2, im: 1, label: "-2+i"},
+    {re: 4, im: 0, label: "4"}
+  ]} range={5} />
+</Figure>
+
+The horizontal axis is the **real axis**, holding the numbers with $\operatorname{Im} = 0$ — that is, $\mathbb{R}$ itself. The vertical axis is the **imaginary axis**, holding the purely imaginary numbers.
+
+## Addition is joining arrows
+
+Draw each complex number as an arrow from the origin. To add, put the tail of the second arrow at the head of the first.
+
+<Figure alt="Two arrows from the origin, one to 3 plus i and one to 1 plus 2i, with a point marked at 4 plus 3i." caption="(3+i) + (1+2i) = 4+3i: the arrows join nose to tail.">
+  <ComplexPlane
+    vectors={[{re: 3, im: 1}, {re: 1, im: 2}]}
+    points={[{re: 4, im: 3, label: "4+3i"}]}
+    range={5} />
+</Figure>
+
+This works because addition is componentwise (module 5.3): going $3$ across then $1$ across is going $4$ across, and the same for the vertical.
+
+**The picture and the algebra are the same statement.** Two facts you proved by computation are now visible: adding in either order lands in the same place, and adding $0$ moves nothing because its arrow has no length.
+
+## Conjugation is reflection
+
+$\bar z$ keeps the real part and flips the sign of the imaginary part, so on the plane it is a **reflection in the real axis**.
+
+<Figure alt="A point at 3 plus 2i above the horizontal axis and its mirror image at 3 minus 2i below it." caption="z and z̄ are mirror images in the real axis.">
+  <ComplexPlane points={[
+    {re: 3, im: 2, label: "z"},
+    {re: 3, im: -2, label: "z̄"}
+  ]} range={4} />
+</Figure>
+
+Now reread module 5.4's theorem: *$z$ is real if and only if $z = \bar z$.*
+
+In the picture it is immediate. **A reflection leaves a point alone exactly when the point lies on the mirror line** — and the mirror line *is* the real axis, which is $\mathbb{R}$.
+
+A two-direction algebraic proof has become a one-sentence geometric observation. Both are worth having, and noticing when a picture explains an equation is a skill in itself.
+
+The same goes for $\overline{\overline z} = z$: reflecting twice in the same line returns every point to where it started, which your geometry course states about reflections in general.
+
+## Multiplying by i is a quarter turn
+
+Follow $1$ as you multiply by $i$ repeatedly:
+$$
+1 \to i \to -1 \to -i \to 1.
+$$
+
+<Figure alt="Four points marked at the compass positions one, i, minus one, and minus i around the origin." caption="Multiplying by i sends each compass point to the next, counterclockwise.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+Each step is a **quarter turn counterclockwise**, and four of them bring you home. That is not a coincidence about these four points:
+
+> **Proposition.** For every $z \in \mathbb{C}$, multiplying by $i$ rotates $z$ by $90°$ counterclockwise about the origin.
+
+<Discussion>
+  <div slot="know">$z = a + bi$ sits at the point $(a,b)$.</div>
+  <div slot="want">To identify where $iz$ sits, and recognise the motion.</div>
+  <div slot="how">Compute $iz$ in the form (real) + (real)$i$, read off its point, and compare with what a quarter turn does to $(a,b)$.</div>
+</Discussion>
+
+<Proof>
+Let $z = a + bi$. Then
+$$
+iz = i(a+bi) = ai + bi^2 = -b + ai,
+$$
+so $z$ at $(a,b)$ moves to the point $(-b, a)$.
+
+A quarter turn counterclockwise about the origin sends $(1,0)$ to $(0,1)$ and $(0,1)$ to $(-1,0)$ — and it sends $(a,b)$ to $(-b,a)$, which is exactly the map above.
+</Proof>
+
+**So $i^2 = -1$ says: two quarter turns make a half turn.** And a half turn about the origin is exactly what multiplying by $-1$ does.
+
+The rule that *defined* $i$ — the strange declaration that a number squares to $-1$ — turns out to be a fact about turning. It stops looking like an invention and starts looking like a description.
+
+<Warning title="This is not a graph of a function">
+The complex plane plots numbers, not input-output pairs. Each *point* is a single complex number, not a pair of related quantities.
+
+So there is no input axis and no output axis, and asking what function this graph shows is a category error.
+
+Drawing a function $\mathbb{C} \to \mathbb{C}$ properly would need four dimensions — two for the input, two for the output — which is why such functions are usually shown as two planes side by side, or with colours standing in for the output.
+</Warning>
+
+<Aside>
+This picture was not obvious, and it arrived late.
+
+Complex numbers were used for two centuries before Wessel, Argand and Gauss drew them around 1800 — and the drawing is what ended the argument about whether they were legitimate.
+
+Once you can point at a number, it is hard to keep calling it imaginary. Module 5.2's construction as ordered pairs made the same case algebraically a few decades later, and between the two, the controversy simply stopped.
+</Aside>

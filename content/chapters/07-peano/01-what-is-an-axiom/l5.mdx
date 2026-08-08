@@ -1,0 +1,89 @@
+---
+level: l5
+title: What is an axiom?
+readingTimeMin: 8
+newTerms: ["axiom", "theorem"]
+anchorExample: "the parallel postulate"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every proof in this course justified its steps by appealing to something earlier. Ask *why* often enough and the chain has to stop.
+
+> **An axiom is a statement accepted without proof.** A **theorem** is a statement proved from the axioms.
+
+The chain stops because it must. Every justification cites something prior, and a chain of justifications cannot run backwards forever — so either it ends at statements assumed without proof, or it loops, and a loop justifies nothing.
+
+## You have already met this
+
+Your geometry course does exactly this, and it says so.
+
+It does not define *point*, *line* or *plane*. They are **undefined terms**, listed and left alone, because any definition would have to use other words that would themselves need defining.
+
+It then states postulates — through any two points there is exactly one line; a segment has exactly one midpoint — and everything after that is proved.
+
+**That structure is not a teaching device. It is what mathematics is.** Chapter 7 does the same job for the counting numbers, and there are only nine axioms.
+
+## Axioms are chosen
+
+The word "axiom" sometimes suggests a self-evident truth that could not have been otherwise. That is not what mathematicians mean.
+
+**Axioms are choices**, and different choices give different mathematics, all of it equally valid. What makes a set of axioms good is not obviousness but four properties:
+
+| Property | Meaning |
+|---|---|
+| **Consistent** | no contradiction can be derived |
+| **Independent** | none is provable from the others |
+| **Adequate** | strong enough to prove what you want |
+| **Small** | as few as will do the job |
+
+Consistency is non-negotiable — module 1.3 noted that from a contradiction everything follows, so an inconsistent system proves every statement and is worthless.
+
+The other three are matters of taste and economy. Independence in particular is a genuine question with a real technique behind it, and module 7.4 uses it.
+
+## How to show an axiom is independent
+
+You cannot show a statement is unprovable by failing to prove it. That is a fact about your effort.
+
+**The method is to build a model:** a structure satisfying all the *other* axioms and violating the one in question. If such a thing exists, no derivation of that axiom from the others can exist either, because a derivation would have to hold in every structure where the premises hold — and here is one where it does not.
+
+Module 7.4 constructs two such structures explicitly, and the technique is worth watching, because it turns a question about what is provable into a question about what exists.
+
+## The most famous example
+
+For two thousand years geometry had one postulate that looked less obvious than the rest — the **parallel postulate**, which in one form says that through a point not on a line there is exactly one parallel to it.
+
+It was longer and clumsier than the others, and generations of mathematicians tried to prove it from them. All failed.
+
+In the 1800s, several people tried something else: **assume it is false** and see what breaks.
+
+Nothing broke. What emerged were geometries just as consistent as Euclid's, in which triangle angles sum to more or less than $180°$ and no parallels exist, or infinitely many do.
+
+<Warning title="Changing an axiom does not produce nonsense">
+The natural reaction is that these alternative geometries must be wrong, since the parallel postulate is obviously true.
+
+It is not obviously true. **It is not even true of the universe** — Einstein's general relativity describes spacetime with a geometry in which it fails, and that description is the one that matches observation.
+
+So the postulate was never a fact discovered about space. It was an assumption, and the mathematics built on assuming its opposite is exactly as legitimate.
+
+That is why *"axioms are chosen, not discovered"* is a claim with evidence behind it rather than a philosophical preference.
+</Warning>
+
+## Why bother axiomatising arithmetic
+
+You have used the counting numbers your whole life. Why write down rules for them?
+
+Because *"the numbers are what everybody means by the numbers"* is not something a proof can cite. Chapter 4 assumed closure, commutativity and distributivity freely; those assumptions were never justified, only used.
+
+Chapter 7 justifies them. From nine axioms about $0$ and *the next number*, it constructs addition and multiplication and **proves** the laws Chapter 4 took for granted. The distributive law stops being an assumption and becomes a theorem.
+
+<Aside>
+There is a limit to this programme, and it was found in 1931.
+
+Mathematicians had hoped to write down axioms for arithmetic that were consistent, and complete — able to settle every statement about numbers as true or false.
+
+**Gödel proved that impossible.** Any consistent system of axioms strong enough to describe arithmetic contains statements that can be neither proved nor disproved within it. Adding more axioms does not help; the new system has its own undecidable statements.
+
+So module 1.1's claim that every statement has a definite truth value survives, and the hope that proof could always find it does not. Some questions about the counting numbers have answers no proof will ever reach.
+</Aside>

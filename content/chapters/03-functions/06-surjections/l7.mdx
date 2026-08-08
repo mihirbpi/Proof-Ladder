@@ -33,10 +33,10 @@ The definition is $\forall\exists$, so §1.12 dictates: fix arbitrary $t \in T$,
 </Discussion>
 
 <Proof>
-Let $t \in \mathbb{R}_{>0}$ be arbitrary. Since $t > 0$, $x := \ln t$ is a well-defined real number, so $x \in \mathbb{R}$. Then $g(x) = e^{\ln t} = t$. As $t$ was arbitrary, $g$ is surjective.
+Let $t \in \mathbb{R}_{>0}$ be arbitrary. Since $t > 0$, $x := \ln t$ is well defined — the logarithm returns exactly one value, and that value is real — so $x \in \mathbb{R}$. Then $g(x) = e^{\ln t} = t$. As $t$ was arbitrary, $g$ is surjective.
 </Proof>
 
-A construction-free alternative, worth knowing because it generalises: $\exp$ is continuous on $\mathbb{R}$ with $\lim_{x\to-\infty} e^x = 0$ and $\lim_{x\to+\infty} e^x = +\infty$, so by the intermediate value theorem its image contains every $t > 0$. This is non-constructive in flavour but often the only available route.
+A construction-free alternative, worth knowing because it generalises: $\exp$ is continuous on $\mathbb{R}$ with $\lim_{x\to-\infty} e^x = 0$ and $\lim_{x\to+\infty} e^x = +\infty$, so by the intermediate value theorem its image contains every $t > 0$. This is non-constructive in flavour — it shows a pre-image exists without producing one — but often the only available route.
 
 ## Codomain dependence
 
@@ -63,7 +63,7 @@ Exhibiting the unhit $t$ is only half; the other half is a *universal* argument 
 > **Proposition.** For $f : S \to T$, the following are equivalent:
 > 1. $f$ is surjective;
 > 2. $f$ has a **right inverse**: some $h : T \to S$ with $f \circ h = \mathrm{id}_T$;
-> 3. $f$ is right-cancellable: for all $u, v : T \to R$, $u \circ f = v \circ f \Rightarrow u = v$;
+> 3. $f$ can be cancelled from the right: for all $u, v : T \to R$, $u \circ f = v \circ f \Rightarrow u = v$;
 > 4. $f(f^{-1}(U)) = U$ for all $U \subseteq T$.
 
 <Proof title="Proof of (1) ⇔ (2)">
@@ -73,7 +73,7 @@ Exhibiting the unhit $t$ is only half; the other half is a *universal* argument 
 </Proof>
 
 <Aside>
-The word **choose** in that proof is doing more work than it appears to. Selecting one element from each of possibly infinitely many nonempty fibres, with no rule specifying which, is exactly the **Axiom of Choice** — and in fact "every surjection has a right inverse" is *equivalent* to AC over ZF. Contrast the corresponding fact for injections (§3.5), whose left inverse was constructed explicitly and needs no choice at all. The asymmetry is real: injectivity is constructive, surjectivity is not.
+The word **choose** in that proof is doing more work than it appears to. Selecting one element from each of possibly infinitely many nonempty fibres, with no rule specifying which, is a genuine extra assumption — and in fact "every surjection has a right inverse" is *equivalent* to AC over ZF. Contrast the corresponding fact for injections (§3.5), whose left inverse was constructed explicitly and needs no choice at all. The asymmetry is real: injectivity is constructive, surjectivity is not.
 </Aside>
 
 ## Surjectivity by adjusting the codomain
@@ -82,7 +82,7 @@ Every $f : S \to T$ restricts to a surjection $S \to \operatorname{Im}(f)$, givi
 $$
 S \twoheadrightarrow \operatorname{Im}(f) \hookrightarrow T
 $$
-of any function as a surjection followed by an injection. This is the set-theoretic shadow of the first isomorphism theorem, which in group theory reads $G/\ker\varphi \cong \operatorname{im}\varphi$ and in linear algebra becomes rank–nullity.
+of any function as a surjection followed by an injection. This factorisation — surjection first, injection second — recurs throughout algebra as the standard way to split any map into its two failures and in linear algebra becomes rank–nullity.
 
 ## Table
 
@@ -97,5 +97,17 @@ of any function as a surjection followed by an injection. This is the set-theore
 | $\sin : \mathbb{R}\to[-1,1]$ | yes | IVT |
 
 <WhereThisGoes level="l7">
-Surjectivity is the existence half of solving equations: "$f$ is surjective" says $f(x) = t$ is solvable for every $t$, and injectivity says solutions are unique. Almost every existence-and-uniqueness theorem in mathematics is a bijectivity statement in disguise — the fundamental theorem of algebra is surjectivity of a polynomial map onto $\mathbb{C}$, the Picard–Lindelöf theorem is bijectivity of a solution operator, and the invertible matrix theorem is a list of eighteen conditions all equivalent to bijectivity of a linear map. The choice-theoretic content flagged above also persists: in category theory, epimorphisms need not be split, and the categories where every epi splits are exactly those with enough projectives — a condition that controls homological algebra.
+**Surjectivity is the existence half of solving equations.** "$f$ is surjective" says $f(x)=t$ is solvable for every $t$; injectivity says the solution is unique. Nearly every existence-and-uniqueness theorem ahead is one of these two claims wearing different clothes.
+
+**In linear algebra, surjectivity of $A$ is solvability of $A\mathbf{x}=\mathbf{b}$ for every $\mathbf{b}$**, and it is equivalent to $\operatorname{Col} A = \mathbb{R}^m$, to full row rank, and to a pivot in every row. Those form the surjective half of the Invertible Matrix Theorem, mirroring the injective half from §3.5.
+
+The mirroring is exact and worth noticing: injectivity is about **columns** being independent, surjectivity about **columns spanning**. For a square matrix the two coincide — a fact that is genuinely surprising and is the content of the Rank–Nullity Theorem, since $\operatorname{rank} + \operatorname{nullity} = n$ forces one condition to imply the other.
+
+**In calculus, the Intermediate Value Theorem is a surjectivity theorem.** It says a continuous $f$ on $[a,b]$ takes every value between $f(a)$ and $f(b)$ — that is, $f$ maps onto the interval joining them. Every root-existence argument you will run is an application: to show $x^3 - x - 1$ has a root, note the polynomial is negative at $1$ and positive at $2$, and surjectivity onto $[f(1),f(2)]$ supplies a $c$ with $f(c)=0$.
+
+**The existence is non-constructive**, which §1.12 flagged. The theorem promises a root and produces none, and that gap is why bisection and Newton's method exist as separate topics.
+
+**And surjectivity remains a fact about the declared codomain.** $e^x$ is surjective onto $(0,\infty)$ and not onto $\mathbb{R}$ — which is exactly why $\ln$ has domain $(0,\infty)$, and why $\ln$ of a negative number is undefined rather than merely awkward.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse; **nullity** — how many independent directions collapse to zero; **rank** — the number of independent columns; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

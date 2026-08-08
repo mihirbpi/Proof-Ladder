@@ -1,0 +1,104 @@
+---
+level: l5
+title: What a complex number is
+readingTimeMin: 8
+newTerms: ["complex number", "real part", "imaginary part"]
+anchorExample: "z = 3 + 2i"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Declare a new number $i$ with
+$$
+i^2 = -1,
+$$
+and close up under the arithmetic you already have. Adding $i$ to a real, or multiplying it by one, must produce something in the system — so every $a + bi$ has to be there.
+
+$$
+\mathbb{C} = \{\, a + bi \ \mid\ a, b \in \mathbb{R} \,\}
+$$
+
+A **complex number** is one of these. This is set-builder notation in its generating form (module 2.2): every element is *of the shape* $a + bi$.
+
+And that turns out to be all of them. Module 5.3 shows sums, products and quotients of such expressions are again of this shape — so no further numbers are forced into existence, and the list closes after one step.
+
+## Real and imaginary parts
+
+For $z = a + bi$ with $a, b \in \mathbb{R}$:
+$$
+\operatorname{Re}(z) = a, \qquad \operatorname{Im}(z) = b.
+$$
+
+**Both are real numbers.** $\operatorname{Im}(3 + 2i) = 2$, not $2i$ — the imaginary part is the *coefficient*, and the $i$ is not part of it.
+
+These are functions $\mathbb{C} \to \mathbb{R}$ in the sense of module 3.1: every complex number has exactly one real part.
+
+For that to be true, each $z$ must have only one representation, and it does:
+
+> **Proposition.** If $a + bi = c + di$ with $a,b,c,d \in \mathbb{R}$, then $a = c$ and $b = d$.
+
+<Discussion>
+  <div slot="know">The equation, and that all four letters denote reals.</div>
+  <div slot="want">Equality in each part separately — the same coordinate-by-coordinate shape as ordered pairs in module 2.9.</div>
+  <div slot="how">Rearrange so one side is real and the other is a real multiple of $i$. If the multiple were nonzero, dividing would express $i$ as a real number, and module 5.1 ruled that out.</div>
+</Discussion>
+
+<Proof>
+From $a + bi = c + di$ we get $a - c = (d - b)i$, with $a - c$ and $d - b$ real.
+
+Suppose $d - b \neq 0$. Dividing,
+$$
+i = \frac{a-c}{d-b},
+$$
+which exhibits $i$ as a real number. But $i^2 = -1 < 0$, and module 5.1 proved every real has non-negative square. Contradiction.
+
+So $d - b = 0$, giving $b = d$; and then $a - c = 0$, giving $a = c$.
+</Proof>
+
+So a complex number **is** a pair of reals, and the notation $a + bi$ is a way of writing that pair. Module 5.5 draws the consequence.
+
+## ℝ sits inside ℂ
+
+Taking $b = 0$ gives $a + 0i = a$. So every real is complex, and
+$$
+\mathbb{R} \subseteq \mathbb{C},
+$$
+completing the chain $\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}$.
+
+At the other extreme, $a = 0$ gives $bi$, called **purely imaginary**. And $0$ is the only number that is both real and purely imaginary.
+
+<Warning title="Imaginary is a bad name">
+The word is a historical insult. Descartes coined it in 1637 to disparage these numbers, and it stuck.
+
+Nothing about $i$ is less real than $\sqrt2$. Both are constructed to solve an equation the previous system could not; both were resisted; both turned out to be indispensable. $\sqrt2$ got the neutral name *irrational* — also originally an insult — and $i$ got the worse one.
+
+Complex numbers describe alternating current, quantum states, and signal processing. Physical instruments measure quantities whose descriptions require them. **Judge the name as a fossil, not as a fact.**
+</Warning>
+
+## What ℂ gives up
+
+$\mathbb{C}$ keeps every field property of $\mathbb{R}$ (module 5.3 checks them). It loses one thing, and losing it is unavoidable.
+
+> **$\mathbb{C}$ has no ordering compatible with its arithmetic.**
+
+There is no sensible way to say one complex number is less than another. The sketch: in any ordered system, squares are non-negative — that is what module 5.1's case proof established. So $i^2 \geq 0$. But $i^2 = -1$, and $-1 < 0$. No ordering can survive that.
+
+So $3 + 2i < 5 - i$ is not false; it is **meaningless**. There is no such relation to be true or false about.
+
+This is a genuine loss. Every inequality technique from Algebra I stops applying, and questions like "which is bigger?" have no answer. Module 5.6 supplies the nearest replacement — comparing *sizes* rather than the numbers themselves — and the fact that it is only a partial replacement is worth noticing.
+
+<Aside>
+There is a way to build $\mathbb{C}$ with no appeal to a mysterious new symbol at all.
+
+**Define** a complex number to *be* an ordered pair $(a,b)$ of reals — an element of $\mathbb{R} \times \mathbb{R}$ from module 2.9 — with addition and multiplication given by
+$$
+(a,b) + (c,d) = (a+c,\ b+d), \qquad (a,b)\cdot(c,d) = (ac - bd,\ ad + bc).
+$$
+
+Everything is now built from objects Chapter 2 already provided, and nothing has been invented. Check that $(0,1) \cdot (0,1) = (-1, 0)$: the pair $(0,1)$ squares to the pair representing $-1$.
+
+So $i$ is not a fiction to be believed in. It is the pair $(0,1)$, and $i^2 = -1$ is a computation you can verify. **A construction is what turns a suspicious object into an ordinary one**, and that is exactly how the negatives and the irrationals were eventually accepted too.
+</Aside>

@@ -1,0 +1,91 @@
+---
+level: l5
+title: Two axioms that stop the numbers looping
+readingTimeMin: 8
+newTerms: []
+anchorExample: "S(x) ≠ 0"
+---
+
+import Figure from '@/components/Figure.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import SuccessorChain from '@/components/SuccessorChain.astro';
+
+Module 7.3 ended by noticing that A5 and A6 permit structures that are obviously not the counting numbers. Here are the two axioms that rule them out.
+
+> **A7.** $S(x) \neq 0$ for every $x$ — **nothing has $0$ as its successor.**
+>
+> **A8.** If $S(x) = S(y)$ then $x = y$ — **no two numbers share a successor.**
+
+Informally: A7 says counting never returns to the start, and A8 says counting never merges two numbers into one. Those are the only two ways a chain of arrows can fail to be a line — it can close into a loop, or two strands can join.
+
+In the language of Chapter 3, A8 says $S$ is **injective** (module 3.5), and it is stated in the usable contrapositive form that module identified.
+
+## Why each is needed
+
+Module 7.1 described the method: to show an axiom does not follow from the others, build a structure satisfying the others and violating it.
+
+**A loop violates A7.** Take $M_1 = \{0, 1\}$ with $S(0) = 1$ and $S(1) = 0$.
+
+<Figure alt="Two dots labelled 0 and 1 with an arrow from each to the other, forming a two-element cycle." caption="M₁ satisfies A5, A6 and A8, and violates A7.">
+  <SuccessorChain mode="loop" count={2} />
+</Figure>
+
+A5 ✓ — $0$ is there. A6 ✓ — both elements have successors inside the set. A8 ✓ — the two successors are different, so nothing merges.
+
+A7 ✗ — $0 = S(1)$, so something *does* have $0$ as its successor.
+
+So A7 cannot be derived from A5, A6 and A8.
+
+**A merge violates A8.** Take $M_2 = \{0,1,2\}$ with $S(0) = 1$, $S(1) = 2$, $S(2) = 2$.
+
+<Figure alt="Three dots where the first maps to the second, the second to the third, and the third to itself." caption="M₂ satisfies A5, A6 and A7, and violates A8.">
+  <SuccessorChain mode="merge" count={3} />
+</Figure>
+
+A5 ✓, A6 ✓, A7 ✓ — nothing maps to $0$.
+
+A8 ✗ — $S(1) = S(2) = 2$ while $1 \neq 2$.
+
+So A8 cannot be derived from A5, A6 and A7 either. **Each axiom does work no other axiom does.**
+
+## The payoff
+
+> **Proposition.** Under A5–A8, the numbers $0, S(0), S(S(0)), \ldots$ are all different.
+
+<Proof>
+Suppose two of them are equal, say the one reached in $m$ steps equals the one reached in $n$ steps, with $m < n$.
+
+Apply A8 repeatedly to strip $m$ successors from each side. That leaves $0$ on the left and the number reached in $n - m$ steps on the right, where $n - m \geq 1$.
+
+But a number reached in at least one step is a successor of something. So $0$ is a successor — contradicting A7.
+
+Hence no two are equal.
+</Proof>
+
+**A8 supplied the cancellation and A7 supplied the contradiction.** Remove either and the argument fails, exactly as the two models above show it must.
+
+So $\mathbb{N}$ contains $0, 1, 2, 3, \ldots$, all distinct — and in particular $\mathbb{N}$ is infinite. That was not available before this module: $M_1$ has two elements and satisfies A5 and A6.
+
+<Warning title="Still not enough">
+A5–A8 force $\mathbb{N}$ to **contain** $0,1,2,\ldots$ with everything distinct. They do not force it to contain **nothing else.**
+
+Take the ordinary counting numbers and add two extra elements $a$ and $b$, with $S(a) = b$ and $S(b) = a$.
+
+A5 ✓. A6 ✓. A7 ✓ — neither $a$ nor $b$ maps to $0$. A8 ✓ — $S$ is still injective on the whole thing.
+
+All four axioms hold, and the structure has two rogue elements cycling forever off to one side, unreachable from $0$ by counting.
+
+Module 7.5's final axiom is precisely what excludes this, and it will turn out to be induction.
+</Warning>
+
+<Aside>
+The proof above is worth a second look for its shape.
+
+The claim is that infinitely many things are pairwise different — a universal statement about pairs, and there are infinitely many pairs, so it cannot be checked.
+
+Assuming two of them **equal** turns it into a single equation, and A8 is exactly a tool for manipulating equations of that form. The negative claim became a positive one that algebra could act on.
+
+That is module 1.8's advice about negative goals, and this is one of the cleanest instances of it in the course.
+</Aside>

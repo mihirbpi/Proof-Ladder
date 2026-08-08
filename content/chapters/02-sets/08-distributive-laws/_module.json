@@ -20,8 +20,8 @@
     "l3": "Intersecting with a union can be done piece by piece: S ∩ (T ∪ R) is the same as (S ∩ T) ∪ (S ∩ R). Unlike arithmetic, the reverse also works — union spreads across intersection too.",
     "l4": "S ∩ (T ∪ R) = (S∩T) ∪ (S∩R) and S ∪ (T∩R) = (S∪T) ∩ (S∪R). Unlike arithmetic, where only × distributes over +, both set operations distribute over each other.",
     "l5": "Both distributive laws hold for sets, each proved by double inclusion with a case split in one direction; the symmetry has no arithmetic analogue.",
-    "l6": "∩ and ∪ distribute over each other, making P(X) a distributive lattice — a property arithmetic lacks and Boolean algebra requires.",
-    "l7": "Intersection distributes over union and union distributes over intersection; the two laws are De Morgan duals, and their symmetry distinguishes the lattice P(X) from the arithmetic of + and ×.",
+    "l6": "∩ and ∪ each distribute over the other, which arithmetic never manages — only × distributes over +. The two laws are duals: complement one and apply De Morgan and you get the other, so one proof yields both.",
+    "l7": "Intersection distributes over union and union distributes over intersection; the two laws are De Morgan duals, and that mutual symmetry has no counterpart in the arithmetic of + and ×.",
     "l8": "Mutual distributivity makes P(X) a distributive lattice; failure of one law characterises non-distributive lattices such as the subspace lattice of a vector space, which is where quantum logic departs from classical."
   },
   "kernel": "S ∪ (T ∩ R) = (S∪T) ∩ (S∪R) and S ∩ (T ∪ R) = (S∩T) ∪ (S∩R). Unlike arithmetic, distribution works both ways.",

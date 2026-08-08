@@ -8,6 +8,8 @@ anchorExample: "1+3+5+… builds squares"
 
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
+import DominoRow from '@/components/DominoRow.astro';
+import Figure from '@/components/Figure.astro';
 
 Module 1.12 taught you to prove a *for all* claim by taking any one case and following it. That works when all the cases are alike.
 
@@ -16,6 +18,10 @@ But some claims have cases that come **in order**, each one built from the one b
 ## The picture
 
 Stand a hundred dominoes in a row and push the first. All hundred fall.
+
+<Figure alt="A row of dominoes, the first three fallen and each tipping into the next, continuing to the right without end." caption="Two conditions — the first falls, and each reaches the next — force the whole row.">
+  <DominoRow count={6} fallen={3} pushed={true} />
+</Figure>
 
 You pushed **one** domino. What made the rest fall was a relationship between neighbours: each one is close enough to knock over the next.
 

@@ -1,0 +1,145 @@
+---
+// Three overlapping circles with shadeable regions.
+// shade: any subset of the seven regions plus the outside:
+//   "S-only", "T-only", "R-only"      the three lens-free lobes
+//   "ST", "SR", "TR"                  pairwise overlaps excluding the centre
+//   "STR"                             the centre, S ∩ T ∩ R
+//   "outside"                         complement of S ∪ T ∪ R in the universe box
+// Region names are unordered-pair based, so "ST" and "TS" both work.
+export interface Props {
+  labelS?: string;
+  labelT?: string;
+  labelR?: string;
+  shade?: string[];
+  universe?: string | null;
+}
+const {
+  labelS = 'S',
+  labelT = 'T',
+  labelR = 'R',
+  shade = [],
+  universe = null,
+} = Astro.props;
+
+// Accept "ST" or "TS" for the same region.
+const norm = (r: string) => {
+  const key = r.trim();
+  const pair: Record<string, string> = { TS: 'ST', RS: 'SR', RT: 'TR' };
+  return pair[key] ?? key;
+};
+const wanted = new Set(shade.map(norm));
+const on = (r: string) => wanted.has(r);
+
+// Standard three-circle arrangement: two on top, one below centre.
+const R = 74;
+const cS = { x: 168, y: 112 };
+const cT = { x: 262, y: 112 };
+const cR = { x: 215, y: 192 };
+const uid = 'v3';
+---
+<svg viewBox="0 0 430 300" xmlns="http://www.w3.org/2000/svg" class="venn-three">
+  <style>
+    .venn-three .box { fill: none; stroke: var(--color-rule, #C6CBC0); stroke-width: 1; stroke-dasharray: 4 4; }
+    .venn-three .ring { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 1.6; }
+    .venn-three .fill { fill: var(--color-signal, #3F6DB5); fill-opacity: 0.24; }
+    .venn-three .lbl { font-family: var(--font-mono, monospace); font-size: 13px; fill: var(--color-ink, #14182B); }
+    .venn-three .ulbl { font-family: var(--font-mono, monospace); font-size: 11px; fill: color-mix(in oklab, var(--color-ink, #14182B) 60%, transparent); }
+  </style>
+
+  <defs>
+    {/* Clip to a circle; mask to exclude one. Combining these gives every region. */}
+    <clipPath id={`${uid}-cS`}><circle cx={cS.x} cy={cS.y} r={R} /></clipPath>
+    <clipPath id={`${uid}-cT`}><circle cx={cT.x} cy={cT.y} r={R} /></clipPath>
+    <clipPath id={`${uid}-cR`}><circle cx={cR.x} cy={cR.y} r={R} /></clipPath>
+
+    <mask id={`${uid}-notS`}>
+      <rect x="0" y="0" width="430" height="300" fill="white" />
+      <circle cx={cS.x} cy={cS.y} r={R} fill="black" />
+    </mask>
+    <mask id={`${uid}-notT`}>
+      <rect x="0" y="0" width="430" height="300" fill="white" />
+      <circle cx={cT.x} cy={cT.y} r={R} fill="black" />
+    </mask>
+    <mask id={`${uid}-notR`}>
+      <rect x="0" y="0" width="430" height="300" fill="white" />
+      <circle cx={cR.x} cy={cR.y} r={R} fill="black" />
+    </mask>
+    <mask id={`${uid}-notTR`}>
+      <rect x="0" y="0" width="430" height="300" fill="white" />
+      <circle cx={cT.x} cy={cT.y} r={R} fill="black" />
+      <circle cx={cR.x} cy={cR.y} r={R} fill="black" />
+    </mask>
+    <mask id={`${uid}-notSR`}>
+      <rect x="0" y="0" width="430" height="300" fill="white" />
+      <circle cx={cS.x} cy={cS.y} r={R} fill="black" />
+      <circle cx={cR.x} cy={cR.y} r={R} fill="black" />
+    </mask>
+    <mask id={`${uid}-notST`}>
+      <rect x="0" y="0" width="430" height="300" fill="white" />
+      <circle cx={cS.x} cy={cS.y} r={R} fill="black" />
+      <circle cx={cT.x} cy={cT.y} r={R} fill="black" />
+    </mask>
+    <mask id={`${uid}-outside`}>
+      <rect x="0" y="0" width="430" height="300" fill="white" />
+      <circle cx={cS.x} cy={cS.y} r={R} fill="black" />
+      <circle cx={cT.x} cy={cT.y} r={R} fill="black" />
+      <circle cx={cR.x} cy={cR.y} r={R} fill="black" />
+    </mask>
+  </defs>
+
+  <rect x="14" y="30" width="402" height="252" rx="8" class="box" />
+
+  {on('outside') && (
+    <rect x="14" y="30" width="402" height="252" rx="8" class="fill" mask={`url(#${uid}-outside)`} />
+  )}
+
+  {/* Single lobes: inside one circle, outside the other two. */}
+  {on('S-only') && (
+    <circle cx={cS.x} cy={cS.y} r={R} class="fill" mask={`url(#${uid}-notTR)`} />
+  )}
+  {on('T-only') && (
+    <circle cx={cT.x} cy={cT.y} r={R} class="fill" mask={`url(#${uid}-notSR)`} />
+  )}
+  {on('R-only') && (
+    <circle cx={cR.x} cy={cR.y} r={R} class="fill" mask={`url(#${uid}-notST)`} />
+  )}
+
+  {/* Pairwise overlaps, excluding the centre: clip to one, draw the second, mask out the third. */}
+  {on('ST') && (
+    <g clip-path={`url(#${uid}-cS)`}>
+      <circle cx={cT.x} cy={cT.y} r={R} class="fill" mask={`url(#${uid}-notR)`} />
+    </g>
+  )}
+  {on('SR') && (
+    <g clip-path={`url(#${uid}-cS)`}>
+      <circle cx={cR.x} cy={cR.y} r={R} class="fill" mask={`url(#${uid}-notT)`} />
+    </g>
+  )}
+  {on('TR') && (
+    <g clip-path={`url(#${uid}-cT)`}>
+      <circle cx={cR.x} cy={cR.y} r={R} class="fill" mask={`url(#${uid}-notS)`} />
+    </g>
+  )}
+
+  {/* Centre: clip to two, draw the third. */}
+  {on('STR') && (
+    <g clip-path={`url(#${uid}-cS)`}>
+      <g clip-path={`url(#${uid}-cT)`}>
+        <circle cx={cR.x} cy={cR.y} r={R} class="fill" />
+      </g>
+    </g>
+  )}
+
+  <circle cx={cS.x} cy={cS.y} r={R} class="ring" />
+  <circle cx={cT.x} cy={cT.y} r={R} class="ring" />
+  <circle cx={cR.x} cy={cR.y} r={R} class="ring" />
+
+  <text x={cS.x - R - 2} y={cS.y - R + 2} class="lbl" text-anchor="middle">{labelS}</text>
+  <text x={cT.x + R + 2} y={cT.y - R + 2} class="lbl" text-anchor="middle">{labelT}</text>
+  <text x={cR.x} y={cR.y + R + 20} class="lbl" text-anchor="middle">{labelR}</text>
+  {universe && <text x="26" y="272" class="ulbl">{universe}</text>}
+</svg>
+
+<style>
+  .venn-three { width: 100%; height: auto; max-width: 430px; display: block; margin: 0 auto; }
+</style>

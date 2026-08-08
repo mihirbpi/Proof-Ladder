@@ -47,6 +47,16 @@ The move from $2a<a+b$ to $a<\frac{a+b}{2}$ used the order rule *"multiplying by
 Had the divisor been negative, the inequality would flip. This is the rule that catches people out in algebra, and stating it once here is what makes the proof honest.
 </Warning>
 
+## The witness, computed
+
+The proof produces a recipe, so try it on a hard case. Take two rationals that are already close:
+$$a = \frac{7}{5} = 1.4, \qquad b = \frac{71}{50} = 1.42.$$
+The midpoint is
+$$c = \frac{1}{2}\left(\frac{7}{5}+\frac{71}{50}\right) = \frac{1}{2}\cdot\frac{141}{50} = \frac{141}{100},$$
+which is $1.41$, comfortably between them and plainly a ratio of integers.
+
+Nothing about the closeness of $a$ and $b$ caused trouble, and nothing could. The proof never referred to how far apart they were, so it works for a gap of $1$ and for a gap of one trillionth alike. **A proof that ignores a quantity is a proof that holds for every value of it** — which is the whole reason to argue in general rather than by example.
+
 ## Repeat forever
 
 The theorem applies to its own output. Between $a$ and $c$ there is another rational; between those, another.
@@ -54,6 +64,8 @@ The theorem applies to its own output. Between $a$ and $c$ there is another rati
 **Between any two distinct rationals there are infinitely many rationals.** No two rationals are adjacent, and the phrase "the next rational after $\frac12$" refers to nothing.
 
 Contrast the integers, where $4$ is unambiguously next after $3$. Density is a genuine structural difference, and it is why you can locate a rational to any accuracy you like by repeated bisection — the same procedure as bisecting a segment with compass and straightedge, run over and over.
+
+The rate is worth knowing. Each bisection halves the interval you are working in, so after $n$ steps the interval has length $(b-a)/2^n$. Ten steps shrink it by a factor of more than a thousand, twenty by more than a million. That is why bisection is a practical method for locating a number and not merely a theoretical one.
 
 ## The geometric version
 

@@ -20,7 +20,7 @@
     "l3": "Two sets are equal exactly when each is a subset of the other. So proving a set equality means writing two subset proofs — check both boxes.",
     "l4": "S = T is defined to mean S ⊆ T and T ⊆ S, so every set-equality proof is two element-chasing proofs. When a hypothesis contains an or, split into cases.",
     "l5": "Set equality is double inclusion, hence two arbitrary-element arguments; a disjunctive hypothesis forces a case split in one of them.",
-    "l6": "By extensionality S = T iff the membership conditions are equivalent, and an equivalence is two implications — so double inclusion is forced, not chosen.",
+    "l6": "Two sets are equal exactly when each is a subset of the other, because \"the same members\" is an *if and only if*, and an *if and only if* is two implications. So a set equality is two proofs, not one, and the shape is forced rather than chosen.",
     "l7": "Set equality is defined by double inclusion, mirroring the decomposition of ⇔ into two implications; a disjunction anywhere in a hypothesis dictates proof by cases.",
     "l8": "Extensionality reduces set equality to mutual inclusion, and antisymmetry of ⊆ is exactly that reduction; \"obviously equal\" is never a proof."
   },

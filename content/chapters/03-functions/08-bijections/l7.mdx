@@ -62,7 +62,7 @@ For infinite sets, $A \subsetneq B$ does not imply $|A| < |B|$. Comparisons must
 
 ## Countable and uncountable
 
-$S$ is **countable** when $|S| \leq |\mathbb{N}|$. Countable sets include $\mathbb{Z}$ (interleave positives and negatives), $\mathbb{N}\times\mathbb{N}$ (diagonal enumeration), and hence $\mathbb{Q}$ — despite $\mathbb{Q}$ being dense in $\mathbb{R}$, which is a good demonstration that cardinality and topology measure different things.
+$S$ is **countable** when $|S| \leq |\mathbb{N}|$. Countable sets include $\mathbb{Z}$ (interleave positives and negatives), $\mathbb{N}\times\mathbb{N}$ (diagonal enumeration), and hence $\mathbb{Q}$ — despite $\mathbb{Q}$ being dense in $\mathbb{R}$, which is a good demonstration that counting size and being densely packed measure different things.
 
 > **Theorem (Cantor).** $\mathbb{R}$ is uncountable.
 
@@ -91,5 +91,19 @@ The diagonal argument is one construction with three faces. Applied to $\mathcal
 </Aside>
 
 <WhereThisGoes level="l7">
-Whether any cardinality lies strictly between $|\mathbb{N}|$ and $|\mathbb{R}|$ is the **continuum hypothesis**. Gödel (1940) showed it cannot be disproved from ZFC; Cohen (1963), inventing forcing to do it, showed it cannot be proved either. It is therefore independent — a mathematical question with a definite-sounding statement and no answer available from the standard axioms, and the discovery that such questions exist reshaped foundations. Beyond it lie large cardinal axioms, which extend ZFC upward and are ordered by consistency strength, and descriptive set theory, which studies the sets of reals simple enough to be immune to these pathologies. Meanwhile the bijection-as-isomorphism reading generalises: an isomorphism of groups is a bijective homomorphism, a homeomorphism is a bijective continuous map with continuous inverse, and in each case "the same size" becomes "the same structure".
+A bijection is a perfect correspondence, and in linear algebra "perfect correspondence" acquires a name and a great deal of machinery.
+
+**A bijective linear map is an isomorphism.** Two vector spaces related by one are, for every purpose the subject cares about, the same space with different labels — every theorem transfers, and a computation in one can be run in the other.
+
+That is what coordinates are. Choosing a basis for an $n$-dimensional space $V$ produces a bijection $V \to \mathbb{R}^n$, and the reason it is a bijection is precisely the $\exists!$ from this module: **every vector has exactly one coordinate representation.** Existence comes from spanning, uniqueness from linear independence, and a basis is defined to supply both.
+
+So the abstract theory of vector spaces reduces to $\mathbb{R}^n$ — but only after a basis is chosen, and different bases give different bijections. Change of basis is the composition of one such bijection with the inverse of another, and that is why change-of-basis matrices are invertible.
+
+**The dimension theorem is a bijection theorem.** Two finite-dimensional spaces are isomorphic if and only if they have the same dimension, which is this module's *bijection means same size* with structure added.
+
+**In calculus, bijectivity is what makes inverse functions exist.** $\ln : (0,\infty)\to\mathbb{R}$ and $e^x : \mathbb{R}\to(0,\infty)$ are mutually inverse bijections, and the domains are exactly what makes them so. So are $\tan$ on $(-\pi/2,\pi/2)$ and $\tan^{-1}$ on $\mathbb{R}$.
+
+Each of those restrictions was chosen to manufacture a bijection out of a function that was not one, which is the standard repair and the reason inverse trigonometric functions come with ranges you have to memorise.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **linear independence** — no vector being a combination of the others; **vector space** — any system where you can add and scale; **basis** — a smallest set of vectors that builds all the others; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

@@ -1,0 +1,96 @@
+---
+// Odd numbers building a square, as nested L-shaped shells (§6.3).
+//
+// n         side length of the finished square
+// upto      how many shells to draw filled; the rest are outlined faintly.
+//           Defaults to n (the whole square).
+// showCounts  print the size of each shell (1, 3, 5, …) beside it
+//
+// Shell j (1-indexed) is the row and column at index j−1 that were not already
+// covered, so it holds 2j−1 dots — which is why the odd numbers sum to a square.
+export interface Props {
+  n?: number;
+  upto?: number | null;
+  showCounts?: boolean;
+}
+const { n = 5, upto = null, showCounts = true } = Astro.props;
+
+const filled = upto ?? n;
+const CELL = 30;
+const PAD = 34;
+const W = PAD * 2 + n * CELL + (showCounts ? 54 : 0);
+const H = PAD * 2 + n * CELL;
+
+// Which shell does cell (r, c) belong to? The larger of the two indices, +1.
+const shellOf = (r: number, c: number) => Math.max(r, c) + 1;
+
+const cells: { r: number; c: number; shell: number }[] = [];
+for (let r = 0; r < n; r++) {
+  for (let c = 0; c < n; c++) cells.push({ r, c, shell: shellOf(r, c) });
+}
+
+// Precompute every dot. The Astro template parser does not cope with nested
+// ternaries inside JSX attributes, so the branching happens here, not in markup.
+// Alternating the opacity of consecutive shells keeps them distinguishable, and
+// the L outlines below mean colour is never the sole carrier (§C8).
+const drawn = cells.map(({ r, c, shell }) => {
+  const on = shell <= filled;
+  return {
+    cx: PAD + c * CELL + CELL / 2,
+    cy: PAD + r * CELL + CELL / 2,
+    r: on ? 7 : 6,
+    cls: on ? 'dot' : 'dot-faint',
+    opacity: on ? (shell % 2 === 1 ? 0.85 : 0.45) : undefined,
+  };
+});
+
+// One representative position per shell, for the count label: the shell's corner.
+const shellLabels = Array.from({ length: n }, (_, j) => ({
+  shell: j + 1,
+  count: 2 * (j + 1) - 1,
+  x: PAD + j * CELL + CELL / 2,
+  y: PAD + j * CELL + CELL / 2,
+}));
+
+const alt = `A ${n} by ${n} square of dots built from ${n} nested L-shaped shells. `
+  + `The shells hold ${shellLabels.map((s) => s.count).join(', ')} dots — the first ${n} odd numbers — `
+  + `and together they fill the square, so the odd numbers add up to ${n * n}.`;
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="l-shells"
+     role="img" aria-label={alt}>
+  <style>
+    .l-shells .dot { fill: var(--color-signal, #3F6DB5); }
+    .l-shells .dot-faint { fill: none; stroke: var(--color-rule, #C6CBC0); stroke-width: 1.2; }
+    .l-shells .edge { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 1.4; }
+    .l-shells .shell-rule { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 1; stroke-opacity: 0.35; }
+    .l-shells .cnt { font-family: var(--font-mono, monospace); font-size: 11px; fill: color-mix(in oklab, var(--color-ink, #14182B) 70%, transparent); }
+  </style>
+
+  {/* Alternating shell tint so consecutive Ls are distinguishable without colour alone:
+      every other shell also gets a thin outline. */}
+  {drawn.map((d) => (
+    <circle cx={d.cx} cy={d.cy} r={d.r} class={d.cls} fill-opacity={d.opacity} />
+  ))}
+
+  {/* Draw the L boundary of each completed shell. */}
+  {Array.from({ length: Math.min(filled, n) }, (_, j) => {
+    const s = j + 1;
+    const x0 = PAD + (s - 1) * CELL;
+    const y0 = PAD + (s - 1) * CELL;
+    const x1 = PAD + s * CELL;
+    const y1 = PAD + s * CELL;
+    return (
+      <path d={`M ${x0} ${y1} L ${x0} ${y0} L ${x1} ${y0}`} class="shell-rule" />
+    );
+  })}
+
+  <rect x={PAD} y={PAD} width={n * CELL} height={n * CELL} class="edge" />
+
+  {showCounts && shellLabels.slice(0, Math.min(filled, n)).map((s) => (
+    <text x={PAD + n * CELL + 10} y={s.y + 4} class="cnt">{s.count}</text>
+  ))}
+</svg>
+
+<style>
+  .l-shells { width: 100%; height: auto; max-width: 320px; display: block; margin: 0 auto; }
+</style>

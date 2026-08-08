@@ -1,0 +1,117 @@
+---
+level: l5
+title: Product sets
+readingTimeMin: 9
+newTerms: ["ordered pair", "product set"]
+anchorExample: "ℝ × ℝ is the coordinate plane"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+An **ordered pair** $(s, t)$ is two objects in a fixed order. The defining property is
+$$
+(a, b) = (c, d) \iff a = c \ \wedge\ b = d,
+$$
+**equality coordinate by coordinate.** That single line is the only thing you ever need to know about pairs.
+
+The **product set** of $S$ and $T$ is the set of all such pairs:
+$$
+S \times T = \{\, (s, t) \mid s \in S,\ t \in T \,\}.
+$$
+
+## The example you already know
+
+$$
+\mathbb{R} \times \mathbb{R} = \mathbb{R}^2
+$$
+
+is the coordinate plane. Every point is an ordered pair of reals; the plane *is* a product set, and has been all along.
+
+This makes several familiar facts into statements about products:
+
+- A graph is a subset of $\mathbb{R} \times \mathbb{R}$ — the set of pairs satisfying an equation.
+- $(2,3) \neq (3,2)$ because equality is coordinate-wise, which is exactly why axes must be labelled.
+- The graph of a function is a subset of $\mathbb{R}^2$ passing the vertical line test, and Chapter 3 makes that precise.
+
+## Order matters
+
+$$
+S \times T \neq T \times S \quad\text{in general.}
+$$
+
+With $S = \{1, 2\}$ and $T = \{a\}$:
+$$
+S \times T = \{(1,a), (2,a)\}, \qquad T \times S = \{(a,1), (a,2)\}.
+$$
+
+Different sets — no element of one is an element of the other, since $(1,a) = (a,1)$ would require $1 = a$.
+
+This is a real difference from $\cup$ and $\cap$, which do not care about order. **The product is the first operation in this chapter that is not symmetric.**
+
+<Warning title="Sets are unordered; pairs are ordered">
+Module 2.1 said $\{a, b\} = \{b, a\}$. This module says $(a,b) \neq (b,a)$.
+
+Both are correct, and they are statements about different objects. The braces build a set, where order is not data. The parentheses build a pair, where order is the whole point.
+
+The notational collision is unfortunate and standard. When you see $(2,5)$, decide from context whether it is a pair or the interval of module 2.2 — nothing in the symbols will tell you.
+</Warning>
+
+## The empty case
+
+$$
+S \times \emptyset = \emptyset \quad\text{for every } S.
+$$
+
+A pair in $S \times \emptyset$ would need a second coordinate drawn from $\emptyset$, and there are none. So no pairs can be formed, and the product is empty.
+
+The finite count says the same thing: if $S$ has $m$ elements and $T$ has $n$, then $S \times T$ has $mn$, and $m \cdot 0 = 0$.
+
+## Products and intersection
+
+> **Proposition.** $(S \times T) \cap (A \times B) = (S \cap A) \times (T \cap B)$.
+
+<Discussion>
+  <div slot="know">Elements of both sides are <em>pairs</em>. Membership in a product unfolds into two separate conditions, one per coordinate.</div>
+  <div slot="want">Double inclusion.</div>
+  <div slot="how">The essential habit: as soon as an arbitrary element of a product appears, <strong>name it $(x,y)$ immediately.</strong> Until you do, there is nothing to work with; once you do, both sides unfold into conditions on $x$ and on $y$ that can be compared directly.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $p \in (S \times T) \cap (A \times B)$ be arbitrary. Since $p$ lies in a product, $p = (x,y)$ for some $x$ and $y$.
+
+From $(x,y) \in S \times T$: $x \in S$ and $y \in T$.
+From $(x,y) \in A \times B$: $x \in A$ and $y \in B$.
+
+So $x \in S \cap A$ and $y \in T \cap B$, giving $(x,y) \in (S \cap A) \times (T \cap B)$.
+
+**($\supseteq$)** Let $p \in (S \cap A) \times (T \cap B)$ be arbitrary, so $p = (x,y)$ with $x \in S \cap A$ and $y \in T \cap B$.
+
+Then $x \in S$ and $y \in T$, so $(x,y) \in S \times T$. Also $x \in A$ and $y \in B$, so $(x,y) \in A \times B$. Hence $p$ lies in the intersection.
+
+Both inclusions hold.
+</Proof>
+
+**Naming the pair was the whole proof.** Every subsequent line is bookkeeping: unfold each membership into its two coordinate conditions, then regroup. Try it without writing $p = (x,y)$ and you will find there is no first step.
+
+<Warning title="Union does not behave this way">
+$$
+(S \times T) \cup (A \times B) \neq (S \cup A) \times (T \cup B) \quad\text{in general.}
+$$
+
+Take $S = T = \{1\}$ and $A = B = \{2\}$. The left side is $\{(1,1), (2,2)\}$. The right side is $\{1,2\} \times \{1,2\}$, which also contains $(1,2)$ and $(2,1)$.
+
+The right side is strictly larger, because it permits mixing a first coordinate from one product with a second from the other. Intersection has no such freedom — it demands both conditions at once — which is why that case worked and this one does not.
+
+**One law holding is not evidence for its partner.** Test the variant before assuming it.
+</Warning>
+
+<Aside>
+Products are how mathematics builds things with several inputs.
+
+A function of two variables has a product as its domain: $f : \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ takes one argument, which happens to be a pair. That is why Chapter 3's whole theory applies to multi-variable functions without any changes — nothing there assumes the domain is a set of numbers.
+
+The construction also iterates. $\mathbb{R}^3$ is the set of ordered triples, and $\mathbb{R}^n$ the set of $n$-tuples. Every coordinate system you will ever use is a product set.
+</Aside>

@@ -2,7 +2,7 @@
 level: l7
 title: The rationals are a field
 readingTimeMin: 9
-newTerms: ["rational number", "field", "field of fractions", "characteristic"]
+newTerms: ["rational number", "field", "characteristic"]
 anchorExample: "ℚ as a field"
 ---
 
@@ -40,7 +40,7 @@ $$
 \left(\frac ab\right)^{-1} = \frac ba \ (a \neq 0).
 $$
 
-Each closure verification has two steps: numerator and denominator are integers by closure of $\mathbb{Z}$ (§4.1), and the denominator is nonzero because **$\mathbb{Z}$ has no zero divisors**. That second point is where the integral domain property of $\mathbb{Z}$ is spent, and it is why the construction below requires a domain rather than an arbitrary ring.
+Each closure verification has two steps: numerator and denominator are integers by closure of $\mathbb{Z}$ (§4.1), and the denominator is nonzero because **$\mathbb{Z}$ has no zero divisors**. That second point is where the absence of zero divisors in $\mathbb{Z}$ (§4.1) is spent, and it is why the construction below requires a domain rather than an arbitrary ring.
 
 For the inverse: $\tfrac ab \neq 0$ iff $a \neq 0$, so $\tfrac ba \in \mathbb{Q}$ and $\tfrac ab \cdot \tfrac ba = \tfrac{ab}{ab} = 1$.
 
@@ -52,17 +52,29 @@ If $0x = 1$ in a ring, then $0 = 0x = 1$ (using $0x = 0$, itself a theorem from 
 "You cannot divide by zero" is therefore a theorem, not a prohibition.
 </Warning>
 
-## Field of fractions
+## The same construction, in general
 
-The construction is general.
+Nothing above used anything about $\mathbb{Z}$ except that it has no zero divisors (§4.1).
 
-> **Theorem.** Every integral domain $D$ embeds in a field $\operatorname{Frac}(D)$, and $\operatorname{Frac}(D)$ is the smallest such field: any injective ring homomorphism $D \to K$ into a field extends uniquely to $\operatorname{Frac}(D) \to K$.
+> **Theorem.** Any system with the ring properties and no zero divisors sits inside a field of quotients built exactly this way — pairs, with $(a,b)\sim(c,d)$ when $ad=bc$ — and that field is the smallest one containing it.
 
 Taking $D = \mathbb{Z}$ gives $\mathbb{Q}$. Taking $D = k[x]$ gives the rational function field $k(x)$. Taking $D = \mathcal{O}(U)$, holomorphic functions on a domain, gives the meromorphic functions.
 
 The integral-domain hypothesis is necessary and the proof above shows why: in $\mathbb{Z}/6\mathbb{Z}$, one would want $\tfrac13$ to exist, but $3$ is a zero divisor and the equivalence relation degenerates.
 
 The universal property in the second sentence is the useful part. It says $\mathbb{Q}$ is characterised by what it does, not by how it was built — the same shift that §2.9 flagged for ordered pairs.
+
+## Why the closure proofs look like fraction arithmetic
+
+Each verification above was the fraction rule you learned in primary school, checked against a definition rather than asserted. That is worth pausing on, because it is the first time in the course that a familiar procedure has been *justified* rather than used.
+
+$$\frac ab + \frac cd = \frac{ad+bc}{bd}$$
+
+is a definition, not a discovery — and what needs proving is that it is **well defined**: that replacing $\frac ab$ by an equivalent fraction $\frac{a'}{b'}$ gives an equivalent answer. Without that, the operation would depend on which representative you happened to write, and "the sum of two rationals" would not name a single number.
+
+The check is a computation: from $ab' = a'b$ and $cd'=c'd$, verify $(ad+bc)(b'd') = (a'd'+b'c')(bd)$. It works, and it is the reason the rule is legitimate.
+
+**This is the first well-definedness obligation in the course**, and it will not be the last. §7.2 shows that $\mathbb{Q}$ is built as a set of equivalence classes, and every operation defined on classes carries exactly this obligation — one that §3.1 flagged in the abstract and that here has real content.
 
 ## Ordered fields, and what is still missing
 
@@ -75,5 +87,15 @@ The **characteristic** of a field is the least $n > 0$ with $\underbrace{1+\cdot
 </Aside>
 
 <WhereThisGoes level="l7">
-The field axioms are the hypotheses of linear algebra: vector spaces are defined over a field precisely so that scalars can be divided, which is what makes bases, dimension, and Gaussian elimination work. Galois theory studies field extensions $K \subseteq L$ and their symmetry groups, and it settles questions posed two thousand years earlier — trisecting an angle, doubling the cube, solving the quintic by radicals — by translating them into questions about degrees of extensions of $\mathbb{Q}$. Number fields, the finite extensions of $\mathbb{Q}$, are the objects of algebraic number theory. And finite fields $\mathbb{F}_{p^n}$, whose existence and uniqueness for each prime power is a small miracle, are the arithmetic of error-correcting codes and of elliptic-curve cryptography.
+**The field axioms are the hypotheses of linear algebra.** A vector space is defined over a field, and the reason is division: without inverses for non-zero scalars, you cannot normalise a vector, cannot scale a pivot to $1$, and cannot run Gaussian elimination at all.
+
+Trace the axioms through row reduction and every one is used. Scaling a row by $1/a$ needs multiplicative inverses. Adding a multiple of one row to another needs distributivity. The claim that the result has the same solution set needs the operations to be reversible, which needs additive inverses.
+
+**Over $\mathbb{Z}$ none of that works.** The system $2x = 1$ has no integer solution, so "solve and back-substitute" fails immediately, and there is no theory of bases and dimension over $\mathbb{Z}$ resembling the one over a field.
+
+**In calculus, the ordered-field axioms are what inequality manipulation rests on.** Every $\varepsilon$–$\delta$ proof multiplies and divides inequalities, and the rules — adding preserves, multiplying by a positive preserves, multiplying by a negative reverses — are the order axioms of this module. Getting the last one wrong is the standard error in a limit proof, and it is an axiom violation rather than an algebra slip.
+
+**Completeness is the property $\mathbb{Q}$ still lacks**, and it is the one calculus cannot do without. The Extreme Value Theorem, the Intermediate Value Theorem, and the Mean Value Theorem are all false over $\mathbb{Q}$: $f(x)=x^2-2$ changes sign on $[0,2]$ and has no rational root, so IVT fails. §4.7 exhibits the gap, and filling it is what $\mathbb{R}$ is for — which makes completeness, not the field axioms, the defining property of the number system calculus runs on.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **bases** — smallest sets of vectors that build everything else; **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

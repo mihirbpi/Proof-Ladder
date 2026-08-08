@@ -1,0 +1,105 @@
+---
+level: l5
+title: What the integers can do
+readingTimeMin: 8
+newTerms: ["closed", "ring", "distributive law"]
+anchorExample: "ℤ is closed under + but not ÷"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Chapters 1 to 3 built the machinery. This chapter points it at the number systems, starting with the one you know best.
+
+A set is **closed** under an operation when applying that operation to elements of the set always produces an element of the set. *You cannot get out.*
+
+## What ℤ can do
+
+For all $a, b \in \mathbb{Z}$:
+
+$$
+a + b \in \mathbb{Z}, \qquad -a \in \mathbb{Z}, \qquad ab \in \mathbb{Z},
+$$
+$$
+a(b+c) = ab + ac.
+$$
+
+Closure under addition, additive inverses, and multiplication, plus the **distributive law**. Subtraction comes free, since $a - b = a + (-b)$.
+
+These look too obvious to state, and stating them is the point. **From here on, every proof that needs "and that is an integer" cites closure**, and you have now seen the list of what may be cited. Module 4.3's divisibility proofs end with exactly this step, every time.
+
+## What ℤ cannot do
+
+$$
+\frac13 \notin \mathbb{Z}.
+$$
+
+$\mathbb{Z}$ is **not** closed under division. And the failure is not only at $3$ — it is almost total.
+
+> **Proposition.** The only integers with integer reciprocals are $1$ and $-1$.
+
+<Discussion>
+  <div slot="know">$a$ has an integer reciprocal means: there is $b \in \mathbb{Z}$ with $ab = 1$.</div>
+  <div slot="want">$a = 1$ or $a = -1$.</div>
+  <div slot="how">Both $a$ and $b$ are integers, so both have absolute value at least $1$ unless zero. Their product being $1$ leaves very little room.</div>
+</Discussion>
+
+<Proof>
+Suppose $a, b \in \mathbb{Z}$ with $ab = 1$.
+
+Neither is zero, since $0 \cdot b = 0 \neq 1$. So $|a| \geq 1$ and $|b| \geq 1$.
+
+Then $1 = |ab| = |a|\,|b| \geq |a| \cdot 1 = |a|$, so $|a| \leq 1$. Combined with $|a| \geq 1$, we get $|a| = 1$.
+
+Hence $a = 1$ or $a = -1$. (Both work: $1\cdot1 = 1$ and $(-1)(-1) = 1$.)
+</Proof>
+
+The step doing the work is that there are **no integers strictly between $0$ and $1$**. That fact is what separates $\mathbb{Z}$ from $\mathbb{Q}$, and module 4.6 shows just how differently the rationals behave.
+
+## The word for this
+
+A number system closed under $+$, $-$, and $\times$, with the distributive law, is called a **ring**.
+
+That is all the word means here: **a label for a system with these rules.** It is worth having because $\mathbb{Z}$ is not the only such system, and recognising the pattern saves work.
+
+You have met two others:
+
+- **Polynomials.** Add, subtract, multiply two polynomials and you get a polynomial. Divide and you generally do not.
+- **Square matrices** of a fixed size. Same story — closed under $+$, $-$, $\times$, and division mostly unavailable.
+
+The parallel with $\mathbb{Z}$ is exact, including the failure. Most matrices have no inverse; most integers have no reciprocal; most polynomials have no polynomial reciprocal. **A theorem proved from the ring rules alone holds in all three at once**, and that is why the label earns its keep rather than being vocabulary for its own sake.
+
+Module 4.5 adds the missing rule and gets a **field**.
+
+<Warning title="Closure is a claim about every case">
+"$\mathbb{Z}$ is closed under addition" is a universal statement:
+$$
+\forall a, b \in \mathbb{Z},\ a + b \in \mathbb{Z}.
+$$
+
+So checking examples does not prove it, and one counterexample would destroy it — module 1.11's asymmetry.
+
+Watch the direction carefully. To show a set is **not** closed, exhibit one escape: $\mathbb{Z}$ is not closed under division because $1 \div 3 \notin \mathbb{Z}$, and that single instance is a complete disproof.
+
+To show a set **is** closed takes a general argument. Module 4.5 gives several for $\mathbb{Q}$, and each is a short computation with an arbitrary element rather than a check of cases.
+</Warning>
+
+<Aside>
+Closure is why the number systems were built in the order they were, and each extension repairs one failure.
+
+$\mathbb{N}$ is not closed under subtraction — $3 - 5$ escapes. Adding negatives gives $\mathbb{Z}$.
+
+$\mathbb{Z}$ is not closed under division. Adding reciprocals gives $\mathbb{Q}$.
+
+$\mathbb{Q}$ has gaps: no rational squares to $2$ (module 4.7). Filling them gives $\mathbb{R}$.
+
+$\mathbb{R}$ is not closed under square roots of negatives. Adding them gives $\mathbb{C}$, and Chapter 5 does it.
+
+$$
+\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}
+$$
+
+**Each step exists because the previous system could not do something.** The chain is not a list of facts to memorise; it is a record of four problems and their solutions.
+</Aside>

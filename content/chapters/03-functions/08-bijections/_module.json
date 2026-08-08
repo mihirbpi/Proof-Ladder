@@ -15,7 +15,7 @@
   },
   "kernelIdea": "A bijection is injective and surjective: every t has exactly one pre-image. Bijections are how mathematicians compare sizes, including infinite ones.",
   "kernels": {
-    "l1": "If every child has one cubby and every cubby has one child, there are just as many of each — and you never had to count.",
+    "l1": "If every child has a cubby and every cubby has a child, there are just as many of each — without counting.",
     "l2": "When you can pair up two piles perfectly, with nothing left over on either side, the piles are the same size. You do not have to count them.",
     "l3": "A bijection is a perfect matching: one-to-one and onto at the same time. Two sets have the same size exactly when a bijection between them exists, and this works even for sets too big to count.",
     "l4": "f is bijective when it is injective and surjective, so every t ∈ T has exactly one pre-image. For finite sets a bijection forces |S| = |T|; for infinite sets, existence of a bijection is what \"same size\" means.",

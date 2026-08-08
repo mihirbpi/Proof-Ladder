@@ -1,0 +1,107 @@
+---
+level: l5
+title: Negating quantifiers and counterexamples
+readingTimeMin: 8
+newTerms: ["counterexample"]
+anchorExample: "every prime is odd"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+To knock down a claim you must first know exactly what knocking it down would require. For quantified claims there are two rules, and between them they generate every refutation in this course.
+
+## The two rules
+
+$$
+\neg\big(\forall x \in S,\ p(x)\big) \equiv \exists x \in S,\ \neg p(x)
+$$
+$$
+\neg\big(\exists x \in S,\ p(x)\big) \equiv \forall x \in S,\ \neg p(x)
+$$
+
+In words: **the negation moves inward, the quantifier flips, and the set stays put.**
+
+Both are obvious once said aloud. If it is not true that every element has the property, then something fails to have it. If nothing has the property, then everything fails to have it.
+
+Note what does *not* change. $S$ is untouched — negating a claim about real numbers gives another claim about real numbers, not a claim about some other set.
+
+## One bad apple
+
+The first rule is the licence for the named move **one bad apple**.
+
+A **counterexample** to $\forall x \in S,\ p(x)$ is a single element of $S$ where $p$ fails. Producing one is a complete disproof, because the negation of the universal claim is an existential one, and existential claims are settled by exhibiting a single element that works — a **witness** (module 1.12).
+
+> *Every prime number is odd.*
+
+The counterexample is $2$: prime, and not odd. One number, and the claim is finished — no argument about the other primes is needed or wanted.
+
+> *Every quadratic has two distinct real roots.*
+
+The counterexample is $x^2 = 0$, with the single root $x = 0$. Or $x^2 + 1 = 0$, with none at all. Either alone does the job.
+
+<Warning title="A counterexample must actually be in the set">
+$\forall x \in \mathbb{R},\ x^2 \geq 0$ is true, and $i$ is not a counterexample to it — $i \notin \mathbb{R}$, so it is not a candidate.
+
+Check membership before checking the property. An element outside $S$ tells you nothing about a claim quantified over $S$, and offering one is the most common way a disproof goes wrong.
+</Warning>
+
+## Negating what comes after
+
+The rules say the quantifier flips and $\neg p(x)$ is what remains. That second half is a job in itself, and module 1.2's warnings all apply.
+
+$$
+\neg\big(\forall x \in \mathbb{R},\ x^2 > 4\big) \equiv \exists x \in \mathbb{R},\ x^2 \leq 4.
+$$
+
+**Not $x^2 < 4$.** The negation of $>$ is $\leq$, and dropping the boundary leaves a hole exactly at $x = \pm2$.
+
+When a connective sits inside, De Morgan does the work (module 1.4):
+$$
+\neg\big(\forall x,\ p(x) \wedge q(x)\big) \equiv \exists x,\ \neg p(x) \vee \neg q(x).
+$$
+
+So to refute *every solution is positive **and** rational*, you need a solution that is not positive **or** not rational — either failure suffices, and you do not have to break both.
+
+> *For every real $x$, $x$ is positive or negative.*
+
+Negating gives *there is a real $x$ that is neither positive nor negative*, and $x = 0$ is it.
+
+## Nested quantifiers
+
+Here the rules earn their keep. Apply them one at a time, outermost first, and the negation of a stacked statement falls out mechanically.
+
+$$
+\neg\big(\forall x\, \exists y,\ p(x,y)\big)
+\;\equiv\; \exists x\, \neg\big(\exists y,\ p(x,y)\big)
+\;\equiv\; \exists x\, \forall y,\ \neg p(x,y).
+$$
+
+**Every quantifier flips, in order, and the negation ends up on the inside.**
+
+<Discussion>
+  <div slot="know">The claim *$\forall x \in \mathbb{R},\ \exists y \in \mathbb{R},\ xy = 1$* — every real number has a reciprocal.</div>
+  <div slot="want">Its negation, and then a decision about which of the two is true.</div>
+  <div slot="how">Flip both quantifiers in order and negate the equation. Then read the result and look for a witness.</div>
+</Discussion>
+
+<Proof>
+Negating in two steps:
+$$
+\neg\big(\forall x\, \exists y,\ xy = 1\big) \equiv \exists x\, \forall y,\ xy \neq 1.
+$$
+
+The negation reads: *there is a real $x$ such that no real $y$ satisfies $xy = 1$.* Take $x = 0$. Then $0 \cdot y = 0 \neq 1$ for every $y$ ✓.
+
+So the negation is true, and the original claim is false.
+</Proof>
+
+Notice what the negation handed you: it named the shape of the required evidence. **One value of $x$, and an argument covering all $y$.** That is exactly what the proof supplies, and the structure was decided before any thinking about zero.
+
+<Aside>
+This is the practical reason to negate carefully rather than intuitively. The negation tells you what a disproof must look like — how many witnesses to produce and how much to argue about.
+
+Guess the negation wrong and you will go looking for the wrong evidence. Get it right and the remaining work is often routine, as it was here: once the statement read "*there is an $x$ such that for all $y$…*", the only question left was which $x$ to try.
+</Aside>

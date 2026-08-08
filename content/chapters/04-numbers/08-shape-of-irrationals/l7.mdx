@@ -2,7 +2,7 @@
 level: l7
 title: The shape of the irrationals
 readingTimeMin: 8
-newTerms: ["coset"]
+newTerms: []
 anchorExample: "√2 irrational"
 ---
 
@@ -51,14 +51,26 @@ Each proof is the same three steps: assume rational, apply closure to recover $a
 
 ## The structural statement
 
-$(\mathbb{R},+)$ is a group and $(\mathbb{Q},+)$ a subgroup, so $\mathbb{R}$ partitions into **cosets** $a + \mathbb{Q}$. The proposition says exactly:
+Group the reals into families: put $x$ and $y$ in the same family exactly when $x-y$ is rational. This is an equivalence relation (§7.2), so the families partition $\mathbb{R}$. One family is $\mathbb{Q}$ itself; every other is a shifted copy $a+\mathbb{Q}$. The proposition says exactly:
 
-- $\mathbb{R}\setminus\mathbb{Q}$ is the union of all cosets other than $\mathbb{Q}$ itself;
-- translation by a rational preserves each coset, hence preserves irrationality;
-- multiplication by a nonzero rational permutes the cosets, hence also preserves irrationality;
-- adding two irrationals means adding two non-identity cosets, which may well land in $\mathbb{Q}$ — nothing prevents it.
+- $\mathbb{R}\setminus\mathbb{Q}$ is everything outside the single family $\mathbb{Q}$;
+- adding a rational moves you **within** a family, hence preserves irrationality;
+- multiplying by a non-zero rational permutes the families, hence also preserves irrationality;
+- adding two irrationals combines two families neither of which is $\mathbb{Q}$ — and the result may land back in $\mathbb{Q}$, which is exactly why no theorem is available.
 
-Viewed this way, none of the results is surprising. The failures and the stabilities are both consequences of $\mathbb{Q}$ being a subgroup and a subfield, not facts about $\sqrt2$.
+Viewed this way, none of the results is surprising. The failures and the stabilities are both consequences of $\mathbb{Q}$ being a closed sub-collection and a subfield, not facts about $\sqrt2$.
+
+## Why the method stalls on sums of two irrationals
+
+The stability proofs all worked the same way: assume the result is rational, and use closure of $\mathbb{Q}$ to recover the irrational hypothesis inside $\mathbb{Q}$.
+
+Attempt the same on $\sqrt2 + \sqrt3$. Suppose it equals a rational $q$. Then $\sqrt3 = q - \sqrt2$, and the right side is a rational minus an irrational — which is irrational, by the results above, and therefore consistent with $\sqrt3$ being irrational. **Nothing is contradicted**, and the method genuinely stops.
+
+The repair is to square. From $\sqrt2+\sqrt3 = q$,
+$$q^2 = 2 + 2\sqrt6 + 3 = 5 + 2\sqrt6,$$
+so $\sqrt6 = \frac{q^2-5}{2}$, which is rational by closure. But $6$ is not a perfect square, so $\sqrt6$ is irrational by §4.7 — contradiction.
+
+Two lessons. **Squaring converted a sum of two irrationals into one**, which the stability results can then handle. And **a stalled proof is information**: the point where the argument fails identifies what extra input is needed, which here was the irrationality of $\sqrt6$ rather than any new technique.
 
 ## Size, and a non-constructive classic
 
@@ -84,5 +96,17 @@ As it happens $\sqrt2^{\sqrt2}$ *is* irrational, indeed transcendental, by the G
 </Aside>
 
 <WhereThisGoes level="l7">
-The coset picture is the first appearance of quotient structures, which organise most of algebra: $\mathbb{R}/\mathbb{Q}$ is a quotient group, and its elements are exactly the cosets above. That particular quotient is pathological — choosing one representative from each coset requires the Axiom of Choice, and the resulting **Vitali set** is not Lebesgue measurable, which is the standard proof that non-measurable sets exist. In a different direction, deciding whether specific numbers are irrational or transcendental is an active field: Gelfond–Schneider settled Hilbert's seventh problem, Baker's theorem on linear forms in logarithms extended it and won a Fields Medal, and yet whether $e+\pi$ is irrational remains open. The gap between "almost every real is transcendental" and "here is a proof that this one is" has not closed in 180 years.
+The lesson generalises past the irrationals: **the complement of a well-behaved set is usually not well-behaved**, and expecting closure to survive complementation is a mistake worth naming.
+
+**In linear algebra, the complement of a subspace is never a subspace.** It fails to contain $\mathbf{0}$, for one thing, and it is not closed under addition. So a proof about "the vectors not in $W$" has no structure to lean on, and the correct object to reach for is the orthogonal complement $W^{\perp}$ — which is a subspace, and which is *not* the set complement.
+
+Confusing the two is a real error: $W^\perp$ and $\mathbb{R}^n\setminus W$ are different sets, and only one of them supports the machinery.
+
+**In calculus, the corresponding fact is that the non-differentiable functions are not closed under anything.** The sum of two nowhere-differentiable functions can be differentiable, exactly as $\sqrt2 + (2-\sqrt2)$ is rational. And the "rational plus irrational is irrational" result has a direct analogue: **differentiable plus non-differentiable is non-differentiable**, proved the same way — assume the sum is differentiable, subtract off the differentiable part, and contradict.
+
+That proof is worth doing once. It is four lines, it uses only closure of the differentiable functions under subtraction, and it is the reason $x^2 + |x|$ is not differentiable at $0$ without any computation.
+
+**The pattern across the chapter:** identify what a set is closed under, and let that dictate the proof. Closure gives you constructions; its absence gives you counterexamples, and knowing which you are dealing with before starting saves the wasted attempt.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

@@ -1,0 +1,101 @@
+---
+level: l5
+title: Union and intersection
+readingTimeMin: 8
+newTerms: ["union", "intersection", "disjoint"]
+anchorExample: "solution sets of a system"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Two sets combine in two basic ways, and the definitions are Chapter 1 wearing set notation:
+
+$$
+S \cup T = \{\, x \mid x \in S \ \vee\ x \in T \,\}, \qquad
+S \cap T = \{\, x \mid x \in S \ \wedge\ x \in T \,\}.
+$$
+
+**Union is $\vee$ and intersection is $\wedge$.** Every fact in this module and the next three is a logic fact from Chapter 1, translated.
+
+<Figure alt="Two overlapping circles labelled S and T inside a rectangle, with the overlap shaded.">
+  <VennTwo labelS="S" labelT="T" shade={["both"]} />
+</Figure>
+
+Since the *or* of module 1.3 is inclusive, $S \cup T$ contains the overlap. An element in both sets is in the union once — and only once, because module 2.1 said repetition is not data.
+
+## Systems of equations, read as sets
+
+Your algebra course has been intersecting sets all year without saying so.
+
+The solution set of a single equation is a set-builder set (module 2.2). A **system** asks for the values satisfying *both* equations at once — and "both" is $\wedge$, which is $\cap$:
+
+$$
+\underbrace{\{(x,y) \mid y = 2x - 1\}}_{\text{a line}} \ \cap\
+\underbrace{\{(x,y) \mid y = -x + 5\}}_{\text{a line}} \ =\ \{(2, 3)\}.
+$$
+
+Solving the system computes that intersection. And the three cases you learned to distinguish are three facts about it:
+
+| System | Intersection |
+|---|---|
+| one solution | exactly one element |
+| no solution (parallel lines) | $\emptyset$ |
+| infinitely many (same line) | the whole line |
+
+Meanwhile a *factored* equation gives a union. From $(x-2)(x+3) = 0$, a product is zero when one factor is zero **or** the other is:
+$$
+\{x \mid (x-2)(x+3) = 0\} = \{x \mid x = 2\} \cup \{x \mid x = -3\} = \{2, -3\}.
+$$
+
+**Systems intersect; factoring unions.** The connective in the algebra tells you which.
+
+## Disjoint sets
+
+$S$ and $T$ are **disjoint** when $S \cap T = \emptyset$ — no element belongs to both.
+
+$$
+\{x \in \mathbb{Z} \mid x \text{ even}\} \cap \{x \in \mathbb{Z} \mid x \text{ odd}\} = \emptyset,
+$$
+
+and parallel distinct lines are disjoint as sets of points, which is one way to say what parallel means.
+
+Disjointness matters because it licenses counting by addition: if two finite sets are disjoint, the union has as many elements as the two counts added. Overlap breaks that, and Chapter 6 returns to it.
+
+## Two containments that always hold
+
+> **Proposition.** For all sets $S$ and $T$: $\ S \cap T \subseteq S \subseteq S \cup T$.
+
+<Proof>
+**$S \cap T \subseteq S$.** Let $x \in S \cap T$ be arbitrary. By definition $x \in S$ and $x \in T$; in particular $x \in S$. As $x$ was arbitrary, $S \cap T \subseteq S$.
+
+**$S \subseteq S \cup T$.** Let $x \in S$ be arbitrary. Then "$x \in S$ or $x \in T$" is true, since its first part is. So $x \in S \cup T$, and $S \subseteq S \cup T$.
+</Proof>
+
+Both halves are one line, and each is a logic rule with sets painted on: *from $p \wedge q$ conclude $p$*, and *from $p$ conclude $p \vee q$*. Chasing an arbitrary element through a definition is the whole technique of this chapter, and this is its smallest instance.
+
+**Intersection only shrinks and union only grows.** Worth remembering as a sanity check: if a manipulation ever produces an intersection larger than one of its inputs, something has gone wrong.
+
+<Warning title="Everyday or is not this or">
+"Soup or salad" means one, not both. Mathematical *or* means at least one, and both is allowed — module 1.3's point, now built into $\cup$.
+
+If you genuinely need "exactly one of the two", that set is written $(S \cup T) \setminus (S \cap T)$: in the union, but not in the overlap. It has a name, the *symmetric difference*, and the fact that it takes a formula while $\cup$ gets a symbol tells you which one mathematics needs more often.
+</Warning>
+
+<Aside>
+The dictionary between logic and sets is exact, and it is worth writing down now because Chapters 2 and 3 keep using it:
+
+| Logic | Sets |
+|---|---|
+| $\wedge$ | $\cap$ |
+| $\vee$ | $\cup$ |
+| $\neg$ | complement (module 2.5) |
+| $\Rightarrow$ | $\subseteq$ |
+
+The last row is the surprising one. $A \subseteq S$ *is* the statement $x \in A \Rightarrow x \in S$, quantified over all $x$ — so containment is implication in disguise, which is why proving a containment always feels like proving an if–then.
+
+Modules 2.7 and 2.8 exploit the table directly: they take laws proved about $\wedge$ and $\vee$ in Chapter 1 and read them off as laws about $\cap$ and $\cup$, and the proofs are the same proofs.
+</Aside>

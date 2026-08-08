@@ -1,0 +1,100 @@
+---
+level: l5
+title: A zoo of functions
+readingTimeMin: 8
+newTerms: ["floor", "totient"]
+anchorExample: "the floor function"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+
+Module 3.1's definition never mentioned formulas. A function is a rule assigning one output to each input, and "rule" is as broad as it sounds. This module collects examples that stretch the word, because a definition you have only met on $f(x) = 3x + 2$ is a definition you do not yet own.
+
+## Functions given by a procedure
+
+The **floor** function
+$$
+\lfloor \cdot \rfloor : \mathbb{R} \to \mathbb{Z}, \qquad \lfloor x \rfloor = \text{the greatest integer} \leq x
+$$
+has $\lfloor 3.7 \rfloor = 3$, $\lfloor 5 \rfloor = 5$, and $\lfloor -2.4 \rfloor = -3$.
+
+That last value is the one to check. The greatest integer not exceeding $-2.4$ is $-3$, not $-2$ — flooring moves **down**, and for negatives that means away from zero. Truncating the decimal would give $-2$, and truncation is a different function.
+
+There is no algebraic formula for $\lfloor x \rfloor$, and it is a perfectly good function: every real gets exactly one integer.
+
+## Functions with no numbers on the input side
+
+$$
+\text{pos} : \{a, b, c, \ldots, z\} \to \{1, 2, \ldots, 26\}
+$$
+sending each letter to its position in the alphabet. Domain a set of letters, codomain a set of numbers, three conditions satisfied.
+
+Nothing in Chapter 3 will require inputs to be numbers, and this is worth internalising early: the theorems about injections, compositions, and inverses apply to $\text{pos}$ exactly as they apply to $x^2$.
+
+## Functions defined by counting
+
+Euler's **totient** function
+$$
+\varphi : \mathbb{Z}_{>0} \to \mathbb{Z}_{>0}, \qquad \varphi(n) = \text{how many of } 1, \ldots, n \text{ share no factor with } n
+$$
+gives $\varphi(6) = 2$ — only $1$ and $5$ qualify, since $2, 3, 4, 6$ all share a factor with $6$.
+
+Computing $\varphi(1000)$ by hand would be slow. **Being hard to compute is not the same as being ill-defined**, and module 2.1's requirement was the second, not the first.
+
+## Why domain restrictions happen
+
+Part of the definition is that *every* element of the domain gets an output. So a domain is not a matter of taste — it is forced.
+
+**$f(x) = 1/x$.** No output at $x = 0$. The largest domain in $\mathbb{R}$ is $\mathbb{R}\setminus\{0\}$, and this is a totality repair, not a convention.
+
+**$f(x) = \sqrt{x}$.** Working in $\mathbb{R}$, negative inputs have no output. Domain $[0,\infty)$.
+
+The single-valuedness condition bites here too, and more subtly. Every positive number has *two* square roots — $\sqrt{9}$ could mean $3$ or $-3$, and a function may not return both. So the symbol $\sqrt{\ }$ is **defined** to mean the non-negative one. That is why
+$$
+\sqrt{x^2} = |x|, \qquad\text{not } x.
+$$
+
+<Warning title="This is where ± comes from">
+$x^2 = 9$ has two solutions. $\sqrt{9}$ has one value.
+
+Those are consistent, and the reason is single-valuedness. Solving an equation asks which inputs produce a given output, and there may be several. Evaluating $\sqrt{\ }$ applies a function, and a function returns one thing.
+
+So you write $x = \pm\sqrt{9}$ when solving: the $\pm$ is *you* reintroducing the second solution that the function convention discarded. Leaving it out is the most common error in Algebra I, and the reason it happens is that nobody explains the convention it is compensating for.
+</Warning>
+
+**$f(x) = 2^x$.** No restriction needed — every real has one power of two, and it is positive. But the codomain has a choice in it: $2^x$ never outputs $0$ or a negative, so $f : \mathbb{R} \to \mathbb{R}$ and $f : \mathbb{R} \to (0,\infty)$ are both legitimate and, by module 3.1, different functions.
+
+## A rule that fails to be a function
+
+<Discussion>
+  <div slot="know">A proposed rule on $\mathbb{Q}$: send the fraction $p/q$ to $p + q$.</div>
+  <div slot="want">To decide whether this defines a function $\mathbb{Q} \to \mathbb{Z}$.</div>
+  <div slot="how">Test single-valuedness. The danger is that one rational number has many names, and the rule reads the name rather than the number.</div>
+</Discussion>
+
+<Proof>
+Suppose $f(p/q) = p + q$.
+
+The rational number $\tfrac12$ can also be written $\tfrac24$. Applying the rule to each name:
+$$
+f(\tfrac12) = 1 + 2 = 3, \qquad f(\tfrac24) = 2 + 4 = 6.
+$$
+
+But $\tfrac12$ and $\tfrac24$ are the *same input*. The rule assigns it two different outputs, so single-valuedness fails and $f$ is not a function.
+</Proof>
+
+**The rule looked at the notation instead of the number.** Whenever the elements of a domain have more than one name — fractions, angles differing by a full turn, remainders — a proposed rule has to be checked for exactly this, and the check is a real obligation rather than a formality.
+
+<Aside>
+Once you stop requiring formulas, functions turn up everywhere.
+
+- Each student → their locker number.
+- Each date → the day of the week it fell on.
+- Each polynomial → its degree.
+- Each triangle → its area.
+
+All four satisfy the three conditions, and none has an algebraic expression in the Algebra I sense. The last is one your geometry course uses constantly: area is a function from the set of triangles to $(0,\infty)$, and congruent triangles having equal areas is the statement that this function respects congruence.
+</Aside>

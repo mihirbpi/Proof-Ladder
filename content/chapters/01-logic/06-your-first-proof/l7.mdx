@@ -65,7 +65,7 @@ The cost is real, though: a student reading a published proof sees a sequence of
 <Warning title="Three ways a proof goes wrong at the level of structure">
 **Assuming the conclusion.** Any proof that begins "Suppose $x^2 > 1$" is not proving $x > 1 \Rightarrow x^2 > 1$.
 
-**Reversible-step drift.** Starting from the goal and manipulating until you reach something true proves nothing unless every step is reversible *and you say so*. "$x^2 > 1 \Leftrightarrow x^2 - 1 > 0 \Leftrightarrow \ldots$" is legitimate only if each $\Leftrightarrow$ is genuinely a biconditional; students frequently write $\Leftrightarrow$ where only $\Rightarrow$ holds. Safer: run the chain forwards.
+**Reversible-step drift.** Starting from the goal and manipulating until you reach something true proves nothing unless every step is reversible *and you say so*. (The symbol $\Leftrightarrow$ below is the biconditional, §1.9.) "$x^2 > 1 \Leftrightarrow x^2 - 1 > 0 \Leftrightarrow \ldots$" is legitimate only if each $\Leftrightarrow$ is genuinely a biconditional; students frequently write $\Leftrightarrow$ where only $\Rightarrow$ holds. Safer: run the chain forwards.
 
 **Unchecked side conditions.** (O1) requires $c > 0$. A proof that multiplies an inequality by $x$ without establishing $x > 0$ has a hole, even if the conclusion happens to be true. Most incorrect proofs die here rather than at a spectacular logical error.
 </Warning>
@@ -95,5 +95,15 @@ The existential quantifier in "there exist integers $j,k$" is doing quiet work. 
 </Aside>
 
 <WhereThisGoes level="l7">
-The notion of proof used here is informal — rigorous by mathematical practice, not mechanically checkable. Making it mechanical is the subject of **proof theory**: fix a formal language, a list of axioms, and finitely many inference rules, and a proof becomes a finite object a machine can verify. That programme delivered Gödel's completeness theorem (everything semantically valid is derivable), his incompleteness theorems (any sufficiently strong consistent system leaves true statements underivable), and, in practice, proof assistants such as Lean, Coq, and Isabelle, in which substantial modern theorems have now been formalised. The gap between the paragraph you just read and its formal counterpart is roughly two orders of magnitude in length — which is a precise measure of how much a working proof leaves to the reader.
+Direct proof is the default mode of both courses ahead, and the Discussion-then-proof discipline is what makes their hardest arguments readable.
+
+**In calculus, the pattern is visible in every limit proof.** The goal is $|f(x)-L|<\varepsilon$; the scratch work manipulates that inequality backwards until a bound on $|x-a|$ appears; the written proof then declares $\delta$ and runs forwards. Textbooks print only the second half, which is why the choice of $\delta$ looks unmotivated. It is not — it is a deleted Discussion, and knowing that is the difference between copying such proofs and writing them.
+
+The same holds for convergence proofs, where the scratch work solves an inequality for $N$, and for the standard derivative rules, where the Discussion is the algebraic trick — adding and subtracting a term in the product rule, rationalising in the quotient rule — that makes the difference quotient collapse.
+
+**In linear algebra, direct proof from definitions is nearly the whole method.** To show a set is a subspace: assume $\mathbf{u},\mathbf{v}$ are in it, and derive that $\mathbf{u}+\mathbf{v}$ and $c\mathbf{u}$ are. To show a map is linear: assume nothing, compute $T(\mathbf{u}+\mathbf{v})$, and reach $T(\mathbf{u})+T(\mathbf{v})$. **Start from what you're given** is not a heuristic there; it is the only available move, because the definitions supply nothing else to work with.
+
+The judgement this module trains — which reasons are load-bearing and which are noise — is what lets you read a textbook proof at speed. The steps that need checking are few, and they are never the algebra.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

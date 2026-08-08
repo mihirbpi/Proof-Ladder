@@ -1,0 +1,123 @@
+---
+level: l5
+title: Modulus
+readingTimeMin: 8
+newTerms: ["modulus", "absolute value"]
+anchorExample: "|3 + 4i| = 5"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 5.2 removed the ordering: there is no sensible way to say one complex number is *less than* another. But you can still ask how **big** one is.
+
+> For $z = a+bi$, the **modulus** is
+> $$ |z| = \sqrt{a^2+b^2}. $$
+
+On the plane this is the distance from $z$ to the origin, by Pythagoras: the legs are $a$ and $b$, and $|z|$ is the hypotenuse.
+
+$$
+|3+4i| = \sqrt{9+16} = 5.
+$$
+
+The square root is defined because $a^2 + b^2 \geq 0$ for real $a, b$, and **$|z|$ is a real number** — which is the point. Comparing sizes is possible again, because the sizes live in $\mathbb{R}$ where $\leq$ still works.
+
+## It extends absolute value
+
+For a real number $a$, treating it as $a + 0i$ gives
+$$
+|a| = \sqrt{a^2 + 0} = \sqrt{a^2} = |a|,
+$$
+the ordinary **absolute value** of module 3.2. So the new notation agrees with the old one wherever both apply, and reusing the symbol is safe.
+
+## The link to conjugation
+
+Module 5.4 computed $z\bar z = a^2+b^2$. So
+$$
+|z|^2 = z\bar z.
+$$
+
+**This is the working form.** Proofs about moduli should almost always square first and use conjugates, rather than manipulating square roots — the algebra of $\bar z$ is easy, and the algebra of $\sqrt{\ }$ is not.
+
+## Distance between two points
+
+$$
+|z - w| \ \text{ is the distance from } z \text{ to } w.
+$$
+
+Subtracting slides $w$ to the origin and carries $z$ along with it, so the gap is unchanged. That gives a compact way to describe shapes:
+
+$$
+|z| = 1 \quad\text{is the unit circle,}
+$$
+$$
+|z - (2+i)| = 3 \quad\text{is the circle of radius } 3 \text{ centred at } 2+i,
+$$
+$$
+|z| < 1 \quad\text{is the open disk inside the unit circle.}
+$$
+
+<Figure alt="A grid with the origin marked and points at 1, i, minus 1 and minus i, all at distance one from the origin." caption="The four compass points all have modulus 1.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+Compare your geometry course, which defines a circle as the set of points at a fixed distance from a centre. **That is the same definition**, written with $|z - w|$ instead of the word *distance*.
+
+## Modulus is multiplicative
+
+> **Theorem.** For all $z, w \in \mathbb{C}$: $\ |zw| = |z|\,|w|$.
+
+<Discussion>
+  <div slot="know">$|z|^2 = z\bar z$, and conjugation passes through products (module 5.4).</div>
+  <div slot="want">The identity — and both sides are non-negative reals, so it is enough to prove the squares are equal.</div>
+  <div slot="how">Square the left side, use $|z|^2 = z\bar z$, and rearrange. Nothing but commutativity is needed once the conjugate form is in play. Squaring first is what avoids all the radicals.</div>
+</Discussion>
+
+<Proof>
+$$
+|zw|^2 = (zw)\overline{(zw)} = (zw)(\bar z\,\bar w) = (z\bar z)(w \bar w) = |z|^2|w|^2.
+$$
+
+So $|zw|^2 = \big(|z||w|\big)^2$. Both $|zw|$ and $|z||w|$ are non-negative reals, and two non-negative reals with equal squares are equal.
+
+Hence $|zw| = |z||w|$.
+</Proof>
+
+Note the last step, which is doing real work: from $x^2 = y^2$ you may conclude $x = y$ **only** when you know both are non-negative. Otherwise $x = -y$ is available.
+
+A consequence, by repeating the theorem: $|z^n| = |z|^n$.
+
+## The triangle inequality
+
+$$
+|z+w| \leq |z| + |w|.
+$$
+
+The direct route from $z$ to $z + w$ is never longer than going via $z$'s head — which is your geometry course's statement that any side of a triangle is at most the sum of the other two, with the arrow picture of module 5.5 supplying the triangle.
+
+Equality holds exactly when the two arrows point the same way, so the "triangle" is flat.
+
+<Warning title="Modulus is not an ordering">
+$|z| \leq |w|$ compares two **real numbers**, the sizes. It does not order $z$ and $w$ themselves, and module 5.2's obstruction is untouched.
+
+Two different complex numbers can have the same modulus — $3$, $-3$, $3i$ and $-3i$ all have modulus $3$ — so the modulus loses information. It tells you how far from the origin a number sits and nothing at all about which direction.
+
+Module 5.8 supplies the missing half.
+</Warning>
+
+<Aside>
+Numbers of modulus $1$ form the unit circle, and they are closed under multiplication: if $|z| = |w| = 1$ then $|zw| = 1 \cdot 1 = 1$.
+
+Multiplying by such a number therefore changes no distance from the origin. A transformation that fixes the origin and preserves all distances is, by your geometry course's classification, a **rotation**.
+
+So the numbers of modulus $1$ are exactly the rotations of the plane — and module 5.5 already showed one case of this, when multiplying by $i$ turned out to be a quarter turn. Module 5.9 makes the general statement precise.
+</Aside>

@@ -19,7 +19,7 @@ $$
 
 Geometrically the Euclidean distance from $0$ to $z$; algebraically the square root of $z\bar z$ (§5.4). The identity $|z|^2 = z\bar z$ is the working form — proofs about moduli should almost always square first and use conjugates, never manipulate radicals.
 
-## The norm axioms
+## Three properties that do all the work
 
 > **Proposition.** For all $z,w \in \mathbb{C}$:
 > (i) $|z| \geq 0$, with equality iff $z = 0$;
@@ -42,9 +42,9 @@ $$
 and taking non-negative square roots gives the result.
 </Proof>
 
-These three are the axioms of a **norm**, so $(\mathbb{C}, |\cdot|)$ is a normed space, and $d(z,w) = |z-w|$ is a metric.
+These three properties are exactly what a sensible measure of size has to satisfy, and they are the ones every later argument about $|z|$ will cite.
 
-Property (ii) is stronger than a norm requires — it says the norm is *multiplicative*, making $\mathbb{C}$ a normed field. Most normed spaces have no multiplication at all.
+Property (ii) is the unusual one. Size behaving multiplicatively is a genuine feature of $\mathbb{C}$ and not a formal consequence of the other two — a measure of size on a system with no multiplication in it could not state (ii) at all.
 
 Equality in (iii) holds iff $\operatorname{Re}(z\bar w) = |z\bar w|$, i.e. iff $z\bar w \geq 0$, i.e. iff $z$ and $w$ have the same argument — the geometric statement that the triangle degenerates.
 
@@ -52,13 +52,29 @@ Useful consequences: the reverse triangle inequality $\big||z|-|w|\big| \leq |z-
 
 ## Metric structure
 
-$\mathbb{C}$ with $d(z,w) = |z-w|$ is a complete metric space, isometric to $\mathbb{R}^2$ with the Euclidean metric. This is what makes analysis possible in the absence of an order (§5.2): convergence, continuity, compactness, and derivatives all require only a metric, not a total order.
+Setting $d(z,w) = |z-w|$ gives $\mathbb{C}$ the same notion of distance as the Euclidean plane, and that is what makes analysis possible in the absence of an order (§5.2): convergence, continuity, and derivatives all require only a way of measuring how far apart two points are, not a way of saying which is larger.
 
 $$
 z_n \to z \iff |z_n - z| \to 0 \iff \operatorname{Re}z_n \to \operatorname{Re}z \text{ and } \operatorname{Im}z_n \to \operatorname{Im}z.
 $$
 
 Completeness is inherited from $\mathbb{R}$ componentwise, and it is what makes power series — hence $e^z$, hence §5.7 — converge.
+
+## Multiplicativity, proved with the conjugate
+
+> **Theorem.** $|zw| = |z|\,|w|$.
+
+Both sides are non-negative reals, so it suffices to compare squares.
+
+$$|zw|^2 = (zw)\overline{(zw)} = zw\,\bar z\bar w = (z\bar z)(w\bar w) = |z|^2|w|^2,$$
+
+using $\overline{zw} = \bar z\bar w$ from §5.4 and commutativity. Taking non-negative square roots gives the result.
+
+**Note the strategy.** Squaring removed the square roots, and the conjugate identity $|z|^2 = z\bar z$ converted a statement about moduli into a statement about products. Expanding in components would have worked and taken three times as long — the conjugate is the right tool because it turns a size into an arithmetic expression.
+
+Geometrically the theorem says multiplication scales all distances from the origin by $|w|$, which is the definition of a dilation and half of §5.9's result.
+
+The triangle inequality $|z+w| \leq |z|+|w|$ resists the same trick, because addition does not interact with conjugation the way multiplication does. Its proof needs $\operatorname{Re}(z) \leq |z|$ and a short expansion — a reminder that additive and multiplicative properties of a norm are genuinely different in difficulty.
 
 ## Loci
 
@@ -68,7 +84,7 @@ Completeness is inherited from $\mathbb{R}$ componentwise, and it is what makes 
 | $\lvert z - w\rvert < r$ | open disc |
 | $\lvert z - p\rvert = \lvert z-q\rvert$ | perpendicular bisector of $pq$ |
 | $\lvert z-p\rvert + \lvert z-q\rvert = 2a$ | ellipse with foci $p,q$ |
-| $\lvert z \rvert = 1$ | unit circle, the group $S^1$ |
+| $\lvert z \rvert = 1$ | unit circle, the unit circle $S^1$ |
 
 <Figure alt="A grid with a dashed circle of radius 2 centred at the origin." caption="$|z| = 2$.">
   <ComplexPlane circle={2} range={4} />
@@ -89,5 +105,15 @@ so sums of two squares are closed under multiplication. Combined with Fermat's t
 </Aside>
 
 <WhereThisGoes level="l7">
-Modulus is the case $n=2$ of the Euclidean norm and the prototype for normed vector spaces, Banach spaces, and Hilbert spaces, where completeness plus a norm is exactly the setting for functional analysis. Multiplicativity, $|zw| = |z||w|$, is special: it makes $\mathbb{C}$ a normed division algebra, and Hurwitz's theorem says only $\mathbb{R}, \mathbb{C}, \mathbb{H}, \mathbb{O}$ admit such a norm. In number theory the analogous multiplicative norm on rings of algebraic integers converts factorisation questions into inequalities about integers — the standard technique for proving results about units, primes, and Diophantine equations. And in complex analysis, the modulus carries the deepest theorems of the subject: the maximum modulus principle, which says $|f|$ has no interior maximum for non-constant holomorphic $f$, and Liouville's theorem, which says a bounded entire function is constant and from which the Fundamental Theorem of Algebra follows in three lines.
+The modulus is the real-valued measure that replaces the missing order on $\mathbb{C}$, and every convergence statement ahead is phrased in it.
+
+**Complex sequences converge in modulus.** $z_n \to L$ means $|z_n - L|\to 0$ — a statement about a real sequence, which is what makes the $\varepsilon$–$\delta$ machinery available at all. Since $\mathbb{C}$ has no order (§5.2), there is no other way to say it.
+
+The triangle inequality is then the workhorse. Every proof that a sum of limits is the limit of the sum runs through $|(z_n+w_n) - (L+M)| \leq |z_n - L| + |w_n - M|$, and multiplicativity $|zw| = |z||w|$ does the corresponding job for products.
+
+**Radius of convergence is a modulus statement.** A power series $\sum a_n(z-c)^n$ converges for $|z - c| < R$ and diverges for $|z-c|>R$ — a *disc*, not an interval, and the real interval of convergence you compute in calculus is that disc intersected with the real line.
+
+That explains something otherwise mysterious. $\frac{1}{1+x^2}$ is perfectly well behaved on all of $\mathbb{R}$, yet its power series converges only for $|x|<1$. The reason is invisible on the real line and obvious in the plane: the function has poles at $\pm i$, at distance $1$ from the origin, and the disc of convergence can grow no further.
+
+**In linear algebra, the modulus generalises to the norm.** $\|\mathbf{v}\| = \sqrt{v_1^2+\cdots+v_n^2}$ is the same formula in $n$ dimensions, and the triangle inequality holds there too. Unit vectors, orthogonal projections, least-squares approximation, and the definition of distance between vectors all rest on it — and the two-dimensional case proved here is where the properties are easiest to see.
 </WhereThisGoes>

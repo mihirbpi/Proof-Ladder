@@ -39,6 +39,27 @@ The step must run from the left-hand side of $A(k+1)$ to its right-hand side. Ma
 The related failure is an unused (IH): if the step never invokes it, the argument is not an induction, and is either a direct proof or wrong.
 </Warning>
 
+## The proof
+
+> **Theorem.** For every integer $n\geq1$: $\ 1+3+5+\cdots+(2n-1) = n^2$.
+
+**Base case.** $n=1$: the left side is $1$, and $1^2 = 1$. ✓
+
+**Inductive step.** Let $k\geq1$ and assume $1+3+\cdots+(2k-1) = k^2$. The $(k+1)$-st odd number is $2(k+1)-1 = 2k+1$, so
+
+$$
+\begin{aligned}
+1+3+\cdots+(2k-1) + (2k+1) &= \underbrace{\big(1+3+\cdots+(2k-1)\big)}_{=\,k^2 \text{ by hypothesis}} + (2k+1)\\
+&= k^2+2k+1 = (k+1)^2,
+\end{aligned}
+$$
+
+which is the claim at $k+1$. By induction the formula holds for every $n\geq1$.
+
+**The step was one factorisation.** That is typical: the algebra in an inductive step is usually short, and the work lies in setting the step up so that only the algebra remains.
+
+Note also where the hypothesis entered, and that the argument ran from the left side of the $(k+1)$ claim to its right side — the two habits §6.2 insists on.
+
 ## Three proofs, three kinds of information
 
 **Induction**, above: certifies the identity, explains nothing about why it is true.
@@ -52,6 +73,26 @@ This is a **bijective proof** in the combinatorial sense: it exhibits an explici
 **Algebraic.** $\sum_{j=1}^n (2j-1) = 2\sum j - n = 2\cdot\frac{n(n+1)}{2} - n = n^2$, given the triangular-number formula.
 
 The three are not redundant. The telescoping proof generalises immediately: any identity of the form $\sum (f(j)-f(j-1)) = f(n)-f(0)$ is proved the same way, and it is the discrete analogue of the fundamental theorem of calculus. The bijective proof generalises in a different direction, to combinatorics, where "find a bijection" is the preferred form of explanation.
+
+## The geometric sum
+
+> **Proposition.** For $r \neq 1$ and $n \geq 1$: $\ 1 + r + r^2 + \cdots + r^{n-1} = \dfrac{1-r^n}{1-r}$.
+
+**Base case.** $n=1$: the left side is $1$ and the right is $\frac{1-r}{1-r}=1$. ✓
+
+**Inductive step.** Assume the formula at $k$. Then
+
+$$1+r+\cdots+r^{k-1}+r^{k} = \frac{1-r^k}{1-r} + r^k = \frac{1-r^k + r^k(1-r)}{1-r} = \frac{1-r^{k+1}}{1-r},$$
+
+which is the formula at $k+1$.
+
+**This is the most consequential of the standard sums.** Letting $n\to\infty$ with $|r|<1$ gives $r^n \to 0$ and hence
+
+$$\sum_{j=0}^{\infty} r^j = \frac{1}{1-r},$$
+
+the one infinite series whose value can be computed in closed form early in calculus — and the source, by substitution and differentiation, of the power series for $\ln(1+x)$, $\arctan x$, and $\frac{1}{(1-x)^2}$.
+
+The finite formula is what makes the limit meaningful. Without it, the infinite sum would be a symbol with no computed value.
 
 ## Power sums
 
@@ -70,5 +111,15 @@ Telescoping is the discrete fundamental theorem of calculus. Writing $\Delta f(j
 </Aside>
 
 <WhereThisGoes level="l7">
-That one theorem admits an inductive, a telescoping, and a bijective proof is characteristic rather than exceptional, and the preference for bijective arguments in combinatorics is principled: a bijection is a *reason*, an induction only a *certificate*. The distinction sharpens in modern work — the Rogers–Ramanujan identities were known analytically for decades before Garsia and Milne produced a bijection, which was regarded as a genuine advance despite proving nothing new. Meanwhile the telescoping viewpoint became a subject of its own: Gosper's algorithm decides whether a given hypergeometric sum telescopes, and the Wilf–Zeilberger method mechanically produces certificates for a vast class of binomial identities — turning the discovery of proofs like the one above into something a computer does.
+Having three proofs of one theorem is the normal situation, and choosing among them is a real skill.
+
+**Induction verifies; it rarely explains.** The proof that $\sum_{j=1}^n(2j-1) = n^2$ confirms the formula and gives no hint where $n^2$ came from. The picture — each odd number is the L-shaped border growing one square into the next — explains it, and the pairing argument explains $\sum j = \frac{n(n+1)}{2}$ in a way the induction does not.
+
+**Telescoping is the technique to know for series.** Writing $a_j = b_{j+1} - b_j$ collapses $\sum_{j=1}^n a_j$ to $b_{n+1}-b_1$, with everything between cancelling. That is how $\sum \frac{1}{j(j+1)}$ is evaluated, and it is the finite ancestor of the Fundamental Theorem of Calculus, where $\int_a^b F' = F(b)-F(a)$ is a continuous telescoping.
+
+Recognising a telescoping sum is usually faster than proving the closed form by induction, and it generalises: partial fractions exist largely to expose telescoping structure.
+
+**In calculus, these sums are the ones Riemann integration needs.** $\int_0^b x\,dx$ and $\int_0^b x^2\,dx$ computed from the definition require $\sum j$ and $\sum j^2$, and the limits of the resulting expressions give $\frac{b^2}{2}$ and $\frac{b^3}{3}$ — the antiderivative formulas, derived rather than asserted.
+
+**The habit worth keeping** is to look for an explanatory proof after finding a verifying one. The explanatory version usually generalises, and the induction usually does not.
 </WhereThisGoes>

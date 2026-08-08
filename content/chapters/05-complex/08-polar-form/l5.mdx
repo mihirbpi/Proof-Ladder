@@ -1,0 +1,83 @@
+---
+level: l5
+title: Polar form
+readingTimeMin: 5
+newTerms: ["polar form"]
+anchorExample: "distance and direction"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 5.6 ended on a complaint: the modulus tells you how far $z$ is from the origin and nothing about which direction. This module supplies the missing half.
+
+## Two numbers, a different pair
+
+So far a complex number has been located by **across and up** — the pair $(a, b)$ of module 5.5.
+
+There is a second way to reach the same point. Give its **distance from the origin** and its **direction**.
+
+$$
+z \ \longleftrightarrow\ (\underbrace{r}_{\text{how far}},\ \underbrace{\theta}_{\text{which way}})
+$$
+
+This is **polar form**. The distance $r$ is the modulus $|z|$ from module 5.6, and $\theta$ — the angle measured counterclockwise from the positive real axis — is called the **argument** of $z$.
+
+<Figure alt="A grid with four points marked at distance one from the origin: 1, i, minus 1 and minus i." caption="All four have r = 1. What distinguishes them is direction.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+Reading off that picture, with angles in degrees:
+
+| $z$ | $r$ | $\theta$ |
+|---|---|---|
+| $1$ | $1$ | $0°$ |
+| $i$ | $1$ | $90°$ |
+| $-1$ | $1$ | $180°$ |
+| $-i$ | $1$ | $270°$ |
+| $2i$ | $2$ | $90°$ |
+
+The last two rows make the point of the pair: $i$ and $2i$ share a direction and differ in distance, while $i$ and $-i$ share a distance and differ in direction. **Neither number alone locates the point.**
+
+## The angle is not quite unique
+
+<Warning title="Adding a full turn changes nothing">
+$90°$ and $450°$ describe the same direction, because $450° = 90° + 360°$ — one extra lap around.
+
+So the argument of a complex number is only determined **up to whole turns.** Every nonzero $z$ has infinitely many valid arguments, differing by multiples of $360°$.
+
+Books usually pick one, most often the value in $[0°, 360°)$ or in $(-180°, 180°]$, and call it *the* argument. That is a choice made for tidiness, and different books choose differently.
+
+And $z = 0$ has **no** argument at all: it sits at the origin, so no direction points to it. Its modulus is $0$, which is all there is to say.
+</Warning>
+
+## Converting between the two forms
+
+Going one way is Pythagoras, which you have: $r = \sqrt{a^2+b^2}$.
+
+Going the other way — recovering $a$ and $b$ from $r$ and $\theta$ — needs a tool this course has not reached. You need functions that turn an angle into the across-and-up amounts of a point on a circle, and those are the **trigonometric functions** $\cos$ and $\sin$, arriving later in your geometry course.
+
+With them the conversion is
+$$
+a = r\cos\theta, \qquad b = r\sin\theta,
+$$
+and the polar form of $z$ is written $r(\cos\theta + i\sin\theta)$.
+
+**You are not expected to use that yet.** It is recorded here so that when trigonometry arrives you can recognise what it is for: it is the dictionary between the two ways of naming a point.
+
+<Aside>
+Why bother with a second coordinate system at all? Because the two are good at different things.
+
+Addition is easy in **across-and-up** form: add the parts separately (module 5.3), and the picture is arrows joining nose to tail.
+
+Multiplication is a mess in that form — the formula $(ac-bd) + (ad+bc)i$ has four products and a stray minus sign, and nothing about it is memorable.
+
+In polar form multiplication becomes simple, and module 5.9 shows how. **Choosing the right coordinates can turn a hard operation into an easy one**, and that is a general lesson worth more than either formula.
+</Aside>

@@ -1,0 +1,102 @@
+---
+level: l5
+title: Irrational numbers and √2
+readingTimeMin: 9
+newTerms: ["irrational"]
+anchorExample: "√2 is irrational"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+A real number is **irrational** when it is not rational — when no ratio of integers equals it.
+
+You were told in 8th grade that $\sqrt2$ is irrational. Here is why, and it is the most famous proof in mathematics.
+
+## Why this is not obvious
+
+$\sqrt2 \approx 1.41421356\ldots$, and the decimal has been computed to trillions of places without repeating. That is **not** a proof: no finite amount of decimal expansion can establish that a pattern never appears.
+
+Module 4.6 makes the difficulty vivid. The rationals are dense, so there are rationals arbitrarily close to $\sqrt2$ — as close as you like, from both sides. Something can be surrounded that tightly and still not be there.
+
+## The lemma
+
+The proof needs one fact, proved back in module 1.9:
+
+> **Lemma.** For every integer $n$: if $n^2$ is even, then $n$ is even.
+
+Recall how it went. The direct approach stalls, because $n^2 = 2k$ gives no handle on $n$. So you prove the **contrapositive** (module 1.7) — the equivalent statement obtained by negating both parts and reversing them: *if $n$ is odd then $n^2$ is odd*, which unpacks usefully as $n = 2j+1$ and $n^2 = 2(2j^2+2j)+1$.
+
+**Module 1.8's advice, paying off in the module that needed it.**
+
+## The theorem
+
+> **Theorem.** $\sqrt2$ is irrational.
+
+<Discussion>
+  <div slot="know">*Irrational* is a negative claim — there is <em>no</em> such fraction — and there is nothing to compute with. Module 2.5: negative goals are where <strong>suppose not</strong> earns its place.</div>
+  <div slot="want">A contradiction from assuming $\sqrt2$ is rational.</div>
+  <div slot="how">Assume $\sqrt2 = p/q$, and assume the fraction is in <strong>lowest terms</strong> — always possible, and it is the assumption the contradiction will destroy. Square, apply the lemma twice, and both $p$ and $q$ turn out even.</div>
+</Discussion>
+
+<Proof>
+Suppose, for contradiction, that $\sqrt2$ is rational.
+
+Then $\sqrt2 = p/q$ for integers $p, q$ with $q \neq 0$, and we may take the fraction to be in lowest terms — so $p$ and $q$ have no common factor.
+
+Squaring and rearranging:
+$$
+2 = \frac{p^2}{q^2}, \qquad\text{so}\qquad p^2 = 2q^2.
+$$
+
+So $p^2$ is even. By the lemma, **$p$ is even**, say $p = 2m$ with $m \in \mathbb{Z}$.
+
+Substituting:
+$$
+(2m)^2 = 2q^2 \implies 4m^2 = 2q^2 \implies q^2 = 2m^2.
+$$
+
+So $q^2$ is even. By the lemma again, **$q$ is even**.
+
+But then $p$ and $q$ are both even, so both are divisible by $2$ — contradicting that the fraction was in lowest terms.
+
+This is impossible, so $\sqrt2$ is irrational.
+</Proof>
+
+## What made it work
+
+**The lowest-terms assumption was the target.** It was chosen not because it was needed for the algebra but because it was something a contradiction could destroy. Recognising which assumption to set up as the victim is the skill this proof teaches.
+
+**The lemma was used twice, in both directions of the argument.** A small result proved three chapters ago turns out to be the entire engine, which is why module 1.9 bothered with it.
+
+<Warning title="You must justify lowest terms">
+The step "we may take the fraction to be in lowest terms" is doing real work and deserves a reason.
+
+Any fraction can be reduced by cancelling common factors, and the process must stop, because the denominators are positive integers that strictly decrease and cannot do so forever.
+
+That last clause is not obvious — it is a genuine property of the integers, and Chapter 7 identifies it as an axiom. For now it is enough to notice that the proof relies on it, and that a system without it would break this argument.
+</Warning>
+
+## The same proof, generalised
+
+Nothing about $2$ was special except that it is prime.
+
+> **Theorem.** For every prime $p$, $\sqrt p$ is irrational.
+
+The proof is identical with $2$ replaced by $p$ throughout. The lemma becomes *if $p \mid n^2$ then $p \mid n$* — which is Euclid's lemma from module 4.3, and is exactly the statement that needed primality.
+
+**That is why the generalisation stops at primes.** Try it with $4$: the argument would need *if $4 \mid n^2$ then $4 \mid n$*, and that is false — $n = 2$ has $4 \mid 4$ and $4 \nmid 2$. And indeed $\sqrt4 = 2$ is perfectly rational.
+
+The general statement:
+
+> $\sqrt m$ is rational exactly when $m$ is a perfect square.
+
+<Aside>
+The discovery is traditionally credited to the Pythagoreans, around the 5th century BC, and it was a crisis rather than a curiosity.
+
+Their doctrine held that everything was expressible in whole-number ratios. The diagonal of a unit square has length $\sqrt2$ — a length you can *draw*, immediately, with a ruler — and this proof says no ratio describes it.
+
+So there are lengths that exist geometrically and cannot be written arithmetically. Greek mathematics responded by developing geometry, where such lengths are unproblematic, and largely setting arithmetic aside. It took roughly two thousand years and the construction of $\mathbb{R}$ to repair the split.
+</Aside>

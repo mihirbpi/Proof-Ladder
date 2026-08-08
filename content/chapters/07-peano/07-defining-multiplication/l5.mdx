@@ -1,0 +1,115 @@
+---
+level: l5
+title: Defining multiplication
+readingTimeMin: 8
+newTerms: []
+anchorExample: "a · S(b) = a + (a · b)"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Addition was built from the successor. Multiplication is built the same way, from addition.
+
+## The definition
+
+> $$ a \cdot 0 = 0 $$
+> $$ a \cdot S(b) = a + (a \cdot b) $$
+
+Compare module 7.6's definition of addition and the parallel is exact — a base case, and a rule that peels one successor off the right argument.
+
+The second rule says: **multiplying by the next number adds one more copy.** Which is what multiplication has always meant. Repeated addition, made into a definition rather than an intuition.
+
+## Watch it compute
+
+$$
+\begin{aligned}
+2 \cdot 3 = 2\cdot S(2) &= 2 + (2 \cdot 2) && \text{second rule}\\
+&= 2 + \big(2 + (2\cdot1)\big) && \text{again}\\
+&= 2 + \big(2 + (2 + (2\cdot 0))\big) && \text{again}\\
+&= 2 + (2 + (2 + 0)) && \text{first rule}\\
+&= 6.
+\end{aligned}
+$$
+
+Three copies of $2$, added — and the recursion unwound to the base case exactly as addition's did, then the additions were carried out using module 7.6's definition.
+
+Note the dependency. **Multiplication is defined using addition**, which was defined using the successor, which is undefined. Three levels, each resting on the one below:
+
+$$
+S \ \longrightarrow\ + \ \longrightarrow\ \times
+$$
+
+Take away any level and the ones above it have nothing to stand on.
+
+## The distributive law is a theorem
+
+Chapter 4 assumed $a(b+c) = ab+ac$ freely. Module 4.1 called it one of the rules defining a ring, and never justified it.
+
+Here it is provable.
+
+> **Theorem.** $a \cdot (b + c) = a\cdot b + a \cdot c$ for all $a, b, c \in \mathbb{N}$.
+
+<Discussion>
+  <div slot="know">Both definitions recurse on the right argument, so induct on $c$ — the rightmost one, and the only one both rules can act on.</div>
+  <div slot="want">The identity for every $c$.</div>
+  <div slot="how">Base case is $c = 0$, where both sides collapse via the two base rules. The step applies each definition once and then the hypothesis, and needs associativity of addition — itself a theorem from module 7.6.</div>
+</Discussion>
+
+<Proof>
+Fix $a, b \in \mathbb{N}$ and induct on $c$.
+
+**Base case.** $c = 0$:
+$$
+a(b+0) = a\cdot b, \qquad a\cdot b + a\cdot 0 = a\cdot b + 0 = a \cdot b.
+$$
+Equal ✓
+
+**Inductive step.** Assume $a(b+k) = ab + ak$. Then
+$$
+\begin{aligned}
+a\big(b + S(k)\big) &= a \cdot S(b+k) && \text{definition of } +\\
+&= a + a(b+k) && \text{definition of } \times\\
+&= a + (ab + ak) && \text{hypothesis}\\
+&= ab + (a + ak) && \text{associativity and commutativity of } +\\
+&= ab + a\cdot S(k) && \text{definition of } \times.
+\end{aligned}
+$$
+That is the claim for $S(k)$.
+
+By induction, the distributive law holds throughout $\mathbb{N}$.
+</Proof>
+
+**Every step cites a definition, the hypothesis, or an earlier theorem.** Nothing is waved through — which is the standard the whole chapter has been building toward.
+
+<Warning title="The order of proof is the reverse of the order of teaching">
+You learned multiplication as repeated addition, then met the distributive law as a rule for expanding brackets, then used it thousands of times.
+
+Here the order is inverted: the definition comes first, and the law is derived from it. And the derivation needs commutativity and associativity of **addition**, which module 7.6 flagged as theorems requiring their own inductions.
+
+So a law that took one line in Chapter 4 sits near the top of a stack of results. **Chapter 4 was right to assume it** — you cannot build a course bottom-up from axioms — but it is worth knowing the debt was real and has now been paid.
+</Warning>
+
+## What the chapter accomplished
+
+| Started with | Built |
+|---|---|
+| $0$, $S$, nine axioms | the counting numbers, exactly (7.5) |
+| $+$ defined recursively | commutativity, associativity (7.6) |
+| $\times$ defined recursively | distributivity (7.7) |
+
+Everything Chapter 4 called a rule is now a theorem. The ring properties of $\mathbb{Z}$, the field properties of $\mathbb{Q}$, and every algebraic manipulation resting on them trace back to two undefined symbols and nine assumptions.
+
+<Aside>
+It is worth asking what this was for, since nobody needs a proof that $2+2=4$.
+
+Two answers.
+
+**It shows the tower has a bottom.** Every proof in this course cited something earlier, and module 7.1 pointed out that such chains must terminate. This chapter exhibits the termination — you can now follow any argument in the course down to axioms, with no step left unjustified.
+
+**It shows the bottom is small.** Nine axioms, two undefined symbols, and four recursive lines generate the whole of arithmetic. That is a remarkable economy, and it was not obvious in advance that it could be done at all.
+
+Neither answer is about being certain that $2+2=4$. They are about knowing what that fact rests on — and, as module 7.1's Gödel aside warned, about knowing that even a foundation this careful cannot settle everything.
+</Aside>

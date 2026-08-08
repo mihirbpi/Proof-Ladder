@@ -62,9 +62,29 @@ Independence of the two hypotheses is easy to exhibit:
 | $n < 5$ | ✓ | ✗ | no |
 | $\sum(2j-1)=n^2$ | ✓ | ✓ | yes |
 
+## Writing the step so it can be checked
+
+The three obligations of the inductive step are stated the same way every time, and departing from the phrasing is what makes a proof hard to read.
+
+> **Inductive step.** Let $k \geq n_0$ and assume $A(k)$. … Therefore $A(k+1)$.
+
+**Say which $k$.** "Let $k\geq n_0$" fixes an arbitrary index; without it, the reader cannot tell whether you proved one implication or all of them.
+
+**Mark where the hypothesis enters.** A proof that never visibly uses $A(k)$ has either proved something stronger directly — fine, and not an induction — or has an error. Marking the point of use makes the difference checkable in one glance.
+
+**Run forwards.** Start from the left-hand side of $A(k+1)$, transform it, and arrive at the right-hand side. The invalid alternative is to write $A(k+1)$ as an equation, manipulate both sides, and stop when something true appears:
+
+> $1+3+\cdots+(2k+1) = (k+1)^2$ &nbsp;← *this is the goal, assumed*
+>
+> $k^2 + (2k+1) = k^2+2k+1$ ✓
+
+Every line there is true, and the argument proves nothing, because the first line assumed the conclusion. Backwards work belongs in the Discussion; the written proof runs the other way.
+
 ## Validity
 
 <Proof title="Induction from well-ordering">
+Well-ordering — every non-empty set of integers at or above the base has a smallest member — is what the argument turns on.
+
 Suppose $A(n_0)$ holds and $A(k)\Rightarrow A(k+1)$ for all $k \geq n_0$, but $S = \{n \geq n_0 : \neg A(n)\}$ is nonempty.
 
 By well-ordering, $S$ has a least element $m$. Since $A(n_0)$ holds, $m > n_0$, so $m - 1 \geq n_0$. By minimality of $m$, $m-1 \notin S$, so $A(m-1)$ holds. The step gives $A(m)$, contradicting $m \in S$.
@@ -91,5 +111,17 @@ Strong induction assumes $A(n_0),\ldots,A(k)$ rather than just $A(k)$, and is eq
 </Aside>
 
 <WhereThisGoes level="l7">
-The template generalises to any well-founded relation, and that generality is what makes it a tool of computer science rather than only of number theory. Structural induction over syntax trees proves compiler correctness and type safety; well-founded recursion is how a functional program is shown to terminate; and the two together are the basis of every proof assistant's handling of inductive types, where `Nat` is *defined* by its constructors and induction is the automatically generated elimination rule. On the logical side, Gentzen proved the consistency of Peano arithmetic using transfinite induction up to $\varepsilon_0$ — a result that both circumvents and illuminates Gödel's second incompleteness theorem, since the induction used is precisely the amount PA itself cannot justify.
+The three-step discipline is what makes an induction proof checkable, and the errors it prevents are the ones graders actually see.
+
+**Omitting the base case.** The claim $n = n+1$ has a perfect inductive step and no base case, and it is false everywhere. Any argument that establishes only the link has established nothing.
+
+**Not using the hypothesis.** If your step derives $A(k+1)$ without invoking $A(k)$, you proved the statement directly and the induction was scaffolding. That is fine — but it usually means the problem was easier than assumed, and occasionally it means an error.
+
+**Working backwards.** Starting from $A(k+1)$ and manipulating until something true appears assumes the conclusion. It is the same error §1.6 names for direct proofs, and it is more tempting here because the target is an equation.
+
+**In calculus, the base case is often the interesting one.** Proving $\frac{d^n}{dx^n}x^n = n!$ requires $n=0$ or $n=1$ to be checked directly, and the convention $0! = 1$ exists partly so the base case comes out right. When a formula involving factorials or empty products misbehaves, the base case is where to look.
+
+**Well-ordering is the property that fails elsewhere.** Induction works over $\mathbb{Z}_{\geq n_0}$ because there is a least element and a next element. Over $\mathbb{Q}$ or $\mathbb{R}$ neither holds — §4.6's density — so no induction is available, and any claim about all real numbers needs a different technique entirely.
+
+That is worth internalising before calculus, where most claims *are* about all real numbers and induction is therefore usually the wrong tool. It applies to sequences, series, and derivatives-of-order-$n$; it does not apply to statements about $x$.
 </WhereThisGoes>

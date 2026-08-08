@@ -55,14 +55,14 @@ Suppose $p \Rightarrow q$ holds, and suppose $\neg q$. If $p$ were true, then $q
 Conversely, suppose $\neg q \Rightarrow \neg p$ and suppose $p$. If $q$ failed, then $\neg p$ would follow, contradicting $p$; hence $q$. This establishes $p \Rightarrow q$.
 </Proof>
 
-Note that both halves used the law of excluded middle implicitly, in the step "if $q$ failed, …, hence $q$." The second half is where the use is essential; see the aside on constructive logic below.
+Note that both halves used the law of excluded middle (§1.3) implicitly, in the step "if $q$ failed, …, hence $q$." The second half is where the use is essential; see the aside on constructive logic below.
 
 ## The anchor example
 
 > **Proposition.** For $x \in \mathbb{R}$: $x > 1 \Rightarrow x^2 > 1$. (True, proved in §1.6.)
 
 - **Converse**: $x^2 > 1 \Rightarrow x > 1$. Take $x = -3$: hypothesis true ($9 > 1$), conclusion false. **False.**
-- **Inverse**: $x \leq 1 \Rightarrow x^2 \leq 1$. Same witness $x = -3$. **False**, necessarily, being the converse's contrapositive.
+- **Inverse**: $x \leq 1 \Rightarrow x^2 \leq 1$. Same witness — the same single refuting value — $x = -3$. **False**, necessarily, being the converse's contrapositive.
 - **Contrapositive**: $x^2 \leq 1 \Rightarrow x \leq 1$. **True**, necessarily.
 
 The single witness $x = -3$ refutes two of the four. That economy is a good diagnostic: when you produce a counterexample to a converse, check that it also refutes the inverse. If it doesn't, one of your three statements is misformed.
@@ -106,5 +106,15 @@ The three flips have a vocabulary attached that you will meet in every later cou
 The contrapositive is precisely the second reading of the same fact, which is why they are equivalent. The converse asserts the reverse pair of roles, and $p \Leftrightarrow q$ — module 1.9 — asserts both, i.e. that each condition is necessary and sufficient for the other.
 
 <WhereThisGoes level="l7">
-Contraposition looks innocuous but is one of the places classical and constructive mathematics diverge. The direction $(p \Rightarrow q) \Rightarrow (\neg q \Rightarrow \neg p)$ is constructively valid; the reverse direction is not, since recovering $q$ from $\neg \neg q$ requires double-negation elimination, equivalently excluded middle. In intuitionistic logic — the logic of Brouwer, formalised by Heyting, and the logic that proof assistants and type theory take as default — proving $\neg q \Rightarrow \neg p$ is genuinely weaker than proving $p \Rightarrow q$. This is not pedantry: in computable analysis and in constructive algebra, the difference determines whether a proof yields an algorithm. Classical mathematics accepts both directions and this course does too, but it is worth knowing which of your inference steps is doing the heavy metaphysical lifting.
+Calculus is full of theorems whose converses fail, and the failures are the interesting part.
+
+**Differentiable $\Rightarrow$ continuous.** True, and the converse is false: $f(x)=|x|$ is continuous at $0$ and not differentiable there. Weierstrass produced a function continuous everywhere and differentiable nowhere, which settles the converse decisively.
+
+**$f$ has a local extremum at an interior point $c$ $\Rightarrow$ $f'(c)=0$** (Fermat's theorem, when $f'(c)$ exists). The converse is false, and $f(x)=x^3$ at $c=0$ is the counterexample every course uses. This is exactly why a critical point requires a *test* rather than a conclusion — the converse's failure is the reason the First and Second Derivative Tests exist.
+
+**Convergent $\Rightarrow$ terms tend to zero.** The converse — the tempting one — is false, and the harmonic series is the counterexample. The contrapositive, however, is true and free: *if the terms do not tend to zero, the series diverges.* That is the $n$-th Term Test, and it is a theorem you get for nothing once you know contraposition is safe.
+
+In linear algebra the pattern repeats. *A basis $\Rightarrow$ spanning*, with a false converse; *invertible $\Rightarrow$ non-zero determinant*, with a true converse that is proved separately. The Invertible Matrix Theorem is precisely a list of statements whose converses all happen to hold — which is why it is a theorem and not a definition.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse; **basis** — a smallest set of vectors that builds all the others; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

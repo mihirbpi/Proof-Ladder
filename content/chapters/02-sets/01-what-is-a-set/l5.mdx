@@ -1,0 +1,95 @@
+---
+level: l5
+title: What is a set?
+readingTimeMin: 8
+newTerms: ["set", "element", "empty set", "well-defined"]
+anchorExample: "ℕ ⊆ ℤ ⊆ ℚ ⊆ ℝ"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+A **set** is a collection of objects, considered as one object in its own right. The objects are its **elements**, and
+$$
+x \in S \qquad\text{and}\qquad x \notin S
+$$
+say that $x$ is, or is not, an element of $S$.
+
+Everything in this chapter follows from a single principle: **a set is determined entirely by which objects belong to it.** Nothing else about it is data.
+
+## Order and repetition are not data
+
+$$
+\{a, b\} = \{b, a\} = \{a, a, b\}.
+$$
+
+All three have the same elements, so all three are the same set. Writing $a$ twice does not create a second copy; it just says $a$ belongs, twice.
+
+This trips people up because everyday collections do not behave this way. A shopping list with milk written twice means something. A set does not.
+
+The solution set of $x^2 - 5x + 6 = 0$ is $\{2, 3\}$, and it is equally correct to write $\{3, 2\}$. The solution set of $x^2 - 4x + 4 = 0$ is $\{2\}$ — one element, even though the factored form $(x-2)^2$ has the root appearing twice. **Multiplicity is a fact about the polynomial, not about the set.**
+
+## The standard sets
+
+| Symbol | Name | Contents |
+|---|---|---|
+| $\mathbb{N}$ | naturals | $0, 1, 2, 3, \ldots$ |
+| $\mathbb{Z}$ | integers | $\ldots, -2, -1, 0, 1, 2, \ldots$ |
+| $\mathbb{Q}$ | rationals | ratios $a/b$ of integers, $b \neq 0$ |
+| $\mathbb{R}$ | reals | every point on the number line |
+
+Each sits inside the next:
+$$
+\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R},
+$$
+and module 2.3 proves these rather than assuming them. Chapter 5 adds $\mathbb{C}$ on the end.
+
+Whether $0 \in \mathbb{N}$ is a matter of convention and authors differ. This course includes it. When you read another book, check.
+
+## The empty set
+
+$$
+\emptyset = \{\ \}
+$$
+
+The **empty set** has no elements. It is a perfectly ordinary set, and it appears constantly as an answer:
+
+- $\{x \in \mathbb{R} \mid x^2 = -1\} = \emptyset$.
+- $\{x \in \mathbb{R} \mid x^2 + 1 < 0\} = \emptyset$.
+- Two parallel lines meet in $\emptyset$.
+
+<Warning title="∅ is not nothing">
+$\emptyset$ is a set with no elements. It is not the absence of a set, and it is not $0$.
+
+The distinction is sharp: $\emptyset$ has no elements, while $\{\emptyset\}$ has exactly one — namely $\emptyset$. A box containing an empty box is not an empty box.
+
+A system of equations with no solution has $\emptyset$ as its solution set. It still *has* a solution set; the set is just empty. "No solutions" is an answer, not a failure to answer.
+</Warning>
+
+## Well-defined
+
+A collection counts as a set only when it is **well-defined**: for every candidate object, membership is unambiguous — either in or out, with no room for opinion.
+
+- $\{x \in \mathbb{Z} \mid x^2 < 10\}$ is well-defined. Hand me any integer and I can settle it.
+- *The collection of large numbers* is not. Is $10^6$ large? There is no fact to appeal to.
+- *The collection of interesting functions* is not, for the same reason.
+
+Note that being well-defined does **not** require that membership be easy to check, or even that anyone can currently check it. *The set of even numbers greater than $2$ that are not the sum of two primes* is perfectly well-defined — every even number is definitely in or definitely out. Nobody knows whether the set is empty, and that is a fact about our knowledge, not about the set. Module 1.1's warning, arriving again.
+
+## "Set" is left undefined on purpose
+
+Read the opening line again. *A set is a collection of objects* — and what is a collection? A set. The definition is circular, and everyone knows it.
+
+This is deliberate. Every subject has to start somewhere: your geometry course does not define *point*, *line*, or *plane*, it lists them as undefined terms and then states axioms governing how they behave. Set theory does exactly the same with *set* and $\in$.
+
+What we have written here is the **naive** approach: work with the intuitive notion, keep the well-definedness requirement, and get on with it. It is enough for everything in this course.
+
+<Aside>
+The naive approach has a genuine limit, and it was found in 1901.
+
+Consider "the set of all sets that are not elements of themselves." Ask whether it belongs to itself. If it does, then by its own definition it must not. If it does not, then by its own definition it must. Both answers are impossible.
+
+This is **Russell's paradox**, and it shows that not every describable collection is a set. The repair — the axiomatic approach — replaces "any collection you can describe" with a short list of rules for building sets from other sets, and the paradoxical collection is simply never built.
+
+You will not need those axioms here. But the well-definedness requirement above is not fussiness; it is the shadow of a real problem.
+</Aside>

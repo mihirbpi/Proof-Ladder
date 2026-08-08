@@ -37,6 +37,8 @@ $(a+bi)+(c+di) = (a+c)+(b+d)i$ is componentwise, so it is exactly vector additio
 
 So as an *additive* structure, $\mathbb{C}$ is nothing but $\mathbb{R}^2$. Everything distinctive comes from multiplication, which $\mathbb{R}^2$ does not have.
 
+That is worth stating carefully, because it is the whole reason the plane picture is useful rather than merely available. The addition facts of module 5.3 — commutativity, associativity, the additive identity, additive inverses — are all inherited from $\mathbb{R}^2$, and their proofs are componentwise and dull. Nothing about $i$ is involved in any of them. The interesting content of Chapter 5 lives entirely in the multiplicative structure, and the plane is the setting where that structure becomes visible.
+
 ## Conjugation is reflection
 
 $\bar z = a - bi$ negates the second coordinate: reflection in the real axis.
@@ -63,7 +65,7 @@ iz = i(a+bi) = ai + bi^2 = -b + ai,
 $$
 so $z$ at $(a,b)$ maps to $(-b, a)$.
 
-Rotation by $90°$ counterclockwise sends $(a,b)$ to $(-b,a)$ — check the basis vectors: $(1,0) \mapsto (0,1)$ and $(0,1)\mapsto(-1,0)$, which is exactly this map. Hence multiplication by $i$ is that rotation.
+Rotation by $90°$ counterclockwise sends $(a,b)$ to $(-b,a)$ — check the basis vectors: $(1,0)$ goes to $(0,1)$, and $(0,1)$ goes to $(-1,0)$, which is exactly this map. Hence multiplication by $i$ is that rotation.
 </Proof>
 
 <Figure alt="Four points marked at the compass positions one, i, minus one, and minus i around the origin." caption="Repeated multiplication by $i$ cycles the compass points.">
@@ -78,6 +80,8 @@ Rotation by $90°$ counterclockwise sends $(a,b)$ to $(-b,a)$ — check the basi
 So $i^2 = -1$ says: *two quarter turns equal a half turn*. The defining algebraic property of $i$ is a geometric identity, and module 5.9 shows this is the special case of a general rule — every complex multiplication rotates and scales.
 
 In matrix terms, multiplication by $i$ is $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$, the standard rotation matrix for $90°$, and its square is $-I$.
+
+Two consequences follow at once. Since four quarter turns is the identity, $i^4 = 1$ for the same reason, and therefore $i^n$ depends only on the remainder of $n$ on division by $4$ — the powers of $i$ cycle with period four, and the geometric statement and the arithmetic one are the same fact. And since a rotation preserves distance from the origin, $|iz| = |z|$ for every $z$, which module 5.6 will prove algebraically and which the picture gives for free.
 
 <Warning title="Not a function graph">
 The complex plane plots the *domain*, not a graph. Each point is one complex number.

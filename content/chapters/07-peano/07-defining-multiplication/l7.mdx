@@ -22,7 +22,7 @@ $$
 a + b = S^b(a), \qquad a\cdot b = \underbrace{a + \cdots + a}_{b}.
 $$
 
-Legitimacy comes from the recursion theorem (§7.6), hence from A9.
+Legitimacy comes from the recursive-definition principle (§7.6), hence from A9.
 
 ## Basic derivations
 
@@ -81,6 +81,26 @@ Result: $(\mathbb{N},+,\cdot,0,1)$ is a commutative **semiring** — a ring with
 Nine axioms, two recursive definitions. That is the answer to the chapter question: the earliest facts rest on stipulation, and everything above them is derived.
 </Warning>
 
+## What the course established
+
+Chapter 1 supplied the language: statements, connectives, conditionals, quantifiers, and the moves that establish each.
+
+Chapter 2 supplied sets, and showed the logic reappearing as set operations under a systematic translation.
+
+Chapter 3 supplied functions — and the vocabulary that this chapter's axioms are stated in. Axiom 8 *is* injectivity; Axiom 7 *is* emptiness of a pre-image.
+
+Chapter 4 built the number systems and the divisibility template.
+
+Chapter 5 completed them, and found plane geometry inside the algebra.
+
+Chapter 6 supplied induction, the tool for infinitely many cases at once.
+
+Chapter 7 went to the bottom and found nine assumptions.
+
+**The techniques were the same throughout.** Double inclusion in Chapter 2 is check-both-boxes from Chapter 1. Transitivity of $\subseteq$, of $\mid$, and of $\leq$ are one argument written three times. De Morgan appeared for connectives, for sets, and for quantifiers.
+
+There are not many techniques. There are many places to use them, and recognising a familiar shape in unfamiliar notation is most of what fluency consists of.
+
 ## Where the tower stops
 
 Iterating once more gives exponentiation, $a^0 = 1$, $a^{S(b)} = a\cdot a^b$, and the **hyperoperation** hierarchy continues: tetration, pentation, and so on. Growth is explosive — the diagonal function $A(n) = n \uparrow^n n$ is Ackermann's function, computable but not primitive recursive, and PA cannot prove it total without induction beyond a certain complexity.
@@ -94,9 +114,17 @@ Multiplication is what makes arithmetic strong enough to be incomplete. §7.7 is
 </Aside>
 
 <WhereThisGoes level="l7">
-This is where the course closes, and the closing observation is that everything in Chapters 1–6 concerning $\mathbb{N}$ now rests on nine axioms and two recursive definitions. Logic supplied the language, sets the objects, functions the maps, numbers the examples, induction the method — and Chapter 7 supplied the ground.
+This is where the course closes, and the closing observation is that everything in Chapters 1–6 concerning $\mathbb{N}$ now rests on nine axioms.
 
-The ground is not bedrock. Gödel's theorems say PA cannot prove its own consistency, and Gentzen's proof of that consistency uses transfinite induction to $\varepsilon_0$ — an ordinal PA cannot reach. So the foundation is secure relative to stronger assumptions, and the strength required is measured exactly. This is what mathematics learned to accept in place of the certainty Hilbert hoped for, and it is a better outcome than it sounds: not a failure to find bedrock, but a precise map of what rests on what.
+**The tower, in order.** Successor is undefined and constrained by axioms. Addition is defined recursively from it. Multiplication is defined recursively from addition. $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are each built from the previous system to repair a specific closure failure. Nothing is assumed twice, and nothing circles.
 
-From here the paths diverge. Model theory studies the structures satisfying these axioms; proof theory studies the derivations; computability theory studies which functions they can define; and set theory rebuilds all of it inside a larger universe. Each begins where Chapter 7 stops — which is the same place Math 0 stops, and the same place real mathematics begins.
+**Every arithmetic law is a theorem.** Commutativity, associativity, and distributivity — the ring axioms of §4.1, used freely there — are proved here by induction. What one chapter assumes, another establishes, and the direction of that dependency is worth tracing once.
+
+**In calculus, the same tower is what the derivative rules rest on.** Linearity of differentiation is distributivity applied to the limit definition; the product rule is a statement about how differentiation interacts with the ring multiplication; and the fact that $(fg)' \neq f'g'$ is the observation that differentiation is *not* multiplicative. Each is provable, and each depends on the arithmetic being what this chapter says it is.
+
+**In linear algebra, the axiomatic style is the whole method.** Eight axioms define a vector space; every theorem is derived from them; and the theorems apply simultaneously to $\mathbb{R}^n$, to polynomials, to matrices, and to solution spaces of differential equations. That is the same return on abstraction this chapter demonstrates, at a different scale.
+
+**And the exponentiation pattern continues.** $x^0 := 1$, $x^{S(y)} := x^y\cdot x$ — repeated multiplication, defined from multiplication exactly as multiplication was defined from addition. The sequence does not stop, and the operations grow fast enough that the fifth one on small inputs already exceeds any quantity in the physical universe.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

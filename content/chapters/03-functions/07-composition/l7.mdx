@@ -32,7 +32,7 @@ so parentheses may be dropped.
 
 **Non-commutativity.** $f(x)=x+1$, $g(x)=2x$ on $\mathbb{R}$ give $g\circ f = 2x+2$ and $f \circ g = 2x+1$. Often only one composite is even defined.
 
-These three facts are exactly the axioms of a **category**: objects (sets), arrows (functions), an associative composition, and identities. Everything proved below is a categorical statement, and that is why it recurs verbatim for groups, spaces, and modules.
+These three facts are exactly the axioms of a **category**: objects (sets), arrows (functions), an associative composition, and identities. Everything proved below uses only those three ingredients, and that is why it recurs verbatim for groups, spaces, and modules.
 
 ## Preservation theorems
 
@@ -83,12 +83,33 @@ $$
 $s \in (g\circ f)^{-1}(U) \iff g(f(s)) \in U \iff f(s) \in g^{-1}(U) \iff s \in f^{-1}(g^{-1}(U))$, each step being the pivot equivalence of §3.3.
 </Proof>
 
-Note the reversal of order: the pre-image operator is contravariant (§3.4). This one line is why continuity is closed under composition — if $g^{-1}$ and $f^{-1}$ both carry open sets to open sets, so does $(g\circ f)^{-1}$ — and the same argument gives closure of measurability, of smoothness, and of homomorphism properties under composition.
+Note the reversal of order: the pre-image operator is contravariant (§3.4). This one line is why continuity is closed under composition — if $g^{-1}$ and $f^{-1}$ both carry open sets to open sets, so does $(g\circ f)^{-1}$ — and the same argument gives closure of measurability, of smoothness, and of structure-preserving properties under composition.
 
 <Aside>
-The bijections from a set $X$ to itself form a group under composition: associativity is proved above, the identity is $\mathrm{id}_X$, and inverses come from §3.9. This is the **symmetric group** $S_X$, and Cayley's theorem says every group embeds in one — so the study of groups is, up to isomorphism, the study of sets of bijections closed under composition.
+The bijections from a set $X$ to itself are closed under composition, contain the identity, and contain the inverse of each of their members — the three properties this module proved. A collection of transformations with those three properties is the basic object of abstract algebra, and the bijections of a set are the model case.
 </Aside>
 
 <WhereThisGoes level="l7">
-Composition is the operation that makes mathematics structural rather than object-by-object. Once you have associativity and identities you have a category, and the definitions that follow — functor, natural transformation, adjunction, limit — are stated purely in terms of composition, never in terms of elements. That is what lets a single theorem apply simultaneously to sets and functions, groups and homomorphisms, spaces and continuous maps, and chain complexes and chain maps. Closer to hand, composition is the chain rule's home ($(g\circ f)' = (g'\circ f)\cdot f'$), the reason matrix multiplication is defined as it is (it is composition of linear maps in coordinates, and its non-commutativity is the non-commutativity proved above), and the mechanism behind dynamical systems, where iterating $f \circ f \circ \cdots \circ f$ is the entire subject.
+Composition is the operation the next two courses are organised around.
+
+**The chain rule is a theorem about composition.**
+$$(g\circ f)'(x) = g'\big(f(x)\big)\cdot f'(x).$$
+
+Note where each function is evaluated — $g'$ at $f(x)$, not at $x$ — and note that this is forced by the definition of composition, not a convention. Most chain-rule errors are misreadings of which function acts first, which is the same right-to-left confusion this module flags.
+
+Composition also structures the integration techniques: $u$-substitution is the chain rule run backwards, and recognising an integrand as $g'(f(x))f'(x)$ is recognising a composition.
+
+**Matrix multiplication is composition.** This is the fact that explains everything odd about it:
+
+- $AB$ is defined only when the dimensions match, because $g\circ f$ requires $\operatorname{codom} f = \operatorname{dom} g$.
+- $AB \neq BA$ in general, because composition is not commutative — and the counterexample in this module is the same phenomenon.
+- $(AB)C = A(BC)$, because composition is associative, proved above in four lines.
+- $AI = IA = A$, because the identity is a unit for composition.
+- $(AB)^{-1} = B^{-1}A^{-1}$, reversing the order, because inverses of compositions reverse.
+
+**Every one of those facts is a property of composition rather than of matrices**, and the proof you read above is the proof — the matrix version is the same argument in coordinates. That is a substantial saving, and it is the argument for meeting composition abstractly first.
+
+**And the two preservation theorems get used.** A composition of injective linear maps is injective, so a product of matrices with trivial null spaces has trivial null space; a composition of surjections is surjective, so a product of onto maps is onto. Both are corollaries of what this module proved, with no new work.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **null space** — the vectors a matrix sends to zero.*
 </WhereThisGoes>

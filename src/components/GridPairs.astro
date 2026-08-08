@@ -1,0 +1,96 @@
+---
+// A product set drawn as a grid of ordered pairs (§2.9).
+//
+// rows / cols     the two factor sets, as label arrays. rows is the FIRST
+//                 coordinate, cols the second, so cell (r, c) is (rows[r], cols[c]).
+// highlight       [[r, c], …] cells to pick out — e.g. a subset, or one pair
+//                 being discussed.
+// showPairs       print "(a, 1)" in each cell. With long labels, set false and
+//                 let the row/column headers carry it.
+// labelRows / labelCols   names of the two sets, printed on the axes.
+export interface Props {
+  rows?: string[];
+  cols?: string[];
+  highlight?: [number, number][];
+  showPairs?: boolean;
+  labelRows?: string | null;
+  labelCols?: string | null;
+}
+const {
+  rows = ['a', 'b'],
+  cols = ['1', '2', '3'],
+  highlight = [],
+  showPairs = true,
+  labelRows = 'S',
+  labelCols = 'T',
+} = Astro.props;
+
+// Size from the labels rather than assuming short ones: a right-anchored row
+// header runs leftwards from the grid edge, so a long label needs a wider
+// gutter or it falls off the viewBox. ~6.6px per character at 12px monospace.
+const CHW = 6.6;
+const widest = (xs: string[]) => xs.reduce((n, s) => Math.max(n, s.length), 0);
+const pairW = (r: string, c: string) => `(${r}, ${c})`.length * CHW + 14;
+
+const CW = Math.max(
+  showPairs ? 76 : 52,
+  widest(cols) * CHW + 16,
+  showPairs ? Math.max(...rows.flatMap((r) => cols.map((c) => pairW(r, c)))) : 0,
+);
+const CH = 40;
+const LEFT = Math.max(52, widest(rows) * CHW + 20);
+const TOP = 46;
+const W = LEFT + cols.length * CW + 16;
+const H = TOP + rows.length * CH + 20;
+
+const isHot = (r: number, c: number) => highlight.some(([hr, hc]) => hr === r && hc === c);
+
+const alt = `A grid showing the product set ${labelRows ?? 'the first set'} × ${labelCols ?? 'the second set'}: `
+  + `${rows.length} rows labelled ${rows.join(', ')} and ${cols.length} columns labelled ${cols.join(', ')}, `
+  + `giving ${rows.length * cols.length} ordered pairs, one per cell.`
+  + (highlight.length ? ` Highlighted: ${highlight.map(([r, c]) => `(${rows[r]}, ${cols[c]})`).join(', ')}.` : '');
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="grid-pairs"
+     role="img" aria-label={alt}>
+  <style>
+    .grid-pairs .cell { fill: var(--color-card, #F8F9F5); stroke: var(--color-rule, #C6CBC0); stroke-width: 1; }
+    .grid-pairs .cell-hot { fill: color-mix(in oklab, var(--color-signal, #3F6DB5) 18%, var(--color-card, #F8F9F5)); stroke: var(--color-signal, #3F6DB5); stroke-width: 1.6; }
+    .grid-pairs .pair { font-family: var(--font-mono, monospace); font-size: 12px; fill: var(--color-ink, #14182B); }
+    .grid-pairs .hdr { font-family: var(--font-mono, monospace); font-size: 12px; fill: var(--color-ink, #14182B); }
+    .grid-pairs .axis { font-family: var(--font-mono, monospace); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; fill: color-mix(in oklab, var(--color-ink, #14182B) 60%, transparent); }
+  </style>
+
+  {labelCols && <text x={LEFT + (cols.length * CW) / 2} y="16" class="axis" text-anchor="middle">{labelCols}</text>}
+  {labelRows && (
+    <text x="14" y={TOP + (rows.length * CH) / 2} class="axis" text-anchor="middle"
+          transform={`rotate(-90 14 ${TOP + (rows.length * CH) / 2})`}>{labelRows}</text>
+  )}
+
+  {cols.map((c, ci) => (
+    <text x={LEFT + ci * CW + CW / 2} y={TOP - 10} class="hdr" text-anchor="middle">{c}</text>
+  ))}
+  {rows.map((r, ri) => (
+    <text x={LEFT - 10} y={TOP + ri * CH + CH / 2 + 4} class="hdr" text-anchor="end">{r}</text>
+  ))}
+
+  {rows.map((r, ri) =>
+    cols.map((c, ci) => (
+      <g>
+        <rect x={LEFT + ci * CW} y={TOP + ri * CH} width={CW} height={CH}
+              class={isHot(ri, ci) ? 'cell cell-hot' : 'cell'} />
+        {showPairs && (
+          <text x={LEFT + ci * CW + CW / 2} y={TOP + ri * CH + CH / 2 + 4}
+                class="pair" text-anchor="middle">({r}, {c})</text>
+        )}
+        {!showPairs && isHot(ri, ci) && (
+          <circle cx={LEFT + ci * CW + CW / 2} cy={TOP + ri * CH + CH / 2} r="5"
+                  fill="var(--color-signal, #3F6DB5)" />
+        )}
+      </g>
+    ))
+  )}
+</svg>
+
+<style>
+  .grid-pairs { width: 100%; height: auto; max-width: 520px; display: block; margin: 0 auto; }
+</style>

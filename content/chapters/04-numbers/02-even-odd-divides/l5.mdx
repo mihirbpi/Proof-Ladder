@@ -1,0 +1,117 @@
+---
+level: l5
+title: Even, odd, and divides
+readingTimeMin: 8
+newTerms: ["even", "odd", "divides"]
+anchorExample: "m | n means ∃k ∈ ℤ, n = mk"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+You have used *even* and *odd* since primary school. Here are the definitions that let you prove things with them.
+
+> $n \in \mathbb{Z}$ is **even** when $\exists k \in \mathbb{Z},\ n = 2k$.
+>
+> $n \in \mathbb{Z}$ is **odd** when $\exists k \in \mathbb{Z},\ n = 2k+1$.
+
+Both are **existence statements**, and that single observation determines how every proof in this chapter goes.
+
+## Why the definition is existential
+
+Read the definition of *even* again. It does not say what $n$ looks like; it says a certain integer **exists**. So:
+
+- To **use** "$n$ is even" as a hypothesis: unpack it. Write $n = 2k$ for some $k \in \mathbb{Z}$, and give the $k$ a name immediately.
+- To **prove** "$n$ is even" as a goal: produce the $k$. Manipulate until you have $2 \cdot (\text{something})$, then say what that something is and why it is an integer.
+
+Module 1.12 called the second move *exhibiting a witness*. Here the witness is a number, and the whole content of a divisibility proof is finding it.
+
+<Warning title="k must be an integer, and it must be a new letter">
+Two requirements, and both get dropped.
+
+**An integer.** Every real number is $2k$ for some real $k$ — take $k = n/2$. The definition means nothing unless $k \in \mathbb{Z}$, so the phrase "for some integer $k$" is not padding.
+
+**A new letter.** If a proof already uses $k$ for something else, the witness needs a different name. Writing $n = 2n$ or reusing a letter already in play produces a false claim, and it is the single most common error in Chapter 6.
+</Warning>
+
+## Divisibility
+
+The same shape, generalised from $2$ to any integer.
+
+> For $m, n \in \mathbb{Z}$, **$m$ divides $n$** — written $m \mid n$ — when $\exists k \in \mathbb{Z},\ n = mk$.
+
+So *even* is exactly $2 \mid n$.
+
+Other readings of the same symbol: $m$ is a **factor** of $n$; $n$ is a **multiple** of $m$; $n$ is **divisible** by $m$.
+
+<Warning title="m | n is a statement; n/m is a number">
+$$
+m \mid n \quad\text{is true or false.} \qquad \frac{n}{m} \quad\text{is a number.}
+$$
+
+They are different kinds of object and the vertical bar is not a division sign. $3 \mid 12$ is a true statement; $12/3$ is $4$. Writing "$3 \mid 12 = 4$" is meaningless.
+
+Note also the order. $m \mid n$ means $m$ is the *smaller* one, the divisor. Getting it backwards is easy, and $2 \mid 6$ (true) versus $6 \mid 2$ (false) is worth saying to yourself once.
+</Warning>
+
+When $m$ does not divide $n$ we write $m \nmid n$. So $3 \nmid 7$, and unpacking what that *means* is module 4.4's subject.
+
+## Two quick consequences
+
+$$
+m \mid 0 \ \text{ for every } m, \qquad\text{since } 0 = m \cdot 0.
+$$
+
+That surprises people. $0$ is divisible by everything, because the witness $k = 0$ always works. In particular $0$ is even.
+
+$$
+1 \mid n \ \text{ for every } n, \qquad\text{since } n = 1 \cdot n.
+$$
+
+Neither is a special rule; both are the definition with an obvious witness.
+
+## A first proof
+
+> **Proposition.** If $m$ is even and $n$ is any integer, then $mn$ is even.
+
+<Discussion>
+  <div slot="know">$m$ even unpacks to $m = 2k$ for some $k \in \mathbb{Z}$. Nothing is known about $n$ beyond being an integer.</div>
+  <div slot="want">An integer $j$ with $mn = 2j$.</div>
+  <div slot="how">Substitute and regroup so a factor of $2$ is visible. Then name what is left and cite closure (module 4.1) to confirm it is an integer.</div>
+</Discussion>
+
+<Proof>
+Suppose $m$ is even, so $m = 2k$ for some $k \in \mathbb{Z}$. Let $n \in \mathbb{Z}$ be arbitrary. Then
+$$
+mn = (2k)n = 2(kn).
+$$
+Since $\mathbb{Z}$ is closed under multiplication, $kn \in \mathbb{Z}$.
+
+So $mn = 2j$ with $j = kn \in \mathbb{Z}$, and $mn$ is even.
+</Proof>
+
+**Four steps, and they never change:** unpack the hypothesis with a named integer, compute, factor out the divisor, cite closure for what is left. Module 4.3 makes this a template and runs it on harder statements.
+
+The step people omit is the last. Saying $mn = 2(kn)$ does not finish the proof — the definition demanded an *integer* witness, so you owe the reader the sentence that says $kn$ is one.
+
+## Restating an old result
+
+Module 1.9 proved: *if $mn$ is odd then $m$ and $n$ are both odd.* In the notation of this module its contrapositive reads
+$$
+2 \mid m \ \vee\ 2 \mid n \implies 2 \mid mn,
+$$
+and the proposition just proved is one half of it.
+
+Nothing new was learned; the same fact is now written in symbols that generalise. Replace $2$ by any integer and you can *ask* whether the statement still holds — a question the notation makes visible and the words did not. Module 4.3 answers it, and the answer is interesting.
+
+<Aside>
+Divisibility behaves like an ordering, and comparing it to $\leq$ is a good way to keep its properties straight.
+
+**Reflexive.** $m \mid m$ always, with witness $k = 1$.
+
+**Transitive.** If $a \mid b$ and $b \mid c$ then $a \mid c$ — the same shape as module 2.3's transitivity of $\subseteq$, and provable in three lines by unpacking both hypotheses and multiplying the witnesses.
+
+**Not total.** $4 \nmid 6$ and $6 \nmid 4$. Two numbers can be unrelated, exactly as two sets can be incomparable under $\subseteq$ — and unlike two real numbers under $\leq$, which always compare.
+</Aside>

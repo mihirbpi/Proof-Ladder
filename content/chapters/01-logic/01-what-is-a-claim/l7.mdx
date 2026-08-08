@@ -7,6 +7,7 @@ anchorExample: "the cat has four legs"
 ---
 
 import Aside from '@/components/Aside.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
 import Warning from '@/components/Warning.astro';
 
 Mathematics is, at its core, the systematic assignment of truth values to statements. Before any of the machinery of proof is worth writing down, we need to be precise about what counts as a "statement" — because a great deal of the discipline consists of not letting the wrong thing sneak into that category.
@@ -21,7 +22,7 @@ Examples:
 - $\sqrt{2}$ is irrational. (T, proved in §4.7 by contradiction.)
 - $\pi$ is a root of the polynomial $x^2 - 3$. (F.)
 - Every even integer greater than $2$ is the sum of two primes. (unknown to us; T or F in the mathematical universe.)
-- $\mathbb{R}$ has the same cardinality as $\mathbb{N}$. (F, by Cantor's diagonal argument, §3.8.)
+- The real numbers can be listed in a sequence, one after another. (F, by Cantor's diagonal argument, §3.8.)
 
 Non-statements:
 
@@ -35,6 +36,27 @@ Non-statements:
 The sentence $p(x)$ = "$x^2 \geq 0$" has a free variable and, as written, no fixed truth value. Such sentences are called **open statements** or *predicates*. They become bona fide statements once every variable is either instantiated ($p(3)$ is T) or quantified ($\forall x \in \mathbb{R}, p(x)$ is T).
 
 Everything in Chapter 1 will assume statements are closed unless they explicitly involve $\forall$ or $\exists$.
+
+The distinction is not bookkeeping. Almost every identity you have used in precalculus is an open statement with a suppressed universal quantifier, and the suppression hides a genuine difference:
+
+$$\sin^2\theta + \cos^2\theta = 1 \qquad\text{(true for every } \theta)$$
+$$\sin\theta = \tfrac12 \qquad\text{(true for some } \theta)$$
+
+Both look like equations. The first is an **identity** — a universally quantified statement, and a theorem. The second is an **equation to be solved** — an open statement whose solution set you are asked to compute, and which is neither true nor false until $\theta$ is fixed or quantified.
+
+Your algebra course has been quietly teaching you to read the quantifier off the context. Making it explicit is what allows the two to be treated differently: an identity is proved, an equation is solved, and the difference is exactly which quantifier is in front.
+
+<Warning title="An expression is not a statement">
+$x + 1$, $\displaystyle\lim_{x\to0}\frac{\sin x}{x}$, $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$, and $\det A$ are all **expressions**. Each denotes a number (when it denotes anything at all); none asserts anything, and none has a truth value.
+
+The corresponding statements attach a verb:
+
+$$\lim_{x\to0}\frac{\sin x}{x} = 1, \qquad \sum_{n=1}^{\infty}\frac{1}{n^2} = \frac{\pi^2}{6}, \qquad \det A \neq 0.$$
+
+The distinction matters more than it sounds. A line of a proof consisting of an expression has asserted nothing, and cannot be justified by anything or used to justify anything. When a written argument feels stuck, checking that every line is a sentence is worth doing first.
+
+Note also that $\sum_{n=1}^\infty a_n$ presupposes convergence — the expression may fail to denote, exactly as "the largest prime" does. Statements about it are therefore doing two jobs at once, and Chapter 6 separates them.
+</Warning>
 
 ## Conjectures
 
@@ -60,3 +82,17 @@ Statements about infinitely many cases can't in general be checked by example. A
 - Every axiom is a statement whose truth value is assigned by fiat (Chapter 7).
 
 Every other object in the course — negations, conjunctions, quantifiers, proofs, functions, sets — is a tool for constructing more statements out of existing ones, or for establishing their truth values. Fixing the definition here is the necessary first step.
+
+<WhereThisGoes level="l7">
+The discipline of asking *is this a statement, and what exactly does it assert* is the one that makes the definitions in calculus survivable.
+
+$$\lim_{x\to a}f(x) = L$$
+
+looks like an equation between two numbers. It is not — it is an abbreviation for a three-quantifier statement (module 1.10), and the left side may denote nothing at all. Reading it as an equation is what makes limit laws feel like arithmetic and then fail: $\lim(f\cdot g) = \lim f\cdot\lim g$ holds **only when both limits exist**, a hypothesis invisible in the notation.
+
+The same applies to $\sum_{n=1}^\infty a_n$. Manipulating a divergent series as though the symbol denoted a number produces the classic absurdities — the alternating series $1-1+1-1+\cdots$ can be "shown" to equal $0$, $1$, and $\frac12$ by three equally plausible regroupings. What fails is not the algebra but the presupposition that the expression denotes.
+
+**In linear algebra**, the corresponding care is about what a symbol denotes: $A\mathbf{x}=\mathbf{b}$ is a statement about a specific $\mathbf{x}$, an open statement about an unknown one, and a universally quantified claim in *"$A$ is invertible iff $A\mathbf{x}=\mathbf{b}$ has a unique solution for every $\mathbf{b}$."* Three readings of one string of symbols, distinguished only by the quantifier in front — and getting the wrong one is how the Invertible Matrix Theorem becomes unmemorable.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse.*
+</WhereThisGoes>

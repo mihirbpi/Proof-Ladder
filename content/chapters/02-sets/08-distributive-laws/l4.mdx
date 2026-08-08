@@ -39,17 +39,13 @@ each verifiable by an eight-row truth table.
 <Proof>
 **($\subseteq$)** Let $x \in S \cap (T \cup R)$ be arbitrary. Then $x \in S$, and $x \in T$ or $x \in R$. Split on that disjunction.
 
-*Case 1: $x \in T$.* With $x \in S$, we get $x \in S \cap T \subseteq (S\cap T) \cup (S \cap R)$.
+*Case 1: $x \in T$.* With $x \in S$, $x \in S \cap T$.
 
-*Case 2: $x \in R$.* With $x \in S$, we get $x \in S \cap R \subseteq (S\cap T) \cup (S \cap R)$.
+*Case 2: $x \in R$.* With $x \in S$, $x \in S \cap R$.
 
-The cases are exhaustive, so $x \in (S \cap T) \cup (S \cap R)$.
+Either way $x \in (S \cap T) \cup (S \cap R)$, and the cases are exhaustive.
 
-**($\supseteq$)** Let $x \in (S \cap T) \cup (S \cap R)$ be arbitrary, and split on the outer disjunction.
-
-*Case 1: $x \in S \cap T$.* Then $x \in S$ and $x \in T$; the latter gives $x \in T \cup R$. Hence $x \in S \cap (T \cup R)$.
-
-*Case 2: $x \in S \cap R$.* Then $x \in S$ and $x \in R$, so $x \in T \cup R$, and again $x \in S \cap (T \cup R)$.
+**($\supseteq$)** Let $x \in (S \cap T) \cup (S \cap R)$ be arbitrary, and split on the outer disjunction. In *Case 1*, $x \in S \cap T$, so $x\in S$ and $x \in T \subseteq T \cup R$. In *Case 2*, $x \in S \cap R$, so $x \in S$ and $x \in R \subseteq T\cup R$. Both give $x \in S \cap (T \cup R)$.
 
 Both inclusions hold, so (D1) is proved.
 </Proof>
@@ -59,11 +55,7 @@ Both inclusions hold, so (D1) is proved.
 The reverse inclusion here contains the one genuinely interesting step in the module.
 
 <Proof>
-**($\subseteq$)** Let $x \in S \cup (T \cap R)$; split.
-
-*Case 1: $x \in S$.* Then $x \in S \cup T$ and $x \in S \cup R$, so $x \in (S \cup T) \cap (S \cup R)$.
-
-*Case 2: $x \in T \cap R$.* Then $x \in T$, giving $x \in S \cup T$; and $x \in R$, giving $x \in S \cup R$. Again $x$ lies in the intersection.
+**($\subseteq$)** Let $x \in S \cup (T \cap R)$; split. If $x \in S$, then $x$ lies in both $S \cup T$ and $S \cup R$. If $x \in T \cap R$, then $x \in T$ puts it in $S \cup T$ and $x \in R$ puts it in $S \cup R$. Either way $x \in (S \cup T) \cap (S \cup R)$.
 
 **($\supseteq$)** Let $x \in (S \cup T) \cap (S \cup R)$, so $x \in S \cup T$ **and** $x \in S \cup R$. We must show $x \in S$ or $x \in T \cap R$. Split on whether $x \in S$.
 
@@ -74,11 +66,13 @@ The reverse inclusion here contains the one genuinely interesting step in the mo
 Both inclusions hold, so (D2) is proved.
 </Proof>
 
-The move in Case 2 — *from $p \vee q$ and $\neg p$, conclude $q$* — is called **disjunctive syllogism**, and it is the standard way to extract value from a union hypothesis when one side can be ruled out. Note also the shape of the case split itself: it was on $x \in S$ versus $x \notin S$, a split licensed by $p \vee \neg p$ rather than by anything in the hypothesis. That is always available, and it is often the right move when nothing else presents itself.
+The move in Case 2 — *from $p \vee q$ and $\neg p$, conclude $q$* — is the standard way to get value out of a union hypothesis when one side can be ruled out.
+
+Note the split itself: $x \in S$ versus $x \notin S$, licensed by $p \vee \neg p$ rather than by anything in the hypothesis. That split is always available, and it is often the right move when nothing else presents itself.
 
 ## The two laws are duals
 
-Swapping $\cap \leftrightarrow \cup$ turns (D1) into (D2). Module 2.7 explains why this is not a coincidence: complementation is an involution exchanging $\cap$ and $\cup$, so complementing both sides of (D1) and applying De Morgan yields (D2). Concretely:
+Swapping $\cap \leftrightarrow \cup$ turns (D1) into (D2), and module 2.7 explains why that is no coincidence: complementing exchanges $\cap$ and $\cup$, so complementing both sides of (D1) and applying De Morgan yields (D2). Concretely:
 $$
 \overline{S \cap (T \cup R)} = \overline S \cup \overline{(T \cup R)} = \overline S \cup (\overline T \cap \overline R),
 $$
@@ -91,9 +85,11 @@ $\cap$ behaves like $\times$ and $\cup$ like $+$ in (D1), and that analogy will 
 - (D2) holds for sets but not for numbers;
 - there is no subtraction: $S \cup T = S \cup R$ does not imply $T = R$.
 
-Verify set identities by element chasing, not by analogy.
+Verify set identities by element chasing (§2.3), not by analogy.
 </Warning>
 
 <Aside>
-Together with commutativity, associativity, absorption, De Morgan, and the complement laws, these make $(\mathcal{P}(X), \cup, \cap, \overline{\phantom{x}}, \emptyset, X)$ a **Boolean algebra**. The distributive laws are the ones that fail in the nearest interesting non-example: the subspaces of a vector space form a lattice under $+$ and $\cap$ that is **not** distributive — take three distinct lines through the origin in $\mathbb{R}^2$ and check (D1) yourself. That failure is the algebraic reason quantum logic is not classical logic.
+Commutativity, associativity, De Morgan, the complement laws, and these two — that list is complete. Every true identity about $\cup$, $\cap$ and complement follows from it, which is why element chasing always works and why you never need a new trick.
+
+The distributive laws are the fragile ones. Systems that satisfy every other law on the list but fail (D1) do exist, and they are studied precisely because that one failure changes everything downstream.
 </Aside>

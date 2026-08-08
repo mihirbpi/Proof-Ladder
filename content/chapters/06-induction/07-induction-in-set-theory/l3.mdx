@@ -18,10 +18,10 @@ Chapter 2 gave you sets and subsets. This module counts them, and the count is a
 Take $S = \{a, b\}$. What are its subsets?
 
 $$
-\emptyset, \quad \{a\}, \quad \{b\}, \quad \{a,b\}.
+\{\,\}, \quad \{a\}, \quad \{b\}, \quad \{a,b\}.
 $$
 
-Four. Note that $\emptyset$ counts (module 2.3 proved $\emptyset \subseteq S$ always), and so does $S$ itself.
+Four. Note that $\{\,\}$ counts (module 2.3 proved $\{\,\} \subseteq S$ always), and so does $S$ itself.
 
 The set of all subsets of $S$ is called the **power set** of $S$.
 
@@ -29,9 +29,9 @@ Now do it for a few sizes.
 
 | $|S|$ | subsets | how many |
 |---|---|---|
-| $0$ | $\emptyset$ | $1$ |
-| $1$ | $\emptyset, \{a\}$ | $2$ |
-| $2$ | $\emptyset,\{a\},\{b\},\{a,b\}$ | $4$ |
+| $0$ | $\{\,\}$ | $1$ |
+| $1$ | $\{\,\}, \{a\}$ | $2$ |
+| $2$ | $\{\,\},\{a\},\{b\},\{a,b\}$ | $4$ |
 | $3$ | (eight of them) | $8$ |
 
 $1, 2, 4, 8$ — doubling.
@@ -42,14 +42,14 @@ $1, 2, 4, 8$ — doubling.
 
 <Discussion>
   <div slot="know">Every subset either contains a chosen element or does not — and those are the only two options (module 1.3's excluded middle).</div>
-  <div slot="want">The count for a set of size $k+1$, given the count for size $k$.</div>
-  <div slot="how">Pick one element $a$ out of the $(k+1)$-element set. Split the subsets into those containing $a$ and those not. Each group turns out to have exactly as many members as the power set of the remaining $k$ elements.</div>
+  <div slot="want">The count for a set with one more thing in it, given the count for the smaller set.</div>
+  <div slot="how">Pick one element $a$ out of the bigger set. Split the subsets into those containing $a$ and those not. Each group turns out to have exactly as many members as the power set of the elements that are left.</div>
 </Discussion>
 
 <Proof>
 The claim, case by case: *a set with no elements has $1$ subset; a set with one element has $2$; a set with two has $4$;* and so on, doubling each time.
 
-**Base case.** The only set with no elements is $\emptyset$, and its only subset is $\emptyset$ itself. So it has exactly $1$ subset. ✓
+**Base case.** The only set with no elements is $\{\,\}$, and its only subset is $\{\,\}$ itself. So it has exactly $1$ subset. ✓
 
 **Inductive step.** Suppose the claim holds for the case you are on — for sets of some particular size.
 
@@ -81,7 +81,7 @@ More precisely: a subset is the same thing as a function from $S$ to $\{\text{in
 <Warning title="Do not forget ∅ and S">
 The two most-forgotten subsets are the empty one and the whole set. Both are genuine subsets (module 2.3), and both are needed for the count to come out to $2^n$.
 
-Check: for $|S| = 2$ the answer is $4$. Omitting $\emptyset$ gives $3$, and the doubling pattern dies immediately.
+Check: for $|S| = 2$ the answer is $4$. Omitting $\{\,\}$ gives $3$, and the doubling pattern dies immediately.
 </Warning>
 
 <Aside>

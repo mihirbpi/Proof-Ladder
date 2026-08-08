@@ -1,0 +1,97 @@
+---
+level: l5
+title: Why we needed a new number
+readingTimeMin: 8
+newTerms: []
+anchorExample: "x² + 1 = 0 has no real solution"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Chapter 4 ended with $\mathbb{R}$: the rationals with their gaps filled. It is a field, it is dense, it is complete. And it still cannot do something.
+
+## The gap
+
+> **Proposition.** There is no real number $x$ with $x^2 + 1 = 0$.
+
+<Discussion>
+  <div slot="know">Every real is negative, zero, or positive — exactly one, with no fourth option.</div>
+  <div slot="want">$x^2 + 1 \neq 0$ for every real $x$; equivalently $x^2 \geq 0$ always.</div>
+  <div slot="how">No single algebraic step covers all three sign cases, since the rule for the sign of a product differs between them. <strong>Split into cases</strong> (module 4.4), and check the split is exhaustive.</div>
+</Discussion>
+
+<Proof>
+Let $x \in \mathbb{R}$ be arbitrary. Exactly one of the following holds.
+
+*Case 1: $x > 0$.* A product of two positives is positive, so $x^2 > 0$.
+
+*Case 2: $x = 0$.* Then $x^2 = 0$.
+
+*Case 3: $x < 0$.* A product of two negatives is positive, so $x^2 > 0$.
+
+In every case $x^2 \geq 0$, so $x^2 + 1 \geq 1 > 0$. The cases exhaust $\mathbb{R}$, and $x$ was arbitrary, so no real satisfies $x^2 + 1 = 0$.
+</Proof>
+
+Note that the proof used the **ordering** of $\mathbb{R}$, not just its arithmetic. That will matter in module 5.2, where the new number system turns out to have no ordering at all — and this proof is the reason why it cannot.
+
+## Where you have already met this
+
+The gap is not exotic. You met it in Algebra I, in the quadratic formula:
+
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+$$
+
+The **discriminant** $b^2 - 4ac$ decides everything:
+
+| Discriminant | Real solutions |
+|---|---|
+| positive | two |
+| zero | one |
+| negative | **none** |
+
+That last row is the same gap. $x^2 + 1 = 0$ has discriminant $-4$, and the formula asks for $\sqrt{-4}$, which module 3.2 said does not exist in $\mathbb{R}$.
+
+You were taught to write "no real solutions" and stop. **The question this chapter asks is what happens if you do not stop.**
+
+## The pattern, one more time
+
+Module 4.1 laid out the chain, and each link was forged for exactly this reason:
+
+| System | Cannot do | Fix |
+|---|---|---|
+| $\mathbb{N}$ | $3 - 5$ | negatives → $\mathbb{Z}$ |
+| $\mathbb{Z}$ | $1 \div 3$ | fractions → $\mathbb{Q}$ |
+| $\mathbb{Q}$ | $\sqrt2$ | fill the gaps → $\mathbb{R}$ |
+| $\mathbb{R}$ | $\sqrt{-1}$ | ? |
+
+Every previous row was resolved by building a bigger system, and every resolution was resisted at the time. Negative numbers were called *absurd* into the 17th century. Irrationals caused a crisis (module 4.7). Each was accepted once it proved useful and once someone showed how to construct it.
+
+**Row four is the same story**, and the construction is module 5.2's job.
+
+<Warning title="Inventing a solution is not obviously allowed">
+You cannot fix every failure by declaring a solution into existence.
+
+Try it on division by zero. Suppose we invent $\omega$ with $0 \cdot \omega = 1$. Then
+$$
+1 = 0 \cdot \omega = (0 + 0)\cdot \omega = 0\cdot\omega + 0\cdot\omega = 1 + 1 = 2,
+$$
+so $1 = 2$, and from there every number equals every other. The system collapses.
+
+**So the question is never "may I invent a number?" but "does the result still work?"** For $\sqrt{-1}$ the answer turns out to be yes — the resulting system keeps every field property of $\mathbb{R}$ — and module 5.3 verifies it rather than assuming it.
+
+That verification is what separates $i$ from $\omega$, and it is the only thing that does.
+</Warning>
+
+<Aside>
+Here is the payoff, and it is far larger than plugging one hole.
+
+Once $\sqrt{-1}$ exists, **every** polynomial equation becomes solvable. Not just $x^2+1 = 0$, but $x^5 - 3x + 1 = 0$ and every other — any polynomial of degree $n$ with complex coefficients has exactly $n$ complex roots, counted properly.
+
+That is the *Fundamental Theorem of Algebra*, and it is a remarkable piece of luck. Adding one number to fix one equation happened to fix all of them at once, and there was no reason to expect that.
+
+Compare the earlier rows. Adding negatives fixed subtraction and left division broken; adding fractions fixed division and left $\sqrt2$ missing. Only the last extension finishes the job — and after $\mathbb{C}$, no further extension is needed.
+</Aside>

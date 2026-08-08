@@ -1,0 +1,112 @@
+---
+level: l5
+title: Inductive sets and the last axiom
+readingTimeMin: 8
+newTerms: ["inductive set"]
+anchorExample: "Axiom 9 is induction"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import SuccessorChain from '@/components/SuccessorChain.astro';
+import Figure from '@/components/Figure.astro';
+
+Module 7.4 left a gap. The rogue structure — the counting numbers plus two extra elements $a$ and $b$ pointing at each other forever — satisfies every axiom so far, and it is not what we mean by the counting numbers.
+
+The extras are unreachable from $0$. No amount of counting gets you there.
+
+<Figure alt="The chain 0, 1, 2, 3 running off to the right, and separately two extra dots a and b with arrows pointing at each other, forming a cycle that counting from 0 never reaches." caption="Every axiom so far holds, and a and b are still there.">
+  <SuccessorChain mode="rogue" count={4} />
+</Figure>
+
+So the missing axiom should say: **nothing is in $\mathbb{N}$ except what counting reaches.**
+
+## Inductive sets
+
+> A set $V$ is **inductive** when $0 \in V$, and $x \in V$ always implies $S(x) \in V$.
+
+An inductive set is one you cannot fall out of by counting. It holds $0$, and it never lets go of a successor.
+
+> **A9.** If $V$ is inductive, then $\mathbb{N} \subseteq V$.
+
+So $\mathbb{N}$ sits inside **every** inductive set. It is the smallest one.
+
+<Warning title="Inductive sets are usually much bigger than ℕ">
+A9 does not say $\mathbb{N}$ is the only inductive set. Plenty of sets are inductive — anything containing all the numerals and closed under $S$ qualifies, however much else it holds.
+
+What A9 says is that $\mathbb{N}$ is contained in all of them, which is a claim about $\mathbb{N}$ having **nothing extra**, not about the others being small.
+</Warning>
+
+## Excluding the rogues
+
+<Discussion>
+  <div slot="know">The rogue structure contains the numerals plus $a$ and $b$. A9 applies to any inductive set we can produce.</div>
+  <div slot="want">To show $a$ and $b$ cannot be in $\mathbb{N}$.</div>
+  <div slot="how">Produce an inductive set that leaves them out — the numerals alone will do. A9 then squeezes $\mathbb{N}$ inside it.</div>
+</Discussion>
+
+<Proof>
+Let $V = \{0, 1, 2, 3, \ldots\}$, the numerals reachable from $0$ by counting.
+
+$V$ is inductive: $0 \in V$, and if $x \in V$ is reached in $m$ steps then $S(x)$ is reached in $m+1$, so $S(x) \in V$.
+
+By A9, $\mathbb{N} \subseteq V$. Since $a \notin V$, we get $a \notin \mathbb{N}$, and likewise for $b$.
+</Proof>
+
+Combining with module 7.4, which gave the containment the other way:
+
+$$
+\{0,1,2,\ldots\} \subseteq \mathbb{N} \quad\text{(A5, A6)}, \qquad
+\mathbb{N} \subseteq \{0,1,2,\ldots\} \quad\text{(A9)},
+$$
+$$
+\text{so}\qquad \mathbb{N} = \{0, 1, 2, 3, \ldots\}.
+$$
+
+**A set equality proved by double inclusion** (module 2.6), with the two directions coming from opposite ends of the axiom list. Nine axioms in, the counting numbers are finally pinned down exactly.
+
+## A9 *is* induction
+
+Now look at what A9 says when $V$ is the set of numbers making some statement $A$ true — that is, $V = \{n \in \mathbb{N} : A(n)\}$.
+
+| Inductive set condition | Induction |
+|---|---|
+| $0 \in V$ | base case $A(0)$ |
+| $x \in V \Rightarrow S(x) \in V$ | inductive step $A(k) \Rightarrow A(k+1)$ |
+| $\mathbb{N} \subseteq V$ | $A(n)$ for every $n$ |
+
+**They are the same statement.** Chapter 6's proof technique is Chapter 7's ninth axiom, written in different notation.
+
+This answers the question module 6.1 left open. Induction cannot be proved from more basic facts about $\mathbb{N}$, **because it is one of the facts that define $\mathbb{N}$.**
+
+<Warning title="Induction is genuinely an axiom, not a theorem">
+Module 7.4's rogue structure satisfies A5–A8 and **violates A9**: there, $V = \{0,1,2,\ldots\}$ is inductive but does not contain $a$.
+
+By the model method of module 7.1, that settles it. No derivation of A9 from A5–A8 can exist, because a derivation would hold in every structure satisfying A5–A8, and here is one where A9 fails.
+
+**Induction is an assumption.** A well-chosen one, and an assumption.
+</Warning>
+
+<Aside>
+This also explains why induction feels like it ought to need justifying, and never gets any.
+
+Module 6.1's dominoes are not a proof of induction. They are a **picture of what the axiom asserts**, which is a different thing.
+
+Asking why all the dominoes fall is asking why $\mathbb{N}$ has no rogue elements sitting off the chain. And the answer is that we declared it so — because a number system with rogue elements is not the one we meant to describe.
+</Aside>
+
+## The nine axioms
+
+| # | Statement |
+|---|---|
+| 1–3 | $=$ is reflexive, symmetric, transitive |
+| 4 | equals may be substituted for equals |
+| 5 | $0 \in \mathbb{N}$ |
+| 6 | $x \in \mathbb{N} \Rightarrow S(x) \in \mathbb{N}$ |
+| 7 | $S(x) \neq 0$ |
+| 8 | $S$ is injective |
+| 9 | induction |
+
+That is the entire foundation of arithmetic. Modules 7.6 and 7.7 build addition and multiplication on it, and everything Chapter 4 assumed becomes provable.

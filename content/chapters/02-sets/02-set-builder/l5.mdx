@@ -1,0 +1,106 @@
+---
+level: l5
+title: Set-builder notation
+readingTimeMin: 8
+newTerms: ["set-builder", "interval"]
+anchorExample: "{x ∈ ℝ | x² − 1 = 0}"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Listing elements works for small sets and fails immediately for interesting ones. You cannot list the reals between $0$ and $1$, and you should not want to list the multiples of $7$.
+
+**Set-builder notation** describes a set by a condition instead:
+$$
+\{\, x \in A \mid p(x) \,\}
+$$
+read *the set of $x$ in $A$ such that $p(x)$*. The bar means *such that*; some books use a colon, $\{x \in A : p(x)\}$, and it means the same thing.
+
+Membership is then decided by Chapter 1:
+$$
+x \in \{\, y \in A \mid p(y)\,\} \iff x \in A \ \wedge\ p(x).
+$$
+
+**This equivalence is the whole module.** Every proof about a set-builder set runs through it — you unfold membership into a statement, work with the statement, and fold it back up.
+
+## Two parts, both required
+
+The notation has a **source set** $A$ and a **condition** $p$. Dropping either causes trouble.
+
+$$
+\{\, x \in \mathbb{R} \mid x^2 = 4 \,\} = \{-2, 2\}, \qquad
+\{\, x \in \mathbb{N} \mid x^2 = 4 \,\} = \{2\}.
+$$
+
+Same condition, different source, different set. **The source set is part of the definition**, exactly as the domain was part of a quantified claim in module 1.10.
+
+Where the source is obvious from context authors often drop it and write $\{x \mid p(x)\}$. That is an abbreviation, not a different construction, and when you are proving something it is worth restoring.
+
+## Sets defined by equations
+
+This is the notation that has been sitting under your algebra work all along. A solution set *is* a set-builder set:
+
+$$
+\{\, x \in \mathbb{R} \mid x^2 - 1 = 0 \,\} = \{-1, 1\}
+$$
+$$
+\{\, x \in \mathbb{R} \mid x^2 + 1 = 0 \,\} = \emptyset
+$$
+$$
+\{\, x \in \mathbb{R} \mid x^2 \geq 0 \,\} = \mathbb{R}
+$$
+
+The middle one is worth pausing on. Solving an equation and getting no answers does not mean the notation broke — it means the set is empty, which is a perfectly good value. And the third shows the other extreme: a condition every element satisfies picks out the whole source set.
+
+**Solving an equation is computing a set-builder set in a listed form.** The two sides of each line above are the same object described two ways, and proving such an equality is what module 2.6 is about.
+
+## Intervals
+
+For subsets of $\mathbb{R}$ defined by inequalities there is a compressed notation. An **interval** is written
+
+$$
+[a,b] = \{x \in \mathbb{R} \mid a \leq x \leq b\}, \qquad
+(a,b) = \{x \in \mathbb{R} \mid a < x < b\},
+$$
+
+with square brackets including the endpoint and round brackets excluding it. The two mix freely: $[0, 1)$ contains $0$ and not $1$. Infinite endpoints always take a round bracket, since $\infty$ is not a number and cannot be included: $(-\infty, 3]$.
+
+<Warning title="(a, b) is ambiguous notation">
+$(2, 5)$ might be an interval of real numbers or an ordered pair (module 2.9). Nothing in the symbols distinguishes them.
+
+Context always does — an interval appears where a set is expected, a pair where a point is expected — but this is a genuine collision in standard notation, and it is worth naming rather than being surprised by.
+</Warning>
+
+## Building sets from a rule
+
+The condition need not be an equation. It can describe how elements are made:
+
+$$
+\{\, 2k \mid k \in \mathbb{Z} \,\} \quad\text{is the set of even integers,}
+$$
+
+and here the variable before the bar carries a formula rather than standing alone. Read it as *all things of the form $2k$, as $k$ ranges over $\mathbb{Z}$*.
+
+Both styles describe the same kinds of sets, and often the same set:
+$$
+\{\, n \in \mathbb{Z} \mid n \text{ is even} \,\} = \{\, 2k \mid k \in \mathbb{Z} \,\}.
+$$
+The left **filters** — it starts with all integers and keeps some. The right **generates** — it starts with all integers and transforms them. Proving two such descriptions equal takes an argument in both directions, and module 2.6 supplies the method.
+
+<Aside>
+A forward reference worth having now. Chapter 5 builds the complex numbers, and the definition is a set-builder set:
+$$
+\mathbb{C} = \{\, a + bi \mid a, b \in \mathbb{R} \,\}.
+$$
+
+This is the generating style: every complex number is *of the form* $a + bi$ for real $a$ and $b$. Nothing mysterious is being asserted about $i$ — the set is simply being described by the shape of its elements, which is what generating notation does.
+</Aside>
+
+<Warning title="Not every condition builds a set">
+Module 2.1 required sets to be well-defined, and set-builder notation makes it tempting to forget.
+
+$\{x \mid x \text{ is a large number}\}$ is not a set, because the condition is not one that settles membership.
+
+Notice how the source set protects you. $\{x \in A \mid p(x)\}$ carves a piece out of a set you already have, and carving cannot go wrong. It is the source-free form $\{x \mid p(x)\}$, quantified over everything that exists, that produced Russell's paradox — which is why the axiomatic version of set theory permits only the first.
+</Warning>

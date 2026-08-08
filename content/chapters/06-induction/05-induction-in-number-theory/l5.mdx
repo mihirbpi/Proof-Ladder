@@ -1,0 +1,112 @@
+---
+level: l5
+title: Induction in number theory
+readingTimeMin: 9
+newTerms: []
+anchorExample: "3 | 2^{2n} − 1"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Two templates now combine. Chapter 4 gave the divisibility template — unpack the hypothesis into an equation with a named integer, do algebra, factor, cite closure. Chapter 6 gave the induction template. Divisibility claims indexed by $n$ need both, one nested inside the other.
+
+## First proof
+
+> **Proposition.** For every integer $n \geq 0$: $\ 3 \mid \left(2^{2n} - 1\right)$.
+
+<Discussion>
+  <div slot="know">$A(k)$ says $3 \mid (2^{2k}-1)$, which unpacks to $2^{2k}-1 = 3x$ for some integer $x$ — and it must be $x$, <strong>not</strong> $k$, since $k$ is already the induction variable.</div>
+  <div slot="want">$3 \mid (2^{2k+2}-1)$: an integer $y$ with $2^{2k+2}-1 = 3y$.</div>
+  <div slot="how">Rearrange the hypothesis to $2^{2k} = 3x+1$, so it can be <em>substituted</em>. The link is $2^{2k+2} = 4\cdot2^{2k}$, and substituting produces the factor of $3$ directly.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ be $3 \mid (2^{2n}-1)$, for $n \geq 0$.
+
+**Base case.** $A(0)$: $2^0 - 1 = 0$, and $3 \mid 0$ since $0 = 3\cdot0$. ✓
+
+**Inductive step.** Let $k \geq 0$ and assume $A(k)$. Then there is an integer $x$ with
+$$
+2^{2k} - 1 = 3x, \qquad\text{so}\qquad 2^{2k} = 3x+1.
+$$
+Now
+$$
+2^{2(k+1)} - 1 = 4\cdot2^{2k} - 1 = 4(3x+1) - 1 = 12x + 3 = 3(4x+1).
+$$
+Since $\mathbb{Z}$ is closed under multiplication and addition, $4x+1 \in \mathbb{Z}$.
+
+So $3 \mid \left(2^{2(k+1)}-1\right)$, which is $A(k+1)$.
+
+By induction, the claim holds for every integer $n \geq 0$.
+</Proof>
+
+## The naming rule
+
+<Warning title="k is already taken">
+The inductive hypothesis unpacks an existence claim, and that claim needs a name for its witness — the integer it promises exists (module 1.12). **That name cannot be $k$.**
+
+Writing "$2^{2k}-1 = 3k$" asserts something specific and false — at $k=2$ it says $15 = 6$.
+
+Use $x$, or $m$, or $c$. Any letter not already in play.
+
+This is module 4.3's rule about fresh letters, made sharper by the fact that induction has already consumed the obvious one. It is the most common error in this module, and it produces proofs that look right and prove nothing.
+</Warning>
+
+Notice also the rearrangement $2^{2k} = 3x+1$. Getting the hypothesis into a form you can **substitute** is usually the step that makes the algebra work — the raw form $2^{2k}-1 = 3x$ does not slot into $4\cdot2^{2k}-1$ nearly as cleanly.
+
+## Second proof
+
+> **Proposition.** For every integer $n \geq 0$: $\ 6 \mid (n^3 - n)$.
+
+<Proof>
+Let $A(n)$ be $6 \mid (n^3-n)$, for $n \geq 0$.
+
+**Base case.** $A(0)$: $0^3 - 0 = 0 = 6\cdot0$. ✓
+
+**Inductive step.** Let $k \geq 0$ and assume $A(k)$, so $k^3 - k = 6x$ for some integer $x$.
+
+Expand the next case:
+$$
+(k+1)^3 - (k+1) = k^3 + 3k^2 + 3k + 1 - k - 1 = \big(k^3 - k\big) + 3k^2 + 3k.
+$$
+Substituting the hypothesis and factoring:
+$$
+= 6x + 3k(k+1).
+$$
+
+Now $k(k+1)$ is a product of consecutive integers, hence even — one of any two consecutive integers is even (module 4.4). Say $k(k+1) = 2y$ with $y \in \mathbb{Z}$. Then
+$$
+(k+1)^3 - (k+1) = 6x + 6y = 6(x+y),
+$$
+and $x + y \in \mathbb{Z}$ by closure. So $A(k+1)$ holds.
+
+By induction, $6 \mid (n^3-n)$ for all $n \geq 0$.
+</Proof>
+
+**Three earlier results were used inside a single step**: the inductive hypothesis, the evenness of $k(k+1)$, and closure. Marking each is what makes the proof checkable, and note that the evenness fact came from a case proof two chapters back. Proofs build on proofs; nothing was rederived.
+
+## The combined template
+
+> 1. State $A(n)$ as a divisibility claim, with its starting value.
+> 2. Base case — usually one line of arithmetic.
+> 3. Assume $A(k)$ and **immediately unpack it** into an equation, with a fresh letter.
+> 4. Rearrange the hypothesis into a substitutable form.
+> 5. Expand the $(k+1)$ expression and substitute.
+> 6. Factor out the divisor.
+> 7. Cite closure for the cofactor.
+> 8. Conclude by induction.
+
+Steps 3 and 7 come from Chapter 4; the rest from Chapter 6. **Neither template alone suffices**, and recognising that a problem needs both is itself part of the skill.
+
+<Aside>
+Induction is not always the best route, and it is worth seeing an alternative.
+
+Module 4.4 proved $3 \mid (n^3-n)$ by splitting into cases mod $3$: three cases, no induction, and it covered **negative** $n$ as well.
+
+The induction above only reaches $n \geq 0$. Extending it downward needs a separate argument, while the case proof handled everything at once.
+
+**Two methods, different reaches.** Cases work when the divisor is small and the expression is a polynomial. Induction works when the expression involves powers like $2^{2n}$, where no finite case split helps. Knowing both and choosing by the shape of the problem is the actual skill.
+</Aside>

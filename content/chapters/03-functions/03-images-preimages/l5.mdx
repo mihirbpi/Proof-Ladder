@@ -1,0 +1,123 @@
+---
+level: l5
+title: Images and pre-images
+readingTimeMin: 9
+newTerms: ["image", "pre-image"]
+anchorExample: "f(x) = x², Im(f) = [0,∞)"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+The codomain says where outputs are *allowed* to land. It does not say they all get used.
+
+## The image
+
+For $f : S \to T$, the **image** is the set of outputs actually produced:
+$$
+\operatorname{Im}(f) = \{\, f(s) \mid s \in S \,\} \subseteq T.
+$$
+
+Take $f : \mathbb{R} \to \mathbb{R}$, $f(x) = x^2$. The codomain is all of $\mathbb{R}$, and the image is $[0,\infty)$ — no negative number is ever a square of a real.
+
+$$
+\operatorname{Im}(f) \subseteq T \ \text{ always}, \qquad \operatorname{Im}(f) = T \ \text{ sometimes}.
+$$
+
+The gap between those two is exactly the subject of module 3.6. For now, notice that the image is computed *from* the rule while the codomain is *declared* — which is why changing the codomain changes the function but never changes the image.
+
+Your Algebra I course called the image the **range**, and unfortunately some books use "range" to mean the codomain instead. The word is ambiguous in the literature; *image* and *codomain* are not, and this course uses those.
+
+## The pre-image
+
+Running the other way, for a subset $U \subseteq T$:
+$$
+f^{-1}(U) = \{\, s \in S \mid f(s) \in U \,\}.
+$$
+
+The **pre-image** of $U$ is everything that lands in $U$. With $f(x) = x^2$ again:
+
+- $f^{-1}(\{4\}) = \{-2, 2\}$ — two inputs land on $4$.
+- $f^{-1}(\{0\}) = \{0\}$ — one input.
+- $f^{-1}(\{-1\}) = \emptyset$ — nothing squares to $-1$.
+- $f^{-1}([0,4]) = [-2,2]$.
+
+Three different sizes, from one function.
+
+<Warning title="f⁻¹ here does not mean an inverse function">
+$f(x) = x^2$ on $\mathbb{R}$ has no inverse function — module 3.9 explains why. Yet $f^{-1}([0,4])$ is perfectly well defined and equals $[-2,2]$.
+
+**The pre-image exists for every function whatsoever.** No invertibility is required, none is being claimed, and the notation is an unfortunate collision rather than a hint.
+
+Two clues keep them apart:
+
+- The pre-image eats a **set** and returns a **set**: $f^{-1}(U) \subseteq S$.
+- An inverse function eats an **element** and returns an **element**.
+
+So $f^{-1}(\{4\}) = \{-2,2\}$ is a statement about pre-images, and it is not an equation about $\pm 2$ being "the inverse of 4". Watch the braces.
+</Warning>
+
+## An empty pre-image is not an error
+
+$f^{-1}(\{-1\}) = \emptyset$ is a correct and complete answer. The question *what lands on $-1$?* has the answer *nothing*, and $\emptyset$ is how you write that.
+
+This connects the two ideas:
+
+> $f^{-1}(\{t\}) \neq \emptyset$ exactly when $t \in \operatorname{Im}(f)$.
+
+Being in the image *means* having something land on you. Read left to right it says a nonempty pre-image witnesses membership in the image; right to left, that an element of the image must have a source.
+
+## Images of subsets
+
+The image construction also applies to a piece of the domain. For $A \subseteq S$:
+$$
+f(A) = \{\, f(a) \mid a \in A \,\},
+$$
+so $\operatorname{Im}(f) = f(S)$, and $f(A)$ is called the image of $A$.
+
+With $f(x) = x^2$: $f([1,2]) = [1,4]$, and $f([-2,2]) = [0,4]$ — the second is smaller than you might guess, because the negative half folds onto the positive half.
+
+<Warning title="f(A) and f⁻¹(U) are not opposites">
+It is tempting to expect $f^{-1}(f(A)) = A$. It is false in general.
+
+With $f(x) = x^2$ and $A = [1,2]$:
+$$
+f(A) = [1,4], \qquad f^{-1}([1,4]) = [-2,-1] \cup [1,2].
+$$
+
+Going out and coming back caught the negatives too. In general $A \subseteq f^{-1}(f(A))$, and the containment can be strict — which happens exactly when $f$ sends two inputs to one output, the condition module 3.5 studies.
+</Warning>
+
+## A first proof about pre-images
+
+> **Proposition.** For $f : S \to T$ and $U \subseteq V \subseteq T$: $\ f^{-1}(U) \subseteq f^{-1}(V)$.
+
+<Discussion>
+  <div slot="know">$x \in f^{-1}(U)$ means $f(x) \in U$. That equivalence is the only fact about pre-images we have, so it must be the way in.</div>
+  <div slot="want">A containment — so an arbitrary-element argument (module 2.3).</div>
+  <div slot="how">Unfold membership, use $U \subseteq V$ on the output side, fold back up. Three lines.</div>
+</Discussion>
+
+<Proof>
+Let $x \in f^{-1}(U)$ be arbitrary. By definition, $f(x) \in U$.
+
+Since $U \subseteq V$ and $f(x) \in U$, we get $f(x) \in V$.
+
+By definition again, $x \in f^{-1}(V)$.
+
+As $x$ was arbitrary, $f^{-1}(U) \subseteq f^{-1}(V)$.
+</Proof>
+
+Look at what the proof did: **unfold, work on the output side, fold back.** The middle step was an ordinary fact about subsets, applied to $f(x)$ rather than to $x$.
+
+That pattern is the whole of module 3.4, where the same three-line shape proves that pre-images respect unions, intersections, and complements.
+
+<Aside>
+Pre-images are better behaved than images, and this module has already shown the asymmetry: $f^{-1}$ respects containment cleanly, while $f$ can fold a set onto itself and lose information.
+
+The reason is a matter of direction. Asking *what lands here?* has a definite answer for every target set, because you can always collect the sources — even when there are none. Asking *where does this go?* can produce collisions, and collisions destroy structure.
+
+This is why the next module is about pre-images and not images, and it is a genuine piece of mathematical taste: when two constructions look symmetric, check which one behaves.
+</Aside>

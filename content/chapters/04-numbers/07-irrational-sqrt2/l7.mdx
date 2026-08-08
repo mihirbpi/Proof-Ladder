@@ -50,7 +50,7 @@ The alternative finish is **infinite descent**: from any solution $(p,q)$ in pos
 
 ## Generality
 
-**$\sqrt p$ for prime $p$.** Replace "even" by "divisible by $p$"; the lemma becomes $p \mid n^2 \Rightarrow p \mid n$, which is Euclid's lemma (§4.3) — and note that primality is essential, since $4 \mid 6^2$ but $4 \nmid 6$.
+**$\sqrt p$ for prime $p$.** Replace "even" by "divisible by $p$"; the lemma becomes $p \mid n^2 \Rightarrow p \mid n$, which is Euclid's lemma (§4.3)— and note that primality is essential, since $4 \mid 6^2$ but $4 \nmid 6$.
 
 **Rational root theorem.** If $x = a/b$ in lowest terms satisfies $c_nx^n + \cdots + c_0 = 0$ with $c_i \in \mathbb{Z}$, then $a \mid c_0$ and $b \mid c_n$. For monic polynomials $b = \pm1$, so **any rational root of a monic integer polynomial is an integer**. Since $\sqrt2$ is a root of $x^2 - 2$ and neither $\pm1$ nor $\pm2$ works, $\sqrt2 \notin \mathbb{Q}$ — a second proof, and one that immediately yields $\sqrt[3]2$, $\sqrt2+\sqrt3$, and the golden ratio.
 
@@ -61,7 +61,7 @@ The alternative finish is **infinite descent**: from any solution $(p,q)$ in pos
 $$
 S = \{x \in \mathbb{Q} : x > 0,\ x^2 < 2\}
 $$
-is nonempty and bounded above in $\mathbb{Q}$ but has no supremum there: any rational upper bound $u$ admits a smaller one, and any element admits a larger. The candidate is $\sqrt2$, which the theorem removes.
+is nonempty and bounded above in $\mathbb{Q}$ but has no supremum there — no least upper bound —: any rational upper bound $u$ admits a smaller one, and any element admits a larger. The candidate is $\sqrt2$, which the theorem removes.
 
 So $\mathbb{Q}$ fails the **least upper bound property**, and $\mathbb{R}$ is precisely the completion that supplies it — unique up to isomorphism as a complete ordered field. Density (§4.6) could not detect this gap because completeness is not a local condition.
 
@@ -78,5 +78,17 @@ Irrationality proofs remain hard. $\zeta(3) = \sum n^{-3}$ was only shown irrati
 </Aside>
 
 <WhereThisGoes level="l7">
-This theorem is where the tower of number systems reveals its logic. $\mathbb{Q}$ is not algebraically closed and not order-complete; $\mathbb{R}$ fixes completeness but is still not algebraically closed ($x^2+1$ has no root); $\mathbb{C}$ fixes that and is algebraically closed, at the cost of the order. Between $\mathbb{Q}$ and $\mathbb{R}$ sits the field $\overline{\mathbb{Q}}$ of algebraic numbers, whose finite extensions are the number fields of algebraic number theory and whose absolute Galois group is arguably the central object of modern arithmetic. Meanwhile the descent method used above is Fermat's, and it is the technique behind the proof that $x^4+y^4=z^4$ has no nontrivial solutions — the one case of Fermat's Last Theorem Fermat could actually prove.
+This theorem is where the tower of number systems reveals its logic, and where calculus gets the number line it needs.
+
+**$\mathbb{Q}$ has holes and calculus cannot tolerate them.** The Intermediate Value Theorem applied to $f(x) = x^2-2$ on $[0,2]$ promises a root; over $\mathbb{Q}$ there is none, so IVT is false there. The same gap breaks the Extreme Value Theorem and the Mean Value Theorem.
+
+Filling the holes is what $\mathbb{R}$ is, and the property that distinguishes it — every set bounded above has a least upper bound — is the hypothesis behind every major theorem of a first calculus course. When a proof says "let $c$ be the supremum of the set where…", it is using completeness, and it is using the fact that this module's gap has been filled.
+
+**The three-part tower continues.** $\mathbb{R}$ is complete and still not algebraically closed, since $x^2+1$ has no real root (§5.1). $\mathbb{C}$ repairs that, at the cost of the order. Each system is built to fix a specific, identifiable failure of the one below.
+
+**The proof technique is worth more than the theorem.** *Suppose not*, applied to an impossibility claim, with the extra assumption ("in lowest terms") chosen so that the contradiction has somewhere to land. That pattern recurs whenever you must show something does **not** exist — no rational root, no elementary antiderivative for $e^{-x^2}$, no basis of the wrong size for a vector space.
+
+**And the lemma is the interesting part.** *$a^2$ even implies $a$ even* required a contrapositive, and the general version — *$p \mid a^2$ implies $p \mid a$ for prime $p$* — is what makes the argument work for $\sqrt3$, $\sqrt5$, and every non-square.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale; **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>

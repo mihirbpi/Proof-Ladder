@@ -40,7 +40,7 @@ From $-6 < -3$ and $-3 < x$, transitivity gives $-6 < x$. From $x < 5$ we obtain
 Hence $-6 < x \leq 5$, i.e. $x \in T$. Since $x$ was arbitrary, $S \subseteq T$.
 </Proof>
 
-The containment is proper: $5 \in T \setminus S$. Properness is a separate claim requiring a separate witness, and a subset proof never establishes it.
+The containment is proper: $5 \in T \setminus S$. Properness is a separate claim requiring a separate witness (§1.12), and a subset proof never establishes it.
 
 ## Refutation
 
@@ -76,7 +76,7 @@ Three properties:
 - **Transitive.** If $A \subseteq B$ and $B \subseteq C$ then $A \subseteq C$: chase $x \in A$ into $B$, then into $C$.
 - **Antisymmetric.** If $A \subseteq B$ and $B \subseteq A$ then $A = B$ — this is extensionality, and it is the content of §2.6.
 
-Hence $(\mathcal{P}(X), \subseteq)$ is a **partial order** for any set $X$. It is not total: $\{1,2\}$ and $\{2,3\}$ are incomparable. That failure of comparability is not a defect — it is the reason set inclusion carries more information than a linear ordering, and it is why lattice-theoretic language ($\cap$ as meet, $\cup$ as join) is the right one for §2.4.
+Hence $(\mathcal{P}(X), \subseteq)$ is a **partial order** for any set $X$. It is not total: $\{1,2\}$ and $\{2,3\}$ are incomparable. That failure of comparability is not a defect — it is the reason set inclusion carries more information than a linear ordering, and it is why the language of *greatest* and *least* ($\cap$ as the largest set inside both, $\cup$ as the smallest containing both) is the right one for §2.4.
 
 ## The power set
 
@@ -86,12 +86,28 @@ $$
 
 For $X = \{a,b\}$: $\mathcal{P}(X) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$. For finite $X$, $|\mathcal{P}(X)| = 2^{|X|}$ — each element is independently in or out, giving $2^{|X|}$ characteristic functions $X \to \{0,1\}$, whence the notation $2^X$. §6.3 proves the count by induction.
 
-Two remarks worth carrying. First, $\mathcal{P}(X)$ is a set whose elements are sets, and keeping track of which level you are on is a real skill: $a \in X$, $\{a\} \in \mathcal{P}(X)$, $\{\{a\}\} \subseteq \mathcal{P}(X)$. Second, **Cantor's theorem**: there is no surjection $X \to \mathcal{P}(X)$, so $|\mathcal{P}(X)| > |X|$ for every set, finite or not. The proof is a diagonal argument — given $f : X \to \mathcal{P}(X)$, the set $D = \{x \in X \mid x \notin f(x)\}$ is not in the image — and it is Russell's construction used constructively rather than destructively. It follows that there is no largest cardinal, and no set of all sets.
+Two remarks worth carrying. First, $\mathcal{P}(X)$ is a set whose elements are sets, and keeping track of which level you are on is a real skill: $a \in X$, $\{a\} \in \mathcal{P}(X)$, $\{\{a\}\} \subseteq \mathcal{P}(X)$. Second, **Cantor's theorem**: there is no surjection $X \to \mathcal{P}(X)$, so $|\mathcal{P}(X)| > |X|$ for every set, finite or not. The proof is a diagonal argument — given $f : X \to \mathcal{P}(X)$, the set $D = \{x \in X \mid x \notin f(x)\}$ is not in the image — and it is Russell's construction used constructively rather than destructively. It follows that there is no largest infinity, and no set of all sets.
 
 <Aside>
 The relation $\subseteq$ is definable from $\in$ alone, which is why axiomatic set theory needs only one primitive relation. Everything in this chapter — union, intersection, complement, product, function — is likewise built from $\in$ by explicit definition. That economy is the point of taking sets as the foundation.
 </Aside>
 
 <WhereThisGoes level="l7">
-Element chasing is the universal method of naive set theory, and its limitations mark where different mathematics begins. In category theory one deliberately gives it up: objects have no elements, and containment is replaced by monomorphisms, so every proof must be conducted by composing arrows. Learning both styles is worthwhile, because arguments that are three lines of element chasing can be one diagram, and conversely. The partial-order structure of $\mathcal{P}(X)$ opens into lattice theory and, with complement, Boolean algebra — Stone's theorem says every Boolean algebra is isomorphic to an algebra of sets, so the intuition you build here about $\subseteq$ is not merely an example but the general case. Cantor's theorem opens cardinal arithmetic and the continuum hypothesis, whose independence from ZFC is among the deepest results in foundations.
+Element chasing is the method you will use for every subspace proof in linear algebra, and the template does not change.
+
+**A subspace is a subset with three properties**, and the standard proof is exactly the one this module drills:
+
+> Let $\mathbf{u}, \mathbf{v} \in W$ be arbitrary and let $c$ be a scalar. … Therefore $\mathbf{u}+\mathbf{v}\in W$ and $c\mathbf{u}\in W$.
+
+Take any one — or here, any two — and follow them. Nothing about the specific vectors may be used beyond membership in $W$, which is what makes the argument cover all of them.
+
+The containments themselves stack the way this module describes. $\operatorname{Nul} A \subseteq \mathbb{R}^n$, $\operatorname{Col} A \subseteq \mathbb{R}^m$, and $\operatorname{Span}\{\mathbf{v}_1,\dots,\mathbf{v}_k\} \subseteq W$ whenever every $\mathbf{v}_i \in W$ — that last one proved by element chasing in three lines, and used constantly.
+
+**Transitivity is what makes a chain of subspaces readable**, exactly as it made the quadrilateral hierarchy readable: $\{\mathbf{0}\}\subseteq L \subseteq P \subseteq \mathbb{R}^3$ for a line inside a plane, and the containments compose without separate proof.
+
+**In calculus the containments are between domains and intervals.** The interval of convergence of a power series contains the open interval of radius $R$ and is contained in the closed one — a two-sided containment that leaves exactly the endpoints undecided, which is why they must be checked separately.
+
+And the vacuous containment $\emptyset\subseteq S$ is not a curiosity there either: the set where a function fails a condition is often empty, and "every point of that set has property $P$" is then true by the argument given above.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **subspace** — a set of vectors closed under adding and scaling; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

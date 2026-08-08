@@ -15,7 +15,7 @@
   },
   "kernelIdea": "A statement is a sentence that is either true or false; questions, commands, and fragments are not. You do not need to know which it is for it to be a statement.",
   "kernels": {
-    "l1": "A telling is a sentence that could be true or could be silly. An asking is not a telling. An order is not a telling.",
+    "l1": "A telling is a sentence that could be true or could be silly. An asking is not one. An order is not one.",
     "l2": "Some sentences tell you something that could be true or false — those are the ones we can check. Questions and orders are not tellings.",
     "l3": "A statement is a sentence with a definite truth value: it is either true or false. Questions, commands, and pieces of sentences are not statements.",
     "l4": "A statement is a sentence that is either true or false. Whether we know which it is doesn't matter — a conjecture is still a statement.",
@@ -31,11 +31,21 @@
     "Recognize that some statements have unknown truth value (conjectures)"
   ],
   "sourceRef": "Math 0 §1.1",
-  "vocabulary": ["statement", "truth value", "conjecture"],
+  "vocabulary": [
+    "statement",
+    "truth value",
+    "conjecture"
+  ],
   "prerequisites": [],
   "treatment": {
-    "l1": "core", "l2": "core", "l3": "core", "l4": "core",
-    "l5": "core", "l6": "core", "l7": "core", "l8": "core"
+    "l1": "core",
+    "l2": "core",
+    "l3": "core",
+    "l4": "core",
+    "l5": "core",
+    "l6": "core",
+    "l7": "core",
+    "l8": "core"
   },
   "namedMove": null,
   "anchorExample": "Rain and umbrellas; \"it's a dog\""

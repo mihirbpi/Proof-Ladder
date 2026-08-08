@@ -56,12 +56,31 @@ An operation on classes must be checked independent of representatives (§3.1).
 
 **Works:** $[a]+[b] := [a+b]$ on $\mathbb{Z}/n\mathbb{Z}$. If $a\equiv a'$, $b\equiv b'$ then $n \mid (a-a')+(b-b')= (a+b)-(a'+b')$.
 
-**Fails:** $[a]\mapsto a$ on $\mathbb{Z}/n\mathbb{Z}$; $[1]=[4]$ mod $3$ but $1 \neq 4$. No canonical representative exists.
+**Fails:** $[a]\mapsto a$ on $\mathbb{Z}/n\mathbb{Z}$; $[1]=[4]$ mod $3$ but $1 \neq 4$. No canonical representative — no single standard choice — exists.
 
 **Fails:** $[a]\mapsto 2^a$ on $\mathbb{Z}/n\mathbb{Z}$ valued in $\mathbb{Z}$ — same objection.
 
 Every construction on a quotient carries this obligation, and it is the most frequently skipped verification in algebra.
 </Warning>
+
+## Relations that fail, and what the failures mean
+
+The three conditions are independent, and examining what each rules out is more informative than the definition.
+
+| Relation | Reflexive | Symmetric | Transitive |
+|---|---|---|---|
+| $=$ | ✓ | ✓ | ✓ |
+| congruence of figures | ✓ | ✓ | ✓ |
+| same remainder mod $n$ | ✓ | ✓ | ✓ |
+| row equivalence | ✓ | ✓ | ✓ |
+| $\leq$ | ✓ | ✗ | ✓ |
+| $<$ | ✗ | ✗ | ✓ |
+| $\subseteq$ | ✓ | ✗ | ✓ |
+| $\perp$ | ✗ | ✓ | ✗ |
+
+**Failure of symmetry is what makes a relation an order.** $\leq$ and $\subseteq$ are reflexive and transitive and not symmetric, and that is precisely the definition of a partial order. Orders and equivalences are the two natural weakenings of equality, distinguished by exactly this condition.
+
+**Failure of transitivity is usually fatal.** Perpendicularity fails it: $\ell_1\perp\ell_2$ and $\ell_2\perp\ell_3$ give $\ell_1 \parallel \ell_3$ in the plane, not $\ell_1\perp\ell_3$. A relation without transitivity supports no chaining, and chaining is what proofs do.
 
 ## Quotients build the number systems
 
@@ -83,9 +102,23 @@ The pattern is uniform: take known objects, impose the right notion of sameness,
 <Aside>
 In intensional type theory, equality is not a primitive relation but a *type* — $\mathrm{Id}_A(x,y)$ — and A1–A3 become constructions rather than axioms. Reflexivity is a term, symmetry and transitivity are functions built from it.
 
-The consequences are strange and productive: identifications can carry information, and homotopy type theory reinterprets $\mathrm{Id}_A(x,y)$ as a path space, so that equality proofs form a topological structure. Univalence then asserts that identity of types is equivalence of types — making "equal" mean "isomorphic", which is what mathematicians have always meant informally.
+The consequences are strange and productive: identifications can carry information, and homotopy type theory reinterprets $\mathrm{Id}_A(x,y)$ as a path space, so that equality proofs acquire a geometry of their own. Univalence then asserts that identity of types is equivalence of types — making "equal" mean "isomorphic", which is what mathematicians have always meant informally.
 </Aside>
 
 <WhereThisGoes level="l7">
-Quotients are ubiquitous because equivalence relations formalise the act of choosing what to ignore. Quotient groups $G/N$ and the first isomorphism theorem, quotient rings $R/I$ and the construction of every field extension, quotient topologies and the realisation of a torus as a square with edges identified, tangent spaces as classes of curves, homology as cycles modulo boundaries — each is the same construction with different data. The recurring technical obligation is always the one flagged above: the operations must descend, and checking that they do is where the real content usually sits. In category theory the whole pattern is packaged as a coequaliser, which is the reason quotients in wildly different subjects obey the same formal rules.
+Equivalence relations are how mathematics decides what to ignore, and both courses ahead use them constantly.
+
+**Row equivalence is the central one in linear algebra.** Two matrices are row equivalent when one can be obtained from the other by elementary row operations, and the relation is reflexive, symmetric (every operation is reversible), and transitive (operations compose). It is therefore an equivalence relation, and it partitions the matrices into classes.
+
+Each class contains exactly one matrix in **reduced row echelon form**, which is why that form — abbreviated rref — is a canonical representative and why "the rref of $A$" is a legitimate phrase. Uniqueness is a genuine theorem, and without it the whole computational apparatus would be ill-defined.
+
+The payoff is that row-equivalent matrices share everything the theory cares about: the same null space, the same row space, the same rank — the number of independent rows — and the same solution set. **Row reduction is legitimate because those quantities are invariants of the equivalence class**, and checking that they are is what the theorems establish.
+
+Similarity of matrices ($B = P^{-1}AP$) is another equivalence relation, with the same three properties and the same purpose: similar matrices represent the same transformation in different bases, so they share eigenvalues, determinant, trace, and rank.
+
+**In calculus the important one is "differ by a constant."** Two antiderivatives of the same function on an interval differ by a constant — reflexive, symmetric, transitive — and the classes are what $+\,C$ denotes. The indefinite integral names an equivalence class, not a function, and that is why the constant is not optional.
+
+**The recurring obligation** is well-definedness: an operation on classes must not depend on the representative chosen. §4.5's fraction arithmetic was the first instance; row operations and change of basis are the next.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **bases** — the coordinate systems a space can be described in; **null space** — the vectors a matrix sends to zero; **row space** — what the rows of the matrix can build; **row echelon** — the staircase shape row reduction produces; **eigenvalue** — a factor by which a matrix stretches a direction without turning it.*
 </WhereThisGoes>

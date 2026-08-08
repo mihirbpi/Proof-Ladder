@@ -77,6 +77,36 @@ By induction, $A(n)$ holds for all $n \geq 0$.
 
 Two conventions did real work and are worth naming: $f^{(0)} = f$ made the base case meaningful, and $0! = 1$ made it come out right. Both are forced by the respective recursions ($f^{(n+1)} = (f^{(n)})'$ at $n = 0$; $(k+1)! = (k+1)k!$ at $k=0$) rather than chosen for convenience.
 
+## Reading three patterns at once
+
+The derivatives of $1/x$ are
+
+$$-x^{-2},\quad 2x^{-3},\quad -6x^{-4},\quad 24x^{-5},\ \dots$$
+
+and three independent patterns are superimposed:
+
+- **Sign** alternates, starting negative: $(-1)^n$.
+- **Coefficient** runs $1, 2, 6, 24$ — the factorials $n!$.
+- **Exponent** runs $-2, -3, -4$: $-(n+1)$.
+
+Assembled: $\ \dfrac{d^n}{dx^n}x^{-1} = (-1)^n\,n!\;x^{-(n+1)}$.
+
+**Isolate one pattern at a time.** Guessing the whole formula at once is much harder, and factorials in particular are easy to miss if you are staring at $1, 2, 6, 24$ hoping for a polynomial. Checking the ratio of consecutive coefficients — $2/1$, $6/2$, $24/6$ giving $2, 3, 4$ — identifies a factorial immediately.
+
+The identity $(k+1)! = (k+1)\cdot k!$ is what closes the inductive step for any formula containing $n!$, and it is worth having ready.
+
+## Two more standard inductions
+
+**The exponential.** $\dfrac{d^n}{dx^n}e^{ax} = a^n e^{ax}$.
+
+Base: $n=0$ gives $e^{ax}$ on both sides. Step: differentiating $a^ke^{ax}$ gives $a^k\cdot ae^{ax} = a^{k+1}e^{ax}$. One line, and it is the fact that makes the characteristic-equation method for differential equations work.
+
+**The sine.** $\dfrac{d^n}{dx^n}\sin x$ cycles with period four: $\sin x$, $\cos x$, $-\sin x$, $-\cos x$, and back. The induction is a four-case argument on $n \bmod 4$ — the residue classes of §4.4, deciding which entry of the cycle applies.
+
+That period-four cycle is the same one governing the powers of $i$ (§5.3), and the coincidence is not one: Euler's formula relates the two directly, since differentiating $e^{ix}$ multiplies by $i$.
+
+**Both formulas feed Taylor series.** The coefficient of $x^n$ in a Taylor expansion about $0$ is $\frac{f^{(n)}(0)}{n!}$, so a closed form for the $n$th derivative is precisely what writing down a series requires. The series for $e^x$, $\sin x$, and $\cos x$ used in §5.7 rest on the two inductions above.
+
 ## The general shape
 
 Repeated application of any operation $T$ gives $a_n = T^n(a_0)$, and $a_{n+1} = T(a_n)$ is exactly the link §6.4 requires. When $T$ acts on a suitable family by a simple multiplier — here $x^{-m}\mapsto -mx^{-m-1}$ — the closed form is a telescoping product, and factorials appear whenever the multiplier is linear in $n$.
@@ -98,5 +128,17 @@ the geometric series, convergent for $|x-1|<1$. So the factorial in the derivati
 </Aside>
 
 <WhereThisGoes level="l7">
-Induction on the order of differentiation is the standard proof technique for every higher-derivative formula: the Leibniz rule $(fg)^{(n)} = \sum\binom nk f^{(k)}g^{(n-k)}$, Faà di Bruno's formula for the derivatives of a composition, and Rodrigues' formulas for the classical orthogonal polynomials. The Leibniz rule in particular is the differential twin of the binomial theorem, and the shared $\binom nk$ is not a coincidence — both are counting the same choices, which is the observation that leads to umbral calculus and to the theory of Sheffer sequences. In a different direction, the fact that $f^{(n)}$ determines a Taylor series, and the question of when that series converges back to $f$, is where real analysis and complex analysis part company: over $\mathbb{C}$ differentiability once forces analyticity, while over $\mathbb{R}$ the function $e^{-1/x^2}$ is smooth with every derivative zero at the origin and is not the sum of its Taylor series anywhere near it.
+Induction on the order of differentiation is the standard proof technique for every higher-derivative formula, and you will use it within weeks of starting calculus.
+
+**The formulas that need it.** $\frac{d^n}{dx^n}e^{ax} = a^ne^{ax}$, $\frac{d^n}{dx^n}\sin x$ cycling with period four, $\frac{d^n}{dx^n}x^{-1} = (-1)^n n!\,x^{-(n+1)}$, and the **Leibniz rule**
+$$(fg)^{(n)} = \sum_{k=0}^{n}\binom nk f^{(k)}g^{(n-k)},$$
+whose inductive step uses Pascal's identity $\binom nk + \binom{n}{k-1} = \binom{n+1}{k}$ — the same identity that makes the binomial theorem work, and proved the same way.
+
+**Taylor polynomials are built from these.** The coefficient of $(x-a)^n$ in a Taylor series is $\frac{f^{(n)}(a)}{n!}$, so writing down a Taylor series *requires* a closed form for the $n$th derivative. Every standard series — for $e^x$, $\sin x$, $\cos x$, $\ln(1+x)$, $(1+x)^\alpha$ — is a formula found by pattern-spotting and proved by induction.
+
+That is why §5.7's derivation of Euler's formula was available: the three series it used were established by exactly this route.
+
+**The three-pattern discipline is the practical content.** Sign, factorial, and exponent behave independently, and isolating them one at a time is far easier than guessing the whole formula. The factorial identity $(k+1)! = (k+1)\cdot k!$ is what makes the inductive step close, and recognising $1, 2, 6, 24, 120$ as factorials rather than as a polynomial is a skill worth having.
+
+**In linear algebra the analogous inductions are on matrix powers.** $A^n$ for a diagonalisable $A$ is $PD^nP^{-1}$, proved by induction on $n$, and it is the reason diagonalisation is worth the trouble.
 </WhereThisGoes>

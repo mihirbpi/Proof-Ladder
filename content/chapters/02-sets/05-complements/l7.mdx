@@ -104,9 +104,25 @@ In every case the theorem asserts that something is *not there*, so there is not
 </Warning>
 
 <Aside>
-$(\mathcal{P}(S), \cup, \cap, \overline{\phantom{x}})$ is a Boolean algebra, with complement the operation that distinguishes it from a mere lattice. Drop the law $\overline{\overline A} = A$ and keep the rest and you have a Heyting algebra — the algebraic semantics of intuitionistic logic, whose canonical example is the open sets of a topological space with $\overline A$ read as the interior of the complement. There $A \cup \overline A = S$ genuinely fails: on $\mathbb{R}$, take $A = (-\infty,0) \cup (0,\infty)$.
+Complementation is what probability calls the *complement rule*. For an event $A$ inside a sample space $S$,
+$$P(\overline A) = 1 - P(A),$$
+which is $A \cup \overline A = S$ and $A \cap \overline A = \emptyset$ converted into arithmetic: the two pieces cover everything and overlap in nothing, so their probabilities sum to $1$.
+
+That is why "at least one" problems are almost always solved by complementing. The probability of at least one head in ten tosses is a ten-term sum computed directly, and $1 - P(\text{no heads})$ computed by complement. The set identity is doing the work, and the saving is the same one this module describes: a negative condition is often the easier one to count.
 </Aside>
 
 <WhereThisGoes level="l7">
-The classical/constructive distinction visible here is not philosophical decoration. Under the Curry–Howard correspondence a proof is a program and a proof of $\exists x\, p(x)$ is a program returning a witness; reductio produces no witness, so a classical existence proof compiles to nothing. This is why proof assistants built on type theory (Lean, Coq, Agda) treat excluded middle as an axiom to be invoked explicitly rather than a background assumption, and why the constructive content of a classical proof is a real question with real answers — Gödel's double-negation translation embeds classical arithmetic into intuitionistic arithmetic, and proof mining extracts explicit bounds from proofs that appeared purely non-constructive. Meanwhile complementation relative to a universe is the operation that makes measure theory work: a $\sigma$-algebra is required to be closed under it, and that closure is what makes "the probability of not-$A$" well defined.
+Contradiction is the technique that settles the impossibility results in both courses ahead — and there are more of them than a first look suggests.
+
+**In calculus, "suppose not" proves the uniqueness theorems.** *The limit of a convergent sequence is unique*: suppose two limits $L\neq M$, take $\varepsilon = |L-M|/2$, and derive that some term lies within $\varepsilon$ of both — impossible, since the two $\varepsilon$-neighbourhoods are disjoint. The negation supplied the specific $\varepsilon$, which is the trade this module described.
+
+The same shape proves that a function cannot have two different derivatives at a point, and that the antiderivative of a function on an interval is unique up to a constant.
+
+**Divergence proofs are contradiction proofs.** To show a series diverges you frequently assume it converges, apply a theorem valid only for convergent series, and reach an impossibility. The classic case is the harmonic series: assume $\sum 1/n$ converges to $S$, group the terms in a particular way, and derive $S > S$.
+
+**In linear algebra, "suppose not" handles the counting arguments.** *A set of $n+1$ vectors in $\mathbb{R}^n$ is linearly dependent*: suppose it were independent, and count pivots against columns until the count is impossible. *A vector space cannot have bases of two different sizes*: suppose it did, and the same counting collapses.
+
+In each case the pattern is the one this module names. The goal is a negative or an impossibility, the direct route offers nothing to construct with, and the negation hands you a specific object — an $\varepsilon$, a sum $S$, an independent set — to work against.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **bases** — smallest sets of vectors that build everything else; **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

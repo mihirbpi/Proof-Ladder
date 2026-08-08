@@ -24,9 +24,22 @@ For any statement $p$, its **negation** $\neg p$ is the statement that is true p
 
 $p$ and $\neg p$ split the truth-value assignments: exactly one of them is true.
 
+Two consequences follow immediately, and both become proof tools:
+
+- $p \wedge \neg p$ is false whatever $p$ is — a **contradiction**. Derive one and you have shown that whatever you assumed cannot hold, which is the engine of module 2.5.
+- $p \vee \neg p$ is true whatever $p$ is — the **law of the excluded middle**. It licenses splitting an argument into the case where $p$ holds and the case where it does not, with nothing left over. Every case proof in this course quotes it, usually silently.
+
 ## Double negation
 
 $\neg\neg p$ has the same truth values as $p$. So $\neg\neg p \equiv p$ (module 1.4 will make $\equiv$ precise). Negating twice gets you back to the beginning — a fact worth remembering next chapter, where proof by contradiction ends up producing $\neg\neg q$ and immediately turning it into $q$.
+
+## Negation as a proof strategy
+
+Negation is not only bookkeeping. It decides what work a disproof requires.
+
+To refute a claim, you prove its negation — so the first move is to write the negation down correctly, and the shape of what you get tells you what evidence to hunt for. Get it wrong and you go looking for the wrong thing.
+
+This is why the errors below matter. They are not pedantry about wording; each one sends you after evidence that would not settle the question.
 
 ## Negating carefully
 
@@ -53,3 +66,15 @@ The negation of a statement is the sentence whose truth value is the opposite of
 - $\neg(\exists x \in \mathbb{R}, x^2 = -1)$ is $\forall x \in \mathbb{R}, x^2 \neq -1$. Existential becomes universal; the inner statement negates.
 
 These rules are proved in §1.3.3 and used constantly to rewrite a "prove that no such thing exists" problem into a "prove that all things satisfy …" problem.
+
+Notice the asymmetry they create. Refuting a universal claim needs **one** example; refuting an existential claim needs an argument about **all** of them. So the two jobs are not equally hard, and knowing which one you face tells you roughly how much work to expect. Module 1.12 turns that into four templates.
+
+## Not-even is not always odd
+
+One more trap, and it is the subtlest in the module.
+
+*Not even* and *odd* mean the same thing for integers — and only because every integer is one or the other. For other numbers they part company: $\tfrac12$ is not even, and it is not odd either.
+
+So whenever you replace a negation with a positive-sounding word, you are using a background fact about what the possibilities are. That fact deserves to be stated, because when it fails the substitution is simply wrong.
+
+The same applies in geometry. *Not acute* is not *obtuse* — an angle can be right, and right is neither.

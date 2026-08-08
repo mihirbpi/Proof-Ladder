@@ -6,7 +6,6 @@ newTerms: ["reflexive", "symmetric", "transitive", "equivalence relation"]
 anchorExample: "the parallel postulate"
 ---
 
-import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
@@ -48,7 +47,7 @@ A relation with the first three properties is an **equivalence relation**. Equal
 
 **Same age.** Reflexive, symmetric, transitive.
 
-Compare with relations that fail:
+### Relations that fail
 
 | Relation | R | S | T |
 |---|---|---|---|
@@ -76,9 +75,9 @@ Module 3.9 proved the three properties for congruence of figures, using rigid mo
 | $F\cong G \Rightarrow G\cong F$ | rigid motions have inverses |
 | $F\cong G,\ G\cong H \Rightarrow F\cong H$ | compositions of rigid motions are rigid motions |
 
-**Your book states these as properties; Chapter 3 proved them.** And the reason they hold is that the rigid motions form a group — identity, inverses, closure under composition, which is exactly the list above.
+**Your book states these as properties; Chapter 3 proved them.** Read the right-hand column again: identity, inverses, closure under composition. Those are the three facts about rigid motions, and they line up one-to-one with the three properties on the left.
 
-That correspondence is not a coincidence. **An equivalence relation defined by "some transformation in a group carries one to the other" is automatically reflexive, symmetric, and transitive**, and it is automatic precisely because of the three group properties.
+That correspondence is not a coincidence. **Whenever a relation is defined by "some transformation of a fixed collection carries one thing to the other," it is automatically reflexive, symmetric, and transitive** — provided that collection contains an identity, contains an inverse for each of its members, and is closed under composition. Those three requirements are what produce the three properties, in that order.
 
 ## Partitions
 

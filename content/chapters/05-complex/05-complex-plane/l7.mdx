@@ -58,6 +58,23 @@ Taking $z = i$ gives $M_i = \begin{pmatrix}0&-1\\1&0\end{pmatrix}$, rotation by 
 
 This proposition is the geometric content of the whole chapter, and §5.8–5.9 develop it into polar form and De Moivre.
 
+## Loci in one variable
+
+Complex notation compresses plane geometry substantially, and the compression is not cosmetic.
+
+$$|z| = r \quad\text{circle, radius } r, \text{ centre } 0$$
+$$|z - c| = r \quad\text{circle, radius } r, \text{ centre } c$$
+$$|z - c| < r \quad\text{open disc}$$
+$$|z - w| = |z - v| \quad\text{perpendicular bisector of the segment } wv$$
+$$\operatorname{Im}(z) = 0 \quad\text{the real axis}$$
+$$\left|\frac{z-a}{z-b}\right| = k \quad\text{a circle (or a line when } k=1)$$
+
+Each needs one complex variable where rectangular coordinates need two, and each condition is a single equation where the real version needs expanding and collecting.
+
+The last is worth noting: the set of points whose distances to two fixed points have a constant ratio is a circle — the **Apollonius circle** — and proving it in rectangular coordinates takes half a page. In complex notation it is a short manipulation of moduli.
+
+That economy is why complex notation is standard in electrical engineering and fluid dynamics, where plane geometry is done constantly and the objects are naturally rotational.
+
 ## What the plane makes visible
 
 Sets defined by algebraic conditions become curves and regions:
@@ -80,13 +97,27 @@ is a two-line computation with conjugates and a genuine theorem of Euclidean geo
 <Warning title="The plane is the domain, not a graph">
 A graph of $f : \mathbb{C}\to\mathbb{C}$ lives in $\mathbb{R}^4$. Standard substitutes are domain colouring (hue = argument, brightness = modulus), plotting $|f|$ as a surface, and drawing source and target planes side by side with the images of a grid.
 
-Relatedly: $\mathbb{C}$ carries the topology of $\mathbb{R}^2$, not of $\mathbb{R}$. Convergence $z_n \to z$ means $|z_n - z| \to 0$, and approach may occur along any path — which is exactly why complex differentiability is so restrictive.
+Relatedly: nearness in $\mathbb{C}$ means nearness in the *plane*, not along a line. Convergence $z_n \to z$ means $|z_n - z| \to 0$, and approach may occur along any path — which is exactly why complex differentiability is so restrictive.
 </Warning>
 
 <Aside>
-Adjoining a single point at infinity gives the **Riemann sphere** $\mathbb{C}\cup\{\infty\}$, homeomorphic to $S^2$ via stereographic projection. On it, Möbius transformations $z \mapsto \frac{az+b}{cz+d}$ act as the full group of conformal automorphisms, circles and lines become one family (a line is a circle through $\infty$), and division by zero acquires a consistent meaning. It is the natural home for rational functions.
+Adjoining a single point at infinity gives the **Riemann sphere** $\mathbb{C}\cup\{\infty\}$, homeomorphic to $S^2$ via stereographic projection. On it, Möbius transformations $z \mapsto \frac{az+b}{cz+d}$ act as the full group of angle-preserving transformations, circles and lines become one family (a line is a circle through $\infty$), and division by zero acquires a consistent meaning. It is the natural home for rational functions.
 </Aside>
 
 <WhereThisGoes level="l7">
-The observation that multiplication by $z$ is a rotation-scaling is the germ of complex analysis. A complex-differentiable function has derivative $f'(z_0) \in \mathbb{C}$, so its linearisation is a rotation-scaling — which means holomorphic maps preserve angles: they are **conformal**. That single geometric fact powers conformal mapping in fluid dynamics and electrostatics, the Riemann mapping theorem (every simply connected proper open subset of $\mathbb{C}$ is conformally a disc), and the classification of Riemann surfaces by uniformisation. In the other direction, the matrix realisation $M_z$ places $\mathbb{C}$ inside $M_2(\mathbb{R})$ and generalises to Clifford algebras and to the quaternions, whose unit sphere acts on $\mathbb{R}^3$ by rotations — which is how spacecraft and graphics engines actually store orientation.
+The plane picture is what makes complex arithmetic usable rather than merely formal.
+
+**Complex addition is vector addition**, so everything you know about the parallelogram rule transfers unchanged. That identification is exact: as a real vector space, $\mathbb{C}$ *is* $\mathbb{R}^2$, and the two only differ once multiplication is introduced.
+
+**Multiplication is where the plane earns its keep.** $\mathbb{R}^2$ has no useful multiplication; $\mathbb{C}$ has one, and §5.9 shows it is rotation combined with scaling. That single fact makes complex numbers the natural language for anything rotating.
+
+**In calculus, that is why phasors work.** A sinusoidal quantity $A\cos(\omega t + \phi)$ is the real part of $Ae^{i\phi}e^{i\omega t}$ — a fixed complex number times a rotating one. Differentiating multiplies by $i\omega$, which is a $90°$ rotation and a scaling, so differential equations in $t$ become algebraic equations in $\mathbb{C}$.
+
+The technique is standard in every treatment of oscillation, from AC circuits to wave mechanics, and it works because differentiation of $e^{i\omega t}$ is multiplication by a constant — the defining property of the exponential, now with a geometric reading.
+
+**Loci become one-variable equations.** $|z - c| = r$ is a circle, $|z-w| = |z-v|$ a perpendicular bisector, $\operatorname{Im} z = 0$ the real axis. Each needs two real variables and two real equations otherwise, and the compression is why complex notation is standard in plane geometry problems.
+
+**In linear algebra, the same plane carries the eigenvector picture.** Complex eigenvalues of a real $2\times2$ matrix always come in conjugate pairs $\alpha\pm\beta i$, and the transformation acts on a plane as a rotation by $\arg(\alpha+\beta i)$ scaled by $|\alpha+\beta i|$ — the classification of $2\times2$ real matrices with no real eigenvalues, read straight off this module.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **eigenvalue** — a factor by which a matrix stretches a direction without turning it; **eigenvector** — a direction a matrix stretches without turning; **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

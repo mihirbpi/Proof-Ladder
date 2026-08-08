@@ -48,7 +48,7 @@ The map $A \mapsto \chi_A$ is a bijection $\mathcal{P}(S)\to\{0,1\}^S$, with inv
 A function $S \to \{0,1\}$ is specified by an independent binary choice at each of $n$ points, so $|\{0,1\}^S| = 2^n$.
 </Proof>
 
-This explains the notation $2^S$ for the power set: it is $\{0,1\}^S$, and the cardinality formula $|Y^X| = |Y|^{|X|}$ makes $|2^S| = 2^{|S|}$ automatic. The bijection also transports structure — $\chi_{A\cap B} = \chi_A\chi_B$ and $\chi_{\overline A} = 1 - \chi_A$ — so $\mathcal{P}(S)$ and $\{0,1\}^S$ are isomorphic as Boolean algebras (§2.7), not merely equinumerous.
+This explains the notation $2^S$ for the power set: it is $\{0,1\}^S$, and the cardinality formula $|Y^X| = |Y|^{|X|}$ makes $|2^S| = 2^{|S|}$ automatic. The bijection also transports structure — $\chi_{A\cap B} = \chi_A\chi_B$ and $\chi_{\overline A} = 1 - \chi_A$ — so $\mathcal{P}(S)$ and $\{0,1\}^S$ match operation for operation (§2.7), not merely element for element.
 
 <Warning title="Level discipline">
 Elements of $\mathcal{P}(S)$ are *sets*. For $S = \{a,b\}$: $a \in S$, $\{a\}\in\mathcal{P}(S)$, $\{a\}\subseteq S$, $\{\{a\}\}\subseteq \mathcal{P}(S)$ — and $a \notin \mathcal{P}(S)$.
@@ -68,6 +68,20 @@ $$
 $$
 — subsets containing $a$ versus not — and hence the binomial theorem by induction. The theorem of this module is the binomial theorem evaluated at $x=y=1$.
 
+## Why the split is legitimate
+
+The inductive step divided the subsets of $S$ into those containing a fixed $a$ and those not, then claimed each group has $2^k$ members. Two conditions had to hold for the final addition, and both were checked.
+
+**Disjoint.** No subset is in both groups, since a subset either contains $a$ or does not — the excluded middle of §1.3, and the reason the two counts do not overlap.
+
+**Exhaustive.** Every subset is in one group, for the same reason.
+
+Adding the sizes of overlapping groups double-counts; adding the sizes of groups with a gap undercounts. Neither check is automatic, and stating them is part of the proof.
+
+**The bijection also needed verifying.** The map $T \mapsto T\cup\{a\}$ from Group 1 to Group 2 is injective because $T$ is recovered by removing $a$, and surjective because every subset containing $a$ arises this way. Only then does "each group has $2^k$ members" follow from the hypothesis, which was a statement about the subsets of a $k$-element set.
+
+**Counting by pairing** — establishing a bijection with something already counted — is more powerful than counting one by one, and it is the only method that survives into the infinite case.
+
 ## The infinite case
 
 > **Cantor's theorem.** For every set $S$, there is no surjection $S \to \mathcal{P}(S)$.
@@ -83,9 +97,25 @@ This is **not** an induction and cannot be made one: no successor structure is a
 The finite theorem says $2^n > n$; Cantor's says the strict inequality survives to every cardinal. So there is no largest set and no largest infinity.
 
 <Aside>
-$|\mathcal{P}(\mathbb{N})| = |\mathbb{R}|$, and whether any cardinal lies strictly between $|\mathbb{N}|$ and $|\mathcal{P}(\mathbb{N})|$ is the continuum hypothesis — independent of ZFC by Gödel and Cohen (§3.8). The finite case is a two-line induction; its infinite analogue is undecidable from the standard axioms. Few contrasts illustrate better that finite combinatorics and set theory are different subjects.
+$|\mathcal{P}(\mathbb{N})| = |\mathbb{R}|$, and whether any cardinal lies strictly between $|\mathbb{N}|$ and $|\mathcal{P}(\mathbb{N})|$ is the continuum hypothesis — and Gödel and Cohen showed the standard axioms of set theory can neither prove nor refute it (§3.8). The finite case is a two-line induction; its infinite analogue is undecidable from the standard axioms. Few contrasts illustrate better that finite combinatorics and set theory are different subjects.
 </Aside>
 
 <WhereThisGoes level="l7">
-Characteristic functions are the bridge between set theory and everything computational: a subset *is* a bit vector, which is how sets are represented in every programming language, and the Boolean-algebra isomorphism above is why bitwise `and`, `or`, and `not` compute $\cap$, $\cup$, and complement. In measure theory, characteristic functions are the building blocks — simple functions are finite combinations of them, and the Lebesgue integral is defined by approximating from below. In topology and logic they generalise to the subobject classifier of a topos, where $\{0,1\}$ is replaced by an object of truth values that need not be two-valued, and the resulting internal logic is intuitionistic (§2.5) rather than classical. The humble fact that a subset is the same as a yes/no answer at each point turns out to be one of the more load-bearing observations in mathematics.
+Counting arguments are the everyday application of induction, and the two proofs in this module illustrate the choice this chapter keeps returning to.
+
+**The induction verifies; the choice argument explains.** Building a subset by making one yes/no decision per element gives $2^n$ immediately, and it says *why* the base is $2$. The induction confirms the formula and does not.
+
+The explanatory version also generalises: give each element three options instead of two and the count is $3^n$, with no proof to redo. Rewriting the induction would be real work.
+
+**In calculus, the binomial coefficients are what you will actually need.** $\binom nk$ counts $k$-element subsets of an $n$-set, and Pascal's identity
+$$\binom nk + \binom{n}{k-1} = \binom{n+1}{k}$$
+has exactly this module's proof: split the subsets of an $(n+1)$-set according to whether they contain a chosen element.
+
+That identity is the inductive step of the binomial theorem, which in turn gives the expansion of $(1+x)^n$, the derivative of $x^n$ from first principles, and the general binomial series $(1+x)^\alpha$ for non-integer $\alpha$ — one of the standard Taylor series.
+
+**In linear algebra, counting arguments settle the dimension theorems.** A vector space of dimension $n$ has exactly $2^n$ subsets of any basis, and more usefully: the number of pivot positions is bounded by both the row count and the column count, which is the counting fact behind rank–nullity.
+
+**The chapter's closing point:** induction proves things about the integers, and the integers index almost everything. Sequences, series, derivatives of order $n$, matrix powers, and dimension are all integer-indexed families, and each is an induction waiting to be set up.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale; **nullity** — how many independent directions collapse to zero; **basis** — a smallest set of vectors that builds all the others; **rank** — the number of independent columns.*
 </WhereThisGoes>

@@ -11,7 +11,7 @@ import Warning from '@/components/Warning.astro';
 
 ## Definitions
 
-For $f : S \to T$:
+Let $f$ be a function from a set $S$ to a set $T$. We write $f(s)$ for the output $f$ gives on the input $s$ — new notation, and worth reading aloud as *"$f$ of $s$"* until it is automatic.
 
 $$
 \operatorname{Im}(f) = \{\, f(s) \mid s \in S \,\} \subseteq T
@@ -27,30 +27,30 @@ is the **pre-image** of $U$.
 
 The pre-image definition unfolds to the single equivalence that every proof in the next module uses:
 $$
-s \in f^{-1}(U) \iff f(s) \in U. \tag{$\ast$}
+s \in f^{-1}(U) \quad\text{exactly when}\quad f(s) \in U. \tag{$\ast$}
 $$
 
 ## Image versus codomain
 
 The codomain $T$ is **declared**; the image is **computed**. Always $\operatorname{Im}(f) \subseteq T$, and equality is a special property with a name (surjectivity, module 3.6).
 
+Take $f(x) = x^2$, a function from $\mathbb{R}$ to $\mathbb{R}$. A square is never negative, and every non-negative number is a square, so
 $$
-f : \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2
-\qquad\Longrightarrow\qquad
-\operatorname{Im}(f) = [0, \infty) \subsetneq \mathbb{R}.
+\operatorname{Im}(f) = \{\, y \in \mathbb{R} \mid y \geq 0 \,\},
 $$
+which is not all of $\mathbb{R}$ — nothing negative is attained.
 
+Take $g(x) = 2^x$, again from $\mathbb{R}$ to $\mathbb{R}$. Powers of $2$ are always positive, so
 $$
-g : \mathbb{R} \to \mathbb{R}, \quad g(x) = e^x
-\qquad\Longrightarrow\qquad
-\operatorname{Im}(g) = (0, \infty) \subsetneq \mathbb{R}.
+\operatorname{Im}(g) = \{\, y \in \mathbb{R} \mid y > 0 \,\},
 $$
+and $0$ itself is never attained, however negative the exponent gets.
 
 Note the word *range* is best avoided: some authors use it for the image, others for the codomain. Say which you mean.
 
 ## Worked pre-images: $f(x) = x^2$
 
-Let $f : \mathbb{R} \to \mathbb{R}$, $f(x) = x^2$.
+Let $f(x) = x^2$, a function from $\mathbb{R}$ to $\mathbb{R}$.
 
 $$
 f^{-1}(\{9\}) = \{-3, 3\}.
@@ -75,7 +75,7 @@ The left constraint $-2 < x^2$ is automatic since squares are non-negative; only
 
 ## Worked pre-images: the floor function
 
-Let $\lfloor \cdot \rfloor : \mathbb{R} \to \mathbb{Z}$.
+Let $\lfloor \cdot \rfloor$ be the floor function, taking each real number to an integer.
 
 $$
 \lfloor \cdot \rfloor^{-1}(\{4\}) = \{x \in \mathbb{R} \mid \lfloor x \rfloor = 4\} = [4, 5).
@@ -92,10 +92,10 @@ $$
 ## The link between them
 
 $$
-t \in \operatorname{Im}(f) \iff f^{-1}(\{t\}) \neq \emptyset.
+t \in \operatorname{Im}(f) \quad\text{exactly when}\quad f^{-1}(\{t\}) \neq \emptyset.
 $$
 
-Both sides say "$t$ is attained", one forwards and one backwards. The proof is immediate from the definitions: $t \in \operatorname{Im}(f)$ means $\exists s,\ f(s) = t$, and $f^{-1}(\{t\}) \neq \emptyset$ means $\exists s,\ f(s) \in \{t\}$ — the same statement.
+Both sides say "$t$ is attained", one forwards and one backwards. The proof is immediate from the definitions: $t \in \operatorname{Im}(f)$ means some $s$ has $f(s) = t$, and $f^{-1}(\{t\}) \neq \emptyset$ means some $s$ has $f(s) \in \{t\}$ — the same statement.
 
 The set $f^{-1}(\{t\})$ is called the **fibre** over $t$. The whole of the next three modules can be phrased in terms of fibres:
 
@@ -111,7 +111,7 @@ That table is worth memorising now; it makes the next four modules look like one
 <Warning title="f⁻¹ here is not an inverse function">
 $f^{-1}(U)$ is defined for **every** function $f$, with no hypotheses at all. It takes a *subset of $T$* and returns a *subset of $S$*.
 
-An inverse *function* $f^{-1} : T \to S$ takes an element and returns an element, and exists only when $f$ is a bijection (module 3.9). With $f(x) = x^2$ on $\mathbb{R}$, the pre-image $f^{-1}(\{9\}) = \{-3,3\}$ exists, while no inverse function does.
+An inverse *function*, written the same way but going from $T$ back to $S$, takes an element and returns an element, and exists only when $f$ is a bijection (module 3.9). With $f(x) = x^2$ on $\mathbb{R}$, the pre-image $f^{-1}(\{9\}) = \{-3,3\}$ exists, while no inverse function does.
 
 The notation is unfortunate and universal. Distinguish them by what goes in: a set means pre-image, an element means inverse function.
 </Warning>

@@ -1,0 +1,101 @@
+---
+level: l5
+title: When does induction apply?
+readingTimeMin: 8
+newTerms: []
+anchorExample: "2ⁿ > n for all n ≥ 1"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Induction needs two things, and both are easy to lose sight of when the examples are all about sums.
+
+> 1. **An integer index.** The statements must be indexed by $n$, with a first case and a next case.
+> 2. **A usable link.** Case $k+1$ must be reachable from case $k$ — there has to be something that connects them.
+
+Fail the first and there is nothing to step along. Fail the second and the step cannot be proved even though the setup looks right.
+
+## Where the link comes from
+
+Three kinds of statement supply it naturally.
+
+**Sums and products.** The sum up to $k+1$ *is* the sum up to $k$ plus one more term. The link is built into the notation, which is why modules 6.2 and 6.3 went so smoothly.
+
+**Recursive definitions.** If a sequence is defined by giving its first term and a rule for getting the next from the previous, then the rule *is* the link. Compound interest, the Fibonacci numbers, and repeated doubling are all of this kind.
+
+**Anything built in stages.** Adding one more element, one more row, one more side. Module 6.7 counts subsets this way.
+
+## An inequality
+
+Induction is not only for equations.
+
+> **Proposition.** For every integer $n \geq 1$: $\ 2^n > n$.
+
+<Discussion>
+  <div slot="know">$2^k > k$ — and, since these are integers, that actually gives $2^k \geq k+1$.</div>
+  <div slot="want">$2^{k+1} > k+1$.</div>
+  <div slot="how">The link is $2^{k+1} = 2\cdot2^k$, which is what lets the hypothesis in. Then bound below and finish with a small inequality.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ be $2^n > n$, for $n \geq 1$.
+
+**Base case.** $A(1)$: $2^1 = 2 > 1$ ✓
+
+**Inductive step.** Let $k \geq 1$ and assume $2^k > k$. Then
+$$
+2^{k+1} = 2 \cdot 2^k > 2k.
+$$
+Since $k \geq 1$ we have $k \geq 1$, so $2k = k + k \geq k+1$.
+
+Combining, $2^{k+1} > 2k \geq k+1$, which is $A(k+1)$.
+
+By induction, $2^n > n$ for every integer $n \geq 1$.
+</Proof>
+
+Note the last step: $2k \geq k+1$ **used the hypothesis $k \geq 1$**, not the inductive hypothesis. Induction proofs often need the range restriction as well as $A(k)$, and it is worth noticing which is doing what.
+
+## Where induction fails
+
+<Warning title="No integer index, no induction">
+> *Every real number $x$ satisfies $x^2 \geq 0$.*
+
+There is no first real number and no next one, so there is nothing to step along. Module 4.6's density is the obstruction — between any two reals there is another, so "the next case" refers to nothing.
+
+That statement is true, and module 5.1 proved it by **cases**. Different problem, different technique.
+
+**Match the technique to the structure.** Induction wants a chain; case analysis wants a finite partition (module 4.4); a direct proof wants a hypothesis to compute with.
+</Warning>
+
+<Warning title="A missing base case proves nothing">
+Consider $A(n)$: *$n = n+1$*.
+
+The inductive step is fine. Assume $k = k+1$; add $1$ to both sides; get $k+1 = k+2$, which is $A(k+1)$. The step is valid.
+
+And $A(n)$ is false for every $n$, because **no base case is true.**
+
+The dominoes are perfectly spaced and nobody pushed. Every induction proof needs both parts, and this is why a base case that looks trivial still has to be checked.
+</Warning>
+
+## When one previous case is not enough
+
+Sometimes $A(k)$ alone does not reach $A(k+1)$ — you need several earlier cases, or all of them.
+
+**Strong induction** allows exactly that: assume $A(1), A(2), \ldots, A(k)$ all hold, and prove $A(k+1)$.
+
+It is not a new principle. Applying ordinary induction to the statement *"$A(j)$ holds for every $j \leq n$"* gives it, so anything provable one way is provable the other. What changes is convenience.
+
+The standard example: **every integer $n \geq 2$ has a prime factor.** If $n$ is prime, done. If not, $n = ab$ with $1 < a, b < n$ — and now you need $A(a)$, where $a$ could be anything below $n$, not specifically $n-1$. Ordinary induction cannot reach it; strong induction can.
+
+<Aside>
+The requirement is really about having a **first** case and a **next** case, and several structures have that without being the integers.
+
+Your geometry course proves things about polygons by cutting off one triangle at a time and appealing to the case with one fewer side. The index is the number of sides, and the link is the cut.
+
+The same shape appears whenever objects are built by repeated construction — expressions built from smaller expressions, or shapes built from smaller shapes. Prove it for the smallest pieces, prove that each construction step preserves the property, and you have covered everything that can be built.
+
+**The essential requirement is that nothing can be broken down forever.** There has to be a floor, or there is no base case to stand on.
+</Aside>

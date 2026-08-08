@@ -73,11 +73,11 @@ f^{-1}(\{0\}) = \{0\},\quad
 f^{-1}(\{-5\}) = \emptyset,\quad
 f^{-1}\big((-2,6)\big) = (-\sqrt6,\sqrt6).
 $$
-In the last, the constraint $-2 < x^2$ is vacuous and only $x^2 < 6$ bites. Note that the pre-image of an open set is open here — the defining property of continuity in topology, met in a special case.
+In the last, the constraint $-2 < x^2$ is vacuous and only $x^2 < 6$ bites. Note that the pre-image of an open interval is an open interval here. That is not a coincidence: it is the property that continuity is eventually *defined* by, and it is stated with pre-images rather than images for exactly the reasons this module gives.
 
 Floor: $\lfloor\cdot\rfloor^{-1}(\{n\}) = [n, n+1)$. Fibres are intervals; infinitely many inputs share each output.
 
-## The adjunction
+## The two round trips
 
 The two operators are not inverse but they are related, for all $A \subseteq S$, $U \subseteq T$:
 $$
@@ -95,7 +95,13 @@ For the second: let $t \in f(f^{-1}(U))$. Then $t = f(s)$ for some $s \in f^{-1}
 
 Strictness in the first: $f(x)=x^2$, $A = \{2\}$ gives $f^{-1}(f(A)) = \{\pm2\} \supsetneq A$. In the second: $U = \{-5\}$ gives $f(f^{-1}(U)) = \emptyset \subsetneq U$.
 
-Compactly, $f(A) \subseteq U \iff A \subseteq f^{-1}(U)$ — the image operator is left adjoint to the pre-image operator, which is the structural reason for both inclusions and for everything in §3.4.
+Both round trips can fail, and they fail for opposite reasons. $A \subseteq f^{-1}(f(A))$ is strict when $f$ **merges** — two inputs sharing an output, so tracing back picks up a companion that was never in $A$. $f(f^{-1}(U)) \subseteq U$ is strict when $f$ **misses** — some target has no source, so it cannot survive the round trip out and back.
+
+Merging and missing are the only two ways a function fails to be undoable, and §3.5 and §3.6 study them one at a time. The single statement underneath both inclusions is
+$$
+f(A) \subseteq U \quad\text{exactly when}\quad A \subseteq f^{-1}(U),
+$$
+which is worth checking against the two proofs above — each is one direction of it.
 
 <Warning title="Two meanings of f⁻¹">
 $f^{-1}(U)$ for $U \subseteq T$ — the pre-image — exists for every function. $f^{-1} : T \to S$ — the inverse function — exists only for bijections (§3.9).
@@ -110,5 +116,22 @@ Images fail to commute with intersection: $f(A \cap B) \subseteq f(A) \cap f(B)$
 </Aside>
 
 <WhereThisGoes level="l7">
-The fibre decomposition is the first appearance of an idea that runs through modern mathematics: study a map by studying its fibres. In algebra, the fibres of a group homomorphism are the cosets of its kernel, and the first isomorphism theorem says the induced map on fibres is an isomorphism. In geometry, a fibre bundle is a map all of whose fibres are isomorphic, and the whole of characteristic class theory measures how such bundles twist. In algebraic geometry, a morphism of schemes is analysed fibre by fibre, and flatness is the condition that fibres vary continuously. The pre-image operator, meanwhile, becomes the definition of continuity ($f^{-1}(\text{open})$ open) and of measurability ($f^{-1}(\text{Borel})$ measurable) — both stated with $f^{-1}$ rather than $f$ for exactly the reason the aside above gives.
+Pre-images are the objects both courses ahead are actually built on, and images are the ones that behave badly.
+
+**In linear algebra the two operations have names.** For a linear map $T$,
+$$\operatorname{Nul} T = T^{-1}(\{\mathbf{0}\}) \quad\text{— a pre-image}, \qquad \operatorname{Ran} T = T(V) \quad\text{— an image}.$$
+
+Both are subspaces, which is a theorem rather than an accident, and each is proved by the corresponding element-chasing template. The pre-image proof is easier, for the reason §3.4 explains: membership in a pre-image is a direct condition, and membership in an image requires producing a source.
+
+The whole solution theory of $A\mathbf{x}=\mathbf{b}$ is a pre-image statement. The solution set is $A^{-1}(\{\mathbf{b}\})$, it is non-empty exactly when $\mathbf{b}\in\operatorname{Col} A$, and when non-empty it is a translate of $\operatorname{Nul} A$ — which is why the general solution is *particular plus homogeneous*, and why the number of free variables equals the dimension of the null space.
+
+**In calculus the images are the interesting sets.** The Extreme Value Theorem says the image of a closed bounded interval under a continuous function is a closed bounded interval — the maximum and minimum are attained *because the image contains its endpoints*. The Intermediate Value Theorem says that image contains everything between, so it has no gaps. Together they say the image is exactly $[m, M]$, which is a stronger and cleaner statement than either alone.
+
+**The two round-trip inequalities have calculus meaning.** $A \subseteq f^{-1}(f(A))$ is strict exactly when $f$ merges — which for $f(x)=x^2$ on $\mathbb{R}$ is why $f^{-1}(f([1,2])) = [-2,-1]\cup[1,2]$, and why squaring both sides of an equation introduces extraneous roots. The extra solutions are the ones the pre-image picked up, and checking them is undoing the merge by hand.
+
+$f(f^{-1}(B)) \subseteq B$ is strict exactly when $f$ misses, which is why $\sin(\sin^{-1} x) = x$ holds on $[-1,1]$ and $\sin^{-1}(\sin x) = x$ fails outside $[-\pi/2,\pi/2]$. The two identities are not symmetric, and the asymmetry is exactly the one this module proved.
+
+**Level sets are pre-images.** For $f(x,y)$, the curve $f = c$ is $f^{-1}(\{c\})$, and a contour map is a picture of a family of pre-images. So is a solution set of any equation — which means the objects you have been graphing since algebra are pre-images of single points.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **null space** — the vectors a matrix sends to zero; **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

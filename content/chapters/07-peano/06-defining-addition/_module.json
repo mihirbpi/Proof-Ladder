@@ -20,7 +20,7 @@
     "l3": "Addition is defined by two rules: adding zero changes nothing, and adding the next of something is the next of adding it. Every sum unwinds to those rules, so 1 + 1 = 2 is something you derive.",
     "l4": "Addition is defined recursively: a + 0 = a and a + S(b) = S(a + b). Every sum unwinds to the base case, so 1 + 1 = 2 is a derivation rather than an assumption.",
     "l5": "The recursive definition determines addition completely; commutativity is not built in and must be proved by induction.",
-    "l6": "Recursion on the second argument defines addition; associativity and commutativity are theorems requiring induction, which is genuinely surprising.",
+    "l6": "Addition is defined by two rules: a + 0 = a, and adding a successor gives the successor of the sum. Commutativity and associativity are then theorems proved by induction rather than assumptions — which is genuinely surprising.",
     "l7": "a + 0 = a and a + S(b) = S(a + b) define addition recursively; every sum unwinds to the base case, and commutativity and associativity are theorems proved by induction, not axioms.",
     "l8": "Recursion is justified by the recursion theorem, itself a consequence of the induction axiom; that a + b = b + a requires proof is the clearest sign that familiarity is not justification."
   },

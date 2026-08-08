@@ -1,0 +1,105 @@
+---
+level: l5
+title: Conjecture, then prove
+readingTimeMin: 9
+newTerms: []
+anchorExample: "double it, then add 1"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+So far the claims arrived ready-made and you proved them. Real mathematics is not like that. Usually you have to **find** the claim first, and only then prove it.
+
+This module practises both halves. The loop is:
+
+> 1. **Compute cases** until you have data.
+> 2. **Isolate the patterns** — often there is more than one, tangled together.
+> 3. **Assemble a formula**, and check it against a case you have not used.
+> 4. **Prove it** by induction.
+
+Step 4 is what Chapter 6 has been teaching. Steps 1 to 3 are what nobody teaches, and they are most of the work.
+
+## Job one: gather data
+
+Start at $0$ and apply this rule repeatedly: **double it, then add $1$.**
+
+| Steps | Result |
+|---|---|
+| $0$ | $0$ |
+| $1$ | $1$ |
+| $2$ | $3$ |
+| $3$ | $7$ |
+| $4$ | $15$ |
+| $5$ | $31$ |
+
+Stare at $0, 1, 3, 7, 15, 31$ and it is hopeless if you try to see it all at once. The differences are $1, 2, 4, 8, 16$ — doubling — which is a clue but not yet a formula.
+
+## Job two: pull the patterns apart
+
+The trick is to put a **simpler sequence beside it** and compare.
+
+| Steps | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ |
+|---|---|---|---|---|---|---|
+| Our list | $0$ | $1$ | $3$ | $7$ | $15$ | $31$ |
+| Powers of $2$ | $1$ | $2$ | $4$ | $8$ | $16$ | $32$ |
+
+Every entry is **exactly one less**.
+
+## Job three: assemble and check
+
+> **Conjecture.** After $n$ steps, the result is $2^n - 1$.
+
+Check at a value not used to build the guess. At $n = 6$: the rule gives $2\cdot31 + 1 = 63$, and $2^6 - 1 = 63$ ✓.
+
+<Warning title="A checked conjecture is still a conjecture">
+Module 6.1's $n^2+n+41$ survived forty checks and was false.
+
+The check above is worth doing — it catches arithmetic slips before you waste an hour proving something wrong — but it is evidence, not proof. **Steps 1 to 3 produce a candidate; only step 4 produces a theorem.**
+</Warning>
+
+## Job four: prove it
+
+<Discussion>
+  <div slot="know">Each result comes from the previous one by doubling and adding $1$ — that recursive rule is the link the induction needs (module 6.4). The hypothesis is that the $k$th result is $2^k - 1$.</div>
+  <div slot="want">The $(k+1)$st result is $2^{k+1}-1$.</div>
+  <div slot="how">Apply the rule once more to the hypothesis and simplify. Doubling $2^k - 1$ gives $2^{k+1} - 2$, and adding $1$ lands exactly one short of $2^{k+1}$.</div>
+</Discussion>
+
+<Proof>
+Write $a_n$ for the result after $n$ steps, so $a_0 = 0$ and $a_{n+1} = 2a_n + 1$.
+
+Let $A(n)$ be the statement $a_n = 2^n - 1$, for $n \geq 0$.
+
+**Base case.** $A(0)$: $a_0 = 0$, and $2^0 - 1 = 1 - 1 = 0$ ✓
+
+**Inductive step.** Let $k \geq 0$ and assume $a_k = 2^k - 1$. Applying the rule,
+$$
+a_{k+1} = 2a_k + 1 = 2\big(2^k - 1\big) + 1 = 2^{k+1} - 2 + 1 = 2^{k+1} - 1,
+$$
+which is $A(k+1)$.
+
+By induction, $a_n = 2^n - 1$ for every integer $n \geq 0$.
+</Proof>
+
+**The recursive rule was the link.** Module 6.4 listed recursive definitions as one of the three places the connection between consecutive cases comes for free, and this is that case: the rule *tells* you how to get from $k$ to $k+1$, so the inductive step writes itself.
+
+## Why the two-list trick works
+
+<Warning title="Pull patterns apart before combining them">
+$0, 1, 3, 7, 15, 31$ is unreadable on its own and obvious once the powers of $2$ sit beneath it.
+
+This is the general technique. When data resists, look for a **simpler sequence hiding inside it** — powers, multiples, squares, factorials — and measure your sequence against that one. Differences and ratios are the two standard things to compute.
+
+Here the ratios were roughly $2$, which pointed at powers of $2$, and the comparison then showed a constant offset of $1$. Two patterns, found separately, then combined into $2^n - 1$.
+</Warning>
+
+<Aside>
+This module is the one that most resembles what research mathematics is actually like.
+
+The published version of a theorem shows step 4 — a clean proof of a clean statement. Steps 1 to 3, where the statement was found, are almost never written down, which makes mathematics look like a subject where correct claims arrive from nowhere and are then verified.
+
+They do not. Somebody computed a table, noticed something, guessed wrong, adjusted, and guessed again. **The proof is the last thing that happens, not the first**, and a course that only ever hands you the statement is showing you half the subject.
+</Aside>

@@ -46,13 +46,17 @@ In words: the numbers that are multiples of both $12$ and $18$ are exactly the m
 </Discussion>
 
 <Proof>
-**($\supseteq$)** Let $n \in M_{36}$, so $n = 36 \times k$ for some positive whole number $k$.
+**($\supseteq$)** Take any multiple of $36$ — any one at all.
 
-Then $n = 12 \times (3k)$, so $n \in M_{12}$. And $n = 18 \times (2k)$, so $n \in M_{18}$. Hence $n \in M_{12} \cap M_{18}$.
+It is some number of $36$s. Each $36$ splits into three $12$s, so the whole thing splits into $12$s: it is a multiple of $12$. Each $36$ also splits into two $18$s, so it is a multiple of $18$ too.
 
-**($\subseteq$)** Let $n \in M_{12} \cap M_{18}$. Then $12$ divides $n$ and $18$ divides $n$.
+Being in both, it is in $M_{12} \cap M_{18}$.
 
-Since $12 = 4 \times 3$ divides $n$, the number $n$ contains two $2$s and one $3$ among its factors. Since $18 = 2 \times 9$ divides $n$, the number $n$ contains one $2$ and two $3$s. Putting these together, $n$ must contain at least two $2$s and two $3$s, so $n$ is divisible by $4 \times 9 = 36$. Hence $n \in M_{36}$.
+**($\subseteq$)** Now take any number in $M_{12} \cap M_{18}$. Both $12$ and $18$ divide it.
+
+Split each divisor into its prime factors. Since $12 = 2\times2\times3$ divides our number, the number has **two $2$s and one $3$** inside it. Since $18 = 2\times3\times3$ divides it, the number has **one $2$ and two $3$s** inside it.
+
+To satisfy both at once it must have at least two $2$s *and* at least two $3$s. Those multiply to $4 \times 9 = 36$, so $36$ divides it, and it is in $M_{36}$.
 
 Both inclusions hold, so $M_{12} \cap M_{18} = M_{36}$.
 </Proof>

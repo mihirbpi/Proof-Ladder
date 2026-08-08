@@ -38,6 +38,20 @@ That includes the two cases where p is false. This surprises people at first: if
 This "true by default" idea has a fancy name — *vacuously true* — that shows up at higher levels. For now, all it means is: no promise, no problem.
 </Aside>
 
+## Finding the one bad case
+
+Because there is only one way for a conditional to fail, there is only one thing to look for. Take the hypothesis and make it hold. Take the conclusion and make it fail. That combination is the bad case, and it is the only evidence that counts against the claim.
+
+> If a number ends in $0$, then it is a multiple of $5$.
+
+Bad case: a number that ends in $0$ and is **not** a multiple of $5$. Go looking. $10$, $20$, $30$, $100$ — every one of them is a multiple of $5$. Nobody has ever found a bad case here, and module 4.3 shows why nobody ever will.
+
+Now a claim that does fail:
+
+> If a number is a multiple of $3$, then it is odd.
+
+Bad case: a multiple of $3$ that is not odd. That is $6$. One example, and the claim is finished.
+
 ## Back to the numbers
 
 Take our number claim: *if a number is a multiple of 6, then it is even*.
@@ -50,3 +64,12 @@ Take our number claim: *if a number is a multiple of 6, then it is even*.
 To *break* this claim, you would have to find a multiple of 6 that is not even. There isn't one — every multiple of 6 is 6 times a whole number, and 6 is already even. So the claim is true.
 
 The whole rest of this chapter is going to be about writing that last sentence carefully.
+
+## Order matters
+
+One more warning before you go. Turning a conditional around gives a **different** claim, and it can have a different answer.
+
+- *If a number is a multiple of $6$, then it is even.* True.
+- *If a number is even, then it is a multiple of $6$.* False — $4$ is even and is not a multiple of $6$.
+
+Same two pieces, swapped, and one is true while the other is not. So *if p then q* and *if q then p* are two separate claims, and proving one tells you nothing about the other. Module 1.7 gives the turned-around version a name and looks at it properly.

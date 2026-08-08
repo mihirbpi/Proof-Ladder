@@ -1,0 +1,105 @@
+---
+level: l5
+title: Defining addition
+readingTimeMin: 8
+newTerms: ["recursive definition"]
+anchorExample: "a + S(b) = S(a + b)"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Nine axioms, and none of them mentions $+$. Addition is not given — it has to be **built**, from $0$ and the successor and nothing else.
+
+## The definition
+
+> $$ a + 0 = a $$
+> $$ a + S(b) = S(a + b) $$
+
+Two lines. The first says adding nothing changes nothing. The second says **adding the next number gives the next answer.**
+
+This is a **recursive definition**: it defines $a + b$ in terms of $a + (\text{something smaller})$, with a base case to stop at. Module 6.4 listed recursive definitions as one of the natural homes for induction, and this is why the chapter ends here.
+
+## Watch it compute
+
+Every sum unwinds to the base case. Take $2 + 2$, remembering that $2$ means $S(S(0))$:
+
+$$
+\begin{aligned}
+2 + S(S(0)) &= S\big(2 + S(0)\big) && \text{second rule}\\
+&= S\big(S(2 + 0)\big) && \text{second rule again}\\
+&= S\big(S(2)\big) && \text{first rule}\\
+&= S(3) = 4.
+\end{aligned}
+$$
+
+**$2+2=4$, proved.** Not assumed, not remembered — derived from the definition in four steps.
+
+The pattern is worth noticing: the second rule peels one successor off the right argument and moves it outside, repeatedly, until the right argument is $0$ and the first rule finishes the job. Since $b$ is a numeral, that always terminates.
+
+Now the fact module 7.3 forbade you to assume:
+
+$$
+a + 1 = a + S(0) = S(a+0) = S(a).
+$$
+
+**$S(a) = a+1$ is a theorem.** The successor really is "add one", and it took a definition and two steps to earn.
+
+## What is not built in
+
+Look at the two rules again. They treat the two arguments completely differently — the recursion runs on the **right** one, and the left one is carried along untouched.
+
+So nothing in the definition suggests that
+$$
+a + b = b + a.
+$$
+
+**Commutativity is not built in.** Neither is associativity. Both are theorems, and both need induction.
+
+<Warning title="This is the surprising part of the chapter">
+$a + b = b + a$ has been obvious to you since you were five. Here it is a statement requiring proof, and the proof is not short.
+
+The reason is that the definition is **asymmetric** — it recurses on one argument only — while the claim is symmetric. Nothing about the two rules makes the two sides interchangeable, so the symmetry has to be established rather than observed.
+
+Proving it takes a chain of small results, each by induction: first $0 + a = a$ (the mirror of the base case, and *not* the same statement), then $S(a) + b = S(a+b)$, and only then commutativity itself.
+
+**Familiarity is not evidence.** A statement you have never doubted can still need a proof, and a foundational chapter is where that becomes visible.
+</Warning>
+
+## One of them, done
+
+> **Proposition.** $0 + a = a$ for every $a \in \mathbb{N}$.
+
+<Discussion>
+  <div slot="know">The definition gives $a + 0 = a$ immediately. It says nothing directly about $0 + a$, because the recursion runs on the right argument and here the interesting one is on the left.</div>
+  <div slot="want">$0 + a = a$.</div>
+  <div slot="how">Induct on $a$. The base case is the definition, and the step uses the second rule followed by the hypothesis.</div>
+</Discussion>
+
+<Proof>
+Let $A(a)$ be the statement $0 + a = a$.
+
+**Base case.** $A(0)$: $0 + 0 = 0$ by the first rule ✓
+
+**Inductive step.** Let $k \in \mathbb{N}$ and assume $0 + k = k$. Then
+$$
+0 + S(k) = S(0 + k) = S(k),
+$$
+using the second rule and then the hypothesis. That is $A(S(k))$.
+
+By induction (A9), $0 + a = a$ for every $a \in \mathbb{N}$.
+</Proof>
+
+Two lines of computation, and it proves something the definition appeared to state already. **It did not.** The definition gave $a + 0 = a$; this gives $0 + a = a$; and until commutativity is proved, those are different claims.
+
+<Aside>
+There is something worth appreciating in what this chapter has done.
+
+Start with $0$, one operation, and nine axioms. Define addition in two lines. Module 7.7 defines multiplication in two more, on top of addition. From there, every law you used in Chapter 4 — commutativity, associativity, distributivity — is provable.
+
+And from those, everything else. The integers are built from $\mathbb{N}$, the rationals from the integers, the reals from the rationals, and the complex numbers from the reals (module 5.2). **The entire tower rests on this.**
+
+The order in which you learned arithmetic is almost exactly the reverse of the order in which it can be justified — which is the right way round for learning, and worth seeing once from the other end.
+</Aside>

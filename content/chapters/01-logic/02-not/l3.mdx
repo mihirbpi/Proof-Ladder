@@ -3,12 +3,14 @@ level: l3
 title: "Opposites: negation"
 readingTimeMin: 4
 newTerms: ["negation"]
-anchorExample: "x ≥ 1"
+anchorExample: "a height rule for a ride"
 ---
 
 import Warning from '@/components/Warning.astro';
 
 Every statement has a partner called its **negation**. If the statement is true, its negation is false. If the statement is false, its negation is true. They can never both be true, and they can never both be false.
+
+This is the first tool in the course, and it is used constantly. Many proofs work by showing that the negation of what you want cannot possibly be true — and if the negation is impossible, the original must hold, because there is nothing else for it to be.
 
 We usually make the negation of a sentence by inserting the word *not*.
 
@@ -18,15 +20,31 @@ We usually make the negation of a sentence by inserting the word *not*.
 - Statement: *$7$ is a multiple of $3$.* False.
 - Negation: *$7$ is not a multiple of $3$.* True.
 
-## Negating inequalities
+## Negating a comparison
 
-Take the statement $x \geq 1$.
+Say a ride has a height rule: **you must be $48$ inches tall or taller.**
 
-Its negation is $x < 1$ — the reverse inequality, and it flips whether the boundary is included. That is a *strict* less-than.
+What is the negation? It is: **you are shorter than $48$ inches.**
 
-<Warning title="Common mistake">
-The negation of $x \geq 1$ is $x < 1$, not $x \leq 1$. The statement $x \geq 1$ allows $x = 1$; its negation forbids $x = 1$.
+Look hard at what happens at exactly $48$ inches. Someone exactly $48$ tall *does* meet the rule. So they must **not** meet the negation — and they don't, because $48$ is not shorter than $48$.
+
+<Warning title="Watch the exact number">
+The negation of *"$48$ or taller"* is *"shorter than $48$"* — not *"$48$ or shorter."*
+
+Test it at exactly $48$. Someone exactly $48$ inches tall would meet **both** the rule and *"$48$ or shorter."* Both cannot be true at once, so that cannot be the negation.
+
+Every statement and its negation split everyone into two groups, with nobody in both and nobody left out. **Check the exact boundary number** and you will catch this mistake every time.
 </Warning>
+
+## Negating twice
+
+Negating flips the truth value. So negating *twice* flips it back to where it started.
+
+- *The number $12$ is even.* True.
+- *The number $12$ is not even.* False.
+- *It is not true that $12$ is not even.* True again.
+
+The third sentence is clumsy to say, but it means exactly the same thing as the first. Two nots cancel. English does not always work this way — "I didn't see nothing" usually means you saw nothing — but in mathematics the rule has no exceptions.
 
 ## Negating quantities
 
@@ -34,3 +52,14 @@ The negation of $x \geq 1$ is $x < 1$, not $x \leq 1$. The statement $x \geq 1$ 
 - The negation of *every number is even* is *at least one number is not even*.
 
 Notice a pattern: the negation of "all of them" is not "none of them" — it's "at least one is not." One counterexample is enough. Module 1.11 will use this idea a lot.
+
+## Why "none of them" is wrong
+
+Take a shelf holding some red books and some green ones.
+
+- *Every book is red.* False — the green ones say so.
+- *No book is red.* Also false — the red ones say so.
+
+Both are false at the same time, and a statement and its negation can never do that. So they are not negations of each other. The real negation of *every book is red* is *at least one book is not red*, and on this shelf that is true.
+
+**The negation of a statement is not its opposite extreme.** The opposite extreme claims much more, and claiming more is exactly what you must not do when you are trying to knock a statement down. One exception is all you need, and one exception is all you should claim.

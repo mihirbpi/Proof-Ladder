@@ -36,7 +36,7 @@ Equivalently again, in fibre language (§3.3): $|f^{-1}(\{t\})| \leq 1$ for all 
 </Discussion>
 
 <Proof title="Proof (general lemma)">
-Let $f : I \to \mathbb{R}$ be strictly increasing on an interval $I$, and suppose $f(a) = f(b)$ with $a, b \in I$. By trichotomy, either $a < b$, $a = b$, or $a > b$. If $a < b$ then $f(a) < f(b)$, contradicting equality; if $a > b$ then $f(a) > f(b)$, likewise. Hence $a = b$, so $f$ is injective.
+Let $f : I \to \mathbb{R}$ be strictly increasing on an interval $I$, and suppose $f(a) = f(b)$ with $a, b \in I$. By trichotomy — every pair of reals compares in exactly one of three ways — either $a < b$, $a = b$, or $a > b$. If $a < b$ then $f(a) < f(b)$, contradicting equality; if $a > b$ then $f(a) > f(b)$, likewise. Hence $a = b$, so $f$ is injective.
 
 Applying this to $\exp$, which is strictly increasing since $\exp' = \exp > 0$ everywhere, gives injectivity of $\exp$.
 </Proof>
@@ -67,7 +67,7 @@ Since domain and codomain are part of the function (§3.1), this is not a change
 > **Proposition.** For $f : S \to T$ with $S \neq \emptyset$, the following are equivalent:
 > 1. $f$ is injective;
 > 2. $f$ has a **left inverse**: some $g : T \to S$ with $g \circ f = \mathrm{id}_S$;
-> 3. $f$ is left-cancellable: for all $h, k : R \to S$, $f \circ h = f \circ k \Rightarrow h = k$;
+> 3. $f$ can be cancelled from the left: for all $h, k : R \to S$, $f \circ h = f \circ k \Rightarrow h = k$;
 > 4. $f(A \cap B) = f(A) \cap f(B)$ for all $A, B \subseteq S$;
 > 5. $f^{-1}(f(A)) = A$ for all $A \subseteq S$.
 
@@ -81,7 +81,7 @@ Uniqueness — hence well-definedness of $g$ — is exactly injectivity. For $s 
 ($\Leftarrow$) Suppose $g \circ f = \mathrm{id}_S$ and $f(s_1) = f(s_2)$. Applying $g$: $s_1 = g(f(s_1)) = g(f(s_2)) = s_2$.
 </Proof>
 
-Items (4) and (5) were flagged in §3.4: all the misbehaviour of the image operator is exactly the failure of injectivity. Item (3) is the categorical formulation — an injection is a **monomorphism** — and it is the version that survives when "elements" are unavailable.
+Items (4) and (5) were flagged in §3.4: all the misbehaviour of the image operator is exactly the failure of injectivity. Item (3) is the formulation that survives when elements are not available to chase, and it is the version that survives when "elements" are unavailable.
 
 The hypothesis $S \neq \emptyset$ in (2) is needed only for the trivial reason that a left inverse must be defined somewhere; the empty function $\emptyset \to T$ is injective but has no left inverse when $T \neq \emptyset$.
 
@@ -90,5 +90,21 @@ Injectivity is what "no information is lost" means precisely. An injective $f$ c
 </Aside>
 
 <WhereThisGoes level="l7">
-Injectivity reappears under a new name in every algebraic subject, and each time it is detected differently. A group homomorphism is injective iff its kernel is trivial; a linear map is injective iff its nullity is zero, which by rank–nullity ties injectivity to surjectivity for endomorphisms of finite-dimensional spaces. A ring homomorphism into an integral domain is injective iff its kernel is not a nonzero ideal, and an injective ring map is exactly an embedding of one structure in another — which is how field extensions are built. In topology, injective continuous maps from compact spaces to Hausdorff spaces are automatically embeddings, one of the most-used lemmas in the subject. In category theory, the monomorphism condition (3) is taken as the definition, and it is a real theorem, not a triviality, that in **Set** it coincides with the element-wise version.
+Injectivity is the condition under which an equation has at most one solution, and both courses ahead have a test for it.
+
+**In linear algebra, injectivity is detected by the null space.**
+
+> **Theorem.** A linear map $T$ is injective if and only if $\operatorname{Nul} T = \{\mathbf{0}\}$.
+
+The proof is short and it is exactly this module's template. Suppose $T(\mathbf{u}) = T(\mathbf{v})$; then $T(\mathbf{u}-\mathbf{v}) = \mathbf{0}$ by linearity, so $\mathbf{u}-\mathbf{v}$ is in the null space, so it is $\mathbf{0}$, so $\mathbf{u}=\mathbf{v}$.
+
+**One vector's worth of checking replaces a quantified statement about all pairs.** That is a genuine simplification, and it is available only because linearity lets you subtract — which is why the same trick works for no other kind of function.
+
+Injectivity of a matrix is then equivalent to full column rank, to having a pivot in every column, and to the columns being linearly independent. Those four conditions are the injective portion of the Invertible Matrix Theorem, and their equivalence is a §1.9 cycle.
+
+**In calculus, monotonicity gives injectivity.** If $f' > 0$ throughout an interval then $f$ is strictly increasing there, hence injective, hence invertible on that interval — which is exactly the hypothesis of the inverse-function results and the reason $\sin$ must be restricted to $[-\pi/2,\pi/2]$ before $\sin^{-1}$ exists.
+
+The horizontal line test is the graphical form, and the derivative test is the computable one. Note the direction: $f'>0$ implies injective, and the converse fails — $f(x)=x^3$ is injective with $f'(0)=0$. A one-way implication, and §1.7's warning applies.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse; **null space** — the vectors a matrix sends to zero; **linearly independent** — none of them a combination of the others; **rank** — the number of independent columns.*
 </WhereThisGoes>

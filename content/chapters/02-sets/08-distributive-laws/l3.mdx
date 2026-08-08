@@ -66,6 +66,8 @@ The proof of $S \cup (T \cap R) = (S \cup T) \cap (S \cup R)$ has the same shape
 
 Chasing forward, you assume $x \in S \cup (T \cap R)$ and split. In the case $x \in S$, you need $x \in S \cup T$ and $x \in S \cup R$ — both immediate. In the case $x \in T \cap R$, you get $x \in T$ and $x \in R$, so again both.
 
+### The interesting direction
+
 Chasing backward is the interesting direction. You know $x \in S \cup T$ and $x \in S \cup R$, and you want $x \in S$ or $x \in T \cap R$. So ask: is $x$ in $S$? If yes, done. **If not**, then from $x \in S \cup T$ it must be $T$ that holds, and from $x \in S \cup R$ it must be $R$ — so $x \in T \cap R$. Done either way.
 
 That "if not, then it must be the other one" move is a small, extremely reusable trick: when a union hands you a disjunction and you can rule out one side, the other side is yours.

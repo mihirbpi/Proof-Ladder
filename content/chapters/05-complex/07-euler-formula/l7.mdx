@@ -6,8 +6,6 @@ newTerms: ["absolute convergence"]
 anchorExample: "e^{iθ} = cos θ + i sin θ"
 ---
 
-import Figure from '@/components/Figure.astro';
-import ComplexPlane from '@/components/ComplexPlane.astro';
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
@@ -64,12 +62,30 @@ So $f$ is constant, and $f(0) = 1\cdot 1 = 1$. Hence $\cos\theta + i\sin\theta =
 
 The two proofs make different points. The series proof shows *why* the identity holds — the cycle of $i$ sorts the terms. The ODE proof shows that $e^{i\theta}$ is the unique solution of $y' = iy$, $y(0)=1$, which is the conceptual reason: multiplication by $i$ is rotation by a right angle (§5.5), so a point whose velocity is always $i$ times its position moves perpendicular to its radius — i.e. in a circle at unit speed.
 
+## Reading the formula geometrically
+
+$$|e^{i\theta}| = \sqrt{\cos^2\theta+\sin^2\theta} = 1$$
+
+by the Pythagorean identity, so $e^{i\theta}$ lies on the unit circle for every real $\theta$, with coordinates $(\cos\theta, \sin\theta)$ — the standard parametrisation of the circle.
+
+**$e^{i\theta}$ is the point reached by travelling $\theta$ radians counterclockwise from $1$.** The formula is a dictionary between arc length and a complex number, and the radian requirement is exactly what makes it exact: an arc of $\theta$ radians on the unit circle *has length* $\theta$.
+
+The special values then read as geometry rather than algebra:
+
+$$e^{i\pi/2} = i \quad\text{— a quarter turn}$$
+$$e^{i\pi} = -1 \quad\text{— a half turn}$$
+$$e^{2\pi i} = 1 \quad\text{— a full turn}$$
+
+And the exponent law becomes a statement about composing rotations. $e^{i\alpha}e^{i\beta} = e^{i(\alpha+\beta)}$ says turning by $\alpha$ then by $\beta$ is turning by $\alpha+\beta$ — which is §5.9, and which makes $i^2 = -1$ the statement that two quarter turns make a half turn.
+
+**Trigonometry and exponentials looked unrelated because you met them over $\mathbb{R}$**, where one oscillates and the other grows. Over $\mathbb{C}$ they are one function seen along two different lines through the origin, and the real line was simply too small a stage to see the connection on.
+
 ## Consequences
 
 $$
 |e^{i\theta}|^2 = \cos^2\theta + \sin^2\theta = 1,
 $$
-so $e^{i\theta}$ lies on the unit circle, and $\theta \mapsto e^{i\theta}$ is a surjective homomorphism $(\mathbb{R},+) \to (S^1,\times)$ with kernel $2\pi\mathbb{Z}$. Hence $\mathbb{R}/2\pi\mathbb{Z} \cong S^1$, which is the structural statement behind the non-uniqueness of polar form (§5.8).
+so $e^{i\theta}$ lies on the unit circle, and $\theta \mapsto e^{i\theta}$ is a surjective operation-preserving map $(\mathbb{R},+) \to (S^1,\times)$ with kernel $2\pi\mathbb{Z}$. Hence $\mathbb{R}/2\pi\mathbb{Z} \cong S^1$, which is the structural statement behind the non-uniqueness of polar form (§5.8).
 
 $$
 \cos\theta = \frac{e^{i\theta}+e^{-i\theta}}{2}, \qquad \sin\theta = \frac{e^{i\theta}-e^{-i\theta}}{2i},
@@ -83,5 +99,19 @@ $e^{i\pi} + 1 = 0$ is Euler's identity. Its aesthetic reputation is deserved but
 </Aside>
 
 <WhereThisGoes level="l7">
-Euler's formula is the hinge between analysis and geometry, and its consequences run in every direction. Fourier analysis writes functions as superpositions of $e^{in\theta}$, and the resulting theory underlies signal processing, PDEs, and quantum mechanics. In group theory, $\theta \mapsto e^{i\theta}$ is the exponential map of the Lie group $S^1$, and the general Lie-theoretic exponential $\exp: \mathfrak g \to G$ is modelled on it — with the same series, now of matrices. In number theory, characters $n \mapsto e^{2\pi i n/q}$ are the tool for detecting congruence conditions, and the analytic proof of Dirichlet's theorem on primes in arithmetic progressions runs entirely on them. And $e^{i\theta}$ is the reason electrical engineering computes with phasors: differentiating becomes multiplication by $i\omega$, turning differential equations into algebra.
+Euler's formula is the identity that unifies the three families of functions you have studied separately.
+
+**In calculus it explains why the same techniques handle growth and oscillation.** The differential equation $y'' = -\omega^2 y$ has solutions $\cos\omega t$ and $\sin\omega t$; the equation $y'' = k^2y$ has $e^{kt}$ and $e^{-kt}$. These look like different subjects, and Euler's formula shows they are one: substituting $k = i\omega$ turns the second into the first.
+
+That is why the characteristic-equation method works uniformly. Real roots give exponentials, complex roots give oscillation, and no separate theory is needed — the formula converts between them, and the $e^{\alpha t}(\cos\beta t, \sin\beta t)$ solutions for complex roots $\alpha\pm\beta i$ are $e^{(\alpha+\beta i)t}$ with its real and imaginary parts extracted.
+
+**The series manipulation is worth taking seriously.** The rearrangement that separated the cosine and sine series required absolute convergence — a hypothesis, not a formality. Riemann proved that a conditionally convergent series can be rearranged to sum to *any* value, so the step is legitimate only because the exponential series converges absolutely everywhere.
+
+Recognising which steps need that hypothesis is one of the things a first analysis course trains, and this is the earliest place it bites.
+
+**In linear algebra, the same series defines the matrix exponential.**
+$$e^{At} = I + At + \frac{(At)^2}{2!} + \frac{(At)^3}{3!}+\cdots,$$
+which converges for every square $A$ and solves the system $\mathbf{x}' = A\mathbf{x}$ with $\mathbf{x}(0) = \mathbf{x}_0$ as $\mathbf{x}(t) = e^{At}\mathbf{x}_0$.
+
+When $A$ is the $90°$ rotation generator, $e^{At}$ is the rotation matrix through angle $t$ — Euler's formula in matrix form, with the same even/odd split producing $\cos t$ and $\sin t$ in the entries.
 </WhereThisGoes>

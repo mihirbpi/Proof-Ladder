@@ -1,0 +1,107 @@
+---
+level: l5
+title: The rules for equality
+readingTimeMin: 8
+newTerms: ["reflexive", "symmetric", "transitive", "equivalence relation"]
+anchorExample: "congruence mod n"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+The first four of the nine axioms are about the equals sign. That seems like a strange place to spend four axioms, until you notice you have been using unstated rules about $=$ in every proof so far.
+
+## The four axioms
+
+For all $a, b, c$:
+
+> **A1 (reflexive).** $a = a$.
+>
+> **A2 (symmetric).** If $a = b$ then $b = a$.
+>
+> **A3 (transitive).** If $a = b$ and $b = c$ then $a = c$.
+>
+> **A4 (substitution).** If $a = b$, then $a$ may replace $b$ anywhere.
+
+A3 is what licenses a chain of equalities. Every time you wrote
+$$
+x = \text{something} = \text{something else} = y
+$$
+and concluded $x = y$, you used transitivity — repeatedly, and without mentioning it.
+
+A4 is what licenses substitution, which is most of algebra. It is also the axiom that makes $=$ more than a bare relation: it says equal things are interchangeable *for every purpose*.
+
+## Relations with the first three properties
+
+A relation with all of A1–A3 is an **equivalence relation**. It behaves like equality without necessarily *being* equality — it says "these are the same **for present purposes**."
+
+Two examples you know.
+
+**Congruence of figures.** Your geometry course states these as properties of $\cong$:
+
+| Property | Geometry version |
+|---|---|
+| reflexive | $F \cong F$ |
+| symmetric | $F \cong G \Rightarrow G \cong F$ |
+| transitive | $F \cong G$ and $G \cong H \Rightarrow F \cong H$ |
+
+Congruent triangles are not the *same* triangle — they can sit in different places. They are interchangeable for every question about side lengths and angles, and that is what the three properties record.
+
+**Congruence mod $n$.** Say $a \equiv b \pmod n$ when $n \mid (a - b)$.
+
+<Discussion>
+  <div slot="know">$a \equiv b \pmod n$ unfolds to $n \mid (a-b)$, which unfolds again to $a - b = nk$ for some integer $k$ (module 4.2).</div>
+  <div slot="want">All three properties.</div>
+  <div slot="how">Each is a divisibility statement, so each is proved by producing the integer witness. Three short proofs.</div>
+</Discussion>
+
+<Proof>
+**Reflexive.** $a - a = 0 = n\cdot0$, so $n \mid (a-a)$ ✓
+
+**Symmetric.** Suppose $a \equiv b$, so $a - b = nk$ for some $k \in \mathbb{Z}$. Then $b - a = n(-k)$, and $-k \in \mathbb{Z}$ by closure ✓
+
+**Transitive.** Suppose $a - b = nk$ and $b - c = nm$ with $k, m \in \mathbb{Z}$. Adding,
+$$
+a - c = (a-b) + (b-c) = nk + nm = n(k+m),
+$$
+and $k+m \in \mathbb{Z}$ by closure ✓
+</Proof>
+
+**The divisibility template again** — unpack, compute, factor, cite closure. Three times, from module 4.3, with nothing new required.
+
+## What an equivalence relation does
+
+> An equivalence relation **partitions** its set: it splits everything into groups, where each element belongs to exactly one group, and two elements are related exactly when they share a group.
+
+For congruence mod $3$, the groups are the remainder classes of module 4.4:
+$$
+\{\ldots,-3,0,3,6,\ldots\}, \quad \{\ldots,-2,1,4,7,\ldots\}, \quad \{\ldots,-1,2,5,8,\ldots\}.
+$$
+
+Every integer is in exactly one — which is precisely what the division algorithm guaranteed, and it is why proof by cases on remainders is exhaustive. **Module 4.4's technique was an equivalence relation all along.**
+
+<Warning title="Not every relation is an equivalence relation">
+Check all three before using the word, because most relations fail at least one.
+
+$\leq$ on $\mathbb{R}$: reflexive ✓, transitive ✓, symmetric ✗ — $2 \leq 3$ but $3 \not\leq 2$.
+
+$\subseteq$ on sets: same pattern, and for the same reason (module 2.3).
+
+$\neq$: symmetric ✓, but not reflexive, since $a \neq a$ is false. Nor transitive: $1 \neq 2$ and $2 \neq 1$, yet $1 = 1$.
+
+*Is a sibling of*: symmetric ✓, transitive ✓ (roughly), reflexive ✗ — you are not your own sibling.
+
+**Three properties, checked separately.** Two out of three is common and is not enough.
+</Warning>
+
+<Aside>
+Equality itself is the strictest equivalence relation: it puts every object in a group by itself, so nothing is interchangeable with anything but itself.
+
+Every other equivalence relation is a deliberate loosening. Choosing one is choosing **what to ignore.**
+
+Congruence mod $12$ ignores everything about a number except its clock position, which is why $15$ o'clock is $3$ o'clock. Congruence of figures ignores position and keeps shape and size. Fractions are an equivalence relation on pairs of integers that ignores the choice of representative, which is why $\tfrac12$ and $\tfrac24$ are the same number — and why module 3.2's rule $p/q \mapsto p+q$ failed to be a function.
+
+**Deciding what to ignore is one of the most productive moves in mathematics**, and each such decision is an equivalence relation.
+</Aside>

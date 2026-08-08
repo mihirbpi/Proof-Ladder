@@ -31,6 +31,16 @@ A **statement** is a declarative sentence with a definite **truth value** — th
 
 The sentence $x^2 \geq 0$ isn't quite a statement — its truth depends on what $x$ is. Plug in $x = 3$: $9 \geq 0$, true. Plug in $x = 0$: $0 \geq 0$, still true. Plug in any real, still true. Sentences with free variables like $x$ are called **open statements**. They become statements once you either substitute a value or quantify: "$\forall x \in \mathbb{R},\; x^2 \geq 0$" is a statement (module 1.10 formalises this).
 
+## Two commitments hiding in the definition
+
+*Exactly one of T or F* packs in two assumptions, and both do work later.
+
+**Every statement has a truth value.** Not "true, false, or undecided" — there is no third option. This is the *law of the excluded middle*, named in module 1.3, and it is what licenses a proof that rules out one possibility and concludes the other. Every proof by contradiction in this course depends on it.
+
+**No statement has two.** A sentence cannot be true and false at once. A pair of statements forcing that is a *contradiction*, and Chapter 2 turns contradictions into a technique: derive one, and whatever you assumed must have been wrong.
+
+Neither commitment is free. Both are assumptions about how mathematical language behaves, and it is worth knowing they are assumptions rather than observations.
+
 ## Conjectures
 
 The statement
@@ -47,6 +57,16 @@ Goldbach's conjecture — "every even integer $\geq 4$ is the sum of two primes"
 The truth value of a statement is a property of the mathematical universe. Our knowing that value is a property of our own state of understanding. Confusing the two produces sentences like "it's not true because we haven't proved it," which is wrong on its face.
 </Warning>
 
+## Checking is not proving
+
+$2+2=4$ can be settled by counting. Goldbach's conjecture cannot, because there is no last even integer to stop at.
+
+That gap is the reason this subject exists. A statement about finitely many things can be checked exhaustively. A statement about infinitely many needs an argument covering all of them at once — one that never mentions a particular case, and so cannot run out. Modules 1.10 to 1.12 build that argument form directly, and module 6.1 shows what happens to people who trust checking instead.
+
 ## Why this matters going forward
 
 Every theorem you write will be a statement that got promoted from "just true or false" to "provably true." Every question you can't yet answer is a statement whose truth value is undetermined *to you*. Chapter 1 is the machinery for doing the promotion.
+
+Everything in the chapter serves that promotion. Modules 1.2 to 1.4 fix what compound statements mean, so there is no ambiguity about what is being proved. Modules 1.5 to 1.9 supply the argument shapes. The last three handle statements about infinitely many cases.
+
+None of it is preliminary. **A proof that gets the statement wrong proves the wrong thing**, however sound the reasoning after it — which is why a chapter on proof opens with a module on sentences.

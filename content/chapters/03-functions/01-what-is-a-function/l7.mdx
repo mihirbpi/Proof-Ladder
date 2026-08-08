@@ -8,7 +8,6 @@ anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
 
 import Figure from '@/components/Figure.astro';
 import ArrowDiagram from '@/components/ArrowDiagram.astro';
-import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
@@ -86,5 +85,15 @@ $x \mapsto 1/x$ is not a function $\mathbb{R} \to \mathbb{R}$; totality fails at
 Ordinary mathematics takes the first road, and "the domain of $1/x$" means the largest set on which the formula makes sense.
 
 <WhereThisGoes level="l7">
-The graph definition looks like the last word, and in one sense it is: everything else in this course is built from it. But it makes functions into static sets of pairs, and much of modern mathematics needs functions to be primitive rather than derived. Category theory takes objects and arrows as undefined, with composition and identities as the only axioms, and never asks what an arrow is made of — which is what lets the same theorems apply to sets, groups, spaces, and types alike. Type theory likewise takes functions as primitive, with $f$ a program rather than a graph, so that function extensionality (equal values implies equal functions) becomes an *axiom* rather than a triviality. Which of these you adopt determines whether "the same function" means "the same graph" or "the same computation", and in the constructive setting those genuinely differ.
+Calculus is a course about functions, and almost every difficulty in it is a domain question in disguise.
+
+**Totality is why domains must be stated.** $f(x) = 1/x$ is not a function on $\mathbb{R}$, and neither is $\tan x$, and neither is $\ln x$. Every one of the standard examples in a first calculus course arrives with a restriction, and the restriction is not a footnote — without it there is no function to differentiate.
+
+The consequences are immediate and practical. The Mean Value Theorem requires $f$ to be defined on all of $[a,b]$; applying it to $1/x$ across $0$ produces nonsense, and the failure is a failure of totality. The Fundamental Theorem of Calculus requires continuity on the interval of integration, which is why $\int_{-1}^{1} \frac{1}{x^2}\,dx$ cannot be computed by antidifferentiating and evaluating.
+
+**Single-valuedness is why inverse trigonometric functions have restricted ranges.** $\sin^{-1}$ must return one angle, so its domain is restricted before inverting, and that is why solving $\sin\theta = \frac12$ over all angles requires adding solutions back by hand.
+
+**In linear algebra, functions between arbitrary sets is exactly the generality needed.** A linear transformation $T:\mathbb{R}^n\to\mathbb{R}^m$ has neither a graph you can draw nor a formula in the usual sense, and the definition of §3.1 applies unchanged — inputs are vectors, outputs are vectors, and the three conditions are checked the same way.
+
+**The set-of-pairs definition is what makes this generality possible.** Nothing in it mentions numbers, formulas, or graphs, which is why the theorems of the next eight modules will hold for linear maps, for sequences, and for the differentiation operator alike.
 </WhereThisGoes>

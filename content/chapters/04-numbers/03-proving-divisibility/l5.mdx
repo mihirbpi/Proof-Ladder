@@ -1,0 +1,117 @@
+---
+level: l5
+title: Proving divisibility facts
+readingTimeMin: 9
+newTerms: ["without loss of generality"]
+anchorExample: "a | b and a | c ⇒ a | bx + cy"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 4.2 ended with four steps. Here they are as a template, and it handles essentially every divisibility proof you will meet.
+
+> 1. **Unpack.** Turn each hypothesis $a \mid b$ into an equation $b = a k$, with a **fresh letter** for each.
+> 2. **Compute.** Substitute into the expression you care about.
+> 3. **Factor.** Pull the divisor out front.
+> 4. **Cite closure.** Say that the remaining cofactor is an integer, and why.
+
+Step 4 is the one people skip, and it is not optional: the definition promised an *integer* witness — the element exhibited to settle an existence claim (module 1.12).
+
+## The main theorem
+
+> **Theorem.** If $a \mid b$ and $a \mid c$, then $a \mid (bx + cy)$ for all integers $x, y$.
+
+<Discussion>
+  <div slot="know">Two hypotheses, each existential, so two witnesses — and they need <strong>different names</strong>, since nothing says the two quotients agree.</div>
+  <div slot="want">An integer $j$ with $bx + cy = aj$.</div>
+  <div slot="how">Substitute both, then factor $a$ out of the whole expression. Closure handles the rest.</div>
+</Discussion>
+
+<Proof>
+Suppose $a \mid b$ and $a \mid c$. Then there are integers $k$ and $m$ with
+$$
+b = ak, \qquad c = am.
+$$
+Let $x, y \in \mathbb{Z}$ be arbitrary. Then
+$$
+bx + cy = (ak)x + (am)y = a(kx + my).
+$$
+Since $\mathbb{Z}$ is closed under multiplication and addition, $kx + my \in \mathbb{Z}$.
+
+So $bx + cy = aj$ with $j = kx+my \in \mathbb{Z}$, hence $a \mid (bx+cy)$.
+</Proof>
+
+<Warning title="Two hypotheses, two letters">
+Writing $b = ak$ and $c = ak$ claims $b = c$. Nobody said that.
+
+With $a = 3$, $b = 6$, $c = 9$: the witnesses are $2$ and $3$, plainly different. A proof that forces them equal proves a much narrower statement and is simply wrong.
+
+**Every unpacking gets its own fresh letter.** This rule returns in Chapter 6 with a sharper edge, because there the induction variable has already taken the obvious name.
+</Warning>
+
+## What it buys
+
+The theorem is stated in a general form on purpose, and the special cases fall out by choosing $x$ and $y$:
+
+| Choice | Conclusion |
+|---|---|
+| $x = y = 1$ | $a \mid (b+c)$ |
+| $x = 1, y = -1$ | $a \mid (b-c)$ |
+| $y = 0$ | $a \mid bx$ — any multiple of $b$ |
+
+**One proof, three corollaries, and no extra work.** Proving the general statement was no harder than proving $a \mid (b+c)$ alone, which is a good reason to look for the general version first.
+
+## A plausible statement that is false
+
+> **Claim?** If $a \mid bc$, then $a \mid b$ or $a \mid c$.
+
+It sounds reasonable. It is false.
+
+<Proof>
+Take $a = 4$, $b = 2$, $c = 6$.
+
+Then $bc = 12$ and $4 \mid 12$ ✓.
+
+But $4 \nmid 2$ and $4 \nmid 6$ ✗.
+</Proof>
+
+One counterexample, and the claim is dead (module 1.11).
+
+**What went wrong is worth understanding.** $4 = 2 \times 2$, and the product $12$ received one factor of $2$ from $b$ and another from $c$. Neither had enough on its own; $4$ got in by borrowing from both.
+
+That diagnosis suggests the repair. If $a$ cannot be split across the two factors, the argument cannot fail — and an integer that cannot be split is a **prime**.
+
+> **Euclid's lemma.** If $p$ is prime and $p \mid bc$, then $p \mid b$ or $p \mid c$.
+
+This is true, and genuinely harder than anything else in the module — it is not provable by the four-step template. It matters because it is the reason every integer factors into primes in exactly one way.
+
+<Warning title="Plausible is not proved">
+The false claim above has the same *shape* as several true ones in this module. Nothing about its appearance marks it as different.
+
+This is why the template ends with a closure check rather than a feeling. When you cannot complete step 4 — when you cannot produce the integer — that is evidence the statement may be false, and the next move is to hunt for a counterexample rather than to try harder.
+
+Both directions are useful. Failing to prove something is not proof that it is false, but it is a reason to look.
+</Warning>
+
+## Without loss of generality
+
+One phrase you will meet. Suppose a claim is symmetric in $b$ and $c$ — swapping them gives the same statement. Then a proof may say **without loss of generality**, assume $b \leq c$, and handle only that case.
+
+This is legitimate **only** when the symmetry is real: the other case must follow by relabelling, with no new argument. Used honestly it halves the work; used carelessly it hides a case you never handled.
+
+The test is to ask whether swapping the names really does turn your proof into a proof of the other case. If you cannot say yes immediately, write both.
+
+<Aside>
+The theorem above is the engine behind the divisibility rules you learned by rote.
+
+Why does $3 \mid n$ exactly when $3$ divides the digit sum? Write $n = 100a + 10b + c$. Then
+$$
+n - (a+b+c) = 99a + 9b = 3(33a + 3b),
+$$
+so $3$ divides the difference. Since $3$ divides the difference, the theorem says $3$ divides $n$ exactly when it divides $a + b + c$ — take $x = 1$, $y = -1$ and read it both ways.
+
+The rule for $9$ is the same computation, and the rule for $11$ uses alternating signs for the same reason.
+</Aside>

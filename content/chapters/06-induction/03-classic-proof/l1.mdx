@@ -8,6 +8,8 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import LShells from '@/components/LShells.astro';
+import Figure from '@/components/Figure.astro';
 
 Get some square tiles. Or blocks. Or crackers!
 
@@ -24,6 +26,10 @@ Count. **9** tiles. Square again!
 Now add **7** more.
 
 **16** tiles. Still square!
+
+<Figure alt="A 4 by 4 square of dots built from four nested L-shaped shells holding 1, 3, 5 and 7 dots.">
+  <LShells n={4} />
+</Figure>
 
 Every time you add the next odd number as a **shell**, you get the next square.
 

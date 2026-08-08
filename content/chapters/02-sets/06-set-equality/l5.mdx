@@ -1,0 +1,103 @@
+---
+level: l5
+title: Set equality by double inclusion
+readingTimeMin: 9
+newTerms: ["double inclusion"]
+anchorExample: "{x | x² − 1 = 0} = {−1, 1}"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 2.1 said a set is determined by its elements. Turned into a definition:
+
+$$
+S = T \quad\text{means}\quad S \subseteq T \ \wedge\ T \subseteq S.
+$$
+
+This is **double inclusion**, and the named move is **check both boxes**.
+
+The definition is a conjunction, so module 1.9's rule applies without exception: **a set equality is two proofs.** Each half is an arbitrary-element argument (module 2.3), and they run in opposite directions.
+
+The template never varies:
+
+> **($\subseteq$)** Let $x \in S$ be arbitrary. … Therefore $x \in T$.
+>
+> **($\supseteq$)** Let $x \in T$ be arbitrary. … Therefore $x \in S$.
+>
+> Both inclusions hold, so $S = T$.
+
+## Why it has to be two proofs
+
+Set equality could have been left as a primitive notion, and it is not. It is *defined* as double inclusion, and the reason is module 1.9: "same elements" is an *if and only if*, and an *if and only if* is two implications.
+
+$$
+S = T \iff \forall x\,(x \in S \Leftrightarrow x \in T),
+$$
+and splitting the inner $\Leftrightarrow$ into its two directions gives exactly $S \subseteq T$ and $T \subseteq S$.
+
+So the two-proof structure is not a convention. It is what the definition unfolds to.
+
+## A worked example
+
+> **Proposition.** $\{\, x \in \mathbb{R} \mid x^2 - 1 = 0 \,\} = \{-1, 1\}$.
+
+<Discussion>
+  <div slot="know">Membership on the left unfolds to *$x$ real and $x^2 = 1$*. Membership on the right unfolds to *$x = -1$ or $x = 1$* — a disjunction.</div>
+  <div slot="want">Both inclusions.</div>
+  <div slot="how">($\subseteq$) factor and use the zero-product property, which produces an *or* — so the conclusion is a disjunction and no case split is needed to reach it. ($\supseteq$) the hypothesis is a disjunction, so this direction does need a case split (module 1.12).</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $x \in \{x \in \mathbb{R} \mid x^2 - 1 = 0\}$ be arbitrary. Then $x^2 - 1 = 0$, so
+$$
+(x-1)(x+1) = 0.
+$$
+A product of real numbers is zero only if one factor is zero, so $x - 1 = 0$ or $x + 1 = 0$, giving $x = 1$ or $x = -1$. Either way $x \in \{-1, 1\}$.
+
+**($\supseteq$)** Let $x \in \{-1, 1\}$ be arbitrary, so $x = -1$ or $x = 1$. Split.
+
+*Case 1: $x = 1$.* Then $x^2 - 1 = 1 - 1 = 0$ ✓, and $1 \in \mathbb{R}$.
+
+*Case 2: $x = -1$.* Then $x^2 - 1 = 1 - 1 = 0$ ✓, and $-1 \in \mathbb{R}$.
+
+Both cases give $x^2 - 1 = 0$, so $x$ lies in the left-hand set.
+
+Both inclusions hold, so the sets are equal.
+</Proof>
+
+Note the asymmetry. The forward direction was algebra, the backward direction was verification, and the two required different work. **That is normal**, and it is why one direction being easy tells you nothing about the other.
+
+Note also where the case split appeared: in the direction whose *hypothesis* was a disjunction. That is the general rule — **an *or* in what you are given forces cases; an *or* in what you want does not.**
+
+## A second example
+
+> **Proposition.** $\{\, n \in \mathbb{Z} \mid n \text{ is even} \,\} = \{\, 2k \mid k \in \mathbb{Z} \,\}$.
+
+<Proof>
+**($\subseteq$)** Let $n$ be an arbitrary even integer. By definition $n = 2k$ for some $k \in \mathbb{Z}$, so $n$ has the required form and lies in the right-hand set.
+
+**($\supseteq$)** Let $m$ be an arbitrary element of the right-hand set, so $m = 2k$ for some $k \in \mathbb{Z}$. Then $m \in \mathbb{Z}$ by closure, and $m = 2k$ exhibits $m$ as even.
+
+Both inclusions hold.
+</Proof>
+
+This one looks like it says nothing, and that appearance is the point. The two sides are the **filtering** and **generating** descriptions of module 2.2, and the proof is the statement that they agree. Each direction unfolds one definition and folds up the other.
+
+<Warning title="Obviously equal is not a proof">
+Both examples above are obvious. Neither proof is optional.
+
+Two reasons. First, "obvious" is not checkable — a reader cannot verify your intuition, only your argument. Second, the technique is what transfers: modules 2.7 and 2.8 prove set equalities that are *not* obvious, and they use this exact template. If you skip the structure when it is easy, you will not have it when it is hard.
+
+The specific failure to avoid is proving one direction and stopping. In unlabelled prose that looks like a finished proof, which is why the template insists on marking ($\subseteq$) and ($\supseteq$) explicitly.
+</Warning>
+
+<Aside>
+Double inclusion is why $\subseteq$ behaves like $\leq$.
+
+For real numbers, $a \leq b$ and $b \leq a$ force $a = b$. For sets, $S \subseteq T$ and $T \subseteq S$ force $S = T$ — the same shape, and in the set case it is the definition rather than a theorem.
+
+This pattern recurs throughout mathematics: to prove two things equal, show each is *at most* the other. Chapter 3 uses it for the sizes of infinite sets, where showing two sets have the same size means producing a matching in each direction.
+</Aside>

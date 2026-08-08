@@ -1,0 +1,106 @@
+---
+level: l5
+title: De Morgan's set laws
+readingTimeMin: 8
+newTerms: []
+anchorExample: "complement of a union"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Working inside a universe $U$:
+
+$$
+\overline{S \cap T} = \overline S \cup \overline T \tag{DM1}
+$$
+$$
+\overline{S \cup T} = \overline S \cap \overline T \tag{DM2}
+$$
+
+**Complementing swaps $\cap$ and $\cup$.** Compare module 1.4:
+$$
+\neg(p \wedge q) \equiv \neg p \vee \neg q, \qquad
+\neg(p \vee q) \equiv \neg p \wedge \neg q.
+$$
+
+These are the same two laws. Under the dictionary of module 2.4 — $\neg$ to complement, $\wedge$ to $\cap$, $\vee$ to $\cup$ — each logic law becomes a set law, and you should expect the proofs to correspond too.
+
+## Reading DM2 in words
+
+*Outside both* is *outside the first and outside the second.*
+
+Say it about something concrete. A student is not taking chemistry or physics exactly when they are not taking chemistry **and** not taking physics. Obvious in English, and the obviousness is the point: the law is a fact about ordinary reasoning that happens to be provable.
+
+<Figure alt="Two overlapping circles inside a dashed rectangle, with only the region outside both circles shaded." caption="The complement of S ∪ T: outside both.">
+  <VennTwo labelS="S" labelT="T" shade={["outside"]} universe="U" />
+</Figure>
+
+## Proof of DM2
+
+<Discussion>
+  <div slot="know">$x \in \overline{S \cup T}$ unfolds to $\neg(x \in S \vee x \in T)$. $x \in \overline S \cap \overline T$ unfolds to $(x \notin S) \wedge (x \notin T)$.</div>
+  <div slot="want">Double inclusion (module 2.6).</div>
+  <div slot="how">Unfold both sides into logic, then apply the logic law of module 1.4 at the pivot. Every other step is bookkeeping.</div>
+</Discussion>
+
+<Proof>
+**($\subseteq$)** Let $x \in \overline{S \cup T}$ be arbitrary. Then $x \in U$ and $x \notin S \cup T$, so it is not the case that $x \in S$ or $x \in T$.
+
+If $x$ were in $S$, then $x$ would be in $S \cup T$ — it is not, so $x \notin S$, giving $x \in \overline S$. The same argument with $T$ gives $x \in \overline T$.
+
+Hence $x \in \overline S \cap \overline T$.
+
+**($\supseteq$)** Let $x \in \overline S \cap \overline T$ be arbitrary. Then $x \in U$, $x \notin S$, and $x \notin T$.
+
+Suppose $x \in S \cup T$. Then $x \in S$ or $x \in T$, and both have been ruled out — impossible. So $x \notin S \cup T$, and $x \in \overline{S \cup T}$.
+
+Both inclusions hold, so $\overline{S \cup T} = \overline S \cap \overline T$.
+</Proof>
+
+The backward direction used **suppose not** (module 2.5) in miniature: the goal $x \notin S \cup T$ is a negative claim, so assuming the positive and finding it impossible was the direct route.
+
+## DM1, for free
+
+You could prove DM1 the same way, and there is a shorter path.
+
+<Proof>
+Apply DM2 to the sets $\overline S$ and $\overline T$:
+$$
+\overline{\overline S \cup \overline T} = \overline{\overline S} \cap \overline{\overline T} = S \cap T,
+$$
+using that complementing twice returns the original set. Now complement both sides:
+$$
+\overline S \cup \overline T = \overline{S \cap T},
+$$
+which is DM1.
+</Proof>
+
+**One law was proved and the other was derived**, using nothing but double complementation. Module 2.8 shows this is not luck: it is a general duality, and every identity about $\cap$ and $\cup$ comes with a partner obtained by swapping the two.
+
+Note the tool that made it work. $\overline{\overline S} = S$ is the set version of $\neg\neg p \equiv p$ from module 1.2, which looked at the time like a fact too small to bother naming.
+
+<Warning title="The complement of an intersection is not the intersection of complements">
+$$
+\overline{S \cap T} \neq \overline S \cap \overline T \quad\text{in general.}
+$$
+
+The operation swaps; it does not pass through unchanged. Test it. In $U = \{1,2,3\}$ with $S = \{1\}$ and $T = \{2\}$:
+
+- $S \cap T = \emptyset$, so $\overline{S \cap T} = \{1,2,3\}$.
+- $\overline S = \{2,3\}$ and $\overline T = \{1,3\}$, so $\overline S \cap \overline T = \{3\}$.
+
+Not equal. This is module 1.4's error transplanted, and it appears most often when negating a hypothesis with two conditions: the negation of *$x$ is positive and rational* is *$x$ is not positive **or** not rational*.
+</Warning>
+
+<Aside>
+De Morgan's laws hold in three places you have now met — logic, sets, and (in Chapter 1) truth tables — and the reason is that all three are the same structure described differently.
+
+The practical payoff is in solving inequalities. The set of $x$ failing *both* $x > 1$ and $x < 5$ is not the set failing "$1 < x < 5$" in some vague sense; it is precisely $\overline{(1,5)} = (-\infty, 1] \cup [5, \infty)$, a **union**, and the switch from *and* to *or* is DM2 doing its job.
+
+Students who get these problems wrong almost always kept the connective instead of swapping it.
+</Aside>

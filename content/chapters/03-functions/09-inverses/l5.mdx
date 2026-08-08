@@ -1,0 +1,102 @@
+---
+level: l5
+title: Inverses
+readingTimeMin: 9
+newTerms: ["inverse function"]
+anchorExample: "f(x) = 3x + 2, f⁻¹(y) = (y−2)/3"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+An **inverse function** undoes $f$. Precisely, $f^{-1} : T \to S$ is an inverse of $f : S \to T$ when
+$$
+f^{-1} \circ f = \mathrm{id}_S \qquad\text{and}\qquad f \circ f^{-1} = \mathrm{id}_T,
+$$
+that is, $f^{-1}(f(s)) = s$ for every $s \in S$, and $f(f^{-1}(t)) = t$ for every $t \in T$.
+
+**Both equations are required.** One alone does not suffice, and the reason is the theorem below.
+
+## When does an inverse exist?
+
+> **Theorem.** $f : S \to T$ has an inverse exactly when $f$ is a bijection.
+
+The interesting content is *why*, and the two halves of *bijection* line up exactly with the two conditions that make $f^{-1}$ a function at all.
+
+<Discussion>
+  <div slot="know">To define $f^{-1}(t)$, the only sensible instruction is: <em>return the element that $f$ sends to $t$.</em> Module 3.1 then demands that this instruction be total and single-valued.</div>
+  <div slot="want">To see which property of $f$ each demand corresponds to.</div>
+  <div slot="how">Ask what could go wrong with the instruction. It could find nothing, or it could find two things.</div>
+</Discussion>
+
+<Proof>
+Suppose $f$ is a bijection, and define $f^{-1}(t)$ to be the element of $S$ that $f$ maps to $t$.
+
+**Totality of $f^{-1}$ needs surjectivity of $f$.** If some $t \in T$ were hit by nothing, the instruction would return nothing at that $t$, and $f^{-1}$ would not be defined on all of $T$.
+
+**Single-valuedness of $f^{-1}$ needs injectivity of $f$.** If two elements $s_1 \neq s_2$ both mapped to $t$, the instruction would return two answers, and $f^{-1}$ would not be a function.
+
+Since $f$ is bijective, each $t$ has exactly one pre-image (module 3.8), so the instruction is total and single-valued, and $f^{-1}$ is a function. The two composition identities hold by construction.
+
+Conversely, if $f$ has an inverse then $f$ is injective — for if $f(s_1) = f(s_2)$, applying $f^{-1}$ gives $s_1 = s_2$ — and surjective, since any $t$ is hit by $f^{-1}(t)$.
+</Proof>
+
+**That correspondence is the punchline of the chapter.** The two conditions defining a function (module 3.1) reappear as the two conditions defining a bijection, one level up, and they arrive in the same order.
+
+| For $f^{-1}$ to be… | $f$ must be… |
+|---|---|
+| total | surjective |
+| single-valued | injective |
+
+## Computing one
+
+> **Proposition.** $f : \mathbb{R} \to \mathbb{R}$, $f(x) = 3x + 2$ has inverse $f^{-1}(y) = \dfrac{y-2}{3}$.
+
+<Proof>
+$f$ is a bijection (module 3.8), so an inverse exists. Check the candidate:
+$$
+f^{-1}(f(x)) = \frac{(3x+2)-2}{3} = \frac{3x}{3} = x \ \checkmark
+$$
+$$
+f\big(f^{-1}(y)\big) = 3\cdot\frac{y-2}{3} + 2 = y \ \checkmark
+$$
+</Proof>
+
+The Algebra I recipe — *swap $x$ and $y$, then solve* — is a method for **finding** the candidate. It is not a proof that the candidate works, and it silently assumes an inverse exists. Verifying both compositions is the proof.
+
+<Warning title="Two meanings of f⁻¹">
+The notation is overloaded, as module 3.3 warned:
+
+- $f^{-1}(t) = s$ — the **inverse function**, taking an element to an element. Requires $f$ bijective.
+- $f^{-1}(U) = \{\ldots\}$ — the **pre-image**, taking a set to a set. Requires nothing.
+
+For $f(x) = x^2$ on $\mathbb{R}$ there is no inverse function, and $f^{-1}([0,4]) = [-2,2]$ is still perfectly correct.
+
+**Look at what is inside the brackets.** An element means inverse function; a set means pre-image. And a third meaning to keep separate: $f^{-1}(x)$ never denotes $1/f(x)$, despite the exponent.
+</Warning>
+
+## The inverse is itself a bijection
+
+> **Proposition.** If $f : S \to T$ is a bijection, then $f^{-1} : T \to S$ is a bijection, and $(f^{-1})^{-1} = f$.
+
+<Proof>
+The two identities defining an inverse,
+$$
+f^{-1} \circ f = \mathrm{id}_S \qquad\text{and}\qquad f \circ f^{-1} = \mathrm{id}_T,
+$$
+are symmetric in $f$ and $f^{-1}$: reading them with the roles swapped says exactly that $f$ is an inverse of $f^{-1}$.
+
+So $f^{-1}$ has an inverse, and by the theorem it is therefore a bijection. Its inverse is $f$.
+</Proof>
+
+No computation at all — the result fell out of noticing that the definition treats the two functions alike. **Undoing the undoing returns you to the start**, which is module 1.2's double negation appearing in a new setting.
+
+<Aside>
+Restricting a domain to force injectivity is how the familiar inverses are built.
+
+Squaring on $\mathbb{R}$ is not injective, so it has no inverse. Restrict to $[0,\infty)$ and it becomes a bijection onto $[0,\infty)$ — and *that* function's inverse is $\sqrt{\ }$.
+
+So the convention of module 3.2, that $\sqrt9$ means $3$ and not $-3$, is not a convention after all. It is the record of a domain restriction made so that an inverse could exist at all, and the same manoeuvre is performed again for every inverse trigonometric function you will meet later.
+</Aside>

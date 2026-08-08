@@ -1,0 +1,127 @@
+---
+level: l5
+title: Complex arithmetic
+readingTimeMin: 8
+newTerms: []
+anchorExample: "(a+bi)(c+di) = (ac−bd) + (ad+bc)i"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+There is only one rule to remember: **treat $i$ as an ordinary symbol, and replace $i^2$ by $-1$ whenever it appears.**
+
+Everything below follows from that plus the algebra you already have.
+
+## Addition and subtraction
+
+$$
+(a+bi) + (c+di) = (a+c) + (b+d)i
+$$
+
+Collect like terms. Real parts add, imaginary parts add, and the two never interact.
+
+$$
+(3+2i) + (1-5i) = 4 - 3i.
+$$
+
+## Multiplication
+
+Expand as you would any two binomials, then apply the rule:
+$$
+(a+bi)(c+di) = ac + adi + bci + bd\,i^2 = (ac - bd) + (ad+bc)i.
+$$
+
+**The minus sign is where $i^2 = -1$ entered**, and it is the only place the new rule does anything. Everything else is ordinary expansion.
+
+$$
+(3+2i)(1-5i) = 3 - 15i + 2i - 10i^2 = 3 - 13i + 10 = 13 - 13i.
+$$
+
+Notice both results were again of the form $a + bi$. That is not luck — the formula proves it:
+
+> **Proposition.** $\mathbb{C}$ is closed under addition and multiplication.
+
+<Proof>
+Let $z = a+bi$ and $w = c+di$ with $a,b,c,d \in \mathbb{R}$.
+
+$z + w = (a+c) + (b+d)i$, and $a+c$, $b+d$ are real by closure of $\mathbb{R}$.
+
+$zw = (ac-bd) + (ad+bc)i$, and $ac - bd$, $ad+bc$ are real by closure of $\mathbb{R}$.
+
+Both results have the form (real) $+$ (real)$i$, hence lie in $\mathbb{C}$.
+</Proof>
+
+As always, closure of the smaller system does the work — exactly as $\mathbb{Q}$'s closure proofs rested on $\mathbb{Z}$'s in module 4.5.
+
+## Powers of i cycle
+
+$$
+i^1 = i, \quad i^2 = -1, \quad i^3 = i^2 \cdot i = -i, \quad i^4 = i^2 \cdot i^2 = 1, \quad i^5 = i, \ldots
+$$
+
+**Period four.** So $i^n$ depends only on the remainder of $n$ on division by $4$ — module 4.4's division algorithm, doing something useful.
+
+To compute $i^{2026}$: since $2026 = 4 \cdot 506 + 2$,
+$$
+i^{2026} = \big(i^4\big)^{506}\cdot i^2 = 1 \cdot (-1) = -1.
+$$
+
+## Division
+
+This is the one that needs a trick, and the trick is worth learning because it is the same one you used to rationalise denominators in Algebra I.
+
+To simplify $\dfrac{1}{c+di}$, multiply top and bottom by $c - di$:
+$$
+\frac{1}{c+di} \cdot \frac{c-di}{c-di} = \frac{c-di}{c^2 + d^2}.
+$$
+
+The denominator became **real**, because
+$$
+(c+di)(c-di) = c^2 - (di)^2 = c^2 + d^2.
+$$
+
+Now split it up:
+$$
+\frac{1}{c+di} = \frac{c}{c^2+d^2} - \frac{d}{c^2+d^2}\,i,
+$$
+which is again of the form $a+bi$.
+
+$$
+\frac{1}{3+2i} = \frac{3-2i}{9+4} = \frac{3}{13} - \frac{2}{13}i.
+$$
+
+<Warning title="Why c² + d² ≠ 0 matters">
+The division above is legal only when $c^2 + d^2 \neq 0$.
+
+Since $c$ and $d$ are **real**, both squares are non-negative (module 5.1), so the sum is zero only when $c = d = 0$ — that is, only when $c + di = 0$.
+
+So every nonzero complex number has a reciprocal, and $0$ does not. Exactly the situation in $\mathbb{Q}$ and $\mathbb{R}$.
+
+**Notice where realness was used.** The argument needs $c^2, d^2 \geq 0$, which holds for reals and not for complex numbers. The construction of $\mathbb{C}$ leans on the ordering of $\mathbb{R}$ even though $\mathbb{C}$ itself has no ordering (module 5.2).
+</Warning>
+
+## ℂ is a field
+
+Run module 4.5's checklist:
+
+| Property | Status |
+|---|---|
+| closed under $+$ | ✓ proved above |
+| closed under $-$ | ✓ $-(a+bi) = (-a) + (-b)i$ |
+| closed under $\times$ | ✓ proved above |
+| reciprocals of nonzero | ✓ proved above |
+| distributive law | ✓ inherited from $\mathbb{R}$ |
+
+So $\mathbb{C}$ is a field, and **every algebraic technique from Algebra I transfers**: collecting terms, factoring, clearing denominators, solving linear equations.
+
+What does *not* transfer is anything using inequalities, because module 5.2 removed the ordering. Sign charts, interval solutions, and "both sides positive" arguments all stop working.
+
+<Aside>
+Module 5.1 warned that inventing $\omega$ with $0\cdot\omega = 1$ collapses arithmetic. The table above is the answer to that worry for $i$.
+
+Nothing broke. Every field property survived the extension, so the new system is at least as well behaved as the old one — and it is *strictly* better, since it can solve $x^2+1=0$.
+
+**That is what makes $i$ legitimate and $\omega$ not**, and it is why this module is a checklist rather than a reassurance. The difference between a good extension and a bad one is decided by verification, and here is the verification.
+</Aside>

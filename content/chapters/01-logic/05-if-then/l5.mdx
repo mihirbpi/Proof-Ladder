@@ -39,6 +39,21 @@ The only false row is the second: hypothesis true, conclusion false. The bottom 
   <UmbrellaCases />
 </Figure>
 
+## Other ways to write the same thing
+
+The same conditional appears in several disguises, and all of them mean $p \Rightarrow q$:
+
+- *if $p$, then $q$*
+- *$p$ implies $q$*
+- *$q$ if $p$*
+- *$p$ only if $q$*
+- *$p$ is sufficient for $q$*
+- *$q$ is necessary for $p$*
+
+The last three cause most of the trouble. *$p$ only if $q$* points the arrow the same way as *if $p$ then $q$*, even though the word *if* sits next to $q$. And *necessary* and *sufficient* swap which side they name: $p$ being enough to force $q$ is the same fact as $q$ being unavoidable whenever $p$ holds.
+
+Textbook theorems are stated in all six forms. **The first job on reading one is to identify $p$ and $q$**, because getting them backwards means proving the converse — a different statement, and module 1.7 shows how different.
+
 ## A statement can be true because its hypothesis is false
 
 Consider
@@ -63,7 +78,7 @@ Now $p$ and $q$ depend on the number $x$ you plug in. Test a few:
 - $x = \tfrac12$: hypothesis false. Conclusion also false. Row 4 — vacuously true, so the conditional itself is still true for this value of $x$.
 - $x = -2$: hypothesis false ($-2 \not> 1$). Conclusion true ($4 > 1$). Row 3 — still true.
 
-Can we find any $x$ that falls in row 2? Row 2 would require $x > 1$ and $x^2 \le 1$ at the same time. Squaring a number bigger than $1$ produces a number bigger than $1$, so no such $x$ exists. Therefore the conditional
+Can we find any $x$ that falls in row 2? Row 2 would require $x > 1$ and $x^2 \le 1$ at the same time. Squaring a number bigger than $1$ produces a number bigger than $1$, so no such $x$ exists. Therefore the conditional — where $\forall$ reads *for all*, previewed here and treated in §1.10 —
 $$
 \forall\, x \in \mathbb{R},\; x > 1 \Rightarrow x^2 > 1
 $$
@@ -71,4 +86,20 @@ is true for every real $x$. That is what we will prove in the next module.
 
 ## Why the shape matters
 
-Almost every theorem has this shape because it is the shape of *useful* information. You spot a case where the hypothesis holds and immediately know the conclusion holds. Direct proof will be one method for establishing conditionals; the contrapositive and contradiction will be others. All of them start from the same observation: to make $p \Rightarrow q$ true, we only have to rule out row 2 of the table.
+Almost every theorem has this shape because it is the shape of *useful* information. You spot a case where the hypothesis holds and immediately know the conclusion holds. Direct proof will be one method for establishing conditionals; the contrapositive (§1.7) and contradiction will be others. All of them start from the same observation: to make $p \Rightarrow q$ true, we only have to rule out row 2 of the table.
+
+That observation is worth restating as a plan, because it is the plan for every proof in the next four modules:
+
+> **Assume $p$. Derive $q$. There is nothing else to do.**
+
+You do not check the rows where $p$ is false — the table already grants those. You do not verify particular values. Assuming the hypothesis is what gives you something concrete to compute with, and the conclusion is the target.
+
+Notice the trade. The claim covers infinitely many values of $x$, and the proof examines none of them individually. **You give up knowing which case you are in, and in exchange you cover all of them at once.**
+
+<Aside>
+Everyday speech uses *if–then* to signal cause: "if you drop it, it breaks." Mathematics keeps only the truth-value pattern in the table and discards the causation.
+
+So "if $2+2=5$, then the moon is made of cheese" is a **true statement**. Nothing about the moon follows from it, because the hypothesis never holds — but the conditional itself is true, for exactly the reason a promise about rainy days survives a sunny week.
+
+That gap between the two uses is why the truth table feels strange at first. It is not modelling causation, and it was never trying to.
+</Aside>

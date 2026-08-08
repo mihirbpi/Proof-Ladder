@@ -7,6 +7,7 @@ anchorExample: "x ≥ 1"
 ---
 
 import TruthTable from '@/components/TruthTable.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
 import Warning from '@/components/Warning.astro';
 
 For a statement $p$, its **negation** $\neg p$ is the statement whose truth value is the opposite of $p$'s. Negation is the simplest connective in propositional logic and, precisely because it is simple, the source of most first-year proof errors.
@@ -25,13 +26,23 @@ For a statement $p$, its **negation** $\neg p$ is the statement whose truth valu
 Two consequences follow immediately:
 
 - **Law of non-contradiction.** $p \wedge \neg p$ is always false.
-- **Law of excluded middle.** $p \vee \neg p$ is always true.
+- **Law of excluded middle.** $p \vee \neg p$ is always true — every statement either holds or its negation does.
 
 Both look obvious in this setting; both are genuinely non-trivial once one moves to intuitionistic or paraconsistent logics, where excluded middle is not assumed. Classical mathematics, and this course, assumes both.
 
 ## Double negation
 
 $\neg\neg p \equiv p$: negating twice returns you to the original. In a proof by contradiction (§2.1.6) one assumes $\neg q$, derives an impossibility, and concludes $\neg\neg q$, which is silently rewritten as $q$.
+
+That rewrite is the step most often left unmarked in a written proof, and it is worth knowing it is there. It is also the step that distinguishes proof by contradiction from proof by contrapositive (§1.8): the contrapositive route never introduces a double negation, and is correspondingly easier to check.
+
+The same identity appears in three costumes later in the course, each time as an operation that undoes itself:
+
+- $\overline{\overline S} = S$ for set complements (§2.5)
+- $\overline{\bar z} = z$ for complex conjugation (§5.4)
+- $(f^{-1})^{-1} = f$ for inverse functions
+
+An operation equal to its own inverse is called an **involution**, and recognising one tells you immediately that applying it twice is wasted effort — a small but genuinely useful habit.
 
 ## Errors, catalogued
 
@@ -54,7 +65,28 @@ Negation swaps $\wedge$ and $\vee$. Module 1.4 proves this and it is arguably th
 
 <Warning title="Not the same as opposite">
 "All primes are odd" and "no primes are odd" are both false. The negation of the first is "some prime is not odd" — witness $2$.
+
+The general shape: $\neg(\forall x, p(x))$ is $\exists x, \neg p(x)$, and **not** $\forall x, \neg p(x)$. The second is the *contrary* — a stronger claim that can fail alongside the original.
+
+The error is not confined to quantifiers. $\neg(\text{increasing})$ is not *decreasing*; a function can be neither. $\neg(\text{convergent})$ is not *"tends to infinity"*; $(-1)^n$ does neither. $\neg(x>0)$ is not $x<0$; zero exists. In each case the correct negation is the weakest statement incompatible with the original, and the tempting answer is something stronger.
+
+**Assuming a contrary instead of a negation invalidates an indirect proof**, even when the contradiction you reach is genuine — because you assumed more than the negation gave you.
 </Warning>
+
+## Negation in the definitions ahead
+
+Precalculus already trades in statements whose negations are non-obvious, and the pattern is worth seeing before the definitions get longer.
+
+| Statement | Negation |
+|---|---|
+| $f$ is even | $f(-x)\neq f(x)$ for **some** $x$ |
+| $f$ is bounded above | for **every** $M$, some $x$ has $f(x)>M$ |
+| the sequence is increasing | some consecutive pair fails $a_n \leq a_{n+1}$ |
+| $\theta$ is a solution of $\sin\theta = 1$ | $\sin\theta \neq 1$ |
+
+The first three all convert a universal into an existential, and in each case the refutation is therefore a single witness — one $x$, one $M$-and-$x$ pair, one index. That asymmetry is the practical content of negation, and module 1.11 states it in general.
+
+Note the second row especially: negating *bounded above* does not give *bounded below*, and it does not give *tends to infinity*. It gives an alternating $\forall\exists$ statement, and reading it off correctly is what module 1.11 exists for.
 
 ## Twin Primes, negated
 
@@ -67,3 +99,17 @@ $$
 \text{there exists } N \text{ such that for all primes } p > N,\; p + 2 \text{ is not prime}.
 $$
 A proof of either would settle the conjecture. Notice the shape: negating a "$\exists^\infty$" produces an "eventually always not"; negating a $\forall$ produces an $\exists$.
+
+<WhereThisGoes level="l7">
+Negation is what turns a definition into a test you can apply.
+
+**In calculus, the negated definitions are the working ones.** You will rarely prove a limit does not exist by inspection; you will negate the $\varepsilon$–$\delta$ definition and produce the single $\varepsilon$ that no $\delta$ handles (module 1.11). You will rarely show a series diverges directly; you will negate the convergence criterion, which is what every divergence test is.
+
+The classification of discontinuities is a negation, expanded. Continuity at $a$ requires three things to hold and agree; negating that conjunction produces the removable, jump, and infinite cases, and the count of cases equals the count of conjuncts.
+
+**In linear algebra**, the negated definitions are equally the operative ones. *Linearly dependent* is the negation of *linearly independent*, and it is the version that gives you something to compute with — a non-trivial vanishing combination, which is a witness. *Singular* is the negation of *invertible*, and the theorems about singular matrices are stated that way because a non-zero null vector is usable and an absent inverse is not.
+
+The lesson generalises: **when a definition is a universal, its negation is an existential, and existentials are what proofs can hold onto.** Getting the negation right is therefore not a preliminary to the work — it usually *is* the setup for the work.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **linearly independent** — none of them a combination of the others.*
+</WhereThisGoes>

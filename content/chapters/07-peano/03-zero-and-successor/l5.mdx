@@ -1,0 +1,87 @@
+---
+level: l5
+title: Zero and the successor
+readingTimeMin: 8
+newTerms: ["successor"]
+anchorExample: "S(0) = 1"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 7.1 said geometry leaves *point* and *line* undefined. Arithmetic does the same, and it needs only two undefined things.
+
+> **$0$**, and the **successor** operation $S$ — *the next one after*.
+
+That is the entire vocabulary. Everything else in arithmetic is built from these two.
+
+## Axioms 5 and 6
+
+> **A5.** $0 \in \mathbb{N}$.
+>
+> **A6.** If $x \in \mathbb{N}$ then $S(x) \in \mathbb{N}$.
+
+A5 says the counting numbers are not empty — there is somewhere to start. A6 says you can always take one more step.
+
+<Figure alt="Two columns of dots with an arrow from each left-hand dot to its successor on the right." caption="The successor function: each number maps to the next.">
+  <ArrowDiagram labelLeft="ℕ" labelRight="ℕ"
+    left={["0", "1", "2"]} right={["1", "2", "3"]}
+    edges={[[0,0],[1,1],[2,2]]} />
+</Figure>
+
+$S$ is a function $\mathbb{N} \to \mathbb{N}$ in the sense of module 3.1: every counting number has exactly one successor. A6 is precisely the statement that $\mathbb{N}$ is closed under $S$ — module 4.1's notion, applied to the one operation we have.
+
+## The numerals are definitions
+
+We have $0$ and $S$. Everything else is shorthand:
+$$
+1 := S(0), \qquad 2 := S(1) = S(S(0)), \qquad 3 := S(S(S(0))), \ \ldots
+$$
+
+So "$2$" is a name for $S(S(0))$, and nothing more. The familiar digits are labels attached to positions along the chain.
+
+<Warning title="You may not write S(x) as x + 1 yet">
+It is tempting, and it is forbidden at this stage — because **$+$ has not been defined.**
+
+Addition is constructed in module 7.6, *from* the successor. Using $x+1$ now would assume the very thing being built, and the whole point of the chapter is that nothing is assumed.
+
+The discipline is uncomfortable and it is the only way the construction means anything. When module 7.6 finishes, $S(x) = x + 1$ becomes a **theorem** — provable, and worth the wait.
+
+Similarly, nothing yet permits you to say $2 + 2 = 4$, or that $S$ never repeats, or that the chain does not loop. Those come later, and two of them need axioms not yet stated.
+</Warning>
+
+## Why build numbers this way at all
+
+The construction looks perverse — writing $S(S(S(0)))$ for $3$ is not an improvement on writing $3$.
+
+But that is not what it is for. The point is that **everything about arithmetic now has to be earned.** Any property of the counting numbers must be derivable from $0$, $S$, and the axioms, or it is not available.
+
+That is a severe constraint, and it is what makes the chapter mean anything. If you may help yourself to "obviously $2+2=4$", you have not built arithmetic; you have described it. Module 7.6 derives $2+2=4$ in four steps, and the derivation is only interesting because nothing was assumed.
+
+There is a second benefit. Once arithmetic is reduced to two symbols and nine rules, you can ask precise questions about it — whether the rules are independent, whether they are consistent, whether they settle everything. Those questions have answers, and module 7.1's Gödel aside reported one of them.
+
+## What these two axioms do not give you
+
+A5 and A6 guarantee $0$ exists and that stepping forward always works. Read them carefully and notice what they leave open.
+
+**Nothing forbids the chain from looping.** A system with just $\{0, 1\}$, where $S(0) = 1$ and $S(1) = 0$, satisfies both axioms perfectly. Zero is present ✓, and every element has a successor in the set ✓. It is a two-element cycle, and counting in it returns to the start.
+
+**Nothing forbids two numbers sharing a successor.** A system where $S(1) = 2$ and $S(2) = 2$ also satisfies both.
+
+Both of these are *wrong* as descriptions of counting, and neither is ruled out yet. Module 7.4 adds the two axioms that exclude them, and it does so by building exactly these structures and pointing at what they violate.
+
+**Nothing forbids extra elements** sitting off to one side, unreachable from $0$. Module 7.5's final axiom handles that.
+
+So A5 and A6 are the beginning of a description, not the whole of one. Five axioms in, the counting numbers are still not pinned down.
+
+<Aside>
+Why start at $0$ rather than $1$?
+
+It is a convention, and books differ. Starting at $1$ works equally well and changes a few statements.
+
+$0$ is the more common modern choice, for a good reason: it makes $0$ the identity for addition, which module 7.6 will define with $a + 0 = a$ as its base case. Starting at $1$ would force a clumsier definition.
+
+This is a small illustration of module 7.1's point. **The starting point is chosen for convenience, not discovered**, and the mathematics that follows is the same either way — only the bookkeeping changes.
+</Aside>

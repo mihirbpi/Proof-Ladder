@@ -1,0 +1,107 @@
+---
+level: l5
+title: The three steps
+readingTimeMin: 9
+newTerms: ["base case", "inductive step", "inductive hypothesis"]
+anchorExample: "1 + 2 + ⋯ + n = n(n+1)/2"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Every induction proof has the same three parts, in the same order.
+
+> 1. **State $A(n)$.** Say exactly what the statement is, and from which value of $n$ it starts.
+> 2. **Base case.** Prove $A$ at the starting value. Usually one line of arithmetic.
+> 3. **Inductive step.** Let $k$ be arbitrary at or above the start, **assume $A(k)$**, and prove $A(k+1)$.
+>
+> Then conclude: by induction, $A(n)$ holds for every $n$ from the start onward.
+
+The assumption $A(k)$ made in step 3 is the **inductive hypothesis**.
+
+## Why assuming A(k) is not cheating
+
+This is the objection everyone has, and it deserves a straight answer.
+
+You are **not** assuming what you want to prove. You want
+$$
+\forall n,\ A(n),
+$$
+and you are assuming $A(k)$ for one arbitrary $k$ — which is a different, weaker thing.
+
+More precisely, the inductive step proves the conditional
+$$
+A(k) \implies A(k+1),
+$$
+and module 1.5 says a conditional can be established without knowing whether its hypothesis holds. You prove *if it falls, the next falls*. Whether any actually fall is what the base case settles.
+
+**The step is a promise about knock-on effects. The base case cashes it in.**
+
+## A worked proof
+
+> **Proposition.** For every integer $n \geq 1$: $\ 1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}$.
+
+<Discussion>
+  <div slot="know">The sum up to $k$ equals $\frac{k(k+1)}{2}$ — that is the inductive hypothesis, and it is the only fact we may use.</div>
+  <div slot="want">The sum up to $k+1$ equals $\frac{(k+1)(k+2)}{2}$.</div>
+  <div slot="how">The sum up to $k+1$ <em>is</em> the sum up to $k$, plus the term $k+1$. Split it that way and the hypothesis applies to the first piece. Then it is algebra.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ be the statement $1 + 2 + \cdots + n = \dfrac{n(n+1)}{2}$, for $n \geq 1$.
+
+**Base case.** $A(1)$: the left side is $1$, and the right side is $\frac{1\cdot2}{2} = 1$. ✓
+
+**Inductive step.** Let $k \geq 1$ and assume $A(k)$, that is
+$$
+1 + 2 + \cdots + k = \frac{k(k+1)}{2}.
+$$
+
+Consider the sum up to $k+1$. Splitting off the last term and applying the hypothesis to the rest:
+$$
+\underbrace{1 + 2 + \cdots + k}_{\text{use } A(k)} + (k+1) = \frac{k(k+1)}{2} + (k+1).
+$$
+Now put over a common denominator and factor:
+$$
+= \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}.
+$$
+That is exactly $A(k+1)$.
+
+By induction, $A(n)$ holds for every integer $n \geq 1$.
+</Proof>
+
+**Mark where the hypothesis was used.** In the proof above it is the brace, and a reader can point at the one place the assumption entered. A proof where you cannot point at that place is a proof to be suspicious of.
+
+## The direction the proof runs
+
+<Warning title="Do not start from A(k+1) and work backwards to something true">
+Here is the same problem written the wrong way:
+
+> $\frac{(k+1)(k+2)}{2} = \frac{k(k+1)}{2} + (k+1)$, so $\frac{k^2+3k+2}{2} = \frac{k^2+3k+2}{2}$, which is true. Hence $A(k+1)$. ✗
+
+Every line is a true equation, and the argument is worthless. It starts by writing down what you are trying to prove and manipulates it until it becomes obvious — but *"$P$ implies something true"* tells you nothing about $P$. Every false statement implies plenty of true ones.
+
+**Start from a side of $A(k+1)$ and transform it, using $A(k)$, until it becomes the other side.** The correct proof above begins with the sum up to $k+1$ and ends at the formula — it never assumes the thing it is proving.
+
+The wrong version is the most common error in a first induction course, and it is hard to spot because all the algebra is right.
+</Warning>
+
+## Starting somewhere other than 1
+
+The base case does not have to be $n = 1$. To prove something for all $n \geq 5$, prove $A(5)$ and the step for $k \geq 5$. The dominoes just start further along.
+
+Getting this wrong breaks proofs quietly. If your step secretly requires $k \geq 2$ — say it divides by $k - 1$ — then a base case at $n = 1$ does not connect to the rest of the chain, and $A(2)$ is never established.
+
+<Aside>
+Why does the domino argument actually work? Here is the reason, and it is a proof by contradiction (module 2.5).
+
+Suppose $A(n)$ fails for some $n$. Then among all the values where it fails there is a **smallest** one — call it $m$.
+
+$m$ is not the base value, since the base case was proved. So $m - 1$ is at or above the start, and $m-1 < m$ means $A(m-1)$ holds, by minimality of $m$.
+
+But the inductive step applied to $k = m-1$ then forces $A(m)$ to hold. Contradiction.
+
+The move that carried the argument is the claim that **any nonempty collection of positive integers has a smallest member.** That is obvious and it is not free — it fails for the rationals, where there is no smallest positive one (module 2.5 proved it). Chapter 7 identifies it as the same axiom as induction itself.
+</Aside>

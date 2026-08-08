@@ -1,0 +1,120 @@
+---
+// A row of dominoes for the induction picture (§6.1).
+//
+// count      how many dominoes to draw
+// fallen     how many, from the left, are already down — the rest stand upright
+// gapAfter   index (0-based) after which the spacing is too wide to reach the next
+//            domino. Use for the "step fails" counter-picture: the chain stops there.
+// pushed     draw an arrow into the first domino, for "the base case is what starts it"
+// trailing   render an ellipsis at the right, meaning the row continues forever
+export interface Props {
+  count?: number;
+  fallen?: number;
+  gapAfter?: number | null;
+  pushed?: boolean;
+  trailing?: boolean;
+  labels?: string[] | null;
+}
+const {
+  count = 6,
+  fallen = 2,
+  gapAfter = null,
+  pushed = false,
+  trailing = true,
+  labels = null,
+} = Astro.props;
+
+const W = 480;
+const BASE_Y = 132;
+const H = 62;   // domino height standing
+const T = 13;   // domino thickness
+const startX = 44;
+const pitch = gapAfter === null ? 62 : 58;
+const extraGap = 46;   // widened spacing after `gapAfter`
+
+// x position of domino i, widening the gap once if gapAfter is set
+const xAt = (i: number) =>
+  startX + i * pitch + (gapAfter !== null && i > gapAfter ? extraGap : 0);
+
+const items = Array.from({ length: count }, (_, i) => ({
+  i,
+  x: xAt(i),
+  down: i < fallen,
+  label: labels?.[i] ?? null,
+}));
+
+const alt = [
+  `A row of ${count} dominoes standing on a line.`,
+  fallen > 0 ? `The first ${fallen} have fallen, each tipping into the next.` : 'None has fallen.',
+  gapAfter !== null
+    ? `After domino ${gapAfter + 1} the spacing is too wide, so the falling stops there and the remaining dominoes stay standing.`
+    : 'The rest are still standing, waiting for the one before to reach them.',
+  trailing ? 'The row continues off to the right without end.' : '',
+].filter(Boolean).join(' ');
+---
+<svg viewBox={`0 0 ${W} 170`} xmlns="http://www.w3.org/2000/svg" class="domino-row"
+     role="img" aria-label={alt}>
+  <style>
+    .domino-row .ground { stroke: var(--color-rule, #C6CBC0); stroke-width: 1.5; }
+    .domino-row .tile { fill: var(--color-card, #F8F9F5); stroke: var(--color-ink, #14182B); stroke-width: 1.6; }
+    .domino-row .tile-down { fill: color-mix(in oklab, var(--color-signal, #3F6DB5) 16%, var(--color-card, #F8F9F5)); stroke: var(--color-signal, #3F6DB5); stroke-width: 1.6; }
+    .domino-row .pip { fill: color-mix(in oklab, var(--color-ink, #14182B) 45%, transparent); }
+    .domino-row .push { stroke: var(--color-signal, #3F6DB5); stroke-width: 2; }
+    .domino-row .dots { font-family: var(--font-mono, monospace); font-size: 20px; fill: color-mix(in oklab, var(--color-ink, #14182B) 55%, transparent); }
+    .domino-row .lbl { font-family: var(--font-mono, monospace); font-size: 11px; fill: color-mix(in oklab, var(--color-ink, #14182B) 70%, transparent); }
+    .domino-row .gapmark { stroke: var(--color-false, #A8324A); stroke-width: 1.2; stroke-dasharray: 3 3; }
+    .domino-row .gaplbl { font-family: var(--font-mono, monospace); font-size: 10px; fill: var(--color-false, #A8324A); }
+  </style>
+
+  <defs>
+    <marker id="dr-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="var(--color-signal, #3F6DB5)" />
+    </marker>
+  </defs>
+
+  <line x1="10" y1={BASE_Y} x2={W - 10} y2={BASE_Y} class="ground" />
+
+  {pushed && (
+    <line x1={startX - 30} y1={BASE_Y - H / 2} x2={startX - 8} y2={BASE_Y - H / 2}
+          class="push" marker-end="url(#dr-arrow)" />
+  )}
+
+  {items.map(({ i, x, down, label }) => (
+    <g>
+      {down ? (
+        // A fallen domino, tipped toward the next one. SVG's y-axis points down,
+        // so a POSITIVE angle rotates clockwise and swings the top to the right.
+        <g transform={`rotate(72 ${x} ${BASE_Y})`}>
+          <rect x={x - T / 2} y={BASE_Y - H} width={T} height={H} rx="2" class="tile-down" />
+          <circle cx={x} cy={BASE_Y - H + 14} r="2.2" class="pip" />
+          <circle cx={x} cy={BASE_Y - 14} r="2.2" class="pip" />
+        </g>
+      ) : (
+        <g>
+          <rect x={x - T / 2} y={BASE_Y - H} width={T} height={H} rx="2" class="tile" />
+          <circle cx={x} cy={BASE_Y - H + 14} r="2.2" class="pip" />
+          <circle cx={x} cy={BASE_Y - 14} r="2.2" class="pip" />
+        </g>
+      )}
+      {label && <text x={x} y={BASE_Y + 18} class="lbl" text-anchor="middle">{label}</text>}
+    </g>
+  ))}
+
+  {gapAfter !== null && gapAfter < count - 1 && (
+    <g>
+      <line x1={xAt(gapAfter) + 8} y1={BASE_Y - 74} x2={xAt(gapAfter + 1) - 8} y2={BASE_Y - 74}
+            class="gapmark" />
+      <text x={(xAt(gapAfter) + xAt(gapAfter + 1)) / 2} y={BASE_Y - 82}
+            class="gaplbl" text-anchor="middle">too far</text>
+    </g>
+  )}
+
+  {trailing && (
+    <text x={xAt(count - 1) + 26} y={BASE_Y - 18} class="dots">…</text>
+  )}
+</svg>
+
+<style>
+  .domino-row { width: 100%; height: auto; max-width: 480px; display: block; margin: 0 auto; }
+</style>

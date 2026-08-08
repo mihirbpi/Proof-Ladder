@@ -1,0 +1,125 @@
+---
+level: l5
+title: Composition
+readingTimeMin: 9
+newTerms: ["composition"]
+anchorExample: "g ∘ f"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Given $f : S \to T$ and $g : T \to R$, the **composition** $g \circ f : S \to R$ is
+$$
+(g \circ f)(s) = g\big(f(s)\big).
+$$
+
+Do $f$ first, then $g$.
+
+<Warning title="The notation reads right to left">
+$g \circ f$ means *$f$ first*. The symbol on the right acts first.
+
+This is the standard stumbling block, and it is not arbitrary: it comes from the way function application is written. In $g(f(s))$ the $f$ is closest to the input, so it goes first — and $g \circ f$ preserves that order.
+
+Read $g \circ f$ aloud as "$g$ after $f$", not "$g$ then $f$".
+</Warning>
+
+## When is it defined?
+
+The middle sets must match. $f$ delivers into $T$, and $g$ must be prepared to accept anything in $T$ — otherwise some output of $f$ would be handed to $g$ as an input $g$ has no rule for, and totality would fail.
+
+$$
+S \xrightarrow{\ f\ } T \xrightarrow{\ g\ } R
+$$
+
+So $g \circ f$ requires the codomain of $f$ to be the domain of $g$, and this is one more place where declaring codomains earns its keep.
+
+For example, $f : \mathbb{R} \to \mathbb{R}$, $f(x) = x - 1$ and $g : [0,\infty) \to \mathbb{R}$, $g(x) = \sqrt x$ do **not** compose as $g \circ f$: $f$ can output $-5$, and $g$ has nothing to say about $-5$. Restricting $f$ to $[1,\infty)$ repairs it.
+
+## Two facts
+
+> **Proposition.** Composition is associative: $(h \circ g) \circ f = h \circ (g \circ f)$.
+
+<Proof>
+Both sides are functions with the same domain and codomain, so by module 3.1 it suffices to check they agree at every input.
+
+Let $s$ be arbitrary. Then
+$$
+\big((h \circ g) \circ f\big)(s) = (h\circ g)\big(f(s)\big) = h\Big(g\big(f(s)\big)\Big),
+$$
+and
+$$
+\big(h \circ (g \circ f)\big)(s) = h\big((g\circ f)(s)\big) = h\Big(g\big(f(s)\big)\Big).
+$$
+Equal.
+</Proof>
+
+The proof is unwinding notation on both sides until they meet. That is what associativity always amounts to here: **brackets record the order you chose to think about the steps, not the order the steps happen in.** Since both sides do $f$, then $g$, then $h$, they cannot differ.
+
+Because of this, $h \circ g \circ f$ is written without brackets.
+
+> **Proposition.** Composition is **not** commutative: $g \circ f \neq f \circ g$ in general.
+
+<Proof>
+Let $f(x) = x + 1$ and $g(x) = x^2$, both $\mathbb{R} \to \mathbb{R}$. Then
+$$
+(g\circ f)(x) = (x+1)^2, \qquad (f \circ g)(x) = x^2 + 1,
+$$
+and at $x = 1$ these are $4$ and $2$.
+</Proof>
+
+One input where they disagree is enough — the claim being refuted is universal.
+
+## Composition preserves injectivity and surjectivity
+
+> **Proposition.** If $f$ and $g$ are both injective, so is $g \circ f$.
+
+<Discussion>
+  <div slot="know">Injectivity in its usable form (module 3.5): equal outputs force equal inputs. We have that for $f$ and for $g$ separately.</div>
+  <div slot="want">$(g\circ f)(s_1) = (g \circ f)(s_2) \Rightarrow s_1 = s_2$.</div>
+  <div slot="how">Peel the outer function off first with $g$'s injectivity, then the inner one with $f$'s. Two steps, applied in the order the functions were composed — outermost first.</div>
+</Discussion>
+
+<Proof>
+Suppose $(g \circ f)(s_1) = (g \circ f)(s_2)$, that is $g\big(f(s_1)\big) = g\big(f(s_2)\big)$.
+
+Since $g$ is injective, $f(s_1) = f(s_2)$.
+
+Since $f$ is injective, $s_1 = s_2$.
+</Proof>
+
+> **Proposition.** If $f$ and $g$ are both surjective, so is $g \circ f$.
+
+<Proof>
+Let $r \in R$ be arbitrary.
+
+Since $g$ is surjective, there is $t \in T$ with $g(t) = r$.
+
+Since $f$ is surjective, there is $s \in S$ with $f(s) = t$.
+
+Then $(g\circ f)(s) = g(f(s)) = g(t) = r$.
+</Proof>
+
+Compare the two proofs. The injectivity one moved **outward to inward**; the surjectivity one moved **backward from the target**, building the witness (module 1.12) in two hops. Each proof is driven entirely by the shape of the property, and neither required an idea.
+
+## The partial converses
+
+Here is a question worth sitting with before reading on.
+
+> Suppose $g \circ f$ is injective. What must be true of $f$? Of $g$?
+
+$f$ must be injective — if $f$ collided two inputs, $g \circ f$ would send them to the same place too. But $g$ need not be: $g$ only has to behave on the part of $T$ that $f$ actually reaches, and it may do anything it likes elsewhere.
+
+The mirror statement holds for surjectivity: if $g \circ f$ is surjective then $g$ must be, and $f$ need not.
+
+**The composite's behaviour constrains the *inner* function for injectivity and the *outer* one for surjectivity**, and noticing which is which is a good test of whether the two definitions have settled.
+
+<Aside>
+Composition is everywhere once you look.
+
+Your geometry course composes transformations constantly: reflect, then rotate. That the result is again a rigid motion is a closure statement, and that reflecting twice in the same line returns you to the start is a composition equalling the identity — the pattern module 3.9 turns into inverses.
+
+Algebra I composes too, whenever you substitute one expression into another. $f(g(x))$ is composition, and the chain of steps in *solve for $x$* is a chain of compositions being undone one at a time.
+</Aside>

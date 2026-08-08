@@ -20,7 +20,7 @@
     "l3": "The opposite of \"both of these\" is \"at least one of them fails.\" The opposite of \"at least one of these\" is \"both of them fail.\" Saying not to a joined statement swaps and with or.",
     "l4": "¬(p ∧ q) ≡ ¬p ∨ ¬q and ¬(p ∨ q) ≡ ¬p ∧ ¬q. Pushing a negation inside a compound statement flips ∧ to ∨ and ∨ to ∧.",
     "l5": "De Morgan's laws say ¬(p ∧ q) ⇔ ¬p ∨ ¬q and ¬(p ∨ q) ⇔ ¬p ∧ ¬q; negation distributes across a connective only by swapping it.",
-    "l6": "Negation is not a homomorphism for ∧ and ∨ but an anti-homomorphism: ¬(p ∧ q) ≡ ¬p ∨ ¬q and ¬(p ∨ q) ≡ ¬p ∧ ¬q.",
+    "l6": "Negation does not pass through ∧ and ∨ unchanged — it swaps them: ¬(p ∧ q) ≡ ¬p ∨ ¬q and ¬(p ∨ q) ≡ ¬p ∧ ¬q. Assuming the wrong one is the standard error at the first line of an indirect proof.",
     "l7": "De Morgan's laws state that negation exchanges conjunction and disjunction: ¬(p ∧ q) ≡ ¬p ∨ ¬q and ¬(p ∨ q) ≡ ¬p ∧ ¬q. They are what let you negate a compound hypothesis correctly.",
     "l8": "De Morgan duality is the involution of the Boolean algebra that swaps meet and join; the same statement recurs for ∩/∪ on sets and for ∀/∃ on quantifiers."
   },

@@ -13,84 +13,83 @@ import Warning from '@/components/Warning.astro';
 
 So far the claims came ready-made and you proved them. Real mathematics is not like that: usually you have to **find** the claim first, and only then prove it.
 
-This module practises both halves. The grown-up version of this module uses calculus; the *method* is identical and does not need it.
+This module practises both halves. The grown-up version uses calculus; the *method* is identical and does not need it.
 
 ## Job one: gather data
 
-Start at $1$ and repeatedly multiply by $3$.
+Start at $1$ and keep doubling.
 
-| $n$ (times tripled) | Result |
+| Doublings so far | Result |
 |---|---|
 | $0$ | $1$ |
-| $1$ | $3$ |
-| $2$ | $9$ |
-| $3$ | $27$ |
-| $4$ | $81$ |
-| $5$ | $243$ |
+| $1$ | $2$ |
+| $2$ | $4$ |
+| $3$ | $8$ |
+| $4$ | $16$ |
+| $5$ | $32$ |
 
-## Job two: find the pattern
+The pattern is easy to say out loud: **the result is $2$ multiplied by itself as many times as you doubled.**
 
-The answer is $3$ multiplied by itself $n$ times — written $3^n$.
+That was easy because there was only one thing happening. Usually two patterns are tangled together, and you have to pull them apart.
 
-That was easy because there was only one pattern to spot. Usually there are several tangled together, and you must isolate them one at a time.
+## A harder one, with two patterns at once
 
-## A harder one, with three patterns at once
+Start at $0$, and keep applying this rule: **double it, then add $1$.**
 
-Start at $1$ and repeatedly apply the rule: **multiply by the step number, then flip the sign.**
-
-| $n$ | Result |
+| Steps so far | Result |
 |---|---|
-| $0$ | $1$ |
-| $1$ | $-1$ |
-| $2$ | $2$ |
-| $3$ | $-6$ |
-| $4$ | $24$ |
-| $5$ | $-120$ |
+| $0$ | $0$ |
+| $1$ | $1$ |
+| $2$ | $3$ |
+| $3$ | $7$ |
+| $4$ | $15$ |
+| $5$ | $31$ |
 
-Staring at $1, -1, 2, -6, 24, -120$ is hopeless if you try to see it all at once. So separate the patterns.
+Staring at $0, 1, 3, 7, 15, 31$ is hopeless if you try to see it all at once.
 
-**Pattern 1: the sign.** Plus, minus, plus, minus. It alternates with $n$.
+### Pulling the patterns apart
 
-**Pattern 2: the size.** $1, 1, 2, 6, 24, 120$. Each is the previous times $n$: $2 = 1\times2$, $6 = 2\times3$, $24 = 6\times4$, $120 = 24\times5$.
+**Put the doubling list underneath it.**
 
-That is $1 \times 2 \times 3 \times \cdots \times n$, which has a name: **$n$ factorial**, written $n!$.
+| Steps | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ |
+|---|---|---|---|---|---|---|
+| Our list | $0$ | $1$ | $3$ | $7$ | $15$ | $31$ |
+| Doubling list | $1$ | $2$ | $4$ | $8$ | $16$ | $32$ |
 
-**Putting them together:** the $n$th result is $n!$ with a sign that alternates.
+Every single one is **exactly one less**.
 
-Check $n=3$: $3! = 6$, and the sign should be minus. So $-6$. ✓
+So the guess is: *after any number of steps, the result is the doubling number for that step, minus $1$.*
+
+Check it at $4$ steps: the doubling number is $16$, and $16 - 1 = 15$. ✓
 
 ## Job three: prove it
 
 <Discussion>
-  <div slot="know">Each result is the previous one times $n$, with the sign flipped. And $(k+1)! = (k+1)\times k!$.</div>
-  <div slot="want">The formula holds for every case.</div>
-  <div slot="how">Dominoes. The base is $n=0$. The step applies the rule once to the $k$th result and checks the answer matches what the formula predicts for $k+1$.</div>
+  <div slot="know">Each result comes from the one before by doubling and adding $1$. And each doubling number is twice the one before it.</div>
+  <div slot="want">The guess holds at every step, not just the six we checked.</div>
+  <div slot="how">Dominoes. The first domino is the very first row. For the chain, assume the guess holds at some step and apply the rule once more.</div>
 </Discussion>
 
 <Proof>
-**Base case.** At $n=0$ the result is $1$. And $0!$ is defined to be $1$, with a plus sign. ✓
+**The first domino.** At $0$ steps the result is $0$. The doubling number is $1$, and $1 - 1 = 0$. ✓
 
-**Inductive step.** Suppose after $k$ steps the result is $k!$ with the appropriate sign.
+**The chain.** Suppose that at some step the result is **one less than that step's doubling number**.
 
-Apply the rule once more: multiply by $k+1$ and flip the sign.
+Apply the rule once more. Doubling our result doubles both parts: we get twice the doubling number, minus $2$.
 
-Multiplying $k!$ by $k+1$ gives $(k+1)!$ — that is exactly what factorial means.
+Twice the doubling number is exactly the *next* doubling number.
 
-And flipping the sign once is exactly what the alternating pattern predicts for the next step.
-
-So after $k+1$ steps the result is $(k+1)!$ with the right sign, as claimed. ✓
+Now add $1$, as the rule says. That leaves the next doubling number, minus $1$ — which is exactly what the guess predicts for the next step. ✓
 </Proof>
 
-<Warning title="Isolate the patterns before combining them">
-The list $1, -1, 2, -6, 24, -120$ is unreadable as a whole and easy once split into *sign* and *size*.
+<Warning title="Pull the patterns apart before combining them">
+The list $0, 1, 3, 7, 15, 31$ is unreadable on its own and obvious once you set the doubling list beside it.
 
-This is the general technique. When data resists, look for two or three independent patterns and find each separately. Then multiply them together.
+This is the general technique. When data resists, look for two simple patterns hiding inside it and find each one separately. Then put them back together.
 </Warning>
 
 <Aside>
-The list above is not invented. In a few years, when you meet calculus, you will differentiate the function $1/x$ over and over — and the answers will carry exactly this alternating sign and exactly these factorials. The formula is
-$$
-(-1)^n \, n! \, x^{-(n+1)},
-$$
-and the proof is the induction you just did, with an extra pattern for the power of $x$.
+The grown-up version of this module does the same three jobs on a list that comes from calculus, where **three** patterns are tangled instead of two.
+
+Gathering data, pulling the patterns apart, then proving the guess by dominoes — that is the whole method, and you have just done it. Only the list changes.
 </Aside>

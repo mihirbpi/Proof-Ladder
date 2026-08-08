@@ -94,5 +94,20 @@ $\mathbb{Q} = \{p/q \mid p,q \in \mathbb{Z},\, q \neq 0\}$ hides a subtlety: the
 </Aside>
 
 <WhereThisGoes level="l7">
-Separation and Replacement are two of the ZF axiom schemas, and the fact that they are *schemas* — one axiom per predicate $p$, infinitely many axioms — is not an accident of presentation: no finite axiomatisation of ZF exists. Which predicates are permitted is itself a live question. Restricting to predicates with only bounded quantifiers gives Kripke–Platek set theory; allowing quantification over sets of sets gives second-order comprehension and the reverse-mathematics hierarchy, whose subsystems calibrate exactly how much set existence each classical theorem requires. In a different direction, the intensional/extensional distinction visible in this module — a set versus a description of it — is the central distinction of computability theory, where a set of naturals may be perfectly well defined and have no algorithm deciding membership.
+Set-builder notation is how the objects of both courses ahead are defined, and the ambient set is never decoration.
+
+**In calculus, the ambient set is what determines the answer.** The solution set of $x^2 = 2$ is $\{\pm\sqrt2\}$ over $\mathbb{R}$ and empty over $\mathbb{Q}$ (§4.7). The set $\{x : \sin x = 0\}$ is $\{k\pi : k \in\mathbb{Z}\}$ — an infinite set described by a parameter, which is how every trigonometric solution set is written, and the $k\in\mathbb{Z}$ is the ambient set doing its job.
+
+Domains of convergence are set-builder objects too:
+$$\left\{x \in \mathbb{R} : \sum_{n=0}^{\infty} \frac{x^n}{n} \text{ converges}\right\} = [-1, 1),$$
+and the asymmetry at the endpoints — convergent at $-1$, divergent at $1$ — is exactly the kind of fact the notation can express and an interval name cannot.
+
+**In linear algebra the definitions are literally set-builder.**
+$$\operatorname{Nul} A = \{\mathbf{x}\in\mathbb{R}^n : A\mathbf{x} = \mathbf{0}\}, \qquad \operatorname{Col} A = \{A\mathbf{x} : \mathbf{x}\in\mathbb{R}^n\}.$$
+
+Note that these use the two different forms this module distinguished: the null space is defined by a **condition** on elements of a stated ambient set, and the column space by a **rule** applied to every element of one. That difference is not cosmetic — it determines the proof technique. To show a vector is in $\operatorname{Nul} A$ you verify a condition; to show it is in $\operatorname{Col} A$ you must produce an $\mathbf{x}$, an existential claim needing a witness.
+
+**Recognising which form a set is written in tells you what proving membership requires**, and that is a skill you will use in every subspace argument of the course.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **null space** — the vectors a matrix sends to zero; **column space** — everything the matrix can produce as output; **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

@@ -1,0 +1,118 @@
+---
+level: l5
+title: One-to-one (injections)
+readingTimeMin: 8
+newTerms: ["injective", "one-to-one"]
+anchorExample: "f(x) = 3x + 2 is injective"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Module 3.1 forbade one input going to two outputs. It said nothing about two inputs going to one output. **Injectivity is the condition that forbids that too.**
+
+> $f : S \to T$ is **injective** (or **one-to-one**) when distinct inputs give distinct outputs:
+> $$ s_1 \neq s_2 \implies f(s_1) \neq f(s_2). $$
+
+<Figure alt="Three elements on the left, each with one arrow, all landing on different elements of the right." caption="Injective: no two arrows share a target.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,2],[2,0]]} />
+</Figure>
+
+## Use the contrapositive
+
+The definition as stated is nearly unusable. Its hypothesis is $s_1 \neq s_2$, and a *difference* gives you nothing to compute with — you cannot subtract two things you only know are unequal.
+
+So use module 1.8 and flip it:
+
+$$
+f(s_1) = f(s_2) \implies s_1 = s_2.
+$$
+
+Same statement, and now the hypothesis is an **equation**, which is something algebra can act on. **This is the form every proof uses**, and if you find yourself stuck on an injectivity proof, check first that you started from the right end.
+
+## A worked proof
+
+> **Proposition.** $f : \mathbb{R} \to \mathbb{R}$, $f(x) = 3x + 2$ is injective.
+
+<Discussion>
+  <div slot="know">Nothing about $x_1$ and $x_2$ except that their outputs agree.</div>
+  <div slot="want">$x_1 = x_2$.</div>
+  <div slot="how">Set the outputs equal and solve. Each algebraic step must be reversible in principle, but here we only need the forward direction.</div>
+</Discussion>
+
+<Proof>
+Suppose $f(x_1) = f(x_2)$ for some $x_1, x_2 \in \mathbb{R}$. Then
+$$
+3x_1 + 2 = 3x_2 + 2.
+$$
+Subtracting $2$: $3x_1 = 3x_2$. Dividing by $3$, which is nonzero: $x_1 = x_2$.
+
+So $f$ is injective.
+</Proof>
+
+Note where the hypothesis $3 \neq 0$ was used. A function $f(x) = 0x + 2$ is constant, and constant functions on a domain with more than one element are as far from injective as possible.
+
+## A function that is not injective
+
+> **Proposition.** $g : \mathbb{R} \to \mathbb{R}$, $g(x) = x^2$ is not injective.
+
+<Proof>
+$g(-2) = 4 = g(2)$, and $-2 \neq 2$.
+</Proof>
+
+That is a complete proof. Non-injectivity is an existence claim — *there exist two distinct inputs with equal outputs* — so module 1.12's witness template applies, and one pair settles it.
+
+**Never argue in general to disprove injectivity.** Exhibit the collision.
+
+The same move works on the multiplication function of module 3.1: $m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$, $m(a,b) = ab$ has
+$$
+m(6, 4) = 24 = m(2, 12),
+$$
+and $(6,4) \neq (2,12)$ since ordered pairs compare coordinate by coordinate. Not injective.
+
+## The domain is part of the answer
+
+$g(x) = x^2$ fails to be injective on $\mathbb{R}$. Restrict the domain to $[0,\infty)$ and it succeeds.
+
+<Proof>
+Let $h : [0,\infty) \to \mathbb{R}$, $h(x) = x^2$, and suppose $h(x_1) = h(x_2)$, so $x_1^2 = x_2^2$.
+
+Then $x_1^2 - x_2^2 = 0$, so $(x_1 - x_2)(x_1 + x_2) = 0$, and hence $x_1 = x_2$ or $x_1 = -x_2$.
+
+In the second case, both $x_1, x_2 \geq 0$ and $x_1 = -x_2$ force $x_1 = x_2 = 0$, so $x_1 = x_2$ regardless.
+
+So $h$ is injective.
+</Proof>
+
+**Same rule, different domain, different answer** — module 3.1's insistence that the domain is part of the function, now with consequences.
+
+<Warning title="Injectivity is about the domain; surjectivity is about the codomain">
+Both properties depend on more than the formula, and they depend on *different* parts of it.
+
+- Shrinking the domain can only help injectivity — fewer inputs, fewer chances to collide.
+- Changing the codomain cannot affect injectivity at all, since the condition never mentions $T$ beyond where outputs live.
+
+Module 3.6 has the mirror image: surjectivity depends entirely on the codomain and is untouched by shrinking the domain's image.
+</Warning>
+
+## The graphical test
+
+For $f : \mathbb{R} \to \mathbb{R}$, injectivity is the **horizontal line test**: no horizontal line meets the graph twice.
+
+Compare module 3.1. The vertical line test checks that something is a function; the horizontal line test checks that it is injective. Two different tests, two different conditions, and the pairing is worth holding onto — *vertical for function, horizontal for one-to-one*.
+
+$y = x^2$ passes the vertical test and fails the horizontal one at every height above $0$, which is the graph saying exactly what the algebra said.
+
+<Aside>
+Injectivity is what makes undoing possible.
+
+If $f$ is injective and you are told $f(x) = 7$, there is at most one $x$ it could have been. If $f$ is not injective, the output has genuinely lost information and no amount of cleverness recovers it.
+
+That is why module 3.9's inverse functions require injectivity, and it is why $\sqrt{\ }$ is defined only on $[0,\infty)$ — squaring is injective there and nowhere larger.
+</Aside>

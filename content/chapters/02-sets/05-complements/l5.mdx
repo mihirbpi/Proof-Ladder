@@ -1,0 +1,115 @@
+---
+level: l5
+title: Complements and "suppose not"
+readingTimeMin: 9
+newTerms: ["complement", "proof by contradiction"]
+anchorExample: "√2 is irrational"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+
+Within a fixed set $U$ — the **universe** for the discussion — the **complement** of $A$ is everything in $U$ outside $A$:
+$$
+\overline{A} = \{\, x \in U \mid x \notin A \,\}.
+$$
+
+<Figure alt="Two overlapping circles inside a dashed rectangle labelled U, with everything outside circle A shaded." caption="Everything in the universe that is outside A.">
+  <VennTwo labelS="A" labelT="B" shade={["outside", "T-only"]} universe="U" />
+</Figure>
+
+Complement is $\neg$ in the dictionary of module 2.4, and like $\neg$ it splits everything into two parts with no overlap and no gap:
+$$
+A \cap \overline{A} = \emptyset, \qquad A \cup \overline{A} = U.
+$$
+
+<Warning title="The universe is part of the answer">
+$\overline{A}$ is meaningless until $U$ is fixed, and changing $U$ changes the answer.
+
+Let $A$ be the set of even integers.
+
+- In $U = \mathbb{Z}$: $\overline{A}$ is the odd integers.
+- In $U = \mathbb{R}$: $\overline{A}$ contains the odd integers **and** $\tfrac12$, and $\pi$, and every non-integer.
+
+Two different sets. When a problem says "the complement", find out what the universe is before answering.
+</Warning>
+
+## Suppose not
+
+The complement is what makes a proof technique available. To prove a statement $p$, you may instead show that $\neg p$ is impossible.
+
+> **Proof by contradiction.** To prove $p$: assume $\neg p$, derive a statement that is false, and conclude $p$.
+
+The named move is **suppose not**. It is legitimate because module 1.2 guarantees exactly one of $p$, $\neg p$ is true — so ruling out one leaves the other, with nowhere else to go.
+
+The template:
+
+> 1. State clearly: *Suppose, for contradiction, that $\neg p$.*
+> 2. Reason forward, using $\neg p$ as an ordinary hypothesis.
+> 3. Reach a contradiction — a statement and its negation, or something known false.
+> 4. Conclude: *This is impossible, so $p$.*
+
+Step 1 is not decoration. A reader who does not know an assumption is temporary will think you are asserting it.
+
+## A worked contradiction
+
+> **Proposition.** There is no smallest positive rational number.
+
+<Discussion>
+  <div slot="know">The claim is a negative one — *there is no…* — and there is nothing to compute with. Module 1.8's advice: negative goals are where indirect methods pay.</div>
+  <div slot="want">A contradiction from assuming such a number exists.</div>
+  <div slot="how">Assume $q$ is the smallest. Then produce something smaller that is still positive and still rational. Halving does both.</div>
+</Discussion>
+
+<Proof>
+Suppose, for contradiction, that there is a smallest positive rational $q$.
+
+Consider $q/2$. Since $q > 0$, we have $q/2 > 0$. Since $q \in \mathbb{Q}$ and $\mathbb{Q}$ is closed under division by $2$, we have $q/2 \in \mathbb{Q}$. So $q/2$ is a positive rational.
+
+But $q/2 < q$, since $q > 0$.
+
+So $q/2$ is a positive rational smaller than $q$, contradicting the assumption that $q$ was the smallest.
+
+This is impossible, so no smallest positive rational exists.
+</Proof>
+
+Notice what the assumption bought. Before it, the claim mentioned no particular number and there was nothing to manipulate. Afterwards there was a $q$ on the page, and $q$ could be halved. **The contradiction hypothesis is often the only concrete object in the proof**, and that is precisely why the method works on negative claims.
+
+## When not to use it
+
+<Warning title="Contradiction is over-used">
+A very common pattern in student work:
+
+> Suppose $n$ is even and $n^2$ is odd. Since $n$ is even, $n = 2k$, so $n^2 = 2(2k^2)$ is even. But we assumed $n^2$ is odd — contradiction.
+
+The proof is correct, and the contradiction is doing nothing. Delete the first and last sentences and you have a direct proof that is shorter and clearer.
+
+**The test:** if you never actually use the assumption $\neg p$ to get anywhere — if the contradiction arrives just by proving $p$ directly and then noticing the clash — you wanted a direct proof.
+
+Reach for contradiction when the goal is a negative or a non-existence claim, where a direct approach has nothing to start from.
+</Warning>
+
+## The two indirect methods are different
+
+Both assume something negative, and they are not the same move.
+
+| | Assume | Derive | Concludes |
+|---|---|---|---|
+| Contrapositive (1.8) | $\neg q$ | $\neg p$ | $p \Rightarrow q$ |
+| Contradiction | $p \wedge \neg q$ | anything false | $p \Rightarrow q$ |
+
+Contradiction gives you **more** to work with: both the hypothesis and the negated conclusion. That extra hypothesis is why it succeeds on problems the contrapositive cannot reach — and it is also why the resulting proofs are harder to read, since you cannot tell which statements on the page are true until the end.
+
+Prefer direct. Then contrapositive. Then contradiction.
+
+<Aside>
+The most famous proof in this course is a contradiction, and you will meet it in module 4.7: **$\sqrt2$ is irrational.**
+
+You already know the fact. The proof assumes $\sqrt2 = a/b$ in lowest terms, and derives that $a$ and $b$ are both even — contradicting *lowest terms*.
+
+The shape is exactly the one above. *Irrational* means *not rational*, a negative claim with nothing to compute with; assuming the negation puts an actual fraction on the page; and the fraction can be manipulated.
+</Aside>

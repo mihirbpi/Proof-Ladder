@@ -72,7 +72,7 @@ When the domain has elements with several names, a rule must be checked to be na
 - **A function.** $g : \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$, $g([a]) = [a^2]$, because $a \equiv b \pmod n$ implies $a^2 \equiv b^2 \pmod n$.
 - **Not a function.** $h : \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}$, $h([a]) = a$: no representative is canonical, so the "value" depends on the name.
 
-Every definition on a quotient structure — modular arithmetic, $\mathbb{Q}$ as a quotient of $\mathbb{Z} \times \mathbb{Z}_{\neq 0}$, quotient groups, quotient topologies — carries this obligation, and it is the step first-year algebra students skip most often.
+Every definition on a quotient structure — modular arithmetic, $\mathbb{Q}$ as a quotient of $\mathbb{Z} \times \mathbb{Z}_{\neq 0}$ (§4.5), and every later construction that declares things equal — carries this obligation, and it is the step first-year algebra students skip most often.
 </Warning>
 
 <Aside>
@@ -80,5 +80,15 @@ Functions can act on functions. Differentiation $D : C^1(\mathbb{R}) \to C^0(\ma
 </Aside>
 
 <WhereThisGoes level="l7">
-Two of these functions open subjects. $\varphi$ is the gateway to multiplicative number theory: Euler's theorem $a^{\varphi(n)} \equiv 1 \pmod n$ for $\gcd(a,n)=1$ generalises Fermat's little theorem and is exactly the fact RSA rests on — encryption raises to a public exponent $e$, decryption to $d$ with $ed \equiv 1 \pmod{\varphi(n)}$, and the security assumption is that $\varphi(n)$ is unobtainable without factoring $n$. Floor opens the analytic side: $\sum_{n \leq x} 1 = \lfloor x \rfloor$ makes it the elementary tool for counting lattice points and estimating sums, and its sawtooth $x - \lfloor x \rfloor - \tfrac12$ is the kernel of Euler–Maclaurin summation, which connects discrete sums to integrals and is how the analytic theory of the Riemann zeta function begins.
+The width of the definition is what lets calculus and linear algebra treat as functions things that have no formula and no graph.
+
+**A sequence is a function $\mathbb{N}\to\mathbb{R}$.** Writing $a_n$ instead of $a(n)$ is notation, not a different kind of object — which is why sequences have limits, why they can be monotone or bounded, and why the theorems about convergence of sequences and of functions look so alike. Recognising the identification early saves relearning the same material twice.
+
+**Piecewise definitions are the norm, not the exception.** $|x|$, the floor function, and every function defined by cases require the two obligations this module names: exhaustive cases and agreement where they overlap. Continuity at a boundary between pieces is then a genuine question, and it is exactly where the standard exam problems live.
+
+**Functions with no formula are common in calculus.** $F(x) = \int_0^x e^{-t^2}\,dt$ is a perfectly good function, differentiable everywhere, with no expression in terms of elementary functions. So is the solution of a differential equation whose closed form does not exist. Insisting a function be a formula would exclude both, and much of the subject with them.
+
+**In linear algebra, the inputs stop being numbers.** The determinant is a function from matrices to $\mathbb{R}$; the trace is another; the transpose maps matrices to matrices. Differentiation itself is a function from a space of functions to a space of functions — a **linear transformation**, once you check $\frac{d}{dx}(af+bg) = af'+bg'$, which is the definition of linearity applied to an operator rather than a matrix.
+
+That last example is where the abstraction pays. **Nothing in §3.1 required inputs to be numbers**, so the whole of Chapters 3's machinery — injective, surjective, invertible, composition — applies to differentiation, and it is genuinely useful there.
 </WhereThisGoes>

@@ -29,6 +29,13 @@ Two immediate consequences:
 
 So one of them is always true and the other always false — exactly one.
 
+Both consequences have names, and both get used as proof tools later:
+
+- $p \wedge \neg p$ is false no matter what $p$ is. A statement of that shape is a **contradiction**. Derive one and you have shown that whatever you assumed cannot hold.
+- $p \vee \neg p$ is true no matter what $p$ is — the **law of the excluded middle**. It is what licenses splitting an argument into the case where $p$ holds and the case where it doesn't, with nothing left over.
+
+Neither is a technicality. Two of the three main proof techniques in this chapter run on them.
+
 ## Double negation
 
 If negating flips the truth value, then negating twice puts it back. That is,
@@ -37,11 +44,15 @@ $$
 $$
 This looks obvious but it is a real fact worth naming: *double negation is the identity*. It shows up whenever you find yourself in a contradiction proof (§2.5).
 
+It is also the quiet last step of every such proof. You want to show $q$. You assume $\neg q$, reach a contradiction, and conclude that $\neg q$ is false — which is to say $\neg\neg q$. Then you write down $q$ and move on. The replacement is double negation, and most write-ups never mention it.
+
 ## Negating with variables
 
 - Negation of $x \geq 1$ is $x < 1$. (Note the flip *and* the change from $\geq$ to $<$.)
 - Negation of $x \neq 0$ is $x = 0$.
 - Negation of "$n$ is even" is "$n$ is odd" — but only because every integer is one or the other. Without that background fact, the negation would just be "$n$ is not even."
+
+That last one is worth pausing on. *Not even* and *odd* mean the same thing for integers and not for other kinds of numbers: $1/2$ is not even, and it is not odd either. Whenever you replace a negation with a positive-sounding word, you are using a fact about what the possibilities are, and that fact deserves to be stated.
 
 <Warning title="Common mistake">
 The negation of $x \geq 1$ is $x < 1$, *not* $x \leq 1$. The negation of $x > 1$ is $x \leq 1$, not $x < 1$. The boundary case flips with the inequality.
@@ -53,3 +64,5 @@ The negation of $x \geq 1$ is $x < 1$, *not* $x \leq 1$. The negation of $x > 1$
 - Negation of *every number is even* is *at least one number is not even*.
 
 Both illustrate that to negate a universal claim you produce one exception — this is the "one bad apple" that module 1.11 will make formal.
+
+The reverse direction is less familiar and just as useful. To negate *there exists a thing with this property*, you must rule out every candidate — which is a universal claim, and so needs a genuine argument rather than a single example. Disproving an existence claim is the harder of the two jobs, and knowing which one you are facing tells you what kind of work to expect.

@@ -2,7 +2,7 @@
 level: l7
 title: Inductive sets and the last axiom
 readingTimeMin: 8
-newTerms: ["inductive set", "categoricity", "nonstandard model"]
+newTerms: ["inductive set", "nonstandard model"]
 anchorExample: "successor function"
 ---
 
@@ -39,40 +39,68 @@ Chapter 6's technique is this axiom. That answers §6.1's question of why induct
 
 Equivalent over A5–A8: well-ordering, strong induction, and the non-existence of infinite descending sequences. §4.4's division algorithm and §4.7's descent argument were both applications.
 
-## Second-order categoricity
+## Killing the rogue model
 
-A9 quantifies over **subsets** of $\mathbb{N}$, so the system is second-order.
+The remaining unwanted system from §7.4 is $R = \{0,1,2,\dots\}\cup\{a, S(a), \dots\}$, with the second chain disjoint from the first.
+
+Suppose $R$ satisfied all nine axioms. Let $A = \{0,1,2,\dots\}$ be the first chain alone. Then $0 \in A$, and $A$ is closed under $S$ — the successor of anything in the first chain stays in the first chain. So $A$ is inductive.
+
+By Axiom 9, $A = R$. But $a \in R$ and $a \notin A$. Contradiction.
+
+**Axiom 9 is exactly the statement that everything is reachable by counting from $0$.** The first eight axioms describe local behaviour — a start, a step, no loops, no merges. This one is global, and it says the chain from $0$ is all there is.
+
+The resulting set equality is proved by double inclusion, with a clean division of labour:
+
+$$\mathbb{N} = \{0, S(0), S(S(0)), \dots\}$$
+
+**($\supseteq$)** Axioms 5 and 6 put the whole chain inside $\mathbb{N}$. **($\subseteq$)** The chain is inductive, so Axiom 9 gives equality. Each direction uses different axioms, which is the normal situation for a biconditional (§1.9).
+
+## The axioms pin down ℕ exactly
+
+Notice what A9 quantifies over: **subsets** of $\mathbb{N}$, not just elements. That is a stronger kind of assumption than the other eight, and it buys a correspondingly strong result.
 
 > **Theorem (Dedekind, 1888).** Any two structures satisfying A5–A9 are isomorphic.
 
 <Proof title="Proof sketch">
-Let $(\mathbb{N},0,S)$ and $(\mathbb{N}',0',S')$ both satisfy the axioms. Define $h(0) = 0'$ and $h(S(n)) = S'(h(n))$; the recursion theorem (§7.6) supplies a unique such $h$.
+Let $(\mathbb{N},0,S)$ and $(\mathbb{N}',0',S')$ both satisfy the axioms. Define $h(0) = 0'$ and $h(S(n)) = S'(h(n))$; the recursive definition of §7.6 supplies exactly one such $h$.
 
 $h$ is injective: the set $\{n : \forall m\,(h(n)=h(m)\Rightarrow n=m)\}$ is inductive, using A7 and A8 in both structures.
 
 $h$ is surjective: $\operatorname{Im}(h)$ contains $0'$ and is closed under $S'$, hence is inductive in $\mathbb{N}'$, so A9 for $\mathbb{N}'$ gives $\mathbb{N}'\subseteq\operatorname{Im}(h)$.
 </Proof>
 
-So the axioms determine $\mathbb{N}$ **up to isomorphism** — they are *categorical*. Whatever "the natural numbers" are made of is irrelevant; only the structure is determined, which is the same lesson as §2.9's ordered pairs.
+So the axioms determine $\mathbb{N}$ **up to renaming**. Whatever "the natural numbers" are made of is irrelevant — sets, tally marks, anything — because only the structure is pinned down, which is the same lesson as §2.9's ordered pairs.
 
-<Warning title="First-order arithmetic is not categorical">
-Replacing A9 by the first-order **schema** — one axiom $\big(\varphi(0)\wedge\forall x(\varphi(x)\to\varphi(Sx))\big)\to\forall x\,\varphi(x)$ for each formula $\varphi$ — gives Peano Arithmetic (PA), and categoricity fails.
+<Warning title="Weaken A9 and uniqueness is lost">
+The uniqueness proof leaned hard on A9 being about *all* subsets. Weaken it — allow induction only for properties you can actually write down in a formula — and the theorem fails.
 
-Add a constant $c$ and axioms $c \neq \overline n$ for each numeral $\overline n$. Every finite subset of this theory is satisfiable in $\mathbb{N}$ (interpret $c$ as a large enough number), so by **compactness** the whole theory has a model. That model contains an element exceeding every numeral: a **nonstandard model** of arithmetic.
+The weakened system admits **nonstandard models**: systems obeying every axiom, agreeing with $\mathbb{N}$ on every statement expressible in the restricted language, and yet containing an element larger than $0, 1, 2, 3, \dots$ and every other ordinary number.
 
-Such models satisfy every first-order theorem of $\mathbb{N}$ and are not isomorphic to it. The property "is a natural number" is therefore not first-order expressible, and Löwenheim–Skolem gives nonstandard models of every infinite cardinality.
+Such a system is not $\mathbb{N}$ renamed. It is genuinely different, and it exists — so "is a natural number" turns out not to be expressible in the restricted language at all.
 </Warning>
 
-The trade-off is exact. Second-order A9 is categorical but its logic has no complete proof system (semantic consequence outruns derivability). First-order PA has a complete, effective proof system and non-isomorphic models. One cannot have both — a fact that is itself a theorem.
+The trade-off is exact, and it is a theorem rather than a limitation of anyone's ingenuity. The strong form of A9 pins down $\mathbb{N}$ uniquely but admits no mechanical procedure that generates all its consequences. The weakened form has such a procedure and admits models that are not $\mathbb{N}$. **You cannot have both.**
 
 <Aside>
-Whether A9's quantification over "all subsets" is meaningful depends on what subsets there are, which is a set-theoretic question. Second-order categoricity is thus relative to the ambient set theory; the argument does not fix $\mathbb{N}$ absolutely so much as transfer the indeterminacy upward.
+There is a catch in the uniqueness argument worth noticing. A9 speaks of "all subsets" of $\mathbb{N}$ — but what counts as a subset is itself a question, answered by whatever theory of sets you are working in. So the argument does not fix $\mathbb{N}$ absolutely; it passes the question up a level.
 
-In ZF, the Axiom of Infinity asserts that *some* inductive set exists, and $\omega$ is defined as the intersection of all of them — which is A9 with existence supplied. That $\omega$ satisfies A5–A9 is then a theorem of ZF, so arithmetic is interpretable in set theory and inherits its consistency.
+Set theory supplies the missing piece from the other end: it *asserts* that an inductive set exists, then defines $\mathbb{N}$ as the smallest one. That the result satisfies A5–A9 is then a theorem, so arithmetic sits inside set theory and inherits whatever consistency set theory has (§7.1).
 </Aside>
 
 <WhereThisGoes level="l7">
-Nonstandard models are a tool rather than a defect. Robinson's nonstandard analysis builds an ordered field $^*\mathbb{R}$ containing genuine infinitesimals, in which $\lim$ and $\varepsilon$–$\delta$ arguments become algebraic manipulations, and the transfer principle guarantees that first-order theorems move between $\mathbb{R}$ and $^*\mathbb{R}$ intact — vindicating Leibniz's calculus three centuries late. Nonstandard models of arithmetic have order type $\mathbb{N} + (\mathbb{Z}\times D)$ for a dense order $D$, and studying them is a substantial part of model theory; Paris and Harrington used them to exhibit a statement of finite combinatorics that is true, natural, and unprovable in PA — a Gödel sentence that no one would mistake for a logician's artefact.
+Axiom 9 is the induction principle of Chapter 6, and knowing it is an **axiom** settles the question §6.2 left open.
 
-Meanwhile the second-order/first-order tension recurs throughout foundations: $\mathbb{R}$ is categorical as a complete ordered field only under second-order completeness, and any first-order axiomatisation admits nonstandard models. Categoricity and effective proof are simply not simultaneously available.
+Induction is not proved. It is assumed, on the same footing as the completeness axiom for $\mathbb{R}$ and the parallel postulate for Euclidean geometry — and §7.4's method shows why it must be: there are systems satisfying Axioms 1–8 and failing Axiom 9.
+
+**Well-ordering is the equivalent form**, and the equivalence is genuine: assume either and derive the other. Neither follows from the remaining axioms.
+
+**In calculus, the parallel axiom is completeness.** Every major theorem of a first course invokes it, usually through a phrase like *"let $c$ be the least upper bound of the set where…"*. The Extreme Value Theorem, the Intermediate Value Theorem, and the convergence of bounded monotone sequences are all false over $\mathbb{Q}$, which satisfies every other axiom of an ordered field.
+
+So calculus is, in a precise sense, the study of one axiom's consequences — and recognising which theorems depend on it is worth doing as you meet them.
+
+**In linear algebra the analogous unproved input is the existence of a basis.** For finite-dimensional spaces it is a theorem; in general it requires an additional axiom, and the fact that every vector space has a basis is equivalent to a set-theoretic assumption independent of the others.
+
+**The chapter's method is the transferable part.** Each axiom was justified by exhibiting the unwanted system it rules out — loops, merges, unreachable extras. That is how you find out which axioms you need: construct the models you want to exclude, and add exactly the assumptions that exclude them.
+
+*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale; **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>
