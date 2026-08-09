@@ -17,7 +17,7 @@ A5–A8 are *closure* conditions: they say what $\mathbb{N}$ must contain. The r
 
 > $V$ is **inductive** if $0 \in V$ and $\forall x\,(x \in V \Rightarrow S(x)\in V)$.
 >
-> $$\textbf{A9}\quad V \text{ inductive} \implies \mathbb{N}\subseteq V.$$
+> $$\textbf{A9}\quad V \text{ inductive} \Rightarrow \mathbb{N}\subseteq V.$$
 
 $\mathbb{N}$ is the intersection of all inductive sets — the smallest one.
 
@@ -32,7 +32,7 @@ With A5–A6 giving $V \subseteq\mathbb{N}$, double inclusion (§2.6) yields $\m
 Instantiating $V = \{n : A(n)\}$:
 
 $$
-\underbrace{0 \in V}_{A(0)}\ \wedge\ \underbrace{\forall x (x\in V \Rightarrow S(x)\in V)}_{A(k)\Rightarrow A(S(k))}\ \implies\ \underbrace{\mathbb{N}\subseteq V}_{\forall n\, A(n)}.
+\underbrace{0 \in V}_{A(0)}\ \wedge\ \underbrace{\forall x (x\in V \Rightarrow S(x)\in V)}_{A(k)\Rightarrow A(S(k))}\ \Rightarrow\ \underbrace{\mathbb{N}\subseteq V}_{\forall n\, A(n)}.
 $$
 
 Chapter 6's technique is this axiom. That answers §6.1's question of why induction cannot be derived from more primitive facts: it is constitutive of $\mathbb{N}$, and the rogue model demonstrates its independence from A5–A8 by the method of §7.1.
@@ -88,6 +88,7 @@ Set theory supplies the missing piece from the other end: it *asserts* that an i
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Axiom 9 is the induction principle of Chapter 6, and knowing it is an **axiom** settles the question §6.2 left open.
 
 Induction is not proved. It is assumed, on the same footing as the completeness axiom for $\mathbb{R}$ and the parallel postulate for Euclidean geometry — and §7.4's method shows why it must be: there are systems satisfying Axioms 1–8 and failing Axiom 9.
@@ -98,9 +99,6 @@ Induction is not proved. It is assumed, on the same footing as the completeness 
 
 So calculus is, in a precise sense, the study of one axiom's consequences — and recognising which theorems depend on it is worth doing as you meet them.
 
-**In linear algebra the analogous unproved input is the existence of a basis.** For finite-dimensional spaces it is a theorem; in general it requires an additional axiom, and the fact that every vector space has a basis is equivalent to a set-theoretic assumption independent of the others.
-
 **The chapter's method is the transferable part.** Each axiom was justified by exhibiting the unwanted system it rules out — loops, merges, unreachable extras. That is how you find out which axioms you need: construct the models you want to exclude, and add exactly the assumptions that exclude them.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale; **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>

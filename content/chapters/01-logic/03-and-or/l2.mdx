@@ -8,6 +8,7 @@ anchorExample: "raining and cold"
 
 import TryIt from '@/components/TryIt.astro';
 import Warning from '@/components/Warning.astro';
+import HoopSort from '@/components/HoopSort.astro';
 
 You can glue two tellings together with **and** or with **or**. The glue changes everything.
 
@@ -18,6 +19,12 @@ You can glue two tellings together with **and** or with **or**. The glue changes
 To say yes to this, you need both. Rain by itself? Not enough. Cold by itself? Not enough. You need rain *and* cold, together, on the same day.
 
 So an **and** is easy to knock down. Find one part that is false and you are finished — you do not even have to look at the other part. A cold, sunny day breaks it. A warm, rainy day breaks it too.
+
+<HoopSort labelLeft="red things" labelRight="round things"
+  leftOnly={[{kind: "sock", color: "red"}]}
+  both={[{kind: "ball", color: "red"}]}
+  rightOnly={[{kind: "orange"}]}
+  caption="only the ball is red AND round" />
 
 ## Or
 

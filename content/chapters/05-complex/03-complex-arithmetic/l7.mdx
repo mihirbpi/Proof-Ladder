@@ -43,7 +43,7 @@ Structurally, $\mathbb{C} \cong \mathbb{R}[x]/(x^2+1)$, and it is a field becaus
 This is the promised verification that adjoining $i$ breaks nothing. The only casualty is the order (§5.2).
 
 <Warning title="√ is not multiplicative on ℂ">
-$$-1 = i\cdot i \overset{?}{=} \sqrt{-1}\sqrt{-1} \overset{?}{=} \sqrt{(-1)(-1)} = 1.$$
+$$-1 = i\cdot i = \sqrt{-1}\sqrt{-1} = \sqrt{(-1)(-1)} = 1.$$
 The identity $\sqrt{ab} = \sqrt a\sqrt b$ holds for $a,b \geq 0$ real and fails on $\mathbb{C}$, because square roots there require a branch choice and no choice is consistent globally (§5.8).
 
 Practical rule: write $i$, never $\sqrt{-1}$; and never apply $\sqrt{\phantom{x}}$ to a complex number without saying which root you mean. The same caution applies to $\log$ and to fractional powers.
@@ -82,17 +82,11 @@ Complex multiplication takes four real multiplications by the formula. **Karatsu
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Complex arithmetic is the arithmetic the next two courses will actually run.
 
 **Partial fractions over $\mathbb{C}$ are simpler than over $\mathbb{R}$.** Every denominator factors into linear terms, so every proper rational function decomposes into terms $\frac{A_k}{x - r_k}$ with no irreducible quadratics at all. The real decomposition is then obtained by pairing conjugate terms back together — which is where the $\frac{Bx+C}{x^2+px+q}$ blocks come from, and why they always arise in conjugate pairs.
 
 **Conjugate roots explain the arctangent.** Integrating $\frac{1}{x^2+1}$ gives $\arctan x$; over $\mathbb{C}$ the same integral is a difference of two logarithms with conjugate arguments, and Euler's formula (§5.7) converts one form into the other. The two answers agree, and the complex route explains why an inverse trigonometric function appears in an integral with no trigonometry in sight.
 
-**In linear algebra, complex arithmetic is what eigenvector computations require.** Solving $(A-\lambda I)\mathbf{v} = \mathbf{0}$ for a complex $\lambda$ means row-reducing a matrix with complex entries — every elimination step divides by a complex pivot, and the division formula of this module is the one that gets used.
-
-The field axioms are exactly what licenses this. **Gaussian elimination works over any field**, so verifying that $\mathbb{C}$ is one (as this module does) is what guarantees that row reduction, determinants, inverses, and rank all behave over $\mathbb{C}$ as they do over $\mathbb{R}$ — with no theorem needing restatement.
-
-The one property lost is the order, and it costs nothing here: no step of Gaussian elimination compares two scalars.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **eigenvector** — a direction a matrix stretches without turning; **rank** — the number of independent columns.*
 </WhereThisGoes>

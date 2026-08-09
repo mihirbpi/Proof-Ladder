@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import LevelRail from '@/components/LevelRail.astro';
+import NotationTable from '@/components/NotationTable.astro';
 import {
   LEVELS,
   getLevel,
@@ -53,6 +54,8 @@ function renderIntroPara(src: string): string {
           <p set:html={renderIntroPara(para)} />
         ))}
       </section>
+
+      <NotationTable level={level} />
 
       {chapters.map((ch) => {
         const mods = getModulesForChapter(ch.slug);

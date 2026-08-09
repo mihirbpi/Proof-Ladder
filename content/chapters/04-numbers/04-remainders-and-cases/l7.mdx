@@ -43,7 +43,7 @@ Writing $a \equiv b \pmod n$ for $n \mid (a-b)$, the residue classes $[0], \ldot
 
 ## The showcase proposition
 
-> **Proposition.** For all $a \in \mathbb{Z}$: $3 \nmid a^2 - 1 \implies 3 \mid a$.
+> **Proposition.** For all $a \in \mathbb{Z}$: $3 \nmid a^2 - 1 \Rightarrow 3 \mid a$.
 
 <Discussion>
   <div slot="know">A negative hypothesis about the composite quantity $a^2 - 1$, with a conclusion about $a$. Both of §1.8's indicators fire.</div>
@@ -83,6 +83,7 @@ This method proves non-existence, never existence. An equation solvable modulo e
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Division with remainder has a polynomial twin you already use, and the parallel is exact.
 
 **Polynomial division.** For polynomials $f$ and $g \neq 0$ there exist unique $q$ and $r$ with
@@ -95,7 +96,4 @@ Partial fractions is division with remainder plus factoring, and it is the reaso
 
 **Proof by cases is the technique behind every piecewise argument in calculus.** Absolute values force it — $\int |x|\,dx$, $\lim_{x\to0}\frac{|x|}{x}$, and every one-sided limit at a corner — and the obligation is the one this module states: the cases must be exhaustive, and saying so is part of the proof.
 
-**In linear algebra the case splits are on rank.** A system has no solution, exactly one, or infinitely many; a square matrix is invertible or singular; a $2\times2$ system's determinant is zero or not. Each is an exhaustive split licensed by the excluded middle, and each conclusion has to be established in every branch — including the degenerate one people skip.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **rank** — the number of independent columns.*
 </WhereThisGoes>

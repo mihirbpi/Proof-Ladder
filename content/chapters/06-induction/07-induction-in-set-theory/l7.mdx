@@ -31,7 +31,7 @@ Partition $\mathcal{P}(S) = \mathcal{U}\sqcup\mathcal{V}$ with $\mathcal{U} = \{
 
 $\mathcal{U} = \mathcal{P}(S')$, so $|\mathcal{U}| = 2^k$ by (IH).
 
-$\varphi : \mathcal{V}\to\mathcal{P}(S')$, $A \mapsto A\setminus\{a\}$, has two-sided inverse $B \mapsto B\cup\{a\}$, hence is a bijection (§3.9); so $|\mathcal{V}| = 2^k$.
+$p : \mathcal{V}\to\mathcal{P}(S')$, $A \mapsto A\setminus\{a\}$, has two-sided inverse $B \mapsto B\cup\{a\}$, hence is a bijection (§3.9); so $|\mathcal{V}| = 2^k$.
 
 Thus $|\mathcal{P}(S)| = 2^k+2^k = 2^{k+1}$.
 </Proof>
@@ -101,6 +101,7 @@ $|\mathcal{P}(\mathbb{N})| = |\mathbb{R}|$, and whether any cardinal lies strict
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Counting arguments are the everyday application of induction, and the two proofs in this module illustrate the choice this chapter keeps returning to.
 
 **The induction verifies; the choice argument explains.** Building a subset by making one yes/no decision per element gives $2^n$ immediately, and it says *why* the base is $2$. The induction confirms the formula and does not.
@@ -113,9 +114,4 @@ has exactly this module's proof: split the subsets of an $(n+1)$-set according t
 
 That identity is the inductive step of the binomial theorem, which in turn gives the expansion of $(1+x)^n$, the derivative of $x^n$ from first principles, and the general binomial series $(1+x)^\alpha$ for non-integer $\alpha$ — one of the standard Taylor series.
 
-**In linear algebra, counting arguments settle the dimension theorems.** A vector space of dimension $n$ has exactly $2^n$ subsets of any basis, and more usefully: the number of pivot positions is bounded by both the row count and the column count, which is the counting fact behind rank–nullity.
-
-**The chapter's closing point:** induction proves things about the integers, and the integers index almost everything. Sequences, series, derivatives of order $n$, matrix powers, and dimension are all integer-indexed families, and each is an induction waiting to be set up.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale; **nullity** — how many independent directions collapse to zero; **basis** — a smallest set of vectors that builds all the others; **rank** — the number of independent columns.*
 </WhereThisGoes>

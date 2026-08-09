@@ -35,14 +35,14 @@ Floor is total and single-valued on all of $\mathbb{R}$, so it is a function $\m
 
 ## Euler's totient
 
-For $n \geq 1$, **Euler's totient** $\varphi(n)$ counts the integers in $\{1, \ldots, n\}$ sharing no common factor with $n$ other than $1$:
+For $n \geq 1$, **Euler's totient** $\operatorname{tot}(n)$ counts the integers in $\{1, \ldots, n\}$ sharing no common factor with $n$ other than $1$:
 $$
-\varphi(n) = \big|\{\, k \in \mathbb{Z} \mid 1 \leq k \leq n,\ \gcd(k,n) = 1 \,\}\big|.
+\operatorname{tot}(n) = \big|\{\, k \in \mathbb{Z} \mid 1 \leq k \leq n,\ \gcd(k,n) = 1 \,\}\big|.
 $$
 
 Computing the first twelve by hand:
 
-| $n$ | coprime $k \leq n$ | $\varphi(n)$ |
+| $n$ | coprime $k \leq n$ | $\operatorname{tot}(n)$ |
 |---|---|---|
 | $1$ | $1$ | $1$ |
 | $2$ | $1$ | $1$ |
@@ -59,13 +59,13 @@ Computing the first twelve by hand:
 
 A pattern jumps out of rows $2, 3, 5, 7, 11$:
 $$
-\varphi(p) = p - 1 \quad\text{for } p \text{ prime.}
+\operatorname{tot}(p) = p - 1 \quad\text{for } p \text{ prime.}
 $$
 And it is easy to see why: if $p$ is prime, its only divisors are $1$ and $p$, so every one of $1, \ldots, p-1$ is coprime to it, and $p$ itself is not.
 
 ### Why it is a function at all
 
-$\varphi$ is a function $\mathbb{Z}_{\geq 1} \to \mathbb{Z}_{\geq 1}$ defined by a counting procedure. No closed-form expression is used, and none is needed.
+$p$ is a function $\mathbb{Z}_{\geq 1} \to \mathbb{Z}_{\geq 1}$ defined by a counting procedure. No closed-form expression is used, and none is needed.
 
 ## Multiplication as a function on a product
 
@@ -96,9 +96,9 @@ A rule on a domain whose elements have multiple names must give the same answer 
 
 **A function:** $g : \mathbb{Q} \to \mathbb{Q}$, $g(p/q) = p^2/q^2$. Here if $p_1/q_1 = p_2/q_2$ then $p_1q_2 = p_2q_1$, so $p_1^2q_2^2 = p_2^2q_1^2$, so $p_1^2/q_1^2 = p_2^2/q_2^2$ — the check is a short proof, and it is required.
 
-Every definition on fractions, on remainders modulo $n$, or on equivalence classes of any kind carries this obligation.
+Every definition on fractions, or on numbers grouped by the remainder they leave, carries this obligation.
 </Warning>
 
 <Aside>
-$\varphi$ is easy to compute if you know how $n$ factors and, as far as anyone knows, hard otherwise. That asymmetry is the basis of RSA encryption: publishing $n = pq$ reveals almost nothing about $\varphi(n) = (p-1)(q-1)$ unless you can factor $n$, and factoring large integers is believed to be computationally infeasible.
+$p$ is easy to compute if you know how $n$ factors and, as far as anyone knows, hard otherwise. That asymmetry is the basis of RSA encryption: publishing $n = pq$ reveals almost nothing about $\operatorname{tot}(n) = (p-1)(q-1)$ unless you can factor $n$, and factoring large integers is believed to be computationally infeasible.
 </Aside>

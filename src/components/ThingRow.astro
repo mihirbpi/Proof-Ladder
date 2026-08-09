@@ -1,0 +1,75 @@
+---
+// A row of small objects with a caption — the simplest l1/l2 figure there is.
+// Used where the page counts or shares things: cookies, apples, socks, peas.
+import Thing from './Thing.astro';
+
+type Item = { kind: string; color?: string | null };
+export interface Props {
+  items: Item[];
+  caption?: string | null;
+  ring?: number | null;
+  groups?: number[] | null;   // split the row into labelled clumps, e.g. [3, 3, 1]
+  groupLabels?: string[] | null;
+}
+const { items, caption = null, ring = null, groups = null, groupLabels = null } = Astro.props;
+
+const STEP = 50, PAD = 16, GROUP_GAP = 26;
+// x offset of item i, widened between groups
+const offsets: number[] = [];
+let cursor = PAD, g = 0, inGroup = 0;
+for (let i = 0; i < items.length; i++) {
+  offsets.push(cursor);
+  cursor += STEP;
+  inGroup++;
+  if (groups && g < groups.length && inGroup === groups[g]) { cursor += GROUP_GAP; g++; inGroup = 0; }
+}
+// A caption can easily be wider than the objects it sits under, so the box
+// sizes for whichever is wider and the row is centred inside it.
+const CHW = 6.9;
+const ROW_W = cursor - (groups ? GROUP_GAP : 0) + PAD - STEP + 50;
+const W = Math.max(ROW_W, (caption?.length ?? 0) * CHW + 24);
+const XOFF = (W - ROW_W) / 2;
+const H = 70 + (caption ? 24 : 0) + (groupLabels ? 20 : 0);
+
+const name = (it: Item) => `${it.color ? it.color + ' ' : ''}${it.kind.replace('-', ' ')}`;
+const alt = `${items.length} things in a row: ${items.map(name).join(', ')}`
+  + (ring !== null ? `. The ${name(items[ring])} is ringed` : '')
+  + (caption ? `. ${caption}` : '') + '.';
+
+// centre of each group, for its label
+const groupCentres: number[] = [];
+if (groups) {
+  let k = 0;
+  for (const n of groups) {
+    const xs = offsets.slice(k, k + n);
+    if (xs.length) groupCentres.push((xs[0] + xs[xs.length - 1]) / 2 + 20);
+    k += n;
+  }
+}
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="thing-row"
+     role="img" aria-label={alt}>
+  <style>
+    .thing-row .ring { fill: none; stroke: var(--color-false, #A8324A); stroke-width: 2.6; stroke-dasharray: 6 5; }
+    .thing-row .cap  { font-family: var(--font-display, sans-serif); font-size: 14px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .thing-row .glbl { font-family: var(--font-mono, monospace); font-size: 11px; fill: color-mix(in oklab, var(--color-ink, #14182B) 62%, transparent); }
+  </style>
+
+  {items.map((it, i) => (
+    <Thing kind={it.kind as any} color={(it.color ?? null) as any} x={XOFF + offsets[i] + 20} y={36} size={42} />
+  ))}
+
+  {ring !== null && items[ring] && (
+    <circle cx={XOFF + offsets[ring] + 20} cy="36" r="26" class="ring" />
+  )}
+
+  {groupLabels && groupCentres.map((cx, i) => (
+    groupLabels[i] ? <text x={XOFF + cx} y="76" class="glbl" text-anchor="middle">{groupLabels[i]}</text> : null
+  ))}
+
+  {caption && <text x={W / 2} y={H - 8} class="cap" text-anchor="middle">{caption}</text>}
+</svg>
+
+<style>
+  .thing-row { width: 100%; height: auto; max-width: 440px; display: block; margin: 0 auto; }
+</style>

@@ -8,8 +8,12 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingRow from '@/components/ThingRow.astro';
 
 You have 3 cookies. Sam brings 4 more.
+
+<ThingRow items={[{kind:"cookie"},{kind:"cookie"},{kind:"cookie"},{kind:"cookie"},{kind:"cookie"},{kind:"cookie"},{kind:"cookie"}]}
+  groups={[3, 4]} groupLabels={["yours", "Sam's"]} caption="3 and 4 more makes 7 whole cookies" />
 
 Now you have 7 cookies. Still **whole** cookies! Nothing got squished.
 
@@ -24,6 +28,9 @@ Now try sharing.
 3 each... and one left over. Uh oh.
 
 Snap! You have to break the last cookie in half.
+
+<ThingRow items={[{kind:"cookie"},{kind:"cookie"},{kind:"cookie"},{kind:"half-cookie"},{kind:"cookie"},{kind:"cookie"},{kind:"cookie"},{kind:"half-cookie"}]}
+  groups={[4, 4]} groupLabels={["one person", "the other"]} caption="sharing snapped a cookie" />
 
 So sharing *can* break a cookie. Adding never can.
 

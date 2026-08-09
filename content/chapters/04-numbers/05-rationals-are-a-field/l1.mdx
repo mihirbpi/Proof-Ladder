@@ -8,12 +8,17 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingRow from '@/components/ThingRow.astro';
 
 One cookie. Two friends. Share it!
 
 Snap. Now each friend has **a piece**.
 
 How much is a piece? Not a whole cookie. Not nothing. Something in between.
+
+<ThingRow items={[{kind:"half-cookie"},{kind:"half-cookie"}]}
+  groups={[1, 1]} groupLabels={["one friend", "the other"]}
+  caption="one cookie, snapped into two halves" />
 
 We call it a *half*.
 

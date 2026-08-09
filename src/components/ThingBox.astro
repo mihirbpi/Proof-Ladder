@@ -1,0 +1,100 @@
+---
+// A box with things in it — the l1/l2 picture of a set.
+//
+// Chapters 1 and 2 lean on this constantly: a box of blocks, a box of socks,
+// "is the apple in the box?". Two boxes side by side carry subsets and equality.
+//
+// boxes     one or two boxes, each { label?, items[] }
+// outside   things drawn beside the boxes, for "this one is NOT in the box"
+// ring      { box, index } to circle one thing, for "even one is enough"
+import Thing from './Thing.astro';
+
+type Item = { kind: string; color?: string | null };
+export interface Props {
+  boxes: { label?: string; items: Item[] }[];
+  outside?: Item[];
+  outsideLabel?: string | null;
+  ring?: { box: number; index: number } | null;
+}
+const { boxes, outside = [], outsideLabel = null, ring = null } = Astro.props;
+
+const BW = 172, BH = 116, GAP = 30, PAD = 14;
+const OUT_W = outside.length ? 92 : 0;
+const W = PAD * 2 + boxes.length * BW + (boxes.length - 1) * GAP + (OUT_W ? OUT_W + GAP : 0);
+const H = 40 + BH + 30;
+
+// Lay items out in rows of three inside the box.
+const slot = (i: number) => ({
+  cx: 42 + (i % 3) * 44,
+  cy: 40 + Math.floor(i / 3) * 42,
+});
+
+const name = (it: Item) => `${it.color ? it.color + ' ' : ''}${it.kind}`;
+const describe = (b: { label?: string; items: Item[] }) =>
+  `${b.label ? `the box marked ${b.label}` : 'a box'} holding ${b.items.length
+    ? b.items.map(name).join(', ')
+    : 'nothing at all'}`;
+const alt = `${boxes.map(describe).join(', and ')}`
+  + (outside.length ? `. Outside the box${boxes.length > 1 ? 'es' : ''}: ${outside.map(name).join(', ')}` : '')
+  + (ring ? '. One thing is ringed.' : '') + '.';
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="thing-box"
+     role="img" aria-label={alt}>
+  <style>
+    .thing-box .crate  { fill: var(--color-shade, #E3E7DD); stroke: var(--color-ink, #14182B); stroke-width: 2.6; stroke-linejoin: round; }
+    .thing-box .rim    { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.6; stroke-linecap: round; }
+    .thing-box .tag    { font-family: var(--font-display, sans-serif); font-size: 14px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .thing-box .out    { font-family: var(--font-mono, monospace); font-size: 11px; fill: color-mix(in oklab, var(--color-ink, #14182B) 62%, transparent); }
+    .thing-box .ring   { fill: none; stroke: var(--color-false, #A8324A); stroke-width: 2.6; stroke-dasharray: 6 5; }
+    .thing-box .empty  { font-family: var(--font-display, sans-serif); font-size: 13px; font-style: italic; fill: color-mix(in oklab, var(--color-ink, #14182B) 45%, transparent); }
+  </style>
+
+  {boxes.map((b, bi) => {
+    const ox = PAD + bi * (BW + GAP);
+    const oy = 26;
+    return (
+      <g>
+        {/* an open-topped crate: back rim, body, front rim */}
+        <path d={`M ${ox + 10} ${oy} L ${ox + BW - 10} ${oy}`} class="rim" />
+        <path d={`M ${ox + 10} ${oy} L ${ox} ${oy + BH} L ${ox + BW} ${oy + BH} L ${ox + BW - 10} ${oy} Z`} class="crate" />
+
+        {b.items.length === 0 && (
+          <text x={ox + BW / 2} y={oy + BH / 2 + 5} class="empty" text-anchor="middle">(nothing in it)</text>
+        )}
+
+        {b.items.map((it, i) => {
+          const p = slot(i);
+          return <Thing kind={it.kind as any} color={(it.color ?? null) as any}
+                        x={ox + p.cx - 20} y={oy + p.cy} size={38} />;
+        })}
+
+        {ring && ring.box === bi && b.items[ring.index] && (
+          <circle cx={ox + slot(ring.index).cx - 20} cy={oy + slot(ring.index).cy} r="24" class="ring" />
+        )}
+
+        {b.label && (
+          <text x={ox + BW / 2} y={oy + BH + 22} class="tag" text-anchor="middle">{b.label}</text>
+        )}
+      </g>
+    );
+  })}
+
+  {outside.length > 0 && (() => {
+    const ox = PAD + boxes.length * BW + (boxes.length - 1) * GAP + GAP;
+    return (
+      <g>
+        {outside.map((it, i) => (
+          <Thing kind={it.kind as any} color={(it.color ?? null) as any}
+                 x={ox + 28} y={52 + i * 46} size={38} />
+        ))}
+        {outsideLabel && (
+          <text x={ox + 28} y={26 + BH + 22} class="out" text-anchor="middle">{outsideLabel}</text>
+        )}
+      </g>
+    );
+  })()}
+</svg>
+
+<style>
+  .thing-box { width: 100%; height: auto; max-width: 460px; display: block; margin: 0 auto; }
+</style>

@@ -29,33 +29,33 @@ The pre-image operator commutes with every Boolean set operation. No hypotheses 
 
 All three proofs run on one equivalence, from module 3.3:
 $$
-x \in f^{-1}(U) \iff f(x) \in U. \tag{$\ast$}
+x \in f^{-1}(U) \iff f(x) \in U. \tag{1}
 $$
 
 (The notation $f(x)$ for the output on input $x$ is §3.1's.)
 
-Everything else is the definitions of $\cup$, $\cap$, complement, and the corresponding logical facts. Nothing about $f$ is used beyond $(\ast)$, which is why the theorem is so unconditional.
+Everything else is the definitions of $\cup$, $\cap$, complement, and the corresponding logical facts. Nothing about $f$ is used beyond (1), which is why the theorem is so unconditional.
 
 ## Proof of (P1)
 
 <Discussion>
-  <div slot="know">$(\ast)$, and $y \in U \cup V \iff (y \in U) \vee (y \in V)$.</div>
+  <div slot="know">(1), and $y \in U \cup V \iff (y \in U) \vee (y \in V)$.</div>
   <div slot="want">Double inclusion (module 2.6).</div>
-  <div slot="how">Chase an arbitrary $x$. Apply $(\ast)$ to move from $x$-statements to $f(x)$-statements, unfold the union, and apply $(\ast)$ twice more to move back. Every step is a biconditional, so both inclusions come at once — but we will write both directions out, since the case structure is worth seeing.</div>
+  <div slot="how">Chase an arbitrary $x$. Apply (1) to move from $x$-statements to $f(x)$-statements, unfold the union, and apply (1) twice more to move back. Every step is a biconditional, so both inclusions come at once — but we will write both directions out, since the case structure is worth seeing.</div>
 </Discussion>
 
 <Proof>
-**($\subseteq$)** Let $x \in f^{-1}(U \cup V)$ be arbitrary. By $(\ast)$, $f(x) \in U \cup V$, so $f(x) \in U$ or $f(x) \in V$. That is a disjunction, so split into cases.
+**($\subseteq$)** Let $x \in f^{-1}(U \cup V)$ be arbitrary. By (1), $f(x) \in U \cup V$, so $f(x) \in U$ or $f(x) \in V$. That is a disjunction, so split into cases.
 
-*Case 1: $f(x) \in U$.* Then by $(\ast)$, $x \in f^{-1}(U)$, hence $x \in f^{-1}(U) \cup f^{-1}(V)$.
+*Case 1: $f(x) \in U$.* Then by (1), $x \in f^{-1}(U)$, hence $x \in f^{-1}(U) \cup f^{-1}(V)$.
 
-*Case 2: $f(x) \in V$.* Then by $(\ast)$, $x \in f^{-1}(V)$, hence again $x$ lies in the union.
+*Case 2: $f(x) \in V$.* Then by (1), $x \in f^{-1}(V)$, hence again $x$ lies in the union.
 
 The cases are exhaustive.
 
 **($\supseteq$)** Let $x \in f^{-1}(U) \cup f^{-1}(V)$, and split again.
 
-*Case 1: $x \in f^{-1}(U)$.* Then $f(x) \in U \subseteq U \cup V$, so $f(x) \in U \cup V$, so $x \in f^{-1}(U \cup V)$ by $(\ast)$.
+*Case 1: $x \in f^{-1}(U)$.* Then $f(x) \in U \subseteq U \cup V$, so $f(x) \in U \cup V$, so $x \in f^{-1}(U \cup V)$ by (1).
 
 *Case 2: $x \in f^{-1}(V)$.* Identically, with $V$ in place of $U$.
 

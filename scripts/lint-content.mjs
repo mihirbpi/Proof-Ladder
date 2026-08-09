@@ -189,13 +189,16 @@ const LADDER_JARGON = [
   'equinumerous', 'absorption law', 'excluded middle',
 ];
 
+// Hyphenated forms slip past a plain space in these patterns — "integral-domain
+// property" escaped /\bintegral domains?\b/ for the whole of the l7 pass. Any
+// multi-word term below must therefore match a space OR a hyphen.
 const L7_OFF_GRADE = [
-  /\bintegral domains?\b/i, /\bfield of fractions\b/i, /\bprincipal ideal\b/i,
-  /\bEuclidean domain\b/i, /\bcosets?\b/i, /\bquotient (group|ring)\b/i,
+  /\bintegral[ -]domains?\b/i, /\bfield[ -]of[ -]fractions\b/i, /\bprincipal[ -]ideal\b/i,
+  /\bEuclidean[ -]domain\b/i, /\bcosets?\b/i, /\bquotient[ -](group|ring)\b/i,
   /\bmonoids?\b/i, /\bautomorphisms?\b/i, /\bendomorphisms?\b/i,
-  /\blattices?\b/i, /\bBoolean algebras?\b/i, /\badjunction\b/i, /\badjoint\b/i,
+  /\blattices?\b(?<!integer lattice)/i, /\bBoolean[ -]algebras?\b/i, /\badjunction\b/i, /\badjoint\b/i,
   /\bcategoric(al|ity)\b/i, /\bfunctors?\b/i, /\btopolog(y|ical|ies)\b/i,
-  /\bmeasure (theory|space|able)\b/i, /\bsigma-algebra|\bσ-algebra/i,
+  /\bmeasure[ -](theory|space|able)\b/i, /\bsigma-algebra|\bσ-algebra/i,
   /\bHausdorff\b/i, /\bZorn\b/i, /\bZFC\b/i, /\bwell-founded\b/i,
   /\bprenex\b/i,
   // Added after a review found the first list incomplete. Word senses matter:
@@ -207,18 +210,18 @@ const L7_OFF_GRADE = [
   // purpose ("a label for a number system with these rules") and §4.5 makes
   // ring-vs-field an objective, so a pattern for it would put this list back
   // in conflict with Part B — the failure §A4.2 already had to be rescued from.
-  /\bmetric spaces?\b/i, /\bnormed spaces?\b/i, /\bnorm axioms?\b/i,
-  /\bmeet and join\b/i, /\bjoin and meet\b/i, /\b(left|right)-cancell?able\b/i,
-  /\bisomorphism theorem\b/i, /\bsymmetric group\b/i, /\bCayley/i,
-  /\bgroup theory\b/i, /\b(a|the|every|any)\s+group\b(?!\s+the)/i, /\bsubgroups?\b/i, /\babelian\b/i,
+  /\bmetric[ -]spaces?\b/i, /\bnormed[ -]spaces?\b/i, /\bnorm[ -]axioms?\b/i,
+  /\bmeet[ -]and[ -]join\b/i, /\bjoin[ -]and[ -]meet\b/i, /\b(left|right)-cancell?able\b/i,
+  /\bisomorphism[ -]theorem\b/i, /\bsymmetric[ -]group\b/i, /\bCayley/i,
+  /\bgroup[ -]theory\b/i, /\b(a|the|every|any)\s+group\b(?!\s+(the|of|by))/i, /\bgroup theory\b/i, /\bsubgroups?\b/i, /\babelian\b/i,
   /\bfirst-order (logic|arithmetic|formula|schema|theorem|\*)/i,
   /\bEhrenfeucht|\bHintikka/i,
   // Godel's completeness theorem is a named historical result, and §7.1 is
   // about exactly what axiom systems can and cannot do — naming it is on-topic.
 
-  /\bprincipal ideals?\b/i, /\bideal generated\b/i, /\bideals? (still|of|in) \b/i,
-  /\bAxiom of Choice\b/i, /\bcompactness\b/i,
-  /\brecursion theorem\b/i, /\btransfinite\b/i,
+  /\bprincipal[ -]ideals?\b/i, /\bideal[ -]generated\b/i, /\bideals? (still|of|in) \b/i,
+  /\bAxiom[ -]of[ -]Choice\b/i, /\bcompactness\b/i,
+  /\brecursion[ -]theorem\b/i, /\btransfinite\b/i,
   // "second-order recurrence" is ordinary sequence vocabulary; only the
   // logician's sense (second-order logic/arithmetic) is off-grade.
   /\bsecond-order (?!recurrence)/i,
@@ -408,7 +411,14 @@ for (const file of files) {
   // and prose outside that slot is held strictly. l7 has <WhereThisGoes>; l6 has
   // no such component, so its <Aside> does that job. Applied to l6 as well as l7
   // because a term off-grade at grade 12 is not on-grade at grade 10.
+  // The gate applies from l3 up. It used to run on l6/l7 only, which left 8th
+  // grade carrying "cosets", "topology", "automorphism" and "axiom of choice" —
+  // terms already judged off-grade for a TWELFTH grader. If it is beyond grade
+  // 12 it is beyond grade 8, so the same list binds all the way down.
   const GLIMPSE = {
+    l3: /<Aside[\s\S]*?<\/Aside>/g,
+    l4: /<Aside[\s\S]*?<\/Aside>/g,
+    l5: /<Aside[\s\S]*?<\/Aside>/g,
     l6: /<Aside[\s\S]*?<\/Aside>/g,
     l7: /<WhereThisGoes[\s\S]*?<\/WhereThisGoes>/g,
   };
@@ -518,6 +528,48 @@ for (const file of files) {
     if (!/\balt=/.test(f[1] ?? '')) err(rel, '<Figure> without alt text');
   }
 
+  // Text that points at a picture must have one to point at. Found when §1.11
+  // at l1 opened "Look at this picture of a farm" and no farm had ever been
+  // drawn — the reader is told to look at something that is not there, which is
+  // worse than having no picture at all. Deliberately narrow: only phrases that
+  // can ONLY mean an on-page visual. "Look at the definition", "the picture in
+  // your head" and a "shown above" pointing at an earlier proof are all
+  // ordinary prose and must not fire.
+  //
+  // The rule fires only when the page has NO picture at all. Distance from the
+  // nearest figure looked like a better signal and is not: a back-reference
+  // ("the picture above", "look at the pictures again") is ordinary and can sit
+  // any number of lines below the thing it refers to, so every threshold I
+  // tried either missed real cases or flagged good prose. "Points at a picture,
+  // page has none" is the defect, and it is exactly decidable.
+  const POINTS_AT_A_PICTURE =
+    /\b(look at (this|the) (picture|diagram|drawing)|in the picture|the diagram (above|below)|stand back and look at)/i;
+  {
+    // Only components that DRAW something count. A nearby <TryIt> or <Warning>
+    // is prose furniture and does not satisfy "look at this picture" — an
+    // earlier version of this check counted them and so never fired.
+    const NOT_A_PICTURE = new Set([
+      'TryIt', 'Warning', 'Aside', 'Discussion', 'Proof', 'WhereThisGoes',
+      'Term', 'Needs', 'BigIdea', 'Figure',
+    ]);
+    const lines = src.split('\n');
+    const figureLines = lines
+      .map((l, i) => {
+        if (/^import\b/.test(l)) return -1;
+        const names = [...l.matchAll(/<([A-Z][A-Za-z]*)\b/g)].map((m) => m[1]);
+        return names.some((n) => !NOT_A_PICTURE.has(n)) ? i : -1;
+      })
+      .filter((i) => i >= 0);
+    if (figureLines.length === 0) {
+      for (const [i, line] of lines.entries()) {
+        if (/^import\b/.test(line)) continue;
+        const m = POINTS_AT_A_PICTURE.exec(line);
+        if (!m) continue;
+        err(rel, `line ${i + 1} says "${m[0]}" but this page draws no picture at all`);
+      }
+    }
+  }
+
   // Components must be imported, and the file must exist. §C7 lists figure
   // components as a build-these backlog, and reaching for an unbuilt one from
   // that list breaks `astro build` with an error that does not name the page.
@@ -565,8 +617,17 @@ for (const file of files) {
       // visually distinct on the page and does not read as a wall of text, so
       // counting its words as prose overstated section length badly (median 79%
       // of a long section's words turned out to live inside such blocks).
+      // Match components generically rather than by name. Any capitalised JSX
+      // element is a component and is visually distinct from running prose,
+      // which is the whole rationale above. A hardcoded list silently counted
+      // every newer component's ATTRIBUTES as prose — a <ThingBox> with its
+      // items spelled out added ~30 "words" to its section and pushed pages
+      // over the cap for carrying a picture. Self-closing tags are stripped
+      // first so the paired pattern cannot run from one of them to a later
+      // closing tag of the same name.
       const n = part
-        .replace(/<(Proof|Warning|Aside|Discussion|Figure|TruthTable|WhereThisGoes)\b[\s\S]*?<\/\1>/g, ' ')
+        .replace(/<[A-Z][A-Za-z]*\b[^>]*\/>/g, ' ')
+        .replace(/<([A-Z][A-Za-z]*)\b[\s\S]*?<\/\1>/g, ' ')
         .replace(/\$\$[\s\S]*?\$\$/g, ' ')
         .split(/\s+/).filter(Boolean).length;
       if (n > cap) {
@@ -633,6 +694,111 @@ for (const file of files) {
       }
     }
     firstUngloss(ANALYSIS_FOUNDATIONS, bodyOnlyL7, 'body');
+  }
+}
+
+// ---------------------------------------------------------------------------
+// §A5.0 rule 2: no proof notation before it is introduced.
+//
+// ∀ ∃ ⇒ ⇔ ¬ ∧ ∨ ∈ ⊆ ∪ ∩ ∅ ≡ ∘ ↦ and the blackboard-bold sets are taught nowhere
+// in American K-12 — they are college discrete-maths notation. A reader works
+// through a level IN ORDER, so each symbol must be explained in words the first
+// time that level uses it. This walks the modules in reading order and checks
+// only the first appearance; later uses are free.
+// ---------------------------------------------------------------------------
+const PROOF_NOTATION = [
+  ['∀', /\\forall|∀/],
+  ['∃', /\\exists|∃/],
+  ['⇒', /\\Rightarrow|⇒/],
+  ['⇔', /\\Leftrightarrow|⇔|\\iff/],
+  ['¬', /\\neg|¬/],
+  ['∧', /\\wedge|∧/],
+  ['∨', /\\vee(?!r)|∨/],
+  ['∈', /\\in\b|∈/],
+  ['⊆', /\\subseteq|⊆/],
+  ['∪', /\\cup\b|∪/],
+  ['∩', /\\cap\b|∩/],
+  ['∅', /\\emptyset|∅/],
+  ['≡', /\\equiv|≡/],
+  ['∘', /\\circ\b|∘/],
+  ['↦', /\\mapsto|↦/],
+  ['Σ', /\\sum\b|Σ/],
+  ['∤', /\\nmid|∤/],
+  ['ℕ', /\\mathbb\{N\}|ℕ/],
+  ['ℤ', /\\mathbb\{Z\}|ℤ/],
+  ['ℚ', /\\mathbb\{Q\}|ℚ/],
+  ['ℝ', /\\mathbb\{R\}|ℝ/],
+  ['ℂ', /\\mathbb\{C\}|ℂ/],
+];
+// Wording that counts as introducing a symbol. Deliberately requires an explicit
+// act of naming — "reads", "means", "is written" — rather than merely occurring
+// near an English word that happens to match, which an earlier draft of this
+// check did and which passed everything.
+// Inflections matter: an earlier version listed "write" but not "writing", so a
+// perfectly good gloss ("writing ℚ for the rationals") failed the check three
+// separate times and I reworded the prose instead of fixing the pattern.
+const INTRODUCES =
+  /\b(read|reads|reading|is read|mean|means|meaning|writ(e|es|ing|ten)|stands? for|short(hand)? for|the symbol|notation for|abbreviat\w*|pronounc\w*|denot\w*|call(ed)? the)\b/i;
+
+{
+  const modKey = (p) => {
+    const m = p.match(/(\d+)-[^/]+\/(\d+)-/);
+    return m ? Number(m[1]) * 100 + Number(m[2]) : 0;
+  };
+  for (const level of ['l3', 'l4', 'l5', 'l6', 'l7', 'l8']) {
+    const pages = files
+      .filter((f) => path.basename(f, '.mdx') === level)
+      .sort((a, b) => modKey(a) - modKey(b));
+    for (const [sym, re] of PROOF_NOTATION) {
+      for (const f of pages) {
+        const src = fs.readFileSync(f, 'utf8');
+        const b = src.replace(/^---[\s\S]*?^---/m, '').replace(/^import .*$/gm, '');
+        if (!re.test(b)) continue;
+        // First page of this level that uses the symbol. Does it introduce it?
+        // Two shapes count, because both are how mathematics actually introduces
+        // notation and requiring only the first would have me bolt redundant
+        // glosses onto pages that already do the job:
+        //   1. explicit naming — "the symbol ≡ reads…"
+        //   2. definitional — "the **negation** ¬p is the statement…", where a
+        //      bolded term sits right beside the symbol
+        // A display equation followed by its explanation is also normal, so the
+        // paragraph after first use counts too.
+        const paras = b.split(/\n\s*\n/);
+        const at = paras.findIndex((p) => re.test(p));
+        // The introduction must PRECEDE the symbol, not merely exist on the page.
+        // Checking only "is it introduced somewhere here" let ∅ be displayed and
+        // then named a paragraph later, and let ∀ appear inside a worked example
+        // eight modules before the quantifier module. Position is the whole point.
+        const introducedBefore = paras.slice(0, at + 1).some((p, i) =>
+          (re.test(p) && (INTRODUCES.test(p) || /\*\*[^*]+\*\*/.test(p) || /\|\s*-+\s*\|/.test(p)))
+          || (i === at - 1 && INTRODUCES.test(p)));
+        if (!introducedBefore) {
+          warn(
+            path.relative(ROOT, f),
+            `${level} shows "${sym}" before introducing it (paragraph ${at + 1}) — §A5.0 rule 2`,
+          );
+          break;
+        }
+        // Previous, current and next paragraph. A display equation is its own
+        // paragraph, so its introduction routinely sits immediately before it
+        // ("Each system gets a letter:" then the display) or immediately after
+        // ("… the **rational numbers**"). Looking only forwards missed both.
+        const scope = paras.slice(Math.max(0, at - 1), at + 2).join('\n\n');
+        // A notation table — "| ℕ | naturals | {0,1,2,…} |" — introduces its
+        // symbols as surely as a sentence does, and is the usual way a course
+        // presents a family of them at once.
+        const inNotationTable = /\|\s*-+\s*\|/.test(scope)
+          && scope.split('\n').some((ln) => ln.trim().startsWith('|') && re.test(ln));
+        const definitional = /\*\*[^*]+\*\*/.test(scope) || inNotationTable;
+        if (!INTRODUCES.test(scope) && !definitional) {
+          warn(
+            path.relative(ROOT, f),
+            `${level} meets "${sym}" here first (reading order) and does not introduce it — §A5.0 rule 2`,
+          );
+        }
+        break;
+      }
+    }
   }
 }
 

@@ -49,7 +49,7 @@ The argument used the order on $\mathbb{Z}$ and the fact that no integer lies st
 
 $\mathbb{Z}$ satisfies more than the ring axioms:
 $$
-ab = 0 \implies a = 0 \text{ or } b = 0,
+ab = 0 \Rightarrow a = 0 \text{ or } b = 0,
 $$
 a property expressed by saying $\mathbb{Z}$ has **no zero divisors**. Equivalently, cancellation holds: $ab = ac$ with $a \neq 0$ gives $b = c$.
 
@@ -95,11 +95,8 @@ The three number systems of Chapter 4 sit in a strict hierarchy of increasing st
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The list of properties in this module is the checklist you will run against every new system in the courses ahead — and the interesting entries are the ones that fail.
-
-**Matrices satisfy every property except commutativity of multiplication.** $AB \neq BA$ in general, and that single failure is responsible for a great deal of linear algebra: $(A+B)^2 \neq A^2 + 2AB + B^2$, the order in $(AB)^{-1} = B^{-1}A^{-1}$, and the fact that simultaneous diagonalisation is a special condition rather than a routine one. Every identity you know from arithmetic must be re-derived, and some of them are false.
-
-**Matrices also have zero divisors.** There exist non-zero $A, B$ with $AB = 0$, which cannot happen in $\mathbb{Z}$. So the cancellation you take for granted — from $AB = AC$ conclude $B = C$ — is invalid without invertibility, and that is a genuine trap.
 
 **Polynomials form a ring**, closed under $+$, $-$, $\times$ and not under division, exactly like $\mathbb{Z}$. The parallel is close enough that polynomial long division, the Factor Theorem, and the Remainder Theorem are the polynomial versions of §4.2–§4.4, with degree playing the role of size.
 
@@ -107,5 +104,4 @@ The list of properties in this module is the checklist you will run against ever
 
 **Vector spaces are defined over a field**, which is §4.5 — but the scalars need every property in this module first, and the axioms of a vector space are stated by listing them.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

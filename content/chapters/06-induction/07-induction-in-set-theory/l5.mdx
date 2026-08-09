@@ -55,7 +55,9 @@ Split the subsets of $S$ into two groups.
 
 *Group 1: those not containing $a$.* These are exactly the subsets of $S\setminus\{a\}$, so by $A(k)$ there are $2^k$ of them.
 
-*Group 2: those containing $a$.* Each has the form $T \cup \{a\}$ for exactly one $T \subseteq S\setminus\{a\}$. The map $T \mapsto T \cup \{a\}$ is a bijection from Group 1 to Group 2 — injective because $T$ is recovered by removing $a$, surjective because every subset containing $a$ arises this way. So Group 2 also has $2^k$ members.
+*Group 2: those containing $a$.* Each has the form $T \cup \{a\}$ for exactly one $T \subseteq S\setminus\{a\}$.
+
+Consider the map $T \mapsto T \cup \{a\}$, where the arrow $\mapsto$ is read *"maps to"* and names a function by what it does to a typical input. It is a bijection from Group 1 to Group 2: injective because $T$ is recovered by removing $a$, and surjective because every subset containing $a$ arises this way. So Group 2 also has $2^k$ members.
 
 The groups are disjoint and together contain every subset, so
 $$

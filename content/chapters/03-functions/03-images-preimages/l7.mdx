@@ -26,7 +26,7 @@ Two unfoldings, of which the second is the one that does all the work:
 $$
 t \in f(A) \iff \exists s \in A,\ f(s) = t,
 \qquad
-s \in f^{-1}(U) \iff f(s) \in U. \tag{$\ast$}
+s \in f^{-1}(U) \iff f(s) \in U. \tag{1}
 $$
 
 The asymmetry is already visible. Membership in an image carries an existential quantifier; membership in a pre-image carries none. That single fact explains everything in §3.4 about why pre-images are better behaved.
@@ -39,22 +39,18 @@ The word **range** is genuinely ambiguous — some authors mean image, others co
 
 Examples:
 $$
-f : \mathbb{R}\to\mathbb{R},\ f(x)=x^2 \implies \operatorname{Im}(f) = [0,\infty);
+f : \mathbb{R}\to\mathbb{R},\ f(x)=x^2 \Rightarrow \operatorname{Im}(f) = [0,\infty);
 $$
 $$
-\exp : \mathbb{R}\to\mathbb{R} \implies \operatorname{Im}(\exp) = (0,\infty);
+\exp : \mathbb{R}\to\mathbb{R} \Rightarrow \operatorname{Im}(\exp) = (0,\infty);
 $$
 $$
-\lfloor\cdot\rfloor : \mathbb{R}\to\mathbb{Z} \implies \operatorname{Im} = \mathbb{Z}.
+\lfloor\cdot\rfloor : \mathbb{R}\to\mathbb{Z} \Rightarrow \operatorname{Im} = \mathbb{Z}.
 $$
 
 ## Fibres
 
-The **fibre** of $f$ over $t \in T$ is $f^{-1}(\{t\})$. Fibres partition the domain:
-$$
-S = \bigsqcup_{t \in \operatorname{Im}(f)} f^{-1}(\{t\}),
-$$
-disjointly, because each $s$ has exactly one value $f(s)$ — which is precisely well-definedness. So a function *is* a partition of its domain, labelled by elements of its codomain, and the entire remaining chapter is a study of fibre sizes:
+The **fibre** of $f$ over $t \in T$ is $f^{-1}(\{t\})$. The fibres split the domain into non-overlapping pieces, one for each value the function actually takes, and together they use up all of $S$ — because each $s$ has exactly one value $f(s)$ — which is precisely well-definedness. So a function *is* a partition of its domain, labelled by elements of its codomain, and the entire remaining chapter is a study of fibre sizes:
 
 | Property | Condition on fibres $f^{-1}(\{t\})$, $t \in T$ |
 |---|---|
@@ -62,7 +58,7 @@ disjointly, because each $s$ has exactly one value $f(s)$ — which is precisely
 | surjective | $\lvert f^{-1}(\{t\})\rvert \geq 1$ |
 | bijective | $\lvert f^{-1}(\{t\})\rvert = 1$ |
 
-That $\operatorname{Im}(f)$ is exactly $\{t : f^{-1}(\{t\}) \neq \emptyset\}$ is immediate from $(\ast)$.
+That $\operatorname{Im}(f)$ is exactly $\{t : f^{-1}(\{t\}) \neq \emptyset\}$ is immediate from (1).
 
 ## Worked computations
 
@@ -88,7 +84,7 @@ $$
 with equality in the first iff $f$ is injective on the relevant part, and in the second iff $U \subseteq \operatorname{Im}(f)$.
 
 <Proof>
-For the first: let $a \in A$. Then $f(a) \in f(A)$, so by $(\ast)$, $a \in f^{-1}(f(A))$.
+For the first: let $a \in A$. Then $f(a) \in f(A)$, so by (1), $a \in f^{-1}(f(A))$.
 
 For the second: let $t \in f(f^{-1}(U))$. Then $t = f(s)$ for some $s \in f^{-1}(U)$, and $s \in f^{-1}(U)$ means $f(s) \in U$; hence $t \in U$.
 </Proof>
@@ -116,14 +112,8 @@ Images fail to commute with intersection: $f(A \cap B) \subseteq f(A) \cap f(B)$
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Pre-images are the objects both courses ahead are actually built on, and images are the ones that behave badly.
-
-**In linear algebra the two operations have names.** For a linear map $T$,
-$$\operatorname{Nul} T = T^{-1}(\{\mathbf{0}\}) \quad\text{— a pre-image}, \qquad \operatorname{Ran} T = T(V) \quad\text{— an image}.$$
-
-Both are subspaces, which is a theorem rather than an accident, and each is proved by the corresponding element-chasing template. The pre-image proof is easier, for the reason §3.4 explains: membership in a pre-image is a direct condition, and membership in an image requires producing a source.
-
-The whole solution theory of $A\mathbf{x}=\mathbf{b}$ is a pre-image statement. The solution set is $A^{-1}(\{\mathbf{b}\})$, it is non-empty exactly when $\mathbf{b}\in\operatorname{Col} A$, and when non-empty it is a translate of $\operatorname{Nul} A$ — which is why the general solution is *particular plus homogeneous*, and why the number of free variables equals the dimension of the null space.
 
 **In calculus the images are the interesting sets.** The Extreme Value Theorem says the image of a closed bounded interval under a continuous function is a closed bounded interval — the maximum and minimum are attained *because the image contains its endpoints*. The Intermediate Value Theorem says that image contains everything between, so it has no gaps. Together they say the image is exactly $[m, M]$, which is a stronger and cleaner statement than either alone.
 
@@ -133,5 +123,4 @@ $f(f^{-1}(B)) \subseteq B$ is strict exactly when $f$ misses, which is why $\sin
 
 **Level sets are pre-images.** For $f(x,y)$, the curve $f = c$ is $f^{-1}(\{c\})$, and a contour map is a picture of a family of pre-images. So is a solution set of any equation — which means the objects you have been graphing since algebra are pre-images of single points.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **null space** — the vectors a matrix sends to zero; **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

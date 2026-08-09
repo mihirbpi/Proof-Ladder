@@ -68,7 +68,7 @@ Producing the general witness costs no more than the specific one, and it yields
 
 The expression $(1-t)a + tb$ is worth recognising. It is the **convex combination** of $a$ and $b$, and it parametrises the segment joining them as $t$ runs over $[0,1]$. The same formula gives the section formula in coordinate geometry, the parametric equation of a line segment in $\mathbb{R}^n$, and the linear interpolation used in every numerical method — one expression, appearing under three names.
 
-That the interior of a segment is exactly the set of such combinations with $0<t<1$ is a statement you will prove again in linear algebra, where convexity becomes a definition rather than an observation.
+That the interior of a segment is exactly the set of such combinations with $0<t<1$ is a statement you will prove again when you meet convex sets, where convexity becomes a definition rather than an observation.
 
 ## The irrationals are dense too
 
@@ -95,6 +95,7 @@ Density and measure are independent. $\mathbb{Q}$ is dense in $\mathbb{R}$ yet c
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Density is the property that makes approximation possible, and calculus is a subject about approximation.
 
 **Every limit is an approximation argument.** The definition asks that $f(x)$ come within $\varepsilon$ of $L$ for all $x$ within $\delta$ of $a$ — and $\delta$ can be taken as small as you like precisely because $\mathbb{R}$ has no smallest positive number. Density is what guarantees the shrinking never terminates, and a number system where it did would have no limits worth the name.
@@ -103,7 +104,4 @@ Density is the property that makes approximation possible, and calculus is a sub
 
 **And density is exactly what completeness is not.** This module's closing warning is the one that matters most for calculus: $\mathbb{Q}$ is dense and full of holes. Every theorem you will meet whose proof invokes the "least upper bound property" is invoking completeness, not density, and the distinction is why those theorems are false over $\mathbb{Q}$ even though $\mathbb{Q}$ looks like it fills the line.
 
-**In linear algebra the analogue is the ability to scale by arbitrary reals.** Because scalars can be arbitrarily small, a line through the origin contains points arbitrarily close to $\mathbf{0}$, and the geometry of subspaces is continuous rather than discrete. Over a finite field the same definitions produce vector spaces with finitely many elements, where nothing is dense and no approximation argument applies — a useful reminder that the properties calculus relies on are properties of $\mathbb{R}$ specifically.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale; **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

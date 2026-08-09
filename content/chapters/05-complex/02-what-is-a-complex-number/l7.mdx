@@ -61,7 +61,7 @@ $$a+bi = c+di \iff a = c \ \text{ and }\ b = d.$$
 
 One complex equation is two real equations. The technique this licenses — *equate real and imaginary parts* — is used constantly, and §5.9 derives the double-angle formulas from it in three lines.
 
-The justification is worth stating. $\{1, i\}$ is a basis of $\mathbb{C}$ as a real vector space, and coordinates with respect to a basis are unique (§3.8). So $\operatorname{Re}$ and $\operatorname{Im}$ are well-defined functions $\mathbb{C}\to\mathbb{R}$, and equal inputs give equal outputs.
+The justification is worth stating. Every complex number has *exactly one* real part and *exactly one* imaginary part — that was the uniqueness proved earlier in this module. So $\operatorname{Re}$ and $\operatorname{Im}$ are genuine functions $\mathbb{C}\to\mathbb{R}$, and equal inputs give equal outputs.
 
 <Warning title="Only for real coefficients">
 The technique requires $a, b, c, d$ to be **real**. From $z_1 = z_2$ with $z_1, z_2$ complex expressions, you may equate parts only after each side has been written in the form (real) $+$ (real)$\,i$.
@@ -73,9 +73,9 @@ The step that is easy to skip is the separation, and it is where the algebra liv
 
 ## $\mathbb{C}$ versus $\mathbb{R}^2$
 
-The map $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ is a bijection $\mathbb{C}\to\mathbb{R}^2$ and an isomorphism of additive groups and of real vector spaces. $\mathbb{C}$ is a two-dimensional $\mathbb{R}$-vector space with basis $\{1, i\}$.
+The map $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ is a bijection $\mathbb{C}\to\mathbb{R}^2$, and it respects addition exactly: adding complex numbers is adding the pairs coordinate by coordinate. As far as *addition* is concerned, the two systems are the same thing.
 
-What is new is the **multiplication**. $\mathbb{R}^2$ has no natural one; $\mathbb{C}$ has one making it a field, and it is essentially unique — the only ways to multiply on $\mathbb{R}^2$ making it a real division algebra give $\mathbb{C}$ up to isomorphism. Every distinctive fact in this chapter (rotation, Euler, De Moivre, the Fundamental Theorem of Algebra) comes from that multiplication.
+What is new is the **multiplication**. $\mathbb{R}^2$ has no natural one; $\mathbb{C}$ has one making it a field, and it is essentially the only such multiplication there is. Every distinctive fact in this chapter (rotation, Euler, De Moivre, the Fundamental Theorem of Algebra) comes from that multiplication.
 
 <Aside>
 There are exactly two ways to relabel $\mathbb{C}$ preserving both operations and fixing every real: do nothing, and conjugate (§5.4). So $\operatorname{Gal}(\mathbb{C}/\mathbb{R}) \cong \mathbb{Z}/2\mathbb{Z}$. There is no way to distinguish $i$ from $-i$ by any algebraic property — both satisfy $x^2 = -1$ and nothing separates them. The choice of which root to call $i$ is a labelling convention, and conjugation is the symmetry that swaps the two labels.
@@ -84,20 +84,9 @@ Without continuity the situation is wilder: there are vastly more such relabelli
 </Aside>
 
 <WhereThisGoes level="l7">
+
 **$\mathbb{C}$ is $\mathbb{R}^2$ with a multiplication**, and both halves of that sentence get used.
-
-As a set it is $\mathbb{R}^2$, so it is a two-dimensional real vector space with basis $\{1, i\}$. Complex addition is vector addition; multiplication by a real scalar is scalar multiplication. Everything you will prove about $\mathbb{R}^2$ — coordinates, linear independence, dimension — applies verbatim.
-
-**Multiplication by a fixed $z = a+bi$ is a linear transformation of $\mathbb{R}^2$** — a map that respects adding and scaling —, and it has a matrix:
-$$M_z = \begin{pmatrix} a & -b \\ b & a\end{pmatrix}.$$
-
-Check it: $M_z\binom{x}{y} = \binom{ax-by}{bx+ay}$, which is exactly the real and imaginary parts of $(a+bi)(x+yi)$. So complex multiplication *is* a family of $2\times2$ matrices, closed under multiplication and addition, and $\det M_z = a^2+b^2 = |z|^2$ (§5.6).
-
-That determinant is the area scaling factor, which is why $|zw| = |z||w|$ becomes $\det(M_zM_w) = \det M_z\det M_w$ — a fact about matrices you will prove independently.
-
-**Equating real and imaginary parts is a linear-algebra move.** One complex equation is two real equations, because $\{1,i\}$ is a basis and coordinates with respect to a basis are unique (§3.8). §5.9 uses it to derive trigonometric identities, and it is legitimate for exactly that reason.
 
 **And the lack of an order matters in calculus.** Inequalities are the currency of the subject, and $\mathbb{C}$ has none — which is why complex sequences converge in terms of $|z_n - L|$, a real quantity, and why every convergence criterion you meet is stated with moduli.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **linear independence** — no vector being a combination of the others; **vector space** — any system where you can add and scale; **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>

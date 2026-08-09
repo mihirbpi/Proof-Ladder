@@ -16,10 +16,10 @@ $$
 $$
 "the set of $x$ in $A$ such that $p(x)$", with defining property
 $$
-y \in \{x \in A \mid p(x)\} \;\Longleftrightarrow\; y \in A \wedge p(y). \tag{$\ast$}
+y \in \{x \in A \mid p(x)\} \;\Leftrightarrow\; y \in A \wedge p(y). \tag{1}
 $$
 
-Equation $(\ast)$ is the workhorse of the entire chapter. Every proof about a set-builder set begins by applying it, converting a membership assertion into a logical one where Chapter 1 applies, and ends by applying it in reverse.
+Equation (1) is the workhorse of the entire chapter. Every proof about a set-builder set begins by applying it, converting a membership assertion into a logical one where Chapter 1 applies, and ends by applying it in reverse.
 
 ## The interface between the chapters
 
@@ -61,7 +61,7 @@ $$
 $$
 Here the bar separates a *term* from the range of its parameter, so
 $$
-y \in \{f(x) \mid x \in A\} \;\Longleftrightarrow\; \exists x \in A,\; y = f(x).
+y \in \{f(x) \mid x \in A\} \;\Leftrightarrow\; \exists x \in A,\; y = f(x).
 $$
 Note the existential quantifier — it is what makes this form behave differently in proofs from the filter form, whose unfolding is a conjunction. Formally this is Replacement rather than Separation, and it is the notation for the image of a function (§3.3).
 
@@ -94,6 +94,7 @@ $\mathbb{Q} = \{p/q \mid p,q \in \mathbb{Z},\, q \neq 0\}$ hides a subtlety: the
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Set-builder notation is how the objects of both courses ahead are defined, and the ambient set is never decoration.
 
 **In calculus, the ambient set is what determines the answer.** The solution set of $x^2 = 2$ is $\{\pm\sqrt2\}$ over $\mathbb{R}$ and empty over $\mathbb{Q}$ (§4.7). The set $\{x : \sin x = 0\}$ is $\{k\pi : k \in\mathbb{Z}\}$ — an infinite set described by a parameter, which is how every trigonometric solution set is written, and the $k\in\mathbb{Z}$ is the ambient set doing its job.
@@ -102,12 +103,4 @@ Domains of convergence are set-builder objects too:
 $$\left\{x \in \mathbb{R} : \sum_{n=0}^{\infty} \frac{x^n}{n} \text{ converges}\right\} = [-1, 1),$$
 and the asymmetry at the endpoints — convergent at $-1$, divergent at $1$ — is exactly the kind of fact the notation can express and an interval name cannot.
 
-**In linear algebra the definitions are literally set-builder.**
-$$\operatorname{Nul} A = \{\mathbf{x}\in\mathbb{R}^n : A\mathbf{x} = \mathbf{0}\}, \qquad \operatorname{Col} A = \{A\mathbf{x} : \mathbf{x}\in\mathbb{R}^n\}.$$
-
-Note that these use the two different forms this module distinguished: the null space is defined by a **condition** on elements of a stated ambient set, and the column space by a **rule** applied to every element of one. That difference is not cosmetic — it determines the proof technique. To show a vector is in $\operatorname{Nul} A$ you verify a condition; to show it is in $\operatorname{Col} A$ you must produce an $\mathbf{x}$, an existential claim needing a witness.
-
-**Recognising which form a set is written in tells you what proving membership requires**, and that is a skill you will use in every subspace argument of the course.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **null space** — the vectors a matrix sends to zero; **column space** — everything the matrix can produce as output; **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

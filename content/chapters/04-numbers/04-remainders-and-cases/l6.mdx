@@ -29,7 +29,7 @@ The constraint $0\le r<n$ is not decoration. Without it, $17 = 5\cdot 2 + 7$ and
 ## Divisibility restated
 
 $$
-n \mid m \quad\Longleftrightarrow\quad \text{the remainder of } m \text{ on division by } n \text{ is } 0.
+n \mid m \quad\Leftrightarrow\quad \text{the remainder of } m \text{ on division by } n \text{ is } 0.
 $$
 
 So $n \nmid m$ means the remainder is one of $1, 2, \dots, n-1$ — **finitely many possibilities**, each of which can be examined. The infinite search is gone.
@@ -102,7 +102,7 @@ A proof of "$3\mid(n^3-n)$" that checks $n=1,2,3,4,5$ and stops has not proved a
 
 The correspondence runs both directions:
 
-$$m = 3k+1 \text{ for some } k \quad\Longleftrightarrow\quad m \text{ has remainder } 1 \text{ mod } 3 \quad\Longrightarrow\quad 3\nmid m.$$
+$$m = 3k+1 \text{ for some } k \quad\Leftrightarrow\quad m \text{ has remainder } 1 \text{ mod } 3 \quad\Rightarrow\quad 3\nmid m.$$
 
 So writing an integer in the form $3k+1$ **proves** it is not divisible by $3$, by uniqueness of the remainder. This is how non-divisibility gets established without an infinite search, and it is the tool module 4.7 will need.
 
@@ -132,7 +132,7 @@ That is why the theorem was stated with $\exists!$ rather than $\exists$.
 
 Regular polygons supply a natural application. A regular $n$-gon has rotational symmetry through $360°/n$, and its rotations compose by adding angles **mod $n$** — rotating by three steps then two steps gives five steps, and if $n=4$ that is one step.
 
-The symmetry group of a regular $n$-gon is therefore built from exactly the residue classes of this module. Composing rotations *is* addition of remainders, which is why a clock returns to $3$ after twelve hours and why the same arithmetic governs both.
+The symmetries of a regular $n$-gon are therefore built from exactly the remainder classes of this module. Composing rotations *is* addition of remainders, which is why a clock returns to $3$ after twelve hours and why the same arithmetic governs both.
 
 <Aside>
 Writing $a \equiv b \pmod n$ for "$a$ and $b$ have the same remainder mod $n$" turns the case proofs above into one-liners.

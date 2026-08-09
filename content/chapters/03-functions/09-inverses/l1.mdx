@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Cubbies from '@/components/Cubbies.astro';
 
 Home time! Everybody grab your coat.
 
@@ -20,6 +21,10 @@ Easy! Everyone gets the right coat.
 Now imagine a messy day. Sam and Pip shared cubby 2.
 
 Point at cubby 2. Whose coat? Sam's or Pip's? **You cannot tell!** No undo.
+
+<Cubbies cubbies={["1", "2", "3"]}
+  hung={[{child: "Ada", cubby: 0}, {child: "Sam", cubby: 1}, {child: "Pip", cubby: 1}]}
+  caption="two coats in cubby 2 — nothing to undo" />
 
 Or imagine cubby 3 was empty all day. Point at it. Whose coat? **Nobody's!** Nothing to undo.
 

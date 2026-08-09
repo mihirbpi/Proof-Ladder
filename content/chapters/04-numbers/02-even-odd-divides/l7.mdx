@@ -40,16 +40,16 @@ $$
 m \mid 0, \qquad 1 \mid n, \qquad n \mid n,
 $$
 $$
-a \mid b \wedge b \mid c \implies a \mid c \quad (\text{transitivity}),
+a \mid b \wedge b \mid c \Rightarrow a \mid c \quad (\text{transitivity}),
 $$
 $$
-a \mid b \wedge a \mid c \implies a \mid (bx + cy) \ \ \forall x,y \in \mathbb{Z},
+a \mid b \wedge a \mid c \Rightarrow a \mid (bx + cy) \ \ \forall x,y \in \mathbb{Z},
 $$
 $$
-a \mid b \wedge b \mid a \implies a = \pm b,
+a \mid b \wedge b \mid a \Rightarrow a = \pm b,
 $$
 $$
-a \mid b \wedge b \neq 0 \implies |a| \leq |b|.
+a \mid b \wedge b \neq 0 \Rightarrow |a| \leq |b|.
 $$
 
 <Proof title="Proof of the linear-combination property">
@@ -98,6 +98,7 @@ The definition transfers verbatim to any commutative ring, and its behaviour cha
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The move this module trains — **replace a descriptive word by an algebraic condition you can compute with** — is the one that makes the definitions ahead usable.
 
 "Even" became $n = 2k$; "divides" became $b = ak$. Neither description supported algebra, and both existential forms do.
@@ -106,9 +107,6 @@ The move this module trains — **replace a descriptive word by an algebraic con
 
 **Divisibility itself reappears in calculus,** in the trigonometric solution sets. The equation $\sin\theta = 0$ has solution set $\{\theta : \theta = k\pi,\ k\in\mathbb{Z}\}$ — an existential condition of exactly the form this module defines, and the parameter $k$ is the witness. Periodicity statements are divisibility statements: $f$ has period $p$ when $f(x+kp) = f(x)$ for every integer $k$.
 
-**In linear algebra, the analogous unpacking is everywhere.** "$\mathbf{v}$ is in the span of $S$" is a description; $\mathbf{v} = c_1\mathbf{v}_1+\cdots+c_k\mathbf{v}_k$ is the usable form, and the coefficients are the witnesses. "$\mathbf{v}$ is in the column space of $A$" becomes "there is an $\mathbf{x}$ with $A\mathbf{x}=\mathbf{v}$."
-
 Every one of these is an **existential statement**, so the rules of §1.12 apply unchanged: to prove one, exhibit the witness; to use one, name it; to refute one, rule out all candidates — which is the hard direction, and the reason spanning is harder to disprove than to prove.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **column space** — everything the matrix can produce as output; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

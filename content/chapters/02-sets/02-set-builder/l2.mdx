@@ -8,6 +8,7 @@ anchorExample: "the toy box"
 
 import TryIt from '@/components/TryIt.astro';
 import Aside from '@/components/Aside.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 There are two ways to say what is in a box.
 
@@ -26,6 +27,11 @@ You give a rule instead:
 > $A$ is the box of all even numbers from $1$ to $10$.
 
 Shorter! And it says exactly the same thing. Check it: $2$ is even and between $1$ and $10$ — in. $7$ is not even — out. $12$ is even but too big — out.
+
+<ThingBox boxes={[
+  { label: "named one by one", items: [{kind: "block", color: "blue"}, {kind: "block", color: "blue"}, {kind: "block", color: "blue"}] },
+  { label: "picked by a rule", items: [{kind: "block", color: "blue"}, {kind: "block", color: "blue"}, {kind: "block", color: "blue"}] },
+]} />
 
 Same box, two ways of saying it.
 

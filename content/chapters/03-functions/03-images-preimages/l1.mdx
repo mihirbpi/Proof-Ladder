@@ -8,8 +8,13 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Cubbies from '@/components/Cubbies.astro';
 
 The children hang up their coats. Now stand back and look at the wall of cubbies.
+<Cubbies cubbies={["1", "2", "3"]}
+  hung={[{child: "Sam", cubby: 1}, {child: "Pip", cubby: 1}, {child: "Ada", cubby: 0}]}
+  caption="two cubbies used, one empty" />
+
 
 **Question one: which cubbies got used?**
 
@@ -18,6 +23,7 @@ Cubby 1 — a coat! **Used.**
 Cubby 2 — a coat! **Used.**
 
 Cubby 3 — empty. Nobody went there.
+
 
 So only some cubbies got used. That is fine. A machine does not have to fill every cubby.
 

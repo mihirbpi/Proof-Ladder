@@ -64,8 +64,8 @@ The first law follows either by the same argument with $\neg(p \wedge q) \equiv 
 | $\vee$ | $\cup$ |
 | $\Rightarrow$ (universally) | $\subseteq$ |
 | $\Leftrightarrow$ (universally) | $=$ |
-| $\exists i$ | $\bigcup_i$ |
-| $\forall i$ | $\bigcap_i$ |
+| *there exists an $i$* | $A_1 \cup \cdots \cup A_n$ |
+| *for every $i$* | $A_1 \cap \cdots \cap A_n$ |
 
 The reason this dictionary is exact: the map sending a predicate $p$ to its truth set $\{x \in U \mid p(x)\}$ turns $\wedge$ into $\cap$, $\vee$ into $\cup$, and $\neg$ into complement — it preserves all three operations. Every equational identity therefore transfers in both directions. It is not that the two subjects are similar; up to isomorphism they are the same algebra.
 
@@ -73,17 +73,17 @@ The reason this dictionary is exact: the map sending a predicate $p$ to its trut
 
 For a family $\{A_i\}_{i \in I}$:
 $$
-\overline{\bigcup_{i \in I} A_i} = \bigcap_{i \in I} \overline{A_i},
+\overline{A_1 \cup A_2 \cup \cdots \cup A_n} = \overline{A_1} \cap \cdots \cap \overline{A_n},
 \qquad
-\overline{\bigcap_{i \in I} A_i} = \bigcup_{i \in I} \overline{A_i}.
+\overline{A_1 \cap A_2 \cap \cdots \cap A_n} = \overline{A_1} \cup \cdots \cup \overline{A_n}.
 $$
 
 The proof is the same three moves, with $\neg\exists \equiv \forall\neg$ (§1.11) at the pivot instead of $\neg\vee \equiv \wedge\neg$:
 $$
-x \in \overline{\textstyle\bigcup_i A_i}
+x \in \overline{A_1 \cup \cdots \cup A_n}
 \iff \neg \exists i,\, x \in A_i
 \iff \forall i,\, x \notin A_i
-\iff x \in \textstyle\bigcap_i \overline{A_i}.
+\iff x \in \textstyle\overline{A_1} \cap \cdots \cap \overline{A_n}.
 $$
 No induction is needed and $I$ may be uncountable — which is the point of proving it this way rather than by iterating the binary case.
 
@@ -104,20 +104,13 @@ $\cup$ and $\cap$ are recoverable from each other via complement — $S \cap T =
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The set form of De Morgan is what lets you compute a complicated solution set by computing its complement instead.
 
 **Solving inequalities.** To find $\{x : |x-3|\geq 2 \ \text{or}\ x^2 < 1\}$ directly means assembling a union of pieces. Complementing turns it into an intersection of two simpler conditions, and complementing back at the end is often less error-prone than the direct assembly. The tactic is standard in a first calculus course whenever a sign chart has several factors.
 
 **Where a function is undefined.** The domain of $f$ is the complement of the set where the formula fails, and when the formula fails for several reasons at once — a zero denominator **or** a negative radicand — the excluded set is a union, so the domain is an intersection of complements. That is one law of this module, applied to every domain computation you have ever done.
 
-**In linear algebra the duality shows up in dimension.** For subspaces $U, W$ of $V$,
-$$\dim(U+W) + \dim(U\cap W) = \dim U + \dim W,$$
-which is the same trade as the counting formula $|S\cup T| + |S\cap T| = |S|+|T|$ from §2.4. Sum and intersection exchange roles the way union and intersection do, and the orthogonal complement $W^\perp$ behaves like a complement in the exact sense De Morgan requires:
-$$(U + W)^\perp = U^\perp \cap W^\perp, \qquad (U\cap W)^\perp = U^\perp + W^\perp.$$
-
 Those two identities are usually presented as separate theorems. They are one law in two costumes, and recognising that is worth more than memorising either.
 
-**The habit is to expect the swap.** When you complement a compound condition, the connective changes; when you take orthogonal complements of subspaces, sum and intersection change places. Predicting that before computing is what this module buys you.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

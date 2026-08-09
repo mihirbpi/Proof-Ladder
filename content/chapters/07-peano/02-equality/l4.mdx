@@ -36,7 +36,7 @@ A relation $\sim$ on a set $S$ satisfying A1–A3 is an **equivalence relation**
 | Relation | Refl. | Symm. | Trans. | Equivalence? |
 |---|---|---|---|---|
 | $=$ on any set | ✓ | ✓ | ✓ | yes |
-| $a \equiv b \pmod n$ | ✓ | ✓ | ✓ | yes |
+| same remainder on division by $n$ | ✓ | ✓ | ✓ | yes |
 | same cardinality (module 3.8) | ✓ | ✓ | ✓ | yes |
 | $\leq$ on $\mathbb{R}$ | ✓ | ✗ | ✓ | no |
 | $<$ on $\mathbb{R}$ | ✗ | ✗ | ✓ | no |
@@ -48,9 +48,9 @@ A relation $\sim$ on a set $S$ satisfying A1–A3 is an **equivalence relation**
 
 Note that $\leq$ and $\subseteq$ satisfy two of the three and are **partial orders** instead — reflexive, transitive, and *antisymmetric*. Swapping symmetry for antisymmetry gives an entirely different kind of structure, which is why the three properties must be checked individually.
 
-## Congruence mod $n$
+## Same remainder
 
-For $n \geq 1$, define $a \equiv b \pmod n$ to mean $n \mid (a-b)$ (module 4.2).
+For $n \geq 1$, say that $a$ and $b$ **leave the same remainder on division by $n$** when $n \mid (a-b)$ (module 4.2). Later courses write this $a \equiv b \pmod n$ and call it *congruence modulo $n$*; the notation is theirs, the idea is the one you already have from long division.
 
 <Proof>
 **Reflexive.** $n \mid (a - a) = 0$ for every $n$, so $a \equiv a$.

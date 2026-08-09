@@ -51,7 +51,7 @@ Induct on $c$.
 
 *Step.* Assuming $a(b+k) = ab+ak$,
 $$
-a\big(b+S(k)\big) \overset{\text{(A2)}}{=} a\,S(b+k) \overset{\text{(M2)}}{=} a + a(b+k) \overset{\text{(IH)}}{=} a + (ab+ak) = ab + (a + ak) \overset{\text{(M2)}}{=} ab + a\,S(k),
+a\big(b+S(k)\big) \overset{\text{(A2)}}{=} a\,S(b+k) \overset{\text{(M2)}}{=} a + a(b+k) = a + (ab+ak) = ab + (a + ak) \overset{\text{(M2)}}{=} ab + a\,S(k),
 $$
 the penultimate step by associativity and commutativity of $+$.
 </Proof>
@@ -114,6 +114,7 @@ Multiplication is what makes arithmetic strong enough to be incomplete. §7.7 is
 </Aside>
 
 <WhereThisGoes level="l7">
+
 This is where the course closes, and the closing observation is that everything in Chapters 1–6 concerning $\mathbb{N}$ now rests on nine axioms.
 
 **The tower, in order.** Successor is undefined and constrained by axioms. Addition is defined recursively from it. Multiplication is defined recursively from addition. $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are each built from the previous system to repair a specific closure failure. Nothing is assumed twice, and nothing circles.
@@ -122,9 +123,6 @@ This is where the course closes, and the closing observation is that everything 
 
 **In calculus, the same tower is what the derivative rules rest on.** Linearity of differentiation is distributivity applied to the limit definition; the product rule is a statement about how differentiation interacts with the ring multiplication; and the fact that $(fg)' \neq f'g'$ is the observation that differentiation is *not* multiplicative. Each is provable, and each depends on the arithmetic being what this chapter says it is.
 
-**In linear algebra, the axiomatic style is the whole method.** Eight axioms define a vector space; every theorem is derived from them; and the theorems apply simultaneously to $\mathbb{R}^n$, to polynomials, to matrices, and to solution spaces of differential equations. That is the same return on abstraction this chapter demonstrates, at a different scale.
-
 **And the exponentiation pattern continues.** $x^0 := 1$, $x^{S(y)} := x^y\cdot x$ — repeated multiplication, defined from multiplication exactly as multiplication was defined from addition. The sequence does not stop, and the operations grow fast enough that the fifth one on small inputs already exceeds any quantity in the physical universe.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

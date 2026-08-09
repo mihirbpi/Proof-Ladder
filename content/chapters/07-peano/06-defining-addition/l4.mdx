@@ -66,7 +66,7 @@ is **not** an axiom and does not follow from (A1)–(A2) by inspection: the defi
 *Base.* $0 + 0 = 0$ by (A1).
 
 *Step.* Assume $0 + k = k$. Then
-$$0 + S(k) \overset{\text{(A2)}}{=} S(0+k) \overset{\text{(IH)}}{=} S(k).$$
+$$0 + S(k) \overset{\text{(A2)}}{=} S(0+k) = S(k).$$
 </Proof>
 
 > **Lemma 2.** $S(a) + b = S(a+b)$ for all $a,b$.
@@ -78,7 +78,7 @@ Induct on $b$.
 
 *Step.* Assume $S(a)+k = S(a+k)$. Then
 $$
-S(a)+S(k) \overset{\text{(A2)}}{=} S\big(S(a)+k\big) \overset{\text{(IH)}}{=} S\big(S(a+k)\big) \overset{\text{(A2)}}{=} S\big(a+S(k)\big).
+S(a)+S(k) \overset{\text{(A2)}}{=} S\big(S(a)+k\big) = S\big(S(a+k)\big) \overset{\text{(A2)}}{=} S\big(a+S(k)\big).
 $$
 </Proof>
 
@@ -91,7 +91,7 @@ Induct on $b$, with $a$ arbitrary but fixed (§1.12) — named, but with nothing
 
 *Step.* Assume $a + k = k + a$. Then
 $$
-a + S(k) \overset{\text{(A2)}}{=} S(a+k) \overset{\text{(IH)}}{=} S(k+a) \overset{\text{Lem 2}}{=} S(k)+a.
+a + S(k) \overset{\text{(A2)}}{=} S(a+k) = S(k+a) \overset{\text{Lem 2}}{=} S(k)+a.
 $$
 </Proof>
 

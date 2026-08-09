@@ -8,10 +8,14 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 The toy box is full of toys. Now let's find everything that is **outside** it.
 
 Go! Point at things. A lamp — outside. A shoe — outside. A spoon — outside.
+
+<ThingBox boxes={[{ label: "the toy box", items: [{kind: "ball"}, {kind: "block"}, {kind: "star"}] }]}
+  outside={[{kind: "sock"}, {kind: "book"}]} outsideLabel="outside it" />
 
 But wait. How far do we go?
 

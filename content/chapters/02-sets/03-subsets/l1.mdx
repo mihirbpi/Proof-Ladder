@@ -8,10 +8,16 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 Here is the big box. All the blocks live in it.
 
 Here is a little box. Only the red blocks live in that one.
+
+<ThingBox boxes={[
+  { label: "all the blocks", items: [{kind: "block", color: "red"}, {kind: "block", color: "blue"}, {kind: "block", color: "red"}, {kind: "block", color: "green"}] },
+  { label: "just the red ones", items: [{kind: "block", color: "red"}, {kind: "block", color: "red"}] },
+]} />
 
 Is the little box **inside** the big box?
 

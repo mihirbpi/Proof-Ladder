@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Cubbies from '@/components/Cubbies.astro';
 
 Look at the cubbies again. Here is a brand new question.
 
@@ -16,6 +17,10 @@ Look at the cubbies again. Here is a brand new question.
 In some classrooms, Sam and Pip squeeze into cubby 2 together. Two coats, one hook. **Sharing!**
 
 In other classrooms, everybody gets their very own cubby. Nobody shares at all.
+
+<Cubbies cubbies={["1", "2", "3"]}
+  hung={[{child: "Sam", cubby: 0}, {child: "Pip", cubby: 1}, {child: "Ada", cubby: 2}]}
+  caption="nobody shares — you can always tell whose coat it is" />
 
 That second kind is extra tidy. It has a special feeling: if you find a coat, you know exactly whose it is.
 

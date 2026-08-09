@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Cubbies from '@/components/Cubbies.astro';
 
 Now we want both tidy things at once.
 
@@ -20,6 +21,10 @@ When both are true, the machine is **just right**.
 And here comes the amazing part. Ready?
 
 You do not have to count!
+
+<Cubbies cubbies={["1", "2", "3"]}
+  hung={[{child: "Sam", cubby: 0}, {child: "Pip", cubby: 1}, {child: "Ada", cubby: 2}]}
+  caption="nobody shares, nothing left out — just right" />
 
 Look — one child, one cubby. Another child, another cubby. On and on, and at the end there is nothing left over on either side.
 

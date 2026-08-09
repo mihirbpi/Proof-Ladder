@@ -60,7 +60,7 @@ Nothing above used anything about $\mathbb{Z}$ except that it has no zero diviso
 
 Taking $D = \mathbb{Z}$ gives $\mathbb{Q}$. Taking $D = k[x]$ gives the rational function field $k(x)$. Taking $D = \mathcal{O}(U)$, holomorphic functions on a domain, gives the meromorphic functions.
 
-The integral-domain hypothesis is necessary and the proof above shows why: in $\mathbb{Z}/6\mathbb{Z}$, one would want $\tfrac13$ to exist, but $3$ is a zero divisor and the equivalence relation degenerates.
+The no-zero-divisors hypothesis is necessary, and the proof above shows why: working with remainders mod $6$, one would want $\tfrac13$ to exist, but $3 \times 2 = 0$ there, and the construction degenerates.
 
 The universal property in the second sentence is the useful part. It says $\mathbb{Q}$ is characterised by what it does, not by how it was built — the same shift that §2.9 flagged for ordered pairs.
 
@@ -87,15 +87,10 @@ The **characteristic** of a field is the least $n > 0$ with $\underbrace{1+\cdot
 </Aside>
 
 <WhereThisGoes level="l7">
-**The field axioms are the hypotheses of linear algebra.** A vector space is defined over a field, and the reason is division: without inverses for non-zero scalars, you cannot normalise a vector, cannot scale a pivot to $1$, and cannot run Gaussian elimination at all.
-
-Trace the axioms through row reduction and every one is used. Scaling a row by $1/a$ needs multiplicative inverses. Adding a multiple of one row to another needs distributivity. The claim that the result has the same solution set needs the operations to be reversible, which needs additive inverses.
-
-**Over $\mathbb{Z}$ none of that works.** The system $2x = 1$ has no integer solution, so "solve and back-substitute" fails immediately, and there is no theory of bases and dimension over $\mathbb{Z}$ resembling the one over a field.
+**Over $\mathbb{Z}$ none of that works.** The system $2x = 1$ has no integer solution, so "solve and back-substitute" fails immediately, and none of the usual structure survives over $\mathbb{Z}$ resembling the one over a field.
 
 **In calculus, the ordered-field axioms are what inequality manipulation rests on.** Every $\varepsilon$–$\delta$ proof multiplies and divides inequalities, and the rules — adding preserves, multiplying by a positive preserves, multiplying by a negative reverses — are the order axioms of this module. Getting the last one wrong is the standard error in a limit proof, and it is an axiom violation rather than an algebra slip.
 
 **Completeness is the property $\mathbb{Q}$ still lacks**, and it is the one calculus cannot do without. The Extreme Value Theorem, the Intermediate Value Theorem, and the Mean Value Theorem are all false over $\mathbb{Q}$: $f(x)=x^2-2$ changes sign on $[0,2]$ and has no rational root, so IVT fails. §4.7 exhibits the gap, and filling it is what $\mathbb{R}$ is for — which makes completeness, not the field axioms, the defining property of the number system calculus runs on.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **bases** — smallest sets of vectors that build everything else; **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

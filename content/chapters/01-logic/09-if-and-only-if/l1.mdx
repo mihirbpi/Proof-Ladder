@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingRow from '@/components/ThingRow.astro';
 
 Grandma says:
 
@@ -22,6 +23,10 @@ That is a sneaky sentence. It is really *two* promises.
 Sam eats every pea. Does Sam get dessert? Yes! Promise one says so.
 
 Sam hides the peas in a napkin. Does Sam get dessert? No! Promise two says so.
+
+<ThingRow items={[{kind:"pea"},{kind:"pea"},{kind:"pea"},{kind:"cookie"}]}
+  groups={[3, 1]} groupLabels={["eat these", "then this"]}
+  caption="peas and dessert travel together, both ways" />
 
 One sentence. **Both promises.** Grandma knew what she was doing.
 

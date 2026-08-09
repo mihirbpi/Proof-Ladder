@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import HoopSort from '@/components/HoopSort.astro';
 
 Put two hoops on the floor. Let them overlap in the middle.
 
@@ -20,6 +21,12 @@ Red? Yes. Round? Yes. So it goes in the middle. The middle is for both.
 Here comes a red sock. Red, but not round. Left hoop.
 
 Here comes an orange. Round, but not red. Right hoop.
+
+<HoopSort labelLeft="red things" labelRight="round things"
+  leftOnly={[{kind: "sock", color: "red"}]}
+  both={[{kind: "ball", color: "red"}]}
+  rightOnly={[{kind: "orange"}]}
+  caption="the ball is in both hoops at once" />
 
 **And** means both. "Red **and** round" is only the ball.
 

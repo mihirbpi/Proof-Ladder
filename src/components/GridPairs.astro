@@ -1,4 +1,5 @@
 ---
+import Thing from './Thing.astro';
 // A product set drawn as a grid of ordered pairs (§2.9).
 //
 // rows / cols     the two factor sets, as label arrays. rows is the FIRST
@@ -11,6 +12,10 @@
 export interface Props {
   rows?: string[];
   cols?: string[];
+  // Draw the factors as objects instead of words — the l1 outfit grid, where a
+  // reader who cannot yet read the label can still see a red shirt and a sun hat.
+  rowThings?: { kind: string; color?: string | null }[] | null;
+  colThings?: { kind: string; color?: string | null }[] | null;
   highlight?: [number, number][];
   showPairs?: boolean;
   labelRows?: string | null;
@@ -23,7 +28,10 @@ const {
   showPairs = true,
   labelRows = 'S',
   labelCols = 'T',
+  rowThings = null,
+  colThings = null,
 } = Astro.props;
+const pictorial = !!(rowThings && colThings);
 
 // Size from the labels rather than assuming short ones: a right-anchored row
 // header runs leftwards from the grid edge, so a long label needs a wider
@@ -32,14 +40,14 @@ const CHW = 6.6;
 const widest = (xs: string[]) => xs.reduce((n, s) => Math.max(n, s.length), 0);
 const pairW = (r: string, c: string) => `(${r}, ${c})`.length * CHW + 14;
 
-const CW = Math.max(
+const CW = pictorial ? 78 : Math.max(
   showPairs ? 76 : 52,
   widest(cols) * CHW + 16,
   showPairs ? Math.max(...rows.flatMap((r) => cols.map((c) => pairW(r, c)))) : 0,
 );
-const CH = 40;
-const LEFT = Math.max(52, widest(rows) * CHW + 20);
-const TOP = 46;
+const CH = pictorial ? 66 : 40;
+const LEFT = pictorial ? 62 : Math.max(52, widest(rows) * CHW + 20);
+const TOP = pictorial ? 66 : 46;
 const W = LEFT + cols.length * CW + 16;
 const H = TOP + rows.length * CH + 20;
 
@@ -67,10 +75,16 @@ const alt = `A grid showing the product set ${labelRows ?? 'the first set'} × $
   )}
 
   {cols.map((c, ci) => (
-    <text x={LEFT + ci * CW + CW / 2} y={TOP - 10} class="hdr" text-anchor="middle">{c}</text>
+    pictorial
+      ? <Thing kind={colThings![ci].kind as any} color={(colThings![ci].color ?? null) as any}
+               x={LEFT + ci * CW + CW / 2} y={TOP - 30} size={44} />
+      : <text x={LEFT + ci * CW + CW / 2} y={TOP - 10} class="hdr" text-anchor="middle">{c}</text>
   ))}
   {rows.map((r, ri) => (
-    <text x={LEFT - 10} y={TOP + ri * CH + CH / 2 + 4} class="hdr" text-anchor="end">{r}</text>
+    pictorial
+      ? <Thing kind={rowThings![ri].kind as any} color={(rowThings![ri].color ?? null) as any}
+               x={LEFT - 30} y={TOP + ri * CH + CH / 2} size={44} />
+      : <text x={LEFT - 10} y={TOP + ri * CH + CH / 2 + 4} class="hdr" text-anchor="end">{r}</text>
   ))}
 
   {rows.map((r, ri) =>
@@ -78,7 +92,15 @@ const alt = `A grid showing the product set ${labelRows ?? 'the first set'} × $
       <g>
         <rect x={LEFT + ci * CW} y={TOP + ri * CH} width={CW} height={CH}
               class={isHot(ri, ci) ? 'cell cell-hot' : 'cell'} />
-        {showPairs && (
+        {pictorial && (
+          <g>
+            <Thing kind={rowThings![ri].kind as any} color={(rowThings![ri].color ?? null) as any}
+                   x={LEFT + ci * CW + CW / 2 - 13} y={TOP + ri * CH + CH / 2} size={38} />
+            <Thing kind={colThings![ci].kind as any} color={(colThings![ci].color ?? null) as any}
+                   x={LEFT + ci * CW + CW / 2 + 14} y={TOP + ri * CH + CH / 2} size={38} />
+          </g>
+        )}
+        {showPairs && !pictorial && (
           <text x={LEFT + ci * CW + CW / 2} y={TOP + ri * CH + CH / 2 + 4}
                 class="pair" text-anchor="middle">({r}, {c})</text>
         )}

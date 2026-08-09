@@ -8,6 +8,7 @@ anchorExample: "a box of blocks"
 
 import TryIt from '@/components/TryIt.astro';
 import Warning from '@/components/Warning.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 Some tellings are about **all** of something. Some are about **some** of it. And some are about **exactly one**. Three shapes, three different jobs.
 
@@ -16,6 +17,10 @@ Some tellings are about **all** of something. Some are about **some** of it. And
 > **Every** block in this box is red.
 
 To show this is true, you have to check every single block. Miss one and you have not finished.
+
+<ThingBox boxes={[{ label: "the box of blocks",
+  items: [{kind: "block", color: "red"}, {kind: "block", color: "red"}, {kind: "block", color: "green"}] }]}
+  ring={{box: 0, index: 2}} />
 
 To show it is false, you only need to find one block that is not red. One! That is much easier.
 

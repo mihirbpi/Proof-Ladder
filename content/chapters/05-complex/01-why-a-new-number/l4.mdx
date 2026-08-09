@@ -39,13 +39,11 @@ The move is always the same: adjoin what is missing, then verify the arithmetic 
 
 ## Where this shows up in ordinary algebra
 
-You have already met the gap without naming it. The quadratic formula
-$$
-x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-$$
-requires a square root of the discriminant $b^2 - 4ac$. When the discriminant is negative — as for $x^2 + x + 1$, where it is $-3$ — you were told "no real solutions" and moved on.
+The gap has a familiar face. A square with side $s$ has area $s \times s$, and an area is never negative — so no square you can draw has area $-1$. Turned into a question about numbers, that says: no number multiplied by itself gives $-1$.
 
-That is accurate but incomplete. The equation has solutions; they are not on the number line. Once $i$ exists, the formula works for every quadratic without exception, and "no real solutions" becomes "two solutions, neither of them real."
+Every time you take a square root you are running that fact in reverse, and every time the thing under the root turns out negative, the answer is "there is no such number" and you stop.
+
+That is accurate but incomplete. There *is* an answer; it is not on the number line. Once $i$ exists, "no solution" becomes "a solution that is not real" — and Algebra I's rule that some equations simply have no answer turns out to be a statement about where you were looking, not about whether anything is there.
 
 ## The definition
 
@@ -69,7 +67,7 @@ $\mathbb{C}$ is the last extension needed. This is the **Fundamental Theorem of 
 
 So adjoining a root of the single polynomial $x^2 + 1$ supplies roots for *every* polynomial at once — including polynomials whose coefficients are themselves complex. The sequence $\mathbb{N} \to \mathbb{Z} \to \mathbb{Q} \to \mathbb{R} \to \mathbb{C}$ terminates, and nothing further needs inventing.
 
-Note that the theorem is not proved by algebra alone; every known proof uses analysis or topology. It is stated here as motivation, not derived.
+Note that the theorem is not proved by algebra alone; every known proof reaches outside algebra for tools. It is stated here as motivation, not derived.
 
 <Aside>
 Historically the motivation came from cubics, not quadratics. Cardano's formula for $x^3 = 15x + 4$ requires square roots of negative numbers *en route*, even though the answer $x = 4$ is a perfectly ordinary integer. Sixteenth-century algebraists found they had to pass through $\sqrt{-121}$ to arrive somewhere real, and that unavoidable detour — not the unsolvable quadratic — is what forced the issue.

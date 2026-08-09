@@ -35,13 +35,13 @@ Hilbert's dictum makes the point: one should be able to substitute "table, chair
 
 Two notions of consequence must be distinguished.
 
-**Syntactic:** $\Gamma \vdash \varphi$ — there is a formal derivation of $\varphi$ from $\Gamma$.
+**Provable.** There is a chain of justified steps leading from the axioms to the statement.
 
-**Semantic:** $\Gamma \models \varphi$ — every structure making all of $\Gamma$ true makes $\varphi$ true.
+**True in every case.** Every structure in which the axioms all hold is a structure in which the statement holds too.
 
-> **Gödel’s completeness theorem (1929).** For the standard logical system, $\Gamma\vdash\varphi \iff \Gamma\models\varphi$.
+These sound like different things and, for the usual logical system, they turn out to be the same thing — a result of Gödel's from 1929.
 
-Provability and validity coincide. This is what licenses the model-theoretic method: to show $\varphi$ is *not* provable from $\Gamma$, exhibit a **model** of $\Gamma$ in which $\varphi$ fails.
+That equivalence is what licenses the method used throughout this chapter: **to show a statement is not provable from a set of axioms, build one structure where the axioms hold and the statement fails.** No search through possible proofs is required, and none would ever finish.
 
 ## Independence
 
@@ -50,8 +50,7 @@ To prove axiom $A$ independent of $B_1,\ldots,B_n$: construct a structure satisf
 Historically decisive instances:
 
 - **Parallel postulate.** The Beltrami–Klein and Poincaré disc models satisfy Euclid's first four axioms and refute the fifth, ending two millennia of failed derivations. Hyperbolic geometry is as consistent as Euclidean.
-- **an extra set-theoretic assumption.** Gödel's constructible universe $L$ shows ZF $\not\vdash \neg$AC; Cohen's forcing shows ZF $\not\vdash$ AC.
-- **Continuum hypothesis.** Same two techniques, same conclusion: the standard axioms settle it neither way.
+- **Two famous set-theory questions.** Both were settled the same way in the twentieth century: structures were built in which the standard axioms hold and the statement is true, and others in which they hold and it is false. So the axioms decide neither, and that is a theorem rather than an admission of defeat.
 
 §7.4 uses precisely this method on Peano's axioms, exhibiting one- and two-element structures satisfying axioms 1–6 while violating 7 or 8. Independence is not a philosophical remark; it is a construction.
 
@@ -102,13 +101,8 @@ Foundations does not rest on bedrock. It rests on a well-mapped network of relat
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The axiomatic method is what both courses ahead are organised by, and recognising it changes how you read a textbook.
-
-**In linear algebra it is explicit and early.** A vector space is *defined* by eight axioms — closure, associativity, commutativity, identity, inverses for addition, and four compatibility conditions for scalar multiplication. Nothing is said about what a vector is.
-
-That silence is the point. $\mathbb{R}^n$ satisfies the axioms; so do the polynomials of degree at most $n$, the continuous functions on $[0,1]$, the $m\times n$ matrices, and the solution set of a homogeneous linear differential equation. **Every theorem proved from the axioms holds in all of them**, which is why one course covers so much ground.
-
-The return on the abstraction is concrete: proving that a solution space of a differential equation has a basis, and that the general solution is a linear combination of basis solutions, requires no new work once the axioms are checked.
 
 **In calculus the axioms are about $\mathbb{R}$.** It is the unique complete ordered field, and the three parts of that phrase do distinguishable work. The field axioms (§4.5) permit algebra; the order axioms permit inequalities; **completeness** is what makes calculus possible, and it is the axiom every major theorem quietly invokes.
 
@@ -116,5 +110,4 @@ The Extreme Value Theorem, the Intermediate Value Theorem, the Mean Value Theore
 
 **The lesson from geometry transfers.** Changing an axiom changes the subject, and the resulting subject may be perfectly consistent — non-Euclidean geometry, finite-dimensional spaces over finite fields, non-Archimedean number systems. An axiom is a choice with consequences, not a self-evident truth.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale; **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>

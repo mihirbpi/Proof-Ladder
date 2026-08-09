@@ -9,12 +9,16 @@ anchorExample: "Sam's apples"
 import TryIt from '@/components/TryIt.astro';
 import Discussion from '@/components/Discussion.astro';
 import Proof from '@/components/Proof.astro';
+import ThingRow from '@/components/ThingRow.astro';
 
 Being right is good. Showing *why* you are right is better. That is called a **reason chain**, and here is how you build one.
 
 ## Sam's apples
 
 Sam has 4 apples. Sam's grandma hands over 2 more. How many apples does Sam have?
+
+<ThingRow items={[{kind:"apple"},{kind:"apple"},{kind:"apple"},{kind:"apple"},{kind:"apple"},{kind:"apple"}]}
+  groups={[4, 2]} groupLabels={["Sam had these", "grandma added these"]} />
 
 You already know the answer is 6. But watch how we say the *why*.
 

@@ -15,7 +15,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 ## Equality is mutual inclusion
 
 $$
-S = T \quad\Longleftrightarrow\quad S \subseteq T \;\wedge\; T \subseteq S.
+S = T \quad\Leftrightarrow\quad S \subseteq T \;\wedge\; T \subseteq S.
 $$
 
 This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$, a biconditional decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
@@ -51,7 +51,7 @@ $$
 <Discussion>
   <div slot="know">Membership in $S \cup T$ is a disjunction; membership in $R$ is a single equation. The bridge is the zero-product property of the reals: $ab = 0 \Rightarrow a = 0 \vee b = 0$.</div>
   <div slot="want">Both inclusions.</div>
-  <div slot="how">($\subseteq$) hypothesis is a disjunction — split, and use only $0 \cdot a = 0$, which holds in any ring. ($\supseteq$) hypothesis is a vanishing product — the integral-domain property produces the disjunction directly. The two halves therefore consume different amounts of structure.</div>
+  <div slot="how">($\subseteq$) hypothesis is a disjunction — split, and use only $0 \cdot a = 0$, which holds in any ring. ($\supseteq$) hypothesis is a vanishing product, and in $\mathbb{R}$ a product is zero only if a factor is — that produces the disjunction directly. The two halves therefore consume different amounts of structure.</div>
 </Discussion>
 
 <Proof>
@@ -104,15 +104,8 @@ The method generalises far beyond sets. Proving two subspaces, two spans, or two
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Double inclusion is how you prove that two differently-described objects are the same one, and both courses ahead are full of such claims.
-
-**In linear algebra it is the default method for subspace equalities.** Below, $\operatorname{rref}$ — the staircase form row reduction produces — appears on both sides.
-
-$$\operatorname{Nul} A = \operatorname{Nul}(\operatorname{rref} A), \qquad \operatorname{Col} A = \operatorname{span}\{\text{pivot columns}\}, \qquad \operatorname{Row} A = \operatorname{Row}(\operatorname{rref} A).$$
-
-Each is proved by two containments, and each has an easy half and a hard half — the asymmetry this module flagged. Showing $\operatorname{Span} S \subseteq W$ when $S\subseteq W$ is routine; showing the reverse takes a construction.
-
-The most useful instance is $U = V$ for subspaces where you already know $U \subseteq V$. Then a **dimension count** finishes it: if $\dim U = \dim V$, equality follows without a second element chase. That shortcut is available only because double inclusion is what equality means, and it is one of the genuinely labour-saving theorems of the subject.
 
 **In calculus the equalities are between solution sets and between domains.** *The set where $f'>0$ equals the set where $f$ is increasing* is a biconditional needing two arguments — one from the Mean Value Theorem, one directly — and the fact that the two halves need different tools is the normal case, not an exception.
 
@@ -120,5 +113,4 @@ Interval-of-convergence computations are double inclusions too. The Ratio Test e
 
 **The habit worth keeping is counting the obligations before starting.** An equality of sets is two proofs; a biconditional is two proofs; and knowing which direction will be hard, from the shape of the definitions, is what lets you plan rather than flail.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **subspace** — a set of vectors closed under adding and scaling; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

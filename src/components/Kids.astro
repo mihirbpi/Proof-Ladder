@@ -1,0 +1,105 @@
+---
+// Sam, Pip and Ada — the children who run through l1 and l2.
+//
+// Each is drawn from the same simple figure with a different hair shape and
+// jumper colour, so they are told apart by silhouette as well as by hue, and
+// each is captioned with their name.
+//
+// wearing   per-child accessories, for §1.4's "hat AND coat" argument:
+//           "hat" | "coat" | "both" | "none"
+export interface Props {
+  kids?: ('Sam' | 'Pip' | 'Ada')[];
+  wearing?: Record<string, 'hat' | 'coat' | 'both' | 'none'>;
+  caption?: string | null;
+}
+const { kids = ['Sam', 'Pip', 'Ada'], wearing = {}, caption = null } = Astro.props;
+
+const CELL = 92;
+// A one-child figure is narrower than its caption, so the box has to size for
+// whichever is wider and the row of children is then centred inside it.
+const CHW = 6.9;
+const ROW = kids.length * CELL;
+const W = Math.max(ROW, (caption?.length ?? 0) * CHW + 24);
+const XOFF = (W - ROW) / 2;
+const H = 168;
+
+const look: Record<string, { jumper: string; hair: string }> = {
+  Sam: { jumper: 'var(--color-toy-blue)',  hair: 'short' },
+  Pip: { jumper: 'var(--color-toy-green)', hair: 'curly' },
+  Ada: { jumper: 'var(--color-toy-yellow)', hair: 'braids' },
+};
+
+const wornBy = (k: string) => wearing[k] ?? 'none';
+const wornWords = (w: string) =>
+  w === 'both' ? 'a hat and a coat' : w === 'hat' ? 'a hat' : w === 'coat' ? 'a coat' : 'no hat and no coat';
+
+const alt = kids.map((k) => `${k}, wearing ${wornWords(wornBy(k))}`).join('; ')
+  + '. Each child has differently drawn hair so they can be told apart without relying on colour.';
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="kids"
+     role="img" aria-label={alt}>
+  <style>
+    .kids .skin  { fill: var(--color-card, #F8F9F5); stroke: var(--color-ink, #14182B); stroke-width: 2.4; }
+    .kids .hair  { fill: var(--color-fur-dark, #A96F3E); stroke: var(--color-ink, #14182B); stroke-width: 2.2; stroke-linejoin: round; }
+    .kids .body  { stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-linejoin: round; }
+    .kids .limb  { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.6; stroke-linecap: round; }
+    .kids .face  { fill: var(--color-ink, #14182B); }
+    .kids .smile { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 1.8; stroke-linecap: round; }
+    .kids .worn  { stroke: var(--color-ink, #14182B); stroke-width: 2.2; stroke-linejoin: round; }
+    .kids .name  { font-family: var(--font-display, sans-serif); font-size: 13px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .kids .cap   { font-family: var(--font-display, sans-serif); font-size: 13px; fill: color-mix(in oklab, var(--color-ink, #14182B) 65%, transparent); }
+  </style>
+
+  {kids.map((k, i) => {
+    const cx = XOFF + i * CELL + CELL / 2;
+    const w = wornBy(k);
+    const hasHat = w === 'hat' || w === 'both';
+    const hasCoat = w === 'coat' || w === 'both';
+    return (
+      <g>
+        {/* legs */}
+        <path d={`M ${cx - 9} 112 v 20 M ${cx + 9} 112 v 20`} class="limb" />
+        {/* body: the coat replaces the jumper when worn */}
+        <path d={`M ${cx - 17} 72 q 17 -7 34 0 l 4 42 h -42 Z`} class="body"
+              fill={hasCoat ? 'var(--color-toy-red)' : look[k].jumper} />
+        {hasCoat && <path d={`M ${cx} 68 v 46`} class="limb" stroke-width="1.8" />}
+        {/* arms */}
+        <path d={`M ${cx - 18} 78 l -10 22 M ${cx + 18} 78 l 10 22`} class="limb" />
+        {/* head */}
+        <circle cx={cx} cy="52" r="19" class="skin" />
+        {look[k].hair === 'short' && (
+          <path d={`M ${cx - 19} 46 q 4 -18 19 -18 q 15 0 19 18 q -8 -8 -19 -8 q -11 0 -19 8 Z`} class="hair" />
+        )}
+        {look[k].hair === 'curly' && (
+          <g class="hair">
+            <circle cx={cx - 13} cy="38" r="8" /><circle cx={cx} cy="33" r="9" />
+            <circle cx={cx + 13} cy="38" r="8" />
+          </g>
+        )}
+        {look[k].hair === 'braids' && (
+          <g class="hair">
+            <path d={`M ${cx - 19} 46 q 4 -18 19 -18 q 15 0 19 18 q -8 -8 -19 -8 q -11 0 -19 8 Z`} />
+            <circle cx={cx - 22} cy="58" r="6" /><circle cx={cx + 22} cy="58" r="6" />
+          </g>
+        )}
+        {/* face */}
+        <circle cx={cx - 6} cy="52" r="2.2" class="face" />
+        <circle cx={cx + 6} cy="52" r="2.2" class="face" />
+        <path d={`M ${cx - 5} 60 q 5 4 10 0`} class="smile" />
+        {hasHat && (
+          <g class="worn" fill="var(--color-toy-green)">
+            <path d={`M ${cx - 13} 34 q 13 -22 26 0 Z`} />
+            <rect x={cx - 22} y="32" width="44" height="6" rx="3" />
+          </g>
+        )}
+        <text x={cx} y="152" class="name" text-anchor="middle">{k}</text>
+      </g>
+    );
+  })}
+
+  {caption && <text x={W / 2} y="166" class="cap" text-anchor="middle">{caption}</text>}
+</svg>
+
+<style>
+  .kids { width: 100%; height: auto; max-width: 300px; display: block; margin: 0 auto; }
+</style>

@@ -8,6 +8,7 @@ anchorExample: "hat and coat"
 
 import TryIt from '@/components/TryIt.astro';
 import Warning from '@/components/Warning.astro';
+import Kids from '@/components/Kids.astro';
 
 Sam has a going-outside checklist:
 
@@ -21,6 +22,10 @@ The rule is: *Sam has the hat **and** Sam has the coat.*
 Now suppose that rule is **not** true. Something on the checklist is unchecked. Which one?
 
 We do not know! It could be the hat. It could be the coat. It could be both.
+
+<Kids kids={["Sam", "Pip", "Ada"]}
+      wearing={{Sam: "coat", Pip: "hat", Ada: "none"}}
+      caption="all three break the rule" />
 
 So the opposite of *hat **and** coat* is:
 

@@ -9,11 +9,17 @@ anchorExample: "red blocks and all blocks"
 import TryIt from '@/components/TryIt.astro';
 import Proof from '@/components/Proof.astro';
 import Warning from '@/components/Warning.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 One box is **part of** another when *everything* in the first box is also in the second.
 
 - The box of red blocks is part of the box of all blocks. ✓
 - The box of all blocks is **not** part of the box of red blocks, because of that blue one. ✗
+
+<ThingBox boxes={[
+  { label: "the red blocks", items: [{kind: "block", color: "red"}, {kind: "block", color: "red"}] },
+  { label: "all the blocks", items: [{kind: "block", color: "red"}, {kind: "block", color: "red"}, {kind: "block", color: "blue"}] },
+]} ring={{box: 1, index: 2}} />
 
 ## How to check
 

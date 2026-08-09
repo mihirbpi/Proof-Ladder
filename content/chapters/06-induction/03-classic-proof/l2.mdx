@@ -9,6 +9,7 @@ anchorExample: "1+3+5+… = n²"
 import TryIt from '@/components/TryIt.astro';
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
+import LShells from '@/components/LShells.astro';
 
 Here is a fact that looks like magic and is not.
 
@@ -17,6 +18,8 @@ Here is a fact that looks like magic and is not.
 $1 = 1$. And $1+3 = 4$. And $1+3+5 = 9$. And $1+3+5+7 = 16$.
 
 $1, 4, 9, 16$ — and those are exactly the squares you can build with tiles: $1$-by-$1$, $2$-by-$2$, $3$-by-$3$, $4$-by-$4$.
+
+<LShells n={4} />
 
 ## Why, with tiles
 

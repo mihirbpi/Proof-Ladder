@@ -85,20 +85,18 @@ Unique factorisation is often taught as obvious. It is not. Existence of a facto
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The linear-combination theorem — *if $a$ divides $b$ and $c$, then $a$ divides $bx+cy$* — has a shape you will meet again immediately, and recognising it saves relearning.
-
-**In linear algebra it is the subspace criterion.** If $\mathbf{u}$ and $\mathbf{v}$ lie in a subspace $W$, then $c_1\mathbf{u}+c_2\mathbf{v}$ lies in $W$. Same statement, different setting: a property closed under the operations is closed under all linear combinations of things having it.
-
-That is why span is defined as the set of all linear combinations, and why *the span of a subset of $W$ is contained in $W$* needs no separate proof — it is this theorem, and it is proved the same way, by unpacking the hypotheses and factoring.
-
-**The theorem also explains why proving something for a generating set suffices.** To show a linear map is zero, check it on a basis; to show two maps agree, check on a basis. Both work because every vector is a linear combination of basis vectors, and both operations respect linear combinations.
 
 **In calculus, linearity of the derivative and the integral is the same fact.**
 $$\frac{d}{dx}\big(af + bg\big) = af' + bg', \qquad \int (af+bg) = a\int f + b\int g.$$
 
-So a property preserved by differentiation is preserved by any linear combination of functions having it — which is why, having differentiated $x^n$, you can differentiate every polynomial without further work.
+So a property preserved by differentiation is preserved by any combination of functions having it — which is why, having differentiated $x^n$, you can differentiate every polynomial without further work.
 
-**The counterexamples matter as much as the theorem.** $a\mid bc$ does not give $a\mid b$ or $a\mid c$; likewise $\mathbf{v}\in\operatorname{Span}\{\mathbf{u},\mathbf{w}\}$ does not give $\mathbf{v}$ parallel to either. In both cases the compound was assembled from contributions neither factor carried alone.
+**The same template runs on polynomials.** Everything in this module used only three facts about $\mathbb{Z}$: you can add, you can multiply, and the product of two things stays in the system. Polynomials satisfy all three, so the divisibility template transfers verbatim.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **subspace** — a set of vectors closed under adding and scaling; **basis** — a smallest set of vectors that builds all the others; **span** — everything you can build by adding and scaling.*
+Say $d(x)$ divides $p(x)$ when $p(x) = d(x)q(x)$ for some polynomial $q(x)$ — the same definition, with polynomials in place of integers. Unpack, compute, factor, and check the cofactor is a polynomial, and you have proved that if $d$ divides both $p$ and $r$ then it divides $p \cdot a + r \cdot b$ for any polynomials $a$ and $b$.
+
+The Factor Theorem you met in precalculus is one instance: $(x - c)$ divides $p(x)$ exactly when $p(c) = 0$. Long division of polynomials is the division algorithm of §4.4 in the same disguise, remainder and all.
+
 </WhereThisGoes>

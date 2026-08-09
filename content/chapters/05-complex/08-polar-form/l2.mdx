@@ -9,6 +9,8 @@ anchorExample: "turning a quarter turn"
 import TryIt from '@/components/TryIt.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Figure from '@/components/Figure.astro';
 
 Every spot on the grid can be named in two different ways.
 
@@ -39,6 +41,15 @@ So the same number is:
 | one more quarter turn | $1$ | south |
 | $2i$ | $2$ | north |
 
+<Figure alt="Four points marked one step out from the middle in four directions: east, north, west and south." caption="All four are one step out. Only the direction differs.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "east"},
+    {re: 0, im: 1, label: "north"},
+    {re: -1, im: 0, label: "west"},
+    {re: 0, im: -1, label: "south"}
+  ]} range={2} />
+</Figure>
+
 Look at the first four. All distance $1$! They sit on a circle around the middle, one step out. Only their direction differs.
 
 ## Turning all the way around
@@ -62,7 +73,7 @@ Neither is better. They are good at different jobs, and grown-up mathematicians 
 </Warning>
 
 <Aside>
-The compass way is brilliant for one particular job: multiplying. It turns out that to multiply two complex numbers you just multiply the distances and add the turns. You will meet that in module 5.9, and it is much easier than the grid way.
+The compass way is brilliant for one particular job: joining two spots together. It turns out that you make the distances into equal groups and simply add the turns. You will meet that in module 5.9, and it is much easier than the grid way.
 </Aside>
 
 <TryIt>

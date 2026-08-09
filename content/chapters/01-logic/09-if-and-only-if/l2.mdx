@@ -8,6 +8,7 @@ anchorExample: "peas and dessert"
 
 import TryIt from '@/components/TryIt.astro';
 import Proof from '@/components/Proof.astro';
+import ThingRow from '@/components/ThingRow.astro';
 
 Some sentences pack two promises into one. They usually have the words **exactly when** in them.
 
@@ -25,6 +26,9 @@ To show the whole sentence is kept, you must **check both boxes**. One is not en
 ## Why one is not enough
 
 Suppose Grandma only kept the first promise. Sam eats peas, Sam gets dessert. Good so far.
+
+<ThingRow items={[{kind:"pea"},{kind:"pea"},{kind:"pea"},{kind:"cookie"}]}
+  groups={[3, 1]} groupLabels={["peas eaten", "dessert earned"]} />
 
 But then Sam's little brother gets dessert without touching a single pea! The first box is still checked. The second one is not. Grandma's "exactly when" is broken.
 

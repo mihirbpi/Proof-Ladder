@@ -15,12 +15,12 @@ Negation does not simply pass through the binary connectives untouched. That sin
 
 ## Logical equivalence
 
-Two statements $\varphi, \psi$ built from the same atomic statements are **logically equivalent**, written $\varphi \equiv \psi$, when they receive the same truth value under every assignment of truth values to the atoms. Equivalently: their truth-table columns coincide.
+Two statements $p, q$ built from the same atomic statements are **logically equivalent**, written $p \equiv q$, when they receive the same truth value under every assignment of truth values to the atoms. Equivalently: their truth-table columns coincide.
 
 Two consequences worth stating explicitly:
 
-- $\varphi \equiv \psi$ if and only if $\varphi \Leftrightarrow \psi$ is a tautology — true under every assignment (§1.3). The relation $\equiv$ lives in the metalanguage; $\Leftrightarrow$ lives inside the object language. In practice mathematicians blur the two, and no harm comes of it, but the distinction is real.
-- Equivalence licenses **substitution**: if $\varphi \equiv \psi$, then replacing an occurrence of $\varphi$ inside a larger statement by $\psi$ produces an equivalent statement. This is what makes rewriting a hypothesis a legitimate move in a proof.
+- $p \equiv q$ if and only if $p \Leftrightarrow q$ is a tautology — true under every assignment (§1.3). The relation $\equiv$ lives in the metalanguage; $\Leftrightarrow$ lives inside the object language. In practice mathematicians blur the two, and no harm comes of it, but the distinction is real.
+- Equivalence licenses **substitution**: if $p \equiv q$, then replacing an occurrence of $p$ inside a larger statement by $q$ produces an equivalent statement. This is what makes rewriting a hypothesis a legitimate move in a proof.
 
 ## The laws
 
@@ -79,13 +79,14 @@ The contrapositive therefore reads: *if $x + y$ is rational, then $x$ is irratio
 
 ## The general form
 
-For finitely many statements the laws iterate:
+For any number of statements the laws iterate:
 $$
-\neg\Big(\bigwedge_{i=1}^{n} p_i\Big) \equiv \bigvee_{i=1}^{n} \neg p_i,
-\qquad
-\neg\Big(\bigvee_{i=1}^{n} p_i\Big) \equiv \bigwedge_{i=1}^{n} \neg p_i,
+\neg(p_1 \wedge p_2 \wedge \cdots \wedge p_n) \equiv \neg p_1 \vee \neg p_2 \vee \cdots \vee \neg p_n,
 $$
-by induction on $n$ (Chapter 6 supplies the induction; the base case $n = 2$ is what we proved). Taking $n \to \infty$ — that is, replacing the finite conjunction by "for all $x$" and the finite disjunction by "there exists $x$" — gives exactly the quantifier negation rules of §1.11:
+$$
+\neg(p_1 \vee p_2 \vee \cdots \vee p_n) \equiv \neg p_1 \wedge \neg p_2 \wedge \cdots \wedge \neg p_n,
+$$
+by induction on $n$ (Chapter 6 supplies the induction; the base case $n = 2$ is what we proved). Now let the list run on without end — replacing the chain of *and*s by "for all $x$" and the chain of *or*s by "there exists $x$" — and you get exactly the quantifier negation rules of §1.11:
 $$
 \neg \forall x\, p(x) \equiv \exists x\, \neg p(x), \qquad \neg \exists x\, p(x) \equiv \forall x\, \neg p(x).
 $$
@@ -96,13 +97,14 @@ Augustus De Morgan published these in the 1840s, in the same wave of work that g
 </Aside>
 
 <WhereThisGoes level="l7">
+
 De Morgan's laws are what you will use to say precisely how a calculus hypothesis fails.
 
 **Discontinuity.** A function is continuous at $a$ when the left limit, the right limit, and $f(a)$ all exist **and** agree. Negate that conjunction and you get a disjunction — the classification of discontinuities you meet in the first weeks of calculus. Removable, jump, and infinite are the branches of $\neg(p\wedge q\wedge r)$, and the reason there are exactly three kinds is that there are exactly three conjuncts.
 
 **Failure of the Mean Value Theorem.** The hypothesis is *continuous on $[a,b]$ and differentiable on $(a,b)$*. Its negation is *not continuous on $[a,b]$ **or** not differentiable somewhere in $(a,b)$* — and every standard counterexample exhibits exactly one of the two disjuncts, never both. Knowing the negation is an *or* tells you a single failure point suffices.
 
-**Non-invertibility.** In linear algebra, a matrix is invertible when it is square **and** has non-zero determinant. Non-invertible therefore means non-square **or** singular, and proofs about non-invertible matrices split into those two cases.
-
 In each case the swap is doing the same work: it converts "the theorem does not apply" into a usable list of alternatives, and it tells you in advance that the proof will need cases (§1.12).
+
+
 </WhereThisGoes>

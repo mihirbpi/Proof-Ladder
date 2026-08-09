@@ -1,0 +1,131 @@
+---
+// The farm picture for §1.11 — the page the "one bad apple" move is built on.
+//
+// The text counts legs out loud: "Dog — four legs. Cow — four legs. Pig — four
+// legs. Horse — four legs. Duck — TWO LEGS!" So every animal is drawn side-on
+// with its legs separated and countable, and the duck's two legs have to read
+// as two at a glance. That is the whole job of this figure.
+//
+// animals   which to draw, in order
+// odd       index of the animal that breaks the claim — ringed, and its leg
+//           count printed, so the counterexample is findable without counting
+//           every animal first
+// showLegs  print the leg count under every animal
+export interface Props {
+  animals?: ('dog' | 'cow' | 'pig' | 'horse' | 'duck')[];
+  odd?: number | null;
+  showLegs?: boolean;
+}
+const { animals = ['dog', 'cow', 'pig', 'horse', 'duck'], odd = null, showLegs = false } = Astro.props;
+
+const CELL = 108;
+const H = 150;
+const W = animals.length * CELL;
+const LEGS: Record<string, number> = { dog: 4, cow: 4, pig: 4, horse: 4, duck: 2 };
+
+const alt = 'A row of farm animals: '
+  + animals.map((a) => `a ${a} with ${LEGS[a]} legs`).join(', ')
+  + (odd !== null ? `. The ${animals[odd]} is ringed, because it is the one with a different number of legs.` : '.');
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="farm"
+     role="img" aria-label={alt}>
+  <style>
+    .farm .hide  { stroke: var(--color-ink, #14182B); stroke-width: 2.2; stroke-linejoin: round; }
+    .farm .leg   { stroke: var(--color-ink, #14182B); stroke-width: 4.5; stroke-linecap: round; }
+    .farm .line  { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 1.8; stroke-linecap: round; }
+    .farm .eye   { fill: var(--color-ink, #14182B); }
+    .farm .name  { font-family: var(--font-display, sans-serif); font-size: 12px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .farm .legs  { font-family: var(--font-mono, monospace); font-size: 11px; fill: color-mix(in oklab, var(--color-ink, #14182B) 65%, transparent); }
+    .farm .legs-odd { font-family: var(--font-mono, monospace); font-size: 11px; font-weight: 700; fill: var(--color-false, #A8324A); }
+    .farm .ring  { fill: none; stroke: var(--color-false, #A8324A); stroke-width: 2.6; stroke-dasharray: 6 5; }
+    .farm .ground { stroke: var(--color-rule, #C6CBC0); stroke-width: 1.5; }
+  </style>
+
+  <line x1="6" y1="104" x2={W - 6} y2="104" class="ground" />
+
+  {animals.map((a, i) => {
+    const cx = i * CELL + CELL / 2;
+    const fur = a === 'pig' ? 'var(--color-toy-red)'
+      : a === 'duck' ? 'var(--color-toy-yellow)'
+      : a === 'horse' ? 'var(--color-fur-dark)'
+      : a === 'cow' ? 'var(--color-card)'
+      : 'var(--color-fur)';
+    return (
+      <g>
+        {/* four-legged animals share a body plan; the duck is drawn apart */}
+        {a !== 'duck' && (
+          <g>
+            {/* legs first, so the body sits over their tops */}
+            <g class="leg">
+              <line x1={cx - 20} y1="80" x2={cx - 20} y2="104" />
+              <line x1={cx - 8} y1="80" x2={cx - 8} y2="104" />
+              <line x1={cx + 10} y1="80" x2={cx + 10} y2="104" />
+              <line x1={cx + 22} y1="80" x2={cx + 22} y2="104" />
+            </g>
+            <ellipse cx={cx} cy="66" rx="30" ry="18" class="hide" fill={fur} />
+            <circle cx={cx + 30} cy="46" r="15" class="hide" fill={fur} />
+            <circle cx={cx + 34} cy="44" r="2.2" class="eye" />
+            <path d={`M ${cx - 30} 60 q -12 -6 -8 -18`} class="line" />
+          </g>
+        )}
+
+        {a === 'dog' && (
+          <g>
+            <path d={`M ${cx + 22} 36 q -8 -6 -2 -12 q 8 2 8 12 Z`} class="hide" fill={fur} />
+            <path d={`M ${cx + 44} 50 h 4`} class="line" />
+          </g>
+        )}
+        {a === 'cow' && (
+          <g>
+            <ellipse cx={cx - 10} cy="62" rx="9" ry="6" fill="var(--color-ink)" opacity="0.72" />
+            <ellipse cx={cx + 12} cy="72" rx="7" ry="5" fill="var(--color-ink)" opacity="0.72" />
+            <path d={`M ${cx + 24} 34 q -3 -8 4 -8`} class="line" />
+            <path d={`M ${cx + 36} 33 q 3 -8 -4 -8`} class="line" />
+            <ellipse cx={cx + 42} cy="50" rx="7" ry="5" class="hide" fill="var(--color-toy-red)" />
+          </g>
+        )}
+        {a === 'pig' && (
+          <g>
+            <ellipse cx={cx + 44} cy="49" rx="7" ry="6" class="hide" fill="var(--color-toy-red)" />
+            <path d={`M ${cx - 30} 58 q -10 -4 -6 -12 q 6 0 6 6`} class="line" />
+            <path d={`M ${cx + 26} 33 q 2 -7 7 -4`} class="line" />
+          </g>
+        )}
+        {a === 'horse' && (
+          <g>
+            <path d={`M ${cx + 18} 36 q 10 -14 22 -6`} class="line" stroke-width="3" />
+            <path d={`M ${cx + 40} 52 q 8 2 8 8`} class="line" />
+            <path d={`M ${cx - 30} 58 q -14 -2 -14 -16`} class="line" stroke-width="3" />
+          </g>
+        )}
+
+        {a === 'duck' && (
+          <g>
+            {/* two legs, and only two — the point of the whole page */}
+            <g class="leg">
+              <line x1={cx - 6} y1="84" x2={cx - 6} y2="104" />
+              <line x1={cx + 8} y1="84" x2={cx + 8} y2="104" />
+            </g>
+            <ellipse cx={cx} cy="70" rx="28" ry="17" class="hide" fill={fur} />
+            <circle cx={cx + 22} cy="46" r="13" class="hide" fill={fur} />
+            <circle cx={cx + 26} cy="44" r="2.2" class="eye" />
+            <path d={`M ${cx + 34} 47 l 14 3 l -14 4 Z`} class="hide" fill="var(--color-toy-orange)" />
+            <path d={`M ${cx - 26} 66 q -10 4 -2 10`} class="line" />
+          </g>
+        )}
+
+        {odd === i && <circle cx={cx + 4} cy="66" r="50" class="ring" />}
+        <text x={cx + 4} y="124" class="name" text-anchor="middle">{a}</text>
+        {(showLegs || odd === i) && (
+          <text x={cx + 4} y="140" class={odd === i ? 'legs-odd' : 'legs'} text-anchor="middle">
+            {LEGS[a]} legs
+          </text>
+        )}
+      </g>
+    );
+  })}
+</svg>
+
+<style>
+  .farm { width: 100%; height: auto; max-width: 540px; display: block; margin: 0 auto; }
+</style>

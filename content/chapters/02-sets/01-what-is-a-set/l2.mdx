@@ -8,6 +8,7 @@ anchorExample: "the toy box"
 
 import TryIt from '@/components/TryIt.astro';
 import Warning from '@/components/Warning.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 A **box** is a bunch of things collected together. Every thing in the world is either **in** the box or **out** of it. There is no maybe.
 
@@ -22,11 +23,18 @@ Boxes get short names, usually a capital letter. Let's say:
 
 > $A$ is the box with a cat, a dog, and a duck in it.
 
+<ThingBox boxes={[{ label: "box A", items: [{kind: "cat"}, {kind: "dog"}, {kind: "duck"}] }]} />
+
 Now you can talk about $A$ without listing it every time. Handy.
 
 ## Three surprising things about boxes
 
 **1. Order does not matter.** A box with a cat, a dog, and a duck is the *same box* as one with a duck, a cat, and a dog. Shake the box. Nothing changed.
+
+<ThingBox boxes={[
+  { label: "ball, block, star", items: [{kind: "ball"}, {kind: "block"}, {kind: "star"}] },
+  { label: "star, ball, block", items: [{kind: "star"}, {kind: "ball"}, {kind: "block"}] },
+]} />
 
 **2. Saying it twice does not matter.** If you say "cat, cat, dog," the box still just has a cat and a dog in it. Saying a name twice does not put two things in.
 

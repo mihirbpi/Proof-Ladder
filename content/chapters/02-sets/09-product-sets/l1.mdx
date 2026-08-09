@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import GridPairs from '@/components/GridPairs.astro';
 
 Sam has 2 shirts. One red, one green.
 
@@ -20,6 +21,12 @@ Let's count them out loud.
 Red shirt, sun hat. Red shirt, woolly hat. Red shirt, party hat. That is 3.
 
 Green shirt, sun hat. Green shirt, woolly hat. Green shirt, party hat. That is 3 more.
+
+<GridPairs
+  rows={["red shirt", "green shirt"]} cols={["sun hat", "woolly hat", "party hat"]}
+  rowThings={[{kind: "shirt", color: "red"}, {kind: "shirt", color: "green"}]}
+  colThings={[{kind: "hat", color: "yellow"}, {kind: "hat", color: "blue"}, {kind: "hat", color: "green"}]}
+  labelRows="shirts" labelCols="hats" />
 
 3 and 3 makes 6. Six **outfits**!
 

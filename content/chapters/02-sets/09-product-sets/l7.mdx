@@ -16,27 +16,27 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 The ordered pair is characterised by a single property:
 $$
-(a,b) = (c,d) \iff a = c \wedge b = d. \tag{$\ast$}
+(a,b) = (c,d) \iff a = c \wedge b = d. \tag{1}
 $$
 
-Anything satisfying $(\ast)$ will do; the standard implementation is Kuratowski's,
+Anything satisfying (1) will do; the standard implementation is Kuratowski's,
 $$
 (a,b) := \{\{a\}, \{a,b\}\},
 $$
-from which $(\ast)$ is a short exercise in extensionality. The implementation is deliberately forgettable — what matters is $(\ast)$, and a different encoding satisfying it would serve equally well. This is the first appearance of a pattern that dominates modern mathematics: objects are characterised by the properties they satisfy, not by what they are made of.
+from which (1) is a short exercise in extensionality. The implementation is deliberately forgettable — what matters is (1), and a different encoding satisfying it would serve equally well. This is the first appearance of a pattern that dominates modern mathematics: objects are characterised by the properties they satisfy, not by what they are made of.
 
 ## The cartesian product
 
 $$
 S \times T = \{(s,t) \mid s \in S \wedge t \in T\},
 \qquad
-(x,y) \in S \times T \iff x \in S \wedge y \in T. \tag{$\dagger$}
+(x,y) \in S \times T \iff x \in S \wedge y \in T. \tag{2}
 $$
 
 Basic facts, all immediate:
 
 - $|S \times T| = |S|\,|T|$ for finite sets — multiplication as the size of a grid.
-- $S \times T \neq T \times S$ unless $S = T$ or one is empty; $(\ast)$ is what obstructs the identification. There is nevertheless a canonical bijection $S \times T \to T \times S$, and much of the time that is all one needs.
+- $S \times T \neq T \times S$ unless $S = T$ or one is empty; (1) is what obstructs the identification. There is nevertheless a canonical bijection $S \times T \to T \times S$, and much of the time that is all one needs.
 - $S \times \emptyset = \emptyset$: the second coordinate has nothing to be.
 - $\times$ is not associative on the nose either — $(a,(b,c))$, $((a,b),c)$ and $(a,b,c)$ are formally distinct — but the canonical bijections between them are so routine that everyone writes $S \times T \times R$ and moves on.
 
@@ -45,7 +45,7 @@ Every proof about products opens the same way:
 
 > Let $z \in A \times C$ be arbitrary. Then $z = (x,y)$ with $x \in A$ and $y \in C$.
 
-Until $z$ is decomposed, $(\dagger)$ cannot be applied and the argument has nothing to work with. Failing to decompose is the characteristic error in this module, as failing to unfold a definition is in the previous ones.
+Until $z$ is decomposed, (2) cannot be applied and the argument has nothing to work with. Failing to decompose is the characteristic error in this module, as failing to unfold a definition is in the previous ones.
 </Warning>
 
 ## Interaction with intersection
@@ -53,7 +53,7 @@ Until $z$ is decomposed, $(\dagger)$ cannot be applied and the argument has noth
 > **Proposition.** $(A \cap B) \times (C \cap D) = (A \times C) \cap (B \times D)$.
 
 <Discussion>
-  <div slot="know">Both sides unfold, via $(\dagger)$ and the definition of $\cap$, to a conjunction of the same four atomic statements.</div>
+  <div slot="know">Both sides unfold, via (2) and the definition of $\cap$, to a conjunction of the same four atomic statements.</div>
   <div slot="want">Set equality.</div>
   <div slot="how">Decompose an arbitrary element into coordinates, unfold both sides, and observe that they differ only by the order of conjuncts. Commutativity and associativity of $\wedge$ finish it, and since every step is biconditional the two inclusions come together.</div>
 </Discussion>
@@ -102,17 +102,13 @@ Infinite products require care. For a family $\{A_i\}_{i \in I}$, $\prod_{i \in 
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Products are the sets both courses ahead actually work in.
 
 **$\mathbb{R}^n$ is a product.** $\mathbb{R}^2 = \mathbb{R}\times\mathbb{R}$, $\mathbb{R}^3 = \mathbb{R}\times\mathbb{R}\times\mathbb{R}$, and a vector in $\mathbb{R}^n$ *is* an ordered $n$-tuple. The defining property of ordered pairs — equal exactly when the entries match — is what makes coordinates well defined, and it is why $\mathbf{u} = \mathbf{v}$ in $\mathbb{R}^n$ unpacks into $n$ separate scalar equations.
-
-That unpacking is used in every proof in linear algebra. To show two vectors are equal you show their components agree; to show a linear map is determined by its action on a basis you compare coefficients. One vector equation is $n$ real equations, exactly as one complex equation was two (§5.2).
-
-**A matrix is a function on a product.** An $m\times n$ matrix has entries indexed by $\{1,\dots,m\}\times\{1,\dots,n\}$, so it is a function from a product set to $\mathbb{R}$ — which is what "doubly indexed" means, and why $a_{ij}$ and $a_{ji}$ are different entries in general.
 
 **In calculus, a function of two variables has a product for its domain.** $f(x,y)$ is a function $D \to \mathbb{R}$ with $D\subseteq\mathbb{R}^2$, and the graph is a subset of $\mathbb{R}^3 = \mathbb{R}^2\times\mathbb{R}$. Level curves are pre-images (§3.3); partial derivatives are ordinary derivatives of restrictions along the two factors.
 
 Even in one variable the product is present: the graph of $f$ is $\{(x, f(x)) : x \in \operatorname{dom} f\}\subseteq \mathbb{R}\times\mathbb{R}$, which is §3.1's definition of a function as a set of pairs. **The picture you have been drawing since algebra is a subset of a product**, and the vertical line test is the single-valuedness condition read off that subset.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>

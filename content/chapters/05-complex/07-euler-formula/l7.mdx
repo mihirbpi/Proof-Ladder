@@ -99,9 +99,10 @@ $e^{i\pi} + 1 = 0$ is Euler's identity. Its aesthetic reputation is deserved but
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Euler's formula is the identity that unifies the three families of functions you have studied separately.
 
-**In calculus it explains why the same techniques handle growth and oscillation.** The differential equation $y'' = -\omega^2 y$ has solutions $\cos\omega t$ and $\sin\omega t$; the equation $y'' = k^2y$ has $e^{kt}$ and $e^{-kt}$. These look like different subjects, and Euler's formula shows they are one: substituting $k = i\omega$ turns the second into the first.
+**In calculus it explains why the same techniques handle growth and oscillation.** The differential equation $y'' = -w^2 y$ has solutions $\cosw t$ and $\sinw t$; the equation $y'' = k^2y$ has $e^{kt}$ and $e^{-kt}$. These look like different subjects, and Euler's formula shows they are one: substituting $k = iw$ turns the second into the first.
 
 That is why the characteristic-equation method works uniformly. Real roots give exponentials, complex roots give oscillation, and no separate theory is needed — the formula converts between them, and the $e^{\alpha t}(\cos\beta t, \sin\beta t)$ solutions for complex roots $\alpha\pm\beta i$ are $e^{(\alpha+\beta i)t}$ with its real and imaginary parts extracted.
 
@@ -109,9 +110,4 @@ That is why the characteristic-equation method works uniformly. Real roots give 
 
 Recognising which steps need that hypothesis is one of the things a first analysis course trains, and this is the earliest place it bites.
 
-**In linear algebra, the same series defines the matrix exponential.**
-$$e^{At} = I + At + \frac{(At)^2}{2!} + \frac{(At)^3}{3!}+\cdots,$$
-which converges for every square $A$ and solves the system $\mathbf{x}' = A\mathbf{x}$ with $\mathbf{x}(0) = \mathbf{x}_0$ as $\mathbf{x}(t) = e^{At}\mathbf{x}_0$.
-
-When $A$ is the $90°$ rotation generator, $e^{At}$ is the rotation matrix through angle $t$ — Euler's formula in matrix form, with the same even/odd split producing $\cos t$ and $\sin t$ in the entries.
 </WhereThisGoes>

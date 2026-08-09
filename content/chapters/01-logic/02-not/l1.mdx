@@ -8,8 +8,12 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Door from '@/components/Door.astro';
+import Biscuit from '@/components/Biscuit.astro';
 
 Look at the door. Go on, look!
+
+<Door both={true} />
 
 *The door is open.*
 
@@ -26,6 +30,8 @@ Is the door shut? Then the **opposite** wins.
 They can never both win. They can never both lose. One is true. The other is not.
 
 Now here is a funny one. Biscuit the dog is asleep on the rug.
+
+<Biscuit />
 
 *Biscuit is asleep.* True.
 

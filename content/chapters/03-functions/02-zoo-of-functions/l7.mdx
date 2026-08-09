@@ -32,20 +32,20 @@ Floor is neither injective ($\lfloor 3.1 \rfloor = \lfloor 3.9 \rfloor$) nor con
 ## Euler's totient
 
 $$
-\varphi(n) = \big|\{ k \in \mathbb{Z} \mid 1 \leq k \leq n,\ \gcd(k,n)=1 \}\big|.
+\operatorname{tot}(n) = \big|\{ k \in \mathbb{Z} \mid 1 \leq k \leq n,\ \gcd(k,n)=1 \}\big|.
 $$
 
-Values: $\varphi(1)=1$, $\varphi(6)=2$, $\varphi(8)=4$, $\varphi(9)=6$, $\varphi(12)=4$.
+Values: $\operatorname{tot}(1)=1$, $\operatorname{tot}(6)=2$, $\operatorname{tot}(8)=4$, $\operatorname{tot}(9)=6$, $\operatorname{tot}(12)=4$.
 
-> **Proposition.** $\varphi(p) = p-1$ for $p$ prime.
+> **Proposition.** $\operatorname{tot}(p) = p-1$ for $p$ prime.
 
 <Proof>
-Let $p$ be prime and let $1 \leq k \leq p$. If $k < p$ then $\gcd(k,p)$ divides $p$, so it is $1$ or $p$; it cannot be $p$ since $p \nmid k$ for $0 < k < p$. Hence $\gcd(k,p) = 1$, and all $p-1$ such $k$ are counted. Finally $\gcd(p,p) = p \neq 1$, so $k = p$ is not counted. Therefore $\varphi(p) = p-1$.
+Let $p$ be prime and let $1 \leq k \leq p$. If $k < p$ then $\gcd(k,p)$ divides $p$, so it is $1$ or $p$; it cannot be $p$ since $p \nmid k$ — read *"$p$ does not divide $k$"* — for $0 < k < p$. Hence $\gcd(k,p) = 1$, and all $p-1$ such $k$ are counted. Finally $\gcd(p,p) = p \neq 1$, so $k = p$ is not counted. Therefore $\operatorname{tot}(p) = p-1$.
 </Proof>
 
-$\varphi$ is *multiplicative*: $\varphi(mn) = \varphi(m)\varphi(n)$ when $\gcd(m,n)=1$, which with $\varphi(p^k) = p^k - p^{k-1}$ yields
+$\operatorname{tot}$ is *multiplicative*: $\operatorname{tot}(mn) = \operatorname{tot}(m)\operatorname{tot}(n)$ when $\gcd(m,n)=1$, which with $\operatorname{tot}(p^k) = p^k - p^{k-1}$ yields
 $$
-\varphi(n) = n \prod_{p \mid n}\left(1 - \frac1p\right).
+\operatorname{tot}(n) = n \prod_{p \mid n}\left(1 - \frac1p\right).
 $$
 Note that this "formula" presupposes the factorisation of $n$; it is not an evaluation procedure. The gap between *characterised* and *computable* is exactly where cryptography lives.
 
@@ -80,15 +80,13 @@ Functions can act on functions. Differentiation $D : C^1(\mathbb{R}) \to C^0(\ma
 </Aside>
 
 <WhereThisGoes level="l7">
-The width of the definition is what lets calculus and linear algebra treat as functions things that have no formula and no graph.
-
 **A sequence is a function $\mathbb{N}\to\mathbb{R}$.** Writing $a_n$ instead of $a(n)$ is notation, not a different kind of object — which is why sequences have limits, why they can be monotone or bounded, and why the theorems about convergence of sequences and of functions look so alike. Recognising the identification early saves relearning the same material twice.
 
 **Piecewise definitions are the norm, not the exception.** $|x|$, the floor function, and every function defined by cases require the two obligations this module names: exhaustive cases and agreement where they overlap. Continuity at a boundary between pieces is then a genuine question, and it is exactly where the standard exam problems live.
 
 **Functions with no formula are common in calculus.** $F(x) = \int_0^x e^{-t^2}\,dt$ is a perfectly good function, differentiable everywhere, with no expression in terms of elementary functions. So is the solution of a differential equation whose closed form does not exist. Insisting a function be a formula would exclude both, and much of the subject with them.
 
-**In linear algebra, the inputs stop being numbers.** The determinant is a function from matrices to $\mathbb{R}$; the trace is another; the transpose maps matrices to matrices. Differentiation itself is a function from a space of functions to a space of functions — a **linear transformation**, once you check $\frac{d}{dx}(af+bg) = af'+bg'$, which is the definition of linearity applied to an operator rather than a matrix.
-
 That last example is where the abstraction pays. **Nothing in §3.1 required inputs to be numbers**, so the whole of Chapters 3's machinery — injective, surjective, invertible, composition — applies to differentiation, and it is genuinely useful there.
+
+
 </WhereThisGoes>

@@ -79,7 +79,7 @@ $$
 $$
 so the contrapositive reads
 $$
-x + y \in \mathbb{Q} \;\Longrightarrow\; \big(x \notin \mathbb{Q} \;\vee\; y \in \mathbb{Q}\big).
+x + y \in \mathbb{Q} \;\Rightarrow\; \big(x \notin \mathbb{Q} \;\vee\; y \in \mathbb{Q}\big).
 $$
 
 A disjunctive conclusion is proved by the standard manoeuvre: assume the negation of one disjunct and prove the other. So: assume $x + y \in \mathbb{Q}$ and $x \in \mathbb{Q}$; then $y = (x+y) - x$ is a difference of rationals, hence rational — which is the remaining disjunct. Notice that the correct De Morgan negation was essential; the naive negation "$x \notin \mathbb{Q}$ **and** $y \in \mathbb{Q}$" is a strictly stronger conclusion, and it is not provable from the hypothesis.
@@ -106,6 +106,7 @@ The three flips have a vocabulary attached that you will meet in every later cou
 The contrapositive is precisely the second reading of the same fact, which is why they are equivalent. The converse asserts the reverse pair of roles, and $p \Leftrightarrow q$ — module 1.9 — asserts both, i.e. that each condition is necessary and sufficient for the other.
 
 <WhereThisGoes level="l7">
+
 Calculus is full of theorems whose converses fail, and the failures are the interesting part.
 
 **Differentiable $\Rightarrow$ continuous.** True, and the converse is false: $f(x)=|x|$ is continuous at $0$ and not differentiable there. Weierstrass produced a function continuous everywhere and differentiable nowhere, which settles the converse decisively.
@@ -114,7 +115,4 @@ Calculus is full of theorems whose converses fail, and the failures are the inte
 
 **Convergent $\Rightarrow$ terms tend to zero.** The converse — the tempting one — is false, and the harmonic series is the counterexample. The contrapositive, however, is true and free: *if the terms do not tend to zero, the series diverges.* That is the $n$-th Term Test, and it is a theorem you get for nothing once you know contraposition is safe.
 
-In linear algebra the pattern repeats. *A basis $\Rightarrow$ spanning*, with a false converse; *invertible $\Rightarrow$ non-zero determinant*, with a true converse that is proved separately. The Invertible Matrix Theorem is precisely a list of statements whose converses all happen to hold — which is why it is a theorem and not a definition.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse; **basis** — a smallest set of vectors that builds all the others; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

@@ -21,7 +21,7 @@ $$
 (x \in \mathbb{N}\wedge x=y)\Rightarrow y\in\mathbb{N}.
 $$
 
-The fourth is a special case of **substitution**: if $x = y$ then $\varphi(x)\leftrightarrow\varphi(y)$ for every formula $\varphi$. Peano isolates the instance he needs; a modern treatment states substitution in full, or — more commonly — declines to axiomatise equality at all, treating it as a logical symbol with fixed interpretation. On that view A1–A4 belong to the underlying logic rather than to arithmetic, and many presentations of Peano arithmetic omit them for exactly that reason.
+The fourth is a special case of **substitution**: if $x = y$ then any statement true of $x$ is true of $y$. Peano isolates the instance he needs; a modern treatment states substitution in full, or — more commonly — declines to axiomatise equality at all, treating it as a logical symbol with fixed interpretation. On that view A1–A4 belong to the underlying logic rather than to arithmetic, and many presentations of Peano arithmetic omit them for exactly that reason.
 
 ## Equivalence relations
 
@@ -106,19 +106,9 @@ The consequences are strange and productive: identifications can carry informati
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Equivalence relations are how mathematics decides what to ignore, and both courses ahead use them constantly.
-
-**Row equivalence is the central one in linear algebra.** Two matrices are row equivalent when one can be obtained from the other by elementary row operations, and the relation is reflexive, symmetric (every operation is reversible), and transitive (operations compose). It is therefore an equivalence relation, and it partitions the matrices into classes.
-
-Each class contains exactly one matrix in **reduced row echelon form**, which is why that form — abbreviated rref — is a canonical representative and why "the rref of $A$" is a legitimate phrase. Uniqueness is a genuine theorem, and without it the whole computational apparatus would be ill-defined.
-
-The payoff is that row-equivalent matrices share everything the theory cares about: the same null space, the same row space, the same rank — the number of independent rows — and the same solution set. **Row reduction is legitimate because those quantities are invariants of the equivalence class**, and checking that they are is what the theorems establish.
-
-Similarity of matrices ($B = P^{-1}AP$) is another equivalence relation, with the same three properties and the same purpose: similar matrices represent the same transformation in different bases, so they share eigenvalues, determinant, trace, and rank.
 
 **In calculus the important one is "differ by a constant."** Two antiderivatives of the same function on an interval differ by a constant — reflexive, symmetric, transitive — and the classes are what $+\,C$ denotes. The indefinite integral names an equivalence class, not a function, and that is why the constant is not optional.
 
-**The recurring obligation** is well-definedness: an operation on classes must not depend on the representative chosen. §4.5's fraction arithmetic was the first instance; row operations and change of basis are the next.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **bases** — the coordinate systems a space can be described in; **null space** — the vectors a matrix sends to zero; **row space** — what the rows of the matrix can build; **row echelon** — the staircase shape row reduction produces; **eigenvalue** — a factor by which a matrix stretches a direction without turning it.*
 </WhereThisGoes>

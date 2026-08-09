@@ -48,7 +48,7 @@ These are disjoint and their union is $\mathcal{P}(S)$, since $a \in A$ or $a \n
 
 *Counting $\mathcal{U}$.* $A \subseteq S$ with $a \notin A$ holds precisely when $A \subseteq S'$. So $\mathcal{U} = \mathcal{P}(S')$, and $|\mathcal{U}| = 2^k$ by (IH).
 
-*Counting $\mathcal{V}$.* Define $\varphi : \mathcal{V}\to\mathcal{P}(S')$ by $\varphi(A) = A\setminus\{a\}$, and $\psi : \mathcal{P}(S')\to\mathcal{V}$ by $\psi(B) = B\cup\{a\}$. Then $\varphi(\psi(B)) = B$ and $\psi(\varphi(A)) = A$ for $A \in \mathcal{V}$, so $\varphi$ is a bijection (module 3.9). Hence $|\mathcal{V}| = |\mathcal{P}(S')| = 2^k$.
+*Counting $\mathcal{V}$.* Define $u : \mathcal{V}\to\mathcal{P}(S')$ by $u(A) = A\setminus\{a\}$, and $v : \mathcal{P}(S')\to\mathcal{V}$ by $v(B) = B\cup\{a\}$. Then $u(v(B)) = B$ and $v(u(A)) = A$ for $A \in \mathcal{V}$, so $u$ is a bijection (module 3.9). Hence $|\mathcal{V}| = |\mathcal{P}(S')| = 2^k$.
 
 Therefore
 $$

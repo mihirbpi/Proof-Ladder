@@ -8,10 +8,15 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Cubbies from '@/components/Cubbies.astro';
 
 Last time we asked: does anybody share?
 
 Here is a different question. Look at the wall of cubbies again.
+<Cubbies cubbies={["1", "2", "3"]}
+  hung={[{child: "Sam", cubby: 0}, {child: "Pip", cubby: 1}, {child: "Ada", cubby: 2}]}
+  caption="every cubby used — all used up" />
+
 
 **Did every cubby get used?**
 
@@ -24,6 +29,7 @@ Cubby 3 — empty. Nobody went there.
 So no. Not **all used up**.
 
 Now imagine a classroom where every single cubby has a coat in it. Not one empty hook.
+
 
 That is a full machine. **All used up!**
 

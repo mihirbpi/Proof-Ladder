@@ -8,8 +8,11 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Noodle from '@/components/Noodle.astro';
 
 This is Noodle. Noodle is a cat.
+
+<Noodle numberLegs={true} />
 
 *Noodle has four legs.*
 
@@ -32,6 +35,8 @@ And this one:
 *Is Noodle sleepy?*
 
 That is a question. Questions are not tellings.
+
+<Noodle mood="sleepy" />
 
 Noodle is very sleepy. But the question did not tell us. It asked us.
 

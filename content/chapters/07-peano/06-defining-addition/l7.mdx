@@ -119,6 +119,7 @@ Chapter 4's assumptions are now discharged for $\mathbb{N}$: closure under $+$ i
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Recursive definition is the pattern behind sequences, series, and iterative methods, and the termination guarantee is always the same one.
 
 **In calculus, recursively defined sequences are everywhere.** $a_1 = 1$, $a_{n+1} = \frac12(a_n + \frac{2}{a_n})$ is Newton's method for $\sqrt2$; the Fibonacci recurrence, compound-interest sequences, and the partial sums of any series are all defined this way — a base case, and a rule producing the next term from earlier ones.
@@ -129,7 +130,7 @@ Every one of them terminates for the reason Axiom 9 supplies: the index decrease
 
 **The commutativity result is the module's real lesson.** The definition recurses on the second argument only, so $x + y = y + x$ is a theorem requiring three inductions. **Obviousness is not the same as cheapness**, and a statement's familiarity says nothing about its distance from the axioms.
 
-**In linear algebra, the corresponding surprise is that matrix multiplication does not commute at all.** Having seen that commutativity is a property to be proved rather than assumed, the failure is less startling — and the same holds for composition of functions (§3.7), where the counterexamples are easy.
-
 **Order was defined, not postulated.** $x\leq y$ means $\exists z$ with $x+z=y$, and every property of $\leq$ follows. That the order comes free from addition is a genuine economy, and one that geometry does not enjoy.
+
+
 </WhereThisGoes>

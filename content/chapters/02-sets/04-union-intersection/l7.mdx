@@ -24,7 +24,7 @@ The definitions are transcriptions of $\vee$ and $\wedge$, and the working forms
 $$
 x \in S \cup T \iff (x \in S) \vee (x \in T),
 \qquad
-x \in S \cap T \iff (x \in S) \wedge (x \in T). \tag{$\ast$}
+x \in S \cap T \iff (x \in S) \wedge (x \in T). \tag{1}
 $$
 
 <Figure alt="Two overlapping circles S and T, fully shaded: the union." caption="$S \cup T$">
@@ -39,7 +39,7 @@ Since $\vee$ is inclusive, the union contains the intersection. Venn diagrams ar
 
 ## Basic algebra
 
-All of the following are immediate from $(\ast)$ plus the corresponding fact about the connective:
+All of the following are immediate from (1) plus the corresponding fact about the connective:
 
 | Property | Statement | Logical source |
 |---|---|---|
@@ -49,7 +49,7 @@ All of the following are immediate from $(\ast)$ plus the corresponding fact abo
 | Identity | $S \cup \emptyset = S$, $S \cap X = S$ for $S \subseteq X$ | $p \vee F \equiv p$ |
 | Absorption | $S \cup (S \cap T) = S$ | $p \vee (p \wedge q) \equiv p$ |
 
-Associativity licenses $\bigcup$ over finitely many sets without parentheses.
+Associativity is what lets you write $A \cup B \cup C$ over finitely many sets without parentheses.
 
 ### Intersection is smaller, union is larger
 
@@ -95,22 +95,21 @@ $$
 
 The second display contains a genuine theorem: the common multiples of $a$ and $b$ are exactly the multiples of $\operatorname{lcm}(a,b)$. Dually, $D_a \cap D_b = D_{\gcd(a,b)}$. These say that $\gcd$ and $\operatorname{lcm}$ play exactly the roles $\cap$ and $\cup$ play for sets, now for the divisibility order on $\mathbb{Z}_{>0}$ — the same pattern a second time, and the reason gcd/lcm identities mirror $\cap$/$\cup$ identities so exactly. Both distributive laws hold there too, and for the same structural reason.
 
-## Indexed families
+## More than two sets
 
-For a family $\{A_i\}_{i \in I}$ of sets indexed by a set $I$:
+Nothing restricts the operations to two sets:
 $$
-\bigcup_{i \in I} A_i = \{x \mid \exists i \in I,\; x \in A_i\},
-\qquad
-\bigcap_{i \in I} A_i = \{x \mid \forall i \in I,\; x \in A_i\}.
+A_1 \cup A_2 \cup \cdots \cup A_n = \{x \mid x \text{ lies in at least one } A_i\},
+$$
+$$
+A_1 \cap A_2 \cap \cdots \cap A_n = \{x \mid x \text{ lies in every } A_i\}.
 $$
 
-The binary operations were $\vee$ and $\wedge$; the indexed ones are $\exists$ and $\forall$. This is the same escalation §1.11 described — quantifiers as infinitary connectives — and it is why De Morgan for indexed families,
+The two-set operations were *or* and *and*; the long ones are *there exists an $i$* and *for every $i$*. This is the escalation §1.11 described, and it is why De Morgan for many sets,
 $$
-\overline{\bigcup_{i} A_i} = \bigcap_i \overline{A_i},
+\overline{A_1 \cup \cdots \cup A_n} = \overline{A_1} \cap \cdots \cap \overline{A_n},
 $$
-is proved by exactly the argument that gives $\neg \exists \equiv \forall \neg$.
-
-Examples: $\bigcap_{n \in \mathbb{N}} (-\tfrac1{n+1}, \tfrac1{n+1}) = \{0\}$, and $\bigcup_{n \in \mathbb{N}} [-n, n] = \mathbb{R}$. Both require proof by double inclusion, and the first is the standard illustration that an infinite intersection of open intervals need not be open. Finitely many intersections preserve openness; infinitely many need not, and that asymmetry between the finite and the infinite is one you will meet repeatedly in calculus.
+is proved by exactly the argument that turns *not there exists* into *for all not*.
 
 <Warning title="Venn diagrams are heuristics">
 A two-circle diagram presupposes that all four regions are nonempty. If you are proving an identity, the diagram may still guide you, but the proof must be element chasing (§2.3). For three or more sets the diagrams stop being reliable anyway: no arrangement of circles produces all $2^n$ regions for $n \geq 4$.
@@ -123,19 +122,13 @@ That list is worth knowing as a list, because the same seven properties govern $
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Union and intersection are what you compute when a problem imposes more than one condition.
 
-**Domains intersect.** The domain of $f+g$ is the intersection of the two domains, and the domain of $f/g$ is that intersection minus the zeros of $g$. Composite functions intersect too: $\operatorname{dom}(g\circ f) = \{x \in \operatorname{dom} f : f(x)\in\operatorname{dom} g\}$ — a pre-image, and §3.3's subject.
+**Domains intersect.** The domain of $f+g$ is the intersection of the two domains, and the domain of $f/g$ is that intersection minus the zeros of $g$. Composite functions intersect too: the symbol $\circ$ is read *"after"*, so $g \circ f$ means do $f$ first and feed the result to $g$ (§3.7); its domain is $\{x \in \operatorname{dom} f : f(x)\in\operatorname{dom} g\}$, a pre-image, and §3.3's subject.
 
 Solution sets of systems intersect; solution sets of factored equations unite. That is the entire logic of solving $(x-1)(x^2-4)>0$: factor, find where each factor changes sign, and assemble the answer as a union of intervals.
 
-**The asymmetry between finite and infinite intersections has a calculus face.** Each set $(-1/n, 1/n)$ is an open interval, and
-$$\bigcap_{n=1}^{\infty}\left(-\tfrac1n, \tfrac1n\right) = \{0\}$$
-is not. Infinitely many intersections can destroy a property that finitely many preserve — which is precisely why theorems about limits require care that theorems about finite sums do not, and why "the limit of a sum is the sum of the limits" holds for two terms and fails for infinitely many.
+**The asymmetry between finitely and infinitely many intersections has a calculus face.** Each interval $(-1/n, 1/n)$ is open, and yet intersecting *all* of them — for every $n = 1, 2, 3, \ldots$ — leaves only the single point $0$, which is not an open interval. Infinitely many intersections can destroy a property that finitely many preserve — which is precisely why theorems about limits require care that theorems about finite sums do not, and why "the limit of a sum is the sum of the limits" holds for two terms and fails for infinitely many.
 
-**In linear algebra, intersection preserves structure and union does not.** The intersection of two subspaces is a subspace — a three-line element chase. The union generally is not: the $x$-axis and the $y$-axis in $\mathbb{R}^2$ are each subspaces, and their union is not closed under addition, since $(1,0)+(0,1)$ escapes it.
-
-That failure is why the subject defines the **sum** $U+W$ rather than using the union. It is the smallest subspace containing both, and needing to invent it is a consequence of exactly the fact above.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

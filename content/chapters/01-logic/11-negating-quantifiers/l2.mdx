@@ -8,10 +8,13 @@ anchorExample: "animals with four legs"
 
 import TryIt from '@/components/TryIt.astro';
 import Warning from '@/components/Warning.astro';
+import Farm from '@/components/Farm.astro';
 
 Module 1.10 gave you two kinds of telling. Now let's take the opposite of each one and see what happens.
 
 ## Knocking down an *every*
+
+<Farm showLegs={true} />
 
 > **Every** animal in the picture has four legs.
 
@@ -20,6 +23,8 @@ To say the opposite, you do not say "no animal has four legs." That is much too 
 The opposite is just:
 
 > **Some** animal in the picture does not have four legs.
+
+<Farm odd={4} />
 
 And to show that, you point at the duck. **One bad apple** and you are finished. You do not check the cow. You do not check the pig. One duck, done.
 

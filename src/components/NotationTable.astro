@@ -1,0 +1,114 @@
+---
+// The notation reference for a level — one place a reader can come back to.
+//
+// This lives on the level home page rather than inside a module for two
+// reasons. A reference table still counts as *using* a symbol, so putting it in
+// §1.1 tripped the §A4.2 gate (∘ is not permitted at l3) and blew every page's
+// word budget. And a reference is something you return to, which is what a
+// home page is for.
+//
+// Glyphs are literal Unicode, not LaTeX, so the page needs no math renderer.
+//
+// The lists are per level and contain only what that level actually uses —
+// generated from the corpus, not aspirational. None of this notation is taught
+// in American school mathematics, which is why the table exists at all; every
+// symbol is *also* explained where it first appears in the text, and again on
+// its next few appearances.
+export interface Props {
+  level: string;
+}
+const { level } = Astro.props;
+
+type Row = [string, string, string];
+const ROWS: Record<string, Row> = {
+  in:      ['∈', 'is in', 'x ∈ S says x is one of the things in S'],
+  notin:   ['∉', 'is not in', 'the denial of ∈'],
+  subset:  ['⊆', 'is a subset of', 'every element of the left set is also in the right one'],
+  empty:   ['∅', 'the empty set', 'the set with nothing in it — not the number 0'],
+  cup:     ['∪', 'union', 'everything lying in at least one of the sets'],
+  cap:     ['∩', 'intersection', 'everything lying in both'],
+  neg:     ['¬', 'not', '¬p is true exactly when p is false'],
+  wedge:   ['∧', 'and', 'true only when both sides are'],
+  vee:     ['∨', 'or', 'true when at least one side is — both is allowed'],
+  imp:     ['⇒', 'implies', 'p ⇒ q — if p holds then so does q'],
+  iff:     ['⇔', 'if and only if', 'the implication runs both ways, so it is two claims'],
+  forall:  ['∀', 'for all', '∀x ∈ S — for every x in S'],
+  exists:  ['∃', 'there exists', '∃x ∈ S — for at least one x in S'],
+  divides: ['∣', 'divides', 'm ∣ n says n is a whole number of copies of m'],
+  ndiv:    ['∤', 'does not divide', 'the denial of ∣'],
+  comp:    ['∘', 'after', 'g ∘ f means do f first, then g'],
+  maps:    ['↦', 'maps to', 'names a function by what it does to a typical input'],
+  equiv:   ['≡', 'is equivalent to', 'the two sides have identical truth tables'],
+  N:       ['ℕ', 'the naturals', '0, 1, 2, 3, …'],
+  Z:       ['ℤ', 'the integers', '…, −2, −1, 0, 1, 2, …'],
+  Q:       ['ℚ', 'the rationals', 'the fractions'],
+  R:       ['ℝ', 'the reals', 'every point on the number line'],
+  C:       ['ℂ', 'the complex numbers', 'built in Chapter 5'],
+};
+
+const PER_LEVEL: Record<string, string[]> = {
+  l3: ['in', 'notin', 'subset', 'cup', 'cap', 'divides', 'comp'],
+  l4: ['in', 'notin', 'subset', 'empty', 'cup', 'cap', 'neg', 'wedge', 'vee', 'imp', 'iff',
+       'forall', 'exists', 'divides', 'ndiv', 'comp', 'equiv', 'N', 'Z', 'Q', 'R', 'C'],
+  l5: ['in', 'notin', 'subset', 'empty', 'cup', 'cap', 'neg', 'wedge', 'vee', 'imp', 'iff',
+       'forall', 'exists', 'divides', 'ndiv', 'comp', 'maps', 'equiv', 'N', 'Z', 'Q', 'R', 'C'],
+};
+PER_LEVEL.l6 = PER_LEVEL.l5;
+PER_LEVEL.l7 = PER_LEVEL.l5;
+
+const keys = PER_LEVEL[level] ?? [];
+---
+{keys.length > 0 && (
+  <section class="notation">
+    <h2>The symbols this course uses</h2>
+    <p class="notation-lede">
+      None of this is taught in school mathematics — it belongs to proof courses. It is
+      collected here so there is one place to come back to. <strong>Every symbol is also
+      explained where it first appears in the text</strong>, and again the next few times,
+      so nothing below needs memorising before you start.
+    </p>
+    <div class="notation-scroll">
+      <table>
+        <thead>
+          <tr><th>Symbol</th><th>Read as</th><th>What it says</th></tr>
+        </thead>
+        <tbody>
+          {keys.map((k) => (
+            <tr>
+              <td class="glyph">{ROWS[k][0]}</td>
+              <td class="says">{ROWS[k][1]}</td>
+              <td>{ROWS[k][2]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="notation-foot">
+      Nothing here is new mathematics. It is shorthand for things you can already say in
+      words, and it earns its keep only once the sentences get long.
+    </p>
+  </section>
+)}
+
+<style>
+  .notation { margin-top: 3rem; }
+  .notation-lede, .notation-foot {
+    max-width: var(--measure);
+    color: color-mix(in oklab, var(--color-ink) 75%, transparent);
+  }
+  .notation-scroll { overflow-x: auto; margin-block: 1.25rem; }
+  .notation table { border-collapse: collapse; width: 100%; max-width: 46rem; }
+  .notation th, .notation td {
+    text-align: left; padding: 0.45rem 0.9rem 0.45rem 0;
+    border-bottom: 1px solid var(--color-rule); vertical-align: baseline;
+  }
+  .notation th {
+    font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+  }
+  .notation .glyph {
+    font-size: 1.35rem; line-height: 1; width: 3.5rem;
+    font-family: var(--font-body);
+  }
+  .notation .says { font-style: italic; white-space: nowrap; padding-right: 1.25rem; }
+</style>

@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 Two boxes. One is red, one is blue. Do they hold the **same stuff**?
 
@@ -18,6 +19,11 @@ You have to check *two* things. Two! Not one.
 **Check two.** Now look in the blue box. Take out each thing. Is it in the red box too?
 
 Uh oh. A rubber duck! And there is no duck in the red box.
+
+<ThingBox boxes={[
+  { label: "the red box", items: [{kind: "ball", color: "red"}, {kind: "block", color: "red"}] },
+  { label: "the blue box", items: [{kind: "ball", color: "red"}, {kind: "block", color: "red"}, {kind: "star"}] },
+]} ring={{box: 1, index: 2}} />
 
 So they do not hold the **same stuff** after all. One check passed. The other did not.
 

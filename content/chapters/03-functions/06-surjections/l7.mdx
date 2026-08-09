@@ -82,7 +82,7 @@ Every $f : S \to T$ restricts to a surjection $S \to \operatorname{Im}(f)$, givi
 $$
 S \twoheadrightarrow \operatorname{Im}(f) \hookrightarrow T
 $$
-of any function as a surjection followed by an injection. This factorisation — surjection first, injection second — recurs throughout algebra as the standard way to split any map into its two failures and in linear algebra becomes rank–nullity.
+of any function as a surjection followed by an injection. This factorisation — surjection first, injection second — recurs throughout algebra as the standard way to split any map into its two failures and in matrix and vector work becomes rank–nullity.
 
 ## Table
 
@@ -97,11 +97,8 @@ of any function as a surjection followed by an injection. This factorisation —
 | $\sin : \mathbb{R}\to[-1,1]$ | yes | IVT |
 
 <WhereThisGoes level="l7">
+
 **Surjectivity is the existence half of solving equations.** "$f$ is surjective" says $f(x)=t$ is solvable for every $t$; injectivity says the solution is unique. Nearly every existence-and-uniqueness theorem ahead is one of these two claims wearing different clothes.
-
-**In linear algebra, surjectivity of $A$ is solvability of $A\mathbf{x}=\mathbf{b}$ for every $\mathbf{b}$**, and it is equivalent to $\operatorname{Col} A = \mathbb{R}^m$, to full row rank, and to a pivot in every row. Those form the surjective half of the Invertible Matrix Theorem, mirroring the injective half from §3.5.
-
-The mirroring is exact and worth noticing: injectivity is about **columns** being independent, surjectivity about **columns spanning**. For a square matrix the two coincide — a fact that is genuinely surprising and is the content of the Rank–Nullity Theorem, since $\operatorname{rank} + \operatorname{nullity} = n$ forces one condition to imply the other.
 
 **In calculus, the Intermediate Value Theorem is a surjectivity theorem.** It says a continuous $f$ on $[a,b]$ takes every value between $f(a)$ and $f(b)$ — that is, $f$ maps onto the interval joining them. Every root-existence argument you will run is an application: to show $x^3 - x - 1$ has a root, note the polynomial is negative at $1$ and positive at $2$, and surjectivity onto $[f(1),f(2)]$ supplies a $c$ with $f(c)=0$.
 
@@ -109,5 +106,4 @@ The mirroring is exact and worth noticing: injectivity is about **columns** bein
 
 **And surjectivity remains a fact about the declared codomain.** $e^x$ is surjective onto $(0,\infty)$ and not onto $\mathbb{R}$ — which is exactly why $\ln$ has domain $(0,\infty)$, and why $\ln$ of a negative number is undefined rather than merely awkward.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse; **nullity** — how many independent directions collapse to zero; **rank** — the number of independent columns; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

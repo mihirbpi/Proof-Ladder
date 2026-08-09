@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Kids from '@/components/Kids.astro';
 
 Sam makes a promise:
 
@@ -16,6 +17,8 @@ Sam makes a promise:
 How do you check it? You could follow Sam around all day. Boring!
 
 Try a **backwards check** instead. Look at Sam's feet.
+
+<Kids kids={["Sam"]} wearing={{Sam: "none"}} caption="no boots on — so Sam never went out" />
 
 No boots? Then Sam did not go outside. Not once!
 

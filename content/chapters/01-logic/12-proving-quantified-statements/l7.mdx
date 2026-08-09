@@ -82,7 +82,7 @@ The uniqueness template is *suppose two objects have the property; prove they ar
 
 ## Proof by cases
 
-Licensed by any exhaustive disjunction: if $\varphi_1 \vee \cdots \vee \varphi_k$ holds and each $\varphi_i \Rightarrow \psi$, then $\psi$.
+Licensed by any exhaustive disjunction: if $p_1 \vee \cdots \vee p_k$ holds and each $p_i \Rightarrow q$, then $q$.
 
 > **Proposition.** $\neg \exists x \in \mathbb{R}$ with $x^2 < 0$.
 
@@ -101,15 +101,13 @@ Existential instantiation is the dual rule and has its own side condition. From 
 </Aside>
 
 <WhereThisGoes level="l7">
+
 These four templates are the complete strategic vocabulary for quantified goals, and they do not change in the courses ahead — only the difficulty of filling them in does.
 
 **Every $\varepsilon$–$\delta$ proof is the existential template.** *Let $\varepsilon>0$ be arbitrary* opens a universal; *let $\delta = \varepsilon/3$* is a witness. The scratch work that produced $\varepsilon/3$ — running the inequality backwards from the goal — belongs in the Discussion, and the written proof verifies forwards that the chosen $\delta$ works. That division is the same one this module insists on, and it is why $\varepsilon$–$\delta$ proofs look like they were pulled out of the air: the discovery has been deleted.
 
 **Existence theorems in calculus are frequently non-constructive.** The Intermediate Value Theorem asserts a root exists and produces none. The Mean Value Theorem asserts some $c$ has $f'(c) = \frac{f(b)-f(a)}{b-a}$ and gives no way to find it. Both are proved by an argument that never exhibits the witness — which is worth noticing, because it means the theorem cannot help you compute the thing it promises. Bisection and Newton's method exist to fill that gap.
 
-**Uniqueness proofs keep the same shape.** *The limit of a convergent sequence is unique* is proved by supposing two limits and forcing them equal — module 1.10's template, unchanged. So is *the inverse of an invertible matrix is unique*, and so is *the reduced row echelon form of a matrix is unique*.
-
 **Proof by cases** appears wherever an absolute value or a piecewise definition does, and the obligation is the one stated above: the cases must be exhaustive, and saying so is part of the proof.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **row echelon** — the staircase shape row reduction produces.*
 </WhereThisGoes>

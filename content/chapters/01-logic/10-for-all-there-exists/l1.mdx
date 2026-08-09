@@ -8,14 +8,19 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
-Here is a box of blocks. Two people make two very different claims.
+Here is a box of blocks. Two people say two very different tellings.
 
 Sam says: *"**Every** block in this box is red."*
 
 Pip says: *"**There is** a red block in this box."*
 
-Those are not the same!
+<ThingBox boxes={[{ label: "the box of blocks",
+  items: [{kind: "block", color: "red"}, {kind: "block", color: "blue"}, {kind: "block", color: "red"}] }]}
+  ring={{box: 0, index: 1}} />
+
+Those are not the same! Sam is wrong — look at the ringed block. Pip is right.
 
 To check Sam, you have to look at **every** block. All of them. Even the one at the bottom. It is slow work.
 
@@ -26,5 +31,5 @@ To check Pip, you just dig until you find one red block. Found it! Done. Easy!
 One is a big job. One is a small job. Now you know which is which.
 
 <TryIt>
-Grab a pile of small toys. Make an *every* claim about them. Then make a *there is one* claim. Then check them both and see which took longer.
+Grab a pile of small toys. Say an *every* telling about them. Then say a *there is one* telling. Then check them both and see which took longer.
 </TryIt>

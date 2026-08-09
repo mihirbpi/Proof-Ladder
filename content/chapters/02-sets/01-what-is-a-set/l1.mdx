@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 Here is the toy **box**. Some things go in. Some things stay out.
 
@@ -16,6 +17,10 @@ A truck? In.
 A teddy bear? In.
 
 A shoe? Out! A shoe is not a toy.
+
+<ThingBox
+  boxes={[{ label: "the toy box", items: [{kind: "ball"}, {kind: "block"}, {kind: "star"}] }]}
+  outside={[{kind: "sock"}]} outsideLabel="stays out" />
 
 Now, the **box** needs a rule everybody agrees on.
 

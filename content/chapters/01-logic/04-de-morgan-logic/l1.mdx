@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Kids from '@/components/Kids.astro';
 
 Sam is going outside. Sam needs a hat **and** a coat.
 
@@ -19,9 +20,15 @@ Uh oh. What is missing?
 
 Maybe the hat. Maybe the coat. Maybe both!
 
+<Kids kids={["Sam", "Pip", "Ada"]}
+      wearing={{Sam: "coat", Pip: "hat", Ada: "none"}}
+      caption="three ways to not have both" />
+
 We only know one thing. Something is missing.
 
 **Not both** does not mean *nothing*. It means *at least one is missing*.
+
+<Kids kids={["Sam"]} wearing={{Sam: "coat"}} caption="coat on, hat missing" />
 
 Sam comes back wearing the coat. No hat. Grandma was right!
 

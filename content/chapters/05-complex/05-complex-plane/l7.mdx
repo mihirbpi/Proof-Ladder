@@ -13,7 +13,7 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-The bijection $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ identifies $\mathbb{C}$ with $\mathbb{R}^2$ as sets and as real vector spaces (§5.2). Drawing that identification is the **complex plane** or Argand diagram.
+The bijection $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ identifies $\mathbb{C}$ with $\mathbb{R}^2$, both as sets and for the purposes of addition (§5.2). Drawing that identification is the **complex plane** or Argand diagram.
 
 <Figure alt="A grid with axes crossing at the origin and points plotted at 3 plus 2i, minus 2 plus i, and 4." caption="Real axis horizontal, imaginary axis vertical.">
   <ComplexPlane points={[
@@ -105,19 +105,17 @@ Adjoining a single point at infinity gives the **Riemann sphere** $\mathbb{C}\cu
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The plane picture is what makes complex arithmetic usable rather than merely formal.
 
-**Complex addition is vector addition**, so everything you know about the parallelogram rule transfers unchanged. That identification is exact: as a real vector space, $\mathbb{C}$ *is* $\mathbb{R}^2$, and the two only differ once multiplication is introduced.
+**Complex addition is vector addition**, so everything you know about the parallelogram rule transfers unchanged. That identification is exact: for addition alone, $\mathbb{C}$ *is* $\mathbb{R}^2$, and the two only differ once multiplication is introduced.
 
 **Multiplication is where the plane earns its keep.** $\mathbb{R}^2$ has no useful multiplication; $\mathbb{C}$ has one, and §5.9 shows it is rotation combined with scaling. That single fact makes complex numbers the natural language for anything rotating.
 
-**In calculus, that is why phasors work.** A sinusoidal quantity $A\cos(\omega t + \phi)$ is the real part of $Ae^{i\phi}e^{i\omega t}$ — a fixed complex number times a rotating one. Differentiating multiplies by $i\omega$, which is a $90°$ rotation and a scaling, so differential equations in $t$ become algebraic equations in $\mathbb{C}$.
+**In calculus, that is why phasors work.** A sinusoidal quantity $A\cos(w t + \phi)$ is the real part of $Ae^{i\phi}e^{iw t}$ — a fixed complex number times a rotating one. Differentiating multiplies by $iw$, which is a $90°$ rotation and a scaling, so differential equations in $t$ become algebraic equations in $\mathbb{C}$.
 
-The technique is standard in every treatment of oscillation, from AC circuits to wave mechanics, and it works because differentiation of $e^{i\omega t}$ is multiplication by a constant — the defining property of the exponential, now with a geometric reading.
+The technique is standard in every treatment of oscillation, from AC circuits to wave mechanics, and it works because differentiation of $e^{iw t}$ is multiplication by a constant — the defining property of the exponential, now with a geometric reading.
 
 **Loci become one-variable equations.** $|z - c| = r$ is a circle, $|z-w| = |z-v|$ a perpendicular bisector, $\operatorname{Im} z = 0$ the real axis. Each needs two real variables and two real equations otherwise, and the compression is why complex notation is standard in plane geometry problems.
 
-**In linear algebra, the same plane carries the eigenvector picture.** Complex eigenvalues of a real $2\times2$ matrix always come in conjugate pairs $\alpha\pm\beta i$, and the transformation acts on a plane as a rotation by $\arg(\alpha+\beta i)$ scaled by $|\alpha+\beta i|$ — the classification of $2\times2$ real matrices with no real eigenvalues, read straight off this module.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **eigenvalue** — a factor by which a matrix stretches a direction without turning it; **eigenvector** — a direction a matrix stretches without turning; **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

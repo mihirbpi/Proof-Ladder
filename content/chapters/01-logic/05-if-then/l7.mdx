@@ -16,7 +16,9 @@ Every theorem in this course, and nearly every theorem you will meet afterwards,
 
 > Whenever this holds, that holds too.
 
-Symbolically, $p \Rightarrow q$: the **conditional** with **hypothesis** $p$ and **conclusion** $q$. Understanding what the conditional actually means — including its behaviour on the cases where the hypothesis does not hold — is the entire point of this module.
+Symbolically, $p \Rightarrow q$ — read *"$p$ implies $q$"*, or *"if $p$ then $q$"* — the **conditional** with **hypothesis** $p$ and **conclusion** $q$. Understanding what the conditional actually means, including its behaviour on the cases where the hypothesis does not hold, is the entire point of this module.
+
+Two set symbols also make their first appearance below. $A \subseteq S$ is read *"$A$ is a subset of $S$"*, meaning every element of $A$ is in $S$; and $\emptyset$ denotes the **empty set**, the set with no elements at all. Chapter 2 builds both properly.
 
 ## Definition via truth table
 
@@ -108,15 +110,13 @@ is true, and it is true because the set is empty. Chapter 2 uses exactly this to
 - **Vacuous statements everywhere.** Any statement of the form "every element of $\emptyset$ satisfies …" is vacuously true. If you spot it in a proof, do not fight the convention; use it.
 
 <WhereThisGoes level="l7">
+
 Reading conditionals precisely is what makes the theorems of calculus applicable rather than merely memorable.
 
 **Every named theorem is a conditional with a checkable hypothesis.** Rolle's theorem, the Mean Value Theorem, the Extreme Value Theorem, the Intermediate Value Theorem, the Fundamental Theorem of Calculus — each is *if these conditions hold, then this conclusion follows*, and each is silent otherwise. The routine failure in a first course is applying a theorem whose hypothesis was never checked, and it is a failure to read a conditional.
 
 **Convergence tests are conditionals with one-way arrows.** The Ratio Test says *if $\lim|a_{n+1}/a_n| < 1$ then the series converges absolutely*. When the limit equals $1$ the test is silent — not "the series diverges," and not "the series converges." A conditional with a false hypothesis gives no information, and every textbook prints "the test is inconclusive" for exactly this reason.
 
-**In linear algebra**, the conditionals accumulate into the Invertible Matrix Theorem — twelve or so statements, each implying the next around a cycle. That structure is only readable if you keep the direction of each arrow straight, and the difference between *sufficient* and *necessary* is the difference between using the theorem correctly and inverting it.
-
 The habit to build now: whenever you meet a theorem, write its hypothesis and conclusion separately, and ask what it says when the hypothesis fails. Usually the answer is *nothing*, and knowing that is what stops you from claiming more than you have.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **Invertible Matrix Theorem** — the list of conditions equivalent to a square matrix having an inverse.*
 </WhereThisGoes>

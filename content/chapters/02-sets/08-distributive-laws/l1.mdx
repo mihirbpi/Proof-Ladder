@@ -8,18 +8,24 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Figure from '@/components/Figure.astro';
+import VennThree from '@/components/VennThree.astro';
 
-Three hoops now! Hoop $S$, hoop $T$, and hoop $R$.
+Three hoops now! A red hoop, a blue hoop, and a green hoop.
 
-Here is a job. Find the toys that are in $S$ **and** also in either $T$ or $R$.
+<Figure alt="Three overlapping hoops, one red, one blue and one green, with the parts of the red hoop that overlap the other two shaded.">
+  <VennThree labelS="red" labelT="blue" labelR="green" shade={["ST", "SR", "STR"]} />
+</Figure>
+
+Here is a job. Find the toys in the **red** hoop that are also in the blue hoop or the green hoop.
 
 You could do it all at once. Squint hard. Tricky!
 
 Or you could **share it out**. Do it in two little steps.
 
-Step one: which toys are in $S$ and $T$? Point at them.
+Step one: which toys are in red *and* blue? Point at them.
 
-Step two: which toys are in $S$ and $R$? Point at them too.
+Step two: which toys are in red *and* green? Point at them too.
 
 Now put those two answers together. Done!
 

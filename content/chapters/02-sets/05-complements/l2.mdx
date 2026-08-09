@@ -9,10 +9,14 @@ anchorExample: "the toy box"
 import TryIt from '@/components/TryIt.astro';
 import Proof from '@/components/Proof.astro';
 import Warning from '@/components/Warning.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 The **outside** of a box is everything else. But "everything else" is a slippery phrase, so you have to say what you are counting first.
 
 Let box $A$ be the red blocks.
+
+<ThingBox boxes={[{ label: "box A — the red blocks", items: [{kind: "block", color: "red"}, {kind: "block", color: "red"}] }]}
+  outside={[{kind: "block", color: "blue"}, {kind: "block", color: "green"}]} outsideLabel="the outside" />
 
 - If we are counting **just the blocks**, the outside of $A$ is the blue blocks, green blocks, and yellow blocks.
 - If we are counting **everything in the room**, the outside of $A$ also has the lamp, the cat, and your shoes.

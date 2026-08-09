@@ -13,7 +13,7 @@ import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 $$
-A \subseteq S \quad:\Longleftrightarrow\quad \forall x\;(x \in A \Rightarrow x \in S).
+A \subseteq S \quad:\Leftrightarrow\quad \forall x\;(x \in A \Rightarrow x \in S).
 $$
 
 The definition is a universally quantified conditional, and everything in this module is a consequence of that single observation. §1.12 fixed the proof template for such statements; applied to sets it acquires the name **element chasing**, and it is the technique on which essentially all of naive set theory runs.
@@ -93,21 +93,12 @@ The relation $\subseteq$ is definable from $\in$ alone, which is why axiomatic s
 </Aside>
 
 <WhereThisGoes level="l7">
-Element chasing is the method you will use for every subspace proof in linear algebra, and the template does not change.
-
-**A subspace is a subset with three properties**, and the standard proof is exactly the one this module drills:
-
 > Let $\mathbf{u}, \mathbf{v} \in W$ be arbitrary and let $c$ be a scalar. … Therefore $\mathbf{u}+\mathbf{v}\in W$ and $c\mathbf{u}\in W$.
 
 Take any one — or here, any two — and follow them. Nothing about the specific vectors may be used beyond membership in $W$, which is what makes the argument cover all of them.
-
-The containments themselves stack the way this module describes. $\operatorname{Nul} A \subseteq \mathbb{R}^n$, $\operatorname{Col} A \subseteq \mathbb{R}^m$, and $\operatorname{Span}\{\mathbf{v}_1,\dots,\mathbf{v}_k\} \subseteq W$ whenever every $\mathbf{v}_i \in W$ — that last one proved by element chasing in three lines, and used constantly.
-
-**Transitivity is what makes a chain of subspaces readable**, exactly as it made the quadrilateral hierarchy readable: $\{\mathbf{0}\}\subseteq L \subseteq P \subseteq \mathbb{R}^3$ for a line inside a plane, and the containments compose without separate proof.
 
 **In calculus the containments are between domains and intervals.** The interval of convergence of a power series contains the open interval of radius $R$ and is contained in the closed one — a two-sided containment that leaves exactly the endpoints undecided, which is why they must be checked separately.
 
 And the vacuous containment $\emptyset\subseteq S$ is not a curiosity there either: the set where a function fails a condition is often empty, and "every point of that set has property $P$" is then true by the argument given above.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **subspace** — a set of vectors closed under adding and scaling; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

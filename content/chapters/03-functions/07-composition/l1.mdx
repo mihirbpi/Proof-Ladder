@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Cubbies from '@/components/Cubbies.astro';
 
 Here is machine one: put in a child, out comes their cubby.
 
@@ -16,6 +17,10 @@ Here is machine two: put in a cubby, out comes its color.
 Now line them up. Put them **in a row**.
 
 Sam goes in the first machine. Out comes cubby 3.
+
+<Cubbies cubbies={["1", "2", "3"]}
+  hung={[{child: "Pip", cubby: 0}, {child: "Ada", cubby: 1}, {child: "Sam", cubby: 2}]}
+  caption="machine one: child in, cubby out" />
 
 Take cubby 3 and put it in the second machine. Out comes **green**.
 

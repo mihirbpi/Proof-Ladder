@@ -101,6 +101,21 @@ Running prose medians sit at 70–104 words across every level, so a page that
 *feels* long is usually packing many components rather than running on. Whether
 that is a fault is a judgement call; the cap only polices the prose.
 
+**"Component" means any capitalised JSX element, matched generically.** The
+check originally stripped a hardcoded list — `Proof`, `Warning`, `Aside`,
+`Discussion`, `Figure`, `TruthTable`, `WhereThisGoes` — and counted every other
+component's *attributes* as running prose. A `<ThingBox>` with its items spelled
+out added roughly 30 "words" to its section, so a page could breach the cap for
+the crime of carrying a picture. That is the same measurement artifact this
+section was written to fix, reintroduced through a list that stopped being
+exhaustive the moment a component was added. Self-closing tags are stripped
+before paired ones, or the paired pattern runs from a self-closing tag to a
+later closing tag of the same name.
+
+After the fix the caps still sit above each level's 97th percentile with 19–46
+words of headroom, and no page in the corpus exceeds one — so the check still
+flags genuine outliers rather than firing on ordinary pages.
+
 **Gloss rule, made checkable.** §A4.2 already requires that anything introduced
 at a level be glossed on first use in every module that uses it. The check
 applies to a curated list of genuinely opaque proof-course jargon —
@@ -215,6 +230,36 @@ Two supplies, and the division between them is what fixes this rung:
 **What `l5` may not use is the rest of the geometry course.** Triangle congruence criteria (SAS/ASA/SSS), similarity, circle theorems, the polygon angle-sum and the parallel postulate all arrive later in the year, and they are `l6`'s working toolkit. Reserving them is what keeps the two rungs apart, and it gives the pair a clean division of labour: **`l5` is meeting the two-column proof; `l6` has the whole theorem set and is ready to be shown why mathematicians abandon the two-column format.** Where `l5` wants a geometric example it should reach for a definition or a segment/angle computation, not a theorem.
 
 **`l6` 10th grade.** *Reader's course: Geometry — the proof course.* This is the most important connection in the whole ladder: the reader has met two-column proofs, and geometry is where they met them.
+
+#### A5.0 Two rules that override every profile below
+
+**1. A level may assume only what was taught *before* its own year.** A reader is
+taking this year's course now; they have not finished it. So the 8th grader
+taking Algebra I knows grade 7, the 9th grader taking Geometry knows Algebra I,
+the 12th grader taking Calculus knows Precalculus. Writing to the course a
+reader is *in* assumes knowledge they are in the middle of acquiring.
+
+| Level | Grade | Course they are taking | May assume up to |
+|---|---|---|---|
+| `l1` | K | — | counting to 10 |
+| `l2` | 2 | grade 2 | grade 1 |
+| `l3` | 5 | grade 5 | grade 4 |
+| `l4` | 8 | **Algebra I** | grade 7 |
+| `l5` | 9 | **Geometry** | Algebra I |
+| `l6` | 10 | Algebra II | Geometry |
+| `l7` | 12 | Calculus | Precalculus |
+| `l8` | college | — | — |
+
+**2. No proof notation may be used before it is introduced, at any level.**
+`∀ ∃ ⇒ ⇔ ¬ ∧ ∨ ∈ ⊆ ∪ ∩ ∅ ≡ ∘ ↦ ∤` and the blackboard-bold sets are **not
+taught anywhere in the American K–12 curriculum** — they belong to college
+discrete mathematics. Lexile-appropriate prose around an unexplained `∀` is
+still unreadable. Every symbol must be introduced in words at its first
+appearance *in reading order for that level* (§1.1 first, then §1.2, …), and
+that includes symbols appearing only inside a worked example.
+
+The order to fix in is `l7` downward, because the higher levels lean on notation
+hardest and the vocabulary decisions there set the ceiling for everything below.
 
 **A note on tracking.** The grade labels straddle two real sequences. The CCSSM *traditional pathway* puts Algebra I in 9th, Geometry in 10th, Precalculus in 12th, and it is the modal US sequence: roughly 69% of Algebra I students take it in grade 9 or 10, against 25% in grade 7 or 8. The accelerated track (Algebra I in 8th, Geometry in 9th, Calculus in 12th) is common and is the *norm* in high-achieving districts.
 

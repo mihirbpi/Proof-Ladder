@@ -16,7 +16,7 @@ import Warning from '@/components/Warning.astro';
 Module 3.1 forbade one input going to two outputs. It said nothing about two inputs going to one output. **Injectivity is the condition that forbids that too.**
 
 > $f : S \to T$ is **injective** (or **one-to-one**) when distinct inputs give distinct outputs:
-> $$ s_1 \neq s_2 \implies f(s_1) \neq f(s_2). $$
+> $$ s_1 \neq s_2 \Rightarrow f(s_1) \neq f(s_2). $$
 
 <Figure alt="Three elements on the left, each with one arrow, all landing on different elements of the right." caption="Injective: no two arrows share a target.">
   <ArrowDiagram labelLeft="S" labelRight="T"
@@ -31,7 +31,7 @@ The definition as stated is nearly unusable. Its hypothesis is $s_1 \neq s_2$, a
 So use module 1.8 and flip it:
 
 $$
-f(s_1) = f(s_2) \implies s_1 = s_2.
+f(s_1) = f(s_2) \Rightarrow s_1 = s_2.
 $$
 
 Same statement, and now the hypothesis is an **equation**, which is something algebra can act on. **This is the form every proof uses**, and if you find yourself stuck on an injectivity proof, check first that you started from the right end.

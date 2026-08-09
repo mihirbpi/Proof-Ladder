@@ -38,11 +38,11 @@ Nothing in Chapter 3 will require inputs to be numbers, and this is worth intern
 
 Euler's **totient** function
 $$
-\varphi : \mathbb{Z}_{>0} \to \mathbb{Z}_{>0}, \qquad \varphi(n) = \text{how many of } 1, \ldots, n \text{ share no factor with } n
+\operatorname{tot} : \mathbb{Z}_{>0} \to \mathbb{Z}_{>0}, \qquad \operatorname{tot}(n) = \text{how many of } 1, \ldots, n \text{ share no factor with } n
 $$
-gives $\varphi(6) = 2$ — only $1$ and $5$ qualify, since $2, 3, 4, 6$ all share a factor with $6$.
+gives $\operatorname{tot}(6) = 2$ — only $1$ and $5$ qualify, since $2, 3, 4, 6$ all share a factor with $6$.
 
-Computing $\varphi(1000)$ by hand would be slow. **Being hard to compute is not the same as being ill-defined**, and module 2.1's requirement was the second, not the first.
+Computing $\operatorname{tot}(1000)$ by hand would be slow. **Being hard to compute is not the same as being ill-defined**, and module 2.1's requirement was the second, not the first.
 
 ## Why domain restrictions happen
 

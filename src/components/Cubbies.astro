@@ -1,0 +1,101 @@
+---
+// Coats hung in cubbies — the l1 picture of a function.
+//
+// Chapter 3 at l1 runs on this: every child has exactly one cubby, two children
+// may share, a child with no cubby breaks it, a child with two breaks it. The
+// component draws the cubby wall and puts each child's coat where it hangs.
+//
+// cubbies   labels along the wall, e.g. ["1","2","3"]
+// hung      one entry per coat: { child, cubby } — cubby is an index, or null
+//           for "this child has nowhere to put their coat"
+// broken    indices into `hung` to mark in the warning colour
+import Thing from './Thing.astro';
+
+export interface Props {
+  cubbies?: string[];
+  hung: { child: 'Sam' | 'Pip' | 'Ada'; cubby: number | null }[];
+  broken?: number[];
+  caption?: string | null;
+}
+const { cubbies = ['1', '2', '3'], hung, broken = [], caption = null } = Astro.props;
+
+const CW = 82, CH = 96, PAD = 16;
+const LOST_W = hung.some((h) => h.cubby === null) ? 96 : 0;
+const CHW = 6.9;
+const WALL = PAD * 2 + cubbies.length * CW + (LOST_W ? LOST_W + 16 : 0);
+// Captions on these run long ("nobody shares — you can always tell whose coat
+// it is"), so size for the caption when it is the wider of the two.
+const W = Math.max(WALL, (caption?.length ?? 0) * CHW + 24);
+const XOFF = (W - WALL) / 2;
+const H = 30 + CH + 54 + (caption ? 22 : 0);
+
+const coatColor: Record<string, 'red' | 'blue' | 'green'> = { Sam: 'blue', Pip: 'green', Ada: 'red' };
+
+// Coats sharing a cubby are nudged apart so both stay visible.
+const inCubby = (ci: number) => hung.filter((h) => h.cubby === ci);
+const lost = hung.filter((h) => h.cubby === null);
+
+const alt = cubbies.map((label, ci) => {
+  const here = inCubby(ci);
+  return here.length === 0
+    ? `cubby ${label} is empty`
+    : `cubby ${label} holds ${here.map((h) => `${h.child}'s coat`).join(' and ')}`;
+}).join(', ')
+  + (lost.length ? `, and ${lost.map((h) => h.child).join(' and ')} ${lost.length > 1 ? 'have' : 'has'} nowhere to hang a coat` : '')
+  + '.';
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="cubbies"
+     role="img" aria-label={alt}>
+  <style>
+    .cubbies .hole  { fill: var(--color-shade, #E3E7DD); stroke: var(--color-ink, #14182B); stroke-width: 2.4; }
+    .cubbies .hole-bad { fill: color-mix(in oklab, var(--color-false, #A8324A) 10%, var(--color-shade, #E3E7DD)); stroke: var(--color-false, #A8324A); stroke-width: 2.6; }
+    .cubbies .peg   { stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-linecap: round; }
+    .cubbies .num   { font-family: var(--font-mono, monospace); font-size: 12px; fill: color-mix(in oklab, var(--color-ink, #14182B) 65%, transparent); }
+    .cubbies .who   { font-family: var(--font-display, sans-serif); font-size: 12px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .cubbies .cap   { font-family: var(--font-display, sans-serif); font-size: 13px; fill: color-mix(in oklab, var(--color-ink, #14182B) 65%, transparent); }
+    .cubbies .warn  { font-family: var(--font-mono, monospace); font-size: 11px; fill: var(--color-false, #A8324A); }
+  </style>
+
+  {cubbies.map((label, ci) => {
+    const ox = XOFF + PAD + ci * CW;
+    const here = inCubby(ci);
+    const bad = here.some((h) => broken.includes(hung.indexOf(h)));
+    return (
+      <g>
+        <rect x={ox} y="20" width={CW - 8} height={CH} rx="4" class={bad ? 'hole-bad' : 'hole'} />
+        <line x1={ox + 12} y1="38" x2={ox + CW - 20} y2="38" class="peg" />
+        {here.map((h, k) => (
+          <g>
+            <Thing kind="coat" color={coatColor[h.child]}
+                   x={ox + (CW - 8) / 2 + (here.length > 1 ? (k === 0 ? -15 : 15) : 0)}
+                   y={72} size={44} />
+            <text x={ox + (CW - 8) / 2 + (here.length > 1 ? (k === 0 ? -15 : 15) : 0)}
+                  y={CH + 36} class="who" text-anchor="middle">{h.child}</text>
+          </g>
+        ))}
+        <text x={ox + (CW - 8) / 2} y="14" class="num" text-anchor="middle">{label}</text>
+      </g>
+    );
+  })}
+
+  {lost.length > 0 && (() => {
+    const ox = XOFF + PAD + cubbies.length * CW + 16;
+    return (
+      <g>
+        {lost.map((h, k) => (
+          <g>
+            <Thing kind="coat" color={coatColor[h.child]} x={ox + 44} y={54 + k * 46} size={42} />
+            <text x={ox + 44} y={CH + 36} class="who" text-anchor="middle">{h.child}</text>
+          </g>
+        ))}
+        <text x={ox + 44} y="14" class="warn" text-anchor="middle">nowhere to go</text>
+      </g>
+    );
+  })()}
+
+  {caption && <text x={W / 2} y={H - 6} class="cap" text-anchor="middle">{caption}</text>}
+</svg>
+
+<style>
+  .cubbies { width: 100%; height: auto; max-width: 420px; display: block; margin: 0 auto; }
+</style>

@@ -14,9 +14,9 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 > **Theorem.** Let $f : S \to T$. For all $U, V \subseteq T$ and every family $\{U_i\}_{i \in I}$ of subsets of $T$:
 > $$
-> f^{-1}\Big(\bigcup_i U_i\Big) = \bigcup_i f^{-1}(U_i),
+> f^{-1}\Big(U_1 \cup \cdots \cup U_n\Big) = f^{-1}(U_1) \cup \cdots \cup f^{-1}(U_n),
 > \quad
-> f^{-1}\Big(\bigcap_i U_i\Big) = \bigcap_i f^{-1}(U_i),
+> f^{-1}\Big(U_1 \cap \cdots \cap U_n\Big) = f^{-1}(U_1) \cap \cdots \cap f^{-1}(U_n),
 > \quad
 > f^{-1}\big(\overline U\big) = \overline{f^{-1}(U)}.
 > $$
@@ -27,14 +27,14 @@ No hypotheses on $f$. The pre-image operator $f^{-1} : \mathcal{P}(T) \to \mathc
 
 Every proof reduces to
 $$
-x \in f^{-1}(U) \iff f(x) \in U, \tag{$\ast$}
+x \in f^{-1}(U) \iff f(x) \in U, \tag{1}
 $$
-which is the definition. $(\ast)$ contains **no quantifier**, and that is the entire reason the theorem holds unconditionally.
+which is the definition. (1) contains **no quantifier**, and that is the entire reason the theorem holds unconditionally.
 
 <Discussion>
-  <div slot="know">$(\ast)$; the unfoldings of $\bigcup$, $\bigcap$, and complement into $\exists$, $\forall$, $\neg$.</div>
+  <div slot="know">(1); and that union, intersection and complement unfold into *there exists*, *for all* and *not*.</div>
   <div slot="want">Three set equalities.</div>
-  <div slot="how">Chase an arbitrary $x \in S$ through a chain of biconditionals: apply $(\ast)$, unfold the set operation into a logical one, then apply $(\ast)$ pointwise to move back. Because every link is an equivalence, one chain proves both inclusions.</div>
+  <div slot="how">Chase an arbitrary $x \in S$ through a chain of biconditionals: apply (1), unfold the set operation into a logical one, then apply (1) pointwise to move back. Because every link is an equivalence, one chain proves both inclusions.</div>
 </Discussion>
 
 <Proof>
@@ -42,11 +42,11 @@ Let $x \in S$ be arbitrary.
 
 *Unions.*
 $$
-x \in f^{-1}\Big(\bigcup_i U_i\Big)
-\iff f(x) \in \bigcup_i U_i
+x \in f^{-1}\Big(U_1 \cup \cdots \cup U_n\Big)
+\iff f(x) \in U_1 \cup \cdots \cup U_n
 \iff \exists i,\ f(x) \in U_i
 \iff \exists i,\ x \in f^{-1}(U_i)
-\iff x \in \bigcup_i f^{-1}(U_i).
+\iff x \in f^{-1}(U_1) \cup \cdots \cup f^{-1}(U_n).
 $$
 
 *Intersections.* Identical with $\forall$ in place of $\exists$.
@@ -68,14 +68,14 @@ Two features worth noting. The proofs work for arbitrary index sets $I$, since t
 ## The image operator, and its failures
 
 $$
-f\Big(\bigcup_i A_i\Big) = \bigcup_i f(A_i) \quad\text{always},
+f\Big(A_1 \cup \cdots \cup A_n\Big) = f(A_1) \cup \cdots \cup f(A_n) \quad\text{always},
 $$
 $$
 f(A \cap B) \subseteq f(A) \cap f(B),\qquad
 f\big(\overline A\big) \text{ and } \overline{f(A)} \text{ unrelated.}
 $$
 
-The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f(a) = t$. Existential quantifiers commute with $\vee$ (hence with $\bigcup$) but not with $\wedge$: from $\exists a \in A,\ f(a)=t$ and $\exists b \in B,\ f(b)=t$ one cannot conclude that a *single* element of $A \cap B$ maps to $t$.
+The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f(a) = t$. Existential quantifiers commute with $\vee$ (hence with unions) but not with $\wedge$: from $\exists a \in A,\ f(a)=t$ and $\exists b \in B,\ f(b)=t$ one cannot conclude that a *single* element of $A \cap B$ maps to $t$.
 
 **Counterexample.** $f(x)=x^2$ on $\mathbb{R}$, $A = \{2\}$, $B = \{-2\}$: $f(A \cap B) = \emptyset$ but $f(A) \cap f(B) = \{4\}$.
 
@@ -114,6 +114,7 @@ Because $f^{-1}$ reverses direction — a map $S \to T$ induces $\mathcal{P}(T) 
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The asymmetry proved here is the reason several later definitions are stated with $f^{-1}$ rather than $f$, and it is worth recognising when you meet them.
 
 **Solving systems with several conditions.** The set of $\mathbf{x}$ satisfying $A\mathbf{x}\in B$ **and** $A\mathbf{x}\in C$ is
@@ -122,13 +123,8 @@ so the conditions may be handled separately and intersected. Attempting the same
 
 That identity is what licenses solving a system one equation at a time and intersecting the solution sets — a procedure so familiar it is easy to miss that it needs justifying.
 
-**Linear maps do preserve intersections of images**, and the reason is the one flagged above: an injective map does, and a linear map's failure to be injective is measured exactly by its null space. So
-$$T(U\cap W) = T(U)\cap T(W) \quad\text{when } \operatorname{Nul} T = \{\mathbf{0}\},$$
-and in general only $\subseteq$ holds. Projections are the standard counterexample: project the $x$-axis and the $y$-axis onto the $x$-axis and both images contain $\mathbf{0}$, while the intersection of the axes maps to $\{\mathbf{0}\}$ — equal here, but the pattern fails as soon as the subspaces are chosen less symmetrically.
-
 **In calculus, the pre-image formulation is what makes domain computations composable.** The domain of the composite $g\circ f$ (§3.7) is $\{x\in\operatorname{dom} f : f(x)\in\operatorname{dom} g\} = \operatorname{dom} f \cap f^{-1}(\operatorname{dom} g)$, and computing it for a three-fold composition is a matter of intersecting pre-images — which works precisely because pre-images distribute.
 
 **The general lesson:** when a definition could be stated with images or with pre-images, it will be stated with pre-images, and this module is why.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **null space** — the vectors a matrix sends to zero; **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

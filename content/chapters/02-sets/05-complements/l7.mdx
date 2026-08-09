@@ -51,7 +51,7 @@ each transcribing a logical fact ($\neg\neg p \equiv p$; $p \wedge \neg p$ contr
 
 **Proof by contradiction**, named move **suppose not**: to establish $p$, assume $\neg p$, derive a contradiction $r \wedge \neg r$, and conclude $p$. Formally the rule is
 $$
-\big(\neg p \Rightarrow (r \wedge \neg r)\big) \;\Longrightarrow\; p,
+\big(\neg p \Rightarrow (r \wedge \neg r)\big) \;\Rightarrow\; p,
 $$
 valid since $\neg p \Rightarrow F$ forces $\neg p$ false, and excluded middle then yields $p$.
 
@@ -64,7 +64,7 @@ Classically both are fine. Constructively only the first is, and the distinction
 
 ## The proposition
 
-> **Proposition.** For $A, B \subseteq S$: $A \subseteq B \implies \overline B \subseteq \overline A$.
+> **Proposition.** For $A, B \subseteq S$: $A \subseteq B \Rightarrow \overline B \subseteq \overline A$.
 
 <Discussion>
   <div slot="know">$\forall x\,(x \in A \Rightarrow x \in B)$. Goal is a subset claim, so element chasing (§2.3).</div>
@@ -112,17 +112,15 @@ That is why "at least one" problems are almost always solved by complementing. T
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Contradiction is the technique that settles the impossibility results in both courses ahead — and there are more of them than a first look suggests.
 
 **In calculus, "suppose not" proves the uniqueness theorems.** *The limit of a convergent sequence is unique*: suppose two limits $L\neq M$, take $\varepsilon = |L-M|/2$, and derive that some term lies within $\varepsilon$ of both — impossible, since the two $\varepsilon$-neighbourhoods are disjoint. The negation supplied the specific $\varepsilon$, which is the trade this module described.
 
 The same shape proves that a function cannot have two different derivatives at a point, and that the antiderivative of a function on an interval is unique up to a constant.
 
-**Divergence proofs are contradiction proofs.** To show a series diverges you frequently assume it converges, apply a theorem valid only for convergent series, and reach an impossibility. The classic case is the harmonic series: assume $\sum 1/n$ converges to $S$, group the terms in a particular way, and derive $S > S$.
-
-**In linear algebra, "suppose not" handles the counting arguments.** *A set of $n+1$ vectors in $\mathbb{R}^n$ is linearly dependent*: suppose it were independent, and count pivots against columns until the count is impossible. *A vector space cannot have bases of two different sizes*: suppose it did, and the same counting collapses.
+**Divergence proofs are contradiction proofs.** To show a series diverges you frequently assume it converges, apply a theorem valid only for convergent series, and reach an impossibility. The classic case is the harmonic series: assume $\left(1 + \tfrac12 + \tfrac13 + \cdots\right)$ — the symbol $\sum$ is read *"the sum of"*, so this is $1 + \tfrac12 + \tfrac13 + \cdots$ — converges to $S$, group the terms in a particular way, and derive $S > S$.
 
 In each case the pattern is the one this module names. The goal is a negative or an impossibility, the direct route offers nothing to construct with, and the negation hands you a specific object — an $\varepsilon$, a sum $S$, an independent set — to work against.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **bases** — smallest sets of vectors that build everything else; **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

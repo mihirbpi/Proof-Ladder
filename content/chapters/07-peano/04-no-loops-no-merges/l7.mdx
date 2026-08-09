@@ -34,9 +34,9 @@ Structurally: $0 \notin \operatorname{Im}(S)$ (§3.3) and $S$ is injective (§3.
     edges={[[0,1],[1,2],[2,2]]} />
 </Figure>
 
-By soundness (§7.1), a structure satisfying $\Gamma$ and refuting $\varphi$ witnesses $\Gamma\not\vdash\varphi$. So neither A7 nor A8 is derivable from the remaining axioms, and both earn their place.
+By the method of §7.1, a structure in which the remaining axioms hold and the one in question fails shows that one is not derivable from the others. So neither A7 nor A8 is redundant, and both earn their place.
 
-More generally, the models of A5–A6 alone are exactly the *pointed dynamical systems* $(M, 0, S)$ — any set with a distinguished point and any endofunction whatsoever. A7 and A8 cut that class down to those in which the orbit of $0$ is an infinite simple path.
+More generally, A5 and A6 alone permit *any* set with a marked starting point and *any* rule for taking the next element. A7 and A8 cut that down to the structures in which counting from $0$ runs forward forever without looping or merging.
 
 ## What each axiom forbids
 
@@ -95,6 +95,7 @@ These are the **nonstandard models** of arithmetic. They satisfy every theorem e
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Axioms 7 and 8 are statements about $S$ as a function, in the vocabulary of Chapter 3, and reading them that way is what makes them memorable.
 
 $$\text{Axiom 7:}\ \ S^{-1}(\{0\}) = \emptyset \qquad \text{Axiom 8:}\ \ S \text{ is injective}$$
@@ -103,9 +104,6 @@ So $S$ is injective and not surjective — hence not a bijection, hence not inve
 
 **Each axiom is shown non-redundant by a counter-model.** Drop Axiom 7 and the clock arithmetic of §4.4 satisfies everything else. Drop Axiom 8 and you get a chain running into a loop. Exhibiting such a system is how you prove an axiom cannot be derived from the others — the same method that settled the parallel postulate after two thousand years of failed derivations.
 
-**In linear algebra the corresponding move is the counterexample to a suspected theorem.** Is every set of $n$ vectors in $\mathbb{R}^n$ a basis? Exhibit $n$ dependent vectors, and the question is settled. Is $AB = BA$? Exhibit two matrices. The technique is the same: to show something does not follow, build a case where the hypotheses hold and the conclusion fails.
-
 **In calculus, the analogous constructions are the pathological functions.** $|x|$ shows continuity does not imply differentiability; $\sin(1/x)$ shows a limit can fail without tending to infinity; the Weierstrass function shows continuity everywhere is compatible with differentiability nowhere. Each exists to prove that a plausible implication is not a theorem, and each is as much a part of the subject as the theorems.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>

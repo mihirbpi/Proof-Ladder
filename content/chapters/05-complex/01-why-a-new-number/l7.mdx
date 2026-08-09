@@ -50,7 +50,7 @@ Either way $\mathbb{C}$ exists as an object built from $\mathbb{R}$, so no new c
 **"You can't take the square root of a negative number."** The correct statement is that no element of an ordered field has negative square. In $\mathbb{C}$, every element has exactly two square roots, including $-1$.
 
 **A real caution, though:** $\sqrt{ab} = \sqrt a \sqrt b$ **fails** on $\mathbb{C}$. The classic trap is
-$$-1 = i^2 = \sqrt{-1}\sqrt{-1} \overset{?}{=} \sqrt{(-1)(-1)} = \sqrt1 = 1.$$
+$$-1 = i^2 = \sqrt{-1}\sqrt{-1} = \sqrt{(-1)(-1)} = \sqrt1 = 1.$$
 The identity holds for non-negative reals and not in general, because $\sqrt{\phantom{x}}$ on $\mathbb{C}$ requires a branch choice (§5.8). Write $i$, never $\sqrt{-1}$.
 </Warning>
 
@@ -84,15 +84,11 @@ Historically, quadratics were not the motivation. Cardano's formula for $x^3 = 1
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The extension to $\mathbb{C}$ is what makes the algebra of the next two courses uniform.
 
 **In calculus, complex roots explain the shape of partial fractions.** Every real polynomial factors over $\mathbb{R}$ into linear and *irreducible quadratic* factors — and the quadratics are irreducible precisely because their roots are complex. That is why partial-fraction decomposition has two cases, one producing $\frac{A}{x-a}$ and one producing $\frac{Bx+C}{x^2+px+q}$, and why the second integrates to a logarithm plus an arctangent rather than to a logarithm alone.
 
 The same fact governs second-order linear differential equations. The characteristic equation $ar^2+br+c=0$ has real roots when the discriminant is positive, giving exponential solutions, and complex roots when it is negative, giving oscillation. **The discriminant's sign is the same $b^2-4ac$ from your quadratic formula**, and the switch from growth to oscillation is Euler's formula (§5.7) doing its work.
 
-**In linear algebra, eigenvalues are the payoff.** A real matrix need have no real eigenvalues — the $90°$ rotation matrix has none, since no real vector keeps its direction under a quarter turn. Over $\mathbb{C}$ it has two, $\pm i$, and the general theorem holds: **every $n\times n$ complex matrix has $n$ eigenvalues counted with multiplicity**, because the characteristic polynomial always factors completely.
-
-That is the Fundamental Theorem of Algebra, applied. The whole eigenvalue theory is stated over $\mathbb{C}$ for the reason this module gives: over $\mathbb{R}$ the theorems would need exceptions, and over $\mathbb{C}$ they do not.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **eigenvalue** — a factor by which a matrix stretches a direction without turning it.*
 </WhereThisGoes>

@@ -32,14 +32,14 @@ Note what is *not* required. Nothing constrains the codomain side: distinct inpu
 
 The description above uses "assigns", which is no more defined than "function". The set-theoretic definition removes the circularity, using §2.9:
 
-> A **function** from $S$ to $T$ is a triple $(S, T, \Gamma)$ where $\Gamma \subseteq S \times T$ satisfies
-> $$\forall s \in S,\ \exists!\, t \in T,\ (s,t) \in \Gamma.$$
-> One writes $f(s)$ for that unique $t$, and $\Gamma$ is the **graph** of $f$.
+> A **function** from $S$ to $T$ is a triple $(S, T, G)$ where $G \subseteq S \times T$ satisfies
+> $$\forall s \in S,\ \exists!\, t \in T,\ (s,t) \in G.$$
+> One writes $f(s)$ for that unique $t$, and $G$ is the **graph** of $f$.
 
 So a function *is* its graph, together with its domain and codomain. Three consequences worth stating:
 
 1. **Functions are equal when their graphs and their domains and codomains are equal.** Hence $f = g$ iff they agree pointwise and have the same domain and codomain — extensionality one level up from §2.6.
-2. **The codomain is data, not derivable.** $\Gamma$ determines the image but not $T$, which is why $T$ must be carried in the triple. Authors who define a function as just $\Gamma$ cannot state surjectivity, and this is a real defect.
+2. **The codomain is data, not derivable.** $G$ determines the image but not $T$, which is why $T$ must be carried in the triple. Authors who define a function as just $G$ cannot state surjectivity, and this is a real defect.
 3. **The vertical line test is this definition drawn on axes.** Not a separate criterion.
 
 ## Domain and codomain are constitutive
@@ -58,7 +58,7 @@ When elements of the domain admit multiple names, a rule must be checked to give
 
 $f : \mathbb{Q} \to \mathbb{Z}$, $f(p/q) = p + q$ is **not** a function: $\tfrac12 = \tfrac24$ but $1+2 \neq 2+4$.
 
-$f : \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$, $f([a]) = [a^2]$ **is** a function, and proving it requires showing $a \equiv b \pmod n \Rightarrow a^2 \equiv b^2 \pmod n$ — a genuine argument, not an observation.
+Grouping the integers by the remainder they leave on division by $n$, the rule $[a] \mapsto [a^2]$ **is** a function — but proving it requires showing that if $a$ and $b$ leave the same remainder then so do $a^2$ and $b^2$. (Written $a \equiv b \pmod n$ in later courses, and read *"congruent modulo $n$"*.) That is a genuine argument, not an observation.
 
 Every construction on a quotient carries this obligation. It is the single most commonly skipped step in first algebra courses.
 </Warning>
@@ -85,6 +85,7 @@ $x \mapsto 1/x$ is not a function $\mathbb{R} \to \mathbb{R}$; totality fails at
 Ordinary mathematics takes the first road, and "the domain of $1/x$" means the largest set on which the formula makes sense.
 
 <WhereThisGoes level="l7">
+
 Calculus is a course about functions, and almost every difficulty in it is a domain question in disguise.
 
 **Totality is why domains must be stated.** $f(x) = 1/x$ is not a function on $\mathbb{R}$, and neither is $\tan x$, and neither is $\ln x$. Every one of the standard examples in a first calculus course arrives with a restriction, and the restriction is not a footnote — without it there is no function to differentiate.
@@ -93,7 +94,4 @@ The consequences are immediate and practical. The Mean Value Theorem requires $f
 
 **Single-valuedness is why inverse trigonometric functions have restricted ranges.** $\sin^{-1}$ must return one angle, so its domain is restricted before inverting, and that is why solving $\sin\theta = \frac12$ over all angles requires adding solutions back by hand.
 
-**In linear algebra, functions between arbitrary sets is exactly the generality needed.** A linear transformation $T:\mathbb{R}^n\to\mathbb{R}^m$ has neither a graph you can draw nor a formula in the usual sense, and the definition of §3.1 applies unchanged — inputs are vectors, outputs are vectors, and the three conditions are checked the same way.
-
-**The set-of-pairs definition is what makes this generality possible.** Nothing in it mentions numbers, formulas, or graphs, which is why the theorems of the next eight modules will hold for linear maps, for sequences, and for the differentiation operator alike.
 </WhereThisGoes>

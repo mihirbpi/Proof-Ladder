@@ -15,10 +15,10 @@ import Warning from '@/components/Warning.astro';
 
 An **ordered pair** $(a,b)$ is characterised entirely by one property:
 $$
-(a,b) = (c,d) \quad\Longleftrightarrow\quad a = c \;\wedge\; b = d. \tag{$\ast$}
+(a,b) = (c,d) \quad\Leftrightarrow\quad a = c \;\wedge\; b = d. \tag{1}
 $$
 
-That is what distinguishes pairs from sets: $\{a,b\} = \{b,a\}$ always, while $(a,b) = (b,a)$ only when $a = b$. Sets forget order; pairs remember it, and $(\ast)$ is the formal content of "remember".
+That is what distinguishes pairs from sets: $\{a,b\} = \{b,a\}$ always, while $(a,b) = (b,a)$ only when $a = b$. Sets forget order; pairs remember it, and (1) is the formal content of "remember".
 
 ## The cartesian product
 
@@ -27,7 +27,7 @@ S \times T = \{\, (s,t) \mid s \in S \wedge t \in T \,\},
 $$
 so the working form is
 $$
-(x,y) \in S \times T \iff x \in S \wedge y \in T. \tag{$\dagger$}
+(x,y) \in S \times T \iff x \in S \wedge y \in T. \tag{2}
 $$
 
 With $S = \{1,2\}$, $T = \{a,b,c\}$:
@@ -39,7 +39,7 @@ For finite sets $|S \times T| = |S| \cdot |T|$ — the grid has $|S|$ rows and $
 
 ## Non-commutativity and the empty set
 
-$S \times T \neq T \times S$ in general, since $(1,a) \neq (a,1)$ by $(\ast)$. They are equal only when $S = T$, or when one of them is empty.
+$S \times T \neq T \times S$ in general, since $(1,a) \neq (a,1)$ by (1). They are equal only when $S = T$, or when one of them is empty.
 
 $$
 S \times \emptyset = \emptyset \times S = \emptyset.
@@ -52,7 +52,7 @@ The single most useful habit in this module: whenever you chase an arbitrary ele
 
 > Let $z \in A \times C$. Then $z = (x,y)$ for some $x \in A$, $y \in C$.
 
-Trying to reason about $z$ without splitting it into coordinates is where these proofs stall. Once it is $(x,y)$, condition $(\dagger)$ converts membership into two ordinary membership statements and Chapter 1 takes over.
+Trying to reason about $z$ without splitting it into coordinates is where these proofs stall. Once it is $(x,y)$, condition (2) converts membership into two ordinary membership statements and Chapter 1 takes over.
 </Warning>
 
 ## Products interact with intersection
@@ -93,16 +93,16 @@ Take $A = C = \{1\}$, $B = D = \{2\}$. The left side contains $(1,2)$, since $1 
 
 The asymmetry is instructive: products distribute over $\cap$ but not over $\cup$, because the rearrangement step above needs the conjunctions to be independent, and disjunctions do not rearrange the same way.
 
-## $\mathbb{R}^2$ and the lattice
+## $\mathbb{R}^2$ and the integer lattice
 
 $$
 \mathbb{R} \times \mathbb{R} = \mathbb{R}^2, \qquad
 \mathbb{Z} \times \mathbb{Z} = \text{the integer lattice.}
 $$
 
-Coordinate geometry *is* the study of subsets of $\mathbb{R}^2$: a line is $\{(x,y) \in \mathbb{R}^2 \mid y = mx + c\}$, a circle is $\{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 = r^2\}$. Every graph you have ever drawn was a set-builder subset of a product set.
+Coordinate geometry *is* the study of subsets of $\mathbb{R}^2$: the graph of a proportional relationship is $\{(x,y) \in \mathbb{R}^2 \mid y = 3x\}$, a circle of radius $r$ about the origin is $\{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 = r^2\}$. Every graph you have ever drawn was a set-builder subset of a product set.
 
-Products extend: $S \times T \times R$ has ordered triples, $\mathbb{R}^3$ is space, and $\mathbb{R}^n$ is where multivariable calculus and linear algebra live.
+Products extend: $S \times T \times R$ has ordered triples, $\mathbb{R}^3$ is space, and $\mathbb{R}^n$ is where multivariable calculus and matrix and vector work live.
 
 <Aside>
 This module is the last piece of scaffolding before Chapter 3. A **function** from $S$ to $T$ will be defined as a particular subset of $S \times T$: the set of pairs whose first entry is an input and whose second is the output it gets sent to. That set of pairs is exactly what you would plot as its graph.

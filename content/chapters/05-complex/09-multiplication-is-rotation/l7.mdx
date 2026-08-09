@@ -112,6 +112,7 @@ Gauss proved at nineteen that a regular $n$-gon is constructible with ruler and 
 </Aside>
 
 <WhereThisGoes level="l7">
+
 This module's technique — **compute one thing two ways and equate real and imaginary parts** — is a general method, and the trigonometric identities are only its first application.
 
 **Every identity in your precalculus course follows.** Angle addition, double angle, and triple angle all come from expanding $e^{i(\alpha+\beta)} = e^{i\alpha}e^{i\beta}$ or $(e^{i\theta})^n = e^{in\theta}$ and separating parts. The identities are consequences of $i^2=-1$, not facts to be memorised independently, and the minus sign in $\cos(\alpha+\beta)$ is exactly where the $i^2$ went.
@@ -120,9 +121,4 @@ This module's technique — **compute one thing two ways and equate real and ima
 
 **In calculus, complex exponentials shorten integration.** $\int e^{ax}\cos bx\,dx$ is usually done by integrating by parts twice and solving for the integral. Written as $\operatorname{Re}\int e^{(a+bi)x}\,dx$, it is a single antiderivative followed by taking the real part — and the answer, including its awkward $\frac{a\cos bx + b\sin bx}{a^2+b^2}$ coefficient, falls out of dividing by $a+bi$.
 
-**In linear algebra, roots of unity are eigenvalues.** The $n\times n$ cyclic shift matrix has characteristic polynomial $\lambda^n - 1$, so its eigenvalues are exactly the $n$th roots of unity, and its eigenvectors are the discrete Fourier vectors. That is the algebraic content of the Fourier transform, and it is why circulant matrices are diagonalised by the same matrix regardless of their entries.
-
-**And the rotation reading is the general one.** A real matrix with complex eigenvalues $re^{\pm i\theta}$ acts on a plane by rotating through $\theta$ and scaling by $r$ — the classification proved in this module, restated for linear transformations.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **eigenvalue** — a factor by which a matrix stretches a direction without turning it; **eigenvector** — a direction a matrix stretches without turning.*
 </WhereThisGoes>

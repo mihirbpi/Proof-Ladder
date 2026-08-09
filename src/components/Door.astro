@@ -1,0 +1,78 @@
+---
+// A door, open or shut — §1.2 at l1/l2, where the opposite game is played on
+// "the door is open" / "the door is NOT open".
+//
+// Drawn as a pair so the two states are visibly the same door, not two pictures:
+// pass `both` to render open and shut side by side under their captions.
+export interface Props {
+  open?: boolean;
+  both?: boolean;
+}
+const { open = true, both = false } = Astro.props;
+
+const PANEL_W = 96;
+const PANEL_H = 132;
+// An open door swings out to the LEFT of its frame, so each cell has to reserve
+// room for the swing or the panel and its knob fall off the viewBox.
+const SWING = 36;
+const CELL = PANEL_W + SWING + 26;
+const H = 196;
+const W = both ? CELL * 2 : CELL;
+
+const states = both ? [true, false] : [open];
+
+const alt = both
+  ? 'Two pictures of the same doorway. In the first the door stands open, showing the dark gap behind it. In the second it is shut.'
+  : open
+    ? 'A doorway with the door standing open, showing the dark gap behind it.'
+    : 'A doorway with the door shut.';
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="door"
+     role="img" aria-label={alt}>
+  <style>
+    .door .frame { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.6; stroke-linejoin: round; }
+    .door .gap   { fill: color-mix(in oklab, var(--color-ink, #14182B) 78%, transparent); }
+    .door .panel { fill: var(--color-wood, #B08A5E); stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-linejoin: round; }
+    .door .inset { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 1.4; opacity: 0.5; }
+    .door .knob  { fill: var(--color-card, #F8F9F5); stroke: var(--color-ink, #14182B); stroke-width: 1.8; }
+    .door .cap   { font-family: var(--font-display, sans-serif); font-size: 14px; font-weight: 600; fill: var(--color-ink, #14182B); }
+  </style>
+
+  {states.map((isOpen, i) => {
+    const ox = i * CELL + SWING + 10;
+    const oy = 20;
+    return (
+      <g>
+        {/* the doorway itself, always the same */}
+        <rect x={ox} y={oy} width={PANEL_W} height={PANEL_H} rx="4" class="gap" />
+        <rect x={ox} y={oy} width={PANEL_W} height={PANEL_H} rx="4" class="frame" />
+
+        {isOpen ? (
+          // Swung towards us: a narrower panel hinged on the left, seen at an angle.
+          <g>
+            <path d={`M ${ox} ${oy} L ${ox - SWING} ${oy + 16}
+                      L ${ox - SWING} ${oy + PANEL_H + 16} L ${ox} ${oy + PANEL_H} Z`} class="panel" />
+            <circle cx={ox - SWING + 9} cy={oy + PANEL_H / 2 + 12} r="4" class="knob" />
+          </g>
+        ) : (
+          <g>
+            <rect x={ox + 3} y={oy + 3} width={PANEL_W - 6} height={PANEL_H - 6} rx="3" class="panel" />
+            <rect x={ox + 14} y={oy + 16} width={PANEL_W - 28} height={44} rx="2" class="inset" />
+            <rect x={ox + 14} y={oy + 72} width={PANEL_W - 28} height={44} rx="2" class="inset" />
+            <circle cx={ox + PANEL_W - 16} cy={oy + PANEL_H / 2} r="4.5" class="knob" />
+          </g>
+        )}
+
+        {both && (
+          <text x={i * CELL + CELL / 2} y={H - 10} class="cap" text-anchor="middle">
+            {isOpen ? 'open' : 'not open'}
+          </text>
+        )}
+      </g>
+    );
+  })}
+</svg>
+
+<style>
+  .door { width: 100%; height: auto; max-width: 330px; display: block; margin: 0 auto; }
+</style>

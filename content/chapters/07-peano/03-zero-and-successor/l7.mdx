@@ -66,11 +66,9 @@ That is why base-ten arithmetic is absent from this chapter. The fact that $7+5=
     edges={[[0,1],[1,0]]} />
 </Figure>
 
-$M_1 = \{0\}$ with $S(0)=0$, and $M_2 = \{0,1\}$ with $S(0)=1$, $S(1)=0$, both satisfy A5 and A6. So
-$$
-\{A5, A6\} \not\vdash \text{“}\mathbb{N}\text{ is infinite”},
-$$
-by the model-theoretic method of §7.1: a structure satisfying the axioms and refuting the conclusion witnesses unprovability, and by Gödel completeness this is not merely evidence but proof.
+$M_1 = \{0\}$ with $S(0)=0$, and $M_2 = \{0,1\}$ with $S(0)=1$, $S(1)=0$, both satisfy A5 and A6 — and both are finite. So **"$\mathbb{N}$ is infinite" cannot be proved from A5 and A6 alone.**
+
+That is the method of §7.1: a structure in which the axioms hold and the conclusion fails settles unprovability outright. It is not merely evidence that nobody has found a proof; it shows no proof exists.
 
 $M_1$ violates A7 ($0$ is a successor). $M_2$ violates A7 as well, and the model $\{0,1\}$ with $S(0)=S(1)=1$ violates A8. §7.4 introduces exactly the axioms these models refute, which is the standard way to demonstrate that no axiom is redundant.
 
@@ -81,11 +79,10 @@ That single property packages A5–A9 and the recursive-definition principle at 
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The discipline of this module — **use only what has been stated** — is the one that makes axiomatic subjects tractable.
 
 $S(x)$ cannot be written $x+1$ until addition exists, and addition is defined *from* $S$ (§7.6). Writing it early would be circular, and the circularity would be invisible.
-
-**The same discipline is what linear algebra demands.** A vector space is eight axioms and nothing else, so a proof about an abstract vector space may not assume vectors have components, may not take dot products, and may not speak of length or angle. Those require additional structure — an inner product — which is a later definition and a genuine addition.
 
 The routine error is importing $\mathbb{R}^n$ intuition into a proof about an abstract space. It is the same error as writing $S(x) = x+1$ here: using a property the axioms have not granted, in a setting where it happens to be true for the example you are picturing.
 
@@ -95,5 +92,4 @@ That is not decoration. **The chapter is comprehensible because the earlier chap
 
 **In calculus the same restraint applies to the definition of a limit.** The $\varepsilon$–$\delta$ statement says what it says; a proof may use only that, not the picture of a graph approaching a height. When a limit proof goes wrong, it is usually because a step appealed to the picture rather than the definition.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **vector space** — any system where you can add and scale.*
 </WhereThisGoes>

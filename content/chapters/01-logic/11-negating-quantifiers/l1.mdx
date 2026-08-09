@@ -8,10 +8,14 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingRow from '@/components/ThingRow.astro';
+import Farm from '@/components/Farm.astro';
 
 Look at this picture of a farm. A dog. A cow. A pig. A horse. A duck.
 
-Now Sam makes a big claim:
+<Farm />
+
+Now Sam says a big telling:
 
 > "**Every** animal in this picture has four legs!"
 
@@ -21,12 +25,17 @@ Dog — four legs. Cow — four legs. Pig — four legs. Horse — four legs.
 
 Duck — **two legs!**
 
+<Farm odd={4} />
+
 Gotcha! You found **one bad apple**.
 
-Sam's claim is knocked down. And you only needed one duck to do it. You did not have to check the rest.
+Sam's telling is knocked down. And you only needed one duck to do it. You did not have to check the rest.
+
+<ThingRow items={[{kind:"apple", color:"red"},{kind:"apple", color:"red"},{kind:"apple", color:"green"},{kind:"apple", color:"red"}]}
+  ring={2} caption="one is enough to knock the telling down" />
 
 **One bad apple** is enough. Every single time.
 
 <TryIt>
-Look around the room. Make a big *every* claim out loud — say, "every book on this shelf is red." Now go find the one bad apple.
+Look around the room. Say a big *every* telling out loud — say, "every book on this shelf is red." Now go find the one bad apple.
 </TryIt>

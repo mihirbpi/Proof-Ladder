@@ -31,8 +31,10 @@ Read $g \circ f$ aloud as "$g$ after $f$", not "$g$ then $f$".
 The middle sets must match. $f$ delivers into $T$, and $g$ must be prepared to accept anything in $T$ — otherwise some output of $f$ would be handed to $g$ as an input $g$ has no rule for, and totality would fail.
 
 $$
-S \xrightarrow{\ f\ } T \xrightarrow{\ g\ } R
+S \;\to\; T \;\to\; R
 $$
+
+The first arrow is $f$ and the second is $g$.
 
 So $g \circ f$ requires the codomain of $f$ to be the domain of $g$, and this is one more place where declaring codomains earns its keep.
 

@@ -90,6 +90,7 @@ The bijections from a set $X$ to itself are closed under composition, contain th
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Composition is the operation the next two courses are organised around.
 
 **The chain rule is a theorem about composition.**
@@ -99,17 +100,10 @@ Note where each function is evaluated — $g'$ at $f(x)$, not at $x$ — and not
 
 Composition also structures the integration techniques: $u$-substitution is the chain rule run backwards, and recognising an integrand as $g'(f(x))f'(x)$ is recognising a composition.
 
-**Matrix multiplication is composition.** This is the fact that explains everything odd about it:
-
 - $AB$ is defined only when the dimensions match, because $g\circ f$ requires $\operatorname{codom} f = \operatorname{dom} g$.
 - $AB \neq BA$ in general, because composition is not commutative — and the counterexample in this module is the same phenomenon.
 - $(AB)C = A(BC)$, because composition is associative, proved above in four lines.
 - $AI = IA = A$, because the identity is a unit for composition.
 - $(AB)^{-1} = B^{-1}A^{-1}$, reversing the order, because inverses of compositions reverse.
 
-**Every one of those facts is a property of composition rather than of matrices**, and the proof you read above is the proof — the matrix version is the same argument in coordinates. That is a substantial saving, and it is the argument for meeting composition abstractly first.
-
-**And the two preservation theorems get used.** A composition of injective linear maps is injective, so a product of matrices with trivial null spaces has trivial null space; a composition of surjections is surjective, so a product of onto maps is onto. Both are corollaries of what this module proved, with no new work.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **null space** — the vectors a matrix sends to zero.*
 </WhereThisGoes>

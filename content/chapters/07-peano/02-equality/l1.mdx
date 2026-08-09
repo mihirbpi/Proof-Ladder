@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingRow from '@/components/ThingRow.astro';
 
 Let's play the **same as** game. Three rules. Act them all out!
 
@@ -20,6 +21,10 @@ Of course! Everything is the same as itself. That one is easy.
 So is Sam's block the same color as yours?
 
 Yes! It works both ways. It always does.
+
+<ThingRow items={[{kind:"block", color:"red"},{kind:"block", color:"red"},{kind:"block", color:"red"}]}
+  groups={[1, 1, 1]} groupLabels={["yours", "Sam's", "Pip's"]}
+  caption="all three the same colour" />
 
 **Rule three.** Your block matches Sam's. And Sam's block matches Pip's.
 

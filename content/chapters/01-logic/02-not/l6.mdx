@@ -38,6 +38,8 @@ When your proof says *"either $P$ is inside the triangle or it is not,"* it is q
 
 ## Double negation
 
+The symbol $\equiv$ is read *is logically equivalent to*: the two sides have identical truth tables. §1.4 treats it properly.
+
 $$\neg\neg p \equiv p.$$
 
 The symbol $\equiv$ reads *is logically equivalent to* — the two have identical truth tables, and §1.4 treats it properly. Inverting twice is not an inversion. This is the last step of every indirect proof: having shown $\neg q$ leads to a contradiction, you conclude $\neg\neg q$, and silently replace it with $q$.
@@ -72,6 +74,9 @@ This is the single most common error in indirect proofs, and it is why the first
 </Warning>
 
 ## Negating quantified statements
+
+Two symbols are needed here, and module 1.10 develops them properly. $\forall$ is read *"for all"* and $\exists$ is read *"there exists"*, so $\forall x,\ P(x)$ says $P$ holds for every $x$, and $\exists x,\ P(x)$ says at least one $x$ makes it hold.
+
 
 $$\neg\big(\forall x,\ P(x)\big) \equiv \exists x,\ \neg P(x)$$
 $$\neg\big(\exists x,\ P(x)\big) \equiv \forall x,\ \neg P(x)$$

@@ -1,0 +1,74 @@
+---
+// Two overlapping hoops with real things sorted into them — the l1 picture of
+// AND and OR (§1.3), where the reader physically puts objects in hoops.
+//
+// This is <VennTwo> for children: same two circles, but the regions hold drawn
+// objects instead of shading, because at l1 the argument is about a red ball
+// being in both hoops at once, not about set notation.
+import Thing from './Thing.astro';
+
+type Item = { kind: string; color?: string | null };
+export interface Props {
+  labelLeft?: string;
+  labelRight?: string;
+  leftOnly?: Item[];
+  both?: Item[];
+  rightOnly?: Item[];
+  caption?: string | null;
+}
+const {
+  labelLeft = 'red things',
+  labelRight = 'round things',
+  leftOnly = [],
+  both = [],
+  rightOnly = [],
+  caption = null,
+} = Astro.props;
+
+const W = 400, H = 250;
+const R = 92;
+const cyH = 122;
+const cx1 = 152, cx2 = 248;
+
+// One or two objects per region, stacked vertically when there are two.
+const place = (items: Item[], cx: number) =>
+  items.map((it, i) => ({ it, x: cx, y: cyH + (items.length === 1 ? 0 : (i === 0 ? -26 : 26)) }));
+
+const name = (it: Item) => `${it.color ? it.color + ' ' : ''}${it.kind}`;
+const alt = `Two overlapping hoops. The left hoop is for ${labelLeft} and the right for ${labelRight}. `
+  + `Only in the left: ${leftOnly.map(name).join(', ') || 'nothing'}. `
+  + `In the overlap, belonging to both: ${both.map(name).join(', ') || 'nothing'}. `
+  + `Only in the right: ${rightOnly.map(name).join(', ') || 'nothing'}.`;
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="hoop-sort"
+     role="img" aria-label={alt}>
+  <style>
+    .hoop-sort .hoop { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 3; }
+    .hoop-sort .hoop-l { stroke: var(--color-toy-red, #C2503F); }
+    .hoop-sort .hoop-r { stroke: var(--color-toy-blue, #3E6B9A); }
+    .hoop-sort .lbl  { font-family: var(--font-display, sans-serif); font-size: 14px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .hoop-sort .cap  { font-family: var(--font-display, sans-serif); font-size: 13px; fill: color-mix(in oklab, var(--color-ink, #14182B) 65%, transparent); }
+  </style>
+
+  <circle cx={cx1} cy={cyH} r={R} class="hoop hoop-l" />
+  <circle cx={cx2} cy={cyH} r={R} class="hoop hoop-r" />
+
+  {place(leftOnly, cx1 - 54).map((p) => (
+    <Thing kind={p.it.kind as any} color={(p.it.color ?? null) as any} x={p.x} y={p.y} size={46} />
+  ))}
+  {place(both, (cx1 + cx2) / 2).map((p) => (
+    <Thing kind={p.it.kind as any} color={(p.it.color ?? null) as any} x={p.x} y={p.y} size={46} />
+  ))}
+  {place(rightOnly, cx2 + 54).map((p) => (
+    <Thing kind={p.it.kind as any} color={(p.it.color ?? null) as any} x={p.x} y={p.y} size={46} />
+  ))}
+
+  <text x={cx1 - 40} y="22" class="lbl" text-anchor="middle">{labelLeft}</text>
+  <text x={cx2 + 40} y="22" class="lbl" text-anchor="middle">{labelRight}</text>
+
+  {caption && <text x={W / 2} y={H - 8} class="cap" text-anchor="middle">{caption}</text>}
+</svg>
+
+<style>
+  .hoop-sort { width: 100%; height: auto; max-width: 400px; display: block; margin: 0 auto; }
+</style>

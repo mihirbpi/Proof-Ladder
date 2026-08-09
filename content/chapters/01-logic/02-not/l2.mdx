@@ -8,6 +8,7 @@ anchorExample: "all the blocks are red"
 
 import TryIt from '@/components/TryIt.astro';
 import Warning from '@/components/Warning.astro';
+import Blocks from '@/components/Blocks.astro';
 
 Every telling has an **opposite**. The opposite of *the door is open* is *the door is not open*.
 
@@ -25,6 +26,8 @@ The last one is false, because six really is bigger than four. That is fine. An 
 
 Sam dumps out the block bin. Every single block is red.
 
+<Blocks colors={["red", "red", "red", "red"]} label="all the blocks are red" />
+
 *All the blocks are red.* — True.
 
 Now, what is the opposite? Sam says: *all the blocks are blue!*
@@ -36,6 +39,8 @@ The real opposite is: *not all the blocks are red.* That means at least one bloc
 ## How to catch a fake opposite
 
 A telling and its opposite must always **disagree**. Try it on a bin with three red blocks and one blue one:
+
+<Blocks colors={["red", "red", "red", "blue"]} spotlight={3} label="not all the blocks are red" />
 
 - *All the blocks are red.* — False.
 - *All the blocks are blue.* — Also false. They agree! So this is not the opposite.

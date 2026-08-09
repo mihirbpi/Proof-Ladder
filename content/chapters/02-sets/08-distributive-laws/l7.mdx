@@ -79,7 +79,7 @@ $$
 $$
 So $A \cap (B+C) = A$ while $(A\cap B) + (A\cap C) = \{0\}$. **Distributivity fails, and fails badly** — the two sides are as far apart as they could be.
 
-This is the practical warning to carry into linear algebra. Subspaces look like sets and behave like sets under $\cap$; they do **not** behave like sets under $+$, and an argument that quietly assumes the distributive law for subspaces is wrong. The counterexample above is two lines long and worth remembering.
+This is the practical warning to carry into your later matrix work. Subspaces look like sets and behave like sets under $\cap$; they do **not** behave like sets under $+$, and an argument that quietly assumes the distributive law for subspaces is wrong. The counterexample above is two lines long and worth remembering.
 
 <Warning title="The ring analogy has limits">
 $\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for (D1) and a false friend elsewhere. Set operations are **idempotent** — repeating one changes nothing ($S \cup S = S$) and **have no inverses** ($S \cup T = S \cup R$ does not force $T = R$), so $(\mathcal{P}(X), \cup)$ has no inverses and $\mathcal{P}(X)$ is not a ring under these operations.
@@ -87,17 +87,17 @@ $\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for
 It *is* a ring under symmetric difference and intersection — $(\mathcal{P}(X), \triangle, \cap)$ is a commutative ring in which every element is idempotent, a *Boolean ring* — and that is the correct algebraic packaging when ring-theoretic tools are wanted.
 </Warning>
 
-## General form
+## More than two sets
 
-Both laws extend to indexed families:
+Both laws extend to any number of sets:
 $$
-S \cap \bigcup_{i \in I} A_i = \bigcup_{i \in I} (S \cap A_i),
-\qquad
-S \cup \bigcap_{i \in I} A_i = \bigcap_{i \in I} (S \cup A_i),
+S \cap (A_1 \cup \cdots \cup A_n) = (S \cap A_1) \cup \cdots \cup (S \cap A_n),
 $$
-with $I$ arbitrary. The proofs are the same element chases, with $\exists$ and $\forall$ replacing $\vee$ and $\wedge$ at the pivot; no induction is needed, so infinite $I$ costs nothing.
+$$
+S \cup (A_1 \cap \cdots \cap A_n) = (S \cup A_1) \cap \cdots \cap (S \cup A_n).
+$$
 
-Note which way the asymmetry runs: a *finite* intersection distributing over an *arbitrary* union is fine, while the reverse — an arbitrary intersection over a union — is not automatic. That finite/infinite asymmetry is the same one §2.4 flagged with $\bigcap(-1/n,1/n) = \{0\}$, and it recurs throughout calculus wherever a property survives finitely many steps and fails in the limit.
+The proofs are the same element chases, with the case split now running over $n$ possibilities instead of two. Nothing about the argument changes; only the bookkeeping grows.
 
 <Aside>
 (D1) and (D2) are equivalent, and the duality argument above is the quickest route — but it leans on complements. A system with $\cap$ and $\cup$ but no complement still has the equivalence, by a short direct computation instead.
@@ -106,21 +106,8 @@ That matters because the subspace example has no complements either: there is no
 </Aside>
 
 <WhereThisGoes level="l7">
-The reason to prove distributivity carefully is that its **failure** elsewhere is one of the first genuine surprises of linear algebra.
-
-**Subspaces do not distribute.** Take $U$, $W_1$, $W_2$ to be three distinct lines through the origin in $\mathbb{R}^2$. Then
-$$U \cap (W_1 + W_2) = U\cap\mathbb{R}^2 = U,$$
-since two distinct lines already span the plane. But
-$$(U\cap W_1) + (U\cap W_2) = \{\mathbf{0}\} + \{\mathbf{0}\} = \{\mathbf{0}\},$$
-since distinct lines through the origin meet only there.
-
-$U \neq \{\mathbf{0}\}$, so the distributive law fails — for subspaces, with $\cap$ and $+$ in place of $\cap$ and $\cup$.
-
-**This is why set-theoretic intuition has to be checked rather than borrowed.** Subspaces look like sets and behave like sets under $\cap$; they do not behave like sets under $+$, and the identities that hold for $\cup$ do not transfer. Any argument that quietly assumes they do is wrong, and the counterexample above is two lines long.
-
 **In calculus the distributive law is used and rarely named.** Differentiation and integration are linear — $\frac{d}{dx}(af+bg) = af'+bg'$ — and that is a distributive law over sums. It holds for finite sums always, and for infinite sums only under hypotheses, which is precisely the finite/infinite asymmetry §2.4 flagged. Differentiating a power series term by term is legitimate inside the radius of convergence and needs a theorem to justify.
 
 **The general lesson closes the chapter.** An identity proved for $\cap$ and $\cup$ is a theorem about those operations, not a law of thought. When a new pair of operations appears, the identity must be re-proved or refuted — and refuting takes one small example, as it did here.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **subspace** — a set of vectors closed under adding and scaling; **span** — everything you can build by adding and scaling.*
 </WhereThisGoes>

@@ -41,7 +41,7 @@ Where the link fails, the index does not help. "The $n$th prime is odd" has an i
 > Assume $A(n_0),\ldots,A(k)$; prove $A(k+1)$.
 
 <Proof title="Equivalence with ordinary induction">
-Set $B(n) := \bigwedge_{m=n_0}^{n} A(m)$. The strong hypothesis is precisely $B(k)$, and $B(k)\Rightarrow A(k+1)$ yields $B(k)\Rightarrow B(k+1)$. Ordinary induction on $B$ gives $\forall n\, B(n)$, hence $\forall n\, A(n)$.
+Let $B(n)$ be the statement *"$A(m)$ holds for every $m$ from $n_0$ up to $n$"*. The strong hypothesis is precisely $B(k)$, and $B(k)\Rightarrow A(k+1)$ yields $B(k)\Rightarrow B(k+1)$. Ordinary induction on $B$ gives $\forall n\, B(n)$, hence $\forall n\, A(n)$.
 </Proof>
 
 Indicated when $n+1$ decomposes into cases far below $k$:
@@ -87,6 +87,7 @@ A practical corollary: to prove termination of a recursive procedure, find a str
 </Aside>
 
 <WhereThisGoes level="l7">
+
 The two conditions — an integer index and a link between cases — are what determine whether induction is even the right tool, and calculus is full of claims that fail the first.
 
 **Claims about all real numbers are not induction candidates.** *For all $x$, $\sin^2 x + \cos^2 x = 1$* has infinitely many cases and no chain to run: $\mathbb{R}$ has no least element and no next element (§4.6). Attempting induction there is a category error, and the correct technique is a direct proof from the definitions.
@@ -97,7 +98,4 @@ The two conditions — an integer index and a link between cases — are what de
 
 **Strong induction handles irregular links.** Some claims about $n$ need several earlier cases rather than the immediately preceding one. Fibonacci-type recurrences reach back two steps and need two base cases; the fact that every integer above $1$ has a prime factor reaches back an unpredictable distance and needs strong induction.
 
-**In linear algebra, induction is on dimension or on matrix size**, and the link is a construction: delete a row and column, or extend a basis by one vector. Cofactor expansion, the triangular determinant formula, and the extension of an independent set to a basis are all proved this way.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **basis** — a smallest set of vectors that builds all the others.*
 </WhereThisGoes>

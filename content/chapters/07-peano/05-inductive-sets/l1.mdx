@@ -8,14 +8,19 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import SuccessorChain from '@/components/SuccessorChain.astro';
 
 Look at the counting line. $0$, then $1$, then $2$, then $3$, going on forever.
+
+<SuccessorChain mode="chain" count={4} />
 
 Now imagine two strange creatures sneak in from the side. Call them Blip and Blop.
 
 Blip points at Blop. Blop points back at Blip.
 
 They point at each other forever, round and round. And they are not on the counting line at all — you can never reach them by counting from zero.
+
+<SuccessorChain mode="rogue" count={4} rogueLabels={["Blip", "Blop"]} />
 
 Are Blip and Blop numbers?
 

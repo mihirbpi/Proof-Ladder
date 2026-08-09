@@ -1,0 +1,69 @@
+---
+// Biscuit the dog — Noodle's opposite number, asleep on the rug in §1.2 at l1.
+// Only ever drawn asleep, because that is the whole of his role: the page says
+// "Biscuit is asleep" is true and "Biscuit is NOT asleep" is not.
+export interface Props {
+  onRug?: boolean;
+}
+const { onRug = true } = Astro.props;
+
+const alt = 'Biscuit, a floppy-eared brown dog, curled up fast asleep'
+  + (onRug ? ' on a striped rug' : '')
+  + ', with his eyes shut and three little z letters floating above him.';
+---
+<svg viewBox="0 0 290 170" xmlns="http://www.w3.org/2000/svg" class="biscuit"
+     role="img" aria-label={alt}>
+  <style>
+    .biscuit .coat  { fill: var(--color-pup, #9A8672); stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-linejoin: round; }
+    .biscuit .ear   { fill: var(--color-fur-dark, #A96F3E); stroke: var(--color-ink, #14182B); stroke-width: 2.2; stroke-linejoin: round; }
+    .biscuit .line  { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-linecap: round; }
+    .biscuit .thin  { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 1.6; stroke-linecap: round; }
+    .biscuit .nose  { fill: var(--color-ink, #14182B); }
+    .biscuit .rug   { fill: var(--color-shade, #E3E7DD); stroke: var(--color-ink, #14182B); stroke-width: 2; }
+    .biscuit .rugline { stroke: var(--color-toy-red, #C2503F); stroke-width: 3; opacity: 0.55; }
+    .biscuit .zzz   { font-family: var(--font-display, sans-serif); font-weight: 700; fill: color-mix(in oklab, var(--color-ink, #14182B) 55%, transparent); }
+  </style>
+
+  {onRug && (
+    <g>
+      <ellipse cx="145" cy="132" rx="112" ry="24" class="rug" />
+      <g class="rugline">
+        <path d="M 52 128 q 93 -16 186 0" fill="none" />
+        <path d="M 46 138 q 99 -14 198 0" fill="none" />
+      </g>
+    </g>
+  )}
+
+  {/* tail, curled round */}
+  <path d="M 68 112 C 34 116, 30 88, 56 88" class="line" />
+
+  {/* body, curled */}
+  <ellipse cx="146" cy="106" rx="72" ry="30" class="coat" />
+
+  {/* back leg tucked under */}
+  <path d="M 108 122 q 16 12 34 4" class="thin" />
+
+  {/* head resting on the body */}
+  <g>
+    <ellipse cx="212" cy="94" rx="36" ry="29" class="coat" />
+    {/* floppy ear */}
+    <path d="M 196 72 C 176 64, 168 92, 184 104 C 192 110, 200 100, 198 86 Z" class="ear" />
+    {/* muzzle */}
+    <ellipse cx="240" cy="104" rx="20" ry="14" class="coat" />
+    <circle cx="253" cy="100" r="4.6" class="nose" />
+    {/* shut eye */}
+    <path d="M 214 90 q 9 8 18 0" class="line" />
+    {/* mouth */}
+    <path d="M 240 112 q 6 5 12 1" class="thin" />
+  </g>
+
+  <g class="zzz">
+    <text x="204" y="52" font-size="15">z</text>
+    <text x="222" y="38" font-size="19">z</text>
+    <text x="244" y="22" font-size="24">z</text>
+  </g>
+</svg>
+
+<style>
+  .biscuit { width: 100%; height: auto; max-width: 290px; display: block; margin: 0 auto; }
+</style>

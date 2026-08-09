@@ -32,7 +32,7 @@ The denominator $bd$ is an integer for the same reason, and $bd \neq 0$: since $
 So the sum has integer numerator and nonzero integer denominator, hence lies in $\mathbb{Q}$.
 </Proof>
 
-Notice the proof does no arithmetic. It verifies that the pieces are of the right *type*. Every closure proof looks like this, and the step that could fail — $bd \neq 0$ — is exactly the one that uses $\mathbb{Z}$ being an integral domain.
+Notice the proof does no arithmetic. It verifies that the pieces are of the right *type*. Every closure proof looks like this, and the step that could fail — $bd \neq 0$ — uses one special property of $\mathbb{Z}$: a product of nonzero integers is never zero.
 
 > **(F2) Additive inverses.** $-\dfrac ab = \dfrac{-a}{b} \in \mathbb{Q}$, since $-a \in \mathbb{Z}$ and $b \neq 0$.
 
@@ -62,7 +62,7 @@ A **field** is a ring in which every nonzero element has a multiplicative invers
 
 - solving $ax = b$ for $a \neq 0$ (impossible in $\mathbb{Z}$: $3x = 1$ has no solution);
 - cancelling: $ab = ac$ with $a \neq 0$ gives $b = c$ (multiply by $a^{-1}$);
-- the entire apparatus of linear algebra, which is built over a field for exactly this reason.
+- the entire apparatus of matrix and vector work, which is built over a field for exactly this reason.
 
 <Warning title="Zero is excluded permanently">
 $0^{-1}$ does not exist in any field, and this is forced rather than conventional. If $0 \cdot x = 1$ for some $x$, then since $0 \cdot x = 0$ (a theorem, module 4.1) we would have $0 = 1$; multiplying by any $y$ then gives $y = 0$, so the field has one element. The axioms explicitly require $0 \neq 1$ to exclude this.
@@ -81,5 +81,5 @@ $\mathbb{Q}$ fixed division. It did not fix everything.
 The pattern established in module 4.1 continues: an operation escapes the system, so the system is enlarged.
 
 <Aside>
-$\mathbb{Q}$ is the *smallest* field containing $\mathbb{Z}$ — any field containing $\mathbb{Z}$ must contain all quotients $p/q$, hence all of $\mathbb{Q}$. This construction generalises: any integral domain has a smallest field containing it, its *field of fractions*, built by exactly the recipe above. Applied to polynomials $k[x]$, it produces the rational functions $k(x)$.
+$\mathbb{Q}$ is the *smallest* field containing $\mathbb{Z}$ — any field containing $\mathbb{Z}$ must contain all quotients $p/q$, hence all of $\mathbb{Q}$. The construction generalises. Start with any system where a product of nonzero elements is never zero, run the same recipe, and you get the smallest field containing it. Applied to polynomials, it produces the algebraic fractions $\tfrac{p(x)}{q(x)}$ — which is why those behave so much like ordinary fractions.
 </Aside>

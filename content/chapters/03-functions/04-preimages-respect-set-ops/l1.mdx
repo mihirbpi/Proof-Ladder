@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Cubbies from '@/components/Cubbies.astro';
 
 Point at cubby 1. **Trace back.** Who put a coat in there? Sam did.
 
@@ -16,6 +17,10 @@ Now point at cubby 2. Trace back. Ada and Bo!
 Now do something new. Point at cubby 1 **and** cubby 2, both at once.
 
 Trace back from both. Who do you get?
+
+<Cubbies cubbies={["1", "2", "3"]}
+  hung={[{child: "Sam", cubby: 0}, {child: "Ada", cubby: 1}, {child: "Pip", cubby: 1}]}
+  caption="trace back from cubby 1 and cubby 2" />
 
 Sam, Ada, and Bo. All three!
 

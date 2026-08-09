@@ -22,7 +22,7 @@ and for every object $x$ and set $S$, "$x \in S$" is a statement in the sense of
 
 The governing principle is that **a set is determined by its elements and nothing else**:
 $$
-S = T \quad\Longleftrightarrow\quad \forall x\;(x \in S \Leftrightarrow x \in T).
+S = T \quad\Leftrightarrow\quad \forall x\;(x \in S \Leftrightarrow x \in T).
 $$
 
 Everything idiosyncratic about sets follows:
@@ -82,15 +82,11 @@ Whether $0 \in \mathbb{N}$ is a convention that splits by field: set theory, log
 This is the mature attitude toward mathematical objects generally. What a set *is* turns out to matter far less than what can be proved about it.
 
 <WhereThisGoes level="l7">
+
 Set language is the notation both of the courses ahead are written in, and the fluency built here is what makes their definitions short.
 
 **In calculus, every domain is a set and every domain matters.** The domain of $\ln x$ is $(0,\infty)$; the domain of $\sqrt{x^2-4}$ is $(-\infty,-2]\cup[2,\infty)$; the interval of convergence of a power series is a set determined by the radius plus a separate check at each endpoint. Theorems are stated over sets too — the Extreme Value Theorem needs a *closed, bounded* interval, and both adjectives are conditions on a set rather than on the function.
 
 The solution set of an inequality, the level set of a function, the set of critical points, the set where a series converges: each is an object you compute, and each is described by a membership condition.
 
-**In linear algebra, the objects themselves are sets with structure.** A subspace is a set closed under two operations. The span of a collection is a set. The null space is $\{\mathbf{x} : A\mathbf{x}=\mathbf{0}\}$ and the column space is a set of outputs — and the two live in different spaces, which the notation makes visible and words do not.
-
-The one habit worth carrying forward from this module is the insistence that a set is determined by its members. That is what licenses proving two differently-described sets equal by showing they have the same elements — which is how you will show that the null space of $A$ equals the null space of its reduced row echelon form, and how nearly every structural fact in the subject is established.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **null space** — the vectors a matrix sends to zero; **column space** — everything the matrix can produce as output; **row echelon** — the staircase shape row reduction produces; **subspace** — a set of vectors closed under adding and scaling.*
 </WhereThisGoes>

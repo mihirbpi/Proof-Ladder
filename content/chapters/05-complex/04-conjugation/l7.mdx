@@ -91,6 +91,7 @@ Conjugation is one of exactly two *continuous* operation-preserving relabellings
 </Aside>
 
 <WhereThisGoes level="l7">
+
 Conjugation is the operation that keeps real answers real, and both courses ahead rely on it.
 
 **Complex roots of real polynomials come in conjugate pairs.** If $p$ has real coefficients and $p(z)=0$, then conjugating term by term gives $p(\bar z) = 0$, since each real coefficient is its own conjugate.
@@ -101,9 +102,4 @@ Three consequences you will use:
 - **Real quadratic factors come from conjugate pairs.** Multiplying $(x - z)(x-\bar z)$ gives $x^2 - 2\operatorname{Re}(z)x + |z|^2$, with real coefficients — which is exactly the irreducible quadratic block in a partial-fraction decomposition.
 - **Real solutions of differential equations are built from conjugate pairs.** When the characteristic roots are $\alpha\pm\beta i$, the real solutions are $e^{\alpha x}\cos\beta x$ and $e^{\alpha x}\sin\beta x$ — obtained from $e^{(\alpha+\beta i)x}$ and its conjugate by the formulas $\operatorname{Re}(z) = \frac{z+\bar z}{2}$ and $\operatorname{Im}(z) = \frac{z - \bar z}{2i}$ proved in this module.
 
-**In linear algebra, conjugation defines the adjoint.** The conjugate transpose $A^*$ is the complex analogue of the transpose, and the matrices with $A = A^*$ — the Hermitian ones — are the complex analogue of the symmetric matrices.
-
-The theorem that makes them important is a direct descendant of this module: **a Hermitian matrix has real eigenvalues**, proved by conjugating $A\mathbf{v} = \lambda\mathbf{v}$ and using $z = \bar z \iff z\in\mathbb{R}$. That biconditional, proved here in six lines, is what the argument turns on.
-
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **eigenvalue** — a factor by which a matrix stretches a direction without turning it.*
 </WhereThisGoes>

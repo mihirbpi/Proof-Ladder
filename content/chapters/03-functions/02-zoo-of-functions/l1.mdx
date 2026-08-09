@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingRow from '@/components/ThingRow.astro';
 
 Machines come in all kinds. Here are three.
 
@@ -20,6 +21,9 @@ Sam goes in. Out comes S. Pip goes in. Out comes P.
 **The color machine.** Put in a toy, out comes its color.
 
 Red ball goes in. Out comes red. Blue truck goes in. Out comes blue.
+
+<ThingRow items={[{kind:"ball", color:"red"},{kind:"block", color:"blue"},{kind:"star", color:"yellow"}]}
+  caption="a toy goes in, a colour comes out" />
 
 Look — no numbers anywhere! A **machine** does not need numbers.
 

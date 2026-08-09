@@ -27,7 +27,7 @@ In one sentence: **a negation distributes over a connective, but swaps $\wedge$ 
 
 ## Verification
 
-Recall that $\varphi \equiv \psi$ means the truth-table columns agree in every row (module 1.3). Four rows exhaust the possibilities, so a matching table is a complete proof.
+Recall that $p \equiv q$ means the truth-table columns agree in every row (module 1.3). Four rows exhaust the possibilities, so a matching table is a complete proof.
 
 <TruthTable
   variables={["p", "q"]}
@@ -84,7 +84,7 @@ Consider:
 
 > If $x$ is rational and $y$ is irrational, then $x+y$ is irrational.
 
-The hypothesis is a conjunction, so De Morgan applies:
+Writing $\mathbb{Q}$ for the set of rational numbers, so that $x \in \mathbb{Q}$ says *$x$ is rational*, the hypothesis is a conjunction and De Morgan applies:
 $$
 \neg\big(x \in \mathbb{Q} \wedge y \notin \mathbb{Q}\big) \equiv x \notin \mathbb{Q} \vee y \in \mathbb{Q}.
 $$
@@ -93,18 +93,21 @@ The contrapositive is therefore:
 
 > If $x + y$ is rational, then $x$ is irrational **or** $y$ is rational.
 
-That is strictly weaker — and therefore easier — than the naive "and" version. And a disjunctive conclusion is proved by a standard manoeuvre: assume the negation of one disjunct and derive the other. Here: assume $x+y \in \mathbb{Q}$ and $x \in \mathbb{Q}$; then $y = (x+y)-x$ is a difference of rationals, hence rational, which is the remaining disjunct.
+That is strictly weaker, and therefore easier, than the naive "and" version.
 
-Notice also what the *or* costs you elsewhere: an *or* in a **hypothesis** forces proof by cases (module 1.12). So De Morgan does not merely restate a claim — it tells you what shape the proof will have.
+### Proving an *or*
+
+Assume the negation of one disjunct and derive the other. Here: assume $x+y \in \mathbb{Q}$ and $x \in \mathbb{Q}$; then $y = (x+y)-x$ is a difference of rationals, hence rational — the remaining disjunct.
+
+And an *or* in a **hypothesis** forces proof by cases instead (module 1.12). So De Morgan does not merely restate a claim; it tells you what shape the proof will have.
 
 ## Generalisation
 
-The laws iterate. For finitely many statements,
+The laws iterate. Negating a long chain of *and*s turns every one of them into *or*:
 $$
-\neg\Big(\bigwedge_{i=1}^n p_i\Big) \equiv \bigvee_{i=1}^n \neg p_i, \qquad
-\neg\Big(\bigvee_{i=1}^n p_i\Big) \equiv \bigwedge_{i=1}^n \neg p_i,
+\neg(p_1 \wedge p_2 \wedge \cdots \wedge p_n) \equiv \neg p_1 \vee \neg p_2 \vee \cdots \vee \neg p_n,
 $$
-by induction on $n$ (Chapter 6), with the case $n=2$ proved above.
+and negating a long chain of *or*s turns every one into *and*. Both follow from the two-statement case above, applied repeatedly (Chapter 6 makes "repeatedly" precise).
 
 Push $n$ to infinity — replace the finite conjunction by "for all $x$" and the finite disjunction by "there exists $x$" — and you get the quantifier rules of module 1.11:
 $$

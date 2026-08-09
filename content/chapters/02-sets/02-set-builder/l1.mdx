@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
 There are two ways to fill a box.
 
@@ -20,6 +21,9 @@ That is a **rule box**.
 Here comes a marble. Round? Yes. It hops in.
 
 Here comes a book. Round? No. It stays out.
+
+<ThingBox boxes={[{ label: "all the round things", items: [{kind: "ball"}, {kind: "orange"}, {kind: "cookie"}] }]}
+  outside={[{kind: "book"}]} outsideLabel="stays out" />
 
 You never had to touch anything. The rule did all the work.
 

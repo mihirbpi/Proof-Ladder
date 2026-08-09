@@ -8,14 +8,19 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ThingBox from '@/components/ThingBox.astro';
 
-Two kinds of claim. Two jobs each. That makes four.
+Two kinds of telling. Two jobs each. That makes four.
 
 **"Every block is red."**
 
 To say YES: **take any one** block — you do not get to pick — and show it is red.
 
 To say NO: find one bad apple. A green block. Done!
+
+<ThingBox boxes={[{ label: "the box of blocks",
+  items: [{kind: "block", color: "red"}, {kind: "block", color: "red"}, {kind: "block", color: "green"}] }]}
+  ring={{box: 0, index: 2}} />
 
 **"There is a red block."**
 
@@ -28,5 +33,5 @@ So sometimes finding one is the answer. Sometimes checking all is the answer.
 The first word tells you which. **Every** or **there is**. Listen for it!
 
 <TryIt>
-Get a pile of things. Have a grown-up make a claim. Then say out loud: "Do I look for one, or do I check them all?"
+Get a pile of things. Have a grown-up say a telling. Then say out loud: "Do I look for one, or do I check them all?"
 </TryIt>

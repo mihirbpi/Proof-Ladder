@@ -10,7 +10,9 @@ import TruthTable from '@/components/TruthTable.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 import Warning from '@/components/Warning.astro';
 
-For a statement $p$, its **negation** $\neg p$ is the statement whose truth value is the opposite of $p$'s. Negation is the simplest connective in propositional logic and, precisely because it is simple, the source of most first-year proof errors.
+For a statement $p$, its **negation** — written $\neg p$ and read *"not $p$"* — is the statement whose truth value is the opposite of $p$'s. Negation is the simplest connective in propositional logic and, precisely because it is simple, the source of most first-year proof errors.
+
+Two more symbols arrive in this module and are worth naming before they appear. $\wedge$ is read *"and"*, $\vee$ is read *"or"*, and $p \equiv q$ says the two statements have **identical truth tables** — not that they are the same sentence, but that they are true in exactly the same situations. §1.3 and §1.4 develop all three.
 
 ## Truth table
 
@@ -101,15 +103,13 @@ $$
 A proof of either would settle the conjecture. Notice the shape: negating a "$\exists^\infty$" produces an "eventually always not"; negating a $\forall$ produces an $\exists$.
 
 <WhereThisGoes level="l7">
+
 Negation is what turns a definition into a test you can apply.
 
 **In calculus, the negated definitions are the working ones.** You will rarely prove a limit does not exist by inspection; you will negate the $\varepsilon$–$\delta$ definition and produce the single $\varepsilon$ that no $\delta$ handles (module 1.11). You will rarely show a series diverges directly; you will negate the convergence criterion, which is what every divergence test is.
 
 The classification of discontinuities is a negation, expanded. Continuity at $a$ requires three things to hold and agree; negating that conjunction produces the removable, jump, and infinite cases, and the count of cases equals the count of conjuncts.
 
-**In linear algebra**, the negated definitions are equally the operative ones. *Linearly dependent* is the negation of *linearly independent*, and it is the version that gives you something to compute with — a non-trivial vanishing combination, which is a witness. *Singular* is the negation of *invertible*, and the theorems about singular matrices are stated that way because a non-zero null vector is usable and an absent inverse is not.
-
 The lesson generalises: **when a definition is a universal, its negation is an existential, and existentials are what proofs can hold onto.** Getting the negation right is therefore not a preliminary to the work — it usually *is* the setup for the work.
 
-*You have matrices, determinants and systems; linear algebra builds its vocabulary on top of them. Above: **linearly independent** — none of them a combination of the others.*
 </WhereThisGoes>
