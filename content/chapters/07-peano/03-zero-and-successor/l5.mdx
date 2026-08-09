@@ -7,7 +7,7 @@ anchorExample: "S(0) = 1"
 ---
 
 import Figure from '@/components/Figure.astro';
-import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import SuccessorChain from '@/components/SuccessorChain.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
@@ -25,10 +25,8 @@ That is the entire vocabulary. Everything else in arithmetic is built from these
 
 A5 says the counting numbers are not empty — there is somewhere to start. A6 says you can always take one more step.
 
-<Figure alt="Two columns of dots with an arrow from each left-hand dot to its successor on the right." caption="The successor function: each number maps to the next.">
-  <ArrowDiagram labelLeft="ℕ" labelRight="ℕ"
-    left={["0", "1", "2"]} right={["1", "2", "3"]}
-    edges={[[0,0],[1,1],[2,2]]} />
+<Figure alt="A chain of dots labelled 0, 1, 2, 3, each with an arrow to the next, continuing to the right without end." caption="Start at 0 and keep taking the successor. That is the whole of ℕ.">
+  <SuccessorChain mode="chain" count={4} />
 </Figure>
 
 $S$ is a function $\mathbb{N} \to \mathbb{N}$ in the sense of module 3.1: every counting number has exactly one successor. A6 is precisely the statement that $\mathbb{N}$ is closed under $S$ — module 4.1's notion, applied to the one operation we have.

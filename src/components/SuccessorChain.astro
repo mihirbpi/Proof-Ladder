@@ -28,9 +28,9 @@ const {
 const R = 16;
 const GAP = 78;
 const LEFT = 34;
-const ROW_Y = mode === 'rogue' ? 54 : 62;
+const ROW_Y = mode === 'rogue' ? 54 : (mode === 'merge' ? 92 : 62);
 const W = 480;
-const H = mode === 'rogue' ? 168 : (mode === 'loop' ? 128 : 104);
+const H = mode === 'rogue' ? 168 : (mode === 'loop' ? 128 : (mode === 'merge' ? 132 : 104));
 
 const n = mode === 'loop' ? Math.min(count, 4) : count;
 const nodes = Array.from({ length: n }, (_, i) => ({
@@ -45,7 +45,7 @@ const trailing = mode === 'chain' || mode === 'rogue';
 const alt = {
   chain: `A chain of dots labelled ${nodes.map((d) => d.label).join(', ')}, each with an arrow to the next, continuing to the right without end.`,
   loop: `A cycle of ${n} dots, each with an arrow to the next, and the last arrow curving back to 0 — so 0 is the successor of something, which the axioms forbid.`,
-  merge: `A chain of dots where two different dots both have arrows landing on the same dot, so the successor operation is not injective.`,
+  merge: `A chain of dots ${nodes.map((d) => d.label).join(', ')}, each with an arrow to the next, and the last dot also carrying an arrow back to itself — so two different dots have the same successor and the successor operation is not injective.`,
   rogue: `The ordinary chain of dots 0, 1, 2, … continuing to the right, and separately two extra dots ${rogueLabels[0]} and ${rogueLabels[1]} pointing at each other in a two-cycle, unreachable from 0 by counting.`,
 }[mode];
 ---
@@ -70,26 +70,30 @@ const alt = {
     </marker>
   </defs>
 
-  {/* forward arrows along the chain */}
-  {nodes.slice(0, mode === 'merge' ? n - 2 : n - 1).map((d) => (
+  {/* Forward arrows along the chain, i → i+1. In merge mode the last of these
+      is one of the two arrows landing on the final node, so it is marked. */}
+  {nodes.slice(0, n - 1).map((d) => (
     <line x1={d.x + R + 3} y1={d.y} x2={d.x + GAP - R - 6} y2={d.y}
-          class="arr" marker-end="url(#sc-a)" />
+          class={mode === 'merge' && d.i === n - 2 ? 'arr-bad' : 'arr'}
+          marker-end={mode === 'merge' && d.i === n - 2 ? 'url(#sc-a-bad)' : 'url(#sc-a)'} />
   ))}
 
-  {/* merge: the last two nodes both point at the final one */}
-  {mode === 'merge' && n >= 3 && (
-    <g>
-      <line x1={nodes[n - 3].x + R + 3} y1={nodes[n - 3].y}
-            x2={nodes[n - 1].x - R - 6} y2={nodes[n - 1].y}
-            class="arr-bad" marker-end="url(#sc-a-bad)" />
-      <path d={`M ${nodes[n - 2].x} ${nodes[n - 2].y - R - 3}
-                Q ${(nodes[n - 2].x + nodes[n - 1].x) / 2} ${nodes[n - 2].y - 44}
-                  ${nodes[n - 1].x - 6} ${nodes[n - 1].y - R - 3}`}
-            class="arr-bad" marker-end="url(#sc-a-bad)" />
-      <text x={(nodes[n - 2].x + nodes[n - 1].x) / 2} y={nodes[n - 2].y - 50}
-            class="note" text-anchor="middle">two into one</text>
-    </g>
-  )}
+  {/* merge: the final node is its own successor, so it receives two arrows —
+      one from the node before it and one from itself. That is S(n−2) = S(n−1),
+      with n−2 ≠ n−1, which is exactly what A8 forbids. */}
+  {mode === 'merge' && n >= 2 && (() => {
+    const last = nodes[n - 1];
+    return (
+      <g>
+        <path d={`M ${last.x - 9} ${last.y - R - 2}
+                  C ${last.x - 34} ${last.y - R - 40},
+                    ${last.x + 34} ${last.y - R - 40},
+                    ${last.x + 9} ${last.y - R - 2}`}
+              class="arr-bad" marker-end="url(#sc-a-bad)" />
+        <text x={last.x} y={last.y - R - 46} class="note" text-anchor="middle">two into one</text>
+      </g>
+    );
+  })()}
 
   {/* loop: last node curves back to the first */}
   {mode === 'loop' && (

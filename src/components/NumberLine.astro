@@ -9,21 +9,22 @@
 //                An unbounded end is written as null and renders as an arrow.
 // gapAt          marks a missing point with a hollow circle and a dashed drop-line —
 //                for §4.6/§4.7, where ℚ is dense and still has holes.
+type Point = { at: number; label?: string; open?: boolean };
+type Interval = {
+  from: number | null;
+  to: number | null;
+  openLeft?: boolean;
+  openRight?: boolean;
+  label?: string;
+};
 export interface Props {
   from?: number;
   to?: number;
   ticks?: number[] | null;
   labels?: number[] | null;
-  points?: { at: number; label?: string; open?: boolean }[];
-  intervals?: {
-    from: number | null;
-    to: number | null;
-    openLeft?: boolean;
-    openRight?: boolean;
-    label?: string;
-  }[];
+  points?: Point[];
+  intervals?: Interval[];
   gapAt?: { at: number; label?: string } | null;
-  caption?: string | null;
 }
 const {
   from = -5,
@@ -58,14 +59,45 @@ const tickList = ticks ?? defaultTicks();
 const labelList = labels ?? tickList;
 const isLabelled = (v: number) => labelList.some((l) => Math.abs(l - v) < 1e-9);
 
-const fmt = (v: number) => (Number.isInteger(v) ? String(v) : String(v));
+// Integers print bare; anything else is trimmed to three decimals with trailing
+// zeros stripped, so an auto-generated label for e.g. 1.41421 reads as 1.414
+// rather than dumping the float.
+const fmt = (v: number) =>
+  Number.isInteger(v) ? String(v) : String(Number(v.toFixed(3)));
+
+// Labels are centred on their point, so two nearby points collide. Lift each
+// colliding label onto the next tier up and drop a leader line to its dot —
+// §4.6 deliberately plots rationals crowding around a gap, so overlap is the
+// normal case here, not an edge case.
+const CHW = 6.6;
+const placed = points
+  .map((p) => ({ ...p, x: X(p.at), w: (p.label?.length ?? 0) * CHW }))
+  .sort((a, b) => a.x - b.x)
+  .reduce<{ x: number; w: number; tier: number; labelY: number; label?: string; open?: boolean }[]>(
+    (acc, p) => {
+      // Lowest tier whose last label on that tier clears this one.
+      let tier = 0;
+      while (
+        acc.some(
+          (q) => q.tier === tier && q.label && p.label &&
+                 Math.abs(q.x - p.x) < (q.w + p.w) / 2 + 6,
+        )
+      ) tier++;
+      acc.push({ ...p, tier, labelY: AXIS_Y - 16 - tier * 15 });
+      return acc;
+    },
+    [],
+  );
 
 // Alt text has to carry the mathematics, not just say "a number line".
-const describeInterval = (i: Props['intervals'][number]) => {
+const describeInterval = (i: Interval) => {
   const l = i.from === null ? 'unbounded below' : `${i.openLeft ? 'excluding' : 'including'} ${fmt(i.from)}`;
   const r = i.to === null ? 'unbounded above' : `${i.openRight ? 'excluding' : 'including'} ${fmt(i.to)}`;
   return `an interval ${l} to ${r}`;
 };
+// Grow the box if labels stacked up.
+const VH = Math.max(150, 150 + Math.max(0, ...placed.map((p) => p.tier)) * 15);
+
 const alt = [
   `A number line from ${fmt(from)} to ${fmt(to)}.`,
   points.length ? `Marked points: ${points.map((p) => p.label ?? fmt(p.at)).join(', ')}.` : '',
@@ -73,7 +105,7 @@ const alt = [
   gapAt ? `A hollow circle at ${gapAt.label ?? fmt(gapAt.at)} marks a location with no number of the kind under discussion.` : '',
 ].filter(Boolean).join(' ');
 ---
-<svg viewBox={`0 0 ${W} 150`} xmlns="http://www.w3.org/2000/svg" class="number-line"
+<svg viewBox={`0 0 ${W} ${VH}`} xmlns="http://www.w3.org/2000/svg" class="number-line"
      role="img" aria-label={alt}>
   <style>
     .number-line .axis { stroke: var(--color-ink, #14182B); stroke-width: 1.6; }
@@ -84,6 +116,7 @@ const alt = [
     .number-line .dot-open { fill: var(--color-bg, #FFFFFF); stroke: var(--color-signal, #3F6DB5); stroke-width: 2; }
     .number-line .gap { fill: var(--color-bg, #FFFFFF); stroke: var(--color-false, #A8324A); stroke-width: 2; }
     .number-line .gapline { stroke: var(--color-false, #A8324A); stroke-width: 1.2; stroke-dasharray: 3 3; }
+    .number-line .leader { stroke: color-mix(in oklab, var(--color-signal, #3F6DB5) 55%, transparent); stroke-width: 1; }
     .number-line .plbl { font-family: var(--font-mono, monospace); font-size: 12px; fill: var(--color-ink, #14182B); }
     .number-line .glbl { font-family: var(--font-mono, monospace); font-size: 12px; fill: var(--color-false, #A8324A); }
   </style>
@@ -135,11 +168,16 @@ const alt = [
     </g>
   ))}
 
-  {points.map((p) => (
+  {placed.map((p) => (
     <g>
-      <circle cx={X(p.at)} cy={AXIS_Y} r="5.5" class={p.open ? 'dot-open' : 'dot'} />
+      <circle cx={p.x} cy={AXIS_Y} r="5.5" class={p.open ? 'dot-open' : 'dot'} />
       {p.label && (
-        <text x={X(p.at)} y={AXIS_Y - 16} class="plbl" text-anchor="middle">{p.label}</text>
+        <g>
+          {p.tier > 0 && (
+            <line x1={p.x} y1={AXIS_Y - 10} x2={p.x} y2={p.labelY + 4} class="leader" />
+          )}
+          <text x={p.x} y={p.labelY} class="plbl" text-anchor="middle">{p.label}</text>
+        </g>
       )}
     </g>
   ))}
