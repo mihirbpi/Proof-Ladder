@@ -60,9 +60,9 @@ The test: is the sentence introducing a new word? If yes, it is a definition and
 
 A biconditional is a conjunction, so it needs **two proofs**. Standard practice labels them:
 
-> **($\Rightarrow$)** Suppose $p$. … Therefore $q$.
+> **(forward)** Suppose $p$. … Therefore $q$.
 >
-> **($\Leftarrow$)** Suppose $q$. … Therefore $p$.
+> **(backward)** Suppose $q$. … Therefore $p$.
 
 The labels are not decoration. Without them a reader cannot tell which direction they are reading, and a proof of one direction twice looks exactly like a proof of both.
 
@@ -77,9 +77,9 @@ The labels are not decoration. Without them a reader cannot tell which direction
 <Proof>
 Let $ABCD$ be a parallelogram.
 
-**($\Rightarrow$)** Suppose $ABCD$ is a rectangle. Then $\angle ABC$ and $\angle DCB$ are both right angles, hence congruent. Opposite sides of a parallelogram are congruent, so $\overline{AB}\cong\overline{DC}$, and $\overline{BC}$ is shared. By SAS, $\triangle ABC \cong \triangle DCB$, so by CPCTC the diagonals $\overline{AC}$ and $\overline{DB}$ are congruent.
+**(forward)** Suppose $ABCD$ is a rectangle. Then $\angle ABC$ and $\angle DCB$ are both right angles, hence congruent. Opposite sides of a parallelogram are congruent, so $\overline{AB}\cong\overline{DC}$, and $\overline{BC}$ is shared. By SAS, $\triangle ABC \cong \triangle DCB$, so by CPCTC the diagonals $\overline{AC}$ and $\overline{DB}$ are congruent.
 
-**($\Leftarrow$)** Suppose $\overline{AC}\cong\overline{DB}$. Again $\overline{AB}\cong\overline{DC}$ and $\overline{BC}$ is shared, so by SSS, $\triangle ABC \cong \triangle DCB$. By CPCTC, $\angle ABC \cong \angle DCB$. These are consecutive angles of a parallelogram, hence supplementary; two congruent supplementary angles each measure $90°$. A parallelogram with one right angle has four, so $ABCD$ is a rectangle.
+**(backward)** Suppose $\overline{AC}\cong\overline{DB}$. Again $\overline{AB}\cong\overline{DC}$ and $\overline{BC}$ is shared, so by SSS, $\triangle ABC \cong \triangle DCB$. By CPCTC, $\angle ABC \cong \angle DCB$. These are consecutive angles of a parallelogram, hence supplementary; two congruent supplementary angles each measure $90°$. A parallelogram with one right angle has four, so $ABCD$ is a rectangle.
 </Proof>
 
 The two halves used *different criteria* — SAS one way, SSS the other. That is typical, and it is why the two proofs cannot be merged.
@@ -100,9 +100,9 @@ Nothing requires both halves to be direct proofs. Each direction is an independe
 
 > **Proposition.** For an integer $n$: $n$ is even if and only if $n^2$ is even.
 
-**($\Rightarrow$)** If $n = 2k$ then $n^2 = 4k^2 = 2(2k^2)$, even. Direct, and easy.
+**(forward)** If $n = 2k$ then $n^2 = 4k^2 = 2(2k^2)$, even. Direct, and easy.
 
-**($\Leftarrow$)** Directly, you would have to extract information about $n$ from information about $n^2$ — the hard direction. So contrapose: if $n$ is odd, then $n = 2k+1$ and
+**(backward)** Directly, you would have to extract information about $n$ from information about $n^2$ — the hard direction. So contrapose: if $n$ is odd, then $n = 2k+1$ and
 $$
 n^2 = 4k^2 + 4k + 1 = 2(2k^2+2k)+1,
 $$

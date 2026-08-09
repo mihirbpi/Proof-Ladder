@@ -15,16 +15,16 @@ Four tasks, four templates. Which one you need is decided entirely by the outerm
 
 | Goal | Method |
 |---|---|
-| Prove $\forall x \in S,\, p(x)$ | **take any one and follow it** — argue about an arbitrary $x \in S$ |
-| Disprove $\forall x \in S,\, p(x)$ | **one bad apple** — exhibit $c \in S$ with $\neg p(c)$ |
-| Prove $\exists x \in S,\, p(x)$ | exhibit a **witness** $c \in S$ with $p(c)$ |
-| Disprove $\exists x \in S,\, p(x)$ | prove $\forall x \in S,\, \neg p(x)$ |
+| Prove $\forall x \in S$, the property holds | **take any one and follow it** — argue about an arbitrary $x \in S$ |
+| Disprove $\forall x \in S$, the property holds | **one bad apple** — exhibit a $c \in S$ where it fails |
+| Prove $\exists x \in S$, the property holds | exhibit a **witness** $c \in S$ where it holds |
+| Disprove $\exists x \in S$, the property holds | show it fails for every $x \in S$ |
 
 The two right-hand cells in the disproof column are exactly the negation laws of module 1.11. Nothing new is being asserted; the table just names the work.
 
 ## Task 1: the arbitrary element
 
-To prove $\forall x \in S,\, p(x)$, introduce an **arbitrary element** of $S$ — a specific object, fixed for the duration of the argument, about which you assume *nothing beyond membership in $S$*. Then prove $p$ of it. Since the argument used no special feature, it applies verbatim to every element.
+To prove that every $x$ in $S$ has a property, introduce an **arbitrary element** of $S$ — a specific object, fixed for the duration of the argument, about which you assume *nothing beyond membership in $S$*. Then prove the property of it. Since the argument used no special feature, it applies verbatim to every element.
 
 > **Proposition.** For every integer $n \geq 3$, the integer $n^2 - 1$ is composite.
 
@@ -58,7 +58,7 @@ Note the hypothesis $n \geq 3$ is not decoration: at $n = 2$ the factorisation g
 
 $2$ is prime and even. Refuted. By the negation law, exhibiting one failure *is* a proof of the negation, so this is a complete disproof rather than evidence.
 
-For claims of the form $\forall x,\, (p(x) \Rightarrow q(x))$, the counterexample must satisfy $p$ and violate $q$ — module 1.11 derived this from $\neg(p \Rightarrow q) \equiv p \wedge \neg q$.
+For claims of the form *for every $x$, if the hypothesis holds then so does the conclusion*, the counterexample must satisfy the hypothesis and violate the conclusion — module 1.11 derived this from $\neg(p \Rightarrow q) \equiv p \wedge \neg q$.
 
 ## Task 3: witness
 

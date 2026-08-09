@@ -67,13 +67,13 @@ Counting what the step reaches back for, and verifying that many bases, is a mec
 <Warning title="Long-lived false patterns">
 | Claim | Holds up to | Fails at |
 |---|---|---|
-| $n^2+n+41$ prime | $n = 39$ | $n=40$ |
-| Pólya's conjecture | $\sim 9\times10^8$ | $906{,}150{,}257$ |
-| Mertens conjecture $\lvert M(n)\rvert < \sqrt n$ | all tested values | disproved 1985, no explicit counterexample known |
-| $\gcd(n^{17}+9,(n+1)^{17}+9)=1$ | $\sim 8\times10^{51}$ | first counterexample has 52 digits |
-| $\operatorname{li}(x) > \pi(x)$ | all computed $x$ | Skewes: crossing exists below $10^{316}$ |
+| $n^2+n+41$ is prime | $n = 39$ | $n=40$ |
+| among $1,\ldots,n$, at least half the numbers have an odd number of prime factors | $\sim 9\times10^8$ | $906{,}150{,}257$ |
+| $n^{17}+9$ and $(n+1)^{17}+9$ share no factor above $1$ | $\sim 8\times10^{51}$ | first counterexample has 52 digits |
 
-The Mertens case is the sharpest: the conjecture is *false*, and no counterexample has ever been exhibited. Computational evidence and truth are genuinely different things.
+Two of these had been checked past $10^8$ — the third past $10^{51}$ — and all three are false. There are worse cases still: one famous guess about how the prime numbers are spread out was disproved in 1985 without anyone ever exhibiting a single number that breaks it, so the counterexample is known to exist and remains unseen.
+
+Computational evidence and truth are genuinely different things.
 </Warning>
 
 By §1.11 this is structural, not anecdotal: $\forall n\,A(n)$ is refuted by one witness and confirmed by none. Verification is how conjectures are generated and how false ones are killed; it is never how true ones are established.

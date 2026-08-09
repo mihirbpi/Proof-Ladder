@@ -12,23 +12,21 @@ import Warning from '@/components/Warning.astro';
 Two rules, and they are the De Morgan laws of module 1.4 at infinite scale:
 
 $$
-\neg\big(\forall x \in S,\; p(x)\big) \;\equiv\; \exists x \in S,\; \neg p(x)
+\neg\big(\forall x \in S,\; x \text{ has the property}\big) \;\equiv\; \exists x \in S,\; x \text{ does not}
 $$
 $$
-\neg\big(\exists x \in S,\; p(x)\big) \;\equiv\; \forall x \in S,\; \neg p(x)
+\neg\big(\exists x \in S,\; x \text{ has the property}\big) \;\equiv\; \forall x \in S,\; x \text{ does not}
 $$
 
 In words: **negation swaps the quantifier and negates the predicate.** The domain $S$ is untouched.
 
 ## Why these are De Morgan
 
-Over a finite domain $S = \{a_1, \ldots, a_n\}$, a universal statement is a conjunction and an existential one a disjunction:
+Over a small set — say $S = \{1, 2, 3\}$ — *for all* is just an **and**, and *there exists* is just an **or**:
 $$
-\forall x \in S,\, p(x) \equiv p(a_1) \wedge \cdots \wedge p(a_n),
-\qquad
-\exists x \in S,\, p(x) \equiv p(a_1) \vee \cdots \vee p(a_n).
+\forall x \in S,\, x \text{ is even} \;\equiv\; (1 \text{ is even}) \wedge (2 \text{ is even}) \wedge (3 \text{ is even}).
 $$
-Applying $\neg(p \wedge q) \equiv \negp \vee \negq$ repeatedly turns the negation of the first into $\neg p(a_1) \vee \cdots \vee \neg p(a_n)$, which is $\exists x \in S, \neg p(x)$. Same law, more terms.
+Apply $\neg(p \wedge q) \equiv \neg p \vee \neg q$. The negation becomes "$1$ is not even **or** $2$ is not even **or** $3$ is not even" — which is exactly $\exists x \in S,\, x \text{ is not even}$. Same law, more terms.
 
 ## Counterexamples
 
@@ -36,9 +34,11 @@ Applying $\neg(p \wedge q) \equiv \negp \vee \negq$ repeatedly turns the negatio
 
 Negation: $\exists p$ prime with $p$ not odd. Witness — a single case that settles it: $p = 2$. Prime, even. Claim refuted.
 
-A single element refuting a universal claim is a **counterexample**, and the named move is **one bad apple**. Note what the negation rule guarantees: to refute $\forall x, p(x)$, exhibiting one $x$ with $\neg p(x)$ is not merely *good evidence* — it is a complete disproof, because the negation rule says that is exactly what the negation asserts.
+A single element refuting a universal claim is a **counterexample**, and the named move is **one bad apple**. Note what the negation rule guarantees: to refute a *for all* claim, exhibiting one $x$ where the property fails is not merely *good evidence* — it is a complete disproof, because the negation rule says that is exactly what the negation asserts.
 
 ## Compound predicates: use De Morgan inside too
+
+*A reminder of the symbols in play: $\mathbb{R}$ reads the reals.*
 
 > **Claim.** $\forall x \in \mathbb{R}$, $x$ is positive or $x$ is negative.
 
@@ -58,18 +58,15 @@ Notice that we needed *two* rules in sequence: the quantifier rule to get past $
 
 ## Negating a conditional inside a quantifier
 
-Most theorems look like $\forall x \in S,\, (p(x) \Rightarrow q(x))$. Since $\neg(p \Rightarrow q) \equiv p \wedge \neg q$ (module 1.7), the negation is
-$$
-\exists x \in S,\; p(x) \wedge \neg q(x).
-$$
-That is the precise recipe for a counterexample to a theorem: **an element satisfying the hypothesis but failing the conclusion.** Not an element failing the hypothesis — such an element makes the conditional vacuously true and refutes nothing.
+Most theorems say *for every $x$ in $S$, if the hypothesis holds then so does the conclusion*. Since $\neg(p \Rightarrow q) \equiv p \wedge \neg q$ (module 1.7), the negation is: **some $x$ in $S$ satisfies the hypothesis and fails the conclusion.**
+That is the recipe for a counterexample. Not an element failing the hypothesis — such an element makes the conditional vacuously true and refutes nothing.
 
 Example. "$\forall x \in \mathbb{R},\, x^2 > 1 \Rightarrow x > 1$" is false, and the counterexample must satisfy $x^2 > 1$ *and* $x \leq 1$: take $x = -3$. Offering $x = 0.5$ would be useless — it fails the hypothesis.
 
 <Warning title="Three standard errors">
-**Over-negation.** $\neg(\forall x,\, p(x))$ is not $\forall x,\, \neg p(x)$. "Not every prime is odd" ≠ "every prime is even."
+**Over-negation.** The negation of *every $x$ has the property* is **not** *every $x$ lacks it*. "Not every prime is odd" ≠ "every prime is even."
 
-**Negating the domain.** $\neg(\forall x \in \mathbb{Z},\, p(x))$ is $\exists x \in \mathbb{Z},\, \neg p(x)$ — still over $\mathbb{Z}$. The set does not change.
+**Negating the domain.** Negating a claim about every $x$ in $\mathbb{Z}$ gives a claim about some $x$ in $\mathbb{Z}$ — still over $\mathbb{Z}$. The set does not change.
 
 **Wrong counterexample shape.** To refute $p \Rightarrow q$ you need $p \wedge \neg q$. An element where both fail proves nothing.
 </Warning>
@@ -78,9 +75,9 @@ Example. "$\forall x \in \mathbb{R},\, x^2 > 1 \Rightarrow x > 1$" is false, and
 
 Push the negation in one quantifier at a time, flipping each as you pass:
 $$
-\neg\big(\forall x\, \exists y,\; p(x,y)\big)
-\equiv \exists x\, \neg\big(\exists y,\, p(x,y)\big)
-\equiv \exists x\, \forall y,\; \neg p(x,y).
+\neg\big(\forall x\, \exists y,\; x \text{ and } y \text{ fit}\big)
+\equiv \exists x\, \neg\big(\exists y,\; x \text{ and } y \text{ fit}\big)
+\equiv \exists x\, \forall y,\; x \text{ and } y \text{ do not fit}.
 $$
 Concretely: the negation of "every real has an additive inverse" is "some real has no additive inverse at all" — the inner $\forall y$ says *no* $y$ works for that particular $x$.
 
@@ -92,7 +89,7 @@ This says there is no largest prime. Negate it: flip both quantifiers, then push
 $$
 \exists x \in \mathbb{Z}\;\; \forall y \in \mathbb{Z},\;\; \big(y \leq x \vee y \text{ is not prime}\big).
 $$
-Read it: there is some number past which nothing is prime — a largest prime exists. That is the correct negation, and every symbol in it was produced by the two rules of this module plus $\neg(p \wedge q) \equiv \neg p \vee \neg q$. Nothing was invented.
+Read it: there is some number past which nothing is prime — a largest prime exists. Every symbol in that negation was produced by the two rules of this module plus $\neg(p \wedge q) \equiv \neg p \vee \neg q$. Nothing was invented.
 
 <Aside>
 Euler conjectured in 1769 that a $k$-th power is never a sum of fewer than $k$ positive $k$-th powers. In 1966 Lander and Parkin refuted the $k = 5$ case with a computer search and published a paper two sentences long, containing $27^5 + 84^5 + 110^5 + 133^5 = 144^5$. Two centuries of a universal claim, ended by one bad apple.

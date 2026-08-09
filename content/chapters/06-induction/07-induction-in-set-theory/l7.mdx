@@ -27,7 +27,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 *Step.* Assume the result for sets of size $k$. Let $|S| = k+1$, fix $a \in S$, $S' = S\setminus\{a\}$.
 
-Partition $\mathcal{P}(S) = \mathcal{U}\sqcup\mathcal{V}$ with $\mathcal{U} = \{A : a\notin A\}$, $\mathcal{V} = \{A : a \in A\}$.
+Partition $\mathcal{P}(S) = \mathcal{U}\cup\mathcal{V}$ with $\mathcal{U} = \{A : a\notin A\}$, $\mathcal{V} = \{A : a \in A\}$.
 
 $\mathcal{U} = \mathcal{P}(S')$, so $|\mathcal{U}| = 2^k$ by (IH).
 
@@ -41,14 +41,14 @@ The step transferred a count along a bijection rather than recounting — §3.8'
 ## Bijective proof
 
 <Proof title="Second proof">
-For $A \subseteq S$ define its **characteristic function** $\chi_A : S \to \{0,1\}$ by $\chi_A(x) = 1$ iff $x \in A$.
+For $A \subseteq S$ define its **characteristic function** $\mathbf{1}_A : S \to \{0,1\}$ by $\mathbf{1}_A(x) = 1$ iff $x \in A$.
 
-The map $A \mapsto \chi_A$ is a bijection $\mathcal{P}(S)\to\{0,1\}^S$, with inverse $f \mapsto f^{-1}(\{1\})$ — the pre-image, in the sense of §3.3.
+The map $A \mapsto \mathbf{1}_A$ is a bijection $\mathcal{P}(S)\to\{0,1\}^S$, with inverse $f \mapsto f^{-1}(\{1\})$ — the pre-image, in the sense of §3.3.
 
 A function $S \to \{0,1\}$ is specified by an independent binary choice at each of $n$ points, so $|\{0,1\}^S| = 2^n$.
 </Proof>
 
-This explains the notation $2^S$ for the power set: it is $\{0,1\}^S$, and the cardinality formula $|Y^X| = |Y|^{|X|}$ makes $|2^S| = 2^{|S|}$ automatic. The bijection also transports structure — $\chi_{A\cap B} = \chi_A\chi_B$ and $\chi_{\overline A} = 1 - \chi_A$ — so $\mathcal{P}(S)$ and $\{0,1\}^S$ match operation for operation (§2.7), not merely element for element.
+This explains the notation $2^S$ for the power set: it is $\{0,1\}^S$, and the cardinality formula $|Y^X| = |Y|^{|X|}$ makes $|2^S| = 2^{|S|}$ automatic. The bijection also transports structure — $\chi_{A\cap B} = \mathbf{1}_A\chi_B$ and $\chi_{\overline A} = 1 - \mathbf{1}_A$ — so $\mathcal{P}(S)$ and $\{0,1\}^S$ match operation for operation (§2.7), not merely element for element.
 
 <Warning title="Level discipline">
 Elements of $\mathcal{P}(S)$ are *sets*. For $S = \{a,b\}$: $a \in S$, $\{a\}\in\mathcal{P}(S)$, $\{a\}\subseteq S$, $\{\{a\}\}\subseteq \mathcal{P}(S)$ — and $a \notin \mathcal{P}(S)$.

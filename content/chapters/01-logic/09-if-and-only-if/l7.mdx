@@ -39,15 +39,15 @@ Because the definition is a conjunction, **a proof of a biconditional is two pro
 > **Theorem.** For all $n \in \mathbb{Z}$: $n$ is even $\iff$ $n^2$ is even.
 
 <Discussion>
-  <div slot="know">Definitions: $n$ even iff $\exists k \in \mathbb{Z},\, n = 2k$; $n$ odd iff $\exists k \in \mathbb{Z},\, n = 2k+1$; every integer is exactly one of the two (this is the division algorithm for $d = 2$, §4.4). Direction ($\Rightarrow$) has a hypothesis that unfolds into a usable equation. Direction ($\Leftarrow$) has hypothesis $n^2 = 2k$, from which no information about $n$ is extractable without inverting the squaring map.</div>
+  <div slot="know">Definitions: $n$ even iff $\exists k \in \mathbb{Z},\, n = 2k$; $n$ odd iff $\exists k \in \mathbb{Z},\, n = 2k+1$; every integer is exactly one of the two (this is the division algorithm for $d = 2$, §4.4). Direction (forward) has a hypothesis that unfolds into a usable equation. Direction (backward) has hypothesis $n^2 = 2k$, from which no information about $n$ is extractable without inverting the squaring map.</div>
   <div slot="want">Both implications.</div>
-  <div slot="how">($\Rightarrow$) directly. ($\Leftarrow$) by contrapositive: prove $n$ odd $\Rightarrow n^2$ odd, whose hypothesis unfolds usefully.</div>
+  <div slot="how">(forward) directly. (backward) by contrapositive: prove $n$ odd $\Rightarrow n^2$ odd, whose hypothesis unfolds usefully.</div>
 </Discussion>
 
 <Proof>
-($\Rightarrow$) Suppose $n$ is even. Then $n = 2k$ for some $k \in \mathbb{Z}$, so $n^2 = 4k^2 = 2(2k^2)$. Since $2k^2 \in \mathbb{Z}$, $n^2$ is even.
+(forward) Suppose $n$ is even. Then $n = 2k$ for some $k \in \mathbb{Z}$, so $n^2 = 4k^2 = 2(2k^2)$. Since $2k^2 \in \mathbb{Z}$, $n^2$ is even.
 
-($\Leftarrow$) We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n = 2k+1$ with $k \in \mathbb{Z}$. Then
+(backward) We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n = 2k+1$ with $k \in \mathbb{Z}$. Then
 $$
 n^2 = 4k^2 + 4k + 1 = 2\big(2k^2 + 2k\big) + 1,
 $$
@@ -56,7 +56,7 @@ and $2k^2 + 2k \in \mathbb{Z}$, so $n^2$ is odd. Since every integer is even or 
 Both implications hold, hence the biconditional.
 </Proof>
 
-Two observations. First, the directions required different methods — this is typical, and it is why the two halves must be written separately rather than merged into a chain. Second, the ($\Leftarrow$) direction used the trichotomy "every integer is even or odd, not both". That fact is not free; it is the $d=2$ case of the division algorithm, and a fully careful treatment proves it (§4.4) before using it here.
+Two observations. First, the directions required different methods — this is typical, and it is why the two halves must be written separately rather than merged into a chain. Second, the (backward) direction used the trichotomy "every integer is even or odd, not both". That fact is not free; it is the $d=2$ case of the division algorithm, and a fully careful treatment proves it (§4.4) before using it here.
 
 ## Definitions are stipulative biconditionals
 
@@ -86,7 +86,7 @@ Solving equations is where this bites. "Solve $\sqrt{x+2} = x$" by squaring give
 
 ## Proving several statements equivalent
 
-When three or more statements are to be shown pairwise equivalent, proving all $\binom{n}{2}$ biconditionals is wasteful. Instead prove a **cycle** of implications:
+When three or more statements are to be shown pairwise equivalent, proving all $n(n-1)/2$ biconditionals separately is wasteful. Instead prove a **cycle** of implications:
 $$
 p \Rightarrow q \Rightarrow r \Rightarrow p.
 $$

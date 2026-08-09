@@ -64,6 +64,8 @@ Since domain and codomain are part of the function (§3.1), this is not a change
 
 ## Equivalent formulations
 
+*A reminder of the symbols in play: $\circ$ reads "after".*
+
 > **Proposition.** For $f : S \to T$ with $S \neq \emptyset$, the following are equivalent:
 > 1. $f$ is injective;
 > 2. $f$ has a **left inverse**: some $g : T \to S$ with $g \circ f = \mathrm{id}_S$;
@@ -72,13 +74,13 @@ Since domain and codomain are part of the function (§3.1), this is not a change
 > 5. $f^{-1}(f(A)) = A$ for all $A \subseteq S$.
 
 <Proof title="Proof of (1) ⇔ (2)">
-($\Rightarrow$) Suppose $f$ is injective. Fix any $s_0 \in S$ (possible since $S \neq \emptyset$) and define
+(forward) Suppose $f$ is injective. Fix any $s_0 \in S$ (possible since $S \neq \emptyset$) and define
 $$
 g(t) = \begin{cases} \text{the unique } s \text{ with } f(s) = t, & t \in \operatorname{Im}(f),\\ s_0, & \text{otherwise.}\end{cases}
 $$
 Uniqueness — hence well-definedness of $g$ — is exactly injectivity. For $s \in S$ we have $g(f(s)) = s$, so $g \circ f = \mathrm{id}_S$.
 
-($\Leftarrow$) Suppose $g \circ f = \mathrm{id}_S$ and $f(s_1) = f(s_2)$. Applying $g$: $s_1 = g(f(s_1)) = g(f(s_2)) = s_2$.
+(backward) Suppose $g \circ f = \mathrm{id}_S$ and $f(s_1) = f(s_2)$. Applying $g$: $s_1 = g(f(s_1)) = g(f(s_2)) = s_2$.
 </Proof>
 
 Items (4) and (5) were flagged in §3.4: all the misbehaviour of the image operator is exactly the failure of injectivity. Item (3) is the formulation that survives when elements are not available to chase, and it is the version that survives when "elements" are unavailable.

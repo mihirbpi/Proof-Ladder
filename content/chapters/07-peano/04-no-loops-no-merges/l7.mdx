@@ -18,7 +18,7 @@ $$
 \textbf{A8}\quad \forall x,y,\ S(x)=S(y)\Rightarrow x=y.
 $$
 
-Structurally: $0 \notin \operatorname{Im}(S)$ (§3.3) and $S$ is injective (§3.5). Together $S$ is an injection $\mathbb{N}\hookrightarrow\mathbb{N}\setminus\{0\}$.
+Structurally: $0 \notin \operatorname{Im}(S)$ (§3.3) and $S$ is injective (§3.5). Together $S$ is an injection $\mathbb{N}\to\mathbb{N}\setminus\{0\}$.
 
 ## Independence by models
 
@@ -58,11 +58,11 @@ Neither implies the other, and exhibiting a system satisfying one and failing th
 
 **A7 without A8.** Take $\{0,1,2,3\}$ with $S(0)=1$, $S(1)=2$, $S(2)=3$, $S(3)=3$. Nothing maps to $0$, so A7 holds. But $S(2) = S(3)$ fails injectivity, and the chain runs into a fixed point and stops.
 
-**A8 without A7.** Take the twelve-hour clock, $\{0,\dots,11\}$ with $S$ the next hour, wrapping. $S$ is injective, so A8 holds. But $S(11) = 0$, so A7 fails — and the result is the modular arithmetic of §4.4, which is consistent, useful, and not the counting numbers.
+**A8 without A7.** Take the twelve-hour clock, $\{0,\dots,11\}$ with $S$ the next hour, wrapping. $S$ is injective, so A8 holds. But $S(11) = 0$, so A7 fails — and the result is the remainder arithmetic of §4.4, which is consistent, useful, and not the counting numbers.
 
 **Two independent axioms, two independent failures.** This is how you show an axiom is not redundant, and it is exactly the method that finally settled the parallel postulate: two thousand years of attempted derivations ended when someone constructed a geometry satisfying the other four postulates and violating the fifth.
 
-Each dropped axiom yields a real subject rather than nonsense. Drop A7 and you get modular arithmetic; drop A8 and you get the tail-and-loop structures that finite-state machines are built from.
+Each dropped axiom yields a real subject rather than nonsense. Drop A7 and you get remainder arithmetic; drop A8 and you get the tail-and-loop structures that finite-state machines are built from.
 
 ## The numerals are distinct
 
@@ -79,7 +79,7 @@ Consequently $n \mapsto S^n(0)$ is an injection $\mathbb{N}_{\text{meta}} \hookr
 Moreover $S : \mathbb{N}\to\mathbb{N}$ is injective but not surjective (its image omits $0$), so $\mathbb{N}$ is in bijection with the proper subset $\mathbb{N}\setminus\{0\}$ — i.e. **Dedekind infinite** (§3.8). Dedekind took this as the *definition* of infinity in 1888, and A7–A8 are exactly the axioms making $\mathbb{N}$ satisfy it.
 
 <Warning title="A5–A8 do not pin down ℕ">
-Let $\mathbb{N}' = \{0,1,2,\ldots\} \sqcup \{a,b\}$ with the standard successor on the numerals and $S(a)=b$, $S(b)=a$.
+Let $\mathbb{N}' = \{0,1,2,\ldots\} \cup \{a,b\}$ with the standard successor on the numerals and $S(a)=b$, $S(b)=a$.
 
 A5 ✓, A6 ✓, A7 ✓ (neither $a$ nor $b$ maps to $0$), A8 ✓ ($S$ is injective throughout).
 

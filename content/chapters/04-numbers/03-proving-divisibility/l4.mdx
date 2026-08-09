@@ -72,6 +72,8 @@ Taking $x = y = 1$ gives $a \mid (b+c)$; taking $x = 1, y = -1$ gives $a \mid (b
 
 The hypothesis is a disjunction, so module 1.12 demands cases — but here the two cases are genuinely symmetric.
 
+*A reminder of the symbols in play: $\nmid$ reads "does not divide".*
+
 <Proof>
 The hypothesis is a disjunction, so we argue by cases. The two cases differ only by exchanging the names $b$ and $c$, and the conclusion $a \mid bc$ is unchanged by that exchange, since $bc = cb$. So **without loss of generality** we may assume $a \mid b$.
 
@@ -89,5 +91,5 @@ Then $b = ak$ for some $k \in \mathbb{Z}$, so $bc = (ak)c = a(kc)$, and $kc \in 
 The mechanism: $4 = 2^2$, and $12$ collects one factor of $2$ from each of $b$ and $c$. A composite divisor can be assembled from pieces spread across the two factors.
 
 <Aside>
-The claim becomes true when $a$ is prime — a prime has no proper factorisation to spread out. That is **Euclid's lemma**: if $p$ is prime and $p \mid bc$ then $p \mid b$ or $p \mid c$. It is not obvious; the standard proof goes through Bézout's identity, which itself comes from the linear-combination proposition above. Euclid's lemma is in turn what makes prime factorisation unique — and the uniqueness proof is exactly where it gets used.
+The claim becomes true when $a$ is prime — a prime has no proper factorisation to spread out. That is **Euclid's lemma**: if $p$ is prime and $p \mid bc$ then $p \mid b$ or $p \mid c$. It is not obvious. The standard proof goes through a result called *Bézout's identity*: for any two whole numbers there are multiples of them that add to their greatest common factor — for instance $2\cdot 12 + (-1)\cdot 21 = 3$. That result is a descendant of the linear-combination proposition above. Euclid's lemma is in turn what makes prime factorisation unique — and the uniqueness proof is exactly where it gets used.
 </Aside>

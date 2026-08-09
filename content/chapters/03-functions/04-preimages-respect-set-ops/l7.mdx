@@ -82,9 +82,9 @@ The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f
 > **Proposition.** $f(A \cap B) = f(A) \cap f(B)$ for all $A, B \subseteq S$ if and only if $f$ is injective.
 
 <Proof>
-($\Leftarrow$) Suppose $f$ injective. The inclusion $\subseteq$ always holds. For $\supseteq$: let $t \in f(A) \cap f(B)$, so $t = f(a) = f(b)$ with $a \in A$, $b \in B$. Injectivity gives $a = b$, so this common element lies in $A \cap B$ and $t \in f(A \cap B)$.
+(backward) Suppose $f$ injective. The inclusion $\subseteq$ always holds. For $\supseteq$: let $t \in f(A) \cap f(B)$, so $t = f(a) = f(b)$ with $a \in A$, $b \in B$. Injectivity gives $a = b$, so this common element lies in $A \cap B$ and $t \in f(A \cap B)$.
 
-($\Rightarrow$) Suppose $f$ is not injective, say $f(a) = f(b) = t$ with $a \neq b$. Take $A = \{a\}$, $B = \{b\}$. Then $f(A \cap B) = f(\emptyset) = \emptyset$ while $f(A)\cap f(B) = \{t\} \neq \emptyset$.
+(forward) Suppose $f$ is not injective, say $f(a) = f(b) = t$ with $a \neq b$. Take $A = \{a\}$, $B = \{b\}$. Then $f(A \cap B) = f(\emptyset) = \emptyset$ while $f(A)\cap f(B) = \{t\} \neq \emptyset$.
 </Proof>
 
 So every misbehaviour of the image operator is a symptom of non-injectivity, and all of it disappears for bijections.
@@ -108,6 +108,8 @@ not $f(\text{open})$ open. The latter defines *open maps*, a genuinely different
 
 The same choice recurs wherever a definition has to survive composition — pre-images compose cleanly, and that is exactly why the definition is stated with them.
 </Warning>
+
+*A reminder of the symbols in play: $\circ$ reads "after".*
 
 <Aside>
 Because $f^{-1}$ reverses direction — a map $S \to T$ induces $\mathcal{P}(T) \to \mathcal{P}(S)$ — the assignment reverses direction. That reversal is the general phenomenon here: pullbacks of functions, of forms, of cohomology classes, and of sheaves are all contravariant, and all better behaved than their covariant counterparts.

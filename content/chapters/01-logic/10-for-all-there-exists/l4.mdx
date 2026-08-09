@@ -45,12 +45,10 @@ $\exists x \in \mathbb{R},\, x^2 = 4$ is true, and there are two such $x$. The e
 
 ## Unique existence
 
-The symbol $\exists!$ is read "there exists exactly one" or "there exists a unique". By definition,
-$$
-\exists! x \in S,\, p(x)
-\quad\text{means}\quad
-\big(\exists x \in S,\, p(x)\big) \;\wedge\; \big(\text{any two elements satisfying } p \text{ are equal}\big).
-$$
+The symbol $\exists!$ is read "there exists exactly one" or "there exists a unique". It packs two claims into one symbol:
+
+- **at least one** element of the set has the property, and
+- **no two different** elements both have it.
 
 Two obligations, and both must be discharged.
 
@@ -66,8 +64,8 @@ The uniqueness pattern — *suppose two things both work, then prove they are eq
 
 | Statement | To prove | To disprove |
 |---|---|---|
-| $\forall x \in S,\, p(x)$ | argue for arbitrary $x \in S$ | exhibit one $x \in S$ with $\neg p(x)$ |
-| $\exists x \in S,\, p(x)$ | exhibit one $x \in S$ with $p(x)$ | prove $\forall x \in S,\, \neg p(x)$ |
+| $\forall x \in S$, the property holds | argue for an arbitrary $x \in S$ | exhibit one $x \in S$ where it fails |
+| $\exists x \in S$, the property holds | exhibit one $x \in S$ where it holds | show it fails for every $x \in S$ |
 
 The two rows are mirror images, and the mirror is negation — which is module 1.11. What matters now is the practical consequence: **you cannot prove a universal claim by examples, and you cannot disprove an existential claim by examples.** In each of those cells the work is a general argument, not a search.
 

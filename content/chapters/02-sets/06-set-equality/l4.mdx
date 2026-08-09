@@ -35,38 +35,38 @@ Since $x \in S \cup T$ unfolds to $x \in S \vee x \in T$, chasing an element out
 
 This single observation predicts the structure of most proofs in the rest of the chapter.
 
-## The trigonometric proposition
+## A worked proposition
 
 Let
 $$
-S = \{x \in \mathbb{R} \mid \sin x = 0\}, \qquad
-T = \{x \in \mathbb{R} \mid \cos x = 0\}, \qquad
-R = \{x \in \mathbb{R} \mid \sin x \cos x = 0\}.
+S = \{x \in \mathbb{R} \mid x - 2 = 0\}, \qquad
+T = \{x \in \mathbb{R} \mid x + 3 = 0\}, \qquad
+R = \{x \in \mathbb{R} \mid (x-2)(x+3) = 0\}.
 $$
 
 > **Proposition.** $S \cup T = R$.
 
 <Discussion>
-  <div slot="know">$x \in S \cup T$ means $\sin x = 0$ or $\cos x = 0$. $x \in R$ means the product $\sin x \cos x$ is zero. The relevant fact about $\mathbb{R}$: a product of two reals is zero if and only if at least one factor is zero (no zero divisors).</div>
+  <div slot="know">$x \in S \cup T$ means $x - 2 = 0$ or $x + 3 = 0$. $x \in R$ means the product $(x-2)(x+3)$ is zero. The relevant fact about $\mathbb{R}$: a product of two reals is zero if and only if at least one factor is zero.</div>
   <div slot="want">Both inclusions.</div>
-  <div slot="how">($\subseteq$) The hypothesis is a disjunction, so split into cases; in each, one factor vanishes and the product does too. ($\supseteq$) The hypothesis is a product being zero, so the no-zero-divisors fact hands us a disjunction directly.</div>
+  <div slot="how">($\subseteq$) The hypothesis is a disjunction, so split into cases; in each, one factor is zero and the product is too. ($\supseteq$) The hypothesis is a product being zero, so the zero-product fact hands us a disjunction directly.</div>
 </Discussion>
 
 <Proof>
-**($\subseteq$)** Let $x \in S \cup T$ be arbitrary. Then $\sin x = 0$ or $\cos x = 0$; we split into cases.
+**($\subseteq$)** Let $x \in S \cup T$ be arbitrary. Then $x - 2 = 0$ or $x + 3 = 0$; we split into cases.
 
-*Case 1: $\sin x = 0$.* Then $\sin x \cos x = 0 \cdot \cos x = 0$.
+*Case 1: $x - 2 = 0$.* Then $(x-2)(x+3) = 0 \cdot (x+3) = 0$.
 
-*Case 2: $\cos x = 0$.* Then $\sin x \cos x = \sin x \cdot 0 = 0$.
+*Case 2: $x + 3 = 0$.* Then $(x-2)(x+3) = (x-2) \cdot 0 = 0$.
 
-In both cases $\sin x \cos x = 0$, so $x \in R$. The cases are exhaustive.
+In both cases $(x-2)(x+3) = 0$, so $x \in R$. The cases are exhaustive.
 
-**($\supseteq$)** Let $x \in R$ be arbitrary, so $\sin x \cos x = 0$. Since $\mathbb{R}$ has no zero divisors, a product is zero only if a factor is: $\sin x = 0$ or $\cos x = 0$. Hence $x \in S$ or $x \in T$, i.e. $x \in S \cup T$.
+**($\supseteq$)** Let $x \in R$ be arbitrary, so $(x-2)(x+3) = 0$. In $\mathbb{R}$ a product is zero only if a factor is: $x - 2 = 0$ or $x + 3 = 0$. Hence $x \in S$ or $x \in T$, i.e. $x \in S \cup T$.
 
 Both inclusions hold, so $S \cup T = R$.
 </Proof>
 
-The two halves used different facts: the forward direction used only that $0 \cdot a = 0$; the backward direction used the substantive no-zero-divisors property. Over a ring where that fails — $\mathbb{Z}/6\mathbb{Z}$, where $2 \cdot 3 = 0$ — the backward inclusion would be false. Noticing which structural fact each half consumes is how you learn where a theorem lives.
+The two halves used different facts: the forward direction used only that $0 \cdot a = 0$; the backward direction used the substantive fact that a product of reals cannot be zero unless a factor is. That fact is not automatic. On a six-hour clock, where the hours run $0$ to $5$ and adding wraps around, $2 \times 3$ lands on $0$ with neither factor zero — and there the backward inclusion would be false. Noticing which structural fact each half consumes is how you learn where a theorem lives.
 
 Note also that $S$ and $T$ are disjoint (module 2.4), so $R$ is partitioned by them — but disjointness played no role in the proof above. Do not import hypotheses you do not need.
 
@@ -97,5 +97,5 @@ Observe the asymmetry that recurs throughout: proving membership in a *union* is
 </Warning>
 
 <Aside>
-Double inclusion also gives antisymmetry of $\subseteq$, completing the proof from module 2.3 that $(\mathcal{P}(X), \subseteq)$ is a partial order. Reflexivity and transitivity were proved there; antisymmetry is this module's definition read backwards.
+Double inclusion also finishes something module 2.3 started. There, $\subseteq$ was shown to behave like $\leq$ does on numbers: every set contains itself, and containment passes along a chain. The one missing piece was that two sets containing each other must be equal — and that is this module's definition, read backwards.
 </Aside>

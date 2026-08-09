@@ -141,6 +141,67 @@ Kernels get **no** exemption at any level. A kernel is the one-sentence takeaway
 a reader meets first, so a destination term there is not a glimpse — it is the
 headline.
 
+**Jargon density (binding).** Matching the lexical level is not enough. Three
+abstract proof-course terms in one paragraph is hard going even when each one is
+individually permitted, so a paragraph may carry at most two *borrowed* heavy
+terms. Terms belonging to the chapter's own declared vocabulary do not count —
+Chapter 3 may say *injective, surjective, bijective* wherever it likes, because
+that is its subject. The three arithmetic properties (*commutative*,
+*associative*, *distributive*) are not on the list at all: CCSSM names them from
+grade 3 (3.OA.B.5), so they are not proof-course vocabulary at any level here.
+
+The two passages this caught were `l7` §2.8 ("a commutative ring in which every
+element is idempotent, a *Boolean ring*") and `l7` §4.2 ("a **preorder** … not a
+partial order … antisymmetry fails by units") — five order- and algebra-theory
+terms, none of them in any K–12 standard, in two sentences.
+
+**Named results (binding).** A result no American school course teaches may be
+*mentioned*, but never *assumed*: every level's first mention must say what the
+result actually claims. "By well-ordering" and "proved by Wiles in 1994" are
+both failures — the first cites an unknown, the second is biography. The gated
+list is well-ordering, Gödel, Bézout, Twin Primes, Goldbach, Fermat's Last
+Theorem, Euclid's lemma, Cantor's theorem, Russell's paradox, Pólya's
+conjecture, Zorn's lemma, Chinese Remainder.
+
+Results that *are* taught are governed by §A5.0 rule 1 instead, which is
+stricter: Pythagoras is grade 8 (8.G.B) and so unavailable at `l4`; the Mean
+Value Theorem, IVT and the Fundamental Theorem of Calculus are Calculus, so at
+`l7` they belong in `<WhereThisGoes>` as the course the reader is starting, not
+in the body as known facts. Taylor series is later still — late BC — and was
+removed from the `l7` §6.6 body for that reason.
+
+**Function notation.** `f(x)` is F-IF.A.2, an Algebra I standard, and grade 8
+explicitly does not require it (8.F.A.1). So `l5` and up may use it freely;
+`l3` and `l4` must introduce it before use. Inside Chapter 3 the notation is the
+subject, so §3.1 earns it and the next two modules re-gloss it; outside Chapter 3
+every page that reaches for it has to earn it again.
+
+**Trigonometry, base `e` and logarithms.** Right-triangle trig is G-SRT.C.6
+(Geometry, grade 9) and the unit circle and radians are F-TF (Algebra II, grade
+10), so trig is available from `l6`. Base `e` and logarithms are F-LE.A.4
+(Algebra II, grade 10), and `l6` is the level *taking* Algebra II, so they are
+available only from `l7`.
+
+**Chapter 5 is the standing exception**, because the complex plane, modulus,
+polar form and Euler's formula cannot be written without them and Part B assigns
+those modules at every level. There they are named and glossed as destinations —
+the way §5.6 now teaches the right-triangle rule at `l3` instead of citing
+Pythagoras, and the way §5.7 now says what $\theta$, $\cos$, $\sin$ and $e$ are
+before using them. Everywhere else they were a convenience with an easy
+substitute, and the substitute is now in place: Chapter 3's running example at
+`l4` is doubling on $\mathbb{Z}$ (injective, surjective onto the evens, a
+bijection there, inverted by halving) rather than $e^x$ and $\ln$, and §2.6's
+worked proposition is a zero-product argument rather than a trigonometric one.
+
+**Matrices and calculus** are treated differently again, because they are genuine
+*destinations* rather than school mathematics a year early. Both are gated to
+`l7`, and below it they may be named in a body sentence provided the sentence
+says what they are ("square grids of numbers, called *matrices* in Algebra II"),
+or used freely inside the sanctioned glimpse slot. §6.6 *Induction in calculus*
+is its own subject and so is exempt, exactly as Chapter 5 is. A bare
+"in matrix terms, multiplication by $i$ is …" at `l4` is the failure this
+catches.
+
 **Part B still outranks this list.** *ring* is deliberately **not** gated: §4.1
 introduces the term at `l5`–`l6` as "a label for a number system with these
 rules", and §4.5 makes ring-vs-field an objective. A sweep that added a pattern

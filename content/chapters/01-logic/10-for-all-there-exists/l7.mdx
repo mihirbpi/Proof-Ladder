@@ -25,6 +25,8 @@ The first, the **universal quantifier**, asserts $p$ holds at every element of $
 
 ### Two structural remarks
 
+*A reminder of the symbols in play: $\emptyset$ reads "the empty set".*
+
 Both matter more than they look.
 
 **The domain is part of the claim.** $\exists x,\, 3x - 1 = 0$ is true over $\mathbb{Q}$, over $\mathbb{R}$, and over $\mathbb{C}$; false over $\mathbb{Z}$. $\forall x,\, x^2 \geq 0$ is true over $\mathbb{R}$ and false over $\mathbb{C}$ (where $\geq$ is not even defined, which is a different and worse kind of failure). Writing $\forall x, \ldots$ without a domain is not shorthand; it is an incomplete sentence, and in a proof it is where errors hide.
@@ -69,7 +71,7 @@ Note where the uniqueness argument actually spent its hypothesis: on $\mathbb{R}
 The diagonal structure is the reason mathematics is asymmetric in difficulty. A universal claim about an infinite domain can never be established by computation, however extensive: Goldbach's conjecture has been verified past $4 \times 10^{18}$, and that is not one step of a proof. Conversely, a universal claim can be destroyed by a single number, which is why counterexample-hunting is a real research activity.
 
 <Warning title="The two moves that look like proofs and are not">
-**Proving $\forall$ by example.** "The claim holds for $n = 1, 2, 3, \ldots, 40$, so it holds." Euler's polynomial $n^2 + n + 41$ is prime for $n = 0, \ldots, 39$ and composite at $n = 40$. Pólya's conjecture survives to $n \approx 9 \times 10^{8}$.
+**Proving $\forall$ by example.** "The claim holds for $n = 1, 2, 3, \ldots, 40$, so it holds." Euler's polynomial $n^2 + n + 41$ is prime for $n = 0, \ldots, 39$ and composite at $n = 40$. Pólya's conjecture — that among $1, \ldots, n$ at least half the numbers have an odd number of prime factors — survives to $n \approx 9 \times 10^{8}$ and then fails.
 
 **Disproving $\exists$ by failed search.** "I tried many values and none worked, so none exists." This is an argument about your search, not about the domain. Disproving $\exists x, p(x)$ requires proving $\forall x, \neg p(x)$ — a universal claim, with all the work that entails.
 </Warning>

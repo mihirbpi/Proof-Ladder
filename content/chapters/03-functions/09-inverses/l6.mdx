@@ -17,6 +17,8 @@ Reflect a figure twice in the same line and it comes back. Rotate $90°$ then $-
 
 $g : T\to S$ is an **inverse** of $f : S\to T$ when
 
+*A reminder of the symbols in play: $\circ$ reads "after".*
+
 $$
 g\circ f = \operatorname{id}_S \qquad\text{and}\qquad f\circ g = \operatorname{id}_T.
 $$
@@ -36,13 +38,13 @@ In elements: $g(f(s))=s$ for every $s\in S$, and $f(g(t))=t$ for every $t\in T$.
 </Discussion>
 
 <Proof>
-**($\Leftarrow$)** Suppose $f$ is a bijection. For each $t\in T$ there is exactly one $s\in S$ with $f(s)=t$; define $g(t)$ to be that $s$.
+**(backward)** Suppose $f$ is a bijection. For each $t\in T$ there is exactly one $s\in S$ with $f(s)=t$; define $g(t)$ to be that $s$.
 
 This is a legitimate definition: surjectivity gives at least one such $s$, so $g$ is total, and injectivity gives at most one, so $g$ is single-valued.
 
 Now $g(f(s))$ is the unique element mapping to $f(s)$, which is $s$; and $f(g(t))=t$ by construction. So $g$ is an inverse.
 
-**($\Rightarrow$)** Suppose $g$ is an inverse of $f$.
+**(forward)** Suppose $g$ is an inverse of $f$.
 
 *Injective:* if $f(s_1)=f(s_2)$, apply $g$ to both sides: $g(f(s_1))=g(f(s_2))$, so $s_1 = s_2$.
 

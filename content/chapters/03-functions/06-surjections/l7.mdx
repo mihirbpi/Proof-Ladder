@@ -67,9 +67,9 @@ Exhibiting the unhit $t$ is only half; the other half is a *universal* argument 
 > 4. $f(f^{-1}(U)) = U$ for all $U \subseteq T$.
 
 <Proof title="Proof of (1) ⇔ (2)">
-($\Rightarrow$) Suppose $f$ is surjective. For each $t \in T$ the fibre $f^{-1}(\{t\})$ is nonempty; **choose** an element $h(t)$ from each. Then $f(h(t)) = t$ for all $t$, so $f \circ h = \mathrm{id}_T$.
+(forward) Suppose $f$ is surjective. For each $t \in T$ the fibre $f^{-1}(\{t\})$ is nonempty; **choose** an element $h(t)$ from each. Then $f(h(t)) = t$ for all $t$, so $f \circ h = \mathrm{id}_T$.
 
-($\Leftarrow$) Suppose $f \circ h = \mathrm{id}_T$ and let $t \in T$. Then $f(h(t)) = t$ with $h(t) \in S$, so $t \in \operatorname{Im}(f)$.
+(backward) Suppose $f \circ h = \mathrm{id}_T$ and let $t \in T$. Then $f(h(t)) = t$ with $h(t) \in S$, so $t \in \operatorname{Im}(f)$.
 </Proof>
 
 <Aside>
@@ -80,7 +80,7 @@ The word **choose** in that proof is doing more work than it appears to. Selecti
 
 Every $f : S \to T$ restricts to a surjection $S \to \operatorname{Im}(f)$, giving the canonical factorisation
 $$
-S \twoheadrightarrow \operatorname{Im}(f) \hookrightarrow T
+S \to \operatorname{Im}(f) \to T
 $$
 of any function as a surjection followed by an injection. This factorisation — surjection first, injection second — recurs throughout algebra as the standard way to split any map into its two failures and in matrix and vector work becomes rank–nullity.
 

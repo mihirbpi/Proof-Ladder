@@ -41,7 +41,7 @@ Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides ev
 (iv) The hypothesis is a disjunction; the two cases are interchanged by swapping the names $b$ and $c$, which leaves the conclusion $a \mid bc$ invariant since $bc = cb$. **Without loss of generality**, assume $a \mid b$; then $b = ak$ and $bc = a(kc)$ with $kc \in \mathbb{Z}$.
 </Proof>
 
-Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{Z}$ is closed under integer linear combinations, i.e. is an **ideal**. That single structural fact drives the Euclidean algorithm, Bézout's identity, and everything downstream.
+Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{Z}$ is closed under integer linear combinations, i.e. is an **ideal**. That single structural fact drives the Euclidean algorithm and, with it, **Bézout's identity**: for any $a,b$ there are integers $x,y$ with $ax + by = \gcd(a,b)$. Everything downstream rests on it.
 
 <Warning title="Two disciplines">
 **Fresh names.** From $a \mid b$ and $b \mid c$, the cofactors are unrelated; reusing one letter asserts they are equal and proves a weaker statement.
@@ -50,6 +50,8 @@ Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{
 </Warning>
 
 ## The false converse, and its repair
+
+*A reminder of the symbols in play: $\nmid$ reads "does not divide".*
 
 $$
 a \mid bc \;\not\Rightarrow\; a \mid b \ \vee\ a\mid c.
@@ -89,6 +91,7 @@ Unique factorisation is often taught as obvious. It is not. Existence of a facto
 The linear-combination theorem — *if $a$ divides $b$ and $c$, then $a$ divides $bx+cy$* — has a shape you will meet again immediately, and recognising it saves relearning.
 
 **In calculus, linearity of the derivative and the integral is the same fact.**
+Writing $\int$ for the integral — the operation you are meeting this year as the reverse of differentiation:
 $$\frac{d}{dx}\big(af + bg\big) = af' + bg', \qquad \int (af+bg) = a\int f + b\int g.$$
 
 So a property preserved by differentiation is preserved by any combination of functions having it — which is why, having differentiated $x^n$, you can differentiate every polynomial without further work.

@@ -14,6 +14,8 @@ import Warning from '@/components/Warning.astro';
 
 ## Definitions
 
+*A reminder of the symbols in play: $\cup$ reads "union", $\cap$ reads "intersection", $\subseteq$ reads "is a subset of".*
+
 $$
 S \cup T = \{\, x \mid x \in S \vee x \in T \,\},
 \qquad
@@ -88,7 +90,7 @@ $S$ and $T$ are **disjoint** when $S \cap T = \emptyset$.
   <VennTwo labelS="S" labelT="T" disjoint={true} />
 </Figure>
 
-Examples: the even and odd integers; $(-\infty, 0)$ and $[0, \infty)$; $\{x \in \mathbb{R} \mid \sin x = 0\}$ and $\{x \in \mathbb{R} \mid \cos x = 0\}$ — a fact worth proving, since $\sin$ and $\cos$ never vanish simultaneously ($\sin^2 + \cos^2 = 1$).
+Examples: the even and odd integers; $(-\infty, 0)$ and $[0, \infty)$; the multiples of $6$ and the numbers leaving remainder $2$ on division by $6$ — a fact worth proving, since no number can leave two different remainders.
 
 Proving disjointness is proving a universal negative: $\forall x,\, \neg(x \in S \wedge x \in T)$. Module 1.12 says that means an arbitrary-element argument, and it is often cleanest by contradiction (module 2.5).
 

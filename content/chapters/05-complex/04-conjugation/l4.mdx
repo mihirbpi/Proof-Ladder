@@ -49,13 +49,13 @@ Property (iii) says conjugation lets you extract real and imaginary parts by *ar
 <Discussion>
   <div slot="know">A biconditional, so two proofs (module 1.9). One direction is a substitution; the other needs comparison of parts.</div>
   <div slot="want">Both implications.</div>
-  <div slot="how">($\Rightarrow$) If $z$ is real, its imaginary part is $0$, and negating $0$ changes nothing. ($\Leftarrow$) Equate $a+bi$ with $a - bi$ and compare imaginary parts to force $b = 0$.</div>
+  <div slot="how">(forward) If $z$ is real, its imaginary part is $0$, and negating $0$ changes nothing. (backward) Equate $a+bi$ with $a - bi$ and compare imaginary parts to force $b = 0$.</div>
 </Discussion>
 
 <Proof>
-**($\Rightarrow$)** Suppose $z \in \mathbb{R}$. Then $z = a + 0i$, so $\bar z = a - 0i = a = z$.
+**(forward)** Suppose $z \in \mathbb{R}$. Then $z = a + 0i$, so $\bar z = a - 0i = a = z$.
 
-**($\Leftarrow$)** Suppose $z = \bar z$, i.e. $a + bi = a - bi$. Comparing imaginary parts (module 5.2), $b = -b$, so $2b = 0$ and hence $b = 0$. Therefore $z = a \in \mathbb{R}$.
+**(backward)** Suppose $z = \bar z$, i.e. $a + bi = a - bi$. Comparing imaginary parts (module 5.2), $b = -b$, so $2b = 0$ and hence $b = 0$. Therefore $z = a \in \mathbb{R}$.
 </Proof>
 
 This is a clean payoff for module 1.9: a biconditional whose two halves genuinely need different arguments. Geometrically it says the fixed points of a reflection are the points on the mirror — the real axis.
@@ -81,5 +81,5 @@ $\overline{3+4i} = 3-4i$ (a reflection), while $-(3+4i) = -3-4i$ (a half turn). 
 </Warning>
 
 <Aside>
-Because conjugation preserves sums and products and fixes real numbers, it commutes with any polynomial with **real** coefficients: $\overline{p(z)} = p(\bar z)$. So if $p(z) = 0$ then $p(\bar z) = \bar 0 = 0$ — **non-real roots of real polynomials come in conjugate pairs.** That is why a cubic with real coefficients always has at least one real root: the non-real ones pair up, and three is odd.
+Take any polynomial with **real** coefficients. Conjugation passes through sums and products and leaves real numbers alone, so conjugating the whole expression is the same as replacing $z$ by $\bar z$ everywhere. If the expression is $0$ at $z$, it is therefore $0$ at $\bar z$ too — **non-real roots of real polynomials come in conjugate pairs.** That is why a cubic with real coefficients always has at least one real root: the non-real ones pair up, and three is odd.
 </Aside>

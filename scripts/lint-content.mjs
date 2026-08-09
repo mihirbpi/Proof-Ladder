@@ -698,6 +698,52 @@ for (const file of files) {
 }
 
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Undefined LaTeX inside math. KaTeX renders an unknown command as an error node
+// rather than failing the build, so broken math ships silently.
+//
+// This exists because three separate search-and-replace passes over math damaged
+// it in ways the build did not catch: \omega → w turned "0\cdot\omega" into
+// "\cdotw"; a follow-up fix turned every "\cdots" into "\cdot s"; and renaming
+// statement variables produced "\negp", "\equivq", "\cosw". Regex over LaTeX
+// needs a net under it.
+// ---------------------------------------------------------------------------
+const KATEX_COMMANDS = new Set(`
+frac tfrac dfrac sqrt times div cdot cdots ldots dots vdots ddots pm mp leq le geq ge
+neq approx equiv sim cong propto pi theta alpha beta gamma delta Delta epsilon varepsilon
+lambda mu sigma tau rho zeta chi psi phi varphi omega Omega Gamma infty quad qquad text
+textbf textit mathbf mathbb mathcal mathrm mathit operatorname left right big Big bigg Bigg
+bigl bigr phantom hphantom vphantom begin end aligned align array matrix pmatrix bmatrix
+cases hline overline underline bar hat vec tilde widehat overbrace underbrace angle triangle
+perp parallel circ degree sin cos tan cot sec csc arcsin arccos arctan sinh cosh tanh log ln
+exp lim limsup liminf sup inf max min gcd lcm det dim deg ker to rightarrow leftarrow
+leftrightarrow Rightarrow Leftarrow Leftrightarrow longrightarrow longleftarrow
+longleftrightarrow Longrightarrow Longleftarrow Longleftrightarrow implies iff mapsto
+longmapsto xrightarrow xleftarrow hookrightarrow twoheadrightarrow rightharpoonup uparrow
+downarrow in notin ni subset supset subseteq supseteq subsetneq supsetneq cup cap setminus
+emptyset varnothing wedge vee neg lnot land lor forall exists nexists therefore because
+mid nmid parallel bmod pmod binom choose sum prod int oint partial nabla lfloor rfloor
+lceil rceil lvert rvert langle rangle vert Vert colon semicolon star ast dagger bullet
+square Box Diamond blacksquare checkmark boxed tag displaystyle textstyle scriptstyle
+overset underset stackrel substack middle not ell hbar Re Im wp aleph prime circledast
+oplus otimes ominus odot sqcup sqcap bigcup bigcap bigsqcup bigwedge bigvee bigoplus
+prec succ preceq succeq ll gg equivalent vdash models S P dag ddag
+arg overrightarrow overleftarrow xmapsto xhookrightarrow smallint iint iiint
+`.trim().split(/\s+/));
+
+for (const file of files) {
+  const rel = path.relative(ROOT, file);
+  const src = fs.readFileSync(file, 'utf8').replace(/^---[\s\S]*?^---/m, '');
+  for (const m of src.matchAll(/\$\$([\s\S]*?)\$\$|\$([^$\n]+)\$/g)) {
+    const seg = m[1] ?? m[2] ?? '';
+    for (const c of seg.match(/\\[a-zA-Z]+/g) ?? []) {
+      if (!KATEX_COMMANDS.has(c.slice(1))) {
+        err(rel, `undefined LaTeX command ${c} — KaTeX renders this as an error, not a build failure`);
+      }
+    }
+  }
+}
+
 // §A5.0 rule 2: no proof notation before it is introduced.
 //
 // ∀ ∃ ⇒ ⇔ ¬ ∧ ∨ ∈ ⊆ ∪ ∩ ∅ ≡ ∘ ↦ and the blackboard-bold sets are taught nowhere
@@ -723,6 +769,10 @@ const PROOF_NOTATION = [
   ['∘', /\\circ\b|∘/],
   ['↦', /\\mapsto|↦/],
   ['Σ', /\\sum\b|Σ/],
+  // Sigma notation and combinations ARE met in precalculus, but only briefly, so
+  // they get the same treatment as everything else: introduced before first use.
+  ['binomial coefficient', /\\binom|\\choose/],
+  ['∫', /\\int\b|∫/],
   ['∤', /\\nmid|∤/],
   ['ℕ', /\\mathbb\{N\}|ℕ/],
   ['ℤ', /\\mathbb\{Z\}|ℤ/],
@@ -798,6 +848,228 @@ const INTRODUCES =
         }
         break;
       }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Proof-jargon density. Matching the lexical level is not enough: three abstract
+// terms in one sentence is hard going even when each is individually fair game.
+// Terms that are the module's OWN subject don't count — §7.2 is the
+// reflexive/symmetric/transitive module, and naming all three there is the
+// content. What this catches is jargon *borrowed* from elsewhere and stacked.
+//
+// The three arithmetic properties (commutative/associative/distributive) are
+// deliberately absent: CCSSM names them from grade 3 (3.OA.B.5), so they are not
+// proof-course vocabulary at any level here.
+const HEAVY_JARGON = [
+  /\bquantifi\w*\b/i, /\bcontrapositive\b/i, /\bbiconditional\b/i, /\bvacuous\w*\b/i,
+  /\bwell-defined\w*\b/i, /\bequivalence relation\b/i, /\binjectiv\w*\b/i,
+  /\bsurjectiv\w*\b/i, /\bbijectiv\w*\b/i, /\bidempotent\w*\b/i, /\binvolution\b/i,
+  /\btransitivit\w*\b/i, /\breflexivit\w*\b/i, /\baxiomati\w*\b/i, /\bisomorph\w*\b/i,
+  /\bcardinalit\w*\b/i, /\bcountab\w*\b/i, /\bantecedent\b/i, /\bconsequent\b/i,
+  /\btautolog\w*\b/i, /\bpredicate\b/i, /\bcodomain\b/i, /\bBoolean ring\b/i,
+  /\bcommutative ring\b/i, /\bintegral domain\b/i, /\bequinumerous\b/i,
+  /\bpreorder\b/i, /\bpartial order\b/i, /\bantisymmetr\w*\b/i,
+];
+// Vocabulary belonging to a chapter at a level: every newTerm and title the
+// chapter declares. Scoped to the chapter, not the module, because Chapter 3 may
+// say "injective, surjective, bijective" in any of its modules — those words are
+// its subject matter, and flagging §3.3 for naming what §3.5-§3.8 will prove
+// would be flagging the table of contents.
+const chapterVocab = new Map();
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const ch = path.relative(CHAPTERS, f).split(path.sep)[0];
+  const fm = fs.readFileSync(f, 'utf8').match(/^---([\s\S]*?)^---/m)?.[1] ?? '';
+  const key = `${ch}/${level}`;
+  chapterVocab.set(key, (chapterVocab.get(key) ?? '') + ' '
+    + (fm.match(/newTerms:\s*\[([^\]]*)\]/)?.[1] ?? '') + ' '
+    + (fm.match(/title:\s*(.*)/)?.[1] ?? ''));
+}
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!['l3', 'l4', 'l5', 'l6', 'l7'].includes(level)) continue; // l8 is college
+  const src = fs.readFileSync(f, 'utf8');
+  const ch = path.relative(CHAPTERS, f).split(path.sep)[0];
+  const own = (chapterVocab.get(`${ch}/${level}`) ?? '').toLowerCase();
+  // A bulleted list that names one term per line and glosses each in place is
+  // a glossary, not a pile-up, so each item is judged on its own.
+  const prose = body(src).replace(/\n(\s*[-*]\s)/g, '\n\n$1');
+  for (const para of prose.split(/\n\s*\n/)) {
+    if (/^\s*(import|<|\|)/.test(para)) continue;
+    const hits = HEAVY_JARGON
+      .map((re) => para.match(re)?.[0])
+      .filter((t) => t && !own.includes(t.slice(0, 6).toLowerCase()));
+    const distinct = [...new Set(hits.map((t) => t.toLowerCase()))];
+    if (distinct.length >= 3) {
+      warn(
+        path.relative(ROOT, f),
+        `stacks ${distinct.length} borrowed proof-jargon terms in one paragraph (${distinct.join(', ')}) — spread them out`,
+      );
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Trigonometry, base e and logarithms, gated by §A5.0 rule 1.
+//   right-triangle trig  G-SRT.C.6   Geometry, grade 9   → from l6
+//   unit circle, radians F-TF        Algebra II, gr 10   → from l6 (l6 has Geometry)
+//   base e, logarithms   F-LE.A.4    Algebra II, gr 10   → from l7 (l6 is *taking* it)
+// Chapter 5 is the standing exception: the complex plane, modulus, polar form and
+// Euler's formula cannot be written without them, and Part B assigns those modules
+// at every level. There they must be presented as named, glossed destinations —
+// the way §5.6 now teaches the right-triangle rule at l3 instead of citing
+// Pythagoras. Everywhere else they are a convenience with an easy substitute,
+// which is what this check removes.
+const CH5 = /05-complex\/0[6-9]-/;
+const GRADED_CONCEPTS = [
+  // Ordinary school mathematics from a later grade. No glimpse exemption: an
+  // Aside full of trigonometry at l3 is still trigonometry.
+  { name: 'trigonometry', from: 'l6', re: /\\cos|\\sin\b|\\tan\b|\\theta|trigonometr|\bradians?\b/ },
+  { name: 'base e / logarithms', from: 'l7', re: /\be\^|\\exp\b|\\ln\b|\\log|\blogarithm/ },
+  // Genuine destinations, so §A4.1a's sanctioned glimpse slot applies: they may
+  // be named and glossed inside an <Aside> or <WhereThisGoes>, never used as
+  // working vocabulary in the body.
+  { name: 'matrices and vectors', from: 'l7', glimpseOK: true,
+    re: /\\begin\{[bp]matrix|\bmatri(x|ces)\b|\bdeterminant/ },
+  { name: 'calculus', from: 'l7', glimpseOK: true,
+    re: /\\lim\b|\bderivativ|\\frac\{d\}\{d|\bantiderivativ|\bRiemann sum/ },
+];
+// §6.6 is "Induction in calculus" — its subject is the exception, as Chapter 5's is.
+const OWN_SUBJECT = /06-induction\/06-/;
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!LEVEL_ORDER.includes(level) || level === 'l8') continue;
+  const rel = path.relative(ROOT, f);
+  if (CH5.test(rel)) continue;
+  const full = body(fs.readFileSync(f, 'utf8'));
+  const outsideGlimpse = full
+    .replace(/<Aside[\s\S]*?<\/Aside>/g, '')
+    .replace(/<WhereThisGoes[\s\S]*?<\/WhereThisGoes>/g, '');
+  for (const { name, from, re, glimpseOK } of GRADED_CONCEPTS) {
+    if (rank(level) >= rank(from)) continue;
+    if (glimpseOK && OWN_SUBJECT.test(rel)) continue;
+    const hay = glimpseOK ? outsideGlimpse : full;
+    const m = hay.match(re);
+    if (!m) continue;
+    // A destination named *and glossed* in the body is fine — the same standard
+    // the named-results check applies. "Square grids of numbers, called
+    // matrices in Algebra II" assumes nothing; a bare "matrices" does.
+    if (glimpseOK) {
+      const pStart = hay.lastIndexOf('\n\n', m.index) + 1;
+      const pEnd = hay.indexOf('\n\n', m.index);
+      const para = hay.slice(pStart, pEnd < 0 ? hay.length : pEnd);
+      if (/\b(called|which|rows and columns|grids? of numbers|Algebra II|Precalculus|later|you will meet|introduces|a tool from)\b/i.test(para)) continue;
+    }
+    warn(rel, `${level} uses ${name} ("${m[0]}") — not available until ${from} (§A5.0 rule 1)`);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Named results no American school course teaches. A reader may meet these —
+// they are some of the best stories in mathematics — but never as something
+// assumed. Every mention must say what the result actually claims, because
+// "by well-ordering" is not an argument to someone who has never heard of it.
+//
+// Results that ARE taught (Pythagoras, the quadratic formula, the Mean Value
+// Theorem) are handled by the grade-ceiling checks instead; this list is only
+// for the ones that appear in no K-12 standard at all.
+const UNTAUGHT_RESULTS = [
+  ['well-ordering', /\bwell[- ]ordering\b/i],
+  ['Gödel', /\bGödel\b/],
+  ["Bézout", /\bBézout\b/],
+  ['Twin Prime', /\btwin prime/i],
+  ['Goldbach', /\bGoldbach\b/],
+  ["Fermat's Last Theorem", /\bFermat's Last Theorem\b/],
+  ["Euclid's lemma", /\bEuclid's lemma\b/i],
+  ["Cantor's theorem", /\bCantor's theorem\b/i],
+  ["Russell's paradox", /\bRussell's paradox\b/i],
+  ["Pólya's conjecture", /\bPólya\b/],
+  ["Zorn's lemma", /\bZorn\b/],
+  ['Chinese Remainder', /\bChinese Remainder\b/i],
+];
+// Wording that counts as saying what the result claims. A statement, not a
+// biography: "proved in 1994" tells the reader nothing about what was proved.
+// `\b` before `—` or `:` can never match (both sides are non-word characters),
+// so those two alternatives sat dead in an earlier version and every "Name: the
+// statement" gloss was reported as bare.
+const STATES_IT = /\b(says?|states?|asserts?|claims?|that|which|if|there (is|are|exists?)|every|each|all|any|no)\b|—|:/i;
+{
+  const modKey = (p) => {
+    const m = p.match(/(\d+)-[^/]+\/(\d+)-/);
+    return m ? Number(m[1]) * 100 + Number(m[2]) : 0;
+  };
+  for (const level of ['l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8']) {
+    const pages = files
+      .filter((f) => path.basename(f, '.mdx') === level)
+      .sort((a, b) => modKey(a) - modKey(b));
+    for (const [name, re] of UNTAUGHT_RESULTS) {
+      for (const f of pages) {
+        // Bullet items are their own units: a list of conjectures where only
+        // the first is glossed must not be excused by its neighbours.
+        const prose = body(fs.readFileSync(f, 'utf8')).replace(/\n(\s*[-*]\s)/g, '\n\n$1');
+        const m = prose.match(re);
+        if (!m) continue;
+        // Judge the sentence it lands in, plus the one after — a result is often
+        // named and then stated in the next breath.
+        const i = m.index;
+        // Scope: the paragraph the name lands in. A gloss may precede the name
+        // ("…never a cube. That guess is called Fermat's Last Theorem") as
+        // easily as follow it, but it does not cross a paragraph break — and a
+        // name dropped into a paragraph that nowhere states the result is
+        // exactly the failure this check exists for. A fixed character window
+        // was tried first and passed bare mentions whose *neighbours* happened
+        // to contain a colon.
+        const pStart = prose.lastIndexOf('\n\n', i) + 1;
+        const pEnd = prose.indexOf('\n\n', i);
+        const scope = prose.slice(pStart, pEnd < 0 ? prose.length : pEnd);
+        if (!STATES_IT.test(scope)) {
+          warn(
+            path.relative(ROOT, f),
+            `${level} names "${name}" without saying what it claims — no school course teaches it`,
+          );
+        }
+        break; // first mention per level is the one that must carry the gloss
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Function notation. CCSSM introduces f(x) at F-IF.A.2, an Algebra I standard,
+// and grade 8 explicitly does not require it (8.F.A.1). So l5 and up may use it
+// freely; l3 (grade 5) and l4 (ceiling grade 7) must introduce it before use.
+{
+  const FN = /(?:^|[^A-Za-z\\])([fgphq])\s*\(\s*[a-z0-9]/;
+  const FN_INTRO = /\b(f\(x\)|function notation|writ(e|es|ing|ten)|read|reads|means?|notation|stands? for|denot\w*)\b/i;
+  const modKey = (p) => {
+    const m = p.match(/(\d+)-[^/]+\/(\d+)-/);
+    return m ? Number(m[1]) * 100 + Number(m[2]) : 0;
+  };
+  for (const level of ['l3', 'l4']) {
+    const pages = files
+      .filter((f) => path.basename(f, '.mdx') === level)
+      .sort((a, b) => modKey(a) - modKey(b));
+    let seenInFunctions = 0;
+    for (const f of pages) {
+      const b = body(fs.readFileSync(f, 'utf8'));
+      const paras = b.split(/\n\s*\n/);
+      const at = paras.findIndex((p) => FN.test(p));
+      if (at < 0) continue;
+      const scope = paras.slice(Math.max(0, at - 1), at + 2).join('\n\n');
+      if (!FN_INTRO.test(scope)) {
+        warn(
+          path.relative(ROOT, f),
+          `${level} uses function notation "${paras[at].match(FN)[1]}(…)" before introducing it — not taught until Algebra I (F-IF.A.2)`,
+        );
+      }
+      // Every module, not just the first: f(x) is not working vocabulary at
+      // these levels, so each page that reaches for it has to earn it again.
+      // Chapter 3 is the exception — functions are its subject, so it earns the
+      // notation once in §3.1 and then re-glosses it on the next few pages,
+      // which is the "first few uses" rule rather than every page forever.
+      if (/03-functions/.test(f)) { seenInFunctions += 1; if (seenInFunctions >= 3) break; }
     }
   }
 }

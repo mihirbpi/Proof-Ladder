@@ -26,11 +26,11 @@ $$
 </Discussion>
 
 <Proof>
-**($\Rightarrow$)** Let $f$ be a bijection and $t \in T$. Surjectivity gives $f^{-1}(\{t\}) \neq \emptyset$; injectivity gives $|f^{-1}(\{t\})| \leq 1$. Hence the fibre is a singleton, and we define $g(t)$ to be its element. Totality of $g$ is surjectivity of $f$; well-definedness of $g$ is injectivity of $f$.
+**(forward)** Let $f$ be a bijection and $t \in T$. Surjectivity gives $f^{-1}(\{t\}) \neq \emptyset$; injectivity gives $|f^{-1}(\{t\})| \leq 1$. Hence the fibre is a singleton, and we define $g(t)$ to be its element. Totality of $g$ is surjectivity of $f$; well-definedness of $g$ is injectivity of $f$.
 
 By construction $f(g(t)) = t$. For $s \in S$, $g(f(s))$ is the unique pre-image of $f(s)$, which is $s$. So $g$ is a two-sided inverse.
 
-**($\Leftarrow$)** Given $g$ with $g\circ f = \mathrm{id}_S$, $f \circ g = \mathrm{id}_T$: if $f(s_1)=f(s_2)$ then applying $g$ gives $s_1 = s_2$, so $f$ is injective; and for $t \in T$, $f(g(t)) = t$ exhibits a pre-image, so $f$ is surjective.
+**(backward)** Given $g$ with $g\circ f = \mathrm{id}_S$, $f \circ g = \mathrm{id}_T$: if $f(s_1)=f(s_2)$ then applying $g$ gives $s_1 = s_2$, so $f$ is injective; and for $t \in T$, $f(g(t)) = t$ exhibits a pre-image, so $f$ is surjective.
 
 **Uniqueness.** If $g, h$ both invert $f$, then by associativity (§3.7)
 $$g = g \circ \mathrm{id}_T = g \circ (f \circ h) = (g\circ f)\circ h = \mathrm{id}_S \circ h = h.$$

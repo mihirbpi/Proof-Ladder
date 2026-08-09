@@ -33,23 +33,23 @@ The template is fixed:
 
 > Let $s_1, s_2 \in S$ with $f(s_1) = f(s_2)$. … Therefore $s_1 = s_2$. Hence $f$ is injective.
 
-> **Proposition.** $f : \mathbb{R} \to \mathbb{R}$, $f(x) = e^x$, is injective.
+> **Proposition.** $f : \mathbb{Z} \to \mathbb{Z}$, $f(n) = 2n$, is injective.
 
 <Discussion>
-  <div slot="know">$e^{a} = e^{b}$ for some reals $a, b$. Available: $e^x$ is strictly increasing, or equivalently $\ln$ is defined on $\mathbb{R}_{>0}$ and inverts $e^x$.</div>
+  <div slot="know">$2a = 2b$ for some integers $a, b$. Available: doubling is strictly increasing — bigger input, bigger output.</div>
   <div slot="want">$a = b$.</div>
-  <div slot="how">Apply $\ln$ to both sides. Or, avoiding $\ln$: use strict monotonicity, which gives injectivity for any strictly increasing function.</div>
+  <div slot="how">Divide both sides by $2$. Or, without dividing: use the fact that a strictly increasing rule can never send two different inputs to the same place.</div>
 </Discussion>
 
 <Proof>
-Let $a, b \in \mathbb{R}$ with $e^a = e^b$.
+Let $a, b \in \mathbb{Z}$ with $2a = 2b$.
 
-Suppose $a \neq b$; without loss of generality — the other case is identical with $a$ and $b$ swapped — $a < b$. Since $e^x$ is strictly increasing, $a < b$ implies $e^a < e^b$, contradicting $e^a = e^b$.
+Suppose $a \neq b$; without loss of generality — the other case is identical with $a$ and $b$ swapped — $a < b$. Doubling preserves order, so $a < b$ gives $2a < 2b$, contradicting $2a = 2b$.
 
 Hence $a = b$, and $f$ is injective.
 </Proof>
 
-That argument proves something more general and worth stating: **every strictly monotone function is injective.** If $a < b$ forces $f(a) < f(b)$ (or always $f(a) > f(b)$), then distinct inputs cannot share an output. This is by far the commonest way injectivity gets established in practice.
+That argument proves something more general and worth stating: **every strictly increasing rule is injective.** If $a < b$ always forces $f(a) < f(b)$ (or always forces $f(a) > f(b)$), then distinct inputs cannot share an output. This is by far the commonest way injectivity gets established in practice.
 
 ## Disproving injectivity
 
@@ -81,6 +81,6 @@ The horizontal line test is (I) drawn on axes: a horizontal line meeting the gra
 
 ## What is still missing
 
-Injectivity says every $t \in T$ has *at most* one pre-image. It says nothing about whether every $t$ has *at least* one — some targets may be unhit. $e^x : \mathbb{R} \to \mathbb{R}$ is injective, yet no input produces $-1$.
+Injectivity says every $t \in T$ has *at most* one pre-image. It says nothing about whether every $t$ has *at least* one — some targets may be unhit. Doubling on $\mathbb{Z}$ is injective, yet no input produces $3$.
 
 That other half is module 3.6, and having both at once is module 3.8.

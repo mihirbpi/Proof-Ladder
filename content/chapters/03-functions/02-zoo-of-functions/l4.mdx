@@ -11,6 +11,8 @@ import Warning from '@/components/Warning.astro';
 
 The definition in module 3.1 mentioned no formulas and no numbers. This module is a collection of functions that exercise that generality, because the belief that "function = formula" quietly breaks everything that follows.
 
+*A reminder from module 3.1: $f(x)$ is read "$f$ of $x$" and denotes the one output the rule $f$ assigns to the input $x$.*
+
 ## The floor function
 
 $$
@@ -78,14 +80,14 @@ The domain is the product set of module 2.9. Viewing binary operations this way 
 ## Domain restrictions are consequences, not conventions
 
 $$
-r(x) = \frac{1}{x}, \qquad \ell(x) = \ln x.
+r(x) = \frac{1}{x}, \qquad s(x) = \sqrt{x}.
 $$
 
-Neither is a function on $\mathbb{R}$. For $r$, totality fails at $0$ — there is no real number $1/0$, so no value can be assigned. For $\ell$, totality fails on $(-\infty, 0]$, because $e^y > 0$ for every real $y$, so no $y$ satisfies $e^y = x$ when $x \leq 0$.
+Neither is a function on $\mathbb{R}$. For $r$, totality fails at $0$ — there is no real number $1/0$, so no value can be assigned. For $s$, totality fails on $(-\infty, 0)$, because $y^2 \geq 0$ for every real $y$, so no $y$ satisfies $y^2 = x$ when $x < 0$.
 
 In both cases the correct move is to declare the domain honestly:
 $$
-r : \mathbb{R}\setminus\{0\} \to \mathbb{R}, \qquad \ell : \mathbb{R}_{>0} \to \mathbb{R}.
+r : \mathbb{R}\setminus\{0\} \to \mathbb{R}, \qquad s : \mathbb{R}_{\geq 0} \to \mathbb{R}.
 $$
 The excluded points were never arbitrary; they are precisely where the assignment fails to exist.
 

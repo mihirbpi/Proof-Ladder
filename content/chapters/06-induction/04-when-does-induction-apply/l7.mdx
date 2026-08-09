@@ -72,11 +72,11 @@ Establishing the link is frequently the whole difficulty of the proof, and a ste
 
 Both forms are instances of a single principle.
 
-> **General induction.** Let $\prec$ be an order on $S$ with **no infinite descending chains**. If for every $x \in S$, $\big(\forall y \prec x,\ A(y)\big) \Rightarrow A(x)$, then $A$ holds on all of $S$.
+> **General induction.** Suppose the objects in $S$ come with a notion of *simpler than*, and that no object can be simplified forever — every chain of simplifications stops. If, for every $x$ in $S$, $A$ holding at everything simpler than $x$ forces $A$ at $x$, then $A$ holds throughout $S$.
 
-Note there is **no separate base case**: minimal elements have no predecessors, so the hypothesis is vacuously satisfied for them (§1.5) and the implication delivers $A$ directly. Ordinary and strong induction are the cases $\prec\ =$ predecessor and $\prec\ =\ <$ on $\mathbb{N}$.
+Note there is **no separate base case**. The simplest objects have nothing below them, so the hypothesis is vacuously satisfied for them (§1.5) and the implication delivers $A$ directly. Ordinary induction is the case where *simpler than* means *the previous integer*; strong induction is the case where it means *any smaller integer*.
 
-**Structural induction** is the case where $S$ is a set of recursively built objects and $\prec$ is "is an immediate subterm of". To prove a property of all well-formed formulas, verify it for atoms and check that each connective preserves it. Termination arguments for recursive programs are the same principle: exhibit a quantity that strictly decreases at each call and cannot decrease forever.
+**Structural induction** is the case where the objects are built up from smaller ones, and *simpler than* means *is a piece of*. To prove a property of every expression, verify it for the atoms and check that each way of building preserves it. Termination arguments for recursive programs are the same principle: exhibit a quantity that strictly decreases at each call and cannot decrease forever.
 
 The same principle extends past $\mathbb{N}$ to longer well-ordered collections, which is how induction reaches beyond the counting numbers.
 

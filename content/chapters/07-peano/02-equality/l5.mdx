@@ -3,7 +3,7 @@ level: l5
 title: The rules for equality
 readingTimeMin: 8
 newTerms: ["reflexive", "symmetric", "transitive", "equivalence relation"]
-anchorExample: "congruence mod n"
+anchorExample: "same remainder on division by n"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -49,10 +49,10 @@ Two examples you know.
 
 Congruent triangles are not the *same* triangle — they can sit in different places. They are interchangeable for every question about side lengths and angles, and that is what the three properties record.
 
-**Same remainder on division by $n$.** Say $a \equiv b \pmod n$ — read *"$a$ and $b$ leave the same remainder on division by $n$"* — when $n \mid (a - b)$. The notation is standard in later courses; the idea is long division.
+**Same remainder on division by $n$.** Say $a$ and $b$ **match at $n$** when $n \mid (a - b)$: their difference is a whole number of copies of $n$. Equivalently, they leave the same remainder on division by $n$.
 
 <Discussion>
-  <div slot="know">$a \equiv b \pmod n$ unfolds to $n \mid (a-b)$, which unfolds again to $a - b = nk$ for some integer $k$ (module 4.2).</div>
+  <div slot="know">*Matching at $n$* unfolds to $n \mid (a-b)$, which unfolds again to $a - b = nk$ for some integer $k$ (module 4.2).</div>
   <div slot="want">All three properties.</div>
   <div slot="how">Each is a divisibility statement, so each is proved by producing the integer witness. Three short proofs.</div>
 </Discussion>
@@ -60,7 +60,7 @@ Congruent triangles are not the *same* triangle — they can sit in different pl
 <Proof>
 **Reflexive.** $a - a = 0 = n\cdot0$, so $n \mid (a-a)$ ✓
 
-**Symmetric.** Suppose $a \equiv b$, so $a - b = nk$ for some $k \in \mathbb{Z}$. Then $b - a = n(-k)$, and $-k \in \mathbb{Z}$ by closure ✓
+**Symmetric.** Suppose $a$ and $b$ match at $n$, so $a - b = nk$ for some $k \in \mathbb{Z}$. Then $b - a = n(-k)$, and $-k \in \mathbb{Z}$ by closure ✓
 
 **Transitive.** Suppose $a - b = nk$ and $b - c = nm$ with $k, m \in \mathbb{Z}$. Adding,
 $$
@@ -75,7 +75,7 @@ and $k+m \in \mathbb{Z}$ by closure ✓
 
 > An equivalence relation **partitions** its set: it splits everything into families, where each element belongs to exactly one family, and two elements are related exactly when they share a family.
 
-For congruence mod $3$, the families are the remainder classes of module 4.4:
+For matching at $3$, the families are the remainder classes of module 4.4:
 $$
 \{\ldots,-3,0,3,6,\ldots\}, \quad \{\ldots,-2,1,4,7,\ldots\}, \quad \{\ldots,-1,2,5,8,\ldots\}.
 $$
@@ -101,7 +101,7 @@ Equality itself is the strictest equivalence relation: it puts every object in a
 
 Every other equivalence relation is a deliberate loosening. Choosing one is choosing **what to ignore.**
 
-Congruence mod $12$ ignores everything about a number except its clock position, which is why $15$ o'clock is $3$ o'clock. Congruence of figures ignores position and keeps shape and size. Fractions are an equivalence relation on pairs of integers that ignores the choice of representative, which is why $\tfrac12$ and $\tfrac24$ are the same number — and why module 3.2's rule $p/q \mapsto p+q$ failed to be a function.
+Matching at $12$ ignores everything about a number except its clock position, which is why $15$ o'clock is $3$ o'clock. Congruence of figures — the relation your geometry course is building — ignores position and keeps shape and size. Fractions are an equivalence relation on pairs of integers that ignores the choice of representative, which is why $\tfrac12$ and $\tfrac24$ are the same number — and why module 3.2's rule $p/q \mapsto p+q$ failed to be a function.
 
 **Deciding what to ignore is one of the most productive moves in mathematics**, and each such decision is an equivalence relation.
 </Aside>

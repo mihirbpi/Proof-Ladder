@@ -40,18 +40,18 @@ Since the definition is a conjunction, **proving a biconditional means writing t
 
 <Discussion>
   <div slot="know">Definitions: $n$ even iff $n = 2k$ for some $k \in \mathbb{Z}$; odd iff $n = 2k+1$. Every integer is exactly one of the two.
-  <br />Direction ($\Rightarrow$) has hypothesis "$n$ even", which unfolds to a usable equation about $n$.
-  <br />Direction ($\Leftarrow$) has hypothesis "$n^2$ even", which unfolds to $n^2 = 2k$ — no handle on $n$ without inverting a square.</div>
+  <br />Direction (forward) has hypothesis "$n$ even", which unfolds to a usable equation about $n$.
+  <br />Direction (backward) has hypothesis "$n^2$ even", which unfolds to $n^2 = 2k$ — no handle on $n$ without inverting a square.</div>
   <div slot="want">Both implications.</div>
   <div slot="how">Prove the easy direction directly. For the hard one, flip it around (module 1.8): the contrapositive of "$n^2$ even $\Rightarrow$ $n$ even" is "$n$ odd $\Rightarrow$ $n^2$ odd", whose hypothesis unfolds usefully.</div>
 </Discussion>
 
 <Proof>
-**($\Rightarrow$) If $n$ is even then $n^2$ is even.**
+**(forward) If $n$ is even then $n^2$ is even.**
 
 Suppose $n$ is even, so $n = 2k$ for some $k \in \mathbb{Z}$. Then $n^2 = 4k^2 = 2(2k^2)$, and $2k^2 \in \mathbb{Z}$, so $n^2$ is even.
 
-**($\Leftarrow$) If $n^2$ is even then $n$ is even.**
+**(backward) If $n^2$ is even then $n$ is even.**
 
 We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n = 2k+1$ with $k \in \mathbb{Z}$. Then
 $$
@@ -64,10 +64,10 @@ Both directions hold, so $n$ is even $\iff$ $n^2$ is even.
 
 The two halves needed **different techniques** — one direct, one by contrapositive. That asymmetry is normal, and it is exactly why a biconditional cannot be proved by one symmetrical argument.
 
-Note also where the ($\Leftarrow$) direction leaned: on "every integer is even or odd, not both". That fact is not free — it is the $d=2$ case of the division algorithm, proved in module 4.4.
+Note also where the (backward) direction leaned: on "every integer is even or odd, not both". That fact is not free — it is the $d=2$ case of the division algorithm, proved in module 4.4.
 
 <Warning title="Label the directions and count them">
-Always mark ($\Rightarrow$) and ($\Leftarrow$), or "forward" and "backward".
+Always mark (forward) and (backward), or "forward" and "backward".
 
 Two errors are invisible in unlabelled prose: proving the same direction twice, and proving one and stopping. Both are common, and both look like finished proofs.
 </Warning>
@@ -111,15 +111,15 @@ Extraneous roots are converse failures (module 1.7), and checking your answers i
 
 ## Proving several statements equivalent
 
-When three or more statements are to be shown pairwise equivalent, proving all $\binom n2$ biconditionals is wasteful. Prove a **cycle** instead:
+When three or more statements are to be shown pairwise equivalent, proving all $n(n-1)/2$ biconditionals separately is wasteful. Prove a **cycle** instead:
 $$
 p \Rightarrow q \Rightarrow r \Rightarrow p.
 $$
 
-Three implications rather than six, and every pairwise equivalence follows by going round the cycle. Theorems phrased "the following are equivalent" — ubiquitous in matrix and vector work and beyond — are almost always proved this way, and choosing the cycle order so each individual implication is easy is a real part of the work.
+Three implications rather than six, and every pairwise equivalence follows by going round the cycle. Theorems phrased "the following are equivalent" — they are everywhere in later mathematics — are almost always proved this way, and choosing the cycle order so each individual implication is easy is a real part of the work.
 
 <Aside>
 Other phrasings of the same thing: "$p$ is *necessary and sufficient* for $q$" — each implies the other (§1.7); "$p$ exactly when $q$"; "$p$ iff $q$".
 
-And a forward pointer: the theorem proved above is the lemma that makes $\sqrt2$ irrational (module 4.7). There one shows $a^2$ is even and concludes $a$ is even — the ($\Leftarrow$) direction, the one that needed the contrapositive.
+And a forward pointer: the theorem proved above is the lemma that makes $\sqrt2$ irrational (module 4.7). There one shows $a^2$ is even and concludes $a$ is even — the (backward) direction, the one that needed the contrapositive.
 </Aside>

@@ -29,28 +29,28 @@ The definition is $\forall \exists$, so by module 1.12 the proof is: take an arb
 
 Note the small obligation that is easy to skip: you must check the witness actually lies in $S$.
 
-> **Proposition.** $g : \mathbb{R} \to \mathbb{R}_{>0}$, $g(x) = e^x$, is surjective.
+> **Proposition.** $g : \mathbb{Z} \to E$, $g(n) = 2n$, is surjective, where $E$ is the set of even integers.
 
 <Discussion>
-  <div slot="know">$t > 0$. Available: $\ln$ is defined on $\mathbb{R}_{>0}$, takes real values, and satisfies $e^{\ln t} = t$.</div>
-  <div slot="want">Some real $x$ with $e^x = t$.</div>
-  <div slot="how">The witness is $x = \ln t$. The hypothesis $t > 0$ is exactly what makes $\ln t$ defined, so it is doing real work — this is where the choice of codomain enters.</div>
+  <div slot="know">$t$ is even. Available: an even number is by definition $2$ times an integer, so $t/2$ is an integer.</div>
+  <div slot="want">Some integer $n$ with $2n = t$.</div>
+  <div slot="how">The witness is $n = t/2$. The hypothesis that $t$ is even is exactly what makes $t/2$ an integer, so it is doing real work — this is where the choice of codomain enters.</div>
 </Discussion>
 
 <Proof>
-Let $t \in \mathbb{R}_{>0}$ be arbitrary. Since $t > 0$, the number $x = \ln t$ is well defined — the logarithm returns exactly one value, and that value is real — so $x \in \mathbb{R}$.
+Let $t \in E$ be arbitrary. Since $t$ is even, $t = 2k$ for some integer $k$, so the number $n = t/2 = k$ is an integer — so $n \in \mathbb{Z}$.
 
-Then $g(x) = e^{\ln t} = t$.
+Then $g(n) = 2 \cdot \frac{t}{2} = t$.
 
-As $t$ was an arbitrary element of $\mathbb{R}_{>0}$, every element of the codomain is attained, so $g$ is surjective.
+As $t$ was an arbitrary element of $E$, every element of the codomain is attained, so $g$ is surjective.
 </Proof>
 
 ## The codomain decides
 
-> **The same rule with a different codomain.** $f : \mathbb{R} \to \mathbb{R}$, $f(x) = e^x$, is **not** surjective.
+> **The same rule with a different codomain.** $f : \mathbb{Z} \to \mathbb{Z}$, $f(n) = 2n$, is **not** surjective.
 
 <Proof>
-Take $t = -1 \in \mathbb{R}$. For every $x \in \mathbb{R}$ we have $e^x > 0 > -1$, so no $x$ satisfies $f(x) = -1$. Hence $\operatorname{Im}(f) \neq \mathbb{R}$.
+Take $t = 3 \in \mathbb{Z}$. For every $n \in \mathbb{Z}$ the value $2n$ is even, and $3$ is odd, so no $n$ satisfies $f(n) = 3$. Hence $\operatorname{Im}(f) \neq \mathbb{Z}$.
 </Proof>
 
 $f$ and $g$ have the same rule and the same domain, and differ only in the declared codomain — and one is surjective while the other is not. Module 3.1 insisted that domain and codomain are part of the function; this is the sharpest illustration of why.
@@ -69,7 +69,7 @@ $$
 $$
 So you exhibit **one** unhit target — and then prove *nothing* hits it, which is a universal claim requiring an argument, not a search. That second half is what people forget.
 
-In the $e^x$ example above, the unhit target was $-1$ and the universal argument was "$e^x > 0$ for all $x$."
+In the doubling example above, the unhit target was $3$ and the universal argument was "$2n$ is even for every $n$."
 
 ## More examples
 
@@ -85,5 +85,5 @@ In the $e^x$ example above, the unhit target was $-1$ and the universal argument
 Three of these pairs are the same rule twice, with the codomain adjusted. That is the module in one table.
 
 <Aside>
-Any function becomes surjective if you replace its codomain by its image: $f : S \to \operatorname{Im}(f)$ is surjective by construction. So surjectivity measures whether the declared codomain was honest, and the standard factorisation $S \twoheadrightarrow \operatorname{Im}(f) \hookrightarrow T$ writes any function as a surjection followed by an injection.
+Any function becomes surjective if you replace its codomain by its image: $f : S \to \operatorname{Im}(f)$ is surjective by construction. So surjectivity measures whether the declared codomain was honest, and the standard factorisation $S \to \operatorname{Im}(f) \to T$ — onto the image, then into the codomain — writes any function as a surjection followed by an injection.
 </Aside>

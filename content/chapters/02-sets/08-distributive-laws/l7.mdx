@@ -84,7 +84,7 @@ This is the practical warning to carry into your later matrix work. Subspaces lo
 <Warning title="The ring analogy has limits">
 $\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for (D1) and a false friend elsewhere. Set operations are **idempotent** — repeating one changes nothing ($S \cup S = S$) and **have no inverses** ($S \cup T = S \cup R$ does not force $T = R$), so $(\mathcal{P}(X), \cup)$ has no inverses and $\mathcal{P}(X)$ is not a ring under these operations.
 
-It *is* a ring under symmetric difference and intersection — $(\mathcal{P}(X), \triangle, \cap)$ is a commutative ring in which every element is idempotent, a *Boolean ring* — and that is the correct algebraic packaging when ring-theoretic tools are wanted.
+There *is* a repair: swapping $\cup$ for symmetric difference (in-one-but-not-both) restores the missing inverses, since every set is its own inverse under it. The resulting structure does obey the ring laws, and it is the version algebraists reach for.
 </Warning>
 
 ## More than two sets

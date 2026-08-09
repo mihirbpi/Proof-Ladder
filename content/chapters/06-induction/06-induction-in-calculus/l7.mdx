@@ -105,7 +105,7 @@ Base: $n=0$ gives $e^{ax}$ on both sides. Step: differentiating $a^ke^{ax}$ give
 
 That period-four cycle is the same one governing the powers of $i$ (§5.3), and the coincidence is not one: Euler's formula relates the two directly, since differentiating $e^{ix}$ multiplies by $i$.
 
-**Both formulas feed Taylor series.** The coefficient of $x^n$ in a Taylor expansion about $0$ is $\frac{f^{(n)}(0)}{n!}$, so a closed form for the $n$th derivative is precisely what writing down a series requires. The series for $e^x$, $\sin x$, and $\cos x$ used in §5.7 rest on the two inductions above.
+**Both formulas are worth more than they look.** Late in a calculus course you meet a way of approximating a function by a polynomial whose coefficients are built from its repeated derivatives, and a closed form for the $n$th derivative is exactly what that construction needs as input. The approximations for $e^x$, $\sin x$, and $\cos x$ used in §5.7 rest on the two inductions above.
 
 ## The general shape
 
@@ -120,24 +120,22 @@ $$
 Each is proved by exactly the induction above, and each is *found* by the same three-pattern separation.
 
 <Aside>
-Higher derivatives are what Taylor series consume: $f(x) = \sum_n \frac{f^{(n)}(a)}{n!}(x-a)^n$. Applying the result above at $a=1$ gives
-$$
-\frac1x = \sum_{n\geq0}(-1)^n(x-1)^n,
-$$
-the geometric series, convergent for $|x-1|<1$. So the factorial in the derivative and the factorial in the Taylor denominator cancel exactly — which is why $1/x$ has such a clean expansion, and a reminder that the $n!$ in Taylor's theorem is there precisely to undo the $n!$ that repeated differentiation produces.
+Notice how fast the factorial grows once it appears. The $n$th derivative of $\ln x$ carries $(n-1)!$, so by the tenth derivative the coefficient is $362{,}880$ — the function itself is tame, and its repeated derivatives are not.
+
+That growth is why the polynomial approximations of a calculus course divide by $n!$ at every term. Repeated differentiation manufactures a factorial; the division puts it back. The two cancel, and what is left is a coefficient of ordinary size.
+
+**A pattern in the derivatives is therefore worth finding even when no single derivative is wanted.** It is the whole sequence, not the tenth term, that the later machinery consumes.
 </Aside>
 
 <WhereThisGoes level="l7">
 
 Induction on the order of differentiation is the standard proof technique for every higher-derivative formula, and you will use it within weeks of starting calculus.
 
-**The formulas that need it.** $\frac{d^n}{dx^n}e^{ax} = a^ne^{ax}$, $\frac{d^n}{dx^n}\sin x$ cycling with period four, $\frac{d^n}{dx^n}x^{-1} = (-1)^n n!\,x^{-(n+1)}$, and the **Leibniz rule**
-$$(fg)^{(n)} = \sum_{k=0}^{n}\binom nk f^{(k)}g^{(n-k)},$$
-whose inductive step uses Pascal's identity $\binom nk + \binom{n}{k-1} = \binom{n+1}{k}$ — the same identity that makes the binomial theorem work, and proved the same way.
+**The formulas that need it.** $\frac{d^n}{dx^n}e^{ax} = a^ne^{ax}$, $\frac{d^n}{dx^n}\sin x$ cycling with period four, and $\frac{d^n}{dx^n}x^{-1} = (-1)^n n!\,x^{-(n+1)}$. There is also a rule for the $n$th derivative of a product, and the coefficients in it are the same numbers that appear in the expansion of $(a+b)^n$ from Algebra II — proved, again, by induction.
 
-**Taylor polynomials are built from these.** The coefficient of $(x-a)^n$ in a Taylor series is $\frac{f^{(n)}(a)}{n!}$, so writing down a Taylor series *requires* a closed form for the $n$th derivative. Every standard series — for $e^x$, $\sin x$, $\cos x$, $\ln(1+x)$, $(1+x)^\alpha$ — is a formula found by pattern-spotting and proved by induction.
+**The polynomial approximations are built from these.** Later in a calculus course you approximate a function near a point by a polynomial whose $n$th coefficient is the $n$th derivative there, divided by $n!$. Writing one down therefore *requires* a closed form for the $n$th derivative, and the standard cases — $e^x$, $\sin x$, $\cos x$ — are formulas found by pattern-spotting and proved by induction.
 
-That is why §5.7's derivation of Euler's formula was available: the three series it used were established by exactly this route.
+That is why §5.7's derivation of Euler's formula was available: the three approximations it used were established by exactly this route.
 
 **The three-pattern discipline is the practical content.** Sign, factorial, and exponent behave independently, and isolating them one at a time is far easier than guessing the whole formula. The factorial identity $(k+1)! = (k+1)\cdot k!$ is what makes the inductive step close, and recognising $1, 2, 6, 24, 120$ as factorials rather than as a polynomial is a skill worth having.
 
