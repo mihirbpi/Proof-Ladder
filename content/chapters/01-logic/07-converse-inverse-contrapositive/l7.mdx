@@ -59,7 +59,7 @@ Note that both halves used the law of excluded middle (§1.3) implicitly, in the
 
 ## The anchor example
 
-> **Proposition.** For $x \in \mathbb{R}$: $x > 1 \Rightarrow x^2 > 1$. (True, proved in §1.6.)
+> **Proposition.** For a real number $x$: $x > 1 \Rightarrow x^2 > 1$. (True, proved in §1.6.)
 
 - **Converse**: $x^2 > 1 \Rightarrow x > 1$. Take $x = -3$: hypothesis true ($9 > 1$), conclusion false. **False.**
 - **Inverse**: $x \leq 1 \Rightarrow x^2 \leq 1$. Same witness — the same single refuting value — $x = -3$. **False**, necessarily, being the converse's contrapositive.
@@ -71,7 +71,7 @@ The single witness $x = -3$ refutes two of the four. That economy is a good diag
 
 This is where §1.4 earns its place. Take:
 
-> **Proposition.** If $x \in \mathbb{Q}$ and $y \notin \mathbb{Q}$, then $x + y \notin \mathbb{Q}$.
+> **Proposition.** If $x$ is rational and $y$ is irrational, then $x + y \notin \mathbb{Q}$.
 
 The hypothesis is a conjunction, so the contrapositive requires De Morgan:
 $$
@@ -82,7 +82,7 @@ $$
 x + y \in \mathbb{Q} \;\Rightarrow\; \big(x \notin \mathbb{Q} \;\vee\; y \in \mathbb{Q}\big).
 $$
 
-A disjunctive conclusion is proved by the standard manoeuvre: assume the negation of one disjunct and prove the other. So: assume $x + y \in \mathbb{Q}$ and $x \in \mathbb{Q}$; then $y = (x+y) - x$ is a difference of rationals, hence rational — which is the remaining disjunct. Notice that the correct De Morgan negation was essential; the naive negation "$x \notin \mathbb{Q}$ **and** $y \in \mathbb{Q}$" is a strictly stronger conclusion, and it is not provable from the hypothesis.
+A disjunctive conclusion is proved by the standard manoeuvre: assume the negation of one disjunct and prove the other. So: assume $x + y$ rational and $x$ rational; then $y = (x+y) - x$ is a difference of rationals, hence rational — which is the remaining disjunct. Notice that the correct De Morgan negation was essential; the naive negation "$x$ is irrational **and** $y$ rational" is a strictly stronger conclusion, and it is not provable from the hypothesis.
 
 <Warning title="Running the arrow backwards, and its mathematical disguises">
 Believing the converse of a true conditional is a named fallacy — logicians call it *affirming the consequent*, the consequent being the *then* half. In mathematics it rarely appears so nakedly; it appears as:

@@ -20,11 +20,11 @@ These are the De Morgan laws of §1.4 at infinite arity, and they are the mechan
 
 ## Justification
 
-Semantically: $\forall x \in S,\, p(x)$ is true iff $p$ holds at every element of $S$; it fails iff some element escapes, which is $\exists x \in S,\, \neg p(x)$. Dually, $\exists x \in S,\, p(x)$ fails iff no element satisfies $p$, i.e. every element satisfies $\neg p$.
+Semantically: a *for all* claim is true exactly when the property holds at every element, so it fails exactly when some element escapes — and that is a *there exists* claim about the denial. Dually, a *there exists* claim fails exactly when no element qualifies, which is to say every element fails.
 
 For finite $S = \{a_1, \ldots, a_n\}$ this is literally §1.4 iterated, since $\forall$ contracts to $\wedge$ and $\exists$ to $\vee$; induction on $n$ (Chapter 6) supplies the general finite case. For infinite $S$ the finitary argument does not apply, and the laws are consequences of the semantics of the quantifiers rather than of §1.4 — but the analogy is exact, and it is the right thing to remember.
 
-Note the domain is inert: negating $\forall x \in \mathbb{Z}$ produces $\exists x \in \mathbb{Z}$, not a quantifier over some other set.
+Note the domain is inert: negating a claim about every integer produces a claim about some integer, never a claim over a different set.
 
 ## Counterexamples
 

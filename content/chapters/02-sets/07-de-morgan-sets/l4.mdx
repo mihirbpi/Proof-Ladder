@@ -30,36 +30,36 @@ This is the first proof in the course where **Chapter 1 is used as a tool** rath
 ## Proof of the second law
 
 <Discussion>
-  <div slot="know">$x \in \overline{A} \iff x \in U \wedge x \notin A$. $x \in S \cup T \iff (x \in S) \vee (x \in T)$. And De Morgan for connectives (module 1.4): $\neg(p \vee q) \equiv \neg p \wedge \neg q$.</div>
+  <div slot="know">Being outside $A$ means being in $U$ and not in $A$. Being in $S \cup T$ means being in $S$ or in $T$. And De Morgan for connectives (module 1.4): failing an *or* means failing both parts.</div>
   <div slot="want">$\overline{S \cup T} \subseteq \overline{S} \cap \overline{T}$ and the reverse.</div>
   <div slot="how">Chase an arbitrary element. Unfold the set notation into logic, apply the logic law, and fold back up. Both directions are the same unfolding read in opposite orders — because the logic law is an equivalence, not an implication.</div>
 </Discussion>
 
 <Proof>
-**($\subseteq$)** Let $x \in \overline{S \cup T}$ be arbitrary. Then $x \in U$ and $x \notin S \cup T$, i.e.
-$$\neg\big((x \in S) \vee (x \in T)\big).$$
-By De Morgan's logic law, this is equivalent to
-$$(x \notin S) \wedge (x \notin T).$$
+**($\subseteq$)** Let $x \in \overline{S \cup T}$ be arbitrary. Then $x \in U$, and $x$ fails to be in $S$ *or* $T$.
+
+By De Morgan's logic law, failing an *or* means failing both parts: $x \notin S$ and $x \notin T$.
+
 Since also $x \in U$, we get $x \in \overline{S}$ and $x \in \overline{T}$, so $x \in \overline{S} \cap \overline{T}$.
 
-**($\supseteq$)** Let $x \in \overline{S} \cap \overline{T}$ be arbitrary. Then $x \in U$, $x \notin S$, and $x \notin T$, that is $(x \notin S) \wedge (x \notin T)$. By the same logic law this is equivalent to $\neg\big((x \in S) \vee (x \in T)\big)$, i.e. $x \notin S \cup T$. With $x \in U$, this gives $x \in \overline{S \cup T}$.
+**($\supseteq$)** Let $x \in \overline{S} \cap \overline{T}$ be arbitrary. Then $x \in U$, $x \notin S$, and $x \notin T$. By the same logic law, failing both parts is the same as failing the *or*, so $x \notin S \cup T$. With $x \in U$, this gives $x \in \overline{S \cup T}$.
 
 Both inclusions hold, so $\overline{S \cup T} = \overline{S} \cap \overline{T}$.
 </Proof>
 
-The first law is proved identically, using $\neg(p \wedge q) \equiv \neg p \vee \neg q$ instead. Alternatively it follows from the second by substituting $\overline S, \overline T$ for $S, T$ and complementing both sides, using $\overline{\overline A} = A$.
+The first law is proved identically, using the other De Morgan law — failing an *and* means failing at least one part — instead. Alternatively it follows from the second by substituting $\overline S, \overline T$ for $S, T$ and complementing both sides, using $\overline{\overline A} = A$.
 
 ## Why the two chapters keep matching
 
 The correspondence is not luck. Sets in this course are specified by conditions (module 2.2), and a set operation is defined *as* an operation on conditions:
 
-| Connective | Set operation | Definition |
+| Connective | Set operation | What membership means |
 |---|---|---|
-| $\wedge$ | $\cap$ | $x \in S \cap T \iff (x \in S) \wedge (x \in T)$ |
-| $\vee$ | $\cup$ | $x \in S \cup T \iff (x \in S) \vee (x \in T)$ |
-| $\neg$ | $\overline{\phantom{S}}$ | $x \in \overline{S} \iff \neg(x \in S)$ (within $U$) |
-| $\Rightarrow$ | $\subseteq$ | $S \subseteq T \iff \forall x\,(x \in S \Rightarrow x \in T)$ |
-| $\Leftrightarrow$ | $=$ | $S = T \iff \forall x\,(x \in S \Leftrightarrow x \in T)$ |
+| and | $\cap$ | in both sets |
+| or | $\cup$ | in at least one of them |
+| not | $\overline{\phantom{S}}$ | in the universe but not in the set |
+| if–then | $\subseteq$ | being in the first forces being in the second |
+| if and only if | $=$ | the two have exactly the same members |
 
 So every logical identity produces a set identity by mechanical translation, and the proof is always the same three moves: unfold, apply the logic law, fold. Once you have seen it twice, the remaining laws of this chapter are exercises.
 

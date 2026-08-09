@@ -924,6 +924,65 @@ for (const f of files) {
 }
 
 // ---------------------------------------------------------------------------
+// A notation gloss must have a *symbol* on its left. Bulk substitution of
+// blackboard-bold letters for their names once rewrote the very sentences that
+// introduce them, producing "the integers reads the integers" in seven files —
+// each still grammatical, so nothing else caught it. This is the third time a
+// regex over LaTeX has damaged prose; the KaTeX guard catches invalid commands,
+// and this catches destroyed explanations. Matching only the number-system
+// names keeps it exact: "reads" is an ordinary verb everywhere else.
+const SYSTEM_NAMES =
+  /\b(the (real numbers|reals|integers|rationals|counting numbers|natural numbers|complex numbers))\s+(reads|denotes|is read|means)\b/i;
+for (const f of files) {
+  const src = fs.readFileSync(f, 'utf8');
+  const m = src.match(SYSTEM_NAMES);
+  if (m) {
+    err(
+      path.relative(ROOT, f),
+      `"${m[0]}" glosses a name with itself — the gloss has lost its symbol`,
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Notation density in the first two chapters. A reader arriving at Chapter 1 has
+// taken no logic or discrete-maths course, so every symbol is new at once —
+// explaining each one repeatedly is necessary but not sufficient, because the
+// page can still be unreadably dense. Chapters 1 and 2 therefore carry a cap;
+// from Chapter 3 on the reader has had time and the cap lifts.
+//
+// Symbols inside <TruthTable> and other components are excluded: they are the
+// rendered object under discussion, not prose the reader must parse.
+const DENSITY_SYMBOLS =
+  /\\neg|¬|\\wedge|∧|\\vee(?!r)|∨|\\equiv|≡|\\Rightarrow|⇒|\\Leftrightarrow|⇔|\\iff|\\forall|∀|\\exists|∃|\\in\b|∈|\\emptyset|∅|\\subseteq|⊆|\\cup\b|∪|\\cap\b|∩|\\mathbb\{[NZQRC]\}|[ℕℤℚℝℂ]/g;
+// Absolute symbol density, capped near each level's 90th percentile. Earlier
+// versions tried to excuse a chapter for its "own" symbols, which let §2.8 sit
+// at 168 per 1000 — a symbol every six words — on the grounds that ∪ and ∩ were
+// Chapter 2's business. But thickness is thickness: established vocabulary is
+// not hard to *understand*, and a page solid with it is still hard to *read*.
+// So nothing is exempted, and the cap is set where it flags real outliers.
+const DENSITY_CAP = { l4: 110, l5: 95, l6: 90, l7: 105, l8: 130 };
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const rel = path.relative(ROOT, f);
+  if (rank(level) < rank('l4')) continue; // l1–l3 are governed by the notation gate
+  const cap = DENSITY_CAP[level];
+  if (!cap) continue;
+  // <Proof> blocks are excluded: inside a proof the symbols *are* the medium,
+  // and element-chasing cannot be de-symbolised without becoming worse. What
+  // this measures is the exposition around the proofs — the part a reader has
+  // to get through before they can even start on the argument.
+  const raw = fs.readFileSync(f, 'utf8').replace(/<Proof[\s\S]*?<\/Proof>/g, '');
+  const text = body(raw);
+  const words = text.replace(/[^A-Za-z ]/g, ' ').split(/\s+/).filter(Boolean).length;
+  const symbols = (text.match(DENSITY_SYMBOLS) ?? []).length;
+  const per1000 = Math.round((1000 * symbols) / Math.max(words, 1));
+  if (per1000 > cap) {
+    warn(rel, `${per1000} proof symbols per 1000 words (cap ${cap} at ${level}) — say more of it in words`);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Heavier synonyms for things the course can say plainly. The audience is every
 // student, not only the ones already drawn to mathematics, so a Latin or Greek
 // name earns its place only when it is genuinely the key vocabulary of a module

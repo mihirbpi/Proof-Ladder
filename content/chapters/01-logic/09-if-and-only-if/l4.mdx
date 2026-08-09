@@ -36,7 +36,7 @@ $p \Leftrightarrow q$ is true exactly on the rows where $p$ and $q$ agree. Since
 
 > **Theorem.** For every integer $n$: $n$ is even **if and only if** $n^2$ is even.
 
-Definitions (and note these are themselves biconditionals): $n$ is **even** iff $n = 2k$ for some $k \in \mathbb{Z}$; $n$ is **odd** iff $n = 2k+1$ for some $k \in \mathbb{Z}$. Every integer is exactly one of the two.
+Definitions (and note these are themselves biconditionals): $n$ is **even** iff $n = 2k$ for some integer $k$; $n$ is **odd** iff $n = 2k+1$ for some integer $k$. Every integer is exactly one of the two.
 
 <Discussion>
   <div slot="know">Both directions to prove. (backward) has hypothesis "$n$ even", which unfolds to $n = 2k$ — immediately usable. (forward) has hypothesis "$n^2$ even", which unfolds to $n^2 = 2k$ — and there is no way to get from that to a statement about $n$ without inverting a square.</div>
@@ -48,12 +48,12 @@ Definitions (and note these are themselves biconditionals): $n$ is **even** iff 
 
 <Proof>
 **(forward) If $n$ is even then $n^2$ is even.**
-Suppose $n$ is even, so $n = 2k$ for some $k \in \mathbb{Z}$. Then $n^2 = 4k^2 = 2(2k^2)$, and $2k^2 \in \mathbb{Z}$, so $n^2$ is even.
+Suppose $n$ is even, so $n = 2k$ for some integer $k$. Then $n^2 = 4k^2 = 2(2k^2)$, and $2k^2$ is an integer, so $n^2$ is even.
 
 **(backward) If $n^2$ is even then $n$ is even.**
-We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n$ is odd, so $n = 2k+1$ for some $k \in \mathbb{Z}$. Then
+We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n$ is odd, so $n = 2k+1$ for some integer $k$. Then
 $$n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1,$$
-and $2k^2 + 2k \in \mathbb{Z}$, so $n^2$ is odd. By contraposition, $n^2$ even implies $n$ even.
+and $2k^2 + 2k$ is an integer, so $n^2$ is odd. By contraposition, $n^2$ even implies $n$ even.
 
 Both directions hold, so $n$ is even $\Leftrightarrow$ $n^2$ is even.
 </Proof>

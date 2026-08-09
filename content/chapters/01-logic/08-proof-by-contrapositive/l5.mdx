@@ -19,7 +19,7 @@ The interesting content of this module is not the equivalence — that is alread
 
 ## First proposition
 
-> **Proposition.** For all $x \in \mathbb{R}$: if $x^3 < 0$ then $x < 0$.
+> **Proposition.** For every real number $x$: if $x^3 < 0$ then $x < 0$.
 
 <Discussion>
   <div slot="know">Directly, the hypothesis $x^3 < 0$ constrains a cube. To extract information about $x$ we would need to invert the cubing — but "$x^3 < 0$ implies $x < 0$" *is* the proposition, so invoking it is circular. Factoring $x^3 = x\cdot x^2$ works but forces a case split on whether $x^2 = 0$.</div>
@@ -28,7 +28,7 @@ The interesting content of this module is not the equivalence — that is alread
 </Discussion>
 
 <Proof>
-We prove the contrapositive: for all $x \in \mathbb{R}$, if $x \geq 0$ then $x^3 \geq 0$.
+We prove the contrapositive: for every real number $x$, if $x \geq 0$ then $x^3 \geq 0$.
 
 Let $x \geq 0$. Since the product of two non-negative reals is non-negative, applying this to $x$ and $x$ gives $x^2 \geq 0$; applying it to $x^2$ and $x$ gives $x^3 \geq 0$.
 
@@ -45,9 +45,9 @@ Similarly $\neg(x \leq 5)$ is $x > 5$, and $\neg(x = 3)$ is $x \neq 3$. A contra
 
 ## Second proposition
 
-> **Proposition.** For $n \in \mathbb{Z}$: if $n^2$ is even then $n$ is even.
+> **Proposition.** For an integer $n$: if $n^2$ is even then $n$ is even.
 
-Definitions: $n$ is **even** iff $n = 2k$ for some $k \in \mathbb{Z}$; **odd** iff $n = 2k+1$ for some $k \in \mathbb{Z}$. Every integer is exactly one of the two.
+Definitions: $n$ is **even** iff $n = 2k$ for some integer $k$; **odd** iff $n = 2k+1$ for some integer $k$. Every integer is exactly one of the two.
 
 <Discussion>
   <div slot="know">The hypothesis "$n^2$ even" unfolds to $n^2 = 2k$ — an equation about $n^2$, from which extracting $n$ needs a square root we cannot control.</div>
@@ -58,11 +58,11 @@ Definitions: $n$ is **even** iff $n = 2k$ for some $k \in \mathbb{Z}$; **odd** i
 <Proof>
 We prove the contrapositive: if $n$ is odd then $n^2$ is odd.
 
-Suppose $n$ is odd, so $n = 2k+1$ for some $k \in \mathbb{Z}$. Then
+Suppose $n$ is odd, so $n = 2k+1$ for some integer $k$. Then
 $$
 n^2 = 4k^2 + 4k + 1 = 2(2k^2+2k)+1,
 $$
-and $2k^2+2k \in \mathbb{Z}$, so $n^2$ is odd.
+and $2k^2+2k$ is an integer, so $n^2$ is odd.
 
 Since every integer is even or odd and not both, contraposition gives: $n^2$ even $\Rightarrow$ $n$ even.
 </Proof>

@@ -18,7 +18,7 @@ A **proof** of a statement $S$ is a finite sequence of assertions, ending in $S$
 
 ## Direct proof of a conditional
 
-*A reminder of the symbols in play: $\Rightarrow$ reads "implies", $\mathbb{Z}$ reads the integers.*
+*A reminder of the symbols in play: $\Rightarrow$ reads "implies".*
 
 Nearly every theorem has the form $p \Rightarrow q$, and §1.5 established that $p \Rightarrow q$ is false in exactly one case: $p$ true, $q$ false. To prove the conditional is therefore to rule that case out. The **direct proof** does so head-on: assume $p$, and derive $q$.
 
@@ -26,11 +26,11 @@ The named move is **start from what you're given**.
 
 ## The proposition
 
-> **Proposition.** For all $x \in \mathbb{R}$, if $x > 1$ then $x^2 > 1$.
+> **Proposition.** For every real number $x$, if $x > 1$ then $x^2 > 1$.
 
 The statement is a if–then claim made about every element, so a proof must handle an arbitrary $x$ — we may not choose a convenient one. (Module 1.12 makes the arbitrary-element discipline precise.)
 
-We will use two facts about how $\mathbb{R}$'s arithmetic interacts with its ordering — §4.5 collects rules of this kind under a single name — and it is worth stating them rather than letting them pass unremarked:
+We will use two facts about how the real numbers's arithmetic interacts with its ordering — §4.5 collects rules of this kind under a single name — and it is worth stating them rather than letting them pass unremarked:
 
 - **(O1)** If $a > b$ and $c > 0$ then $ac > bc$.
 - **(O2)** $>$ is transitive: $a > b$ and $b > c$ imply $a > c$.
@@ -38,7 +38,7 @@ We will use two facts about how $\mathbb{R}$'s arithmetic interacts with its ord
 ## Discussion
 
 <Discussion>
-  <div slot="know">$x \in \mathbb{R}$ and $x > 1$. Available tools: (O1) and (O2), and the fact that $1 > 0$.</div>
+  <div slot="know">$x$ is a real number greater than $1$. Available tools: (O1) and (O2), and the fact that $1 > 0$.</div>
   <div slot="want">$x^2 > 1$.</div>
   <div slot="how">The goal involves $x^2 = x \cdot x$, and the hypothesis is a statement about $x$ alone. The natural bridge is to multiply the hypothesis by $x$ — legal by (O1) provided $x > 0$, which follows from $x > 1 > 0$ by (O2). That gives $x^2 > x$; combining with $x > 1$ by (O2) again finishes.</div>
 </Discussion>
@@ -48,7 +48,7 @@ The Discussion is where the *choice* happens: we noticed the mismatch between wh
 ## Proof
 
 <Proof>
-Let $x \in \mathbb{R}$ satisfy $x > 1$.
+Let a real number $x$ satisfy $x > 1$.
 
 Since $x > 1$ and $1 > 0$, transitivity (O2) gives $x > 0$.
 
@@ -81,7 +81,7 @@ Suppose $m$ and $n$ are even. By definition, there exist integers $j, k$ with $m
 
 Then
 $$m + n = 2j + 2k = 2(j + k).$$
-Since $j + k \in \mathbb{Z}$, the integer $m + n$ is twice an integer, hence even by definition.
+Since $j + k$ is an integer, $m + n$ is twice an integer, hence even by definition.
 </Proof>
 
 Both proofs share a rhythm worth naming explicitly:

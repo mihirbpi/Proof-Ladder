@@ -36,9 +36,8 @@ Given a conditional $p \Rightarrow q$, there are three other conditionals you ca
 
 Read the columns:
 
-- $p \Rightarrow q$ and $\neg q \Rightarrow \neg p$ are identical. So
-  $$p \Rightarrow q \;\equiv\; \neg q \Rightarrow \neg p.$$
-- $q \Rightarrow p$ and $\neg p \Rightarrow \neg q$ are identical to each other — the converse and inverse are each other's contrapositive — but they differ from the original in rows 2 and 3.
+- **The original and the contrapositive are identical** — same value in every row. That is the one equivalence worth memorising.
+- The converse and the inverse are identical to each other too — each is the other's contrapositive — but they differ from the original in rows 2 and 3.
 
 That is the entire content of the module, and it is proved.
 
@@ -61,17 +60,17 @@ The most common reasoning error in the world is treating a true conditional as t
 
 *If it rained, the ground is wet.* The ground is wet. Did it rain? Perhaps a sprinkler ran. The conditional gives you no licence to conclude $p$ from $q$.
 
-In mathematics this shows up as a proof that establishes the wrong direction and stops. If the problem says "prove $p \Rightarrow q$" and your argument begins by assuming $q$, you have proved the converse. Check which direction you are travelling before you write the last line.
+In mathematics this shows up as a proof that establishes the wrong direction and stops. If the problem says *prove that $p$ forces $q$* and your argument begins by assuming $q$, you have proved the converse. Check which direction you are travelling before you write the last line.
 </Warning>
 
 ## Why the contrapositive equivalence is believable
 
-The truth table proves it, but here is the reason it *feels* right. $p \Rightarrow q$ says: the situation "$p$ true, $q$ false" never occurs. And $\neg q \Rightarrow \neg p$ says: the situation "$\neg q$ true, $\neg p$ false" — that is, "$q$ false, $p$ true" — never occurs. Those are the same forbidden situation, described from opposite ends. Two statements that forbid exactly the same thing are the same statement.
+The truth table proves it, but here is the reason it *feels* right. The original says: the situation "$p$ true, $q$ false" never occurs. The contrapositive says: the situation "$q$ false, $p$ true" never occurs. Those are the same forbidden situation, described from opposite ends. Two statements that forbid exactly the same thing are the same statement.
 
 <Aside>
-Negating a conditional is a related but different operation. $\neg(p \Rightarrow q)$ is not another conditional at all: it is $p \wedge \neg q$ — the assertion that the one forbidden row *does* occur. This is why disproving "if $p$ then $q$" always means exhibiting a case where $p$ holds and $q$ fails, never producing a rival conditional.
+Denying a conditional is a related but different operation, and the result is not another conditional at all. It is the flat assertion that the one forbidden row *does* occur: $p$ holds and $q$ fails. This is why disproving "if $p$ then $q$" always means exhibiting a case where $p$ holds and $q$ fails, never producing a rival conditional.
 </Aside>
 
 ## What this buys you
 
-Because $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$, proving either one proves both. When the hypothesis $p$ is awkward — negative, or about a complicated expression — you may switch to the contrapositive, whose hypothesis is $\neg q$ instead. Module 1.8 turns this observation into a technique and gives you a rule for deciding when to reach for it.
+Because a conditional and its contrapositive are the same statement, proving either one proves both. When the hypothesis is awkward — negative, or about a complicated expression — you may switch to the contrapositive, whose hypothesis is the denial of the original conclusion. Module 1.8 turns this observation into a technique and gives you a rule for deciding when to reach for it.

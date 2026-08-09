@@ -64,7 +64,7 @@ Same forbidden situation, described from opposite ends. Two statements that forb
 
 ## The anchor example
 
-> **Proposition.** For $x \in \mathbb{R}$: if $x > 1$ then $x^2 > 1$. (True — module 1.6.)
+> **Proposition.** For a real number $x$: if $x > 1$ then $x^2 > 1$. (True — module 1.6.)
 
 **Converse:** $x^2 > 1 \Rightarrow x > 1$. Take $x = -3$: then $x^2 = 9 > 1$, but $-3 \not> 1$. Hypothesis holds, conclusion fails. **False.**
 
@@ -78,7 +78,7 @@ One number refuted two statements. That economy is a useful check: when you find
 
 This is where module 1.4 pays off.
 
-> **Proposition.** If $x \in \mathbb{Q}$ and $y \notin \mathbb{Q}$, then $x + y \notin \mathbb{Q}$.
+> **Proposition.** If $x$ is rational and $y$ is irrational, then $x + y \notin \mathbb{Q}$.
 
 The hypothesis is a conjunction, so De Morgan is required:
 $$
@@ -93,12 +93,12 @@ $$
 A disjunctive conclusion is proved by assuming the negation of one disjunct and deriving the other:
 
 <Proof>
-Suppose $x + y \in \mathbb{Q}$, and suppose $x \in \mathbb{Q}$. Then $y = (x+y) - x$ is a difference of two rationals, hence rational.
+Suppose $x + y$ rational, and suppose $x$ rational. Then $y = (x+y) - x$ is a difference of two rationals, hence rational.
 
-So either $x \notin \mathbb{Q}$, or $y \in \mathbb{Q}$ — which is the required disjunction. By contraposition, the proposition holds.
+So either $x$ is irrational, or $y$ rational — which is the required disjunction. By contraposition, the proposition holds.
 </Proof>
 
-Had we mis-negated to "$x \notin \mathbb{Q}$ **and** $y \in \mathbb{Q}$", we would have set ourselves a strictly stronger target that is not provable from the hypothesis. Getting De Morgan right was not decoration; it decided whether the proof exists.
+Had we mis-negated to "$x$ is irrational **and** $y$ rational", we would have set ourselves a strictly stronger target that is not provable from the hypothesis. Getting De Morgan right was not decoration; it decided whether the proof exists.
 
 <Warning title="Affirming the consequent">
 Treating a true conditional as though its converse also held is the most common reasoning error there is.

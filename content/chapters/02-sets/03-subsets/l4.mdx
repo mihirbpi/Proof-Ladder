@@ -13,7 +13,7 @@ import Warning from '@/components/Warning.astro';
 
 ## Definition
 
-$A$ is a **subset** of $S$, written $A \subseteq S$, when every element of $A$ belongs to $S$. In the language of Chapter 1:
+$A$ is a **subset** of $S$, written $A \subseteq S$, when every element of $A$ belongs to $S$. In the language of Chapter 1, that is an if–then claim made about every $x$:
 $$
 A \subseteq S \quad\Leftrightarrow\quad \forall x\;(x \in A \Rightarrow x \in S).
 $$
@@ -66,14 +66,14 @@ The distinction sharpens with nested sets. For $A = \{1, \{2,3\}\}$: $1 \in A$ �
 > **Proposition.** For every set $S$, $\emptyset \subseteq S$.
 
 <Proof>
-We must show $\forall x\,(x \in \emptyset \Rightarrow x \in S)$. Let $x$ be arbitrary. The hypothesis $x \in \emptyset$ is false, since $\emptyset$ has no elements, so the conditional $x \in \emptyset \Rightarrow x \in S$ is vacuously true (module 1.5). This holds for every $x$, so $\emptyset \subseteq S$.
+We must show that every element of $\emptyset$ lies in $S$. Let $x$ be arbitrary. The hypothesis — that $x$ is in $\emptyset$ — is false, since $\emptyset$ has no elements, so the if–then claim is vacuously true (module 1.5). This holds for every $x$, so $\emptyset \subseteq S$.
 </Proof>
 
 This is the first place vacuous truth does structural work rather than appearing as a curiosity. Reject it and $\emptyset$ becomes an exception to nearly every theorem in the chapter; accept it and everything stays uniform.
 
 ## Reflexivity and transitivity
 
-$S \subseteq S$ holds trivially: $x \in S \Rightarrow x \in S$.
+$S \subseteq S$ holds trivially: anything in $S$ is in $S$.
 
 > **Proposition.** If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
 
@@ -91,7 +91,7 @@ $A$ is a **proper subset** of $S$ if $A \subseteq S$ and $A \neq S$. Notation va
 
 Module 2.1 asserted $\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R}$. Each of those is now a claim with a proof obligation. For instance:
 
-> $\mathbb{Z} \subseteq \mathbb{Q}$. Let $n \in \mathbb{Z}$ be arbitrary. Then $n = \tfrac{n}{1}$ with $n, 1 \in \mathbb{Z}$ and $1 \neq 0$, so $n \in \mathbb{Q}$. Hence $\mathbb{Z} \subseteq \mathbb{Q}$.
+> $\mathbb{Z} \subseteq \mathbb{Q}$. Let $n$ be any integer. Then $n = \tfrac{n}{1}$ with $n, 1 \in \mathbb{Z}$ and $1 \neq 0$, so $n \in \mathbb{Q}$. Hence $\mathbb{Z} \subseteq \mathbb{Q}$.
 
 And all are proper: $-1 \in \mathbb{Z} \setminus \mathbb{N}$, $\tfrac12 \in \mathbb{Q} \setminus \mathbb{Z}$, $\sqrt2 \in \mathbb{R} \setminus \mathbb{Q}$ — that last one requiring the genuinely hard proof of module 4.7.
 

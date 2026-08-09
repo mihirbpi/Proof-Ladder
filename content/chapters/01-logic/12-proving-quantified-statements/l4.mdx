@@ -31,13 +31,13 @@ To prove that every $x$ in $S$ has a property, introduce an **arbitrary element*
 ("Composite" means: expressible as a product of two integers each greater than $1$.)
 
 <Discussion>
-  <div slot="know">$n \in \mathbb{Z}$, $n \geq 3$. Nothing else about $n$.</div>
+  <div slot="know">an integer $n$, $n \geq 3$. Nothing else about $n$.</div>
   <div slot="want">A factorisation $n^2 - 1 = ab$ with $a, b > 1$.</div>
   <div slot="how">$n^2 - 1$ is a difference of squares, so it factors as $(n-1)(n+1)$ identically. Then check both factors exceed $1$, which is where the hypothesis $n \geq 3$ is spent.</div>
 </Discussion>
 
 <Proof>
-Let $n \in \mathbb{Z}$ be arbitrary with $n \geq 3$.
+Let $n$ be any integer with $n \geq 3$.
 
 By the difference of squares identity, $n^2 - 1 = (n-1)(n+1)$.
 
@@ -67,7 +67,7 @@ For claims of the form *for every $x$, if the hypothesis holds then so does the 
 <Proof>
 *Existence.* Take $x = \tfrac13$; then $3 \cdot \tfrac13 - 1 = 0$.
 
-*Uniqueness.* Suppose $a, b \in \mathbb{R}$ both satisfy the equation. Then $3a - 1 = 0 = 3b - 1$, so $3a = 3b$, and dividing by $3$ gives $a = b$.
+*Uniqueness.* Suppose $a$ and $b$ are real numbers both satisfy the equation. Then $3a - 1 = 0 = 3b - 1$, so $3a = 3b$, and dividing by $3$ gives $a = b$.
 </Proof>
 
 The uniqueness half has a fixed shape worth memorising: **suppose two objects both have the property, then prove they are equal.** Not "suppose there are two different ones and get a contradiction" — that works too, but the direct version is shorter and does not need contradiction.
@@ -79,7 +79,7 @@ The uniqueness half has a fixed shape worth memorising: **suppose two objects bo
 To refute this we must prove $\forall x \in \mathbb{R},\, x^2 \geq 0$ — a universal claim, so back to task 1. But no single argument covers all reals here, so we **split into cases**.
 
 <Proof>
-Let $x \in \mathbb{R}$ be arbitrary. Exactly one of $x > 0$, $x = 0$, $x < 0$ holds.
+Let $x$ be any real number. Exactly one of $x > 0$, $x = 0$, $x < 0$ holds.
 
 *Case 1: $x > 0$.* A product of two positive reals is positive, so $x^2 > 0$.
 

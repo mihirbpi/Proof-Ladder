@@ -15,7 +15,7 @@ Module 1.7 established $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$. Becau
 
 ## The proposition
 
-> **Proposition.** For all $x \in \mathbb{R}$, if $x^3 < 0$ then $x < 0$.
+> **Proposition.** For every real number $x$, if $x^3 < 0$ then $x < 0$.
 
 ## Why direct proof is unpleasant here
 
@@ -32,9 +32,9 @@ The contrapositive avoids all of it.
 ## Proof
 
 <Proof>
-We prove the contrapositive: for all $x \in \mathbb{R}$, if $x \geq 0$ then $x^3 \geq 0$.
+We prove the contrapositive: for every real number $x$, if $x \geq 0$ then $x^3 \geq 0$.
 
-Let $x \in \mathbb{R}$ with $x \geq 0$. The product of two non-negative real numbers is non-negative, so $x \cdot x = x^2 \geq 0$. Applying the same fact to $x^2 \geq 0$ and $x \geq 0$ gives $x^2 \cdot x = x^3 \geq 0$.
+Let $x$ be a real number with $x \geq 0$. The product of two non-negative real numbers is non-negative, so $x \cdot x = x^2 \geq 0$. Applying the same fact to $x^2 \geq 0$ and $x \geq 0$ gives $x^2 \cdot x = x^3 \geq 0$.
 
 Hence $x \geq 0 \Rightarrow x^3 \geq 0$. Since this is the contrapositive of the proposition, and a conditional is logically equivalent to its contrapositive, the proposition follows.
 </Proof>
@@ -47,16 +47,16 @@ $\neg(x < 0)$ is $x \geq 0$. Writing $x > 0$ loses the case $x = 0$, and a proof
 
 ## A second example
 
-> **Proposition.** For $n \in \mathbb{Z}$, if $n^2$ is odd then $n$ is odd.
+> **Proposition.** For any integer $n$, if $n^2$ is odd then $n$ is odd.
 
-Definitions: $n$ is **even** iff $n = 2k$ for some $k \in \mathbb{Z}$; **odd** iff $n = 2k + 1$ for some $k \in \mathbb{Z}$.
+Definitions: $n$ is **even** iff $n = 2k$ for some integer $k$; **odd** iff $n = 2k + 1$ for some integer $k$.
 
 <Proof>
 We prove the contrapositive: if $n$ is even then $n^2$ is even.
 
 Suppose $n$ is even, so $n = 2k$ for some integer $k$. Then
 $$n^2 = (2k)^2 = 4k^2 = 2(2k^2).$$
-Since $2k^2 \in \mathbb{Z}$, the integer $n^2$ is twice an integer and hence even.
+Since $2k^2$ is an integer, the integer $n^2$ is twice an integer and hence even.
 
 This proves the contrapositive, and therefore the proposition.
 </Proof>

@@ -18,20 +18,14 @@ $$
 S \cup (T \cap R) = (S \cup T) \cap (S \cup R) \tag{D2}
 $$
 
-(D1) is the familiar shape, with $\cap$ where $\times$ goes and $\cup$ where $+$ goes. (D2) has no arithmetic counterpart: $a + bc \neq (a+b)(a+c)$ in general. In sets, **both** operations distribute over the other, and neither is subordinate.
+(D1) is the familiar shape, with $\cap$ playing the part of $\times$ and $\cup$ the part of $+$. (D2) has no arithmetic counterpart: $a + bc \neq (a+b)(a+c)$ in general. In sets, **both** operations distribute over the other, and neither is subordinate.
 
-Both laws are transcriptions of logical equivalences (module 1.3):
-$$
-p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r),
-\qquad
-p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r),
-$$
-each verifiable by an eight-row truth table.
+Both laws are transcriptions of logical equivalences from module 1.3: *and* distributes over *or*, and *or* distributes over *and*. Each is verifiable by an eight-row truth table.
 
 ## Proof of (D1)
 
 <Discussion>
-  <div slot="know">$x \in S \cap (T \cup R) \iff (x \in S) \wedge \big((x \in T) \vee (x \in R)\big)$, and $x \in (S \cap T) \cup (S \cap R) \iff \big((x\in S)\wedge(x\in T)\big) \vee \big((x\in S)\wedge(x\in R)\big)$.</div>
+  <div slot="know">Being in the left-hand set means being in $S$, and in at least one of $T$ and $R$. Being in the right-hand set means being in both $S$ and $T$, or else in both $S$ and $R$.</div>
   <div slot="want">Double inclusion.</div>
   <div slot="how">Both directions carry a disjunction in the hypothesis, so both need a case split (module 1.12). The forward split is on $T$ versus $R$; the backward split is on which of the two intersections $x$ lies in.</div>
 </Discussion>

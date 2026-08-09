@@ -36,7 +36,7 @@ Because the definition is a conjunction, **a proof of a biconditional is two pro
 
 ## The theorem
 
-> **Theorem.** For all $n \in \mathbb{Z}$: $n$ is even $\iff$ $n^2$ is even.
+> **Theorem.** For all an integer $n$: $n$ is even $\iff$ $n^2$ is even.
 
 <Discussion>
   <div slot="know">Definitions: $n$ even iff $\exists k \in \mathbb{Z},\, n = 2k$; $n$ odd iff $\exists k \in \mathbb{Z},\, n = 2k+1$; every integer is exactly one of the two (this is the division algorithm for $d = 2$, §4.4). Direction (forward) has a hypothesis that unfolds into a usable equation. Direction (backward) has hypothesis $n^2 = 2k$, from which no information about $n$ is extractable without inverting the squaring map.</div>
@@ -45,9 +45,9 @@ Because the definition is a conjunction, **a proof of a biconditional is two pro
 </Discussion>
 
 <Proof>
-(forward) Suppose $n$ is even. Then $n = 2k$ for some $k \in \mathbb{Z}$, so $n^2 = 4k^2 = 2(2k^2)$. Since $2k^2 \in \mathbb{Z}$, $n^2$ is even.
+(forward) Suppose $n$ is even. Then $n = 2k$ for some integer $k$, so $n^2 = 4k^2 = 2(2k^2)$. Since $2k^2$ is an integer, $n^2$ is even.
 
-(backward) We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n = 2k+1$ with $k \in \mathbb{Z}$. Then
+(backward) We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n = 2k+1$ with $k$ an integer. Then
 $$
 n^2 = 4k^2 + 4k + 1 = 2\big(2k^2 + 2k\big) + 1,
 $$
@@ -62,13 +62,13 @@ Two observations. First, the directions required different methods — this is t
 
 Every mathematical definition is a biconditional, written with "if" by convention:
 
-> $n$ is *even* **if** $n = 2k$ for some $k \in \mathbb{Z}$.
+> $n$ is *even* **if** $n = 2k$ for some integer $k$.
 
 means
 
 > $n \text{ is even} \iff \exists k \in \mathbb{Z},\, n = 2k.$
 
-The consequence is practical: a definition may be used in **both directions**, and virtually every proof does. Unfolding ("$n$ is even, so write $n = 2k$") uses one; folding ("we have shown $n^2 = 2m$ with $m \in \mathbb{Z}$, so $n^2$ is even") uses the other. When a proof stalls, the first diagnostic is whether every definition in sight has been unfolded.
+The consequence is practical: a definition may be used in **both directions**, and virtually every proof does. Unfolding ("$n$ is even, so write $n = 2k$") uses one; folding ("we have shown $n^2 = 2m$ with an integer $m$, so $n^2$ is even") uses the other. When a proof stalls, the first diagnostic is whether every definition in sight has been unfolded.
 
 <Warning title="Iff-chains and reversibility">
 A chain

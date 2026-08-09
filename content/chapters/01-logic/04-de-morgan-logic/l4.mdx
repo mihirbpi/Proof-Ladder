@@ -12,9 +12,9 @@ import Warning from '@/components/Warning.astro';
 
 *A reminder of the symbols in play: $\neg$ reads "not", $\wedge$ reads "and", $\vee$ reads "or".*
 
-You can negate a statement, and you can join two statements with $\wedge$ or $\vee$. The question this module answers is what happens when you do both: how do you correctly compute $\neg(p \wedge q)$?
+You can deny a statement, and you can join two statements with *and* or *or*. This module answers what happens when you do both: **what does it take for "both $p$ and $q$" to fail?**
 
-The answer is not "$\neg p \wedge \neg q$." Negation does not slide quietly through a connective. It changes the connective on the way.
+Not "both fail." Denial does not slide quietly through a connective — it changes the connective on the way.
 
 ## Logical equivalence
 
@@ -23,6 +23,8 @@ First, the tool for saying two statements are the same. Two statements are **log
 Note that $\equiv$ is a claim *about* statements, not a connective inside one.
 
 ## The first law
+
+**For "both $p$ and $q$" to fail, at least one of them must fail.** In symbols:
 
 $$\neg(p \wedge q) \equiv \neg p \vee \neg q$$
 
@@ -43,6 +45,8 @@ The last two columns agree in all four rows. That *is* the proof — a truth-tab
 
 ## The second law
 
+**For "$p$ or $q$" to fail, both must fail.** In symbols:
+
 $$\neg(p \vee q) \equiv \neg p \wedge \neg q$$
 
 <TruthTable
@@ -62,30 +66,22 @@ Together these are **De Morgan's laws**. In one sentence: *a negation distribute
 
 Let $p$: "$21$ is a multiple of $4$" and $q$: "$21$ is a multiple of $5$."
 
-The claim $p \vee q$ says $21$ is a multiple of $4$ or of $5$. It is false. De Morgan tells us what its falsity amounts to:
-$$
-\neg(p \vee q) \equiv \neg p \wedge \neg q,
-$$
-that is: $21$ is not a multiple of $4$ **and** $21$ is not a multiple of $5$. Both. Check: $21 = 4 \cdot 5 + 1$ and $21 = 5 \cdot 4 + 1$. Neither divides. Correct.
+"$p$ or $q$" says $21$ is a multiple of $4$ or of $5$. It is false. The second law says what that failure amounts to: $21$ is not a multiple of $4$ **and** $21$ is not a multiple of $5$. Both. Check: $21 = 4 \cdot 5 + 1$ and $21 = 5 \cdot 4 + 1$. Neither divides. Correct.
 
-Now the other one. $p \wedge q$ says $21$ is a multiple of both. Its negation is $\neg p \vee \neg q$: $21$ fails at least one of them. That is a weaker claim than "$21$ fails both," and weaker is right — the negation should demand no more than it has to.
+Now the other one. "$p$ and $q$" says $21$ is a multiple of both. Denying it says $21$ fails **at least one** of them. That is a weaker claim than "$21$ fails both," and weaker is right — a denial should demand no more than it has to.
 
 <Warning title="Do not over-negate">
-The single most common error with De Morgan is negating both parts and keeping the connective:
-$$
-\neg(p \wedge q) \;\not\equiv\; \neg p \wedge \neg q.
-$$
+The single most common error with De Morgan is negating both parts and keeping the connective — reading the denial of "both hold" as "both fail".
+
 Check row 2 of the first table: $p$ true, $q$ false. The left side is T, the right side is F. Different columns, so not equivalent. Keeping the connective makes the negation *too strong* — it claims both parts failed when only one had to.
 </Warning>
 
 ## Why this matters more than it looks
 
-Almost every theorem you will meet has a compound hypothesis: "if $n$ is even **and** $n > 2$, then …". To prove such a theorem by contrapositive (module 1.8) you must negate that hypothesis — and if you negate it wrongly, you will spend an afternoon proving the wrong statement. De Morgan is the rule that keeps you honest:
-$$
-\neg(\text{$n$ even} \wedge n > 2) \equiv (\text{$n$ odd}) \vee (n \leq 2).
-$$
+Almost every theorem you will meet has a compound hypothesis: "if $n$ is even **and** $n > 2$, then …". To prove such a theorem by contrapositive (module 1.8) you must deny that hypothesis — and if you deny it wrongly, you will spend an afternoon proving the wrong statement. De Morgan keeps you honest: the denial is *$n$ is odd **or** $n \leq 2$*, not both at once.
+
 An *or* in the hypothesis means the proof will need **cases** — and that is the shape almost every contrapositive proof of a conjunctive hypothesis takes.
 
 <Aside>
-The same laws will reappear for sets ($\overline{S \cap T} = \overline{S} \cup \overline{T}$, module 2.7) and for the quantifiers of module 1.10 — where $\forall$ is read *"for all"* and $\exists$ *"there exists"* ($\neg \forall$ becomes $\exists \neg$, module 1.11). It is genuinely one law showing up in three places, not three coincidences.
+The same laws reappear for sets in module 2.7 — the outside of an overlap is the union of the two outsides — and again in module 1.11, where denying *"every one of them works"* gives *"at least one fails."* It is genuinely one law showing up in three places, not three coincidences.
 </Aside>

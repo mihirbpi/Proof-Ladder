@@ -32,12 +32,12 @@ Mathematicians plan before they write, and Math 0's house style keeps the plan v
 
 ## The proposition
 
-> **Proposition.** For all $x \in \mathbb{R}$, if $x > 1$ then $x^2 > 1$.
+> **Proposition.** For every real number $x$, if $x > 1$ then $x^2 > 1$.
 
 Spot-check: $x = 3$ gives $9 > 1$ ✓; $x = 1.01$ gives $1.0201 > 1$ ✓. Infinitely many reals exceed $1$, so checking cannot finish the job.
 
 <Discussion>
-  <div slot="know">$x \in \mathbb{R}$ and $x > 1$. Available tools, from the arithmetic and ordering rules of $\mathbb{R}$ that module 4.5 will collect under one name:
+  <div slot="know">$x$ is a real number greater than $1$. Available tools, from the arithmetic and ordering rules of the real numbers that module 4.5 will collect under one name:
   <br />**(O1)** if $a > b$ and $c > 0$ then $ac > bc$;
   <br />**(O2)** $>$ is transitive.</div>
   <div slot="want">$x^2 > 1$, i.e. $x\cdot x > 1$.</div>
@@ -49,7 +49,7 @@ Notice where the work happened. The Discussion found the tool, checked its side 
 ## The proof
 
 <Proof>
-Let $x \in \mathbb{R}$ with $x > 1$.
+Let a real number $x$ with $x > 1$.
 
 Since $x > 1$ and $1 > 0$, transitivity (O2) gives $x > 0$.
 
@@ -67,7 +67,7 @@ Every direct proof of $p \Rightarrow q$ has these parts:
 
 | Part | In our proof |
 |---|---|
-| Assume the hypothesis | "Let $x \in \mathbb{R}$ with $x>1$." |
+| Assume the hypothesis | "Let a real number $x$ with $x>1$." |
 | Name the tools | (O1), (O2) |
 | Check side conditions | $x > 0$, so multiplying is legal |
 | Chain forward | $x^2 > x$, then $x^2 > 1$ |

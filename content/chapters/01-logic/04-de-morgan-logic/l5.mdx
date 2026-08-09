@@ -12,7 +12,7 @@ import Warning from '@/components/Warning.astro';
 
 *A reminder of the symbols in play: $\wedge$ reads "and", $\vee$ reads "or", $\neg$ reads "not", $\equiv$ reads "is equivalent to".*
 
-You can negate a statement, and you can join two statements with $\wedge$ or $\vee$. What happens when you do both?
+You can deny a statement, and you can join two statements with *and* or *or*. What happens when you do both?
 
 The answer is not "negate each piece and leave the connective alone." Negation does not slide quietly through a connective — it changes it on the way.
 
@@ -60,22 +60,22 @@ Note that "at least one fails" is inclusive: possibly both do. That is why the r
 
 ## Duality
 
-The two laws are not independent. Substituting $\neg p, \neg q$ for $p, q$ in the first law and using $\neg\neg p \equiv p$:
+The two laws are not independent. Put the denials $\neg p$ and $\neg q$ into the first law in place of $p$ and $q$, then use that denying twice returns you to the start:
 $$
-\neg(\neg p \wedge \neg q) \equiv \neg\neg p \vee \neg\neg q \equiv p \vee q,
+\neg(\neg p \wedge \neg q) \equiv p \vee q,
 $$
 and negating both sides gives the second law.
 
 So negation is an **involution** — an operation that undoes itself — and it **exchanges** $\wedge$ and $\vee$. Each law is the other one seen through a mirror, and proving one proves both.
 
 <Warning title="Do not keep the connective">
-$$\neg(p \wedge q) \;\not\equiv\; \neg p \wedge \neg q.$$
+Denying "both hold" does **not** give "both fail".
 
 Check row 2 of the table: $p$ true, $q$ false. The left side is T, the right side is F.
 
 Keeping the connective makes the negation **too strong** — it claims both parts failed, when the negation only entitles you to one. This is the single most common error with these laws, and it is invisible unless you check a row.
 
-A second trap is scope. Since $\neg$ binds more tightly than $\wedge$, the unparenthesised $\neg p \wedge q$ means $(\neg p)\wedge q$, not $\neg(p \wedge q)$. When a negation is meant to govern a whole compound, the parentheses are not optional.
+A second trap is scope. A denial attaches to as little as possible, so without brackets it lands on the first piece only — not on the whole *and*. When a negation is meant to govern a whole compound, the parentheses are not optional.
 </Warning>
 
 ## Why this matters: negating a hypothesis
@@ -86,7 +86,7 @@ Consider:
 
 > If $x$ is rational and $y$ is irrational, then $x+y$ is irrational.
 
-Writing $\mathbb{Q}$ for the set of rational numbers, so that $x \in \mathbb{Q}$ says *$x$ is rational*, the hypothesis is a conjunction and De Morgan applies:
+Writing the rationals for the set of rational numbers, so that $x$ rational says *$x$ is rational*, the hypothesis is a conjunction and De Morgan applies:
 $$
 \neg\big(x \in \mathbb{Q} \wedge y \notin \mathbb{Q}\big) \equiv x \notin \mathbb{Q} \vee y \in \mathbb{Q}.
 $$
@@ -99,29 +99,18 @@ That is strictly weaker, and therefore easier, than the naive "and" version.
 
 ### Proving an *or*
 
-Assume the negation of one disjunct and derive the other. Here: assume $x+y \in \mathbb{Q}$ and $x \in \mathbb{Q}$; then $y = (x+y)-x$ is a difference of rationals, hence rational — the remaining disjunct.
+Assume the negation of one disjunct and derive the other. Here: assume $x+y \in \mathbb{Q}$ and $x$ rational; then $y = (x+y)-x$ is a difference of rationals, hence rational — the remaining disjunct.
 
 And an *or* in a **hypothesis** forces proof by cases instead (module 1.12). So De Morgan does not merely restate a claim; it tells you what shape the proof will have.
 
 ## Generalisation
 
-The laws iterate. Negating a long chain of *and*s turns every one of them into *or*:
-$$
-\neg(p_1 \wedge p_2 \wedge \cdots \wedge p_n) \equiv \neg p_1 \vee \neg p_2 \vee \cdots \vee \neg p_n,
-$$
-and negating a long chain of *or*s turns every one into *and*. Both follow from the two-statement case above, applied repeatedly (Chapter 6 makes "repeatedly" precise).
+The laws iterate. Denying a long chain of *and*s turns every one of them into *or*: at least one link of the chain has to fail. Denying a long chain of *or*s turns every one into *and*: every link has to fail. Both follow from the two-statement case above, applied repeatedly (Chapter 6 makes "repeatedly" precise).
 
-Push $n$ to infinity — replace the finite conjunction by "for all $x$" and the finite disjunction by "there exists $x$" — and you get the quantifier rules of module 1.11:
-$$
-\neg\forall x\,p(x) \equiv \exists x\,\neg p(x), \qquad \neg\exists x\,p(x)\equiv\forall x\,\neg p(x).
-$$
-
-That is not an analogy. A *for all* quantifier really is an infinitary conjunction and an existential one an infinitary disjunction, which is precisely why the rules look the same.
+Now let the chain run forever. A *for all* claim is an endless chain of *and*s, and a *there exists* claim is an endless chain of *or*s — so the same swap applies, and denying *"every one works"* gives *"at least one fails."* Those are the quantifier rules of module 1.11, and they are not an analogy: they are this module's laws with the chain made infinite.
 
 <Aside>
-The laws will appear a third time in module 2.7, for sets:
-$$\overline{S \cap T} = \overline S \cup \overline T, \qquad \overline{S\cup T} = \overline S \cap \overline T,$$
-with complement playing $\neg$, $\cap$ playing $\wedge$, and $\cup$ playing $\vee$.
+The laws will appear a third time in module 2.7, for sets: the outside of an overlap is the union of the two outsides, and the outside of a union is the overlap of the two outsides. Taking the outside of a set plays the part of denial, overlap plays *and*, and union plays *or*.
 
 One law, three costumes. Learning to expect the swap is learning to predict the shape of an argument before writing it.
 </Aside>

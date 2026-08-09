@@ -26,7 +26,7 @@ Over a small set — say $S = \{1, 2, 3\}$ — *for all* is just an **and**, and
 $$
 \forall x \in S,\, x \text{ is even} \;\equiv\; (1 \text{ is even}) \wedge (2 \text{ is even}) \wedge (3 \text{ is even}).
 $$
-Apply $\neg(p \wedge q) \equiv \neg p \vee \neg q$. The negation becomes "$1$ is not even **or** $2$ is not even **or** $3$ is not even" — which is exactly $\exists x \in S,\, x \text{ is not even}$. Same law, more terms.
+Apply the first De Morgan law of module 1.4. The negation becomes "$1$ is not even **or** $2$ is not even **or** $3$ is not even" — which is exactly $\exists x \in S,\, x \text{ is not even}$. Same law, more terms.
 
 ## Counterexamples
 
@@ -43,32 +43,27 @@ A single element refuting a universal claim is a **counterexample**, and the nam
 > **Claim.** $\forall x \in \mathbb{R}$, $x$ is positive or $x$ is negative.
 
 Negate:
-$$
-\neg\big(\forall x \in \mathbb{R},\, (x > 0) \vee (x < 0)\big)
-\;\equiv\;
-\exists x \in \mathbb{R},\, \neg\big((x>0) \vee (x<0)\big)
-$$
-and now De Morgan on the inside:
-$$
-\equiv\; \exists x \in \mathbb{R},\; (x \leq 0) \wedge (x \geq 0).
-$$
+First the quantifier rule: *not every real is positive or negative* becomes *some real is neither positive nor negative*.
+
+Then De Morgan on the inside: *neither positive nor negative* means *not positive **and** not negative* — that is, $x \leq 0$ and $x \geq 0$ together.
+
 So the negation asks for a real number that is both $\leq 0$ and $\geq 0$. There is exactly one: $x = 0$. The original claim is false, and $0$ is the counterexample.
 
-Notice that we needed *two* rules in sequence: the quantifier rule to get past $\forall$, then De Morgan to get past $\vee$. Negation is pushed inward one layer at a time.
+Notice that we needed *two* rules in sequence: the quantifier rule to get past the *for all*, then De Morgan to get past the *or*. Negation is pushed inward one layer at a time.
 
 ## Negating a conditional inside a quantifier
 
-Most theorems say *for every $x$ in $S$, if the hypothesis holds then so does the conclusion*. Since $\neg(p \Rightarrow q) \equiv p \wedge \neg q$ (module 1.7), the negation is: **some $x$ in $S$ satisfies the hypothesis and fails the conclusion.**
+Most theorems say *for every $x$ in $S$, if the hypothesis holds then so does the conclusion*. Since denying an if–then claim means the hypothesis holds while the conclusion fails (module 1.7), the negation is: **some $x$ in $S$ satisfies the hypothesis and fails the conclusion.**
 That is the recipe for a counterexample. Not an element failing the hypothesis — such an element makes the conditional vacuously true and refutes nothing.
 
-Example. "$\forall x \in \mathbb{R},\, x^2 > 1 \Rightarrow x > 1$" is false, and the counterexample must satisfy $x^2 > 1$ *and* $x \leq 1$: take $x = -3$. Offering $x = 0.5$ would be useless — it fails the hypothesis.
+Example. *For every real $x$, if $x^2 > 1$ then $x > 1$* is false, and the counterexample must satisfy $x^2 > 1$ *and* $x \leq 1$: take $x = -3$. Offering $x = 0.5$ would be useless — it fails the hypothesis.
 
 <Warning title="Three standard errors">
 **Over-negation.** The negation of *every $x$ has the property* is **not** *every $x$ lacks it*. "Not every prime is odd" ≠ "every prime is even."
 
-**Negating the domain.** Negating a claim about every $x$ in $\mathbb{Z}$ gives a claim about some $x$ in $\mathbb{Z}$ — still over $\mathbb{Z}$. The set does not change.
+**Negating the domain.** Negating a claim about every $x$ in the integers gives a claim about some $x$ in the integers — still over the integers. The set does not change.
 
-**Wrong counterexample shape.** To refute $p \Rightarrow q$ you need $p \wedge \neg q$. An element where both fail proves nothing.
+**Wrong counterexample shape.** To refute an if–then claim you need the hypothesis to hold and the conclusion to fail. An element where both fail proves nothing.
 </Warning>
 
 ## Nested quantifiers

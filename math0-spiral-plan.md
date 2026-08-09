@@ -234,6 +234,40 @@ for-all quantifier*; *trichotomy*, *canonical*, *antecedent*, *consequent* and
 one is still fine — "the hypothesis, or antecedent" teaches it rather than
 leaning on it. The Pythagorean theorem is called that, never "Pythagoras".
 
+**The blackboard-bold letters are taught nowhere.** CCSSM names *the real number
+system* (N-RN) and *rational numbers*, but no US school course writes $\mathbb{R}$,
+$\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{N}$ or $\mathbb{C}$ — they are proof-writing
+shorthand, exactly like $\forall$ and $\exists$. They are worth teaching, since
+every university text uses them, so §1.1 introduces all five explicitly at `l7`
+and Chapter 4 owns them lower down. What they may not do is turn up in Chapter 1
+as if the reader had met them: at `l4` that chapter carried 126 of them, and now
+carries 23, with the rest written as *an integer $k$* and *a real number $x$*.
+
+**Notation density (binding).** Explaining a symbol repeatedly is necessary but
+not sufficient — a page can be unreadable while every symbol on it has been
+glossed three times. Chapters are capped near each level's 95th percentile:
+`l4` 110, `l5` 95, `l6` 90, `l7` 105, `l8` 130 symbols per 1000 words.
+`<Proof>` blocks are excluded, because inside a proof the symbols *are* the
+medium and element-chasing cannot be de-symbolised without becoming worse; what
+the cap measures is the exposition a reader must get through before the argument
+even starts. Two earlier designs were tried and discarded: exempting a chapter's
+"own" symbols let §2.8 sit at 179 per 1000 on the grounds that $\cup$ and $\cap$
+were Chapter 2's business, and a cross-chapter rule excused a De Morgan module
+for the connectives it is about. Thickness is thickness.
+
+**The connectives are gated by module position, not only by level.** §1.2 was
+writing $p \wedge \neg p$ and $p \vee \neg p$ a full module before §1.3
+introduces *and* and *or*; the positional check had let a bolded word anywhere
+nearby count as an introduction, so a bolded **contradiction** was excusing the
+$\wedge$ beside it. Those two facts are now stated in words in §1.2 — *a claim
+and its denial can never both hold*, *one of the two always holds* — and §1.3
+names them once the symbols exist.
+
+**Variables are fine from `l4`.** 6.EE.A.2 introduces them in grade 6, below
+`l4`'s grade-7 ceiling. `l3` is a different matter and is gated: at grade 5 a
+letter doing arithmetic is off-grade, though a letter used as an element label
+is not.
+
 **Part B still outranks this list.** *ring* is deliberately **not** gated: §4.1
 introduces the term at `l5`–`l6` as "a label for a number system with these
 rules", and §4.5 makes ring-vs-field an objective. A sweep that added a pattern

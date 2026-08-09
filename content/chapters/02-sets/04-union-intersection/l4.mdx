@@ -22,7 +22,7 @@ S \cup T = \{\, x \mid x \in S \vee x \in T \,\},
 S \cap T = \{\, x \mid x \in S \wedge x \in T \,\}.
 $$
 
-The **union** is the $\vee$ set; the **intersection** is the $\wedge$ set. Unfolding the definitions gives the two lines that every proof in this module and the next four will use:
+The **union** is the *or* set; the **intersection** is the *and* set. Unfolding the definitions gives the two lines that every proof in this module and the next four will use:
 $$
 x \in S \cup T \iff (x \in S) \vee (x \in T),
 \qquad
@@ -95,9 +95,9 @@ Examples: the even and odd integers; $(-\infty, 0)$ and $[0, \infty)$; the multi
 Proving disjointness is proving a universal negative: $\forall x,\, \neg(x \in S \wedge x \in T)$. Module 1.12 says that means an arbitrary-element argument, and it is often cleanest by contradiction (module 2.5).
 
 <Warning title="Notation collisions">
-$\cup$ and $\cap$ are set operations; $\vee$ and $\wedge$ are logical connectives. $S \wedge T$ and $x \in S \cup x \in T$ are both type errors — sets are not statements and statements are not sets. Writing them correctly is not pedantry; the distinction is what the dictionary is translating between.
+$\cup$ and $\cap$ join *sets*; the connectives of module 1.3 join *statements*. Writing a connective between two sets, or a set operation between two statements, is a type error — sets are not statements and statements are not sets. Writing them correctly is not pedantry; the distinction is what the dictionary is translating between.
 </Warning>
 
 <Aside>
-Both operations are commutative, associative, and idempotent ($S \cup S = S$), each inherited from the corresponding property of $\vee$ and $\wedge$. Associativity is what licenses $S \cup T \cup R$ without brackets. Neither operation has an inverse — you cannot "un-union" — which is exactly why $(\mathcal{P}(X), \cup, \cap)$ is a lattice rather than a group.
+Both operations are commutative and associative, and doing either one twice changes nothing ($S \cup S = S$) — each property inherited from the matching property of *or* and *and*. Associativity is what licenses $S \cup T \cup R$ without brackets. Neither operation has an inverse — you cannot "un-union" — which is exactly why $(\mathcal{P}(X), \cup, \cap)$ is a lattice rather than a group.
 </Aside>

@@ -24,16 +24,14 @@ In words: **push the negation inward and flip the quantifier.** The domain $S$ n
 
 ## Why they hold
 
-$\forall x\in S,\, P(x)$ says $P$ holds throughout $S$. For that to fail, some element must fail — one is enough, and one is required. That is exactly $\exists x \in S, \neg P(x)$.
+A *for all* claim says the property holds throughout $S$. For that to fail, some element must fail — one is enough, and one is required. That is exactly a *there exists* claim about the denial.
 
-$\exists x \in S,\, P(x)$ says at least one element works. For that to fail, none can work — every element must fail. That is $\forall x \in S, \neg P(x)$.
+A *there exists* claim says at least one element works. For that to fail, none can work — every element must fail. That is a *for all* claim about the denial.
 
 <Aside>
 These are De Morgan's laws from module 1.4, extended to infinitely many terms.
 
-Over a finite domain $S = \{a, b, c\}$, the universal *is* a conjunction:
-$$\forall x \in S,\ P(x) \;\equiv\; P(a)\wedge P(b) \wedge P(c),$$
-and negating it gives $\neg P(a) \vee \neg P(b) \vee \neg P(c)$ — an existential. Same law, longer.
+Over a finite domain $S = \{a, b, c\}$, a *for all* claim is just an **and**: the property holds at $a$, and at $b$, and at $c$. Denying it, by De Morgan, gives an **or** — the property fails at $a$, or at $b$, or at $c$ — which is a *there exists*. Same law, longer.
 
 Over an infinite domain the conjunction cannot literally be written, but the rule survives unchanged. One law, wearing a third costume.
 </Aside>
@@ -74,7 +72,7 @@ $$\forall \text{ line pairs } (\ell_1,\ell_2) \text{ with transversal } t:\ \big
 
 To prove this indirectly, negate. First flip the quantifier:
 $$\exists \text{ a pair}:\ \neg\big(\text{alt. int. congruent} \Rightarrow \ell_1\parallel\ell_2\big),$$
-then apply $\neg(p\Rightarrow q)\equiv p \wedge \neg q$ from module 1.7:
+then use module 1.7: denying an if–then claim means the hypothesis holds and the conclusion fails.
 $$\exists \text{ a pair}:\ \text{alt. int. congruent} \ \wedge\ \ell_1 \not\parallel \ell_2.$$
 
 So the indirect proof opens: *"Suppose alternate interior angles are congruent but the lines are not parallel."* Then the lines meet, forming a triangle, and the Exterior Angle Theorem is contradicted.
@@ -98,7 +96,7 @@ $$
 
 ## Negating uniqueness
 
-$\exists!$ is not a single quantifier, so it has no single flip rule. Unfold it first:
+$\exists!$ is not a single quantifier, so it has no single flip rule. Unfold it first into its two halves — something works, and no two different things both work:
 $$
 \exists! x,\, P(x) \quad\equiv\quad \underbrace{\exists x,\, P(x)}_{\text{existence}} \ \wedge\ \underbrace{\forall x\, \forall y\, \big((P(x)\wedge P(y)) \Rightarrow x = y\big)}_{\text{uniqueness}}.
 $$

@@ -31,7 +31,7 @@ These are §1.4's laws under the dictionary $\neg \leftrightarrow \overline{\pha
 ## Proof
 
 <Discussion>
-  <div slot="know">$x \in \overline A \iff x \in U \wedge x \notin A$; $x \in S \cup T \iff (x\in S)\vee(x\in T)$; and $\neg(p \vee q) \equiv \neg p \wedge \neg q$.</div>
+  <div slot="know">Being outside $A$ means being in $U$ but not in $A$; being in $S \cup T$ means being in one or the other; and De Morgan for connectives says that failing an *or* means failing both parts.</div>
   <div slot="want">Double inclusion (§2.6).</div>
   <div slot="how">Unfold membership into logic, apply the logic law, refold. Because the logic law is an equivalence rather than an implication, both inclusions are the same computation read in opposite directions — so the equality can be presented as a chain of biconditionals.</div>
 </Discussion>
@@ -67,7 +67,7 @@ The first law follows either by the same argument with $\neg(p \wedge q) \equiv 
 | *there exists an $i$* | $A_1 \cup \cdots \cup A_n$ |
 | *for every $i$* | $A_1 \cap \cdots \cap A_n$ |
 
-The reason this dictionary is exact: the map sending a predicate $p$ to its truth set $\{x \in U \mid p(x)\}$ turns $\wedge$ into $\cap$, $\vee$ into $\cup$, and $\neg$ into complement — it preserves all three operations. Every equational identity therefore transfers in both directions. It is not that the two subjects are similar; up to isomorphism they are the same algebra.
+The reason this dictionary is exact: sending each condition to the set of things satisfying it turns *and* into intersection, *or* into union, and *not* into complement — all three operations are preserved. Every equational identity therefore transfers in both directions. It is not that the two subjects are similar; up to isomorphism they are the same algebra.
 
 ## Indexed form
 
@@ -78,7 +78,7 @@ $$
 \overline{A_1 \cap A_2 \cap \cdots \cap A_n} = \overline{A_1} \cup \cdots \cup \overline{A_n}.
 $$
 
-The proof is the same three moves, with $\neg\exists \equiv \forall\neg$ (§1.11) at the pivot instead of $\neg\vee \equiv \wedge\neg$:
+The proof is the same three moves, with the quantifier rule of §1.11 at the pivot instead of the connective rule:
 $$
 x \in \overline{A_1 \cup \cdots \cup A_n}
 \iff \neg \exists i,\, x \in A_i
