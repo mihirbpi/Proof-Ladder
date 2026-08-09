@@ -33,19 +33,19 @@ $p$ is called the **hypothesis** or *antecedent*; $q$ is the **conclusion** or *
 
 ## Why vacuous truth is the sensible choice
 
-An informal argument. Consider the promise "if it rains, I bring my umbrella." On a sunny day, no one would say the promise was broken, and there is no natural reason to say it was fulfilled either. Mathematics forces a choice — trinary logic is prohibitively expensive — and the productive choice is to call the promise *kept*. Any other convention breaks universally quantified statements.
+An informal argument. Consider the promise "if it rains, I bring my umbrella." On a sunny day, no one would say the promise was broken, and there is no natural reason to say it was fulfilled either. Mathematics forces a choice — trinary logic is prohibitively expensive — and the productive choice is to call the promise *kept*. Any other convention breaks claim made about every elements.
 
 <Figure alt="Four cases of the umbrella promise. Only rain-with-no-umbrella breaks it.">
   <UmbrellaCases />
 </Figure>
 
-A formal argument. Consider a claim like "for every $x \in \mathbb{R}$, if $x^2 < 0$ then …". The hypothesis has no witnesses. We would like every such statement to be automatically true, regardless of what follows the "then." The definition above delivers exactly that: at every $x$, the hypothesis is false, so the conditional is (vacuously) true, so the universally quantified statement is true.
+A formal argument. Consider a claim like "for every $x \in \mathbb{R}$, if $x^2 < 0$ then …". The hypothesis has no witnesses. We would like every such statement to be automatically true, regardless of what follows the "then." The definition above delivers exactly that: at every $x$, the hypothesis is false, so the conditional is (vacuously) true, so the claim made about every element is true.
 
 The definition is compact: $p \Rightarrow q$ is logically equivalent to $\neg p \vee q$, and to $\neg(p \wedge \neg q)$. Verify by comparing truth tables — the two representations are useful for different manipulations, especially when combining with De Morgan's laws (§1.4).
 
-## Worked example: $x > 1 \Rightarrow x^2 > 1$
+## Worked example: if $x > 1$ then $x^2 > 1$
 
-The universally quantified statement — the $\forall$ notation is previewed here and introduced in §1.10 —
+The claim made about every element — the $\forall$ notation is previewed here and introduced in §1.10 —
 $$
 \forall\, x \in \mathbb{R},\; x > 1 \Rightarrow x^2 > 1
 $$

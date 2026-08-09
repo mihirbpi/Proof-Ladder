@@ -127,6 +127,14 @@ const SYMBOL_LEVELS = [
   // out as the usual stumbling block" — so the module that teaches it may use it.
   { re: /\\circ|∘/, name: '∘ (composition)', from: 'l4', notBefore: 307, early: { level: 'l3', when: /03-functions\/07-/ } },
   { re: /∀|\\forall|∃|\\exists/, name: '∀ / ∃', from: 'l4', notBefore: 110 }, // §1.10
+  // The connectives are gated by *module position*, not just by level. §1.2 was
+  // writing p ∧ ¬p and p ∨ ¬p a whole module before §1.3 introduces "and" and
+  // "or" — the positional check had let a bolded word anywhere nearby count as
+  // an introduction, so a bolded **contradiction** was excusing the ∧ beside it.
+  { re: /\\neg|¬/, name: '¬', from: 'l4', notBefore: 102 }, // §1.2 introduces it
+  { re: /\\wedge|∧/, name: '∧', from: 'l4', notBefore: 103 }, // §1.3
+  { re: /\\vee(?!r)|∨/, name: '∨', from: 'l4', notBefore: 103 }, // §1.3
+  { re: /\\Rightarrow|⇒/, name: '⇒', from: 'l4', notBefore: 105 }, // §1.5
   // introduced at l5
   // §A4.2 restricts the *type signature* `f : S → T`, not a mapping arrow.
   // `0 → 1 → 2` and `a → 1` are legitimate pictures at any level; the signature
@@ -326,12 +334,12 @@ const GATES = {
     [/×|\\times|\\cdot|·/, 'uses × — grade 2 has no multiplication (2.OA.C.4 is repeated addition)'],
     [/÷|\\div/, 'uses ÷ — grade 2 has no division'],
     [/\\frac|\\tfrac|\\dfrac/, 'uses a fraction — grade 2 has no fractions as numbers (3.NF)'],
-    [/\$\s*-\s*\d/, 'uses a negative number — negatives are grade 6 (6.NS.C.5)'],
+    [/[$({=,+]\s*-\s*\d/, 'uses a negative number — negatives are grade 6 (6.NS.C.5)'],
     [/\\mathbb/, 'uses a number-system symbol — far beyond grade 2'],
   ],
   l3: [
     [/\\mathbb\{[NZQRC]\}/, 'uses ℕ/ℤ/ℚ/ℝ/ℂ — beyond grade 5'],
-    [/\$\s*-\s*\d/, 'uses a negative number — negatives are grade 6 (6.NS.C.5)'],
+    [/[$({=,+]\s*-\s*\d/, 'uses a negative number — negatives are grade 6 (6.NS.C.5)'],
     [/∀|\\forall|∃|\\exists/, 'uses a quantifier symbol — l5+'],
     [/\\Rightarrow|⇒|\\neg|¬|\\wedge|∧|\\vee|∨/, 'uses a logic connective symbol — l4+'],
     // The divides bar, not the set-builder "such that" bar, which is l3 notation.
@@ -403,7 +411,11 @@ for (const file of files) {
 
   // notation gates
   for (const [re, msg] of GATES[level] ?? []) {
-    if (re.test(math) || (level === 'l2' && re.test(text))) err(rel, msg);
+    // Chapter 5 is the standing exception for negatives: i × i = −1 is the
+    // chapter's whole content, so §5.3 introduces below-zero numbers in words
+    // and later modules re-gloss them. Everything else at l2/l3 stays clear.
+    if (/negative number/.test(msg) && /05-complex/.test(rel)) continue;
+    if (re.test(math) || re.test(text)) err(rel, msg);
   }
 
   // Concept gate: undergraduate vocabulary as *working* vocabulary in the body.
@@ -907,6 +919,109 @@ for (const f of files) {
         path.relative(ROOT, f),
         `stacks ${distinct.length} borrowed proof-jargon terms in one paragraph (${distinct.join(', ')}) — spread them out`,
       );
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Heavier synonyms for things the course can say plainly. The audience is every
+// student, not only the ones already drawn to mathematics, so a Latin or Greek
+// name earns its place only when it is genuinely the key vocabulary of a module
+// — contrapositive, quantifier, tautology and the like are declared in
+// `newTerms` and explained there. These are not.
+const HEAVIER_SYNONYM = [
+  [/\buniversal quantifier\b/i, 'say "the *for all* quantifier"'],
+  [/\bexistential quantifier\b/i, 'say "the *there exists* quantifier"'],
+  [/\buniversally quantified\b/i, 'say "made about every element"'],
+  [/\bexistentially quantified\b/i, 'say "asserting that something exists"'],
+  [/\btrichotomy\b/i, 'state the three-way split instead'],
+  [/\bcanonical\b/i, 'say "standard" or "natural"'],
+  [/\bantecedent\b/i, 'say "hypothesis"'],
+  [/\bconsequent\b/i, 'say "conclusion"'],
+  [/\bmetalanguage\b|\bobject language\b/i, 'say it plainly'],
+  [/\bPythagoras\b/, 'call it "the Pythagorean theorem"'],
+];
+for (const f of files) {
+  const src = body(fs.readFileSync(f, 'utf8'));
+  const rel = path.relative(ROOT, f);
+  for (const [re, advice] of HEAVIER_SYNONYM) {
+    const m = src.match(re);
+    if (!m) continue;
+    // Naming the heavier word *alongside* the plain one is teaching it, not
+    // leaning on it — "the hypothesis, or antecedent" is fine.
+    const near = src.slice(Math.max(0, m.index - 160), m.index + 160);
+    if (/hypothesis|conclusion|standard|natural|Pythagorean|three-way|for all|there exists|plainly/i.test(near)) continue;
+    warn(rel, `"${m[0]}" is heavier than it needs to be — ${advice}`);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Proof-course vocabulary may not be used before the module that defines it.
+// A signposted forward reference is fine — "§1.10 will call these quantifiers",
+// "when you meet injective" — but assumed use is not, because the reader has
+// taken no logic or discrete-maths course and has nowhere else to have met it.
+// Ordinary school words are deliberately absent from this list: prime and factor
+// are 4.OA.B.4, rational and irrational are 8.NS.A.1, and "two lines intersect"
+// is plain geometry, so none of them is a forward reference.
+const VOCAB_HOME = {
+  tautolog: 103, conjunction: 103, disjunction: 103, vacuous: 103,
+  contrapositive: 107, converse: 107, biconditional: 109,
+  quantifier: 110, counterexample: 111, witness: 112,
+  codomain: 301, injectiv: 305, surjectiv: 306, bijectiv: 308,
+  ring: 401, field: 405, 'equivalence relation': 702,
+};
+const SIGNPOSTED =
+  /§\d|modules? \d|chapters? \d|\(\d\.\d+\)|later|preview\w*|introduced|coming|ahead|for now|soon|you have not|will (meet|see|call|be|define|use|show)|when you meet/i;
+{
+  const modKey = (p) => {
+    const m = p.match(/(\d+)-[^/]+\/(\d+)-/);
+    return m ? Number(m[1]) * 100 + Number(m[2]) : 0;
+  };
+  for (const level of LEVEL_ORDER) {
+    const pages = files
+      .filter((f) => path.basename(f, '.mdx') === level)
+      .sort((a, b) => modKey(a) - modKey(b));
+    for (const [term, home] of Object.entries(VOCAB_HOME)) {
+      const re = new RegExp(`\\b${term}${/[a-z]$/.test(term) ? '(s|es)?\\b' : ''}`, 'i');
+      for (const f of pages) {
+        if (modKey(f) >= home) break;
+        // Component props are data, not prose.
+        const src = fs.readFileSync(f, 'utf8').replace(/<[A-Z][^>]*>/g, '');
+        const m = src.match(re);
+        if (!m) continue;
+        const pStart = src.lastIndexOf('\n\n', m.index) + 1;
+        const pEnd = src.indexOf('\n\n', m.index);
+        const after = pEnd < 0 ? src.length : src.indexOf('\n\n', pEnd + 2);
+        const para = src.slice(pStart, after < 0 ? src.length : after);
+        // A bolded definitional introduction defines it on the spot.
+        if (SIGNPOSTED.test(para) || new RegExp(`\\*\\*[^*]*${term}`, 'i').test(para)) break;
+        warn(
+          path.relative(ROOT, f),
+          `${level} uses "${m[0]}" at §${Math.floor(modKey(f) / 100)}.${modKey(f) % 100}, before §${Math.floor(home / 100)}.${home % 100} defines it — signpost it or gloss it`,
+        );
+        break;
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Headings, callout titles and card captions carry no proof notation, ever.
+// A heading is read *before* the body that introduces the symbol, and
+// `anchorExample` is shown on navigation cards outside the reading flow
+// altogether — so the positional introduction rule cannot protect either one.
+// They say the same thing in words instead.
+const HEADING_NOTATION = /∀|∃|⇒|⇔|¬|∧|∨|∈|∉|⊆|∪|∩|∅|≡|∘|↦|Σ|∫|∤|ℕ|ℤ|ℚ|ℝ|ℂ|\\forall|\\exists|\\Rightarrow|\\Leftrightarrow|\\iff|\\neg|\\wedge|\\vee(?!r)|\\subseteq|\\cup\b|\\cap\b|\\emptyset|\\equiv|\\circ\b|\\mapsto|\\sum\b|\\mathbb/;
+for (const f of files) {
+  const src = fs.readFileSync(f, 'utf8');
+  const rel = path.relative(ROOT, f);
+  const spots = [];
+  for (const m of src.matchAll(/^(#{2,4} .*)$/gm)) spots.push(['heading', m[1]]);
+  for (const m of src.matchAll(/^(anchorExample:.*)$/gm)) spots.push(['card caption', m[1]]);
+  for (const m of src.matchAll(/title="([^"]*)"/g)) spots.push(['callout title', m[1]]);
+  for (const [kind, textLine] of spots) {
+    if (HEADING_NOTATION.test(textLine)) {
+      err(rel, `${kind} carries proof notation — say it in words: "${textLine.trim().slice(0, 70)}"`);
     }
   }
 }

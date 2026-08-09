@@ -87,14 +87,14 @@ Licensed by any exhaustive disjunction: if $p_1 \vee \cdots \vee p_k$ holds and 
 > **Proposition.** $\neg \exists x \in \mathbb{R}$ with $x^2 < 0$.
 
 <Proof>
-We prove the equivalent universal statement $\forall x \in \mathbb{R},\, x^2 \geq 0$. Let $x \in \mathbb{R}$ be arbitrary. By trichotomy — every real is positive, zero, or negative — exactly one of $x > 0$, $x = 0$, $x < 0$ holds.
+We prove the equivalent universal statement $\forall x \in \mathbb{R},\, x^2 \geq 0$. Let $x \in \mathbb{R}$ be arbitrary. Every real is positive, zero, or negative — exactly one of $x > 0$, $x = 0$, $x < 0$ holds.
 
 If $x > 0$, then $x^2 > 0$ as a product of positives. If $x = 0$, then $x^2 = 0$. If $x < 0$, then $-x > 0$ and $x^2 = (-x)(-x) > 0$.
 
 In all cases $x^2 \geq 0$; the cases are exhaustive. Hence no real number has negative square.
 </Proof>
 
-Two obligations: **exhaustiveness** (a missing case is a hole, and it is the most common structural defect in student proofs) and **completeness of each branch**. Disjointness is aesthetic, not required. The disjunction to split on typically comes from a hypothesis containing $\vee$, from trichotomy, from parity, or from the division algorithm — the last generalising parity to remainders mod $d$ (§4.4).
+Two obligations: **exhaustiveness** (a missing case is a hole, and it is the most common structural defect in student proofs) and **completeness of each branch**. Disjointness is aesthetic, not required. The disjunction to split on typically comes from a hypothesis containing $\vee$, from the positive/zero/negative split, from even versus odd, or from the division algorithm — the last generalising parity to remainders mod $d$ (§4.4).
 
 <Aside>
 Existential instantiation is the dual rule and has its own side condition. From $\exists x,\, p(x)$ you may introduce a **fresh** constant $c$ with $p(c)$ — fresh meaning it appears nowhere earlier. Reusing a name is the classic fallacy: from $\exists x, x^2 = 4$ and $\exists x, x^3 = 27$, instantiating both to the same $c$ would yield a $c$ with $c^2 = 4$ and $c^3 = 27$. Each existential gets its own name.

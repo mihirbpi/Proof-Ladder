@@ -49,14 +49,14 @@ Reflexive: $n \mid 0 = a-a$. Symmetric: $a-b = nk \Rightarrow b-a = n(-k)$. Tran
 
 Each of the three axioms was used exactly once, which is a compact demonstration of their independence in practice.
 
-The set of classes is the **quotient** $S/{\sim}$, and $\pi : S \to S/{\sim}$, $\pi(a)=[a]$, is the canonical surjection. Note $\pi$ is surjective by construction and injective iff $\sim$ is equality — so quotienting is precisely the operation of deliberately forgetting distinctions.
+The set of all the classes is called the **quotient**, and sending each element to its own class is a function onto it. That function is surjective by construction, and injective exactly when the relation was equality to begin with — so passing to classes is precisely the operation of deliberately forgetting distinctions.
 
 <Warning title="Well-definedness on quotients">
 An operation on classes must be checked independent of representatives (§3.1).
 
 **Works:** $[a]+[b] := [a+b]$ on $\mathbb{Z}/n\mathbb{Z}$. If $a\equiv a'$, $b\equiv b'$ then $n \mid (a-a')+(b-b')= (a+b)-(a'+b')$.
 
-**Fails:** $[a]\mapsto a$ on $\mathbb{Z}/n\mathbb{Z}$; $[1]=[4]$ mod $3$ but $1 \neq 4$. No canonical representative — no single standard choice — exists.
+**Fails:** $[a]\mapsto a$ on $\mathbb{Z}/n\mathbb{Z}$; $[1]=[4]$ mod $3$ but $1 \neq 4$. No representative is the official one — there is no single standard choice.
 
 **Fails:** $[a]\mapsto 2^a$ on $\mathbb{Z}/n\mathbb{Z}$ valued in $\mathbb{Z}$ — same objection.
 

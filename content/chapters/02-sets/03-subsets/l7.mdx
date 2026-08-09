@@ -3,7 +3,7 @@ level: l7
 title: Subsets
 readingTimeMin: 10
 newTerms: ["subset", "proper subset", "element chasing", "partial order", "power set"]
-anchorExample: "intervals in ℝ"
+anchorExample: "intervals on the number line"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -16,7 +16,7 @@ $$
 A \subseteq S \quad:\Leftrightarrow\quad \forall x\;(x \in A \Rightarrow x \in S).
 $$
 
-The definition is a universally quantified conditional, and everything in this module is a consequence of that single observation. §1.12 fixed the proof template for such statements; applied to sets it acquires the name **element chasing**, and it is the technique on which essentially all of naive set theory runs.
+The definition is a if–then claim made about every element, and everything in this module is a consequence of that single observation. §1.12 fixed the proof template for such statements; applied to sets it acquires the name **element chasing**, and it is the technique on which essentially all of naive set theory runs.
 
 ## The template
 
@@ -63,12 +63,12 @@ Note that $\emptyset \in A$ and $\emptyset \subseteq A$ are both true here for e
 > **Proposition.** $\emptyset \subseteq S$ for every set $S$.
 
 <Proof>
-Let $x$ be arbitrary. The antecedent of $x \in \emptyset \Rightarrow x \in S$ is false, so the conditional is true (§1.5). Since $x$ was arbitrary, $\forall x\,(x \in \emptyset \Rightarrow x \in S)$, i.e. $\emptyset \subseteq S$.
+Let $x$ be arbitrary. The hypothesis of $x \in \emptyset \Rightarrow x \in S$ is false, so the conditional is true (§1.5). Since $x$ was arbitrary, $\forall x\,(x \in \emptyset \Rightarrow x \in S)$, i.e. $\emptyset \subseteq S$.
 </Proof>
 
 This is vacuous truth carrying structural weight. Every distributive, De Morgan, and product identity in this chapter holds without exception for $\emptyset$ precisely because of it; a convention that made $\emptyset \subseteq S$ fail would introduce a special case into every theorem that follows.
 
-## $\subseteq$ is a partial order
+## Containment is a partial order
 
 *A reminder of the symbols in play: $\cap$ reads "intersection".*
 

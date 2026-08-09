@@ -164,7 +164,7 @@ Theorem, Euclid's lemma, Cantor's theorem, Russell's paradox, Pólya's
 conjecture, Zorn's lemma, Chinese Remainder.
 
 Results that *are* taught are governed by §A5.0 rule 1 instead, which is
-stricter: Pythagoras is grade 8 (8.G.B) and so unavailable at `l4`; the Mean
+stricter: the Pythagorean theorem is grade 8 (8.G.B) and so unavailable at `l4`; the Mean
 Value Theorem, IVT and the Fundamental Theorem of Calculus are Calculus, so at
 `l7` they belong in `<WhereThisGoes>` as the course the reader is starting, not
 in the body as known facts. Taylor series is later still — late BC — and was
@@ -186,7 +186,7 @@ available only from `l7`.
 polar form and Euler's formula cannot be written without them and Part B assigns
 those modules at every level. There they are named and glossed as destinations —
 the way §5.6 now teaches the right-triangle rule at `l3` instead of citing
-Pythagoras, and the way §5.7 now says what $\theta$, $\cos$, $\sin$ and $e$ are
+the Pythagorean theorem by name, and the way §5.7 now says what $\theta$, $\cos$, $\sin$ and $e$ are
 before using them. Everywhere else they were a convenience with an easy
 substitute, and the substitute is now in place: Chapter 3's running example at
 `l4` is doubling on $\mathbb{Z}$ (injective, surjective onto the evens, a
@@ -201,6 +201,38 @@ or used freely inside the sanctioned glimpse slot. §6.6 *Induction in calculus*
 is its own subject and so is exempt, exactly as Chapter 5 is. A bare
 "in matrix terms, multiplication by $i$ is …" at `l4` is the failure this
 catches.
+
+**Negative numbers and squaring.** Negatives are 6.NS.C.5 (grade 6) for position
+and 7.NS.A.2 (grade 7) for arithmetic; whole-number exponents are 6.EE.A.1. So
+`l1`, `l2` and `l3` may assume none of them. Chapter 5 is again the standing
+exception, since $i \times i = -1$ is its whole content: §5.3 introduces
+below-zero numbers in words — *walk left past zero and the places take the same
+names with a dash in front* — and later modules re-gloss it. `l1` §5.1 was
+rebuilt on turning alone, with no arrays and no negatives, because its previous
+version opened on $-2$ folded onto itself, which needs grade 7. Everywhere else
+at `l1`–`l3` the squaring examples were replaced by ones inside the ceiling:
+Chapter 3 at `l3` now uses *round to the nearest ten* for a non-injective rule
+and divisors for a rule that fails to be a function.
+
+**Headings carry no notation, ever.** A heading is read *before* the body that
+introduces the symbol, and `anchorExample` appears on navigation cards outside
+the reading flow altogether, so the positional introduction rule cannot protect
+either. Headings, callout titles and card captions say it in words: *The complex
+numbers form a field*, not *ℂ is a field*.
+
+**Vocabulary follows reading order.** No proof-course term may be used before the
+module that defines it unless the use is signposted (`§1.10 will call these
+quantifiers`, `when you meet injective`) or glosses itself on the spot. Ordinary
+school words are exempt: prime and factor are 4.OA.B.4, rational and irrational
+are 8.NS.A.1, and *two lines intersect* is plain geometry.
+
+**Prefer the plainer word.** The audience is every student, not only those
+already drawn to mathematics, so a Latin or Greek name earns its place only when
+it is the declared vocabulary of a module. *Universal quantifier* became *the
+for-all quantifier*; *trichotomy*, *canonical*, *antecedent*, *consequent* and
+*metalanguage* went to plain English. Naming the heavier word beside the plain
+one is still fine — "the hypothesis, or antecedent" teaches it rather than
+leaning on it. The Pythagorean theorem is called that, never "Pythagoras".
 
 **Part B still outranks this list.** *ring* is deliberately **not** gated: §4.1
 introduces the term at `l5`–`l6` as "a label for a number system with these
@@ -989,10 +1021,10 @@ Legend: ● = core treatment, ○ = touch treatment.
 
 **5.6 Modulus** — Math 0 §5.3.2
 **Kernel:** |z| = √(a² + b²) is the distance from 0; |z| = √(z·z̄); it extends absolute value; |z − w| is the distance between z and w; |z − w| = r describes a circle.
-**Objectives:** Compute modulus · connect to Pythagoras and to absolute value · sketch the locus |z − w| = r.
+**Objectives:** Compute modulus · connect to the Pythagorean theorem and to absolute value · sketch the locus |z − w| = r.
 - `l1` ○ "How far from home?" measured with string.
 - `l2` ● Distance on a grid via right triangles (informally).
-- `l3` ● Pythagoras applied on the complex plane; |z| defined; the absolute-value connection for real z.
+- `l3` ● the Pythagorean theorem applied on the complex plane; |z| defined; the absolute-value connection for real z.
 - `l4` ● |z| = √(z z̄); distance between two complex numbers; the circle equation derived by squaring.
 - `l5`–`l6` ● Circles centered anywhere; regions like |z| < 1 sketched; the triangle inequality stated.
 - `l7`–`l8` ● Math 0 text in full; `l8` proves |zw| = |z||w| and points to normed spaces.

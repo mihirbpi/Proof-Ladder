@@ -3,7 +3,7 @@ level: l7
 title: What the integers can do
 readingTimeMin: 9
 newTerms: ["closed", "ring", "unit", "zero divisor"]
-anchorExample: "ℤ as a ring"
+anchorExample: "the integers as a ring"
 ---
 
 import Proof from '@/components/Proof.astro';
@@ -79,19 +79,19 @@ The converse habit is worth building too: when a familiar identity **fails** in 
 
 The axioms are satisfied by structures with nothing else in common:
 
-| Ring | Units | Domain? |
+| Ring | Which elements have reciprocals | Can a product of two nonzeros be zero? |
 |---|---|---|
-| $\mathbb{Z}$ | $\{\pm1\}$ | yes |
-| $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$ | all nonzero | yes (fields) |
-| $\mathbb{Z}[x]$ | $\{\pm1\}$ | yes |
-| $M_n(\mathbb{R})$ | $\det \neq 0$ | no (and not commutative) |
-| $\mathbb{Z}/n\mathbb{Z}$ | $\gcd(a,n)=1$ | iff $n$ prime |
-| continuous functions $\mathbb{R}\to\mathbb{R}$ | nowhere-zero functions | no |
+| the integers | only $1$ and $-1$ | no |
+| the rationals, reals and complex numbers | every nonzero one — §4.5 calls such a ring a *field* | no |
+| polynomials with integer coefficients | only $1$ and $-1$ | no |
+| square grids of real numbers | the ones that can be undone | yes, and the order of multiplication matters |
+| the hours on an $n$-hour clock | those sharing no factor with $n$ | yes, unless $n$ is prime |
+| continuous functions on the line | those never equal to zero | yes |
 
 Anything proved from the axioms alone holds in every row. This is the central methodological move of modern algebra, and it is why the vocabulary is worth acquiring before you need it.
 
 <Aside>
-The three number systems of Chapter 4 sit in a strict hierarchy of increasing structure: $\mathbb{Z}$ is a ring, $\mathbb{Q}$ a field, $\mathbb{R}$ a complete ordered field. Each additional axiom buys theorems and costs generality. $\mathbb{Z}$ additionally has properties $\mathbb{Q}$ lacks — it is discrete, well-ordered below, and has a division algorithm — which is why number theory is a subject about $\mathbb{Z}$ and not about $\mathbb{Q}$.
+The three number systems of Chapter 4 sit in a strict hierarchy of increasing structure: $\mathbb{Z}$ obeys the ring rules, $\mathbb{Q}$ adds reciprocals, and $\mathbb{R}$ adds the no-gaps property of §4.6. Each additional rule buys theorems and costs generality. $\mathbb{Z}$ additionally has properties $\mathbb{Q}$ lacks — it is discrete, well-ordered below, and has a division algorithm — which is why number theory is a subject about $\mathbb{Z}$ and not about $\mathbb{Q}$.
 </Aside>
 
 <WhereThisGoes level="l7">

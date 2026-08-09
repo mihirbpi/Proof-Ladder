@@ -55,7 +55,9 @@ That is a satisfying result. The two properties of the last three modules were n
 
 **The alphabet function**, letters to $\{1, \ldots, 26\}$. A bijection, so its inverse exists: it takes a number and gives you the letter at that position. Feed it $3$ and out comes $\text{c}$.
 
-**Squaring**, from all numbers to all numbers. Not one-to-one ($3$ and $-3$ collide) and not onto (nothing gives $-1$). So no inverse. If you shrink both sides to the numbers that are zero or bigger, it becomes a bijection, and *then* the inverse exists — and it is what you already call the square root.
+**Round to the nearest ten**, whole numbers to whole numbers. Not one-to-one — $21$ and $24$ both give $20$ — so there is no way back: handed $20$, you cannot say what went in. No inverse.
+
+**Multiplying a number by itself**, whole numbers to whole numbers. One-to-one, but not onto: nothing gives $2$. Shrink the target to $0, 1, 4, 9, 16, \ldots$ and it becomes a bijection, so the inverse exists — it has a name you meet in middle school, the square root.
 
 ## Undoing the undo
 
@@ -67,9 +69,9 @@ Module 3.3 traced back from a whole *set* — the **pre-image**. That exists for
 
 This module runs the machine backwards on a single *element* — the **inverse function**. That exists only for bijections.
 
-For the squaring function, tracing back from the set $\{9\}$ gives $\{3, -3\}$ and makes perfect sense; asking for *the* single number that squares to $9$ does not, because there are two. Look at what is inside the brackets: a set means pre-image, an element means inverse function.
+For *round to the nearest ten*, tracing back from the set $\{20\}$ gives $\{15, 16, \ldots, 24\}$ and makes perfect sense; asking for *the* single number that rounds to $20$ does not, because there are ten of them. Look at what is inside the brackets: a set means pre-image, an element means inverse function.
 </Warning>
 
 <Aside>
-Every "undo" you know is an inverse function, and every one needs its domain trimmed to make it work. Squaring undoes with square root — but only for numbers that are not negative. Doubling undoes with halving — but on the whole numbers, only for the even ones. Those restrictions are not fussiness; they are exactly the trimming needed to make the original function a bijection.
+Every "undo" you know is an inverse function, and every one needs its domain trimmed to make it work. Multiplying a number by itself undoes with the square root — but, as above, only once the target is cut down to the numbers that really are somebody's square. Doubling undoes with halving — but on the whole numbers, only for the even ones. Those restrictions are not fussiness; they are exactly the trimming needed to make the original function a bijection.
 </Aside>

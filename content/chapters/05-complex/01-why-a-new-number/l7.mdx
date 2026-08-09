@@ -14,7 +14,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 > **Proposition.** $x^2 \geq 0$ for all $x \in \mathbb{R}$; hence $x^2 + 1$ has no real root.
 
 <Proof>
-Let $x \in \mathbb{R}$. By trichotomy — every real is positive, zero, or negative — $x>0$, $x=0$, or $x<0$. In the first case $x^2 > 0$ as a product of positives; in the second $x^2 = 0$; in the third $-x > 0$ and $x^2 = (-x)(-x) > 0$. The cases are exhaustive, so $x^2 \geq 0$ and $x^2 + 1 \geq 1 > 0$.
+Let $x \in \mathbb{R}$. Every real is positive, zero, or negative, so $x>0$, $x=0$, or $x<0$. In the first case $x^2 > 0$ as a product of positives; in the second $x^2 = 0$; in the third $-x > 0$ and $x^2 = (-x)(-x) > 0$. The cases are exhaustive, so $x^2 \geq 0$ and $x^2 + 1 \geq 1 > 0$.
 </Proof>
 
 The proof used only the **ordered field** axioms, and that is the substantive point: the obstruction is not about $\mathbb{R}$ specifically but about order. In any ordered field, squares are non-negative, so $x^2+1$ has no root. Consequently **$\mathbb{C}$ cannot be ordered compatibly with its arithmetic** — the price of adjoining $i$ is the loss of $<$, and it is unavoidable rather than an oversight.

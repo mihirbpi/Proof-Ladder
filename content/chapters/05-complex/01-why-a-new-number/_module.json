@@ -4,7 +4,7 @@
   "chapter": "05-complex",
   "order": 1,
   "titles": {
-    "l1": "A place nothing lands",
+    "l1": "A turn that no number makes",
     "l2": "The gap in the squares",
     "l3": "Why we needed a new number",
     "l4": "Why we needed a new number",
@@ -15,8 +15,8 @@
   },
   "kernelIdea": "x² ≥ 0 for every real x, so x² + 1 = 0 has no real solution. Roots of polynomials matter enough that mathematicians extended the number system rather than accept the gap.",
   "kernels": {
-    "l1": "When you fold a number onto itself, you always land on the plus side. Nothing lands below zero.",
-    "l2": "Every number times itself comes out zero or bigger, whether you started above zero or below. So no number times itself is negative — and that is a gap somebody had to fill.",
+    "l1": "Counting numbers tell you how many. They do not turn you around — so people made a new number whose whole job is turning.",
+    "l2": "Every square you can build holds a real, countable amount — never less than nothing. So no number, multiplied by itself, points you backwards, and that gap is what a new number was built to fill.",
     "l3": "No number on the number line, multiplied by itself, gives a negative answer. So x × x = −1 has no answer among the numbers we have, and mathematicians built a new number to answer it.",
     "l4": "For every x ∈ ℝ, x² ≥ 0, so x² = −1 has no real solution and x² + 1 has no real root. Rather than accept that gap, mathematicians extended ℝ — exactly as ℕ was extended to subtract and ℤ to divide.",
     "l5": "x² ≥ 0 on ℝ by case analysis, so x² + 1 is a real polynomial with no real root; the discriminant of the quadratic formula is where this gap is met in practice.",

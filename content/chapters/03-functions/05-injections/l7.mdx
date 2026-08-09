@@ -3,7 +3,7 @@ level: l7
 title: One-to-one (injections)
 readingTimeMin: 9
 newTerms: ["injective", "one-to-one", "left inverse"]
-anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+anchorExample: "a rule with a declared domain and codomain"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -32,20 +32,20 @@ Equivalently again, in fibre language (§3.3): $|f^{-1}(\{t\})| \leq 1$ for all 
 <Discussion>
   <div slot="know">$e^a = e^b$. Available: $\exp$ is strictly increasing on $\mathbb{R}$, a consequence of $\exp' = \exp > 0$.</div>
   <div slot="want">$a = b$.</div>
-  <div slot="how">Strict monotonicity forbids equal values at distinct points. Proving the general lemma is no harder than the instance, so prove the lemma.</div>
+  <div slot="how">Strictly increasing means bigger inputs always give bigger outputs, which forbids equal values at distinct points. Proving the general lemma is no harder than the instance, so prove the lemma.</div>
 </Discussion>
 
 <Proof title="Proof (general lemma)">
-Let $f : I \to \mathbb{R}$ be strictly increasing on an interval $I$, and suppose $f(a) = f(b)$ with $a, b \in I$. By trichotomy — every pair of reals compares in exactly one of three ways — either $a < b$, $a = b$, or $a > b$. If $a < b$ then $f(a) < f(b)$, contradicting equality; if $a > b$ then $f(a) > f(b)$, likewise. Hence $a = b$, so $f$ is injective.
+Let $f : I \to \mathbb{R}$ be strictly increasing on an interval $I$, and suppose $f(a) = f(b)$ with $a, b \in I$. Any two reals compare in exactly one of three ways, so either $a < b$, $a = b$, or $a > b$. If $a < b$ then $f(a) < f(b)$, contradicting equality; if $a > b$ then $f(a) > f(b)$, likewise. Hence $a = b$, so $f$ is injective.
 
 Applying this to $\exp$, which is strictly increasing since $\exp' = \exp > 0$ everywhere, gives injectivity of $\exp$.
 </Proof>
 
-Strict monotonicity is the standard route to injectivity for real functions, and the derivative test ($f' > 0$ throughout an interval) is the standard route to strict monotonicity. Note the implication is one-way: $f(x) = x^3$ is injective with $f'(0) = 0$, so $f' > 0$ everywhere is sufficient but not necessary.
+Being strictly increasing — bigger inputs always giving bigger outputs — is the standard route to injectivity for real functions, and the derivative test ($f' > 0$ throughout an interval) is the standard route to being strictly increasing. Note the implication is one-way: $f(x) = x^3$ is injective with $f'(0) = 0$, so $f' > 0$ everywhere is sufficient but not necessary.
 
 ## Disproof is cheap
 
-Injectivity is universally quantified, so one collision refutes it (§1.11):
+Injectivity is made about every element, so one collision refutes it (§1.11):
 
 | $f$ | Collision |
 |---|---|
@@ -73,7 +73,7 @@ Since domain and codomain are part of the function (§3.1), this is not a change
 > 4. $f(A \cap B) = f(A) \cap f(B)$ for all $A, B \subseteq S$;
 > 5. $f^{-1}(f(A)) = A$ for all $A \subseteq S$.
 
-<Proof title="Proof of (1) ⇔ (2)">
+<Proof title="Proof that (1) and (2) say the same thing">
 (forward) Suppose $f$ is injective. Fix any $s_0 \in S$ (possible since $S \neq \emptyset$) and define
 $$
 g(t) = \begin{cases} \text{the unique } s \text{ with } f(s) = t, & t \in \operatorname{Im}(f),\\ s_0, & \text{otherwise.}\end{cases}
@@ -97,7 +97,7 @@ Injectivity is the condition under which an equation has at most one solution, a
 
 **One vector's worth of checking replaces a quantified statement about all pairs.** That is a genuine simplification, and it is available only because linearity lets you subtract — which is why the same trick works for no other kind of function.
 
-**In calculus, monotonicity gives injectivity.** If $f' > 0$ throughout an interval then $f$ is strictly increasing there, hence injective, hence invertible on that interval — which is exactly the hypothesis of the inverse-function results and the reason $\sin$ must be restricted to $[-\pi/2,\pi/2]$ before $\sin^{-1}$ exists.
+**In calculus, being strictly increasing gives injectivity.** If $f' > 0$ throughout an interval then $f$ is strictly increasing there, hence injective, hence invertible on that interval — which is exactly the hypothesis of the inverse-function results and the reason $\sin$ must be restricted to $[-\pi/2,\pi/2]$ before $\sin^{-1}$ exists.
 
 The horizontal line test is the graphical form, and the derivative test is the computable one. Note the direction: $f'>0$ implies injective, and the converse fails — $f(x)=x^3$ is injective with $f'(0)=0$. A one-way implication, and §1.7's warning applies.
 

@@ -3,7 +3,7 @@ level: l7
 title: Onto (surjections)
 readingTimeMin: 9
 newTerms: ["surjective", "onto", "right inverse"]
-anchorExample: "f: ℝ → ℝ₊, f(x) = eˣ"
+anchorExample: "a rule with a declared domain and codomain"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -66,7 +66,7 @@ Exhibiting the unhit $t$ is only half; the other half is a *universal* argument 
 > 3. $f$ can be cancelled from the right: for all $u, v : T \to R$, $u \circ f = v \circ f \Rightarrow u = v$;
 > 4. $f(f^{-1}(U)) = U$ for all $U \subseteq T$.
 
-<Proof title="Proof of (1) ⇔ (2)">
+<Proof title="Proof that (1) and (2) say the same thing">
 (forward) Suppose $f$ is surjective. For each $t \in T$ the fibre $f^{-1}(\{t\})$ is nonempty; **choose** an element $h(t)$ from each. Then $f(h(t)) = t$ for all $t$, so $f \circ h = \mathrm{id}_T$.
 
 (backward) Suppose $f \circ h = \mathrm{id}_T$ and let $t \in T$. Then $f(h(t)) = t$ with $h(t) \in S$, so $t \in \operatorname{Im}(f)$.
@@ -78,7 +78,7 @@ The word **choose** in that proof is doing more work than it appears to. Selecti
 
 ## Surjectivity by adjusting the codomain
 
-Every $f : S \to T$ restricts to a surjection $S \to \operatorname{Im}(f)$, giving the canonical factorisation
+Every $f : S \to T$ restricts to a surjection $S \to \operatorname{Im}(f)$, giving the standard factorisation
 $$
 S \to \operatorname{Im}(f) \to T
 $$

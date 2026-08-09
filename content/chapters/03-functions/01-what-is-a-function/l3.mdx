@@ -69,11 +69,11 @@ Every letter has exactly one position, so $f$ is a function. And notice: not eve
 
 ## A rule that fails
 
-Let $S$ be the numbers and try the rule "send $x$ to a number whose square is $x$."
+Let $S$ be the counting numbers and try the rule "send $x$ to a number that divides it."
 
-Feed in $9$. The answer could be $3$, or it could be $-3$. Two answers, so condition 2 fails. This is **not** a function.
+Feed in $6$. The answer could be $2$, or it could be $3$. Two answers, so condition 2 fails. This is **not** a function.
 
-You can repair it by choosing: "send $x$ to the *positive* number whose square is $x$." Now each input has one answer, and it is a function. (It still fails condition 1 on negative inputs, so you would also have to shrink the domain.)
+You can repair it by choosing: "send $x$ to the *largest* number smaller than $x$ that divides it." Now each input has exactly one answer, and it is a function. (It still fails condition 1 at $x = 1$, which has no such divisor, so you would also have to shrink the domain.)
 
 <Warning title="The domain and codomain are part of the function">
 "$f(x) = 1/x$" is not yet a function, because $0$ has no answer. "$f : S \to T$ where $S$ is all the numbers except $0$" *is* a function.

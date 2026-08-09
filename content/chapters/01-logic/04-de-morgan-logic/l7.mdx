@@ -21,7 +21,7 @@ Two statements $p, q$ built from the same atomic statements are **logically equi
 
 Two consequences worth stating explicitly:
 
-- $p \equiv q$ if and only if $p \Leftrightarrow q$ is a tautology — true under every assignment (§1.3). The relation $\equiv$ lives in the metalanguage; $\Leftrightarrow$ lives inside the object language. In practice mathematicians blur the two, and no harm comes of it, but the distinction is real.
+- $p \equiv q$ if and only if $p \Leftrightarrow q$ is a tautology — true under every assignment (§1.3). The symbol $\equiv$ is a remark *about* two statements; $\Leftrightarrow$ is part of a statement itself. In practice mathematicians blur the two, and no harm comes of it, but the distinction is real.
 - Equivalence licenses **substitution**: if $p \equiv q$, then replacing an occurrence of $p$ inside a larger statement by $q$ produces an equivalent statement. This is what makes rewriting a hypothesis a legitimate move in a proof.
 
 ## The laws
@@ -49,7 +49,7 @@ Columns 1–2 agree; columns 3–4 agree. Since a truth table enumerates every a
 
 It is worth also seeing the argument in words, because that is the version that generalises to sets and to quantifiers:
 
-> Suppose $p \wedge q$ fails. Then it is not the case that both hold, so at least one fails — which is precisely $\neg p \vee \neg q$. Conversely, if at least one of $p, q$ fails, then certainly not both hold. The two conditions describe the same situations, hence the same truth value.
+> Suppose $p \wedge q$ fails. Then it is not the case that both hold, so at least one fails — which is precisely $\neg p \vee \neg q$. In the other direction, if at least one of $p, q$ fails, then certainly not both hold. The two conditions describe the same situations, hence the same truth value.
 
 Note that "at least one fails" is an *inclusive* claim: possibly both do. That is why the right-hand side uses $\vee$ and not exclusive or.
 

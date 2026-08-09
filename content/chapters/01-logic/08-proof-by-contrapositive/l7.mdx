@@ -19,15 +19,15 @@ Since $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$ (§1.7), the two condit
 > **Proposition.** For all $x \in \mathbb{R}$, if $x^3 < 0$ then $x < 0$.
 
 <Discussion>
-  <div slot="know">Directly: the hypothesis $x^3 < 0$ tells us about a cube. To extract information about $x$ we would need the monotonicity of the cube-root map $t \mapsto t^{1/3}$ — the arrow $\mapsto$ is read *"maps to"*, naming a function by what it does to a typical input — which is either the proposition itself or a fact requiring its own proof. Factoring $x^3 = x \cdot x^2$ works but forces a case split on $x^2 = 0$ versus $x^2 > 0$.</div>
+  <div slot="know">Directly: the hypothesis $x^3 < 0$ tells us about a cube. To extract information about $x$ we would need to know that cubing preserves order — that bigger inputs give bigger outputs — for $t \mapsto t^{1/3}$ — the arrow $\mapsto$ is read *"maps to"*, naming a function by what it does to a typical input — which is either the proposition itself or a fact requiring its own proof. Factoring $x^3 = x \cdot x^2$ works but forces a case split on $x^2 = 0$ versus $x^2 > 0$.</div>
   <div slot="want">$x < 0$.</div>
-  <div slot="how">Contrapose. The negation of the conclusion is $x \geq 0$ — a positive, usable hypothesis — and the negation of the hypothesis is $x^3 \geq 0$, reachable by two applications of the ordered-field fact that a product of non-negatives is non-negative.</div>
+  <div slot="how">Contrapose. The negation of the conclusion is $x \geq 0$ — a positive, usable hypothesis — and the negation of the hypothesis is $x^3 \geq 0$, reachable by two applications of the fact that a product of non-negatives is non-negative.</div>
 </Discussion>
 
 <Proof>
 We prove the contrapositive: for all $x \in \mathbb{R}$, if $x \geq 0$ then $x^3 \geq 0$.
 
-Let $x \geq 0$. Since $\mathbb{R}$ is an ordered field, the product of two non-negative elements is non-negative; applying this to $x$ and $x$ gives $x^2 \geq 0$, and applying it to $x^2$ and $x$ gives $x^3 \geq 0$.
+Let $x \geq 0$. Since $\mathbb{R}$'s ordering is compatible with its arithmetic, the product of two non-negative elements is non-negative; applying this to $x$ and $x$ gives $x^2 \geq 0$, and applying it to $x^2$ and $x$ gives $x^3 \geq 0$.
 
 Thus $x \geq 0 \Rightarrow x^3 \geq 0$. By contraposition, $x^3 < 0 \Rightarrow x < 0$, which is the proposition.
 </Proof>

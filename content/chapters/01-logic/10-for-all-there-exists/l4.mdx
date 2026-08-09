@@ -2,7 +2,7 @@
 level: l4
 title: For all, there exists
 readingTimeMin: 7
-newTerms: ["quantifier", "universal quantifier", "existential quantifier", "unique"]
+newTerms: ["quantifier", "*for all* quantifier", "*there exists* quantifier", "unique"]
 anchorExample: "3x − 1 = 0"
 ---
 
@@ -11,9 +11,9 @@ import Warning from '@/components/Warning.astro';
 
 Module 1.1 noted that $x \geq 1$ is not a statement: it has a free variable, so it has no truth value until $x$ is pinned down. There are two ways to pin it down, and they are called **quantifiers**.
 
-## The universal quantifier
+## The *for all* quantifier
 
-The symbol $\forall$ is read "for all" or "for every". The **universal quantifier** asserts a property of every element of a stated set:
+The symbol $\forall$ is read "for all" or "for every". The ***for all* quantifier** asserts a property of every element of a stated set:
 $$
 \forall x \in \mathbb{R},\; x^2 \geq 0.
 $$
@@ -27,9 +27,9 @@ $$
 $$
 A quantified statement without a stated domain is incomplete. Write the $\in$.
 
-## The existential quantifier
+## The *there exists* quantifier
 
-The symbol $\exists$ is read "there exists". The **existential quantifier** asserts that at least one element has the property:
+The symbol $\exists$ is read "there exists". The ***there exists* quantifier** asserts that at least one element has the property:
 $$
 \exists x \in \mathbb{R},\; 3x - 1 = 0.
 $$
@@ -39,8 +39,8 @@ $$
 $$
 which is **false** — no integer works. Same predicate, different domain, different truth value.
 
-<Warning title="∃ never means exactly one">
-$\exists x \in \mathbb{R},\, x^2 = 4$ is true, and there are two such $x$. The existential quantifier says *at least* one; it is completely silent on how many. If you want exactly one, you must say so.
+<Warning title="There exists never means exactly one">
+$\exists x \in \mathbb{R},\, x^2 = 4$ is true, and there are two such $x$. The *there exists* quantifier says *at least* one; it is completely silent on how many. If you want exactly one, you must say so.
 </Warning>
 
 ## Unique existence
@@ -71,7 +71,7 @@ The two rows are mirror images, and the mirror is negation — which is module 1
 
 ## Quantifiers are hidden everywhere
 
-Most theorems are universally quantified conditionals whose $\forall$ is left unwritten:
+Most theorems are if–then claim made about every elements whose $\forall$ is left unwritten:
 
 > If $x > 1$ then $x^2 > 1$
 

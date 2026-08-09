@@ -22,7 +22,7 @@ $$
 
 The representation is unique, which is what makes $\operatorname{Re}$ and $\operatorname{Im}$ well defined (§3.1) — and it is the source of the chapter's most productive technique: **one complex equation is two real equations**, extracted by comparing parts.
 
-<Warning title="Im(z) ∈ ℝ">
+<Warning title="The imaginary part is itself a real number">
 $\operatorname{Im}(3+4i) = 4$, not $4i$. This is not a quibble: $\operatorname{Im}$ appears in $|z|^2 = \operatorname{Re}(z)^2 + \operatorname{Im}(z)^2$ and in $\operatorname{Im}(z) = (z-\bar z)/(2i)$, and both formulas are wrong by a factor of $i$ under the other convention.
 </Warning>
 
@@ -41,14 +41,14 @@ $$
 $$
 each inclusion a one-line element chase and each properness a single witness ($-1$, $\tfrac12$, $\sqrt2$, $i$), with only $\sqrt2$ requiring real work (§4.7).
 
-Strictly these are **canonical embeddings** rather than literal containments: constructed carefully, the integer $3$, the rational $3/1$, the Dedekind cut $3$, and the pair $(3,0)$ are four distinct objects. What holds is that each system embeds injectively and operation-preservingly in the next, and everyone identifies along the embeddings.
+Strictly these are **standard identifications** rather than literal containments: constructed carefully, the integer $3$, the rational $3/1$, the Dedekind cut $3$, and the pair $(3,0)$ are four distinct objects. What holds is that each system embeds injectively and operation-preservingly in the next, and everyone identifies along the embeddings.
 
-## $\mathbb{C}$ is not orderable
+## The complex numbers cannot be ordered
 
 > **Proposition.** There is no order on $\mathbb{C}$ making it an ordered field.
 
 <Proof>
-Suppose such an order existed. In any ordered field $x^2 \geq 0$ for all $x$, by trichotomy and the sign rules. Then $-1 = i^2 \geq 0$ and $1 = 1^2 \geq 0$, so adding, $0 = (-1) + 1 \geq 0 + 0$ gives nothing — instead argue directly: $-1 \geq 0$ implies $0 \geq 1$ by adding $1$, while $1 \geq 0$; hence $0 = 1$, contradicting the field axiom $1 \neq 0$.
+Suppose such an order existed. In any ordered field $x^2 \geq 0$ for all $x$: every element is positive, zero, or negative, and squaring any of the three gives something non-negative. Then $-1 = i^2 \geq 0$ and $1 = 1^2 \geq 0$, so adding, $0 = (-1) + 1 \geq 0 + 0$ gives nothing — instead argue directly: $-1 \geq 0$ implies $0 \geq 1$ by adding $1$, while $1 \geq 0$; hence $0 = 1$, contradicting the field axiom $1 \neq 0$.
 </Proof>
 
 This is a genuine loss, and the trade is explicit: $\mathbb{C}$ buys algebraic closure at the cost of order. Practically, comparisons in $\mathbb{C}$ go through the modulus $|z|$ (§5.6), which is real-valued and ordered — and $|z| < |w|$ is a statement about sizes, not a partial order on $\mathbb{C}$ compatible with multiplication.
@@ -71,7 +71,7 @@ Writing $zw = 1$ and "equating parts" to get $z = 1$ and $w = 1$ is nonsense —
 The step that is easy to skip is the separation, and it is where the algebra lives.
 </Warning>
 
-## $\mathbb{C}$ versus $\mathbb{R}^2$
+## Complex numbers versus plain coordinate pairs
 
 The map $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ is a bijection $\mathbb{C}\to\mathbb{R}^2$, and it respects addition exactly: adding complex numbers is adding the pairs coordinate by coordinate. As far as *addition* is concerned, the two systems are the same thing.
 

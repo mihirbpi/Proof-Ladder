@@ -3,7 +3,7 @@ level: l7
 title: The three steps
 readingTimeMin: 8
 newTerms: ["base case", "inductive step", "inductive hypothesis"]
-anchorExample: "Σ(2j−1) = n²"
+anchorExample: "the odd numbers add up to a square"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -16,7 +16,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 1. **Statement.** Define $A(n)$ precisely and fix $n_0$.
 2. **Base case.** Prove $A(n_0)$.
-3. **Inductive step.** Prove $\forall k \geq n_0,\ A(k)\Rightarrow A(k+1)$, the antecedent being the **inductive hypothesis**.
+3. **Inductive step.** Prove $\forall k \geq n_0,\ A(k)\Rightarrow A(k+1)$, whose hypothesis is the **inductive hypothesis**.
 
 Step 1 is not ceremony. A large fraction of failed induction proofs fail because $A(n)$ was never written down, so it is unclear what the base case is checking or what the step is transforming.
 
@@ -50,7 +50,7 @@ The step establishes
 $$
 \forall k \geq n_0\ \big(A(k)\Rightarrow A(k+1)\big),
 $$
-a universally quantified conditional. Nothing in it asserts $A(k)$ for any particular $k$; discharging the hypothesis to prove a conditional is §1.6's standard method.
+a if–then claim made about every element. Nothing in it asserts $A(k)$ for any particular $k$; discharging the hypothesis to prove a conditional is §1.6's standard method.
 
 The worry is worth taking seriously precisely because dissolving it requires reading the quantifier structure carefully — which is what Chapter 1 was for.
 

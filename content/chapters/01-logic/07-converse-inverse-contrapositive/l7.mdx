@@ -12,7 +12,7 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-Given $p \Rightarrow q$, three further conditionals are obtainable by exchanging the antecedent and consequent, negating both, or doing both. The named move is **flip it around**, and the substantive question is which flips preserve truth.
+Given $p \Rightarrow q$, three further conditionals are obtainable by exchanging the hypothesis and the conclusion, negating both, or doing both. The named move is **flip it around**, and the substantive question is which flips preserve truth.
 
 $$
 \underbrace{p \Rightarrow q}_{\text{original}}
@@ -84,8 +84,8 @@ $$
 
 A disjunctive conclusion is proved by the standard manoeuvre: assume the negation of one disjunct and prove the other. So: assume $x + y \in \mathbb{Q}$ and $x \in \mathbb{Q}$; then $y = (x+y) - x$ is a difference of rationals, hence rational — which is the remaining disjunct. Notice that the correct De Morgan negation was essential; the naive negation "$x \notin \mathbb{Q}$ **and** $y \in \mathbb{Q}$" is a strictly stronger conclusion, and it is not provable from the hypothesis.
 
-<Warning title="Affirming the consequent, and its mathematical disguises">
-Believing the converse of a true conditional is the fallacy of *affirming the consequent*. In mathematics it rarely appears so nakedly; it appears as:
+<Warning title="Running the arrow backwards, and its mathematical disguises">
+Believing the converse of a true conditional is a named fallacy — logicians call it *affirming the consequent*, the consequent being the *then* half. In mathematics it rarely appears so nakedly; it appears as:
 
 - proving the wrong direction of a biconditional and stopping (§1.9);
 - a chain of manipulations written with $\Leftrightarrow$ where only $\Rightarrow$ holds, e.g. $x = y \Rightarrow x^2 = y^2$, which is not reversible;

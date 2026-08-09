@@ -3,7 +3,7 @@ level: l5
 title: Subsets
 readingTimeMin: 9
 newTerms: ["subset", "proper subset", "transitive"]
-anchorExample: "ℤ ⊆ ℚ"
+anchorExample: "every integer is a fraction"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -17,7 +17,7 @@ $$
 
 $A$ is a **subset** of $S$ when every element of $A$ is an element of $S$.
 
-Read that definition carefully, because it is a *universally quantified conditional* — the two constructions of modules 1.5 and 1.10 stacked. And the shape of the definition dictates the shape of every proof about it, with no choices left to make:
+Read that definition carefully, because it is a *if–then claim made about every element* — the two constructions of modules 1.5 and 1.10 stacked. And the shape of the definition dictates the shape of every proof about it, with no choices left to make:
 
 > **To prove $A \subseteq S$: take an arbitrary $x \in A$ and follow it until you reach $x \in S$.**
 
@@ -53,7 +53,7 @@ The content is the observation that being rational is a matter of being *express
 
 **The empty set is a subset of everything.** $\emptyset \subseteq S$ for every $S$.
 
-<Warning title="∅ ⊆ S is vacuous truth, not a special rule">
+<Warning title="The empty set sits inside everything by vacuous truth, not by decree">
 To prove $\emptyset \subseteq S$ you must show $\forall x\,(x \in \emptyset \Rightarrow x \in S)$.
 
 Take an arbitrary $x \in \emptyset$. There are none — so the hypothesis $x \in \emptyset$ is false for every $x$, and a conditional with a false hypothesis is true (module 1.5). Every case is vacuously satisfied because there are no cases.
@@ -97,7 +97,7 @@ $$
 $$
 mean what you expect: $\mathbb{N} \subseteq \mathbb{R}$ follows, without a separate proof.
 
-<Warning title="∈ and ⊆ are different relations">
+<Warning title="Being an element and being a subset are different relations">
 $\in$ relates an object to a set. $\subseteq$ relates a set to a set. Mixing them is the most common error in this chapter.
 
 Let $S = \{1, 2\}$. Then:

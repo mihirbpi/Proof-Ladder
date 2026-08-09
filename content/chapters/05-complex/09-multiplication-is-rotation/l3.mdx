@@ -8,7 +8,6 @@ anchorExample: "the number that turns"
 
 import Figure from '@/components/Figure.astro';
 import ComplexPlane from '@/components/ComplexPlane.astro';
-import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
@@ -71,41 +70,26 @@ Multiplying powers means adding the exponents. Here the exponents are $i\theta_1
 
 The distances $r_1$ and $r_2$ are just ordinary numbers out front, so they multiply as usual.
 
-## The payoff: a trigonometry identity for free
+## Checking the rule where you already know the answer
 
-Take a number at distance $1$ and angle $\theta$, and square it.
+A rule is only worth having if it agrees with what you can see. So test it on the one case you have checked by hand.
 
-<Proof>
-By the rule, squaring doubles the angle and leaves the distance at $1$:
-$$
-\big(e^{i\theta}\big)^2 = e^{i(2\theta)}.
-$$
+Take $i$ itself: distance $1$, a quarter turn round. Multiply it by itself.
 
-Now write both sides out using Euler's formula (module 5.7).
+**By the rule:** multiply the distances, $1 \times 1 = 1$. Add the angles, a quarter turn plus a quarter turn — a half turn.
 
-**Right side:** $e^{i(2\theta)} = \cos(2\theta) + i\sin(2\theta)$.
+**By the picture (module 5.1):** a half turn leaves you pointing backwards, which is where $-1$ lives.
 
-**Left side:** $\big(\cos\theta + i\sin\theta\big)^2$. Expand it:
-$$
-= \cos^2\theta + 2i\cos\theta\sin\theta + i^2\sin^2\theta
-= \big(\cos^2\theta - \sin^2\theta\big) + i\big(2\cos\theta\sin\theta\big).
-$$
+So the rule says $i \times i$ sits at distance $1$, pointing backwards. That is exactly $-1$, and it is what module 5.3 told you to write.
 
-The two sides are equal, so their real parts match and their imaginary parts match (module 5.2):
-$$
-\cos(2\theta) = \cos^2\theta - \sin^2\theta, \qquad
-\sin(2\theta) = 2\cos\theta\sin\theta.
-$$
-</Proof>
-
-Those are the **double-angle formulas**. If you have met them before, you probably memorised them. Here they fell out of one line of algebra — and *both at once*, because one complex equation carries two real ones.
+**The rule and the picture agree.** Try the same test on $i \times i \times i$: three quarter turns, so three-quarters of the way round, still at distance $1$ — and that is $-i$.
 
 <Warning title="Distances multiply, angles add">
-Do not multiply the angles. $2e^{i\cdot30°} \times 3e^{i\cdot 40°}$ is $6e^{i\cdot70°}$, not $6e^{i\cdot 1200°}$.
+Do not multiply the angles. A point at distance $2$ turned a tenth of the way round, times a point at distance $3$ turned a fifth of the way round, sits at distance $6$ turned *three tenths* of the way round — not some much larger turn.
 
 The two components behave differently, and that asymmetry is the whole point of the rule.
 </Warning>
 
 <Aside>
-The same trick with cubes gives the triple-angle formulas, and with $n$th powers gives all of them. The general statement is called De Moivre's formula, and it means you never have to memorise a multiple-angle identity again — you can derive any of them in a minute.
+In high school you will meet a subject called trigonometry, which has a long list of formulas about angles that most people memorise. Every one of them drops out of the rule in this module in about a minute. That is worth remembering when you get there: the list is not something to learn by heart, it is something this one picture explains.
 </Aside>

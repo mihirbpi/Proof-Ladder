@@ -3,7 +3,7 @@ level: l4
 title: Induction in set theory
 readingTimeMin: 6
 newTerms: ["power set"]
-anchorExample: "Σ(2j−1) = n²"
+anchorExample: "the odd numbers add up to a square"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -75,7 +75,7 @@ Hence $|\mathcal{P}(S)| = 2^n$.
 
 This proof explains the notation $2^S$ for the power set: it is literally the set of functions from $S$ into a two-element set, and the exponential notation for function spaces makes the cardinality formula automatic.
 
-<Warning title="∅ and S are subsets">
+<Warning title="The empty set and the whole set both count as subsets">
 $\emptyset \in \mathcal{P}(S)$ and $S \in \mathcal{P}(S)$ always. Omitting either breaks the count immediately: without $\emptyset$ a two-element set would have $3$ subsets.
 
 Watch the levels, too. For $S = \{a,b\}$: $a \in S$ but $a \notin \mathcal{P}(S)$; $\{a\} \subseteq S$ and $\{a\} \in \mathcal{P}(S)$. The elements of $\mathcal{P}(S)$ are sets, and module 2.3's $\in$-versus-$\subseteq$ distinction is what keeps this straight.

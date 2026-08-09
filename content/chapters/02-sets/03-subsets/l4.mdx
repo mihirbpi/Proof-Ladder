@@ -3,7 +3,7 @@ level: l4
 title: Subsets
 readingTimeMin: 8
 newTerms: ["subset", "proper subset", "element chasing", "transitive"]
-anchorExample: "intervals in ℝ"
+anchorExample: "intervals on the number line"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -18,7 +18,7 @@ $$
 A \subseteq S \quad\Leftrightarrow\quad \forall x\;(x \in A \Rightarrow x \in S).
 $$
 
-That equivalence is the whole module. $A \subseteq S$ is a universally quantified conditional, so module 1.12 already told us how to prove it (**take any one and follow it**) and how to refute it (**one bad apple**: exhibit $x \in A$ with $x \notin S$).
+That equivalence is the whole module. $A \subseteq S$ is a if–then claim made about every element, so module 1.12 already told us how to prove it (**take any one and follow it**) and how to refute it (**one bad apple**: exhibit $x \in A$ with $x \notin S$).
 
 ## Element chasing
 
@@ -52,14 +52,14 @@ Note that the containment is proper: $5 \in T$ but $5 \notin S$. Proper containm
 
 $T \subseteq S$ is false. To show it, produce one element: $5 \in T$ and $5 \notin S$. Done — a single counterexample refutes a universal claim.
 
-<Warning title="∈ versus ⊆">
+<Warning title="Being an element versus being a subset">
 $$2 \in \{1,2,3\}, \qquad \{2\} \subseteq \{1,2,3\}.$$
 The first says a number is an element; the second says a set is contained. $2 \subseteq \{1,2,3\}$ is a type error, and $\{2\} \in \{1,2,3\}$ is false.
 
 The distinction sharpens with nested sets. For $A = \{1, \{2,3\}\}$: $1 \in A$ ✓, $\{2,3\} \in A$ ✓, $2 \in A$ ✗, $\{2,3\} \subseteq A$ ✗, $\{1\} \subseteq A$ ✓.
 </Warning>
 
-## $\emptyset \subseteq S$, vacuously
+## The empty set sits inside every set, vacuously
 
 *A reminder of the symbols in play: $\emptyset$ reads "the empty set".*
 
