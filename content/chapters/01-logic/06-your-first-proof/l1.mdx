@@ -8,11 +8,11 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
-import Blocks from '@/components/Blocks.astro';
+import Tower from '@/components/Tower.astro';
 
 Sam builds a block tower. Ten blocks high. Wobble, wobble.
 
-<Blocks colors={["red", "blue", "green", "yellow"]} label="wobble, wobble" />
+<Tower count={10} state="leaning" label="wobble, wobble" />
 
 You say: "That tower is going to fall."
 
@@ -27,6 +27,8 @@ That is how you know! You started from what you're given — the tower is leanin
 A **because** is the middle of your thinking, said out loud.
 
 Crash! Sam's tower falls. You were right, and you said why *before* it happened.
+
+<Tower count={10} state="fallen" label="crash!" />
 
 <TryIt>
 Say one thing you think will happen soon. Then say "because" and finish the sentence. Start from what you're given.

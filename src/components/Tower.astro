@@ -1,0 +1,135 @@
+---
+// Sam's block tower, for §1.6 at l1 — "ten blocks high, wobble wobble".
+//
+// The page previously reached for <Blocks>, which draws a horizontal ROW of
+// four. A row is right for §1.2's "all the blocks are red" and wrong for a
+// tower that is about to fall over: the picture contradicted the sentence
+// beside it, which is the one thing a five-year-old's picture must never do.
+//
+// count   how many blocks in the stack (the text says ten)
+// state   "leaning" — still up, tilted, about to go
+//         "fallen"  — the same blocks on the floor, for the "Crash!" moment
+//
+// Each block also gets its own pattern, so the stack reads as separate blocks
+// even for a reader who cannot separate the hues (§C8).
+export interface Props {
+  count?: number;
+  state?: 'leaning' | 'fallen';
+  label?: string | null;
+}
+const { count = 10, state = 'leaning', label = null } = Astro.props;
+
+const BW = 44;
+const BH = 26;
+const LEAN = 5.2; // how far each block slides over the one below it
+
+const GROUND = 300;
+const SAM_X = 58;
+const TOWER_X = 168;
+
+const OVERHANG = (count - 1) * LEAN;
+
+const COLORS = ['red', 'blue', 'green', 'yellow'] as const;
+const PATTERNS = { red: 'plain', blue: 'dots', green: 'stripes', yellow: 'checks' } as const;
+
+// Where each block sits. Standing: stacked and sliding sideways as it rises.
+// Fallen: heaped on the floor in two loose rows at assorted angles — laid out
+// in rows rather than one long line, because ten blocks end to end ran a third
+// of the way past the right-hand edge of the box.
+const PER_ROW = 5;
+const blocks = Array.from({ length: count }, (_, i) => {
+  const color = COLORS[i % COLORS.length];
+  if (state === 'leaning') {
+    return { color, x: TOWER_X + i * LEAN, y: GROUND - (i + 1) * BH, rot: 4.5 };
+  }
+  const row = Math.floor(i / PER_ROW);
+  const col = i % PER_ROW;
+  return {
+    color,
+    x: TOWER_X - 18 + col * 32 + row * 14,
+    y: GROUND - BH - row * (BH - 4),
+    rot: (i % 2 === 0 ? 1 : -1) * (12 + (i % 4) * 8),
+  };
+});
+
+// Size the box from where the blocks actually ended up. A rotated rectangle
+// reaches past its own corners, so each one is allowed half its diagonal.
+const REACH = Math.hypot(BW, BH) / 2 - BW / 2;
+const RIGHT = Math.max(...blocks.map((b) => b.x + BW)) + REACH;
+const W = Math.max(Math.ceil(RIGHT) + 24, 320);
+const H = GROUND + (label ? 34 : 14);
+
+const alt = state === 'leaning'
+  ? `Sam standing beside a tower of ${count} toy blocks that leans over to one side, about to fall.`
+  : `Sam standing beside ${count} toy blocks scattered on the ground after the tower fell.`;
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="tower"
+     role="img" aria-label={alt}>
+  <style>
+    .tower .cube  { stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-linejoin: round; }
+    .tower .skin  { fill: var(--color-card, #F8F9F5); stroke: var(--color-ink, #14182B); stroke-width: 2.4; }
+    .tower .hair  { fill: var(--color-fur-dark, #A96F3E); stroke: var(--color-ink, #14182B); stroke-width: 2.2; stroke-linejoin: round; }
+    .tower .body  { stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-linejoin: round; }
+    .tower .limb  { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.6; stroke-linecap: round; }
+    .tower .face  { fill: var(--color-ink, #14182B); }
+    .tower .smile { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 1.8; stroke-linecap: round; }
+    .tower .floor { stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-linecap: round; opacity: 0.5; }
+    .tower .name  { font-family: var(--font-display, sans-serif); font-size: 13px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .tower .cap   { font-family: var(--font-display, sans-serif); font-size: 14px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .tower .wob   { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.2; stroke-linecap: round; opacity: 0.55; }
+  </style>
+
+  <defs>
+    <pattern id="tw-dots" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="5" cy="5" r="2" fill="var(--color-ink, #14182B)" opacity="0.34" />
+    </pattern>
+    <pattern id="tw-stripes" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="4" height="10" fill="var(--color-ink, #14182B)" opacity="0.28" />
+    </pattern>
+    <pattern id="tw-checks" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="var(--color-ink, #14182B)" opacity="0.28" />
+      <rect x="6" y="6" width="6" height="6" fill="var(--color-ink, #14182B)" opacity="0.28" />
+    </pattern>
+  </defs>
+
+  <line x1="16" y1={GROUND} x2={W - 16} y2={GROUND} class="floor" />
+
+  {/* Sam — the same figure as <Kids>, so he is recognisably the same boy */}
+  <g>
+    <path d={`M ${SAM_X - 9} ${GROUND - 32} v 30 M ${SAM_X + 9} ${GROUND - 32} v 30`} class="limb" />
+    <path d={`M ${SAM_X - 17} ${GROUND - 72} q 17 -7 34 0 l 4 42 h -42 Z`} class="body"
+          fill="var(--color-toy-blue)" />
+    {/* arms up — he is watching it wobble */}
+    <path d={`M ${SAM_X - 18} ${GROUND - 66} l -13 -18 M ${SAM_X + 18} ${GROUND - 66} l 13 -18`} class="limb" />
+    <circle cx={SAM_X} cy={GROUND - 92} r="19" class="skin" />
+    <path d={`M ${SAM_X - 19} ${GROUND - 98} q 4 -18 19 -18 q 15 0 19 18 q -8 -8 -19 -8 q -11 0 -19 8 Z`} class="hair" />
+    <circle cx={SAM_X - 7} cy={GROUND - 94} r="2.4" class="face" />
+    <circle cx={SAM_X + 7} cy={GROUND - 94} r="2.4" class="face" />
+    <path d={`M ${SAM_X - 6} ${GROUND - 85} q 6 5 12 0`} class="smile" />
+    <text x={SAM_X} y={GROUND + 18} class="name" text-anchor="middle">Sam</text>
+  </g>
+
+  {blocks.map((b) => (
+    <g transform={`rotate(${b.rot} ${b.x + BW / 2} ${b.y + BH / 2})`}>
+      <rect x={b.x} y={b.y} width={BW} height={BH} rx="5" class="cube"
+            fill={`var(--color-toy-${b.color})`} />
+      {PATTERNS[b.color] !== 'plain' && (
+        <rect x={b.x} y={b.y} width={BW} height={BH} rx="5"
+              fill={`url(#tw-${PATTERNS[b.color]})`} stroke="none" />
+      )}
+    </g>
+  ))}
+
+  {state === 'leaning' && (
+    <g class="wob">
+      <path d={`M ${TOWER_X + OVERHANG + BW + 12} 40 q 10 8 0 16 q -10 8 0 16`} />
+      <path d={`M ${TOWER_X - 22} 52 q -10 8 0 16 q 10 8 0 16`} />
+    </g>
+  )}
+
+  {label && <text x={W / 2} y={H - 8} class="cap" text-anchor="middle">{label}</text>}
+</svg>
+
+<style>
+  .tower { width: 100%; height: auto; max-width: 420px; display: block; margin: 0 auto; }
+</style>

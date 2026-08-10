@@ -8,6 +8,8 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Figure from '@/components/Figure.astro';
 
 Put your finger in the middle of the grid. That is home.
 
@@ -22,6 +24,10 @@ But you did not walk in a straight line. You turned a corner.
 Take a piece of string. Stretch it from home straight to your spot. Now measure the string.
 
 It is shorter than $7$. Straight lines are always shorter than corners.
+
+<Figure alt="A grid with a dot three squares across and four up, and a straight line drawn from the middle to the dot." caption="the straight line from home to the spot — that is the how far.">
+  <ComplexPlane points={[{re: 3, im: 4, label: "3 + 4i"}]} vectors={[{re: 3, im: 4}]} range={5} />
+</Figure>
 
 That string length is the **how far**. Every spot has one.
 

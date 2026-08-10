@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import SuccessorChain from '@/components/SuccessorChain.astro';
 
 Here is a machine with one big button on it.
 
@@ -22,6 +23,8 @@ Put the $1$ back in. Press! Out comes $2$.
 Press again. $3$!
 
 Press again. $4$!
+
+<SuccessorChain mode="chain" count={5} />
 
 You could press that button all day. You could press it for a hundred years.
 

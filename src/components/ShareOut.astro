@@ -1,0 +1,107 @@
+---
+// Sharing counters out, with the leftovers shown — for §4.2 and §4.4 at l1.
+//
+// Both pages are about the same physical act: deal the counters out fairly and
+// see what will not go. §4.2 deals them into pairs ("one left over! that one
+// has no partner"), §4.4 deals them onto three friends' plates. The leftovers
+// are ringed and captioned, because they are the point of both pages.
+//
+// total   how many counters to deal out
+// groups  how many go in each helping — 2 for pairing, 3 for three friends
+// mode    "pairs"  — loose pairs on the floor, for §4.2
+//         "plates" — one plate per friend, for §4.4
+export interface Props {
+  total?: number;
+  groups?: number;
+  mode?: 'pairs' | 'plates';
+  caption?: string | null;
+}
+const { total = 7, groups = 2, mode = 'pairs', caption = null } = Astro.props;
+
+const full = Math.floor(total / groups);
+const left = total % groups;
+
+const DOT = 13;
+const CHW = 6.4;
+
+// ---- pairs -----------------------------------------------------------------
+const PAIR_W = 62;
+const PAIR_GAP = 20;
+// ---- plates ----------------------------------------------------------------
+const PLATE_W = 104;
+const PLATE_GAP = 18;
+
+const NAMES = ['Sam', 'Pip', 'Ada'];
+
+const bodyW = mode === 'pairs'
+  ? full * PAIR_W + (full - 1) * PAIR_GAP + (left ? PAIR_GAP + 34 : 0)
+  : groups * PLATE_W + (groups - 1) * PLATE_GAP + (left ? PLATE_GAP + 34 : 0);
+
+const W = Math.max(bodyW + 32, (caption?.length ?? 0) * CHW + 30, 260);
+const XOFF = (W - bodyW) / 2;
+const ROW_Y = mode === 'pairs' ? 46 : 56;
+const H = (mode === 'pairs' ? 108 : 132) + (caption ? 22 : 0);
+
+const leftWord = left === 0 ? 'nothing left over' : left === 1 ? 'one left over' : `${left} left over`;
+const alt = mode === 'pairs'
+  ? `${total} counters dealt into ${full} pairs, with ${leftWord}.`
+  : `${total} counters shared onto ${groups} plates, ${full} each, with ${leftWord}.`;
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="shareout"
+     role="img" aria-label={alt}>
+  <style>
+    .shareout .dot   { fill: var(--color-toy-blue); stroke: var(--color-ink, #14182B); stroke-width: 2.2; }
+    .shareout .spare { fill: var(--color-toy-orange, #E08A3C); stroke: var(--color-ink, #14182B); stroke-width: 2.2; }
+    .shareout .pen   { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.2; opacity: 0.55; }
+    .shareout .plate { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.4; }
+    .shareout .ring  { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-dasharray: 6 5; }
+    .shareout .tag   { font-family: var(--font-display, sans-serif); font-size: 12px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .shareout .over  { font-family: var(--font-display, sans-serif); font-size: 12px; font-weight: 600; fill: var(--color-toy-red); }
+    .shareout .cap   { font-family: var(--font-display, sans-serif); font-size: 13px; fill: color-mix(in oklab, var(--color-ink, #14182B) 65%, transparent); }
+  </style>
+
+  {mode === 'pairs' && Array.from({ length: full }, (_, i) => {
+    const x = XOFF + i * (PAIR_W + PAIR_GAP);
+    return (
+      <g>
+        <rect x={x} y={ROW_Y - DOT - 9} width={PAIR_W} height={DOT * 2 + 18} rx={DOT + 9} class="pen" />
+        <circle cx={x + PAIR_W / 2 - 15} cy={ROW_Y} r={DOT} class="dot" />
+        <circle cx={x + PAIR_W / 2 + 15} cy={ROW_Y} r={DOT} class="dot" />
+        <text x={x + PAIR_W / 2} y={ROW_Y + DOT + 27} class="tag" text-anchor="middle">pair</text>
+      </g>
+    );
+  })}
+
+  {mode === 'plates' && Array.from({ length: groups }, (_, i) => {
+    const x = XOFF + i * (PLATE_W + PLATE_GAP);
+    return (
+      <g>
+        <rect x={x} y={ROW_Y - 30} width={PLATE_W} height={62} rx="14" class="plate" />
+        {Array.from({ length: full }, (_, j) => (
+          <circle cx={x + PLATE_W / 2 + (j - (full - 1) / 2) * (DOT * 2 + 5)} cy={ROW_Y} r={DOT} class="dot" />
+        ))}
+        <text x={x + PLATE_W / 2} y={ROW_Y + 54} class="tag" text-anchor="middle">{NAMES[i] ?? `friend ${i + 1}`}</text>
+      </g>
+    );
+  })}
+
+  {left > 0 && (() => {
+    const x = XOFF + bodyW - 34;
+    return (
+      <g>
+        {Array.from({ length: left }, (_, j) => (
+          <circle cx={x + 17} cy={ROW_Y - (left - 1) * 15 + j * 30} r={DOT} class="spare" />
+        ))}
+        <rect x={x} y={ROW_Y - (left - 1) * 15 - DOT - 7} width="34"
+              height={(left - 1) * 30 + DOT * 2 + 14} rx="16" class="ring" />
+        <text x={x + 17} y={ROW_Y + (left - 1) * 15 + DOT + 27} class="over" text-anchor="middle">left over</text>
+      </g>
+    );
+  })()}
+
+  {caption && <text x={W / 2} y={H - 6} class="cap" text-anchor="middle">{caption}</text>}
+</svg>
+
+<style>
+  .shareout { width: 100%; height: auto; max-width: 480px; display: block; margin: 0 auto; }
+</style>

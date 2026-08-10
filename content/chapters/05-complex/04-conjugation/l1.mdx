@@ -8,12 +8,18 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Figure from '@/components/Figure.astro';
 
 Draw a line straight across the page. That line is a **mirror**.
 
 Now put a dot above the line. Two squares up.
 
 Where is its mirror dot? Two squares *below* the line, straight down.
+
+<Figure alt="A grid with a dot two squares above the across-line and a matching dot two squares below it, the same distance across." caption="the dot and its mirror dot — across stays, up becomes down.">
+  <ComplexPlane points={[{re: 3, im: 2, label: "the dot"}, {re: 3, im: -2, label: "its mirror"}]} range={4} />
+</Figure>
 
 Across stays the same. Up becomes down. That is the whole rule.
 

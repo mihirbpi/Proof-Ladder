@@ -8,12 +8,15 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import SuccessorChain from '@/components/SuccessorChain.astro';
 
 Let's try a **broken machine**.
 
 Start at $0$. Press! Out comes $1$. Press! Out comes... $0$ again!
 
 $0$, $1$, $0$, $1$, $0$, $1$. Round and round forever.
+
+<SuccessorChain mode="loop" count={4} />
 
 Is that counting? No! Real counting never comes home. You never get back to zero.
 
@@ -24,6 +27,8 @@ Now here is another broken machine.
 Press on $2$ — out comes $5$. Press on $3$ — out comes $5$ too!
 
 Two different numbers, and they share the same next one. Squished together!
+
+<SuccessorChain mode="merge" count={4} />
 
 Real counting never squishes. So here is another rule: **two different numbers never share a next one.**
 

@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import DominoRow from '@/components/DominoRow.astro';
 
 Dominoes only work if they are **in a line**.
 
@@ -18,6 +19,8 @@ Now put your dominoes in a big scattered pile instead.
 Push one. What happens?
 
 Almost nothing! It bumps whatever is next to it, and then it stops. No chain.
+
+<DominoRow count={6} fallen={3} gapAfter={2} pushed={true} />
 
 There is no line, so there is no chain.
 

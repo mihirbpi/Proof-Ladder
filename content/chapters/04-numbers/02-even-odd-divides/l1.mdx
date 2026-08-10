@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ShareOut from '@/components/ShareOut.astro';
 
 Get 6 counters. Now pair them up. Two, two, two.
 
@@ -16,6 +17,8 @@ All paired! Nothing left. That is a fair share.
 Now get 7 counters. Pair them up again. Two, two, two...
 
 **One left over!** That one has no partner. Poor thing.
+
+<ShareOut total={7} groups={2} mode="pairs" caption="seven counters: three pairs and one left over" />
 
 Try 8. All paired. Try 9. **One left over.**
 

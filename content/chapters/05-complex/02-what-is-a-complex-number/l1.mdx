@@ -8,6 +8,8 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Figure from '@/components/Figure.astro';
 
 Stand up. We are going to make a number by walking.
 
@@ -18,6 +20,10 @@ Now turn a quarter turn to the left. Take $4$ steps **up**.
 Stop! Look where you are standing. *That spot* is the number.
 
 We write it like this: $3 + 4i$.
+
+<Figure alt="A grid with a dot marked three squares across and four squares up from the middle." caption="three across, four up — that spot is $3 + 4i$.">
+  <ComplexPlane points={[{re: 3, im: 4, label: "3 + 4i"}]} range={5} />
+</Figure>
 
 The $3$ says how far across. The $4$ says how far up. The little $i$ is the turn.
 

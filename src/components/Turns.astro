@@ -1,0 +1,107 @@
+---
+// Quarter turns, seen from above — for §5.1, §5.7 and §5.9 at l1.
+//
+// The whole of Chapter 5 at Kindergarten level runs on one physical idea:
+// stand up, turn a quarter turn, turn again, and now you face backwards. Every
+// page said so and none of them showed it. This draws the child from overhead
+// at each stage, with the amount turned marked between the stages.
+//
+// facing is counted in QUARTER TURNS counterclockwise from "up" (0 = up,
+// 1 = left, 2 = down, 3 = right), matching "turn to the left" in the text.
+//
+// turns   how much to turn at each step, in quarters: [1, 1] or [1, 1, 1, 1]
+// labels  what the child faces at each stage — one more than `turns`
+export interface Props {
+  turns?: number[];
+  labels?: string[];
+  caption?: string | null;
+}
+const {
+  turns = [1, 1],
+  labels = ['the door', 'a wall', 'away from the door'],
+  caption = null,
+} = Astro.props;
+
+const R = 30;
+const CELL = 128;
+const GAP_LABEL = 20;
+
+const stages = turns.reduce<number[]>((acc, t) => [...acc, acc[acc.length - 1] + t], [0]);
+const n = stages.length;
+
+const CHW = 6.4;
+const widest = Math.max(...labels.map((l) => l.length), (caption?.length ?? 0));
+const W = Math.max(n * CELL, widest * CHW + 30);
+const XOFF = (W - n * CELL) / 2;
+const CY = 74;
+const H = CY + R + 46 + (caption ? 24 : 0);
+
+// A quarter turn counterclockwise is −90° on screen, because SVG's y axis
+// points down. Getting this backwards once already sent the dominoes over the
+// wrong way in <DominoRow>, so it is spelled out rather than inlined.
+const angleOf = (quarters: number) => -90 * quarters;
+
+const quarterWords = (q: number) =>
+  q === 1 ? 'a quarter turn' : q === 2 ? 'a half turn' : q === 3 ? 'three quarter turns' : `${q} turns`;
+
+const alt = 'A child seen from above, turning on the spot. '
+  + labels.map((l, i) => `Stage ${i + 1}: facing ${l}`).join('; ')
+  + '. ' + turns.map((t) => quarterWords(t)).join(', then ') + ' between them.';
+---
+<svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="turns"
+     role="img" aria-label={alt}>
+  <style>
+    .turns .ring  { fill: var(--color-card, #F8F9F5); stroke: var(--color-ink, #14182B); stroke-width: 2.4; }
+    .turns .hair  { fill: var(--color-fur-dark, #A96F3E); stroke: var(--color-ink, #14182B); stroke-width: 2; stroke-linejoin: round; }
+    .turns .nose  { fill: var(--color-toy-red); stroke: var(--color-ink, #14182B); stroke-width: 2; stroke-linejoin: round; }
+    .turns .arrow { fill: none; stroke: var(--color-ink, #14182B); stroke-width: 2.4; stroke-linecap: round; }
+    .turns .head  { fill: var(--color-ink, #14182B); }
+    .turns .amt   { font-family: var(--font-display, sans-serif); font-size: 12px; font-weight: 600; fill: color-mix(in oklab, var(--color-ink, #14182B) 72%, transparent); }
+    .turns .lab   { font-family: var(--font-display, sans-serif); font-size: 13px; font-weight: 600; fill: var(--color-ink, #14182B); }
+    .turns .cap   { font-family: var(--font-display, sans-serif); font-size: 13px; fill: color-mix(in oklab, var(--color-ink, #14182B) 65%, transparent); }
+  </style>
+
+  <defs>
+    <marker id="tn-tip" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="head" />
+    </marker>
+  </defs>
+
+  {stages.map((q, i) => {
+    const cx = XOFF + i * CELL + CELL / 2;
+    return (
+      <g>
+        {/* the child from overhead: head, hair at the back, nose pointing the way she faces */}
+        <g transform={`rotate(${angleOf(q)} ${cx} ${CY})`}>
+          <path d={`M ${cx - R} ${CY} a ${R} ${R} 0 0 0 ${R * 2} 0 z`} class="hair" />
+          <circle cx={cx} cy={CY} r={R} class="ring" fill="none" />
+          <circle cx={cx} cy={CY} r={R} class="ring" fill="var(--color-card, #F8F9F5)"
+                  fill-opacity="0" />
+          <path d={`M ${cx - 9} ${CY - R + 4} L ${cx} ${CY - R - 13} L ${cx + 9} ${CY - R + 4} Z`}
+                class="nose" />
+        </g>
+        <circle cx={cx} cy={CY} r={R} class="ring" fill="none" />
+        <text x={cx} y={CY + R + GAP_LABEL} class="lab" text-anchor="middle">{labels[i] ?? ''}</text>
+      </g>
+    );
+  })}
+
+  {turns.map((t, i) => {
+    const x1 = XOFF + i * CELL + CELL / 2 + R + 8;
+    const x2 = XOFF + (i + 1) * CELL + CELL / 2 - R - 8;
+    const mid = (x1 + x2) / 2;
+    return (
+      <g>
+        <path d={`M ${x1} ${CY} Q ${mid} ${CY - 26} ${x2} ${CY}`} class="arrow" marker-end="url(#tn-tip)" />
+        <text x={mid} y={CY - 32} class="amt" text-anchor="middle">{quarterWords(t)}</text>
+      </g>
+    );
+  })}
+
+  {caption && <text x={W / 2} y={H - 8} class="cap" text-anchor="middle">{caption}</text>}
+</svg>
+
+<style>
+  .turns { width: 100%; height: auto; max-width: 560px; display: block; margin: 0 auto; }
+</style>

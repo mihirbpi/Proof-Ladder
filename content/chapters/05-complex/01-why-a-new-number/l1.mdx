@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Turns from '@/components/Turns.astro';
 
 Stand up. Face the door.
 
@@ -18,6 +19,8 @@ Turn that much again.
 Look where you are facing! The **other way**. Away from the door.
 
 Two quarter turns took you all the way round to backwards.
+
+<Turns turns={[1, 1]} labels={["the door", "a wall", "away from the door"]} caption="two quarter turns" />
 
 ## Can a number turn you?
 

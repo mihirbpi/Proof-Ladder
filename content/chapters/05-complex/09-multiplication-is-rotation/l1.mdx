@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Turns from '@/components/Turns.astro';
 
 Stand up and face the door.
 
@@ -22,6 +23,8 @@ Two quarters. That is a half! You are facing away from the door.
 Now try different sizes. Make a quarter turn, then a half turn.
 
 A quarter and a half is three quarters. You are facing the last wall.
+
+<Turns turns={[1, 2]} labels={["the door", "a wall", "the last wall"]} caption="a quarter and a half makes three quarters" />
 
 **Turns add up.** Always. Do one turn, then another, and you just add them.
 

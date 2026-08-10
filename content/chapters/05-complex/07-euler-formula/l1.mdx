@@ -8,6 +8,7 @@ readAloud: true
 ---
 
 import TryIt from '@/components/TryIt.astro';
+import Turns from '@/components/Turns.astro';
 
 Stand up. Face the window.
 
@@ -20,6 +21,8 @@ Another one. Facing the other wall.
 One more! Where are you facing?
 
 The window again! You are home.
+
+<Turns turns={[1, 1, 1, 1]} labels={["the window", "a wall", "away", "other wall", "the window!"]} caption="all the way round, back home" />
 
 Four quarter turns and you are exactly where you started. Every single time.
 
