@@ -8,6 +8,8 @@ import {
   getChapter,
   getModulesForChapter,
   chapterPath,
+  chapterTitle,
+  chapterSubtitle,
   modulePath,
   levelHome,
   type LevelId,
@@ -29,15 +31,15 @@ const ch = getChapter(chapter);
 const mods = getModulesForChapter(chapter);
 const railHref = (id: LevelId) => chapterPath(id, chapter);
 ---
-<BaseLayout title={`Ch ${ch.number} · ${ch.title} — ${profile.label}`} level={level}>
+<BaseLayout title={`Ch ${ch.number} · ${chapterTitle(ch, level)} — ${profile.label}`} level={level}>
   <div class="site-grid">
     <LevelRail currentLevel={level} hrefFor={railHref} />
     <main class="reader">
       <p class="module-eyebrow">
         <a href={levelHome(level)}>{profile.label}</a> · Chapter {ch.number}
       </p>
-      <h1>{ch.title}</h1>
-      <p style="margin-top: 0.5rem;" class="small" ><em>{ch.subtitle}</em></p>
+      <h1>{chapterTitle(ch, level)}</h1>
+      <p style="margin-top: 0.5rem;" class="small" ><em>{chapterSubtitle(ch, level)}</em></p>
       <p style="margin-top: 1.5rem; font-size: 1.15rem;">{ch.question}</p>
 
       <ul style="list-style: none; padding-left: 0; margin-top: 2rem;">

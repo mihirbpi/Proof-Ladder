@@ -8,6 +8,7 @@ import {
   getAllChapters,
   getModulesForChapter,
   chapterPath,
+  chapterTitle,
   modulePath,
   levelHome,
   getIntro,
@@ -63,7 +64,7 @@ function renderIntroPara(src: string): string {
           <section style="margin-top: 2.5rem;">
             <div class="module-eyebrow">Chapter {ch.number}</div>
             <h2 style="margin-top: 0.25rem;">
-              <a href={chapterPath(level, ch.slug)}>{ch.title}</a>
+              <a href={chapterPath(level, ch.slug)}>{chapterTitle(ch, level)}</a>
             </h2>
             <p class="small" style="color: color-mix(in oklab, var(--color-ink) 70%, transparent);">
               {ch.question}

@@ -4,5 +4,25 @@
   "title": "Number systems and divisibility",
   "subtitle": "the rules the integers obey, and what they can't do",
   "question": "What are the rules the integers actually obey, and what can't they do?",
-  "anchorExample": "Sharing cookies evenly"
+  "anchorExample": "Sharing cookies evenly",
+  "titles": {
+    "l1": "Numbers and sharing",
+    "l2": "Numbers and sharing",
+    "l3": "Kinds of numbers",
+    "l4": "Number systems and divisibility",
+    "l5": "Number systems and divisibility",
+    "l6": "Number systems and divisibility",
+    "l7": "Number systems and divisibility",
+    "l8": "Number systems and divisibility"
+  },
+  "subtitles": {
+    "l1": "sharing things out, and what will not go",
+    "l2": "sharing things out, and what is left over",
+    "l3": "the rules numbers obey, and what they cannot do",
+    "l4": "the rules the integers obey, and what they cannot do",
+    "l5": "the rules the integers obey, and what they can't do",
+    "l6": "the rules the integers obey, and what they can't do",
+    "l7": "the rules the integers obey, and what they can't do",
+    "l8": "the rules the integers obey, and what they can't do"
+  }
 }

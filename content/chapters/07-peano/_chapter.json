@@ -4,5 +4,25 @@
   "title": "The Peano axioms",
   "subtitle": "building the numbers from nothing",
   "question": "If every proof rests on earlier facts, what do the earliest facts rest on?",
-  "anchorExample": "Counting on forever"
+  "anchorExample": "Counting on forever",
+  "titles": {
+    "l1": "The rules underneath",
+    "l2": "The rules underneath",
+    "l3": "Where the rules start",
+    "l4": "Starting rules for the numbers",
+    "l5": "Starting rules for the numbers",
+    "l6": "The Peano axioms",
+    "l7": "The Peano axioms",
+    "l8": "The Peano axioms"
+  },
+  "subtitles": {
+    "l1": "where counting comes from",
+    "l2": "the rules we start from",
+    "l3": "building the numbers from almost nothing",
+    "l4": "building the numbers from nothing",
+    "l5": "building the numbers from nothing",
+    "l6": "building the numbers from nothing",
+    "l7": "building the numbers from nothing",
+    "l8": "building the numbers from nothing"
+  }
 }

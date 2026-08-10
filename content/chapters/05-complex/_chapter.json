@@ -4,5 +4,25 @@
   "title": "Complex numbers",
   "subtitle": "the number that turns",
   "question": "What do you do when the numbers you have aren't enough?",
-  "anchorExample": "Turning a quarter turn"
+  "anchorExample": "Turning a quarter turn",
+  "titles": {
+    "l1": "The turning number",
+    "l2": "The turning number",
+    "l3": "A new kind of number",
+    "l4": "Complex numbers",
+    "l5": "Complex numbers",
+    "l6": "Complex numbers",
+    "l7": "Complex numbers",
+    "l8": "Complex numbers"
+  },
+  "subtitles": {
+    "l1": "a new number, and its job is turning",
+    "l2": "the new number that turns you",
+    "l3": "the number that turns",
+    "l4": "the number that turns",
+    "l5": "the number that turns",
+    "l6": "the number that turns",
+    "l7": "the number that turns",
+    "l8": "the number that turns"
+  }
 }

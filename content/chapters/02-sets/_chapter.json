@@ -4,5 +4,25 @@
   "title": "Sets",
   "subtitle": "the boxes everything lives in",
   "question": "What is a mathematical object made of?",
-  "anchorExample": "The toy box"
+  "anchorExample": "The toy box",
+  "titles": {
+    "l1": "Boxes of things",
+    "l2": "Boxes of things",
+    "l3": "Collections",
+    "l4": "Sets",
+    "l5": "Sets",
+    "l6": "Sets",
+    "l7": "Sets",
+    "l8": "Sets"
+  },
+  "subtitles": {
+    "l1": "the boxes everything lives in",
+    "l2": "sorting things into boxes",
+    "l3": "the boxes everything lives in",
+    "l4": "the boxes everything lives in",
+    "l5": "the boxes everything lives in",
+    "l6": "the boxes everything lives in",
+    "l7": "the boxes everything lives in",
+    "l8": "the boxes everything lives in"
+  }
 }

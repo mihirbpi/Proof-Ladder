@@ -4,5 +4,25 @@
   "title": "Logic",
   "subtitle": "how to say true things",
   "question": "How do you know when you actually know?",
-  "anchorExample": "Rain and umbrellas; \"it's a dog\""
+  "anchorExample": "Rain and umbrellas; \"it's a dog\"",
+  "titles": {
+    "l1": "Saying true things",
+    "l2": "Saying true things",
+    "l3": "Saying true things carefully",
+    "l4": "Logic",
+    "l5": "Logic",
+    "l6": "Logic",
+    "l7": "Logic",
+    "l8": "Logic"
+  },
+  "subtitles": {
+    "l1": "true, silly, and how you know",
+    "l2": "how to tell if something is true",
+    "l3": "how to say true things, and show them",
+    "l4": "how to say true things",
+    "l5": "how to say true things",
+    "l6": "how to say true things",
+    "l7": "how to say true things",
+    "l8": "how to say true things"
+  }
 }

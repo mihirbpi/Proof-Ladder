@@ -604,6 +604,14 @@ details[open] .toc-caret { transform: rotate(180deg); }
   color: color-mix(in oklab, var(--color-ink) 70%, transparent);
   margin-bottom: 0.4rem;
 }
+/* The standing note at l7: this is a look ahead, not the module's content. */
+.where-this-goes-note {
+  font-size: 0.86rem;
+  font-style: italic;
+  color: color-mix(in oklab, var(--color-ink) 62%, transparent);
+  margin: 0 0 0.85rem;
+  max-width: var(--measure);
+}
 
 .truth-table {
   border-collapse: collapse;

@@ -4,5 +4,25 @@
   "title": "Functions",
   "subtitle": "machines that turn one thing into another",
   "question": "What does it mean to send every thing somewhere?",
-  "anchorExample": "The name tag machine"
+  "anchorExample": "The name tag machine",
+  "titles": {
+    "l1": "Machines",
+    "l2": "Machines",
+    "l3": "Machines and rules",
+    "l4": "Functions",
+    "l5": "Functions",
+    "l6": "Functions",
+    "l7": "Functions",
+    "l8": "Functions"
+  },
+  "subtitles": {
+    "l1": "machines that turn one thing into another",
+    "l2": "put something in, get something out",
+    "l3": "rules that send every thing somewhere",
+    "l4": "machines that turn one thing into another",
+    "l5": "machines that turn one thing into another",
+    "l6": "machines that turn one thing into another",
+    "l7": "machines that turn one thing into another",
+    "l8": "machines that turn one thing into another"
+  }
 }

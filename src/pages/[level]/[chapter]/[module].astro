@@ -5,6 +5,7 @@ import {
   getAllModules,
   getModule,
   getChapter,
+  chapterTitle,
   type LevelId,
 } from '@/lib/content';
 import { getCollection, render } from 'astro:content';
@@ -55,7 +56,7 @@ if (entry) {
   module={module}
   chapterSlug={chapterSlug}
   chapterNumber={chapter.number}
-  chapterTitle={chapter.title}
+  chapterTitle={chapterTitle(chapter, level)}
   isTouch={isTouch}
 >
   {Content ? (

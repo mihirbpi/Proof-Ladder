@@ -5,6 +5,7 @@ import BigIdea from '@/components/BigIdea.astro';
 import Needs from '@/components/Needs.astro';
 import {
   getAllModules,
+  chapterTitle as chapterTitleFor,
   hasModuleMDX,
   modulePath,
   chapterPath,
@@ -27,12 +28,16 @@ const title = module.titles[level] ?? module.titles.l7 ?? module.slug;
 // modules whose per-level kernels haven't been authored yet.
 const kernelSentence = module.kernels?.[level] ?? module.kernel;
 
-// Find neighbors in this chapter at the same level.
+// Neighbours across the whole course at this level, not just inside the current
+// chapter. Scoping this to the chapter left the reader stranded at §1.12 with
+// no way forward but the contents menu — the pager is how you read a book
+// straight through, so it has to cross the seam.
 const all = getAllModules();
-const sameChapter = all.filter((x) => x.chapter.slug === chapterSlug);
-const idx = sameChapter.findIndex((x) => x.module.id === module.id);
-const prev = idx > 0 ? sameChapter[idx - 1] : null;
-const next = idx < sameChapter.length - 1 ? sameChapter[idx + 1] : null;
+const idx = all.findIndex(
+  (x) => x.chapter.slug === chapterSlug && x.module.id === module.id,
+);
+const prev = idx > 0 ? all[idx - 1] : null;
+const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
 
 const railHref = (id: LevelId) => modulePath(id, chapterSlug, module.slug);
 ---
@@ -71,15 +76,21 @@ const railHref = (id: LevelId) => modulePath(id, chapterSlug, module.slug);
       <nav aria-label="Neighboring modules" style="display:flex; gap:1rem; justify-content:space-between; margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--color-rule);">
         <div>
           {prev && (
-            <a href={modulePath(level, chapterSlug, prev.module.slug)}>
-              ← {prev.module.id} · {prev.module.titles[level] ?? prev.module.titles.l7}
+            <a href={modulePath(level, prev.chapter.slug, prev.module.slug)}>
+              {prev.chapter.slug !== chapterSlug && (
+                <span class="pager-chapter">Ch {prev.chapter.number} · {chapterTitleFor(prev.chapter, level)}</span>
+              )}
+              <span>← {prev.module.id} · {prev.module.titles[level] ?? prev.module.titles.l7}</span>
             </a>
           )}
         </div>
-        <div>
+        <div class="pager-next">
           {next && (
-            <a href={modulePath(level, chapterSlug, next.module.slug)}>
-              {next.module.id} · {next.module.titles[level] ?? next.module.titles.l7} →
+            <a href={modulePath(level, next.chapter.slug, next.module.slug)}>
+              {next.chapter.slug !== chapterSlug && (
+                <span class="pager-chapter">Ch {next.chapter.number} · {chapterTitleFor(next.chapter, level)}</span>
+              )}
+              <span>{next.module.id} · {next.module.titles[level] ?? next.module.titles.l7} →</span>
             </a>
           )}
         </div>
@@ -102,3 +113,20 @@ const railHref = (id: LevelId) => modulePath(id, chapterSlug, module.slug);
     </aside>
   </div>
 </BaseLayout>
+
+<style>
+  /* The pager crosses chapter boundaries, so when the next module lives in a
+     different chapter the link says which one — otherwise the reader steps from
+     "1.12 Four ways to be right" to "2.1 The toy box" with no idea a chapter
+     ended. Stacked above the module line, and quieter than it. */
+  .pager-chapter {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: color-mix(in oklab, var(--color-ink) 55%, transparent);
+    margin-bottom: 0.15rem;
+  }
+  .pager-next { text-align: right; }
+</style>

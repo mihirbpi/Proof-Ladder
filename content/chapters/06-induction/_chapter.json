@@ -4,5 +4,25 @@
   "title": "Induction",
   "subtitle": "proving infinitely many things at once",
   "question": "How can a finite argument settle infinitely many cases?",
-  "anchorExample": "A line of dominoes"
+  "anchorExample": "A line of dominoes",
+  "titles": {
+    "l1": "Dominoes",
+    "l2": "Dominoes",
+    "l3": "The domino idea",
+    "l4": "Induction",
+    "l5": "Induction",
+    "l6": "Induction",
+    "l7": "Induction",
+    "l8": "Induction"
+  },
+  "subtitles": {
+    "l1": "knocking over a whole line at once",
+    "l2": "one push, and the whole line goes",
+    "l3": "showing infinitely many things at once",
+    "l4": "proving infinitely many things at once",
+    "l5": "proving infinitely many things at once",
+    "l6": "proving infinitely many things at once",
+    "l7": "proving infinitely many things at once",
+    "l8": "proving infinitely many things at once"
+  }
 }

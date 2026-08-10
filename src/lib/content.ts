@@ -30,9 +30,24 @@ export type ChapterMeta = {
   slug: string;
   number: number;
   title: string;
+  subtitle?: string;
   question: string;
   anchorExample?: string;
+  // Per-level names. A chapter called "The Peano axioms" is unreadable to a
+  // five-year-old, and the chapter heading is the first thing on the page, so
+  // each level gets its own. `title` stays as the canonical name and is the
+  // fallback for any level not listed.
+  titles?: Partial<Record<LevelId, string>>;
+  subtitles?: Partial<Record<LevelId, string>>;
 };
+
+export function chapterTitle(ch: ChapterMeta, level: LevelId): string {
+  return ch.titles?.[level] ?? ch.title;
+}
+
+export function chapterSubtitle(ch: ChapterMeta, level: LevelId): string {
+  return ch.subtitles?.[level] ?? ch.subtitle ?? '';
+}
 
 const levelsRaw = JSON.parse(fs.readFileSync(LEVELS_FILE, 'utf-8')) as {
   levels: LevelProfile[];

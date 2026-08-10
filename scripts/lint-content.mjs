@@ -924,6 +924,59 @@ for (const f of files) {
 }
 
 // ---------------------------------------------------------------------------
+// Titles: the .mdx frontmatter and _module.json must agree, and neither may use
+// school vocabulary from a later grade than the level's ceiling.
+//
+// The two had drifted apart in 20 places, and since _module.json is what the
+// page renders, readers were getting the *stale* one: "Adding two √2s" at grade
+// 2, "The rationals are a field" at grade 5. The .mdx titles were the
+// grade-tuned ones and nobody could see them.
+//
+// A title naming the thing its own module defines is fine — §7.1 "What is an
+// axiom?" is the question the module answers. What this catches is a title
+// leaning on ordinary school mathematics the reader has not reached.
+const TITLE_VOCAB = [
+  [/\bfractions?\b/i, 'l3'],        // 3.NF
+  [/\bdivide|division\b/i, 'l3'],   // 3.OA
+  [/\bodd|even\b/i, 'l2'],          // 2.OA.C.3
+  [/\bdecimals?\b/i, 'l3'],         // 4.NF.C
+  [/\bnegative\b/i, 'l4'],          // 6.NS.C.5
+  [/\bintegers?\b/i, 'l4'],         // 6.NS
+  [/\bdivisibility|divisor\b/i, 'l4'],
+  [/√|\bsquare root\b/i, 'l5'],     // 8.EE.A.2
+  [/\brationals?\b/i, 'l4'],      // 7.NS.A — rational arithmetic is grade 7
+  [/\birrationals?\b/i, 'l5'],    // 8.NS.A.1
+  [/\bpolynomial|quadratic|algebra\b/i, 'l5'],
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!LEVEL_ORDER.includes(level)) continue;
+  const rel = path.relative(ROOT, f);
+  const dir = path.dirname(f);
+  const contractPath = path.join(dir, '_module.json');
+  if (!fs.existsSync(contractPath)) continue;
+  const contract = JSON.parse(fs.readFileSync(contractPath, 'utf8'));
+  const declared = contract.titles?.[level];
+  const fm = fs.readFileSync(f, 'utf8').match(/^title:\s*(.*)$/m)?.[1]?.trim().replace(/^"|"$/g, '');
+  if (declared && fm && declared !== fm) {
+    err(rel, `title disagrees with _module.json: "${fm}" vs "${declared}" (the JSON is what renders)`);
+  }
+  for (const [re, from] of TITLE_VOCAB) {
+    if (rank(level) >= rank(from)) continue;
+    const m = declared?.match(re);
+    if (!m) continue;
+    // A module whose whole subject is the word may name it — §4.7 is where
+    // irrational numbers and square roots are met, so its title may say so.
+    // The slug spells some of them differently ("sqrt2"), hence the aliases.
+    const slug = path.basename(dir).toLowerCase();
+    const stem = m[0].toLowerCase().replace(/s$/, '');
+    const alias = { 'square root': 'sqrt', '√': 'sqrt' }[stem] ?? stem;
+    if (slug.includes(stem) || slug.includes(alias)) continue;
+    warn(rel, `title "${declared}" uses "${m[0]}", which is not taught until ${from}`);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // A notation gloss must have a *symbol* on its left. Bulk substitution of
 // blackboard-bold letters for their names once rewrote the very sentences that
 // introduce them, producing "the integers reads the integers" in seven files —

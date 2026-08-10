@@ -1,16 +1,28 @@
 ---
-// The l8 closer, naming the field this module opens.
-// Rendered at l7 and l8 only. See §C6.
+// The closer, naming the field this module opens. Rendered at l7 and l8 only.
+// See §C6.
+//
+// At l7 the heading says "next" and the box carries a standing note that the
+// material inside is a look ahead. A reader in grade 12 is *starting* calculus,
+// so an unqualified "Where this goes" invited them to read a paragraph about
+// divergent series as something they were expected to follow.
 export interface Props {
   level?: string;
   title?: string;
 }
-const { level, title = 'Where this goes' } = Astro.props;
+const { level, title } = Astro.props;
 const shouldRender = level === 'l7' || level === 'l8';
+const heading = title ?? (level === 'l7' ? 'Where this goes next' : 'Where this goes');
 ---
 {shouldRender && (
   <aside class="where-this-goes" role="note">
-    <div class="where-this-goes-title">{title}</div>
+    <div class="where-this-goes-title">{heading}</div>
+    {level === 'l7' && (
+      <p class="where-this-goes-note">
+        A look ahead. Nothing below is needed for this module, and most of it belongs
+        to courses you have not taken yet.
+      </p>
+    )}
     <slot />
   </aside>
 )}

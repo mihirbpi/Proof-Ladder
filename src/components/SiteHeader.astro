@@ -6,6 +6,7 @@ import {
   getAllChapters,
   getModulesForChapter,
   chapterPath,
+  chapterTitle,
   modulePath,
   levelHome,
   type LevelId,
@@ -56,7 +57,7 @@ const profile = currentLevel ? LEVELS.find((l) => l.id === currentLevel) : null;
               <section class="toc-chapter">
                 <a href={chapterPath(tocLevel, ch.slug)} class="toc-chapter-link">
                   <span class="toc-chapter-num">Ch {ch.number}</span>
-                  <span class="toc-chapter-title">{ch.title}</span>
+                  <span class="toc-chapter-title">{chapterTitle(ch, tocLevel)}</span>
                 </a>
                 <ul class="toc-modules">
                   {mods.map((m) => (
