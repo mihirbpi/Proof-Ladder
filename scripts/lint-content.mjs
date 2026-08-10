@@ -936,7 +936,9 @@ for (const f of files) {
 // the same arithmetic rules", which needs no word at all.
 const COLLEGE_TERMS = [
   [/\bholomorphic|\bmeromorphic|\banalytic function|\bcontour integral/i, 'complex analysis'],
-  [/\brings?\b|\bfields?\b(?!\s+of\s+study)|\bcosets?\b|\bideals?\b/i, 'abstract algebra'],
+  // "quotient" and "remainder" in the division sense are ordinary school words;
+  // only the algebraic senses (quotient ring, quotient by an equivalence) count.
+  [/\brings?\b|\bfields?\b(?!\s+of\s+study)|\bcosets?\b|\bideals?\b|\bquotient (ring|group|space|structure)\b|\bthe quotient of\b/i, 'abstract algebra'],
   [/\bvector spaces?\b|\beigen|\bdeterminants?\b|\bhomomorph|\bisomorph|\bautomorph/i, 'linear/abstract algebra'],
   [/\btopolog|\bmetric spaces?\b|\bhomeomorph|\bopen sets?\b/i, 'topology'],
   [/\bmeasure theor|\bLebesgue|\bBanach|\bHilbert\b/i, 'analysis'],
@@ -944,6 +946,9 @@ const COLLEGE_TERMS = [
   [/\bintegral domain|\bGalois|\babelian|\bmonoid|\bBoolean algebra/i, 'abstract algebra'],
   [/\bcategory theor|\bfunctors?\b|\bnatural transformation/i, 'category theory'],
   [/\bmanifold|\bmultivariable|\bJacobian|\bpartial derivative/i, 'later calculus'],
+  // Real analysis. epsilon-delta, suprema and formal convergence are a
+  // university course; a 12th grader meets limits informally at best.
+  [/\bvarepsilon|\bepsilon\b|\bdelta\b(?!\s*x)|\bsupremum|\binfimum|\bleast upper bound|\bcompleteness\b|\breal analysis\b|\banalysis course\b|\buniformly continuous|\bCauchy\b|\bArchimedean\b/i, 'real analysis'],
 ];
 for (const f of files) {
   const level = path.basename(f, '.mdx');

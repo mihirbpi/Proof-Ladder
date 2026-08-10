@@ -2,7 +2,7 @@
 level: l7
 title: Between any two rationals
 readingTimeMin: 8
-newTerms: ["midpoint", "dense", "Archimedean property"]
+newTerms: ["midpoint", "dense"]
 anchorExample: "the rationals "
 ---
 
@@ -15,7 +15,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 > **Proposition.** For $a,b \in \mathbb{Q}$ with $a<b$: $\tfrac{a+b}{2} \in \mathbb{Q}$ and $a < \tfrac{a+b}{2} < b$.
 
 <Discussion>
-  <div slot="know">Closure of $\mathbb{Q}$ under the field operations (§4.5); the arithmetic and ordering rules: $a<b \Rightarrow a+c<b+c$, and $a<b$, $c>0 \Rightarrow ac<bc$.</div>
+  <div slot="know">Closure of $\mathbb{Q}$ under the four operations (§4.5); the arithmetic and ordering rules: $a<b \Rightarrow a+c<b+c$, and $a<b$, $c>0 \Rightarrow ac<bc$.</div>
   <div slot="want">Membership and two strict inequalities.</div>
   <div slot="how">Membership is closure and must be asserted — the proposition is false in $\mathbb{Z}$ for exactly that reason. Each inequality follows from $a<b$ by adding one endpoint and scaling by $\tfrac12 > 0$.</div>
 </Discussion>
@@ -28,12 +28,12 @@ Adding $a$ to $a<b$ gives $2a < a+b$; scaling by $\tfrac12>0$ gives $a < \tfrac{
 Adding $b$ to $a<b$ gives $a+b < 2b$; scaling by $\tfrac12>0$ gives $\tfrac{a+b}{2}<b$.
 </Proof>
 
-Note that the argument uses nothing specific to $\mathbb{Q}$ beyond its being a system whose ordering fits its arithmetic in which $2$ is invertible. So **every ordered field is dense in itself** — and $\mathbb{Z}$, not being a field, is the relevant counterexample.
+Note that the argument uses nothing specific to $\mathbb{Q}$ beyond its being a system whose ordering fits its arithmetic in which $2$ is invertible. So **any number system that can divide and is ordered is dense in itself** — and $\mathbb{Z}$, which cannot divide, is the counterexample.
 
 <Warning title="Where the hypothesis is spent">
 In $\mathbb{Z}$: the midpoint of $3$ and $4$ is $\tfrac72 \notin \mathbb{Z}$, and nothing lies strictly between consecutive integers. The invertibility of $2$ is precisely the hypothesis $\mathbb{Z}$ fails.
 
-Note also that the argument fails in a system whose ordering fits its arithmetic of characteristic $2$ — except that there are none, since $1 > 0$ forces $1 + 1 > 0$. Ordered fields always have characteristic $0$, which is why the caveat never bites.
+Note also that the argument leans on the ordering: it needs $1 > 0$, and hence $1+1 > 0$, so that halving genuinely produces something between.
 </Warning>
 
 ## Density
@@ -47,13 +47,9 @@ A stronger and more useful statement:
 > **Theorem.** $\mathbb{Q}$ is dense in $\mathbb{R}$: for all $x < y$ in $\mathbb{R}$ there is $q \in \mathbb{Q}$ with $x < q < y$.
 
 <Proof>
-By the Archimedean property choose $n \in \mathbb{N}$ with $n(y-x) > 1$, i.e. $\tfrac1n < y - x$.
+Because $y > x$, the gap $y - x$ is positive. The whole numbers climb past any real number, so some $n$ has $\tfrac1n$ smaller than that gap.
 
-Let $m = \lfloor nx \rfloor + 1$, so $m - 1 \leq nx < m$, giving $nx < m \leq nx + 1$.
-
-Then $q = \tfrac mn \in \mathbb{Q}$ satisfies $q > x$ from the left inequality, and
-$$q \leq x + \tfrac1n < x + (y-x) = y.$$
-Hence $x < q < y$.
+Now walk up the number line in steps of $\tfrac1n$ starting from below $x$. The steps are shorter than the gap, so you cannot jump clean over the interval from $x$ to $y$ — some step lands strictly inside it. That landing point is a whole number of $n$ths, which is a fraction.
 </Proof>
 
 Two ingredients deserve names. The **Archimedean property** — for every real $r$ there is $n \in \mathbb{N}$ with $n > r$ — is what guarantees $\tfrac1n$ can be made smaller than any positive gap; it fails in non-Archimedea system whose ordering fits its arithmetics such as the field of rational functions ordered by growth, where infinitesimals exist and the theorem is false. And the floor function (§3.2) is what converts the Archimedean estimate into an actual rational.
@@ -80,7 +76,7 @@ So both sets are dense, and each is riddled with members of the other. **Every i
 
 That interleaving has consequences worth anticipating. The function equal to $1$ on the rationals and $0$ on the irrationals is discontinuous at every point, because every neighbourhood of every point contains both kinds. It is the standard first example of a function that is nowhere continuous, and density is the entire reason it works.
 
-## Density is not completeness
+## Being crowded is not the same as having no gaps
 
 $\mathbb{Q}$ leaves no gap that can be exhibited by naming two rationals with nothing between them. Nevertheless $\mathbb{Q}$ has gaps in the order-theoretic sense: the set
 $$
@@ -89,12 +85,16 @@ $$
 
 *Symbol by symbol: $\mathbb{Q}$ is the fractions, $\in$ is "is in".*
 
-is nonempty and bounded above in $\mathbb{Q}$, yet has **no least upper bound in $\mathbb{Q}$**. Given any rational upper bound one can produce a smaller one, and given any rational in $S$ one can produce a larger one — the candidate supremum is $\sqrt2$, which §4.7 proves is not rational.
+is nonempty and stays below $2$, yet there is **no smallest fraction sitting above all of it**. Given any rational upper bound one can produce a smaller one, and given any fraction in $S$ one can produce a larger one — the number that ought to serve is $\sqrt2$, which §4.7 proves is not rational.
 
-The **completeness axiom** — every nonempty bounded-above set has a least upper bound — is exactly what $\mathbb{R}$ adds, and $\mathbb{R}$ is the unique complete ordered field up to a renaming that preserves all the structure. Density is a local property; completeness is not, which is why local inspection cannot detect the failure.
+**Having no gaps of that kind is exactly what the real numbers add.** It is the property the fractions lack, and it is why calculus is done over the reals rather than the fractions.
 
 <Aside>
-Density and measure are independent. $\mathbb{Q}$ is dense in $\mathbb{R}$ yet countable, so it has Lebesgue measure zero: enumerate $\mathbb{Q}$ as $q_1, q_2, \ldots$ and cover $q_k$ by an interval of length $\varepsilon/2^k$; the total length is $\varepsilon$, arbitrarily small. So $\mathbb{Q}$ is everywhere and occupies no length. Conversely the Cantor set is nowhere dense and uncountable, and the fat Cantor sets are nowhere dense with positive measure. Size measured by density and size measured by length are genuinely different notions, and this is the standard first example.
+Being crowded and being *large* are different things, and it is worth seeing that they come apart.
+
+The fractions sit everywhere along the line — between any two reals, however close, there is one. Yet in a sense that a later course makes precise, they take up no room at all: you can cover every fraction on the line with a collection of tiny intervals whose total length is as small as you please. Crowded everywhere, and negligible in total.
+
+The irrationals are the opposite: harder to point at individually, and yet they are almost all of the line.
 </Aside>
 
 <WhereThisGoes level="l7">

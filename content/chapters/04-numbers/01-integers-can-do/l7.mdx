@@ -43,7 +43,7 @@ $u \in \mathbb{Z}$ is a **unit** if $uv = 1$ for some $v \in \mathbb{Z}$.
 Let $uv = 1$. Then $u, v \neq 0$, so $|u|, |v| \geq 1$, and $|u||v| = |uv| = 1$. If $|u| \geq 2$ then $|u||v| \geq 2$, contradiction. So $|u| = 1$, i.e. $u = \pm 1$; and both are units, being self-inverse.
 </Proof>
 
-The argument used the order on $\mathbb{Z}$ and the fact that no integer lies strictly between $0$ and $1$ — the discreteness of $\mathbb{Z}$, not a ring-theoretic fact. This is worth noticing: some properties of $\mathbb{Z}$ are algebraic and some are order-theoretic, and separating them is what makes the general theory possible.
+The argument used the order on $\mathbb{Z}$ and the fact that no integer lies strictly between $0$ and $1$ — the discreteness of $\mathbb{Z}$, not an arithmetic one. This is worth noticing: some properties of $\mathbb{Z}$ are algebraic and some are order-theoretic, and separating them is what makes the general theory possible.
 
 ## No zero divisors
 
@@ -59,7 +59,7 @@ a property expressed by saying $\mathbb{Z}$ has **no zero divisors**. Equivalent
 <Warning title="Cancellation is not free">
 In $\mathbb{Z}/12\mathbb{Z}$, $3 \cdot 4 = 0$ with both factors nonzero, and $3 \cdot 4 = 3 \cdot 8 = 0$ while $4 \neq 8$. So cancelling a common factor is illegal there.
 
-Every proof that divides both sides by something is using cancellation, hence the domain property. In $\mathbb{Z}$ this is safe; in a general ring it is not, and knowing which you are in is the difference between a proof and an error.
+Every proof that divides both sides by something is using cancellation, hence the domain property. In $\mathbb{Z}$ this is safe. In systems where a product of nonzeros can vanish it is not, and knowing which you are in is the difference between a proof and an error.
 </Warning>
 
 ## Consequences of the axioms alone
@@ -82,10 +82,10 @@ The converse habit is worth building too: when a familiar identity **fails** in 
 
 The axioms are satisfied by structures with nothing else in common:
 
-| Ring | Which elements have reciprocals | Can a product of two nonzeros be zero? |
+| System | Which elements have reciprocals | Can a product of two nonzeros be zero? |
 |---|---|---|
 | the integers | only $1$ and $-1$ | no |
-| the rationals, reals and complex numbers | every nonzero one — §4.5 calls such a ring a *field* | no |
+| the rationals, reals and complex numbers | every nonzero one — §4.5 shows this is what makes division work | no |
 | polynomials with integer coefficients | only $1$ and $-1$ | no |
 | square grids of real numbers | the ones that can be undone | yes, and the order of multiplication matters |
 | the hours on an $n$-hour clock | those sharing no factor with $n$ | yes, unless $n$ is prime |
@@ -94,7 +94,7 @@ The axioms are satisfied by structures with nothing else in common:
 Anything proved from the axioms alone holds in every row. This is the central methodological move of modern algebra, and it is why the vocabulary is worth acquiring before you need it.
 
 <Aside>
-The three number systems of Chapter 4 sit in a strict hierarchy of increasing structure: $\mathbb{Z}$ obeys the ring rules, $\mathbb{Q}$ adds reciprocals, and $\mathbb{R}$ adds the no-gaps property of §4.6. Each additional rule buys theorems and costs generality. $\mathbb{Z}$ additionally has properties $\mathbb{Q}$ lacks — it is discrete, well-ordered below, and has a division algorithm — which is why number theory is a subject about $\mathbb{Z}$ and not about $\mathbb{Q}$.
+The three number systems of Chapter 4 stack, each adding one thing: the integers obey the arithmetic rules, the fractions add reciprocals, and the reals add the no-gaps property of §4.6. Each addition buys theorems and costs generality. $\mathbb{Z}$ additionally has properties $\mathbb{Q}$ lacks — it is discrete, well-ordered below, and has a division algorithm — which is why number theory is a subject about $\mathbb{Z}$ and not about $\mathbb{Q}$.
 </Aside>
 
 <WhereThisGoes level="l7">

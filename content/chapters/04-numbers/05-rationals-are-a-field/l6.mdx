@@ -48,63 +48,63 @@ The step *"a product of non-zero integers is non-zero"* is doing real work and i
 
 ## Division
 
-A **field** is a set with $+$ and $\times$ satisfying every row of module 4.1's table, **including** multiplicative inverses for all non-zero elements.
+Here is the one property that separates the fractions from the integers: **every non-zero fraction has a reciprocal, and it is a fraction.**
 
-| | ring | field |
+| | add, subtract, multiply | divide by anything non-zero |
 |---|---|---|
-| $\mathbb{Z}$ | ✓ | ✗ |
-| $\mathbb{Q}$ | ✓ | ✓ |
-| $\mathbb{R}$ | ✓ | ✓ |
+| the integers | ✓ | ✗ |
+| the fractions | ✓ | ✓ |
+| the reals | ✓ | ✓ |
 | polynomials | ✓ | ✗ |
 
-The inverse of $\frac ab$ (with $a\neq0$) is $\frac ba$, and
+The reciprocal of $\frac ab$ (with $a\neq0$) is $\frac ba$, and
 $$\frac ab \cdot \frac ba = \frac{ab}{ba} = 1.$$
 
-That single line is the difference between $\mathbb{Z}$ and $\mathbb{Q}$, and it is why you can solve $3x = 7$ over $\mathbb{Q}$ and not over $\mathbb{Z}$.
+That single line is the whole difference, and it is why $3x = 7$ can be solved over the fractions and not over the integers.
 
-<Warning title="Zero has no inverse, in any field">
-$0$ never has a multiplicative inverse. Suppose $b$ satisfied $0\cdot b = 1$. Module 4.1 proved $0\cdot b = 0$, so $0 = 1$ — false in any field, since the axioms require $0 \neq 1$.
+<Warning title="Zero has no reciprocal, in any number system">
+$0$ never has one. Suppose $b$ satisfied $0\cdot b = 1$. Module 4.1 proved $0\cdot b = 0$, so $0 = 1$ — and multiplying that by anything collapses every number to zero.
 
-So $\frac10$ is undefined, and it is undefined for a **provable** reason rather than by convention. There is no number system that repairs it: adding an inverse for $0$ collapses everything to a single element.
+So $\frac10$ is undefined, and undefined for a **provable** reason rather than by convention. No number system repairs it: adding a reciprocal for $0$ destroys the system.
 </Warning>
 
-## Why coordinate geometry needs a field
+## Why coordinate geometry needs division
 
-Every algebraic move in a coordinate proof is a field axiom.
+Every algebraic move in a coordinate proof needs it.
 
-The slope $\frac{y_2-y_1}{x_2-x_1}$ requires division. Solving $y = mx+b$ for $x$ requires dividing by $m$. The section formula, the midpoint formula, and the point of intersection of two lines all require inverses.
+The slope $\frac{y_2-y_1}{x_2-x_1}$ is a division. Solving $y = mx+b$ for $x$ divides by $m$. The midpoint formula, the section formula and the intersection point of two lines all need reciprocals.
 
-$\mathbb{Z}$ would not do. Two lines with integer coefficients can meet at a non-integer point, so the coordinate system must be closed under division or the intersection would fall outside it.
+Integers would not do. Two lines with integer coefficients can meet at a non-integer point, so the coordinate system must be closed under division or the intersection would fall outside it.
 
-**And $\mathbb{Q}$ is not enough either.** The diagonal of a unit square has length $\sqrt2$, and module 4.7 proves $\sqrt2 \notin\mathbb{Q}$. So a plane with rational coordinates has *holes*: the circle $x^2+y^2 = 2$ and the line $y = x$ would fail to meet, even though the picture plainly shows them crossing.
+**And the fractions are not enough either.** The diagonal of a unit square has length $\sqrt2$, and module 4.7 proves it is not a fraction. So a plane with only fraction coordinates has *holes*: the circle $x^2+y^2 = 2$ and the line $y = x$ would fail to meet, even though the picture plainly shows them crossing.
 
-That is why the Ruler Postulate names $\mathbb{R}$ and not $\mathbb{Q}$. Your geometry needs a field with no gaps, and finding one took mathematicians until the 1870s.
+That is why the Ruler Postulate names the real numbers and not the fractions. Your geometry needs a system that can divide **and** has no gaps, and pinning one down took mathematicians until the 1870s.
 
 ## Order
 
-$\mathbb{Q}$ also carries an order compatible with the operations:
+The fractions also carry an ordering that fits the arithmetic:
 
 $$a < b \Rightarrow a + c < b+c \quad\text{for all } c$$
 $$a<b \text{ and } c>0 \Rightarrow ac<bc$$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers, $\notin$ is "is not in", $\in$ is "is in". So the line reads: adding the same thing to both sides keeps the inequality; multiplying both sides by something positive keeps it too.*
+*Symbol by symbol: $\Rightarrow$ is "forces". So the line reads: adding the same thing to both sides keeps the inequality; multiplying both sides by something positive keeps it too.*
 
-Both rules are used in every inequality you have manipulated, and the second one is the one that flips: multiplying by a negative reverses the inequality, because $c<0$ falls outside the stated hypothesis.
+Both rules sit behind every inequality you have ever manipulated, and the second is the one that flips: multiplying by a negative reverses the inequality, because $c<0$ falls outside the stated hypothesis.
 
-An **ordered field** is a field with such an order. $\mathbb{Q}$ and $\mathbb{R}$ are ordered fields; the complex numbers of Chapter 5 are a field with **no** compatible order at all, which is a genuine loss and worth remembering when you get there.
+The reals order the same way. The complex numbers of Chapter 5 have **no** ordering compatible with their arithmetic at all, which is a genuine loss and worth remembering when you get there.
 
 <Aside>
-Fields can be finite. Take the remainders $\{0,1,2,3,4\}$ mod $5$, with addition and multiplication done mod $5$ (module 4.4).
+A system where you can always divide need not be infinite. Take the remainders $\{0,1,2,3,4\}$ on division by $5$, adding and multiplying and keeping the remainder each time (module 4.4).
 
-Every non-zero element has an inverse: $2\cdot3 = 6\equiv1$, $4\cdot4=16\equiv1$, $1\cdot1=1$. So this is a field with five elements.
+Every non-zero one has a reciprocal: $2\cdot3 = 6$, which leaves remainder $1$; $4\cdot4=16$, remainder $1$; and $1\cdot1=1$. So division always works, in a system with five elements.
 
-Mod $6$ it fails: $2\cdot 3 = 6\equiv 0$, so $2$ and $3$ are non-zero elements with zero product, and neither can have an inverse. The pattern is that the remainders mod $n$ form a field exactly when $n$ is prime.
+On division by $6$ it fails: $2\cdot 3 = 6$ leaves remainder $0$, so two non-zero things multiply to zero, and neither can have a reciprocal. The pattern is that it works exactly when the divisor is prime.
 
-Finite fields are what error-correcting codes are built from — the reason a scratched disc still plays, and the reason a QR code survives being partly obscured.
+Systems like these are what error-correcting codes are built from — the reason a scratched disc still plays, and a QR code survives being partly obscured.
 </Aside>
 
 ## What is still missing
 
 $\mathbb{Q}$ has every algebraic property you could want, and it is still not enough for geometry.
 
-The missing property is **completeness**: informally, that the number line has no gaps. $\mathbb{Q}$ has gaps at $\sqrt2$, at $\pi$, and at infinitely many other places. $\mathbb{R}$ is what you get by filling them, and the next three modules are about the difference — first that $\mathbb{Q}$ is dense, then that it is nonetheless incomplete, then what the gap-filling numbers look like.
+The missing property is that the number line should have **no gaps**. $\mathbb{Q}$ has gaps at $\sqrt2$, at $\pi$, and at infinitely many other places. $\mathbb{R}$ is what you get by filling them, and the next three modules are about the difference — first that $\mathbb{Q}$ is dense, then that it is nonetheless incomplete, then what the gap-filling numbers look like.

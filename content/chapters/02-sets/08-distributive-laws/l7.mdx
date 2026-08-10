@@ -30,7 +30,7 @@ $$
 
 *Symbol by symbol: $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
 
-each checkable on eight rows. The mathematically notable feature is that **both** hold. In a ring, $\times$ distributes over $+$ and not conversely; in $\mathcal{P}(X)$ the two operations are on equal footing, and neither is the "additive" one.
+each checkable on eight rows. The mathematically notable feature is that **both** hold. In arithmetic, multiplication spreads across addition and not the other way round; here the two operations are on equal footing, and neither one is playing the part of addition.
 
 ## Proof of (D2)
 
@@ -95,10 +95,10 @@ So $A \cap (B+C) = A$ while $(A\cap B) + (A\cap C) = \{0\}$. **Distributivity fa
 
 This is the practical warning to carry into your later matrix work. Subspaces look like sets and behave like sets under $\cap$; they do **not** behave like sets under $+$, and an argument that quietly assumes the distributive law for subspaces is wrong. The counterexample above is two lines long and worth remembering.
 
-<Warning title="The ring analogy has limits">
-$\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for (D1) and a false friend elsewhere. Set operations are **idempotent** — repeating one changes nothing ($S \cup S = S$) and **have no inverses** ($S \cup T = S \cup R$ does not force $T = R$), so $(\mathcal{P}(X), \cup)$ has no inverses and $\mathcal{P}(X)$ is not a ring under these operations.
+<Warning title="The arithmetic analogy has limits">
+$\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for (D1) and a false friend elsewhere. Set operations are **idempotent** — repeating one changes nothing ($S \cup S = S$) and **have no inverses** ($S \cup T = S \cup R$ does not force $T = R$), so pooling has no undo, and the analogy with arithmetic stops here.
 
-There *is* a repair: swapping $\cup$ for symmetric difference (in-one-but-not-both) restores the missing inverses, since every set is its own inverse under it. The resulting structure does obey the ring laws, and it is the version algebraists reach for.
+There *is* a repair: swapping $\cup$ for symmetric difference (in-one-but-not-both) restores the missing inverses, since every set is its own inverse under it. The resulting structure does obey the arithmetic laws, and it is the version algebraists reach for.
 </Warning>
 
 ## More than two sets

@@ -24,7 +24,7 @@ with $n$ **even** meaning $2 \mid n$ and **odd** meaning $n = 2k+1$ for some $k 
 
 $m \mid n$ is an existential statement over $\mathbb{Z}$, and §1.12 fixes what follows:
 
-- **Proving $m \mid n$** means exhibiting a witness $k$ and verifying $k \in \mathbb{Z}$. The verification is not decoration: it is where closure (§4.1) is cited, and it is the step that fails in the wrong ring.
+- **Proving $m \mid n$** means exhibiting a witness $k$ and verifying $k \in \mathbb{Z}$. The verification is not decoration: it is where closure (§4.1) is cited, and it is the step that fails in the wrong system.
 - **Disproving $m \mid n$** means proving $\forall k \in \mathbb{Z},\ n \neq mk$ — a universal claim requiring an argument, typically supplied by the division algorithm (§4.4) or by a size bound.
 
 <Warning title="Three standard slips">
@@ -98,7 +98,7 @@ Transitivity and reflexivity make $\mid$ behave like an ordering on $\mathbb{Z}_
 
 So divisibility on $\mathbb{Z}_{>0}$ has the same shape as inclusion on subsets in §2.3, with $\gcd$ and $\operatorname{lcm}$ playing $\cap$ and $\cup$ — including both distributive laws.
 
-## The ring-theoretic reading
+## Reading it structurally
 
 $$
 m \mid n \iff n \in (m) \iff (n) \subseteq (m),
@@ -111,7 +111,7 @@ where $(m) = m\mathbb{Z}$ is the set of multiples of $m$. Divisibility is revers
 Units divide everything, which is why $\pm 1 \mid n$ always, and why divisibility can only ever be well defined up to units.
 
 <Aside>
-The definition transfers verbatim to any system obeying the standard arithmetic rules, and its behaviour changes dramatically. In a field every nonzero element divides every element, so divisibility is trivial — which is exactly why number theory studies $\mathbb{Z}$ rather than $\mathbb{Q}$. In $\mathbb{Z}[x]$ divisibility is polynomial factorisation. In $\mathbb{Z}[\sqrt{-5}]$, $6 = 2\cdot3 = (1+\sqrt{-5})(1-\sqrt{-5})$ shows factorisation into irreducibles is not unique, which is the failure that forced the invention of ideals.
+The definition transfers verbatim to any system obeying the standard arithmetic rules, and its behaviour changes dramatically. Where division always works, everything divides everything and the idea collapses to nothing — which is exactly why number theory studies the integers and not the fractions. Divisibility is interesting only where division is not free. In $\mathbb{Z}[x]$ divisibility is polynomial factorisation. In $\mathbb{Z}[\sqrt{-5}]$, $6 = 2\cdot3 = (1+\sqrt{-5})(1-\sqrt{-5})$ shows factorisation into irreducibles is not unique, which is the failure that forced the invention of ideals.
 </Aside>
 
 <WhereThisGoes level="l7">

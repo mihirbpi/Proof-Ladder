@@ -41,7 +41,7 @@ Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides ev
 (iv) The hypothesis is a disjunction; the two cases are interchanged by swapping the names $b$ and $c$, which leaves the conclusion $a \mid bc$ invariant since $bc = cb$. **Without loss of generality**, assume $a \mid b$; then $b = ak$ and $bc = a(kc)$ with $kc \in \mathbb{Z}$.
 </Proof>
 
-Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{Z}$ is closed under integer linear combinations, i.e. is an **ideal**. That single structural fact drives the Euclidean algorithm and, with it, **Bézout's identity**: for any $a,b$ there are integers $x,y$ with $ax + by = \gcd(a,b)$. Everything downstream rests on it.
+Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{Z}$ is closed under integer linear combinations, i.e. is closed under adding its own members and under multiplying by anything outside. That single structural fact drives the Euclidean algorithm and, with it, **Bézout's identity**: for any $a,b$ there are integers $x,y$ with $ax + by = \gcd(a,b)$. Everything downstream rests on it.
 
 <Warning title="Two disciplines">
 **Fresh names.** From $a \mid b$ and $b \mid c$, the cofactors are unrelated; reusing one letter asserts they are equal and proves a weaker statement.
@@ -89,7 +89,7 @@ $$
 Each arrow is short; the sequence is the whole of elementary number theory's foundation, and it is worth being able to recite.
 
 <Aside>
-Unique factorisation is often taught as obvious. It is not. Existence of a factorisation follows by strong induction (Chapter 6); *uniqueness* is exactly where Euclid's lemma is spent, and in rings where the lemma fails, so does uniqueness. In $\mathbb{Z}[\sqrt{-5}]$, $2$ is irreducible but $2 \mid 6 = (1+\sqrt{-5})(1-\sqrt{-5})$ while dividing neither factor — so $2$ is not prime there, and $6$ has two genuinely different factorisations.
+Unique factorisation is often taught as obvious. It is not. Existence of a factorisation follows by strong induction (Chapter 6); *uniqueness* is exactly where Euclid's lemma is spent, and in number systems where that lemma fails, uniqueness fails with it. In $\mathbb{Z}[\sqrt{-5}]$, $2$ is irreducible but $2 \mid 6 = (1+\sqrt{-5})(1-\sqrt{-5})$ while dividing neither factor — so $2$ is not prime there, and $6$ has two genuinely different factorisations.
 </Aside>
 
 <WhereThisGoes level="l7">
