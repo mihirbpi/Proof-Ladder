@@ -13,8 +13,6 @@ import Warning from '@/components/Warning.astro';
 
 Every proof so far started from a claim someone handed you. Real work starts one step earlier: you must **conjecture** the claim, then prove it. This module drills both.
 
-*This is the pre-calculus version of the module. The grown-up version applies the same method to repeated differentiation; nothing about the method changes.*
-
 ## Factorials
 
 $$
@@ -84,28 +82,13 @@ By induction, $A(n)$ holds for all $n \geq 0$.
 
 Notice that the two facts consumed in the step are exactly the two patterns identified during conjecturing. That is typical: **the structure that let you guess the formula is the structure that proves it.**
 
-## The calculus version
+## Where this method goes next
 
-If you have met derivatives, here is the same module in its native habitat.
+The same three jobs — gather the cases, pull the patterns apart, prove the guess — are used everywhere, on data that looks nothing like factorials.
 
-Take the rule $y = 1/x$, written $y = x^{-1}$, and differentiate it over and over. Writing $y'$ for the first derivative, $y''$ for the second, and so on:
+In calculus there is an operation you apply to a rule to get a new rule, and applying it over and over to something as plain as $y = 1/x$ produces a table with three patterns running down it at once: a sign that flips, a factorial climbing, and an exponent stepping down. Spot the three, assemble the guess, prove it by induction. **Same method, unrecognisable subject.**
 
-| $n$ | $f^{(n)}(x)$ |
-|---|---|
-| $0$ | $x^{-1}$ |
-| $1$ | $-x^{-2}$ |
-| $2$ | $2x^{-3}$ |
-| $3$ | $-6x^{-4}$ |
-| $4$ | $24x^{-5}$ |
-
-Three patterns: alternating sign, factorial coefficient, and exponent $-(n+1)$. Hence the conjecture
-$$
-f^{(n)}(x) = (-1)^n\, n!\, x^{-(n+1)}.
-$$
-
-The base case is $f^{(0)} = f$, which is the convention that differentiating zero times does nothing. The step differentiates $(-1)^k k! x^{-(k+1)}$ by the power rule to get $(-1)^k k! \cdot \big(-(k+1)\big)x^{-(k+2)} = (-1)^{k+1}(k+1)!\,x^{-(k+2)}$ — precisely $A(k+1)$.
-
-Same three patterns, same recursion, same proof.
+That is why this module is worth the effort. The factorial identity above is a small result; the loop used to get it is the working mathematician's daily routine.
 
 <Aside>
 Induction verifies formulas; it never suggests them. Discovery comes from computing cases, from analogy, or from luck.

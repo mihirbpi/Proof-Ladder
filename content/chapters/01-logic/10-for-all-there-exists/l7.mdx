@@ -101,18 +101,17 @@ The governing principle: **an inner quantifier may depend on the outer ones; an 
 
 Same-kind quantifiers *do* commute: $\forall x \forall y$ is $\forall y \forall x$, and likewise for $\exists$. Mixed ones never do, in general.
 
-## Why this is the module that decides analysis
+## Why quantifier order decides so much later
 
-$$
-f \text{ is continuous on } S: \quad \forall \varepsilon > 0\; \forall a \in S\; \exists \delta > 0\; \forall x \in S,\; |x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon
-$$
-$$
-f \text{ is uniformly continuous on } S: \quad \forall \varepsilon > 0\; \exists \delta > 0\; \forall a \in S\; \forall x \in S,\; |x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon
-$$
+Here is a pair of statements that differ only in the order of two quantifiers.
 
-*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\Rightarrow$ is "forces".*
+> **(a)** For every tolerance, and for every point, there is a window around that point small enough to keep the output inside the tolerance.
+>
+> **(b)** For every tolerance, there is a *single* window that works at every point at once.
 
-The two differ by moving $\exists \delta$ across $\forall a$. In the first, $\delta$ may depend on the point $a$; in the second it may not. That single transposition is the difference between $f(x) = 1/x$ on $(0,1)$ — continuous, not uniformly so — and every continuous function on a closed bounded interval, which the Heine–Cantor theorem says is uniformly continuous. Students who find analysis impenetrable are almost always students for whom quantifier order is not yet load-bearing.
+The only change is moving *there is a window* across *for every point*. In (a) the window may depend on where you are; in (b) one window must serve everywhere.
+
+That single transposition separates two genuinely different behaviours. A function can wobble gently in the middle of its domain and wildly near the edge, satisfying (a) and failing (b) — $1/x$ close to zero is the standard example. Readers who find later courses impenetrable are almost always readers for whom quantifier order is not yet load-bearing.
 
 <Aside>
 The game reading is not merely a mnemonic. It is formalised in logic as a two-player game, where the truth of a quantified formula is literally the existence of a winning strategy for the verifier. The number of quantifier alternations in a formula is a genuine complexity measure — it stratifies the arithmetical hierarchy, and it stratifies the polynomial hierarchy in complexity theory.

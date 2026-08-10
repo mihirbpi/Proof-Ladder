@@ -84,18 +84,7 @@ The three conditions are independent, and examining what each rules out is more 
 
 ## Quotients build the number systems
 
-$$
-\mathbb{Z} = (\mathbb{N}\times\mathbb{N})/\!\sim,\quad (a,b)\sim(c,d)\iff a+d=b+c;
-$$
-$$
-\mathbb{Q} = \big(\mathbb{Z}\times\mathbb{Z}_{\neq0}\big)/\!\sim,\quad (p,q)\sim(r,s)\iff ps=qr \quad(\S4.5);
-$$
-$$
-\mathbb{R} = \{\text{Cauchy sequences in }\mathbb{Q}\}/\!\sim,\quad (a_n)\sim(b_n)\iff a_n-b_n\to0;
-$$
-$$
-\mathbb{Z}/n\mathbb{Z} = \mathbb{Z}/{\equiv_n}.
-$$
+The same move builds each number system from the one before it. The integers are pairs of counting numbers with $(a,b)$ standing for $a - b$, and two pairs naming the same integer when $a+d = b+c$. The fractions are pairs of integers with $(p,q)$ standing for $p/q$, and two pairs naming the same fraction when $ps = qr$ (§4.5). In each case the objects are *classes* of pairs, and each operation has to be checked not to depend on which pair you picked.
 
 The pattern is uniform: take known objects, impose the right notion of sameness, and the classes are the new objects. Chapter 7 builds $\mathbb{N}$ from axioms; every system above it is built by quotient.
 

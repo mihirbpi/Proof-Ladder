@@ -1,130 +1,141 @@
 ---
 level: l6
-title: Euler's formula
-readingTimeMin: 9
+title: Turning behaves like an exponent
+readingTimeMin: 8
 newTerms: []
 anchorExample: "rotations of the coordinate plane"
 ---
 
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
+import Proof from '@/components/Proof.astro';
+import Discussion from '@/components/Discussion.astro';
 
-$$
-e^{i\theta} = \cos\theta + i\sin\theta.
-$$
+Module 5.6 proved that multiplying complex numbers **multiplies their distances** from the origin:
 
-An exponential on the left, trigonometry on the right, and nothing in either subject suggests they should meet. This module shows where the formula comes from.
+$$|zw| = |z|\,|w|.$$
 
-## Infinite sums
+That is half of what multiplication does to a point. This module settles the other half — what it does to the **direction** — and the proof is a triangle argument from your geometry course, with no new machinery at all.
 
-Some functions can be written as sums that never end:
+## The claim
 
-$$
-e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!}+\cdots
-$$
+Write $\angle z$ for the direction of $z$: the angle you turn counterclockwise from the positive real axis to point at $z$. Measure it in degrees, or in fractions of a full turn; nothing below depends on which.
 
-where $n! = n(n-1)\cdots 2\cdot 1$, and $0! = 1$.
+> **Theorem.** For non-zero $z$ and $w$, multiplication multiplies the distances and **adds the directions**:
+> $$|zw| = |z|\,|w|, \qquad \angle(zw) = \angle z + \angle w.$$
 
-Adding infinitely many terms needs justification, and calculus provides it. The idea is that the **partial sums** — stop after two terms, three terms, four — settle down towards a definite value. For $x = 1$:
+The first half is module 5.6. The second half is what the pictures have been suggesting since module 5.5, and so far it has been proved for nothing but quarter turns.
 
-| terms | partial sum |
-|---|---|
-| $2$ | $2$ |
-| $3$ | $2.5$ |
-| $4$ | $2.6\overline{6}$ |
-| $5$ | $2.708\overline{3}$ |
-| $6$ | $2.71\overline{6}$ |
-| $8$ | $2.71825$ |
+## The proof
 
-closing in on $e \approx 2.71828$. The factorials in the denominators grow fast enough that later terms contribute almost nothing.
+<Discussion>
+  <div slot="know">Distances multiply (module 5.6), and two triangles whose three pairs of sides are in the same ratio are similar — side-side-side, from geometry.</div>
+  <div slot="want">That multiplying by $w$ turns every point by $\angle w$.</div>
+  <div slot="how">Compare two triangles: the one with corners $0$, $1$, $z$ and the one with corners $0$, $w$, $wz$. Show all three sides scale by the same factor.</div>
+</Discussion>
 
-Two more, from the same source:
+<Proof>
+Take $z$ and $w$ non-zero, with $z \neq 1$ so that the first triangle is a genuine triangle.
 
-$$\cos\theta = 1 - \frac{\theta^2}{2!}+\frac{\theta^4}{4!}-\frac{\theta^6}{6!}+\cdots$$
-$$\sin\theta = \theta - \frac{\theta^3}{3!}+\frac{\theta^5}{5!}-\frac{\theta^7}{7!}+\cdots$$
+Compare triangle $0,\,1,\,z$ with triangle $0,\,w,\,wz$, side by side:
 
-Cosine uses only even powers; sine only odd. **Both require $\theta$ in radians**, not degrees — the series are simply false otherwise, and this is one of the reasons radians exist.
+| side of the first | side of the second | ratio |
+|---|---|---|
+| $0$ to $1$, length $1$ | $0$ to $w$, length $\lvert w\rvert$ | $\lvert w\rvert$ |
+| $0$ to $z$, length $\lvert z\rvert$ | $0$ to $wz$, length $\lvert wz\rvert = \lvert w\rvert\lvert z\rvert$ | $\lvert w\rvert$ |
+| $1$ to $z$, length $\lvert z-1\rvert$ | $w$ to $wz$, length $\lvert wz-w\rvert$ | $\lvert w\rvert$ |
 
-## The powers of $i$
+Only the third row needs a line of algebra. Since $wz - w = w(z-1)$,
+$$|wz-w| = |w(z-1)| = |w|\,|z-1|,$$
+by module 5.6 again.
 
-$$i^0 = 1,\quad i^1 = i,\quad i^2=-1,\quad i^3=-i,\quad i^4=1,\ \dots$$
+So all three sides of the second triangle are $|w|$ times the matching side of the first, and the two triangles are **similar**.
 
-Period $4$, from module 5.3. Substitute $i\theta$ into the exponential series and this cycle is what happens to each term:
+Similar triangles have equal matching angles. The angle at corner $0$ in the first triangle is the turn from the direction of $1$ to the direction of $z$ — which is $\angle z$, since $1$ points straight along the positive real axis. The angle at corner $0$ in the second is the turn from the direction of $w$ to the direction of $wz$, which is $\angle(wz) - \angle w$.
 
-$$
-e^{i\theta} = 1 + i\theta + \frac{(i\theta)^2}{2!}+\frac{(i\theta)^3}{3!}+\frac{(i\theta)^4}{4!}+\cdots
-$$
-$$
-= 1 + i\theta - \frac{\theta^2}{2!} - i\frac{\theta^3}{3!}+\frac{\theta^4}{4!}+i\frac{\theta^5}{5!}-\cdots
-$$
+Setting the two equal:
+$$\angle(wz) - \angle w = \angle z, \qquad\text{so}\qquad \angle(wz) = \angle w + \angle z. \qquad\blacksquare$$
+</Proof>
 
-## Separating the parts
+<Warning title="One gap in that argument, and it is worth seeing">
+Similar triangles have equal angles — but an angle in that theorem carries no *direction*. The triangle $0, w, wz$ could in principle be a mirror image of $0, 1, z$, and then the turn would come out as $-\angle z$ and the conclusion would be backwards.
 
-Every term is real or purely imaginary — never mixed — because the $i$-cycle alternates. Group them:
+It is not a mirror image, and one example settles which case you are in. Take $w = i$ and $z = i$, so $wz = -1$: going from $i$ to $-1$ is a quarter turn counterclockwise, the same direction as going from $1$ to $i$. Not reflected.
 
-$$
-e^{i\theta} = \underbrace{\left(1 - \frac{\theta^2}{2!}+\frac{\theta^4}{4!}-\cdots\right)}_{\text{even powers, no } i} + i\underbrace{\left(\theta - \frac{\theta^3}{3!}+\frac{\theta^5}{5!}-\cdots\right)}_{\text{odd powers}}
-$$
-
-The first bracket is the cosine series. The second is the sine series. Therefore
-
-$$
-e^{i\theta} = \cos\theta+i\sin\theta.
-$$
-
-**The alternating signs came from the powers of $i$, and the even/odd split came from the same cycle.** Nothing was forced; the two trigonometric series were sitting inside the exponential series, waiting for $i$ to separate them.
-
-<Warning title="Rearranging infinitely many terms is not free">
-Reordering a finite sum is harmless. For infinite sums it can change the answer.
-
-The alternating harmonic series $1 - \frac12+\frac13-\frac14+\cdots$ sums to about $0.693$. Rearranged, its terms can be made to sum to **any** value you like, or to nothing at all. Riemann proved this in 1854.
-
-The grouping above is therefore a step requiring justification, and it has one: the exponential series converges **absolutely** — the sum of the sizes of its terms is itself finite. Absolutely convergent series may be rearranged freely, and that theorem is what licenses the derivation.
-
-A step that looks like bookkeeping can be the step that needs the deepest theorem. Noticing which is which is what module 1.6 meant by judging load-bearing reasons.
+One example is enough here only because the two cases cannot both occur — multiplying by $w$ cannot flip the plane for some points and leave it alone for others without tearing it apart. That last sentence is an appeal to something about continuous motion this course has not proved, and it is worth being honest that the argument leans on it.
 </Warning>
 
-## The special values
+## Reading the theorem
 
-$$\theta = \pi:\qquad e^{i\pi} = \cos\pi + i\sin\pi = -1+0i = -1,$$
+**Multiplying multiplies the distances and adds the turns.** Everything left in this chapter is that sentence in some disguise.
 
-so
-$$e^{i\pi}+1 = 0.$$
+Check it in cases where you can already work out the answer:
 
-**Euler's identity.** Five constants — $e$, $i$, $\pi$, $1$, $0$ — from five different parts of mathematics, in one equation with no room to spare. It is regularly voted the most beautiful formula in mathematics, and the vote is not unreasonable.
+| product | distances | turns | result |
+|---|---|---|---|
+| $i \cdot i$ | $1\times 1 = 1$ | quarter $+$ quarter $=$ half | $-1$ ✓ |
+| $2i \cdot 2i$ | $2\times2 = 4$ | quarter $+$ quarter $=$ half | $-4$ ✓ |
+| $(-1)(-1)$ | $1 \times 1 = 1$ | half $+$ half $=$ full | $1$ ✓ |
 
-$$\theta = \frac\pi2:\quad e^{i\pi/2} = i \qquad\qquad \theta = 2\pi:\quad e^{2\pi i} = 1$$
+And $i^2 = -1$, the equation this chapter began with, now reads *two quarter turns make a half turn* — which is exactly what the Kindergarten version of this chapter says, acted out on a classroom floor.
 
-## Reading it geometrically
+## Why this deserves exponent notation
 
-$$|e^{i\theta}| = \sqrt{\cos^2\theta+\sin^2\theta} = 1,$$
+Strip $2^n$, or $10^n$, or any exponential down to its one essential habit:
 
-by the Pythagorean identity. So $e^{i\theta}$ always lies on the unit circle (module 5.6), and its coordinates are $(\cos\theta,\sin\theta)$ — the standard parametrisation you use for the unit circle in trigonometry.
+$$
+2^{m}\cdot 2^{n} = 2^{m+n}.
+$$
 
-**$e^{i\theta}$ is the point reached by travelling $\theta$ radians counterclockwise from $1$.** The formula is a dictionary between "how far around the circle" and a complex number.
+**Adding on the inside, multiplying on the outside.** That is what exponents do, and it is why logarithms exist and why exponential graphs bend the way they do.
 
-Now the special values read as geometry rather than algebra:
+Now look at the theorem again. Write $C(\theta)$ for the point at distance $1$ in the direction $\theta$. The theorem says
 
-- $e^{i\pi/2}=i$: a quarter turn lands on $i$.
-- $e^{i\pi} = -1$: a half turn lands on $-1$.
-- $e^{2\pi i}=1$: a full turn returns to the start.
+$$
+C(\alpha)\cdot C(\beta) = C(\alpha+\beta).
+$$
 
-And $i^2 = -1$ becomes $e^{i\pi/2}\cdot e^{i\pi/2} = e^{i\pi}$ — two quarter turns make a half turn. **Multiplying exponentials adds the exponents, and adding exponents adds the angles.** That is why the formula matters, and module 5.9 develops it.
+| | inside | outside |
+|---|---|---|
+| exponents | $2^{m}\cdot 2^{n} = 2^{m+n}$ | add the exponents |
+| turning | $C(\alpha)\,C(\beta) = C(\alpha+\beta)$ | add the turns |
 
-## What it explains
+The same law twice. $C$ trades addition for multiplication exactly as an exponential does — so $C$ **is** an exponential, not by analogy but by the only test that counts.
 
-Trigonometry and exponentials looked unrelated because you met them over $\mathbb{R}$, where they behave completely differently — one oscillates, the other grows. Over $\mathbb{C}$ they are the same function looked at along different lines through the origin.
+That is why later courses write $C(\theta)$ as a power. Which power, of what base, this module deliberately leaves alone: making sense of raising a number to an *imaginary* exponent needs a tool you have not met. What is settled here is that whatever the notation turns out to be, it has to be exponent notation, because the law is the exponent law.
 
-Along the real axis, $e^x$ grows. Along the imaginary axis, $e^{i\theta}$ goes round in circles. Same function; the plane is what makes the connection visible, and the real line is too small a stage to see it on.
+<Warning title="What has and has not been proved">
+Proved: multiplying multiplies distances and adds turns.
+
+Not proved, and not claimed: that some particular number raised to an imaginary power equals the point in direction $\theta$. That would need a definition of imaginary exponents, and none has been given here.
+
+Keeping the two apart is worth the effort. A great many false proofs are honest ones that quietly used the thing they were setting out to establish, and the habit that catches it is asking at every line: *which of these am I entitled to?*
+</Warning>
+
+## Powers, from the same law
+
+Apply the theorem with $z = w$: squaring doubles the turn and squares the distance. Apply it again: cubing triples the turn. The pattern does not stop, so raising to the $n$th power multiplies the turn by $n$ and raises the distance to the $n$th power.
+
+**Turning $n$ times through $\theta$ is turning once through $n\theta$** — obvious as a sentence about turning, and not at all obvious as a sentence about multiplying something out $n$ times.
+
+Module 5.9 turns that into a formula and uses it to take powers and roots. Chapter 6 proves the "does not stop" step properly, by induction, since a claim indexed by the whole numbers is exactly what the domino argument is for.
 
 <Aside>
-There is a second derivation that avoids infinite sums entirely.
+Every point has more than one direction. Turning a full turn leaves you facing the way you started, so a direction is pinned down only to within whole turns:
 
-Let $f(\theta) = \cos\theta+i\sin\theta$. Differentiating, $f'(\theta) = -\sin\theta+i\cos\theta = i\,f(\theta)$, and $f(0)=1$.
+$$C(\theta) = C(\theta + \text{a full turn}) = C(\theta - \text{a full turn}) = \cdots$$
 
-The only function satisfying $f' = if$ with $f(0)=1$ is $e^{i\theta}$ — the same uniqueness argument that identifies $e^{kx}$ as the solution of $f'=kf$.
-
-This version is cleaner and needs no rearrangement, at the cost of needing a tool from calculus — the rate at which sine and cosine change — which itself only comes out right in radians.
-
-Two independent routes to one theorem is the sort of confirmation mathematicians look for. When a result can be reached from unrelated directions, it is usually pointing at something structural rather than at a coincidence of notation.
+The point is unique; the number naming its direction is not. Module 5.8 takes that seriously, because it is the one genuinely awkward feature of naming points by direction — and it is a fact about circles rather than a defect in the notation.
 </Aside>
+
+## Where this leads
+
+The law proved here is why complex numbers turn up wherever anything rotates.
+
+**Growth and turning are the same kind of thing.** On the number line, exponentials grow and nothing turns. In the plane, the law governing $2^m\cdot2^n$ is the law governing rotation, and which direction you travel decides which behaviour you see. A later course writes that down as one famous equation, and mathematicians have been fond of it for three centuries.
+
+## The bracket you are still owed
+
+Making sense of an imaginary exponent needs a way of building $2^x$ out of pieces that a complex number can be fed into. Calculus supplies one — a way of writing familiar functions as sums that never stop — and feeding an imaginary quantity into that sum produces exactly the two ingredients that locate a point on a circle, sorted out by the cycle $i, -1, -i, 1$ of module 5.3.
+
+That is Euler's route, from the 1740s, and it is worth knowing it exists. It is also worth knowing it needs care of a kind you have not met: a sum with endlessly many terms can sometimes be reordered into a different answer, so the sorting step there is a real step and not bookkeeping.

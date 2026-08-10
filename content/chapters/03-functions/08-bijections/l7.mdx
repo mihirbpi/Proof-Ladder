@@ -2,7 +2,7 @@
 level: l7
 title: Bijections and size
 readingTimeMin: 10
-newTerms: ["bijection", "identity function", "cardinality", "countable"]
+newTerms: ["bijection", "identity function", "size", "listable"]
 anchorExample: "a rule with a declared domain and codomain"
 ---
 
@@ -60,11 +60,11 @@ $2\mathbb{N} \subsetneq \mathbb{N}$ yet the two are equinumerous. Dedekind turne
 For infinite sets, $A \subsetneq B$ does not imply $|A| < |B|$. Comparisons must be made by exhibiting functions, never by inspection or by inclusion. Nearly every incorrect claim students make about infinite cardinalities comes from importing finite intuition here.
 </Warning>
 
-## Countable and uncountable
+## Listable and not
 
-$S$ is **countable** when $|S| \leq |\mathbb{N}|$. Countable sets include $\mathbb{Z}$ (interleave positives and negatives), $\mathbb{N}\times\mathbb{N}$ (diagonal enumeration), and hence $\mathbb{Q}$ — despite $\mathbb{Q}$ being dense in $\mathbb{R}$, which is a good demonstration that counting size and being densely packed measure different things.
+$S$ is **listable** when its members can be written out in a list, one after another. Listable sets include $\mathbb{Z}$ (interleave positives and negatives), $\mathbb{N}\times\mathbb{N}$ (diagonal enumeration), and hence $\mathbb{Q}$ — despite $\mathbb{Q}$ being dense in $\mathbb{R}$, which is a good demonstration that counting size and being densely packed measure different things.
 
-> **Theorem (Cantor).** $\mathbb{R}$ is uncountable.
+> **Theorem (Cantor).** $\mathbb{R}$ is not listable.
 
 <Discussion>
   <div slot="know">Every real in $(0,1)$ has a decimal expansion, unique if we forbid trailing nines.</div>
@@ -79,12 +79,12 @@ Define $b_n = 5$ if $a_{nn} \neq 5$, and $b_n = 4$ if $a_{nn} = 5$, and set $x =
 
 For each $n$, $x$ differs from $f(n)$ in the $n$-th decimal place, so $x \neq f(n)$. Hence $x \notin \operatorname{Im}(f)$, contradicting surjectivity.
 
-Therefore no surjection $\mathbb{N}\to(0,1)$ exists, and $\mathbb{R} \supseteq (0,1)$ is uncountable.
+Therefore no list can contain them all, so the reals are not listable.
 </Proof>
 
 The care with trailing nines is not pedantry: $0.4999\ldots = 0.5$, and without excluding one of the two expansions the constructed $x$ might coincide with a listed number.
 
-Cantor's theorem generalises: $|S| < |\mathcal{P}(S)|$ for every $S$, by the same diagonal applied to $D = \{s : s \notin f(s)\}$ (§2.3). So there is no largest cardinal, and the hierarchy of infinities is unbounded.
+Cantor's theorem generalises: $|S| < |\mathcal{P}(S)|$ for every $S$, by the same diagonal applied to $D = \{s : s \notin f(s)\}$ (§2.3). So there is no largest size of infinity — they go up forever.
 
 <Aside>
 The diagonal argument is one construction with three faces. Applied to $\mathcal{P}(S)$ it gives Cantor's theorem; applied to the collection of all sets it gives Russell's paradox (§2.1); applied to programs enumerating computable functions it gives the undecidability of the halting problem and Gödel's incompleteness theorems. Recognising the pattern is worth more than any one of the results.

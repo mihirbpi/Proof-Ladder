@@ -2,8 +2,8 @@
 level: l4
 title: Multiplication is rotation
 readingTimeMin: 6
-newTerms: ["De Moivre's formula"]
-anchorExample: "e^{iθ} = cos θ + i sin θ"
+newTerms: []
+anchorExample: "multiplying by i is a quarter turn"
 ---
 
 import Figure from '@/components/Figure.astro';
@@ -12,41 +12,30 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-## The multiplication rule
+## The claim
 
-$$
-\big(r_1e^{i\theta_1}\big)\big(r_2e^{i\theta_2}\big) = r_1r_2\,e^{i(\theta_1+\theta_2)}.
-$$
+> Multiplying every point of the plane by a fixed complex number **turns the plane and stretches it**, and does nothing else.
 
-**Moduli multiply; arguments add.** The proof is the exponent law $e^Ae^B = e^{A+B}$ together with commutativity, and it can also be checked directly against the Cartesian formula:
+That is the chapter's payoff, and this module establishes as much of it as the tools allow.
+
+## The part that is proved
+
+Multiplying by $i$:
+
+$$i\cdot 1 = i, \qquad i\cdot i = -1, \qquad i\cdot(-1) = -i, \qquad i\cdot(-i) = 1.$$
+
+Each of those four points moves a quarter turn counterclockwise. Take a general point and the same thing happens:
 
 <Proof>
-Expanding both sides via Euler's formula:
-$$
-\begin{aligned}
-r_1e^{i\theta_1}\cdot r_2e^{i\theta_2}
-&= r_1r_2(\cos\theta_1 + i\sin\theta_1)(\cos\theta_2 + i\sin\theta_2)\\
-&= r_1r_2\big[(\cos\theta_1\cos\theta_2 - \sin\theta_1\sin\theta_2) + i(\cos\theta_1\sin\theta_2 + \sin\theta_1\cos\theta_2)\big]\\
-&= r_1r_2\big[\cos(\theta_1+\theta_2) + i\sin(\theta_1+\theta_2)\big] = r_1r_2 e^{i(\theta_1+\theta_2)},
-\end{aligned}
-$$
-the third line by the addition formulas for $\cos$ and $\sin$.
+Let $z = a+bi$. Then
+$$i\,z = i(a+bi) = ai + bi^2 = -b + ai.$$
+
+So the point $(a,b)$ moves to the point $(-b, a)$.
+
+That is exactly the quarter-turn rule from your coordinate geometry: a quarter turn counterclockwise about the origin takes $(x,y)$ to $(-y,x)$. Every point obeys it, so multiplying by $i$ turns the whole plane a quarter turn. $\blacksquare$
 </Proof>
 
-Note what that computation shows: **the polar multiplication rule and the trigonometric addition formulas are the same fact.** Either can be derived from the other.
-
-Two consequences already established: $|z_1z_2| = |z_1||z_2|$ (module 5.6), and $\overline{re^{i\theta}} = re^{-i\theta}$, since conjugation reflects in the real axis and so negates the angle.
-
-## Geometric reading
-
-Multiplication by $z = re^{i\theta}$ is: **rotate by $\theta$, then scale by $r$.**
-
-- $|z| = 1$: pure rotation.
-- $\theta = 0$, $r > 0$: pure scaling.
-- $z = i$: rotation by $\pi/2$.
-- $z = -1$: rotation by $\pi$.
-
-<Figure alt="Four points at compass positions on a dashed unit circle labelled one, i, minus one and minus i." caption="Multiplication by $i$ adds $\pi/2$ to the argument.">
+<Figure alt="Four points at compass positions on a dashed unit circle labelled one, i, minus one and minus i." caption="Multiplying by $i$ moves each point a quarter turn counterclockwise.">
   <ComplexPlane circle={1} points={[
     {re: 1, im: 0, label: "1"},
     {re: 0, im: 1, label: "i"},
@@ -55,50 +44,45 @@ Multiplication by $z = re^{i\theta}$ is: **rotate by $\theta$, then scale by $r$
   ]} range={2} />
 </Figure>
 
-$i^2 = -1$ now reads: *two quarter turns make a half turn*. The defining property of $i$ is a geometric identity, and every remarkable feature of $\mathbb{C}$ traces back to it.
+**So $i^2 = -1$ reads: two quarter turns make a half turn.** The equation the chapter opened with, the one that looked like an arbitrary decree, is a statement about turning that a five-year-old can act out — and this course's Kindergarten version does exactly that.
 
-## De Moivre's formula
+Two more cases, both provable the same way:
 
-Iterating the rule with $r=1$:
+- **Multiplying by a positive real $r$** turns $a+bi$ into $ra+rbi$, which stretches every distance by $r$ and turns nothing.
+- **Multiplying by $-1$** turns $(a,b)$ into $(-a,-b)$: a half turn.
 
-> **De Moivre's formula.** For $n \in \mathbb{Z}$,
-> $$\big(\cos\theta + i\sin\theta\big)^n = \cos(n\theta) + i\sin(n\theta).$$
+## The part that is not yet proved
 
-<Proof>
-Equivalently $\big(e^{i\theta}\big)^n = e^{in\theta}$. For $n \geq 0$ this is induction: true at $n=0$, and if $(e^{i\theta})^k = e^{ik\theta}$ then
-$$(e^{i\theta})^{k+1} = (e^{i\theta})^k e^{i\theta} = e^{ik\theta}e^{i\theta} = e^{i(k+1)\theta}$$
-by the multiplication rule. For $n < 0$, note $(e^{i\theta})^{-1} = e^{-i\theta}$ since their product is $e^0 = 1$.
-</Proof>
+The general claim needs turns of any size, not just quarters and halves, and naming the point you land on after an arbitrary turn takes trigonometry — geometry next year.
 
-## The payoff: multiple-angle formulas
+What can be checked now is the **distance** half. Module 5.6 proved
 
-Comparing De Moivre's two sides and equating real and imaginary parts (module 5.2) produces trigonometric identities on demand.
+$$|zw| = |z|\,|w|,$$
 
-**$n = 2$:**
-$$
-\cos2\theta + i\sin2\theta = (\cos\theta+i\sin\theta)^2 = (\cos^2\theta - \sin^2\theta) + i(2\sin\theta\cos\theta),
-$$
-so
-$$
-\cos2\theta = \cos^2\theta - \sin^2\theta, \qquad \sin2\theta = 2\sin\theta\cos\theta.
-$$
+with algebra you can follow line by line. So multiplying by $w$ certainly multiplies every distance from the origin by $|w|$. That is the stretching, established.
 
-**$n = 3$:** expanding $(\cos\theta + i\sin\theta)^3$ gives
-$$
-\cos3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta, \qquad
-\sin3\theta = 3\cos^2\theta\sin\theta - \sin^3\theta.
-$$
+The turning is what waits. Module 5.8 stated the rule — multiply the distances, add the turns — and the higher levels of this module prove it.
 
-This is the moment complex numbers repay a course you have already taken. Identities that were memorised now have a one-line derivation, and **two identities come out of every computation**, because a single complex equation carries a real part and an imaginary part.
+<Warning title="Rotation about the origin only">
+Multiplying rotates about $0$, not about any other point. To turn the plane about a different centre $c$, first slide $c$ to the origin, then turn, then slide back:
 
-<Warning title="Moduli multiply, arguments add">
-$2e^{i\pi/6}\cdot 3e^{i\pi/4} = 6e^{i(\pi/6+\pi/4)} = 6e^{5i\pi/12}$. The arguments are added, never multiplied.
+$$\text{new position} = w\,(z - c) + c.$$
 
-Also, $\arg$ adds only **up to whole turns** (module 5.8): principal arguments can sum past $\pi$ and need reducing.
+Three transformations composed, in that order and no other — module 3.7's point about composition, arriving in a place where getting the order wrong visibly moves your figure to the wrong spot.
 </Warning>
 
-<Aside>
-Setting $z^n = 1$ and solving in polar form gives the **$n$th roots of unity**: $z_k = e^{2\pi i k/n}$ for $k = 0, \ldots, n-1$. There are exactly $n$ of them, equally spaced around the unit circle at the vertices of a regular $n$-gon.
+## Why this is worth having
 
-So a purely algebraic question — the solutions of $z^n = 1$ — has a purely geometric answer, and it is the reason ruler-and-compass constructibility of regular polygons turns out to be a question about which numbers can be written with square roots.
+You have two ways of describing a turn now: as a transformation of the plane, and as multiplication by a number.
+
+Transformations are hard to compute with. **Numbers are easy to compute with**, and multiplication does all the bookkeeping automatically: turning by one amount and then another is just multiplying twice, and the answer comes out in the same form you started in.
+
+That trade — turn a geometric question into an arithmetic one — is why complex numbers are used far outside the problem they were invented for. They were built to solve $x^2 = -1$. What they turned out to be good at was rotation.
+
+<Aside>
+The four points $1, i, -1, -i$ are the four solutions of $z^4 = 1$: raise any of them to the fourth power and you turn a full four quarter turns, landing back at $1$.
+
+Divide the circle into $n$ equal steps instead of four and the same thing happens — the $n$ points are exactly the solutions of $z^n = 1$, sitting at the corners of a regular $n$-gon.
+
+So a question about equations has an answer about polygons. Nobody looking at $z^n = 1$ would predict that, and finding a bridge between two subjects that had no reason to meet is one of the things mathematicians are actually chasing.
 </Aside>

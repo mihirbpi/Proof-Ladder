@@ -1,9 +1,9 @@
 ---
 level: l4
-title: Polar form
+title: How far, and which way
 readingTimeMin: 6
-newTerms: ["polar form", "radians", "argument"]
-anchorExample: "e^{iθ} = cos θ + i sin θ"
+newTerms: ["polar form"]
+anchorExample: "a point named by its distance and its direction"
 ---
 
 import Figure from '@/components/Figure.astro';
@@ -11,93 +11,76 @@ import ComplexPlane from '@/components/ComplexPlane.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-## Radians
+There are two ways to say where a point is.
 
-Angles in this chapter are measured in **radians**: the angle subtended at the centre of a circle by an arc of length equal to the radius. A full turn is $2\pi$ radians.
+**Across and up.** Go $3$ right and $4$ up: the number $3+4i$. This is the description module 5.5 has been using.
 
-| Turn | Degrees | Radians |
-|---|---|---|
-| full | $360°$ | $2\pi$ |
-| half | $180°$ | $\pi$ |
-| quarter | $90°$ | $\pi/2$ |
-| eighth | $45°$ | $\pi/4$ |
+**How far and which way.** Go $5$ units out, in a direction $37°$ counterclockwise from the positive real axis. Same point, different instructions.
 
-Radians are not a convention adopted for elegance. Euler's formula is simply *false* if the angle is measured in degrees, and so is every later formula built on it. Degrees are the arbitrary unit — someone chose $360$ — while radians record the angle as the distance actually travelled around a circle of radius $1$, which is the quantity the formulas are about.
+The second is called **polar form**, and this module is about why anyone would want it.
 
-## Polar form
-
-Every $z \neq 0$ can be written
-$$
-z = re^{i\theta}, \qquad r = |z| > 0,
-$$
-where $\theta$ is an **argument** of $z$ — the counterclockwise angle from the positive real axis.
-
-By Euler's formula (module 5.7),
-$$
-re^{i\theta} = r\cos\theta + i\,r\sin\theta,
-$$
-so the conversions are
-$$
-a = r\cos\theta, \quad b = r\sin\theta; \qquad r = \sqrt{a^2+b^2}, \quad \tan\theta = \frac{b}{a}.
-$$
-
-<Figure alt="A dashed circle of radius 2 with a vector from the origin to the point 2i." caption="$2e^{i\pi/2} = 2i$.">
-  <ComplexPlane circle={2} vectors={[{re: 0, im: 2}]} points={[{re: 0, im: 2, label: "2e^{iπ/2}"}]} range={3} />
+<Figure alt="A dashed circle of radius 2 with an arrow from the origin to the point 2i." caption="The point $2i$: two units out, a quarter turn round.">
+  <ComplexPlane circle={2} vectors={[{re: 0, im: 2}]} points={[{re: 0, im: 2, label: "2i"}]} range={3} />
 </Figure>
 
-<Warning title="tan θ = b/a does not determine θ">
-$\tan$ has period $\pi$, so it cannot distinguish $z$ from $-z$. For $1+i$ and $-1-i$, both give $\tan\theta = 1$, yet the arguments are $\pi/4$ and $5\pi/4$.
+## The two pieces
 
-Always check which **quadrant** $z$ is in before accepting the output of $\arctan$. Calculators and programming languages provide `atan2(b, a)` for exactly this reason.
+**How far** you already have. It is the modulus $|z| = \sqrt{a^2+b^2}$ of module 5.6, and the right-triangle rule is what computes it.
 
-Also: $z = 0$ has modulus $0$ and **no** argument. Every angle points at it, so none is distinguished. The origin is a genuine exception to polar form.
+**Which way** is the new piece: the angle you turn counterclockwise, starting from the positive real axis. There is no shortage of ways to write an angle down — degrees, or fractions of a full turn — and either is fine here.
+
+| point | how far | which way |
+|---|---|---|
+| $3$ | $3$ | no turn |
+| $3i$ | $3$ | a quarter turn |
+| $-3$ | $3$ | a half turn |
+| $-3i$ | $3$ | three quarters of a turn |
+| $3+3i$ | $3\sqrt2$ | an eighth of a turn |
+
+Every row has the same distance except the last, and the distances were computed with the right-triangle rule; the directions were read off the picture.
+
+## Why bother
+
+Because of what multiplication does to the two pieces.
+
+Module 5.6 proved $|zw| = |z|\,|w|$: **distances multiply**. And module 5.7 found that multiplying by $i$ turns a quarter turn, twice by $i$ turns a half turn — **turns add**.
+
+Put the two together and you get the rule the whole chapter has been circling:
+
+> To multiply two complex numbers: **multiply the distances and add the turns.**
+
+Check it on a case you can verify by hand. $2i$ is two units out and a quarter turn round; multiplying it by itself should give four units out and a half turn round, which is $-4$. And directly, $(2i)(2i) = 4i^2 = -4$. ✓
+
+Across-and-up form makes adding easy and multiplying fiddly. How-far-and-which-way does the exact reverse. **Neither form is the right one; the operation decides.**
+
+<Warning title="What is proved here and what is not">
+The distance half of that rule is proved — module 5.6 did it, with algebra you can check line by line.
+
+The turning half is not, and it is stated here as something the pictures support. Proving it needs a way of naming the point you land on after turning through an arbitrary angle, and that is trigonometry, which you take up in geometry. Module 5.9 gives the proof at the levels where the tools are available.
+
+Believing a rule because the pictures agree is a reasonable way to *find* it and not a proof that it holds. The distinction is the subject of this whole course, and it is worth feeling the difference in a case where you know the proof is coming.
 </Warning>
 
-## Non-uniqueness
+## The angle is not quite pinned down
 
-$$
-re^{i\theta} = re^{i(\theta + 2\pi k)} \quad\text{for every } k \in \mathbb{Z},
-$$
+Turn a full turn and you are facing the way you started. So a point does not have *one* direction — it has infinitely many, all differing by whole turns.
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in". So the line reads: adding a whole number of full turns to the angle lands you back on the same point.*
-since $e^{2\pi i k} = 1$. So the argument is determined only **up to whole turns**, and $\arg(z)$ denotes a set of values rather than a single number.
+The point $3$ sits at no turn, and at one full turn, and at two full turns, and at a full turn backwards.
 
-The **principal argument** $\operatorname{Arg}(z) \in (-\pi, \pi]$ is the standard choice, and choosing it is what makes $\arg$ a function (module 3.1) — but the choice creates a discontinuity along the negative real axis, where the argument jumps from near $\pi$ to near $-\pi$. That jump is not an artefact of a bad choice; no continuous choice exists on all of $\mathbb{C}\setminus\{0\}$.
+The distance has no such problem: $|3|$ is $3$, and that is the end of it.
 
-Compare with Cartesian form $a + bi$, which is unique. The two representations trade uniqueness for convenience under multiplication.
+So the usual fix is to pick one and call it official — say, the turn of less than half a turn in either direction. That makes the direction a genuine function of the point (module 3.1), and it costs one thing: a jump. Points just above the negative real axis are nearly a half turn round; points just below are nearly a half turn round *the other way*. Two points almost touching, given directions almost a full turn apart.
 
-## Worked conversions
+## The jump cannot be designed away
 
-**$1 + i$ to polar.** $r = \sqrt{1+1} = \sqrt2$. The point is in the first quadrant with equal coordinates, so $\theta = \pi/4$. Hence $1+i = \sqrt2 \,e^{i\pi/4}$.
+Put the break somewhere else and it moves; it does not vanish. Walking once around the origin brings you back to the same point having gained a whole turn, and no single choice of direction can both follow the walk and end where it started.
 
-**$3e^{i\pi/3}$ to Cartesian.** $\cos(\pi/3) = \tfrac12$ and $\sin(\pi/3) = \tfrac{\sqrt3}{2}$, so
-$$
-3e^{i\pi/3} = 3\left(\tfrac12 + \tfrac{\sqrt3}{2}i\right) = \tfrac32 + \tfrac{3\sqrt3}{2}i.
-$$
-
-**$-2$ to polar.** $r = 2$, and $-2$ points along the negative real axis, so $\theta = \pi$. Hence $-2 = 2e^{i\pi}$.
-
-## Special values
-
-$$
-1 = e^{0}, \qquad i = e^{i\pi/2}, \qquad -1 = e^{i\pi}, \qquad -i = e^{i3\pi/2} = e^{-i\pi/2}.
-$$
-
-The second of these, rearranged, is **Euler's identity**:
-$$
-e^{i\pi} + 1 = 0.
-$$
-
-Five constants — $e$, $i$, $\pi$, $1$, $0$ — and three operations, in one line. Its content is that half a turn is multiplication by $-1$; its fame is that $e$ (from growth), $\pi$ (from circles), and $i$ (from algebra) had no business meeting.
-
-## Why polar form exists
-
-Cartesian form makes addition trivial and multiplication messy. Polar form does the reverse:
-$$
-r_1e^{i\theta_1} \cdot r_2e^{i\theta_2} = r_1r_2\,e^{i(\theta_1+\theta_2)}.
-$$
-Multiply the moduli, add the arguments. Module 5.9 proves this and extracts the consequences, which include most of trigonometry.
+**The origin is a genuine exception.** The point $0$ has distance $0$ and no direction at all — there is no way to point at a place you are already standing.
 
 <Aside>
-Because arguments only add up to whole turns, the complex logarithm $\log z = \ln|z| + i\arg z$ is multivalued — it has infinitely many values differing by $2\pi i$. Choosing one requires a *branch cut*, a curve from $0$ to $\infty$ that the function is not allowed to cross. This is not a defect of notation: it is the reason $\sqrt{ab} = \sqrt a\sqrt b$ fails on $\mathbb{C}$ (module 5.3), and the honest resolution is Riemann surfaces.
+The four quarter turns of module 5.7 are the first four points you meet as you walk round the circle: $1$, $i$, $-1$, $-i$, each a quarter turn from the last.
+
+There is nothing special about quarters. Divide the circle into $n$ equal steps instead and you get $n$ points, evenly spaced, that behave the same way — and they turn out to be exactly the solutions of $z^n = 1$. So the regular polygons of a geometry course are the answers to the simplest equations there are, which is not something you would guess from either side.
+
+Seeing that connection properly needs the angle tools this module has been careful not to assume. It is one of the better reasons to look forward to trigonometry.
 </Aside>

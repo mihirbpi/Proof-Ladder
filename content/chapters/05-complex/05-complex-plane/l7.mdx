@@ -9,7 +9,6 @@ anchorExample: "e^{iθ} = cos θ + i sin θ"
 import Figure from '@/components/Figure.astro';
 import ComplexPlane from '@/components/ComplexPlane.astro';
 import Proof from '@/components/Proof.astro';
-import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
@@ -100,9 +99,7 @@ A graph of $f : \mathbb{C}\to\mathbb{C}$ lives in $\mathbb{R}^4$. Standard subst
 Relatedly: nearness in $\mathbb{C}$ means nearness in the *plane*, not along a line. Convergence $z_n \to z$ means $|z_n - z| \to 0$, and approach may occur along any path — which is exactly why complex differentiability is so restrictive.
 </Warning>
 
-<Aside>
-Adjoining a single point at infinity gives the **Riemann sphere** $\mathbb{C}\cup\{\infty\}$, homeomorphic to $S^2$ via stereographic projection. On it, Möbius transformations $z \mapsto \frac{az+b}{cz+d}$ act as the full group of angle-preserving transformations, circles and lines become one family (a line is a circle through $\infty$), and division by zero acquires a consistent meaning. It is the natural home for rational functions.
-</Aside>
+Adding a single extra point — a point "at infinity" — turns the plane into a **sphere**. Picture a globe resting on the plane at the origin, and a line drawn from the north pole through any point of the plane: it meets the globe exactly once. Every point of the plane gets a point of the sphere, and the north pole itself is the new point. On that sphere, division by zero stops being a special case: it simply sends you to the pole.
 
 <WhereThisGoes level="l7">
 
@@ -112,9 +109,9 @@ The plane picture is what makes complex arithmetic usable rather than merely for
 
 **Multiplication is where the plane earns its keep.** $\mathbb{R}^2$ has no useful multiplication; $\mathbb{C}$ has one, and §5.9 shows it is rotation combined with scaling. That single fact makes complex numbers the natural language for anything rotating.
 
-**In calculus, that is why phasors work.** A sinusoidal quantity $A\cos(w t + \phi)$ is the real part of $Ae^{i\phi}e^{iw t}$ — a fixed complex number times a rotating one. Differentiating multiplies by $iw$, which is a $90°$ rotation and a scaling, so differential equations in $t$ become algebraic equations in $\mathbb{C}$.
+**That is why engineers describe oscillation with complex numbers.** A quantity that rises and falls like $A\cos(\omega t+\phi)$ is the real part of a fixed complex number multiplied by a rotating one, and the rotation is the turning of §5.9 happening as time passes. Amplitude sits in the modulus and timing sits in the angle, so questions about two waves reinforcing or cancelling become questions about multiplying two complex numbers.
 
-The technique is standard in every treatment of oscillation, from AC circuits to wave mechanics, and it works because differentiation of $e^{iw t}$ is multiplication by a constant — the defining property of the exponential, now with a geometric reading.
+The technique is standard wherever things oscillate, from AC circuits to the description of waves, and it works for the reason this chapter has been building towards: turning is multiplication.
 
 **Loci become one-variable equations.** $|z - c| = r$ is a circle, $|z-w| = |z-v|$ a perpendicular bisector, $\operatorname{Im} z = 0$ the real axis. Each needs two real variables and two real equations otherwise, and the compression is why complex notation is standard in plane geometry problems.
 

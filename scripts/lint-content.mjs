@@ -949,7 +949,39 @@ const COLLEGE_TERMS = [
   // Real analysis. epsilon-delta, suprema and formal convergence are a
   // university course; a 12th grader meets limits informally at best.
   [/\bvarepsilon|\bepsilon\b|\bdelta\b(?!\s*x)|\bsupremum|\binfimum|\bleast upper bound|\bcompleteness\b|\breal analysis\b|\banalysis course\b|\buniformly continuous|\bCauchy\b|\bArchimedean\b/i, 'real analysis'],
+  // Complex analysis by another name. The polar-form module had grown a
+  // complex logarithm, a branch cut and a Riemann surface, none of which a
+  // 12th grader has any way in to. Say "the angle is fixed only up to whole
+  // turns" instead; that is the same fact in a sentence they can read.
+  [/\bbranch cuts?\b|\bbranch choice\b|\bprincipal (value|argument|branch)\b|\bcomplex logarithm\b|\bRiemann (surface|sphere)\b|\bwinding number\b|\bmultivalued\b/i, 'complex analysis'],
+  // Series. Taylor and absolute convergence are late-BC at the earliest, so
+  // they cannot carry an argument at any high-school level — a look-ahead box
+  // may gesture at "sums that never stop", and that is the whole allowance.
+  [/\bTaylor series\b|\bMaclaurin\b|\bpower series\b|\bconverges? absolutely\b|\babsolute convergence\b|\babsolutely convergent\b|\bradius of convergence\b|\bFourier\b/i, 'series'],
+  // Differential equations, likewise: past the end of the calculus sequence a
+  // 12th grader is taking. "A quadratic decides whether it grows or wobbles"
+  // carries the same idea without the machinery.
+  [/\bdifferential equations?\b|\bcharacteristic (equation|roots)\b|\bODE\b|\bphasors?\b/i, 'differential equations'],
 ];
+// Content a level's own students have not been taught yet. Distinct from
+// COLLEGE_TERMS: trigonometry and e are perfectly ordinary — just not in
+// eighth grade, where Chapter 5 had been quietly assuming both.
+const EARLY_GATES = {
+  l4: [
+    [/\\cos|\\sin|\\tan\b|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry (Geometry, next year)'],
+    [/\bradians?\b/i, 'radians (Algebra II)'],
+    [/e\^\{?i|\\ln\b|\blogarithms?\b|\bnatural log/i, 'e and logarithms (Algebra II)'],
+    [/\bderivatives?\b|\bdifferentiat(e|ing|ion)\b|\bintegral\b|\bantiderivative/i, 'calculus'],
+  ],
+  l5: [
+    [/\bradians?\b/i, 'radians (Algebra II)'],
+    [/\bderivatives?\b|\bdifferentiat(e|ing|ion)\b|\bantiderivative/i, 'calculus'],
+  ],
+  l6: [
+    [/e\^\{?i/i, 'imaginary exponents (needs calculus)'],
+    [/\bderivatives?\b|\bdifferentiat(e|ing|ion)\b|\bantiderivative/i, 'calculus'],
+  ],
+};
 for (const f of files) {
   const level = path.basename(f, '.mdx');
   if (!['l4', 'l5', 'l6', 'l7'].includes(level)) continue;
@@ -960,6 +992,13 @@ for (const f of files) {
   for (const [re, area] of COLLEGE_TERMS) {
     const m = text.match(re);
     if (m) warn(rel, `${level} uses "${m[0]}" (${area}) — no US high-school course teaches it`);
+  }
+  for (const [re, area] of EARLY_GATES[level] ?? []) {
+    // Euler's identity is allowed to be *shown* below its own level — as a
+    // famous object with a caption, never as a step in an argument. Nothing
+    // else built from an imaginary exponent gets that pass.
+    const m = text.replace(/e\^\{i\\pi\}\s*\+\s*1\s*=\s*0/g, '').match(re);
+    if (m) warn(rel, `${level} uses "${m[0]}" — ${area} comes after this year`);
   }
 }
 

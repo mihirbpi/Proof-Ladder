@@ -177,10 +177,19 @@ subject, so §3.1 earns it and the next two modules re-gloss it; outside Chapter
 every page that reaches for it has to earn it again.
 
 **Trigonometry, base `e` and logarithms.** Right-triangle trig is G-SRT.C.6
-(Geometry, grade 9) and the unit circle and radians are F-TF (Algebra II, grade
-10), so trig is available from `l6`. Base `e` and logarithms are F-LE.A.4
-(Algebra II, grade 10), and `l6` is the level *taking* Algebra II, so they are
-available only from `l7`.
+(Geometry, grade 9), so `l6` may assume it — as ratios of sides, in degrees, for
+angles under a quarter turn, and no further. The unit circle and radians are
+F-TF (**Algebra II, grade 10**), which is the course `l6` is *taking*: by rule 1
+they may be taught on the page but never assumed, and the angle-sum identities
+are further out still (F-TF.C.9 is a `(+)` standard, i.e. Precalculus), so
+nothing below `l7` may rest an argument on them. Base `e` and logarithms are
+F-LE.A.4, Algebra II again, and so available only from `l7`.
+
+This is why §5.7 at `l6` proves *multiplying adds the turns* from **SSS
+similarity** rather than from the angle-sum identities: similar triangles are
+grade 9, the identities are grade 11. The identities then come out of that
+theorem in §5.9 as a payoff — which is the right way round, and was not the case
+while §5.7 assumed them.
 
 **Chapter 5 is the standing exception**, because the complex plane, modulus,
 polar form and Euler's formula cannot be written without them and Part B assigns

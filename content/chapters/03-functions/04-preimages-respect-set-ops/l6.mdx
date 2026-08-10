@@ -114,13 +114,13 @@ $$\sigma(A\cap A') = \sigma(A)\cap\sigma(A').$$
 **This is why transformation proofs work.** When your course says "the image of the intersection of two figures is the intersection of their images," it is relying on a property that holds for rigid motions and fails for functions in general. Dilations preserve it too; projections do not, and that is why projecting a three-dimensional figure onto a plane loses information.
 
 <Aside>
-There is a name for this. A map preserving $\cap$, $\cup$, and complement is a **Boolean homomorphism**, and the theorem of this module is:
+There is a name for this. A rule that carries overlap to overlap, pooling to pooling, and outside to outside is as well behaved as such a rule can be, and the theorem of this module is:
 
-> For any $f: S\to T$, the pre-image operator $f^{-1} : \mathcal{P}(T)\to\mathcal{P}(S)$ is a Boolean homomorphism. The image operator is not.
+> For any $f: S\to T$, tracing back carries pooling to pooling, overlap to overlap, and outside to outside. Going forwards does not.
 
 Note the direction: $f$ runs $S\to T$, and $f^{-1}$ runs $\mathcal{P}(T)\to\mathcal{P}(S)$ — backwards. Structure-preserving maps very often run backwards, and a great deal of mathematics is organised around that observation.
 
-It is also the practical reason continuity is defined by pre-images: *$f$ is continuous when the pre-image of every open set is open.* Defining it with images instead would fail immediately, for the reason this module gives.
+That asymmetry is the reason later courses state so many conditions by tracing back rather than going forwards: the traced-back version respects every operation, so proofs about it never need a special case.
 </Aside>
 
 ## Using it

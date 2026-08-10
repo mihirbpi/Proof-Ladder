@@ -47,10 +47,10 @@ The reverse direction is equally useful. From $\cos\theta = \frac{e^{i\theta}+e^
 $$
 \cos^n\theta = \frac{1}{2^n}\sum_{k=0}^n\binom nk e^{i(n-2k)\theta},
 $$
-which linearises powers into sums of $\cos m\theta$ — the standard first step in integrating $\cos^n$, and the elementary case of Fourier expansion.
+which trades a power of $\cos\theta$ for a sum of plain cosines of multiples of $\theta$ — the standard first move when a power of cosine has to be integrated.
 
 <Warning title="De Moivre for non-integer n">
-$(e^{i\theta})^{1/n} \neq e^{i\theta/n}$ as a statement about *the* $n$th root: there are $n$ of them. Writing $(\cos\theta+i\sin\theta)^{1/2} = \cos(\theta/2)+i\sin(\theta/2)$ silently selects a branch and can produce sign errors — this is §5.8's branch problem in another guise.
+$(e^{i\theta})^{1/n} \neq e^{i\theta/n}$ as a statement about *the* $n$th root: there are $n$ of them. Writing $(\cos\theta+i\sin\theta)^{1/2} = \cos(\theta/2)+i\sin(\theta/2)$ silently picks one of them, and picking silently is where the sign errors come from — this is §5.8's many-angles problem in another guise.
 
 Correct statement: $z^{1/n}$ denotes the set $\{r^{1/n}e^{i(\theta+2\pi k)/n} : k = 0,\ldots,n-1\}$.
 </Warning>

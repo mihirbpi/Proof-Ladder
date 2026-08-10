@@ -2,7 +2,7 @@
 level: l7
 title: Polar form
 readingTimeMin: 8
-newTerms: ["polar form", "argument", "principal value", "branch cut"]
+newTerms: ["polar form", "argument"]
 anchorExample: "e^{iθ} = cos θ + i sin θ"
 ---
 
@@ -13,71 +13,59 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-Every $z \in \mathbb{C}\setminus\{0\}$ can be written
-$$
-z = re^{i\theta}, \qquad r = |z| > 0, \quad \theta \in \mathbb{R},
-$$
+There are two ways to say where a point is: **across and up**, or **how far and which way**.
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in".*
+$$a+bi \qquad\text{versus}\qquad re^{i\theta}$$
 
-and by Euler's formula $re^{i\theta} = r\cos\theta + ir\sin\theta$, so $a = r\cos\theta$, $b = r\sin\theta$.
+Both name the same point. Every complex number except $0$ can be written the second way, with $r = |z| > 0$ the distance from the origin and $\theta$ a real angle in radians, and by §5.7 the second unpacks as
 
-Angles are in **radians** throughout, necessarily: the series for $\sin$ and $\cos$, hence Euler's formula, hence $\sin' = \cos$, all fail in degrees.
+$$re^{i\theta} = r\cos\theta + ir\sin\theta, \qquad\text{so}\qquad a = r\cos\theta,\quad b = r\sin\theta.$$
 
-<Figure alt="A dashed unit-scaled circle of radius 2 with a vector from the origin to 2i." caption="$2e^{i\pi/2} = 2i$.">
+$r$ is the modulus. $\theta$ is the **argument**, written $\arg z$.
+
+Angles are in **radians** throughout, and not as a matter of taste: an arc of $\theta$ radians on the unit circle has length $\theta$ exactly, which is what makes every formula below free of conversion factors.
+
+<Figure alt="A dashed circle of radius 2 with a vector from the origin to 2i." caption="$2e^{i\pi/2} = 2i$.">
   <ComplexPlane circle={2} vectors={[{re: 0, im: 2}]} points={[{re: 0, im: 2, label: "2e^{iπ/2}"}]} range={3} />
 </Figure>
 
-## Existence and non-uniqueness
+## Every non-zero point has an angle
 
-> **Proposition.** For $z \neq 0$ there exists $\theta \in \mathbb{R}$ with $z = |z|e^{i\theta}$, and $\theta$ is unique modulo $2\pi$.
+> **Proposition.** For $z \neq 0$ there is a real $\theta$ with $z = |z|e^{i\theta}$, and any two such angles differ by a whole number of full turns.
 
 <Proof>
-*Existence.* Put $w = z/|z|$, so $|w| = 1$ and $w = u + iv$ with $u^2+v^2 = 1$. The map $\theta \mapsto (\cos\theta,\sin\theta)$ is a surjection from $[0,2\pi)$ onto the unit circle, so some $\theta$ has $\cos\theta = u$, $\sin\theta = v$; then $w = e^{i\theta}$ and $z = |z|e^{i\theta}$.
+*There is one.* Put $w = z/|z|$. Then $|w| = 1$, so writing $w = u+iv$ gives $u^2+v^2 = 1$ — the point $(u,v)$ is on the unit circle. Going once round the circle, $\theta \mapsto (\cos\theta, \sin\theta)$ passes through every point of it, so some $\theta$ in $[0,2\pi)$ has $\cos\theta = u$ and $\sin\theta = v$. For that $\theta$, $w = e^{i\theta}$ and hence $z = |z|e^{i\theta}$.
 
-*Uniqueness mod $2\pi$.* If $e^{i\theta_1} = e^{i\theta_2}$ then $e^{i(\theta_1-\theta_2)} = 1$, so $\cos(\theta_1-\theta_2) = 1$ and $\sin(\theta_1-\theta_2) = 0$, which forces $\theta_1 - \theta_2 \in 2\pi\mathbb{Z}$.
+*Any two differ by full turns.* Suppose $e^{i\theta_1} = e^{i\theta_2}$. Dividing, $e^{i(\theta_1-\theta_2)} = 1$, so $\cos(\theta_1-\theta_2) = 1$ and $\sin(\theta_1-\theta_2) = 0$. The only angles with cosine $1$ are the whole multiples of $2\pi$, so $\theta_1 - \theta_2$ is a whole number of full turns. $\blacksquare$
 </Proof>
 
-Structurally: $\theta \mapsto e^{i\theta}$ is a surjective operation-preserving map $(\mathbb{R},+)\to(S^1,\cdot)$ with kernel $2\pi\mathbb{Z}$, so
+Read the second half again, because it is the point of the module. **The angle is not quite determined by the point.** Turning all the way around returns you to where you started, so
+
 $$
-\mathbb{R}/2\pi\mathbb{Z} \cong S^1, \qquad \mathbb{C}^\times \cong \mathbb{R}_{>0}\times S^1.
+re^{i\theta} = re^{i(\theta+2\pi k)} \quad\text{for every integer } k,
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers.*
+and $1$ has angle $0$, and $2\pi$, and $-2\pi$, and infinitely many others.
 
-Polar form is that a renaming that preserves all the structure written out. The non-uniqueness of $\theta$ is not sloppiness — it is the kernel.
+So $\arg$ is not a function in the sense of §3.1: one input, many outputs. This is not sloppiness in the notation. It is a fact about circles, and no cleverer notation removes it.
 
-## Principal value and the impossibility of a global choice
+## Picking one angle, and what it costs
 
-$\arg(z)$ is properly a *set*, $\{\theta + 2\pi k : k \in \mathbb{Z}\}$. The **principal argument** is $\operatorname{Arg}(z) \in (-\pi,\pi]$.
+The usual repair is to name one of them official: take the angle in $(-\pi, \pi]$ — half a turn each way from the positive real axis — and call that *the* argument.
 
-> **Proposition.** There is no continuous function $\alpha : \mathbb{C}\setminus\{0\} \to \mathbb{R}$ with $e^{i\alpha(z)} = z/|z|$ for all $z$.
+That makes $\arg$ a genuine function, and it costs exactly one thing: a jump. Points just above the negative real axis have angles near $\pi$; points just below have angles near $-\pi$. Cross that ray and the answer leaps by a full turn, even though the points barely moved.
 
-<Proof title="Proof sketch">
-Suppose such $\alpha$ existed. Restrict to the unit circle and traverse it once: $\gamma(t) = e^{it}$, $t \in [0,2\pi]$. Then $\alpha(\gamma(t)) - t$ is continuous and takes values in $2\pi\mathbb{Z}$, hence is constant. So $\alpha(\gamma(2\pi)) - 2\pi = \alpha(\gamma(0))$. But $\gamma(2\pi) = \gamma(0)$, so $\alpha$ takes two different values at the same point — a contradiction.
-</Proof>
+**The jump cannot be designed away.** Put it somewhere else — measure from $[0,2\pi)$ instead — and the jump moves to the positive real axis; it does not vanish. Any single choice has to break somewhere, because walking once around the origin brings you back to the same point having gained a full turn, and no single-valued angle can both track the walk and return to its starting value.
 
-So the discontinuity of $\operatorname{Arg}$ across the negative real axis is unavoidable, not an artefact of a poor choice. The obstruction is geometric: $\mathbb{C}\setminus\{0\}$ has a hole at the origin that a loop can encircle, and $\pi_1(\mathbb{C}^\times) \cong \mathbb{Z}$ counts exactly the winding that defeats any continuous choice.
+This is the same repair, with the same side effect, as restricting sine's domain to define $\sin^{-1}$ (§3.9): shrink things until the answer is unique, and accept the seam that leaves.
 
-<Warning title="Practical hazards">
-**$\arctan(b/a)$ is not $\operatorname{Arg}(z)$.** $\tan$ has period $\pi$, so it cannot separate $z$ from $-z$; the quadrant must be checked. Use `atan2(b, a)`.
+<Warning title="Three practical hazards">
+**$\tan^{-1}(b/a)$ is not the argument.** Tangent repeats every half turn, so it cannot tell $z$ from $-z$; the quadrant has to be checked separately. Programming languages provide a two-argument `atan2(b, a)` precisely because of this, and its existence is an admission that the one-argument version is wrong half the time.
 
-**$z = 0$ has no argument.** Polar form covers $\mathbb{C}^\times$, not $\mathbb{C}$.
+**$z = 0$ has no argument.** Polar form covers every complex number *except* zero. There is no direction to a point sitting at the origin.
 
-**$\operatorname{Arg}(zw) \neq \operatorname{Arg}(z)+\operatorname{Arg}(w)$ in general.** The identity holds modulo $2\pi$; the principal values may differ by $2\pi$. Take $z = w = -1$: $\operatorname{Arg}(zw) = 0$ while the sum of the principal arguments is $2\pi$.
+**Angles add only up to full turns.** Multiplying $-1$ by $-1$ gives $1$, whose official angle is $0$ — but the two official angles being added are $\pi$ and $\pi$, totalling $2\pi$. The two answers describe the same point and differ by a full turn, which is all the rule ever promised.
 </Warning>
-
-## The complex logarithm
-
-$$
-\log z = \ln|z| + i\arg z,
-$$
-
-One choice has to be made official. Taking the angle in $(-\pi, \pi]$ gives a single-valued answer everywhere except along the negative real axis, where the angle jumps from just under $\pi$ to just over $-\pi$. That jump is unavoidable: any single choice has to break somewhere, and where you put the break is a convention.
-
-This is the precise source of the trap in §5.3: $\sqrt{ab} = \sqrt a\sqrt b$ fails on $\mathbb{C}$ because $\sqrt z = e^{\frac12\log z}$ inherits the branch ambiguity, and the two sides may pick different branches. Likewise $\log(zw) = \log z + \log w$ holds only as an identity of sets.
-
-The honest resolution is not a cleverer branch but a different domain: on the Riemann surface of $\log$ — an infinite spiral covering $\mathbb{C}^\times$ — the logarithm is single-valued and holomorphic everywhere.
 
 ## Converting, and the quadrant trap
 
@@ -86,21 +74,36 @@ $$r = |z| = \sqrt{a^2+b^2}, \qquad \tan\theta = \frac ba.$$
 The first is the distance formula. The second follows from dividing $b = r\sin\theta$ by $a = r\cos\theta$.
 
 <Warning title="The tangent does not determine the argument">
-$\tan\theta = b/a$ has two solutions per full turn, half a revolution apart, and $\arctan$ returns only the one in $(-\pi/2,\pi/2)$.
+$\tan\theta = b/a$ has two solutions in a full turn, half a revolution apart, and $\tan^{-1}$ returns only the one between $-\pi/2$ and $\pi/2$.
 
-For $z = -1-i$: $b/a = 1$ and $\arctan 1 = \pi/4$ — first quadrant. But $z$ is in the **third**, so $\operatorname{Arg} z = \pi/4 - \pi = -3\pi/4$.
+For $z = -1-i$: $b/a = 1$ and $\tan^{-1}(1) = \pi/4$ — first quadrant. But $z$ is in the **third**, so the argument is $\pi/4 - \pi = -3\pi/4$.
 
-The correction is $\pm\pi$ whenever $a < 0$, and it is required, not optional. Programming languages provide a two-argument `atan2(b, a)` precisely to handle it, and its existence is an admission that the one-argument version gets this wrong half the time.
+The correction is $\pm\pi$ whenever $a < 0$, and it is required, not optional.
 
-The underlying cause is §3.5: $\tan$ is not injective, and $\arctan$ exists only because the domain was restricted — which threw away the other solution.
+The underlying cause is §3.5: $\tan$ is not injective, and $\tan^{-1}$ exists only because the domain was cut down — which threw the other solution away.
 </Warning>
 
 > **Example.** Convert $-1+i\sqrt3$ to polar form.
 >
-> $r = \sqrt{1+3} = 2$. And $b/a = -\sqrt3$, so $\arctan$ gives $-\pi/3$ — fourth quadrant. The point is in the second, so add $\pi$:
-> $$\operatorname{Arg} z = -\tfrac\pi3 + \pi = \tfrac{2\pi}{3}, \qquad z = 2e^{2\pi i/3}.$$
+> $r = \sqrt{1+3} = 2$. And $b/a = -\sqrt3$, so $\tan^{-1}$ gives $-\pi/3$ — fourth quadrant. The point is in the second, so add $\pi$:
+> $$\theta = -\tfrac\pi3 + \pi = \tfrac{2\pi}{3}, \qquad z = 2e^{2\pi i/3}.$$
 >
 > Check: $2\cos(2\pi/3) = -1$ ✓ and $2\sin(2\pi/3) = \sqrt3$ ✓.
+
+## Which form for which job
+
+| Task | Better form |
+|---|---|
+| add, subtract | rectangular |
+| multiply, divide | polar |
+| raise to a power | polar |
+| take roots | polar |
+| read off real and imaginary parts | rectangular |
+| read off distance and direction | polar |
+
+Adding in polar form is miserable: there is no usable formula relating $\arg(z+w)$ to $\arg z$ and $\arg w$. Multiplying in rectangular form works, and is fiddly.
+
+Choosing the representation to suit the operation is a habit worth building — the same instinct that puts a figure on the axes for one geometry problem and leaves it off for another.
 
 ## Special values
 
@@ -113,21 +116,21 @@ e^{i\pi} + 1 = 0.
 $$
 
 <Aside>
-$i^i$ is real. Using $i = e^{i(\pi/2 + 2\pi k)}$,
-$$i^i = e^{i\log i} = e^{i \cdot i(\pi/2 + 2\pi k)} = e^{-\pi/2 - 2\pi k},$$
-a real number for each $k$ — with principal value $e^{-\pi/2}\approx 0.2079$. Euler found this in 1746 and thought it worth writing to a friend about. By Gelfond–Schneider, every value is transcendental (§4.7).
+The first four are quarter turns, evenly spaced round the unit circle, and multiplying by $i$ steps once around — §5.5's rotation, now read off the angle.
+
+More generally, the solutions of $z^n = 1$ are the $n$ points $e^{2\pi ik/n}$ for $k = 0, 1, \dots, n-1$: the vertices of a **regular $n$-gon** inscribed in the unit circle, one vertex sitting at $1$. So the regular polygons of your geometry course are the solution sets of the simplest equations there are.
+
+Gauss proved at nineteen that a regular $17$-gon can be built with compass and straightedge, by working out which of these vertices can be reached using square roots alone — a result that ties construction, algebra and number theory together in one theorem, and which he asked to have carved on his gravestone.
 </Aside>
 
 <WhereThisGoes level="l7">
 
-Polar form is the representation that makes multiplication easy, and choosing a representation to suit the operation is a habit both courses reward.
+Polar form is the representation that makes multiplication easy, and choosing a representation to suit the operation is a habit both of your remaining courses reward.
 
-**The non-uniqueness of the argument is the same phenomenon as the restricted range of $\arctan$.** $\operatorname{Arg}$ is made single-valued by confining it to $(-\pi,\pi]$, which introduces a jump across the negative real axis; $\arctan$ is made single-valued by restricting $\tan$ to $(-\pi/2,\pi/2)$, which is why $\arctan(y/x)$ gives the wrong quadrant half the time.
+**The non-uniqueness of the angle is the same phenomenon as the restricted range of $\tan^{-1}$.** The argument is made single-valued by confining it to half a turn each way, which introduces a jump across the negative real axis; $\tan^{-1}$ is made single-valued by cutting tangent's domain down, which is why $\tan^{-1}(y/x)$ gives the wrong quadrant half the time. Both are the §3.9 repair, and both leave the same residue: a formula that is correct only after a quadrant check.
 
-Both are the §3.9 repair — shrink the domain to manufacture a bijection — and both leave the same residue: a formula that is correct only after a quadrant check.
+**In calculus, polar coordinates are this same idea for the plane.** $x = r\cos\theta$, $y = r\sin\theta$ is exactly the conversion above. Curves that are ugly in $x$ and $y$ — circles, spirals, the cardioid — become short in $r$ and $\theta$, for the reason this module is about: the description should match the symmetry of the thing described.
 
-**In calculus, polar coordinates are the same idea for the plane.** $x = r\cos\theta$, $y = r\sin\theta$ is exactly the polar-to-rectangular conversion here, and integrating in polar coordinates carries a Jacobian factor of $r$ that comes from the same geometry. Curves that are messy in $x$ and $y$ — circles, cardioids, lemniscates — become short in $r$ and $\theta$, and the reason is the reason of this module: the representation should match the symmetry of the problem.
-
-The multivaluedness returns there too. A point has polar coordinates $(r,\theta)$ and $(r, \theta+2\pi)$, which is why polar curves can trace the same points more than once and why the limits of integration in a polar area computation require care.
+The many-angles problem follows you there. A point has coordinates $(r,\theta)$ and $(r,\theta+2\pi)$, which is why a polar curve can trace the same points more than once, and why the endpoints in a polar area calculation need checking rather than guessing.
 
 </WhereThisGoes>

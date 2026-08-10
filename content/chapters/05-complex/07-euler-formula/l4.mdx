@@ -1,9 +1,9 @@
 ---
 level: l4
-title: Euler's formula
+title: The four-step cycle
 readingTimeMin: 6
 newTerms: []
-anchorExample: "e^{iθ} = cos θ + i sin θ"
+anchorExample: "i, −1, −i, 1, and round again"
 ---
 
 import Figure from '@/components/Figure.astro';
@@ -13,17 +13,15 @@ import Warning from '@/components/Warning.astro';
 
 ## The cycle
 
-*Three pieces of notation, none of which you have met in class yet. $\theta$ (say "theta") is the Greek letter mathematicians reserve for an angle. $\cos$ and $\sin$ are two rules from trigonometry, a subject you take up in geometry: given an angle, they return the across and up distances of a point one unit from the centre. And $e$ is a particular number, about $2.718$, that turns out to be the right base for this formula.*
-
 $$
 i^0 = 1, \quad i^1 = i, \quad i^2 = -1, \quad i^3 = -i, \quad i^4 = 1, \ldots
 $$
 
-The powers of $i$ repeat every four steps, so **$i^n$ depends only on the remainder $n$ leaves on division by $4$.**
+Each step multiplies by $i$ one more time. After four steps you are back at $1$, and then the whole list repeats.
 
-For instance $i^{23} = i^{3} = -i$, since $23 = 4\cdot5 + 3$ leaves remainder $3$. This is module 4.4's division algorithm applied to exponents: the four possible remainders on division by $4$ give exactly the four values.
+**So $i^n$ depends only on the remainder $n$ leaves when divided by $4$.**
 
-<Figure alt="Four points at the compass positions labelled with the powers of i." caption="Powers of $i$ cycle counterclockwise with period 4.">
+<Figure alt="Four points at the compass positions labelled with the powers of i." caption="The powers of $i$ go counterclockwise and repeat every four steps.">
   <ComplexPlane points={[
     {re: 1, im: 0, label: "i⁰=i⁴"},
     {re: 0, im: 1, label: "i¹"},
@@ -32,76 +30,55 @@ For instance $i^{23} = i^{3} = -i$, since $23 = 4\cdot5 + 3$ leaves remainder $3
   ]} range={2} />
 </Figure>
 
-## The formula
+## Using it
 
-$$
-e^{i\theta} = \cos\theta + i\sin\theta.
-$$
+> **Example.** What is $i^{23}$?
+>
+> Divide: $23 = 4\cdot 5 + 3$, remainder $3$. Twenty of those steps are five complete laps that change nothing, so $i^{23} = i^3 = -i$.
 
-## Where it comes from
+> **Example.** What is $i^{100}$?
+>
+> $100 = 4\cdot 25$, remainder $0$. So $i^{100} = i^0 = 1$.
 
-The exponential function has a series expansion valid for all $x$:
-$$
-e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots
-$$
-and so do sine and cosine:
-$$
-\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots, \qquad
-\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
-$$
+This is module 4.4's division with remainder, applied to an exponent. The four possible remainders — $0$, $1$, $2$, $3$ — give exactly the four possible values, and there is never a fifth.
 
-Substitute $x = i\theta$ into the first:
-$$
-e^{i\theta} = 1 + i\theta + \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!} + \frac{(i\theta)^4}{4!} + \cdots
-$$
+<Warning title="The remainder is the whole answer, but only for whole exponents">
+The argument counts complete laps, so it needs $n$ to be a whole number. $i^{1/2}$ is not covered by it, and is a real question with a genuinely surprising answer — one that a later course settles.
 
-Now apply the cycle to each power: $(i\theta)^2 = -\theta^2$, $(i\theta)^3 = -i\theta^3$, $(i\theta)^4 = \theta^4$, and so on. Writing them out:
-$$
-e^{i\theta} = 1 + i\theta - \frac{\theta^2}{2!} - i\frac{\theta^3}{3!} + \frac{\theta^4}{4!} + i\frac{\theta^5}{5!} - \cdots
-$$
-
-**Every even power lands on $\pm1$ and every odd power lands on $\pm i$.** So the terms sort themselves into two groups: those with no $i$, and those with one $i$.
-
-Collecting them:
-$$
-e^{i\theta} = \underbrace{\left(1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \cdots\right)}_{\cos\theta} + i\underbrace{\left(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \cdots\right)}_{\sin\theta}.
-$$
-
-The cycle of $i$ is what makes the separation clean, and the alternating signs in the cosine and sine series are exactly the alternation $+1, -1, +1, -1$ in the even powers of $i$.
-
-<Warning title="Rearranging infinitely many terms is not automatic">
-Reordering a finite sum is free. Reordering an *infinite* sum is not — there are convergent series that can be rearranged to sum to any value you like.
-
-The step above is legal because these series converge **absolutely**, a condition under which rearrangement is provably safe. Stating that condition is not pedantry: without it the derivation is a manipulation of symbols rather than a proof, and this is the module where that distinction first bites.
+Watch this carefully: a proof that works by counting whole laps is entitled to conclusions about whole numbers of laps and nothing else. Noticing exactly how far a proof reaches is a skill this course is training, and it is more valuable than the result itself.
 </Warning>
 
-## Numerical check
+## What the cycle is really saying
 
-Take $\theta = 1$ (radian). Partial sums of the two bracketed series:
+Module 5.5 read multiplying by $i$ as a **quarter turn** counterclockwise about the origin.
 
-| terms | $\cos$ series | $\sin$ series |
+Read the cycle that way and it stops being arithmetic:
+
+| power | turn from $1$ | lands on |
 |---|---|---|
-| 1 | $1.0000$ | $1.0000$ |
-| 2 | $0.5000$ | $0.8333$ |
-| 3 | $0.5417$ | $0.8417$ |
-| 4 | $0.5403$ | $0.8415$ |
+| $i^1$ | quarter turn | $i$ |
+| $i^2$ | half turn | $-1$ |
+| $i^3$ | three-quarter turn | $-i$ |
+| $i^4$ | full turn | $1$ |
 
-And $\cos 1 = 0.5403$, $\sin 1 = 0.8415$. The convergence is rapid, and it is worth doing once by hand to see that the identity is doing real work.
+**The list repeats after four steps because a full turn brings you back.** That is the entire explanation, and it is a fact about turning rather than a fact about arithmetic — which is the sort of trade this chapter keeps making.
 
-## The geometric meaning
+And $i^2 = -1$, the equation the whole chapter started from, is now the statement that **two quarter turns make a half turn**. Nothing else was ever going on.
 
-$|e^{i\theta}|^2 = \cos^2\theta + \sin^2\theta = 1$, so $e^{i\theta}$ always lies on the **unit circle**. As $\theta$ increases, the point travels counterclockwise from $1$.
+## What quarter turns cannot yet reach
 
-<Figure alt="A dashed unit circle with a point marked at the top." caption="$e^{i\theta}$ traces the unit circle.">
-  <ComplexPlane circle={1} points={[{re: 0, im: 1, label: "e^{iπ/2} = i"}]} range={2} />
-</Figure>
+The cycle handles quarter turns. It says nothing about turning by, say, a third of a turn — for that you would need to name the point you land on, and naming points at arbitrary angles takes trigonometry, which you meet in geometry next year.
 
-Check against the cycle: $e^{i\pi/2} = \cos(\pi/2) + i\sin(\pi/2) = i$ ✓, $e^{i\pi} = -1$ ✓, $e^{3i\pi/2} = -i$ ✓, $e^{2\pi i} = 1$ ✓.
-
-So the formula turns the four-step cycle into a continuous rotation. That is the bridge module 5.8 and 5.9 walk across.
+That is where this module stops. Module 5.8 picks it up once the tools exist.
 
 <Aside>
-At $\theta = \pi$: $e^{i\pi} = -1$, i.e.
+Here is the destination, purely as something to look at.
+
+There is a way of writing "the point you reach by turning through an angle" as a *power* — the same kind of expression as $2^n$, though with a strange-looking exponent. When the angle is half a turn, that expression works out to $-1$, and moving the $-1$ across gives a line with a considerable reputation:
+
 $$e^{i\pi} + 1 = 0.$$
-Euler's identity. $e$ arose from compound interest, $\pi$ from circles, $i$ from unsolvable quadratics — three unrelated origins, tied together by a single equation. The formula is not a coincidence but it is a genuine surprise, and it is a reasonable illustration of why mathematicians expect deep structures to connect.
+
+Three numbers with nothing to do with each other — one from compound interest, one from circles, one from unsolvable equations — held together by a single equation. It is regularly voted the most beautiful formula in mathematics.
+
+None of it is needed here, and the version of this module you would read in twelfth grade is where it gets explained. It is worth seeing early that the chapter has somewhere to go.
 </Aside>

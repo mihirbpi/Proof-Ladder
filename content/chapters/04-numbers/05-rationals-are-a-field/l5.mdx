@@ -83,7 +83,7 @@ So the difference from module 4.1's list is one property:
 | $\mathbb{C}$ | ✓ | ✓ |
 | polynomials | ✓ | ✗ |
 
-$\mathbb{Z}$ obeys the arithmetic rules but has no reciprocals. $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$ are fields. Polynomials are a ring — $1/x$ is not a polynomial — and the parallel with $\mathbb{Z}$ is close enough that polynomial long division works, remainders and all, exactly as in module 4.4.
+$\mathbb{Z}$ obeys the arithmetic rules but has no reciprocals. The fractions, the reals and the complex numbers all do have them. Polynomials are like the integers in this respect — $1/x$ is not a polynomial — and the parallel is close enough that polynomial long division works exactly as long division does on whole numbers.
 
 **This is where ordinary algebra works.** Every manipulation you learned in Algebra I — collecting terms, clearing denominators, dividing both sides — is licensed by those properties, and each is available precisely when the system has them.
 
@@ -100,5 +100,5 @@ $\mathbb{Q}$ is the *smallest* system closed under all four operations containin
 
 Any such system containing $\mathbb{Z}$ must contain every $a \cdot b^{-1}$ with $b \neq 0$, by closure — and those are exactly the rationals. So there is no room to fit such a system strictly between $\mathbb{Z}$ and $\mathbb{Q}$.
 
-The same construction runs in general: given any system obeying those rules in which products of nonzero elements are nonzero, you can build the smallest field containing it by formally adjoining fractions. Applied to polynomials it produces the rational functions $p(x)/q(x)$, which is why those behave so much like ordinary fractions.
+The construction is reusable. Start with any system obeying the arithmetic rules in which a product of nonzero things is never zero, build pairs, and declare $(a,b)$ and $(c,d)$ to name the same thing when $ad = bc$. What comes out is the smallest enlargement in which you can divide — and applied to the integers, what comes out is the fractions.
 </Aside>

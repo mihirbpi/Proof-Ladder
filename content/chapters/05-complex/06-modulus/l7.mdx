@@ -9,7 +9,6 @@ anchorExample: "e^{iθ} = cos θ + i sin θ"
 import Figure from '@/components/Figure.astro';
 import ComplexPlane from '@/components/ComplexPlane.astro';
 import Proof from '@/components/Proof.astro';
-import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
@@ -109,11 +108,9 @@ Also: $|z|$ is real. Expressions like $|z| = 5i$ or $\operatorname{Re}|z|$ are t
 
 *A reminder of the symbols in play: $\sum$ reads "the sum of".*
 
-<Aside>
-Expanding (ii) in coordinates gives the Brahmagupta–Fibonacci identity
+Expanding (ii) in coordinates gives the identity
 $$(a^2+b^2)(c^2+d^2) = (ac-bd)^2+(ad+bc)^2,$$
-so sums of two squares are closed under multiplication. Combined with Fermat's theorem that a prime $p \equiv 1 \pmod 4$ is a sum of two squares, this classifies exactly which integers are: those whose primes $\equiv 3 \pmod 4$ occur to even powers. The complex-analytic fact and the number-theoretic one are the same statement, and the bridge is the norm on $\mathbb{Z}[i]$.
-</Aside>
+so a product of two sums of squares is itself a sum of squares. That is a fact about ordinary whole numbers, discovered long before complex numbers existed, and it falls out here in one line — which is a fair sample of what the subject is for.
 
 <WhereThisGoes level="l7">
 

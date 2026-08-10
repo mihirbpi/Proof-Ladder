@@ -18,7 +18,7 @@
     "l1": "Turn, then turn again. The turns add up.",
     "l2": "If you turn a quarter and then another quarter, you have turned a half. Turns add. That is what multiplying complex numbers does.",
     "l3": "Multiplying two complex numbers multiplies their distances and adds their turns. Multiplying by i is the simplest case: distance unchanged, a quarter turn added.",
-    "l4": "r₁e^{iθ₁} · r₂e^{iθ₂} = (r₁r₂)e^{i(θ₁+θ₂)}: multiply the lengths and add the angles. Squaring e^{iθ} and comparing parts gives the double-angle formulas.",
+    "l4": "Multiplying by i sends the point (a, b) to (−b, a), which is the quarter-turn rule from coordinate geometry — so multiplying by a complex number turns the plane and stretches it.",
     "l5": "Multiplication in polar form multiplies moduli and adds arguments; equating real and imaginary parts of (e^{iθ})ⁿ produces the multiple-angle identities.",
     "l6": "Multiplication is rotation composed with scaling; De Moivre’s formula (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ is the special case of modulus one.",
     "l7": "Multiplying complex numbers multiplies moduli and adds arguments; De Moivre’s formula follows, and equating real and imaginary parts derives the multiple-angle identities of trigonometry.",

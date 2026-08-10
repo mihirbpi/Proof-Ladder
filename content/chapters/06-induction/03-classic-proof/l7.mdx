@@ -8,7 +8,6 @@ anchorExample: "the odd numbers add up to a square"
 
 import Discussion from '@/components/Discussion.astro';
 import Proof from '@/components/Proof.astro';
-import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
@@ -90,7 +89,7 @@ which is the formula at $k+1$.
 
 $$\sum_{j=0}^{\infty} r^j = \frac{1}{1-r},$$
 
-the one infinite series whose value can be computed in closed form early in calculus — and the source, by substitution and differentiation, of the power series for $\ln(1+x)$, $\arctan x$, and $\frac{1}{(1-x)^2}$.
+the one endless sum whose value you can pin down early in a calculus course, and the one most others get compared against.
 
 The finite formula is what makes the limit meaningful. Without it, the infinite sum would be a symbol with no computed value.
 
@@ -106,9 +105,7 @@ Each is a routine induction *once stated*, and none is suggested by induction. F
 
 Note the third identity: $\sum j^3 = (\sum j)^2$. A striking coincidence, provable by induction in four lines, and again with a wordless proof by dissecting a square into gnomons of cubes.
 
-<Aside>
-Telescoping is the discrete fundamental theorem of calculus. Writing $\Delta f(j) = f(j) - f(j-1)$, the statement $\sum_{j=1}^n \Delta f(j) = f(n)-f(0)$ is the exact analogue of $\int_a^b F' = F(b)-F(a)$, and the analogy runs deep: summation by parts mirrors integration by parts, falling factorials play the role of powers, and the finite-difference calculus built on them is the natural setting for both combinatorics and numerical analysis.
-</Aside>
+Telescoping is the whole-number ancestor of the theorem tying areas to slopes. Write each term as a difference between consecutive values of something; the sum then collapses to the last value minus the first, with everything between cancelling in pairs. In calculus the same cancellation happens continuously, and it is the reason an area can be computed from two numbers at the ends.
 
 <WhereThisGoes level="l7">
 Having three proofs of one theorem is the normal situation, and choosing among them is a real skill.

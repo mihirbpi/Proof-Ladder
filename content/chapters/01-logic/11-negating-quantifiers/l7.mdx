@@ -87,7 +87,7 @@ either nothing works, or two distinct things do. Both failure modes must be excl
 
 ## Nested quantifiers, negated in order
 
-Negation passes through a quantifier prefix by flipping each quantifier in turn:
+Negation passes through a run of quantifiers by flipping each in turn:
 $$
 \neg\big(\forall x\, \exists y\, \forall z\; p(x,y,z)\big)
 \;\equiv\;
@@ -96,30 +96,20 @@ $$
 
 *Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
 
-A statement with all its quantifiers gathered at the front is the easiest kind to negate, because the flipping is then purely mechanical: work left to right, flip each quantifier as the negation passes it, and finish by negating what remains. Pushing the negation all the way in — until it applies to nothing but the innermost condition — is the routine that turns an opaque statement into a checkable one.
+A statement with all its quantifiers gathered at the front is the easiest kind to negate, because the flipping is purely mechanical: work left to right, flip each quantifier as the negation passes it, and finish by negating what remains.
 
-The standard exercise: negate continuity of $f$ at $a$.
-$$
-\forall \varepsilon > 0\; \exists \delta > 0\; \forall x\; \big(|x-a| < \delta \Rightarrow |f(x)-f(a)| < \varepsilon\big)
-$$
+**The standard exercise.** Take a claim of the shape *for every tolerance, there is a window such that every point in the window stays inside the tolerance* — the shape most definitions in later courses have.
 
-*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\Rightarrow$ is "forces".*
+Flip each quantifier in turn and the denial reads: *there is a tolerance so tight that for every window, however small, some point in it escapes.*
 
-becomes
-$$
-\exists \varepsilon > 0\; \forall \delta > 0\; \exists x\; \big(|x-a| < \delta \;\wedge\; |f(x)-f(a)| \geq \varepsilon\big).
-$$
-
-*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\wedge$ is "and".*
-
-Read it: some tolerance $\varepsilon$ is unattainable — for every candidate $\delta$, however small, there is a point within $\delta$ of $a$ whose image is at least $\varepsilon$ away. That sentence is the definition of discontinuity, and it was produced entirely mechanically. Students who cannot negate reliably cannot prove discontinuity, non-convergence, non-uniform-continuity, or unboundedness, and those are half the negative results in a first calculus course.
+Notice what the flip bought you. The original quantifies over infinitely many tolerances and is hard to attack head-on. Its denial asks for **one** tolerance, and then one escaping point per window — a job you can actually begin.
 
 <Warning title="Failure modes">
 **Over-negation.** $\neg \forall x\, p(x) \not\equiv \forall x\, \neg p(x)$. "Not every prime is odd" is not "every prime is even."
 
 **Forgetting the inner connectives.** After flipping the quantifiers you must still negate the matrix, and if it contains $\Rightarrow$, $\wedge$, or $\vee$, further rules apply. A half-pushed negation is a common source of proofs of the wrong statement.
 
-**Changing the domain.** Bounded quantifiers such as $\forall \varepsilon > 0$ abbreviate $\forall \varepsilon\,(\varepsilon > 0 \Rightarrow \ldots)$; negating gives $\exists \varepsilon\,(\varepsilon > 0 \wedge \ldots)$, i.e. $\exists \varepsilon > 0$. The bound survives; it does not become $\exists \varepsilon \leq 0$.
+**Changing the domain.** A quantifier with a restriction attached — *for every positive $t$* — is shorthand for *for every $t$, if $t$ is positive then …*. Negating gives *there is a $t$ that is positive **and** …*. The restriction survives the flip; it does not turn into its opposite.
 </Warning>
 
 <Aside>

@@ -8,7 +8,6 @@ anchorExample: "the odd numbers add up to a square"
 
 import Discussion from '@/components/Discussion.astro';
 import Proof from '@/components/Proof.astro';
-import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
@@ -94,11 +93,9 @@ If $D = f(d)$ for some $d \in S$, then $d \in D \iff d \notin f(d) = D$ — a co
 
 This is **not** an induction and cannot be made one: no successor structure is available on an arbitrary set. It is a diagonal argument, the same construction as Russell's paradox (§2.1) and the diagonal argument of §3.8), used constructively rather than destructively.
 
-The finite theorem says $2^n > n$; Cantor's says the strict inequality survives to every cardinal. So there is no largest set and no largest infinity.
+The finite theorem says $2^n > n$; the infinite version says it survives at every size of infinity. So there is no largest set and no largest infinity.
 
-<Aside>
-$|\mathcal{P}(\mathbb{N})| = |\mathbb{R}|$, and whether any cardinal lies strictly between $|\mathbb{N}|$ and $|\mathcal{P}(\mathbb{N})|$ is the continuum hypothesis — and Gödel and Cohen showed the standard axioms of set theory can neither prove nor refute it (§3.8). The finite case is a two-line induction; its infinite analogue is undecidable from the standard axioms. Few contrasts illustrate better that finite combinatorics and set theory are different subjects.
-</Aside>
+The power set of the counting numbers turns out to be the same size as the whole real line. Whether any size of infinity sits strictly between those two is a question the standard assumptions of mathematics can neither settle nor refute — one of the more startling discoveries of the last century, and a genuine limit rather than a gap in anyone's cleverness.
 
 <WhereThisGoes level="l7">
 

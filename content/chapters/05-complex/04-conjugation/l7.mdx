@@ -66,7 +66,7 @@ That last factorisation is what makes partial fractions work over $\mathbb{R}$, 
 <Warning title="Real coefficients are essential">
 $p(x) = x - i$ has root $i$ but not $\bar i = -i$. The theorem uses $\overline{c_k} = c_k$, which holds only for real coefficients.
 
-Relatedly, $\overline{f(z)} = f(\bar z)$ fails for general functions: it holds for real-coefficient polynomials and power series, and fails for, e.g., $f(z) = iz$.
+Relatedly, $\overline{f(z)} = f(\bar z)$ fails for functions in general. It holds when the rule is built out of real numbers and the arithmetic operations — a polynomial with real coefficients, say — and fails as soon as it is not: for $f(z) = iz$, conjugating the input and conjugating the output give opposite answers.
 </Warning>
 
 ## Conjugation as reflection
@@ -89,7 +89,7 @@ The last one is the most useful, and it is the reason the conjugate-root theorem
 
 $z \mapsto \bar z$ is $\mathbb{R}$-linear but not $\mathbb{C}$-linear: $\overline{iz} = -i\bar z \neq i\bar z$ in general. It is therefore not complex-differentiable anywhere, despite being smooth as a map $\mathbb{R}^2\to\mathbb{R}^2$ — the standard first example showing that complex differentiability is far stronger than real differentiability.
 
-This has a consequence you will meet much later: the operations that pick out a part — real part, turn part, distance, conjugate — all behave badly under the calculus of complex numbers, precisely because each of them ignores some of the structure. Recognising them at a glance saves a great deal of time in that course.
+This has a consequence you will meet much later: the operations that pick out a part — real part, imaginary part, distance, conjugate — all behave badly under the calculus of complex numbers, precisely because each of them ignores some of the structure. Recognising them at a glance saves a great deal of time in that course.
 
 <Aside>
 Conjugation is one of exactly two *continuous* operation-preserving relabellings of $\mathbb{C}$. Dropping continuity there are vastly more, constructed non-constructively; all but the identity and conjugation are non-measurable and unwritable. That $\mathbb{R}$ by contrast has *only* the identity — because its order, hence its notion of nearness, is determined algebraically by which elements are squares — is a small and striking asymmetry.
@@ -105,6 +105,6 @@ Three consequences you will use:
 
 - **A real polynomial of odd degree has a real root**, because the non-real roots pair up and an odd count cannot pair evenly. That is why every real cubic crosses the $x$-axis.
 - **Real quadratic factors come from conjugate pairs.** Multiplying $(x - z)(x-\bar z)$ gives $x^2 - 2\operatorname{Re}(z)x + |z|^2$, with real coefficients — which is exactly the irreducible quadratic block in a partial-fraction decomposition.
-- **Real solutions of differential equations are built from conjugate pairs.** When the characteristic roots are $\alpha\pm\beta i$, the real solutions are $e^{\alpha x}\cos\beta x$ and $e^{\alpha x}\sin\beta x$ — obtained from $e^{(\alpha+\beta i)x}$ and its conjugate by the formulas $\operatorname{Re}(z) = \frac{z+\bar z}{2}$ and $\operatorname{Im}(z) = \frac{z - \bar z}{2i}$ proved in this module.
+- **Real answers get extracted from conjugate pairs.** Later courses routinely take a detour through complex numbers to answer a question that was about real ones all along, and the return trip is the pair of formulas proved in this module: $\operatorname{Re}(z) = \frac{z+\bar z}{2}$ and $\operatorname{Im}(z) = \frac{z-\bar z}{2i}$. Average a number with its conjugate and the imaginary parts cancel — which is why the detour is safe.
 
 </WhereThisGoes>

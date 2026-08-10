@@ -28,7 +28,7 @@ The proof used only the arithmetic and ordering rules, and that is the substanti
 | $\mathbb{Q}$ | not order-complete | $\mathbb{R}$ |
 | $\mathbb{R}$ | not algebraically closed | $\mathbb{C}$ |
 
-Each step adjoins what is missing and verifies the axioms survive. Note the last two failures are of different kinds — one analytic, one algebraic — and correspondingly $\mathbb{R}$ is built by filling gaps and $\mathbb{C}$ by adjoining a root.
+Each step adjoins what is missing and verifies the axioms survive. Note the last two failures are of different kinds — one about gaps, one about equations — and correspondingly $\mathbb{R}$ is built by filling gaps and $\mathbb{C}$ by adjoining a root.
 
 ## The construction, done properly
 
@@ -51,7 +51,7 @@ Either way $\mathbb{C}$ exists as an object built from $\mathbb{R}$, so no new c
 
 **A real caution, though:** $\sqrt{ab} = \sqrt a \sqrt b$ **fails** on $\mathbb{C}$. The classic trap is
 $$-1 = i^2 = \sqrt{-1}\sqrt{-1} = \sqrt{(-1)(-1)} = \sqrt1 = 1.$$
-The identity holds for non-negative reals and not in general, because $\sqrt{\phantom{x}}$ on $\mathbb{C}$ requires a branch choice (§5.8). Write $i$, never $\sqrt{-1}$.
+The identity holds for non-negative reals and not in general. The reason is §5.8: a complex number has two square roots and no single rule picks one of them consistently across the whole plane, so the two sides of the identity can quietly pick different ones. Write $i$, never $\sqrt{-1}$.
 </Warning>
 
 ## What the extension costs
@@ -63,7 +63,7 @@ The reals carry an ordering that fits their arithmetic. The complex numbers supp
 So the following are not false but **meaningless**:
 $$i > 0, \qquad 3+4i < 5+2i, \qquad \sup\{z : |z|<1\}.$$
 
-The loss is real. Every theorem that mentions increasing functions, least upper bounds, or the guarantee that a continuous function passing from negative to positive must cross zero somewhere in between — that last one is the Intermediate Value Theorem, which your calculus course states early — refers to the order, and none of them transfers. There is no complex version of "increasing on an interval."
+The loss is real. Every theorem that mentions increasing functions, or boundaries of collections, or the guarantee that an unbroken curve running from below a value to above it must cross it, refers to the ordering — and none of them transfers.
 
 What replaces the order is the **modulus** (§5.6): a real-valued measure of size, so that $|z|<|w|$ is a comparison of reals and therefore legitimate. Every convergence statement in complex analysis is phrased that way, for exactly this reason.
 
@@ -89,6 +89,6 @@ The extension to $\mathbb{C}$ is what makes the algebra of the next two courses 
 
 **In calculus, complex roots explain the shape of partial fractions.** Every real polynomial factors over $\mathbb{R}$ into linear and *irreducible quadratic* factors — and the quadratics are irreducible precisely because their roots are complex. That is why partial-fraction decomposition has two cases, one producing $\frac{A}{x-a}$ and one producing $\frac{Bx+C}{x^2+px+q}$, and why the second integrates to a logarithm plus an arctangent rather than to a logarithm alone.
 
-The same fact governs second-order linear differential equations. The characteristic equation $ar^2+br+c=0$ has real roots when the discriminant is positive, giving exponential solutions, and complex roots when it is negative, giving oscillation. **The discriminant's sign is the same $b^2-4ac$ from your quadratic formula**, and the switch from growth to oscillation is Euler's formula (§5.7) doing its work.
+**Later, the sign of the discriminant decides between growth and oscillation.** Courses that model springs, circuits and populations reach a stage where a quadratic decides the answer's shape: real roots give growth or decay, complex roots give something that wobbles. It is the same $b^2-4ac$ from your quadratic formula, and the switch from one behaviour to the other is Euler's formula (§5.7) doing its work.
 
 </WhereThisGoes>

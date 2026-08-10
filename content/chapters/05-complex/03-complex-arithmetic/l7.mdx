@@ -47,9 +47,9 @@ This is the promised verification that adjoining $i$ breaks nothing. The only ca
 
 <Warning title="The square-root rule breaks on complex numbers">
 $$-1 = i\cdot i = \sqrt{-1}\sqrt{-1} = \sqrt{(-1)(-1)} = 1.$$
-The identity $\sqrt{ab} = \sqrt a\sqrt b$ holds for $a,b \geq 0$ real and fails on $\mathbb{C}$, because square roots there require a branch choice and no choice is consistent globally (§5.8).
+The identity $\sqrt{ab} = \sqrt a\sqrt b$ holds for $a,b \geq 0$ real and fails on $\mathbb{C}$. Every complex number other than $0$ has two square roots, and §5.8 shows that no rule picks one of them consistently everywhere — so the two sides of the identity can pick different roots and disagree.
 
-Practical rule: write $i$, never $\sqrt{-1}$; and never apply $\sqrt{\phantom{x}}$ to a complex number without saying which root you mean. The same caution applies to $\log$ and to fractional powers.
+Practical rule: write $i$, never $\sqrt{-1}$; and never apply $\sqrt{\phantom{x}}$ to a complex number without saying which of the two roots you mean. The same caution applies to any fractional power.
 </Warning>
 
 ## The powers of $i$, and why they cycle
@@ -60,9 +60,9 @@ The pattern has period $4$, so $i^n$ depends only on $n \bmod 4$ — the residue
 
 $$i^{2026}: \quad 2026 = 4\cdot506 + 2, \quad\text{so } i^{2026} = i^2 = -1.$$
 
-The cycle is the mechanism behind Euler's formula (§5.7): substituting $i\theta$ into the exponential series, the four-fold pattern is exactly what sorts the terms into two groups, one real with alternating signs and one imaginary with alternating signs. Those two groups are the cosine and sine series.
+The cycle is the mechanism behind Euler's formula (§5.7): expanding a product of circle points, the four-fold pattern is exactly what sorts the terms into two groups, one real and one carrying a single $i$. Those two groups turn out to be cosine and sine.
 
-**Nothing about that split is a coincidence.** The sign alternation comes from $i^2 = -1$; the even/odd separation comes from the period being $4$ rather than $2$. A number system with $j^3 = 1$ would produce a three-way split and a different pair of functions — and does, in the theory of the Fourier transform over other groups.
+**Nothing about that split is a coincidence.** The sign alternation comes from $i^2 = -1$; the two-way separation comes from the period being $4$ rather than $2$. A number system whose special element cycled every three steps instead would split things three ways and produce a different family of functions.
 
 Read geometrically, the cycle is four quarter-turns returning to the start, which is §5.9's subject and the reason the period is $4$ and not some other number.
 
