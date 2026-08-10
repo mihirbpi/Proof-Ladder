@@ -18,6 +18,8 @@ $$
 \neg\big(\exists x \in S,\; x \text{ has the property}\big) \;\equiv\; \forall x \in S,\; x \text{ does not}
 $$
 
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
+
 In words: **negation swaps the quantifier and negates the predicate.** The domain $S$ is untouched.
 
 ## Why these are De Morgan
@@ -26,6 +28,9 @@ Over a small set — say $S = \{1, 2, 3\}$ — *for all* is just an **and**, and
 $$
 \forall x \in S,\, x \text{ is even} \;\equiv\; (1 \text{ is even}) \wedge (2 \text{ is even}) \wedge (3 \text{ is even}).
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\wedge$ is "and", $\equiv$ is "says the same as".*
+
 Apply the first De Morgan law of module 1.4. The negation becomes "$1$ is not even **or** $2$ is not even **or** $3$ is not even" — which is exactly $\exists x \in S,\, x \text{ is not even}$. Same law, more terms.
 
 ## Counterexamples
@@ -74,16 +79,25 @@ $$
 \equiv \exists x\, \neg\big(\exists y,\; x \text{ and } y \text{ fit}\big)
 \equiv \exists x\, \forall y,\; x \text{ and } y \text{ do not fit}.
 $$
+
+*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
+
 Concretely: the negation of "every real has an additive inverse" is "some real has no additive inverse at all" — the inner $\forall y$ says *no* $y$ works for that particular $x$.
 
 The procedure is entirely mechanical, which is the point — you never have to be clever, only careful. Take:
 $$
 \forall x \in \mathbb{Z}\;\; \exists y \in \mathbb{Z},\;\; \big(y > x \wedge y \text{ is prime}\big).
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\wedge$ is "and".*
+
 This says there is no largest prime. Negate it: flip both quantifiers, then push the negation through the $\wedge$ using De Morgan:
 $$
 \exists x \in \mathbb{Z}\;\; \forall y \in \mathbb{Z},\;\; \big(y \leq x \vee y \text{ is not prime}\big).
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\vee$ is "or".*
+
 Read it: there is some number past which nothing is prime — a largest prime exists. Every symbol in that negation was produced by the two rules of this module plus $\neg(p \wedge q) \equiv \neg p \vee \neg q$. Nothing was invented.
 
 <Aside>

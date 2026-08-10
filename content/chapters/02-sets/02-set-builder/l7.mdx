@@ -14,10 +14,15 @@ Extensional description — listing — is available only for small finite sets.
 $$
 \{\, x \in A \mid p(x) \,\},
 $$
+
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
+
 "the set of $x$ in $A$ such that $p(x)$", with defining property
 $$
 y \in \{x \in A \mid p(x)\} \;\Leftrightarrow\; y \in A \wedge p(y). \tag{1}
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that".*
 
 Equation (1) is the workhorse of the entire chapter. Every proof about a set-builder set begins by applying it, converting a membership assertion into a logical one where Chapter 1 applies, and ends by applying it in reverse.
 
@@ -41,6 +46,9 @@ Naive comprehension — the principle that $\{x \mid p(x)\}$ is a set for every 
 $$
 \{\, x \in A \mid p(x) \,\} \quad\text{for $A$ already known to be a set,}
 $$
+
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
+
 and this is exactly the notation above. Written with the collection you are drawing from, set-builder notation is not merely unambiguous; it is the syntactic form of a consistency-preserving axiom.
 
 Running Russell's argument inside separation is instructive rather than fatal. For any set $A$ put $R_A = \{x \in A \mid x \notin x\}$. If $R_A \in A$ then $R_A \in R_A \Leftrightarrow R_A \notin R_A$, absurd; hence $R_A \notin A$. So no set contains all sets — a theorem, obtained from what was a paradox.
@@ -59,16 +67,25 @@ $$
 \quad
 \{\, 2k \mid k \in \mathbb{Z} \,\}.
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 Here the bar separates a *term* from the range of its parameter, so
 $$
 y \in \{f(x) \mid x \in A\} \;\Leftrightarrow\; \exists x \in A,\; y = f(x).
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", the bar $\mid$ is "such that".*
+
 Note the *there exists* quantifier — it is what makes this form behave differently in proofs from the filter form, whose unfolding is a conjunction. Formally this is Replacement rather than Separation, and it is the notation for the image of a function (§3.3).
 
 The two forms often describe the same set, and proving that they do is real work:
 $$
 \{\, x \in \mathbb{R} \mid \sin x = 0 \,\} \;=\; \{\, n\pi \mid n \in \mathbb{Z} \,\}.
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 The left is a filter; the right is an image. Extensionality says they are equal iff each contains the other, so the proof is a double inclusion (§2.6) — one direction needs the fact that $\sin$ vanishes only at integer multiples of $\pi$, the other only that $\sin(n\pi) = 0$.
 
 ## Intervals
@@ -78,6 +95,9 @@ $$
 (a,b) = \{x \in \mathbb{R} \mid a < x < b\}, \quad
 [a,b] = \{x \in \mathbb{R} \mid a \leq x \leq b\},
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 with half-open variants, and $\infty$ always taking a round bracket since it is not an element of $\mathbb{R}$. Note that $(a,b) = \emptyset$ whenever $a \geq b$, and $[a,a] = \{a\}$ — degenerate cases that a careful proof must handle rather than dismiss.
 
 ## Sets that are empty for a reason

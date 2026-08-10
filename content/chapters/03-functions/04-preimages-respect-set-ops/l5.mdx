@@ -18,18 +18,26 @@ f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V)
 $$
 
 *Symbol by symbol: $\cup$ is "pooled with". So the line reads: tracing back from a pooled pair gives the same inputs as tracing back from each and pooling — and the same holds for overlap and for complement.*
+
 $$
 f^{-1}(U \cap V) = f^{-1}(U) \cap f^{-1}(V)
 $$
+
+*Symbol by symbol: $\cap$ is "overlapped with".*
+
 $$
 f^{-1}\big(\overline{U}\big) = \overline{f^{-1}(U)}
 $$
+
+*Symbol by symbol: the bar on top is "everything outside".*
 
 Three theorems, and **one proof technique repeated three times.** The pivot is always the same line:
 
 $$
 x \in f^{-1}(U) \iff f(x) \in U.
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when".*
 
 That is just the definition of pre-image, and it is a **biconditional** — which is why these proofs come out so cleanly. A biconditional runs in both directions at once, so the ($\subseteq$) and ($\supseteq$) halves of each double inclusion are the same computation read forwards and backwards.
 
@@ -90,6 +98,9 @@ The same three laws for the *forward* image are not all true.
 $$
 A \cap B = \emptyset, \text{ so } f(A \cap B) = \emptyset,
 $$
+
+*Symbol by symbol: $\emptyset$ is the empty collection, $\cap$ is "overlapped with".*
+
 but $f(A) = f(B) = \{1\}$, so $f(A) \cap f(B) = \{1\}$.
 
 The general fact is only $f(A \cap B) \subseteq f(A) \cap f(B)$.

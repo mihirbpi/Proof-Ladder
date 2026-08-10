@@ -20,11 +20,15 @@ $$
 \operatorname{Im}(f) = \{\, f(s) \mid s \in S \,\} \subseteq T.
 $$
 
+*Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in", the bar $\mid$ is "such that".*
+
 Take $f : \mathbb{R} \to \mathbb{R}$, $f(x) = x^2$. The codomain is all of $\mathbb{R}$, and the image is $[0,\infty)$ — no negative number is ever a square of a real.
 
 $$
 \operatorname{Im}(f) \subseteq T \ \text{ always}, \qquad \operatorname{Im}(f) = T \ \text{ sometimes}.
 $$
+
+*Symbol by symbol: $\subseteq$ is "sits inside".*
 
 The gap between those two is exactly the subject of module 3.6. For now, notice that the image is computed *from* the rule while the codomain is *declared* — which is why changing the codomain changes the function but never changes the image.
 
@@ -36,6 +40,8 @@ Running the other way, for a subset $U \subseteq T$:
 $$
 f^{-1}(U) = \{\, s \in S \mid f(s) \in U \,\}.
 $$
+
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
 
 The **pre-image** of $U$ is everything that lands in $U$. With $f(x) = x^2$ again:
 
@@ -75,6 +81,9 @@ The image construction also applies to a piece of the domain. For $A \subseteq S
 $$
 f(A) = \{\, f(a) \mid a \in A \,\},
 $$
+
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
+
 so $\operatorname{Im}(f) = f(S)$, and $f(A)$ is called the image of $A$.
 
 With $f(x) = x^2$: $f([1,2]) = [1,4]$, and $f([-2,2]) = [0,4]$ — the second is smaller than you might guess, because the negative half folds onto the positive half.
@@ -86,6 +95,8 @@ With $f(x) = x^2$ and $A = [1,2]$:
 $$
 f(A) = [1,4], \qquad f^{-1}([1,4]) = [-2,-1] \cup [1,2].
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with".*
 
 Going out and coming back caught the negatives too. In general $A \subseteq f^{-1}(f(A))$, and the containment can be strict — which happens exactly when $f$ sends two inputs to one output, the condition module 3.5 studies.
 </Warning>

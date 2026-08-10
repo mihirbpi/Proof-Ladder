@@ -39,6 +39,9 @@ $$
 \qquad
 \exists x \in S,\, p(x) \;\equiv\; p(a_1) \vee \cdots \vee p(a_n).
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\wedge$ is "and", $\vee$ is "or".*
+
 So $\forall$ is an endless chain of $\wedge$, and $\exists$ an endless chain of $\vee$. Every fact about quantifiers in this chapter — including the negation rules of §1.11 — is the corresponding fact about $\wedge$ and $\vee$ pushed to infinity.
 
 A consequence worth stating: over $S = \emptyset$, $\forall x \in \emptyset,\, p(x)$ is **true** (an empty conjunction) and $\exists x \in \emptyset,\, p(x)$ is **false** (an empty disjunction), for every $p$. The first is vacuous truth (§1.5) in quantifier form.
@@ -106,6 +109,8 @@ $$
 $$
 f \text{ is uniformly continuous on } S: \quad \forall \varepsilon > 0\; \exists \delta > 0\; \forall a \in S\; \forall x \in S,\; |x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\Rightarrow$ is "forces".*
 
 The two differ by moving $\exists \delta$ across $\forall a$. In the first, $\delta$ may depend on the point $a$; in the second it may not. That single transposition is the difference between $f(x) = 1/x$ on $(0,1)$ — continuous, not uniformly so — and every continuous function on a closed bounded interval, which the Heine–Cantor theorem says is uniformly continuous. Students who find analysis impenetrable are almost always students for whom quantifier order is not yet load-bearing.
 

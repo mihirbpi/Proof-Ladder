@@ -18,6 +18,8 @@ $$
 S = T \quad\Leftrightarrow\quad S \subseteq T \;\wedge\; T \subseteq S.
 $$
 
+*Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and".*
+
 This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$, a biconditional decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
 
 Equivalently: **double inclusion is the rule that mutual containment forces equality of $\subseteq$**, the third partial-order axiom whose proof was deferred in §2.3.
@@ -81,6 +83,9 @@ x \in S \cup (S \cap T)
 \iff (x \in S) \vee \big((x \in S) \wedge (x \in T)\big)
 \iff x \in S,
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with".*
+
 the last step by the absorption law $p \vee (p \wedge q) \equiv p$. This is legitimate — every step is a genuine biconditional — and it proves $S \cup (S \cap T) = S$ in one line.
 
 <Warning title="When the chain is not safe">
@@ -99,6 +104,9 @@ $$
 \qquad
 \{n \in \mathbb{Z} \mid 12 \mid n \text{ and } 18 \mid n\} = \{n \in \mathbb{Z} \mid 36 \mid n\}.
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 Each is a theorem with two halves, and in each case one half is substantially harder than the other. The value of double inclusion is precisely that it does not consult your intuition about whether two descriptions "look the same".
 
 <Aside>

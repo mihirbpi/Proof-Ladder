@@ -69,6 +69,9 @@ So every logical identity produces a set identity by mechanical translation, and
 $\overline{S \cap T} \neq \overline{S} \cap \overline{T}$ in general. Concretely, in $U = \{1,\ldots,6\}$ with $S = \{1,2,3\}$, $T = \{3,4\}$:
 $$\overline{S \cap T} = \overline{\{3\}} = \{1,2,4,5,6\},$$
 $$\overline{S} \cap \overline{T} = \{4,5,6\} \cap \{1,2,5,6\} = \{5,6\}.$$
+
+*Symbol by symbol: $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 Different sets. Keeping the connective is the same over-negation error as in module 1.4, and one counterexample settles it.
 </Warning>
 
@@ -82,10 +85,15 @@ S \setminus (T \cup R) = (S \setminus T) \cap (S \setminus R),
 S \setminus (T \cap R) = (S \setminus T) \cup (S \setminus R),
 $$
 
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with".*
+
 obtained by taking $U = S$. These are the forms you actually meet in practice, since set difference is more common than absolute complement.
 
 <Aside>
 The laws extend to arbitrarily many sets. For a family $A_1, \ldots, A_n$,
 $$\overline{A_1 \cup \cdots \cup A_n} = \overline{A_1} \cap \cdots \cap \overline{A_n},$$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 provable by induction (Chapter 6). Pushed to infinite families, the connectives become quantifiers and this becomes $\neg \exists \equiv \forall \neg$ — module 1.11 again. One law, three levels of generality.
 </Aside>

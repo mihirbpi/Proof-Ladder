@@ -17,6 +17,9 @@ The **biconditional** is defined by
 $$
 p \Leftrightarrow q \;:\equiv\; (p \Rightarrow q) \wedge (q \Rightarrow p),
 $$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\Rightarrow$ is "forces", $\wedge$ is "and", $\equiv$ is "says the same as".*
+
 and read "$p$ if and only if $q$", abbreviated *iff*. Its truth table is T exactly where $p$ and $q$ agree:
 
 <TruthTable
@@ -75,6 +78,9 @@ A chain
 $$
 p \iff r_1 \iff r_2 \iff \cdots \iff q
 $$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when".*
+
 proves $p \iff q$ only if every link is genuinely a biconditional. The failure mode is writing $\iff$ where only $\Rightarrow$ holds:
 
 - $x = y \;\Rightarrow\; x^2 = y^2$, but not conversely.
@@ -90,6 +96,9 @@ When three or more statements are to be shown pairwise equivalent, proving all $
 $$
 p \Rightarrow q \Rightarrow r \Rightarrow p.
 $$
+
+*Symbol by symbol: $\Rightarrow$ is "forces".*
+
 Three implications rather than six, and every pairwise equivalence follows by composing around the cycle. Theorems of the form "the following are equivalent (TFAE)" — ubiquitous in matrix and vector work and in every course after it — are almost always proved this way, and choosing the cycle order so that each individual implication is easy is a real part of the work.
 
 <Aside>

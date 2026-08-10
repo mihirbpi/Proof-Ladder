@@ -34,6 +34,8 @@ $$
 s \in f^{-1}(U) \quad\text{exactly when}\quad f(s) \in U. \tag{1}
 $$
 
+*Symbol by symbol: $\in$ is "is in".*
+
 ## Image versus codomain
 
 The codomain $T$ is **declared**; the image is **computed**. Always $\operatorname{Im}(f) \subseteq T$, and equality is a special property with a name (surjectivity, module 3.6).
@@ -42,12 +44,18 @@ Take $f(x) = x^2$, a function from $\mathbb{R}$ to $\mathbb{R}$. A square is nev
 $$
 \operatorname{Im}(f) = \{\, y \in \mathbb{R} \mid y \geq 0 \,\},
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 which is not all of $\mathbb{R}$ — nothing negative is attained.
 
 Take $g(x) = 2^x$, again from $\mathbb{R}$ to $\mathbb{R}$. Powers of $2$ are always positive, so
 $$
 \operatorname{Im}(g) = \{\, y \in \mathbb{R} \mid y > 0 \,\},
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 and $0$ itself is never attained, however negative the exponent gets.
 
 Note the word *range* is best avoided: some authors use it for the image, others for the codomain. Say which you mean.
@@ -69,12 +77,17 @@ f^{-1}(\{0\}) = \{0\},
 f^{-1}(\{-5\}) = \emptyset.
 $$
 
+*Symbol by symbol: $\emptyset$ is the empty collection.*
+
 The last one is not an error. No real number squares to $-5$, so nothing lands in $\{-5\}$, and the pre-image is empty. Pre-images of sets outside the image are always empty, and this is normal.
 
 Pre-images of intervals:
 $$
 f^{-1}\big((-2, 6)\big) = \{x \in \mathbb{R} \mid -2 < x^2 < 6\} = (-\sqrt6, \sqrt6).
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 The left constraint $-2 < x^2$ is automatic since squares are non-negative; only $x^2 < 6$ bites. Notice the pre-image of an open interval came out as an open interval. That is not a coincidence, and it is the property later courses take as the *definition* of a continuous function.
 
 ## Worked pre-images: the floor function
@@ -102,6 +115,8 @@ $$
 $$
 t \in \operatorname{Im}(f) \quad\text{exactly when}\quad f^{-1}(\{t\}) \neq \emptyset.
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\emptyset$ is the empty collection.*
 
 Both sides say "$t$ is attained", one forwards and one backwards. The proof is immediate from the definitions: $t \in \operatorname{Im}(f)$ means some $s$ has $f(s) = t$, and $f^{-1}(\{t\}) \neq \emptyset$ means some $s$ has $f(s) \in \{t\}$ — the same statement.
 

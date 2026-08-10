@@ -37,6 +37,9 @@ Geometrically the Euclidean distance from $0$ to $z$; algebraically the square r
 $$
 |z+w|^2 = (z+w)\overline{(z+w)} = |z|^2 + z\bar w + \bar z w + |w|^2 = |z|^2 + 2\operatorname{Re}(z\bar w) + |w|^2,
 $$
+
+*Symbol by symbol: the bar on top is "everything outside".*
+
 using $\bar z w = \overline{z\bar w}$ and $u + \bar u = 2\operatorname{Re}(u)$. Hence
 $$
 |z+w|^2 \leq |z|^2 + 2|z\bar w| + |w|^2 = |z|^2 + 2|z||w| + |w|^2 = (|z|+|w|)^2,
@@ -60,6 +63,8 @@ $$
 z_n \to z \iff |z_n - z| \to 0 \iff \operatorname{Re}z_n \to \operatorname{Re}z \text{ and } \operatorname{Im}z_n \to \operatorname{Im}z.
 $$
 
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when".*
+
 Completeness is inherited from $\mathbb{R}$ componentwise, and it is what makes power series — hence $e^z$, hence §5.7 — converge.
 
 ## Multiplicativity, proved with the conjugate
@@ -69,6 +74,8 @@ Completeness is inherited from $\mathbb{R}$ componentwise, and it is what makes 
 Both sides are non-negative reals, so it suffices to compare squares.
 
 $$|zw|^2 = (zw)\overline{(zw)} = zw\,\bar z\bar w = (z\bar z)(w\bar w) = |z|^2|w|^2,$$
+
+*Symbol by symbol: the bar on top is "everything outside".*
 
 using $\overline{zw} = \bar z\bar w$ from §5.4 and commutativity. Taking non-negative square roots gives the result.
 

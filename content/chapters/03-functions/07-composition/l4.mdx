@@ -18,6 +18,8 @@ $$
 (g \circ f)(s) = g\big(f(s)\big).
 $$
 
+*Symbol by symbol: $\circ$ is "after".*
+
 (The notation $f(s)$ for the output on input $s$ is §3.1's.)
 
 It is defined **only** when the codomain of $f$ equals the domain of $g$:
@@ -34,6 +36,9 @@ $g \circ f$ means "$f$ first, then $g$" — read it as "$g$ after $f$". The orde
 
 Composition is not commutative. With $f(x) = x+1$ and $g(x) = 2x$ on $\mathbb{R}$:
 $$(g\circ f)(x) = 2(x+1) = 2x+2, \qquad (f \circ g)(x) = 2x + 1.$$
+
+*Symbol by symbol: $\circ$ is "after".*
+
 Different functions. And frequently one of the two does not exist at all, because the codomains do not line up.
 </Warning>
 
@@ -43,6 +48,9 @@ For $f : S \to T$, $g : T \to R$, $h : R \to Q$:
 $$
 h \circ (g \circ f) = (h \circ g) \circ f,
 $$
+
+*Symbol by symbol: $\circ$ is "after".*
+
 since both send $s$ to $h(g(f(s)))$. So $h \circ g \circ f$ needs no parentheses. Together with the identity functions $\mathrm{id}_S(s) = s$, which satisfy $f \circ \mathrm{id}_S = f = \mathrm{id}_T \circ f$, composition gives functions the structure of an algebraic system in their own right.
 
 ## Composition preserves injectivity

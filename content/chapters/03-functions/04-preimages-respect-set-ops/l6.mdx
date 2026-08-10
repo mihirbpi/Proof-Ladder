@@ -35,6 +35,8 @@ $$
 s \in f^{-1}(B) \quad\Leftrightarrow\quad f(s)\in B.
 $$
 
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when".*
+
 Membership in a pre-image is *directly* a condition on $f(s)$ — no quantifier, no search. Because of that, whatever $\cup$, $\cap$, and complement do to $B$ transfers verbatim, and the proofs are short.
 
 ## Proof of one
@@ -66,15 +68,22 @@ The other two identities have the same shape. Try the complement one; it is four
 $$
 f(A\cup A') = f(A)\cup f(A') \qquad \checkmark
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with".*
+
 $$
 f(A\cap A') \subseteq f(A)\cap f(A') \qquad \text{— containment only}
 $$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with".*
 
 **Counterexample.** Let $f(x)=x^2$, $A = \{2\}$, $A'=\{-2\}$.
 
 Then $A \cap A' = \emptyset$, so $f(A\cap A') = \emptyset$. But $f(A) = \{4\}$ and $f(A')=\{4\}$, so $f(A)\cap f(A') = \{4\}$.
 
 $$\emptyset \subsetneq \{4\}.$$
+
+*Symbol by symbol: $\subsetneq$ is "sits strictly inside", $\emptyset$ is the empty collection.*
 
 The right side found $4$ in both images, from *different* sources. The left side needed one source in both sets, and there was none.
 
@@ -100,6 +109,8 @@ If $f$ is **injective**, all three image identities hold. The reason is exactly 
 Rigid motions are injective — a reflection cannot send two distinct points to the same place — so for a reflection $\sigma$:
 $$\sigma(A\cap A') = \sigma(A)\cap\sigma(A').$$
 
+*Symbol by symbol: $\cap$ is "overlapped with".*
+
 **This is why transformation proofs work.** When your course says "the image of the intersection of two figures is the intersection of their images," it is relying on a property that holds for rigid motions and fails for functions in general. Dilations preserve it too; projections do not, and that is why projecting a three-dimensional figure onto a plane loses information.
 
 <Aside>
@@ -118,6 +129,9 @@ The identities let you rewrite conditions before working with them.
 
 Suppose $T$ is a transformation of the plane and you want the set of points whose image lies inside the unit circle **and** above the $x$-axis. That set is
 $$T^{-1}(D \cap H) = T^{-1}(D)\cap T^{-1}(H),$$
+
+*Symbol by symbol: $\cap$ is "overlapped with".*
+
 so you may handle the two conditions separately and intersect at the end. The identity guarantees the two routes agree.
 
 Attempting the same split with images would be an error, and the counterexample above is what you would run into.

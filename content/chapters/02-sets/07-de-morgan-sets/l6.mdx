@@ -18,6 +18,8 @@ $$
 \overline{S \cup T} = \overline{S} \cap \overline{T}
 $$
 
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 You have seen these before. In module 1.4 they were about $\wedge$ and $\vee$; here they are about $\cap$ and $\cup$. Nothing new is being discovered — a translation is being performed, and this module is where you watch a Chapter 1 proof become a Chapter 2 proof line by line.
 
 ## The pictures
@@ -70,10 +72,15 @@ Apply the first law to $\overline S$ and $\overline T$ in place of $S$ and $T$:
 $$
 \overline{\overline S \cap \overline T} = \overline{\overline S} \cup \overline{\overline T} = S \cup T,
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 using $\overline{\overline S} = S$. Now complement both sides:
 $$
 \overline S \cap \overline T = \overline{S \cup T}.
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
 
 **One law implies the other.** Complementation is a mirror that exchanges $\cap$ and $\cup$, and each law is the other seen in it. Deriving is better than re-proving here — it is shorter, and it shows *why* the two laws come as a pair rather than by coincidence.
 
@@ -102,6 +109,8 @@ Element chasing has none of these limits, which is the practical argument for le
 <Aside>
 The same laws hold for quantifiers, and by now the pattern should be predictable:
 $$\overline{S_1 \cap \cdots \cap S_n} = \overline{S_1} \cup \cdots \cup \overline{S_n}, \qquad \overline{S_1 \cup \cdots \cup S_n} = \overline{S_1} \cap \cdots \cap \overline{S_n}.$$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
 
 Since an intersection is a *for all* and a union is a *there exists*, this is module 1.11 written a third time.
 

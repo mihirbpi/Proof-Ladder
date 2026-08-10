@@ -19,6 +19,8 @@ $$
 (a,b) = (c,d) \iff a = c \wedge b = d. \tag{1}
 $$
 
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\wedge$ is "and".*
+
 Anything satisfying (1) will do; the standard implementation is Kuratowski's,
 $$
 (a,b) := \{\{a\}, \{a,b\}\},
@@ -70,6 +72,9 @@ $$
 &\iff (x,y) \in (A\times C)\cap(B\times D),
 \end{aligned}
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\cap$ is "overlapped with".*
+
 the middle step by commutativity and associativity of $\wedge$.
 </Proof>
 
@@ -87,6 +92,9 @@ With $A = C = \{1\}$, $B = D = \{2\}$: the left contains $(1,2)$; the right is $
 $$
 (A\cup B)\times(C\cup D) = (A\times C)\cup(A\times D)\cup(B\times C)\cup(B\times D),
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with".*
+
 which distributes properly — and whose four terms are the cross-terms the naive version omits. Meanwhile $A \times (C \cup D) = (A\times C)\cup(A\times D)$ does hold, so $\times$ distributes over $\cup$ in each variable separately; it is only the simultaneous version that fails.
 
 ## Relations

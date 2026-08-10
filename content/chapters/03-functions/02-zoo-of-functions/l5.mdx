@@ -19,6 +19,9 @@ The **floor** function
 $$
 \lfloor \cdot \rfloor : \mathbb{R} \to \mathbb{Z}, \qquad \lfloor x \rfloor = \text{the greatest integer} \leq x
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers.*
+
 has $\lfloor 3.7 \rfloor = 3$, $\lfloor 5 \rfloor = 5$, and $\lfloor -2.4 \rfloor = -3$.
 
 That last value is the one to check. The greatest integer not exceeding $-2.4$ is $-3$, not $-2$ — flooring moves **down**, and for negatives that means away from zero. Truncating the decimal would give $-2$, and truncation is a different function.
@@ -40,6 +43,9 @@ Euler's **totient** function
 $$
 \operatorname{tot} : \mathbb{Z}_{>0} \to \mathbb{Z}_{>0}, \qquad \operatorname{tot}(n) = \text{how many of } 1, \ldots, n \text{ share no factor with } n
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers.*
+
 gives $\operatorname{tot}(6) = 2$ — only $1$ and $5$ qualify, since $2, 3, 4, 6$ all share a factor with $6$.
 
 Computing $\operatorname{tot}(1000)$ by hand would be slow. **Being hard to compute is not the same as being ill-defined**, and module 2.1's requirement was the second, not the first.

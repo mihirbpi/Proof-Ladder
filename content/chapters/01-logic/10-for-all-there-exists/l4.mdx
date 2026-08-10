@@ -17,6 +17,9 @@ The symbol $\forall$ is read "for all" or "for every". The ***for all* quantifie
 $$
 \forall x \in \mathbb{R},\; x^2 \geq 0.
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every".*
+
 Read: "for all real numbers $x$, $x^2$ is at least $0$." True.
 
 The set matters. Compare:
@@ -25,6 +28,9 @@ $$
 \qquad
 \forall x \in \mathbb{Z},\; x \geq 1 \text{ or } x \leq 0 \quad \text{(true)}
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every".*
+
 A quantified statement without a stated domain is incomplete. Write the $\in$.
 
 ## The *there exists* quantifier
@@ -33,10 +39,16 @@ The symbol $\exists$ is read "there exists". The ***there exists* quantifier** a
 $$
 \exists x \in \mathbb{R},\; 3x - 1 = 0.
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\exists$ is "there is some".*
+
 True, with $x = \tfrac{1}{3}$. Contrast
 $$
 \exists x \in \mathbb{Z},\; 3x - 1 = 0,
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some".*
+
 which is **false** — no integer works. Same predicate, different domain, different truth value.
 
 <Warning title="There exists never means exactly one">
@@ -79,6 +91,8 @@ means
 
 $$\forall x \in \mathbb{R},\; (x > 1 \Rightarrow x^2 > 1).$$
 
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces".*
+
 That invisible $\forall$ is why the proof in module 1.6 had to reason about a nameless $x$ rather than checking a few values. Making the quantifier visible is often the first useful step on a problem you are stuck on.
 
 ## Two quantifiers at once
@@ -87,9 +101,13 @@ Statements often carry more than one, and then **order matters**:
 
 $$\forall x \in \mathbb{R},\; \exists y \in \mathbb{R},\; x + y = 0$$
 
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some".*
+
 says: whatever $x$ you hand me, I can find a $y$ that cancels it. True — take $y = -x$, which is allowed to depend on $x$.
 
 $$\exists y \in \mathbb{R},\; \forall x \in \mathbb{R},\; x + y = 0$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some".*
 
 says: there is a single $y$ that cancels *every* $x$ at once. False — no fixed $y$ works for both $x = 1$ and $x = 2$.
 

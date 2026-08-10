@@ -16,10 +16,15 @@ $f : S \to T$ is **injective** when
 $$
 \forall s_1, s_2 \in S,\ s_1 \neq s_2 \Rightarrow f(s_1) \neq f(s_2),
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces".*
+
 equivalently, by contraposition,
 $$
 \forall s_1, s_2 \in S,\ f(s_1) = f(s_2) \Rightarrow s_1 = s_2. \tag{I}
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces".*
 
 Form (I) is the working definition. The reason is §1.8's decision rule: the first version has a negation as hypothesis and supplies nothing to compute with, while (I) hands you an equation. Every injectivity proof in mathematics opens by assuming $f(s_1) = f(s_2)$.
 
@@ -78,6 +83,9 @@ Since domain and codomain are part of the function (§3.1), this is not a change
 $$
 g(t) = \begin{cases} \text{the unique } s \text{ with } f(s) = t, & t \in \operatorname{Im}(f),\\ s_0, & \text{otherwise.}\end{cases}
 $$
+
+*Symbol by symbol: $\in$ is "is in".*
+
 Uniqueness — hence well-definedness of $g$ — is exactly injectivity. For $s \in S$ we have $g(f(s)) = s$, so $g \circ f = \mathrm{id}_S$.
 
 (backward) Suppose $g \circ f = \mathrm{id}_S$ and $f(s_1) = f(s_2)$. Applying $g$: $s_1 = g(f(s_1)) = g(f(s_2)) = s_2$.

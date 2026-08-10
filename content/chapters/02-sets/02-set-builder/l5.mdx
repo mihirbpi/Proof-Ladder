@@ -15,12 +15,17 @@ Listing elements works for small sets and fails immediately for interesting ones
 $$
 \{\, x \in A \mid p(x) \,\}
 $$
+
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
+
 read *the set of $x$ in $A$ such that $p(x)$*. The bar means *such that*; some books use a colon, $\{x \in A : p(x)\}$, and it means the same thing.
 
 Membership is then decided by Chapter 1:
 $$
 x \in \{\, y \in A \mid p(y)\,\} \iff x \in A \ \wedge\ p(x).
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that".*
 
 **This equivalence is the whole module.** Every proof about a set-builder set runs through it — you unfold membership into a statement, work with the statement, and fold it back up.
 
@@ -46,12 +51,20 @@ This is the notation that has been sitting under your algebra work all along. A 
 $$
 \{\, x \in \mathbb{R} \mid x^2 - 1 = 0 \,\} = \{-1, 1\}
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 $$
 \{\, x \in \mathbb{R} \mid x^2 + 1 = 0 \,\} = \emptyset
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\emptyset$ is the empty collection, the bar $\mid$ is "such that".*
+
 $$
 \{\, x \in \mathbb{R} \mid x^2 \geq 0 \,\} = \mathbb{R}
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
 
 The middle one is worth pausing on. Solving an equation and getting no answers does not mean the notation broke — it means the set is empty, which is a perfectly good value. And the third shows the other extreme: a condition every element satisfies picks out the whole source set.
 
@@ -84,12 +97,17 @@ $$
 \{\, 2k \mid k \in \mathbb{Z} \,\} \quad\text{is the set of even integers,}
 $$
 
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 and here the variable before the bar carries a formula rather than standing alone. Read it as *all things of the form $2k$, as $k$ ranges over $\mathbb{Z}$*.
 
 Both styles describe the same kinds of sets, and often the same set:
 $$
 \{\, n \in \mathbb{Z} \mid n \text{ is even} \,\} = \{\, 2k \mid k \in \mathbb{Z} \,\}.
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that".*
+
 The left **filters** — it starts with all integers and keeps some. The right **generates** — it starts with all integers and transforms them. Proving two such descriptions equal takes an argument in both directions, and module 2.6 supplies the method.
 
 <Aside>
@@ -97,6 +115,8 @@ A forward reference worth having now. Chapter 5 builds the complex numbers, and 
 $$
 \mathbb{C} = \{\, a + bi \mid a, b \in \mathbb{R} \,\}.
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
 
 This is the generating style: every complex number is *of the form* $a + bi$ for real $a$ and $b$. Nothing mysterious is being asserted about $i$ — the set is simply being described by the shape of its elements, which is what generating notation does.
 </Aside>

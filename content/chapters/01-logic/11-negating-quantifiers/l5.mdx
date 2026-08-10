@@ -22,6 +22,8 @@ $$
 \neg\big(\exists x \in S,\ p(x)\big) \equiv \forall x \in S,\ \neg p(x)
 $$
 
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
+
 In words: **the negation moves inward, the quantifier flips, and the set stays put.**
 
 Both are obvious once said aloud. If it is not true that every element has the property, then something fails to have it. If nothing has the property, then everything fails to have it.
@@ -56,12 +58,16 @@ $$
 \neg\big(\forall x \in \mathbb{R},\ x^2 > 4\big) \equiv \exists x \in \mathbb{R},\ x^2 \leq 4.
 $$
 
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not".*
+
 **Not $x^2 < 4$.** The negation of $>$ is $\leq$, and dropping the boundary leaves a hole exactly at $x = \pm2$.
 
 When a connective sits inside, De Morgan does the work (module 1.4):
 $$
 \neg\big(\forall x,\ p(x) \wedge q(x)\big) \equiv \exists x,\ \neg p(x) \vee \neg q(x).
 $$
+
+*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or".*
 
 So to refute *every solution is positive **and** rational*, you need a solution that is not positive **or** not rational — either failure suffices, and you do not have to break both.
 
@@ -94,6 +100,8 @@ Negating in two steps:
 $$
 \neg\big(\forall x\, \exists y,\ xy = 1\big) \equiv \exists x\, \forall y,\ xy \neq 1.
 $$
+
+*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
 
 The negation reads: *there is a real $x$ such that no real $y$ satisfies $xy = 1$.* Take $x = 0$. Then $0 \cdot y = 0 \neq 1$ for every $y$ ✓.
 

@@ -16,6 +16,9 @@ A **set** is a well-defined collection of objects, its **elements**. The members
 $$
 x \in S, \qquad x \notin S,
 $$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in".*
+
 and for every object $x$ and set $S$, "$x \in S$" is a statement in the sense of §1.1: it has a definite truth value.
 
 ## Extensionality
@@ -24,6 +27,8 @@ The governing principle is that **a set is determined by its elements and nothin
 $$
 S = T \quad\Leftrightarrow\quad \forall x\;(x \in S \Leftrightarrow x \in T).
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\Leftrightarrow$ is "exactly when".*
 
 Everything idiosyncratic about sets follows:
 
@@ -43,12 +48,18 @@ But the requirement is doing far more work than excluding vague adjectives. Supp
 $$
 R = \{x \mid x \notin x\}.
 $$
+
+*Symbol by symbol: $\notin$ is "is not in", the bar $\mid$ is "such that".*
+
 Then $R \in R \Leftrightarrow R \notin R$ — a contradiction with no escape route. This is **Russell's paradox** (1901), and it destroyed Frege's foundations of arithmetic while the second volume was in press.
 
 The modern repair is that unrestricted comprehension is not permitted. In Zermelo–Fraenkel set theory you may not form $\{x \mid p(x)\}$ out of nothing; you may only *separate* a subcollection out of a set you already have:
 $$
 \{x \in A \mid p(x)\} \quad\text{is a set, whenever $A$ is.}
 $$
+
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
+
 Run Russell's construction under this restriction and you get, for any set $A$, that $R_A = \{x \in A \mid x \notin x\} \notin A$ — no contradiction, just the useful theorem that no set contains everything.
 
 <Warning title="Distinguish three objects">
@@ -68,6 +79,8 @@ There is exactly one empty set. Suppose $\emptyset_1$ and $\emptyset_2$ both hav
 $$
 \mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}
 $$
+
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers.*
 
 Each is constructed to repair a failure of closure in its predecessor: $\mathbb{Z}$ makes subtraction total, $\mathbb{Q}$ makes division by nonzero elements total, $\mathbb{R}$ fills the order-theoretic gaps ($\sqrt 2 \notin \mathbb{Q}$, §4.7), $\mathbb{C}$ makes every non-constant polynomial have a root. Chapter 4 treats the algebraic structure of these; Chapter 5 builds $\mathbb{C}$; Chapter 7 builds $\mathbb{N}$ from nothing.
 

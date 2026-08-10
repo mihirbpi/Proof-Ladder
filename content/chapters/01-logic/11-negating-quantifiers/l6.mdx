@@ -20,6 +20,8 @@ $$
 \neg\big(\exists x \in S,\ P(x)\big) \;\equiv\; \forall x \in S,\ \neg P(x)
 $$
 
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
+
 In words: **push the negation inward and flip the quantifier.** The domain $S$ never changes.
 
 ## Why they hold
@@ -40,8 +42,14 @@ Over an infinite domain the conjunction cannot literally be written, but the rul
 
 Here is the payoff. To refute
 $$\forall x \in S,\ P(x)$$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every".*
+
 you must prove its negation, which is
 $$\exists x \in S,\ \neg P(x)$$
+
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\neg$ is "not".*
+
 — an existential claim. And existentials are proved by producing a witness.
 
 **That is what a counterexample is.** It is not a rhetorical move or a shortcut. It is a complete proof of the negation, in the form that the negation demands.
@@ -72,10 +80,17 @@ This is the single most common error in refutations, and it is why the first sen
 Restore the quantifier and the conditional:
 $$\forall \text{ line pairs } (\ell_1,\ell_2) \text{ with transversal } t:\ \big(\text{alt. int. congruent} \Rightarrow \ell_1 \parallel \ell_2\big).$$
 
+*Symbol by symbol: $\forall$ is "for every", $\Rightarrow$ is "forces".*
+
 To prove this indirectly, negate. First flip the quantifier:
 $$\exists \text{ a pair}:\ \neg\big(\text{alt. int. congruent} \Rightarrow \ell_1\parallel\ell_2\big),$$
+
+*Symbol by symbol: $\exists$ is "there is some", $\Rightarrow$ is "forces", $\neg$ is "not".*
+
 then use module 1.7: denying an if–then claim means the hypothesis holds and the conclusion fails.
 $$\exists \text{ a pair}:\ \text{alt. int. congruent} \ \wedge\ \ell_1 \not\parallel \ell_2.$$
+
+*Symbol by symbol: $\exists$ is "there is some", $\wedge$ is "and".*
 
 So the indirect proof opens: *"Suppose alternate interior angles are congruent but the lines are not parallel."* Then the lines meet, forming a triangle, and the Exterior Angle Theorem is contradicted.
 
@@ -94,6 +109,8 @@ $$
 \end{aligned}
 $$
 
+*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
+
 **Every quantifier flips, in place, and the order is preserved.** The negation is mechanical once you trust the two rules — which is exactly why the rules are worth memorising rather than re-deriving.
 
 ## Negating uniqueness
@@ -102,6 +119,8 @@ $\exists!$ is not a single quantifier, so it has no single flip rule. Unfold it 
 $$
 \exists! x,\, P(x) \quad\equiv\quad \underbrace{\exists x,\, P(x)}_{\text{existence}} \ \wedge\ \underbrace{\forall x\, \forall y\, \big((P(x)\wedge P(y)) \Rightarrow x = y\big)}_{\text{uniqueness}}.
 $$
+
+*Symbol by symbol: $\forall$ is "for every", $\exists!$ is "there is exactly one", $\exists$ is "there is some", $\Rightarrow$ is "forces", $\wedge$ is "and".*
 
 Negating a conjunction gives a disjunction (module 1.4), so the negation is:
 

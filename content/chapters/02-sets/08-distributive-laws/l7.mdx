@@ -27,6 +27,9 @@ p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r),
 \qquad
 p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r),
 $$
+
+*Symbol by symbol: $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
+
 each checkable on eight rows. The mathematically notable feature is that **both** hold. In a ring, $\times$ distributes over $+$ and not conversely; in $\mathcal{P}(X)$ the two operations are on equal footing, and neither is the "additive" one.
 
 ## Proof of (D2)
@@ -63,6 +66,9 @@ $$
 \qquad
 \overline{(S\cap T) \cup (S \cap R)} = (\overline S \cup \overline T) \cap (\overline S \cup \overline R),
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 so (D1) applied to arbitrary $S,T,R$ yields (D2) for $\overline S, \overline T, \overline R$ — and since complementation is a bijection on $\mathcal{P}(X)$, that is (D2) in full generality. Proving one law proves both.
 
 This is worth internalising as a habit: in any structure with an order-reversing involution, half the theorems are free.
@@ -75,10 +81,16 @@ The subspaces of a vector space have their own versions of $\cap$ and $\cup$: in
 $$
 A \cap (B + C) = A \cap \mathbb{R}^2 = A,
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\cap$ is "overlapped with".*
+
 but
 $$
 (A \cap B) + (A \cap C) = \{0\} + \{0\} = \{0\}.
 $$
+
+*Symbol by symbol: $\cap$ is "overlapped with".*
+
 So $A \cap (B+C) = A$ while $(A\cap B) + (A\cap C) = \{0\}$. **Distributivity fails, and fails badly** — the two sides are as far apart as they could be.
 
 This is the practical warning to carry into your later matrix work. Subspaces look like sets and behave like sets under $\cap$; they do **not** behave like sets under $+$, and an argument that quietly assumes the distributive law for subspaces is wrong. The counterexample above is two lines long and worth remembering.
@@ -98,6 +110,8 @@ $$
 $$
 S \cup (A_1 \cap \cdots \cap A_n) = (S \cup A_1) \cap \cdots \cap (S \cup A_n).
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with".*
 
 The proofs are the same element chases, with the case split now running over $n$ possibilities instead of two. Nothing about the argument changes; only the bookkeeping grows.
 

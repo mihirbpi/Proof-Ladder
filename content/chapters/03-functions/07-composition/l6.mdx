@@ -23,6 +23,8 @@ $$
 (g\circ f)(s) = g\big(f(s)\big).
 $$
 
+*Symbol by symbol: $\circ$ is "after".*
+
 Apply $f$ first, then $g$.
 
 <Warning title="Read right to left">
@@ -40,6 +42,8 @@ Let $\sigma_1$ be reflection in the $x$-axis and $\sigma_2$ reflection in the $y
 $$\sigma_1(x,y)=(x,-y), \qquad \sigma_2(x,y)=(-x,y)$$
 $$(\sigma_2\circ\sigma_1)(x,y) = \sigma_2(x,-y) = (-x,-y).$$
 
+*Symbol by symbol: $\circ$ is "after".*
+
 That is the $180°$ rotation about the origin. **Two reflections composed give a rotation** — a theorem your course proves geometrically, and here it falls out of one line of algebra.
 
 More generally: reflecting in two intersecting lines gives a rotation about their intersection point through twice the angle between them. Reflecting in two parallel lines gives a translation. Every rigid motion of the plane is a composition of at most three reflections, which is a genuinely surprising classification theorem and a good reason to take composition seriously.
@@ -48,14 +52,20 @@ More generally: reflecting in two intersecting lines gives a rotation about thei
 
 $$(\sigma_1\circ\sigma_2)(x,y) = \sigma_1(-x,y) = (-x,-y),$$
 
+*Symbol by symbol: $\circ$ is "after".*
+
 which happens to agree here. But take $\tau(x,y)=(x+1,y)$, a translation, and $\sigma_1$ as above:
 
 $$(\sigma_1\circ\tau)(x,y) = \sigma_1(x+1,y) = (x+1,-y)$$
 $$(\tau\circ\sigma_1)(x,y) = \tau(x,-y) = (x+1,-y)$$
 
+*Symbol by symbol: $\circ$ is "after".*
+
 Equal — try instead $\tau'(x,y)=(x,y+1)$:
 
 $$(\sigma_1\circ\tau')(x,y) = (x, -y-1), \qquad (\tau'\circ\sigma_1)(x,y) = (x,-y+1).$$
+
+*Symbol by symbol: $\circ$ is "after".*
 
 Different. **Composition is not commutative**, and the geometric reason is visible: reflecting then sliding up is not the same as sliding up then reflecting, because the reflection changes which way "up" ends up pointing.
 
@@ -65,12 +75,16 @@ $$
 (h\circ g)\circ f = h\circ(g\circ f).
 $$
 
+*Symbol by symbol: $\circ$ is "after".*
+
 <Proof>
 Both sides are functions from $S$ to the codomain of $h$, so it suffices to show they agree at every input.
 
 Let $s \in S$ be arbitrary. Then
 $$\big((h\circ g)\circ f\big)(s) = (h\circ g)\big(f(s)\big) = h\Big(g\big(f(s)\big)\Big),$$
 $$\big(h\circ(g\circ f)\big)(s) = h\big((g\circ f)(s)\big) = h\Big(g\big(f(s)\big)\Big).$$
+
+*Symbol by symbol: $\circ$ is "after".*
 
 The results agree, and $s$ was arbitrary.
 </Proof>
@@ -82,6 +96,8 @@ Both sides unwound to the same expression, and every step was a definition. Asso
 $\operatorname{id}_S : S\to S$, $\operatorname{id}_S(s)=s$, satisfies
 
 $$f\circ \operatorname{id}_S = f, \qquad \operatorname{id}_T\circ f = f.$$
+
+*Symbol by symbol: $\circ$ is "after".*
 
 Geometrically it is the transformation that moves nothing. Your course includes it among the rigid motions — sometimes reluctantly — and it must be there, because it is what a rotation by $360°$ equals, and because congruence would not be reflexive without it.
 

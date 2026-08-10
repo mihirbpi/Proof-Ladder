@@ -31,6 +31,8 @@ t \in f(A) \iff \exists s \in A,\ f(s) = t,
 s \in f^{-1}(U) \iff f(s) \in U. \tag{1}
 $$
 
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when".*
+
 The asymmetry is already visible. Membership in an image carries an *there exists* quantifier; membership in a pre-image carries none. That single fact explains everything in §3.4 about why pre-images are better behaved.
 
 ## Image and codomain
@@ -46,9 +48,14 @@ $$
 $$
 \exp : \mathbb{R}\to\mathbb{R} \Rightarrow \operatorname{Im}(\exp) = (0,\infty);
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\Rightarrow$ is "forces".*
+
 $$
 \lfloor\cdot\rfloor : \mathbb{R}\to\mathbb{Z} \Rightarrow \operatorname{Im} = \mathbb{Z}.
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\Rightarrow$ is "forces".*
 
 ## Fibres
 
@@ -71,6 +78,9 @@ f^{-1}(\{0\}) = \{0\},\quad
 f^{-1}(\{-5\}) = \emptyset,\quad
 f^{-1}\big((-2,6)\big) = (-\sqrt6,\sqrt6).
 $$
+
+*Symbol by symbol: $\emptyset$ is the empty collection.*
+
 In the last, the constraint $-2 < x^2$ is vacuous and only $x^2 < 6$ bites. Note that the pre-image of an open interval is an open interval here. That is not a coincidence: it is the property that continuity is eventually *defined* by, and it is stated with pre-images rather than images for exactly the reasons this module gives.
 
 Floor: $\lfloor\cdot\rfloor^{-1}(\{n\}) = [n, n+1)$. Fibres are intervals; infinitely many inputs share each output.
@@ -83,6 +93,9 @@ A \subseteq f^{-1}(f(A)),
 \qquad
 f(f^{-1}(U)) \subseteq U,
 $$
+
+*Symbol by symbol: $\subseteq$ is "sits inside".*
+
 with equality in the first iff $f$ is injective on the relevant part, and in the second iff $U \subseteq \operatorname{Im}(f)$.
 
 <Proof>
@@ -99,6 +112,9 @@ Merging and missing are the only two ways a function fails to be undoable, and �
 $$
 f(A) \subseteq U \quad\text{exactly when}\quad A \subseteq f^{-1}(U),
 $$
+
+*Symbol by symbol: $\subseteq$ is "sits inside".*
+
 which is worth checking against the two proofs above — each is one direction of it.
 
 <Warning title="Two meanings of f⁻¹">

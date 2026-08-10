@@ -19,6 +19,8 @@ $$
 p \Leftrightarrow q \;\;\equiv\;\; (p \Rightarrow q) \wedge (q \Rightarrow p).
 $$
 
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\Rightarrow$ is "forces", $\wedge$ is "and", $\equiv$ is "says the same as".*
+
 <TruthTable
   variables={["p", "q"]}
   expressions={["p ⇒ q", "q ⇒ p", "p ⇔ q"]}
@@ -83,6 +85,8 @@ $$
 n \text{ even} \iff \exists k \in \mathbb{Z},\ n = 2k.
 $$
 
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when".*
+
 The symbol $\exists$ reads *there exists*; §1.10 introduces it properly.
 
 The consequence is practical: **a definition may be used in both directions**, and virtually every proof uses both, often within four lines of each other. Assuming "$n$ is even" and writing $n = 2k$ uses one; finishing a computation at $2(\text{something integer})$ and declaring the result even uses the other.
@@ -95,6 +99,9 @@ Sometimes both directions run simultaneously as a chain
 $$
 p \iff r_1 \iff r_2 \iff \cdots \iff q,
 $$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when".*
+
 and this is legitimate **only if every link is genuinely a biconditional**.
 
 <Warning title="Where iff-chains go wrong">
@@ -115,6 +122,8 @@ When three or more statements are to be shown pairwise equivalent, proving all $
 $$
 p \Rightarrow q \Rightarrow r \Rightarrow p.
 $$
+
+*Symbol by symbol: $\Rightarrow$ is "forces".*
 
 Three implications rather than six, and every pairwise equivalence follows by going round the cycle. Theorems phrased "the following are equivalent" — they are everywhere in later mathematics — are almost always proved this way, and choosing the cycle order so each individual implication is easy is a real part of the work.
 

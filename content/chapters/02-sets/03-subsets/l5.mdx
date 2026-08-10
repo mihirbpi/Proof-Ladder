@@ -15,6 +15,8 @@ $$
 A \subseteq S \quad\text{means}\quad \forall x\ (x \in A \Rightarrow x \in S).
 $$
 
+*Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces".*
+
 $A$ is a **subset** of $S$ when every element of $A$ is an element of $S$.
 
 Read that definition carefully, because it is a *if–then claim made about every element* — the two constructions of modules 1.5 and 1.10 stacked. And the shape of the definition dictates the shape of every proof about it, with no choices left to make:
@@ -69,6 +71,8 @@ $$
 \mathbb{Z} \subsetneq \mathbb{Q}, \qquad \text{since } \tfrac12 \in \mathbb{Q} \text{ and } \tfrac12 \notin \mathbb{Z}.
 $$
 
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\subsetneq$ is "sits strictly inside", $\notin$ is "is not in", $\in$ is "is in".*
+
 Proving properness is a second job: containment, plus **one witness** in $S \setminus A$. One element is enough, because $A \neq S$ is the negation of a set equality, and module 1.11 says a single failure refutes a universal claim.
 
 Some authors write $\subset$ for proper containment and others for containment in general, so $\subset$ is genuinely ambiguous in the literature. This course uses $\subseteq$ and $\subsetneq$, which are never ambiguous.
@@ -95,6 +99,9 @@ Transitivity is what makes a chain like
 $$
 \mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R}
 $$
+
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers, $\subseteq$ is "sits inside".*
+
 mean what you expect: $\mathbb{N} \subseteq \mathbb{R}$ follows, without a separate proof.
 
 <Warning title="Being an element and being a subset are different relations">

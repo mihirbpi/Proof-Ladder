@@ -959,6 +959,21 @@ for (const f of files) {
 }
 
 // ---------------------------------------------------------------------------
+// Callout tags must balance. A bulk edit whose replacement ran to the next
+// blank line once swallowed a `</Warning>`, and the failure surfaced only as an
+// MDX parse error four minutes into a build — long after the commit.
+const CALLOUTS = ['Warning', 'Aside', 'Proof', 'Discussion', 'WhereThisGoes', 'TryIt', 'Figure', 'BigIdea'];
+for (const f of files) {
+  const src = fs.readFileSync(f, 'utf8');
+  for (const tag of CALLOUTS) {
+    const open = (src.match(new RegExp(`<${tag}[\\s>]`, 'g')) ?? []).length;
+    const close = (src.match(new RegExp(`</${tag}>`, 'g')) ?? []).length;
+    if (open !== close) {
+      err(path.relative(ROOT, f), `<${tag}> is unbalanced: ${open} opening, ${close} closing`);
+    }
+  }
+}
+
 // No prose inside a display block. Twice now an inserted gloss has landed
 // between a display's opening `$$` and its closing one, which renders the raw
 // LaTeX to the reader with the italic sentence sitting on top of it.

@@ -18,12 +18,18 @@ f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V) \tag{P1}
 $$
 
 *Symbol by symbol: $\cup$ is "pooled with". So the line reads: **tracing back from "$U$ or $V$" gives the same inputs as tracing back from each and pooling the results.*
+
 $$
 f^{-1}(U \cap V) = f^{-1}(U) \cap f^{-1}(V) \tag{P2}
 $$
+
+*Symbol by symbol: $\cap$ is "overlapped with".*
+
 $$
 f^{-1}\big(\overline{U}\big) = \overline{f^{-1}(U)} \tag{P3}
 $$
+
+*Symbol by symbol: the bar on top is "everything outside".*
 
 The pre-image operator commutes with every Boolean set operation. No hypotheses on $f$ are needed — not injectivity, not surjectivity, nothing.
 
@@ -33,6 +39,8 @@ All three proofs run on one equivalence, from module 3.3:
 $$
 x \in f^{-1}(U) \iff f(x) \in U. \tag{1}
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when".*
 
 (The notation $f(x)$ for the output on input $x$ is §3.1's.)
 
@@ -79,6 +87,9 @@ x \in f^{-1}\big(\overline{U}\big)
 &\iff x \in \overline{f^{-1}(U)} &&\text{definition of complement in } S.
 \end{aligned}
 $$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", the bar on top is "everything outside".*
+
 Every step is a biconditional, so the sets are equal.
 </Proof>
 
@@ -93,9 +104,12 @@ f(A \cup B) = f(A) \cup f(B) \quad \text{always};
 $$
 
 *Symbol by symbol: $\cup$ is "pooled with". So the line reads: going forwards respects pooling always, but respects overlap only one way — the image of an overlap can be smaller than the overlap of the images.*
+
 $$
 f(A \cap B) \subseteq f(A) \cap f(B), \quad \text{and the inclusion can be strict.}
 $$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with".*
 
 **Counterexample.** Let $f : \mathbb{R}\to\mathbb{R}$, $f(x) = x^2$, with $A = \{2\}$ and $B = \{-2\}$. Then $A \cap B = \emptyset$, so $f(A \cap B) = \emptyset$. But $f(A) = f(B) = \{4\}$, so $f(A) \cap f(B) = \{4\}$. Strict.
 
@@ -105,6 +119,7 @@ Complement fails even more badly: $f(\overline{A})$ and $\overline{f(A)}$ are un
 
 <Warning title="Choose the direction that works">
 When you have a choice, state conditions with pre-images. This is not stylistic advice. Later courses define several important properties this way — *tracing back always lands you somewhere well behaved* — precisely because tracing back is the operation that respects everything. Stating the same idea forwards gives a different and much rarer property.
+</Warning>
 
 <Aside>
 Equality in $f(A \cap B) = f(A) \cap f(B)$ for all $A, B$ holds exactly when $f$ is injective — module 3.5's property, arriving early. All the defects of the image operator are defects of non-injectivity, and all of them vanish for bijections.

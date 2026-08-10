@@ -25,6 +25,8 @@ $$
 \forall x \in S,\ p(x) \qquad\text{and}\qquad \exists x \in S,\ p(x)
 $$
 
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some".*
+
 The first reads *for all $x$ in $S$, $p(x)$*, and claims $p$ holds at **every** element of $S$. The second reads *there exists $x$ in $S$ such that $p(x)$*, and claims it holds at **at least one**.
 
 Both name the set $S$ explicitly, and that is not decoration:
@@ -52,6 +54,8 @@ One column is cheap and one is expensive, and which is which flips between the r
 $$
 \exists!\, x \in S,\ p(x)
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\exists!$ is "there is exactly one".*
 
 reads *there exists a unique $x$ in $S$ with $p(x)$*, and it is two claims bolted together: at least one, and at most one.
 
@@ -85,12 +89,18 @@ Quantifiers stack, and this is where reading carefully starts to matter:
 $$
 \forall x \in \mathbb{R},\ \exists y \in \mathbb{R},\ y > x.
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some".*
+
 Read left to right: *given any real $x$, you can find a real $y$ bigger than it.* True — take $y = x + 1$.
 
 Now swap the two quantifiers, changing nothing else:
 $$
 \exists y \in \mathbb{R},\ \forall x \in \mathbb{R},\ y > x.
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some".*
+
 *There is a single real $y$ bigger than every real $x$.* False — whatever $y$ you name, $x = y+1$ defeats it.
 
 **Same symbols, same order of $x$ and $y$ in the inequality, opposite truth values.** The only difference is which quantifier came first.

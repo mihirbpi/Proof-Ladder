@@ -20,15 +20,20 @@ $$
 $$
 
 *Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: **outside the overlap** is the same as **outside $S$ pooled with outside $T$**; and outside a union is the overlap of the two outsides.*
+
 $$
 \overline{S \cup T} = \overline S \cap \overline T \tag{DM2}
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
 
 **Complementing swaps $\cap$ and $\cup$.** Compare module 1.4:
 $$
 \neg(p \wedge q) \equiv \neg p \vee \neg q, \qquad
 \neg(p \vee q) \equiv \neg p \wedge \neg q.
 $$
+
+*Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
 
 These are the same two laws. Under the dictionary of module 2.4 — $\neg$ to complement, $\wedge$ to $\cap$, $\vee$ to $\cup$ — each logic law becomes a set law, and you should expect the proofs to correspond too.
 
@@ -75,10 +80,16 @@ Apply DM2 to the sets $\overline S$ and $\overline T$:
 $$
 \overline{\overline S \cup \overline T} = \overline{\overline S} \cap \overline{\overline T} = S \cap T,
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 using that complementing twice returns the original set. Now complement both sides:
 $$
 \overline S \cup \overline T = \overline{S \cap T},
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 which is DM1.
 </Proof>
 

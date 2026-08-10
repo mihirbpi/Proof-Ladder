@@ -47,6 +47,8 @@ p \Rightarrow q \;\equiv\; \neg q \Rightarrow \neg p,
 q \Rightarrow p \;\equiv\; \neg p \Rightarrow \neg q,
 $$
 
+*Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\equiv$ is "says the same as".*
+
 and the two pairs disagree in rows 2 and 3, so neither pair entails the other. The converse and inverse are the contrapositives of each other, which is why any counterexample to one is automatically a counterexample to the other.
 
 A proof without the table, since the table generalises poorly to quantified statements:
@@ -79,10 +81,15 @@ The hypothesis is a conjunction, so the contrapositive requires De Morgan:
 $$
 \neg\big(x \in \mathbb{Q} \wedge y \notin \mathbb{Q}\big) \equiv x \notin \mathbb{Q} \vee y \in \mathbb{Q},
 $$
+
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\neg$ is "not", $\wedge$ is "and".*
+
 so the contrapositive reads
 $$
 x + y \in \mathbb{Q} \;\Rightarrow\; \big(x \notin \mathbb{Q} \;\vee\; y \in \mathbb{Q}\big).
 $$
+
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\Rightarrow$ is "forces", $\vee$ is "or".*
 
 A disjunctive conclusion is proved by the standard manoeuvre: assume the negation of one disjunct and prove the other. So: assume $x + y$ rational and $x$ rational; then $y = (x+y) - x$ is a difference of rationals, hence rational — which is the remaining disjunct. Notice that the correct De Morgan negation was essential; the naive negation "$x$ is irrational **and** $y$ rational" is a strictly stronger conclusion, and it is not provable from the hypothesis.
 

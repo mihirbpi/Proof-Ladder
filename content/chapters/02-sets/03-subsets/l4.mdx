@@ -18,6 +18,8 @@ $$
 A \subseteq S \quad\Leftrightarrow\quad \forall x\;(x \in A \Rightarrow x \in S).
 $$
 
+*Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in", $\forall$ is "for every", $\Leftrightarrow$ is "exactly when", $\Rightarrow$ is "forces".*
+
 That equivalence is the whole module. $A \subseteq S$ is a if–then claim made about every element, so module 1.12 already told us how to prove it (**take any one and follow it**) and how to refute it (**one bad apple**: exhibit $x \in A$ with $x \notin S$).
 
 ## Element chasing
@@ -54,6 +56,9 @@ $T \subseteq S$ is false. To show it, produce one element: $5 \in T$ and $5 \not
 
 <Warning title="Being an element versus being a subset">
 $$2 \in \{1,2,3\}, \qquad \{2\} \subseteq \{1,2,3\}.$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in".*
+
 The first says a number is an element; the second says a set is contained. $2 \subseteq \{1,2,3\}$ is a type error, and $\{2\} \in \{1,2,3\}$ is false.
 
 The distinction sharpens with nested sets. For $A = \{1, \{2,3\}\}$: $1 \in A$ ✓, $\{2,3\} \in A$ ✓, $2 \in A$ ✗, $\{2,3\} \subseteq A$ ✗, $\{1\} \subseteq A$ ✓.

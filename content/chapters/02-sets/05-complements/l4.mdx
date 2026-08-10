@@ -21,10 +21,15 @@ Fix a **universe** $S$. For $A \subseteq S$, the **complement** of $A$ in $S$ is
 $$
 \overline{A} = \{\, x \in S \mid x \notin A \,\},
 $$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", the bar $\mid$ is "such that", the bar on top is "everything outside".*
+
 so that
 $$
 x \in \overline{A} \iff x \in S \wedge x \notin A.
 $$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar on top is "everything outside".*
 
 <Figure alt="Two circles inside a dashed rectangle labelled S, with the rectangle's region outside both circles shaded." caption="The complement is taken relative to the dashed universe.">
   <VennTwo labelS="A" labelT="B" shade={["outside"]} universe="S" />
@@ -44,6 +49,9 @@ The notation $\overline{A}$ is meaningless without $S$ fixed. When the universe 
 $$
 S \setminus A = \{x \in S \mid x \notin A\},
 $$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", the bar $\mid$ is "such that".*
+
 which names both sets and cannot be misread. Note $\overline{A} = S \setminus A$ by definition.
 
 The most important instance in this course: the **irrationals** are $\mathbb{R} \setminus \mathbb{Q}$, the complement of $\mathbb{Q}$ *in $\mathbb{R}$*. That $\sqrt2$ belongs to this set is module 4.7, and its proof is the flagship application of the technique below.
@@ -57,9 +65,14 @@ $$
 A \cap \overline{A} = \emptyset \quad (p \wedge \neg p), \qquad
 A \cup \overline{A} = S \quad (p \vee \neg p),
 $$
+
+*Symbol by symbol: $\emptyset$ is the empty collection, $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with".*
+
 $$
 \overline{S} = \emptyset, \qquad \overline{\emptyset} = S.
 $$
+
+*Symbol by symbol: $\emptyset$ is the empty collection, the bar on top is "everything outside".*
 
 The pair $A \cap \overline A = \emptyset$, $A \cup \overline A = S$ says that $A$ and $\overline A$ *partition* $S$: every element of the universe is in exactly one. That is the set-theoretic content of excluded middle.
 

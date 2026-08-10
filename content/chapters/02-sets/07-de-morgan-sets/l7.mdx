@@ -50,6 +50,9 @@ x \in \overline{S \cup T}
 &\iff x \in \overline S \cap \overline T .
 \end{aligned}
 $$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", $\wedge$ is "and".*
+
 Every step is a biconditional, so both inclusions are established simultaneously. Since $x \in U$ was arbitrary, the sets are equal.
 </Proof>
 
@@ -80,6 +83,8 @@ $$
 \overline{A_1 \cap A_2 \cap \cdots \cap A_n} = \overline{A_1} \cup \cdots \cup \overline{A_n}.
 $$
 
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 The proof is the same three moves, with the quantifier rule of §1.11 at the pivot instead of the connective rule:
 $$
 x \in \overline{A_1 \cup \cdots \cup A_n}
@@ -87,11 +92,17 @@ x \in \overline{A_1 \cup \cdots \cup A_n}
 \iff \forall i,\, x \notin A_i
 \iff x \in \textstyle\overline{A_1} \cap \cdots \cap \overline{A_n}.
 $$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when".*
+
 No induction is needed and $I$ may be uncountable — which is the point of proving it this way rather than by iterating the binary case.
 
 <Warning title="The connective must swap">
 In $U = \{1,\ldots,6\}$ with $S = \{1,2,3\}$, $T = \{3,4\}$:
 $$\overline{S \cap T} = \{1,2,4,5,6\}, \qquad \overline S \cap \overline T = \{5,6\}.$$
+
+*Symbol by symbol: $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 A single counterexample settles that $\overline{S \cap T} \neq \overline S \cap \overline T$. In practice the error appears not as a bare identity but inside a proof, when a negated hypothesis about a union or intersection is expanded carelessly.
 </Warning>
 

@@ -29,6 +29,8 @@ $$
 S = T \quad\Leftrightarrow\quad S \subseteq T \ \text{ and } \ T \subseteq S.
 $$
 
+*Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when".*
+
 **Double inclusion.** The named move is **check both boxes**, and there is nothing optional about it: an equality of sets *is* two subset claims, so a proof of set equality *is* two element-chasing proofs.
 
 ## The shape
@@ -105,6 +107,9 @@ Therefore $S \cup (S\cap T) = S$.
 <Aside>
 Some equalities can be proved as a chain of equivalences:
 $$x \in S \Leftrightarrow \cdots \Leftrightarrow x \in T,$$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when".*
+
 which does both directions at once. It is efficient when every step is genuinely reversible.
 
 It is also where wrong proofs hide, because a step that looks like $\Leftrightarrow$ is often only $\Rightarrow$. Until reversibility-checking is automatic, write the two inclusions separately. The extra four lines cost nothing and the structure is visible to your reader.
@@ -115,6 +120,8 @@ It is also where wrong proofs hide, because a step that looks like $\Leftrightar
 To show $S \neq T$, negate. By modules 1.9 and 1.11, the negation of double inclusion is: **at least one containment fails**, which means
 
 $$\exists x\ (x \in S \wedge x \notin T) \quad\text{or}\quad \exists x\ (x \in T \wedge x \notin S).$$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\exists$ is "there is some", $\wedge$ is "and".*
 
 One element, on one side and not the other. A single object settles it.
 

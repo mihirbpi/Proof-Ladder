@@ -27,6 +27,9 @@ The working characterisation:
 $$
 \lfloor x \rfloor = n \iff n \in \mathbb{Z} \text{ and } n \leq x < n+1.
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\Leftrightarrow$ is "exactly when".*
+
 From it: $\lfloor x + m \rfloor = \lfloor x \rfloor + m$ for $m \in \mathbb{Z}$; $x - 1 < \lfloor x \rfloor \leq x$; and $\lfloor -2.3 \rfloor = -3$, not $-2$. Floor is not truncation, and conflating them is a standard source of off-by-one errors.
 
 Floor is neither injective ($\lfloor 3.1 \rfloor = \lfloor 3.9 \rfloor$) nor continuous, but it is surjective onto $\mathbb{Z}$ and monotone — an illustration that useful functions need not be well behaved.
@@ -51,6 +54,9 @@ $\operatorname{tot}$ is *multiplicative*: $\operatorname{tot}(mn) = \operatornam
 $$
 \operatorname{tot}(n) = n \prod_{p \mid n}\left(1 - \frac1p\right).
 $$
+
+*Symbol by symbol: the bar $\mid$ is "such that".*
+
 Note that this "formula" presupposes the factorisation of $n$; it is not an evaluation procedure. The gap between *characterised* and *computable* is exactly where cryptography lives.
 
 ## Functions on products, and currying

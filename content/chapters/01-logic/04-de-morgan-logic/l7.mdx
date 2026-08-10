@@ -61,6 +61,9 @@ The two laws are not independent facts; each follows from the other by negating 
 $$
 \neg(\neg p \wedge \neg q) \equiv \neg\neg p \vee \neg \neg q \equiv p \vee q,
 $$
+
+*Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
+
 and negating gives $\neg(p \vee q) \equiv \neg p \wedge \neg q$. So negation is an involution that exchanges $\wedge$ and $\vee$ — an operation that preserves the structure but flips it. This exchange is called *De Morgan duality*, and it holds in every structure where the laws hold.
 
 ## The application that motivates the module
@@ -73,6 +76,9 @@ To prove this by contrapositive we need the negation of the conclusion implying 
 $$
 \neg\big(x \in \mathbb{Q} \;\wedge\; y \notin \mathbb{Q}\big) \;\equiv\; x \notin \mathbb{Q} \;\vee\; y \in \mathbb{Q}.
 $$
+
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\neg$ is "not", $\wedge$ is "and".*
+
 The contrapositive therefore reads: *if $x + y$ is rational, then $x$ is irrational or $y$ is rational.* That is a strictly weaker — and therefore easier — target than "$x$ is irrational and $y$ is rational," which is what a careless negation produces.
 
 <Warning title="Two failures worth naming">
@@ -90,10 +96,16 @@ $$
 $$
 \neg(p_1 \vee p_2 \vee \cdots \vee p_n) \equiv \neg p_1 \wedge \neg p_2 \wedge \cdots \wedge \neg p_n,
 $$
+
+*Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
+
 by induction on $n$ (Chapter 6 supplies the induction; the base case $n = 2$ is what we proved). Now let the list run on without end — replacing the chain of *and*s by "for all $x$" and the chain of *or*s by "there exists $x$" — and you get exactly the quantifier negation rules of §1.11:
 $$
 \neg \forall x\, p(x) \equiv \exists x\, \neg p(x), \qquad \neg \exists x\, p(x) \equiv \forall x\, \neg p(x).
 $$
+
+*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
+
 Universal quantification really is an endless chain of *ands*, and *there exists* an endless chain of *ors*. The analogy is not decorative; it is the reason the rules look the same.
 
 <Aside>

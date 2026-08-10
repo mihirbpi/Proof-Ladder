@@ -20,12 +20,16 @@ S \cup T = \{x \mid x \in S \vee x \in T\},
 S \cap T = \{x \mid x \in S \wedge x \in T\}.
 $$
 
+*Symbol by symbol: $\in$ is "is in", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with", $\cap$ is "overlapped with".*
+
 The definitions are transcriptions of $\vee$ and $\wedge$, and the working forms — the ones every proof in Chapter 2 unfolds to — are
 $$
 x \in S \cup T \iff (x \in S) \vee (x \in T),
 \qquad
 x \in S \cap T \iff (x \in S) \wedge (x \in T). \tag{1}
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with".*
 
 <Figure alt="Two overlapping circles S and T, fully shaded: the union." caption="$S \cup T$">
   <VennTwo labelS="S" labelT="T" shade={["S-only", "T-only", "both"]} />
@@ -93,6 +97,8 @@ $$
 M_{12} \cap M_{18} = \{36,72,\ldots\} = M_{36}, \quad \min = 36 = \operatorname{lcm}(12,18).
 $$
 
+*Symbol by symbol: $\cap$ is "overlapped with".*
+
 The second display contains a genuine theorem: the common multiples of $a$ and $b$ are exactly the multiples of $\operatorname{lcm}(a,b)$. Dually, $D_a \cap D_b = D_{\gcd(a,b)}$. These say that $\gcd$ and $\operatorname{lcm}$ play exactly the roles $\cap$ and $\cup$ play for sets, now for the divisibility order on $\mathbb{Z}_{>0}$ — the same pattern a second time, and the reason gcd/lcm identities mirror $\cap$/$\cup$ identities so exactly. Both distributive laws hold there too, and for the same structural reason.
 
 ## More than two sets
@@ -101,14 +107,22 @@ Nothing restricts the operations to two sets:
 $$
 A_1 \cup A_2 \cup \cdots \cup A_n = \{x \mid x \text{ lies in at least one } A_i\},
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with", the bar $\mid$ is "such that".*
+
 $$
 A_1 \cap A_2 \cap \cdots \cap A_n = \{x \mid x \text{ lies in every } A_i\}.
 $$
+
+*Symbol by symbol: $\cap$ is "overlapped with", the bar $\mid$ is "such that".*
 
 The two-set operations were *or* and *and*; the long ones are *there exists an $i$* and *for every $i$*. This is the escalation §1.11 described, and it is why De Morgan for many sets,
 $$
 \overline{A_1 \cup \cdots \cup A_n} = \overline{A_1} \cap \cdots \cap \overline{A_n},
 $$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+
 is proved by exactly the argument that turns *not there exists* into *for all not*.
 
 <Warning title="Venn diagrams are heuristics">

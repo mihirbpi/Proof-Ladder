@@ -16,6 +16,9 @@ For $f : S \to T$ and $g : T \to R$, the **composition** $g \circ f : S \to R$ i
 $$
 (g\circ f)(s) = g(f(s)),
 $$
+
+*Symbol by symbol: $\circ$ is "after".*
+
 defined exactly when the codomain of $f$ equals the domain of $g$. That $g \circ f$ is a function requires no verification: totality, single-valuedness, and codomain membership are inherited.
 
 Read $g \circ f$ as "$g$ after $f$". The convention matches the nesting in $g(f(s))$ and is universal in mathematics; the opposite convention $f;g$ appears in computer science and in some category-theory texts, and clashes between them are a standard source of sign and order errors when moving between subjects.
@@ -26,6 +29,9 @@ Read $g \circ f$ as "$g$ after $f$". The convention matches the nesting in $g(f(
 $$
 \big(h \circ (g\circ f)\big)(s) = h(g(f(s))) = \big((h\circ g)\circ f\big)(s),
 $$
+
+*Symbol by symbol: $\circ$ is "after".*
+
 so parentheses may be dropped.
 
 **Identities.** $\mathrm{id}_S : S \to S$, $\mathrm{id}_S(s) = s$, satisfies $f \circ \mathrm{id}_S = f = \mathrm{id}_T \circ f$.
@@ -97,6 +103,8 @@ Composition is the operation the next two courses are organised around.
 
 **The chain rule is a theorem about composition.**
 $$(g\circ f)'(x) = g'\big(f(x)\big)\cdot f'(x).$$
+
+*Symbol by symbol: $\circ$ is "after".*
 
 Note where each function is evaluated — $g'$ at $f(x)$, not at $x$ — and note that this is forced by the definition of composition, not a convention. Most chain-rule errors are misreadings of which function acts first, which is the same right-to-left confusion this module flags.
 
