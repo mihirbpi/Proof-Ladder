@@ -19,9 +19,9 @@
     "l2": "When you share into groups, what is left over is always smaller than the number of groups. So there are only a few kinds of leftover to check.",
     "l3": "Every whole number can be written as a multiple of 3 plus a leftover of 0, 1, or 2. So there are only three kinds of number, and you can split into cases and check them all.",
     "l4": "If n ∤ m then m = nk + r with 1 ≤ r ≤ n−1, so \"not divisible by n\" splits into n−1 cases. Split into cases is therefore the standard tool for divisibility arguments.",
-    "l5": "The division algorithm gives m = nk + r with 0 ≤ r < n, partitioning ℤ into n residue classes and making case analysis exhaustive.",
-    "l6": "Division with remainder partitions ℤ into finitely many residue classes mod n, which is what makes proof by cases a complete method.",
-    "l7": "Division with remainder writes every m as nk + r with 0 ≤ r < n, partitioning ℤ into n residue classes; divisibility statements are therefore settled by finitely many cases.",
+    "l5": "Dividing leaves a quotient and a remainder smaller than the divisor. That splits the integers into finitely many remainder classes, which is what makes case analysis exhaustive.",
+    "l6": "Division with remainder splits the integers into finitely many remainder classes, which is what makes proof by cases a complete method.",
+    "l7": "Division with remainder writes every integer as a multiple plus a remainder smaller than the divisor, splitting the integers into finitely many classes. Divisibility statements are therefore settled by finitely many cases.",
     "l8": "The division algorithm makes ℤ a Euclidean domain; the residue classes are the elements of ℤ/nℤ, and proof by cases is computation in that quotient ring."
   },
   "kernel": "If n ∤ m then m = nk + r for some r with 1 ≤ r ≤ n − 1 — so \"not divisible\" splits into n − 1 cases. This makes proof by cases the standard tool for divisibility.",

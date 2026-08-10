@@ -18,7 +18,7 @@
     "l1": "A machine does not have to be about numbers. Anything that sends each thing to exactly one thing is a machine.",
     "l2": "Machines come in many shapes. Some work on numbers, some on names, some on toys. What makes it a machine is that each thing gets exactly one answer.",
     "l3": "A function does not have to be a formula, and does not have to be about numbers. Rounding down, and sending a letter to its place in the alphabet, are both functions.",
-    "l4": "A function is any rule that is total, single-valued, and lands in the codomain — it need not be given by a formula. The floor function, Euler φ, and multiplication ℤ × ℤ → ℤ are all functions.",
+    "l4": "A function is any rule meeting those three conditions — it need not be given by a formula. Rounding down, counting, and multiplying a pair of integers are all functions.",
     "l5": "Functions are rules, not expressions; domain restrictions on 1/x and ln x are consequences of the three conditions, not conventions.",
     "l6": "Whether a rule is a function depends on the stated domain and codomain, which is why 1/x and √x need their domains declared.",
     "l7": "A function is determined by its rule together with its domain and codomain, not by having a closed-form expression; floor, φ, and multiplication on a product set are standard examples.",

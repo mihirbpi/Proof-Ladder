@@ -8,10 +8,10 @@
     "l2": "The diagonal you cannot write",
     "l3": "A length that is not a fraction",
     "l4": "Irrational numbers and the square root of 2",
-    "l5": "Irrational numbers and √2",
-    "l6": "Irrational numbers and √2",
-    "l7": "Irrational numbers and √2",
-    "l8": "Irrational numbers and √2"
+    "l5": "Irrational numbers and the square root of 2",
+    "l6": "Irrational numbers and the square root of 2",
+    "l7": "Irrational numbers and the square root of 2",
+    "l8": "Irrational numbers and the square root of 2"
   },
   "kernelIdea": "Some real numbers are not rational. √2 is one: assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms.",
   "kernels": {
@@ -20,8 +20,8 @@
     "l3": "There are numbers that are not fractions at all. The square root of 2 is one: if it were the simplest fraction, both its top and bottom would have to be even, and then it was not the simplest after all.",
     "l4": "No rational number squares to 2. Assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms — so √2 is irrational.",
     "l5": "The irrationality of √2 is proved by contradiction from the lowest-terms assumption, using the lemma that n² even implies n even.",
-    "l6": "√2 ∉ ℚ; the same argument shows √p ∉ ℚ for every prime p, and √m is rational exactly when m is a perfect square.",
-    "l7": "No rational squares to 2: the lowest-terms hypothesis together with the lemma n² even ⇒ n even yields a contradiction. The argument generalises to √p for prime p.",
+    "l6": "The square root of 2 is not a fraction; the same argument works for the square root of any prime, and a square root is a fraction exactly when the number under it is a perfect square.",
+    "l7": "No fraction squares to 2: assuming lowest terms and using that an even square forces an even root yields a contradiction. The argument generalises to the square root of any prime.",
     "l8": "Irrationality of √2 is the failure of ℚ to be integrally closed in ℝ at that point; the rational root theorem generalises it, and e and π are irrational for genuinely harder reasons."
   },
   "kernel": "Some real numbers are not rational. √2 is one: assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms. Uses \"n² even ⇒ n even\" from 1.9.",

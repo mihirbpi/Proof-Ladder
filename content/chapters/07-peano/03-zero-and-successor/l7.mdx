@@ -14,7 +14,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 ## Primitives and axioms
 
-The language of arithmetic has two non-logical primitives: a constant $0$ and a unary function symbol $S$.
+The language of arithmetic has two undefined starting words: a constant $0$ and a unary function symbol $S$.
 
 $$
 \textbf{A5}\quad 0 \in \mathbb{N}, \qquad\qquad \textbf{A6}\quad x\in\mathbb{N}\Rightarrow S(x)\in\mathbb{N}.
@@ -33,7 +33,7 @@ Definitions, not theorems. The **numeral** $\overline{n} = S^n(0)$ is a syntacti
 <Warning title="No addition yet">
 $S(x)$ may not be written $x+1$: addition is defined in §7.6 *by recursion on $S$*, so the notation would be circular.
 
-Afterwards, $x + 1 = x + S(0) = S(x + 0) = S(x)$ is a theorem in three steps. The distinction between what is stipulated and what is derived is the entire subject of this chapter, and collapsing it here forfeits the exercise.
+Afterwards, $x + 1 = x + S(0) = S(x + 0) = S(x)$ is a theorem in three steps. The distinction between what is defined and what is derived is the entire subject of this chapter, and collapsing it here forfeits the exercise.
 </Warning>
 
 ## The structural view

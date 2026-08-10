@@ -7,10 +7,10 @@
     "l1": "Pieces are numbers too",
     "l2": "Pieces of a whole",
     "l3": "What fractions can do",
-    "l4": "The rationals are a field",
-    "l5": "The rationals are a field",
-    "l6": "The rationals are a field",
-    "l7": "The rationals are a field",
+    "l4": "What fractions can do that whole numbers cannot",
+    "l5": "Dividing without leaving the system",
+    "l6": "Why fractions can divide and integers cannot",
+    "l7": "Division, and the system that supports it",
     "l8": "The rationals are a field"
   },
   "kernelIdea": "ℚ is closed under addition, additive inverses, multiplication, and multiplicative inverses of nonzero elements — this makes it a field.",
@@ -18,10 +18,10 @@
     "l1": "Half a cookie is a real amount. Pieces are numbers too.",
     "l2": "When sharing does not come out whole, the answer is a piece of a whole — a fraction. Adding and multiplying fractions always gives you another fraction.",
     "l3": "Adding, subtracting, multiplying, and dividing fractions always gives another fraction, as long as you never divide by zero. The reciprocal is exactly what the whole numbers were missing.",
-    "l4": "ℚ is closed under addition, additive inverses, multiplication, and multiplicative inverses of nonzero elements — this makes ℚ a field. A ring lacks the last property; a field has it.",
-    "l5": "ℚ satisfies every ring axiom plus the existence of multiplicative inverses for nonzero elements, which is what a field is; ℤ is a ring but not a field.",
-    "l6": "ℚ is closed under addition, subtraction, multiplication, and division by anything nonzero — the four operations that make it a field. ℤ fails the last one, having no reciprocals. Every closure proof is fraction arithmetic checked against the definition.",
-    "l7": "ℚ is closed under all four field operations, with division defined for nonzero denominators, so ℚ is a field; the proofs are the standard fraction formulas read as closure statements.",
+    "l4": "Add, subtract, multiply or divide two fractions — dividing by anything but zero — and the answer is a fraction again. That last one is what the integers could not do, and it is the whole reason fractions were built.",
+    "l5": "The fractions obey every arithmetic rule the integers do, and add one more: every nonzero one has a reciprocal. That extra property is exactly what the integers were missing.",
+    "l6": "The fractions are closed under addition, subtraction, multiplication, and division by anything nonzero. The integers fail that last one, having no reciprocals, and every closure proof here is fraction arithmetic checked against the definition.",
+    "l7": "The fractions are closed under all four operations, with division defined whenever the denominator is nonzero. The proofs are the standard fraction formulas, read as closure statements.",
     "l8": "ℚ is the field of fractions of ℤ, the smallest field containing it; finite fields ℤ/pℤ show that fields need not be infinite, and characteristic distinguishes them."
   },
   "kernel": "ℚ is closed under addition, additive inverses, multiplication, and multiplicative inverses of nonzero elements — this makes it a field. The closure proofs are just fraction arithmetic checked against the definition.",
@@ -48,5 +48,5 @@
     "l8": "core"
   },
   "namedMove": null,
-  "anchorExample": "Sharing cookies evenly"
+  "anchorExample": "all four operations on fractions"
 }

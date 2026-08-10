@@ -1,9 +1,9 @@
 ---
 level: l7
-title: The rationals are a field
+title: Division, and the system that supports it
 readingTimeMin: 9
-newTerms: ["rational number", "field", "characteristic"]
-anchorExample: "the rationals as a field"
+newTerms: ["rational number", "characteristic"]
+anchorExample: "all four operations on fractions"
 ---
 
 import Proof from '@/components/Proof.astro';
@@ -29,9 +29,9 @@ Expanding, the left is $a_1b_2d^2 + b_1b_2cd$ and the right is $a_2b_1d^2 + b_1b
 
 Formally, $\mathbb{Q}$ is the quotient of $\mathbb{Z}\times(\mathbb{Z}\setminus\{0\})$ by the equivalence relation $(a,b)\sim(c,d) \iff ad=bc$, with the operations induced from representatives. Every construction on a quotient carries this obligation, and the argument above is the model for all of them.
 
-## The field axioms, verified
+## Checking every rule
 
-For $\tfrac ab, \tfrac cd \in \mathbb{Q}$:
+For fractions $\tfrac ab$ and $\tfrac cd$:
 
 $$
 \frac ab + \frac cd = \frac{ad+bc}{bd}, \quad
@@ -40,57 +40,52 @@ $$
 \left(\frac ab\right)^{-1} = \frac ba \ (a \neq 0).
 $$
 
-Each closure verification has two steps: numerator and denominator are integers by closure of $\mathbb{Z}$ (§4.1), and the denominator is nonzero because **$\mathbb{Z}$ has no zero divisors**. That second point is where the absence of zero divisors in $\mathbb{Z}$ (§4.1) is spent, and it is why the construction below requires a domain rather than an arbitrary ring.
+Each closure check has two steps: the numerator and denominator are integers by closure of $\mathbb{Z}$ (§4.1), and the denominator is nonzero because **a product of nonzero integers is never zero**.
 
-For the inverse: $\tfrac ab \neq 0$ iff $a \neq 0$, so $\tfrac ba \in \mathbb{Q}$ and $\tfrac ab \cdot \tfrac ba = \tfrac{ab}{ab} = 1$.
+For the reciprocal: $\tfrac ab \neq 0$ exactly when $a \neq 0$, so $\tfrac ba$ is a fraction and $\tfrac ab \cdot \tfrac ba = 1$.
 
-Hence $\mathbb{Q}$ is a **field**: a commutative ring with $1 \neq 0$ in which every nonzero element is a unit.
+So the fractions do everything the integers do, and one thing more: **every nonzero one can be divided by**. That single extra property is what the whole chapter has been building towards.
 
-<Warning title="0⁻¹ cannot exist">
-If $0x = 1$ in a ring, then $0 = 0x = 1$ (using $0x = 0$, itself a theorem from distributivity, §4.1), and then $y = 1\cdot y = 0 \cdot y = 0$ for every $y$ — the ring is the zero ring. The axiom $1 \neq 0$ excludes this, so no field has $0^{-1}$.
+<Warning title="There is no reciprocal of zero">
+Suppose $0x = 1$. But $0x = 0$ is a theorem (§4.1), so $0 = 1$ — and then $y = 1\cdot y = 0\cdot y = 0$ for every $y$, collapsing the entire system to a single element.
 
 "You cannot divide by zero" is therefore a theorem, not a prohibition.
 </Warning>
 
 ## The same construction, in general
 
-Nothing above used anything about $\mathbb{Z}$ except that it has no zero divisors (§4.1).
+Nothing above used anything about $\mathbb{Z}$ except that a product of nonzeros is nonzero.
 
-> **Theorem.** Any system with the ring properties and no zero divisors sits inside a field of quotients built exactly this way — pairs, with $(a,b)\sim(c,d)$ when $ad=bc$ — and that field is the smallest one containing it.
+That is worth noticing, because it means the construction is reusable. Any system obeying the arithmetic rules in which products of nonzeros stay nonzero can be enlarged the same way — build pairs, declare $(a,b)$ and $(c,d)$ to name the same thing when $ad = bc$, and you get a system in which you can divide.
 
-Taking $D = \mathbb{Z}$ gives $\mathbb{Q}$. Taking $D = k[x]$ gives the rational function field $k(x)$. Taking $D = \mathcal{O}(U)$, holomorphic functions on a domain, gives the meromorphic functions.
-
-The no-zero-divisors hypothesis is necessary, and the proof above shows why: working with remainders mod $6$, one would want $\tfrac13$ to exist, but $3 \times 2 = 0$ there, and the construction degenerates.
-
-The universal property in the second sentence is the useful part. It says $\mathbb{Q}$ is characterised by what it does, not by how it was built — the same shift that §2.9 flagged for ordered pairs.
+The no-zero-divisors condition is doing real work. On a six-hour clock you would want $\tfrac13$ to exist, but $3 \times 2$ lands on $0$ there, and the construction breaks.
 
 ## Why the closure proofs look like fraction arithmetic
 
-Each verification above was the fraction rule you learned in primary school, checked against a definition rather than asserted. That is worth pausing on, because it is the first time in the course that a familiar procedure has been *justified* rather than used.
+Each check above was the fraction rule you learned in primary school, verified against a definition rather than asserted. That is worth pausing on, because it is the first place the course does something subtle.
 
 $$\frac ab + \frac cd = \frac{ad+bc}{bd}$$
 
-is a definition, not a discovery — and what needs proving is that it is **well defined**: that replacing $\frac ab$ by an equivalent fraction $\frac{a'}{b'}$ gives an equivalent answer. Without that, the operation would depend on which representative you happened to write, and "the sum of two rationals" would not name a single number.
+is a **definition**, not a discovery. What needs proving is that it is *well defined*: replacing $\tfrac ab$ by an equal fraction $\tfrac{a'}{b'}$ must give an equal answer.
 
-The check is a computation: from $ab' = a'b$ and $cd'=c'd$, verify $(ad+bc)(b'd') = (a'd'+b'c')(bd)$. It works, and it is the reason the rule is legitimate.
+The check is a computation: from $ab' = a'b$ and $cd' = c'd$, verify that $(ad+bc)(b'd') = (a'd'+b'c')(bd)$. It works, and it is the reason the rule is legitimate rather than merely traditional.
 
-**This is the first well-definedness obligation in the course**, and it will not be the last. §7.2 shows that $\mathbb{Q}$ is built as a set of equivalence classes, and every operation defined on classes carries exactly this obligation — one that §3.1 flagged in the abstract and that here has real content.
+**This is the first well-definedness obligation in the course**, and it will not be the last. Whenever the things you are working with have more than one name, a rule that reads the name owes you this check.
 
-## Ordered fields, and what is still missing
+## Order, and what is still missing
 
-$\mathbb{Q}$ carries a compatible order ($a < b \Rightarrow a+c < b+c$; $a<b$, $c>0 \Rightarrow ac<bc$), making it an **ordered field**. §4.6 will prove it is dense in itself.
+The fractions carry an ordering that fits their arithmetic: adding the same thing to both sides preserves $<$, and multiplying both sides by something positive does too. §4.6 proves they are dense — between any two lies another.
 
-But $\mathbb{Q}$ is not **complete**: the set $\{x \in \mathbb{Q} : x^2 < 2\}$ is bounded above and has no least upper bound in $\mathbb{Q}$, because $\sqrt2 \notin \mathbb{Q}$ (§4.7). $\mathbb{R}$ is defined to be the completion, and it is the unique complete ordered field up to a renaming that preserves all the structure — a characterisation strong enough that calculus is really a subject about that one axiom.
-
-<Aside>
-The **characteristic** of a field is the least $n > 0$ with $\underbrace{1+\cdots+1}_{n} = 0$, or $0$ if no such $n$ exists. $\mathbb{Q}, \mathbb{R}, \mathbb{C}$ have characteristic $0$; $\mathbb{Z}/p\mathbb{Z}$ has characteristic $p$. Every field of characteristic $0$ contains a copy of $\mathbb{Q}$, and every field of characteristic $p$ contains a copy of $\mathbb{Z}/p\mathbb{Z}$ — these are the *prime fields*, and $\mathbb{Q}$'s role as one of exactly two kinds of minimal field is why it is unavoidable.
-</Aside>
+But something is still absent. The fractions $x$ with $x^2 < 2$ have no least upper bound among the fractions, because the number that ought to be it, $\sqrt2$, is not one. **That gap is what §4.7 exhibits and what the real numbers exist to fill** — and it, rather than any arithmetic rule, is the property calculus cannot do without.
 
 <WhereThisGoes level="l7">
-**Over $\mathbb{Z}$ none of that works.** The system $2x = 1$ has no integer solution, so "solve and back-substitute" fails immediately, and none of the usual structure survives over $\mathbb{Z}$ resembling the one over a field.
 
-**In calculus, the ordered-field axioms are what inequality manipulation rests on.** Every limit proof multiplies and divides inequalities, and the rules — adding preserves, multiplying by a positive preserves, multiplying by a negative reverses — are the order axioms of this module. Getting the last one wrong is the standard error in a limit proof, and it is an axiom violation rather than an algebra slip.
+Being able to divide is what makes ordinary algebra work, and you will feel its absence the moment it is missing.
 
-**Completeness is the property $\mathbb{Q}$ still lacks**, and it is the one calculus cannot do without. The big theorems of calculus are all false over $\mathbb{Q}$: $f(x)=x^2-2$ changes sign on $[0,2]$ and has no rational root, so IVT fails. §4.7 exhibits the gap, and filling it is what $\mathbb{R}$ is for — which makes completeness, not the field axioms, the defining property of the number system calculus runs on.
+**Over the integers, none of it works.** Solving $2x = 1$ has no integer answer, so the whole "solve and substitute back" method stops at the first step. Every technique you use without thinking assumes you are allowed to divide.
+
+**In calculus, the ordering rules are what inequality work rests on.** Every limit argument multiplies and divides inequalities, and the rules — adding preserves the direction, multiplying by a positive preserves it, multiplying by a negative reverses it — are exactly the ones stated in this module. Getting the last one wrong is the standard error in a limit proof, and it is a rule violation rather than an algebra slip.
+
+**The gap that remains matters more than any of them.** A collection of fractions can be bounded above and still have no *smallest* upper bound among the fractions — the fractions whose square is below $2$ are the example, since the number that should serve, $\sqrt2$, is not a fraction. Filling that gap is what the real numbers are for, and it is the property calculus genuinely cannot do without. A curve running from below zero to above it must cross zero somewhere: that is false over the fractions, where $x^2 - 2$ changes sign and never lands on zero.
 
 </WhereThisGoes>

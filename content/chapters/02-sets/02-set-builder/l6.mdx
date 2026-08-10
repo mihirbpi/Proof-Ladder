@@ -22,7 +22,7 @@ Read: *the set of all $x$ in $U$ such that $P(x)$ holds.* Some books write a ver
 Three parts, all required:
 
 - **$x$** — a placeholder, with no meaning outside the braces
-- **$U$** — the **ambient set** the elements are drawn from
+- **$U$** — the **surrounding collection** the elements are drawn from
 - **$P(x)$** — the condition, a predicate in the sense of module 1.10
 
 The defining property is a biconditional, and it is the only fact about the notation you need:
@@ -30,7 +30,7 @@ $$
 a \in \{x \in U : P(x)\} \quad\Leftrightarrow\quad a \in U \ \text{ and } \ P(a).
 $$
 
-**Two things to verify, always.** Membership in the ambient set, and the condition. Forgetting the first is the standard error.
+**Two things to verify, always.** Membership in the collection you are drawing from, and the condition. Forgetting the first is the standard error.
 
 ## Loci, rewritten
 
@@ -46,11 +46,11 @@ Now look at what the notation exposes. Each locus theorem in your book has two h
 
 The set-builder line answers it. The definition is a **biconditional**, so establishing that a geometric object equals that set requires both directions. It is module 1.9's "check both boxes," and it is forced by the notation rather than chosen by the author.
 
-<Warning title="The ambient set is not optional">
+<Warning title="The surrounding collection is not optional">
 $$\{\,Q : QA = QB\,\}$$
 is incomplete, and dangerously so.
 
-In a **plane**, that set is the perpendicular bisector — a line. In **space**, it is the perpendicular bisector *plane*. Same condition, different sets, because the ambient set differed.
+In a **plane**, that set is the perpendicular bisector — a line. In **space**, it is the perpendicular bisector *plane*. Same condition, different sets, because the collection you are drawing from differed.
 
 You have met this without the notation: your book's locus theorems say "in a plane" in their first three words, and that phrase is not filler.
 </Warning>
@@ -103,7 +103,7 @@ Unrestricted set-builder — dropping $U$ and writing $\{x : P(x)\}$ for any con
 
 Take $R = \{x : x \notin x\}$, the set of all sets that are not members of themselves. Is $R \in R$? If yes, then by its own condition $R \notin R$. If no, then $R$ satisfies the condition, so $R \in R$. Either answer contradicts itself.
 
-This is **Russell's paradox**, and it broke the foundations of mathematics in 1901. The repair is the ambient set: you may carve a subset out of a set you already have, but you may not conjure a set from a condition alone.
+This is **Russell's paradox**, and it broke the foundations of mathematics in 1901. The repair is the collection you are drawing from: you may carve a subset out of a set you already have, but you may not conjure a set from a condition alone.
 
 So the $U$ you have been told not to omit is not bookkeeping. It is the thing standing between you and a contradiction.
 </Aside>

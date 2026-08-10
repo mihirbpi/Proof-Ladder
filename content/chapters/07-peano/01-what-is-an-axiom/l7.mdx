@@ -2,7 +2,7 @@
 level: l7
 title: What is an axiom?
 readingTimeMin: 8
-newTerms: ["axiom", "theorem", "primitive", "model", "independence"]
+newTerms: ["axiom", "theorem", "undefined starting word", "model", "independence"]
 anchorExample: "successor function"
 ---
 
@@ -18,9 +18,9 @@ Justification regresses in two directions, and both must terminate.
 
 **Statements.** Every theorem is derived from earlier ones. An infinite regress anchors nothing, so some statements are assumed: the **axioms**.
 
-**Terms.** Every definition is phrased in earlier terms. So some terms are undefined: the **primitives**, whose meaning is exhausted by the axioms governing them.
+**Terms.** Every definition is phrased in earlier terms. So some terms are undefined: the **undefined starting words**, whose meaning is exhausted by the axioms governing them.
 
-A theory is then a language (primitives plus logical apparatus), a set of axioms, and the deductive closure under a fixed inference system. Nothing else is in it.
+A theory is then a language (undefined starting words plus logical apparatus), a set of axioms, and the deductive closure under a fixed inference system. Nothing else is in it.
 
 | Theory | Primitives |
 |---|---|
@@ -29,7 +29,7 @@ A theory is then a language (primitives plus logical apparatus), a set of axioms
 | Peano arithmetic | $0$, $S$ |
 | The study of symmetry | underlying set, binary operation |
 
-Hilbert's dictum makes the point: one should be able to substitute "table, chair, beer mug" for "point, line, plane" throughout Euclid with no proof affected. All content lives in the axioms; none in the names. This is why the same group axioms describe symmetries, permutations, and elliptic curves at once.
+A famous remark makes the point: one should be able to substitute "table, chair, beer mug" for "point, line, plane" throughout Euclid with no proof affected. All content lives in the axioms; none in the names. This is why the same group axioms describe symmetries, permutations, and elliptic curves at once.
 
 ## Semantic and syntactic
 
@@ -86,7 +86,7 @@ Note the contrast with the result above: the *logic* is complete; sufficiently s
 
 ### Adequacy
 
-The axioms must generate the intended mathematics. Trivially consistent systems proving nothing are useless, and the tension between adequacy and provable consistency is exactly what Gödel's second theorem formalises.
+The axioms must generate the intended mathematics. Trivially consistent systems proving nothing are useless, and the tension between adequacy and provable consistency is exactly what Gödel's second theorem makes precise.
 
 <Warning title="Self-evidence is not a criterion">
 The scholastic gloss — an axiom is an obvious truth — is false and was historically costly. The parallel postulate looked obvious and is optional; the an extra set-theoretic assumption looks obvious and implies Banach–Tarski; the Axiom of Foundation looks obvious and can be consistently denied (Aczel's anti-foundation axiom, used to model circular data structures).

@@ -13,7 +13,7 @@ Listing works for small finite sets and fails for everything else. **Set-builder
 $$
 \{\, x \in A \mid p(x) \,\}
 $$
-read: "the set of all $x$ in $A$ such that $p(x)$." The bar is "such that". $A$ is the ambient set the elements are drawn from; $p$ is an open statement (module 1.1) that decides membership.
+read: "the set of all $x$ in $A$ such that $p(x)$." The bar is "such that". $A$ is the collection you are drawing from the elements are drawn from; $p$ is an open statement (module 1.1) that decides membership.
 
 $$
 x \in \{\, y \in A \mid p(y) \,\}
@@ -25,7 +25,7 @@ That biconditional is the definition, and it is the line to reach for whenever a
 
 ## Chapter 1 is now a tool
 
-This is the module where the two chapters join. The condition $p(x)$ is exactly the kind of open statement that module 1.1 refused to call a statement — it has a free variable and no truth value. Set-builder notation does not fix that; it *exploits* it. The predicate sorts the ambient set into two parts, and the set is the part where $p$ comes out true.
+This is the module where the two chapters join. The condition $p(x)$ is exactly the kind of open statement that module 1.1 refused to call a statement — it has a free variable and no truth value. Set-builder notation does not fix that; it *exploits* it. The predicate sorts the collection you are drawing from into two parts, and the set is the part where $p$ comes out true.
 
 Consequently every logical operation on conditions becomes a set operation:
 
@@ -73,7 +73,7 @@ Subsets of $\mathbb{R}$ defined by inequalities are frequent enough to earn thei
 
 A round bracket excludes the endpoint; a square bracket includes it. $\infty$ always gets a round bracket, because it is not a real number and cannot be an element of anything.
 
-<Warning title="$(a,b)$ is overloaded">
+<Warning title="The pair notation is overloaded">
 $(1, 5)$ is an interval here. In module 2.9 it will be an ordered pair. The notation is genuinely ambiguous and context is the only guide — if the surrounding discussion is about subsets of $\mathbb{R}$, it is an interval; if it is about $\mathbb{R} \times \mathbb{R}$, it is a point.
 </Warning>
 
@@ -82,16 +82,20 @@ $(1, 5)$ is an interval here. In module 2.9 it will be an ordered pair. The nota
 $$
 \{\, x \in \mathbb{R} \mid x^2 < 0 \,\} = \emptyset.
 $$
+
+*Read the left side as "the collection of real numbers $x$ whose square is negative" — the bar is "such that". There are none, so it equals $\emptyset$, the empty collection.*
 A perfectly well-formed description that happens to select nothing. This is an answer, not an error, and module 1.12 already proved it: no real number has a negative square.
 
-## The ambient set is not optional
+## The surrounding collection is not optional
 
 $$
 \{\, x \mid x^2 = 2 \,\}
 $$
-is $\emptyset$ over $\mathbb{Z}$ and $\{\sqrt2, -\sqrt2\}$ over $\mathbb{R}$. Without the ambient set, the notation does not denote anything.
 
-There is also a deeper reason to insist on it, beyond ambiguity. Allowing $\{x \mid p(x)\}$ for *arbitrary* $p$, with no ambient set, makes set theory inconsistent: take $p(x)$ to be "$x \notin x$" and ask whether the resulting collection contains itself. Restricting to $\{x \in A \mid p(x)\}$ — separating a subset out of a set you already have — is precisely the repair.
+*Read it as "the things whose square is $2$" — and which things those are depends entirely on what you were allowed to draw from.*
+is $\emptyset$ over $\mathbb{Z}$ and $\{\sqrt2, -\sqrt2\}$ over $\mathbb{R}$. Without the collection you are drawing from, the notation does not denote anything.
+
+There is also a deeper reason to insist on it, beyond ambiguity. Allowing $\{x \mid p(x)\}$ for *arbitrary* $p$, with no surrounding collection, makes set theory inconsistent: take $p(x)$ to be "$x \notin x$" and ask whether the resulting collection contains itself. Restricting to $\{x \in A \mid p(x)\}$ — separating a subset out of a set you already have — is precisely the repair.
 
 <Aside>
 Some authors write a colon instead of a bar, $\{x : p(x)\}$, and it means the same thing. Books that use $\mid$ for divisibility (module 4.2) usually prefer the colon here so that $\{n : 3 \mid n\}$ does not need two different bars.

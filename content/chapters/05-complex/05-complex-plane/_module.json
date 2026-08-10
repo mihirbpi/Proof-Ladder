@@ -20,7 +20,7 @@
     "l3": "Plot a + bi at the point a across and b up. Adding complex numbers is joining the two walks nose to tail, and conjugating is reflecting in the horizontal axis.",
     "l4": "a + bi is the point (a, b) in the plane. Addition is the parallelogram rule, conjugation is reflection in the real axis — which is why the reals, lying on that axis, are fixed — and multiplication by i is a quarter turn.",
     "l5": "The complex plane makes addition vector addition and conjugation reflection; multiplication by i is rotation by a quarter turn, verified algebraically.",
-    "l6": "ℂ is ℝ² as a set with the same addition; what is new is a multiplication, and its geometric content is rotation and scaling.",
+    "l6": "The complex numbers are the coordinate plane with the same addition. What is new is a multiplication, and its geometric content is rotation together with scaling.",
     "l7": "Identifying a + bi with (a,b) makes addition vector addition, conjugation reflection in the real axis, and multiplication by i rotation by π/2; the geometry explains the algebra rather than illustrating it.",
     "l8": "The plane model realises ℂ as a two-dimensional real vector space with a compatible multiplication; the rotation picture is the first sight of the action of the unit circle on ℂ."
   },

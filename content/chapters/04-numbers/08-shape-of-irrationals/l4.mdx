@@ -11,13 +11,13 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-$\mathbb{Q}$ is a field (module 4.5). Is $\mathbb{R}\setminus\mathbb{Q}$ anything?
+$\mathbb{Q}$ is closed under all four operations (module 4.5). Is $\mathbb{R}\setminus\mathbb{Q}$ anything?
 
 No. And identifying exactly how it fails is the point of the module.
 
 ## Three failures
 
-**No identities.** $0, 1 \in \mathbb{Q}$, so neither lies in $\mathbb{R}\setminus\mathbb{Q}$. A set without an additive or multiplicative identity cannot be a field, and cannot be a ring either.
+**No identities.** $0, 1 \in \mathbb{Q}$, so neither lies in $\mathbb{R}\setminus\mathbb{Q}$. A set without an additive or multiplicative identity cannot be a self-contained number system at all.
 
 **Not closed under $+$.** $\sqrt2$ and $-\sqrt2$ are irrational, but $\sqrt2 + (-\sqrt2) = 0 \in \mathbb{Q}$.
 
@@ -37,7 +37,7 @@ Never write "irrational + irrational = irrational". Never write the opposite eit
 > (i) $-a$ is irrational; (ii) $1/a$ is irrational; (iii) $ra$ is irrational; (iv) $r + a$ is irrational.
 
 <Discussion>
-  <div slot="know">$a \notin \mathbb{Q}$; $\mathbb{Q}$ is closed under all four field operations.</div>
+  <div slot="know">$a \notin \mathbb{Q}$; $\mathbb{Q}$ is closed under all four operations.</div>
   <div slot="want">Four negative statements.</div>
   <div slot="how">Each goal is a negation, so contradiction is indicated (module 2.5). In every case: assume the constructed quantity is rational, apply a closure property of $\mathbb{Q}$ to recover $a$, and contradict $a \notin \mathbb{Q}$. Statement (iii) with $r = -1$ gives (i), so prove the general one.</div>
 </Discussion>

@@ -18,10 +18,10 @@
     "l1": "Do one instruction, then the other. That is how you add them.",
     "l2": "To add two complex numbers, add the across parts and add the up parts. It is just doing one move and then the other.",
     "l3": "Complex numbers add piece by piece: across with across, up with up. To multiply, expand the brackets as usual and then replace i × i with −1.",
-    "l4": "(a+bi) + (c+di) = (a+c) + (b+d)i, and (a+bi)(c+di) = (ac − bd) + (ad + bc)i after expanding and using i² = −1. Every nonzero z has an inverse, so ℂ is a field.",
+    "l4": "Add complex numbers by adding the parts separately. Multiply them by expanding the brackets and replacing i times i with −1. Every nonzero one can be divided by, so all four operations work.",
     "l5": "Complex arithmetic is real arithmetic in two components with one extra rule, i² = −1; inverting uses the conjugate, whose denominator a² + b² is nonzero precisely when z ≠ 0.",
-    "l6": "ℂ satisfies every field axiom, with inverses obtained by rationalising with the conjugate; the check that a² + b² ≠ 0 for z ≠ 0 is where the reals are used.",
-    "l7": "Addition is componentwise, multiplication is the bilinear extension of i² = −1, and inversion is multiplication by z̄/|z|²; all field axioms hold, so ℂ is a field.",
+    "l6": "The complex numbers obey every arithmetic rule the reals do, with reciprocals obtained by rationalising with the conjugate. Checking that the denominator is nonzero is where the reals get used.",
+    "l7": "Addition works coordinate by coordinate; multiplication expands the brackets and uses that the turn unit squares to −1; division multiplies by the conjugate over the squared modulus. All the arithmetic rules hold.",
     "l8": "ℂ is a field because ℝ[x]/(x²+1) is a quotient by a maximal ideal; the inversion formula is the standard rationalisation in a quadratic extension."
   },
   "kernel": "Add componentwise; multiply by FOIL with i² = −1, giving (ac − bd) + (ad + bc)i; invert by multiplying by the conjugate over itself; divide as z · (1/w). ℂ is a field.",

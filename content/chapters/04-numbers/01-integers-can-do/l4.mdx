@@ -2,7 +2,7 @@
 level: l4
 title: What the integers can do
 readingTimeMin: 7
-newTerms: ["closed", "ring", "distributive law", "unit"]
+newTerms: ["closed", "distributive law"]
 anchorExample: "divisibility"
 ---
 
@@ -55,28 +55,32 @@ Two units out of infinitely many elements. This single deficiency is what motiva
 $6 \div 2 = 3 \in \mathbb{Z}$, so division sometimes stays inside. Closure requires *always*, so a single counterexample refutes it (module 1.11). $7 \div 2 \notin \mathbb{Z}$ is that counterexample.
 </Warning>
 
-## Rings
+## One list of rules, many systems
 
-A set with two operations satisfying the properties above — plus associativity and commutativity of $+$, an additive identity $0$, associativity of $\times$, and a multiplicative identity $1$ — is called a **ring**.
+Collect what we have: add, subtract and multiply and you never leave; order and grouping do not matter; $0$ and $1$ change nothing; and multiplication distributes over addition.
 
-$\mathbb{Z}$ is a ring. So is $\mathbb{Q}$, and $\mathbb{R}$. So are things that are not numbers:
+**That same list is obeyed by systems with nothing else in common.**
 
 - **Polynomials** — expressions like $x^2 + 3x - 1$, which you take up in Algebra I. Add two or multiply two and you get another one; distribution holds.
 - **Grids of numbers** — rows and columns of them, called *matrices* in Algebra II, which gives rules for adding and multiplying them. Same closures, one twist: the order of multiplication matters.
 - **Clock arithmetic.** On a twelve-hour clock, add or multiply and keep the remainder on division by $12$. Closed, distributive, finite.
 
-The word earns its keep because of this: **any theorem proved using only the ring properties is automatically true for all of them at once.** You prove it once, about a nameless ring, and get infinitely many theorems free.
+So a proof using **only** those rules is not really about the integers. It proves the same thing for every system obeying the list, all at once, for no extra work.
+
+Hence the most useful habit in this chapter: when you finish a proof, ask which rules you actually leaned on. The fewer you used, the more places the result holds.
 
 <Aside>
-$\mathbb{Z}$ has a property beyond the ring axioms that matters enormously: it has **no zero divisors** — if $ab = 0$ then $a = 0$ or $b = 0$. A commutative ring with this property is an *integral domain*. It fails in clock arithmetic mod $12$, where $3 \times 4 = 0$ with neither factor zero, and its failure is precisely why cancellation ("$ab = ac$ and $a \neq 0$ imply $b = c$") is legal in $\mathbb{Z}$ and illegal mod $12$.
+The integers have one property the list above does not mention, and it matters more than it looks: **if a product is $0$, one of the factors is $0$.**
+
+That fails on the twelve-hour clock, where $3 \times 4$ lands on $0$ with neither factor zero. And its failure is exactly why cancelling is safe with integers and unsafe on the clock: from $ab = ac$ with $a \neq 0$ you may conclude $b = c$ over the integers, and you may not on the clock.
+
+Later courses give the list of rules a name, and this extra property a name as well. The names are not the point. Noticing which rules a proof leans on is.
 </Aside>
 
-## What is missing
+## What is still missing
 
-$$
-\text{ring} + \text{every nonzero element is a unit} = \text{field}.
-$$
+One thing is conspicuously absent from the list: **division**.
 
-That last word is module 4.5's subject; for now read it as a label for a ring in which you can also divide.
+You can add, subtract and multiply integers all day and never leave the integers. Divide, and you fall out almost immediately — $1 \div 3$ is not an integer. Module 4.5 repairs exactly that, and the repair is what fractions are for.
 
-$\mathbb{Z}$ is a ring and not a field. $\mathbb{Q}$ will be a field (module 4.5). Recognising which of the two you are working in tells you which manipulations are legal — in particular, whether you are allowed to divide.
+Knowing which system you are working in tells you which moves are legal — in particular, whether you are allowed to divide at all.

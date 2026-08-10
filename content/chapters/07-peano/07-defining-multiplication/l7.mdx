@@ -78,7 +78,7 @@ Result: $(\mathbb{N},+,\cdot,0,1)$ is a commutative **semiring** — a ring with
 | induction as technique (Ch. 6) | A9 |
 | parity and divisibility (§4.2) | definitions of $+$, $\cdot$ |
 
-Nine axioms, two recursive definitions. That is the answer to the chapter question: the earliest facts rest on stipulation, and everything above them is derived.
+Nine axioms, two recursive definitions. That is the answer to the chapter question: the earliest facts rest on definition, and everything above them is derived.
 </Warning>
 
 ## What the course established
@@ -103,7 +103,7 @@ There are not many techniques. There are many places to use them, and recognisin
 
 ## Where the tower stops
 
-Iterating once more gives exponentiation, $a^0 = 1$, $a^{S(b)} = a\cdot a^b$, and the **hyperoperation** hierarchy continues: tetration, pentation, and so on. Growth is explosive — the diagonal function $A(n) = n \uparrow^n n$ is Ackermann's function, computable but not primitive recursive, and PA cannot prove it total without induction beyond a certain complexity.
+Iterating once more gives exponentiation, $a^0 = 1$, $a^{S(b)} = a\cdot a^b$, and the **hyperoperation** hierarchy continues: tetration, pentation, and so on. Growth is explosive — the diagonal function $A(n) = n \uparrow^n n$ is Ackermann's function, computable but not undefined starting word recursive, and PA cannot prove it total without induction beyond a certain complexity.
 
 Note also that the hierarchy loses structure as it climbs. Addition is commutative and associative; multiplication is too; exponentiation is neither. The good behaviour of $+$ and $\cdot$ is not typical of iterated operations — it is special, and the theorems above are where that specialness is established.
 
@@ -119,7 +119,7 @@ This is where the course closes, and the closing observation is that everything 
 
 **The tower, in order.** Successor is undefined and constrained by axioms. Addition is defined recursively from it. Multiplication is defined recursively from addition. $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are each built from the previous system to repair a specific closure failure. Nothing is assumed twice, and nothing circles.
 
-**Every arithmetic law is a theorem.** Commutativity, associativity, and distributivity — the ring axioms of §4.1, used freely there — are proved here by induction. What one chapter assumes, another establishes, and the direction of that dependency is worth tracing once.
+**Every arithmetic law is a theorem.** Commutativity, associativity, and distributivity — the arithmetic rules of §4.1, used freely there — are proved here by induction. What one chapter assumes, another establishes, and the direction of that dependency is worth tracing once.
 
 **In calculus, the same tower is what the derivative rules rest on.** Linearity of differentiation is distributivity applied to the limit definition; the product rule is a statement about how differentiation interacts with the ring multiplication; and the fact that $(fg)' \neq f'g'$ is the observation that differentiation is *not* multiplicative. Each is provable, and each depends on the arithmetic being what this chapter says it is.
 

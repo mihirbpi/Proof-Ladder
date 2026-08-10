@@ -18,7 +18,7 @@
     "l1": "You can undo a machine only if nothing got mixed up and nothing got skipped.",
     "l2": "An undo-machine exists only when the first machine never shared and never skipped. Then every answer leads back to exactly one thing.",
     "l3": "A function can be undone exactly when it is a bijection. Being onto is what makes the undo-machine work on every answer, and being one-to-one is what makes each answer lead back to only one input.",
-    "l4": "f⁻¹ exists exactly when f is a bijection: surjectivity makes f⁻¹ total, injectivity makes it well-defined. The inverse of a bijection is a bijection, and its inverse is f again.",
+    "l4": "A function can be run backwards exactly when it is a perfect pairing. Being onto is what guarantees every element has something to go back to; being one-to-one is what makes that something unique. Running the reverse backwards returns the original.",
     "l5": "Invertibility is equivalent to bijectivity, and the two halves of the definition of function correspond exactly to the two halves of bijectivity.",
     "l6": "A function has a two-sided inverse under composition exactly when it is a bijection. Note that the symbol f⁻¹ is also used for pre-images, and those are a different object — a set rather than a value.",
     "l7": "A function is invertible exactly when it is bijective — surjectivity gives totality of the inverse, injectivity gives well-definedness. The inverse is itself a bijection with inverse f, and f⁻¹(t) as a value must not be confused with f⁻¹({t}) as a set.",

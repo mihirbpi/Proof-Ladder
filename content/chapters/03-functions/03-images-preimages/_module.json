@@ -18,10 +18,10 @@
     "l1": "Some cubbies get used and some stay empty. You can also ask who is in a cubby.",
     "l2": "The used arrowheads are the answers the machine can actually give. Tracing back from an arrowhead tells you which things get sent there — and sometimes nothing does.",
     "l3": "The image of a function is the set of answers it actually produces, which can be smaller than the codomain. The pre-image of a set is everything that lands in it, and it is allowed to be empty.",
-    "l4": "Im(f) = {f(s) | s ∈ S} ⊆ T is the set of values actually attained. f⁻¹(U) = {s ∈ S | f(s) ∈ U} is the pre-image, defined for every function, and it may be ∅.",
+    "l4": "The image is the set of values a function actually attains; the pre-image of a set is everything sent into it. The pre-image is defined for every function, and it may be empty.",
     "l5": "The image may be a proper subset of the codomain; the pre-image of a subset is defined for any function whatsoever, invertible or not.",
     "l6": "Image and pre-image are operations on subsets, not on elements; f⁻¹ as a pre-image operator always exists even when f has no inverse function.",
-    "l7": "The image is the set of attained values and may be properly contained in the codomain. The pre-image f⁻¹(U) is defined for every function and every U ⊆ T, possibly empty; it is not the inverse function.",
+    "l7": "The image is the set of values actually attained and may sit strictly inside the codomain. Tracing back is defined for every function and every target set, may come back empty, and is not the inverse function.",
     "l8": "Image and pre-image are the direct and inverse image operators between P(S) and P(T); the pre-image operator is the well-behaved one, and it is the basis of the topological definition of continuity."
   },
   "kernel": "Im(f) ⊆ T is the set of outputs actually hit. f⁻¹(U) is the set of inputs landing in U; it may be empty. f⁻¹({t}) ≠ ∅ exactly when t ∈ Im(f). Pre-images exist for any function, invertible or not.",

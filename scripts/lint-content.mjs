@@ -924,6 +924,112 @@ for (const f of files) {
 }
 
 // ---------------------------------------------------------------------------
+// College mathematics has no place at l4-l7. These are 8th to 12th graders in
+// an American high school taking a first proof course; rings, fields, groups,
+// vector spaces, topology and complex analysis appear in no course any of them
+// has taken or will take before university.
+//
+// The <WhereThisGoes> box at l7 is exempt — naming a destination is its whole
+// purpose, and it now carries a standing note saying so. Everywhere else these
+// terms are simply unavailable, including in the body of a module that happens
+// to be *about* the underlying idea: §4.1's real content is "these systems obey
+// the same arithmetic rules", which needs no word at all.
+const COLLEGE_TERMS = [
+  [/\bholomorphic|\bmeromorphic|\banalytic function|\bcontour integral/i, 'complex analysis'],
+  [/\brings?\b|\bfields?\b(?!\s+of\s+study)|\bcosets?\b|\bideals?\b/i, 'abstract algebra'],
+  [/\bvector spaces?\b|\beigen|\bdeterminants?\b|\bhomomorph|\bisomorph|\bautomorph/i, 'linear/abstract algebra'],
+  [/\btopolog|\bmetric spaces?\b|\bhomeomorph|\bopen sets?\b/i, 'topology'],
+  [/\bmeasure theor|\bLebesgue|\bBanach|\bHilbert\b/i, 'analysis'],
+  [/\bcardinals?\b|\bordinals?\b|\btransfinite|\bZorn|\baxiom of choice/i, 'set theory'],
+  [/\bintegral domain|\bGalois|\babelian|\bmonoid|\bBoolean algebra/i, 'abstract algebra'],
+  [/\bcategory theor|\bfunctors?\b|\bnatural transformation/i, 'category theory'],
+  [/\bmanifold|\bmultivariable|\bJacobian|\bpartial derivative/i, 'later calculus'],
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!['l4', 'l5', 'l6', 'l7'].includes(level)) continue;
+  const rel = path.relative(ROOT, f);
+  const text = body(
+    fs.readFileSync(f, 'utf8').replace(/<WhereThisGoes[\s\S]*?<\/WhereThisGoes>/g, ''),
+  );
+  for (const [re, area] of COLLEGE_TERMS) {
+    const m = text.match(re);
+    if (m) warn(rel, `${level} uses "${m[0]}" (${area}) — no US high-school course teaches it`);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Kernels carry no proof notation, at any level.
+//
+// The kernel is printed at the very top of the page under "The big idea, said
+// for you" — before the reader has read a word of the module. A kernel opening
+// "ℚ is closed under … multiplicative inverses of nonzero elements — this makes
+// ℚ a field" asks them to hold five unexplained things before the page starts.
+// The symbols are always available a few paragraphs later, where they are
+// introduced; the kernel says the idea in words.
+const KERNEL_NOTATION = /[ℚℤℝℕℂ∀∃⊆∈∉∪∩¬∧∨⇒⇔≡∅↦∘]|\\mathbb|\\forall|\\exists/;
+for (const ch of fs.readdirSync(CHAPTERS)) {
+  const chDir = path.join(CHAPTERS, ch);
+  if (!fs.statSync(chDir).isDirectory()) continue;
+  for (const mod of fs.readdirSync(chDir)) {
+    const p = path.join(chDir, mod, '_module.json');
+    if (!fs.existsSync(p)) continue;
+    const j = JSON.parse(fs.readFileSync(p, 'utf8'));
+    const rel = path.relative(ROOT, p);
+    for (const [lvl, k] of Object.entries(j.kernels ?? {})) {
+      // l8 is exempt: its reader is a university student who has met this
+      // notation, and its modules are still unwritten — its kernels get
+      // rewritten alongside the bodies rather than twice.
+      if (lvl === 'l8') continue;
+      const m = String(k).match(KERNEL_NOTATION);
+      if (m) warn(rel, `kernels.${lvl} uses "${m[0]}" — the kernel is read before anything explains it`);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Symbolic displays in the early chapters must come with a plain rendering.
+//
+// Introducing a symbol once is not enough when a whole display is built from
+// four of them: the reader can know what each mark means and still not be able
+// to read the line. So a display carrying proof notation gets a sentence saying
+// what it says, in words, right beside it.
+//
+// The requirement tapers. At l4 the reader is meeting all of this for the first
+// time and Chapters 1-3 are covered; by l6 only Chapter 1 is; l7 is left alone,
+// having had three years of it. Chapter 4 onward at every level is exempt —
+// by then the notation has been used for dozens of pages.
+const GLOSS_THROUGH_CHAPTER = { l4: 3, l5: 2, l6: 1 };
+const DISPLAY_SYMBOLS =
+  /\\forall|\\exists|\\Rightarrow|\\Leftrightarrow|\\iff|\\neg|\\wedge|\\vee(?!r)|\\in\b|\\subseteq|\\mathbb\{[NZQRC]\}|\\equiv|\\cup\b|\\cap\b/;
+const RENDERS_IT =
+  /\bread[s]?\b|\bmeans?\b|\bsays?\b|in words|that is|i\.e\.|which is|translat\w*|\bis just\b|\bshorthand\b|\bunpack\w*|\bunfold\w*/i;
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const through = GLOSS_THROUGH_CHAPTER[level];
+  if (!through) continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const chapterNo = Math.floor(modPos(rel) / 100);
+  if (chapterNo > through) continue;
+  const paras = body(fs.readFileSync(f, 'utf8')).split(/\n\s*\n/);
+  for (let i = 0; i < paras.length; i += 1) {
+    const p = paras[i];
+    if (!p.trim().startsWith('$$') || !DISPLAY_SYMBOLS.test(p)) continue;
+    const around = paras.slice(Math.max(0, i - 1), i + 2).join('\n\n');
+    // The house convention is a wholly-italic line immediately after the
+    // display, which is a rendering whatever words it happens to use.
+    const next = (paras[i + 1] ?? '').trim();
+    const italicGloss = next.startsWith('*') && next.endsWith('*') && !next.startsWith('**');
+    if (!italicGloss && !RENDERS_IT.test(around)) {
+      warn(
+        path.relative(ROOT, f),
+        `symbolic display with no plain rendering beside it — say what it says in words (${level}, Ch ${chapterNo})`,
+      );
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // The l7 look-ahead boxes may point forward — that is their whole job — but a
 // reader in grade 12 is *starting* calculus. Two things they may not do:
 //
@@ -950,6 +1056,12 @@ for (const f of files) {
   const named = box.match(LOOKAHEAD_NAMED);
   if (named) {
     warn(rel, `look-ahead box names "${named[0]}" — say what it claims instead; the reader has not met it`);
+  }
+  // Bare initialisms are worse than the full name: IVT, FTC and MVT are what
+  // you write for someone who already knows the theorem.
+  const abbrev = box.match(/\b(IVT|MVT|EVT|FTC|LHS|RHS|WLOG|iff\b)\b/);
+  if (abbrev) {
+    warn(rel, `look-ahead box uses the abbreviation "${abbrev[0]}" — write it out; the reader has never seen it`);
   }
 }
 

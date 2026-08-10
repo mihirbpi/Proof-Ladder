@@ -17,11 +17,11 @@
   "kernels": {
     "l1": "A box needs a rule everyone agrees on. Then you always know what is in and what is out.",
     "l2": "A box of things needs a rule that everybody agrees on. The order does not matter, saying a thing twice does not matter, and an empty box is still a box.",
-    "l3": "A set is a collection with a rule clear enough that everyone agrees what is in it. We write x ∈ S for \"x is in S\". Order and repeats do not change a set, and the empty set { } is a set.",
-    "l4": "A set is a well-defined collection of objects; x ∈ S asserts membership and x ∉ S denies it. Sets are unordered and repetition-insensitive, ∅ is a set, and ℕ ⊆ ℤ ⊆ ℝ are the standard number sets.",
+    "l3": "A set is a collection of things, and it is fixed by which things are in it. Order does not matter, and repeating something changes nothing.",
+    "l4": "A set is a well-defined collection of objects. Sets are unordered, and repeating an element changes nothing. The empty set is a set, and the familiar number systems sit inside one another.",
     "l5": "A set is determined entirely by which objects belong to it: {a,b} = {b,a} = {a,a,b}. Well-definedness means membership is unambiguous for every candidate object.",
     "l6": "Sets are extensional objects: two sets are equal exactly when they have the same members, so order and multiplicity are invisible. \"Set\" is deliberately left undefined in naive set theory.",
-    "l7": "A set is a well-defined collection, determined by its members alone; x ∈ S is the primitive relation, ∅ is a set, and the number systems ℕ ⊆ ℤ ⊆ ℚ ⊆ ℝ ⊆ ℂ are the standard examples.",
+    "l7": "A set is a well-defined collection, determined by its members and nothing else. Membership is the primitive relation, the empty set is a set, and the familiar number systems are the standard examples.",
     "l8": "Set is an undefined primitive constrained by axioms; extensionality makes membership the whole content of a set, and the well-definedness requirement is what Russell's paradox forces us to take seriously."
   },
   "kernel": "A set is a well-defined collection; x ∈ S says x belongs. Sets are unordered and repetition is irrelevant. The empty set is a set. ℕ, ℤ, ℝ are the standard number sets.",

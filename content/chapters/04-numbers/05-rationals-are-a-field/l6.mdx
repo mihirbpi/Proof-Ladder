@@ -1,9 +1,9 @@
 ---
 level: l6
-title: The rationals are a field
+title: Why fractions can divide and integers cannot
 readingTimeMin: 8
-newTerms: ["field", "rational number"]
-anchorExample: "coordinates, lengths, and the Pythagorean theorem"
+newTerms: ["rational number"]
+anchorExample: "all four operations on fractions"
 ---
 
 import Proof from '@/components/Proof.astro';
@@ -20,7 +20,7 @@ $$
 \mathbb{Q} = \left\{\, \frac{a}{b} \;:\; a, b\in\mathbb{Z},\ b \neq 0 \,\right\}.
 $$
 
-The **rational numbers**. Note the set-builder form from module 2.2: the ambient set is $\mathbb{Z}$, and $b\neq 0$ is part of the condition, not a footnote.
+The **rational numbers**. Note the set-builder form from module 2.2: the collection you are drawing from is $\mathbb{Z}$, and $b\neq 0$ is part of the condition, not a footnote.
 
 A subtlety worth naming: $\frac12$ and $\frac{2}{4}$ are the same rational number written two ways. The pair $(a,b)$ is not the number — the number is what all the equivalent pairs have in common. Compare module 3.2's point that different formulas can give the same function.
 
@@ -42,9 +42,9 @@ Let $x = \frac ab$ and $y = \frac cd$ with $a,b,c,d\in\mathbb{Z}$ and $b,d\neq0$
 
 **Every step cited closure of $\mathbb{Z}$.** The rationals inherit their good behaviour from the integers, and the whole proof is the fraction arithmetic you already know, checked against the definition rather than assumed.
 
-The step *"a product of non-zero integers is non-zero"* is doing real work and is not free — it is the statement that $\mathbb{Z}$ has no zero divisors, which fails in some rings. Matrices, for instance, have non-zero products that vanish.
+The step *"a product of non-zero integers is non-zero"* is doing real work and is not free — it is the statement that $\mathbb{Z}$ has no zero divisors, which fails in some systems. Matrices, for instance, have non-zero products that vanish.
 
-## Field
+## Division
 
 A **field** is a set with $+$ and $\times$ satisfying every row of module 4.1's table, **including** multiplicative inverses for all non-zero elements.
 

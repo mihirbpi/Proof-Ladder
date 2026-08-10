@@ -32,7 +32,7 @@ $p \Leftrightarrow q$ is true exactly on the rows where $p$ and $q$ agree. Since
 
 ## The theorem
 
-*A reminder of the symbols in play: $\in$ reads "is in", $\mathbb{Z}$ reads the integers.*
+*Two symbols appear below. $\in$ reads "is in", and $\mathbb{Z}$ is the shorthand for the whole collection of integers — so "$k \in \mathbb{Z}$" is just "$k$ is an integer". The proofs themselves are written in words.*
 
 > **Theorem.** For every integer $n$: $n$ is even **if and only if** $n^2$ is even.
 
@@ -70,7 +70,11 @@ Mathematical definitions are stated with "if" but always mean "if and only if":
 
 > An integer $n$ is *even* if $n = 2k$ for some integer $k$.
 
-That is: even $\Leftrightarrow$ $\exists k \in \mathbb{Z}, n = 2k$, where $\exists$ reads *there exists* (§1.10). Both directions are available to you. When you assume "$n$ is even" and write $n = 2k$, you are using one direction; when you finish a computation at $2(\text{something integer})$ and declare the result even, you are using the other. Most proofs in this course use both directions of some definition, usually within four lines of each other.
+Written out in symbols, that reads
+
+$$n \text{ is even} \iff \exists k \in \mathbb{Z},\ n = 2k.$$
+
+Take it one piece at a time: $\iff$ is *if and only if*, $\exists$ is *there exists* (§1.10 does this properly), and $k \in \mathbb{Z}$ is *$k$ is an integer*. So the whole line says: **$n$ is even exactly when you can find an integer $k$ with $n = 2k$.** That sentence and that formula say the same thing, and for now the sentence is the one to hold on to. Both directions are available to you. When you assume "$n$ is even" and write $n = 2k$, you are using one direction; when you finish a computation at $2(\text{something integer})$ and declare the result even, you are using the other. Most proofs in this course use both directions of some definition, usually within four lines of each other.
 
 <Aside>
 Other phrasings of the same thing, all of which you will meet: "$p$ is *necessary and sufficient* for $q$"; "$p$ *exactly when* $q$"; "$p$ iff $q$". And a warning about the last one: some authors write a chain $p \Leftrightarrow r \Leftrightarrow s \Leftrightarrow q$. This is legitimate only if every single link is genuinely reversible. Chains built with $\Rightarrow$ steps that were quietly written as $\Leftrightarrow$ are a rich source of false proofs — squaring both sides of an equation is the classic non-reversible step.

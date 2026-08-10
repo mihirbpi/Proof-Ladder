@@ -17,11 +17,11 @@
   "kernels": {
     "l1": "Outside both hoops is the same as outside this one and outside that one.",
     "l2": "The outside of the overlap is the outside of one hoop joined with the outside of the other. The outside of both hoops together is where the two outsides overlap.",
-    "l3": "The outside of an intersection is the union of the outsides, and the outside of a union is the intersection of the outsides. Taking the outside swaps ∩ with ∪, exactly the way saying not swaps and with or.",
-    "l4": "The complement of S ∩ T is S̄ ∪ T̄, and the complement of S ∪ T is S̄ ∩ T̄. These are De Morgan's logic laws with ¬ read as complement, ∧ as ∩, and ∨ as ∪.",
-    "l5": "Complementation exchanges ∩ and ∪; each law is proved by double inclusion, with the logic law of 1.4 doing the work at the pivot.",
-    "l6": "Complementing swaps ∩ and ∪ and reverses containment: the complement of S ∩ T is the union of the complements, and the other way round as well. These are Chapter 1's De Morgan laws carried over to sets, with the same proof underneath.",
-    "l7": "Complementation exchanges intersection and union: the complement of S ∩ T is the union of the complements, and dually. The proof is a double inclusion whose pivot step is the logic law of §1.4.",
+    "l3": "Everything outside an overlap is the same as everything outside the first pooled with everything outside the second — and the same swap works the other way round.",
+    "l4": "The complement of an intersection is the union of the complements, and the complement of a union is the intersection of the complements. These are De Morgan's logic laws with complement for *not*.",
+    "l5": "Taking complements exchanges intersection with union. Each law is proved by double inclusion, with the logic law of §1.4 doing the work at the pivot.",
+    "l6": "Taking complements swaps intersection with union and reverses containment. These are Chapter 1's De Morgan laws carried over to sets, with the same proof underneath.",
+    "l7": "Complementation exchanges intersection and union in both directions. The proof is a double inclusion whose pivot step is the logic law of §1.4.",
     "l8": "De Morgan for sets is the same identity as for connectives, because P(X) and the two-element Boolean algebra satisfy the same equational theory; the laws extend verbatim to indexed families via ¬∀ ≡ ∃¬."
   },
   "kernel": "S ∩ T = S̄ ∪ T̄ and S ∪ T = S̄ ∩ T̄. These are the logic laws of 1.4 with ¬ ↔ complement, ∧ ↔ ∩, ∨ ↔ ∪.",

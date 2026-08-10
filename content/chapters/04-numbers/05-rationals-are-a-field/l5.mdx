@@ -1,9 +1,9 @@
 ---
 level: l5
-title: The rationals are a field
+title: Dividing without leaving the system
 readingTimeMin: 8
-newTerms: ["field", "rational number"]
-anchorExample: "the rationals are closed under division"
+newTerms: ["rational number"]
+anchorExample: "all four operations on fractions"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -64,14 +64,14 @@ And $a \neq 0$ is exactly the condition $x \neq 0$: a fraction is zero precisely
 
 So the closure statement is not "$\mathbb{Q}$ is closed under reciprocals" — it is **"$\mathbb{Q}$ is closed under reciprocals of nonzero elements."** The exception at $0$ is real and cannot be removed.
 
-This is not a blemish. **No number system can have a reciprocal for $0$.** If $0 \cdot z = 1$ for some $z$, then since $0 \cdot z = 0$ we would get $0 = 1$, and everything collapses. Division by zero is undefined in every field there is or could be.
+This is not a blemish. **No number system can have a reciprocal for $0$.** If $0 \cdot z = 1$ for some $z$, then since $0 \cdot z = 0$ we would get $0 = 1$, and everything collapses. Division by zero is undefined in every number system there is or could be.
 </Warning>
 
-## Fields
+## Systems where you can always divide
 
-A system closed under $+$, $-$, $\times$, **and** division by nonzero elements — with the distributive law — is a **field**.
+A system closed under $+$, $-$, $\times$, **and** division by nonzero elements — with the distributive law — is a system in which ordinary algebra works.
 
-So the difference from a ring (module 4.1) is one property:
+So the difference from module 4.1's list is one property:
 
 | | closed under $+,-,\times$ | reciprocals of nonzero |
 |---|---|---|
@@ -81,22 +81,22 @@ So the difference from a ring (module 4.1) is one property:
 | $\mathbb{C}$ | ✓ | ✓ |
 | polynomials | ✓ | ✗ |
 
-$\mathbb{Z}$ is a ring and not a field. $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$ are fields. Polynomials are a ring — $1/x$ is not a polynomial — and the parallel with $\mathbb{Z}$ is close enough that polynomial long division works, remainders and all, exactly as in module 4.4.
+$\mathbb{Z}$ obeys the arithmetic rules but has no reciprocals. $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$ are fields. Polynomials are a ring — $1/x$ is not a polynomial — and the parallel with $\mathbb{Z}$ is close enough that polynomial long division works, remainders and all, exactly as in module 4.4.
 
-**A field is where ordinary algebra works.** Every manipulation you learned in Algebra I — collecting terms, clearing denominators, dividing both sides — is licensed by the field properties, and each is available precisely when the system has them.
+**This is where ordinary algebra works.** Every manipulation you learned in Algebra I — collecting terms, clearing denominators, dividing both sides — is licensed by those properties, and each is available precisely when the system has them.
 
 ## Why this matters for solving equations
 
 $ax + b = 0$ with $a \neq 0$ has the solution $x = -b/a$.
 
-That step is a field property being used. In $\mathbb{Q}$ or $\mathbb{R}$ you may divide by $a$, so the equation always has a solution. In $\mathbb{Z}$ you may not: $3x - 1 = 0$ has no integer solution, and module 1.10 said so without explaining why.
+That step is one of those properties being used. In $\mathbb{Q}$ or $\mathbb{R}$ you may divide by $a$, so the equation always has a solution. In $\mathbb{Z}$ you may not: $3x - 1 = 0$ has no integer solution, and module 1.10 said so without explaining why.
 
-**Now there is a reason.** The equation is unsolvable in $\mathbb{Z}$ because $\mathbb{Z}$ is not a field, and it becomes solvable in $\mathbb{Q}$ for exactly the property $\mathbb{Q}$ adds.
+**Now there is a reason.** The equation is unsolvable in $\mathbb{Z}$ because you cannot divide in $\mathbb{Z}$, and it becomes solvable in $\mathbb{Q}$ for exactly the property $\mathbb{Q}$ adds.
 
 <Aside>
-$\mathbb{Q}$ is the *smallest* field containing $\mathbb{Z}$, and "smallest" can be made precise.
+$\mathbb{Q}$ is the *smallest* system closed under all four operations containing $\mathbb{Z}$, and "smallest" can be made precise.
 
-Any field containing $\mathbb{Z}$ must contain every $a \cdot b^{-1}$ with $b \neq 0$, by closure — and those are exactly the rationals. So there is no room to fit a field strictly between $\mathbb{Z}$ and $\mathbb{Q}$.
+Any such system containing $\mathbb{Z}$ must contain every $a \cdot b^{-1}$ with $b \neq 0$, by closure — and those are exactly the rationals. So there is no room to fit such a system strictly between $\mathbb{Z}$ and $\mathbb{Q}$.
 
-The same construction runs in general: given any ring where products of nonzero elements are nonzero, you can build the smallest field containing it by formally adjoining fractions. Applied to polynomials it produces the rational functions $p(x)/q(x)$, which is why those behave so much like ordinary fractions.
+The same construction runs in general: given any system obeying those rules in which products of nonzero elements are nonzero, you can build the smallest field containing it by formally adjoining fractions. Applied to polynomials it produces the rational functions $p(x)/q(x)$, which is why those behave so much like ordinary fractions.
 </Aside>

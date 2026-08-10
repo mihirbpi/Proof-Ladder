@@ -1,9 +1,9 @@
 ---
 level: l4
-title: The rationals are a field
+title: What fractions can do that whole numbers cannot
 readingTimeMin: 7
-newTerms: ["rational number", "field", "reciprocal"]
-anchorExample: "the rationals as a field"
+newTerms: ["rational number", "reciprocal"]
+anchorExample: "all four operations on fractions"
 ---
 
 import Proof from '@/components/Proof.astro';
@@ -48,26 +48,27 @@ Then $\tfrac ab \cdot \tfrac ba = \tfrac{ab}{ba} = 1$.
 
 Track the two nonzero conditions: $b \neq 0$ was needed for $\tfrac ab$ to be a rational at all, and $a \neq 0$ was needed for the reciprocal to exist. They do different jobs and both are essential.
 
-## Ring versus field
+## What division buys
 
-| | closed under $+$, $-$, $\times$ | distributive | every nonzero element invertible |
-|---|---|---|---|
-| $\mathbb{Z}$ (ring) | ✓ | ✓ | ✗ (only $\pm1$) |
-| $\mathbb{Q}$ (field) | ✓ | ✓ | ✓ |
-| $\mathbb{R}$ (field) | ✓ | ✓ | ✓ |
-| $\mathbb{Z}/6\mathbb{Z}$ (ring) | ✓ | ✓ | ✗ ($2, 3, 4$ fail) |
-| $\mathbb{Z}/5\mathbb{Z}$ (field) | ✓ | ✓ | ✓ |
+| Number system | add, subtract, multiply | can you always divide? |
+|---|---|---|
+| whole numbers | ✓ | ✗ — $1 \div 3$ leaves them |
+| fractions | ✓ | ✓ (except by zero) |
+| the reals | ✓ | ✓ (except by zero) |
+| hours on a $6$-hour clock | ✓ | ✗ — $2$, $3$ and $4$ have no reciprocal |
+| hours on a $5$-hour clock | ✓ | ✓ (except by zero) |
 
-A **field** is a ring in which every nonzero element has a multiplicative inverse. The single extra axiom is what licenses division, and hence:
+Being able to divide is one extra property, and it is the one that licenses:
 
-- solving $ax = b$ for $a \neq 0$ (impossible in $\mathbb{Z}$: $3x = 1$ has no solution);
-- cancelling: $ab = ac$ with $a \neq 0$ gives $b = c$ (multiply by $a^{-1}$);
-- the entire apparatus of matrix and vector work, which is built over a field for exactly this reason.
+- **solving $ax = b$** when $a \neq 0$ — impossible over the whole numbers, where $3x = 1$ has no answer;
+- **cancelling**: from $ab = ac$ with $a \neq 0$ you may conclude $b = c$, by multiplying both sides by the reciprocal of $a$.
+
+Notice the two clocks. The size of the clock decides whether division works — and $5$ being prime is exactly why the second one behaves. That is not a coincidence, and Chapter 4 has already given you the tools to see why.
 
 <Warning title="Zero is excluded permanently">
-$0^{-1}$ does not exist in any field, and this is forced rather than conventional. If $0 \cdot x = 1$ for some $x$, then since $0 \cdot x = 0$ (a theorem, module 4.1) we would have $0 = 1$; multiplying by any $y$ then gives $y = 0$, so the field has one element. The axioms explicitly require $0 \neq 1$ to exclude this.
+There is no reciprocal of $0$, and that is forced rather than agreed. Suppose $0 \cdot x = 1$ for some $x$. But $0 \cdot x = 0$ is a theorem (module 4.1), so $0 = 1$ — and multiplying that by any $y$ gives $y = 0$, collapsing every number to zero.
 
-So "you cannot divide by zero" is not a rule imposed from outside; it is what the other axioms force.
+So "you cannot divide by zero" is not a rule imposed from outside. It is what the other rules force.
 </Warning>
 
 ## What the rationals still cannot do
@@ -81,5 +82,5 @@ $\mathbb{Q}$ fixed division. It did not fix everything.
 The pattern established in module 4.1 continues: an operation escapes the system, so the system is enlarged.
 
 <Aside>
-$\mathbb{Q}$ is the *smallest* field containing $\mathbb{Z}$ — any field containing $\mathbb{Z}$ must contain all quotients $p/q$, hence all of $\mathbb{Q}$. The construction generalises. Start with any system where a product of nonzero elements is never zero, run the same recipe, and you get the smallest field containing it. Applied to the expressions of Algebra I, it produces the fractions built from them — one such expression written over another — which is why those behave so much like ordinary fractions.
+$\mathbb{Q}$ is the *smallest* system closed under all four operations containing $\mathbb{Z}$ — any such system containing $\mathbb{Z}$ must contain all quotients $p/q$, hence all of $\mathbb{Q}$. The construction generalises. Start with any system where a product of nonzero elements is never zero, run the same recipe, and you get the smallest such system containing it. Applied to the expressions of Algebra I, it produces the fractions built from them — one such expression written over another — which is why those behave so much like ordinary fractions.
 </Aside>

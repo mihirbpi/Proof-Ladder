@@ -18,10 +18,10 @@
     "l1": "Real counting never comes home, and two numbers never share a next.",
     "l2": "A counting machine that loops back to zero is broken, and so is one where two different numbers have the same next. Two rules forbid exactly those two breakages.",
     "l3": "Two axioms keep counting honest: nothing has 0 as its next, so the count never loops, and no two different numbers share a next, so the count never merges. Without them, a two-element set would pass every earlier axiom.",
-    "l4": "Axiom 7 says 0 is not a successor, so counting never returns to the start; Axiom 8 says S is injective, so counting never merges two numbers. Without them ℕ = {0} or ℕ = {0,1} would satisfy every earlier axiom.",
-    "l5": "The two axioms rule out looping and merging models; stated in the language of Chapter 3 they say S⁻¹({0}) = ∅ and S is injective.",
+    "l4": "One axiom says zero is nobody's next number, so counting never returns to the start. Another says two different numbers never share a next one, so counting never merges. Without them, a system with one or two elements would satisfy everything earlier.",
+    "l5": "Two axioms rule out looping and merging: nothing has zero as its next number, and no two numbers share a next one. Stated in Chapter 3's language, the successor rule is one-to-one and misses zero.",
     "l6": "Axioms 7 and 8 are exactly the statements that 0 is outside the image of S and that S is injective — a direct reuse of Chapter 3.",
-    "l7": "Axiom 7 places 0 outside the image of S and Axiom 8 makes S injective; together they exclude the looping and merging models that satisfy Axioms 1–6, and they yield {0,1,2,…} ⊆ ℕ.",
+    "l7": "One axiom puts zero outside the range of the successor rule and another makes that rule one-to-one. Together they exclude the looping and merging models that satisfy everything earlier.",
     "l8": "Axioms 7 and 8 say S is injective with 0 ∉ im(S), i.e. ℕ is a Dedekind-infinite set with a distinguished point; this is Dedekind’s definition of infinity."
   },
   "kernel": "Axiom 7: 0 is not the successor of anything, so counting never returns to the start. Axiom 8: S is injective, so counting never merges two numbers into one.",

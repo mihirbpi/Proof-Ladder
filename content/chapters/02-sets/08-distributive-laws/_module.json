@@ -17,10 +17,10 @@
   "kernels": {
     "l1": "One hoop shared out across two others gives the same shading either way.",
     "l2": "When you overlap one hoop with two hoops joined together, you can do it one hoop at a time and join the answers. The shading comes out the same.",
-    "l3": "Intersecting with a union can be done piece by piece: S ∩ (T ∪ R) is the same as (S ∩ T) ∪ (S ∩ R). Unlike arithmetic, the reverse also works — union spreads across intersection too.",
-    "l4": "S ∩ (T ∪ R) = (S∩T) ∪ (S∩R) and S ∪ (T∩R) = (S∪T) ∩ (S∪R). Unlike arithmetic, where only × distributes over +, both set operations distribute over each other.",
+    "l3": "Meeting one collection against a pooled pair gives the same result as meeting it against each and then pooling. Both operations spread across each other this way, which is more than arithmetic manages.",
+    "l4": "Each of union and intersection distributes over the other. Unlike arithmetic, where only multiplication distributes over addition, here the two operations distribute both ways.",
     "l5": "Both distributive laws hold for sets, each proved by double inclusion with a case split in one direction; the symmetry has no arithmetic analogue.",
-    "l6": "∩ and ∪ each distribute over the other, which arithmetic never manages — only × distributes over +. The two laws are duals: complement one and apply De Morgan and you get the other, so one proof yields both.",
+    "l6": "Intersection and union each distribute over the other, which arithmetic never manages — only multiplication distributes over addition. The two laws are duals: complement one, apply De Morgan, and the other drops out.",
     "l7": "Intersection distributes over union and union distributes over intersection; the two laws are De Morgan duals, and that mutual symmetry has no counterpart in the arithmetic of + and ×.",
     "l8": "Mutual distributivity makes P(X) a distributive lattice; failure of one law characterises non-distributive lattices such as the subspace lattice of a vector space, which is where quantum logic departs from classical."
   },

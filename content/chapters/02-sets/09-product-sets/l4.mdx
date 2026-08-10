@@ -25,6 +25,8 @@ That is what distinguishes pairs from sets: $\{a,b\} = \{b,a\}$ always, while $(
 $$
 S \times T = \{\, (s,t) \mid s \in S \wedge t \in T \,\},
 $$
+
+*In words: $S \times T$ is the collection of all pairs whose first entry comes from $S$ **and** whose second comes from $T$. The bar is "such that"; $\in$ is "is in".*
 so the working form is
 $$
 (x,y) \in S \times T \iff x \in S \wedge y \in T. \tag{2}
@@ -89,6 +91,8 @@ Notice what actually happened: the whole theorem is commutativity of $\wedge$. T
 
 $$(A \cup B) \times (C \cup D) \neq (A \times C) \cup (B \times D) \text{ in general.}$$
 
+*In words: pairing up two pooled collections gives more pairs than pooling the two pairings — the mixed pairs are the extras.*
+
 Take $A = C = \{1\}$, $B = D = \{2\}$. The left side contains $(1,2)$, since $1 \in A \cup B$ and $2 \in C \cup D$. The right side is $\{(1,1)\} \cup \{(2,2)\}$, which does not. One counterexample settles it (module 1.11).
 
 The asymmetry is instructive: products distribute over $\cap$ but not over $\cup$, because the rearrangement step above needs the conjunctions to be independent, and disjunctions do not rearrange the same way.
@@ -99,6 +103,8 @@ $$
 \mathbb{R} \times \mathbb{R} = \mathbb{R}^2, \qquad
 \mathbb{Z} \times \mathbb{Z} = \text{the integer lattice.}
 $$
+
+*In words: pairs of reals are the points of the plane; pairs of integers are the grid points on it.*
 
 Coordinate geometry *is* the study of subsets of $\mathbb{R}^2$: the graph of a proportional relationship is $\{(x,y) \in \mathbb{R}^2 \mid y = 3x\}$, a circle of radius $r$ about the origin is $\{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 = r^2\}$. Every graph you have ever drawn was a set-builder subset of a product set.
 

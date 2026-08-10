@@ -18,10 +18,10 @@
     "l1": "Some piles share fairly between two people. Some leave one over.",
     "l2": "A number is even when it splits into two equal piles with nothing left over, and odd when exactly one is left over. That is the reason behind the last-digit trick.",
     "l3": "A number is even when it is a whole number of 2s with nothing left over, and odd when exactly one is left over. One number goes into another when the second is a whole number of copies of the first — so proving it means producing that count.",
-    "l4": "n is even iff n = 2k for some k ∈ ℤ, odd iff n = 2k+1. In general m | n iff n = mk for some k ∈ ℤ. Divisibility is an existence claim, so proving it means producing the k.",
-    "l5": "Divisibility m | n is the existential statement ∃k ∈ ℤ, n = mk; the k must be an integer, and exhibiting it is the whole proof.",
+    "l4": "A whole number is even when it is twice another whole number, and odd when it is one more than that. More generally, m divides n when n is a whole number of copies of m. Divisibility is an existence claim, so proving it means producing that whole number.",
+    "l5": "Divisibility is an existence claim: m divides n when some integer multiplies m to give n. The integer must be exhibited, and exhibiting it is the whole proof.",
     "l6": "Even, odd, and divides are all existential statements about integers; the quantifier structure is what dictates how they are proved and disproved.",
-    "l7": "Parity and divisibility are existential statements over ℤ: m | n means ∃k ∈ ℤ with n = mk. Proving divisibility means exhibiting the cofactor and confirming it is an integer.",
+    "l7": "Parity and divisibility are existence statements about the integers: m divides n when some integer multiplies m to give n. Proving divisibility means exhibiting that integer and confirming it is one.",
     "l8": "Divisibility is the preorder on ℤ induced by the multiplicative monoid; it is the shadow of the ideal containment (n) ⊆ (m), which is how the notion generalises to arbitrary rings."
   },
   "kernel": "n is even iff n = 2k for some integer k; odd iff n = 2k+1. Generalizing: m | n iff n = mk for some k ∈ ℤ. Divisibility is an existence statement, so proving it means producing the k.",

@@ -3,7 +3,7 @@ level: l7
 title: Between any two rationals
 readingTimeMin: 8
 newTerms: ["midpoint", "dense", "Archimedean property"]
-anchorExample: "the rationals as a field"
+anchorExample: "the rationals "
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -15,7 +15,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 > **Proposition.** For $a,b \in \mathbb{Q}$ with $a<b$: $\tfrac{a+b}{2} \in \mathbb{Q}$ and $a < \tfrac{a+b}{2} < b$.
 
 <Discussion>
-  <div slot="know">Closure of $\mathbb{Q}$ under the field operations (§4.5); the ordered-field axioms: $a<b \Rightarrow a+c<b+c$, and $a<b$, $c>0 \Rightarrow ac<bc$.</div>
+  <div slot="know">Closure of $\mathbb{Q}$ under the field operations (§4.5); the arithmetic and ordering rules: $a<b \Rightarrow a+c<b+c$, and $a<b$, $c>0 \Rightarrow ac<bc$.</div>
   <div slot="want">Membership and two strict inequalities.</div>
   <div slot="how">Membership is closure and must be asserted — the proposition is false in $\mathbb{Z}$ for exactly that reason. Each inequality follows from $a<b$ by adding one endpoint and scaling by $\tfrac12 > 0$.</div>
 </Discussion>
@@ -28,12 +28,12 @@ Adding $a$ to $a<b$ gives $2a < a+b$; scaling by $\tfrac12>0$ gives $a < \tfrac{
 Adding $b$ to $a<b$ gives $a+b < 2b$; scaling by $\tfrac12>0$ gives $\tfrac{a+b}{2}<b$.
 </Proof>
 
-Note that the argument uses nothing specific to $\mathbb{Q}$ beyond its being an ordered field in which $2$ is invertible. So **every ordered field is dense in itself** — and $\mathbb{Z}$, not being a field, is the relevant counterexample.
+Note that the argument uses nothing specific to $\mathbb{Q}$ beyond its being a system whose ordering fits its arithmetic in which $2$ is invertible. So **every ordered field is dense in itself** — and $\mathbb{Z}$, not being a field, is the relevant counterexample.
 
 <Warning title="Where the hypothesis is spent">
 In $\mathbb{Z}$: the midpoint of $3$ and $4$ is $\tfrac72 \notin \mathbb{Z}$, and nothing lies strictly between consecutive integers. The invertibility of $2$ is precisely the hypothesis $\mathbb{Z}$ fails.
 
-Note also that the argument fails in an ordered field of characteristic $2$ — except that there are none, since $1 > 0$ forces $1 + 1 > 0$. Ordered fields always have characteristic $0$, which is why the caveat never bites.
+Note also that the argument fails in a system whose ordering fits its arithmetic of characteristic $2$ — except that there are none, since $1 > 0$ forces $1 + 1 > 0$. Ordered fields always have characteristic $0$, which is why the caveat never bites.
 </Warning>
 
 ## Density
@@ -56,7 +56,7 @@ $$q \leq x + \tfrac1n < x + (y-x) = y.$$
 Hence $x < q < y$.
 </Proof>
 
-Two ingredients deserve names. The **Archimedean property** — for every real $r$ there is $n \in \mathbb{N}$ with $n > r$ — is what guarantees $\tfrac1n$ can be made smaller than any positive gap; it fails in non-Archimedean ordered fields such as the field of rational functions ordered by growth, where infinitesimals exist and the theorem is false. And the floor function (§3.2) is what converts the Archimedean estimate into an actual rational.
+Two ingredients deserve names. The **Archimedean property** — for every real $r$ there is $n \in \mathbb{N}$ with $n > r$ — is what guarantees $\tfrac1n$ can be made smaller than any positive gap; it fails in non-Archimedea system whose ordering fits its arithmetics such as the field of rational functions ordered by growth, where infinitesimals exist and the theorem is false. And the floor function (§3.2) is what converts the Archimedean estimate into an actual rational.
 
 ## Any interior point, not only the midpoint
 

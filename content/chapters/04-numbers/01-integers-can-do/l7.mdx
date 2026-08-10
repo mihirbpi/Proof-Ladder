@@ -2,8 +2,8 @@
 level: l7
 title: What the integers can do
 readingTimeMin: 9
-newTerms: ["closed", "ring", "unit", "zero divisor"]
-anchorExample: "the integers as a ring"
+newTerms: ["closed", "zero divisor"]
+anchorExample: "the integers "
 ---
 
 import Proof from '@/components/Proof.astro';
@@ -23,7 +23,7 @@ $(\mathbb{Z}, +, \cdot)$ satisfies, for all $a,b,c$:
 
 **Linking.** Distributivity $a(b+c) = ab+ac$.
 
-A structure satisfying all of these is a **commutative ring with identity**. Closure is implicit in calling $+$ and $\cdot$ binary operations $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ — which, note, is a statement about functions in the sense of Chapter 3.
+A structure satisfying all of these is a **system obeying the standard arithmetic rules with identity**. Closure is implicit in calling $+$ and $\cdot$ binary operations $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ — which, note, is a statement about functions in the sense of Chapter 3.
 
 Facts that look primitive are in fact derived, and deriving them is instructive:
 
@@ -47,7 +47,7 @@ The argument used the order on $\mathbb{Z}$ and the fact that no integer lies st
 
 ## No zero divisors
 
-$\mathbb{Z}$ satisfies more than the ring axioms:
+$\mathbb{Z}$ satisfies more than the arithmetic rules:
 $$
 ab = 0 \Rightarrow a = 0 \text{ or } b = 0,
 $$
@@ -61,7 +61,7 @@ Every proof that divides both sides by something is using cancellation, hence th
 
 ## Consequences of the axioms alone
 
-The $a\cdot0=0$ proof above used nothing about zero except that it is the additive identity. Two more in the same spirit, each a fact people treat as primitive:
+The $a\cdot0=0$ proof above used nothing about zero except that it is the additive identity. Two more in the same spirit, each a fact people treat as undefined starting word:
 
 > **Proposition.** $(-a)b = -(ab)$.
 
@@ -71,7 +71,7 @@ $ab + (-a)b = (a + (-a))b = 0\cdot b = 0$ by distributivity and the previous res
 
 Apply the previous proposition twice. That negative times negative is positive is not a convention adopted for convenience — it is forced, and any system in which it failed would violate distributivity.
 
-Each proof used only the table. That is what makes them theorems about *every* commutative ring, including matrices and polynomials, at once — and it is why a single page of algebra can replace a separate treatment of each system.
+Each proof used only the table. That is what makes them theorems about *every* system obeying the standard arithmetic rules, including matrices and polynomials, at once — and it is why a single page of algebra can replace a separate treatment of each system.
 
 The converse habit is worth building too: when a familiar identity **fails** in a new system, the failure identifies which axiom is missing. Matrices lose commutativity of multiplication, and with it $(A+B)^2 = A^2+2AB+B^2$; $\mathbb{Z}/12\mathbb{Z}$ loses the domain property, and with it cancellation. In both cases the broken identity points straight at the absent row of the table.
 
@@ -100,7 +100,7 @@ The list of properties in this module is the checklist you will run against ever
 
 **Polynomials form a ring**, closed under $+$, $-$, $\times$ and not under division, exactly like $\mathbb{Z}$. The parallel is close enough that polynomial long division, the Factor Theorem, and the Remainder Theorem are the polynomial versions of §4.2–§4.4, with degree playing the role of size.
 
-**In calculus, the ring axioms are what make the derivative rules provable.** Linearity of differentiation is distributivity plus scalar multiplication; the product rule is a statement about how differentiation interacts with the ring multiplication, and the fact that it is not simply $f'g'$ is the first sign that the derivative is not a ring homomorphism.
+**In calculus, the arithmetic rules are what make the derivative rules provable.** Linearity of differentiation is distributivity plus scalar multiplication; the product rule is a statement about how differentiation interacts with the ring multiplication, and the fact that it is not simply $f'g'$ is the first sign that the derivative is not a ring homomorphism.
 
 **Vector spaces are defined over a field**, which is §4.5 — but the scalars need every property in this module first, and the axioms of a vector space are stated by listing them.
 

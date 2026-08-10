@@ -3,7 +3,7 @@ level: l4
 title: Between any two rationals
 readingTimeMin: 6
 newTerms: ["midpoint", "dense"]
-anchorExample: "the rationals as a field"
+anchorExample: "the rationals "
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -15,7 +15,7 @@ import Warning from '@/components/Warning.astro';
 > $$a < \frac{a+b}{2} < b.$$
 
 <Discussion>
-  <div slot="know">$a, b \in \mathbb{Q}$, $a < b$. Available: closure of $\mathbb{Q}$ under $+$ and $\times$ and under inverses of nonzero elements (module 4.5); and the ordered-field rules that adding a constant preserves $<$ and multiplying by a positive preserves $<$.</div>
+  <div slot="know">$a, b \in \mathbb{Q}$, $a < b$. Available: closure of $\mathbb{Q}$ under $+$ and $\times$ and under inverses of nonzero elements (module 4.5); and the arithmetic and ordering rules that adding a constant preserves $<$ and multiplying by a positive preserves $<$.</div>
   <div slot="want">Three claims: membership in $\mathbb{Q}$, and two strict inequalities.</div>
   <div slot="how">Membership is pure closure and must be stated, not assumed. The inequalities come from $a<b$ by adding $a$ to both sides in one case and $b$ in the other, then halving.</div>
 </Discussion>
@@ -31,7 +31,7 @@ import Warning from '@/components/Warning.astro';
 <Warning title="Closure is the load-bearing step">
 The proposition is false in $\mathbb{Z}$: the midpoint of $3$ and $4$ is $\tfrac72 \notin \mathbb{Z}$, and indeed nothing lies strictly between consecutive integers.
 
-So the argument cannot merely produce the number $\tfrac{a+b}{2}$; it must certify that the number lies in the system under discussion. Field closure (module 4.5) is what supplies that, and it is what $\mathbb{Z}$ lacks.
+So the argument cannot merely produce the number $\tfrac{a+b}{2}$; it must certify that the number lies in the system under discussion. Closure (module 4.5) is what supplies that, and it is what $\mathbb{Z}$ lacks.
 </Warning>
 
 ## Density
