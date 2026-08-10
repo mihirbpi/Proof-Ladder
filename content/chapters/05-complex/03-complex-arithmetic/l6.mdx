@@ -13,7 +13,7 @@ import Warning from '@/components/Warning.astro';
 
 There is one rule: **do ordinary algebra, and replace $i^2$ with $-1$ whenever it appears.**
 
-Everything below follows from that plus the field axioms of module 4.1.
+Everything below follows from that plus the arithmetic rules of module 4.1.
 
 ## Addition and subtraction
 
@@ -86,10 +86,10 @@ So $a^2+b^2>0$, and the division is legitimate.
 
 ## All four operations work
 
-> **Theorem.** $\mathbb{C}$ satisfies every field axiom of module 4.5.
+> **Theorem.** $\mathbb{C}$ satisfies every arithmetic rule of module 4.5.
 
 <Discussion>
-  <div slot="know">The four operations, defined above. The field axioms for $\mathbb{R}$, which we may use freely.</div>
+  <div slot="know">The four operations, defined above. The arithmetic rules for $\mathbb{R}$, which we may use freely.</div>
   <div slot="want">Closure, associativity, commutativity, identities, and inverses.</div>
   <div slot="how">Each axiom reduces to real-number algebra on the components. Closure and inverses are the informative ones; the rest are routine expansion, and one is shown here as a representative.</div>
 </Discussion>
@@ -114,11 +114,11 @@ Associativity and distributivity are verified the same way: expand both sides an
 
 | | $\mathbb{R}$ | $\mathbb{C}$ |
 |---|---|---|
-| Field | ✓ | ✓ |
+| Division by anything nonzero | ✓ | ✓ |
 | Ordered | ✓ | ✗ |
 | Every polynomial has a root | ✗ | ✓ |
 
-Two out of three, and the trade is worth it for algebra. Your geometry course cares about the missing row, since lengths and angle measures need comparing — which is why module 5.6 builds a real-valued measure of size on top of $\mathbb{C}$.
+Two out of three, and the trade is worth it for algebra. Your geometry course cares about the missing row, since lengths and angle measures need comparing — which is why module 5.6 builds a notion of distance on top of $\mathbb{C}$.
 
 <Aside>
 Could we go further and build a system beyond $\mathbb{C}$?

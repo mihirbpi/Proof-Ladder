@@ -17,14 +17,14 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 Let $x \in \mathbb{R}$. Every real is positive, zero, or negative, so $x>0$, $x=0$, or $x<0$. In the first case $x^2 > 0$ as a product of positives; in the second $x^2 = 0$; in the third $-x > 0$ and $x^2 = (-x)(-x) > 0$. The cases are exhaustive, so $x^2 \geq 0$ and $x^2 + 1 \geq 1 > 0$.
 </Proof>
 
-The proof used only the **ordered field** axioms, and that is the substantive point: the obstruction is not about $\mathbb{R}$ specifically but about order. In any such system, squares are non-negative, so $x^2+1$ has no root. Consequently **$\mathbb{C}$ cannot be ordered compatibly with its arithmetic** — the price of adjoining $i$ is the loss of $<$, and it is unavoidable rather than an oversight.
+The proof used only the arithmetic and ordering rules, and that is the substantive point: the obstruction is not about $\mathbb{R}$ specifically but about order. In any such system, squares are non-negative, so $x^2+1$ has no root. Consequently **$\mathbb{C}$ cannot be ordered compatibly with its arithmetic** — the price of adjoining $i$ is the loss of $<$, and it is unavoidable rather than an oversight.
 
 ## The extension sequence
 
 | System | Defect | Repair |
 |---|---|---|
 | $\mathbb{N}$ | no additive inverses | $\mathbb{Z}$ |
-| $\mathbb{Z}$ | not a field | $\mathbb{Q}$ |
+| $\mathbb{Z}$ | cannot divide | $\mathbb{Q}$ |
 | $\mathbb{Q}$ | not order-complete | $\mathbb{R}$ |
 | $\mathbb{R}$ | not algebraically closed | $\mathbb{C}$ |
 
@@ -36,11 +36,11 @@ Declaring "let $i$ be a number with $i^2 = -1$" is a *definition by fiat*, and b
 
 Two standard ones:
 
-**As polynomials, with $x^2+1$ counted as zero.** Write $\mathbb{C} := \mathbb{R}[x]/(x^2+1)$ — real polynomials, two of them counted equal when they differ by a multiple of $x^2+1$. Since $x^2+1$ is irreducible over $\mathbb{R}$, the ideal $(x^2+1)$ is maximal, so the quotient supports all four operations; $i$ is the class of $x$, and $i^2 = -1$ holds because $x^2 + 1 \equiv 0$.
+**As polynomials, with $x^2+1$ counted as zero.** Take real polynomials and agree to treat two of them as the same whenever they differ by a multiple of $x^2+1$. Under that agreement $x^2$ *is* $-1$, so the polynomial $x$ plays the part of $i$, and every polynomial reduces to the form $a + bx$. All four operations work, and it is the construction that generalises: the same trick adjoins a root of any polynomial you like.
 
 **As pairs.** $\mathbb{C} := \mathbb{R}^2$ with
 $$(a,b)+(c,d) = (a+c, b+d), \qquad (a,b)(c,d) = (ac-bd,\ ad+bc).$$
-Verifying the field axioms is a finite computation; $i := (0,1)$ satisfies $i^2 = (-1,0)$.
+Verifying the arithmetic rules is a finite computation; $i := (0,1)$ satisfies $i^2 = (-1,0)$.
 
 Either way $\mathbb{C}$ exists as an object built from $\mathbb{R}$, so no new consistency assumption is made. **If $\mathbb{R}$ is consistent, so is $\mathbb{C}$** — and that, not the fiat, is what makes $i$ legitimate.
 
@@ -58,7 +58,7 @@ The identity holds for non-negative reals and not in general, because $\sqrt{\ph
 
 Every extension in Chapter 4 was a pure gain: $\mathbb{Z}$ kept everything $\mathbb{N}$ had, $\mathbb{Q}$ kept everything $\mathbb{Z}$ had. This one is not.
 
-$\mathbb{R}$ is an **ordered field**; the complex numbers support all four operations with no compatible order whatsoever. The proof is the three-case argument above: in a system whose ordering fits its arithmetic every square is non-negative, and $i^2 = -1$ makes that impossible.
+The reals carry an ordering that fits their arithmetic. The complex numbers support all four operations and carry no such ordering whatsoever. The proof is the three-case argument above: in a system whose ordering fits its arithmetic every square is non-negative, and $i^2 = -1$ makes that impossible.
 
 So the following are not false but **meaningless**:
 $$i > 0, \qquad 3+4i < 5+2i, \qquad \sup\{z : |z|<1\}.$$
@@ -71,13 +71,13 @@ What replaces the order is the **modulus** (§5.6): a real-valued measure of siz
 
 ## Algebraic closure
 
-A field $K$ is **algebraically closed** if every non-constant polynomial in $K[x]$ has a root in $K$.
+A number system is **algebraically closed** when every polynomial equation with coefficients from it has a solution inside it.
 
 > **Fundamental Theorem of Algebra.** $\mathbb{C}$ is algebraically closed.
 
 The striking content is not that $x^2+1$ acquires a root but that adjoining *one* root of *one* polynomial suffices for all of them, including polynomials with complex coefficients. Compare $\mathbb{Q}$, where adjoining $\sqrt2$ leaves $\sqrt3$ missing and no finite extension ever closes: $\overline{\mathbb{Q}}$ is infinite-dimensional over $\mathbb{Q}$, while $\mathbb{C}$ is two-dimensional over $\mathbb{R}$.
 
-No purely algebraic proof exists, and this is not a gap in knowledge — it cannot exist. The reals are defined by a completeness axiom, which is analytic, so any proof must use some analytic input. Standard proofs use Liouville's theorem, the argument principle, or an argument that $|p(z)|$ attains a minimum.
+No purely algebraic proof exists, and this is not a gap in knowledge — it cannot exist. The reals are pinned down by their no-gaps property, so any proof of this has to appeal to that somewhere. Standard proofs use Liouville's theorem, the argument principle, or an argument that $|p(z)|$ attains a minimum.
 
 <Aside>
 Historically, quadratics were not the motivation. Cardano's formula for $x^3 = 15x + 4$ passes through $\sqrt{-121}$ and emerges at $x = 4$ — an integer answer reachable only via a detour outside $\mathbb{R}$. Bombelli's 1572 analysis of that computation is where complex numbers were first taken seriously, precisely because they could not be dismissed as answers to unanswerable questions: here they were intermediate steps toward answers everyone accepted.

@@ -54,7 +54,7 @@ Strictly these are **standard identifications** rather than literal containments
 > **Proposition.** There is no order on $\mathbb{C}$ making it a system whose ordering fits its arithmetic.
 
 <Proof>
-Suppose such an order existed. In any such system $x^2 \geq 0$ for all $x$: every element is positive, zero, or negative, and squaring any of the three gives something non-negative. Then $-1 = i^2 \geq 0$ and $1 = 1^2 \geq 0$, so adding, $0 = (-1) + 1 \geq 0 + 0$ gives nothing — instead argue directly: $-1 \geq 0$ implies $0 \geq 1$ by adding $1$, while $1 \geq 0$; hence $0 = 1$, contradicting the field axiom $1 \neq 0$.
+Suppose such an order existed. In any such system $x^2 \geq 0$ for all $x$: every element is positive, zero, or negative, and squaring any of the three gives something non-negative. Then $-1 = i^2 \geq 0$ and $1 = 1^2 \geq 0$, so adding, $0 = (-1) + 1 \geq 0 + 0$ gives nothing — instead argue directly: $-1 \geq 0$ implies $0 \geq 1$ by adding $1$, while $1 \geq 0$; hence $0 = 1$, contradicting $1 \neq 0$.
 </Proof>
 
 This is a genuine loss, and the trade is explicit: $\mathbb{C}$ buys algebraic closure at the cost of order. Practically, comparisons in $\mathbb{C}$ go through the modulus $|z|$ (§5.6), which is real-valued and ordered — and $|z| < |w|$ is a statement about sizes, not a partial order on $\mathbb{C}$ compatible with multiplication.
@@ -83,7 +83,7 @@ The step that is easy to skip is the separation, and it is where the algebra liv
 
 The map $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ is a bijection $\mathbb{C}\to\mathbb{R}^2$, and it respects addition exactly: adding complex numbers is adding the pairs coordinate by coordinate. As far as *addition* is concerned, the two systems are the same thing.
 
-What is new is the **multiplication**. $\mathbb{R}^2$ has no natural one; $\mathbb{C}$ has one making it a field, and it is essentially the only such multiplication there is. Every distinctive fact in this chapter (rotation, Euler, De Moivre, the Fundamental Theorem of Algebra) comes from that multiplication.
+What is new is the **multiplication**. $\mathbb{R}^2$ has no natural one; $\mathbb{C}$ has one making all four operations work, and it is essentially the only such multiplication there is. Every distinctive fact in this chapter (rotation, Euler, De Moivre, the Fundamental Theorem of Algebra) comes from that multiplication.
 
 <Aside>
 There are exactly two ways to relabel $\mathbb{C}$ preserving both operations and fixing every real: do nothing, and conjugate (§5.4). So $\operatorname{Gal}(\mathbb{C}/\mathbb{R}) \cong \mathbb{Z}/2\mathbb{Z}$. There is no way to distinguish $i$ from $-i$ by any algebraic property — both satisfy $x^2 = -1$ and nothing separates them. The choice of which root to call $i$ is a labelling convention, and conjugation is the symmetry that swaps the two labels.

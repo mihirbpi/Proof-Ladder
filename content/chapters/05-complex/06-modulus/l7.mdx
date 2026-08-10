@@ -47,9 +47,9 @@ $$
 and taking non-negative square roots gives the result.
 </Proof>
 
-These three properties are exactly what a sensible measure of size has to satisfy, and they are the ones every later argument about $|z|$ will cite.
+These three properties are exactly what a sensible notion of distance has to satisfy, and they are the ones every later argument about $|z|$ will cite.
 
-Property (ii) is the unusual one. Size behaving multiplicatively is a genuine feature of $\mathbb{C}$ and not a formal consequence of the other two — a measure of size on a system with no multiplication in it could not state (ii) at all.
+Property (ii) is the unusual one. Size behaving multiplicatively is a genuine feature of $\mathbb{C}$ and not a formal consequence of the other two — a notion of distance on a system with no multiplication in it could not state (ii) at all.
 
 Equality in (iii) holds iff $\operatorname{Re}(z\bar w) = |z\bar w|$, i.e. iff $z\bar w \geq 0$, i.e. iff $z$ and $w$ have the same argument — the geometric statement that the triangle degenerates.
 
@@ -65,7 +65,7 @@ $$
 
 *Symbol by symbol: $\Leftrightarrow$ is "exactly when".*
 
-Completeness is inherited from $\mathbb{R}$ componentwise, and it is what makes power series — hence $e^z$, hence §5.7 — converge.
+The no-gaps property carries over from the reals coordinate by coordinate, and it is what makes the endless sums of §5.7 add up to anything at all.
 
 ## Multiplicativity, proved with the conjugate
 
@@ -104,7 +104,7 @@ The unit circle is a *group* under multiplication, by (ii): if $|z| = |w| = 1$ t
 <Warning title="Square first">
 Modulus identities are proved by squaring and using $|u|^2 = u\bar u$. Attempting $|zw| = |z||w|$ by expanding $\sqrt{(ac-bd)^2+(ad+bc)^2}$ is a page of algebra; the conjugate proof is one line.
 
-Also: $|z|$ is real. Expressions like $|z| = 5i$ or $\operatorname{Re}|z|$ are type errors, and $|z|$ is not holomorphic (§5.4) — any function defined using it is not complex-differentiable.
+Also: $|z|$ is real. Expressions like $|z| = 5i$ or $\operatorname{Re}|z|$ are type errors: the left side is an ordinary real number and the right side is not.
 </Warning>
 
 *A reminder of the symbols in play: $\sum$ reads "the sum of".*

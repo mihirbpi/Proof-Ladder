@@ -73,8 +73,7 @@ $$
 \log z = \ln|z| + i\arg z,
 $$
 
-*In words: the angle is fixed only up to whole turns, so this rule returns many answers and one must be chosen as official.*
-multivalued, with values differing by $2\pi i k$. The **principal branch** $\operatorname{Log} z = \ln|z| + i\operatorname{Arg}(z)$ is holomorphic on $\mathbb{C}\setminus(-\infty,0]$, the removed ray being the **branch cut**.
+One choice has to be made official. Taking the angle in $(-\pi, \pi]$ gives a single-valued answer everywhere except along the negative real axis, where the angle jumps from just under $\pi$ to just over $-\pi$. That jump is unavoidable: any single choice has to break somewhere, and where you put the break is a convention.
 
 This is the precise source of the trap in §5.3: $\sqrt{ab} = \sqrt a\sqrt b$ fails on $\mathbb{C}$ because $\sqrt z = e^{\frac12\log z}$ inherits the branch ambiguity, and the two sides may pick different branches. Likewise $\log(zw) = \log z + \log w$ holds only as an identity of sets.
 

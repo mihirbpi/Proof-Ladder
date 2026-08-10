@@ -35,13 +35,13 @@ $$
 Then $zw = \dfrac{(a+bi)(a-bi)}{a^2+b^2} = \dfrac{a^2+b^2}{a^2+b^2} = 1$.
 </Proof>
 
-Two remarks. First, the hypothesis $z \neq 0$ is spent exactly at $a^2+b^2 > 0$, and that step uses the order on $\mathbb{R}$ — the same fact ($x^2 \geq 0$) that made $i$ necessary is what makes $\mathbb{C}$ a field. Second, in the notation of §5.4 and §5.6 this reads $z^{-1} = \bar z/|z|^2$, which is the memorable form.
+Two remarks. First, the hypothesis $z \neq 0$ is spent exactly at $a^2+b^2 > 0$, and that step uses the order on $\mathbb{R}$ — the same fact ($x^2 \geq 0$) that made $i$ necessary is what makes division work in $\mathbb{C}$. Second, in the notation of §5.4 and §5.6 this reads $z^{-1} = \bar z/|z|^2$, which is the memorable form.
 
 ## All four operations work
 
 All axioms hold: additive structure is componentwise from $\mathbb{R}$; multiplicative associativity, commutativity, and distributivity follow from expansion and $i^2 = -1$; inverses exist by the proposition.
 
-Structurally, $\mathbb{C} \cong \mathbb{R}[x]/(x^2+1)$, and it is a field because $x^2+1$ is irreducible over $\mathbb{R}$, hence generates a maximal ideal. That one sentence subsumes the whole verification, and it generalises: $K[x]/(p)$ is a field for any irreducible $p$, which is how every algebraic field extension is built.
+There is a shorter route to the same conclusion. Build the complex numbers as real polynomials with $x^2+1$ treated as zero (§5.1), and the whole verification collapses into one observation: because $x^2+1$ has no real root, nothing you can multiply by lands you at zero by accident, so division always works. The same construction adjoins a root of any polynomial that has none, which is how larger number systems get built.
 
 This is the promised verification that adjoining $i$ breaks nothing. The only casualty is the order (§5.2).
 
@@ -74,11 +74,7 @@ $$
 
 In the plane (§5.5) these are $(1,0) \to (0,1) \to (-1,0) \to (0,-1) \to (1,0)$: rotation by $\pi/2$ counterclockwise. As a real-linear map, multiplication by $i$ has matrix $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$, whose square is $-I$ — the matrix statement of $i^2 = -1$.
 
-More generally, multiplication by $a+bi$ is the real-linear map
-$$
-\begin{pmatrix} a & -b \\ b & a\end{pmatrix},
-$$
-whose determinant is $a^2+b^2 = |z|^2$ and which is a rotation-scaling. This gives an alternative construction of $\mathbb{C}$: it is the subring of $M_2(\mathbb{R})$ consisting of such matrices, and the field axioms are then matrix facts. §5.9 develops the rotation reading in full.
+More generally, multiplying by $a+bi$ acts on the plane as a rotation combined with a scaling — it turns everything by the angle of $a+bi$ and stretches everything by its distance from the origin. That is the geometric content of complex multiplication, and §5.9 makes it the main result.
 
 <Aside>
 Complex multiplication takes four real multiplications by the formula. **Karatsuba's trick** does it in three: with $t = (a+b)(c+d)$, $u = ac$, $v = bd$, the product is $(u - v) + (t - u - v)i$. The same idea applied recursively to integer multiplication gives an $O(n^{\log_2 3})$ algorithm, beating the schoolbook $O(n^2)$ — the first sign that arithmetic itself has not obvious complexity theory.

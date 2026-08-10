@@ -41,7 +41,7 @@ Write $z = a+bi$, $w = c+di$.
 *Fixed points.* If $z \in \mathbb{R}$ then $b = 0$ and $\bar z = z$. Conversely $z = \bar z$ gives $b = -b$, so $b = 0$ and $z \in \mathbb{R}$.
 </Proof>
 
-The first three properties say conjugation **preserves both operations** — it is a relabelling of $\mathbb{C}$ that arithmetic cannot detect; the last says the numbers it leaves fixed are exactly the reals. Since $[\mathbb{C}:\mathbb{R}] = 2$, Galois theory gives $\operatorname{Gal}(\mathbb{C}/\mathbb{R}) = \{\mathrm{id}, \bar{\ }\} \cong \mathbb{Z}/2\mathbb{Z}$.
+The first three properties say conjugation **preserves both operations** — it is a relabelling of $\mathbb{C}$ that arithmetic cannot detect; the last says the numbers it leaves fixed are exactly the reals. Those two facts together are stronger than they look: conjugation and doing nothing are the *only* two relabellings with that property, which is why complex roots of real polynomials pair up and never come in threes.
 
 There is a philosophical point in this. Nothing algebraic distinguishes $i$ from $-i$: both are roots of $x^2+1$, and conjugation is precisely the symmetry that exchanges them. The choice of which to call $i$ is a labelling convention with no mathematical content, and conjugation is the record of that fact.
 
@@ -89,7 +89,7 @@ The last one is the most useful, and it is the reason the conjugate-root theorem
 
 $z \mapsto \bar z$ is $\mathbb{R}$-linear but not $\mathbb{C}$-linear: $\overline{iz} = -i\bar z \neq i\bar z$ in general. It is therefore not complex-differentiable anywhere, despite being smooth as a map $\mathbb{R}^2\to\mathbb{R}^2$ — the standard first example showing that complex differentiability is far stronger than real differentiability.
 
-Consequently $\operatorname{Re}$, $\operatorname{Im}$, $|z|$ and $\bar z$ are all non-holomorphic, and any expression involving them cannot be a complex-analytic function. Recognising this at a glance saves a great deal of time in complex analysis.
+This has a consequence you will meet much later: the operations that pick out a part — real part, turn part, distance, conjugate — all behave badly under the calculus of complex numbers, precisely because each of them ignores some of the structure. Recognising them at a glance saves a great deal of time in that course.
 
 <Aside>
 Conjugation is one of exactly two *continuous* operation-preserving relabellings of $\mathbb{C}$. Dropping continuity there are vastly more, constructed non-constructively; all but the identity and conjugation are non-measurable and unwritable. That $\mathbb{R}$ by contrast has *only* the identity — because its order, hence its notion of nearness, is determined algebraically by which elements are squares — is a small and striking asymmetry.
