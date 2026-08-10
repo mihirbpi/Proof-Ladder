@@ -959,6 +959,50 @@ for (const f of files) {
 }
 
 // ---------------------------------------------------------------------------
+// No prose inside a display block. Twice now an inserted gloss has landed
+// between a display's opening `$$` and its closing one, which renders the raw
+// LaTeX to the reader with the italic sentence sitting on top of it.
+for (const f of files) {
+  const src = fs.readFileSync(f, 'utf8');
+  for (const m of src.matchAll(/^\$\$\n([\s\S]*?)^\$\$/gm)) {
+    if (/^\*(In words|Symbol by symbol)/m.test(m[1])) {
+      err(path.relative(ROOT, f), 'a gloss is trapped inside a display block — it renders as raw LaTeX');
+    }
+  }
+}
+
+// A notation key may only name symbols that actually appear in the display it
+// sits under. The generator that wrote these paired any two `$$` occurrences,
+// so it read the prose *between* two displays as if it were a display — and a
+// key ended up announcing "ℂ is the complex numbers, ∅ is the empty collection"
+// under a line containing neither. A display runs from a line-initial `$$` to
+// the next line-initial `$$`, and nothing else counts.
+const KEY_GLYPHS = [
+  ['\\mathbb{N}', /\\mathbb\{N\}/], ['\\mathbb{Z}', /\\mathbb\{Z\}/],
+  ['\\mathbb{Q}', /\\mathbb\{Q\}/], ['\\mathbb{R}', /\\mathbb\{R\}/],
+  ['\\mathbb{C}', /\\mathbb\{C\}/], ['\\subseteq', /\\subseteq/],
+  ['\\notin', /\\notin/], ['\\in', /\\in\b/], ['\\emptyset', /\\emptyset/],
+  ['\\forall', /\\forall/], ['\\exists', /\\exists/], ['\\Rightarrow', /\\Rightarrow/],
+  ['\\Leftrightarrow', /\\Leftrightarrow|\\iff/], ['\\neg', /\\neg/],
+  ['\\wedge', /\\wedge/], ['\\vee', /\\vee/], ['\\cup', /\\cup/], ['\\cap', /\\cap/],
+];
+for (const f of files) {
+  const src = fs.readFileSync(f, 'utf8');
+  const rel = path.relative(ROOT, f);
+  for (const m of src.matchAll(/^\$\$[\s\S]*?^\$\$/gm)) {
+    const after = src.slice(m.index + m[0].length);
+    if (!after.startsWith('\n\n*Symbol by symbol:')) continue;
+    const gloss = after.slice(2, after.indexOf('\n', 2) < 0 ? undefined : after.indexOf('\n', 2));
+    const head = gloss.split('So the line reads:')[0];
+    for (const [name, re] of KEY_GLYPHS) {
+      if (head.includes(`$${name}$`) && !re.test(m[0])) {
+        err(rel, `notation key names "${name}" but the display above it does not use that symbol`);
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Kernels carry no proof notation, at any level.
 //
 // The kernel is printed at the very top of the page under "The big idea, said
@@ -995,11 +1039,12 @@ for (const ch of fs.readdirSync(CHAPTERS)) {
 // to read the line. So a display carrying proof notation gets a sentence saying
 // what it says, in words, right beside it.
 //
-// The requirement tapers. At l4 the reader is meeting all of this for the first
-// time and Chapters 1-3 are covered; by l6 only Chapter 1 is; l7 is left alone,
-// having had three years of it. Chapter 4 onward at every level is exempt —
-// by then the notation has been used for dozens of pages.
-const GLOSS_THROUGH_CHAPTER = { l4: 3, l5: 2, l6: 1 };
+// The requirement tapers by level, not by page count. An 8th grader is meeting
+// every one of these marks for the first time in their life, so at l4 *every*
+// chapter carries the requirement; a 9th grader has had a year of the course
+// before Chapter 5, so l5 stops after Chapter 4; l6 after Chapter 2; l7 keeps
+// it only for Chapter 1, where the reader is still finding their feet.
+const GLOSS_THROUGH_CHAPTER = { l4: 7, l5: 7, l6: 6, l7: 5 };
 const DISPLAY_SYMBOLS =
   /\\forall|\\exists|\\Rightarrow|\\Leftrightarrow|\\iff|\\neg|\\wedge|\\vee(?!r)|\\in\b|\\subseteq|\\mathbb\{[NZQRC]\}|\\equiv|\\cup\b|\\cap\b/;
 const RENDERS_IT =

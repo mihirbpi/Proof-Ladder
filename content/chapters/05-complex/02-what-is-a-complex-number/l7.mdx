@@ -14,11 +14,15 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 $$
 \mathbb{C} = \{a + bi : a,b \in \mathbb{R}\}, \qquad i^2 = -1,
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers, $\in$ is "is in". So the line reads: an across part plus a turn part, both real, with the turn unit squaring to $-1$.*
 with $\operatorname{Re}(a+bi) = a$ and $\operatorname{Im}(a+bi) = b$, both **real-valued**. So $\operatorname{Re}, \operatorname{Im} : \mathbb{C}\to\mathbb{R}$ are functions in the sense of Chapter 3, and $z = \operatorname{Re}(z) + i \operatorname{Im}(z)$.
 
 $$
 a+bi = c+di \iff a = c \wedge b = d.
 $$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\wedge$ is "and". So the line reads: equal exactly when the across parts match and the turn parts match.*
 
 The representation is unique, which is what makes $\operatorname{Re}$ and $\operatorname{Im}$ well defined (§3.1) — and it is the source of the chapter's most productive technique: **one complex equation is two real equations**, extracted by comparing parts.
 
@@ -39,6 +43,8 @@ $i \in \mathbb{C}$, and $i \notin \mathbb{R}$: if $i$ were real then $i^2 \geq 0
 $$
 \mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R} \subsetneq \mathbb{C},
 $$
+
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers. So the line reads: each system sits strictly inside the next, and each was built because the one before could not do something.*
 each inclusion a one-line element chase and each properness a single witness ($-1$, $\tfrac12$, $\sqrt2$, $i$), with only $\sqrt2$ requiring real work (§4.7).
 
 Strictly these are **standard identifications** rather than literal containments: constructed carefully, the integer $3$, the rational $3/1$, the Dedekind cut $3$, and the pair $(3,0)$ are four distinct objects. What holds is that each system embeds injectively and operation-preservingly in the next, and everyone identifies along the embeddings.

@@ -19,6 +19,8 @@ $$
 \lfloor \cdot \rfloor : \mathbb{R} \to \mathbb{Z}, \qquad \lfloor x \rfloor = \max\{ n \in \mathbb{Z} \mid n \leq x \}.
 $$
 
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that", the arrow says what goes in and what comes out. So the line reads: floor takes a real number and returns the largest integer not above it.*
+
 That the maximum exists — that $\{n \in \mathbb{Z} \mid n \leq x\}$ is nonempty and bounded above, and that a nonempty set of integers bounded above has a greatest element — is the fact that the whole numbers climb past any real, together with there always being a smallest one. Floor is not a triviality; it is a consequence of the completeness of $\mathbb{R}$.
 
 The working characterisation:
@@ -34,6 +36,8 @@ Floor is neither injective ($\lfloor 3.1 \rfloor = \lfloor 3.9 \rfloor$) nor con
 $$
 \operatorname{tot}(n) = \big|\{ k \in \mathbb{Z} \mid 1 \leq k \leq n,\ \gcd(k,n)=1 \}\big|.
 $$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: count how many of $1$ through $n$ share no factor with $n$.*
 
 Values: $\operatorname{tot}(1)=1$, $\operatorname{tot}(6)=2$, $\operatorname{tot}(8)=4$, $\operatorname{tot}(9)=6$, $\operatorname{tot}(12)=4$.
 
@@ -62,6 +66,8 @@ r : \mathbb{R}\setminus\{0\} \to \mathbb{R},\ r(x)=1/x;
 \qquad
 \ell : \mathbb{R}_{>0} \to \mathbb{R},\ \ell(x) = \ln x.
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, the arrow says what goes in and what comes out. So the line reads: each excludes exactly the inputs where its rule would fail.*
 
 The excluded points are not conventions. There is no real $y$ with $0 \cdot y = 1$, so $1/0$ names nothing; and $\exp(\mathbb{R}) = \mathbb{R}_{>0}$, so $\ln x$ has no value for $x \leq 0$. In each case the domain is the largest set on which totality holds, and identifying it is a small theorem.
 

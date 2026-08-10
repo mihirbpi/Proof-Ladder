@@ -21,6 +21,8 @@ $$
 \exists x \in S,\; p(x)
 $$
 
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: on the left, every element of $S$ has the property; on the right, at least one does.*
+
 The first, the ***for all* quantifier**, asserts $p$ holds at every element of $S$; the second, the ***there exists* quantifier**, asserts $p$ holds at at least one. Both produce genuine statements: given $S$ and $p$, each is definitely true or definitely false.
 
 ### Two structural remarks
@@ -48,6 +50,8 @@ $$
 \;:\equiv\;
 \big(\exists x \in S,\, p(x)\big) \wedge \big(\forall x, y \in S,\, (p(x) \wedge p(y)) \Rightarrow x = y\big).
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists!$ is "there is exactly one", $\exists$ is "there is some", $\Rightarrow$ is "forces". So the line reads: exactly one element has the property — at least one does, and no two different ones both do.*
 
 Existence and uniqueness are independent obligations, discharged separately.
 
@@ -85,6 +89,8 @@ $$
 \qquad\text{versus}\qquad
 \exists y \in \mathbb{R}\; \forall x \in \mathbb{R},\; x + y = 0
 $$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: on the left, each $x$ gets its own partner; on the right, one single $y$ would have to work for every $x$ at once.*
 
 The first is true: given $x$, choose $y = -x$. The choice of $y$ is permitted to depend on $x$ because $y$ is bound *inside* the scope of $x$. The second is false: it demands one $y$ that works for all $x$ simultaneously, and $x = 1, x = 2$ already conflict.
 

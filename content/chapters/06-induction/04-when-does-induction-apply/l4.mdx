@@ -18,6 +18,8 @@ The claim must have the form $\forall n \geq n_0,\ A(n)$ with $n$ ranging over i
 
 $$\forall x \in \mathbb{R},\ x^2 \geq 0$$
 
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every". So the line reads: every real number squares to something at or above zero.*
+
 is **not** an induction candidate. $\mathbb{R}$ has no successor function: by density (module 4.6), no real has a next real. The claim is true and is proved by the arbitrary-element method with a case split on sign (module 1.12).
 
 <Warning title="Real-indexed claims sometimes hide an integer">
@@ -31,6 +33,8 @@ So the question is not whether real variables appear, but whether some **integer
 Knowing $A(k)$ must materially assist in proving $A(k+1)$. Countability of cases is not enough.
 
 $$\forall n \geq 1,\ p_n \text{ is odd} \quad (p_n = \text{the } n\text{th prime})$$
+
+*Symbol by symbol: $\forall$ is "for every". So the line reads: from the first prime onward, every prime is odd — which is false at the very first one.*
 
 has an integer index, so Requirement 1 holds. But $p_{k+1}$ is not built from $p_k$ by any usable rule, so assuming $A(k)$ gives no traction. (The claim also fails at $n=1$, but even repaired, induction is not the method.)
 

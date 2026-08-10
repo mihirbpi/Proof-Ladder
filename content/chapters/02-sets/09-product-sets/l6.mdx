@@ -23,6 +23,8 @@ $$
 (a,b) = (c,d) \quad\Leftrightarrow\quad a = c \ \text{ and } \ b = d.
 $$
 
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when". So the line reads: two pairs are equal exactly when they agree in both slots — order included.*
+
 That biconditional is the whole definition, and it is exactly what your coordinate work assumes. When you prove two points coincide, you prove their $x$-coordinates agree **and** their $y$-coordinates agree — two obligations, because the definition has two conjuncts.
 
 <Warning title="Braces forget, parentheses remember">
@@ -38,6 +40,8 @@ A set is decided by *what* is in it. An ordered pair is decided by what is in it
 $$
 S \times T = \{\,(s,t) : s \in S \ \text{ and }\ t \in T\,\}.
 $$
+
+*Symbol by symbol: $\in$ is "is in", $\times$ pairs things up. So the line reads: all pairs whose first entry comes from $S$ and second from $T$.*
 
 Every first entry from $S$, every second from $T$, in every combination.
 
@@ -55,9 +59,13 @@ $$
 \mathbb{R}^2 = \mathbb{R}\times\mathbb{R} = \{\,(x,y) : x \in \mathbb{R}, \ y \in \mathbb{R}\,\}.
 $$
 
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\times$ pairs things up. So the line reads: pairs of real numbers — which is exactly the coordinate plane.*
+
 This is not an analogy. **The plane, for the purposes of coordinate geometry, is literally this set of ordered pairs**, and every figure you graph is a subset of it:
 
 $$\text{line} = \{(x,y) \in \mathbb{R}^2 : y = mx+b\}$$
+
+*Both read "the coordinate pairs such that …" — a graph is a set of points picked out by a condition.*
 $$\text{circle} = \{(x,y)\in\mathbb{R}^2 : (x-h)^2 + (y-k)^2 = r^2\}$$
 
 Two coordinates because the plane is a product of two copies of $\mathbb{R}$; three for space, $\mathbb{R}^3$. The dimension is the number of factors.
@@ -110,6 +118,8 @@ The second half quietly used the defining property of ordered pairs: the pair co
 
 <Warning title="Products do not distribute over unions">
 $$(A\cup B)\times(C\cup D) \neq (A\times C)\cup(B\times D).$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\subseteq$ is "sits inside", $\in$ is "is in", $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: pairing two pooled collections gives more pairs than pooling the two pairings — the mixed pairs are the extras.*
 
 Take $A = \{1\}$, $B=\{2\}$, $C=\{a\}$, $D=\{b\}$. The left side has four pairs; the right has two, missing $(1,b)$ and $(2,a)$.
 
