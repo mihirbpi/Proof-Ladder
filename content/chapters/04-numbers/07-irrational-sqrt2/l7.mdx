@@ -22,7 +22,7 @@ The statement is a universal negative — $\forall p,q \in \mathbb{Z},\ q\neq0 \
 
 The lemma, from §1.9, is $n^2$ even $\iff$ $n$ even, whose forward direction was itself proved by contraposition (§1.8) because "$n^2 = 2k$" yields no handle on $n$.
 
-We also need: every nonzero rational has a representation in lowest terms. This is not free — it follows from well-ordering, since among all representations $p/q$ with $q > 0$ there is one with least $q$, and that one has $\gcd(p,q)=1$.
+We also need: every nonzero rational has a representation in lowest terms. This is not free — it follows from there being a smallest one, since among all representations $p/q$ with $q > 0$ there is one with least $q$, and that one has $\gcd(p,q)=1$.
 
 <Discussion>
   <div slot="know">$\sqrt2 = p/q$ with $\gcd(p,q)=1$, $q \neq 0$.</div>
@@ -63,7 +63,7 @@ S = \{x \in \mathbb{Q} : x > 0,\ x^2 < 2\}
 $$
 is nonempty and bounded above in $\mathbb{Q}$ but has no supremum there — no least upper bound —: any rational upper bound $u$ admits a smaller one, and any element admits a larger. The candidate is $\sqrt2$, which the theorem removes.
 
-So $\mathbb{Q}$ fails the **least upper bound property**, and $\mathbb{R}$ is precisely the completion that supplies it — unique up to isomorphism as a complete ordered field. Density (§4.6) could not detect this gap because completeness is not a local condition.
+So $\mathbb{Q}$ fails the **least upper bound property**, and $\mathbb{R}$ is precisely the completion that supplies it — unique up to a renaming that preserves all the structure as a complete ordered field. Density (§4.6) could not detect this gap because completeness is not a local condition.
 
 ## Beyond algebraic irrationality
 
@@ -81,7 +81,7 @@ Irrationality proofs remain hard. the number $1 + \tfrac1{2^3} + \tfrac1{3^3} + 
 
 This theorem is where the tower of number systems reveals its logic, and where calculus gets the number line it needs.
 
-**$\mathbb{Q}$ has holes and calculus cannot tolerate them.** The Intermediate Value Theorem applied to $f(x) = x^2-2$ on $[0,2]$ promises a root; over $\mathbb{Q}$ there is none, so IVT is false there. The same gap breaks the Extreme Value Theorem and the Mean Value Theorem.
+**$\mathbb{Q}$ has holes and calculus cannot tolerate them.** A curve running from below zero to above it must cross zero — that is one of the first theorems you will meet. Take $f(x) = x^2-2$ between $0$ and $2$: it starts negative, ends positive, and crosses at $\sqrt2$. Over $\mathbb{Q}$ that crossing point is simply missing, so the theorem is false there. The same hole breaks the others.
 
 Filling the holes is what $\mathbb{R}$ is, and the property that distinguishes it — every set bounded above has a least upper bound — is the hypothesis behind every major theorem of a first calculus course. When a proof says "let $c$ be the supremum of the set where…", it is using completeness, and it is using the fact that this module's gap has been filled.
 

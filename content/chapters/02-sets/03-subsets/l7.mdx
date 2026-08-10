@@ -76,7 +76,7 @@ Three properties:
 
 - **Reflexive.** $S \subseteq S$, since $x \in S \Rightarrow x \in S$.
 - **Transitive.** If $A \subseteq B$ and $B \subseteq C$ then $A \subseteq C$: chase $x \in A$ into $B$, then into $C$.
-- **Antisymmetric.** If $A \subseteq B$ and $B \subseteq A$ then $A = B$ — this is extensionality, and it is the content of §2.6.
+- **Antisymmetric.** If $A \subseteq B$ and $B \subseteq A$ then $A = B$ — this is being fixed by its members, and it is the content of §2.6.
 
 Hence $(\mathcal{P}(X), \subseteq)$ is a **partial order** for any set $X$. It is not total: $\{1,2\}$ and $\{2,3\}$ are incomparable. That failure of comparability is not a defect — it is the reason set inclusion carries more information than a linear ordering, and it is why the language of *greatest* and *least* ($\cap$ as the largest set inside both, $\cup$ as the smallest containing both) is the right one for §2.4.
 
@@ -99,7 +99,7 @@ The relation $\subseteq$ is definable from $\in$ alone, which is why axiomatic s
 
 Take any one — or here, any two — and follow them. Nothing about the specific vectors may be used beyond membership in $W$, which is what makes the argument cover all of them.
 
-**In calculus the containments are between domains and intervals.** The interval of convergence of a power series contains the open interval of radius $R$ and is contained in the closed one — a two-sided containment that leaves exactly the endpoints undecided, which is why they must be checked separately.
+**In calculus the containments are between domains and intervals.** A theorem may hold on the inside of a stretch while the endpoints need a separate argument — the statement is trapped between an open interval and the closed one, and the two endpoints are exactly what is left undecided. That is why endpoints get checked on their own, every time.
 
 And the vacuous containment $\emptyset\subseteq S$ is not a curiosity there either: the set where a function fails a condition is often empty, and "every point of that set has property $P$" is then true by the argument given above.
 

@@ -51,9 +51,9 @@ The **identity function** $\mathrm{id}_S : S \to S$, $\mathrm{id}_S(s) = s$, is 
 By module 3.7, a composition of injections is injective and a composition of surjections is surjective. Since $f$ and $g$ are both, $g \circ f$ is both, hence a bijection.
 </Proof>
 
-## Cardinality
+## Comparing sizes
 
-Write $|S| = |T|$ when a bijection $S \to T$ exists. For finite sets this agrees with counting. Its point is that it keeps working when counting does not.
+Write $|S| = |T|$ when a bijection $S \to T$ exists — the two sets have the **same size**, and *cardinality* is the formal name for that idea. For finite sets it agrees with counting. Its point is that it keeps working when counting does not.
 
 Three facts about finite sets, which match intuition:
 
@@ -73,13 +73,13 @@ Define $f : \mathbb{N}\to 2\mathbb{N}$ by $f(n) = 2n$ — the notation $f(n)$ fo
 *Injective:* $2a = 2b \Rightarrow a = b$.
 *Surjective:* any even natural is $2k$ for some $k \in \mathbb{N}$, and $f(k) = 2k$.
 
-So $f$ is a bijection and the two sets have the same cardinality.
+So $f$ is a bijection and the two sets have the same size.
 </Proof>
 
 $2\mathbb{N}$ is a **proper subset** of $\mathbb{N}$ — it omits every odd number — and yet it has the same size. For finite sets this is impossible, and in fact it is a workable *definition*: a set is **infinite** exactly when it is in bijection with a proper subset of itself.
 
 <Warning title="Do not compare infinite sets by inclusion">
-$2\mathbb{N} \subsetneq \mathbb{N}$ but $|2\mathbb{N}| = |\mathbb{N}|$. Containment and cardinality are different relations, and for infinite sets they come apart.
+$2\mathbb{N} \subsetneq \mathbb{N}$ but $|2\mathbb{N}| = |\mathbb{N}|$. Being contained in and being the same size are different relations, and for infinite sets they come apart.
 
 The only legitimate way to compare sizes is to ask what functions exist between the sets. Intuition trained on finite piles will mislead you here, and knowing that in advance is most of the battle.
 </Warning>

@@ -613,6 +613,47 @@ details[open] .toc-caret { transform: rotate(180deg); }
   max-width: var(--measure);
 }
 
+/* Markdown tables in the reader had no styling whatsoever, so they fell back to
+   the browser default: zero cell padding, columns butted together, and a row
+   like "| ℤ | closed under + but not ÷ |" read as one run-on sentence. These
+   tables carry a lot of the course's comparisons, so they get real spacing, a
+   header rule, and their own horizontal scroll when a row is too wide. */
+.reader article table:not(.truth-table) {
+  border-collapse: collapse;
+  width: 100%;
+  margin-block: 1.5rem;
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+.reader article table:not(.truth-table) :is(th, td) {
+  padding: 0.6rem 1.4rem 0.6rem 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-rule);
+}
+/* The last column has no neighbour to be crowded by, so it gives its padding
+   back rather than leaving a ragged gutter at the right edge. */
+.reader article table:not(.truth-table) :is(th, td):last-child { padding-right: 0; }
+.reader article table:not(.truth-table) th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+  color: color-mix(in oklab, var(--color-ink) 62%, transparent);
+  border-bottom: 1.5px solid color-mix(in oklab, var(--color-ink) 30%, transparent);
+  white-space: nowrap;
+}
+/* A first column that is a short label — a symbol, a system, a case name —
+   should not wrap while the explanation beside it has room to breathe. */
+.reader article table:not(.truth-table) td:first-child { padding-right: 1.8rem; }
+.reader article table:not(.truth-table) tbody tr:last-child :is(th, td) { border-bottom: none; }
+/* Wide rows scroll inside the table, never sideways off the page. */
+.reader article table:not(.truth-table) { overflow-x: auto; display: block; }
+@media (min-width: 40rem) {
+  .reader article table:not(.truth-table) { display: table; overflow-x: visible; }
+}
+
 .truth-table {
   border-collapse: collapse;
   margin-block: 1.25rem;

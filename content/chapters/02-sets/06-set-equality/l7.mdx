@@ -2,7 +2,7 @@
 level: l7
 title: Set equality by double inclusion
 readingTimeMin: 10
-newTerms: ["double inclusion", "extensionality"]
+newTerms: ["double inclusion", "being fixed by its members"]
 anchorExample: "roots of sin x and cos x"
 ---
 
@@ -20,7 +20,7 @@ $$
 
 This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$, a biconditional decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
 
-Equivalently: **double inclusion is antisymmetry of $\subseteq$**, the third partial-order axiom whose proof was deferred in §2.3.
+Equivalently: **double inclusion is the rule that mutual containment forces equality of $\subseteq$**, the third partial-order axiom whose proof was deferred in §2.3.
 
 The named move is **check both boxes**. The template:
 
@@ -91,7 +91,7 @@ Two further failure modes, both endemic:
 
 ## Why "obviously equal" is never enough
 
-Two descriptions of a set may be extensionally identical and syntactically unrecognisable as such:
+Two descriptions may pick out exactly the same set while looking nothing alike:
 $$
 \{x \in \mathbb{R} \mid \sin x = 0\} = \{n\pi \mid n \in \mathbb{Z}\},
 \qquad
@@ -100,16 +100,16 @@ $$
 Each is a theorem with two halves, and in each case one half is substantially harder than the other. The value of double inclusion is precisely that it does not consult your intuition about whether two descriptions "look the same".
 
 <Aside>
-The method generalises far beyond sets. Proving two subspaces, two spans, or two solution sets equal is always mutual inclusion. Proving two functions equal is the pointwise analogue: same domain, same codomain, and $f(x) = g(x)$ for every $x$ — which is extensionality one level up (§3.1).
+The method generalises far beyond sets. Proving two subspaces, two spans, or two solution sets equal is always mutual inclusion. Proving two functions equal is the pointwise analogue: same domain, same codomain, and $f(x) = g(x)$ for every $x$ — which is being fixed by its members one level up (§3.1).
 </Aside>
 
 <WhereThisGoes level="l7">
 
 Double inclusion is how you prove that two differently-described objects are the same one, and both courses ahead are full of such claims.
 
-**In calculus the equalities are between solution sets and between domains.** *The set where $f'>0$ equals the set where $f$ is increasing* is a biconditional needing two arguments — one from the Mean Value Theorem, one directly — and the fact that the two halves need different tools is the normal case, not an exception.
+**In calculus the equalities are between solution sets and between domains.** *The set where $f'>0$ equals the set where $f$ is increasing* is a biconditional needing two arguments — one from a theorem about slopes, one directly — and the fact that the two halves need different tools is the normal case, not an exception.
 
-Interval-of-convergence computations are double inclusions too. The Ratio Test establishes one containment; the endpoint checks establish the other, and skipping them leaves the answer proved only up to those two points.
+Domain computations are double inclusions too. One argument shows every point you want is included; a second shows nothing else sneaks in. Skipping the second leaves the answer proved only halfway.
 
 **The habit worth keeping is counting the obligations before starting.** An equality of sets is two proofs; a biconditional is two proofs; and knowing which direction will be hard, from the shape of the definitions, is what lets you plan rather than flail.
 

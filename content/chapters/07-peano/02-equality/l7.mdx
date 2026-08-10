@@ -27,7 +27,7 @@ The fourth is a special case of **substitution**: if $x = y$ then any statement 
 
 A relation $\sim\ \subseteq S\times S$ (§2.9) satisfying A1–A3 is an **equivalence relation**.
 
-Dropping symmetry and adding antisymmetry ($a\sim b \wedge b \sim a \Rightarrow a = b$) gives a **partial order** instead — $\leq$ on $\mathbb{R}$, $\subseteq$ on $\mathcal{P}(X)$ (§2.3), $\mid$ on $\mathbb{Z}_{>0}$ (§4.2). The two families of structures are the two natural ways to weaken equality, and almost every relation of interest is one or the other.
+Dropping symmetry and adding the rule that mutual containment forces equality ($a\sim b \wedge b \sim a \Rightarrow a = b$) gives a **partial order** instead — $\leq$ on $\mathbb{R}$, $\subseteq$ on $\mathcal{P}(X)$ (§2.3), $\mid$ on $\mathbb{Z}_{>0}$ (§4.2). The two families of structures are the two natural ways to weaken equality, and almost every relation of interest is one or the other.
 
 > **Proposition.** $a \equiv b \pmod n :\iff n \mid (a-b)$ is an equivalence relation on $\mathbb{Z}$.
 
@@ -102,7 +102,7 @@ The pattern is uniform: take known objects, impose the right notion of sameness,
 <Aside>
 In intensional type theory, equality is not a primitive relation but a *type* — $\mathrm{Id}_A(x,y)$ — and A1–A3 become constructions rather than axioms. Reflexivity is a term, symmetry and transitivity are functions built from it.
 
-The consequences are strange and productive: identifications can carry information, and homotopy type theory reinterprets $\mathrm{Id}_A(x,y)$ as a path space, so that equality proofs acquire a geometry of their own. Univalence then asserts that identity of types is equivalence of types — making "equal" mean "isomorphic", which is what mathematicians have always meant informally.
+The consequences are strange and productive: identifications can carry information, and homotopy type theory reinterprets $\mathrm{Id}_A(x,y)$ as a path space, so that equality proofs acquire a geometry of their own. Univalence then asserts that identity of types is equivalence of types — making "equal" mean "the same up to renaming", which is what mathematicians have always meant informally.
 </Aside>
 
 <WhereThisGoes level="l7">

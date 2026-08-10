@@ -924,6 +924,36 @@ for (const f of files) {
 }
 
 // ---------------------------------------------------------------------------
+// The l7 look-ahead boxes may point forward — that is their whole job — but a
+// reader in grade 12 is *starting* calculus. Two things they may not do:
+//
+//   1. Lean on the last unit of BC calculus (series, convergence, epsilon-delta)
+//      as if it were shared ground. Early calculus — slopes, breaks in a graph,
+//      highest and lowest points — is available from the first weeks and makes
+//      the same points.
+//   2. Name a theorem and recite its hypotheses. "The Mean Value Theorem needs
+//      continuity on [a,b] and differentiability on (a,b)" tells a reader who
+//      has not met it precisely nothing, at some length.
+const LOOKAHEAD_LATE =
+  /\bseries\b|\bconverges?\b|\bconvergence\b|\bdiverges?\b|\bdivergence\b|Ratio Test|\bTaylor\b|radius of convergence|varepsilon|\bpartial sums?\b/i;
+const LOOKAHEAD_NAMED =
+  /\b(Mean|Intermediate|Extreme) Value Theorem\b|\bRolle'?s? theorem\b|\bFundamental Theorem of Calculus\b/i;
+for (const f of files) {
+  if (path.basename(f, '.mdx') !== 'l7') continue;
+  const box = fs.readFileSync(f, 'utf8').match(/<WhereThisGoes[\s\S]*?<\/WhereThisGoes>/)?.[0];
+  if (!box) continue;
+  const rel = path.relative(ROOT, f);
+  const late = box.match(LOOKAHEAD_LATE);
+  if (late) {
+    warn(rel, `look-ahead box leans on late-BC material ("${late[0]}") — use early calculus, which they meet in the first weeks`);
+  }
+  const named = box.match(LOOKAHEAD_NAMED);
+  if (named) {
+    warn(rel, `look-ahead box names "${named[0]}" — say what it claims instead; the reader has not met it`);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Titles: the .mdx frontmatter and _module.json must agree, and neither may use
 // school vocabulary from a later grade than the level's ceiling.
 //

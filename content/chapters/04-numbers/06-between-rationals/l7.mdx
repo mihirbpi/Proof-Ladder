@@ -88,7 +88,7 @@ S = \{x \in \mathbb{Q} : x > 0,\ x^2 < 2\}
 $$
 is nonempty and bounded above in $\mathbb{Q}$, yet has **no least upper bound in $\mathbb{Q}$**. Given any rational upper bound one can produce a smaller one, and given any rational in $S$ one can produce a larger one — the candidate supremum is $\sqrt2$, which §4.7 proves is not rational.
 
-The **completeness axiom** — every nonempty bounded-above set has a least upper bound — is exactly what $\mathbb{R}$ adds, and $\mathbb{R}$ is the unique complete ordered field up to isomorphism. Density is a local property; completeness is not, which is why local inspection cannot detect the failure.
+The **completeness axiom** — every nonempty bounded-above set has a least upper bound — is exactly what $\mathbb{R}$ adds, and $\mathbb{R}$ is the unique complete ordered field up to a renaming that preserves all the structure. Density is a local property; completeness is not, which is why local inspection cannot detect the failure.
 
 <Aside>
 Density and measure are independent. $\mathbb{Q}$ is dense in $\mathbb{R}$ yet countable, so it has Lebesgue measure zero: enumerate $\mathbb{Q}$ as $q_1, q_2, \ldots$ and cover $q_k$ by an interval of length $\varepsilon/2^k$; the total length is $\varepsilon$, arbitrarily small. So $\mathbb{Q}$ is everywhere and occupies no length. Conversely the Cantor set is nowhere dense and uncountable, and the fat Cantor sets are nowhere dense with positive measure. Size measured by density and size measured by length are genuinely different notions, and this is the standard first example.
@@ -98,9 +98,9 @@ Density and measure are independent. $\mathbb{Q}$ is dense in $\mathbb{R}$ yet c
 
 Density is the property that makes approximation possible, and calculus is a subject about approximation.
 
-**Every limit is an approximation argument.** The definition asks that $f(x)$ come within $\varepsilon$ of $L$ for all $x$ within $\delta$ of $a$ — and $\delta$ can be taken as small as you like precisely because $\mathbb{R}$ has no smallest positive number. Density is what guarantees the shrinking never terminates, and a number system where it did would have no limits worth the name.
+**Every limit is an approximation argument.** The definition asks the output to come within whatever tolerance you name, provided the input is close enough — and the input window can be taken as small as you like precisely because $\mathbb{R}$ has no smallest positive number. Density is what guarantees the shrinking never terminates, and a number system where it did would have no limits worth the name.
 
-**The same property underwrites Riemann sums.** Partitioning $[a,b]$ into $n$ subintervals and letting $n$ grow relies on being able to subdivide indefinitely — which is this module's *repeat forever*, applied to intervals rather than pairs of rationals. Newton's method, bisection, and the Taylor remainder estimates all depend on the same structure.
+**The same property underwrites Riemann sums.** Partitioning $[a,b]$ into $n$ subintervals and letting $n$ grow relies on being able to subdivide indefinitely — which is this module's *repeat forever*, applied to intervals rather than pairs of rationals. Newton's method and bisection — two ways of hunting a solution by repeatedly narrowing the search — depend on the same structure.
 
 **And density is exactly what completeness is not.** This module's closing warning is the one that matters most for calculus: $\mathbb{Q}$ is dense and full of holes. Every theorem you will meet whose proof invokes the "least upper bound property" is invoking completeness, not density, and the distinction is why those theorems are false over $\mathbb{Q}$ even though $\mathbb{Q}$ looks like it fills the line.
 

@@ -2,7 +2,7 @@
 level: l7
 title: What is a set?
 readingTimeMin: 10
-newTerms: ["set", "element", "empty set", "well-defined", "extensionality"]
+newTerms: ["set", "element", "empty set", "well-defined", "being fixed by its members"]
 anchorExample: "roots of sin x and cos x"
 ---
 
@@ -33,7 +33,7 @@ Everything idiosyncratic about sets follows:
 
 The last point deserves emphasis. Two wildly different descriptions may denote the same set, and proving that they do is often the entire content of a theorem. The trigonometric identity $\{x \mid \sin x = 0\} = \{n\pi \mid n \in \mathbb{Z}\}$ is such a statement.
 
-Note also that extensionality is what makes §2.6's double-inclusion method correct: since $S = T$ means the two membership conditions are equivalent, and an equivalence is two implications (§1.9), a set equality is exactly two subset proofs.
+Note also that being fixed by its members is what makes §2.6's double-inclusion method correct: since $S = T$ means the two membership conditions are equivalent, and an equivalence is two implications (§1.9), a set equality is exactly two subset proofs.
 
 ## Well-definedness, and what it is protecting against
 
@@ -59,7 +59,7 @@ The distinction is not pedantry: the von Neumann construction of the naturals is
 
 ## The empty set is unique
 
-There is exactly one empty set. Suppose $\emptyset_1$ and $\emptyset_2$ both have no elements. By extensionality they are equal iff $\forall x\,(x \in \emptyset_1 \Leftrightarrow x \in \emptyset_2)$. Both sides of the biconditional are false for every $x$, so the biconditional holds vacuously (§1.5) for every $x$, so the sets are equal. The article in "*the* empty set" is earned, not assumed — and note that the argument is a small piece of vacuous reasoning doing real work.
+There is exactly one empty set. Suppose $\emptyset_1$ and $\emptyset_2$ both have no elements. By being fixed by its members they are equal iff $\forall x\,(x \in \emptyset_1 \Leftrightarrow x \in \emptyset_2)$. Both sides of the biconditional are false for every $x$, so the biconditional holds vacuously (§1.5) for every $x$, so the sets are equal. The article in "*the* empty set" is earned, not assumed — and note that the argument is a small piece of vacuous reasoning doing real work.
 
 ## The standard number systems
 
@@ -87,8 +87,8 @@ This is the mature attitude toward mathematical objects generally. What a set *i
 
 Set language is the notation both of the courses ahead are written in, and the fluency built here is what makes their definitions short.
 
-**In calculus, every domain is a set and every domain matters.** The domain of $\ln x$ is $(0,\infty)$; the domain of $\sqrt{x^2-4}$ is $(-\infty,-2]\cup[2,\infty)$; the interval of convergence of a power series is a set determined by the radius plus a separate check at each endpoint. Theorems are stated over sets too — the Extreme Value Theorem needs a *closed, bounded* interval, and both adjectives are conditions on a set rather than on the function.
+**In calculus, every domain is a set and every domain matters.** The domain of $\ln x$ is $(0,\infty)$; the domain of $\sqrt{x^2-4}$ is $(-\infty,-2]\cup[2,\infty)$; the set where a rule is defined at all is often an interval with a fiddly decision at each endpoint. Theorems are stated over sets too — the theorem that a curve must reach a highest point needs the stretch to include its endpoints and not run off forever — both conditions on a set rather than on the function.
 
-The solution set of an inequality, the level set of a function, the set of critical points, the set where a series converges: each is an object you compute, and each is described by a membership condition.
+The solution set of an inequality, the level set of a function, the set of critical points, the set where a curve is above the axis: each is an object you compute, and each is described by a membership condition.
 
 </WhereThisGoes>

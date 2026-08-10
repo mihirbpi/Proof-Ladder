@@ -18,18 +18,18 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 <Discussion>
   <div slot="know">$n > 0$. Consider $S = \{m - nk : k \in \mathbb{Z}\} \cap \mathbb{Z}_{\geq 0}$, the non-negative numbers of that form.</div>
   <div slot="want">Existence and uniqueness of $(q,r)$.</div>
-  <div slot="how">Existence: $S$ is nonempty (take $k$ very negative) and consists of non-negative integers, so by well-ordering — every non-empty collection of non-negative integers has a smallest member — it has a least element $r$; minimality forces $r < n$. Uniqueness: two representations differ by a multiple of $n$ smaller than $n$ in absolute value, hence by $0$.</div>
+  <div slot="how">Existence: $S$ is nonempty (take $k$ very negative) and consists of non-negative integers, so because every non-empty collection of non-negative integers has a smallest member — it has a least element $r$; minimality forces $r < n$. Uniqueness: two representations differ by a multiple of $n$ smaller than $n$ in absolute value, hence by $0$.</div>
 </Discussion>
 
 <Proof>
-*Existence.* Let $S = \{m - nk \mid k \in \mathbb{Z}\}\cap \mathbb{Z}_{\geq 0}$. Taking $k = -|m|$ gives $m + n|m| \geq m + |m| \geq 0$, so $S \neq \emptyset$. By the well-ordering principle, $S$ has a least element $r = m - nq$ for some $q \in \mathbb{Z}$, and $r \geq 0$.
+*Existence.* Let $S = \{m - nk \mid k \in \mathbb{Z}\}\cap \mathbb{Z}_{\geq 0}$. Taking $k = -|m|$ gives $m + n|m| \geq m + |m| \geq 0$, so $S \neq \emptyset$. Every non-empty collection of non-negative integers has a smallest member, so $S$ has a least element $r = m - nq$ for some $q \in \mathbb{Z}$, and $r \geq 0$.
 
 If $r \geq n$ then $r - n = m - n(q+1) \geq 0$ lies in $S$ and is smaller than $r$, contradicting minimality. Hence $0 \leq r < n$.
 
 *Uniqueness.* Suppose $m = nq_1 + r_1 = nq_2 + r_2$ with $0 \leq r_1, r_2 < n$. Then $n(q_1 - q_2) = r_2 - r_1$, so $n \mid (r_2 - r_1)$. But $|r_2 - r_1| < n$, and the only multiple of $n$ of absolute value less than $n$ is $0$. So $r_1 = r_2$, and then $n(q_1-q_2)=0$ with $n \neq 0$ gives $q_1 = q_2$.
 </Proof>
 
-The proof rests on **well-ordering** — every nonempty set of non-negative integers has a least element — which is equivalent to induction (Chapter 6) and is the property distinguishing $\mathbb{Z}$ from $\mathbb{Q}$. Note also that uniqueness used the absence of zero divisors (§4.1).
+The proof rests on one fact — **every nonempty set of non-negative integers has a smallest member**, a least element — which is equivalent to induction (Chapter 6) and is the property distinguishing $\mathbb{Z}$ from $\mathbb{Q}$. Note also that uniqueness used the absence of zero divisors (§4.1).
 
 ## Non-divisibility becomes a finite disjunction
 
@@ -81,7 +81,7 @@ Consequences are immediate and sharp: no integer of the form $3n+2$ is a perfect
 Squares mod $8$ lie in $\{0,1,4\}$; cubes mod $9$ lie in $\{0,1,8\}$; fourth powers mod $16$ lie in $\{0,1\}$. **Reduce modulo a well-chosen $n$** is the standard first move against a Diophantine equation, and the art is picking $n$.
 
 <Aside>
-This method proves non-existence, never existence. An equation solvable modulo every $n$ may still have no integer solutions — the failure of the *Hasse principle*, first exhibited by Selmer's curve $3x^3+4y^3+5z^3=0$, which has nontrivial solutions modulo every $n$ and none in $\mathbb{Z}$. Congruence obstructions are necessary conditions, not sufficient ones.
+This method proves non-existence, never existence. An equation solvable modulo every $n$ may still have no integer solutions — the failure of the *Hasse principle*, first exhibited by Selmer's curve $3x^3+4y^3+5z^3=0$, which has not obvious solutions modulo every $n$ and none in $\mathbb{Z}$. Congruence obstructions are necessary conditions, not sufficient ones.
 </Aside>
 
 <WhereThisGoes level="l7">

@@ -108,14 +108,12 @@ so sums of two squares are closed under multiplication. Combined with Fermat's t
 
 <WhereThisGoes level="l7">
 
-The modulus is the real-valued measure that replaces the missing order on $\mathbb{C}$, and every convergence statement ahead is phrased in it.
+The modulus is the real-valued measure that replaces the missing order on $\mathbb{C}$, and it is what lets the machinery of calculus cross over to complex numbers at all.
 
-**Complex sequences converge in modulus.** $z_n \to L$ means $|z_n - L|\to 0$ — a statement about a real sequence, which is what makes the $\varepsilon$–$\delta$ machinery available at all. Since $\mathbb{C}$ has no order (§5.2), there is no other way to say it.
+**Distance is the bridge.** You cannot say one complex number is *less than* another, so nothing phrased with $<$ transfers directly. But $|z - w|$ is an ordinary non-negative real number, and every statement about closeness can be phrased with it. That single move — measure distance, then argue about real numbers — is what makes the whole subject possible.
 
-The triangle inequality is then the workhorse. Every proof that a sum of limits is the limit of the sum runs through $|(z_n+w_n) - (L+M)| \leq |z_n - L| + |w_n - M|$, and multiplicativity $|zw| = |z||w|$ does the corresponding job for products.
+The triangle inequality is the workhorse. It says the direct route is never longer than a detour, and it is what lets you bound a complicated distance by two simpler ones.
 
-**Radius of convergence is a modulus statement.** A power series $\sum a_n(z-c)^n$ converges for $|z - c| < R$ and diverges for $|z-c|>R$ — a *disc*, not an interval, and the real interval of convergence you compute in calculus is that disc intersected with the real line.
-
-That explains something otherwise mysterious. $\frac{1}{1+x^2}$ is perfectly well behaved on all of $\mathbb{R}$, yet its power series converges only for $|x|<1$. The reason is invisible on the real line and obvious in the plane: the function has poles at $\pm i$, at distance $1$ from the origin, and the disc of convergence can grow no further.
+**A concrete surprise waits at the end of that road.** The function $\frac{1}{1+x^2}$ is perfectly well behaved for every real $x$, yet the polynomial approximations to it stop working past $|x| = 1$. Nothing on the real line explains why. Something *does* go wrong at distance $1$ from the origin — just not on the line, which is where the modulus is looking.
 
 </WhereThisGoes>

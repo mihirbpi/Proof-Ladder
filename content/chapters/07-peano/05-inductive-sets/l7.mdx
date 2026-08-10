@@ -59,7 +59,7 @@ $$\mathbb{N} = \{0, S(0), S(S(0)), \dots\}$$
 
 Notice what A9 quantifies over: **subsets** of $\mathbb{N}$, not just elements. That is a stronger kind of assumption than the other eight, and it buys a correspondingly strong result.
 
-> **Theorem (Dedekind, 1888).** Any two structures satisfying A5–A9 are isomorphic.
+> **Theorem (Dedekind, 1888).** Any two structures satisfying A5–A9 are the same up to renaming.
 
 <Proof title="Proof sketch">
 Let $(\mathbb{N},0,S)$ and $(\mathbb{N}',0',S')$ both satisfy the axioms. Define $h(0) = 0'$ and $h(S(n)) = S'(h(n))$; the recursive definition of §7.6 supplies exactly one such $h$.
@@ -95,7 +95,7 @@ Induction is not proved. It is assumed, on the same footing as the completeness 
 
 **Well-ordering is the equivalent form**, and the equivalence is genuine: assume either and derive the other. Neither follows from the remaining axioms.
 
-**In calculus, the parallel axiom is completeness.** Every major theorem of a first course invokes it, usually through a phrase like *"let $c$ be the least upper bound of the set where…"*. The Extreme Value Theorem, the Intermediate Value Theorem, and the convergence of bounded monotone sequences are all false over $\mathbb{Q}$, which satisfies every other axiom of an ordered field.
+**In calculus, the parallel axiom is completeness.** Every major theorem of a first course invokes it, usually through a phrase like *"let $c$ be the least upper bound of the set where…"*. The big theorems of calculus are all false over $\mathbb{Q}$, which satisfies every other axiom of an ordered field.
 
 So calculus is, in a precise sense, the study of one axiom's consequences — and recognising which theorems depend on it is worth doing as you meet them.
 

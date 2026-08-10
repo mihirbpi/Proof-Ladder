@@ -120,17 +120,14 @@ Chapter 4's assumptions are now discharged for $\mathbb{N}$: closure under $+$ i
 
 <WhereThisGoes level="l7">
 
-Recursive definition is the pattern behind sequences, series, and iterative methods, and the termination guarantee is always the same one.
+Defining a thing by saying what it does at the first step and how each step follows from the last is a pattern you will use constantly, and the guarantee that it terminates is always the same one.
 
-**In calculus, recursively defined sequences are everywhere.** $a_1 = 1$, $a_{n+1} = \frac12(a_n + \frac{2}{a_n})$ is Newton's method for $\sqrt2$; the Fibonacci recurrence, compound-interest sequences, and the partial sums of any series are all defined this way — a base case, and a rule producing the next term from earlier ones.
+**Sequences given by a rule from the previous term are everywhere.** Start at $1$ and repeatedly replace $a$ by $\tfrac12(a + \tfrac2a)$ and the numbers close in on $\sqrt2$ fast — that is how a calculator does it. Every such definition is legitimate for the reason this module gives: each step reaches back to a smaller index, and the counting numbers cannot descend forever.
 
-Every one of them terminates for the reason Axiom 9 supplies: the index decreases towards a base case, and $\mathbb{N}$ is well-ordered so the descent cannot continue forever.
+**Proofs about them are inductions**, and the proof mirrors the definition exactly. To show the terms stay below some bound, you show the first one does and that each step preserves it.
 
-**Proofs about such sequences are inductions**, and the proof structure mirrors the definition exactly. To show $a_n$ is bounded, or increasing, or converges, you prove the property at the base and show the recursion preserves it. That correspondence — recursive definition, inductive proof — is not a coincidence: both are Axiom 9.
+**The commutativity result is the module's real lesson.** The definition builds on the second slot only, so $x + y = y + x$ is not free — it is a theorem, and it takes a proof by induction. A fact this obvious needing an argument is the point: *obvious* and *proved from the definition* are different things.
 
-**The commutativity result is the module's real lesson.** The definition recurses on the second argument only, so $x + y = y + x$ is a theorem requiring three inductions. **Obviousness is not the same as cheapness**, and a statement's familiarity says nothing about its distance from the axioms.
-
-**Order was defined, not postulated.** $x\leq y$ means $\exists z$ with $x+z=y$, and every property of $\leq$ follows. That the order comes free from addition is a genuine economy, and one that geometry does not enjoy.
-
+**Order was defined, not assumed.** Saying $x\leq y$ means *you can get from $x$ to $y$ by adding something*, and every property of $\leq$ follows from that. Getting the ordering free from the arithmetic is one of the tidier surprises here.
 
 </WhereThisGoes>

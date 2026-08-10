@@ -20,11 +20,11 @@ $f : S \to T$ is a **bijection** when it is injective and surjective, equivalent
 | surjective | $\geq 1$ |
 | bijective | $=1$ |
 
-## Bijections as isomorphisms
+## Bijections as a renaming that preserves all the structures
 
 > **Proposition.** $f : S \to T$ is a bijection iff there exists $g : T \to S$ with $g \circ f = \mathrm{id}_S$ and $f \circ g = \mathrm{id}_T$.
 
-This is §3.9's theorem, but it is worth stating here because it is the *right* definition: a bijection is a function with a two-sided inverse, i.e. an **isomorphism** in the category of sets. Under this reading the facts below are automatic — identities are isomorphisms, composites of isomorphisms are isomorphisms, and isomorphism is an equivalence relation.
+This is §3.9's theorem, but it is worth stating here because it is the *right* definition: a bijection is a function with a two-sided inverse, i.e. an **a renaming that preserves all the structure** in the category of sets. Under this reading the facts below are automatic — identities are a renaming that preserves all the structures, composites of a renaming that preserves all the structures are a renaming that preserves all the structures, and a renaming that preserves all the structure is an equivalence relation.
 
 $\mathrm{id}_S$ is a bijection, and by §3.7 a composite of bijections is a bijection.
 
@@ -44,7 +44,7 @@ Define $S \sim T$ ("equinumerous") when a bijection $S \to T$ exists. This is an
 
 **Cardinality** $|S|$ is the equivalence class, and $|S| = |T|$ means $S \sim T$. For finite sets this agrees with counting; the content is that it continues to make sense when counting does not.
 
-Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this is antisymmetric — $|S|\leq|T|$ and $|T|\leq|S|$ imply $|S|=|T|$ — is the **Schröder–Bernstein theorem**, and it is genuinely nontrivial: from injections both ways one must *construct* a bijection, and the construction (partitioning by orbits of the two maps) is the standard first surprise of the subject.
+Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this is such that mutual containment forces equality — $|S|\leq|T|$ and $|T|\leq|S|$ imply $|S|=|T|$ — is the **Schröder–Bernstein theorem**, and it is genuinely not obvious: from injections both ways one must *construct* a bijection, and the construction (partitioning by orbits of the two maps) is the standard first surprise of the subject.
 
 ## Dedekind infinity
 
@@ -91,7 +91,7 @@ The diagonal argument is one construction with three faces. Applied to $\mathcal
 </Aside>
 
 <WhereThisGoes level="l7">
-**The dimension theorem is a bijection theorem.** Two finite-dimensional spaces are isomorphic if and only if they have the same dimension, which is this module's *bijection means same size* with structure added.
+**The dimension theorem is a bijection theorem.** Two finite-dimensional spaces are the same up to renaming if and only if they have the same dimension, which is this module's *bijection means same size* with structure added.
 
 **In calculus, bijectivity is what makes inverse functions exist.** $\ln : (0,\infty)\to\mathbb{R}$ and $e^x : \mathbb{R}\to(0,\infty)$ are mutually inverse bijections, and the domains are exactly what makes them so. So are $\tan$ on $(-\pi/2,\pi/2)$ and $\tan^{-1}$ on $\mathbb{R}$.
 

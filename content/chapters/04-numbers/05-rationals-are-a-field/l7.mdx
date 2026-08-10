@@ -80,7 +80,7 @@ The check is a computation: from $ab' = a'b$ and $cd'=c'd$, verify $(ad+bc)(b'd'
 
 $\mathbb{Q}$ carries a compatible order ($a < b \Rightarrow a+c < b+c$; $a<b$, $c>0 \Rightarrow ac<bc$), making it an **ordered field**. §4.6 will prove it is dense in itself.
 
-But $\mathbb{Q}$ is not **complete**: the set $\{x \in \mathbb{Q} : x^2 < 2\}$ is bounded above and has no least upper bound in $\mathbb{Q}$, because $\sqrt2 \notin \mathbb{Q}$ (§4.7). $\mathbb{R}$ is defined to be the completion, and it is the unique complete ordered field up to isomorphism — a characterisation strong enough that calculus is really a subject about that one axiom.
+But $\mathbb{Q}$ is not **complete**: the set $\{x \in \mathbb{Q} : x^2 < 2\}$ is bounded above and has no least upper bound in $\mathbb{Q}$, because $\sqrt2 \notin \mathbb{Q}$ (§4.7). $\mathbb{R}$ is defined to be the completion, and it is the unique complete ordered field up to a renaming that preserves all the structure — a characterisation strong enough that calculus is really a subject about that one axiom.
 
 <Aside>
 The **characteristic** of a field is the least $n > 0$ with $\underbrace{1+\cdots+1}_{n} = 0$, or $0$ if no such $n$ exists. $\mathbb{Q}, \mathbb{R}, \mathbb{C}$ have characteristic $0$; $\mathbb{Z}/p\mathbb{Z}$ has characteristic $p$. Every field of characteristic $0$ contains a copy of $\mathbb{Q}$, and every field of characteristic $p$ contains a copy of $\mathbb{Z}/p\mathbb{Z}$ — these are the *prime fields*, and $\mathbb{Q}$'s role as one of exactly two kinds of minimal field is why it is unavoidable.
@@ -89,8 +89,8 @@ The **characteristic** of a field is the least $n > 0$ with $\underbrace{1+\cdot
 <WhereThisGoes level="l7">
 **Over $\mathbb{Z}$ none of that works.** The system $2x = 1$ has no integer solution, so "solve and back-substitute" fails immediately, and none of the usual structure survives over $\mathbb{Z}$ resembling the one over a field.
 
-**In calculus, the ordered-field axioms are what inequality manipulation rests on.** Every $\varepsilon$–$\delta$ proof multiplies and divides inequalities, and the rules — adding preserves, multiplying by a positive preserves, multiplying by a negative reverses — are the order axioms of this module. Getting the last one wrong is the standard error in a limit proof, and it is an axiom violation rather than an algebra slip.
+**In calculus, the ordered-field axioms are what inequality manipulation rests on.** Every limit proof multiplies and divides inequalities, and the rules — adding preserves, multiplying by a positive preserves, multiplying by a negative reverses — are the order axioms of this module. Getting the last one wrong is the standard error in a limit proof, and it is an axiom violation rather than an algebra slip.
 
-**Completeness is the property $\mathbb{Q}$ still lacks**, and it is the one calculus cannot do without. The Extreme Value Theorem, the Intermediate Value Theorem, and the Mean Value Theorem are all false over $\mathbb{Q}$: $f(x)=x^2-2$ changes sign on $[0,2]$ and has no rational root, so IVT fails. §4.7 exhibits the gap, and filling it is what $\mathbb{R}$ is for — which makes completeness, not the field axioms, the defining property of the number system calculus runs on.
+**Completeness is the property $\mathbb{Q}$ still lacks**, and it is the one calculus cannot do without. The big theorems of calculus are all false over $\mathbb{Q}$: $f(x)=x^2-2$ changes sign on $[0,2]$ and has no rational root, so IVT fails. §4.7 exhibits the gap, and filling it is what $\mathbb{R}$ is for — which makes completeness, not the field axioms, the defining property of the number system calculus runs on.
 
 </WhereThisGoes>

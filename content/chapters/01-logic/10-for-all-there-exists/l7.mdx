@@ -37,7 +37,7 @@ $$
 \qquad
 \exists x \in S,\, p(x) \;\equiv\; p(a_1) \vee \cdots \vee p(a_n).
 $$
-So $\forall$ is an infinitary $\wedge$ and $\exists$ an infinitary $\vee$. Every fact about quantifiers in this chapter — including the negation rules of §1.11 — is the corresponding fact about $\wedge$ and $\vee$ pushed to infinity.
+So $\forall$ is an endless chain of $\wedge$, and $\exists$ an endless chain of $\vee$. Every fact about quantifiers in this chapter — including the negation rules of §1.11 — is the corresponding fact about $\wedge$ and $\vee$ pushed to infinity.
 
 A consequence worth stating: over $S = \emptyset$, $\forall x \in \emptyset,\, p(x)$ is **true** (an empty conjunction) and $\exists x \in \emptyset,\, p(x)$ is **false** (an empty disjunction), for every $p$. The first is vacuous truth (§1.5) in quantifier form.
 
@@ -109,14 +109,12 @@ The game reading is not merely a mnemonic. It is formalised in logic as a two-pl
 
 <WhereThisGoes level="l7">
 
-**This module is the prerequisite for the definition of a limit**, and the quantifier order in it is the whole content.
+**This module is the groundwork for the definition of a limit**, and the quantifier order in it is the whole content.
 
-$$\lim_{x\to a}f(x) = L \quad\text{means}\quad \forall\varepsilon>0\ \exists\delta>0\ \forall x:\ 0<|x-a|<\delta \Rightarrow |f(x)-L|<\varepsilon.$$
+The idea, in words: *however close you demand the output be to $L$, there is a window around $a$ narrow enough to deliver it.* Three quantifiers, alternating — for every demand, there is a window, for every point in it — and every one is load-bearing.
 
-Three quantifiers, alternating, and every one is load-bearing. The $\varepsilon$ comes first and is arbitrary — *however close you demand*. The $\delta$ comes second and may depend on $\varepsilon$ — *I can find a window*. Reverse those two and you get a claim that is far stronger and almost never true.
+The order is the content. Reversed, it would say a single window works for every demand at once, which is a different and much stronger claim. This is exactly the desks-and-students pair from earlier in the module, and it is why that definition looks impenetrable on first meeting. It is not deep; it is three nested quantifiers, and you have now met the pattern.
 
-This is exactly the desks-and-students pair from earlier in the module, and it is the reason that definition looks impenetrable the first time. It is not deep; it is three quantifiers in a specific order, and you now know what each demands as evidence.
-
-**The same structure runs through the sequel.** Convergence of a sequence is $\forall\varepsilon\,\exists N\,\forall n\geq N$. Continuity on an interval is $\forall a\,\forall\varepsilon\,\exists\delta$ — and moving that $\forall a$ inside the $\exists\delta$ gives *uniform* continuity, a genuinely different and stronger property. Two definitions differing only in quantifier order, with different theorems on either side.
+**The same structure runs through everything after it.** *Continuous on an interval* and *the slope settles down as you zoom in* are both built the same way, and each one you decode gets easier once you stop reading it as a formula and start reading it as a challenge and a reply.
 
 </WhereThisGoes>

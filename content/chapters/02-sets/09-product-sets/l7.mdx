@@ -23,7 +23,7 @@ Anything satisfying (1) will do; the standard implementation is Kuratowski's,
 $$
 (a,b) := \{\{a\}, \{a,b\}\},
 $$
-from which (1) is a short exercise in extensionality. The implementation is deliberately forgettable — what matters is (1), and a different encoding satisfying it would serve equally well. This is the first appearance of a pattern that dominates modern mathematics: objects are characterised by the properties they satisfy, not by what they are made of.
+from which (1) is a short exercise in being fixed by its members. The implementation is deliberately forgettable — what matters is (1), and a different encoding satisfying it would serve equally well. This is the first appearance of a pattern that dominates modern mathematics: objects are characterised by the properties they satisfy, not by what they are made of.
 
 ## The cartesian product
 
@@ -90,7 +90,7 @@ which distributes properly — and whose four terms are the cross-terms the naiv
 A **relation** from $S$ to $T$ is by definition any subset $R \subseteq S \times T$, with $sRt$ meaning $(s,t) \in R$. This is the definition that makes the rest of the course possible:
 
 - **Functions** (Chapter 3) are relations $f \subseteq S \times T$ such that each $s \in S$ occurs as the first coordinate of exactly one pair. A function *is* its graph; there is no separate notion.
-- **Orders** are relations on $S \times S$ that are reflexive, antisymmetric, transitive — $\subseteq$ from §2.3 being the example at hand.
+- **Orders** are relations on $S \times S$ that are reflexive, such that mutual containment forces equality, transitive — $\subseteq$ from §2.3 being the example at hand.
 - **Equivalence relations** are reflexive, symmetric, transitive relations, and their quotients construct $\mathbb{Z}$ from $\mathbb{N}$, $\mathbb{Q}$ from $\mathbb{Z}$, and $\mathbb{Z}/n\mathbb{Z}$ from $\mathbb{Z}$.
 
 So everything from here forward is a subset of a product set with a condition attached.

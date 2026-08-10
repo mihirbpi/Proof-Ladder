@@ -92,7 +92,7 @@ by induction on $n$ (Chapter 6 supplies the induction; the base case $n = 2$ is 
 $$
 \neg \forall x\, p(x) \equiv \exists x\, \neg p(x), \qquad \neg \exists x\, p(x) \equiv \forall x\, \neg p(x).
 $$
-Universal quantification really is an infinitary conjunction, and existential quantification an infinitary disjunction. The analogy is not decorative; it is the reason the rules look the same.
+Universal quantification really is an endless chain of *ands*, and *there exists* an endless chain of *ors*. The analogy is not decorative; it is the reason the rules look the same.
 
 <Aside>
 Augustus De Morgan published these in the 1840s, in the same wave of work that gave us Boole's algebra of logic. The laws themselves were known to medieval logicians — William of Ockham states both — but De Morgan gave them symbolic form, which is what made them usable inside calculations rather than only inside arguments.
@@ -102,11 +102,10 @@ Augustus De Morgan published these in the 1840s, in the same wave of work that g
 
 De Morgan's laws are what you will use to say precisely how a calculus hypothesis fails.
 
-**Discontinuity.** A function is continuous at $a$ when the left limit, the right limit, and $f(a)$ all exist **and** agree. Negate that conjunction and you get a disjunction — the classification of discontinuities you meet in the first weeks of calculus. Removable, jump, and infinite are the branches of $\neg(p\wedge q\wedge r)$, and the reason there are exactly three kinds is that there are exactly three conjuncts.
+**Breaks in a graph.** A curve is unbroken at a point when three things all hold and agree. Negate that *and* and you get an *or* — which is precisely the list of ways a graph can break that you meet in the first weeks. The number of kinds is the number of conditions, and that is not a coincidence: it is De Morgan.
 
-**Failure of the Mean Value Theorem.** The hypothesis is *continuous on $[a,b]$ and differentiable on $(a,b)$*. Its negation is *not continuous on $[a,b]$ **or** not differentiable somewhere in $(a,b)$* — and every standard counterexample exhibits exactly one of the two disjuncts, never both. Knowing the negation is an *or* tells you a single failure point suffices.
+**Failure of a hypothesis, generally.** Every theorem ahead of you has a hypothesis built from *and*s. Its failure is therefore an *or*, and each branch of that *or* is one standard counterexample. The counterexamples in a textbook are not a grab-bag — they are the branches of a disjunction, enumerated.
 
 In each case the swap is doing the same work: it converts "the theorem does not apply" into a usable list of alternatives, and it tells you in advance that the proof will need cases (§1.12).
-
 
 </WhereThisGoes>

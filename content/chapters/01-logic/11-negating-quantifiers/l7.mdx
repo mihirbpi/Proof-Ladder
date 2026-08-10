@@ -105,16 +105,14 @@ Euler conjectured (1769) that no $k$-th power is a sum of fewer than $k$ positiv
 
 <WhereThisGoes level="l7">
 
-The first real payoff is being able to say what it means for a limit **not** to exist.
+The first real payoff is being able to say what it means for something to **fail**.
 
-Negating the $\varepsilon$–$\delta$ definition mechanically, outermost first:
+Calculus states most of its ideas as *for every … there is a …* claims. "The graph gets as close to $L$ as you like, provided you look close enough to $a$" has that shape: for every tolerance you name, there is a window that meets it. You will meet the precise version early in the course.
 
-$$\exists\varepsilon>0\ \forall\delta>0\ \exists x:\ 0<|x-a|<\delta \ \wedge\ |f(x)-L|\geq\varepsilon.$$
+**The negation is where the work is.** To show a limit does *not* exist, flip both quantifiers by the rules of this module: some tolerance is so tight that **no** window meets it. That single sentence is the proof strategy — it tells you to produce one tolerance, and then, for each window someone proposes, one point that escapes.
 
-Every quantifier flipped in place, and the implication became a conjunction. Read it back: *there is a tolerance $\varepsilon$ so tight that no window works — for every $\delta$ you propose, some $x$ inside it lands outside the tolerance.*
+Notice what the flip bought you. The original claim quantifies over infinitely many tolerances and is hard to attack directly. Its negation asks you for *one* tolerance and then a point per window — a job you can actually start.
 
-**That sentence is the proof strategy.** To show $\lim_{x\to0}\sin(1/x)$ does not exist, take $\varepsilon = 1$; for any $\delta$, the interval $(0,\delta)$ contains points where $\sin(1/x)=1$ and points where it is $-1$, so no single $L$ can be within $1$ of both. The negation told you to produce one $\varepsilon$ and then, for each $\delta$, one $x$ — and that is exactly the shape of the argument.
-
-**Divergence of a sequence** works the same way. Negating $\forall\varepsilon\,\exists N\,\forall n\geq N$ gives $\exists\varepsilon\,\forall N\,\exists n\geq N$: *some tolerance is escaped infinitely often.* That is how you show $(-1)^n$ diverges.
+**The same flip runs everywhere in the course.** *Not continuous*, *not bounded*, *not increasing on an interval* are all negations of *for every … there is a …* claims, and each unfolds into a recipe the same way. Getting the flip right is the difference between a proof strategy and a blank page.
 
 </WhereThisGoes>
