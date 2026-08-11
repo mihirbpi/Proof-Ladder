@@ -83,6 +83,25 @@ Hence $6 \mid (k+1)^3-(k+1)$.
 
 Note that the step needed an *external* lemma — that consecutive integers have an even product — which was proved by cases back in module 1.12. Inductive steps frequently need such inputs, and identifying them is part of the Discussion.
 
+## The shape all three proofs shared
+
+Look back at what you just did three times over, because the pattern is the whole module.
+
+1. **Unpack the induction hypothesis** into an equation, with a fresh name for the factor it hands you. Never reuse the induction variable for that name — the two have nothing to do with each other, and the collision is the single most common way these proofs go wrong.
+2. **Write down what you want** for $k+1$ and start from the expression itself, not from the answer.
+3. **Rearrange until the hypothesis appears**, then substitute it in.
+4. **Factor out the divisor**, and check that what is left is a whole number, citing closure.
+
+Step 4 is the one students skip, and skipping it is not a formality: divisibility says the *other* factor is a whole number, and a proof that never checks it has not finished.
+
+<Warning title="Give the factor from the hypothesis its own letter">
+If the induction is on $k$ and the hypothesis says $3$ divides $2^{2k}-1$, then $2^{2k}-1 = 3x$ for **some** whole number $x$ — and writing $3k$ instead of $3x$ claims that factor equals the index you are inducting on.
+
+It almost never does. At $k = 3$, $2^6 - 1 = 63 = 3 \cdot 21$, and $21$ is not $3$.
+
+A fresh letter costs nothing and prevents a proof that looks fine and proves nothing.
+</Warning>
+
 <Aside>
 Both results have one-line proofs if you argue with remainders. For the first: $4$ leaves remainder $1$ on division by $3$, so every power of $4$ does too, and $3 \mid 4^n - 1$. For the second: check $n^3$ and $n$ leave the same remainder, taking division by $2$ and by $3$ separately.
 

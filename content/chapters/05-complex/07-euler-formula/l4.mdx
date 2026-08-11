@@ -10,6 +10,7 @@ import Figure from '@/components/Figure.astro';
 import ComplexPlane from '@/components/ComplexPlane.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
+import TryIt from '@/components/TryIt.astro';
 
 ## The cycle
 
@@ -70,6 +71,29 @@ And $i^2 = -1$, the equation the whole chapter started from, is now the statemen
 The cycle handles quarter turns. It says nothing about turning by, say, a third of a turn — for that you would need to name the point you land on, and naming points at any angle you like takes a tool this course does not assume.
 
 That is where this module stops. Module 5.8 picks it up once the tools exist.
+
+## Working with the cycle
+
+The cycle is short enough to use directly, and the exercises below are the ones worth being able to do without thinking.
+
+> **What is $i^{35}$?**
+>
+> Divide: $35 = 4\cdot 8 + 3$. Eight complete laps change nothing, so $i^{35} = i^3 = -i$.
+
+> **What is $i^{100} + i^{101} + i^{102} + i^{103}$?**
+>
+> Four consecutive powers always run once around the whole cycle, so they are $1$, $i$, $-1$ and $-i$ in some order — and those four add to $0$. The answer is $0$ without computing a single power.
+
+That second one is worth noticing. **Any four consecutive powers of $i$ add to zero**, because going once around the circle and back to the start means the four steps cancel in pairs: $1$ against $-1$, and $i$ against $-i$.
+
+<TryIt>
+Work these out using remainders, not by multiplying:
+
+1. $i^{18}$
+2. $i^{40}$
+3. $i^{7} + i^{8} + i^{9} + i^{10}$
+4. $i^{23} \cdot i^{5}$ — and check it against the rule that exponents add.
+</TryIt>
 
 <Aside>
 Here is the destination, purely as something to look at.

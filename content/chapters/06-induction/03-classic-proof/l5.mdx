@@ -86,6 +86,28 @@ which is a common denominator and a factor of $(k+1)$.
 
 **Two proofs, one shape.** Split off the last term; apply the hypothesis to what remains; do the algebra. Almost every induction about a sum goes exactly this way, and recognizing it means the only real work is the algebra in the middle.
 
+## Checking before proving
+
+Before running an induction, run the claim on small cases. It takes a minute and it catches wrong formulas before you spend twenty minutes trying to prove one.
+
+| $n$ | $1 + 2 + \cdots + n$ | $\dfrac{n(n+1)}{2}$ |
+|---|---|---|
+| $1$ | $1$ | $1$ |
+| $2$ | $3$ | $3$ |
+| $3$ | $6$ | $6$ |
+| $4$ | $10$ | $10$ |
+| $5$ | $15$ | $15$ |
+
+Five agreements. That is **not** a proof — module 1.12 is emphatic that examples never establish a claim about every $n$ — but it is strong evidence the formula is worth proving, and it would have exposed a wrong one immediately.
+
+**The reverse is not true.** Failing at $n = 5$ *does* settle the matter: one counterexample kills a universal claim outright. So the checking step is worth much more when it fails than when it succeeds.
+
+<Warning title="Agreement on small cases is not evidence you can lean on">
+There are formulas that agree with the truth for the first forty cases and then diverge. Module 6.1's aside gives one, and the pattern of the primes supplies several more.
+
+The reason induction exists is that no finite amount of checking closes the gap. What the checking buys you is confidence about *which* claim to prove — not permission to skip proving it.
+</Warning>
+
 <Aside>
 There is a proof of the odd-number result with no induction at all, and it is worth seeing because it explains rather than verifies.
 

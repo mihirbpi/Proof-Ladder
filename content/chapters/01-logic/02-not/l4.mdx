@@ -69,3 +69,30 @@ The negation of $x \geq 1$ is $x < 1$, *not* $x \leq 1$. The negation of $x > 1$
 Both illustrate that to negate a universal claim you produce one exception — this is the "one bad apple" that module 1.11 will make formal.
 
 The reverse direction is less familiar and just as useful. To negate *there exists a thing with this property*, you must rule out every candidate — which is a universal claim, and so needs a genuine argument rather than a single example. Disproving an existence claim is the harder of the two jobs, and knowing which one you are facing tells you what kind of work to expect.
+
+## Denying an inequality, carefully
+
+Inequalities are where the boundary case does the most damage, so it is worth working through all four of them once.
+
+| Statement | Its denial |
+|---|---|
+| $x > 5$ | $x \leq 5$ |
+| $x \geq 5$ | $x < 5$ |
+| $x < 5$ | $x \geq 5$ |
+| $x \leq 5$ | $x > 5$ |
+
+Read down the table and you can see the pattern: **the inequality reverses, and the boundary point changes sides.** The number $5$ itself belongs to exactly one of any statement-and-denial pair, which is the whole content of module 1.1's insistence that a statement is true or false and never both.
+
+The mistake to avoid is denying $x > 5$ with $x < 5$. That leaves $5$ itself in neither one, which would mean the original statement is neither true nor false at $x=5$ — and it is plainly false there.
+
+## Two denials that look alike and are not
+
+> **"Not everyone in the class passed."**
+
+This says at least one person failed. It does **not** say everyone failed. The first is a modest claim; the second is a strong one, and English lets you slide between them without noticing.
+
+> **"Everyone in the class did not pass."**
+
+This one says everybody failed, though a careless reader takes it for the first sentence. Mathematics cannot afford that ambiguity, which is why module 1.11 fixes the two shapes down with symbols instead of word order.
+
+Getting these two apart is worth the effort now, because almost every proof by contradiction starts by denying something, and a proof that denies the wrong statement proves nothing at all.

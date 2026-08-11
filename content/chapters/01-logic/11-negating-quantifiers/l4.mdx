@@ -24,12 +24,13 @@ In words: **negation swaps the quantifier and negates the statement inside.** Th
 
 ## Why these are De Morgan
 
-Over a small collection — say $S = \{1, 2, 3\}$ — *for every* is just a string of **and**s, and *there is* is a string of **or**s:
-$$
-\forall x \in S,\, x \text{ is even} \;\equiv\; (1 \text{ is even}) \wedge (2 \text{ is even}) \wedge (3 \text{ is even}).
-$$
+Over a small collection the two quantifiers stop being mysterious, because you can write them out in full.
 
-*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\wedge$ is "and", $\equiv$ is "says the same as". So the line reads: saying every member of $S$ is even, when $S$ is $\{1,2,3\}$, is the same as saying: $1$ is even, and $2$ is even, and $3$ is even.*
+Take $S = \{1, 2, 3\}$. Then *every member of $S$ is even* says exactly this:
+
+> $1$ is even, **and** $2$ is even, **and** $3$ is even.
+
+A *for every* claim is a string of **and**s. In the same way, *some member of $S$ is even* is a string of **or**s — $1$ is even, or $2$ is, or $3$ is.
 
 Apply the first De Morgan law of module 1.4. The denial becomes "$1$ is not even **or** $2$ is not even **or** $3$ is not even" — which says exactly that *some* member of $S$ is not even. Same law, more terms.
 

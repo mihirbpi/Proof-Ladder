@@ -50,6 +50,26 @@ A collection with this property is called **dense**. The fractions are dense amo
 
 Contrast the integers, which are **discrete**: neighboring integers have nothing between them, and every integer has a nearest one on each side. That difference is why the integers supports the division algorithm and induction while $\mathbb{Q}$ does not, and why $\mathbb{Q}$ supports limits and $\mathbb{Z}$ does not.
 
+## Running the midpoint trick on purpose
+
+The proof gives you a machine, and it is worth turning the crank a few times to see what it produces.
+
+Start with $0$ and $1$. Their midpoint is $\tfrac12$. Now take $0$ and $\tfrac12$: midpoint $\tfrac14$. Again with $0$ and $\tfrac14$: midpoint $\tfrac18$.
+
+$$0, \quad \tfrac12, \quad \tfrac14, \quad \tfrac18, \quad \tfrac1{16}, \quad \ldots$$
+
+Every one of these is a fraction, every one is strictly bigger than $0$, and they get as close to $0$ as you care to ask. **There is no first fraction after zero**, and the machine above is a recipe for defeating anyone who claims to have found one: whatever they name, take the midpoint of it and $0$.
+
+That is worth pausing on, because the counting numbers behave in exactly the opposite way. After $7$ comes $8$, with nothing in between, and no amount of cleverness produces a whole number between them.
+
+## Two questions that sound the same
+
+**"Is there a fraction between these two?"** Always yes, by the proposition — provided the two are different.
+
+**"Is there a fraction next to this one?"** Never. The idea of *next* does not survive the trip from the integers to the fractions, and asking for it is asking for something the system does not contain.
+
+Losing the notion of *next* is the price paid for density, and it costs more than it first appears: induction (Chapter 6) runs on stepping from each number to the next one, which is exactly why induction works over the integers and cannot be run over the fractions.
+
 ## The trap this sets
 
 Density makes the fractions *feel* as though they fill the number line. No gap can be exhibited by pointing: name any two rationals and infinitely many more sit between them.

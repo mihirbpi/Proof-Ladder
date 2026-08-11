@@ -10,6 +10,7 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import TruthGrid from '@/components/TruthGrid.astro';
 import Figure from '@/components/Figure.astro';
+import TryIt from '@/components/TryIt.astro';
 
 One statement at a time is not enough. Real mathematics glues statements together, and there are two ways to do the gluing: **and** and **or**. They behave differently, and the difference matters.
 
@@ -72,3 +73,28 @@ Contradictions look useless, but they are one of the sharpest tools in mathemati
 ### Why that is worth noticing
 
 Notice what just happened: to decide those last two, you did not have to know a single thing about $7$. Their shape settled them. That is the first hint that logic is a subject of its own.
+
+## Sorting a pile with *and* and *or*
+
+Take the numbers from $1$ to $12$ and two tests: **even**, and **bigger than $6$**.
+
+| | passes *even* | passes *bigger than 6* |
+|---|---|---|
+| $4$ | ✓ | ✗ |
+| $9$ | ✗ | ✓ |
+| $10$ | ✓ | ✓ |
+| $3$ | ✗ | ✗ |
+
+Now join the two tests with a word and see which numbers survive.
+
+**Even *and* bigger than $6$** keeps only $8$, $10$ and $12$. A number has to pass both tests, so failing either one is enough to be thrown out — which is why so few survive.
+
+**Even *or* bigger than $6$** keeps $2, 4, 6, 8, 10, 12$ and also $7, 9, 11$. A number needs only one way in. Notice that $8$, $10$ and $12$ are still there: they pass both tests, and passing both is not a problem for *or*.
+
+That last point is the one to hold on to. **An *or* never throws something out for being too good.**
+
+<TryIt>
+Same numbers, $1$ to $12$. Two tests: *a multiple of $3$*, and *smaller than $5$*.
+
+Write down everything that passes both. Then everything that passes at least one. One of your two lists should be much longer than the other — and if it is the wrong one, check whether you threw out a number for passing both tests.
+</TryIt>

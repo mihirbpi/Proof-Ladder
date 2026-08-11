@@ -11,6 +11,7 @@ import ArrowDiagram from '@/components/ArrowDiagram.astro';
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
+import TryIt from '@/components/TryIt.astro';
 
 Every machine sends each input to exactly one output. But nothing stops two *different* inputs from landing on the same output. When that never happens, the machine is special.
 
@@ -79,6 +80,28 @@ The **horizontal** line test asks whether a machine is one-to-one: at most one i
 
 Different lines, different questions. Do not mix them up.
 </Warning>
+
+## Four machines, checked one at a time
+
+The definition is short, so the way to get comfortable is to run it on examples.
+
+**Doubling** — feed in a number, get twice it. One-to-one: proved above.
+
+**Rounding to the nearest ten** — feed in a whole number, get back the nearest multiple of ten. **Not** one-to-one: $41$ and $44$ both come out as $40$. One pair of inputs sharing an output is enough to settle it, and you never need a second.
+
+**Adding ten** — one-to-one. If two numbers come out equal, subtract ten from both and they were equal going in.
+
+**"Which day of the week is it?"** — feed in a date, get back a day name. Badly not one-to-one: every Monday there has ever been shares an output. This machine is perfectly good at its job, and its job is precisely to collapse many inputs into few.
+
+Notice the shape of the reasoning each time. To show a machine **is** one-to-one you have to argue about every possible pair at once. To show one **is not**, you produce two inputs and point.
+
+<TryIt>
+Here are three more. For each one, decide whether it is one-to-one, and if it is not, find two inputs that collide.
+
+1. Take a whole number and give back its last digit.
+2. Take a whole number and give back the number itself plus one.
+3. Take a person and give back their birthday.
+</TryIt>
 
 <Aside>
 Being one-to-one is exactly what module 3.3 called "tracing back never finds a crowd." Follow the arrows backwards from any output and you find one thing, or nothing — never two.

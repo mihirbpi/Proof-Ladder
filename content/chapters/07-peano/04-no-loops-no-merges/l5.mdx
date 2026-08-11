@@ -80,6 +80,28 @@ All four axioms hold, and the structure has two rogue elements cycling forever o
 Module 7.5's final axiom is precisely what excludes this, and it will turn out to be induction.
 </Warning>
 
+## What each axiom is keeping out
+
+Both axioms here are negative — they say something *never* happens — and negative axioms are easiest to understand by looking at what goes wrong without them.
+
+### One axiom keeps the numbers from closing up
+
+**Without A7** — the axiom saying nothing steps to zero — the numbers could close into a loop. Picture five beads arranged in a circle: $0, 1, 2, 3, 4$, and then the step from $4$ leads back to $0$. Every bead has a next one, so nothing else in the list of axioms complains. But now "keep stepping and you will eventually pass every number" is false, and so is the idea that a number gets bigger each step.
+
+That structure is a real object rather than a curiosity — it is the remainder arithmetic of module 4.4, where $4 + 1 = 0$ once you work modulo $5$. A7 is the axiom saying the counting numbers are not that.
+
+### The other one keeps two chains from merging
+
+**Without A8** — the axiom saying two different numbers never share a next one — two separate chains could join. Picture two strands running along and then joining into one, like a letter Y. Every number still has exactly one next, and there is still no way back to zero, so A7 is satisfied. What fails is uniqueness going backwards: a number in the merged part has two different predecessors, and "the number before this one" stops naming a single thing.
+
+<Warning title="An axiom that forbids is doing as much work as one that builds">
+A5 and A6 build: there is a zero, and every number has a next. It is tempting to think the building axioms are the real content and the rest are cleanup.
+
+The two pictures above show otherwise. Both the loop of beads and the Y satisfy every building axiom in the chapter. Everything that distinguishes the counting numbers from them is in the two axioms that forbid.
+
+This is worth remembering beyond this chapter: when a definition includes a condition that seems to rule out something absurd, the useful question is *which* absurd thing, drawn as a picture.
+</Warning>
+
 <Aside>
 The proof above is worth a second look for its shape.
 
