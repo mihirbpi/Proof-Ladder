@@ -34,7 +34,7 @@ $$
 s \in f^{-1}(U) \quad\text{exactly when}\quad f(s) \in U. \tag{1}
 $$
 
-*Symbol by symbol: $\in$ is "is in".*
+*Symbol by symbol: $\in$ is "is in". So the line reads: a thing is in the traced-back set exactly when its output lands inside $U$.*
 
 ## Image versus codomain
 
@@ -45,7 +45,7 @@ $$
 \operatorname{Im}(f) = \{\, y \in \mathbb{R} \mid y \geq 0 \,\},
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the image of $f$ is the numbers that are zero or bigger.*
 
 which is not all of $\mathbb{R}$ — nothing negative is attained.
 
@@ -54,7 +54,7 @@ $$
 \operatorname{Im}(g) = \{\, y \in \mathbb{R} \mid y > 0 \,\},
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the image of $g$ is the numbers strictly bigger than zero.*
 
 and $0$ itself is never attained, however negative the exponent gets.
 
@@ -77,7 +77,7 @@ f^{-1}(\{0\}) = \{0\},
 f^{-1}(\{-5\}) = \emptyset.
 $$
 
-*Symbol by symbol: $\emptyset$ is the empty collection.*
+*Symbol by symbol: $\emptyset$ is the empty collection. So the line reads: tracing back from $3$ gives its two square roots, tracing back from $0$ gives just $0$, and tracing back from $-5$ gives nothing at all.*
 
 The last one is not an error. No real number squares to $-5$, so nothing lands in $\{-5\}$, and the pre-image is empty. Pre-images of sets outside the image are always empty, and this is normal.
 
@@ -86,7 +86,7 @@ $$
 f^{-1}\big((-2, 6)\big) = \{x \in \mathbb{R} \mid -2 < x^2 < 6\} = (-\sqrt6, \sqrt6).
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: tracing back from that interval gives the numbers whose square lies between $-2$ and $6$ — which is everything strictly between $-\sqrt6$ and $\sqrt6$.*
 
 The left constraint $-2 < x^2$ is automatic since squares are non-negative; only $x^2 < 6$ bites. Notice the pre-image of an open interval came out as an open interval. That is not a coincidence. Much later, when courses need to say precisely what it means for a graph to have no breaks in it, this is the property they end up using — the pre-image of an interval with open ends is again one. You are not expected to make anything of that yet.
 
@@ -116,7 +116,7 @@ $$
 t \in \operatorname{Im}(f) \quad\text{exactly when}\quad f^{-1}(\{t\}) \neq \emptyset.
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\emptyset$ is the empty collection.*
+*Symbol by symbol: $\in$ is "is in", $\emptyset$ is the empty collection. So the line reads: a target is in the image exactly when at least one input lands on it.*
 
 Both sides say "$t$ is attained", one forwards and one backwards. The proof is immediate from the definitions: $t \in \operatorname{Im}(f)$ means some $s$ has $f(s) = t$, and $f^{-1}(\{t\}) \neq \emptyset$ means some $s$ has $f(s) \in \{t\}$ — the same statement.
 

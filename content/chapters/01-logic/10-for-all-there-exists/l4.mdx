@@ -18,7 +18,7 @@ $$
 \forall x \in \mathbb{R},\; x^2 \geq 0.
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every". So the line reads: every number on the line has a square that is zero or bigger.*
 
 Read: "for all real numbers $x$, $x^2$ is at least $0$." True.
 
@@ -29,7 +29,7 @@ $$
 \forall x \in \mathbb{Z},\; x \geq 1 \text{ or } x \leq 0 \quad \text{(true)}
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every". So the line reads: the first says every integer is at least $1$, which is false because $0$ is not; the second says every integer is at least $1$ or at most $0$, which is true.*
 
 A quantified statement without a stated domain is incomplete. Write the $\in$.
 
@@ -40,14 +40,14 @@ $$
 \exists x \in \mathbb{R},\; 3x - 1 = 0.
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\exists$ is "there is some".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\exists$ is "there is some". So the line reads: there is some number on the line for which three times it, minus one, is zero.*
 
 True, with $x = \tfrac{1}{3}$. Contrast
 $$
 \exists x \in \mathbb{Z},\; 3x - 1 = 0,
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some". So the line reads: there is some **integer** for which three times it, minus one, is zero.*
 
 which is **false** — no integer works. Same condition, different collection to run it over, different truth value.
 
@@ -91,7 +91,7 @@ means
 
 $$\forall x \in \mathbb{R},\; (x > 1 \Rightarrow x^2 > 1).$$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces". So the line reads: for every number on the line: if it is bigger than $1$, then its square is bigger than $1$.*
 
 That invisible $\forall$ is why the proof in module 1.6 had to reason about a nameless $x$ rather than checking a few values. Making the quantifier visible is often the first useful step on a problem you are stuck on.
 
@@ -101,13 +101,13 @@ Statements often carry more than one, and then **order matters**:
 
 $$\forall x \in \mathbb{R},\; \exists y \in \mathbb{R},\; x + y = 0$$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: for every number, there is some number you can add to it to get zero.*
 
 says: whatever $x$ you hand me, I can find a $y$ that cancels it. True — take $y = -x$, which is allowed to depend on $x$.
 
 $$\exists y \in \mathbb{R},\; \forall x \in \mathbb{R},\; x + y = 0$$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: there is one single number that gives zero when added to every number.*
 
 says: there is a single $y$ that cancels *every* $x$ at once. False — no fixed $y$ works for both $x = 1$ and $x = 2$.
 

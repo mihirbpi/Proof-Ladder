@@ -18,7 +18,7 @@ $$
 (g \circ f)(s) = g\big(f(s)\big).
 $$
 
-*Symbol by symbol: $\circ$ is "after".*
+*Symbol by symbol: $\circ$ is "after". So the line reads: to apply *$g$ after $f$* to $s$: run $f$ first, then run $g$ on whatever comes out.*
 
 (The notation $f(s)$ for the output on input $s$ is §3.1's.)
 
@@ -37,7 +37,7 @@ $g \circ f$ means "$f$ first, then $g$" — read it as "$g$ after $f$". The orde
 Composition is not commutative. With $f(x) = x+1$ and $g(x) = 2x$ on $\mathbb{R}$:
 $$(g\circ f)(x) = 2(x+1) = 2x+2, \qquad (f \circ g)(x) = 2x + 1.$$
 
-*Symbol by symbol: $\circ$ is "after".*
+*Symbol by symbol: $\circ$ is "after". So the line reads: doing $f$ then $g$ adds first and doubles second; doing $g$ then $f$ doubles first and adds second — and the answers differ.*
 
 Different functions. And frequently one of the two does not exist at all, because the codomains do not line up.
 </Warning>
@@ -49,7 +49,7 @@ $$
 h \circ (g \circ f) = (h \circ g) \circ f,
 $$
 
-*Symbol by symbol: $\circ$ is "after".*
+*Symbol by symbol: $\circ$ is "after". So the line reads: grouping three functions either way gives the same function.*
 
 since both send $s$ to $h(g(f(s)))$. So $h \circ g \circ f$ needs no parentheses. Together with the identity functions $\mathrm{id}_S(s) = s$, which satisfy $f \circ \mathrm{id}_S = f = \mathrm{id}_T \circ f$, composition gives functions the structure of an algebraic system in their own right.
 

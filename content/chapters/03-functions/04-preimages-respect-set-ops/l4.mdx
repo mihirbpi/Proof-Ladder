@@ -23,7 +23,7 @@ $$
 f^{-1}(U \cap V) = f^{-1}(U) \cap f^{-1}(V) \tag{P2}
 $$
 
-*Symbol by symbol: $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cap$ is "overlapped with". So the line reads: tracing back from an overlap gives the overlap of the two traced-back sets.*
 
 $$
 f^{-1}\big(\overline{U}\big) = \overline{f^{-1}(U)} \tag{P3}
@@ -40,7 +40,7 @@ $$
 x \in f^{-1}(U) \iff f(x) \in U. \tag{1}
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when".*
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when". So the line reads: a thing is in the traced-back set for $U$ exactly when $f$ sends it into $U$.*
 
 (The notation $f(x)$ for the output on input $x$ is §3.1's.)
 
@@ -88,7 +88,7 @@ x \in f^{-1}\big(\overline{U}\big)
 \end{aligned}
 $$
 
-*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", the bar on top is "everything outside".*
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", the bar on top is "everything outside". So the line reads: a thing traces back from the outside of $U$ exactly when its output misses $U$ — which is exactly when it is **not** in the traced-back set for $U$.*
 
 Every step is an if-and-only-if statement, so the sets are equal.
 </Proof>
@@ -109,7 +109,7 @@ $$
 f(A \cap B) \subseteq f(A) \cap f(B), \quad \text{and the inclusion can be strict.}
 $$
 
-*Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with".*
+*Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with". So the line reads: the image of an overlap sits inside the overlap of the images, and it can be strictly smaller.*
 
 **Counterexample.** Let $f : \mathbb{R}\to\mathbb{R}$, $f(x) = x^2$, with $A = \{2\}$ and $B = \{-2\}$. Then $A \cap B = \emptyset$, so $f(A \cap B) = \emptyset$. But $f(A) = f(B) = \{4\}$, so $f(A) \cap f(B) = \{4\}$. Strict.
 
