@@ -19,7 +19,7 @@ $$
 
 *Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the image is **everything $f$ actually produces**, as $s$ runs over the whole domain — and it sits inside $T$.*
 
-is the **image** — the set of values actually attained. For $U \subseteq T$,
+is the **image** — the values $f$ actually attains. And for a collection $U$ of targets,
 
 $$
 f^{-1}(U) = \{\, s \in S \mid f(s) \in U \,\} \subseteq S
@@ -29,7 +29,7 @@ $$
 
 is the **pre-image** of $U$.
 
-The pre-image definition unfolds to the single equivalence that every proof in the next module uses:
+That definition unfolds to the one line every proof in the next module uses:
 $$
 s \in f^{-1}(U) \quad\text{exactly when}\quad f(s) \in U. \tag{1}
 $$
@@ -38,27 +38,13 @@ $$
 
 ## Image versus codomain
 
-The codomain $T$ is **declared**; the image is **computed**. Always $\operatorname{Im}(f) \subseteq T$, and equality is a special property with a name (surjectivity, module 3.6).
+The codomain is **declared**; the image is **computed**. The image always sits inside the codomain, and the two being equal is a special property with a name (surjectivity, module 3.6).
 
-Take squaring, as a function from the numbers on the line to themselves. A square is never negative, and every non-negative number is somebody's square, so
-$$
-\operatorname{Im}(f) = \{\, y \in \mathbb{R} \mid y \geq 0 \,\},
-$$
+Take squaring, as a function from the numbers on the line to themselves. A square is never negative, and every non-negative number is somebody's square — so the image is exactly the numbers that are zero or bigger, which is **not** the whole codomain. Nothing negative is ever attained.
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the image of $f$ is the numbers that are zero or bigger.*
+Take $g(x) = 2^x$ instead. Powers of $2$ are always positive, so its image is the numbers **strictly** bigger than zero — and $0$ itself is never reached, however negative the exponent gets.
 
-which is not all of $\mathbb{R}$ — nothing negative is attained.
-
-Take $g(x) = 2^x$, again on the whole number line. Powers of $2$ are always positive, so
-$$
-\operatorname{Im}(g) = \{\, y \in \mathbb{R} \mid y > 0 \,\},
-$$
-
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the image of $g$ is the numbers strictly bigger than zero.*
-
-and $0$ itself is never attained, however negative the exponent gets.
-
-Note the word *range* is best avoided: some authors use it for the image, others for the codomain. Say which you mean.
+Avoid the word *range*: some authors use it for the image and others for the codomain. Say which you mean.
 
 ## Worked pre-images: $f(x) = x^2$
 
@@ -80,6 +66,8 @@ $$
 *Symbol by symbol: $\emptyset$ is the empty collection. So the line reads: tracing back from $3$ gives its two square roots, tracing back from $0$ gives just $0$, and tracing back from $-5$ gives nothing at all.*
 
 The last one is not an error. No real number squares to $-5$, so nothing lands in $\{-5\}$, and the pre-image is empty. Pre-images of sets outside the image are always empty, and this is normal.
+
+### Tracing back from an interval
 
 Pre-images of intervals:
 $$
@@ -118,7 +106,7 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\emptyset$ is the empty collection. So the line reads: a target is in the image exactly when at least one input lands on it.*
 
-Both sides say *something lands on $t$* — one looking forward, one looking back. The proof is immediate from the definitions: being in the image means some input has $f$ of it = t$, and $f^{-1}(\{t\}) \neq \emptyset$ means some $s$ has $f(s) \in \{t\}$ — the same statement.
+Both sides say *something lands on $t$*, one looking forward and one looking back. The proof is immediate from the definitions: being in the image means some input has $f$ of it = t$, and $f^{-1}(\{t\}) \neq \emptyset$ means some $s$ has $f(s) \in \{t\}$ — the same statement.
 
 The pre-image of a **single** output, $f^{-1}(\{t\})$, is worth looking at on its own: it is everything that lands on the one point $t$. The whole of the next three modules can be phrased in terms of those sets:
 
@@ -129,12 +117,12 @@ The pre-image of a **single** output, $f^{-1}(\{t\})$, is worth looking at on it
 | surjective (3.6) | **at least** one input lands on each output |
 | bijective (3.8) | **exactly** one input lands on each output |
 
-That table is worth memorizing now; it makes the next four modules look like one idea.
+That table is worth memorizing now — it makes the next four modules look like one idea rather than four.
 
 <Warning title="f⁻¹ here is not an inverse function">
-$f^{-1}(U)$ is defined for **every** function $f$, with no hypotheses at all. It takes a *subset of $T$* and returns a *subset of $S$*.
+The traced-back set is defined for **every** function, with no conditions at all: it takes a *collection* of targets and returns a *collection* of inputs.
 
-An inverse *function*, written the same way but going from $T$ back to $S$, takes an element and returns an element, and exists only when $f$ is a bijection (module 3.9). With $f(x) = x^2$ on $\mathbb{R}$, the pre-image $f^{-1}(\{9\}) = \{-3,3\}$ exists, while no inverse function does.
+An inverse *function*, written the same way, takes a single target and returns a single input — and exists only when $f$ is a bijection (module 3.9). With $f(x) = x^2$ on $\mathbb{R}$, the pre-image $f^{-1}(\{9\}) = \{-3,3\}$ exists, while no inverse function does.
 
 The notation is unfortunate and universal. Distinguish them by what goes in: a set means pre-image, an element means inverse function.
 </Warning>

@@ -20,11 +20,19 @@ const err = (f, m) => { console.error(`  ERROR  ${f}\n         ${m}`); errors++;
 const warn = (f, m) => { console.warn(`  warn   ${f}\n         ${m}`); warnings++; };
 
 // Strip frontmatter, imports, JSX tags, and code spans so we lint prose + math.
+// Components are capitalised; the only lowercase tags the content uses are
+// these five. Stripping *any* `<letter…>` looked reasonable and quietly ate
+// math: `a<b \text{ and } c>0` contains `<b \text{ and } c>`, which matched the
+// tag pattern, so the display was truncated and the blank line after it
+// vanished — merging the display with the paragraph two below and reporting a
+// perfectly well-glossed line as unglossed. Math is full of `<`; tag-stripping
+// has to be precise about what a tag is.
+const TAG = /<\/?(?:[A-Z][A-Za-z0-9]*|div|span|br|em|strong|b|i|sup|sub)\b[^>]*>/g;
 function body(src) {
   return src
     .replace(/^---[\s\S]*?---\n/, '')
     .replace(/^import .*$/gm, '')
-    .replace(/<\/?[A-Za-z][^>]*>/g, '')
+    .replace(TAG, '')
     .replace(/`[^`]*`/g, '');
 }
 

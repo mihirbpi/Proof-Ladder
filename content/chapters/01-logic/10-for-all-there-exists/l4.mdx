@@ -6,7 +6,6 @@ newTerms: ["quantifier", "*for all* quantifier", "*there exists* quantifier", "u
 anchorExample: "3x − 1 = 0"
 ---
 
-import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
 Module 1.1 noted that $x \geq 1$ is not a statement: the $x$ has not been pinned down, so it has no truth value yet. There are two ways to pin it down, and they are called **quantifiers**.
@@ -111,7 +110,9 @@ $$\exists y \in \mathbb{R},\; \forall x \in \mathbb{R},\; x + y = 0$$
 
 It says: there is one single number that cancels **everything** at once. **False** — no fixed number cancels both $1$ and $2$.
 
-Same symbols, same condition, opposite verdicts — and the only difference is which quantifier came first.
+## Which one comes first decides everything
+
+Same symbols, same condition, opposite verdicts — and the only difference is the order.
 
 The rule of thumb: **a later choice may depend on an earlier one; an earlier choice may not depend on a later one.** Reading the line left to right is reading the order the choices get made in.
 

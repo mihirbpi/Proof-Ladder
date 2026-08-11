@@ -59,7 +59,7 @@ Notice that we needed *two* rules in sequence: the quantifier rule to get past t
 Most theorems say *for every $x$ in $S$, if the hypothesis holds then so does the conclusion*. Since denying an if–then claim means the hypothesis holds while the conclusion fails (module 1.7), the negation is: **some $x$ in $S$ satisfies the hypothesis and fails the conclusion.**
 That is the recipe for a counterexample. Not an element failing the hypothesis — such an element makes the conditional vacuously true and refutes nothing.
 
-Example. *For every real $x$, if $x^2 > 1$ then $x > 1$* is false, and the counterexample must satisfy $x^2 > 1$ *and* $x \leq 1$: take $x = -3$. Offering $x = 0.5$ would be useless — it fails the hypothesis.
+Example. *For every real $x$, if $x^2 > 1$ then $x > 1$* is false, and a counterexample has to satisfy $x^2 > 1$ **and** $x \leq 1$: take $x = -3$. Offering $x = 0.5$ would be useless — it fails the hypothesis.
 
 <Warning title="Three standard errors">
 **Over-negation.** The negation of *every $x$ has the property* is **not** *every $x$ lacks it*. "Not every prime is odd" ≠ "every prime is even."
@@ -82,13 +82,17 @@ $$
 
 Concretely: the denial of *every number has something you can add to it to get zero* is *some number has nothing that works* — and that inner *for every* is what says **nothing at all** works for that one number.
 
-**Say the two rules out loud and they stop looking like symbol-pushing.**
+### Say the rules out loud
 
-*Denying "everything has it" gives "something fails it."* If it is not true that every student passed, then some student did not pass. You do not have to know which one — the denial does not tell you, and does not have to.
+They stop looking like symbol-pushing the moment you do.
 
-*Denying "something has it" gives "everything fails it."* If it is not true that some student passed, then every student failed. This is the stronger-sounding of the two, and it is exactly as mechanical.
+*Denying "everything has it" gives "something fails it."* If it is not true that every student passed, then some student did not — and you do not have to know which one.
 
-The procedure is mechanical, which is the point: you never have to be clever here, only careful. Take:
+*Denying "something has it" gives "everything fails it."* If it is not true that some student passed, then every student failed.
+
+### A worked example: no largest prime
+
+The procedure is mechanical, which is the point — you never have to be clever here, only careful. Take:
 $$
 \forall x \in \mathbb{Z}\;\; \exists y \in \mathbb{Z},\;\; \big(y > x \wedge y \text{ is prime}\big).
 $$
