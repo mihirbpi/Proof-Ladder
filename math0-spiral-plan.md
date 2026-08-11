@@ -315,7 +315,7 @@ used `∅` at `l1`, and §6.2 forbade `Σ` at `l4` while §6.3 required it. All 
 now fixed in Part B. The lesson is that neither document is self-checking; the lint
 is what keeps them honest.
 
-**Two rules govern use, not just level:**
+**Three rules govern use, not just level:**
 
 - **Not before.** A symbol introduced in module X.Y is available from X.Y onward —
   the course is read in order. Using it earlier is permitted only as a **signposted
@@ -324,6 +324,31 @@ is what keeps them honest.
 - **Glossed on first use.** Anything introduced at a level is glossed in words, in
   every module that uses it. A module that *borrows* a term must reintroduce it or
   cross-reference the module that defines it.
+- **Translated, not just keyed.** At `l4`, **every** notated display in **every**
+  chapter carries a plain-English reading — the sentence a teacher would say out
+  loud — introduced by "So the line reads:". A symbol key on its own is a
+  dictionary, and a dictionary is not a translation: a reader handed "∈ is *is
+  in*, ∧ is *and*" under a line still does not know what the line said. The
+  requirement tapers above `l4` (`GLOSS_THROUGH_CHAPTER` in the lint).
+
+**How much notation a level may carry.** Permission is not the same as density: a
+page may use only allowed symbols and still be unreadable because it is *solid*
+with them. The lint measures marks per 1000 words of exposition (proofs excluded,
+since inside a proof the symbols are the medium) and enforces a ramp:
+
+| Level | Grade | Marks per 1000 words | What the page looks like |
+|---|---|---|---|
+| `l3` | 5 | ~0 | words throughout; each symbol *shown* once in the module that introduces it, then dropped |
+| `l4` | 8 | ≤ 45 | statements notated and fully translated; **proofs in words** |
+| `l5` | 9 | ≤ 70 | notation in statements and in short steps; longer arguments still in words |
+| `l6` | 10 | ≤ 85 | symbolic argument normal; glossed through Chapter 6 |
+| `l7` | 12 | ≤ 105 | reads like a textbook; glossed through Chapter 5 |
+| `l8` | college | ≤ 130 | unrestricted |
+
+The earlier caps were each level's own 90th percentile, which ratified whatever
+the level happened to look like — and left `l4` (110) heavier than `l6` (90),
+which is backwards. These are a deliberate ramp, and the gap between a level's
+current density and its cap is the remaining worklist.
 
 | Level | Newly permitted | Introduced at | Explicitly banned |
 |---|---|---|---|

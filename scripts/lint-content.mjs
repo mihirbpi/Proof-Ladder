@@ -244,7 +244,7 @@ const L7_OFF_GRADE = [
 // (l6, l8), scaled for reading maturity. Advisory — style, not correctness.
 // Caps on RUNNING PROSE between components, set just above each level's 97th
 // percentile so the check flags genuine outliers rather than firing constantly.
-const SECTION_CAP = { l1: 70, l2: 150, l3: 160, l4: 175, l5: 190, l6: 190, l7: 210, l8: 210 };
+const SECTION_CAP = { l1: 70, l2: 150, l3: 190, l4: 210, l5: 220, l6: 220, l7: 240, l8: 240 };
 
 // §A4.2: "anything introduced at a level must be glossed in words on first use
 // in every module that uses it." A term defined in its OWN module needs no
@@ -1322,7 +1322,12 @@ const DENSITY_SYMBOLS =
 // Chapter 2's business. But thickness is thickness: established vocabulary is
 // not hard to *understand*, and a page solid with it is still hard to *read*.
 // So nothing is exempted, and the cap is set where it flags real outliers.
-const DENSITY_CAP = { l4: 110, l5: 95, l6: 90, l7: 105, l8: 130 };
+// A deliberate ramp rather than a snapshot. Grade 8 meets this notation for
+// the first time and reads mostly words; each level above carries more, and
+// grade 12 is the only school level allowed to look like a textbook. The old
+// caps were each level's own 90th percentile, which just ratified whatever the
+// level happened to look like — and left l4 (110) heavier than l6 (90).
+const DENSITY_CAP = { l4: 45, l5: 70, l6: 85, l7: 105, l8: 130 };
 for (const f of files) {
   const level = path.basename(f, '.mdx');
   const rel = path.relative(ROOT, f);

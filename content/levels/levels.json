@@ -65,8 +65,8 @@
       "grade": "Grade 5",
       "readingTarget": "Grade 5 · 830–1010L",
       "wordBudget": [
-        550,
-        700
+        600,
+        800
       ],
       "notation": "Adds × ÷ fractions decimals, { } ∈ ∉ ⊆ ∪ ∩, set names as labels. No letters standing for numbers, no negatives.",
       "allowedSymbols": [
@@ -97,8 +97,8 @@
       "grade": "Grade 8",
       "readingTarget": "Grade 8 · 1010–1185L",
       "wordBudget": [
-        590,
-        750
+        750,
+        1000
       ],
       "notation": "Adds letters as numbers, negatives, exponents, √, ¬ ∧ ∨ ⇒ ≠ ∅, set-builder, ℕ ℤ ℚ ℝ. Not f(x) — that is high school.",
       "allowedSymbols": [
@@ -142,8 +142,8 @@
       "grade": "Grade 9",
       "readingTarget": "Grade 9 · 1050–1260L",
       "wordBudget": [
-        734,
-        845
+        850,
+        1050
       ],
       "notation": "Adds ∀, ∃, ⇔, | (divides), interval notation, f(x), f: S → T.",
       "allowedSymbols": [
@@ -192,8 +192,8 @@
       "grade": "Grade 10",
       "readingTarget": "Grade 10 · 1080–1305L",
       "wordBudget": [
-        870,
-        970
+        900,
+        1100
       ],
       "notation": "Adds ≡, ∃!, f⁻¹, ∘, ℕ ℤ ℚ ℝ ℂ.",
       "allowedSymbols": [
@@ -250,8 +250,8 @@
       "grade": "Grade 12",
       "readingTarget": "Grade 12 · 1180–1380L",
       "wordBudget": [
-        1070,
-        1190
+        1100,
+        1300
       ],
       "notation": "Full Math 0 notation: adds Σ, ∏, factorials, e^{iθ}.",
       "allowedSymbols": [
