@@ -16,9 +16,15 @@ Pre-images commute with every set operation:
 $$
 f^{-1}(B\cup C) = f^{-1}(B)\cup f^{-1}(C)
 $$
+
+*So the line reads: the things landing in $B$ or $C$ are exactly the things landing in $B$, together with the things landing in $C$.*
+
 $$
 f^{-1}(B\cap C) = f^{-1}(B)\cap f^{-1}(C)
 $$
+
+*So the line reads: the things landing in both $B$ and $C$ are exactly the things that land in $B$ and also land in $C$.*
+
 $$
 f^{-1}(\overline{B}) = \overline{f^{-1}(B)}
 $$
@@ -91,6 +97,9 @@ The right side found $4$ in both images, from *different* sources. The left side
 Compare the two membership conditions:
 
 $$s \in f^{-1}(B) \iff f(s)\in B \qquad\text{(nothing to search for)}$$
+
+*So the line reads: $s$ traces back from $B$ exactly when its own output lands in $B$ — one thing to check, not a search.*
+
 $$t \in f(A) \iff \exists a\in A,\ f(a)=t \qquad\text{(existential)}$$
 
 *Symbol by symbol: $\subsetneq$ is "sits strictly inside", $\subseteq$ is "sits inside", $\notin$ is "is not in", $\in$ is "is in", $\emptyset$ is the empty collection. So the line reads: the difference is the search: tracing back needs none, going forwards needs one, and that is the whole asymmetry.*
