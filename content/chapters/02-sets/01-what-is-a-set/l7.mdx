@@ -2,7 +2,7 @@
 level: l7
 title: What is a set?
 readingTimeMin: 10
-newTerms: ["set", "element", "empty set", "well-defined", "being fixed by its members"]
+newTerms: ["set", "element", "empty set", "being fixed by its members"]
 anchorExample: "roots of sin x and cos x"
 ---
 
@@ -12,7 +12,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 Chapter 1 supplied a language for making claims. This chapter supplies the objects the claims are about. The organizing fact is that mathematics has settled on a single kind of object — the set — from which numbers, functions, relations, spaces, and groups are all constructed.
 
-A **set** is a well-defined collection of objects, its **elements**. The membership relation is written
+A **set** is a collection of objects, its **elements**, with no doubt about what is in it. The membership relation is written
 $$
 x \in S, \qquad x \notin S,
 $$
@@ -40,37 +40,43 @@ The last point deserves emphasis. Two wildly different descriptions may denote t
 
 Note also that being fixed by its members is what makes §2.6's double-inclusion method correct: since $S = T$ means the two membership conditions are equivalent, and an equivalence is two implications (§1.9), a set equality is exactly two subset proofs.
 
-## Well-definedness, and what it is protecting against
+## Why "no doubt about what is in it" is the whole game
 
-A collection qualifies as a set only when membership is unambiguous for every candidate object. "The set of large integers" fails: "$10^6$ is large" is not a statement, so nothing about the collection can be proved.
+A collection counts as a set only when, handed any object, you can say yes or no. "The set of large integers" fails at once: "$10^6$ is large" is not a statement, because *large* has not been pinned down, so there is nothing to prove about the collection.
 
-But the requirement is doing far more work than excluding vague adjectives. Suppose every describable collection were a set. Define
+Ruling out vague adjectives is the easy half. The harder half is that the rule is what stops the whole subject collapsing. Suppose any collection you can describe were a set. Then describe this one:
 $$
 R = \{x \mid x \notin x\}.
 $$
 
 *Symbol by symbol: $\notin$ is "is not in", the bar $\mid$ is "such that".*
 
-Then $R \in R \Leftrightarrow R \notin R$ — a contradiction with no escape route. This is **Russell's paradox** (1901), and it destroyed Frege's foundations of arithmetic while the second volume was in press.
+## The question with no good answer
 
-The modern repair is that unrestricted comprehension is not permitted. In Zermelo–Fraenkel set theory you may not form $\{x \mid p(x)\}$ out of nothing; you may only *separate* a subcollection out of a set you already have:
+Now ask the one question there is to ask: is $R$ in $R$?
+
+If it is, then by its own description it is not. If it is not, then by its own description it is. Either answer gives the other one, and there is no third option and no way out. So $R$ cannot be a set at all, and the collection of everything cannot be either — if it were, you could pick $R$ out of it. This is **Russell's paradox**, found in 1901, and it is the reason set-builder notation is written the way it is.
+
+The fix mathematicians settled on is a single rule, and you have been following it since §2.2 without being told why: **you never build a set out of nothing.** You start with a set you already have and pick out the part of it you want. Write
 $$
-\{x \in A \mid p(x)\} \quad\text{is a set, whenever $A$ is.}
+\{x \in A \mid p(x)\},
 $$
 
-*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
+*So the line reads: the collection of those $x$ in $A$ for which $p(x)$ is true.*
 
-Run Russell's construction under this restriction and you get, for any set $A$, that $R_A = \{x \in A \mid x \notin x\} \notin A$ — no contradiction, just the useful theorem that no set contains everything.
+never $\{x \mid p(x)\}$ on its own. The starting set $A$ is what keeps the paradox out, because $R$ has nowhere to be built from.
 
 <Warning title="Distinguish three objects">
 $0$ is a number. $\emptyset$ is the set with no elements. $\{\emptyset\}$ is a set with exactly one element, that element being $\emptyset$. So $|\emptyset| = 0$ but $|\{\emptyset\}| = 1$, and $\emptyset \in \{\emptyset\}$ while $\emptyset \notin \emptyset$.
 
-The distinction is not pedantry: the von Neumann construction of the naturals is $0 := \emptyset$, $1 := \{\emptyset\}$, $2 := \{\emptyset, \{\emptyset\}\}$, and if you cannot keep these apart the construction is unreadable.
+This is not fussiness. A box with nothing in it is not the same thing as nothing, and it is not the number zero either — you can pick the box up. Chapter 7 builds the counting numbers out of nothing but empty boxes nested inside each other, and that only reads as anything if these three stay apart.
 </Warning>
 
 ## The empty set is unique
 
-There is exactly one empty set. Suppose $\emptyset_1$ and $\emptyset_2$ both have no elements. By being fixed by its members they are equal iff $\forall x\,(x \in \emptyset_1 \Leftrightarrow x \in \emptyset_2)$. Both sides of the if-and-only-if statement are false for every $x$, so the if-and-only-if statement holds vacuously (§1.5) for every $x$, so the sets are equal. The article in "*the* empty set" is earned, not assumed — and note that the argument is a small piece of vacuous reasoning doing real work.
+There is exactly one empty set. Suppose $\emptyset_1$ and $\emptyset_2$ both have no elements. A set is fixed by its members, so the two are equal exactly when every $x$ is in one if and only if it is in the other. Take any $x$. It is in neither, so both halves of the "if and only if" are false — and an "if and only if" with two false halves is true, since it only ever claims the two sides match, and here they match by both failing (§1.5). That holds for every $x$, so the sets are equal.
+
+So "*the* empty set" earns its *the*. Notice what did the work: an argument about a case that never comes up, which is exactly the kind of reasoning §1.5 warned would feel like cheating and is not.
 
 ## The standard number systems
 
@@ -82,9 +88,9 @@ $$
 
 *Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers.*
 
-Each is constructed to repair a failure of closure in its predecessor: $\mathbb{Z}$ makes subtraction total, $\mathbb{Q}$ makes division by nonzero elements total, $\mathbb{R}$ fills the order-theoretic gaps ($\sqrt 2 \notin \mathbb{Q}$, §4.7), $\mathbb{C}$ makes every non-constant polynomial have a root. Chapter 4 treats the algebraic structure of these; Chapter 5 builds $\mathbb{C}$; Chapter 7 builds $\mathbb{N}$ from nothing.
+Each one is built to fix something the one before it could not do. In the counting numbers you cannot always subtract, so the integers were built. In the integers you cannot always divide, so the fractions were built. The fractions leave gaps on the line — $\sqrt 2$ sits in one of them (§4.7) — so the real numbers filled them. And in the real numbers $x^2 = -1$ has no answer, so the complex numbers were built. Chapter 4 treats the algebraic structure of these; Chapter 5 builds $\mathbb{C}$; Chapter 7 builds $\mathbb{N}$ from nothing.
 
-Strictly, the containments are abuses of notation: the integer $3$ and the rational $3/1$ and the real $3.000\ldots$ are constructed as different objects, and what actually holds is that each system sits naturally in the next. Everyone writes $\subseteq$ and identifies along the embeddings. It is worth knowing that this is what is being done.
+Strictly speaking those $\subseteq$ signs are a convenient lie. The integer $3$, the fraction $3/1$ and the real number $3.000\ldots$ are built as three different objects; what is really true is that each system contains a perfect copy of the one before it. Everyone writes $\subseteq$ anyway and treats the copy as the original. That is fine, and worth knowing you are doing.
 
 <Aside>
 Whether $0 \in \mathbb{N}$ is a convention that splits by discipline: set theory, logic, and computer science include it; much of number theory does not. This course includes it. The convention affects statements, never content — but it affects enough statements that checking a book's first page is a habit worth having.
@@ -92,9 +98,11 @@ Whether $0 \in \mathbb{N}$ is a convention that splits by discipline: set theory
 
 ## "Set" is a word we never define
 
-"A well-defined collection" is not a definition — *collection* is a synonym. This is unavoidable and deliberate. Any axiomatic theory must begin with undefined undefined starting words; in ZF these are "set" and "$\in$", and their meaning is fixed not by definition but by the axioms they satisfy. Chapter 7 does the same for $\mathbb{N}$: *zero* and *successor* go undefined, and the Peano axioms pin down their behavior.
+Look again at the opening line of this module. "A collection of objects" is not a definition of *set* — *collection* is just another word for the same thing, and if you chased it you would find *group of things*, and then you would be going in circles.
 
-This is the mature attitude toward mathematical objects generally. What a set *is* turns out to matter far less than what can be proved about it.
+This is deliberate, and it is unavoidable. Every subject built from rules has to start somewhere, with a few words left undefined on purpose. For sets the undefined words are *set* and $\in$; what pins them down is not a definition but the rules they obey. Chapter 7 does the same thing to the counting numbers: *zero* and *next* are never defined, and the rules do the work instead.
+
+So what a set *is* matters less than what you can prove about it. That is not a dodge; it is how the subject is built.
 
 <WhereThisGoes level="l7">
 

@@ -35,7 +35,7 @@ Said with pre-images (module 3.3): $f$ is injective iff $|f^{-1}(\{t\})| \leq 1$
 
 The template is fixed:
 
-> Let $s_1, s_2 \in S$ with $f(s_1) = f(s_2)$. … Therefore $s_1 = s_2$. Hence $f$ is injective.
+> Let $s_1, s_2 \in S$ with $f(s_1) = f(s_2)$. … Therefore $s_1 = s_2$. So $f$ is injective.
 
 > **Proposition.** $f : \mathbb{Z} \to \mathbb{Z}$, $f(n) = 2n$, is injective.
 
@@ -50,14 +50,14 @@ Let $a, b \in \mathbb{Z}$ with $2a = 2b$.
 
 Suppose $a \neq b$. Then one of them is smaller; say $a < b$, since the other case is the same argument with the two letters swapped. Doubling preserves order, so $a < b$ gives $2a < 2b$ — contradicting $2a = 2b$.
 
-Hence $a = b$, and $f$ is injective.
+So $a = b$, and $f$ is injective.
 </Proof>
 
-That argument proves something more general and worth stating: **every strictly increasing rule is injective.** If $a < b$ always forces $f(a) < f(b)$ (or always forces $f(a) > f(b)$), then distinct inputs cannot share an output. This is by far the commonest way injectivity gets established in practice.
+That argument proves something more general and worth stating: **every strictly increasing rule is injective.** If $a < b$ always forces $f(a) < f(b)$ (or always forces $f(a) > f(b)$), then distinct inputs cannot share an output. This is by far the commonest way injectivity gets proved in practice.
 
 ## Disproving injectivity
 
-One collision suffices — module 1.11's *one bad apple*, since injectivity is a universal claim.
+One collision is enough — module 1.11's *one bad apple*, since injectivity is a universal claim.
 
 **$f(x) = x^2$ on $\mathbb{R}$:** $f(3) = f(-3) = 9$ with $3 \neq -3$. Not injective.
 
@@ -75,7 +75,7 @@ Changing the domain changes the function (module 3.1), so it can change the answ
 
 ## Injectivity and the pre-image
 
-Injective functions are the ones whose images behave. Module 3.4 noted that $f(A \cap B) \subseteq f(A) \cap f(B)$ can be strict; equality for all $A, B$ holds precisely when $f$ is injective. Likewise $A = f^{-1}(f(A))$ for all $A \subseteq S$ exactly when $f$ is injective.
+Injective functions are the ones whose images behave. Module 3.4 noted that $f(A \cap B) \subseteq f(A) \cap f(B)$ can be strict; equality for all $A, B$ holds exactly when $f$ is injective. Likewise $A = f^{-1}(f(A))$ for all $A \subseteq S$ exactly when $f$ is injective.
 
 So "injective" is not merely a curiosity about arrows. It is the condition under which the forward direction stops losing information.
 

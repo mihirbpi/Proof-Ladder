@@ -29,7 +29,7 @@ We prove the contrapositive: for every real number $x$, if $x \geq 0$ then $x^3 
 
 Let $x \geq 0$. Since the real numbers's ordering is compatible with its arithmetic, the product of two non-negative elements is non-negative; applying this to $x$ and $x$ gives $x^2 \geq 0$, and applying it to $x^2$ and $x$ gives $x^3 \geq 0$.
 
-Thus $x \geq 0 \Rightarrow x^3 \geq 0$. By contraposition, $x^3 < 0 \Rightarrow x < 0$, which is the proposition.
+So $x \geq 0 \Rightarrow x^3 \geq 0$. By contraposition, $x^3 < 0 \Rightarrow x < 0$, which is the proposition.
 </Proof>
 
 Observe what the switch bought: no case analysis, no appeal to the behavior of cube roots, and a hypothesis ($x \geq 0$) that could be fed directly into a known lemma. That is the general pattern — contraposition trades an uninformative hypothesis for an informative one.
@@ -84,7 +84,7 @@ Contradiction gives you a strictly larger set of assumptions to work with, which
 A useful self-check: write your contradiction proof, then look at whether the assumption $p$ was ever used. If it was not, you have written a contrapositive proof inside a contradiction wrapper. Remove the wrapper. Referees notice.
 
 <Aside>
-There is an asymmetry the table hides. $(p \Rightarrow q) \Rightarrow (\neg q \Rightarrow \neg p)$ holds in intuitionistic logic; the converse does not, since recovering $q$ from $\neg\neg q$ needs double-negation elimination. So "proof by contrapositive" in the sense used here — proving $\neg q \Rightarrow \neg p$ in order to conclude $p \Rightarrow q$ — is a classical move. In practice this matters only if you care whether your proof yields an algorithm; but that is precisely what constructive mathematics and dependent type theory do care about.
+There is an asymmetry the table hides. $(p \Rightarrow q) \Rightarrow (\neg q \Rightarrow \neg p)$ holds in intuitionistic logic; the converse does not, since recovering $q$ from $\neg\neg q$ needs double-negation elimination. So "proof by contrapositive" in the sense used here — proving $\neg q \Rightarrow \neg p$ in order to conclude $p \Rightarrow q$ — is a classical move. In practice this matters only if you care whether your proof gives an algorithm; but that is exactly what constructive mathematics and dependent type theory do care about.
 </Aside>
 
 <WhereThisGoes level="l7">

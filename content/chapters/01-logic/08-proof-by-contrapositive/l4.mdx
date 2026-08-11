@@ -11,7 +11,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 1.7 established $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$. Because the two are equivalent, a proof of either is a proof of both. **Proof by contrapositive** exploits this: when the hypothesis $p$ is awkward, prove $\neg q \Rightarrow \neg p$ instead.
+Module 1.7 proved $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$. Because the two are equivalent, a proof of either is a proof of both. **Proof by contrapositive** exploits this: when the hypothesis $p$ is awkward, prove $\neg q \Rightarrow \neg p$ instead.
 
 ## The proposition
 
@@ -36,7 +36,7 @@ We prove the contrapositive: for every real number $x$, if $x \geq 0$ then $x^3 
 
 Let $x$ be a real number with $x \geq 0$. The product of two non-negative real numbers is non-negative, so $x \cdot x = x^2 \geq 0$. Applying the same fact to $x^2 \geq 0$ and $x \geq 0$ gives $x^2 \cdot x = x^3 \geq 0$.
 
-Hence $x \geq 0 \Rightarrow x^3 \geq 0$. Since this is the contrapositive of the proposition, and a conditional is logically equivalent to its contrapositive, the proposition follows.
+So $x \geq 0 \Rightarrow x^3 \geq 0$. Since this is the contrapositive of the proposition, and a conditional is logically equivalent to its contrapositive, the proposition follows.
 </Proof>
 
 Three lines, no cases, no circularity.
@@ -56,7 +56,7 @@ We prove the contrapositive: if $n$ is even then $n^2$ is even.
 
 Suppose $n$ is even, so $n = 2k$ for some integer $k$. Then
 $$n^2 = (2k)^2 = 4k^2 = 2(2k^2).$$
-Since $2k^2$ is an integer, the integer $n^2$ is twice an integer and hence even.
+Since $2k^2$ is an integer, the integer $n^2$ is twice an integer and so even.
 
 This proves the contrapositive, and therefore the proposition.
 </Proof>

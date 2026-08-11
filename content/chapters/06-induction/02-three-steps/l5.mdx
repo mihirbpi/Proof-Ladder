@@ -34,14 +34,14 @@ $$
 
 and you are assuming $A(k)$ for one arbitrary $k$ — which is a different, weaker thing.
 
-More precisely, the inductive step proves the conditional
+More exactly, the inductive step proves the conditional
 $$
 A(k) \Rightarrow A(k+1),
 $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces".*
 
-and module 1.5 says a conditional can be established without knowing whether its hypothesis holds. You prove *if it falls, the next falls*. Whether any actually fall is what the base case settles.
+and module 1.5 says a conditional can be proved without knowing whether its hypothesis holds. You prove *if it falls, the next falls*. Whether any actually fall is what the base case settles.
 
 **The step is a promise about knock-on effects. The base case cashes it in.**
 
@@ -85,7 +85,7 @@ By induction, $A(n)$ holds for every integer $n \geq 1$.
 <Warning title="Do not start from A(k+1) and work backwards to something true">
 Here is the same problem written the wrong way:
 
-> $\frac{(k+1)(k+2)}{2} = \frac{k(k+1)}{2} + (k+1)$, so $\frac{k^2+3k+2}{2} = \frac{k^2+3k+2}{2}$, which is true. Hence $A(k+1)$. ✗
+> $\frac{(k+1)(k+2)}{2} = \frac{k(k+1)}{2} + (k+1)$, so $\frac{k^2+3k+2}{2} = \frac{k^2+3k+2}{2}$, which is true. So $A(k+1)$. ✗
 
 Every line is a true equation, and the argument is worthless. It starts by writing down what you are trying to prove and manipulates it until it becomes obvious — but *"$P$ implies something true"* tells you nothing about $P$. Every false statement implies plenty of true ones.
 
@@ -98,7 +98,7 @@ The wrong version is the most common error in a first induction course, and it i
 
 The base case does not have to be $n = 1$. To prove something for all $n \geq 5$, prove $A(5)$ and the step for $k \geq 5$. The dominoes just start further along.
 
-Getting this wrong breaks proofs quietly. If your step secretly requires $k \geq 2$ — say it divides by $k - 1$ — then a base case at $n = 1$ does not connect to the rest of the chain, and $A(2)$ is never established.
+Getting this wrong breaks proofs quietly. If your step secretly requires $k \geq 2$ — say it divides by $k - 1$ — then a base case at $n = 1$ does not connect to the rest of the chain, and $A(2)$ is never proved.
 
 <Aside>
 Why does the domino argument actually work? Here is the reason, and it is a proof by contradiction (module 2.5).

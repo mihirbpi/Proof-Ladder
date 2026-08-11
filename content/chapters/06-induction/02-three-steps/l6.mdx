@@ -14,7 +14,7 @@ Every induction proof has the same three parts. Writing them in the same order e
 
 ## The template
 
-> **1. State the claim.** Define $A(n)$ precisely and say where it starts.
+> **1. State the claim.** Define $A(n)$ exactly and say where it starts.
 >
 > **2. Base case.** Prove $A(n_0)$.
 >
@@ -45,7 +45,7 @@ And every case is false, because no base case holds. **Condition 2 without condi
 <Warning title="Sometimes you need more than one base case">
 If the inductive step reaches back two cases — deriving $A(k+1)$ from both $A(k)$ and $A(k-1)$ — then two base cases are required, or the chain has no footing.
 
-The Fibonacci numbers are the standard example: $F_{n+1} = F_n + F_{n-1}$, so proofs about them typically need $A(1)$ and $A(2)$ established separately.
+The Fibonacci numbers are the standard example: $F_{n+1} = F_n + F_{n-1}$, so proofs about them typically need $A(1)$ and $A(2)$ proved separately.
 
 The rule: **verify as many base cases as the step consumes.** Count what the step reaches back for, and prove that many.
 </Warning>
@@ -63,9 +63,9 @@ $$\text{for every } k\geq n_0:\quad A(k)\Rightarrow A(k+1).$$
 
 Proving a conditional means assuming the hypothesis and deriving the conclusion (module 1.6). You are not claiming $A(k)$ is true; you are claiming that *if* it is, $A(k+1)$ follows.
 
-Compare with your two-column proofs. *"Given: $\overline{AB}\cong\overline{CD}$"* does not assert that the segments are congruent — it opens a conditional whose hypothesis is that they are. The inductive hypothesis is exactly the same kind of assumption.
+Compare with your two-column proofs. *"Given: $\overline{AB}\cong\overline{CD}$"* does not say that the segments are congruent — it opens a conditional whose hypothesis is that they are. The inductive hypothesis is exactly the same kind of assumption.
 
-And note the $k$ is **arbitrary**, so one argument establishes every link at once. That is module 1.12's *take any one and follow it*, applied to infinitely many implications.
+And note the $k$ is **arbitrary**, so one argument proves every link at once. That is module 1.12's *take any one and follow it*, applied to infinitely many implications.
 
 ## A complete example
 
@@ -117,12 +117,12 @@ Suppose $A(n_0)$ holds and each $A(k)$ implies $A(k+1)$, yet some $A(n)$ fails. 
 
 Now $m\neq n_0$, since $A(n_0)$ holds. So $m-1\geq n_0$, and $m-1\notin F$ because $m$ is the smallest one there — meaning $A(m-1)$ is true. But the inductive step then gives $A(m)$, contradicting $m\in F$.
 
-Hence no such $F$ exists. *Suppose not*, from module 2.5, applied to justify a proof technique.
+So no such $F$ exists. *Suppose not*, from module 2.5, applied to justify a proof technique.
 
 <Aside>
 The smallest-number principle and induction are equivalent — each can be derived from the other — and neither can be proved from nothing. Chapter 7 takes induction as an **axiom** of the counting numbers.
 
 That is the same status as the Parallel Postulate in your geometry course: an assumption, adopted because the mathematics you want requires it, and not derivable from the others.
 
-Note that this fails badly elsewhere. The positive rationals have no smallest member — for any candidate $q$, the number $q/2$ is smaller and still positive. That is the same structural fact as module 4.6's density, and it is precisely why induction has no purchase on $\mathbb{Q}$.
+Note that this fails badly elsewhere. The positive rationals have no smallest member — for any candidate $q$, the number $q/2$ is smaller and still positive. That is the same structural fact as module 4.6's density, and it is exactly why induction has no purchase on $\mathbb{Q}$.
 </Aside>

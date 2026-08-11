@@ -50,7 +50,7 @@ Given it, the step is one line: $k^2 + (2k+1) = (k+1)^2$.
 
 ## The two conditions, separately
 
-Neither condition alone suffices, and constructing the failures is the fastest way to see why both are stated.
+Neither condition alone is enough, and constructing the failures is the fastest way to see why both are stated.
 
 **Base without step.** Verify $A(1)$ and nothing more, and you have verified $A(1)$. Nothing follows about $A(2)$.
 
@@ -58,7 +58,7 @@ Neither condition alone suffices, and constructing the failures is the fastest w
 
 That second example is worth remembering, because it is the shape of the error graders actually see. A student proves the step, finds it convincing, and omits the base case as trivial — and "trivial" and "true" are different claims.
 
-**How many base cases?** As many as the step consumes. If $A(k+1)$ is derived from $A(k)$ alone, one base case suffices. If it reaches back to $A(k-1)$ as well — as every second-order recurrence does — then two are needed, or the chain has no footing.
+**How many base cases?** As many as the step consumes. If $A(k+1)$ is derived from $A(k)$ alone, one base case is enough. If it reaches back to $A(k-1)$ as well — as every second-order recurrence does — then two are needed, or the chain has no footing.
 
 Counting what the step reaches back for, and verifying that many bases, is a mechanical check worth running before submitting any induction proof.
 
@@ -76,12 +76,12 @@ Two of these had been checked past $10^8$ — the third past $10^{51}$ — and a
 Computational evidence and truth are genuinely different things.
 </Warning>
 
-By §1.11 this is structural, not anecdotal: $\forall n\,A(n)$ is refuted by one witness and confirmed by none. Verification is how conjectures are generated and how false ones are killed; it is never how true ones are established.
+By §1.11 this is structural, not anecdotal: $\forall n\,A(n)$ is refuted by one witness and confirmed by none. Verification is how conjectures are generated and how false ones are killed; it is never how true ones are proved.
 
 The practical discipline runs both ways. Compute cases first — to find the right statement, and to avoid attempting to prove something false — then prove.
 
 <Aside>
-The step is a conditional, $A(k)\Rightarrow A(k+1)$, so proving it legitimately assumes $A(k)$ (§1.5). This is not circularity, and the worry that it is dissolves once the quantifier structure is written out: what is proved is $\forall k\,\big(A(k)\Rightarrow A(k+1)\big)$, and nothing in that asserts $A(k)$ for any particular $k$. §6.2 belabors this because it is the sticking point for essentially every student.
+The step is a conditional, $A(k)\Rightarrow A(k+1)$, so proving it legitimately assumes $A(k)$ (§1.5). This is not circularity, and the worry that it is dissolves once the quantifier structure is written out: what is proved is $\forall k\,\big(A(k)\Rightarrow A(k+1)\big)$, and nothing in that says $A(k)$ for any particular $k$. §6.2 belabors this because it is the sticking point for essentially every student.
 </Aside>
 
 <WhereThisGoes level="l7">

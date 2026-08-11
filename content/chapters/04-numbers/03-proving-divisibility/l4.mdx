@@ -31,11 +31,11 @@ Suppose $a \mid b$ and $b \mid c$. Then there exist $j, k \in \mathbb{Z}$ with $
 
 Substituting, $c = (aj)k = a(jk)$.
 
-Since $\mathbb{Z}$ is closed under multiplication, $jk \in \mathbb{Z}$. Hence $a \mid c$.
+Since $\mathbb{Z}$ is closed under multiplication, $jk \in \mathbb{Z}$. So $a \mid c$.
 </Proof>
 
 <Warning title="Fresh names for fresh witnesses">
-Writing $b = ak$ and $c = bk$ with the same $k$ asserts that the two leftover factors are the same number — a hypothesis nobody supplied. The resulting argument proves a strictly weaker statement while appearing to prove the intended one, which is why this error survives casual checking.
+Writing $b = ak$ and $c = bk$ with the same $k$ says that the two leftover factors are the same number — a hypothesis nobody supplied. The resulting argument proves a strictly weaker statement while appearing to prove the intended one, which is why this error survives casual checking.
 </Warning>
 
 ## Products
@@ -61,7 +61,7 @@ using commutativity and associativity of multiplication. Since $jk \in \mathbb{Z
 <Proof>
 Take any $x, y \in \mathbb{Z}$. Since $a \mid b$ and $a \mid c$, there are $j,k \in \mathbb{Z}$ with $b = aj$, $c = ak$. Then
 $$bx + cy = ajx + aky = a(jx + ky).$$
-As $\mathbb{Z}$ is closed under multiplication and addition, $jx + ky \in \mathbb{Z}$. Hence $a \mid (bx+cy)$.
+As $\mathbb{Z}$ is closed under multiplication and addition, $jx + ky \in \mathbb{Z}$. So $a \mid (bx+cy)$.
 </Proof>
 
 Taking $x = y = 1$ gives $a \mid (b+c)$; taking $x = 1, y = -1$ gives $a \mid (b - c)$. This one proposition covers a family of corollaries, and it is the engine of the Euclidean algorithm.

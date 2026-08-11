@@ -18,13 +18,13 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 <Discussion>
   <div slot="know">$n > 0$. Consider $S = \{m - nk : k \in \mathbb{Z}\} \cap \mathbb{Z}_{\geq 0}$, the non-negative numbers of that form.</div>
   <div slot="want">Existence and uniqueness of $(q,r)$.</div>
-  <div slot="how">Existence: $S$ is nonempty (take $k$ very negative) and consists of non-negative integers, so because every non-empty collection of non-negative integers has a smallest member — it has a smallest member $r$, and being smallest forces $r < n$. Uniqueness: two representations differ by a multiple of $n$ smaller than $n$ in absolute value, hence by $0$.</div>
+  <div slot="how">Existence: $S$ is nonempty (take $k$ very negative) and consists of non-negative integers, so because every non-empty collection of non-negative integers has a smallest member — it has a smallest member $r$, and being smallest forces $r < n$. Uniqueness: two representations differ by a multiple of $n$ smaller than $n$ in absolute value, so by $0$.</div>
 </Discussion>
 
 <Proof>
 *Existence.* Let $S = \{m - nk \mid k \in \mathbb{Z}\}\cap \mathbb{Z}_{\geq 0}$. Taking $k = -|m|$ gives $m + n|m| \geq m + |m| \geq 0$, so $S \neq \emptyset$. Every non-empty collection of non-negative integers has a smallest member, so $S$ has a smallest member $r = m - nq$ for some $q \in \mathbb{Z}$, and $r \geq 0$.
 
-If $r \geq n$ then $r - n = m - n(q+1) \geq 0$ lies in $S$ and is smaller than $r$, contradicting the fact that $r$ was the smallest. Hence $0 \leq r < n$.
+If $r \geq n$ then $r - n = m - n(q+1) \geq 0$ lies in $S$ and is smaller than $r$, contradicting the fact that $r$ was the smallest. So $0 \leq r < n$.
 
 *Uniqueness.* Suppose $m = nq_1 + r_1 = nq_2 + r_2$ with $0 \leq r_1, r_2 < n$. Then $n(q_1 - q_2) = r_2 - r_1$, so $n \mid (r_2 - r_1)$. But $|r_2 - r_1| < n$, and the only multiple of $n$ of absolute value less than $n$ is $0$. So $r_1 = r_2$, and then $n(q_1-q_2)=0$ with $n \neq 0$ gives $q_1 = q_2$.
 </Proof>
@@ -61,7 +61,7 @@ We prove the contrapositive (§1.7). Suppose $3 \nmid a$. By the division algori
 If $r=1$: $a^2 - 1 = 9k^2+6k = 3(3k^2+2k)$.
 If $r=2$: $a^2 - 1 = 9k^2+12k+3 = 3(3k^2+4k+1)$.
 
-In both cases the factor left over is an integer by closure, so $3 \mid a^2-1$. The cases are exhaustive, so the contrapositive holds, and hence so does the proposition.
+In both cases the factor left over is an integer by closure, so $3 \mid a^2-1$. The cases are exhaustive, so the contrapositive holds, and so so does the proposition.
 </Proof>
 
 The proof composes five separate tools — contraposition (§1.8), the division algorithm, case analysis (§1.12), closure (§4.1), and divisibility-as-existence (§4.2). None is clever; the skill is selection and order.

@@ -47,7 +47,7 @@ By induction, $A(n)$ holds for all $n \geq 0$.
 <Warning title="Two kinds of unknown, two names">
 The induction variable is $k$. The factor produced by the divisibility hypothesis is a *different* unknown, and must get its own letter.
 
-Writing "$2^{2k}-1 = 3k$" asserts that the leftover factor equals the index — false, and it wrecks the step. This is module 4.3's fresh-name discipline, and it bites harder here because two unknowns coexist.
+Writing "$2^{2k}-1 = 3k$" says that the leftover factor equals the index — false, and it wrecks the step. This is module 4.3's fresh-name discipline, and it bites harder here because two unknowns coexist.
 
 Notice also the small maneuver of rearranging (IH) to $2^{2k} = 3x+1$ before substituting. Solving the hypothesis for the quantity that actually appears in the next case is the standard move, and it is what makes the substitution possible.
 </Warning>
@@ -59,7 +59,7 @@ Notice also the small maneuver of rearranging (IH) to $2^{2k} = 3x+1$ before sub
 | Chapter 6 | base case, inductive hypothesis, step |
 | Chapter 4 | unpack $\mid$ into an equation, do algebra, factor, cite closure |
 
-Neither suffices alone: divisibility cannot reach infinitely many $n$, and induction has nothing to manipulate until $\mid$ is unpacked. Recognizing that a problem calls for two templates at once is the skill this module exercises.
+Neither is enough alone: divisibility cannot reach infinitely many $n$, and induction has nothing to manipulate until $\mid$ is unpacked. Recognizing that a problem calls for two templates at once is the skill this module exercises.
 
 ## A second
 
@@ -76,9 +76,9 @@ $$
 &= 6x + 3k(k+1).
 \end{aligned}
 $$
-Now $k(k+1)$ is a product of consecutive integers, hence even (module 1.12), say $k(k+1) = 2y$ with $y \in \mathbb{Z}$. So the expression is $6x + 6y = 6(x+y)$, and $x + y \in \mathbb{Z}$.
+Now $k(k+1)$ is a product of consecutive integers, so even (module 1.12), say $k(k+1) = 2y$ with $y \in \mathbb{Z}$. So the expression is $6x + 6y = 6(x+y)$, and $x + y \in \mathbb{Z}$.
 
-Hence $6 \mid (k+1)^3-(k+1)$.
+So $6 \mid (k+1)^3-(k+1)$.
 </Proof>
 
 Note that the step needed an *external* lemma — that consecutive integers have an even product — which was proved by cases back in module 1.12. Inductive steps frequently need such inputs, and identifying them is part of the Discussion.

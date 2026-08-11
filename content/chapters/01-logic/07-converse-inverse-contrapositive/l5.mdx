@@ -51,16 +51,16 @@ and the two pairs disagree in rows 2 and 3, so neither pair forces the other.
 The table is conclusive but does not generalize to quantified statements, so here is the argument in words.
 
 <Proof>
-Suppose $p \Rightarrow q$, and suppose $\neg q$. If $p$ held, then $q$ would follow, contradicting $\neg q$. Hence $\neg p$. This proves $\neg q \Rightarrow \neg p$.
+Suppose $p \Rightarrow q$, and suppose $\neg q$. If $p$ held, then $q$ would follow, contradicting $\neg q$. So $\neg p$. This proves $\neg q \Rightarrow \neg p$.
 
-Conversely, suppose $\neg q \Rightarrow \neg p$, and suppose $p$. If $q$ failed, then $\neg p$ would follow, contradicting $p$. Hence $q$. This proves $p \Rightarrow q$.
+Conversely, suppose $\neg q \Rightarrow \neg p$, and suppose $p$. If $q$ failed, then $\neg p$ would follow, contradicting $p$. So $q$. This proves $p \Rightarrow q$.
 </Proof>
 
 ## Why the equivalence is believable
 
-$p \Rightarrow q$ asserts that the situation "$p$ true, $q$ false" never occurs.
+$p \Rightarrow q$ says that the situation "$p$ true, $q$ false" never occurs.
 
-The contrapositive asserts that the combination *$q$ false with $p$ true* never occurs — which is exactly what the original ruled out.
+The contrapositive says that the combination *$q$ false with $p$ true* never occurs — which is exactly what the original ruled out.
 
 Same forbidden situation, described from opposite ends. Two statements that forbid exactly the same thing are the same statement.
 
@@ -93,7 +93,7 @@ So the contrapositive reads: **if $x+y$ is rational, then either $x$ is irration
 A conclusion of the form *this or that* is proved by assuming one half fails and deriving the other:
 
 <Proof>
-Suppose $x + y$ rational, and suppose $x$ rational. Then $y = (x+y) - x$ is a difference of two rationals, hence rational.
+Suppose $x + y$ rational, and suppose $x$ rational. Then $y = (x+y) - x$ is a difference of two rationals, so rational.
 
 So either $x$ is irrational, or $y$ rational — which is the required disjunction. By contraposition, the proposition holds.
 </Proof>
@@ -122,6 +122,6 @@ The negation is not a conditional at all — which is exactly why refuting "if $
 
 ## Vocabulary you will meet again
 
-If $p \Rightarrow q$, then $p$ is a **sufficient** condition for $q$, and $q$ is a **necessary** condition for $p$. The contrapositive is just the second reading of the same fact, which is why they are equivalent. Module 1.9's if-and-only-if statement asserts both roles at once.
+If $p \Rightarrow q$, then $p$ is a **sufficient** condition for $q$, and $q$ is a **necessary** condition for $p$. The contrapositive is just the second reading of the same fact, which is why they are equivalent. Module 1.9's if-and-only-if statement says both roles at once.
 
 And because the contrapositive always shares a truth value with the original, you may **prove it instead** whenever it looks easier. That is module 1.8, and it is one of the most useful techniques in the course.

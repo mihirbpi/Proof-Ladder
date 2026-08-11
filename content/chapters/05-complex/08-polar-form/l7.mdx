@@ -34,7 +34,7 @@ Angles are in **radians** throughout, and not as a matter of taste: an arc of $\
 > **Proposition.** For $z \neq 0$ there is a real $\theta$ with $z = |z|e^{i\theta}$, and any two such angles differ by a whole number of full turns.
 
 <Proof>
-*There is one.* Put $w = z/|z|$. Then $|w| = 1$, so writing $w = u+iv$ gives $u^2+v^2 = 1$ — the point $(u,v)$ is on the unit circle. Going once round the circle, $\theta \mapsto (\cos\theta, \sin\theta)$ passes through every point of it, so some $\theta$ in $[0,2\pi)$ has $\cos\theta = u$ and $\sin\theta = v$. For that $\theta$, $w = e^{i\theta}$ and hence $z = |z|e^{i\theta}$.
+*There is one.* Put $w = z/|z|$. Then $|w| = 1$, so writing $w = u+iv$ gives $u^2+v^2 = 1$ — the point $(u,v)$ is on the unit circle. Going once round the circle, $\theta \mapsto (\cos\theta, \sin\theta)$ passes through every point of it, so some $\theta$ in $[0,2\pi)$ has $\cos\theta = u$ and $\sin\theta = v$. For that $\theta$, $w = e^{i\theta}$ and so $z = |z|e^{i\theta}$.
 
 *Any two differ by full turns.* Suppose $e^{i\theta_1} = e^{i\theta_2}$. Dividing, $e^{i(\theta_1-\theta_2)} = 1$, so $\cos(\theta_1-\theta_2) = 1$ and $\sin(\theta_1-\theta_2) = 0$. The only angles with cosine $1$ are the whole multiples of $2\pi$, so $\theta_1 - \theta_2$ is a whole number of full turns. $\blacksquare$
 </Proof>
@@ -60,7 +60,7 @@ That makes $\arg$ a genuine function, and it costs exactly one thing: a jump. Po
 This is the same repair, with the same side effect, as restricting sine's domain to define $\sin^{-1}$ (§3.9): shrink things until the answer is unique, and accept the seam that leaves.
 
 <Warning title="Three practical hazards">
-**$\tan^{-1}(b/a)$ is not the argument.** Tangent repeats every half turn, so it cannot tell $z$ from $-z$; the quadrant has to be checked separately. Programming languages provide a two-argument `atan2(b, a)` precisely because of this, and its existence is an admission that the one-argument version is wrong half the time.
+**$\tan^{-1}(b/a)$ is not the argument.** Tangent repeats every half turn, so it cannot tell $z$ from $-z$; the quadrant has to be checked separately. Programming languages provide a two-argument `atan2(b, a)` exactly because of this, and its existence is an admission that the one-argument version is wrong half the time.
 
 **$z = 0$ has no argument.** Polar form covers every complex number *except* zero. There is no direction to a point sitting at the origin.
 

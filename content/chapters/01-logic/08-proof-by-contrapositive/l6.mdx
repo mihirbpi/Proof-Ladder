@@ -11,7 +11,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 1.7 established $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$. Since the two are equivalent, proving either proves both.
+Module 1.7 proved $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$. Since the two are equivalent, proving either proves both.
 
 **Proof by contrapositive** exercises that choice deliberately: when the hypothesis you are handed is awkward, prove the contrapositive instead. The named move is **flip it around**.
 
@@ -34,7 +34,7 @@ We prove the contrapositive: if $x \geq 0$ then $x^3 \geq 0$.
 
 Let $x \geq 0$. The product of two non-negative reals is non-negative, so $x^2 = x\cdot x \geq 0$, and then $x^3 = x^2 \cdot x \geq 0$.
 
-Thus $x \geq 0 \Rightarrow x^3 \geq 0$. Since a conditional is logically equivalent to its contrapositive, the proposition follows.
+So $x \geq 0 \Rightarrow x^3 \geq 0$. Since a conditional is logically equivalent to its contrapositive, the proposition follows.
 </Proof>
 
 Three lines, no cases. Note the discipline: **announce the switch in the first line and announce what it gives you in the last.** A reader who misses the announcement will think you proved the wrong statement.
@@ -60,7 +60,7 @@ We prove the contrapositive: if a triangle has two congruent angles, then it has
 
 Suppose $\triangle ABC$ has $\angle B \cong \angle C$. By the converse of the base-angle theorem, the sides opposite those angles are congruent, so $\overline{AC}\cong\overline{AB}$.
 
-Hence the triangle has two congruent sides. By contraposition, the proposition holds.
+So the triangle has two congruent sides. By contraposition, the proposition holds.
 </Proof>
 
 The contrapositive turned a statement about what a figure *lacks* into a statement about what it *has* — and the second kind connects to theorems, while the first does not.

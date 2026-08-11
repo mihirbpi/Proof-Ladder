@@ -33,7 +33,7 @@ and read "$p$ if and only if $q$", abbreviated *iff*. Its truth table is T exact
   ]}
 />
 
-Note the relationship to §1.3's $\equiv$: $p \equiv q$ holds precisely when $p \Leftrightarrow q$ is a tautology. The symbol $\Leftrightarrow$ is a joining word inside statements; $\equiv$ is an assertion about statements. In practice this distinction is often elided, but it is why "$p \Leftrightarrow q$" can be false while "$\equiv$" claims never are.
+Note the relationship to §1.3's $\equiv$: $p \equiv q$ holds exactly when $p \Leftrightarrow q$ is a tautology. The symbol $\Leftrightarrow$ is a joining word inside statements; $\equiv$ is an claim about statements. In practice this distinction is often elided, but it is why "$p \Leftrightarrow q$" can be false while "$\equiv$" claims never are.
 
 Because the definition is a conjunction, **a proof of an if-and-only-if statement is two proofs**. The named move is **check both boxes**.
 
@@ -56,7 +56,7 @@ n^2 = 4k^2 + 4k + 1 = 2\big(2k^2 + 2k\big) + 1,
 $$
 and $2k^2 + 2k \in \mathbb{Z}$, so $n^2$ is odd. Since every integer is even or odd and not both, contraposition gives: $n^2$ even $\Rightarrow$ $n$ even.
 
-Both implications hold, hence the if-and-only-if statement.
+Both implications hold, so the if-and-only-if statement.
 </Proof>
 
 Two observations. First, the directions required different methods — this is typical, and it is why the two halves must be written separately rather than merged into a chain. Second, the (backward) direction used the fact that every integer is even or odd and never both. That fact is not free; it is the $d=2$ case of the division algorithm, and a fully careful treatment proves it (§4.4) before using it here.
@@ -87,7 +87,7 @@ proves $p \iff q$ only if every link is genuinely an if-and-only-if statement. T
 - $a = b \;\Rightarrow\; ac = bc$, and conversely **only if** $c \neq 0$.
 - $x > 0 \wedge y > 0 \Rightarrow xy > 0$, but not conversely.
 
-Solving equations is where this bites. "Solve $\sqrt{x+2} = x$" by squaring gives $x^2 - x - 2 = 0$, i.e. $x \in \{2, -1\}$ — but $x = -1$ fails the original. The squaring step was $\Rightarrow$, not $\iff$, so the final set is a superset of the solution set and must be filtered. Extraneous roots are precisely converse failures.
+Solving equations is where this bites. "Solve $\sqrt{x+2} = x$" by squaring gives $x^2 - x - 2 = 0$, i.e. $x \in \{2, -1\}$ — but $x = -1$ fails the original. The squaring step was $\Rightarrow$, not $\iff$, so the final set is a superset of the solution set and must be filtered. Extraneous roots are exactly converse failures.
 </Warning>
 
 ## Proving several statements equivalent

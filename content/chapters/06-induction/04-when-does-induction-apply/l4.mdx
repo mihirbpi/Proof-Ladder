@@ -14,7 +14,7 @@ Induction requires two things, and both are substantive.
 
 ## Requirement 1: an integer index
 
-The claim must have the form $\forall n \geq n_0,\ A(n)$ with $n$ ranging over integers. Without a discrete index there is no successor, hence no step.
+The claim must have the form $\forall n \geq n_0,\ A(n)$ with $n$ ranging over integers. Without a discrete index there is no successor, so no step.
 
 $$\forall x \in \mathbb{R},\ x^2 \geq 0$$
 
@@ -66,7 +66,7 @@ If $n+1$ is prime, done. Otherwise $n+1 = ab$ with $2 \leq a, b \leq n$ — and 
 <Proof title="Strong induction is ordinary induction">
 Given $A$, define $B(n) := A(n_0)\wedge A(n_0+1)\wedge\cdots\wedge A(n)$.
 
-The strong-induction hypothesis for $A$ is exactly $B(k)$, and $B(k) \Rightarrow A(k+1)$ gives $B(k) \Rightarrow B(k+1)$. So ordinary induction applies to $B$, yielding $B(n)$ — hence $A(n)$ — for all $n$.
+The strong-induction hypothesis for $A$ is exactly $B(k)$, and $B(k) \Rightarrow A(k+1)$ gives $B(k) \Rightarrow B(k+1)$. So ordinary induction applies to $B$, yielding $B(n)$ — so $A(n)$ — for all $n$.
 </Proof>
 
 So strong induction is not a new axiom, only a convenient repackaging. Use it when the decomposition of $n+1$ is not into $n$.

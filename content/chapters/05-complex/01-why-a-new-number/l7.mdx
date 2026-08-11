@@ -11,7 +11,7 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-> **Proposition.** $x^2 \geq 0$ for all $x \in \mathbb{R}$; hence $x^2 + 1$ has no real root.
+> **Proposition.** $x^2 \geq 0$ for all $x \in \mathbb{R}$; so $x^2 + 1$ has no real root.
 
 <Proof>
 Let $x \in \mathbb{R}$. Every real is positive, zero, or negative, so $x>0$, $x=0$, or $x<0$. In the first case $x^2 > 0$ as a product of positives; in the second $x^2 = 0$; in the third $-x > 0$ and $x^2 = (-x)(-x) > 0$. The cases are exhaustive, so $x^2 \geq 0$ and $x^2 + 1 \geq 1 > 0$.
@@ -75,19 +75,19 @@ The question this chapter opened with was whether extending the numbers ever end
 
 > **Fundamental Theorem of Algebra.** Every polynomial equation with complex coefficients has a complex solution.
 
-The striking content is not that $x^2+1$ acquires a root but that adjoining *one* root of *one* polynomial suffices for all of them, including polynomials with complex coefficients. Compare $\mathbb{Q}$, where adjoining $\sqrt2$ leaves $\sqrt3$ missing and no finite extension ever closes: $\overline{\mathbb{Q}}$ is infinite-dimensional over $\mathbb{Q}$, while $\mathbb{C}$ is two-dimensional over $\mathbb{R}$.
+The striking content is not that $x^2+1$ gets a root but that adjoining *one* root of *one* polynomial is enough for all of them, including polynomials with complex coefficients. Compare $\mathbb{Q}$, where adjoining $\sqrt2$ leaves $\sqrt3$ missing and no finite extension ever closes: $\overline{\mathbb{Q}}$ is infinite-dimensional over $\mathbb{Q}$, while $\mathbb{C}$ is two-dimensional over $\mathbb{R}$.
 
 No purely algebraic proof exists, and this is not a gap in knowledge — it cannot exist. The reals are pinned down by their no-gaps property, so any proof of this has to appeal to that somewhere. Every standard proof reaches for something about the plane rather than about algebra — the simplest of them argues that $|p(z)|$ has to bottom out somewhere, and shows the bottom must be zero.
 
 <Aside>
-Historically, quadratics were not the motivation. Cardano's formula for $x^3 = 15x + 4$ passes through $\sqrt{-121}$ and emerges at $x = 4$ — an integer answer reachable only via a detour outside $\mathbb{R}$. Bombelli's 1572 analysis of that computation is where complex numbers were first taken seriously, precisely because they could not be dismissed as answers to unanswerable questions: here they were intermediate steps toward answers everyone accepted.
+Historically, quadratics were not the motivation. Cardano's formula for $x^3 = 15x + 4$ passes through $\sqrt{-121}$ and emerges at $x = 4$ — an integer answer reachable only via a detour outside $\mathbb{R}$. Bombelli's 1572 analysis of that computation is where complex numbers were first taken seriously, exactly because they could not be dismissed as answers to unanswerable questions: here they were intermediate steps toward answers everyone accepted.
 </Aside>
 
 <WhereThisGoes level="l7">
 
 The extension to $\mathbb{C}$ is what makes the algebra of the next two courses uniform.
 
-**In calculus, complex roots explain the shape of partial fractions.** Every real polynomial factors over $\mathbb{R}$ into linear and *irreducible quadratic* factors — and the quadratics are irreducible precisely because their roots are complex. That is why partial-fraction decomposition has two cases, one producing $\frac{A}{x-a}$ and one producing $\frac{Bx+C}{x^2+px+q}$, and why the second integrates to a logarithm plus an arctangent rather than to a logarithm alone.
+**In calculus, complex roots explain the shape of partial fractions.** Every real polynomial factors over $\mathbb{R}$ into linear and *irreducible quadratic* factors — and the quadratics are irreducible exactly because their roots are complex. That is why partial-fraction decomposition has two cases, one producing $\frac{A}{x-a}$ and one producing $\frac{Bx+C}{x^2+px+q}$, and why the second integrates to a logarithm plus an arctangent rather than to a logarithm alone.
 
 **Later, the sign of the discriminant decides between growth and oscillation.** Courses that model springs, circuits and populations reach a stage where a quadratic decides the answer's shape: real roots give growth or decay, complex roots give something that wobbles. It is the same $b^2-4ac$ from your quadratic formula, and the switch from one behavior to the other is Euler's formula (§5.7) doing its work.
 

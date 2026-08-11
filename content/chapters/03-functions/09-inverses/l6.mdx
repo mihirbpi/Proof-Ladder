@@ -52,10 +52,10 @@ Now $g(f(s))$ is the unique element mapping to $f(s)$, which is $s$; and $f(g(t)
 
 *Surjective:* let $t\in T$. Then $f\big(g(t)\big) = t$, so $g(t)$ is a pre-image of $t$.
 
-Hence $f$ is a bijection.
+So $f$ is a bijection.
 </Proof>
 
-**The forward direction is where the definition of bijection earns its keep.** Existence and uniqueness are not two nice properties that happen to travel together — they are precisely the two conditions a rule must satisfy to be a function at all (module 3.1). Surjectivity makes $g$ total; injectivity makes it single-valued.
+**The forward direction is where the definition of bijection earns its keep.** Existence and uniqueness are not two nice properties that happen to travel together — they are exactly the two conditions a rule must satisfy to be a function at all (module 3.1). Surjectivity makes $g$ total; injectivity makes it single-valued.
 
 ## The inverse is unique
 
@@ -66,7 +66,7 @@ Suppose $g_1$ and $g_2$ are both inverses of $f$. Let $t \in T$ be arbitrary.
 
 Since $f\circ g_1 = \operatorname{id}_T$, we have $f\big(g_1(t)\big) = t$, and likewise $f\big(g_2(t)\big)=t$.
 
-So $f\big(g_1(t)\big) = f\big(g_2(t)\big)$. By the theorem $f$ is injective, hence $g_1(t)=g_2(t)$.
+So $f\big(g_1(t)\big) = f\big(g_2(t)\big)$. By the theorem $f$ is injective, so $g_1(t)=g_2(t)$.
 
 Since $t$ was arbitrary, $g_1 = g_2$.
 </Proof>
@@ -108,7 +108,7 @@ Socks then shoes; to undo, shoes off then socks off. Applied to a congruence pro
 
 ## Why congruence is symmetric
 
-Your book asserts that $F\cong G$ implies $G \cong F$. Here is the proof.
+Your book says that $F\cong G$ implies $G \cong F$. Here is the proof.
 
 <Proof>
 Suppose $F\cong G$, so there is a rigid motion $f$ with $f(F)=G$.
@@ -117,7 +117,7 @@ By module 3.8, $f$ is a bijection, so $f^{-1}$ exists. It is again a rigid motio
 $$d\big(f^{-1}(P), f^{-1}(Q)\big) = d\Big(f\big(f^{-1}(P)\big), f\big(f^{-1}(Q)\big)\Big) = d(P,Q),$$
 using that $f$ preserves distance and $f\circ f^{-1} = \operatorname{id}$.
 
-And $f^{-1}(G) = f^{-1}\big(f(F)\big) = F$. Hence $G\cong F$.
+And $f^{-1}(G) = f^{-1}\big(f(F)\big) = F$. So $G\cong F$.
 </Proof>
 
 Three chapters of machinery, and a property your textbook takes for granted is now a theorem.

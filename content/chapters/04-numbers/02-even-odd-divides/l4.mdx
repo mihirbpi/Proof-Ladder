@@ -32,7 +32,7 @@ $$
 
 Read $m \mid n$ as "$m$ **divides** $n$", or "$m$ is a factor of $n$", or "$n$ is a multiple of $m$". Its negation is written $m \nmid n$.
 
-So "even" is precisely "$2 \mid n$", and "odd" is precisely "$2 \nmid n$" — the latter needing the division algorithm of module 4.4 to see, since it requires that a non-multiple of $2$ must have remainder exactly $1$.
+So "even" is exactly "$2 \mid n$", and "odd" is exactly "$2 \nmid n$" — the latter needing the division algorithm of module 4.4 to see, since it requires that a non-multiple of $2$ must have remainder exactly $1$.
 
 ## Divisibility is existential
 
@@ -41,7 +41,7 @@ $$
 m \mid n \quad\text{is an } \exists \text{ statement.}
 $$
 
-*Symbol by symbol: $\exists$ is "there is some", the bar $\mid$ is "such that". So the line reads: *$m$ divides $n$* is a there-is claim: it asserts that some whole number exists.*
+*Symbol by symbol: $\exists$ is "there is some", the bar $\mid$ is "such that". So the line reads: *$m$ divides $n$* is a there-is claim: it says that some whole number exists.*
 
 By module 1.12:
 
@@ -65,7 +65,7 @@ Also: $m \mid n$ is a **statement** (true or false), while $m/n$ is a **number**
 > **Proposition.** For all $a, b, n \in \mathbb{Z}$: if $a \mid b$ and $b \mid n$, then $a \mid n$.
 
 <Discussion>
-  <div slot="know">$b = ak_1$ and $n = bk_2$ for some integers $k_1, k_2$. Note we must use *different* names — reusing $k$ would assert the two leftover factors are equal, which was never given.</div>
+  <div slot="know">$b = ak_1$ and $n = bk_2$ for some integers $k_1, k_2$. Note we must use *different* names — reusing $k$ would say the two leftover factors are equal, which was never given.</div>
   <div slot="want">An integer $k$ with $n = ak$.</div>
   <div slot="how">Substitute the first equation into the second; the witness is $k_1k_2$, an integer by closure.</div>
 </Discussion>

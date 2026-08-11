@@ -58,7 +58,7 @@ using the second rule and then the hypothesis. That is the claim at $S(k)$.
 
 By Axiom 9, $0 + x = x$ for every $x$.
 
-**Four lines to establish that adding zero on the left does nothing.** The proof is short, and the fact that it is needed at all is the point: **the definition is asymmetric**, recursing on the second argument only, so every symmetric-looking fact requires its own argument.
+**Four lines to prove that adding zero on the left does nothing.** The proof is short, and the fact that it is needed at all is the point: **the definition is asymmetric**, recursing on the second argument only, so every symmetric-looking fact requires its own argument.
 
 The companion lemma $S(x)+y = S(x+y)$ has the same character — the definition supplies $x + S(y) = S(x+y)$, and the mirror image is a separate induction. Both lemmas are consumed by the proof of commutativity, which is why that proof costs three inductions rather than one.
 
@@ -107,13 +107,13 @@ Induct on $c$. *Base.* Immediate from (A1). *Step.* $a+S(k) = b+S(k)$ gives $S(a
 So $+$ on $\mathbb{N}$ is commutative and associative, has $0$ as identity, and permits cancellation — and note that cancellation is where A8 is finally spent. Every axiom now has a job.
 
 <Warning title="Familiarity is not derivation">
-Nothing in (A1)–(A2) yields $a+b=b+a$; the definition is manifestly asymmetric. Three inductions were required.
+Nothing in (A1)–(A2) gives $a+b=b+a$; the definition is manifestly asymmetric. Three inductions were required.
 
 The general discipline: in an axiomatic development, the question is never whether a statement is obvious but whether it has been derived. Chapters 1–6 used commutativity freely, and were — strictly — incomplete until this module.
 </Warning>
 
 <Aside>
-Had addition been defined by recursion on the first argument, Lemma 1 would be immediate and (A1) would need proof. The asymmetry lives entirely in the definition, and commutativity is precisely the theorem that the operation does not inherit it.
+Had addition been defined by recursion on the first argument, Lemma 1 would be immediate and (A1) would need proof. The asymmetry lives entirely in the definition, and commutativity is exactly the theorem that the operation does not inherit it.
 
 Chapter 4's assumptions are now discharged for $\mathbb{N}$: closure under $+$ is (A1)–(A2), associativity and commutativity are above, and the distributive law follows in §7.7. The arithmetic rules of §4.1 are theorems here.
 </Aside>

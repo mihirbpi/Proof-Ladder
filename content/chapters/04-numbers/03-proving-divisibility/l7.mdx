@@ -44,7 +44,7 @@ Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides ev
 Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{Z}$ is closed under integer linear combinations, i.e. is closed under adding its own members and under multiplying by anything outside. That single structural fact drives the Euclidean algorithm and, with it, **Bézout's identity**: for any $a,b$ there are integers $x,y$ with $ax + by = \gcd(a,b)$. Everything downstream rests on it.
 
 <Warning title="Two disciplines">
-**Fresh names.** From $a \mid b$ and $b \mid c$, the two leftover factors have nothing to do with each other; reusing one letter asserts they are equal and proves a weaker statement.
+**Fresh names.** From $a \mid b$ and $b \mid c$, the two leftover factors have nothing to do with each other; reusing one letter says they are equal and proves a weaker statement.
 
 **WLOG has a license.** It is legitimate exactly when the omitted case follows from the treated one by a relabeling under which hypotheses and conclusion are invariant — and you must say what the relabeling is. Asserted without justification, WLOG is how a case gets silently dropped, and it is the most common structural defect in submitted proofs.
 </Warning>
@@ -76,7 +76,7 @@ Multiplying by $c$:
 $$pcx + bcy = c.$$
 Now $p \mid pcx$ in one step, and $p \mid bcy$ since $p \mid bc$. By (iii), $p$ divides the linear combination $pcx + bcy = c$.
 
-Hence $p \mid c$, and the lemma is proved.
+So $p \mid c$, and the lemma is proved.
 </Proof>
 
 Note that Euclid's lemma is *not* a triviality about primes; its proof consumes Bézout, which consumes the division algorithm (§4.4). The chain is

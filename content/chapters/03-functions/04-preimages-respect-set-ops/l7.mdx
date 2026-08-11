@@ -67,10 +67,10 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", the bar on top is "everything outside".*
 
-Each chain consists of if-and-only-if statements, so each establishes both inclusions.
+Each chain consists of if-and-only-if statements, so each proves both inclusions.
 </Proof>
 
-Two features worth noting. The proofs work for arbitrary index sets $I$, since the quantifiers $\exists i$ and $\forall i$ never had to be finite. And the complements are taken in different universes — $T$ inside, $S$ outside — which is precisely why §2.5 insisted the universe be named.
+Two features worth noting. The proofs work for arbitrary index sets $I$, since the quantifiers $\exists i$ and $\forall i$ never had to be finite. And the complements are taken in different universes — $T$ inside, $S$ outside — which is exactly why §2.5 insisted the universe be named.
 
 ## The image operator, and its failures
 
@@ -87,7 +87,7 @@ $$
 
 *Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with", the bar on top is "everything outside".*
 
-The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f(a) = t$. *There exists* quantifiers commute with $\vee$ (hence with unions) but not with $\wedge$: from $\exists a \in A,\ f(a)=t$ and $\exists b \in B,\ f(b)=t$ one cannot conclude that a *single* element of $A \cap B$ maps to $t$.
+The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f(a) = t$. *There exists* quantifiers commute with $\vee$ (so with unions) but not with $\wedge$: from $\exists a \in A,\ f(a)=t$ and $\exists b \in B,\ f(b)=t$ one cannot conclude that a *single* element of $A \cap B$ maps to $t$.
 
 **Counterexample.** $f(x)=x^2$ on $\mathbb{R}$, $A = \{2\}$, $B = \{-2\}$: $f(A \cap B) = \emptyset$ but $f(A) \cap f(B) = \{4\}$.
 
@@ -146,7 +146,7 @@ so the conditions may be handled separately and intersected. Attempting the same
 
 That identity is what licenses solving a system one equation at a time and intersecting the solution sets — a procedure so familiar it is easy to miss that it needs justifying.
 
-**In calculus, the pre-image formulation is what makes domain computations composable.** The domain of the composite $g\circ f$ (§3.7) is $\{x\in\operatorname{dom} f : f(x)\in\operatorname{dom} g\} = \operatorname{dom} f \cap f^{-1}(\operatorname{dom} g)$, and computing it for a three-fold composition is a matter of intersecting pre-images — which works precisely because pre-images distribute.
+**In calculus, the pre-image formulation is what makes domain computations composable.** The domain of the composite $g\circ f$ (§3.7) is $\{x\in\operatorname{dom} f : f(x)\in\operatorname{dom} g\} = \operatorname{dom} f \cap f^{-1}(\operatorname{dom} g)$, and computing it for a three-fold composition is a matter of intersecting pre-images — which works exactly because pre-images distribute.
 
 **The general lesson:** when a definition could be stated with images or with pre-images, it will be stated with pre-images, and this module is why.
 

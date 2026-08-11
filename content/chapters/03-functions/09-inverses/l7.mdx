@@ -28,7 +28,7 @@ $$
 </Discussion>
 
 <Proof>
-**(forward)** Let $f$ be a bijection and $t \in T$. Surjectivity gives $f^{-1}(\{t\}) \neq \emptyset$; injectivity gives $|f^{-1}(\{t\})| \leq 1$. Hence $f^{-1}(\{t\})$ has exactly one element, and we define $g(t)$ to be it. Totality of $g$ is surjectivity of $f$; well-definedness of $g$ is injectivity of $f$.
+**(forward)** Let $f$ be a bijection and $t \in T$. Surjectivity gives $f^{-1}(\{t\}) \neq \emptyset$; injectivity gives $|f^{-1}(\{t\})| \leq 1$. So $f^{-1}(\{t\})$ has exactly one element, and we define $g(t)$ to be it. Totality of $g$ is surjectivity of $f$; well-definedness of $g$ is injectivity of $f$.
 
 By construction $f(g(t)) = t$. For $s \in S$, $g(f(s))$ is the unique pre-image of $f(s)$, which is $s$. So $g$ is a two-sided inverse.
 
@@ -69,7 +69,7 @@ $\exp : \mathbb{R} \to \mathbb{R}_{>0}$ has inverse $\ln : \mathbb{R}_{>0}\to\ma
 
 $r(x) = 1/x$ on $\mathbb{R}^\times$ satisfies $r \circ r = \mathrm{id}$: it is **its own inverse**. So are negation on $\mathbb{R}$, complementation on $\mathcal{P}(X)$ (§2.5), conjugation on $\mathbb{C}$ (§5.4), and transposition of matrices.
 
-$x \mapsto x^2$ has no inverse on $\mathbb{R}$, but restricted to $[0,\infty) \to [0,\infty)$ it is a bijection with inverse $\sqrt{\phantom{x}}$. The identity $\sqrt{x^2} = |x|$ — rather than $x$ — is precisely the residue of that restriction, and it is the standard place students meet the consequence of choosing a branch.
+$x \mapsto x^2$ has no inverse on $\mathbb{R}$, but restricted to $[0,\infty) \to [0,\infty)$ it is a bijection with inverse $\sqrt{\phantom{x}}$. The identity $\sqrt{x^2} = |x|$ — rather than $x$ — is exactly the residue of that restriction, and it is the standard place students meet the consequence of choosing a branch.
 
 <Warning title="f⁻¹ names two different objects">
 The **pre-image operator** $f^{-1} : \mathcal{P}(T)\to\mathcal{P}(S)$ exists for every $f$ (§3.3). The **inverse function** $f^{-1} : T \to S$ exists only for bijections.

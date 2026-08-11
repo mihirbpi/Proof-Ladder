@@ -54,9 +54,9 @@ $$
 
 These are disjoint and their union is $\mathcal{P}(S)$, since $a \in A$ or $a \notin A$ for each $A$.
 
-*Counting $\mathcal{U}$.* $A \subseteq S$ with $a \notin A$ holds precisely when $A \subseteq S'$. So $\mathcal{U} = \mathcal{P}(S')$, and $|\mathcal{U}| = 2^k$ by (IH).
+*Counting $\mathcal{U}$.* $A \subseteq S$ with $a \notin A$ holds exactly when $A \subseteq S'$. So $\mathcal{U} = \mathcal{P}(S')$, and $|\mathcal{U}| = 2^k$ by (IH).
 
-*Counting $\mathcal{V}$.* Define $u : \mathcal{V}\to\mathcal{P}(S')$ by $u(A) = A\setminus\{a\}$, and $v : \mathcal{P}(S')\to\mathcal{V}$ by $v(B) = B\cup\{a\}$. Then $u(v(B)) = B$ and $v(u(A)) = A$ for $A \in \mathcal{V}$, so $u$ is a bijection (module 3.9). Hence $|\mathcal{V}| = |\mathcal{P}(S')| = 2^k$.
+*Counting $\mathcal{V}$.* Define $u : \mathcal{V}\to\mathcal{P}(S')$ by $u(A) = A\setminus\{a\}$, and $v : \mathcal{P}(S')\to\mathcal{V}$ by $v(B) = B\cup\{a\}$. Then $u(v(B)) = B$ and $v(u(A)) = A$ for $A \in \mathcal{V}$, so $u$ is a bijection (module 3.9). So $|\mathcal{V}| = |\mathcal{P}(S')| = 2^k$.
 
 Therefore
 $$
@@ -81,7 +81,7 @@ Matching each subset with its characteriztic function is a bijection from $\math
 
 To specify such a function, choose a value in $\{0,1\}$ independently for each of the $n$ elements — $2$ choices, $n$ times, so $2^n$ functions.
 
-Hence $|\mathcal{P}(S)| = 2^n$.
+So $|\mathcal{P}(S)| = 2^n$.
 </Proof>
 
 This proof explains the notation $2^S$ for the power set: it is literally the set of functions from $S$ into a two-element set, and the exponential notation for function spaces makes the cardinality formula automatic.

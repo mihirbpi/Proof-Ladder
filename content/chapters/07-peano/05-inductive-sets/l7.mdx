@@ -24,7 +24,7 @@ $\mathbb{N}$ is the intersection of all inductive sets — the smallest one.
 <Proof title="Exclusion of rogue elements">
 In the rogue model, $V = \{S^m(0) : m \geq 0\}$ is inductive. By A9, $\mathbb{N}\subseteq V$, and $a \notin V$, so $a \notin\mathbb{N}$.
 
-With A5–A6 giving $V \subseteq\mathbb{N}$, double inclusion (§2.6) yields $\mathbb{N} = \{S^m(0) : m\geq 0\}$.
+With A5–A6 giving $V \subseteq\mathbb{N}$, double inclusion (§2.6) gives $\mathbb{N} = \{S^m(0) : m\geq 0\}$.
 </Proof>
 
 ## A9 is induction
@@ -66,7 +66,7 @@ Let $(\mathbb{N},0,S)$ and $(\mathbb{N}',0',S')$ both satisfy the axioms. Define
 
 $h$ is injective: the set $\{n : \forall m\,(h(n)=h(m)\Rightarrow n=m)\}$ is inductive, using A7 and A8 in both structures.
 
-$h$ is surjective: $\operatorname{Im}(h)$ contains $0'$ and is closed under $S'$, hence is inductive in $\mathbb{N}'$, so A9 for $\mathbb{N}'$ gives $\mathbb{N}'\subseteq\operatorname{Im}(h)$.
+$h$ is surjective: $\operatorname{Im}(h)$ contains $0'$ and is closed under $S'$, so is inductive in $\mathbb{N}'$, so A9 for $\mathbb{N}'$ gives $\mathbb{N}'\subseteq\operatorname{Im}(h)$.
 </Proof>
 
 So the axioms determine $\mathbb{N}$ **up to renaming**. Whatever "the natural numbers" are made of is irrelevant — sets, tally marks, anything — because only the structure is pinned down, which is the same lesson as §2.9's ordered pairs.
@@ -84,7 +84,7 @@ The trade-off is exact, and it is a theorem rather than a limitation of anyone's
 <Aside>
 There is a catch in the uniqueness argument worth noticing. A9 speaks of "all subsets" of $\mathbb{N}$ — but what counts as a subset is itself a question, answered by whatever theory of sets you are working in. So the argument does not fix $\mathbb{N}$ absolutely; it passes the question up a level.
 
-Set theory supplies the missing piece from the other end: it *asserts* that an inductive set exists, then defines $\mathbb{N}$ as the smallest one. That the result satisfies A5–A9 is then a theorem, so arithmetic sits inside set theory and inherits whatever consistency set theory has (§7.1).
+Set theory supplies the missing piece from the other end: it *says* that an inductive set exists, then defines $\mathbb{N}$ as the smallest one. That the result satisfies A5–A9 is then a theorem, so arithmetic sits inside set theory and inherits whatever consistency set theory has (§7.1).
 </Aside>
 
 <WhereThisGoes level="l7">

@@ -38,7 +38,7 @@ Conjunction matches English "and" almost perfectly, with one caveat: English "an
 
 *A reminder of the symbols in play: $\vee$ reads "or".*
 
-The **disjunction** $p \vee q$ asserts at least one:
+The **disjunction** $p \vee q$ says at least one:
 
 <TruthTable
   variables={["p", "q"]}
@@ -78,7 +78,7 @@ Worth carrying forward:
 
 1. **$p \wedge \neg p$ is the engine of proof by contradiction.** If assuming $\neg S$ lets you derive some statement of the form $r \wedge \neg r$, then $\neg S$ cannot hold, so $S$ does. Chapter 2 §2.5 makes this a technique.
 2. **$p \vee \neg p$ — excluded middle — licenses proof by cases.** Whenever you write "either $x$ is rational or it is not," you are quoting this tautology, and then you are entitled to prove your goal separately in each branch.
-3. **Tautologies are exactly the valid inference patterns.** $(p \wedge q) \Rightarrow p$ being a tautology is precisely the statement that "from $p$ and $q$, infer $p$" is a sound rule. Every rule of inference you use is a tautology in disguise.
+3. **Tautologies are exactly the valid inference patterns.** $(p \wedge q) \Rightarrow p$ being a tautology is exactly the statement that "from $p$ and $q$, infer $p$" is a sound rule. Every rule of inference you use is a tautology in disguise.
 
 ## Two statements, same column
 
@@ -95,7 +95,7 @@ $$
 Both can be checked by writing out four rows, which is what §1.4 does. Notice already that negation does not distribute quietly over these joining words — it *swaps* them.
 
 <Aside>
-There are exactly $16$ possible two-statement joining words, since such a word is nothing more than a choice of true or false for each of four input rows. Remarkably, every one of the sixteen can be written using $\neg$ and $\wedge$ alone (or $\neg$ and $\vee$ alone). Even more remarkably, a single joining word suffices: NAND, $\neg(p \wedge q)$, generates all sixteen by itself.
+There are exactly $16$ possible two-statement joining words, since such a word is nothing more than a choice of true or false for each of four input rows. Remarkably, every one of the sixteen can be written using $\neg$ and $\wedge$ alone (or $\neg$ and $\vee$ alone). Even more remarkably, a single joining word is enough: NAND, $\neg(p \wedge q)$, generates all sixteen by itself.
 </Aside>
 
 ## Precedence, so that parentheses stay honest
@@ -128,7 +128,7 @@ That last inference is worth naming, since it is used more than any other in alg
 
 <WhereThisGoes level="l7">
 
-Conjunction and disjunction are how calculus states its hypotheses, and reading them precisely is what makes the theorems usable.
+Conjunction and disjunction are how calculus states its hypotheses, and reading them exactly is what makes the theorems usable.
 
 **Its major theorems nearly all have an *and* in the hypothesis.** One says that a curve with no breaks, drawn over a stretch that includes both its endpoints, must actually reach a highest point somewhere. That is three conditions joined by *and* — no breaks, both endpoints included, stretch doesn't run off forever — and dropping any one of them makes it false. When a calculus theorem fails to apply, it is almost always because one part of an *and* quietly failed, and the habit of listing the parts is what catches it.
 

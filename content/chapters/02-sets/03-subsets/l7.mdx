@@ -18,7 +18,7 @@ $$
 
 *Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in", $\forall$ is "for every", $\Leftrightarrow$ is "exactly when", $\Rightarrow$ is "forces". So the line reads: $A$ sits inside $S$ exactly when being in $A$ forces being in $S$, for every $x$.*
 
-The definition is a if–then claim made about every element, and everything in this module is a consequence of that single observation. §1.12 fixed the proof template for such statements; applied to sets it acquires the name **element chasing**, and it is the technique on which essentially all of naive set theory runs.
+The definition is a if–then claim made about every element, and everything in this module is a consequence of that single observation. §1.12 fixed the proof template for such statements; applied to sets it gets the name **element chasing**, and it is the technique on which essentially all of naive set theory runs.
 
 ## The template
 
@@ -39,10 +39,10 @@ Let $x \in S$ be arbitrary; then $-3 < x < 5$.
 
 From $-6 < -3$ and $-3 < x$, transitivity gives $-6 < x$. From $x < 5$ we obtain $x \leq 5$.
 
-Hence $-6 < x \leq 5$, i.e. $x \in T$. Since $x$ was arbitrary, $S \subseteq T$.
+So $-6 < x \leq 5$, i.e. $x \in T$. Since $x$ was arbitrary, $S \subseteq T$.
 </Proof>
 
-The containment is proper: $5 \in T \setminus S$. Properness is a separate claim requiring a separate witness (§1.12), and a subset proof never establishes it.
+The containment is proper: $5 \in T \setminus S$. Properness is a separate claim requiring a separate witness (§1.12), and a subset proof never proves it.
 
 ## Refutation
 
@@ -71,7 +71,7 @@ Note that $\emptyset \in A$ and $\emptyset \subseteq A$ are both true here for e
 Let $x$ be arbitrary. The hypothesis of $x \in \emptyset \Rightarrow x \in S$ is false, so the conditional is true (§1.5). Since $x$ was arbitrary, $\forall x\,(x \in \emptyset \Rightarrow x \in S)$, i.e. $\emptyset \subseteq S$.
 </Proof>
 
-This is vacuous truth carrying structural weight. Every distributive, De Morgan, and product identity in this chapter holds without exception for $\emptyset$ precisely because of it; a convention that made $\emptyset \subseteq S$ fail would introduce a special case into every theorem that follows.
+This is vacuous truth carrying structural weight. Every distributive, De Morgan, and product identity in this chapter holds without exception for $\emptyset$ exactly because of it; a convention that made $\emptyset \subseteq S$ fail would introduce a special case into every theorem that follows.
 
 ## Containment behaves like $\leq$
 
@@ -93,9 +93,9 @@ $$
 
 *Symbol by symbol: $\subseteq$ is "sits inside", the bar $\mid$ is "such that". So the line reads: the power set of $X$ is the collection of all collections sitting inside $X$.*
 
-For $X = \{a,b\}$: $\mathcal{P}(X) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$. For finite $X$, $|\mathcal{P}(X)| = 2^{|X|}$ — each element is independently in or out, giving $2^{|X|}$ characteriztic functions $X \to \{0,1\}$, whence the notation $2^X$. §6.3 proves the count by induction.
+For $X = \{a,b\}$: $\mathcal{P}(X) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$. For finite $X$, $|\mathcal{P}(X)| = 2^{|X|}$ — each element is independently in or out, giving $2^{|X|}$ characteriztic functions $X \to \{0,1\}$, so the notation $2^X$. §6.3 proves the count by induction.
 
-Two remarks worth carrying. First, $\mathcal{P}(X)$ is a set whose elements are sets, and keeping track of which level you are on is a real skill: $a \in X$, $\{a\} \in \mathcal{P}(X)$, $\{\{a\}\} \subseteq \mathcal{P}(X)$. Second, **Cantor's theorem**: there is no surjection $X \to \mathcal{P}(X)$, so $|\mathcal{P}(X)| > |X|$ for every set, finite or not. The proof is a diagonal argument — given $f : X \to \mathcal{P}(X)$, the set $D = \{x \in X \mid x \notin f(x)\}$ is not in the image — and it is Russell's construction used constructively rather than destructively. It follows that there is no largest infinity, and no set of all sets.
+Two remarks worth carrying. First, $\mathcal{P}(X)$ is a set whose elements are sets, and keeping track of which level you are on is a real skill: $a \in X$, $\{a\} \in \mathcal{P}(X)$, $\{\{a\}\} \subseteq \mathcal{P}(X)$. Second, **Cantor's theorem**: there is no surjection $X \to \mathcal{P}(X)$, so $|\mathcal{P}(X)| > |X|$ for every set, finite or not. The proof is a diagonal argument — given $f : X \to \mathcal{P}(X)$, the set $D = \{x \in X \mid x \notin f(x)\}$ is not in the image — and it is Russell's construction used constructively rather than destructively. So there is no largest infinity, and no set of all sets.
 
 <Aside>
 The relation $\subseteq$ is definable from $\in$ alone, which is why axiomatic set theory needs only one undefined relation. Everything in this chapter — union, intersection, complement, product, function — is likewise built from $\in$ by explicit definition. That economy is the point of taking sets as the foundation.

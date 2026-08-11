@@ -42,14 +42,14 @@ Reflexive: $n \mid 0 = a-a$. Symmetric: $a-b = nk \Rightarrow b-a = n(-k)$. Tran
 <Proof>
 *Classes cover $S$.* $a \in [a]$ by reflexivity.
 
-*Classes are equal or disjoint.* If $c \in [a]\cap[b]$ then $c\sim a$ and $c\sim b$. For $x \in [a]$: $x \sim a$, and $a \sim c$ by symmetry, so $x \sim c$ by transitivity, so $x \sim b$ by transitivity again. Hence $[a]\subseteq[b]$, and symmetrically $[b]\subseteq[a]$; so $[a]=[b]$ by double inclusion (§2.6).
+*Classes are equal or disjoint.* If $c \in [a]\cap[b]$ then $c\sim a$ and $c\sim b$. For $x \in [a]$: $x \sim a$, and $a \sim c$ by symmetry, so $x \sim c$ by transitivity, so $x \sim b$ by transitivity again. So $[a]\subseteq[b]$, and symmetrically $[b]\subseteq[a]$; so $[a]=[b]$ by double inclusion (§2.6).
 
 *Converse.* Given a partition $\mathcal{Q}$, define $x \sim y$ iff $x$ and $y$ lie in the same block. Reflexivity holds since blocks cover $S$; symmetry is immediate; transitivity holds since blocks are disjoint. Its classes are exactly the blocks.
 </Proof>
 
 Each of the three axioms was used exactly once, which is a compact demonstration of their independence in practice.
 
-The set of all the classes is called the **quotient**, and sending each element to its own class is a function onto it. That function is surjective by construction, and injective exactly when the relation was equality to begin with — so passing to classes is precisely the operation of deliberately forgetting distinctions.
+The set of all the classes is called the **quotient**, and sending each element to its own class is a function onto it. That function is surjective by construction, and injective exactly when the relation was equality to begin with — so passing to classes is exactly the operation of deliberately forgetting distinctions.
 
 <Warning title="Well-definedness on quotients">
 An operation on classes must be checked independent of representatives (§3.1).
@@ -78,7 +78,7 @@ The three conditions are independent, and examining what each rules out is more 
 | $\subseteq$ | ✓ | ✗ | ✓ |
 | $\perp$ | ✗ | ✓ | ✗ |
 
-**Failure of symmetry is what makes a relation an order.** $\leq$ and $\subseteq$ are reflexive and transitive and not symmetric, and that is precisely what makes them orderings rather than notions of sameness. Orders and equivalences are the two natural weakenings of equality, distinguished by exactly this condition.
+**Failure of symmetry is what makes a relation an order.** $\leq$ and $\subseteq$ are reflexive and transitive and not symmetric, and that is exactly what makes them orderings rather than notions of sameness. Orders and equivalences are the two natural weakenings of equality, distinguished by exactly this condition.
 
 **Failure of transitivity is usually fatal.** Perpendicularity fails it: $\ell_1\perp\ell_2$ and $\ell_2\perp\ell_3$ give $\ell_1 \parallel \ell_3$ in the plane, not $\ell_1\perp\ell_3$. A relation without transitivity supports no chaining, and chaining is what proofs do.
 
@@ -91,7 +91,7 @@ The pattern is uniform: take known objects, impose the right notion of sameness,
 <Aside>
 In intensional type theory, equality is not a single undefined relation but a *type* — $\mathrm{Id}_A(x,y)$ — and A1–A3 become constructions rather than axioms. Reflexivity is a term, symmetry and transitivity are functions built from it.
 
-The consequences are strange and productive: identifications can carry information, and homotopy type theory reinterprets $\mathrm{Id}_A(x,y)$ as a path space, so that equality proofs acquire a geometry of their own. Univalence then asserts that identity of types is equivalence of types — making "equal" mean "the same up to renaming", which is what mathematicians have always meant informally.
+The consequences are strange and productive: identifications can carry information, and homotopy type theory reinterprets $\mathrm{Id}_A(x,y)$ as a path space, so that equality proofs get a geometry of their own. Univalence then says that identity of types is equivalence of types — making "equal" mean "the same up to renaming", which is what mathematicians have always meant informally.
 </Aside>
 
 <WhereThisGoes level="l7">

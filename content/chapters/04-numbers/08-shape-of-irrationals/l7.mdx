@@ -54,8 +54,8 @@ Each proof is the same three steps: assume rational, apply closure to recover $a
 Group the reals into families: put $x$ and $y$ in the same family exactly when $x-y$ is rational. This is an equivalence relation (§7.2), so the families partition $\mathbb{R}$. One family is $\mathbb{Q}$ itself; every other is a shifted copy $a+\mathbb{Q}$. The proposition says exactly:
 
 - $\mathbb{R}\setminus\mathbb{Q}$ is everything outside the single family $\mathbb{Q}$;
-- adding a rational moves you **within** a family, hence preserves irrationality;
-- multiplying by a non-zero rational permutes the families, hence also preserves irrationality;
+- adding a rational moves you **within** a family, so preserves irrationality;
+- multiplying by a non-zero rational permutes the families, so also preserves irrationality;
 - adding two irrationals combines two families neither of which is $\mathbb{Q}$ — and the result may land back in $\mathbb{Q}$, which is exactly why no theorem is available.
 
 Viewed this way, none of the results is surprising. The failures and the stabilities are both consequences of $\mathbb{Q}$ being a closed sub-collection and a subfield, not facts about $\sqrt2$.
@@ -91,10 +91,10 @@ $$a^b = \left(\sqrt2^{\sqrt2}\right)^{\sqrt2} = \sqrt2^{\,2} = 2 \in \mathbb{Q}.
 In either case such a pair exists.
 </Proof>
 
-The proof establishes existence without identifying a witness, because it never decides which branch holds. It is the standard illustration of non-constructive reasoning (§1.12), and a constructivist rejects it — the excluded middle applied to an undecided statement is doing all the work.
+The proof proves existence without identifying a witness, because it never decides which branch holds. It is the standard illustration of non-constructive reasoning (§1.12), and a constructivist rejects it — the excluded middle applied to an undecided statement is doing all the work.
 
 <Aside>
-As it happens $\sqrt2^{\sqrt2}$ *is* irrational, indeed transcendental, by the Gelfond–Schneider theorem (1934): $\alpha^\beta$ is transcendental whenever $\alpha$ is algebraic, $\alpha \neq 0,1$, and $\beta$ is algebraic irrational. So the second branch is the true one. But the point of the proof above is precisely that it needs none of that — which is why an elementary argument can reach a conclusion whose direct verification requires a deep theorem.
+As it happens $\sqrt2^{\sqrt2}$ *is* irrational, indeed transcendental, by the Gelfond–Schneider theorem (1934): $\alpha^\beta$ is transcendental whenever $\alpha$ is algebraic, $\alpha \neq 0,1$, and $\beta$ is algebraic irrational. So the second branch is the true one. But the point of the proof above is exactly that it needs none of that — which is why an elementary argument can reach a conclusion whose direct verification requires a deep theorem.
 </Aside>
 
 <WhereThisGoes level="l7">

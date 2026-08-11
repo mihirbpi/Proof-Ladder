@@ -11,7 +11,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 1.7 established $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$. Since the two are equivalent, proving either proves both.
+Module 1.7 proved $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$. Since the two are equivalent, proving either proves both.
 
 **Proof by contrapositive** is the deliberate exercise of that choice: when the hypothesis you are handed is awkward, prove the contrapositive instead. The named move is **flip it around**.
 
@@ -32,7 +32,7 @@ We prove the contrapositive: for every real number $x$, if $x \geq 0$ then $x^3 
 
 Let $x \geq 0$. Since the product of two non-negative reals is non-negative, applying this to $x$ and $x$ gives $x^2 \geq 0$; applying it to $x^2$ and $x$ gives $x^3 \geq 0$.
 
-Thus $x \geq 0 \Rightarrow x^3 \geq 0$. Since this is the contrapositive of the proposition, and a conditional is logically equivalent to its contrapositive, the proposition follows.
+So $x \geq 0 \Rightarrow x^3 \geq 0$. Since this is the contrapositive of the proposition, and a conditional is logically equivalent to its contrapositive, the proposition follows.
 </Proof>
 
 Three lines, no cases, no circularity. Note the last sentence: **announce the switch and announce the conclusion.** A reader who misses the announcement will think you proved the wrong statement.

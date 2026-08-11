@@ -24,7 +24,7 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that".*
 
-Equation (1) is the workhorse of the entire chapter. Every proof about a set-builder set begins by applying it, converting a membership assertion into a logical one where Chapter 1 applies, and ends by applying it in reverse.
+Equation (1) is the workhorse of the entire chapter. Every proof about a set-builder set begins by applying it, converting a membership claim into a logical one where Chapter 1 applies, and ends by applying it in reverse.
 
 ## The interface between the chapters
 
@@ -42,7 +42,7 @@ Every theorem in the rest of this chapter is a theorem of Chapter 1 read through
 
 ## Separation, and why the collection you are drawing from is mandatory
 
-Naive comprehension — the principle that $\{x \mid p(x)\}$ is a set for every condition $p$ — is inconsistent. Taking $p(x) \equiv x \notin x$ yields Russell's contradiction. Zermelo's repair — one axiom for each condition you can write down, rather than one blanket principle — permits only
+Naive comprehension — the principle that $\{x \mid p(x)\}$ is a set for every condition $p$ — is inconsistent. Taking $p(x) \equiv x \notin x$ gives Russell's contradiction. Zermelo's repair — one axiom for each condition you can write down, rather than one blanket principle — permits only
 $$
 \{\, x \in A \mid p(x) \,\} \quad\text{for $A$ already known to be a set,}
 $$
@@ -51,7 +51,7 @@ $$
 
 and this is exactly the notation above. Written with the collection you are drawing from, set-builder notation is not merely unambiguous; it is the syntactic form of a consistency-preserving axiom.
 
-Running Russell's argument inside separation is instructive rather than fatal. For any set $A$ put $R_A = \{x \in A \mid x \notin x\}$. If $R_A \in A$ then $R_A \in R_A \Leftrightarrow R_A \notin R_A$, absurd; hence $R_A \notin A$. So no set contains all sets — a theorem, obtained from what was a paradox.
+Running Russell's argument inside separation is worth doing rather than fatal. For any set $A$ put $R_A = \{x \in A \mid x \notin x\}$. If $R_A \in A$ then $R_A \in R_A \Leftrightarrow R_A \notin R_A$, absurd; so $R_A \notin A$. So no set contains all sets — a theorem, obtained from what was a paradox.
 
 <Warning title="Dropping the collection you are drawing from changes the object">
 $\{x \mid x^2 = 2\}$ is $\emptyset$ over $\mathbb{Q}$ and $\{\pm\sqrt2\}$ over $\mathbb{R}$. $\{x \mid x^2 = -1\}$ is $\emptyset$ over $\mathbb{R}$ and $\{\pm i\}$ over $\mathbb{C}$. Writers do omit the collection you are drawing from when it is fixed by context, and that is acceptable; writing it is safer, and inside a proof it is close to mandatory.

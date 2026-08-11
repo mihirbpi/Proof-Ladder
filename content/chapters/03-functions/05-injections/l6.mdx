@@ -60,7 +60,7 @@ Suppose $f(x_1)=f(x_2)$. Then
 $$3x_1 - 2 = 3x_2 - 2.$$
 Adding $2$ to both sides gives $3x_1 = 3x_2$, and dividing by $3$ gives $x_1 = x_2$.
 
-Hence $f$ is injective.
+So $f$ is injective.
 </Proof>
 
 Every step was reversible algebra, which is what made it work. Compare with a function where it does not.
@@ -71,7 +71,7 @@ Every step was reversible algebra, which is what made it work. Compare with a fu
 $g(2) = 4$ and $g(-2)=4$, but $2 \neq -2$.
 </Proof>
 
-**Refuting injectivity is an existential claim**, so one pair suffices — module 1.11's counterexample rule. Note also what happens if you attempt the template: $x_1^2 = x_2^2$ gives $x_1 = \pm x_2$, and the $\pm$ is exactly where the proof stalls. A stalled proof often shows you the counterexample.
+**Refuting injectivity is an existential claim**, so one pair is enough — module 1.11's counterexample rule. Note also what happens if you attempt the template: $x_1^2 = x_2^2$ gives $x_1 = \pm x_2$, and the $\pm$ is exactly where the proof stalls. A stalled proof often shows you the counterexample.
 
 ## Rigid motions are injective
 
@@ -88,7 +88,7 @@ Let $f$ be a rigid motion and suppose $f(P) = f(Q)$.
 
 Then $d\big(f(P), f(Q)\big) = 0$. Since $f$ preserves distance, $d(P,Q) = 0$.
 
-Two points at distance zero are the same point, so $P = Q$. Hence $f$ is injective.
+Two points at distance zero are the same point, so $P = Q$. So $f$ is injective.
 </Proof>
 
 Four lines, covering translations, rotations, reflections, glide reflections, and any composition of them at once — because it used only distance preservation. **That is the argument for proving things about the general class rather than case by case.**
@@ -119,7 +119,7 @@ The same caution as the vertical line test applies: it works only for real-value
 
 Injectivity is the condition that a function does not **lose information**. If $f$ is injective and you know $f(s)$, then $s$ is determined — there is only one thing it could have been.
 
-That is exactly what "you can undo it" requires, and it is the first half of module 3.9. It also explains a fact from module 3.3: $A = f^{-1}(f(A))$ holds for all $A$ precisely when $f$ is injective. Nothing extra is picked up on the round trip, because nothing was merged on the way out.
+That is exactly what "you can undo it" requires, and it is the first half of module 3.9. It also explains a fact from module 3.3: $A = f^{-1}(f(A))$ holds for all $A$ exactly when $f$ is injective. Nothing extra is picked up on the round trip, because nothing was merged on the way out.
 
 <Aside>
 Injective functions compare sizes. If there is an injection $S\to T$, then $T$ is at least as large as $S$ — each element of $S$ claims a distinct element of $T$, so $T$ cannot run short.

@@ -31,16 +31,16 @@ Adding $b$ to $a<b$ gives $a+b < 2b$; scaling by $\tfrac12>0$ gives $\tfrac{a+b}
 Note that the argument uses nothing specific to $\mathbb{Q}$ beyond its being a system whose ordering fits its arithmetic in which $2$ is invertible. So **any number system that can divide and is ordered is dense in itself** — and $\mathbb{Z}$, which cannot divide, is the counterexample.
 
 <Warning title="Where the hypothesis is spent">
-In $\mathbb{Z}$: the midpoint of $3$ and $4$ is $\tfrac72 \notin \mathbb{Z}$, and nothing lies strictly between consecutive integers. The invertibility of $2$ is precisely the hypothesis $\mathbb{Z}$ fails.
+In $\mathbb{Z}$: the midpoint of $3$ and $4$ is $\tfrac72 \notin \mathbb{Z}$, and nothing lies strictly between consecutive integers. The invertibility of $2$ is exactly the hypothesis $\mathbb{Z}$ fails.
 
-Note also that the argument leans on the ordering: it needs $1 > 0$, and hence $1+1 > 0$, so that halving genuinely produces something between.
+Note also that the argument leans on the ordering: it needs $1 > 0$, and so $1+1 > 0$, so that halving genuinely produces something between.
 </Warning>
 
 ## Density
 
 > **Corollary.** $(a,b)\cap\mathbb{Q}$ is infinite for any rationals $a<b$.
 
-Iterating the midpoint construction toward $a$ yields a strictly decreasing sequence in $(a,b)$, hence infinitely many distinct elements.
+Iterating the midpoint construction toward $a$ gives a strictly decreasing sequence in $(a,b)$, so infinitely many distinct elements.
 
 A stronger and more useful statement:
 
@@ -60,7 +60,7 @@ The midpoint is the obvious witness (§1.12) and far from the only one. For rati
 $$c = a + t(b-a) = (1-t)a + tb$$
 is rational by closure and lies strictly between $a$ and $b$. Taking $t = \tfrac12$ recovers the midpoint.
 
-Producing the general witness costs no more than the specific one, and it yields a stronger theorem: **between any two distinct rationals lie infinitely many rationals**, one for each admissible $t$.
+Producing the general witness costs no more than the specific one, and it gives a stronger theorem: **between any two distinct rationals lie infinitely many rationals**, one for each admissible $t$.
 
 The expression $(1-t)a + tb$ is worth recognizing. It is the **convex combination** of $a$ and $b$, and it parametrizes the segment joining them as $t$ runs over $[0,1]$. The same formula gives the section formula in coordinate geometry, the parametric equation of a line segment in $\mathbb{R}^n$, and the linear interpolation used in every numerical method — one expression, appearing under three names.
 
@@ -78,7 +78,7 @@ That interleaving has consequences worth anticipating. The function equal to $1$
 
 ## Being crowded is not the same as having no gaps
 
-$\mathbb{Q}$ leaves no gap that can be exhibited by naming two rationals with nothing between them. Nevertheless $\mathbb{Q}$ has gaps in the order-theoretic sense: the set
+$\mathbb{Q}$ leaves no gap that can be exhibited by naming two rationals with nothing between them. Even so $\mathbb{Q}$ has gaps in the order-theoretic sense: the set
 $$
 S = \{x \in \mathbb{Q} : x > 0,\ x^2 < 2\}
 $$
@@ -101,7 +101,7 @@ The irrationals are the opposite: harder to point at individually, and yet they 
 
 Density is the property that makes approximation possible, and calculus is a subject about approximation.
 
-**Every limit is an approximation argument.** The definition asks the output to come within whatever tolerance you name, provided the input is close enough — and the input window can be taken as small as you like precisely because $\mathbb{R}$ has no smallest positive number. Density is what guarantees the shrinking never terminates, and a number system where it did would have no limits worth the name.
+**Every limit is an approximation argument.** The definition asks the output to come within whatever tolerance you name, provided the input is close enough — and the input window can be taken as small as you like exactly because $\mathbb{R}$ has no smallest positive number. Density is what guarantees the shrinking never terminates, and a number system where it did would have no limits worth the name.
 
 **The same property underwrites Riemann sums.** Partitioning $[a,b]$ into $n$ subintervals and letting $n$ grow relies on being able to subdivide indefinitely — which is this module's *repeat forever*, applied to intervals rather than pairs of rationals. Newton's method and bisection — two ways of hunting a solution by repeatedly narrowing the search — depend on the same structure.
 

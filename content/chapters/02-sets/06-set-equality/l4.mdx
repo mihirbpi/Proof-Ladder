@@ -65,7 +65,7 @@ $$
 
 In both cases $(x-2)(x+3) = 0$, so $x \in R$. The cases are exhaustive.
 
-**($\supseteq$)** Take any $x \in R$, so $(x-2)(x+3) = 0$. In $\mathbb{R}$ a product is zero only if a factor is: $x - 2 = 0$ or $x + 3 = 0$. Hence $x \in S$ or $x \in T$, i.e. $x \in S \cup T$.
+**($\supseteq$)** Take any $x \in R$, so $(x-2)(x+3) = 0$. In $\mathbb{R}$ a product is zero only if a factor is: $x - 2 = 0$ or $x + 3 = 0$. So $x \in S$ or $x \in T$, i.e. $x \in S \cup T$.
 
 Both inclusions hold, so $S \cup T = R$.
 </Proof>
@@ -90,7 +90,7 @@ Either way $x \in S$.
 **($\supseteq$)** Let $x \in S$. Then "$x \in S$ or $x \in S \cap T$" holds, since its left half does. So $x \in S \cup (S \cap T)$.
 </Proof>
 
-Observe the asymmetry that recurs throughout: proving membership in a *union* is easy (establish either half), while *using* membership in a union is expensive (case split). Intersection is the mirror image — using it is free, proving it costs two arguments.
+Observe the asymmetry that recurs throughout: proving membership in a *union* is easy (prove either half), while *using* membership in a union is expensive (case split). Intersection is the mirror image — using it is free, proving it costs two arguments.
 
 <Warning title="Three failure modes">
 **Proving one direction.** The commonest. Label your halves and count them.

@@ -37,7 +37,7 @@ Let $S$ be the points of a circle.
 - In the **plane**, $\overline{S}$ is the interior together with the exterior.
 - In **space**, $\overline{S}$ additionally contains every point off the plane.
 
-Same $S$, different complements. A complement without a stated $U$ is not a set — it is an unfinished description, and the dashed box in the figure is drawn precisely to keep $U$ visible.
+Same $S$, different complements. A complement without a stated $U$ is not a set — it is an unfinished description, and the dashed box in the figure is drawn exactly to keep $U$ visible.
 </Warning>
 
 Two facts, both immediate:
@@ -64,7 +64,7 @@ A contradiction is false in every row of its truth table. If $\neg q$ implied it
 >
 > … derivation, using $\neg q$ freely, and the hypotheses too …
 >
-> This contradicts [some established fact]. Hence $q$.
+> This contradicts [some proved fact]. So $q$.
 
 Three obligations, and all three are places students lose marks:
 
@@ -89,7 +89,7 @@ Then $P$ lies on $\ell_1$, which is parallel to $\ell_2$, and $P$ lies on $\ell_
 
 So $\ell_1$ and $\ell_3$ are two distinct lines through $P$, each parallel to $\ell_2$. This contradicts the Parallel Postulate, which gives exactly one such line.
 
-Hence $\ell_1 \parallel \ell_3$.
+So $\ell_1 \parallel \ell_3$.
 </Proof>
 
 Notice what "suppose not" bought. Directly, the goal was a claim about infinitely many non-intersections. Negated, it produced a single named point $P$ — something to work with. **That trade is the reason for the technique**, and it is worth watching for: when your goal is a negative claim, its negation is usually a positive one.
@@ -103,7 +103,7 @@ Complementation reverses inclusion. This is contraposition (module 1.8) in set c
 <Proof>
 Let $x$ be an arbitrary element of $\overline{B}$, so $x \in U$ and $x \notin B$.
 
-Suppose, for contradiction, that $x \in A$. Since $A \subseteq B$, it follows that $x \in B$ — contradicting $x \notin B$.
+Suppose, for contradiction, that $x \in A$. Since $A \subseteq B$, so $x \in B$ — contradicting $x \notin B$.
 
 So $x \notin A$, and therefore $x \in \overline{A}$. Since $x$ was arbitrary, $\overline{B}\subseteq\overline{A}$.
 </Proof>
@@ -111,7 +111,7 @@ So $x \notin A$, and therefore $x \in \overline{A}$. Since $x$ was arbitrary, $\
 <Aside>
 That proof was a contradiction wrapped around a contrapositive — exactly the pattern module 1.8 warned about. The inner argument is just: $x \in A \Rightarrow x \in B$, contraposed.
 
-Written directly: *let $x \in \overline B$. Since $A \subseteq B$ gives $x \in A \Rightarrow x \in B$, the contrapositive gives $x \notin B \Rightarrow x \notin A$. Hence $x \in \overline A$.* Shorter, and no false assumption to carry.
+Written directly: *let $x \in \overline B$. Since $A \subseteq B$ gives $x \in A \Rightarrow x \in B$, the contrapositive gives $x \notin B \Rightarrow x \notin A$. So $x \in \overline A$.* Shorter, and no false assumption to carry.
 
 Run the self-check on your own indirect proofs. If you never used the contradiction — if you only derived $\neg p$ from $\neg q$ — remove the wrapper.
 </Aside>
@@ -130,5 +130,5 @@ In each, the negation supplies a concrete object where the original supplied non
 <Warning title="Contradiction is not a default">
 The genuine cost is that every intermediate line is stated under a false assumption, so nothing you derive is true. A reader must hold that in mind throughout, and a long contradiction proof is genuinely harder to check than a long direct one.
 
-There is also a failure mode: deriving a contradiction from a mistake of your own rather than from the assumption. When a contradiction appears, look at whether the assumption really caused it — because if the error is yours, the proof establishes nothing.
+There is also a failure mode: deriving a contradiction from a mistake of your own rather than from the assumption. When a contradiction appears, look at whether the assumption really caused it — because if the error is yours, the proof proves nothing.
 </Warning>

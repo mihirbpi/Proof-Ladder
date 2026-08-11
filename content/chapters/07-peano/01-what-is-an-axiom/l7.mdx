@@ -33,15 +33,17 @@ A famous remark makes the point: one should be able to substitute "table, chair,
 
 ## Semantic and syntactic
 
-Two notions of consequence must be distinguished.
+There are two different things "follows from the axioms" can mean, and this chapter leans on both.
 
-**Provable.** There is a chain of justified steps leading from the axioms to the statement.
+**Provable.** You can get from the axioms to the statement by a chain of justified steps. This is the one you have been doing all course.
 
-**True in every case.** Every structure in which the axioms all hold is a structure in which the statement holds too.
+**True in every case.** Take anything at all that obeys the axioms — any system, however strange, so long as the rules hold in it. The statement is true there too.
 
-These sound like different things and, for the usual logical system, they turn out to be the same thing — a result of Gödel's from 1929.
+These sound like different questions, and it is not obvious they have the same answer. For the logic used here, they do: whatever is true in every case is provable, and the other way round. That was settled in 1929, and it is what makes the following method legal, which is the method this whole chapter runs on:
 
-That equivalence is what licenses the method used throughout this chapter: **to show a statement is not provable from a set of axioms, build one structure where the axioms hold and the statement fails.** No search through possible proofs is required, and none would ever finish.
+**To show a statement cannot be proved from a set of axioms, build one system where the axioms hold and the statement fails.**
+
+That is worth pausing on, because it turns an impossible job into a possible one. Showing something is unprovable by searching through proofs would never finish — there are infinitely many proofs to try, and failing to find one proves nothing. Building a single system where the axioms hold and the claim fails is a finite piece of work you can actually do, and §7.4 does it.
 
 ## Independence
 
@@ -52,15 +54,15 @@ Historically decisive instances:
 - **Parallel postulate.** The Beltrami–Klein and Poincaré disc models satisfy Euclid's first four axioms and refute the fifth, ending two millennia of failed derivations. Hyperbolic geometry is as consistent as Euclidean.
 - **Two famous set-theory questions.** Both were settled the same way in the twentieth century: structures were built in which the standard axioms hold and the statement is true, and others in which they hold and it is false. So the axioms decide neither, and that is a theorem rather than an admission of defeat.
 
-§7.4 uses precisely this method on Peano's axioms, exhibiting one- and two-element structures satisfying axioms 1–6 while violating 7 or 8. Independence is not a philosophical remark; it is a construction.
+§7.4 uses exactly this method on Peano's axioms, exhibiting one- and two-element structures satisfying axioms 1–6 while violating 7 or 8. Independence is not a philosophical remark; it is a construction.
 
 ## Why proofs must terminate
 
 Every proof justifies its claims by earlier claims, and following the chain backwards gives three possibilities.
 
-**Infinite regress.** No claim is ever established, because the justification never completes.
+**Infinite regress.** No claim is ever proved, because the justification never completes.
 
-**Circularity.** $P$ because $Q$, $Q$ because $P$. Nothing is established either.
+**Circularity.** $P$ because $Q$, $Q$ because $P$. Nothing is proved either.
 
 **Termination.** Some statements are accepted without proof, and everything else is derived from them.
 
@@ -72,32 +74,34 @@ Undefined terms are the same phenomenon for definitions. *Point*, *line*, and *p
 
 ## Criteria
 
-**Consistency** is not one virtue among several but the precondition for the theory meaning anything. From $p \wedge \neg p$ every statement follows, so an inconsistent theory proves everything and distinguishes nothing.
+**Consistency** is not one good quality among several. It is the one the others depend on. If a set of axioms proves both $p$ and *not* $p$, then §1.5 lets you prove *everything* from there, true or false alike — and a system that proves everything has told you nothing. Consistency is what makes the rest worth having.
 
-**Independence** is aesthetic bookkeeping: a dependent axiom is a theorem misfiled.
+**Independence** is tidiness. If one axiom can be proved from the others, it was never an axiom; it was a theorem filed in the wrong place.
 
-**Settling everything** — every statement in the language either provable or refutable — is unattainable for arithmetic:
+**Settling every question** is the one you cannot have, and this is the famous part.
 
-> **Gödel's first incompleteness theorem (1931).** Any consistent, effectively axiomatised theory interpreting arithmetic has a sentence neither provable nor refutable.
->
-> **Second theorem.** Such a theory cannot prove its own consistency.
+In 1931 a logician named Kurt Gödel proved that any set of axioms honest enough to describe ordinary arithmetic — consistent, and with a list of axioms you could actually write down — leaves questions it cannot answer. Not questions nobody has cracked yet: questions that system can neither prove nor disprove, ever. And adding the missing statement as a new axiom does not rescue you, because the larger system then has unanswerable questions of its own.
 
-Note the contrast with the result above: the *logic* is complete; sufficiently strong *theories* are not. The two results are compatible and are about different things.
+He proved a second thing in the same paper, which is stranger. Such a system cannot prove its own consistency. To be sure the rules will never contradict themselves, you have to step outside them.
+
+Notice this does *not* contradict the 1929 result above. That one says the **logic** misses nothing — anything true in every case can be proved. This one says a **theory strong enough for arithmetic** does miss things. Different questions, different answers, no conflict.
 
 ### Adequacy
 
-The axioms must generate the intended mathematics. Trivially consistent systems proving nothing are useless, and the tension between adequacy and provable consistency is exactly what Gödel's second theorem makes precise.
+Last, the axioms have to actually generate the mathematics you wanted. A system that assumes almost nothing is safely consistent and proves almost nothing, which is no use to anybody. Strength and safety pull against each other, and Gödel's second result says exactly how far that tension goes: the stronger the system, the less it can vouch for itself.
 
 <Warning title="Self-evidence is not a criterion">
-The old gloss — an axiom is an obvious truth — is false, and was historically costly. The parallel postulate looked obvious and turned out to be optional. One standard assumption of set theory looks entirely reasonable and yet implies that a solid ball can be cut into finitely many pieces and reassembled into two balls of the same size. Obviousness is a fact about us, not about the statement.
+The old line — an axiom is a truth too obvious to argue with — is false, and believing it cost mathematics two thousand years. The parallel postulate looked obvious to everyone who read it, and turned out to be optional: drop it and you get a different geometry that is perfectly consistent, and that physics later needed.
 
-The criteria are clarity, consistency, independence, and adequacy. Intuitive plausibility is a convenience for the reader, not a mathematical property.
+It cuts the other way too. There is a standard assumption about sets that sounds completely reasonable and implies that a solid ball can be cut into a few pieces and reassembled into *two* balls the same size as the original. Nothing is wrong with the proof. Obviousness turns out to be a fact about us, not about the statement.
+
+What actually matters is the list from this module: clear, consistent, independent, adequate. A statement feeling reasonable is a kindness to the reader, not a mathematical property of it.
 </Warning>
 
 <Aside>
-Consistency is provable only relative to something else. A system strong enough to describe arithmetic cannot prove its *own* consistency — that is Gödel's second theorem — so results always take a conditional form: *if* this weaker system is free of contradiction, then so is that stronger one. The consistency of the arithmetic axioms was established in 1936, but only by assuming a principle that goes beyond them.
+Because no system strong enough for arithmetic can vouch for itself, every consistency result comes with an *if* attached: *if* this weaker set of rules never contradicts itself, then neither does that stronger one. Someone did prove the arithmetic axioms consistent, in 1936 — but only by assuming something the axioms themselves do not give you.
 
-Foundations does not rest on bedrock. It rests on a well-mapped network of relative consistency results, and knowing the map is what replaces the certainty that was hoped for in 1900.
+So the foundations of mathematics do not sit on bedrock. They sit on a carefully drawn map of which systems rest on which others. In 1900 people hoped for certainty and expected to get it. What they got instead was the map, and the map has turned out to be worth more.
 </Aside>
 
 <WhereThisGoes level="l7">

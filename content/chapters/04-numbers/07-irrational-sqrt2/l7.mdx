@@ -20,7 +20,7 @@ $x \in \mathbb{R}$ is **irrational** when $x \notin \mathbb{Q}$. The irrationals
 
 The statement is a universal negative — $\forall p,q \in \mathbb{Z},\ q\neq0 \Rightarrow p^2 \neq 2q^2$ — so there is nothing to construct and §2.5's diagnostic applies.
 
-The lemma, from §1.9, is $n^2$ even $\iff$ $n$ even, whose forward direction was itself proved by contraposition (§1.8) because "$n^2 = 2k$" yields no handle on $n$.
+The lemma, from §1.9, is $n^2$ even $\iff$ $n$ even, whose forward direction was itself proved by contraposition (§1.8) because "$n^2 = 2k$" gives no handle on $n$.
 
 We also need: every nonzero rational has a representation in lowest terms. This is not free — it follows from there being a smallest one, since among all representations $p/q$ with $q > 0$ there is one with least $q$, and that one has $\gcd(p,q)=1$.
 
@@ -33,9 +33,9 @@ We also need: every nonzero rational has a representation in lowest terms. This 
 <Proof>
 Suppose for contradiction $\sqrt2 \in \mathbb{Q}$, say $\sqrt2 = p/q$ with $p,q\in\mathbb{Z}$, $q\neq0$, $\gcd(p,q)=1$.
 
-Squaring: $p^2 = 2q^2$. Hence $p^2$ is even, so $p$ is even by the lemma; write $p = 2k$, $k \in \mathbb{Z}$.
+Squaring: $p^2 = 2q^2$. Then $p^2$ is even, so $p$ is even by the lemma; write $p = 2k$, $k \in \mathbb{Z}$.
 
-Substituting: $4k^2 = 2q^2$, so $q^2 = 2k^2$. Hence $q^2$ is even, so $q$ is even.
+Substituting: $4k^2 = 2q^2$, so $q^2 = 2k^2$. Then $q^2$ is even, so $q$ is even.
 
 Then $2 \mid p$ and $2 \mid q$, so $2 \mid \gcd(p,q) = 1$ — impossible.
 
@@ -52,7 +52,7 @@ The alternative finish is **infinite descent**: from any solution $(p,q)$ in pos
 
 **$\sqrt p$ for prime $p$.** Replace "even" by "divisible by $p$"; the lemma becomes $p \mid n^2 \Rightarrow p \mid n$, which is Euclid's lemma (§4.3)— and note that primality is essential, since $4 \mid 6^2$ but $4 \nmid 6$.
 
-**Rational root theorem.** If $x = a/b$ in lowest terms satisfies $c_nx^n + \cdots + c_0 = 0$ with $c_i \in \mathbb{Z}$, then $a \mid c_0$ and $b \mid c_n$. For monic polynomials $b = \pm1$, so **any rational root of a monic integer polynomial is an integer**. Since $\sqrt2$ is a root of $x^2 - 2$ and neither $\pm1$ nor $\pm2$ works, $\sqrt2 \notin \mathbb{Q}$ — a second proof, and one that immediately yields $\sqrt[3]2$, $\sqrt2+\sqrt3$, and the golden ratio.
+**Rational root theorem.** If $x = a/b$ in lowest terms satisfies $c_nx^n + \cdots + c_0 = 0$ with $c_i \in \mathbb{Z}$, then $a \mid c_0$ and $b \mid c_n$. For monic polynomials $b = \pm1$, so **any rational root of a monic integer polynomial is an integer**. Since $\sqrt2$ is a root of $x^2 - 2$ and neither $\pm1$ nor $\pm2$ works, $\sqrt2 \notin \mathbb{Q}$ — a second proof, and one that immediately gives $\sqrt[3]2$, $\sqrt2+\sqrt3$, and the golden ratio.
 
 **$\sqrt m$ is rational iff $m$ is a perfect square**, by the same theorem.
 

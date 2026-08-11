@@ -47,10 +47,10 @@ Values: $\operatorname{tot}(1)=1$, $\operatorname{tot}(6)=2$, $\operatorname{tot
 > **Proposition.** $\operatorname{tot}(p) = p-1$ for $p$ prime.
 
 <Proof>
-Let $p$ be prime and let $1 \leq k \leq p$. If $k < p$ then $\gcd(k,p)$ divides $p$, so it is $1$ or $p$; it cannot be $p$ since $p \nmid k$ — read *"$p$ does not divide $k$"* — for $0 < k < p$. Hence $\gcd(k,p) = 1$, and all $p-1$ such $k$ are counted. Finally $\gcd(p,p) = p \neq 1$, so $k = p$ is not counted. Therefore $\operatorname{tot}(p) = p-1$.
+Let $p$ be prime and let $1 \leq k \leq p$. If $k < p$ then $\gcd(k,p)$ divides $p$, so it is $1$ or $p$; it cannot be $p$ since $p \nmid k$ — read *"$p$ does not divide $k$"* — for $0 < k < p$. So $\gcd(k,p) = 1$, and all $p-1$ such $k$ are counted. Finally $\gcd(p,p) = p \neq 1$, so $k = p$ is not counted. Therefore $\operatorname{tot}(p) = p-1$.
 </Proof>
 
-$\operatorname{tot}$ is *multiplicative*: $\operatorname{tot}(mn) = \operatorname{tot}(m)\operatorname{tot}(n)$ when $\gcd(m,n)=1$, which with $\operatorname{tot}(p^k) = p^k - p^{k-1}$ yields
+$\operatorname{tot}$ is *multiplicative*: $\operatorname{tot}(mn) = \operatorname{tot}(m)\operatorname{tot}(n)$ when $\gcd(m,n)=1$, which with $\operatorname{tot}(p^k) = p^k - p^{k-1}$ gives
 $$
 \operatorname{tot}(n) = n \prod_{p \mid n}\left(1 - \frac1p\right).
 $$

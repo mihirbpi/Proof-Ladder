@@ -41,7 +41,7 @@ Equivalently again, said with pre-images (§3.3): $|f^{-1}(\{t\})| \leq 1$ for a
 </Discussion>
 
 <Proof title="Proof (general lemma)">
-Let $f : I \to \mathbb{R}$ be strictly increasing on an interval $I$, and suppose $f(a) = f(b)$ with $a, b \in I$. Any two reals compare in exactly one of three ways, so either $a < b$, $a = b$, or $a > b$. If $a < b$ then $f(a) < f(b)$, contradicting equality; if $a > b$ then $f(a) > f(b)$, likewise. Hence $a = b$, so $f$ is injective.
+Let $f : I \to \mathbb{R}$ be strictly increasing on an interval $I$, and suppose $f(a) = f(b)$ with $a, b \in I$. Any two reals compare in exactly one of three ways, so either $a < b$, $a = b$, or $a > b$. If $a < b$ then $f(a) < f(b)$, contradicting equality; if $a > b$ then $f(a) > f(b)$, likewise. Then $a = b$, so $f$ is injective.
 
 Applying this to $\exp$, which is strictly increasing since $\exp' = \exp > 0$ everywhere, gives injectivity of $\exp$.
 </Proof>
@@ -61,7 +61,7 @@ Injectivity is made about every element, so one collision refutes it (§1.11):
 
 Always spend a moment hunting for a collision before attempting a proof.
 
-<Warning title="Injectivity is a property of the function, hence of its domain">
+<Warning title="Injectivity is a property of the function, so of its domain">
 $x \mapsto x^2$ is not injective on $\mathbb{R}$ but is injective on $[0,\infty)$: if $a,b \geq 0$ and $a^2 = b^2$ then $(a-b)(a+b) = 0$, and $a+b = 0$ with $a,b \geq 0$ forces $a = b = 0$; otherwise $a = b$.
 
 Since domain and codomain are part of the function (§3.1), this is not a change of answer but a change of question. It is also exactly why $\sqrt{\phantom{x}}$ is defined as the inverse of squaring restricted to $[0,\infty)$.
@@ -86,7 +86,7 @@ $$
 
 *Symbol by symbol: $\in$ is "is in".*
 
-Uniqueness — hence well-definedness of $g$ — is exactly injectivity. For $s \in S$ we have $g(f(s)) = s$, so $g \circ f = \mathrm{id}_S$.
+Uniqueness — so well-definedness of $g$ — is exactly injectivity. For $s \in S$ we have $g(f(s)) = s$, so $g \circ f = \mathrm{id}_S$.
 
 (backward) Suppose $g \circ f = \mathrm{id}_S$ and $f(s_1) = f(s_2)$. Applying $g$: $s_1 = g(f(s_1)) = g(f(s_2)) = s_2$.
 </Proof>
@@ -96,7 +96,7 @@ Items (4) and (5) were flagged in §3.4: all the misbehavior of the image operat
 The hypothesis $S \neq \emptyset$ in (2) is needed only for the trivial reason that a left inverse must be defined somewhere; the empty function $\emptyset \to T$ is injective but has no left inverse when $T \neq \emptyset$.
 
 <Aside>
-Injectivity is what "no information is lost" means precisely. An injective $f$ can be undone on its image, so $s$ is recoverable from $f(s)$. This is why injectivity is the condition for an encoding to be decodable, for a hash function to be collision-free, and for a change of variables to be legitimate.
+Injectivity is what "no information is lost" means exactly. An injective $f$ can be undone on its image, so $s$ is recoverable from $f(s)$. This is why injectivity is the condition for an encoding to be decodable, for a hash function to be collision-free, and for a change of variables to be legitimate.
 </Aside>
 
 <WhereThisGoes level="l7">
@@ -105,7 +105,7 @@ Injectivity is the condition under which an equation has at most one solution, a
 
 **One vector's worth of checking replaces a quantified statement about all pairs.** That is a genuine simplification, and it is available only because linearity lets you subtract — which is why the same trick works for no other kind of function.
 
-**In calculus, being strictly increasing gives injectivity.** If $f' > 0$ throughout an interval then $f$ is strictly increasing there, hence injective, hence invertible on that interval — which is exactly the hypothesis of the inverse-function results and the reason $\sin$ must be restricted to $[-\pi/2,\pi/2]$ before $\sin^{-1}$ exists.
+**In calculus, being strictly increasing gives injectivity.** If $f' > 0$ throughout an interval then $f$ is strictly increasing there, so injective, so invertible on that interval — which is exactly the hypothesis of the inverse-function results and the reason $\sin$ must be restricted to $[-\pi/2,\pi/2]$ before $\sin^{-1}$ exists.
 
 The horizontal line test is the graphical form, and the derivative test is the computable one. Note the direction: $f'>0$ implies injective, and the converse fails — $f(x)=x^3$ is injective with $f'(0)=0$. A one-way implication, and §1.7's warning applies.
 

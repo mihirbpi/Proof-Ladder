@@ -43,7 +43,7 @@ Write $z = a+bi$, $w = c+di$.
 
 The first three properties say conjugation **preserves both operations** — it is a relabeling of $\mathbb{C}$ that arithmetic cannot detect; the last says the numbers it leaves fixed are exactly the reals. Those two facts together are stronger than they look: conjugation and doing nothing are the *only* two relabelings with that property, which is why complex roots of real polynomials pair up and never come in threes.
 
-There is a philosophical point in this. Nothing algebraic distinguishes $i$ from $-i$: both are roots of $x^2+1$, and conjugation is precisely the symmetry that exchanges them. The choice of which to call $i$ is a labeling convention with no mathematical content, and conjugation is the record of that fact.
+There is a philosophical point in this. Nothing algebraic distinguishes $i$ from $-i$: both are roots of $x^2+1$, and conjugation is exactly the symmetry that exchanges them. The choice of which to call $i$ is a labeling convention with no mathematical content, and conjugation is the record of that fact.
 
 ## The conjugate root theorem
 
@@ -59,9 +59,9 @@ $$
 
 </Proof>
 
-Consequences: non-real roots of real polynomials occur in conjugate pairs; hence every real polynomial of odd degree has a real root; hence every real polynomial factors over $\mathbb{R}$ into linear and irreducible quadratic factors — the quadratics being $(x-z)(x-\bar z) = x^2 - 2\operatorname{Re}(z)x + |z|^2$, which has real coefficients by the proposition.
+Consequences: non-real roots of real polynomials occur in conjugate pairs; so every real polynomial of odd degree has a real root; so every real polynomial factors over $\mathbb{R}$ into linear and irreducible quadratic factors — the quadratics being $(x-z)(x-\bar z) = x^2 - 2\operatorname{Re}(z)x + |z|^2$, which has real coefficients by the proposition.
 
-That last factorisation is what makes partial fractions work over $\mathbb{R}$, and hence what makes every rational function integrable in closed form.
+That last factorisation is what makes partial fractions work over $\mathbb{R}$, and so what makes every rational function integrable in closed form.
 
 <Warning title="Real coefficients are essential">
 $p(x) = x - i$ has root $i$ but not $\bar i = -i$. The theorem uses $\overline{c_k} = c_k$, which holds only for real coefficients.
@@ -77,22 +77,22 @@ That reading explains the algebra rather than merely illustrating it.
 
 **Why $\overline{\bar z} = z$.** Reflecting twice returns every point. That it undoes itself is a geometric fact, and the same fact holds for set complements and for logical negation.
 
-**Why $z = \bar z$ exactly for real $z$.** The fixed points of a reflection are the points of the mirror, and the mirror is the real axis. The six-line algebraic proof and the one-line geometric observation establish the same thing, and the second explains it.
+**Why $z = \bar z$ exactly for real $z$.** The fixed points of a reflection are the points of the mirror, and the mirror is the real axis. The six-line algebraic proof and the one-line geometric observation prove the same thing, and the second explains it.
 
 **Why $|\bar z| = |z|$.** A reflection is a rigid motion; it preserves distance from the origin.
 
 **Why conjugation preserves products.** Reflecting both factors and multiplying gives the same result as multiplying and then reflecting — because multiplication adds arguments (§5.9), and reflection negates them. $-(\theta_1+\theta_2) = (-\theta_1)+(-\theta_2)$, which is the whole content.
 
-The last one is the most useful, and it is the reason the conjugate-root theorem holds: conjugating a polynomial identity term by term is legitimate precisely because conjugation respects both operations.
+The last one is the most useful, and it is the reason the conjugate-root theorem holds: conjugating a polynomial identity term by term is legitimate exactly because conjugation respects both operations.
 
 ## Conjugation is not continuous-linear
 
 $z \mapsto \bar z$ is $\mathbb{R}$-linear but not $\mathbb{C}$-linear: $\overline{iz} = -i\bar z \neq i\bar z$ in general. It is therefore not complex-differentiable anywhere, despite being smooth as a map $\mathbb{R}^2\to\mathbb{R}^2$ — the standard first example showing that complex differentiability is far stronger than real differentiability.
 
-This has a consequence you will meet much later: the operations that pick out a part — real part, imaginary part, distance, conjugate — all behave badly under the calculus of complex numbers, precisely because each of them ignores some of the structure. Recognizing them at a glance saves a great deal of time in that course.
+This has a consequence you will meet much later: the operations that pick out a part — real part, imaginary part, distance, conjugate — all behave badly under the calculus of complex numbers, exactly because each of them ignores some of the structure. Recognizing them at a glance saves a great deal of time in that course.
 
 <Aside>
-Conjugation is one of exactly two *continuous* operation-preserving relabelings of $\mathbb{C}$. Dropping continuity there are vastly more, constructed non-constructively; all but the identity and conjugation are non-measurable and unwritable. That $\mathbb{R}$ by contrast has *only* the identity — because its order, hence its notion of nearness, is determined algebraically by which elements are squares — is a small and striking asymmetry.
+Conjugation is one of exactly two *continuous* operation-preserving relabelings of $\mathbb{C}$. Dropping continuity there are vastly more, constructed non-constructively; all but the identity and conjugation are non-measurable and unwritable. That $\mathbb{R}$ by contrast has *only* the identity — because its order, so its notion of nearness, is determined algebraically by which elements are squares — is a small and striking asymmetry.
 </Aside>
 
 <WhereThisGoes level="l7">

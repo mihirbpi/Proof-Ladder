@@ -14,7 +14,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 ## The template
 
-1. **Statement.** Define $A(n)$ precisely and fix $n_0$.
+1. **Statement.** Define $A(n)$ exactly and fix $n_0$.
 2. **Base case.** Prove $A(n_0)$.
 3. **Inductive step.** Prove $\forall k \geq n_0,\ A(k)\Rightarrow A(k+1)$, whose hypothesis is the **inductive hypothesis**.
 
@@ -44,15 +44,15 @@ which is $A(k+1)$.
 By induction, $A(n)$ holds for all $n \geq 1$.
 </Proof>
 
-## Non-circularity, stated precisely
+## Non-circularity, stated exactly
 
-The step establishes
+The step proves
 $$
 \forall k \geq n_0\ \big(A(k)\Rightarrow A(k+1)\big),
 $$
-a if–then claim made about every element. Nothing in it asserts $A(k)$ for any particular $k$; discharging the hypothesis to prove a conditional is §1.6's standard method.
+a if–then claim made about every element. Nothing in it says $A(k)$ for any particular $k$; discharging the hypothesis to prove a conditional is §1.6's standard method.
 
-The worry is worth taking seriously precisely because dissolving it requires reading the quantifier structure carefully — which is what Chapter 1 was for.
+The worry is worth taking seriously exactly because dissolving it requires reading the quantifier structure carefully — which is what Chapter 1 was for.
 
 Independence of the two hypotheses is easy to exhibit:
 
@@ -89,7 +89,7 @@ Suppose $A(n_0)$ holds and $A(k)\Rightarrow A(k+1)$ for all $k \geq n_0$, but $S
 
 Because every non-empty collection of these integers has a smallest member, $S$ has a smallest member $m$. Since $A(n_0)$ holds, $m > n_0$, so $m - 1 \geq n_0$. Since $m$ is the smallest member of $S$, $m-1 \notin S$, so $A(m-1)$ holds. The step gives $A(m)$, contradicting $m \in S$.
 
-Hence $S = \emptyset$.
+So $S = \emptyset$.
 </Proof>
 
 This is the **least counterexample** formulation, and it is often the more convenient one to write — particularly for statements where the decomposition of case $n$ is not into case $n-1$.
@@ -113,7 +113,7 @@ Strong induction assumes $A(n_0),\ldots,A(k)$ rather than just $A(k)$, and is eq
 <WhereThisGoes level="l7">
 The three-step discipline is what makes an induction proof checkable, and the errors it prevents are the ones graders actually see.
 
-**Omitting the base case.** The claim $n = n+1$ has a perfect inductive step and no base case, and it is false everywhere. Any argument that establishes only the link has established nothing.
+**Omitting the base case.** The claim $n = n+1$ has a perfect inductive step and no base case, and it is false everywhere. Any argument that proves only the link has proved nothing.
 
 **Not using the hypothesis.** If your step derives $A(k+1)$ without invoking $A(k)$, you proved the statement directly and the induction was scaffolding. That is fine — but it usually means the problem was easier than assumed, and occasionally it means an error.
 

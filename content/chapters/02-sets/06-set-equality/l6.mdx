@@ -39,7 +39,7 @@ $$
 >
 > **($\supseteq$)** Let $x \in T$. … Therefore $x \in S$.
 >
-> Hence $S = T$.
+> So $S = T$.
 
 Label the halves. Without labels a reader cannot tell which containment they are reading, and the commonest way to write a broken proof is to prove one direction twice.
 
@@ -54,7 +54,7 @@ Now open your textbook to any locus result. It states two theorems:
 Those are $S \subseteq T$ and $T \subseteq S$ for
 $$S = \text{the perpendicular bisector}, \qquad T = \{Q : QA = QB\}.$$
 
-Together they say $S = T$ — which is what licenses the *definition* of the perpendicular bisector as a locus. Your book proves both because one alone would not establish the sets are the same, and it separates them because the two proofs use different tools.
+Together they say $S = T$ — which is what licenses the *definition* of the perpendicular bisector as a locus. Your book proves both because one alone would not prove the sets are the same, and it separates them because the two proofs use different tools.
 
 <Warning title="One direction is not enough">
 Suppose only the first theorem were proved. You would know the bisector sits inside the equidistant set — but not that it fills it. As far as that theorem is concerned, the equidistant set could be a whole region with the bisector as a sliver inside it.
@@ -75,7 +75,7 @@ The second theorem is what rules that out. It is where the *only* in "the set of
 <Proof>
 **($\subseteq$)** Let $x \in S \cap (S \cup T)$. By definition of $\cap$, $x \in S$.
 
-**($\supseteq$)** Let $x \in S$. Then $x \in S \cup T$, since membership in either set suffices for the union. So $x \in S$ and $x \in S \cup T$, hence $x \in S \cap (S\cup T)$.
+**($\supseteq$)** Let $x \in S$. Then $x \in S \cup T$, since membership in either set is enough for the union. Then $x \in S$ and $x \in S \cup T$, so $x \in S \cap (S\cup T)$.
 
 Therefore $S \cap (S \cup T) = S$.
 </Proof>
@@ -97,7 +97,7 @@ Harder equalities have a direction where the hypothesis is a $\vee$ — and a $\
 
 Either way $x \in S$, and the cases are exhaustive.
 
-**($\supseteq$)** Let $x \in S$. Then $x \in S \cup (S\cap T)$, since membership in the first set suffices.
+**($\supseteq$)** Let $x \in S$. Then $x \in S \cup (S\cap T)$, since membership in the first set is enough.
 
 Therefore $S \cup (S\cap T) = S$.
 </Proof>

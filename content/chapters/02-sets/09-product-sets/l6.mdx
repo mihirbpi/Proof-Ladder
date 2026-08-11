@@ -11,7 +11,7 @@ import Discussion from '@/components/Discussion.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 2.1 established that sets forget order: $\{3, 5\} = \{5, 3\}$.
+Module 2.1 proved that sets forget order: $\{3, 5\} = \{5, 3\}$.
 
 Coordinate geometry cannot afford that. The point $(3,5)$ is not the point $(5,3)$, and every theorem you have proved with coordinates depends on the difference. So we need a second kind of object — one that remembers.
 
@@ -79,7 +79,7 @@ Descartes' insight in 1637 was exactly this identification, and it is what makes
 <Aside>
 Products give you a clean way to talk about things geometry usually leaves informal.
 
-A **congruence** $\triangle ABC \cong \triangle DEF$ asserts a correspondence — a set of ordered pairs
+A **congruence** $\triangle ABC \cong \triangle DEF$ says a correspondence — a set of ordered pairs
 $$\{(A,D),(B,E),(C,F)\} \subseteq \{A,B,C\}\times\{D,E,F\},$$
 
 *Symbol by symbol: $\subseteq$ is "sits inside".*
@@ -112,7 +112,7 @@ Not every region is such a product. A disk is not: its horizontal cross-sections
 <Proof>
 **($\subseteq$)** Let $p \in (A\cap B)\times(C\cap D)$. Then $p = (x,y)$ with $x \in A \cap B$ and $y \in C\cap D$; that is, $x \in A$, $x \in B$, $y \in C$, $y \in D$.
 
-From $x \in A$ and $y \in C$ we get $(x,y) \in A\times C$. From $x \in B$ and $y \in D$ we get $(x,y)\in B\times D$. Hence $p \in (A\times C)\cap(B\times D)$.
+From $x \in A$ and $y \in C$ we get $(x,y) \in A\times C$. From $x \in B$ and $y \in D$ we get $(x,y)\in B\times D$. So $p \in (A\times C)\cap(B\times D)$.
 
 **($\supseteq$)** Let $p \in (A\times C)\cap(B\times D)$. From $p \in A\times C$, $p = (x,y)$ with $x \in A$ and $y \in C$. From $p \in B\times D$, also $x \in B$ and $y \in D$ — the entries are the same $x$ and $y$, since an ordered pair determines its entries.
 

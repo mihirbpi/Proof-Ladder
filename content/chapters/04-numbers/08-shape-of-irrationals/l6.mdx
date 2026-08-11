@@ -11,7 +11,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-the fractions support all four operations: closed under all four operations (module 4.5). The irrationals are not, and the failures are instructive.
+the fractions support all four operations: closed under all four operations (module 4.5). The irrationals are not, and the failures are worth doing.
 
 ## Closure fails, in every way
 
@@ -57,7 +57,7 @@ $$s - a \in \mathbb{Q}.$$
 
 But $s - a = (a+b)-a = b$. So $b\in\mathbb{Q}$, contradicting that $b$ is irrational.
 
-Hence $a+b$ is irrational.
+So $a+b$ is irrational.
 </Proof>
 
 > **Proposition.** If $a$ is a **non-zero** rational and $b$ is irrational, then $ab$ is irrational.
@@ -69,13 +69,13 @@ Since $a\neq0$ and $\mathbb{Q}$ is closed under division by non-zero rationals, 
 
 But $\frac pa = \frac{ab}{a} = b$. So $b$ is rational — a contradiction.
 
-Hence $ab$ is irrational.
+So $ab$ is irrational.
 </Proof>
 
 <Warning title="Why a ≠ 0 is required">
 Drop it and the statement is false: $0\cdot\sqrt2 = 0$, which is rational.
 
-The proof shows exactly where the hypothesis is used — the division step. **When a proof needs a hypothesis, deleting the hypothesis produces a counterexample at precisely that step**, and tracing that connection is a good way to check you have understood an argument.
+The proof shows exactly where the hypothesis is used — the division step. **When a proof needs a hypothesis, deleting the hypothesis produces a counterexample at exactly that step**, and tracing that connection is a good way to check you have understood an argument.
 </Warning>
 
 ## A family of corollaries

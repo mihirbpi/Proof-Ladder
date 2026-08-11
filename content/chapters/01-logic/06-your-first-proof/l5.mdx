@@ -11,18 +11,18 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 1.5 established that $p \Rightarrow q$ is false in exactly one situation: $p$ true, $q$ false. Proving the conditional therefore means ruling that situation out, and the cleanest way is to **assume $p$ and derive $q$** — after which the bad row cannot occur.
+Module 1.5 proved that $p \Rightarrow q$ is false in exactly one situation: $p$ true, $q$ false. Proving the conditional therefore means ruling that situation out, and the cleanest way is to **assume $p$ and derive $q$** — after which the bad row cannot occur.
 
 That is a **direct proof**, and the named move is **start from what you're given**.
 
 ## What a proof is
 
-A **proof** is an argument, addressed to a reader, that establishes a statement beyond dispute. It is written in complete sentences, and the joining word words — *since*, *because*, *so*, *therefore* — carry the logical structure.
+A **proof** is an argument, addressed to a reader, that proves a statement beyond dispute. It is written in complete sentences, and the joining word words — *since*, *because*, *so*, *therefore* — carry the logical structure.
 
 That last point is not a style preference. Compare:
 
 - ✗ $x>1 \Rightarrow x\cdot x > 1\cdot x \Rightarrow x^2 > x > 1$
-- ✓ "Since $x > 1$ and $x > 0$, multiplying both sides of $x>1$ by $x$ gives $x^2 > x$. As $x > 1$, transitivity yields $x^2 > 1$."
+- ✓ "Since $x > 1$ and $x > 0$, multiplying both sides of $x>1$ by $x$ gives $x^2 > x$. As $x > 1$, transitivity gives $x^2 > 1$."
 
 The first records a computation. The second explains *why each step is permitted*, which is the only thing the reader could not have worked out alone.
 
@@ -56,7 +56,7 @@ Since $x > 1$ and $1 > 0$, transitivity (O2) gives $x > 0$.
 Multiplying both sides of the inequality $x > 1$ by the positive number $x$ preserves it, by (O1):
 $$x\cdot x > 1\cdot x, \quad\text{that is,}\quad x^2 > x.$$
 
-Combining $x^2 > x$ with the hypothesis $x > 1$, transitivity (O2) yields $x^2 > 1$, as required.
+Combining $x^2 > x$ with the hypothesis $x > 1$, transitivity (O2) gives $x^2 > 1$, as required.
 </Proof>
 
 The $\square$ marks the end. Some authors write *Q.E.D.*; the tombstone is now standard.
@@ -86,7 +86,7 @@ Suppose $m$ and $n$ are even. By definition, there exist integers $j,k$ with $m 
 Then
 $$m + n = 2j + 2k = 2(j+k).$$
 
-Since $j + k$ is an integer, $m+n$ is twice an integer, hence even by definition.
+Since $j + k$ is an integer, $m+n$ is twice an integer, so even by definition.
 </Proof>
 
 Both proofs share a rhythm worth naming:

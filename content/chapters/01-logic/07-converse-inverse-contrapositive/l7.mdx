@@ -54,12 +54,12 @@ and the two pairs disagree in rows 2 and 3, so neither pair forces the other. Th
 A proof without the table, since the table generalizes poorly to quantified statements:
 
 <Proof title="Proof of contraposition">
-Suppose $p \Rightarrow q$ holds, and suppose $\neg q$. If $p$ were true, then $q$ would follow, contradicting $\neg q$; hence $\neg p$. This establishes $\neg q \Rightarrow \neg p$.
+Suppose $p \Rightarrow q$ holds, and suppose $\neg q$. If $p$ were true, then $q$ would follow, contradicting $\neg q$; so $\neg p$. This proves $\neg q \Rightarrow \neg p$.
 
-Conversely, suppose $\neg q \Rightarrow \neg p$ and suppose $p$. If $q$ failed, then $\neg p$ would follow, contradicting $p$; hence $q$. This establishes $p \Rightarrow q$.
+Conversely, suppose $\neg q \Rightarrow \neg p$ and suppose $p$. If $q$ failed, then $\neg p$ would follow, contradicting $p$; so $q$. This proves $p \Rightarrow q$.
 </Proof>
 
-Note that both halves used the law of excluded middle (§1.3) implicitly, in the step "if $q$ failed, …, hence $q$." The second half is where the use is essential; see the aside on constructive logic below.
+Note that both halves used the law of excluded middle (§1.3) implicitly, in the step "if $q$ failed, …, so $q$." The second half is where the use is essential; see the aside on constructive logic below.
 
 ## The anchor example
 
@@ -91,7 +91,7 @@ $$
 
 *Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\Rightarrow$ is "forces", $\vee$ is "or".*
 
-A disjunctive conclusion is proved by the standard maneuver: assume one half of the *or* fails and prove the other holds. So: assume $x + y$ rational and $x$ rational; then $y = (x+y) - x$ is a difference of rationals, hence rational — which is the other half of the *or*. Notice that the correct De Morgan negation was essential; the naive negation "$x$ is irrational **and** $y$ rational" is a strictly stronger conclusion, and it is not provable from the hypothesis.
+A disjunctive conclusion is proved by the standard maneuver: assume one half of the *or* fails and prove the other holds. Then: assume $x + y$ rational and $x$ rational; then $y = (x+y) - x$ is a difference of rationals, so rational — which is the other half of the *or*. Notice that the correct De Morgan negation was essential; the naive negation "$x$ is irrational **and** $y$ rational" is a strictly stronger conclusion, and it is not provable from the hypothesis.
 
 <Warning title="Running the arrow backwards, and its mathematical disguises">
 Believing the converse of a true if-then is a mistake old enough to have a name — logicians call it *affirming the consequent*, the consequent being the *then* half. In mathematics it rarely appears so nakedly; it appears as:
@@ -109,10 +109,10 @@ Negation of a conditional is a distinct operation from any of these flips: $\neg
 
 The three flips have a vocabulary attached that you will meet in every later course. If $p \Rightarrow q$:
 
-- $p$ is a **sufficient** condition for $q$ — having $p$ suffices to get $q$;
+- $p$ is a **sufficient** condition for $q$ — having $p$ is enough to get $q$;
 - $q$ is a **necessary** condition for $p$ — you cannot have $p$ without $q$.
 
-The contrapositive is precisely the second reading of the same fact, which is why they are equivalent. The converse asserts the reverse pair of roles, and $p \Leftrightarrow q$ — module 1.9 — asserts both, i.e. that each condition is necessary and sufficient for the other.
+The contrapositive is exactly the second reading of the same fact, which is why they are equivalent. The converse says the reverse pair of roles, and $p \Leftrightarrow q$ — module 1.9 — says both, i.e. that each condition is necessary and sufficient for the other.
 
 <WhereThisGoes level="l7">
 

@@ -49,9 +49,9 @@ You can already predict the reason. $\cap$ is $\wedge$ and $\cup$ is $\vee$, and
 <Proof>
 **($\subseteq$)** Let $x \in S \cap (T \cup V)$. Then $x \in S$, and $x \in T$ or $x \in V$.
 
-*Case 1: $x \in T$.* With $x \in S$, this gives $x \in S \cap T$, hence $x \in (S\cap T)\cup(S\cap V)$.
+*Case 1: $x \in T$.* With $x \in S$, this gives $x \in S \cap T$, so $x \in (S\cap T)\cup(S\cap V)$.
 
-*Case 2: $x \in V$.* With $x \in S$, this gives $x \in S\cap V$, hence again $x \in (S\cap T)\cup(S\cap V)$.
+*Case 2: $x \in V$.* With $x \in S$, this gives $x \in S\cap V$, so again $x \in (S\cap T)\cup(S\cap V)$.
 
 The cases are exhaustive, so the containment holds.
 
@@ -100,7 +100,7 @@ $$
 
 *Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
 
-The two left sides are equal by the first law, so the right sides are too — which is the second law, written in $\overline S, \overline T, \overline V$. Since every set is the complement of *something*, that establishes it in general.
+The two left sides are equal by the first law, so the right sides are too — which is the second law, written in $\overline S, \overline T, \overline V$. Since every set is the complement of *something*, that proves it in general.
 
 **This is the mirroring doing real work.** Complementation exchanges $\cap$ and $\cup$, so it converts any true identity into another true identity. Every law in this chapter has a dual partner, and half the proofs are therefore free.
 
@@ -134,7 +134,7 @@ By this point in the chapter you can predict a proof's shape before starting:
 - **$\cup$ in the hypothesis** — cases, because you are not told which side.
 - **$\cup$ in the goal** — easy, land in either part.
 - **$\cap$ in the hypothesis** — easy, you get both facts.
-- **$\cap$ in the goal** — two things to establish.
+- **$\cap$ in the goal** — two things to prove.
 - **complement in the hypothesis** — likely "suppose not."
 
 Reading the statement this way and sketching the skeleton before writing is how experienced mathematicians work, and it is a habit that transfers directly to the two-column proofs in front of you. The reason column is where the *tools* go; this list is about the *shape*, and the shape comes first.

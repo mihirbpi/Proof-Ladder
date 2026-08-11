@@ -30,9 +30,9 @@ Partition $\mathcal{P}(S) = \mathcal{U}\cup\mathcal{V}$ with $\mathcal{U} = \{A 
 
 $\mathcal{U} = \mathcal{P}(S')$, so $|\mathcal{U}| = 2^k$ by (IH).
 
-$p : \mathcal{V}\to\mathcal{P}(S')$, $A \mapsto A\setminus\{a\}$, has two-sided inverse $B \mapsto B\cup\{a\}$, hence is a bijection (§3.9); so $|\mathcal{V}| = 2^k$.
+$p : \mathcal{V}\to\mathcal{P}(S')$, $A \mapsto A\setminus\{a\}$, has two-sided inverse $B \mapsto B\cup\{a\}$, so is a bijection (§3.9); so $|\mathcal{V}| = 2^k$.
 
-Thus $|\mathcal{P}(S)| = 2^k+2^k = 2^{k+1}$.
+So $|\mathcal{P}(S)| = 2^k+2^k = 2^{k+1}$.
 </Proof>
 
 The step transferred a count along a bijection rather than recounting — §3.8's principle in use.
@@ -61,11 +61,11 @@ Splitting by cardinality gives
 $$
 2^n = \sum_{k=0}^{n}\binom nk,
 $$
-since $\binom nk$ counts the $k$-element subsets. The same partition argument used above, applied to $k$-subsets, yields Pascal's rule
+since $\binom nk$ counts the $k$-element subsets. The same partition argument used above, applied to $k$-subsets, gives Pascal's rule
 $$
 \binom{n}{k} = \binom{n-1}{k-1}+\binom{n-1}{k}
 $$
-— subsets containing $a$ versus not — and hence the binomial theorem by induction. The theorem of this module is the binomial theorem evaluated at $x=y=1$.
+— subsets containing $a$ versus not — and so the binomial theorem by induction. The theorem of this module is the binomial theorem evaluated at $x=y=1$.
 
 ## Why the split is legitimate
 

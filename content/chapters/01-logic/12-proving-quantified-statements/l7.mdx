@@ -30,7 +30,7 @@ The side condition is the whole content, and the two words pull in opposite dire
 - **Fixed**, because you must be able to compute with $c$ as a definite object — write $c^2$, apply lemmas to it, name quantities depending on it.
 - **Arbitrary**, because your derivation may use only facts that follow from $c \in S$. The moment you use a property not shared by all of $S$, generalization becomes unsound.
 
-The soundness argument is exactly this: a derivation of $p(c)$ using only $c \in S$ is, syntactically, a template. Substituting any other $d \in S$ for $c$ throughout yields a derivation of $p(d)$. So $p$ holds everywhere on $S$.
+The soundness argument is exactly this: a derivation of $p(c)$ using only $c \in S$ is, syntactically, a template. Substituting any other $d \in S$ for $c$ throughout gives a derivation of $p(d)$. So $p$ holds everywhere on $S$.
 
 > **Proposition.** For all an integer $n$ with $n \geq 3$, $n^2 - 1$ is composite.
 
@@ -43,7 +43,7 @@ The soundness argument is exactly this: a derivation of $p(c)$ using only $c \in
 <Proof>
 Let $n$ be any integer with $n \geq 3$. Then
 $$n^2 - 1 = (n-1)(n+1),$$
-an identity in the integers. Since $n \geq 3$, we have $n - 1 \geq 2$ and $n + 1 \geq 4$, so both factors are integers exceeding $1$. Hence $n^2 - 1$ is composite. As $n$ was arbitrary subject only to $n \geq 3$, the claim holds universally on that domain.
+an identity in the integers. Since $n \geq 3$, we have $n - 1 \geq 2$ and $n + 1 \geq 4$, so both factors are integers exceeding $1$. So $n^2 - 1$ is composite. As $n$ was arbitrary subject only to $n \geq 3$, the claim holds universally on that domain.
 </Proof>
 
 The hypothesis is sharp: at $n = 2$ the factorisation reads $1 \cdot 3$, and $3$ is prime. Universal statements characteriztically fail at the boundary of their domain, which is the first place to test any conjecture.
@@ -63,7 +63,7 @@ If a case assumption is genuinely needed, it must be introduced as one branch of
 
 Proving $\exists x \in S,\, p(x)$ by exhibiting a **witness** is the constructive route and is always preferable when available. It is not always available. Two standard non-constructive patterns — routes that prove existence without producing the object:
 
-- **Contradiction.** Assume $\forall x \in S,\, \neg p(x)$; derive a contradiction. This establishes existence without producing anything.
+- **Contradiction.** Assume $\forall x \in S,\, \neg p(x)$; derive a contradiction. This proves existence without producing anything.
 - **Pigeonhole / counting.** Show the set of $x$ with $p(x)$ is nonempty by counting, without ever naming a member of it.
 
 The classic illustration: *there exist irrational $a, b$ with $a^b$ rational.* Consider $\sqrt{2}^{\sqrt{2}}$. Either it is rational — take $a = b = \sqrt2$ — or it is irrational, in which case take $a = \sqrt2^{\sqrt2}$, $b = \sqrt2$, so that $a^b = \sqrt2^{\,2} = 2$. Either way such a pair exists, and the proof does not tell you which pair. Excluded middle is doing the work; a constructivist rejects the argument, though the theorem itself has constructive proofs by other routes.
@@ -91,13 +91,13 @@ We prove the equivalent universal statement $\forall x \in \mathbb{R},\, x^2 \ge
 
 If $x > 0$, then $x^2 > 0$ as a product of positives. If $x = 0$, then $x^2 = 0$. If $x < 0$, then $-x > 0$ and $x^2 = (-x)(-x) > 0$.
 
-In all cases $x^2 \geq 0$; the cases are exhaustive. Hence no real number has negative square.
+In all cases $x^2 \geq 0$; the cases are exhaustive. So no real number has negative square.
 </Proof>
 
 Two obligations: **exhaustiveness** (a missing case is a hole, and it is the most common structural defect in student proofs) and **each branch actually proved**. Disjointness is aesthetic, not required. The disjunction to split on typically comes from a hypothesis containing $\vee$, from the positive/zero/negative split, from even versus odd, or from the division algorithm — the last generalizing parity to remainders mod $d$ (§4.4).
 
 <Aside>
-The matching rule for *there exists* runs the other way and has its own side condition. From $\exists x,\, p(x)$ you may introduce a **fresh** constant $c$ with $p(c)$ — fresh meaning it appears nowhere earlier. Reusing a name is the classic fallacy: from $\exists x, x^2 = 4$ and $\exists x, x^3 = 27$, using the same $c$ for both would yield a $c$ with $c^2 = 4$ and $c^3 = 27$. Each existential gets its own name.
+The matching rule for *there exists* runs the other way and has its own side condition. From $\exists x,\, p(x)$ you may introduce a **fresh** constant $c$ with $p(c)$ — fresh meaning it appears nowhere earlier. Reusing a name is the classic fallacy: from $\exists x, x^2 = 4$ and $\exists x, x^3 = 27$, using the same $c$ for both would give a $c$ with $c^2 = 4$ and $c^3 = 27$. Each existential gets its own name.
 </Aside>
 
 <WhereThisGoes level="l7">

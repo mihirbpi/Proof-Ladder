@@ -53,11 +53,11 @@ In the language of Chapter 3, Axiom 8 is the **contrapositive form of injectivit
 
 $$S(x)=S(y) \Rightarrow x=y$$
 
-which is precisely module 3.5's working definition. **Axiom 8 says the successor function is injective.**
+which is exactly module 3.5's working definition. **Axiom 8 says the successor function is injective.**
 
 And Axiom 7 says the pre-image of $0$ is empty:
 $$S^{-1}(\{0\}) = \emptyset,$$
-which is module 3.3's notation. Both axioms are statements about $S$ as a function, using vocabulary the course established four chapters ago.
+which is module 3.3's notation. Both axioms are statements about $S$ as a function, using vocabulary the course proved four chapters ago.
 
 <Warning title="Injective, and not surjective">
 $S$ is injective by Axiom 8. It is **not surjective**, by Axiom 7 — nothing maps to $0$.
@@ -74,7 +74,7 @@ That is the exact reason $\mathbb{N}$ is not closed under subtraction, and it is
 <Proof>
 By definition $1 = S(0)$. By Axiom 7, $S(x)\neq0$ for every $x$; taking $x=0$ gives $S(0)\neq0$.
 
-Hence $1\neq0$.
+So $1\neq0$.
 </Proof>
 
 Two lines to prove $1\neq0$. That is what building from axioms costs, and it is also what it buys: the fact now rests on something, rather than on its being obvious.
@@ -86,7 +86,7 @@ Suppose $2 = 1$, that is, $S(1) = S(0)$.
 
 By Axiom 8, $1 = 0$ — contradicting the previous proposition.
 
-Hence $2 \neq 1$.
+So $2 \neq 1$.
 </Proof>
 
 The same argument gives $3\neq2$, $4\neq3$, and so on. **All the numbers are distinct**, and the general claim is proved by induction — Axiom 9, coming in module 7.5.
@@ -126,5 +126,5 @@ Which axiom is doing what becomes visible when you ask what fails without it.
 
 **Drop Axiom 9:** you get $\mathbb{N}$ together with extra chains, called **non-standard models of arithmetic**. Skolem constructed one in 1934, and they are genuinely strange: they contain "numbers" larger than every ordinary number, and they satisfy every first-order statement true of $\mathbb{N}$.
 
-Each dropped axiom yields a real subject. This is the geometry situation from module 7.1 all over again: an axiom is not a description of the only possibility, and dropping it opens a door rather than breaking anything.
+Each dropped axiom gives a real subject. This is the geometry situation from module 7.1 all over again: an axiom is not a description of the only possibility, and dropping it opens a door rather than breaking anything.
 </Aside>

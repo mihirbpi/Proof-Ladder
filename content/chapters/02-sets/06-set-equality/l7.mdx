@@ -26,8 +26,8 @@ Equivalently: **double inclusion is the rule that mutual containment forces equa
 
 The named move is **check both boxes**. The template:
 
-> ($\subseteq$) Let $x \in S$ be arbitrary; … ; hence $x \in T$.
-> ($\supseteq$) Let $x \in T$ be arbitrary; … ; hence $x \in S$.
+> ($\subseteq$) Let $x \in S$ be arbitrary; … ; so $x \in T$.
+> ($\supseteq$) Let $x \in T$ be arbitrary; … ; so $x \in S$.
 
 ## Disjunction dictates cases
 
@@ -35,8 +35,8 @@ $x \in S \cup T$ unfolds to a disjunction, and a disjunctive hypothesis must be 
 
 | | Proving membership | Using membership |
 |---|---|---|
-| $S \cup T$ | cheap — establish either half | expensive — case split |
-| $S \cap T$ | expensive — establish both halves | cheap — take whichever half you want |
+| $S \cup T$ | cheap — prove either half | expensive — case split |
+| $S \cap T$ | expensive — prove both halves | cheap — take whichever half you want |
 
 Reading a goal in this light usually tells you in advance which direction of a double inclusion will be the hard one.
 
@@ -68,7 +68,7 @@ The cases are exhaustive, and in each $x \in R$.
 
 ($\supseteq$) Let $x \in R$, so $\sin x \cos x = 0$. By the zero-product property, a product of reals vanishes only if a factor does, so $\sin x = 0$ or $\cos x = 0$; that is, $x \in S \cup T$.
 
-Both inclusions hold, hence $S \cup T = R$.
+Both inclusions hold, so $S \cup T = R$.
 </Proof>
 
 The dependence of the reverse inclusion on *a product of non-zero numbers never being zero* is the mathematically interesting feature. Over $\mathbb{Z}/6\mathbb{Z}$ the analogous statement fails, since $2 \cdot 3 = 0$ with neither factor zero. Tracking which half of a proof consumes which hypothesis is how one learns the natural generality of a theorem.
@@ -107,7 +107,7 @@ $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
 
-Each is a theorem with two halves, and in each case one half is substantially harder than the other. The value of double inclusion is precisely that it does not consult your intuition about whether two descriptions "look the same".
+Each is a theorem with two halves, and in each case one half is substantially harder than the other. The value of double inclusion is exactly that it does not consult your intuition about whether two descriptions "look the same".
 
 <Aside>
 The method generalizes far beyond sets. Proving two subspaces, two spans, or two solution sets equal is always mutual inclusion. Proving two functions equal is the pointwise analogue: same domain, same codomain, and $f(x) = g(x)$ for every $x$ — which is being fixed by its members one level up (§3.1).

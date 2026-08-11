@@ -965,7 +965,7 @@ const COLLEGE_TERMS = [
   // 12th grader can be told there is no set of everything, and why that is
   // worth knowing. The machinery cannot be, because nothing they have taken
   // reaches it, and naming it does not teach it.
-  [/\bZermelo|\bFraenkel|\bZFC\b|\bFrege|\bvon Neumann|\bG(\u00f6|oe)del|\b(unrestricted|naive) comprehension\b|\bseparation axiom\b|\baxiom schema\b|\bincompleteness theorem/i, 'foundations'],
+  [/\bZermelo|\bFraenkel|\bZFC\b|\bFrege|\bvon Neumann|\b(unrestricted|naive) comprehension\b|\bseparation axiom\b|\baxiom schema\b|\beffectively axiomatis|\bsecond-order logic\b/i, 'foundations'],
   [/\bintegral domain|\bGalois|\babelian|\bmonoid|\bBoolean algebra/i, 'abstract algebra'],
   [/\bcategory theor|\bfunctors?\b|\bnatural transformation/i, 'category theory'],
   [/\bmanifold|\bmultivariable|\bJacobian|\bpartial derivative/i, 'later calculus'],
@@ -998,6 +998,7 @@ const COLLEGE_TERMS = [
 const NAMED_RESULTS = [
   { re: /Russell'?s (paradox|construction|argument)/i, home: 201, what: "Russell's paradox", home_label: '\u00a72.1' },
   { re: /Cantor'?s (theorem|argument|diagonal\w*)|diagonal(is|iz)ation|diagonal argument/i, home: 308, what: 'the diagonal argument', home_label: '\u00a73.8' },
+  { re: /G(\u00f6|oe)del|incompleteness theorem/i, home: 701, what: "G\u00f6del's incompleteness", home_label: '\u00a77.1' },
   { re: /halting problem|undecidab\w*/i, home: 0, what: 'computability', home_label: 'l8' },
 ];
 for (const f of files) {
@@ -1405,13 +1406,16 @@ for (const f of files) {
   const raw = body(fs.readFileSync(f, 'utf8')).replace(/\$\$[\s\S]*?\$\$/g, ' ');
   let worst = null;
   for (const m of raw.matchAll(/(?<!\$)\$([^$\n]+)\$(?!\$)/g)) {
-    const n = (m[1].match(INLINE_MARKS) ?? []).length;
+    // Distinct kinds of mark, not total marks. `$\emptyset \in \{\emptyset\}$`
+    // has three marks and two ideas, and reads fine; what defeats a reader is
+    // three *different* symbols to hold at once.
+    const n = new Set(m[1].match(INLINE_MARKS) ?? []).size;
     if (n >= 3 && (!worst || n > worst.n)) worst = { n, t: m[0] };
   }
   if (worst) {
     warn(
       path.relative(ROOT, f),
-      `inline math carrying ${worst.n} proof marks mid-sentence — set it as a display and read it out, or say it in words: "${worst.t.slice(0, 60)}"`,
+      `inline math carrying ${worst.n} different proof symbols mid-sentence — set it as a display and read it out, or say it in words: "${worst.t.slice(0, 60)}"`,
     );
   }
 }

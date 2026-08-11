@@ -41,7 +41,7 @@ Where the link fails, the index does not help. "The $n$th prime is odd" has an i
 > Assume $A(n_0),\ldots,A(k)$; prove $A(k+1)$.
 
 <Proof title="Equivalence with ordinary induction">
-Let $B(n)$ be the statement *"$A(m)$ holds for every $m$ from $n_0$ up to $n$"*. The strong hypothesis is precisely $B(k)$, and $B(k)\Rightarrow A(k+1)$ yields $B(k)\Rightarrow B(k+1)$. Ordinary induction on $B$ gives $\forall n\, B(n)$, hence $\forall n\, A(n)$.
+Let $B(n)$ be the statement *"$A(m)$ holds for every $m$ from $n_0$ up to $n$"*. The strong hypothesis is exactly $B(k)$, and $B(k)\Rightarrow A(k+1)$ gives $B(k)\Rightarrow B(k+1)$. Ordinary induction on $B$ gives $\forall n\, B(n)$, so $\forall n\, A(n)$.
 </Proof>
 
 Indicated when $n+1$ decomposes into cases far below $k$:
@@ -50,7 +50,7 @@ Indicated when $n+1$ decomposes into cases far below $k$:
 
 Ordinary induction cannot do this, since $a$ and $b$ bear no relation to $n-1$. Note that *uniqueness* of the factorisation is a separate matter requiring Euclid's lemma (§4.3), not induction.
 
-The Fibonacci recurrence $F_{n+1} = F_n + F_{n-1}$ likewise needs two previous cases, hence two base cases — an easy and common oversight.
+The Fibonacci recurrence $F_{n+1} = F_n + F_{n-1}$ likewise needs two previous cases, so two base cases — an easy and common oversight.
 
 ## Choosing what to induct on
 
@@ -81,7 +81,7 @@ Note there is **no separate base case**. The simplest objects have nothing below
 The same principle extends past $\mathbb{N}$ to longer collections that still have that smallest-member property, which is how induction reaches beyond the counting numbers.
 
 <Aside>
-The no-infinite-descent condition is exactly what rules out circular justification. In ZF the Axiom of Foundation asserts that $\in$ is without infinite descent, which is what makes $\in$-induction available and forbids $x \in x$.
+The no-infinite-descent condition is exactly what rules out circular justification. In ZF the Axiom of Foundation says that $\in$ is without infinite descent, which is what makes $\in$-induction available and forbids $x \in x$.
 
 A practical corollary: to prove termination of a recursive procedure, find a strictly decreasing measure that strictly decreases. Ackermann's function terminates despite growing enormously, because its arguments decrease in the lexicographic order on $\mathbb{N}^2$ — which also admits no infinite descent, though it does not look like $\mathbb{N}$.
 </Aside>

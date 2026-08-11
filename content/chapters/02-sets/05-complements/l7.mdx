@@ -57,14 +57,14 @@ each transcribing a logical fact ($\neg\neg p \equiv p$; $p \wedge \neg p$ contr
 
 ## Assuming the opposite
 
-**Proof by contradiction**, named move **suppose not**: to establish $p$, assume $\neg p$, derive a contradiction $r \wedge \neg r$, and conclude $p$. Formally the rule is
+**Proof by contradiction**, named move **suppose not**: to prove $p$, assume $\neg p$, derive a contradiction $r \wedge \neg r$, and conclude $p$. Formally the rule is
 $$
 \big(\neg p \Rightarrow (r \wedge \neg r)\big) \;\Rightarrow\; p,
 $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\wedge$ is "and".*
 
-valid since $\neg p \Rightarrow F$ forces $\neg p$ false, and excluded middle then yields $p$.
+valid since $\neg p \Rightarrow F$ forces $\neg p$ false, and excluded middle then gives $p$.
 
 It is worth separating two things that both get called contradiction:
 
@@ -88,7 +88,7 @@ Let $x \in \overline B$ be arbitrary; then $x \in S$ and $x \notin B$.
 
 Suppose, for contradiction, that $x \in A$. Since $A \subseteq B$, we get $x \in B$, contradicting $x \notin B$.
 
-Hence $x \notin A$, so $x \in \overline A$. As $x$ was arbitrary, $\overline B \subseteq \overline A$.
+Then $x \notin A$, so $x \in \overline A$. As $x$ was arbitrary, $\overline B \subseteq \overline A$.
 </Proof>
 
 Complementation **reverses inclusion**: it undoes itself, and it turns every containment around. The proposition is contraposition (§1.7) translated by the dictionary, and the converse holds too, so in fact $A \subseteq B \iff \overline B \subseteq \overline A$.
@@ -102,7 +102,7 @@ Reach for it when the goal is a **nonexistence** or **impossibility** claim, whe
 - There is no surjection $X \to \mathcal{P}(X)$ (Cantor). Assume $f$ is one; consider $\{x \mid x \notin f(x)\}$.
 - $\{x \mid \sin x = 0\} \cap \{x \mid \cos x = 0\} = \emptyset$ (§2.4). Assume a common zero; contradict $\sin^2 + \cos^2 = 1$.
 
-In every case the theorem asserts that something is *not there*, so there is nothing for a direct argument to construct, and the assumption of existence is the only handle available.
+In every case the theorem says that something is *not there*, so there is nothing for a direct argument to construct, and the assumption of existence is the only handle available.
 
 <Warning title="Symptoms of misuse">
 **The unused assumption.** If the contradictory hypothesis never appears in the derivation, you wrote a direct proof and wrapped it. Unwrap it.

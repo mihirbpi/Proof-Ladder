@@ -29,7 +29,7 @@ $m \mid n$ is an existential statement over $\mathbb{Z}$, and §1.12 fixes what 
 <Warning title="Three standard slips">
 **Non-integral witness.** $9 = 2\cdot\tfrac92$ proves nothing; $\tfrac92 \notin \mathbb{Z}$.
 
-**Name collision.** From $a \mid b$ and $b \mid c$, write $b = ak_1$ and $c = bk_2$ with *distinct* names. Reusing $k$ silently asserts the leftover factors are equal — a hypothesis never given, and a genuinely common error.
+**Name collision.** From $a \mid b$ and $b \mid c$, write $b = ak_1$ and $c = bk_2$ with *distinct* names. Reusing $k$ silently says the leftover factors are equal — a hypothesis never given, and a genuinely common error.
 
 **Type confusion.** $m \mid n$ is a proposition; $m/n$ is a number. "$3 \mid 12 = 4$" is ill-formed.
 </Warning>
@@ -68,7 +68,7 @@ $$
 <Proof title="Proof of the linear-combination property">
 Suppose $a \mid b$ and $a \mid c$, say $b = ak_1$ and $c = ak_2$ with $k_1,k_2 \in \mathbb{Z}$. For any $x, y \in \mathbb{Z}$,
 $$bx + cy = ak_1x + ak_2y = a(k_1x + k_2y),$$
-and $k_1x + k_2y \in \mathbb{Z}$ by closure of $\mathbb{Z}$ under multiplication and addition. Hence $a \mid bx+cy$.
+and $k_1x + k_2y \in \mathbb{Z}$ by closure of $\mathbb{Z}$ under multiplication and addition. So $a \mid bx+cy$.
 </Proof>
 
 That property is the workhorse of elementary number theory — it is what makes the Euclidean algorithm terminate correctly and what proves Bézout's identity — and its proof is four lines of closure.

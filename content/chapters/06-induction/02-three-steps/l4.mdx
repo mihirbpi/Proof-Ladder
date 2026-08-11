@@ -18,7 +18,7 @@ $$
 1 + 3 + 5 + \cdots + (2n-1).
 $$
 
-The dots mean *keep going the same way*. The last term tells you where to stop, and the first two or three establish the pattern. Here the terms are the odd numbers, and the $n$th odd number is $2n-1$ — check it at $n=1$, $n=2$, $n=3$.
+The dots mean *keep going the same way*. The last term tells you where to stop, and the first two or three prove the pattern. Here the terms are the odd numbers, and the $n$th odd number is $2n-1$ — check it at $n=1$, $n=2$, $n=3$.
 
 The one fact about long sums that every induction proof uses:
 
@@ -28,7 +28,7 @@ Peeling off that last term is what connects the $(k+1)$-case to the $k$-case.
 
 ## The three steps
 
-**1. State $A(n)$ and $n_0$.** Write the claim precisely and say where it starts.
+**1. State $A(n)$ and $n_0$.** Write the claim exactly and say where it starts.
 
 **2. Base case.** Prove $A(n_0)$.
 
@@ -74,14 +74,14 @@ By induction, $A(n)$ holds for all $n \geq 1$.
 
 ## Why the step is not circular
 
-The inductive step proves the **conditional** $A(k)\Rightarrow A(k+1)$, quantified over all $k$. Written out, what step 3 establishes is
+The inductive step proves the **conditional** $A(k)\Rightarrow A(k+1)$, quantified over all $k$. Written out, what step 3 proves is
 $$
 \text{for every } k \geq n_0: \quad A(k) \Rightarrow A(k+1),
 $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces". So the line reads: for every $k$ from the base value up: if the claim holds at $k$, then it holds at $k+1$.*
 
-and nothing in that asserts $A(k)$ for any particular $k$. Proving a conditional by assuming its hypothesis is module 1.6's *start from what you're given*, the standard method for every conditional in the course.
+and nothing in that says $A(k)$ for any particular $k$. Proving a conditional by assuming its hypothesis is module 1.6's *start from what you're given*, the standard method for every conditional in the course.
 
 The base case supplies truth at one point. The step propagates it. Neither is redundant:
 

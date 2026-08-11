@@ -12,15 +12,15 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-Everything so far has been about what statements *mean*. This module is about what it takes to establish one — and, just as importantly, about what a written proof is for.
+Everything so far has been about what statements *mean*. This module is about what it takes to prove one — and, just as importantly, about what a written proof is for.
 
-A **proof** of a statement $S$ is a finite sequence of assertions, ending in $S$, in which each assertion is either an axiom, a previously established theorem, a hypothesis of $S$, or a consequence of earlier assertions by a rule of inference. That is the definition a logician gives. It is correct, and it is not how anybody writes. What people actually write is prose, in which the logical skeleton is carried by joining word words — *since*, *hence*, *because*, *so*, *therefore* — and the reader is trusted to reconstruct the skeleton. Learning to write proofs is learning how much of the skeleton to leave to the reader.
+A **proof** of a statement $S$ is a finite sequence of claims, ending in $S$, in which each claim is either an axiom, a previously proved theorem, a hypothesis of $S$, or a consequence of earlier claims by a rule of inference. That is the definition a logician gives. It is correct, and it is not how anybody writes. What people actually write is prose, in which the logical skeleton is carried by joining word words — *since*, *so*, *because*, *so*, *therefore* — and the reader is trusted to reconstruct the skeleton. Learning to write proofs is learning how much of the skeleton to leave to the reader.
 
 ## Direct proof of a conditional
 
 *A reminder of the symbols in play: $\Rightarrow$ reads "implies".*
 
-Nearly every theorem has the form $p \Rightarrow q$, and §1.5 established that $p \Rightarrow q$ is false in exactly one case: $p$ true, $q$ false. To prove the conditional is therefore to rule that case out. The **direct proof** does so head-on: assume $p$, and derive $q$.
+Nearly every theorem has the form $p \Rightarrow q$, and §1.5 proved that $p \Rightarrow q$ is false in exactly one case: $p$ true, $q$ false. To prove the conditional is therefore to rule that case out. The **direct proof** does so head-on: assume $p$, and derive $q$.
 
 The named move is **start from what you're given**.
 
@@ -55,7 +55,7 @@ Since $x > 1$ and $1 > 0$, transitivity (O2) gives $x > 0$.
 Applying (O1) to the inequality $x > 1$ with the positive multiplier $x$, we obtain $x \cdot x > 1 \cdot x$, i.e.
 $$x^2 > x.$$
 
-Combining $x^2 > x$ with the hypothesis $x > 1$, transitivity (O2) yields $x^2 > 1$, as required.
+Combining $x^2 > x$ with the hypothesis $x > 1$, transitivity (O2) gives $x^2 > 1$, as required.
 </Proof>
 
 ## Why the Discussion is separate — and why it disappears
@@ -81,7 +81,7 @@ Suppose $m$ and $n$ are even. By definition, there exist integers $j, k$ with $m
 
 Then
 $$m + n = 2j + 2k = 2(j + k).$$
-Since $j + k$ is an integer, $m + n$ is twice an integer, hence even by definition.
+Since $j + k$ is an integer, $m + n$ is twice an integer, so even by definition.
 </Proof>
 
 Both proofs share a rhythm worth naming explicitly:
