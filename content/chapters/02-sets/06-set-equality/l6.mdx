@@ -3,7 +3,7 @@ level: l6
 title: Set equality by double inclusion
 readingTimeMin: 8
 newTerms: ["double inclusion"]
-anchorExample: "the quadrilateral family and loci of points"
+anchorExample: "the quadrilateral family and sets of points"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -11,7 +11,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Your book's locus theorems always come in pairs, and this module explains why the pairing is forced rather than stylistic.
+The geometry theorems that say which points lie on something always come in pairs, and this module explains why the pairing is forced rather than a matter of style.
 
 ## The principle
 
@@ -43,9 +43,9 @@ $$
 
 Label the halves. Without labels a reader cannot tell which containment they are reading, and the commonest way to write a broken proof is to prove one direction twice.
 
-## The locus theorem pairs
+## Why those geometry theorems come in pairs
 
-Now open your textbook to any locus result. It states two theorems:
+Take the perpendicular bisector. Geometry proves two separate theorems about it:
 
 > *Every point on the perpendicular bisector of $\overline{AB}$ is equidistant from $A$ and $B$.*
 >
@@ -54,7 +54,7 @@ Now open your textbook to any locus result. It states two theorems:
 Those are $S \subseteq T$ and $T \subseteq S$ for
 $$S = \text{the perpendicular bisector}, \qquad T = \{Q : QA = QB\}.$$
 
-Together they say $S = T$ — which is what licenses the *definition* of the perpendicular bisector as a locus. Your book proves both because one alone would not prove the sets are the same, and it separates them because the two proofs use different tools.
+Together they say $S = T$ — and that is what earns the right to *define* the perpendicular bisector as the set of equidistant points in the first place. Both get proved because one alone would not show the two sets are the same, and they are kept apart because the two halves need different tools.
 
 <Warning title="One direction is not enough">
 Suppose only the first theorem were proved. You would know the bisector sits inside the equidistant set — but not that it fills it. As far as that theorem is concerned, the equidistant set could be a whole region with the bisector as a sliver inside it.

@@ -3,13 +3,13 @@ level: l6
 title: Set-builder notation
 readingTimeMin: 8
 newTerms: ["set-builder", "interval"]
-anchorExample: "the quadrilateral family and loci of points"
+anchorExample: "the quadrilateral family and sets of points"
 ---
 
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Listing works for $\{A, B, C\}$. It does not work for a circle. Infinite sets need a notation that states a **condition** instead of an inventory — and geometry has been using one informally since the first locus theorem.
+Listing works for $\{A, B, C\}$. It does not work for a circle. Infinite sets need a notation that states a **condition** instead of an inventory — and geometry has been using one informally since the first theorem you proved about which points lie on a line.
 
 ## The notation
 
@@ -36,9 +36,9 @@ $$
 
 **Two things to verify, always.** Membership in the collection you are drawing from, and the condition. Forgetting the first is the standard error.
 
-## Loci, rewritten
+## Geometry's sets of points, rewritten
 
-Your locus definitions translate directly.
+The geometry definitions translate directly.
 
 $$\text{Circle centerd } P,\ \text{radius } 3 \;=\; \{\,Q \in \text{plane} : PQ = 3\,\}$$
 
@@ -52,7 +52,7 @@ $$\text{Bisector of } \angle ABC \;=\; \{\,Q \in \text{interior} : d(Q, \overrig
 
 *The points inside the angle equally far from its two sides.*
 
-Now look at what the notation exposes. Each locus theorem in your book has two halves — *every point on the bisector is equidistant* and *every equidistant point is on the bisector* — and students often wonder why both are needed.
+Now look at what the notation exposes. Each of those geometry theorems has two halves — *every point on the bisector is equidistant* and *every equidistant point is on the bisector* — and students often wonder why both are needed.
 
 The set-builder line answers it. The definition is a **if-and-only-if statement**, so establishing that a geometric object equals that set requires both directions. It is module 1.9's "check both boxes," and it is forced by the notation rather than chosen by the author.
 
@@ -62,7 +62,7 @@ is incomplete, and dangerously so.
 
 In a **plane**, that set is the perpendicular bisector — a line. In **space**, it is the perpendicular bisector *plane*. Same condition, different sets, because the collection you are drawing from differed.
 
-You have met this without the notation: your book's locus theorems say "in a plane" in their first three words, and that phrase is not filler.
+You have met this without the notation: those geometry theorems say "in a plane" in their first three words, and that phrase is not filler.
 </Warning>
 
 ## Coordinates
@@ -89,7 +89,7 @@ $$\text{Closed disk} \;=\; \{\,(x,y) \in \mathbb{R}^2 : (x-h)^2+(y-k)^2 \leq r^2
 
 The difference between the last two is one symbol, and it is the difference between a curve and a region. Notation that fine-grained is worth having.
 
-And the equation-of-a-circle derivation you did in class is now readable as a set equality: the locus definition and the algebraic condition describe the same set, which is what the distance-formula computation proves.
+And the equation-of-a-circle derivation you did in class is now readable as a set equality: the geometric description and the algebraic condition pick out the same set, which is what the distance-formula computation proves.
 
 ## Intervals
 

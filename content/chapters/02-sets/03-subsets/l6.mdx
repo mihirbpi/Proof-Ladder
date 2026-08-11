@@ -3,7 +3,7 @@ level: l6
 title: Subsets
 readingTimeMin: 9
 newTerms: ["subset", "proper subset", "transitive"]
-anchorExample: "the quadrilateral family and loci of points"
+anchorExample: "the quadrilateral family and sets of points"
 ---
 
 import Discussion from '@/components/Discussion.astro';
@@ -93,14 +93,14 @@ Confusing these is the most common error in the chapter. When in doubt, ask: is 
 <Proof>
 We must show $\forall x\ (x \in \emptyset \Rightarrow x \in S)$.
 
-Let $x$ be arbitrary. The hypothesis $x \in \emptyset$ is false, since $\emptyset$ has no elements. A conditional with a false hypothesis is true (module 1.5).
+Pick any $x$ you like. The hypothesis $x \in \emptyset$ is false, since $\emptyset$ has no elements. A conditional with a false hypothesis is true (module 1.5).
 
 So the implication holds for every $x$, and $\emptyset \subseteq S$.
 </Proof>
 
 This is a **vacuous** proof, and the discomfort it causes is worth sitting with. Nothing was checked, because there was nothing to check — and the definition asked only that no element of $\emptyset$ escape $S$. None does, since there are none.
 
-The geometric analogue: *every point of the empty locus lies on line $\ell$* is true, whatever $\ell$ is.
+The geometric analogue: *every point of the empty set of points lies on line $\ell$* is true, whatever $\ell$ is.
 
 ## Transitivity
 
