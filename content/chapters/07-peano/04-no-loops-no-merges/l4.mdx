@@ -31,7 +31,7 @@ In Chapter 3's language:
 - **A7:** $0 \notin \operatorname{Im}(S)$; equivalently nothing at all lands on $0$ (module 3.3).
 - **A8:** $S$ is **injective** (module 3.5) — and note it is stated in the contrapositive form, which module 3.5 identified as the usable one.
 
-Together, $S : \mathbb{N}\to\mathbb{N}\setminus\{0\}$ is injective.
+Together, $S : \mathbb{N}\to\mathbb{N}\setminus\{0\}$ is injective (no two inputs share an output, §3.5).
 
 Read informally, A7 says counting never comes back to the start and A8 says counting never merges two numbers into one. Those are exactly the two ways a chain of arrows can fail to be a line: it can close into a loop, or two strands can join. Rule both out and what is left has no choice but to run forever in one direction.
 
@@ -47,7 +47,7 @@ To show an axiom is independent of the others, exhibit a structure satisfying th
     edges={[[0,1],[1,0]]} />
 </Figure>
 
-A5 ✓, A6 ✓. A8 ✓ — $S$ is injective, being a bijection of a two-element set. A7 ✗: $0 = S(1)$.
+A5 ✓, A6 ✓. A8 ✓ — $S$ is injective (no two inputs share an output, §3.5), being a bijection of a two-element set. A7 ✗: $0 = S(1)$.
 
 So A7 is not derivable from A5, A6, A8.
 
@@ -92,7 +92,7 @@ A5–A8 force $\mathbb{N}$ to *contain* $0,1,2,\ldots$ distinctly. They do not f
 
 Consider $\mathbb{N}' = \{0,1,2,\ldots\}\cup\{a, b\}$ with the usual successor on the numerals, plus $S(a)=b$ and $S(b)=a$.
 
-A5 ✓. A6 ✓. A7 ✓ — neither $a$ nor $b$ maps to $0$. A8 ✓ — $S$ is still injective on the whole thing.
+A5 ✓. A6 ✓. A7 ✓ — neither $a$ nor $b$ maps to $0$. A8 ✓ — $S$ is still injective (no two inputs share an output, §3.5) on the whole thing.
 
 All four axioms hold, and the structure has two rogue elements cycling forever off to one side, unreachable from $0$.
 
@@ -100,7 +100,7 @@ Module 7.5's Axiom 9 is exactly what excludes this.
 </Warning>
 
 <Aside>
-A7 and A8 together say $S$ is a bijection from $\mathbb{N}$ onto $\mathbb{N}\setminus\{0\}$ — injective by A8, and surjective onto that set once A9 rules out elements outside the chain.
+A7 and A8 together say $S$ is a bijection from $\mathbb{N}$ onto $\mathbb{N}\setminus\{0\}$ — injective by A8, and surjective (every possible output is actually hit, §3.6) onto that set once A9 rules out elements outside the chain.
 
 So $\mathbb{N}$ is in bijection with a **proper subset** of itself, which module 3.8 gave as Dedekind's definition of an infinite set. The infinitude of $\mathbb{N}$ is not an extra assumption; it is a consequence of these two axioms.
 </Aside>

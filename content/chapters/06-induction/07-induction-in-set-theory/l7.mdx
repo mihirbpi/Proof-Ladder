@@ -16,7 +16,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 ## Inductive proof
 
 <Discussion>
-  <div slot="know">Membership of a fixed $a$ partitions $\mathcal{P}(S)$ into two blocks — an exhaustive, disjoint split by excluded middle.</div>
+  <div slot="know">Membership of a fixed $a$ partitions $\mathcal{P}(S)$ into two blocks — an exhaustive, disjoint split by excluded middle (every statement is either true or false, §1.2).</div>
   <div slot="want">$|\mathcal{P}(S)| = 2^{k+1}$ when $|S|=k+1$.</div>
   <div slot="how">Remove $a$. Subsets avoiding $a$ *are* $\mathcal{P}(S\setminus\{a\})$; subsets containing $a$ biject with it via $A \mapsto A\setminus\{a\}$. Add the two counts.</div>
 </Discussion>
@@ -57,7 +57,7 @@ Both $\emptyset$ and $S$ belong to $\mathcal{P}(S)$; omitting either destroys th
 
 ## Refinement by size
 
-Splitting by cardinality gives
+Splitting by cardinality (size, §3.8) gives
 $$
 2^n = \sum_{k=0}^{n}\binom nk,
 $$
@@ -77,7 +77,7 @@ The inductive step divided the subsets of $S$ into those containing a fixed $a$ 
 
 Adding the sizes of overlapping groups double-counts; adding the sizes of groups with a gap undercounts. Neither check is automatic, and stating them is part of the proof.
 
-**The bijection also needed verifying.** The map $T \mapsto T\cup\{a\}$ from Group 1 to Group 2 is injective because $T$ is recovered by removing $a$, and surjective because every subset containing $a$ arises this way. Only then does "each group has $2^k$ members" follow from the hypothesis, which was a statement about the subsets of a $k$-element set.
+**The bijection also needed verifying.** The map $T \mapsto T\cup\{a\}$ from Group 1 to Group 2 is injective because $T$ is recovered by removing $a$, and surjective (every possible output is actually hit, §3.6) because every subset containing $a$ arises this way. Only then does "each group has $2^k$ members" follow from the hypothesis, which was a statement about the subsets of a $k$-element set.
 
 **Counting by pairing** — establishing a bijection with something already counted — is more powerful than counting one by one, and it is the only method that survives into the infinite case.
 
@@ -88,7 +88,7 @@ Adding the sizes of overlapping groups double-counts; adding the sizes of groups
 <Proof>
 Let $f : S \to \mathcal{P}(S)$ and put $D = \{x \in S : x \notin f(x)\} \in \mathcal{P}(S)$.
 
-If $D = f(d)$ for some $d \in S$, then $d \in D \iff d \notin f(d) = D$ — a contradiction. So $D \notin \operatorname{im}(f)$ and $f$ is not surjective.
+If $D = f(d)$ for some $d \in S$, then $d \in D \iff d \notin f(d) = D$ — a contradiction. So $D \notin \operatorname{im}(f)$ and $f$ is not surjective (every possible output is actually hit, §3.6).
 </Proof>
 
 This is **not** an induction, and it cannot be turned into one: an arbitrary set has no *next*, so there is nothing to induct along. What it is instead is the move from §3.8 — build the one thing the list cannot contain, by disagreeing with every entry in turn. §2.1 used that same move to break something; here it builds something.

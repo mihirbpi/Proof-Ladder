@@ -22,7 +22,7 @@ A **proof** is an argument, addressed to a reader, that proves a statement beyon
 That last point is not a style preference. Compare:
 
 - ✗ $x>1 \Rightarrow x\cdot x > 1\cdot x \Rightarrow x^2 > x > 1$
-- ✓ "Since $x > 1$ and $x > 0$, multiplying both sides of $x>1$ by $x$ gives $x^2 > x$. As $x > 1$, transitivity gives $x^2 > 1$."
+- ✓ "Since $x > 1$ and $x > 0$, multiplying both sides of $x>1$ by $x$ gives $x^2 > x$. As $x > 1$, transitivity (first-to-second and second-to-third gives first-to-third, §7.2) gives $x^2 > 1$."
 
 The first records a computation. The second explains *why each step is permitted*, which is the only thing the reader could not have worked out alone.
 
@@ -51,12 +51,12 @@ Notice where the work happened. The Discussion found the tool, checked its side 
 <Proof>
 Let a real number $x$ with $x > 1$.
 
-Since $x > 1$ and $1 > 0$, transitivity (O2) gives $x > 0$.
+Since $x > 1$ and $1 > 0$, transitivity (first-to-second and second-to-third gives first-to-third, §7.2) (O2) gives $x > 0$.
 
 Multiplying both sides of the inequality $x > 1$ by the positive number $x$ preserves it, by (O1):
 $$x\cdot x > 1\cdot x, \quad\text{that is,}\quad x^2 > x.$$
 
-Combining $x^2 > x$ with the hypothesis $x > 1$, transitivity (O2) gives $x^2 > 1$, as required.
+Combining $x^2 > x$ with the hypothesis $x > 1$, transitivity (first-to-second and second-to-third gives first-to-third, §7.2) (O2) gives $x^2 > 1$, as required.
 </Proof>
 
 The $\square$ marks the end. Some authors write *Q.E.D.*; the tombstone is now standard.

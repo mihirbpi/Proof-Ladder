@@ -2,7 +2,7 @@
 level: l5
 title: What is a set?
 readingTimeMin: 8
-newTerms: ["set", "element", "empty set", "well-defined"]
+newTerms: ["set", "element", "empty set"]
 anchorExample: "each number system sits inside the next"
 ---
 
@@ -76,15 +76,15 @@ The distinction is sharp: $\emptyset$ has no elements, while $\{\emptyset\}$ has
 A system of equations with no solution has $\emptyset$ as its solution set. It still *has* a solution set; the set is just empty. "No solutions" is an answer, not a failure to answer.
 </Warning>
 
-## Well-defined
+## No doubt about what is in it
 
-A collection counts as a set only when it is **well-defined**: for every candidate object, membership is unambiguous — either in or out, with no room for opinion.
+A collection counts as a set only when, handed any object at all, you can say **in** or **out** — with no room for opinion.
 
-- $\{x \in \mathbb{Z} \mid x^2 < 10\}$ is well-defined. Hand me any integer and I can settle it.
+- $\{x \in \mathbb{Z} \mid x^2 < 10\}$ passes. Hand me any integer and I can settle it.
 - *The collection of large numbers* is not. Is $10^6$ large? There is no fact to appeal to.
 - *The collection of interesting functions* is not, for the same reason.
 
-Note that being well-defined does **not** require that membership be easy to check, or even that anyone can currently check it. *The set of even numbers greater than $2$ that are not the sum of two primes* is perfectly well-defined — every even number is definitely in or definitely out. Nobody knows whether the set is empty, and that is a fact about our knowledge, not about the set. Module 1.1's warning, arriving again.
+Note that this does **not** require membership to be easy to check, or even checkable by anyone right now. *The set of even numbers greater than $2$ that are not the sum of two primes* is perfectly fine — every even number is definitely in or definitely out. Nobody knows whether the set is empty, and that is a fact about our knowledge, not about the set. Module 1.1's warning, arriving again.
 
 ## "Set" is left undefined on purpose
 
@@ -92,14 +92,14 @@ Read the opening line again. *A set is a collection of objects* — and what is 
 
 This is deliberate. Every subject has to start somewhere: your geometry course does not define *point*, *line*, or *plane*, it lists them as undefined terms and then states axioms governing how they behave. Set theory does exactly the same with *set* and $\in$.
 
-What we have written here is the **naive** approach: work with the intuitive notion, keep the well-definedness requirement, and get on with it. It is enough for everything in this course.
+What we have written here is the **naive** approach: work with the intuitive notion, keep the rule that membership must never be in doubt, and get on with it. It is enough for everything in this course.
 
 <Aside>
 The naive approach has a genuine limit, and it was found in 1901.
 
 Consider "the set of all sets that are not elements of themselves." Ask whether it belongs to itself. If it does, then by its own definition it must not. If it does not, then by its own definition it must. Both answers are impossible.
 
-This is **Russell's paradox**, and it shows that not every describable collection is a set. The repair — the axiomatic approach — replaces "any collection you can describe" with a short list of rules for building sets from other sets, and the paradoxical collection is simply never built.
+This is **Russell's paradox**, and it shows that not every describable collection is a set. The repair replaces "any collection you can describe" with a short list of rules for building sets from other sets, and the paradoxical collection is simply never built.
 
-You will not need those axioms here. But the well-definedness requirement above is not fussiness; it is the shadow of a real problem.
+You will not need those axioms here. But the rule above — you must always be able to say in or out — is not fussiness. It is the shadow of a real problem.
 </Aside>

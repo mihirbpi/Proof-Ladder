@@ -21,7 +21,7 @@ $$
 (x \in \mathbb{N}\wedge x=y)\Rightarrow y\in\mathbb{N}.
 $$
 
-The fourth is a special case of **substitution**: if $x = y$ then any statement true of $x$ is true of $y$. Peano isolates the instance he needs; a modern treatment states substitution in full, or — more commonly — declines to axiomatise equality at all, treating it as a logical symbol with fixed interpretation. On that view A1–A4 belong to the underlying logic rather than to arithmetic, and many presentations of Peano arithmetic omit them for exactly that reason.
+The fourth is a special case of **substitution**: if $x = y$ then any statement true of $x$ is true of $y$. Peano isolates the instance he needs; a modern treatment states substitution in full, or — more commonly — declines to set down rules for equality at all, treating it as a logical symbol with fixed interpretation. On that view A1–A4 belong to the underlying logic rather than to arithmetic, and many presentations of Peano arithmetic omit them for exactly that reason.
 
 ## Equivalence relations
 
@@ -40,16 +40,16 @@ Reflexive: $n \mid 0 = a-a$. Symmetric: $a-b = nk \Rightarrow b-a = n(-k)$. Tran
 > **Theorem.** The equivalence classes $[a] = \{x \in S : x\sim a\}$ partition $S$. The other way round, every partition of $S$ arises from a unique equivalence relation.
 
 <Proof>
-*Classes cover $S$.* $a \in [a]$ by reflexivity.
+*Classes cover $S$.* $a \in [a]$ by reflexivity (everything stands in it to itself, §7.2).
 
 *Classes are equal or disjoint.* If $c \in [a]\cap[b]$ then $c\sim a$ and $c\sim b$. For $x \in [a]$: $x \sim a$, and $a \sim c$ by symmetry, so $x \sim c$ by transitivity, so $x \sim b$ by transitivity again. So $[a]\subseteq[b]$, and symmetrically $[b]\subseteq[a]$; so $[a]=[b]$ by double inclusion (§2.6).
 
-*Converse.* Given a partition $\mathcal{Q}$, define $x \sim y$ iff $x$ and $y$ lie in the same block. Reflexivity holds since blocks cover $S$; symmetry is immediate; transitivity holds since blocks are disjoint. Its classes are exactly the blocks.
+*Converse.* Given a partition $\mathcal{Q}$, define $x \sim y$ iff $x$ and $y$ lie in the same block. Reflexivity holds since blocks cover $S$; symmetry is immediate; transitivity (first-to-second and second-to-third gives first-to-third, §7.2) holds since blocks are disjoint. Its classes are exactly the blocks.
 </Proof>
 
 Each of the three axioms was used exactly once, which is a compact demonstration of their independence in practice.
 
-The set of all the classes is called the **quotient**, and sending each element to its own class is a function onto it. That function is surjective by construction, and injective exactly when the relation was equality to begin with — so passing to classes is exactly the operation of deliberately forgetting distinctions.
+The set of all the classes is called the **quotient**, and sending each element to its own class is a function onto it. That function is surjective (every possible output is actually hit, §3.6) by construction, and injective exactly when the relation was equality to begin with — so passing to classes is exactly the operation of deliberately forgetting distinctions.
 
 <Warning title="Well-definedness on quotients">
 An operation on classes must be checked independent of representatives (§3.1).
@@ -60,7 +60,7 @@ An operation on classes must be checked independent of representatives (§3.1).
 
 **Fails:** $[a]\mapsto 2^a$ on $\mathbb{Z}/n\mathbb{Z}$ valued in $\mathbb{Z}$ — same objection.
 
-Every construction on a quotient carries this thing to check, and it is the most frequently skipped verification in algebra.
+Every construction of this kind owes you that check, and it is the most frequently skipped step in algebra.
 </Warning>
 
 ## Relations that fail, and what the failures mean
@@ -80,7 +80,7 @@ The three conditions are independent, and examining what each rules out is more 
 
 **Failure of symmetry is what makes a relation an order.** $\leq$ and $\subseteq$ are reflexive and transitive and not symmetric, and that is exactly what makes them orderings rather than notions of sameness. Orders and equivalences are the two natural weakenings of equality, distinguished by exactly this condition.
 
-**Failure of transitivity is usually fatal.** Perpendicularity fails it: $\ell_1\perp\ell_2$ and $\ell_2\perp\ell_3$ give $\ell_1 \parallel \ell_3$ in the plane, not $\ell_1\perp\ell_3$. A relation without transitivity supports no chaining, and chaining is what proofs do.
+**Failure of transitivity (first-to-second and second-to-third gives first-to-third, §7.2) is usually fatal.** Perpendicularity fails it: $\ell_1\perp\ell_2$ and $\ell_2\perp\ell_3$ give $\ell_1 \parallel \ell_3$ in the plane, not $\ell_1\perp\ell_3$. A relation without transitivity supports no chaining, and chaining is what proofs do.
 
 ## Quotients build the number systems
 
@@ -89,7 +89,7 @@ The same move builds each number system from the one before it. The integers are
 The pattern is uniform: take known objects, impose the right notion of sameness, and the classes are the new objects. Chapter 7 builds $\mathbb{N}$ from axioms; every system above it is built by quotient.
 
 <Aside>
-In rule-based type theory, equality is not a single undefined relation but a *type* — $\mathrm{Id}_A(x,y)$ — and A1–A3 become constructions rather than axioms. Reflexivity is a term, symmetry and transitivity are functions built from it.
+In rule-based type theory, equality is not a single undefined relation but a *type* — $\mathrm{Id}_A(x,y)$ — and A1–A3 become constructions rather than axioms. Reflexivity is a term, symmetry and transitivity (first-to-second and second-to-third gives first-to-third, §7.2) are functions built from it.
 
 The consequences are strange and productive: identifications can carry information, and homotopy type theory reinterprets $\mathrm{Id}_A(x,y)$ as a path space, so that equality proofs get a geometry of their own. Univalence then says that identity of types is equivalence of types — making "equal" mean "the same up to renaming", which is what mathematicians have always meant informally.
 </Aside>

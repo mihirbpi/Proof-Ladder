@@ -56,9 +56,9 @@ Axiom 7 kills the first, Axiom 8 the second, and Axiom 9 the third (§7.5).
 
 Neither implies the other, and exhibiting a system satisfying one and failing the other is what proves it.
 
-**A7 without A8.** Take $\{0,1,2,3\}$ with $S(0)=1$, $S(1)=2$, $S(2)=3$, $S(3)=3$. Nothing maps to $0$, so A7 holds. But $S(2) = S(3)$ fails injectivity, and the chain runs into a fixed point and stops.
+**A7 without A8.** Take $\{0,1,2,3\}$ with $S(0)=1$, $S(1)=2$, $S(2)=3$, $S(3)=3$. Nothing maps to $0$, so A7 holds. But $S(2) = S(3)$ fails injectivity (no two inputs share an output, §3.5), and the chain runs into a fixed point and stops.
 
-**A8 without A7.** Take the twelve-hour clock, $\{0,\dots,11\}$ with $S$ the next hour, wrapping. $S$ is injective, so A8 holds. But $S(11) = 0$, so A7 fails — and the result is the remainder arithmetic of §4.4, which is consistent, useful, and not the counting numbers.
+**A8 without A7.** Take the twelve-hour clock, $\{0,\dots,11\}$ with $S$ the next hour, wrapping. $S$ is injective — no two inputs share an output, §3.5 — so A8 holds. But $S(11) = 0$, so A7 fails — and the result is the remainder arithmetic of §4.4, which is consistent, useful, and not the counting numbers.
 
 **Two independent axioms, two independent failures.** This is how you show an axiom is not redundant, and it is exactly the method that finally settled the parallel postulate: two thousand years of attempted derivations ended when someone constructed a geometry satisfying the other four postulates and violating the fifth.
 
@@ -76,12 +76,12 @@ A8 supplied the cancellation, A7 the contradiction. The two models above show th
 
 Consequently $n \mapsto S^n(0)$ is an injection $\mathbb{N}_{\text{meta}} \hookrightarrow \mathbb{N}$, and $\mathbb{N}$ is infinite.
 
-And $S : \mathbb{N}\to\mathbb{N}$ is injective but not surjective (its image omits $0$), so $\mathbb{N}$ is in bijection with the proper subset $\mathbb{N}\setminus\{0\}$ — i.e. **Dedekind infinite** (§3.8). Dedekind took this as the *definition* of infinity in 1888, and A7–A8 are exactly the axioms making $\mathbb{N}$ satisfy it.
+And $S : \mathbb{N}\to\mathbb{N}$ is injective (§3.5) but not surjective (its image omits $0$), so $\mathbb{N}$ is in bijection with the proper subset $\mathbb{N}\setminus\{0\}$ — i.e. **Dedekind infinite** (§3.8). Dedekind took this as the *definition* of infinity in 1888, and A7–A8 are exactly the axioms making $\mathbb{N}$ satisfy it.
 
 <Warning title="A5 to A8 do not pin down the counting numbers">
 Let $\mathbb{N}' = \{0,1,2,\ldots\} \cup \{a,b\}$ with the standard successor on the numerals and $S(a)=b$, $S(b)=a$.
 
-A5 ✓, A6 ✓, A7 ✓ (neither $a$ nor $b$ maps to $0$), A8 ✓ ($S$ is injective throughout).
+A5 ✓, A6 ✓, A7 ✓ (neither $a$ nor $b$ maps to $0$), A8 ✓ ($S$ is injective (no two inputs share an output, §3.5) throughout).
 
 So a model may contain a full copy of $\mathbb{N}$ *plus* extra components disconnected from $0$. A5–A8 constrain the component of $0$ and say nothing about the rest.
 
@@ -100,7 +100,9 @@ Axioms 7 and 8 are statements about $S$ as a function, in the vocabulary of Chap
 
 $$\text{Axiom 7:}\ \ S^{-1}(\{0\}) = \emptyset \qquad \text{Axiom 8:}\ \ S \text{ is injective}$$
 
-So $S$ is injective and not surjective — so not a bijection, so not invertible. **There is no predecessor function on $\mathbb{N}$**, because $0$ has no predecessor, and that single fact is why $\mathbb{N}$ is not closed under subtraction and why Chapter 4 had to build $\mathbb{Z}$.
+*So the line reads: nothing has $0$ as its next, and no two things share a next.*
+
+So $S$ is injective (§3.5) and not surjective — so not a bijection, so not invertible. **There is no predecessor function on $\mathbb{N}$**, because $0$ has no predecessor, and that single fact is why $\mathbb{N}$ is not closed under subtraction and why Chapter 4 had to build $\mathbb{Z}$.
 
 **Each axiom is shown non-redundant by a counter-model.** Drop Axiom 7 and the clock arithmetic of §4.4 satisfies everything else. Drop Axiom 8 and you get a chain running into a loop. Exhibiting such a system is how you prove an axiom cannot be derived from the others — the same method that settled the parallel postulate after two thousand years of failed derivations.
 

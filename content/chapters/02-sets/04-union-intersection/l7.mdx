@@ -62,10 +62,10 @@ Associativity is what lets you write $A \cup B \cup C$ over finitely many sets w
 <Proof>
 Let $x \in S \cap T$. Then $x \in S \wedge x \in T$, so for instance $x \in S$. So $S \cap T \subseteq S$.
 
-Let $x \in S$. Then $(x \in S) \vee (x \in T)$ holds, its left half being true; so $x \in S \cup T$. So $S \subseteq S \cup T$. Transitivity of $\subseteq$ chains the two.
+Let $x \in S$. Then $(x \in S) \vee (x \in T)$ holds, its left half being true; so $x \in S \cup T$. So $S \subseteq S \cup T$. Transitivity (first-to-second and second-to-third gives first-to-third, §7.2) of $\subseteq$ chains the two.
 </Proof>
 
-The proofs are short because $p \wedge q \Rightarrow p$ and $p \Rightarrow p \vee q$ are tautologies. Read as an order statement: $S \cap T$ is the **largest** set contained in both $S$ and $T$, and $S \cup T$ is the **smallest** set containing both. The two propositions above are half of that characterization; the other half is that any set contained in both $S$ and $T$ is contained in $S \cap T$, which is equally quick.
+The proofs are short because $p \wedge q \Rightarrow p$ and $p \Rightarrow p \vee q$ are tautologies (statements true no matter what, §1.3). Read as an order statement: $S \cap T$ is the **largest** set contained in both $S$ and $T$, and $S \cup T$ is the **smallest** set containing both. The two propositions above are half of that characterization; the other half is that any set contained in both $S$ and $T$ is contained in $S \cap T$, which is equally quick.
 
 ## Disjointness
 

@@ -29,7 +29,7 @@ The discipline of §1.12 applies verbatim: the element is chosen at the start an
 > **Proposition.** $S = (-3,5) \subseteq T = (-6,5]$.
 
 <Discussion>
-  <div slot="know">$x \in S \iff -3 < x < 5$; $x \in T \iff -6 < x \leq 5$. Available: transitivity of $<$, and that $a < b$ implies $a \leq b$.</div>
+  <div slot="know">$x \in S \iff -3 < x < 5$; $x \in T \iff -6 < x \leq 5$. Available: transitivity (first-to-second and second-to-third gives first-to-third, §7.2) of $<$, and that $a < b$ implies $a \leq b$.</div>
   <div slot="want">$-6 < x$ and $x \leq 5$.</div>
   <div slot="how">Both halves of the goal follow from the two halves of the hypothesis by a single step each. Note $T$ is the weaker constraint on both ends, so the containment should be immediate — and it should be *proper*, witnessed by the endpoint $5$.</div>
 </Discussion>
@@ -37,7 +37,7 @@ The discipline of §1.12 applies verbatim: the element is chosen at the start an
 <Proof>
 Let $x \in S$ be arbitrary; then $-3 < x < 5$.
 
-From $-6 < -3$ and $-3 < x$, transitivity gives $-6 < x$. From $x < 5$ we obtain $x \leq 5$.
+From $-6 < -3$ and $-3 < x$, transitivity (first-to-second and second-to-third gives first-to-third, §7.2) gives $-6 < x$. From $x < 5$ we obtain $x \leq 5$.
 
 So $-6 < x \leq 5$, i.e. $x \in T$. Since $x$ was arbitrary, $S \subseteq T$.
 </Proof>
@@ -71,7 +71,7 @@ Note that $\emptyset \in A$ and $\emptyset \subseteq A$ are both true here for e
 Pick any $x$ you like. The hypothesis of $x \in \emptyset \Rightarrow x \in S$ is false, so the conditional is true (§1.5). Since $x$ was arbitrary, $\forall x\,(x \in \emptyset \Rightarrow x \in S)$, i.e. $\emptyset \subseteq S$.
 </Proof>
 
-This is vacuous truth carrying structural weight. Every distributive, De Morgan, and product identity in this chapter holds without exception for $\emptyset$ exactly because of it; a convention that made $\emptyset \subseteq S$ fail would introduce a special case into every theorem that follows.
+This is vacuous truth — true because there is nothing to check, §1.5 — carrying real structural weight. Every distributive, De Morgan, and product identity in this chapter holds without exception for $\emptyset$ exactly because of it; a convention that made $\emptyset \subseteq S$ fail would introduce a special case into every theorem that follows.
 
 ## Containment behaves like $\leq$
 
@@ -98,7 +98,7 @@ For $X = \{a,b\}$: $\mathcal{P}(X) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$. For 
 Two remarks worth carrying. First, $\mathcal{P}(X)$ is a set whose elements are sets, and keeping track of which level you are on is a real skill: $a \in X$, $\{a\} \in \mathcal{P}(X)$, $\{\{a\}\} \subseteq \mathcal{P}(X)$. Second, no function from $X$ to $\mathcal{P}(X)$ can hit everything, so $\mathcal{P}(X)$ is always strictly bigger than $X$ — for every set, finite or infinite. Module 6.7 states that and proves it. Two things follow, and both are worth carrying: there is no largest infinity, and there is no set containing everything.
 
 <Aside>
-The relation $\subseteq$ is definable from $\in$ alone, which is why axiomatic set theory needs only one undefined relation. Everything in this chapter — union, intersection, complement, product, function — is likewise built from $\in$ by explicit definition. That economy is the point of taking sets as the foundation.
+The relation $\subseteq$ is definable from $\in$ alone, which is why a set theory built from a list of rules needs only one undefined relation. Everything in this chapter — union, intersection, complement, product, function — is likewise built from $\in$ by explicit definition. That economy is the point of taking sets as the foundation.
 </Aside>
 
 <WhereThisGoes level="l7">
@@ -108,6 +108,6 @@ Take any one — or here, any two — and follow them. Nothing about the specifi
 
 **In calculus the containments are between domains and intervals.** A theorem may hold on the inside of a stretch while the endpoints need a separate argument — the statement is trapped between an open interval and the closed one, and the two endpoints are exactly what is left undecided. That is why endpoints get checked on their own, every time.
 
-And the vacuous containment $\emptyset\subseteq S$ is not a curiosity there either: the set where a function fails a condition is often empty, and "every point of that set has property $P$" is then true by the argument given above.
+And the vacuous (true because there is nothing to check, §1.5) containment $\emptyset\subseteq S$ is not a curiosity there either: the set where a function fails a condition is often empty, and "every point of that set has property $P$" is then true by the argument given above.
 
 </WhereThisGoes>

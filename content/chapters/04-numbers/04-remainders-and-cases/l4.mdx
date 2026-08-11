@@ -48,7 +48,7 @@ These three sets are disjoint and cover $\mathbb{Z}$ — a partition. Exhaustive
 </Discussion>
 
 <Proof>
-We prove the contrapositive: if $3 \nmid a$ then $3 \mid a^2 - 1$.
+We prove the contrapositive (swap the two halves and deny both, §1.7): if $3 \nmid a$ then $3 \mid a^2 - 1$.
 
 Suppose $3 \nmid a$. By the division algorithm, $a = 3k + r$ with $r \in \{0,1,2\}$; the case $r = 0$ is excluded, since $a = 3k$ would give $3 \mid a$. Two cases remain.
 
@@ -96,5 +96,5 @@ The cases are exhaustive, so $a^2$ never leaves remainder $2$ on division by $3$
 This has teeth. It shows immediately that $3n + 2$ is never a perfect square, and that no integers satisfy $a^2 + b^2 = 3c^2$ except $a=b=c=0$. Arguing from remainders is one of the standard ways to prove an equation has no solutions.
 
 <Aside>
-The converse use is worth noting: writing $m = 3k+1$ *proves* $3 \nmid m$, by uniqueness of the remainder. So the division algorithm is not only a case-generator but also a certificate of non-divisibility — often the shortest route to a negative claim.
+The converse (the same statement with its two halves swapped, §1.7) use is worth noting: writing $m = 3k+1$ *proves* $3 \nmid m$, by uniqueness of the remainder. So the division algorithm is not only a case-generator but also a certificate of non-divisibility — often the shortest route to a negative claim.
 </Aside>

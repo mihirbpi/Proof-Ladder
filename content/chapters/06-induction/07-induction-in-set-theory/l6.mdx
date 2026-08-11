@@ -57,7 +57,7 @@ Split the subsets of $S$ into two groups:
 
 **Group 1: subsets not containing $a$.** These are exactly the subsets of $S\setminus\{a\}$, so by $A(k)$ there are $2^k$ of them.
 
-**Group 2: subsets containing $a$.** Each has the form $T\cup\{a\}$ for a unique $T\subseteq S\setminus\{a\}$. The map $T\mapsto T\cup\{a\}$ is a bijection from Group 1 to Group 2 — injective because $T$ is recovered by removing $a$, surjective because every subset containing $a$ arises this way. So Group 2 also has $2^k$ members.
+**Group 2: subsets containing $a$.** Each has the form $T\cup\{a\}$ for a unique $T\subseteq S\setminus\{a\}$. The map $T\mapsto T\cup\{a\}$ is a bijection from Group 1 to Group 2 — injective because $T$ is recovered by removing $a$, surjective (every possible output is actually hit, §3.6) because every subset containing $a$ arises this way. So Group 2 also has $2^k$ members.
 
 The groups are disjoint and together contain every subset, so
 $$|\mathcal{P}(S)| = 2^k + 2^k = 2\cdot2^k = 2^{k+1},$$

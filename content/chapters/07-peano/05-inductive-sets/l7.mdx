@@ -64,9 +64,9 @@ Notice what A9 quantifies over: **subsets** of $\mathbb{N}$, not just elements. 
 <Proof title="Proof sketch">
 Let $(\mathbb{N},0,S)$ and $(\mathbb{N}',0',S')$ both satisfy the axioms. Define $h(0) = 0'$ and $h(S(n)) = S'(h(n))$; the recursive definition of §7.6 supplies exactly one such $h$.
 
-$h$ is injective: the set $\{n : \forall m\,(h(n)=h(m)\Rightarrow n=m)\}$ is inductive, using A7 and A8 in both structures.
+$h$ is injective (no two inputs share an output, §3.5): the set $\{n : \forall m\,(h(n)=h(m)\Rightarrow n=m)\}$ is inductive, using A7 and A8 in both structures.
 
-$h$ is surjective: $\operatorname{Im}(h)$ contains $0'$ and is closed under $S'$, so is inductive in $\mathbb{N}'$, so A9 for $\mathbb{N}'$ gives $\mathbb{N}'\subseteq\operatorname{Im}(h)$.
+$h$ is surjective (every possible output is actually hit, §3.6): $\operatorname{Im}(h)$ contains $0'$ and is closed under $S'$, so is inductive in $\mathbb{N}'$, so A9 for $\mathbb{N}'$ gives $\mathbb{N}'\subseteq\operatorname{Im}(h)$.
 </Proof>
 
 So the axioms determine $\mathbb{N}$ **up to renaming**. Whatever "the natural numbers" are made of is irrelevant — sets, tally marks, anything — because only the structure is pinned down, which is the same lesson as §2.9's ordered pairs.
