@@ -297,6 +297,58 @@ in words. Six kernels and three body passages were rewritten. A level inversion
 in the kernel is the worst place to have one, since the kernel is what a reader
 uses to decide whether they are on the right rung.
 
+#### A4.1b Register, and terms that were "already taught" (binding)
+
+Added 2026-08-11, after a read-through of the finished K–12 levels found the
+same complaint in four disguises. In every case the rule already existed in this
+document and the lint had a guard for it with a hole in exactly the place the
+complaint landed. Pages were being fixed one at a time and the problem regrew,
+because nothing stopped it.
+
+**1. Register is separate from vocabulary.** Passing the Lexile band is not the
+test. *Hence*, *thus*, *precisely*, *yields*, *asserts*, *establishes*,
+*suffices*, *vacuously*, *obligation*, *machinery*, *acquires* are words a
+12th grader knows and never writes. They are banned outright below `l7` and
+capped at `l7`. Measured before the ban: 3.2 hits per 1000 words at `l4`, 6.2 at
+`l7` — *hence* alone ran 69 times at `l7` and 36 at `l4`. The proof idiom
+*"let x be arbitrary"* is barred separately; the bare adjective is fine.
+
+**2. A term met once is not a term the reader has.** §A4.2 has always said a
+borrowing module must reintroduce a term or cross-reference the module that
+defines it. The lint only enforced it when *three* borrowed terms stacked in one
+paragraph, so a single casual *"by the excluded middle"* or *"this is a
+tautology"* passed. It is now enforced per use, at `l4`–`l7`. The reader has
+done no proofs between meeting the word and meeting it again; chapters of
+distance is not familiarity. A cross-reference counts, because it sends the
+reader somewhere real; an em dash does not.
+
+**3. Famous results have one home.** A named result may be named only in the
+module that works its argument in full — Russell's paradox at §2.1, the diagonal
+argument at §3.8, computability nowhere below `l8`. The failure is never the
+first telling; it is the casual reuse afterwards, where a name stands in for an
+argument the reader was never given. **The story survives, the machinery does
+not:** a 12th grader can be told there is no set of everything and why that is
+worth knowing, without Zermelo–Fraenkel, separation, unrestricted
+comprehension, Frege, or von Neumann. Those are now in `COLLEGE_TERMS`, which
+had listed `cardinals`, `ordinals` and `Zorn` but none of the foundations
+vocabulary the `l7` pages had actually grown.
+
+**4. "Translated everywhere" was true of the spec and false of the pages.**
+`GLOSS_THROUGH_CHAPTER` is unchanged and was always right — every chapter at
+`l4`, tapering to Chapter 5 at `l7`. The *check* tested whether a paragraph
+**started with** `$$`, so a display inside a list, inside a callout, or
+following text on the same line was invisible: at `l7`, 89 of 140 displays went
+unexamined. It now matches whole `$$…$$` blocks wherever they sit, and the
+phrases that certify a reading were tightened — a nearby "that is" or "means"
+used to certify one. Inline `$…$` is not required to carry a reading (1512
+spans at `l7`, most of them a bare `$x \in S$` the sentence already reads out),
+but an inline span carrying three or more proof marks is a display that lost its
+nerve, and is flagged.
+
+**5. Forward-looking blocks explain their own vocabulary.** `<WhereThisGoes>`
+and look-ahead boxes may point past the reader's course — that is their job —
+but may not spend unexplained words doing it.
+
 #### A4.2 Notation gate (binding, and **derived** — do not author directly)
 
 This table is not an independent source. It is **generated from Part B**, filtered

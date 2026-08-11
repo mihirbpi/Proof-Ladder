@@ -957,6 +957,15 @@ const COLLEGE_TERMS = [
   [/\btopolog|\bmetric spaces?\b|\bhomeomorph|\bopen sets?\b/i, 'topology'],
   [/\bmeasure theor|\bLebesgue|\bBanach|\bHilbert\b/i, 'analysis'],
   [/\bcardinals?\b|\bordinals?\b|\btransfinite|\bZorn|\baxiom of choice/i, 'set theory'],
+  // Foundations. The l7 voice profile already said forward references to this
+  // material belong at l8, but the guard above never named any of it — so §2.1
+  // and §2.2 grew a full account of the ZFC repair (separation, unrestricted
+  // comprehension, Frege, von Neumann), which is a graduate topic wearing
+  // precalculus clothes. The *story* survives, under NAMED_RESULTS below: a
+  // 12th grader can be told there is no set of everything, and why that is
+  // worth knowing. The machinery cannot be, because nothing they have taken
+  // reaches it, and naming it does not teach it.
+  [/\bZermelo|\bFraenkel|\bZFC\b|\bFrege|\bvon Neumann|\bG(\u00f6|oe)del|\b(unrestricted|naive) comprehension\b|\bseparation axiom\b|\baxiom schema\b|\bincompleteness theorem/i, 'foundations'],
   [/\bintegral domain|\bGalois|\babelian|\bmonoid|\bBoolean algebra/i, 'abstract algebra'],
   [/\bcategory theor|\bfunctors?\b|\bnatural transformation/i, 'category theory'],
   [/\bmanifold|\bmultivariable|\bJacobian|\bpartial derivative/i, 'later calculus'],
@@ -977,6 +986,39 @@ const COLLEGE_TERMS = [
   // carries the same idea without the machinery.
   [/\bdifferential equations?\b|\bcharacteriztic (equation|roots)\b|\bODE\b|\bphasors?\b/i, 'differential equations'],
 ];
+// Famous results may be *named* only in the module that actually shows them.
+// The failure this catches is not the first telling — it is the casual reuse
+// afterwards. "This is a diagonal argument, the same construction as Russell's
+// paradox (§2.1)" assumes the reader kept a technique they met once in passing
+// two chapters ago, and a 12th grader has not. Naming a result is not the same
+// as having taught it, and a name dropped without its argument is decoration.
+//
+// So each result gets one home, the module where its argument is worked in
+// full, and elsewhere the idea must be said in words or left out.
+const NAMED_RESULTS = [
+  { re: /Russell'?s (paradox|construction|argument)/i, home: 201, what: "Russell's paradox", home_label: '\u00a72.1' },
+  { re: /Cantor'?s (theorem|argument|diagonal\w*)|diagonal(is|iz)ation|diagonal argument/i, home: 308, what: 'the diagonal argument', home_label: '\u00a73.8' },
+  { re: /halting problem|undecidab\w*/i, home: 0, what: 'computability', home_label: 'l8' },
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (level === 'l8') continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const here = modPos(rel);
+  const text = body(fs.readFileSync(f, 'utf8'));
+  for (const r of NAMED_RESULTS) {
+    const m = text.match(r.re);
+    if (!m) continue;
+    if (r.home && here === r.home) continue;
+    warn(
+      rel,
+      r.home
+        ? `names ${r.what} ("${m[0]}") away from ${r.home_label}, where it is actually shown — say the idea in words or drop it`
+        : `names ${r.what} ("${m[0]}") — that belongs at ${r.home_label}`,
+    );
+  }
+}
+
 // Content a level's own students have not been taught yet. Distinct from
 // COLLEGE_TERMS: trigonometry and e are perfectly ordinary — just not in
 // eighth grade, where Chapter 5 had been quietly assuming both.
@@ -1066,7 +1108,79 @@ const OFF_REGISTER = [
   [/\binvolutions?\b/i, 'an operation that undoes itself'],
   [/\bschema\b/i, 'one axiom for each formula'],
   [/\bentail(s|ed|ment)\b/i, 'forces, or follows from'],
+  // Dropped from CCSSM geometry. It survives in older textbooks and in
+  // competition writing, so it reads as ordinary to anyone who learned
+  // geometry from those and as nothing at all to a reader who did not.
+  [/\bloc(us|i)\b/i, 'the set of points that\u2026'],
 ];
+// Register, as distinct from vocabulary. OFF_REGISTER above is a list of
+// technical terms; this is a list of ordinary English words that a high
+// schooler knows perfectly well and still never meets in this construction
+// outside a mathematics text. "Hence the sum is even" is not hard to decode —
+// it is just nobody's voice. Sixty-nine "hence" at l7 and thirty-six at l4 is
+// what a page sounds like when it is written by someone who has read a lot of
+// textbooks, and it is the single loudest signal that a page is pitched past
+// its reader.
+//
+// Banned outright below l7 and capped at l7: grade 12 may sound a little more
+// formal than grade 8, but not like a monograph.
+const PROSE_REGISTER = [
+  [/\bhence\b/i, 'so'],
+  [/\bthus\b/i, 'so'],
+  [/\bwhence\b/i, 'so'],
+  [/\bmoreover\b/i, 'and'],
+  [/\bfurthermore\b/i, 'and'],
+  [/\bnevertheless\b/i, 'even so'],
+  [/\bit follows that\b/i, 'so'],
+  [/\bacquires?\b/i, 'gets, or picks up'],
+  [/\byields?\b/i, 'gives'],
+  [/\bobtains?\b(?! a)/i, 'gets'],
+  [/\basserts?\b|\bassertion\b/i, 'says, or claim'],
+  [/\bestablishes?\b/i, 'proves'],
+  [/\bsuffices\b/i, 'is enough'],
+  [/\bprecisely\b/i, 'exactly'],
+  [/\bvacuous(ly)?\b/i, 'true because there is nothing to check'],
+  [/\bobligation\b/i, 'the thing still to check'],
+  [/\bmachinery\b/i, 'the tools, or say what they are'],
+  [/\bpedantry\b|\bpedantic\b/i, 'fussiness'],
+  [/\binstructive\b/i, 'worth doing'],
+  [/\bcanonical\b/i, 'standard'],
+  [/\bin particular\b/i, 'for example, or drop it'],
+  [/\bconversely\b/i, 'the other way round'],
+  [/\bthe former\b|\bthe latter\b/i, 'name the thing again'],
+  [/\brespectively\b/i, 'say which is which'],
+  [/\bhenceforth\b/i, 'from here on'],
+  [/\bnon-?trivial(ly)?\b|\btrivial(ly)?\b/i, 'say what is actually easy or hard about it'],
+  [/\bwithout loss of generality\b|\bWLOG\b/, 'say why the other case is the same'],
+  [/\bby inspection\b/i, 'say what you looked at'],
+  [/\bup to isomorphism\b/i, 'the same apart from renaming'],
+  [/\ba fortiori\b|\bipso facto\b|\bmutatis mutandis\b|\bviz\.|\bcf\./i, 'say it in English'],
+  [/\bformalism\b|\bapparatus\b/i, 'the notation, or the setup'],
+  [/\bpathological\b/i, 'badly behaved'],
+];
+// "arbitrary" is deliberately absent as a bare word: "an arbitrary triangle" is
+// ordinary English. What is off-register is the proof idiom "let x be
+// arbitrary", which is caught on its own below.
+const LET_ARBITRARY = /\blet\s+\$?[A-Za-z]\$?\s+be\s+arbitrary\b|\bas\s+\$?[A-Za-z]\$?\s+was\s+arbitrary\b/i;
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (level === 'l8') continue;
+  const rel = path.relative(ROOT, f);
+  const text = body(fs.readFileSync(f, 'utf8'));
+  const seen = new Set();
+  for (const [re, plain] of PROSE_REGISTER) {
+    const all = [...text.matchAll(new RegExp(re.source, 'gi'))];
+    if (!all.length) continue;
+    const word = all[0][0].toLowerCase();
+    if (seen.has(word)) continue;
+    seen.add(word);
+    const n = all.length;
+    warn(rel, `${level} uses "${all[0][0]}"${n > 1 ? ` \u00d7${n}` : ''} \u2014 textbook register, not this reader's; say "${plain}"`);
+  }
+  const la = text.match(LET_ARBITRARY);
+  if (la) warn(rel, `${level} uses the proof idiom "${la[0]}" \u2014 say "pick any one" / "and that one could have been any of them"`);
+}
+
 for (const f of files) {
   const level = path.basename(f, '.mdx');
   if (level === 'l8') continue;
@@ -1137,6 +1251,50 @@ for (const f of files) {
   }
 }
 
+// A borrowed term must be re-explained where it is borrowed, every time.
+//
+// §A4.2 has always said this ("a module that borrows a term must reintroduce it
+// or cross-reference the module that defines it"), but the only thing enforcing
+// it was the three-in-a-paragraph pile-up rule above — so a single casual "by
+// the excluded middle" or "this is a tautology" sailed through. One casual
+// reuse is the whole problem. Meeting a word once, chapters ago, in the module
+// that was about it, does not make it available afterwards; the reader has done
+// no proofs since, and the word has gone.
+//
+// A cross-reference alone counts, because it sends the reader somewhere real.
+// An em dash does not, which is why this uses its own signal rather than
+// GLOSS_SIGNAL — that one treats any dash in the paragraph as an explanation,
+// and most paragraphs have a dash.
+const REGLOSS_SIGNAL =
+  /\bmeans?\b|\bthat is\b|\bi\.e\.|\bnamely\b|\bin other words\b|\bwhich says\b|\brecall\b|\bwe called\b|\bthe word\b|\u00a7\d|\bmodule \d|\bChapter \d/i;
+const BORROWED = [
+  ...HEAVY_JARGON,
+  /\bexcluded middle\b/i, /\bconverse\b/i, /\binverse statement\b/i,
+  /\bnecessary condition\b/i, /\bsufficient condition\b/i,
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!['l4', 'l5', 'l6', 'l7'].includes(level)) continue;
+  const rel = path.relative(ROOT, f);
+  const ch = path.relative(CHAPTERS, f).split(path.sep)[0];
+  const own = (chapterVocab.get(`${ch}/${level}`) ?? '').toLowerCase();
+  const prose = body(fs.readFileSync(f, 'utf8')).replace(/\n(\s*[-*]\s)/g, '\n\n$1');
+  const flagged = new Set();
+  for (const para of prose.split(/\n\s*\n/)) {
+    if (/^\s*(import|<|\|)/.test(para)) continue;
+    if (REGLOSS_SIGNAL.test(para)) continue;
+    for (const re of BORROWED) {
+      const m = para.match(re);
+      if (!m) continue;
+      const t = m[0].toLowerCase();
+      if (own.includes(t.slice(0, 6))) continue; // the chapter's own subject
+      if (flagged.has(t)) continue;
+      flagged.add(t);
+      warn(rel, `borrows "${m[0]}" with nothing to reattach it to \u2014 re-say it in words here, or point at the module that taught it`);
+    }
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Kernels carry no proof notation, at any level.
 //
@@ -1182,8 +1340,13 @@ for (const ch of fs.readdirSync(CHAPTERS)) {
 const GLOSS_THROUGH_CHAPTER = { l4: 7, l5: 7, l6: 6, l7: 5 };
 const DISPLAY_SYMBOLS =
   /\\forall|\\exists|\\Rightarrow|\\Leftrightarrow|\\iff|\\neg|\\wedge|\\vee(?!r)|\\in\b|\\subseteq|\\mathbb\{[NZQRC]\}|\\equiv|\\cup\b|\\cap\b/;
+// What counts as a rendering. The earlier list included bare "that is",
+// "which is" and "means", tested across the display and its neighbours on
+// either side — so a paragraph that happened to contain the word "means"
+// anywhere near a display certified it as translated. These are the phrasings
+// that can only be introducing a reading of the line.
 const RENDERS_IT =
-  /\bread[s]?\b|\bmeans?\b|\bsays?\b|in words|that is|i\.e\.|which is|translat\w*|\bis just\b|\bshorthand\b|\bunpack\w*|\bunfold\w*/i;
+  /\bthe line reads\b|\breads?:|\bin words\b|\bsays? (that|in words)\b|\bwhich says\b|\btranslat\w*|\bis shorthand for\b|\bunpack\w*|\bunfold\w*|\bsymbol by symbol\b/i;
 for (const f of files) {
   const level = path.basename(f, '.mdx');
   const through = GLOSS_THROUGH_CHAPTER[level];
@@ -1191,21 +1354,65 @@ for (const f of files) {
   const rel = path.relative(ROOT, f).split(path.sep).join('/');
   const chapterNo = Math.floor(modPos(rel) / 100);
   if (chapterNo > through) continue;
-  const paras = body(fs.readFileSync(f, 'utf8')).split(/\n\s*\n/);
-  for (let i = 0; i < paras.length; i += 1) {
-    const p = paras[i];
-    if (!p.trim().startsWith('$$') || !DISPLAY_SYMBOLS.test(p)) continue;
-    const around = paras.slice(Math.max(0, i - 1), i + 2).join('\n\n');
+  // Every display, wherever it sits. The old version tested
+  // `p.trim().startsWith('$$')`, which only sees a display that is a paragraph
+  // of its own — so a display inside a list item, inside a <Warning>, or
+  // following text on the same line was invisible. At l7 that was 89 of 140
+  // displays going unchecked, which is why "translated everywhere" was true of
+  // the spec and false of the pages.
+  //
+  // Match whole `$$…$$` blocks rather than splitting the file on `$$`: doing
+  // the latter cuts at the *closing* delimiter too, which orphans every
+  // display from the gloss line under it and flags the lot.
+  const raw = body(fs.readFileSync(f, 'utf8'));
+  for (const d of raw.matchAll(/\$\$[\s\S]*?\$\$/g)) {
+    if (!DISPLAY_SYMBOLS.test(d[0])) continue;
+    // What follows the display, up to the next display or the end of the
+    // second paragraph after it — the window a reading could live in.
+    const after = raw.slice(d.index + d[0].length).split('$$')[0];
+    const paras = after.split(/\n\s*\n/).filter((x) => x.trim());
+    const around = paras.slice(0, 2).join('\n\n');
     // The house convention is a wholly-italic line immediately after the
     // display, which is a rendering whatever words it happens to use.
-    const next = (paras[i + 1] ?? '').trim();
+    const next = (paras[0] ?? '').trim();
     const italicGloss = next.startsWith('*') && next.endsWith('*') && !next.startsWith('**');
+    const chapterNo2 = chapterNo;
     if (!italicGloss && !RENDERS_IT.test(around)) {
       warn(
         path.relative(ROOT, f),
-        `symbolic display with no plain rendering beside it — say what it says in words (${level}, Ch ${chapterNo})`,
+        `symbolic display with no plain rendering beside it — say what it says in words (${level}, Ch ${chapterNo2})`,
       );
     }
+  }
+}
+
+// Inline math that is really a display in disguise.
+//
+// Requiring a reading of every inline `$…$` would mean glossing 1512 spans at
+// l7 alone, most of them a bare `$x \in S$` that the surrounding sentence
+// already reads aloud. What is worth catching is the span that has quietly
+// become a whole statement — three or more proof marks between two dollar
+// signs, mid-sentence, where the reader gets no line break and no gloss and is
+// expected to parse it in passing. Those are displays that lost their nerve.
+const INLINE_MARKS =
+  /\\forall|\\exists|\\Rightarrow|\\Leftrightarrow|\\iff|\\neg|\\wedge|\\vee(?!r)|\\in\b|\\notin|\\subseteq|\\mathbb\{[NZQRC]\}|\\equiv|\\cup\b|\\cap\b|\\emptyset/g;
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const through = GLOSS_THROUGH_CHAPTER[level];
+  if (!through) continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  if (Math.floor(modPos(rel) / 100) > through) continue;
+  const raw = body(fs.readFileSync(f, 'utf8')).replace(/\$\$[\s\S]*?\$\$/g, ' ');
+  let worst = null;
+  for (const m of raw.matchAll(/(?<!\$)\$([^$\n]+)\$(?!\$)/g)) {
+    const n = (m[1].match(INLINE_MARKS) ?? []).length;
+    if (n >= 3 && (!worst || n > worst.n)) worst = { n, t: m[0] };
+  }
+  if (worst) {
+    warn(
+      path.relative(ROOT, f),
+      `inline math carrying ${worst.n} proof marks mid-sentence — set it as a display and read it out, or say it in words: "${worst.t.slice(0, 60)}"`,
+    );
   }
 }
 
