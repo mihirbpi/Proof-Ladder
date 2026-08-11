@@ -42,7 +42,7 @@ $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: **a conditional and its contrapositive are the same statement**, and so are the converse and the inverse.*
 
-and the two pairs disagree in rows 2 and 3, so neither pair entails the other.
+and the two pairs disagree in rows 2 and 3, so neither pair forces the other.
 
 **Only the contrapositive is equivalent to the original.** The converse and inverse are equivalent to *each other* — each is the contrapositive of the other — which is why a single counterexample usually kills both at once.
 
@@ -96,7 +96,7 @@ $$
 
 *Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\Rightarrow$ is "forces", $\vee$ is "or".*
 
-A disjunctive conclusion is proved by assuming the negation of one disjunct and deriving the other:
+A conclusion of the form *this or that* is proved by assuming one half fails and deriving the other:
 
 <Proof>
 Suppose $x + y$ rational, and suppose $x$ rational. Then $y = (x+y) - x$ is a difference of two rationals, hence rational.
@@ -106,14 +106,14 @@ So either $x$ is irrational, or $y$ rational — which is the required disjuncti
 
 Had we mis-negated to "$x$ is irrational **and** $y$ rational", we would have set ourselves a strictly stronger target that is not provable from the hypothesis. Getting De Morgan right was not decoration; it decided whether the proof exists.
 
-<Warning title="Affirming the consequent">
+<Warning title="Reading an if-then backwards">
 Treating a true conditional as though its converse also held is the most common reasoning error there is.
 
 *If it rained, the ground is wet.* The ground is wet — did it rain? Perhaps a sprinkler ran. The conditional gives no licence to conclude $p$ from $q$.
 
 In mathematics it appears in disguise:
 
-- proving one direction of a biconditional and stopping (module 1.9);
+- proving one direction of an if-and-only-if statement and stopping (module 1.9);
 - writing $\Leftrightarrow$ in a chain where only $\Rightarrow$ holds — $x = y \Rightarrow x^2 = y^2$ is not reversible;
 - squaring both sides of an equation and not checking the answers. Extraneous roots *are* converse failures.
 </Warning>
@@ -129,6 +129,6 @@ The negation is not a conditional at all — which is exactly why refuting "if $
 
 ## Vocabulary you will meet again
 
-If $p \Rightarrow q$, then $p$ is a **sufficient** condition for $q$, and $q$ is a **necessary** condition for $p$. The contrapositive is just the second reading of the same fact, which is why they are equivalent. Module 1.9's biconditional asserts both roles at once.
+If $p \Rightarrow q$, then $p$ is a **sufficient** condition for $q$, and $q$ is a **necessary** condition for $p$. The contrapositive is just the second reading of the same fact, which is why they are equivalent. Module 1.9's if-and-only-if statement asserts both roles at once.
 
 And because the contrapositive always shares a truth value with the original, you may **prove it instead** whenever it looks easier. That is module 1.8, and it is one of the most useful techniques in the course.

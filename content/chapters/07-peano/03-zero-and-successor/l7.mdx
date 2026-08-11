@@ -14,13 +14,13 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 ## Primitives and axioms
 
-The language of arithmetic has two undefined starting words: a constant $0$ and a unary function symbol $S$.
+The language of arithmetic has two undefined starting words: a constant $0$ and a symbol $S$ for an operation taking one number to another.
 
 $$
 \textbf{A5}\quad 0 \in \mathbb{N}, \qquad\qquad \textbf{A6}\quad x\in\mathbb{N}\Rightarrow S(x)\in\mathbb{N}.
 $$
 
-Neither $0$ nor $S$ is defined; per §7.1 their content is exactly what the axioms permit to be derived. In a modern presentation, $\mathbb{N}$ is the universe of discourse and A5–A6 are absorbed into the signature — the structure is a set with a distinguished point and an endofunction, $(\mathbb{N}, 0, S)$.
+Neither $0$ nor $S$ is defined; per §7.1 their content is exactly what the axioms permit to be derived. A modern presentation folds A5–A6 into the setup rather than stating them: the objects under discussion are a set with a distinguished point and an endofunction, $(\mathbb{N}, 0, S)$.
 
 ## Numerals
 
@@ -28,7 +28,7 @@ $$
 1 := S(0),\quad 2:=S(1),\quad 3:=S(2),\quad\ldots
 $$
 
-Definitions, not theorems. The **numeral** $\overline{n} = S^n(0)$ is a syntactic object; the number is what it denotes. Decimal notation is a further layer of abbreviation with no mathematical content — a fact that becomes important in logic, where the length of $\overline n$ (unary, hence linear in $n$) versus its decimal representation (logarithmic) is the difference between tractable and intractable formalisations.
+Definitions, not theorems. The **numeral** $\overline{n} = S^n(0)$ is a syntactic object; the number is what it denotes. Decimal notation is a further layer of abbreviation with no mathematical content — a fact that becomes important in logic, where the length of $\overline n$ written as $n$ tally marks, versus the length of the same number written in decimal is the difference between tractable and intractable formalisations.
 
 <Warning title="No addition yet">
 $S(x)$ may not be written $x+1$: addition is defined in §7.6 *by recursion on $S$*, so the notation would be circular.
@@ -52,7 +52,7 @@ Together: $S$ is an injection $\mathbb{N}\to\mathbb{N}\setminus\{0\}$, and $\mat
 
 $1 := S(0)$, $2 := S(1)$, $3 := S(2)$. The symbol $:=$ means *is defined to be*, and these are abbreviations — nothing has been assumed about $1$ beyond its being the successor of $0$.
 
-Roman numerals, tally marks, and binary strings name the same objects. **None of them is the number**, and the relationship is the one between a point and the letter labelling it in a diagram.
+Roman numerals, tally marks, and strings of $0$s and $1$s name the same objects. **None of them is the number**, and the relationship is the one between a point and the letter labelling it in a diagram.
 
 That is why base-ten arithmetic is absent from this chapter. The fact that $7+5=12$ has a $1$ in the tens place is a fact about **notation**, dependent on a choice of base that the axioms know nothing about. Computers use base two and get identical arithmetic, which is the clearest evidence that positional notation is not part of the mathematics.
 

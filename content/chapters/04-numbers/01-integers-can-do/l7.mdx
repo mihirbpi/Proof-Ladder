@@ -2,7 +2,7 @@
 level: l7
 title: What the integers can do
 readingTimeMin: 9
-newTerms: ["closed", "zero divisor"]
+newTerms: ["closed"]
 anchorExample: "the integers "
 ---
 
@@ -23,7 +23,7 @@ $(\mathbb{Z}, +, \cdot)$ satisfies, for all $a,b,c$:
 
 **Linking.** Distributivity $a(b+c) = ab+ac$.
 
-A structure satisfying all of these is a **system obeying the standard arithmetic rules with identity**. Closure is implicit in calling $+$ and $\cdot$ binary operations $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ — which, note, is a statement about functions in the sense of Chapter 3.
+A structure satisfying all of these is a **system obeying the standard arithmetic rules with identity**. Closure is implicit in calling $+$ and $\cdot$ operations that take two integers and return one, $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ — which, note, is a statement about functions in the sense of Chapter 3.
 
 Facts that look primitive are in fact derived, and deriving them is instructive:
 
@@ -45,7 +45,7 @@ Let $uv = 1$. Then $u, v \neq 0$, so $|u|, |v| \geq 1$, and $|u||v| = |uv| = 1$.
 
 The argument used the order on $\mathbb{Z}$ and the fact that no integer lies strictly between $0$ and $1$ — the discreteness of $\mathbb{Z}$, not an arithmetic one. This is worth noticing: some properties of $\mathbb{Z}$ are algebraic and some are order-theoretic, and separating them is what makes the general theory possible.
 
-## No zero divisors
+## A product of non-zero integers is never zero
 
 $\mathbb{Z}$ satisfies more than the arithmetic rules:
 $$
@@ -54,7 +54,7 @@ $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces".*
 
-a property expressed by saying $\mathbb{Z}$ has **no zero divisors**. Equivalently, cancellation holds: $ab = ac$ with $a \neq 0$ gives $b = c$.
+In words: **a product can only be zero if one of the factors is zero.** Equivalently, cancellation holds: $ab = ac$ with $a \neq 0$ gives $b = c$.
 
 <Warning title="Cancellation is not free">
 In $\mathbb{Z}/12\mathbb{Z}$, $3 \cdot 4 = 0$ with both factors nonzero, and $3 \cdot 4 = 3 \cdot 8 = 0$ while $4 \neq 8$. So cancelling a common factor is illegal there.
@@ -94,7 +94,7 @@ The axioms are satisfied by structures with nothing else in common:
 Anything proved from the axioms alone holds in every row. This is the central methodological move of modern algebra, and it is why the vocabulary is worth acquiring before you need it.
 
 <Aside>
-The three number systems of Chapter 4 stack, each adding one thing: the integers obey the arithmetic rules, the fractions add reciprocals, and the reals add the no-gaps property of §4.6. Each addition buys theorems and costs generality. $\mathbb{Z}$ additionally has properties $\mathbb{Q}$ lacks — it is discrete, well-ordered below, and has a division algorithm — which is why number theory is a subject about $\mathbb{Z}$ and not about $\mathbb{Q}$.
+The three number systems of Chapter 4 stack, each adding one thing: the integers obey the arithmetic rules, the fractions add reciprocals, and the reals add the no-gaps property of §4.6. Each addition buys theorems and costs generality. $\mathbb{Z}$ additionally has properties $\mathbb{Q}$ lacks — its numbers come in separate steps, any collection of them going down stops somewhere, and it has a division algorithm — which is why number theory is a subject about $\mathbb{Z}$ and not about $\mathbb{Q}$.
 </Aside>
 
 <WhereThisGoes level="l7">

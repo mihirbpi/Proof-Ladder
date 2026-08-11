@@ -45,7 +45,7 @@ Therefore $\sqrt2 \notin \mathbb{Q}$.
 <Warning title="Where the contradiction actually lives">
 Deducing "$p$ and $q$ are both even" is not by itself absurd. It contradicts something only because coprimality was assumed *in advance*. A proof that omits the lowest-terms hypothesis and stops at "both even" has proved nothing.
 
-The alternative finish is **infinite descent**: from any solution $(p,q)$ in positive integers, construct the strictly smaller solution $(p/2, q/2)$; iterating gives an infinite strictly decreasing sequence of positive integers, contradicting well-ordering. Both routes are valid, and both ultimately rest on well-ordering — the lowest-terms version simply front-loads it.
+The alternative finish is **infinite descent**: from any solution $(p,q)$ in positive integers, construct the strictly smaller solution $(p/2, q/2)$; iterating gives an infinite strictly decreasing sequence of positive integers, contradicting the smallest-number principle. Both routes are valid, and both ultimately rest on the smallest-number principle — the lowest-terms version simply front-loads it.
 </Warning>
 
 ## Generality
@@ -88,7 +88,7 @@ This theorem is where the tower of number systems reveals its logic, and where c
 
 Filling the holes is what $\mathbb{R}$ is, and the property that distinguishes it — every set bounded above has a least upper bound — is the hypothesis behind every major theorem of a first calculus course. When a proof says "let $c$ be the supremum of the set where…", it is using completeness, and it is using the fact that this module's gap has been filled.
 
-**The three-part tower continues.** $\mathbb{R}$ is complete and still not algebraically closed, since $x^2+1$ has no real root (§5.1). $\mathbb{C}$ repairs that, at the cost of the order. Each system is built to fix a specific, identifiable failure of the one below.
+**The three-part tower continues.** $\mathbb{R}$ has no gaps and still cannot solve every closed, since $x^2+1$ has no real root (§5.1). $\mathbb{C}$ repairs that, at the cost of the order. Each system is built to fix a specific, identifiable failure of the one below.
 
 **And the lemma is the interesting part.** *$a^2$ even implies $a$ even* required a contrapositive, and the general version — *$p \mid a^2$ implies $p \mid a$ for prime $p$* — is what makes the argument work for $\sqrt3$, $\sqrt5$, and every non-square.
 

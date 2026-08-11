@@ -2,7 +2,7 @@
 level: l7
 title: Inductive sets and the last axiom
 readingTimeMin: 8
-newTerms: ["inductive set", "nonstandard model"]
+newTerms: ["inductive set"]
 anchorExample: "successor function"
 ---
 
@@ -11,7 +11,7 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-A5–A8 are *closure* conditions: they say what $\mathbb{N}$ must contain. The rogue model $\{0,1,2,\ldots\}\sqcup\{a,b\}$ with $S(a)=b$, $S(b)=a$ satisfies all four (§7.4). What is missing is a **minimality** condition.
+A5–A8 are *closure* conditions: they say what $\mathbb{N}$ must contain. The rogue model $\{0,1,2,\ldots\}\sqcup\{a,b\}$ with $S(a)=b$, $S(b)=a$ satisfies all four (§7.4). What is missing is a **smallest-possible** condition.
 
 ## Axiom 9
 
@@ -37,7 +37,7 @@ $$
 
 Chapter 6's technique is this axiom. That answers §6.1's question of why induction cannot be derived from more basic facts: it is constitutive of $\mathbb{N}$, and the rogue model demonstrates its independence from A5–A8 by the method of §7.1.
 
-Equivalent over A5–A8: well-ordering, strong induction, and the non-existence of infinite descending sequences. §4.4's division algorithm and §4.7's descent argument were both applications.
+Equivalent over A5–A8: the smallest-number principle, strong induction, and the non-existence of infinite descending sequences. §4.4's division algorithm and §4.7's descent argument were both applications.
 
 ## Killing the rogue model
 
@@ -53,7 +53,7 @@ The resulting set equality is proved by double inclusion, with a clean division 
 
 $$\mathbb{N} = \{0, S(0), S(S(0)), \dots\}$$
 
-**($\supseteq$)** Axioms 5 and 6 put the whole chain inside $\mathbb{N}$. **($\subseteq$)** The chain is inductive, so Axiom 9 gives equality. Each direction uses different axioms, which is the normal situation for a biconditional (§1.9).
+**($\supseteq$)** Axioms 5 and 6 put the whole chain inside $\mathbb{N}$. **($\subseteq$)** The chain is inductive, so Axiom 9 gives equality. Each direction uses different axioms, which is the normal situation for an if-and-only-if statement (§1.9).
 
 ## The axioms pin down the counting numbers exactly
 
@@ -74,7 +74,7 @@ So the axioms determine $\mathbb{N}$ **up to renaming**. Whatever "the natural n
 <Warning title="Weaken A9 and uniqueness is lost">
 The uniqueness proof leaned hard on A9 being about *all* subsets. Weaken it — allow induction only for properties you can actually write down in a formula — and the theorem fails.
 
-The weakened system admits **nonstandard models**: systems obeying every axiom, agreeing with $\mathbb{N}$ on every statement expressible in the restricted language, and yet containing an element larger than $0, 1, 2, 3, \dots$ and every other ordinary number.
+The weakened system admits **impostors**: systems obeying every axiom, agreeing with $\mathbb{N}$ on every statement expressible in the restricted language, and yet containing an element larger than $0, 1, 2, 3, \dots$ and every other ordinary number.
 
 Such a system is not $\mathbb{N}$ renamed. It is genuinely different, and it exists — so "is a natural number" turns out not to be expressible in the restricted language at all.
 </Warning>
@@ -93,7 +93,7 @@ Axiom 9 is the induction principle of Chapter 6, and knowing it is an **axiom** 
 
 Induction is not proved. It is assumed, on the same footing as the completeness axiom for $\mathbb{R}$ and the parallel postulate for Euclidean geometry — and §7.4's method shows why it must be: there are systems satisfying Axioms 1–8 and failing Axiom 9.
 
-**Well-ordering is the equivalent form**, and the equivalence is genuine: assume either and derive the other. Neither follows from the remaining axioms.
+**The smallest-number principle is the equivalent form**, and the equivalence is genuine: assume either and derive the other. Neither follows from the remaining axioms.
 
 **In calculus, the parallel axiom is completeness.** Every major theorem of a first course invokes it, usually through a phrase like *"let $c$ be the least upper bound of the set where…"*. The big theorems of calculus are all false over $\mathbb{Q}$, which satisfies every other axiom of a system whose ordering fits its arithmetic.
 

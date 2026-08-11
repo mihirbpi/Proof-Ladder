@@ -37,7 +37,7 @@ To define $f^{-1}(t)$, we want to say: "the element $s$ with $f(s) = t$." That p
 > **Theorem.** $f : S \to T$ has an inverse function if and only if $f$ is a bijection.
 
 <Discussion>
-  <div slot="know">Bijectivity is $\forall t \in T,\ \exists!\, s \in S,\ f(s) = t$ — module 3.8's fibre condition, and note it is literally the unique-existence quantifier of module 1.10.</div>
+  <div slot="know">Bijectivity is $\forall t \in T,\ \exists!\, s \in S,\ f(s) = t$ — module 3.8's one-element condition, and note it is literally the unique-existence quantifier of module 1.10.</div>
   <div slot="want">Both directions.</div>
   <div slot="how">(forward) Define $f^{-1}(t)$ to be the unique pre-image; the two obligations are discharged by surjectivity and injectivity respectively. (backward) From a two-sided inverse, read off injectivity and surjectivity directly.</div>
 </Discussion>
@@ -74,7 +74,7 @@ Inverses are also unique: if $g$ and $h$ both invert $f$, then $g = g \circ \mat
 
 Note that doubling as a rule $\mathbb{Z}\to\mathbb{Z}$ is **not** invertible, since it is not surjective. This is why halving has domain $E$ rather than $\mathbb{Z}$: the domain of an inverse is the codomain of a bijection.
 
-**$r : \mathbb{R}\setminus\{0\} \to \mathbb{R}\setminus\{0\}$, $r(x) = 1/x$.** A bijection, and it is its own inverse: $r(r(x)) = 1/(1/x) = x$. Functions equal to their own inverse are called *involutions*; negation and complementation are others.
+**$r : \mathbb{R}\setminus\{0\} \to \mathbb{R}\setminus\{0\}$, $r(x) = 1/x$.** A bijection, and it is its own inverse: $r(r(x)) = 1/(1/x) = x$. Functions equal to their own inverse are worth noticing; negation and complementation are others.
 
 **Squaring.** The rule sending $x$ to $x^2$ on $\mathbb{R}$ is neither injective nor surjective, so no inverse. Restricted to $[0,\infty)\to[0,\infty)$ it becomes a bijection, and its inverse is $\sqrt{\phantom{x}}$. The familiar rule that $\sqrt{x^2} = |x|$ rather than $x$ is precisely the residue of that restriction.
 

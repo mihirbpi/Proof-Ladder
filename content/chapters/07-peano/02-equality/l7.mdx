@@ -2,7 +2,7 @@
 level: l7
 title: The rules for equality
 readingTimeMin: 7
-newTerms: ["equivalence relation", "equivalence class", "quotient set"]
+newTerms: ["equivalence relation", "equivalence class"]
 anchorExample: "successor function"
 ---
 
@@ -27,7 +27,7 @@ The fourth is a special case of **substitution**: if $x = y$ then any statement 
 
 A relation $\sim\ \subseteq S\times S$ (§2.9) satisfying A1–A3 is an **equivalence relation**.
 
-Dropping symmetry and adding the rule that mutual containment forces equality ($a\sim b \wedge b \sim a \Rightarrow a = b$) gives a **partial order** instead — $\leq$ on $\mathbb{R}$, $\subseteq$ on $\mathcal{P}(X)$ (§2.3), $\mid$ on $\mathbb{Z}_{>0}$ (§4.2). The two families of structures are the two natural ways to weaken equality, and almost every relation of interest is one or the other.
+Dropping symmetry and adding the rule that mutual containment forces equality ($a\sim b \wedge b \sim a \Rightarrow a = b$) gives an **ordering** instead — the kind $\leq$ and $\subseteq$ are — $\leq$ on $\mathbb{R}$, $\subseteq$ on $\mathcal{P}(X)$ (§2.3), $\mid$ on $\mathbb{Z}_{>0}$ (§4.2). The two families of structures are the two natural ways to weaken equality, and almost every relation of interest is one or the other.
 
 > **Proposition.** $a \equiv b \pmod n :\iff n \mid (a-b)$ is an equivalence relation on $\mathbb{Z}$.
 
@@ -78,7 +78,7 @@ The three conditions are independent, and examining what each rules out is more 
 | $\subseteq$ | ✓ | ✗ | ✓ |
 | $\perp$ | ✗ | ✓ | ✗ |
 
-**Failure of symmetry is what makes a relation an order.** $\leq$ and $\subseteq$ are reflexive and transitive and not symmetric, and that is precisely the definition of a partial order. Orders and equivalences are the two natural weakenings of equality, distinguished by exactly this condition.
+**Failure of symmetry is what makes a relation an order.** $\leq$ and $\subseteq$ are reflexive and transitive and not symmetric, and that is precisely what makes them orderings rather than notions of sameness. Orders and equivalences are the two natural weakenings of equality, distinguished by exactly this condition.
 
 **Failure of transitivity is usually fatal.** Perpendicularity fails it: $\ell_1\perp\ell_2$ and $\ell_2\perp\ell_3$ give $\ell_1 \parallel \ell_3$ in the plane, not $\ell_1\perp\ell_3$. A relation without transitivity supports no chaining, and chaining is what proofs do.
 

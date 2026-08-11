@@ -967,17 +967,31 @@ const COLLEGE_TERMS = [
 // COLLEGE_TERMS: trigonometry and e are perfectly ordinary — just not in
 // eighth grade, where Chapter 5 had been quietly assuming both.
 const EARLY_GATES = {
+  // Trigonometry is barred by *name and by symbol* everywhere below l7. Naming
+  // it as a coming attraction ("you'll meet this in trig") turned out to read
+  // as a warning rather than a promise, and printing \cos in a grade-5 page
+  // shows a mark the reader has no way to hear.
+  l1: [[/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry']],
+  l2: [[/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry']],
+  l3: [[/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry']],
   l4: [
-    [/\\cos|\\sin|\\tan\b|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry (Geometry, next year)'],
+    [/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry (Geometry, next year)'],
     [/\bradians?\b/i, 'radians (Algebra II)'],
     [/e\^\{?i|\\ln\b|\blogarithms?\b|\bnatural log/i, 'e and logarithms (Algebra II)'],
     [/\bderivatives?\b|\bdifferentiat(e|ing|ion)\b|\bintegral\b|\bantiderivative/i, 'calculus'],
   ],
   l5: [
+    [/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry (Geometry, the course they are in)'],
     [/\bradians?\b/i, 'radians (Algebra II)'],
     [/\bderivatives?\b|\bdifferentiat(e|ing|ion)\b|\bantiderivative/i, 'calculus'],
   ],
   l6: [
+    // Right-triangle trig is Geometry — the year *before* — but the unit
+    // circle, radians and sine as a function of any angle are Algebra II, the
+    // course an l6 reader is starting. Chapter 5 needs angles, so it uses
+    // degrees and pictures and defers the two rules by description.
+    [/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry (Algebra II, the course they are in)'],
+    [/\bradians?\b/i, 'radians (Algebra II)'],
     [/e\^\{?i/i, 'imaginary exponents (needs calculus)'],
     [/\bderivatives?\b|\bdifferentiat(e|ing|ion)\b|\bantiderivative/i, 'calculus'],
   ],
@@ -999,6 +1013,54 @@ for (const f of files) {
     // else built from an imaginary exponent gets that pass.
     const m = text.replace(/e\^\{i\\pi\}\s*\+\s*1\s*=\s*0/g, '').match(re);
     if (m) warn(rel, `${level} uses "${m[0]}" — ${area} comes after this year`);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Terms whose *reading* level is fine and whose *mathematical* level is not.
+// A twelfth grader can read the word "connective"; nothing in their courses has
+// given them a reason to have met it. Every entry below has a plain phrasing
+// that says the same thing, given as the suggestion, and every one of them is
+// dispensable — the course's own vocabulary (injective, tautology, codomain,
+// induction) is taught and stays. l8 is a college level and is exempt.
+const OFF_REGISTER = [
+  [/\bconnectives?\b/i, 'the joining words *and*, *or*, *not*'],
+  [/\btruth-functional\w*/i, 'the truth of the result depends only on the inputs'],
+  [/\b(unary|binary|n-ary) (connective|operation|function symbol)s?\b/i, 'takes one / takes two'],
+  [/\barity\b/i, 'how many inputs it takes'],
+  [/\bfibres?\b/i, 'the pre-image of a single output'],
+  [/\bfree variables?\b|\bbound variables?\b/i, 'a variable nothing has been said about yet'],
+  [/\bwell-formed formula\b/i, 'a properly built formula'],
+  [/\buniverse of discourse\b/i, 'the objects under discussion'],
+  [/\bconjuncts?\b|\bdisjuncts?\b/i, 'the halves of the *and* / the *or*'],
+  [/\bbiconditionals?\b/i, 'if-and-only-if statement'],
+  [/\bwell-order\w*\b/i, 'every non-empty collection has a smallest member'],
+  [/\bminimality\b/i, 'because it was the smallest one'],
+  [/\bcofactors?\b/i, 'the other factor'],
+  [/\bdualit(y|ies)\b(?! is called \*De Morgan)/i, 'mirror image'],
+  [/\bzero divisors?\b/i, 'a product of non-zero numbers is never zero'],
+  [/\bpartial orders?\b/i, 'an ordering'],
+  [/\balgebraic(ally)? clos\w*\b/i, 'every polynomial equation has a solution'],
+  [/\bsemirings?\b|\bhyperoperation\w*\b/i, 'say the property out'],
+  [/\bnonstandard models?\b/i, 'impostor systems'],
+  [/\bequinumerous\b|\bidempotent\w*\b/i, 'the same size / repeating changes nothing'],
+  [/\bdisjunctive syllogism\b|\breductio ad absurdum\b/i, 'say the move in words'],
+  [/\bstructural induction\b/i, 'induction on how a thing is built'],
+  [/\buniversal generalisation\b/i, 'the arbitrary-element rule'],
+  [/\bquotient sets?\b/i, 'the collection of classes'],
+  [/\bprimitive recursive\b|\bPresburger\b/i, 'say it in words'],
+  [/\binvolutions?\b/i, 'an operation that undoes itself'],
+  [/\bschema\b/i, 'one axiom for each formula'],
+  [/\bentail(s|ed|ment)\b/i, 'forces, or follows from'],
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (level === 'l8') continue;
+  const rel = path.relative(ROOT, f);
+  const text = body(fs.readFileSync(f, 'utf8'));
+  for (const [re, plain] of OFF_REGISTER) {
+    const m = text.match(re);
+    if (m) warn(rel, `${level} uses "${m[0]}" — above the maths register for this year; say "${plain}"`);
   }
 }
 

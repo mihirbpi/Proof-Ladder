@@ -17,7 +17,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 <Discussion>
   <div slot="know">$m \mid p \iff \exists c \in \mathbb{Z},\ p = mc$ (§4.2). Link: $2^{2(k+1)} = 4\cdot2^{2k}$.</div>
   <div slot="want">$A(n)$ for all $n \geq 0$.</div>
-  <div slot="how">Unpack (IH) with a fresh cofactor name, solve for $2^{2k}$, substitute, factor out $3$, cite closure.</div>
+  <div slot="how">Unpack (IH) with a fresh name for the other factor, solve for $2^{2k}$, substitute, factor out $3$, cite closure.</div>
 </Discussion>
 
 <Proof>
@@ -31,7 +31,7 @@ and $4x+1 \in \mathbb{Z}$ by closure (§4.1). Hence $A(k+1)$.
 </Proof>
 
 <Warning title="Variable hygiene">
-Two unknowns coexist: the induction index $k$ and the cofactor from the divisibility hypothesis. They must have different names. "$2^{2k}-1 = 3k$" identifies them, which is both false and irreparable.
+Two unknowns coexist: the induction index $k$ and the leftover factor from the divisibility hypothesis. They must have different names. "$2^{2k}-1 = 3k$" identifies them, which is both false and irreparable.
 
 Also note the rearrangement of (IH) into $2^{2k} = 3x+1$ *before* substituting. Solving the hypothesis for the quantity that actually appears in the target is the standard manoeuvre, and skipping it is where these proofs usually stall.
 </Warning>

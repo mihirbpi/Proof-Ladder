@@ -2,7 +2,7 @@
 level: l3
 title: If and only if
 readingTimeMin: 6
-newTerms: ["if and only if", "biconditional"]
+newTerms: ["if and only if"]
 anchorExample: "squares and rectangles"
 ---
 
@@ -13,7 +13,7 @@ import Warning from '@/components/Warning.astro';
 
 An if–then claim runs one way only. *If a shape is a square, it is a rectangle* — and module 1.7 showed the reverse can fail badly, because plenty of rectangles are not squares.
 
-But sometimes both directions really do hold. When they do, we say the two statements are true **if and only if** each other, and we call such a claim a **biconditional**.
+But sometimes both directions really do hold. When they do, we say the two statements are true **if and only if** each other, and we call such a claim a **if-and-only-if statement**.
 
 > "A if and only if B" means both of these at once:
 > - if A then B,
@@ -56,7 +56,7 @@ Both boxes are checked, so the claim holds in both directions.
 
 ## A number one
 
-Here is a biconditional where the two halves need genuinely different work.
+Here is an if-and-only-if statement where the two halves need genuinely different work.
 
 > **Claim.** A counting number is even **if and only if** its last digit is $0$, $2$, $4$, $6$, or $8$.
 
@@ -82,7 +82,7 @@ Suppose the last digit is one of those. Then the last digit is even, and the ten
 Both boxes checked.
 </Proof>
 
-## Definitions are usually biconditionals
+## Definitions usually go both ways
 
 Here is something worth noticing. When we say
 
@@ -93,11 +93,11 @@ we really mean *if and only if*. A number is even exactly when it splits that wa
 Mathematicians write "if" in definitions out of long habit, but they always mean "if and only if." Once a definition is written down, you may use it in **both directions**, and you constantly will.
 
 <Warning title="Half a proof is not a proof">
-The commonest mistake with a biconditional is proving one direction, feeling satisfied, and stopping.
+The commonest mistake with an if-and-only-if statement is proving one direction, feeling satisfied, and stopping.
 
 If you have shown *every square is a rectangle*, you have not ruled out some rectangle sneaking in as a square. Label your two halves. Count them before you write $\square$.
 </Warning>
 
 <Aside>
-The two directions often need different tools. In module 1.8 you proved *if a number times itself is odd then the number is odd* by flipping it around, because a direct attempt went nowhere. The other direction goes through directly with no trouble. Same biconditional, two different techniques.
+The two directions often need different tools. In module 1.8 you proved *if a number times itself is odd then the number is odd* by flipping it around, because a direct attempt went nowhere. The other direction goes through directly with no trouble. Same if-and-only-if statement, two different techniques.
 </Aside>

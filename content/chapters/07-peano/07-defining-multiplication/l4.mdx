@@ -57,7 +57,7 @@ Module 4.1 presented distributivity as an axiom of $\mathbb{Z}$ — a rule to be
 </Discussion>
 
 <Proof>
-Induct on $c$, with $a,b$ arbitrary but fixed (§1.12).
+Induct on $c$, with $a$ and $b$ named at the start and nothing assumed about them (§1.12).
 
 **Base.** $a\cdot(b+0) = a\cdot b$ by (A1); and $a\cdot b + a\cdot 0 = a\cdot b + 0 = a\cdot b$ by (M1) and (A1). Equal. ✓
 
@@ -83,14 +83,14 @@ $$
 a \cdot b = b\cdot a, \qquad (a\cdot b)\cdot c = a\cdot(b\cdot c), \qquad a \cdot 0 = 0 = 0 \cdot a.
 $$
 
-So $(\mathbb{N}, +, \cdot, 0, 1)$ is a commutative semiring, and every algebraic law used since Chapter 4 is now a theorem.
+So the counting numbers obey every arithmetic law of module 4.1 except the one giving negatives, and every algebraic law used since Chapter 4 is now a theorem.
 
 <Warning title="What Chapter 7 discharged">
 | Assumed in | Now derived from |
 |---|---|
 | closure of $\mathbb{Z}$ (4.1) | (A1)–(A2), (M1)–(M2) |
 | distributive law (4.1) | the theorem above |
-| well-ordering (4.4) | A9 |
+| every collection has a smallest member (4.4) | A9 |
 | induction (Chapter 6) | A9 |
 | even/odd definitions (4.2) | $+$ and $\cdot$ as defined here |
 
@@ -100,7 +100,7 @@ Nine axioms and two recursive definitions. Everything else in the arithmetic of 
 <Aside>
 The pattern iterates: exponentiation is $a^0 = 1$, $a^{S(b)} = a\cdot a^b$ — repeated multiplication, same shape again.
 
-Continuing gives tetration, pentation, and the **hyperoperation hierarchy**. Growth becomes explosive almost immediately: the fourth level already produces towers of exponents too large to write, and the diagonal of the hierarchy is essentially Ackermann's function, which is computable but not undefined starting word recursive.
+Continuing the pattern — each operation being the previous one repeated — gives a tower of ever faster-growing operations. Growth becomes explosive almost immediately: the fourth level already produces towers of exponents too large to write, and the diagonal of the hierarchy is essentially Ackermann's function, which is computable but not undefined starting word recursive.
 
 So the innocuous move "iterate the previous operation" generates, in five steps, functions that outgrow every recursion scheme this chapter has used.
 </Aside>

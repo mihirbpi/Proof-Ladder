@@ -41,15 +41,9 @@ So the powers of $i$ take only **four** values, cycling forever. To find $i^{23}
 
 ## Why the cycle matters
 
-There is a formula that ties the powers of $i$ to the sine and cosine you meet in trigonometry:
+There is a famous formula that ties the powers of $i$ to the position of a point on a circle. It is called **Euler's formula**, and it is often called the most beautiful equation in mathematics.
 
-$$
-e^{i\theta} = \cos\theta + i\sin\theta.
-$$
-
-This is **Euler's formula**, and it is often called the most beautiful equation in mathematics.
-
-Proving it needs calculus, so it is stated here as a fact rather than derived. But you can already see *where the two halves come from*.
+Writing it down properly needs two pieces of notation you have not met, so it is not written out here. What it *says* can be said in words, and the saying is the interesting part.
 
 ### Where the formula comes from
 
@@ -58,21 +52,21 @@ There is a way of writing $e^x$ as an endless sum of powers of $x$. Put $i\theta
 - The terms where $i$ came out as $+1$ or $-1$ have no $i$ left. They are the **real** terms.
 - The terms where $i$ came out as $+i$ or $-i$ each carry one $i$. They are the **imaginary** terms.
 
-Sort them into those two piles. The first pile turns out to be exactly the endless sum for $\cos\theta$, and the second is exactly the one for $\sin\theta$.
+Sort them into those two piles. Each pile turns out to be an endless sum that measures something about a point on a circle: the first pile gives how far **across** the point is, and the second gives how far **up**.
 
 **The cycle is what does the sorting.** Without it, the terms would not separate into two clean halves, and the formula would not exist.
 
 ## What the formula says
 
-Geometrically, $e^{i\theta}$ is the point you reach by walking $\theta$ of the way around a circle of radius $1$, starting from $1$ and going counterclockwise.
+In a picture: the formula describes the point you reach by walking around a circle of radius $1$, starting from $1$ and going counterclockwise. Feed in how far around you walked, and it gives back the across and up amounts of where you stopped.
 
-<Figure alt="A dashed unit circle centred at the origin with a point marked on it at the top." caption="$e^{i\theta}$ travels around the unit circle as $\theta$ increases.">
+<Figure alt="A dashed unit circle centred at the origin with a point marked on it at the top." caption="Walking around the circle of radius 1: a quarter of the way lands on i.">
   <ComplexPlane circle={1} points={[{re: 0, im: 1, label: "quarter way"}]} range={2} />
 </Figure>
 
-Check it against the cycle. A quarter of the way around should be $i$ — and $\cos$ of a quarter turn is $0$ while $\sin$ of a quarter turn is $1$, giving $0 + 1i = i$. ✓
+Check it against the cycle. A quarter of the way around, the point is $0$ across and $1$ up — which is $i$. ✓
 
-Half way around should be $-1$, and indeed $\cos$ of a half turn is $-1$ while $\sin$ is $0$. ✓
+Half way around, it is $1$ to the left and nothing up — which is $-1$. ✓
 
 All the way round is $1$ again. The four-step cycle is Euler's formula, checked at four points.
 

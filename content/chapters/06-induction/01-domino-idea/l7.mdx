@@ -2,7 +2,7 @@
 level: l7
 title: The domino idea
 readingTimeMin: 8
-newTerms: ["induction", "well-ordering"]
+newTerms: ["induction"]
 anchorExample: "the odd numbers add up to a square"
 ---
 
@@ -24,17 +24,17 @@ Induction cannot be proved from "more basic" facts about the integers, because i
 
 Equivalently:
 
-> **Well-ordering.** Every nonempty subset of $\mathbb{Z}_{\geq n_0}$ has a least element.
+> **The smallest-number principle.** Every non-empty collection of integers at or above $n_0$ has a smallest member.
 
 <Proof title="Induction gives the smallest-element principle">
-Suppose $S \subseteq \mathbb{Z}_{\geq n_0}$ is nonempty with no least element. Let $A(n)$ be "no element of $S$ is $\leq n$".
+Suppose $S \subseteq \mathbb{Z}_{\geq n_0}$ is nonempty with no smallest member. Let $A(n)$ be "no element of $S$ is $\leq n$".
 
 $A(n_0)$ holds: otherwise $n_0 \in S$ would be least. If $A(k)$ holds and $k+1 \in S$, then $k+1$ would be least in $S$; so $A(k+1)$ holds.
 
 By induction $A(n)$ holds for all $n$, so $S = \emptyset$ — contradiction.
 </Proof>
 
-The converse also holds, so induction, well-ordering, and the least-counterexample method are three presentations of one principle. Module 4.4 used well-ordering to prove the division algorithm; that proof could equally have been written as an induction.
+The converse also holds, so induction, the smallest-number principle, and the smallest-counterexample method are three presentations of one principle. Module 4.4 used the smallest-number principle to prove the division algorithm; that proof could equally have been written as an induction.
 
 ## The motivating example
 

@@ -2,7 +2,7 @@
 level: l7
 title: Subsets
 readingTimeMin: 10
-newTerms: ["subset", "proper subset", "element chasing", "partial order", "power set"]
+newTerms: ["subset", "proper subset", "element chasing", "power set"]
 anchorExample: "intervals on the number line"
 ---
 
@@ -22,16 +22,16 @@ The definition is a if–then claim made about every element, and everything in 
 
 ## The template
 
-> Let $x \in A$ be arbitrary. [Use only what $x \in A$ entails.] Therefore $x \in S$. Since $x$ was arbitrary, $A \subseteq S$.
+> Let $x \in A$ be arbitrary. [Use only what $x \in A$ gives you.] Therefore $x \in S$. Since $x$ was arbitrary, $A \subseteq S$.
 
-The discipline of §1.12 applies verbatim: the element is arbitrary but fixed, and any assumption about $x$ beyond membership in $A$ invalidates the generalisation.
+The discipline of §1.12 applies verbatim: the element is chosen at the start and never changed, and any assumption about $x$ beyond membership in $A$ invalidates the generalisation.
 
 > **Proposition.** $S = (-3,5) \subseteq T = (-6,5]$.
 
 <Discussion>
   <div slot="know">$x \in S \iff -3 < x < 5$; $x \in T \iff -6 < x \leq 5$. Available: transitivity of $<$, and that $a < b$ implies $a \leq b$.</div>
   <div slot="want">$-6 < x$ and $x \leq 5$.</div>
-  <div slot="how">Both conjuncts follow from the two halves of the hypothesis by a single step each. Note $T$ is the weaker constraint on both ends, so the containment should be immediate — and it should be *proper*, witnessed by the endpoint $5$.</div>
+  <div slot="how">Both halves of the goal follow from the two halves of the hypothesis by a single step each. Note $T$ is the weaker constraint on both ends, so the containment should be immediate — and it should be *proper*, witnessed by the endpoint $5$.</div>
 </Discussion>
 
 <Proof>
@@ -73,7 +73,7 @@ Let $x$ be arbitrary. The hypothesis of $x \in \emptyset \Rightarrow x \in S$ is
 
 This is vacuous truth carrying structural weight. Every distributive, De Morgan, and product identity in this chapter holds without exception for $\emptyset$ precisely because of it; a convention that made $\emptyset \subseteq S$ fail would introduce a special case into every theorem that follows.
 
-## Containment is a partial order
+## Containment behaves like $\leq$
 
 *A reminder of the symbols in play: $\cap$ reads "intersection".*
 
@@ -83,7 +83,7 @@ Three properties:
 - **Transitive.** If $A \subseteq B$ and $B \subseteq C$ then $A \subseteq C$: chase $x \in A$ into $B$, then into $C$.
 - **Antisymmetric.** If $A \subseteq B$ and $B \subseteq A$ then $A = B$ — this is being fixed by its members, and it is the content of §2.6.
 
-Hence $(\mathcal{P}(X), \subseteq)$ is a **partial order** for any set $X$. It is not total: $\{1,2\}$ and $\{2,3\}$ are incomparable. That failure of comparability is not a defect — it is the reason set inclusion carries more information than a linear ordering, and it is why the language of *greatest* and *least* ($\cap$ as the largest set inside both, $\cup$ as the smallest containing both) is the right one for §2.4.
+Those are the three properties $\leq$ has on the numbers, so containment orders the subsets of $X$ much as $\leq$ orders numbers — with one difference. Some pairs simply cannot be compared: $\{1,2\}$ and $\{2,3\}$ are incomparable. That failure of comparability is not a defect — it is the reason set inclusion carries more information than a linear ordering, and it is why the language of *greatest* and *least* ($\cap$ as the largest set inside both, $\cup$ as the smallest containing both) is the right one for §2.4.
 
 ## The power set
 

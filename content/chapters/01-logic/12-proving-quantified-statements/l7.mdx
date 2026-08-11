@@ -2,7 +2,7 @@
 level: l7
 title: Proving and disproving quantified statements
 readingTimeMin: 11
-newTerms: ["arbitrary element", "witness", "proof by cases", "universal generalisation"]
+newTerms: ["arbitrary element", "witness", "proof by cases"]
 anchorExample: "n² − 1 is composite"
 ---
 
@@ -16,19 +16,19 @@ This module converts the negation laws of §1.11 into working method. Four tasks
 
 | Goal | Template |
 |---|---|
-| Prove $\forall x \in S,\, p(x)$ | fix an **arbitrary but fixed** $x \in S$; prove $p(x)$ |
+| Prove $\forall x \in S,\, p(x)$ | take an $x \in S$ about which **nothing is assumed**; prove $p(x)$ |
 | Refute $\forall x \in S,\, p(x)$ | exhibit a **counterexample** |
 | Prove $\exists x \in S,\, p(x)$ | exhibit a **witness**, or argue non-constructively |
 | Refute $\exists x \in S,\, p(x)$ | prove $\forall x \in S,\, \neg p(x)$ |
 
-## Universal generalisation, and why it is sound
+## The arbitrary-element rule, and why it is sound
 
-The rule behind the first row is **universal generalisation**: from a proof of $p(c)$ in which $c$ is a constant subject to no hypothesis specific to it, infer $\forall x,\, p(x)$.
+The rule behind the first row is the **arbitrary-element rule**: from a proof of $p(c)$ in which $c$ is a constant subject to no hypothesis specific to it, infer $\forall x,\, p(x)$.
 
-The side condition is the whole content. "Arbitrary but fixed" is a genuinely two-sided phrase:
+The side condition is the whole content, and the two words pull in opposite directions:
 
 - **Fixed**, because you must be able to compute with $c$ as a definite object — write $c^2$, apply lemmas to it, name quantities depending on it.
-- **Arbitrary**, because your derivation may use only facts entailed by $c \in S$. The moment you use a property not shared by all of $S$, generalisation becomes unsound.
+- **Arbitrary**, because your derivation may use only facts that follow from $c \in S$. The moment you use a property not shared by all of $S$, generalisation becomes unsound.
 
 The soundness argument is exactly this: a derivation of $p(c)$ using only $c \in S$ is, syntactically, a template. Substituting any other $d \in S$ for $c$ throughout yields a derivation of $p(d)$. So $p$ holds everywhere on $S$.
 
@@ -78,7 +78,7 @@ $\exists! x \in S,\, p(x)$ requires two independent arguments.
 *Uniqueness.* Suppose $a$ and $b$ are real numbers satisfy $3a - 1 = 0$ and $3b - 1 = 0$. Then $3(a - b) = 0$, and dividing by $3$ gives $a - b = 0$, so $a = b$.
 </Proof>
 
-The uniqueness template is *suppose two objects have the property; prove they are equal* — preferable to *suppose two distinct objects and derive a contradiction*, which needs contradiction for no gain. Note also where the argument actually leaned: on the real numbers having no zero divisors. In $\mathbb{Z}/6\mathbb{Z}$ the equation $3x = 3$ has three solutions and the identical manipulation fails at that step. Uniqueness proofs are diagnostic of the surrounding structure.
+The uniqueness template is *suppose two objects have the property; prove they are equal* — preferable to *suppose two distinct objects and derive a contradiction*, which needs contradiction for no gain. Note also where the argument actually leaned: on the fact that a product of non-zero reals is never zero. In $\mathbb{Z}/6\mathbb{Z}$ the equation $3x = 3$ has three solutions and the identical manipulation fails at that step. Uniqueness proofs are diagnostic of the surrounding structure.
 
 ## Proof by cases
 
@@ -97,7 +97,7 @@ In all cases $x^2 \geq 0$; the cases are exhaustive. Hence no real number has ne
 Two obligations: **exhaustiveness** (a missing case is a hole, and it is the most common structural defect in student proofs) and **each branch actually proved**. Disjointness is aesthetic, not required. The disjunction to split on typically comes from a hypothesis containing $\vee$, from the positive/zero/negative split, from even versus odd, or from the division algorithm — the last generalising parity to remainders mod $d$ (§4.4).
 
 <Aside>
-Existential instantiation is the dual rule and has its own side condition. From $\exists x,\, p(x)$ you may introduce a **fresh** constant $c$ with $p(c)$ — fresh meaning it appears nowhere earlier. Reusing a name is the classic fallacy: from $\exists x, x^2 = 4$ and $\exists x, x^3 = 27$, instantiating both to the same $c$ would yield a $c$ with $c^2 = 4$ and $c^3 = 27$. Each existential gets its own name.
+The matching rule for *there exists* runs the other way and has its own side condition. From $\exists x,\, p(x)$ you may introduce a **fresh** constant $c$ with $p(c)$ — fresh meaning it appears nowhere earlier. Reusing a name is the classic fallacy: from $\exists x, x^2 = 4$ and $\exists x, x^3 = 27$, using the same $c$ for both would yield a $c$ with $c^2 = 4$ and $c^3 = 27$. Each existential gets its own name.
 </Aside>
 
 <WhereThisGoes level="l7">

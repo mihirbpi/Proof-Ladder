@@ -14,7 +14,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 Everything so far has been about what statements *mean*. This module is about what it takes to establish one — and, just as importantly, about what a written proof is for.
 
-A **proof** of a statement $S$ is a finite sequence of assertions, ending in $S$, in which each assertion is either an axiom, a previously established theorem, a hypothesis of $S$, or a consequence of earlier assertions by a rule of inference. That is the definition a logician gives. It is correct, and it is not how anybody writes. What people actually write is prose, in which the logical skeleton is carried by connective words — *since*, *hence*, *because*, *so*, *therefore* — and the reader is trusted to reconstruct the skeleton. Learning to write proofs is learning how much of the skeleton to leave to the reader.
+A **proof** of a statement $S$ is a finite sequence of assertions, ending in $S$, in which each assertion is either an axiom, a previously established theorem, a hypothesis of $S$, or a consequence of earlier assertions by a rule of inference. That is the definition a logician gives. It is correct, and it is not how anybody writes. What people actually write is prose, in which the logical skeleton is carried by joining word words — *since*, *hence*, *because*, *so*, *therefore* — and the reader is trusted to reconstruct the skeleton. Learning to write proofs is learning how much of the skeleton to leave to the reader.
 
 ## Direct proof of a conditional
 
@@ -67,7 +67,7 @@ The cost is real, though: a student reading a published proof sees a sequence of
 <Warning title="Three ways a proof goes wrong at the level of structure">
 **Assuming the conclusion.** Any proof that begins "Suppose $x^2 > 1$" is not proving $x > 1 \Rightarrow x^2 > 1$.
 
-**Reversible-step drift.** Starting from the goal and manipulating until you reach something true proves nothing unless every step is reversible *and you say so*. (The symbol $\Leftrightarrow$ below is the biconditional, §1.9.) "$x^2 > 1 \Leftrightarrow x^2 - 1 > 0 \Leftrightarrow \ldots$" is legitimate only if each $\Leftrightarrow$ is genuinely a biconditional; students frequently write $\Leftrightarrow$ where only $\Rightarrow$ holds. Safer: run the chain forwards.
+**Reversible-step drift.** Starting from the goal and manipulating until you reach something true proves nothing unless every step is reversible *and you say so*. (The symbol $\Leftrightarrow$ below is the if-and-only-if statement, §1.9.) "$x^2 > 1 \Leftrightarrow x^2 - 1 > 0 \Leftrightarrow \ldots$" is legitimate only if each $\Leftrightarrow$ is genuinely an if-and-only-if statement; students frequently write $\Leftrightarrow$ where only $\Rightarrow$ holds. Safer: run the chain forwards.
 
 **Unchecked side conditions.** (O1) requires $c > 0$. A proof that multiplies an inequality by $x$ without establishing $x > 0$ has a hole, even if the conclusion happens to be true. Most incorrect proofs die here rather than at a spectacular logical error.
 </Warning>

@@ -2,7 +2,7 @@
 level: l4
 title: If and only if
 readingTimeMin: 7
-newTerms: ["biconditional", "if and only if"]
+newTerms: ["if and only if"]
 anchorExample: "n even iff n² even"
 ---
 
@@ -12,7 +12,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-The **biconditional** $p \Leftrightarrow q$, read "$p$ if and only if $q$", is by definition
+The **if-and-only-if statement** $p \Leftrightarrow q$, read "$p$ if and only if $q$", is by definition
 $$p \Leftrightarrow q \;\;\equiv\;\; (p \Rightarrow q) \wedge (q \Rightarrow p).$$
 
 *Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\Rightarrow$ is "forces", $\wedge$ is "and", $\equiv$ is "says the same as".*
@@ -30,7 +30,7 @@ It asserts that $p$ and $q$ stand or fall together. Its truth table follows from
   ]}
 />
 
-$p \Leftrightarrow q$ is true exactly on the rows where $p$ and $q$ agree. Since the conjunction has two conjuncts, proving a biconditional means writing **two proofs**. The named move is **check both boxes**.
+$p \Leftrightarrow q$ is true exactly on the rows where $p$ and $q$ agree. Since the *and* has two halves, proving an if-and-only-if statement means writing **two proofs**. The named move is **check both boxes**.
 
 ## The theorem
 
@@ -38,7 +38,7 @@ $p \Leftrightarrow q$ is true exactly on the rows where $p$ and $q$ agree. Since
 
 > **Theorem.** For every integer $n$: $n$ is even **if and only if** $n^2$ is even.
 
-Definitions (and note these are themselves biconditionals): $n$ is **even** iff $n = 2k$ for some integer $k$; $n$ is **odd** iff $n = 2k+1$ for some integer $k$. Every integer is exactly one of the two.
+Definitions (and note these are themselves if-and-only-if statements): $n$ is **even** iff $n = 2k$ for some integer $k$; $n$ is **odd** iff $n = 2k+1$ for some integer $k$. Every integer is exactly one of the two.
 
 <Discussion>
   <div slot="know">Both directions to prove. (backward) has hypothesis "$n$ even", which unfolds to $n = 2k$ — immediately usable. (forward) has hypothesis "$n^2$ even", which unfolds to $n^2 = 2k$ — and there is no way to get from that to a statement about $n$ without inverting a square.</div>
@@ -60,13 +60,13 @@ and $2k^2 + 2k$ is an integer, so $n^2$ is odd. By contraposition, $n^2$ even im
 Both directions hold, so $n$ is even $\Leftrightarrow$ $n^2$ is even.
 </Proof>
 
-Notice that the two halves needed different techniques. That is normal, and it is the reason a biconditional cannot be proved by a single symmetrical argument.
+Notice that the two halves needed different techniques. That is normal, and it is the reason an if-and-only-if statement cannot be proved by a single symmetrical argument.
 
 <Warning title="Two halves, two labels">
 Always label the directions — (forward) and (backward), or "forward" and "backward". Two things go wrong without labels: you prove the same direction twice without noticing, or you prove one and stop. Both errors are common and both are invisible in unlabelled prose.
 </Warning>
 
-## Definitions are biconditionals
+## Definitions go both ways
 
 Mathematical definitions are stated with "if" but always mean "if and only if":
 

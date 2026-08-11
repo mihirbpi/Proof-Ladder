@@ -2,7 +2,7 @@
 level: l5
 title: If and only if
 readingTimeMin: 8
-newTerms: ["biconditional", "if and only if"]
+newTerms: ["if and only if"]
 anchorExample: "n even iff n² even"
 ---
 
@@ -14,7 +14,7 @@ import Warning from '@/components/Warning.astro';
 
 Module 1.7 showed a conditional and its converse are different claims. Sometimes both hold — and when they do, the pair gets a name.
 
-The **biconditional** $p \Leftrightarrow q$, read "$p$ if and only if $q$", is defined by
+The **if-and-only-if statement** $p \Leftrightarrow q$, read "$p$ if and only if $q$", is defined by
 $$
 p \Leftrightarrow q \;\;\equiv\;\; (p \Rightarrow q) \wedge (q \Rightarrow p).
 $$
@@ -34,7 +34,7 @@ $$
 
 $p \Leftrightarrow q$ is true exactly on the rows where $p$ and $q$ **agree**.
 
-Since the definition is a conjunction, **proving a biconditional means writing two proofs**. The named move is **check both boxes**.
+Since the definition is a conjunction, **proving an if-and-only-if statement means writing two proofs**. The named move is **check both boxes**.
 
 ## The theorem
 
@@ -64,7 +64,7 @@ and $2k^2+2k$ is an integer, so $n^2$ is odd. Since every integer is even or odd
 Both directions hold, so $n$ is even $\iff$ $n^2$ is even.
 </Proof>
 
-The two halves needed **different techniques** — one direct, one by contrapositive. That asymmetry is normal, and it is exactly why a biconditional cannot be proved by one symmetrical argument.
+The two halves needed **different techniques** — one direct, one by contrapositive. That asymmetry is normal, and it is exactly why an if-and-only-if statement cannot be proved by one symmetrical argument.
 
 Note also where the (backward) direction leaned: on "every integer is even or odd, not both". That fact is not free — it is the $d=2$ case of the division algorithm, proved in module 4.4.
 
@@ -74,7 +74,7 @@ Always mark (forward) and (backward), or "forward" and "backward".
 Two errors are invisible in unlabelled prose: proving the same direction twice, and proving one and stopping. Both are common, and both look like finished proofs.
 </Warning>
 
-## Definitions are biconditionals
+## Definitions go both ways
 
 Mathematical definitions are written with "if" and always mean "if and only if":
 
@@ -102,7 +102,7 @@ $$
 
 *Symbol by symbol: $\Leftrightarrow$ is "exactly when".*
 
-and this is legitimate **only if every link is genuinely a biconditional**.
+and this is legitimate **only if every link is genuinely an if-and-only-if statement**.
 
 <Warning title="Where iff-chains go wrong">
 The failure is writing $\iff$ where only $\Rightarrow$ holds:
@@ -118,7 +118,7 @@ Extraneous roots are converse failures (module 1.7), and checking your answers i
 
 ## Proving several statements equivalent
 
-When three or more statements are to be shown pairwise equivalent, proving all $n(n-1)/2$ biconditionals separately is wasteful. Prove a **cycle** instead:
+When three or more statements are to be shown pairwise equivalent, proving all $n(n-1)/2$ if-and-only-if statements separately is wasteful. Prove a **cycle** instead:
 $$
 p \Rightarrow q \Rightarrow r \Rightarrow p.
 $$

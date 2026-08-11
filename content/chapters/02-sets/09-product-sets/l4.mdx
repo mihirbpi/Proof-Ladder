@@ -71,7 +71,7 @@ Trying to reason about $z$ without splitting it into coordinates is where these 
 <Discussion>
   <div slot="know">$(x,y) \in (A\cap B)\times(C\cap D) \iff (x \in A \wedge x \in B) \wedge (y \in C \wedge y \in D)$. And $(x,y) \in (A\times C)\cap(B\times D) \iff (x \in A \wedge y \in C) \wedge (x \in B \wedge y \in D)$.</div>
   <div slot="want">Double inclusion.</div>
-  <div slot="how">Both sides unfold to the same four conjuncts in a different order. Since $\wedge$ is commutative and associative, the two are equivalent — so the proof is a chain of biconditionals once every element is named as a pair.</div>
+  <div slot="how">Both sides unfold to the same four pieces joined by *and*, in a different order. Since $\wedge$ is commutative and associative, the two are equivalent — so the proof is a chain of if-and-only-if statements once every element is named as a pair.</div>
 </Discussion>
 
 <Proof>
@@ -91,7 +91,7 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\cap$ is "overlapped with".*
 
-The third step is a rearrangement, valid since $\wedge$ is commutative and associative. Every step is a biconditional, so both inclusions hold and the sets are equal.
+The third step is a rearrangement, valid since $\wedge$ is commutative and associative. Every step is an if-and-only-if statement, so both inclusions hold and the sets are equal.
 </Proof>
 
 Notice what actually happened: the whole theorem is commutativity of $\wedge$. That is the Chapter 1 dictionary doing the work again.

@@ -49,7 +49,7 @@ $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\equiv$ is "says the same as".*
 
-and the two pairs disagree in rows 2 and 3, so neither pair entails the other. The converse and inverse are the contrapositives of each other, which is why any counterexample to one is automatically a counterexample to the other.
+and the two pairs disagree in rows 2 and 3, so neither pair forces the other. The converse and inverse are the contrapositives of each other, which is why any counterexample to one is automatically a counterexample to the other.
 
 A proof without the table, since the table generalises poorly to quantified statements:
 
@@ -91,12 +91,12 @@ $$
 
 *Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\Rightarrow$ is "forces", $\vee$ is "or".*
 
-A disjunctive conclusion is proved by the standard manoeuvre: assume the negation of one disjunct and prove the other. So: assume $x + y$ rational and $x$ rational; then $y = (x+y) - x$ is a difference of rationals, hence rational — which is the remaining disjunct. Notice that the correct De Morgan negation was essential; the naive negation "$x$ is irrational **and** $y$ rational" is a strictly stronger conclusion, and it is not provable from the hypothesis.
+A disjunctive conclusion is proved by the standard manoeuvre: assume one half of the *or* fails and prove the other holds. So: assume $x + y$ rational and $x$ rational; then $y = (x+y) - x$ is a difference of rationals, hence rational — which is the other half of the *or*. Notice that the correct De Morgan negation was essential; the naive negation "$x$ is irrational **and** $y$ rational" is a strictly stronger conclusion, and it is not provable from the hypothesis.
 
 <Warning title="Running the arrow backwards, and its mathematical disguises">
-Believing the converse of a true conditional is a named fallacy — logicians call it *affirming the consequent*, the consequent being the *then* half. In mathematics it rarely appears so nakedly; it appears as:
+Believing the converse of a true if-then is a mistake old enough to have a name — logicians call it *affirming the consequent*, the consequent being the *then* half. In mathematics it rarely appears so nakedly; it appears as:
 
-- proving the wrong direction of a biconditional and stopping (§1.9);
+- proving the wrong direction of an if-and-only-if statement and stopping (§1.9);
 - a chain of manipulations written with $\Leftrightarrow$ where only $\Rightarrow$ holds, e.g. $x = y \Rightarrow x^2 = y^2$, which is not reversible;
 - solving an equation by squaring both sides and forgetting to check the solutions — squaring is a $\Rightarrow$, not a $\Leftrightarrow$, and the extraneous roots it introduces are converse failures.
 </Warning>

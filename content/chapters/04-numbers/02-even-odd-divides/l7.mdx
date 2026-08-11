@@ -30,7 +30,7 @@ $m \mid n$ is an existential statement over $\mathbb{Z}$, and §1.12 fixes what 
 <Warning title="Three standard slips">
 **Non-integral witness.** $9 = 2\cdot\tfrac92$ proves nothing; $\tfrac92 \notin \mathbb{Z}$.
 
-**Name collision.** From $a \mid b$ and $b \mid c$, write $b = ak_1$ and $c = bk_2$ with *distinct* names. Reusing $k$ silently asserts the cofactors are equal — a hypothesis never given, and a genuinely common error.
+**Name collision.** From $a \mid b$ and $b \mid c$, write $b = ak_1$ and $c = bk_2$ with *distinct* names. Reusing $k$ silently asserts the leftover factors are equal — a hypothesis never given, and a genuinely common error.
 
 **Type confusion.** $m \mid n$ is a proposition; $m/n$ is a number. "$3 \mid 12 = 4$" is ill-formed.
 </Warning>
@@ -93,7 +93,7 @@ Parity also supplies the fastest route to several classic results. A chessboard 
 Transitivity and reflexivity make $\mid$ behave like an ordering on $\mathbb{Z}_{>0}$ — much as $\leq$ does, and much as $\subseteq$ does on sets (§2.3). It is a *partial* ordering only: given two numbers, neither need divide the other, so unlike $\leq$ it does not line everything up in a row. The structure is rich:
 
 - $\gcd$ plays the role of $\cap$ and $\operatorname{lcm}$ the role of $\cup$ (§2.4 identified these as intersections of divisor and multiple sets);
-- least element $1$, and $0$ is the greatest element if included, since everything divides $0$;
+- smallest member $1$, and $0$ is the greatest element if included, since everything divides $0$;
 - the building blocks — the numbers with nothing strictly between them and $1$ — are exactly the primes.
 
 So divisibility on $\mathbb{Z}_{>0}$ has the same shape as inclusion on subsets in §2.3, with $\gcd$ and $\operatorname{lcm}$ playing $\cap$ and $\cup$ — including both distributive laws.

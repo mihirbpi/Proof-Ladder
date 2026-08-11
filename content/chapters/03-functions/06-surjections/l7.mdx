@@ -19,9 +19,9 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some".*
 
-equivalently $\operatorname{Im}(f) = T$, equivalently every fibre $f^{-1}(\{t\})$ is nonempty.
+equivalently $\operatorname{Im}(f) = T$, equivalently $f^{-1}(\{t\})$ is nonempty for every output $t$.
 
-Injectivity bounded fibres above by $1$; surjectivity bounds them below. §3.8 imposes both.
+Injectivity capped each of those sets at one element; surjectivity puts a floor under them. §3.8 imposes both.
 
 ## Proof shape: arbitrary target, exhibited witness
 
@@ -73,13 +73,13 @@ Exhibiting the unhit $t$ is only half; the other half is a *universal* argument 
 > 4. $f(f^{-1}(U)) = U$ for all $U \subseteq T$.
 
 <Proof title="Proof that (1) and (2) say the same thing">
-(forward) Suppose $f$ is surjective. For each $t \in T$ the fibre $f^{-1}(\{t\})$ is nonempty; **choose** an element $h(t)$ from each. Then $f(h(t)) = t$ for all $t$, so $f \circ h = \mathrm{id}_T$.
+(forward) Suppose $f$ is surjective. For each $t \in T$ the set $f^{-1}(\{t\})$ is nonempty; **choose** an element $h(t)$ from each. Then $f(h(t)) = t$ for all $t$, so $f \circ h = \mathrm{id}_T$.
 
 (backward) Suppose $f \circ h = \mathrm{id}_T$ and let $t \in T$. Then $f(h(t)) = t$ with $h(t) \in S$, so $t \in \operatorname{Im}(f)$.
 </Proof>
 
 <Aside>
-The word **choose** in that proof is doing more work than it appears to. Selecting one element from each of possibly infinitely many nonempty fibres, with no rule specifying which, is a genuine extra assumption — and in fact "every surjection has a right inverse" is *equivalent* to AC over ZF. Contrast the corresponding fact for injections (§3.5), whose left inverse was constructed explicitly and needs no choice at all. The asymmetry is real: injectivity is constructive, surjectivity is not.
+The word **choose** in that proof is doing more work than it appears to. Selecting one element from each of possibly infinitely many non-empty sets, with no rule specifying which, is a genuine extra assumption — and in fact "every surjection has a right inverse" is *equivalent* to AC over ZF. Contrast the corresponding fact for injections (§3.5), whose left inverse was constructed explicitly and needs no choice at all. The asymmetry is real: injectivity is constructive, surjectivity is not.
 </Aside>
 
 ## Surjectivity by adjusting the codomain

@@ -12,7 +12,7 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-$f : S \to T$ is a **bijection** when it is injective and surjective, equivalently when every fibre $f^{-1}(\{t\})$ is a singleton.
+$f : S \to T$ is a **bijection** when it is injective and surjective, equivalently when every $f^{-1}(\{t\})$ is a singleton.
 
 | | $\lvert f^{-1}(\{t\})\rvert$ |
 |---|---|
@@ -40,7 +40,7 @@ Changing the codomain to $\mathbb{R}$ destroys surjectivity and hence bijectivit
 
 ## Cardinality
 
-Define $S \sim T$ ("equinumerous") when a bijection $S \to T$ exists. This is an equivalence relation: reflexive by $\mathrm{id}$, symmetric by inverses, transitive by composition — the three facts above, restated.
+Define $S \sim T$ ("the same size") when a bijection $S \to T$ exists. This is an equivalence relation: reflexive by $\mathrm{id}$, symmetric by inverses, transitive by composition — the three facts above, restated.
 
 **Cardinality** $|S|$ is the equivalence class, and $|S| = |T|$ means $S \sim T$. For finite sets this agrees with counting; the content is that it continues to make sense when counting does not.
 
@@ -54,7 +54,7 @@ Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this 
 $f : \mathbb{N}\to 2\mathbb{N}$, $f(n)=2n$. Injective: $2a=2b \Rightarrow a=b$. Surjective: any even natural is $2k$, and $f(k)=2k$.
 </Proof>
 
-$2\mathbb{N} \subsetneq \mathbb{N}$ yet the two are equinumerous. Dedekind turned this into a definition: a set is **infinite** iff it admits a bijection with a proper subset of itself. (That this coincides with "not finite" requires a weak form of choice, which is one of the places set theory's subtleties surface early.)
+$2\mathbb{N} \subsetneq \mathbb{N}$ yet the two have the same size. Dedekind turned this into a definition: a set is **infinite** iff it admits a bijection with a proper subset of itself. (That this coincides with "not finite" requires a weak form of choice, which is one of the places set theory's subtleties surface early.)
 
 <Warning title="Inclusion is not size">
 For infinite sets, $A \subsetneq B$ does not imply $|A| < |B|$. Comparisons must be made by exhibiting functions, never by inspection or by inclusion. Nearly every incorrect claim students make about infinite cardinalities comes from importing finite intuition here.

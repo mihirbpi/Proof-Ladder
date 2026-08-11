@@ -21,7 +21,7 @@ $$
 
 Set equality is **double inclusion**, and the named move is **check both boxes**. Every set-equality proof in mathematics has two halves, and they are usually different in difficulty and technique.
 
-The definition is not an arbitrary convention. A set is fixed by its members and nothing else (module 2.1): $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$. A biconditional is two implications (module 1.9), and each implication is a subset claim. So the two inclusions were already inside the definition of equality.
+The definition is not an arbitrary convention. A set is fixed by its members and nothing else (module 2.1): $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$. An if-and-only-if statement is two implications (module 1.9), and each implication is a subset claim. So the two inclusions were already inside the definition of equality.
 
 ## Template
 
@@ -33,7 +33,7 @@ Label the halves. Unlabelled proofs of equalities routinely contain the same dir
 
 ## Disjunction forces cases
 
-Since $x \in S \cup T$ unfolds to $x \in S \vee x \in T$, chasing an element out of a union hands you a disjunction — and a disjunctive hypothesis must be handled by **proof by cases** (module 1.12). You do not get to choose the convenient disjunct.
+Since $x \in S \cup T$ unfolds to $x \in S \vee x \in T$, chasing an element out of a union hands you an *or* — and an *or* in the hypothesis must be handled by **proof by cases** (module 1.12). You do not get to choose whichever half is convenient.
 
 This single observation predicts the structure of most proofs in the rest of the chapter.
 
@@ -87,17 +87,17 @@ Note also that $S$ and $T$ are disjoint (module 2.4), so $R$ is partitioned by t
 
 Either way $x \in S$.
 
-**($\supseteq$)** Let $x \in S$. Then the disjunction "$x \in S$ or $x \in S \cap T$" holds, since its first disjunct does. So $x \in S \cup (S \cap T)$.
+**($\supseteq$)** Let $x \in S$. Then "$x \in S$ or $x \in S \cap T$" holds, since its left half does. So $x \in S \cup (S \cap T)$.
 </Proof>
 
-Observe the asymmetry that recurs throughout: proving membership in a *union* is easy (establish one disjunct), while *using* membership in a union is expensive (case split). Intersection is the mirror image — using it is free, proving it costs two arguments.
+Observe the asymmetry that recurs throughout: proving membership in a *union* is easy (establish either half), while *using* membership in a union is expensive (case split). Intersection is the mirror image — using it is free, proving it costs two arguments.
 
 <Warning title="Three failure modes">
 **Proving one direction.** The commonest. Label your halves and count them.
 
-**Reversible-step drift.** Writing a chain $x \in S \Leftrightarrow \cdots \Leftrightarrow x \in T$ is legitimate only if every step is genuinely biconditional. It usually is in set theory, since the definitions are biconditionals — but you must check, and stating two explicit inclusions is safer.
+**Reversible-step drift.** Writing a chain $x \in S \Leftrightarrow \cdots \Leftrightarrow x \in T$ is legitimate only if every step is genuinely if-and-only-if statement. It usually is in set theory, since the definitions are if-and-only-if statements — but you must check, and stating two explicit inclusions is safer.
 
-**Skipping a case.** If the hypothesis is a disjunction, both disjuncts need treatment. A missing case is a hole, not a stylistic lapse.
+**Skipping a case.** If the hypothesis is an *or*, both halves need treatment. A missing case is a hole, not a stylistic lapse.
 </Warning>
 
 <Aside>

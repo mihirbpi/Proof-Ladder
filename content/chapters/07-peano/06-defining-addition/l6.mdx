@@ -133,7 +133,7 @@ Recursive definitions are how computation works.
 
 A program computing $x+y$ by this definition would call itself, reducing $y$ each time, until $y$ reaches $0$. That is a **recursive function**, and every programming language supports the pattern.
 
-The termination guarantee is Axiom 9. A recursion that reduces its argument towards a base case always finishes, because the counting numbers are well-ordered — there is no infinite descending chain to fall down.
+The termination guarantee is Axiom 9. A recursion that reduces its argument towards a base case always finishes, because you cannot step down through the counting numbers forever — there is no infinite descending chain to fall down.
 
-Recursions without that guarantee can run forever, and deciding in general which ones do is the halting problem from module 3.2's aside. **Provably-terminating recursion is exactly recursion on a well-ordered structure**, which is why this axiom keeps reappearing wherever computation is analysed.
+Recursions without that guarantee can run forever, and deciding in general which ones do is the halting problem from module 3.2's aside. **A definition-by-steps is guaranteed to finish exactly when its steps cannot go down forever**, which is why this axiom keeps reappearing wherever computation is analysed.
 </Aside>

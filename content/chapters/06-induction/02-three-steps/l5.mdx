@@ -105,7 +105,7 @@ Why does the domino argument actually work? Here is the reason, and it is a proo
 
 Suppose $A(n)$ fails for some $n$. Then among all the values where it fails there is a **smallest** one — call it $m$.
 
-$m$ is not the base value, since the base case was proved. So $m - 1$ is at or above the start, and $m-1 < m$ means $A(m-1)$ holds, by minimality of $m$.
+$m$ is not the base value, since the base case was proved. So $m - 1$ is at or above the start, and $m-1 < m$ means $A(m-1)$ holds, because $m$ is the smallest one there of $m$.
 
 But the inductive step applied to $k = m-1$ then forces $A(m)$ to hold. Contradiction.
 

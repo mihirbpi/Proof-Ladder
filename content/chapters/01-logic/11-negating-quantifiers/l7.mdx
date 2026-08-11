@@ -18,13 +18,13 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: denying "every element has it" gives "some element lacks it", and denying "some element has it" gives "every element lacks it".*
 
-These are the De Morgan laws of §1.4 at infinite arity, and they are the mechanical heart of working with quantified statements. Everything in this module is an application.
+These are the De Morgan laws of §1.4 stretched over infinitely many statements at once, and they are the mechanical heart of working with quantified statements. Everything in this module is an application.
 
 ## Justification
 
 Semantically: a *for all* claim is true exactly when the property holds at every element, so it fails exactly when some element escapes — and that is a *there exists* claim about the denial. Dually, a *there exists* claim fails exactly when no element qualifies, which is to say every element fails.
 
-For finite $S = \{a_1, \ldots, a_n\}$ this is literally §1.4 iterated, since $\forall$ contracts to $\wedge$ and $\exists$ to $\vee$; induction on $n$ (Chapter 6) supplies the general finite case. For infinite $S$ the finitary argument does not apply, and the laws are consequences of the semantics of the quantifiers rather than of §1.4 — but the analogy is exact, and it is the right thing to remember.
+For finite $S = \{a_1, \ldots, a_n\}$ this is literally §1.4 iterated, since $\forall$ contracts to $\wedge$ and $\exists$ to $\vee$; induction on $n$ (Chapter 6) supplies the general finite case. For infinite $S$ the finitary argument does not apply, and the laws come from what the quantifiers *mean* rather than from §1.4 — but the analogy is exact, and it is the right thing to remember.
 
 Note the domain is inert: negating a claim about every integer produces a claim about some integer, never a claim over a different set.
 
@@ -49,7 +49,7 @@ $$
 
 ## Worked negations
 
-**Compound predicate.** $\forall x \in \mathbb{R},\, (x > 0) \vee (x < 0)$. Negating:
+**Compound condition.** $\forall x \in \mathbb{R},\, (x > 0) \vee (x < 0)$. Negating:
 $$
 \exists x \in \mathbb{R},\; \neg\big((x>0) \vee (x<0)\big)
 \;\equiv\;
@@ -58,7 +58,7 @@ $$
 
 *Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and".*
 
-satisfied uniquely by $x = 0$. Two rules were used in sequence — the quantifier law, then De Morgan — because negation is pushed inward one connective at a time.
+satisfied uniquely by $x = 0$. Two rules were used in sequence — the quantifier law, then De Morgan — because negation is pushed inward one joining word at a time.
 
 **Twin Primes.** The conjecture is
 $$
@@ -107,7 +107,7 @@ Notice what the flip bought you. The original quantifies over infinitely many to
 <Warning title="Failure modes">
 **Over-negation.** $\neg \forall x\, p(x) \not\equiv \forall x\, \neg p(x)$. "Not every prime is odd" is not "every prime is even."
 
-**Forgetting the inner connectives.** After flipping the quantifiers you must still negate the matrix, and if it contains $\Rightarrow$, $\wedge$, or $\vee$, further rules apply. A half-pushed negation is a common source of proofs of the wrong statement.
+**Forgetting the *and* or *or* inside.** After flipping the quantifiers you must still negate the part inside, and if it contains $\Rightarrow$, $\wedge$, or $\vee$, further rules apply. A half-pushed negation is a common source of proofs of the wrong statement.
 
 **Changing the domain.** A quantifier with a restriction attached — *for every positive $t$* — is shorthand for *for every $t$, if $t$ is positive then …*. Negating gives *there is a $t$ that is positive **and** …*. The restriction survives the flip; it does not turn into its opposite.
 </Warning>

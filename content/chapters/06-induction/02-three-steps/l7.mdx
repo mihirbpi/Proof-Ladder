@@ -82,19 +82,19 @@ Every line there is true, and the argument proves nothing, because the first lin
 
 ## Validity
 
-<Proof title="Induction from well-ordering">
-Well-ordering — every non-empty set of integers at or above the base has a smallest member — is what the argument turns on.
+<Proof title="Induction from the smallest-number principle">
+The smallest-number principle — every non-empty collection of integers at or above the base has a smallest member — is what the argument turns on.
 
 Suppose $A(n_0)$ holds and $A(k)\Rightarrow A(k+1)$ for all $k \geq n_0$, but $S = \{n \geq n_0 : \neg A(n)\}$ is nonempty.
 
-By well-ordering, $S$ has a least element $m$. Since $A(n_0)$ holds, $m > n_0$, so $m - 1 \geq n_0$. By minimality of $m$, $m-1 \notin S$, so $A(m-1)$ holds. The step gives $A(m)$, contradicting $m \in S$.
+Because every non-empty collection of these integers has a smallest member, $S$ has a smallest member $m$. Since $A(n_0)$ holds, $m > n_0$, so $m - 1 \geq n_0$. Since $m$ is the smallest member of $S$, $m-1 \notin S$, so $A(m-1)$ holds. The step gives $A(m)$, contradicting $m \in S$.
 
 Hence $S = \emptyset$.
 </Proof>
 
 This is the **least counterexample** formulation, and it is often the more convenient one to write — particularly for statements where the decomposition of case $n$ is not into case $n-1$.
 
-Conversely well-ordering follows from induction (§6.1), so the two are equivalent over the remaining Peano axioms. Chapter 7 identifies induction as Axiom 9 and shows it is what forces $\mathbb{N}$ to contain nothing beyond $0$ and its successors.
+Conversely the smallest-number principle follows from induction (§6.1), so the two are equivalent over the remaining Peano axioms. Chapter 7 identifies induction as Axiom 9 and shows it is what forces $\mathbb{N}$ to contain nothing beyond $0$ and its successors.
 
 <Warning title="Three failure modes">
 **Backwards reasoning.** Starting from $A(k+1)$ and manipulating to something true proves nothing unless every step is reversible. Write the chain forwards from the left-hand side of $A(k+1)$.
@@ -121,7 +121,7 @@ The three-step discipline is what makes an induction proof checkable, and the er
 
 **In calculus, the base case is often the interesting one.** Proving $\frac{d^n}{dx^n}x^n = n!$ requires $n=0$ or $n=1$ to be checked directly, and the convention $0! = 1$ exists partly so the base case comes out right. When a formula involving factorials or empty products misbehaves, the base case is where to look.
 
-**Well-ordering is the property that fails elsewhere.** Induction works over $\mathbb{Z}_{\geq n_0}$ because there is a least element and a next element. Over $\mathbb{Q}$ or $\mathbb{R}$ neither holds — §4.6's density — so no induction is available, and any claim about all real numbers needs a different technique entirely.
+**Having a smallest member is the property that fails elsewhere.** Induction works over $\mathbb{Z}_{\geq n_0}$ because there is a least element and a next element. Over $\mathbb{Q}$ or $\mathbb{R}$ neither holds — §4.6's density — so no induction is available, and any claim about all real numbers needs a different technique entirely.
 
 That is worth internalising before calculus, where most claims *are* about all real numbers and induction is therefore usually the wrong tool. It applies to anything indexed by a whole number — a list of terms, or an $n$th derivative; it does not apply to statements about a real $x$.
 </WhereThisGoes>

@@ -11,7 +11,7 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-An **open statement** (or predicate) $p(x)$ is a sentence with a free variable; it has no truth value until the variable is bound. There are exactly two ways to bind it, and everything that makes mathematical statements hard to read comes from how they interact.
+An **open statement** (or predicate) $p(x)$ is a sentence with an unpinned variable in it; it has no truth value until the variable is pinned down. There are exactly two ways to bind it, and everything that makes mathematical statements hard to read comes from how they interact.
 
 ## The two quantifiers
 
@@ -33,7 +33,7 @@ Both matter more than they look.
 
 **The domain is part of the claim.** $\exists x,\, 3x - 1 = 0$ is true over the rationals, over the real numbers, and over $\mathbb{C}$; false over the integers. $\forall x,\, x^2 \geq 0$ is true over the real numbers and false over $\mathbb{C}$ (where $\geq$ is not even defined, which is a different and worse kind of failure). Writing $\forall x, \ldots$ without a domain is not shorthand; it is an incomplete sentence, and in a proof it is where errors hide.
 
-**Quantifiers generalise the connectives.** Over a finite domain $S = \{a_1, \ldots, a_n\}$,
+**Quantifiers are *and* and *or* stretched to infinity.** Over a finite domain $S = \{a_1, \ldots, a_n\}$,
 $$
 \forall x \in S,\, p(x) \;\equiv\; p(a_1) \wedge \cdots \wedge p(a_n),
 \qquad
@@ -63,10 +63,10 @@ Existence and uniqueness are independent obligations, discharged separately.
 <Proof>
 *Existence.* Take $x = \tfrac13$. Then $3 \cdot \tfrac13 - 1 = 0$.
 
-*Uniqueness.* Suppose $a$ and $b$ are real numbers satisfy $3a - 1 = 0$ and $3b - 1 = 0$. Subtracting, $3a - 3b = 0$, so $3(a - b) = 0$. Since the real numbers has no zero divisors and $3 \neq 0$, we get $a - b = 0$, i.e. $a = b$.
+*Uniqueness.* Suppose $a$ and $b$ are real numbers satisfy $3a - 1 = 0$ and $3b - 1 = 0$. Subtracting, $3a - 3b = 0$, so $3(a - b) = 0$. Since a product of non-zero reals is never zero and $3 \neq 0$, we get $a - b = 0$, i.e. $a = b$.
 </Proof>
 
-Note where the uniqueness argument actually spent its hypothesis: on the real numbers having no zero divisors. Over $\mathbb{Z}/6\mathbb{Z}$, the equation $3x = 3$ has solutions $x = 1, 3, 5$, and the "same" argument fails at exactly that step. Uniqueness proofs are where the surrounding structure shows through.
+Note where the uniqueness argument actually spent its hypothesis: on the fact that a product of non-zero reals is never zero. Over $\mathbb{Z}/6\mathbb{Z}$, the equation $3x = 3$ has solutions $x = 1, 3, 5$, and the "same" argument fails at exactly that step. Uniqueness proofs are where the surrounding structure shows through.
 
 ## The evidence asymmetry
 
@@ -80,7 +80,7 @@ The diagonal structure is the reason mathematics is asymmetric in difficulty. A 
 <Warning title="The two moves that look like proofs and are not">
 **Proving $\forall$ by example.** "The claim holds for $n = 1, 2, 3, \ldots, 40$, so it holds." Euler's polynomial $n^2 + n + 41$ is prime for $n = 0, \ldots, 39$ and composite at $n = 40$. Pólya's conjecture — that among $1, \ldots, n$ at least half the numbers have an odd number of prime factors — survives to $n \approx 9 \times 10^{8}$ and then fails.
 
-**Disproving $\exists$ by failed search.** "I tried many values and none worked, so none exists." This is an argument about your search, not about the domain. Disproving $\exists x, p(x)$ requires proving $\forall x, \neg p(x)$ — a universal claim, with all the work that entails.
+**Disproving $\exists$ by failed search.** "I tried many values and none worked, so none exists." This is an argument about your search, not about the domain. Disproving $\exists x, p(x)$ requires proving $\forall x, \neg p(x)$ — a universal claim, with all the work that involves.
 </Warning>
 
 ## Nested quantifiers: order is content
@@ -95,7 +95,7 @@ $$
 
 *Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: on the left, each $x$ gets its own partner; on the right, one single $y$ would have to work for every $x$ at once.*
 
-The first is true: given $x$, choose $y = -x$. The choice of $y$ is permitted to depend on $x$ because $y$ is bound *inside* the scope of $x$. The second is false: it demands one $y$ that works for all $x$ simultaneously, and $x = 1, x = 2$ already conflict.
+The first is true: given $x$, choose $y = -x$. The choice of $y$ is permitted to depend on $x$ because $y$ is introduced *after* $x$ and inside its reach. The second is false: it demands one $y$ that works for all $x$ simultaneously, and $x = 1, x = 2$ already conflict.
 
 The governing principle: **an inner quantifier may depend on the outer ones; an outer one may not depend on the inner ones.** When you read a nested statement, read it as a game — the $\forall$ variables are chosen by an adversary, the $\exists$ variables by you, in the order written, and the statement is true iff you have a winning strategy.
 

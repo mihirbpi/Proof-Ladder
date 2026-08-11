@@ -176,14 +176,21 @@ explicitly does not require it (8.F.A.1). So `l5` and up may use it freely;
 subject, so §3.1 earns it and the next two modules re-gloss it; outside Chapter 3
 every page that reaches for it has to earn it again.
 
-**Trigonometry, base `e` and logarithms.** Right-triangle trig is G-SRT.C.6
-(Geometry, grade 9), so `l6` may assume it — as ratios of sides, in degrees, for
-angles under a quarter turn, and no further. The unit circle and radians are
-F-TF (**Algebra II, grade 10**), which is the course `l6` is *taking*: by rule 1
-they may be taught on the page but never assumed, and the angle-sum identities
-are further out still (F-TF.C.9 is a `(+)` standard, i.e. Precalculus), so
-nothing below `l7` may rest an argument on them. Base `e` and logarithms are
-F-LE.A.4, Algebra II again, and so available only from `l7`.
+**Trigonometry, base `e` and logarithms.** Trigonometry is barred **by name and
+by symbol below `l7`.** Right-triangle trig is G-SRT.C.6 (Geometry, grade 9) and
+the unit circle, radians and sine-of-any-angle are F-TF (Algebra II, grade 10),
+which is the course `l6` is *taking*; the angle-sum identities are further out
+still (F-TF.C.9 is a `(+)` standard, i.e. Precalculus). So no level below `l7`
+may print `\cos`, `\sin` or `\tan`, name the subject, or rest an argument on any
+of it. Chapter 5 needs angles and gets them from **degrees and pictures**: turns
+readable off a drawing, with the two missing rules deferred by description
+rather than by name. Base `e` and logarithms are F-LE.A.4, Algebra II again, and
+so available only from `l7`.
+
+Naming trig as a coming attraction is also out. "You'll meet this in
+trigonometry" reads to a reader as a warning that the page is above them, and it
+dates the page against a curriculum that varies by school; "a tool this course
+does not assume" says the same thing without either problem.
 
 This is why §5.7 at `l6` proves *multiplying adds the turns* from **SSS
 similarity** rather than from the angle-sum identities: similar triangles are

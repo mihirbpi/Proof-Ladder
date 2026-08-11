@@ -14,20 +14,28 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
 $$
-r_1\big(\cos\theta_1+i\sin\theta_1\big)\cdot r_2\big(\cos\theta_2+i\sin\theta_2\big) = r_1r_2\big(\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2)\big).
+\big(r_1,\ \theta_1\big)\cdot\big(r_2,\ \theta_2\big) = \big(r_1r_2,\ \theta_1+\theta_2\big).
 $$
 
-**Multiply the distances, add the angles.**
+**Multiply the distances, add the turns.**
 
-That is the whole chapter's payoff, and it says something about your geometry course: the two transformations you study separately — dilation and rotation — are a single complex multiplication.
+That is module 5.7's theorem in the polar notation of module 5.8, and it says something about your geometry course: the two transformations you studied separately — dilation and rotation — are a single complex multiplication.
 
-## Why it holds
+## The geometric statement
 
-Both halves are already proved. The distances multiply because the modulus is multiplicative (module 5.6). The angles add because multiplying two circle points adds their angles (module 5.7).
+> **Theorem.** Multiplication by a fixed non-zero $w$ is the transformation of the plane that turns every point by $\arg w$ about the origin and stretches every distance by $|w|$.
 
-Writing each number as a distance times a circle point and collecting the two factors separately is the whole argument.
+Both halves are already proved. Distances multiply because the modulus is multiplicative (module 5.6); turns add because module 5.7 compared two triangles and found them similar.
 
-<Figure alt="Two points on a coordinate plane joined to the origin, together with their product further out and at a larger angle." caption="Multiplying by the number at distance 2 and angle π/3: the point doubles its distance and turns 60° counterclockwise.">
+Three special cases you already know:
+
+- $|w| = 1$: a **pure rotation**. The distances are multiplied by $1$, so nothing moves nearer or further; only the direction changes.
+- $w$ a positive real: a **pure dilation**, since $\arg w = 0°$ and no turning happens.
+- $w = i$: a $90°$ rotation, since $|i| = 1$ and $\arg i = 90°$ — module 5.5's observation, now a special case of a theorem.
+
+And $w = -1$ gives a $180°$ rotation, so $i^2 = -1$ is the statement that two quarter turns make a half turn (module 5.1). Every fact about $i$ in this chapter has been the same fact about rotation.
+
+<Figure alt="Two points on a coordinate plane joined to the origin, together with their product further out and at a larger angle." caption="Multiplying by the number at distance 2 and angle 60°: the point doubles its distance and turns 60° counterclockwise.">
   <ComplexPlane
     points={[
       { re: 3, im: 0, label: "z" },
@@ -38,85 +46,43 @@ Writing each number as a distance times a circle point and collecting the two fa
   />
 </Figure>
 
-## The geometric statement
-
-> **Theorem.** Multiplication by a fixed non-zero $w$ is the transformation of the plane that rotates by $\arg w$ about the origin and dilates by $|w|$.
-
-Three special cases you already know:
-
-- $|w|=1$: a **pure rotation**. Multiplying by $\cos\theta+i\sin\theta$ turns the plane through $\theta$ and changes no distance.
-- $w$ real and positive: a **pure dilation**, since $\arg w = 0$.
-- $w = i$: a $90°$ rotation, since $|i|=1$ and $\arg i = \pi/2$ — module 5.5's observation, now a special case.
-
-And $w = -1$ gives a $180°$ rotation, so $i^2 = -1$ is the statement that two quarter turns make a half turn (module 5.1). Every fact about $i$ in this chapter has been the same fact about rotation.
-
 <Warning title="Rotation about the origin only">
-$z\mapsto wz$ rotates about $0$. To rotate about a different centre $c$, translate, rotate, translate back:
+Multiplying by $w$ rotates about $0$, and about nothing else. To rotate about a different centre $c$, slide $c$ to the origin, rotate, and slide back:
 
-$$z \mapsto w(z - c) + c.$$
+$$\text{new position} = w\,(z - c) + c.$$
 
-That is a composition of three transformations, in the order module 3.7 requires — and it is the general form of a rotation in the plane.
+Three transformations composed, in that order and no other — module 3.7's point about composition, in a setting where getting the order wrong visibly puts your figure in the wrong place.
 
-Your course does the same thing when it moves a figure to the origin before applying a transformation rule. The complex version is one line where the matrix version needs three.
+Your geometry course does the same thing when it moves a figure to the origin before applying a rule. The complex version is one line.
 </Warning>
-
-## Deriving the double-angle formulas
-
-Here is where the chapter pays a debt to a course you have already taken.
-
-<Discussion>
-  <div slot="know">De Moivre's formula (module 5.7), and the fact that equal complex numbers have equal real parts and equal imaginary parts (module 5.2).</div>
-  <div slot="want">Formulas for $\cos2\theta$ and $\sin2\theta$ in terms of $\cos\theta$ and $\sin\theta$.</div>
-  <div slot="how">Write the circle point at angle $2\theta$ two ways — straight off, and as the square of the point at angle $\theta$ — then match the parts. Two identities from one line of algebra.</div>
-</Discussion>
-
-<Proof>
-The circle point at angle $2\theta$ is
-$$\cos2\theta + i\sin2\theta.$$
-
-By De Moivre with $n=2$, it is also the square of the point at angle $\theta$:
-$$(\cos\theta+i\sin\theta)^2 = \cos^2\theta + 2i\cos\theta\sin\theta + i^2\sin^2\theta$$
-$$= \left(\cos^2\theta - \sin^2\theta\right) + i\left(2\cos\theta\sin\theta\right).$$
-
-These are equal, so their real parts and imaginary parts agree:
-$$\cos2\theta = \cos^2\theta-\sin^2\theta, \qquad \sin2\theta = 2\sin\theta\cos\theta.$$
-</Proof>
-
-**Two identities, from expanding a square.** You memorised these in trigonometry, and here they drop out of $i^2 = -1$ and the rule that equal complex numbers have equal parts.
-
-And this time nothing was assumed about them. Module 5.7 proved that multiplying adds the turns using **similar triangles**, not trigonometry, so these identities are being derived rather than shuffled — complex numbers repaying a debt to a course you have already taken.
-
-The same machine keeps producing. Take $n=3$ in De Moivre, expand the cube, and the triple-angle formulas
-
-$$\cos3\theta = 4\cos^3\theta - 3\cos\theta, \qquad \sin3\theta = 3\sin\theta - 4\sin^3\theta$$
-
-fall out of one binomial expansion — formulas nobody memorises and everybody occasionally needs.
-
-**And the minus sign in the double-angle formula, the one everybody misplaces, is $i^2=-1$ arriving.** Knowing where a sign comes from beats knowing a mnemonic for it.
 
 ## De Moivre's formula
 
-Repeating the multiplication rule $n$ times gives module 5.7's formula again:
+Apply the theorem with $z = w$: squaring squares the distance and doubles the turn. Apply it again and cubing cubes the distance and triples the turn. In general:
 
-$$
-\left(\cos\theta+i\sin\theta\right)^n = \cos n\theta + i\sin n\theta.
-$$
+> **De Moivre's formula.** $\big(r, \theta\big)^n = \big(r^n,\ n\theta\big)$ for every whole number $n \geq 1$.
 
-**Geometrically: rotating $n$ times through $\theta$ is rotating once through $n\theta$.** Obvious as a statement about turning, and not at all obvious as a statement about expanding a binomial to the $n$-th power.
+**Rotating $n$ times through $\theta$ is rotating once through $n\theta$** — obvious as a statement about turning, and not at all obvious as a statement about multiplying an expression out $n$ times.
 
-Chapter 6 proves De Moivre properly, by induction on $n$ — the domino argument is exactly right for a claim indexed by the whole numbers.
+<Proof title="Why the pattern does not stop">
+Formally this is induction on $n$, which chapter 6 handles properly. The step is one line: if $(r,\theta)^k = (r^k, k\theta)$, then multiplying once more by $(r,\theta)$ multiplies the distances and adds the turns, giving $(r^k\cdot r,\ k\theta+\theta) = (r^{k+1}, (k+1)\theta)$.
+
+A claim indexed by the whole numbers, with each case following from the one before, is exactly what the domino argument is for.
+</Proof>
 
 ## Roots
 
-De Moivre run backwards solves $z^n = 1$. The solutions are the points at angles
+Run De Moivre backwards and it solves $z^n = 1$.
 
-$$\theta_k = \frac{2\pi k}{n}, \qquad k = 0, 1, \dots, n-1,$$
+A solution must have $r^n = 1$ with $r > 0$, so $r = 1$: every solution sits on the circle of radius $1$. And its turn, multiplied by $n$, must be a whole number of full turns. So
 
-since raising the point at angle $2\pi k/n$ to the $n$th power multiplies its angle by $n$, landing on $2\pi k$ — a whole number of turns, which is $1$.
+$$\theta_k = \frac{360°\,k}{n}, \qquad k = 0, 1, \dots, n-1,$$
 
-**$n$ solutions, evenly spaced on the unit circle** — the vertices of a regular $n$-gon with one vertex at $1$.
+and taking $k = n$ or beyond just repeats angles already listed.
 
-<Figure alt="Six points evenly spaced around a dashed unit circle, forming a regular hexagon." caption="The six solutions of z⁶ = 1: a regular hexagon inscribed in the unit circle.">
+**So $z^n = 1$ has exactly $n$ solutions, evenly spaced around the circle** — the corners of a regular $n$-gon with one corner at $1$.
+
+<Figure alt="Six points evenly spaced around a dashed unit circle, forming a regular hexagon." caption="The six solutions of z⁶ = 1: a regular hexagon inscribed in the circle of radius 1.">
   <ComplexPlane
     points={[
       { re: 1, im: 0 },
@@ -131,26 +97,28 @@ since raising the point at angle $2\pi k/n$ to the $n$th power multiplies its an
   />
 </Figure>
 
-So the regular polygons of your geometry course are solution sets of polynomial equations, and their symmetry is the symmetry of multiplication: multiplying two vertices of the hexagon gives another vertex, because the angles add mod $2\pi$ — module 4.4's residue arithmetic, on a circle.
+Notice what that answer is made of. An **algebraic** question — solve an equation — came back with a **geometric** answer: a regular polygon. Neither subject predicts the other, and the bridge between them is the theorem of module 5.7.
+
+There is more structure in the picture than the count. Multiply two corners of the hexagon and the turns add, landing on another corner, because $60° + 120° = 180°$ and every sum comes back into the list once whole turns are discarded. That discarding is module 4.4's remainder arithmetic, running around a circle instead of along a line.
 
 ## What the chapter established
 
 Start to finish:
 
-1. $x^2+1$ has no real root, so extend $\mathbb{R}$ (5.1).
-2. $\mathbb{C}$ is $\mathbb{R}^2$ with a multiplication, and all four operations work there (5.2, 5.3).
+1. $x^2+1$ has no real solution, so extend the reals (5.1).
+2. A complex number is a pair of reals with a multiplication attached, and all four operations work (5.2, 5.3).
 3. Conjugation is reflection in the real axis (5.4).
-4. Points of $\mathbb{C}$ are points of the plane (5.5).
+4. Complex numbers are points of the plane (5.5).
 5. Modulus is the distance formula (5.6).
-6. $\cos\theta+i\sin\theta$ walks round the unit circle, and multiplying such points adds their angles (5.7, 5.8).
-7. Multiplication is rotation plus dilation (5.9).
+6. Multiplying multiplies distances and adds turns — proved from similar triangles (5.7), and read off polar form (5.8).
+7. So multiplication is rotation together with stretching (5.9).
 
-**An algebraic repair turned into a geometry.** The number invented to solve one equation encodes the transformation group your course spends a unit on, and the trigonometric identities you memorised are consequences of $i^2=-1$.
+**An algebraic repair turned into a geometry.** A number invented to solve one equation turned out to encode the transformations your geometry course spends a unit on.
 
 <Aside>
-Multiplication by $w$ preserves angles between curves, even though it changes distances. A map with that property is called **conformal**, and complex multiplication is the simplest example.
+One more thing waits for you here.
 
-Conformal maps are how the Mercator projection works: it distorts area wildly — Greenland is not the size of Africa — while preserving angles exactly, which is what a navigator needs, since a constant compass bearing must appear as a straight line.
+Next year you will meet two rules that convert an angle into the across and up amounts of a point — and a long list of formulas relating them, which most people memorise. Every one of those formulas is this module's theorem in disguise: write two points in polar form, multiply them in *both* descriptions, and match the parts.
 
-The same functions describe fluid flowing around an obstacle and the electrical force near a charged conductor. In each case the physics is governed by an equation whose solutions are exactly the well-behaved complex functions, and problems that are hard in real coordinates become routine once the plane is treated as $\mathbb{C}$.
+The whole list collapses to one line of algebra and $i^2 = -1$. That is worth remembering when the list arrives, because a formula you can re-derive in thirty seconds is not a formula you have to trust your memory for.
 </Aside>

@@ -9,7 +9,7 @@ anchorExample: "3x − 1 = 0"
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 1.1 noted that $x \geq 1$ is not a statement: it has a free variable, so it has no truth value until $x$ is pinned down. There are two ways to pin it down, and they are called **quantifiers**.
+Module 1.1 noted that $x \geq 1$ is not a statement: the $x$ has not been pinned down, so it has no truth value yet. There are two ways to pin it down, and they are called **quantifiers**.
 
 ## The *for all* quantifier
 
@@ -49,7 +49,7 @@ $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some".*
 
-which is **false** — no integer works. Same predicate, different domain, different truth value.
+which is **false** — no integer works. Same condition, different collection to run it over, different truth value.
 
 <Warning title="There exists never means exactly one">
 $\exists x \in \mathbb{R},\, x^2 = 4$ is true, and there are two such $x$. The *there exists* quantifier says *at least* one; it is completely silent on how many. If you want exactly one, you must say so.
@@ -111,6 +111,6 @@ $$\exists y \in \mathbb{R},\; \forall x \in \mathbb{R},\; x + y = 0$$
 
 says: there is a single $y$ that cancels *every* $x$ at once. False — no fixed $y$ works for both $x = 1$ and $x = 2$.
 
-Same symbols, same predicate, opposite truth values. The rule of thumb: an inner quantifier may depend on the outer ones; an outer one may not depend on the inner ones.
+Same symbols, same condition, opposite truth values. The rule of thumb: an inner quantifier may depend on the outer ones; an outer one may not depend on the inner ones.
 
 This ordering subtlety is not a technicality; it is one of the hardest things in the mathematics ahead of you. Two important definitions in a later course differ by exactly one swap of $\forall$ and $\exists$ — and readers who have not internalised this module cannot see the difference at all.

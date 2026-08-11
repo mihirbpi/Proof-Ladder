@@ -19,7 +19,7 @@ $$
 *Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\cup$ is "pooled with". So the line reads: the ordinary counting numbers together with two extra items that point at each other forever.*
 with the standard successor on the numerals, satisfies A5–A8 (module 7.4). The elements $a,b$ lie outside the orbit of $0$ and are unreachable from it.
 
-A5–A8 constrain only what $\mathbb{N}$ must **contain**; nothing yet forbids extra components. The final axiom is a **minimality** condition.
+A5–A8 constrain only what $\mathbb{N}$ must **contain**; nothing yet forbids extra components. The final axiom is a **smallest-possible** condition.
 
 ## Inductive sets
 
@@ -95,11 +95,11 @@ By the model method (module 7.1), no derivation of A9 from A5–A8 exists. Induc
 Given A5–A8, the following are equivalent:
 
 - **A9** (induction): every inductive set contains $\mathbb{N}$.
-- **Well-ordering:** every nonempty subset of $\mathbb{N}$ has a least element.
+- **The smallest-number principle:** every nonempty subset of $\mathbb{N}$ has a smallest member.
 - **Strong induction:** if $A(m)$ for all $m<k$ implies $A(k)$, then $A$ holds throughout.
 - **No infinite descent:** there is no strictly decreasing infinite sequence in $\mathbb{N}$.
 
-Module 6.2 proved induction $\Rightarrow$ well-ordering; module 6.4 proved strong induction $\Leftrightarrow$ induction. Module 4.4's division algorithm used well-ordering, and module 4.7's irrationality proof can be written either with lowest terms or with descent — so several arguments in this course were quietly using A9 in disguise.
+Module 6.2 proved induction $\Rightarrow$ the smallest-number principle; module 6.4 proved strong induction $\Leftrightarrow$ induction. Module 4.4's division algorithm used the smallest-number principle, and module 4.7's irrationality proof can be written either with lowest terms or with descent — so several arguments in this course were quietly using A9 in disguise.
 
 ## The nine axioms
 

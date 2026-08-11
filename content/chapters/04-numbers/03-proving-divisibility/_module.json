@@ -13,18 +13,18 @@
     "l7": "Proving divisibility facts",
     "l8": "Proving divisibility facts"
   },
-  "kernelIdea": "Divisibility proofs follow one template: unpack each hypothesis into an equation with a named integer, do algebra, factor out the divisor, and confirm the cofactor is an integer using closure. Some plausible statements are false.",
+  "kernelIdea": "Divisibility proofs follow one template: unpack each hypothesis into an equation with a named integer, do algebra, factor out the divisor, and confirm the other factor is an integer using closure. Some plausible statements are false.",
   "kernels": {
     "l1": "If you can share into 2 groups, and each of those into 3, you shared into 6.",
     "l2": "If one number goes into another, and that one goes into a third, then the first goes into the third too. You can see it by regrouping the counters.",
     "l3": "To prove a divisibility fact, name the hidden whole number in each thing you are given, do the arithmetic, and pull the divisor out at the end. Divisibility passes along a chain.",
-    "l4": "Every divisibility proof unpacks each hypothesis into an equation with a named integer, does algebra, factors out the divisor, and cites closure to confirm the cofactor is an integer. Plausible-looking converses are often false.",
+    "l4": "Every divisibility proof unpacks each hypothesis into an equation with a named integer, does algebra, factors out the divisor, and cites closure to confirm the other factor is an integer. Plausible-looking converses are often false.",
     "l5": "The divisibility template is: unpack, compute, factor, cite closure. Claims like *a divides bc, so a divides b or c* are false in general and true when a is prime.",
     "l6": "Divisibility proofs are existence proofs whose witnesses are built by algebra; closure of the integers is what licenses the final step.",
     "l7": "Divisibility proofs follow a fixed template — unpack into equations with named integers, manipulate, factor out the divisor, invoke closure. Where the template breaks is exactly where primality becomes essential.",
     "l8": "The template is the computation of ideal containments; the failure of a | bc ⇒ a | b ∨ a | c for composite a is exactly the statement that (a) is not prime, and Euclid’s lemma repairs it."
   },
-  "kernel": "Divisibility proofs follow one template: unpack each hypothesis into an equation with a named integer, do algebra, factor out the divisor, and confirm the cofactor is an integer using closure.",
+  "kernel": "Divisibility proofs follow one template: unpack each hypothesis into an equation with a named integer, do algebra, factor out the divisor, and confirm the other factor is an integer using closure.",
   "objectives": [
     "Prove transitivity of divisibility",
     "Prove a | bx + cy",

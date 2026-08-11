@@ -2,7 +2,7 @@
 level: l7
 title: If and only if
 readingTimeMin: 10
-newTerms: ["biconditional", "if and only if"]
+newTerms: ["if and only if"]
 anchorExample: "n even iff n² even"
 ---
 
@@ -13,7 +13,7 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-The **biconditional** is defined by
+The **if-and-only-if statement** is defined by
 $$
 p \Leftrightarrow q \;:\equiv\; (p \Rightarrow q) \wedge (q \Rightarrow p),
 $$
@@ -33,9 +33,9 @@ and read "$p$ if and only if $q$", abbreviated *iff*. Its truth table is T exact
   ]}
 />
 
-Note the relationship to §1.3's $\equiv$: $p \equiv q$ holds precisely when $p \Leftrightarrow q$ is a tautology. The symbol $\Leftrightarrow$ is a connective inside statements; $\equiv$ is an assertion about statements. In practice this distinction is often elided, but it is why "$p \Leftrightarrow q$" can be false while "$\equiv$" claims never are.
+Note the relationship to §1.3's $\equiv$: $p \equiv q$ holds precisely when $p \Leftrightarrow q$ is a tautology. The symbol $\Leftrightarrow$ is a joining word inside statements; $\equiv$ is an assertion about statements. In practice this distinction is often elided, but it is why "$p \Leftrightarrow q$" can be false while "$\equiv$" claims never are.
 
-Because the definition is a conjunction, **a proof of a biconditional is two proofs**. The named move is **check both boxes**.
+Because the definition is a conjunction, **a proof of an if-and-only-if statement is two proofs**. The named move is **check both boxes**.
 
 ## The theorem
 
@@ -56,14 +56,14 @@ n^2 = 4k^2 + 4k + 1 = 2\big(2k^2 + 2k\big) + 1,
 $$
 and $2k^2 + 2k \in \mathbb{Z}$, so $n^2$ is odd. Since every integer is even or odd and not both, contraposition gives: $n^2$ even $\Rightarrow$ $n$ even.
 
-Both implications hold, hence the biconditional.
+Both implications hold, hence the if-and-only-if statement.
 </Proof>
 
 Two observations. First, the directions required different methods — this is typical, and it is why the two halves must be written separately rather than merged into a chain. Second, the (backward) direction used the fact that every integer is even or odd and never both. That fact is not free; it is the $d=2$ case of the division algorithm, and a fully careful treatment proves it (§4.4) before using it here.
 
-## Definitions are a matter of definition biconditionals
+## Definitions go both ways, as a matter of definition
 
-Every mathematical definition is a biconditional, written with "if" by convention:
+Every mathematical definition is an if-and-only-if statement, written with "if" by convention:
 
 > $n$ is *even* **if** $n = 2k$ for some integer $k$.
 
@@ -81,7 +81,7 @@ $$
 
 *Symbol by symbol: $\Leftrightarrow$ is "exactly when".*
 
-proves $p \iff q$ only if every link is genuinely a biconditional. The failure mode is writing $\iff$ where only $\Rightarrow$ holds:
+proves $p \iff q$ only if every link is genuinely an if-and-only-if statement. The failure mode is writing $\iff$ where only $\Rightarrow$ holds:
 
 - $x = y \;\Rightarrow\; x^2 = y^2$, but not conversely.
 - $a = b \;\Rightarrow\; ac = bc$, and conversely **only if** $c \neq 0$.
@@ -92,17 +92,17 @@ Solving equations is where this bites. "Solve $\sqrt{x+2} = x$" by squaring give
 
 ## Proving several statements equivalent
 
-When three or more statements are to be shown pairwise equivalent, proving all $n(n-1)/2$ biconditionals separately is wasteful. Instead prove a **cycle** of implications:
+When three or more statements are to be shown pairwise equivalent, proving all $n(n-1)/2$ if-and-only-if statements separately is wasteful. Instead prove a **cycle** of implications:
 $$
 p \Rightarrow q \Rightarrow r \Rightarrow p.
 $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces".*
 
-Three implications rather than six, and every pairwise equivalence follows by composing around the cycle. Theorems of the form "the following are equivalent (TFAE)" — ubiquitous in matrix and vector work and in every course after it — are almost always proved this way, and choosing the cycle order so that each individual implication is easy is a real part of the work.
+Three implications rather than six, and every pairwise equivalence follows by composing around the cycle. Theorems of the form "the following are equivalent" — which you will meet constantly in later courses — are almost always proved this way, and choosing the cycle order so that each individual implication is easy is a real part of the work.
 
 <Aside>
-$p \Leftrightarrow q$ is also expressible as $\neg(p \oplus q)$, the negation of exclusive or, and as $(p \wedge q) \vee (\neg p \wedge \neg q)$. The first form is why $\Leftrightarrow$ is associative in a way that surprises people: $(p \Leftrightarrow q) \Leftrightarrow r$ and $p \Leftrightarrow (q \Leftrightarrow r)$ agree, both being true exactly when an even number of $p, q, r$ are false. Unlike $\Rightarrow$, the biconditional chains associatively — but chained $\Leftrightarrow$ in mathematical writing means a conjunction of adjacent biconditionals, not iterated application, so do not rely on this.
+$p \Leftrightarrow q$ is also expressible as $\neg(p \oplus q)$, the negation of exclusive or, and as $(p \wedge q) \vee (\neg p \wedge \neg q)$. The first form is why $\Leftrightarrow$ is associative in a way that surprises people: $(p \Leftrightarrow q) \Leftrightarrow r$ and $p \Leftrightarrow (q \Leftrightarrow r)$ agree, both being true exactly when an even number of $p, q, r$ are false. Unlike $\Rightarrow$, the if-and-only-if statement chains associatively — but chained $\Leftrightarrow$ in mathematical writing means a conjunction of adjacent if-and-only-if statements, not iterated application, so do not rely on this.
 </Aside>
 
 <WhereThisGoes level="l7">

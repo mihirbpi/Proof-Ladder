@@ -2,7 +2,7 @@
 level: l7
 title: When does induction apply?
 readingTimeMin: 8
-newTerms: ["strong induction", "structural induction"]
+newTerms: ["strong induction"]
 anchorExample: "the odd numbers add up to a square"
 ---
 
@@ -15,7 +15,7 @@ Two requirements, both substantive.
 
 ## An index with a successor
 
-The statements must be indexed by $\{n \in \mathbb{Z} : n \geq n_0\}$. What is being used is not merely that the index set is infinite but that it is **well-ordered with a successor operation** — every element has an immediate next, and every nonempty subset has a least element.
+The statements must be indexed by $\{n \in \mathbb{Z} : n \geq n_0\}$. What is being used is not merely that the index set is infinite. Two things are needed: **every entry has an immediate next one**, and **every non-empty collection of entries has a smallest member**.
 
 $\mathbb{R}$ has neither, by density (§4.6). So $\forall x \in \mathbb{R},\ x^2 \geq 0$ is not an induction candidate; it is an arbitrary-element argument with a case split (§1.12).
 
@@ -58,7 +58,7 @@ A problem often offers several candidate indices, and the choice determines whet
 
 **A claim about pairs.** For a statement $A(m,n)$, you may induct on $m$ with $n$ fixed, on $n$ with $m$ fixed, or on $m+n$. The last reduces a two-dimensional family to a single chain and is often the only one that works, because each step decreases the total and both coordinates are free to move.
 
-**A claim about a construction.** For polygons, induct on the number of sides; for matrices, on the dimension; for expressions, on the number of operations. The index should be whatever decreases when you remove one piece.
+**A claim about a construction.** For polygons, induct on the number of sides; for grids of numbers, on their size; for expressions, on the number of operations. The index should be whatever decreases when you remove one piece.
 
 **When an induction stalls, change the index before changing the algebra.** A step that will not close is usually a sign that the wrong quantity is being decreased, and no amount of manipulation repairs that.
 
@@ -76,9 +76,9 @@ Both forms are instances of a single principle.
 
 Note there is **no separate base case**. The simplest objects have nothing below them, so the hypothesis is vacuously satisfied for them (§1.5) and the implication delivers $A$ directly. Ordinary induction is the case where *simpler than* means *the previous integer*; strong induction is the case where it means *any smaller integer*.
 
-**Structural induction** is the case where the objects are built up from smaller ones, and *simpler than* means *is a piece of*. To prove a property of every expression, verify it for the atoms and check that each way of building preserves it. Termination arguments for recursive programs are the same principle: exhibit a quantity that strictly decreases at each call and cannot decrease forever.
+**Induction on how a thing is built** is the case where the objects are assembled from smaller ones, and *simpler than* means *is a piece of*. To prove a property of every expression, verify it for the atoms and check that each way of building preserves it. Termination arguments for recursive programs are the same principle: exhibit a quantity that strictly decreases at each call and cannot decrease forever.
 
-The same principle extends past $\mathbb{N}$ to longer well-ordered collections, which is how induction reaches beyond the counting numbers.
+The same principle extends past $\mathbb{N}$ to longer collections that still have that smallest-member property, which is how induction reaches beyond the counting numbers.
 
 <Aside>
 The no-infinite-descent condition is exactly what rules out circular justification. In ZF the Axiom of Foundation asserts that $\in$ is without infinite descent, which is what makes $\in$-induction available and forbids $x \in x$.
@@ -90,7 +90,7 @@ A practical corollary: to prove termination of a recursive procedure, find a str
 
 The two conditions — an integer index and a link between cases — are what determine whether induction is even the right tool, and calculus is full of claims that fail the first.
 
-**Claims about all real numbers are not induction candidates.** *For all $x$, $\sin^2 x + \cos^2 x = 1$* has infinitely many cases and no chain to run: $\mathbb{R}$ has no least element and no next element (§4.6). Attempting induction there is a category error, and the correct technique is a direct proof from the definitions.
+**Claims about all real numbers are not induction candidates.** *For all $x$, $\sin^2 x + \cos^2 x = 1$* has infinitely many cases and no chain to run: $\mathbb{R}$ has no smallest member and no next element (§4.6). Attempting induction there is a category error, and the correct technique is a direct proof from the definitions.
 
 **Claims about all $n$ usually are.** Formulas for $\frac{d^n}{dx^n}$, closed forms for $\sum_{j=1}^n$, statements about the $n$th term of a recursively defined sequence, and inequalities like $2^n > n^2$ for $n\geq5$ all carry an integer index and a visible link.
 

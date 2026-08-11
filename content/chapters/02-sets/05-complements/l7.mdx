@@ -29,7 +29,7 @@ $$
   <VennTwo labelS="A" labelT="B" shade={["outside"]} universe="S" />
 </Figure>
 
-Complement is the set-level image of $\neg$, completing the dictionary begun in §2.4. It is a *unary* operation only after a universe has been fixed; the binary **set difference** $S \setminus A$ carries its universe with it and is preferable whenever the collection you are drawing from is not standing constant.
+Complement is the set-level image of $\neg$, completing the dictionary begun in §2.4. It takes a single set as input, but only once a universe has been fixed; the two-set **set difference** $S \setminus A$ carries its universe with it and is preferable whenever the collection you are drawing from is not standing constant.
 
 The relativity is not a technicality. $\{0,1\}$ has complement $\{2,3,\ldots\}$ in $\mathbb{N}$, and $\mathbb{R} \setminus \{0,1\}$ in $\mathbb{R}$. Most importantly:
 $$
@@ -55,7 +55,7 @@ each transcribing a logical fact ($\neg\neg p \equiv p$; $p \wedge \neg p$ contr
 
 §2.7 supplies the interaction with $\cup$ and $\cap$ (De Morgan).
 
-## Reductio ad absurdum
+## Assuming the opposite
 
 **Proof by contradiction**, named move **suppose not**: to establish $p$, assume $\neg p$, derive a contradiction $r \wedge \neg r$, and conclude $p$. Formally the rule is
 $$
@@ -69,7 +69,7 @@ valid since $\neg p \Rightarrow F$ forces $\neg p$ false, and excluded middle th
 It is worth separating two things that both get called contradiction:
 
 - **Proof of a negation.** To prove $\neg p$, assume $p$ and derive absurdity. This is just the definition of negation in use, and it is constructively valid.
-- **Reductio proper.** To prove $p$ (not a negation), assume $\neg p$ and derive absurdity. This concludes $p$ from $\neg\neg p$, and requires double-negation elimination.
+- **The full-strength version.** To prove $p$ (not a negation), assume $\neg p$ and derive absurdity. This concludes $p$ from $\neg\neg p$, and requires double-negation elimination.
 
 Classically both are fine. Constructively only the first is, and the distinction is exactly where intuitionistic logic parts company with classical.
 
@@ -91,7 +91,7 @@ Suppose, for contradiction, that $x \in A$. Since $A \subseteq B$, we get $x \in
 Hence $x \notin A$, so $x \in \overline A$. As $x$ was arbitrary, $\overline B \subseteq \overline A$.
 </Proof>
 
-Complementation **reverses inclusion**: it is an order-reversing involution on $(\mathcal{P}(S), \subseteq)$. The proposition is contraposition (§1.7) translated by the dictionary, and the converse holds too, so in fact $A \subseteq B \iff \overline B \subseteq \overline A$.
+Complementation **reverses inclusion**: it undoes itself, and it turns every containment around. The proposition is contraposition (§1.7) translated by the dictionary, and the converse holds too, so in fact $A \subseteq B \iff \overline B \subseteq \overline A$.
 
 ## When contradiction is the right tool
 

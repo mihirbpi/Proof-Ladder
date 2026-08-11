@@ -27,7 +27,7 @@ $$
 
 *Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
 
-In one sentence: **a negation distributes over a connective, but swaps $\wedge$ and $\vee$ as it goes.**
+In one sentence: **a negation distributes over a joining word, but swaps $\wedge$ and $\vee$ as it goes.**
 
 ## Verification
 
@@ -72,14 +72,14 @@ Negating the hypothesis correctly gives:
 
 **At least one part fails, and you do not get to say which.** That is a much weaker — and much more useful — conclusion than "all three fail," which is what a careless negation produces and which is simply not implied.
 
-<Warning title="Do not keep the connective">
+<Warning title="Do not keep the joining word">
 $$\neg(p \wedge q) \;\not\equiv\; \neg p \wedge \neg q.$$
 
 *Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\equiv$ is "says the same as".*
 
 Check row 2 of the table: $p$ true, $q$ false. The left side is T, the right is F.
 
-Keeping the connective makes the negation **too strong**. Applied to the triangle example, it would claim all three correspondences fail when only one has to — and you would spend the proof trying to establish something the hypothesis never gave you.
+Keeping the joining word makes the negation **too strong**. Applied to the triangle example, it would claim all three correspondences fail when only one has to — and you would spend the proof trying to establish something the hypothesis never gave you.
 
 A second trap is scope. Since $\neg$ binds more tightly than $\wedge$, the unparenthesised $\neg p \wedge q$ means $(\neg p)\wedge q$, **not** $\neg(p\wedge q)$. When a negation is meant to govern a whole compound, the parentheses are not optional.
 </Warning>
@@ -88,7 +88,7 @@ A second trap is scope. Since $\neg$ binds more tightly than $\wedge$, the unpar
 
 De Morgan does more than restate a claim — it tells you what shape the proof will take.
 
-An *or* in a **hypothesis** forces proof by cases (module 1.12): you must handle each disjunct, because you do not get to choose which one holds. So when contraposing a conjunctive hypothesis, you can predict in advance that the resulting proof will have branches.
+An *or* in a **hypothesis** forces proof by cases (module 1.12): you must handle each half of the *or*, because you do not get to choose which one holds. So when contraposing a conjunctive hypothesis, you can predict in advance that the resulting proof will have branches.
 
 That is exactly why indirect proofs in geometry so often split: *"Case 1: the lines meet. Case 2: the lines are parallel."*
 
@@ -121,11 +121,11 @@ $$
 
 *Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", the bar on top is "everything outside", $\equiv$ is "says the same as". So the line reads: push the denial inward one layer at a time, swapping *and* with *or* at each step.*
 
-Each pass moves the $\neg$ one level deeper and swaps one connective. Nothing is guessed, and the parentheses track which connective the negation is currently passing.
+Each pass moves the $\neg$ one level deeper and swaps one joining word. Nothing is guessed, and the parentheses track which joining word the negation is currently passing.
 
 Reading the result: *the conjunction fails when $p$ fails, or when both $q$ and $r$ fail.* Check it against the original and it is plainly right — but it is not something most people produce correctly without the rules.
 
-## Duality
+## Each law is the other in a mirror
 
 The two laws are not independent. Substituting $\neg p, \neg q$ for $p, q$ in the first and using $\neg\neg p \equiv p$:
 $$

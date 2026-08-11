@@ -2,7 +2,7 @@
 level: l7
 title: Why we needed a new number
 readingTimeMin: 8
-newTerms: ["algebraically closed"]
+newTerms: []
 anchorExample: "e^{iθ} = cos θ + i sin θ"
 ---
 
@@ -26,7 +26,7 @@ The proof used only the arithmetic and ordering rules, and that is the substanti
 | $\mathbb{N}$ | no additive inverses | $\mathbb{Z}$ |
 | $\mathbb{Z}$ | cannot divide | $\mathbb{Q}$ |
 | $\mathbb{Q}$ | not order-complete | $\mathbb{R}$ |
-| $\mathbb{R}$ | not algebraically closed | $\mathbb{C}$ |
+| $\mathbb{R}$ | some equations still have no solution | $\mathbb{C}$ |
 
 Each step adjoins what is missing and verifies the axioms survive. Note the last two failures are of different kinds — one about gaps, one about equations — and correspondingly $\mathbb{R}$ is built by filling gaps and $\mathbb{C}$ by adjoining a root.
 
@@ -69,15 +69,15 @@ What replaces the order is the **modulus** (§5.6): a real-valued measure of siz
 
 **This is the general pattern of extensions.** Each new system buys a property and usually sells one, and knowing which was sold tells you which theorems will not survive the move.
 
-## Algebraic closure
+## Where the search stops
 
-A number system is **algebraically closed** when every polynomial equation with coefficients from it has a solution inside it.
+The question this chapter opened with was whether extending the numbers ever ends. It does, and here is the statement that ends it.
 
-> **Fundamental Theorem of Algebra.** $\mathbb{C}$ is algebraically closed.
+> **Fundamental Theorem of Algebra.** Every polynomial equation with complex coefficients has a complex solution.
 
 The striking content is not that $x^2+1$ acquires a root but that adjoining *one* root of *one* polynomial suffices for all of them, including polynomials with complex coefficients. Compare $\mathbb{Q}$, where adjoining $\sqrt2$ leaves $\sqrt3$ missing and no finite extension ever closes: $\overline{\mathbb{Q}}$ is infinite-dimensional over $\mathbb{Q}$, while $\mathbb{C}$ is two-dimensional over $\mathbb{R}$.
 
-No purely algebraic proof exists, and this is not a gap in knowledge — it cannot exist. The reals are pinned down by their no-gaps property, so any proof of this has to appeal to that somewhere. Standard proofs use Liouville's theorem, the argument principle, or an argument that $|p(z)|$ attains a minimum.
+No purely algebraic proof exists, and this is not a gap in knowledge — it cannot exist. The reals are pinned down by their no-gaps property, so any proof of this has to appeal to that somewhere. Every standard proof reaches for something about the plane rather than about algebra — the simplest of them argues that $|p(z)|$ has to bottom out somewhere, and shows the bottom must be zero.
 
 <Aside>
 Historically, quadratics were not the motivation. Cardano's formula for $x^3 = 15x + 4$ passes through $\sqrt{-121}$ and emerges at $x = 4$ — an integer answer reachable only via a detour outside $\mathbb{R}$. Bombelli's 1572 analysis of that computation is where complex numbers were first taken seriously, precisely because they could not be dismissed as answers to unanswerable questions: here they were intermediate steps toward answers everyone accepted.

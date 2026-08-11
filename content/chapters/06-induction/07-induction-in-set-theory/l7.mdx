@@ -44,7 +44,7 @@ For $A \subseteq S$ define its **characteristic function** $\mathbf{1}_A : S \to
 
 The map $A \mapsto \mathbf{1}_A$ is a bijection $\mathcal{P}(S)\to\{0,1\}^S$, with inverse $f \mapsto f^{-1}(\{1\})$ — the pre-image, in the sense of §3.3.
 
-A function $S \to \{0,1\}$ is specified by an independent binary choice at each of $n$ points, so $|\{0,1\}^S| = 2^n$.
+A function $S \to \{0,1\}$ is specified by an independent yes-or-no choice at each of $n$ points, so $|\{0,1\}^S| = 2^n$.
 </Proof>
 
 This explains the notation $2^S$ for the power set: it is $\{0,1\}^S$, and the cardinality formula $|Y^X| = |Y|^{|X|}$ makes $|2^S| = 2^{|S|}$ automatic. The bijection also transports structure — $\chi_{A\cap B} = \mathbf{1}_A\chi_B$ and $\chi_{\overline A} = 1 - \mathbf{1}_A$ — so $\mathcal{P}(S)$ and $\{0,1\}^S$ match operation for operation (§2.7), not merely element for element.

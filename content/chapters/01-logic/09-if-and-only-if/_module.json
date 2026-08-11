@@ -19,19 +19,18 @@
     "l2": "An \"exactly when\" telling is two promises hiding in one sentence. To show it is kept, check both boxes — one promise each way.",
     "l3": "\"A if and only if B\" means both if–then claims at once: if A then B, and if B then A. To prove it you must check both boxes, writing one proof for each direction.",
     "l4": "\"p if and only if q\" is two claims in one: p forces q, and q forces p. Proving it means writing two proofs, and either may be done by contrapositive.",
-    "l5": "A biconditional asserts that two statements are true in exactly the same cases. Establishing it requires proving both directions separately.",
-    "l6": "A biconditional holds exactly when both statements have identical truth values. Proof requires both directions, and definitions are almost always biconditionals in disguise.",
-    "l7": "A biconditional is two conditionals at once. Proving it means supplying two independent proofs, and each direction may need a different technique.",
-    "l8": "p ⇔ q asserts logical equivalence inside the object language; iff-chains are legitimate only when every link is genuinely reversible, and definitions are stipulative biconditionals."
+    "l5": "An if-and-only-if statement asserts that two statements are true in exactly the same cases. Establishing it requires proving both directions separately.",
+    "l6": "An if-and-only-if statement holds exactly when both statements have identical truth values. Proof requires both directions, and definitions are almost always if-and-only-if statements in disguise.",
+    "l7": "An if-and-only-if statement is two conditionals at once. Proving it means supplying two independent proofs, and each direction may need a different technique.",
+    "l8": "p ⇔ q asserts logical equivalence inside the object language; iff-chains are legitimate only when every link is genuinely reversible, and definitions are stipulative if-and-only-if statements."
   },
   "kernel": "p ⇔ q means both p ⇒ q and q ⇒ p. Proving it means writing two proofs.",
   "objectives": [
-    "Split a biconditional into its two halves",
+    "Split an if-and-only-if statement into its two halves",
     "Prove both directions, using a contrapositive for one where useful"
   ],
   "sourceRef": "Math 0 §1.2.4",
   "vocabulary": [
-    "biconditional",
     "if and only if"
   ],
   "prerequisites": [

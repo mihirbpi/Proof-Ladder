@@ -98,11 +98,11 @@ A related error: forgetting to *use* the inductive hypothesis. If your step neve
 
 ## Why induction is valid
 
-Suppose the base and step both hold but $A(n)$ fails for some $n$. Then the set of counterexamples is a nonempty set of integers $\geq n_0$, so by **well-ordering** it has a least element $m$.
+Suppose the base and step both hold but $A(n)$ fails for some $n$. Then the set of counterexamples is a nonempty set of integers $\geq n_0$, so by **the smallest-number principle** it has a smallest member $m$.
 
-$m \neq n_0$, since $A(n_0)$ holds. So $m-1 \geq n_0$, and by minimality $A(m-1)$ holds. But the step then gives $A(m)$ — contradicting $m$ being a counterexample.
+$m \neq n_0$, since $A(n_0)$ holds. So $m-1 \geq n_0$, and because $m$ is the smallest one there $A(m-1)$ holds. But the step then gives $A(m)$ — contradicting $m$ being a counterexample.
 
-So no counterexample exists. Induction and well-ordering are two views of one principle, and module 4.4 already used the well-ordering form to prove the division algorithm.
+So no counterexample exists. Induction and the smallest-number principle are two views of one thing, and module 4.4 already used the smallest-member form to prove the division algorithm.
 
 <Aside>
 The base case need not be $n=1$. The claim $2^n > n^2$ is false at $n = 2, 3, 4$ and true from $n = 5$ onward, so its base case is $n_0 = 5$ — and the step then only has to work for $k \geq 5$, which it does. Stating $n_0$ explicitly is part of step 1 for exactly this reason.

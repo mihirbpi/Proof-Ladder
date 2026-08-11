@@ -2,7 +2,7 @@
 level: l7
 title: Proving divisibility facts
 readingTimeMin: 9
-newTerms: ["cofactor", "without loss of generality", "Euclid's lemma"]
+newTerms: ["without loss of generality", "Euclid's lemma"]
 anchorExample: "the integers "
 ---
 
@@ -16,12 +16,12 @@ Divisibility is existential, so every proof follows one template. What is worth 
 
 ## Template
 
-1. **Unpack** each hypothesis $a \mid b$ as $b = ak$, with a fresh cofactor name.
+1. **Unpack** each hypothesis $a \mid b$ as $b = ak$, with a fresh name for the other factor.
 2. **Compute.**
 3. **Factor** out the target divisor.
-4. **Verify** the remaining cofactor lies in $\mathbb{Z}$, citing closure (§4.1).
+4. **Verify** the factor left over is an integer, citing closure (§4.1).
 
-Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides every element, so the entire subject rests on the cofactor being required to be an *integer*.
+Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides every element, so the entire subject rests on the leftover factor being required to be an *integer*.
 
 ## The core propositions
 
@@ -44,7 +44,7 @@ Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides ev
 Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{Z}$ is closed under integer linear combinations, i.e. is closed under adding its own members and under multiplying by anything outside. That single structural fact drives the Euclidean algorithm and, with it, **Bézout's identity**: for any $a,b$ there are integers $x,y$ with $ax + by = \gcd(a,b)$. Everything downstream rests on it.
 
 <Warning title="Two disciplines">
-**Fresh names.** From $a \mid b$ and $b \mid c$, the cofactors are unrelated; reusing one letter asserts they are equal and proves a weaker statement.
+**Fresh names.** From $a \mid b$ and $b \mid c$, the two leftover factors have nothing to do with each other; reusing one letter asserts they are equal and proves a weaker statement.
 
 **WLOG has a licence.** It is legitimate exactly when the omitted case follows from the treated one by a relabelling under which hypotheses and conclusion are invariant — and you must say what the relabelling is. Asserted without justification, WLOG is how a case gets silently dropped, and it is the most common structural defect in submitted proofs.
 </Warning>
@@ -104,7 +104,7 @@ So a property preserved by differentiation is preserved by any combination of fu
 
 **The same template runs on polynomials.** Everything in this module used only three facts about $\mathbb{Z}$: you can add, you can multiply, and the product of two things stays in the system. Polynomials satisfy all three, so the divisibility template transfers verbatim.
 
-Say $d(x)$ divides $p(x)$ when $p(x) = d(x)q(x)$ for some polynomial $q(x)$ — the same definition, with polynomials in place of integers. Unpack, compute, factor, and check the cofactor is a polynomial, and you have proved that if $d$ divides both $p$ and $r$ then it divides $p \cdot a + r \cdot b$ for any polynomials $a$ and $b$.
+Say $d(x)$ divides $p(x)$ when $p(x) = d(x)q(x)$ for some polynomial $q(x)$ — the same definition, with polynomials in place of integers. Unpack, compute, factor, and check the leftover factor is a polynomial, and you have proved that if $d$ divides both $p$ and $r$ then it divides $p \cdot a + r \cdot b$ for any polynomials $a$ and $b$.
 
 The Factor Theorem you met in precalculus is one instance: $(x - c)$ divides $p(x)$ exactly when $p(c) = 0$. Long division of polynomials is the division algorithm of §4.4 in the same disguise, remainder and all.
 

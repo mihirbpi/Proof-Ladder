@@ -111,18 +111,18 @@ Backwards work is **scratch**. It belongs in your Discussion, and the written pr
 
 Induction is not obvious, and it can be derived from a property that is.
 
-> **Well-ordering.** Every non-empty set of non-negative integers has a least element.
+> **The smallest-number principle.** Every non-empty collection of non-negative integers has a smallest member.
 
 Suppose $A(n_0)$ holds and each $A(k)$ implies $A(k+1)$, yet some $A(n)$ fails. Let $F$ be the set of $n\geq n_0$ for which $A(n)$ fails; by assumption $F$ is non-empty, so it has a **least** element $m$.
 
-Now $m\neq n_0$, since $A(n_0)$ holds. So $m-1\geq n_0$, and $m-1\notin F$ by minimality — meaning $A(m-1)$ is true. But the inductive step then gives $A(m)$, contradicting $m\in F$.
+Now $m\neq n_0$, since $A(n_0)$ holds. So $m-1\geq n_0$, and $m-1\notin F$ because $m$ is the smallest one there — meaning $A(m-1)$ is true. But the inductive step then gives $A(m)$, contradicting $m\in F$.
 
 Hence no such $F$ exists. *Suppose not*, from module 2.5, applied to justify a proof technique.
 
 <Aside>
-Well-ordering and induction are equivalent — each can be derived from the other — and neither can be proved from nothing. Chapter 7 takes induction as an **axiom** of the counting numbers.
+The smallest-number principle and induction are equivalent — each can be derived from the other — and neither can be proved from nothing. Chapter 7 takes induction as an **axiom** of the counting numbers.
 
 That is the same status as the Parallel Postulate in your geometry course: an assumption, adopted because the mathematics you want requires it, and not derivable from the others.
 
-Note that well-ordering fails badly elsewhere. The positive rationals have no least element — for any candidate $q$, the number $q/2$ is smaller and still positive. That is the same structural fact as module 4.6's density, and it is precisely why induction has no purchase on $\mathbb{Q}$.
+Note that this fails badly elsewhere. The positive rationals have no smallest member — for any candidate $q$, the number $q/2$ is smaller and still positive. That is the same structural fact as module 4.6's density, and it is precisely why induction has no purchase on $\mathbb{Q}$.
 </Aside>

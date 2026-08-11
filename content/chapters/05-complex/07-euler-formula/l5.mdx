@@ -69,23 +69,19 @@ That is why the notation is worth having. Writing a rotation as $e^{i\theta}$ ma
 
 ## What the proof needs
 
-The general statement is
-$$
-e^{i\theta} = \cos\theta + i\sin\theta,
-$$
-giving the across-and-up coordinates of the landing point. It is the conversion of module 5.8, with $r = 1$.
+The general statement gives the across-and-up coordinates of the landing point in terms of how far you travelled — the conversion of module 5.8 with $r = 1$, written as an equation.
 
-Proving it needs two things you will meet later:
+Proving it needs two things this course does not assume:
 
-- **Trigonometry**, to name the coordinates of a point on a circle.
-- **Infinite series** — the fact that $e^x$, $\cos x$ and $\sin x$ each equal an endless sum of powers.
+- **A way of naming the coordinates of a point on a circle** from the angle alone. Two such rules exist and are met in a later course.
+- **Endless sums** — the fact that $e^x$ and those two rules can each be written as a sum of powers that never stops.
 
-Given those, the proof is short and lovely. Substitute $i\theta$ into the series for $e^x$, and use the four-step cycle $i, -1, -i, 1$ from module 5.3 to sort the terms. The terms with real coefficients assemble into the series for $\cos\theta$, and the ones carrying an $i$ assemble into $\sin\theta$.
+Given those, the proof is short and lovely. Substitute $i\theta$ into the endless sum for $e^x$, and use the four-step cycle $i, -1, -i, 1$ from module 5.3 to sort the terms. The terms with real coefficients assemble into one endless sum and the terms carrying an $i$ assemble into another — and those two sums turn out to be exactly the across and up amounts of the landing point.
 
 **One series splits into two**, and the cycle of powers of $i$ is what does the splitting.
 
 <Aside>
-Polar form is normally written $re^{i\theta}$ rather than $r(\cos\theta + i\sin\theta)$, and now you can see why.
+Polar form is normally written $re^{i\theta}$ rather than as a distance and an angle written side by side, and now you can see why.
 
 In that notation the multiplication rule module 5.9 is heading for is just the exponent law:
 $$

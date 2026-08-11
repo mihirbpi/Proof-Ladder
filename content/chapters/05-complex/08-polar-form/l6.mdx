@@ -2,7 +2,7 @@
 level: l6
 title: Polar form
 readingTimeMin: 8
-newTerms: ["polar form", "radians"]
+newTerms: ["polar form", "argument"]
 anchorExample: "rotations of the coordinate plane"
 ---
 
@@ -13,136 +13,106 @@ import Warning from '@/components/Warning.astro';
 
 There are two ways to say where a point is: **across and up**, or **how far and which way**.
 
-$$a+bi \qquad\text{versus}\qquad r(\cos\theta+i\sin\theta)$$
+$$a+bi \qquad\text{versus}\qquad \big(r,\ \theta\big)$$
 
-Both name the same point. The second is better suited to multiplication, and this module is about converting between them.
+Both name the same point. The first suits addition; the second suits multiplication, for the reason module 5.7 proved. This module makes the second precise.
 
-## Two tools borrowed from this year's course
+## The two pieces
 
-Module 5.7 measured directions in degrees, or in fractions of a turn, and got everything it needed that way. Converting between the two descriptions needs two tools that belong to the Algebra II you are taking right now. Both are stated here, in the form this chapter uses, and neither is assumed beyond that.
+**How far** is the modulus $r = |z|$ of module 5.6 — the distance from the origin, computed by the right-triangle rule.
 
-**Radians.** An angle in radians is the arc length it cuts on a circle of radius $1$. A full turn is $2\pi$ radians, since that circle has circumference $2\pi$.
+**Which way** is the **argument** $\theta$, written $\arg z$: the angle you turn counterclockwise, starting from the positive real axis, to face the point. Angles are in degrees here, so a full turn is $360°$.
 
-| degrees | radians |
-|---|---|
-| $30°$ | $\pi/6$ |
-| $45°$ | $\pi/4$ |
-| $60°$ | $\pi/3$ |
-| $90°$ | $\pi/2$ |
-| $180°$ | $\pi$ |
-| $360°$ | $2\pi$ |
+A point named this way is in **polar form**.
 
-$$\text{radians} = \text{degrees}\times\frac{\pi}{180}.$$
-
-Radians are not a convenience. Their whole point is that an arc of $\theta$ radians on that circle *has length* $\theta$ — the angle and the distance travelled are the same number, with no conversion factor anywhere. Every formula in the next two courses is stated this way, so it is worth getting used to now.
-
-**Sine and cosine of any angle.** Your geometry course defined $\cos$ and $\sin$ as ratios of sides in a right triangle, which only makes sense for angles under a quarter turn. Algebra II extends them: $\cos\theta$ and $\sin\theta$ are the across and up coordinates of the point you reach by turning $\theta$ from the positive real axis on the circle of radius $1$. For angles under a quarter turn the two definitions agree, since that point sits at the corner of exactly the right triangle.
-
-## Polar form
-
-With those in hand, the point at distance $1$ in the direction $\theta$ — module 5.7's $C(\theta)$ — has coordinates $(\cos\theta, \sin\theta)$, so it *is* the complex number $\cos\theta+i\sin\theta$. Scaling by $r>0$:
-
-$$
-r(\cos\theta + i\sin\theta) = r\cos\theta + ir\sin\theta,
-$$
-
-the point at **distance $r$** from the origin at **angle $\theta$** counterclockwise from the positive real axis.
-
-$r = |z|$ is the modulus. $\theta$ is the **argument**, written $\arg z$.
-
-<Figure alt="A point in the complex plane joined to the origin, with the distance and the angle from the positive real axis marked." caption="Polar form: the point at distance r and angle θ.">
+<Figure alt="A point in the complex plane joined to the origin, with the distance and the angle from the positive real axis marked." caption="Polar form: distance r, turned θ from the positive real axis.">
   <ComplexPlane
-    points={[{ re: 1.5, im: 2.6, label: "r = 3, θ = π/3" }]}
+    points={[{ re: 1.5, im: 2.6, label: "r = 3, θ = 60°" }]}
     vectors={[{ re: 1.5, im: 2.6 }]}
     circle={3}
     range={4}
   />
 </Figure>
 
-## Polar to rectangular
+Some points can be read straight off the picture:
 
-$$
-a = r\cos\theta, \qquad b = r\sin\theta.
-$$
+| $z$ | $r$ | $\theta$ |
+|---|---|---|
+| $3$ | $3$ | $0°$ |
+| $3i$ | $3$ | $90°$ |
+| $-3$ | $3$ | $180°$ |
+| $-3i$ | $3$ | $270°$ |
+| $2+2i$ | $2\sqrt2$ | $45°$ |
 
-**Right-triangle trigonometry**, exactly as in your geometry course: the horizontal leg is the hypotenuse times the cosine, the vertical leg is the hypotenuse times the sine.
+The distances come from module 5.6. The last angle is $45°$ because that point sits on the diagonal, equally far across and up.
 
-> **Example.** Convert the point at distance $3$ and angle $\pi/3$.
->
-> $\pi/3$ is $60°$, so $\cos(\pi/3) = \frac12$ and $\sin(\pi/3)=\frac{\sqrt3}{2}$.
->
-> $$a = 3\cdot\tfrac12 = \tfrac32, \qquad b = 3\cdot\tfrac{\sqrt3}{2} = \tfrac{3\sqrt3}{2}.$$
->
-> So the point is $\frac32+\frac{3\sqrt3}{2}i \approx 1.5+2.598i$.
+## Why this form exists
 
-## Rectangular to polar
+Module 5.7 proved the theorem the whole chapter runs on:
 
-$$
-r = \sqrt{a^2+b^2}, \qquad \tan\theta = \frac ba.
-$$
+> Multiplying multiplies the distances and adds the turns.
 
-The first is the distance formula. The second comes from dividing $b = r\sin\theta$ by $a = r\cos\theta$.
+In across-and-up form that fact is invisible: $(a+bi)(c+di)$ is four products and a sign change, and nothing in it looks like turning. In polar form it is one multiplication and one addition.
 
-<Warning title="The tangent does not determine the angle">
-$\tan\theta = b/a$ has **two** solutions in a full turn, half a revolution apart, and $\tan^{-1}$ returns only one of them — always in the first or fourth quadrant.
+$$\text{if } z = (r_1, \theta_1) \text{ and } w = (r_2, \theta_2), \qquad\text{then}\qquad zw = (r_1r_2,\ \theta_1+\theta_2).$$
 
-$$z = -1-i:\quad \frac ba = \frac{-1}{-1}=1, \quad \tan^{-1}(1) = \frac\pi4.$$
+Addition runs the other way. There is no usable rule relating $\arg(z+w)$ to $\arg z$ and $\arg w$ — try to find one and you will see quickly why nobody adds in polar form.
 
-But $\pi/4$ points into the **first** quadrant, and $-1-i$ is in the third. The correct argument is $\pi/4+\pi = \frac{5\pi}{4}$.
-
-**Always plot the point and check the quadrant.** This is the single most common error in polar conversion, and it happens because $\tan$ is not injective (module 3.5) — restricting its domain to make $\tan^{-1}$ a function is precisely what threw away the other solution.
-</Warning>
-
-> **Example.** Convert $-1+i\sqrt3$.
->
-> $r = \sqrt{1+3}=2$. And $\tan\theta = \frac{\sqrt3}{-1} = -\sqrt3$, so $\tan^{-1}$ gives $-\pi/3$ — fourth quadrant. The point is in the **second** quadrant, so add $\pi$:
-> $$\theta = -\frac\pi3+\pi = \frac{2\pi}{3}.$$
->
-> Hence $-1+i\sqrt3 = 2\left(\cos\frac{2\pi}{3}+i\sin\frac{2\pi}{3}\right)$. Check: $2\cos(2\pi/3) = -1$ ✓ and $2\sin(2\pi/3)=\sqrt3$ ✓.
-
-## Non-uniqueness
-
-$$
-r\big(\cos\theta+i\sin\theta\big) = r\big(\cos(\theta+2\pi k)+i\sin(\theta+2\pi k)\big) \quad\text{for every integer } k,
-$$
-
-since turning all the way around returns you to the same point.
-
-So the argument is **not a function** in the sense of module 3.1 — it is not single-valued. $1$ has argument $0$, $2\pi$, $4\pi$, $-2\pi$, and infinitely many others.
-
-The standard repair is to name one of them official: take the angle between $-\pi$ and $\pi$ — up to half a turn each way from the positive real axis. That choice makes $\arg$ a genuine function, at the cost of a jump. Points just below the negative real axis get angles near $-\pi$, points just above get angles near $\pi$, and crossing that ray makes the answer leap by a full turn even though the point barely moved.
-
-## The jump cannot be designed away
-
-Put the break somewhere else — measure from $0$ to $2\pi$ instead — and it moves to the positive real axis rather than disappearing. Any single choice has to break somewhere, because walking once around the origin brings you back to the same point having gained a whole turn.
-
-This is the same repair as restricting sine's domain to define $\sin^{-1}$ (module 3.9), and it has the same side effect: a discontinuity you must remember is there.
-
-**$\theta = 0$ is a special case**: the modulus is $0$, the argument is undefined, and there is no direction to a point sitting at the origin.
-
-## Which form for which job
+**Neither form is the right one. The operation decides.**
 
 | Task | Better form |
 |---|---|
-| add, subtract | rectangular |
+| add, subtract | across and up |
 | multiply, divide | polar |
 | raise to a power | polar |
 | take roots | polar |
-| identify real/imaginary parts | rectangular |
-| identify distance/direction | polar |
+| read off real and imaginary parts | across and up |
+| read off distance and direction | polar |
 
-Adding in polar form is awful: there is no formula relating $\arg(z+w)$ to $\arg z$ and $\arg w$. Multiplying in rectangular form works and is fiddly.
+Choosing the description to suit the operation is a habit worth building — the same instinct that puts a figure on the axes for one geometry problem and leaves it off for another.
 
-Choosing the representation to suit the operation is a habit worth building — the same reason your geometry course sometimes places a figure on the axes and sometimes argues synthetically.
+## Converting between them
+
+One direction you already have: $r = \sqrt{a^2+b^2}$, the right-triangle rule of module 5.6.
+
+The other direction — recovering $a$ and $b$ from $r$ and $\theta$ — needs a tool this course does not assume: a pair of rules turning an angle into the across and up amounts of a point at distance $1$ from the origin. Those rules exist, and a later course spends a good deal of time on them.
+
+Until then the picture does the work. Drop a line from the point to the horizontal axis and you have a right triangle: slanted side $r$, short sides $a$ and $b$, and the angle $\theta$ at the corner sitting on the origin. Everything this chapter needs can be read off that triangle, and every angle used below — quarter turns, half turns, even divisions of the circle — can be read straight off a drawing.
+
+## The angle is not quite pinned down
+
+Turn a full turn and you are facing the way you started. So a point does not have *one* direction; it has infinitely many, each differing from the next by a whole turn:
+
+$$\theta, \quad \theta + 360°, \quad \theta - 360°, \quad \theta + 720°, \quad \ldots$$
+
+The point $1$ sits at $0°$, and at $360°$, and at $-360°$. The distance has no such problem: $|1|$ is $1$, and that is the end of it.
+
+So $\arg$ is **not a function** in the sense of module 3.1 — one input, many outputs. This is not sloppy notation. It is a fact about circles, and no cleverer notation removes it.
+
+## Picking one angle, and what it costs
+
+The usual repair is to name one of them official: take the angle strictly between $-180°$ and $180°$, and call that *the* argument.
+
+That makes $\arg$ a genuine function, and it costs exactly one thing: a jump. Points just above the negative real axis have angles near $180°$; points just below have angles near $-180°$. Two points almost touching, handed directions almost a full turn apart.
+
+## The jump cannot be designed away
+
+Put the break somewhere else — measure from $0°$ round to $360°$ instead — and the jump moves to the positive real axis. It does not vanish.
+
+The reason is the walk. Going once around the origin returns you to the point you started from, having gained a whole turn on the way, and no single choice of angle can both follow the walk and end where it began.
+
+This is the same repair, with the same side effect, as cutting a function's domain down in order to invert it (module 3.9): shrink things until the answer is unique, and accept the seam that leaves behind.
+
+<Warning title="Two things that catch people out">
+**The origin has no direction.** $z = 0$ has distance $0$ and no angle at all — there is no way to point at the place you are already standing. Polar form covers every complex number *except* zero.
+
+**Angles add only up to whole turns.** Multiply $-1$ by $-1$ and you get $1$, whose official angle is $0°$ — but the two official angles being added are $180°$ and $180°$, totalling $360°$. Both answers describe the same point, and they differ by a full turn, which is all the rule ever promised.
+</Warning>
 
 <Aside>
-The special values in polar form:
+The four points $1$, $i$, $-1$, $-i$ sit at $0°$, $90°$, $180°$ and $270°$: quarter turns, evenly spaced round the circle of radius $1$. Multiplying by $i$ steps once around, which is module 5.5's rotation read off the angle.
 
-$$1: \theta = 0,\qquad i: \theta = \frac\pi2,\qquad -1: \theta = \pi,\qquad -i: \theta = \frac{3\pi}{2}.$$
+There is nothing special about quarters. Divide the circle into $n$ equal steps and you get $n$ evenly spaced points, at the corners of a regular $n$-gon — and module 5.9 shows those are exactly the solutions of $z^n = 1$.
 
-Four points, evenly spaced round the unit circle at quarter turns. Multiplying by $i$ steps once round, which is module 5.5's rotation seen in polar coordinates.
-
-More generally, the solutions of $z^n = 1$ are the $n$ points at angles $\frac{2\pi k}{n}$ for $k = 0, 1, \dots, n-1$ — the vertices of a **regular $n$-gon** inscribed in the unit circle, with one vertex at $1$.
-
-So the regular polygons of your geometry course are the solution sets of the simplest possible polynomial equations. Gauss proved at nineteen that a regular $17$-gon is constructible with compass and straightedge, by studying which of these roots can be built from square roots — a result that connects construction, algebra, and number theory in one theorem.
+So the regular polygons of your geometry course are the solution sets of the simplest equations there are. Gauss proved at nineteen that a regular $17$-gon can be built with compass and straightedge, by working out which of those corners can be reached using square roots alone — and asked to have the figure carved on his gravestone.
 </Aside>

@@ -2,7 +2,7 @@
 level: l4
 title: The mirror partner
 readingTimeMin: 6
-newTerms: ["conjugate", "involution"]
+newTerms: ["conjugate"]
 anchorExample: "z z̄ = a² + b²"
 ---
 
@@ -29,7 +29,7 @@ Geometrically (module 5.5): reflection in the real axis.
 <Proof>
 Write $z = a+bi$ with $a,b \in \mathbb{R}$.
 
-(i) $\overline{\bar z} = \overline{a - bi} = a + bi = z$. So conjugation is an **involution** — it is its own inverse, in the sense of module 3.9.
+(i) $\overline{\bar z} = \overline{a - bi} = a + bi = z$. So conjugation is **its own inverse**, in the sense of module 3.9.
 
 (ii) $z\bar z = (a+bi)(a-bi) = a^2 - (bi)^2 = a^2 - b^2i^2 = a^2+b^2$. Both squares are non-negative reals, so the sum is a non-negative real, and it vanishes iff $a = b = 0$.
 
@@ -47,7 +47,7 @@ Property (iii) says conjugation lets you extract real and imaginary parts by *ar
 > **Proposition.** $z \in \mathbb{R} \iff z = \bar z$.
 
 <Discussion>
-  <div slot="know">A biconditional, so two proofs (module 1.9). One direction is a substitution; the other needs comparison of parts.</div>
+  <div slot="know">An if-and-only-if statement, so two proofs (module 1.9). One direction is a substitution; the other needs comparison of parts.</div>
   <div slot="want">Both implications.</div>
   <div slot="how">(forward) If $z$ is real, its imaginary part is $0$, and negating $0$ changes nothing. (backward) Equate $a+bi$ with $a - bi$ and compare imaginary parts to force $b = 0$.</div>
 </Discussion>
@@ -58,7 +58,7 @@ Property (iii) says conjugation lets you extract real and imaginary parts by *ar
 **(backward)** Suppose $z = \bar z$, i.e. $a + bi = a - bi$. Comparing imaginary parts (module 5.2), $b = -b$, so $2b = 0$ and hence $b = 0$. Therefore $z = a \in \mathbb{R}$.
 </Proof>
 
-This is a clean payoff for module 1.9: a biconditional whose two halves genuinely need different arguments. Geometrically it says the fixed points of a reflection are the points on the mirror — the real axis.
+This is a clean payoff for module 1.9: an if-and-only-if statement whose two halves genuinely need different arguments. Geometrically it says the fixed points of a reflection are the points on the mirror — the real axis.
 
 ## Conjugation respects arithmetic
 

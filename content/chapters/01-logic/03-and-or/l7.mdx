@@ -11,9 +11,9 @@ import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-Statements alone are inert. What makes logic a subject is the small set of operations that build new statements from old ones, together with the rule that the truth value of the result depends on nothing but the truth values of the inputs. That last property is called **truth-functionality**, and it is why a finite table can define a connective completely.
+Statements alone are inert. What makes logic a subject is the small set of operations that build new statements from old ones, together with the rule that the truth value of the result depends on nothing but the truth values of the inputs. That is why a table of a few rows can define a joining word completely.
 
-Negation (§1.2) was the unary case. Here are the two basic binary connectives.
+Negation (§1.2) took one statement and returned another. Here are the two that take two.
 
 Three further symbols occur below before their own modules reach them. $p \Rightarrow q$ is read *"$p$ implies $q$"* (§1.5); and for sets, $S \cup T$ is the **union**, read *"$S$ union $T$"* and meaning everything in at least one of them, while $S \cap T$ is the **intersection**, everything in both (§2.4).
 
@@ -52,7 +52,7 @@ The **disjunction** $p \vee q$ asserts at least one:
 />
 
 <Warning title="Inclusive by convention, and by necessity">
-$\vee$ is inclusive. Row 1 — both true — evaluates to true. The convention is not arbitrary: almost every disjunction that arises naturally in mathematics is inclusive. "$x \geq 0$ or $x \leq 0$" is true for every real $x$, including $x = 0$, where both disjuncts hold. If $\vee$ were exclusive, that statement would be false at exactly one point, and every theorem quoting it would need a special case.
+$\vee$ is inclusive. Row 1 — both true — evaluates to true. The convention is not arbitrary: almost every disjunction that arises naturally in mathematics is inclusive. "$x \geq 0$ or $x \leq 0$" is true for every real $x$, including $x = 0$, where both halves of the *or* hold. If $\vee$ were exclusive, that statement would be false at exactly one point, and every theorem quoting it would need a special case.
 
 Exclusive or exists and is written $\oplus$; it equals $(p \vee q) \wedge \neg(p \wedge q)$. Mathematics uses it rarely and always names it.
 </Warning>
@@ -92,19 +92,19 @@ $$
 
 *Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
 
-Both can be checked by writing out four rows, which is what §1.4 does. Notice already that negation does not distribute quietly over these connectives — it *swaps* them.
+Both can be checked by writing out four rows, which is what §1.4 does. Notice already that negation does not distribute quietly over these joining words — it *swaps* them.
 
 <Aside>
-The number of distinct binary connectives is $2^4 = 16$, since a connective is nothing more than a choice of truth value for each of four input rows. Remarkably, every one of the sixteen can be written using $\neg$ and $\wedge$ alone (or $\neg$ and $\vee$ alone). Even more remarkably, a single connective suffices: NAND, $\neg(p \wedge q)$, generates all sixteen by itself.
+There are exactly $16$ possible two-statement joining words, since such a word is nothing more than a choice of true or false for each of four input rows. Remarkably, every one of the sixteen can be written using $\neg$ and $\wedge$ alone (or $\neg$ and $\vee$ alone). Even more remarkably, a single joining word suffices: NAND, $\neg(p \wedge q)$, generates all sixteen by itself.
 </Aside>
 
 ## Precedence, so that parentheses stay honest
 
-By convention $\neg$ binds tightest, then $\wedge$, then $\vee$, then $\Rightarrow$ and $\Leftrightarrow$ (the biconditional, §1.9). So $\neg p \wedge q$ means $(\neg p) \wedge q$, not $\neg(p \wedge q)$ — a distinction with different truth tables and, in a proof, different consequences. When in doubt, parenthesize. Published mathematics does.
+By convention $\neg$ binds tightest, then $\wedge$, then $\vee$, then $\Rightarrow$ and $\Leftrightarrow$ (the if-and-only-if statement, §1.9). So $\neg p \wedge q$ means $(\neg p) \wedge q$, not $\neg(p \wedge q)$ — a distinction with different truth tables and, in a proof, different consequences. When in doubt, parenthesize. Published mathematics does.
 
-## Connectives inside solution sets
+## Joining words inside solution sets
 
-Precalculus already computes with $\wedge$ and $\vee$ constantly, under the heading of solving inequalities, and the two connectives correspond to the two things you do with intervals.
+Precalculus already computes with $\wedge$ and $\vee$ constantly, under the heading of solving inequalities, and the two joining words correspond to the two things you do with intervals.
 
 $$|x - 3| < 2 \quad\Leftrightarrow\quad -2 < x - 3 < 2 \quad\Leftrightarrow\quad x > 1 \ \wedge\ x < 5,$$
 

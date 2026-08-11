@@ -2,7 +2,7 @@
 level: l7
 title: De Morgan's set laws
 readingTimeMin: 9
-newTerms: ["duality"]
+newTerms: []
 anchorExample: "complements inside the reals"
 ---
 
@@ -33,9 +33,9 @@ These are §1.4's laws under the dictionary $\neg \leftrightarrow \overline{\pha
 ## Proof
 
 <Discussion>
-  <div slot="know">Being outside $A$ means being in $U$ but not in $A$; being in $S \cup T$ means being in one or the other; and De Morgan for connectives says that failing an *or* means failing both parts.</div>
+  <div slot="know">Being outside $A$ means being in $U$ but not in $A$; being in $S \cup T$ means being in one or the other; and De Morgan for joining words says that failing an *or* means failing both parts.</div>
   <div slot="want">Double inclusion (§2.6).</div>
-  <div slot="how">Unfold membership into logic, apply the logic law, refold. Because the logic law is an equivalence rather than an implication, both inclusions are the same computation read in opposite directions — so the equality can be presented as a chain of biconditionals.</div>
+  <div slot="how">Unfold membership into logic, apply the logic law, refold. Because the logic law is an equivalence rather than an implication, both inclusions are the same computation read in opposite directions — so the equality can be presented as a chain of if-and-only-if statements.</div>
 </Discussion>
 
 <Proof>
@@ -53,7 +53,7 @@ $$
 
 *Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", $\wedge$ is "and".*
 
-Every step is a biconditional, so both inclusions are established simultaneously. Since $x \in U$ was arbitrary, the sets are equal.
+Every step is an if-and-only-if statement, so both inclusions are established simultaneously. Since $x \in U$ was arbitrary, the sets are equal.
 </Proof>
 
 The chain form is legitimate here precisely because each link is a definitional unfolding or a logical equivalence — the condition §2.6 warned about. Written as two separate inclusions the proof is twice as long and no more convincing.
@@ -62,7 +62,7 @@ The first law follows either by the same argument with $\neg(p \wedge q) \equiv 
 
 ## The translation is structural
 
-| Connective | Set operation |
+| Joining word | Set operation |
 |---|---|
 | $\neg$ | complement |
 | $\wedge$ | $\cap$ |
@@ -85,7 +85,7 @@ $$
 
 *Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
 
-The proof is the same three moves, with the quantifier rule of §1.11 at the pivot instead of the connective rule:
+The proof is the same three moves, with the quantifier rule of §1.11 at the pivot instead of the joining word rule:
 $$
 x \in \overline{A_1 \cup \cdots \cup A_n}
 \iff \neg \exists i,\, x \in A_i
@@ -95,9 +95,9 @@ $$
 
 *Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when".*
 
-No induction is needed, and the family may be larger than any list — which is the point of proving it this way rather than by iterating the binary case.
+No induction is needed, and the family may be larger than any list — which is the point of proving it this way rather than by repeating the two-set case over and over.
 
-<Warning title="The connective must swap">
+<Warning title="The joining word must swap">
 In $U = \{1,\ldots,6\}$ with $S = \{1,2,3\}$, $T = \{3,4\}$:
 $$\overline{S \cap T} = \{1,2,4,5,6\}, \qquad \overline S \cap \overline T = \{5,6\}.$$
 
@@ -106,14 +106,14 @@ $$\overline{S \cap T} = \{1,2,4,5,6\}, \qquad \overline S \cap \overline T = \{5
 A single counterexample settles that $\overline{S \cap T} \neq \overline S \cap \overline T$. In practice the error appears not as a bare identity but inside a proof, when a negated hypothesis about a union or intersection is expanded carelessly.
 </Warning>
 
-## Duality
+## Each law is the other in a mirror
 
-De Morgan says complementation is an **order-reversing involution** on $\mathcal{P}(U)$ exchanging $\cap$ and $\cup$ (and, by §2.5, exchanging $\subseteq$ with $\supseteq$, $\emptyset$ with $U$). Consequently every theorem about subsets has a **dual**, obtained by swapping $\cap \leftrightarrow \cup$, $\subseteq \leftrightarrow \supseteq$, $\emptyset \leftrightarrow U$ — and the dual is automatically true, with the dual proof.
+De Morgan says complementation undoes itself, turns every containment around, and exchanges $\cap$ and $\cup$ (and, by §2.5, exchanging $\subseteq$ with $\supseteq$, $\emptyset$ with $U$). Consequently every theorem about subsets has a **dual**, obtained by swapping $\cap \leftrightarrow \cup$, $\subseteq \leftrightarrow \supseteq$, $\emptyset \leftrightarrow U$ — and the dual is automatically true, with the dual proof.
 
-This halves the work in the next module: the two distributive laws of §2.8 are duals, so proving one proves both. The habit of noticing duality before starting a proof is worth acquiring now.
+This halves the work in the next module: the two distributive laws of §2.8 are mirror images of each other, so proving one proves both. The habit of checking whether a law has a mirror image before starting a proof is worth acquiring now.
 
 <Aside>
-$\cup$ and $\cap$ are recoverable from each other via complement — $S \cap T = \overline{\overline S \cup \overline T}$ — so *not* and *or* between them can express everything, exactly as they can for the connectives of Chapter 1. In circuit terms this is why NOR gates alone can implement any Boolean function.
+$\cup$ and $\cap$ are recoverable from each other via complement — $S \cap T = \overline{\overline S \cup \overline T}$ — so *not* and *or* between them can express everything, exactly as they can for the joining words of Chapter 1. In circuit terms this is why NOR gates alone can implement any Boolean function.
 </Aside>
 
 <WhereThisGoes level="l7">

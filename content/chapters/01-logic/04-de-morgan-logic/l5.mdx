@@ -14,7 +14,7 @@ import Warning from '@/components/Warning.astro';
 
 You can deny a statement, and you can join two statements with *and* or *or*. What happens when you do both?
 
-The answer is not "negate each piece and leave the connective alone." Negation does not slide quietly through a connective — it changes it on the way.
+The answer is not "negate each piece and leave the joining word alone." Negation does not slide quietly through a joining word — it changes it on the way.
 
 ## The laws
 
@@ -30,7 +30,7 @@ $$
 
 *Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
 
-In one sentence: **a negation distributes over a connective, but swaps $\wedge$ and $\vee$ as it goes.**
+In one sentence: **a negation distributes over a joining word, but swaps $\wedge$ and $\vee$ as it goes.**
 
 ## Verification
 
@@ -63,7 +63,7 @@ Breaking is easy where holding is hard, and hard where holding is easy. The swap
 
 Note that "at least one fails" is inclusive: possibly both do. That is why the right side of the first law uses $\vee$ and not exclusive or.
 
-## Duality
+## Each law is the other in a mirror
 
 The two laws are not independent. Put the denials $\neg p$ and $\neg q$ into the first law in place of $p$ and $q$, then use that denying twice returns you to the start:
 $$
@@ -74,14 +74,14 @@ $$
 
 and negating both sides gives the second law.
 
-So negation is an **involution** — an operation that undoes itself — and it **exchanges** $\wedge$ and $\vee$. Each law is the other one seen through a mirror, and proving one proves both.
+So negation **undoes itself**, and it **exchanges** $\wedge$ and $\vee$. Each law is the other one seen through a mirror, and proving one proves both.
 
-<Warning title="Do not keep the connective">
+<Warning title="Do not keep the joining word">
 Denying "both hold" does **not** give "both fail".
 
 Check row 2 of the table: $p$ true, $q$ false. The left side is T, the right side is F.
 
-Keeping the connective makes the negation **too strong** — it claims both parts failed, when the negation only entitles you to one. This is the single most common error with these laws, and it is invisible unless you check a row.
+Keeping the joining word makes the negation **too strong** — it claims both parts failed, when the negation only entitles you to one. This is the single most common error with these laws, and it is invisible unless you check a row.
 
 A second trap is scope. A denial attaches to as little as possible, so without brackets it lands on the first piece only — not on the whole *and*. When a negation is meant to govern a whole compound, the parentheses are not optional.
 </Warning>
@@ -109,7 +109,7 @@ That is strictly weaker, and therefore easier, than the naive "and" version.
 
 ### Proving an *or*
 
-Assume the negation of one disjunct and derive the other. Here: assume $x+y \in \mathbb{Q}$ and $x$ rational; then $y = (x+y)-x$ is a difference of rationals, hence rational — the remaining disjunct.
+Assume one half of the *or* fails and derive the other. Here: assume $x+y \in \mathbb{Q}$ and $x$ rational; then $y = (x+y)-x$ is a difference of rationals, hence rational — which is the other half of the *or*.
 
 And an *or* in a **hypothesis** forces proof by cases instead (module 1.12). So De Morgan does not merely restate a claim; it tells you what shape the proof will have.
 

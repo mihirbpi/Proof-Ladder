@@ -32,7 +32,7 @@ This is the first proof in the course where **Chapter 1 is used as a tool** rath
 ## Proof of the second law
 
 <Discussion>
-  <div slot="know">Being outside $A$ means being in $U$ and not in $A$. Being in $S \cup T$ means being in $S$ or in $T$. And De Morgan for connectives (module 1.4): failing an *or* means failing both parts.</div>
+  <div slot="know">Being outside $A$ means being in $U$ and not in $A$. Being in $S \cup T$ means being in $S$ or in $T$. And De Morgan for joining words (module 1.4): failing an *or* means failing both parts.</div>
   <div slot="want">$\overline{S \cup T} \subseteq \overline{S} \cap \overline{T}$ and the reverse.</div>
   <div slot="how">Chase an arbitrary element. Unfold the set notation into logic, apply the logic law, and fold back up. Both directions are the same unfolding read in opposite orders — because the logic law is an equivalence, not an implication.</div>
 </Discussion>
@@ -55,7 +55,7 @@ The first law is proved identically, using the other De Morgan law — failing a
 
 The correspondence is not luck. Sets in this course are specified by conditions (module 2.2), and a set operation is defined *as* an operation on conditions:
 
-| Connective | Set operation | What membership means |
+| Joining word | Set operation | What membership means |
 |---|---|---|
 | and | $\cap$ | in both sets |
 | or | $\cup$ | in at least one of them |
@@ -65,14 +65,14 @@ The correspondence is not luck. Sets in this course are specified by conditions 
 
 So every logical identity produces a set identity by mechanical translation, and the proof is always the same three moves: unfold, apply the logic law, fold. Once you have seen it twice, the remaining laws of this chapter are exercises.
 
-<Warning title="The connective must swap">
+<Warning title="The joining word must swap">
 $\overline{S \cap T} \neq \overline{S} \cap \overline{T}$ in general. Concretely, in $U = \{1,\ldots,6\}$ with $S = \{1,2,3\}$, $T = \{3,4\}$:
 $$\overline{S \cap T} = \overline{\{3\}} = \{1,2,4,5,6\},$$
 $$\overline{S} \cap \overline{T} = \{4,5,6\} \cap \{1,2,5,6\} = \{5,6\}.$$
 
 *Symbol by symbol: $\cap$ is "overlapped with", the bar on top is "everything outside".*
 
-Different sets. Keeping the connective is the same over-negation error as in module 1.4, and one counterexample settles it.
+Different sets. Keeping the joining word is the same over-negation error as in module 1.4, and one counterexample settles it.
 </Warning>
 
 ## Where you will use it
@@ -95,5 +95,5 @@ $$\overline{A_1 \cup \cdots \cup A_n} = \overline{A_1} \cap \cdots \cap \overlin
 
 *Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
 
-provable by induction (Chapter 6). Pushed to infinite families, the connectives become quantifiers and this becomes $\neg \exists \equiv \forall \neg$ — module 1.11 again. One law, three levels of generality.
+provable by induction (Chapter 6). Pushed to infinite families, the joining words become quantifiers and this becomes $\neg \exists \equiv \forall \neg$ — module 1.11 again. One law, three levels of generality.
 </Aside>

@@ -19,7 +19,7 @@
     "l2": "When you cross out an AND telling, the AND turns into an OR. When you cross out an OR telling, the OR turns into an AND.",
     "l3": "The opposite of \"both of these\" is \"at least one of them fails.\" The opposite of \"at least one of these\" is \"both of them fail.\" Saying not to a joined statement swaps and with or.",
     "l4": "Denying \"p and q\" gives \"not p, or not q\". Denying \"p or q\" gives \"not p, and not q\". Pushing a denial inside a compound statement swaps *and* with *or*.",
-    "l5": "De Morgan's laws: denying an *and* gives an *or* of the denials, and denying an *or* gives an *and* of them. A denial passes through a connective only by swapping it.",
+    "l5": "De Morgan's laws: denying an *and* gives an *or* of the denials, and denying an *or* gives an *and* of them. A denial passes through a joining word only by swapping it.",
     "l6": "A denial does not pass through *and* and *or* unchanged — it swaps them. Assuming the wrong one is the standard error at the first line of an indirect proof.",
     "l7": "De Morgan's laws: a denial exchanges *and* with *or* as it passes through. They are what let you negate a compound hypothesis correctly, which is the first line of most indirect proofs.",
     "l8": "De Morgan duality is the involution of the Boolean algebra that swaps meet and join; the same statement recurs for ∩/∪ on sets and for ∀/∃ on quantifiers."

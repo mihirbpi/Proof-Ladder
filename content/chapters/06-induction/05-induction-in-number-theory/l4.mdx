@@ -18,7 +18,7 @@ Data: $2^{2n}-1 = 0, 3, 15, 63, 255, 1023$ for $n = 0,\ldots,5$ — all multiple
 <Discussion>
   <div slot="know">$m \mid p$ unfolds to $\exists c \in \mathbb{Z},\ p = mc$ (module 4.2). The link between cases: $2^{2(k+1)} = 2^{2k+2} = 4\cdot 2^{2k}$.</div>
   <div slot="want">$A(n)$ for all $n \geq 0$.</div>
-  <div slot="how">Unpack (IH) into an equation with a **fresh** name for the cofactor — $k$ is taken by the induction. Solve for $2^{2k}$, substitute into the $(k+1)$-expression, and factor out $3$.</div>
+  <div slot="how">Unpack (IH) into an equation with a **fresh** name for the leftover factor — $k$ is taken by the induction. Solve for $2^{2k}$, substitute into the $(k+1)$-expression, and factor out $3$.</div>
 </Discussion>
 
 <Proof>
@@ -45,9 +45,9 @@ By induction, $A(n)$ holds for all $n \geq 0$.
 </Proof>
 
 <Warning title="Two kinds of unknown, two names">
-The induction variable is $k$. The cofactor produced by the divisibility hypothesis is a *different* unknown, and must get its own letter.
+The induction variable is $k$. The factor produced by the divisibility hypothesis is a *different* unknown, and must get its own letter.
 
-Writing "$2^{2k}-1 = 3k$" asserts that the cofactor equals the index — false, and it wrecks the step. This is module 4.3's fresh-name discipline, and it bites harder here because two unknowns coexist.
+Writing "$2^{2k}-1 = 3k$" asserts that the leftover factor equals the index — false, and it wrecks the step. This is module 4.3's fresh-name discipline, and it bites harder here because two unknowns coexist.
 
 Notice also the small manoeuvre of rearranging (IH) to $2^{2k} = 3x+1$ before substituting. Solving the hypothesis for the quantity that actually appears in the next case is the standard move, and it is what makes the substitution possible.
 </Warning>

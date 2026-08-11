@@ -20,7 +20,7 @@ $$
 
 *Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and".*
 
-This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$, a biconditional decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
+This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$, an if-and-only-if statement decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
 
 Equivalently: **double inclusion is the rule that mutual containment forces equality of $\subseteq$**, the third partial-order axiom whose proof was deferred in §2.3.
 
@@ -35,8 +35,8 @@ $x \in S \cup T$ unfolds to a disjunction, and a disjunctive hypothesis must be 
 
 | | Proving membership | Using membership |
 |---|---|---|
-| $S \cup T$ | cheap — establish one disjunct | expensive — case split |
-| $S \cap T$ | expensive — establish both conjuncts | cheap — take the conjunct you want |
+| $S \cup T$ | cheap — establish either half | expensive — case split |
+| $S \cap T$ | expensive — establish both halves | cheap — take whichever half you want |
 
 Reading a goal in this light usually tells you in advance which direction of a double inclusion will be the hard one.
 
@@ -71,7 +71,7 @@ The cases are exhaustive, and in each $x \in R$.
 Both inclusions hold, hence $S \cup T = R$.
 </Proof>
 
-The dependence of the reverse inclusion on the absence of zero divisors is the mathematically interesting feature. Over $\mathbb{Z}/6\mathbb{Z}$ the analogous statement fails, since $2 \cdot 3 = 0$ with neither factor zero. Tracking which half of a proof consumes which hypothesis is how one learns the natural generality of a theorem.
+The dependence of the reverse inclusion on *a product of non-zero numbers never being zero* is the mathematically interesting feature. Over $\mathbb{Z}/6\mathbb{Z}$ the analogous statement fails, since $2 \cdot 3 = 0$ with neither factor zero. Tracking which half of a proof consumes which hypothesis is how one learns the natural generality of a theorem.
 
 One may also identify $R$ explicitly: $\sin x \cos x = \tfrac12 \sin 2x$, so $R = \{n\pi/2 \mid n \in \mathbb{Z}\}$. Proving *that* equality is another double inclusion, and it is where $S = \{n\pi\}$ and $T = \{\pi/2 + n\pi\}$ get identified individually.
 
@@ -86,14 +86,14 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with".*
 
-the last step by the absorption law $p \vee (p \wedge q) \equiv p$. This is legitimate — every step is a genuine biconditional — and it proves $S \cup (S \cap T) = S$ in one line.
+the last step by the absorption law $p \vee (p \wedge q) \equiv p$. This is legitimate — every step is a genuine if-and-only-if statement — and it proves $S \cup (S \cap T) = S$ in one line.
 
 <Warning title="When the chain is not safe">
-An $\iff$ chain replaces two inclusions only if **every** link is reversible. In set theory the links are usually definitional unfoldings, which are biconditional, so the technique is generally sound. It stops being sound the moment a step is an implication in disguise — applying a non-injective operation, or using a lemma with a converse you have not proved.
+An $\iff$ chain replaces two inclusions only if **every** link is reversible. In set theory the links are usually definitional unfoldings, which are if-and-only-if statement, so the technique is generally sound. It stops being sound the moment a step is an implication in disguise — applying a non-injective operation, or using a lemma with a converse you have not proved.
 
 Two further failure modes, both endemic:
 - **Proving one direction.** Label ($\subseteq$) and ($\supseteq$) and count.
-- **Omitting a case.** A disjunctive hypothesis needs every disjunct treated. "Similarly" is acceptable only when the argument really is symmetric.
+- **Omitting a case.** A hypothesis with an *or* in it needs every case treated. "Similarly" is acceptable only when the argument really is symmetric.
 </Warning>
 
 ## Why "obviously equal" is never enough
@@ -117,10 +117,10 @@ The method generalises far beyond sets. Proving two subspaces, two spans, or two
 
 Double inclusion is how you prove that two differently-described objects are the same one, and both courses ahead are full of such claims.
 
-**In calculus the equalities are between solution sets and between domains.** *The set where $f'>0$ equals the set where $f$ is increasing* is a biconditional needing two arguments — one from a theorem about slopes, one directly — and the fact that the two halves need different tools is the normal case, not an exception.
+**In calculus the equalities are between solution sets and between domains.** *The set where $f'>0$ equals the set where $f$ is increasing* is an if-and-only-if statement needing two arguments — one from a theorem about slopes, one directly — and the fact that the two halves need different tools is the normal case, not an exception.
 
 Domain computations are double inclusions too. One argument shows every point you want is included; a second shows nothing else sneaks in. Skipping the second leaves the answer proved only halfway.
 
-**The habit worth keeping is counting the obligations before starting.** An equality of sets is two proofs; a biconditional is two proofs; and knowing which direction will be hard, from the shape of the definitions, is what lets you plan rather than flail.
+**The habit worth keeping is counting the obligations before starting.** An equality of sets is two proofs; an if-and-only-if statement is two proofs; and knowing which direction will be hard, from the shape of the definitions, is what lets you plan rather than flail.
 
 </WhereThisGoes>

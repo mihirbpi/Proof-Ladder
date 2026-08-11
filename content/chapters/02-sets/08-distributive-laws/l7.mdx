@@ -39,7 +39,7 @@ each checkable on eight rows. The mathematically notable feature is that **both*
 <Discussion>
   <div slot="know">$x \in (S\cup T) \cap (S \cup R)$ gives two disjunctions simultaneously.</div>
   <div slot="want">$x \in S$ or $x \in T \cap R$.</div>
-  <div slot="how">Nothing in the hypothesis suggests a case split, so split on excluded middle (§1.3): either $x \in S$ or not. If not, disjunctive syllogism — from *p or q* and *not p*, infer *q* — extracts $T$ from the first disjunction and $R$ from the second.</div>
+  <div slot="how">Nothing in the hypothesis suggests a case split, so split on excluded middle (§1.3): either $x \in S$ or not. If not, then from *p or q* together with *not p* we may infer *q*, which extracts $T$ from the first disjunction and $R$ from the second.</div>
 </Discussion>
 
 <Proof>
@@ -51,16 +51,16 @@ each checkable on eight rows. The mathematically notable feature is that **both*
 ($\supseteq$) Let $x \in (S \cup T) \cap (S \cup R)$, so $x \in S \cup T$ and $x \in S \cup R$. Either $x \in S$ or $x \notin S$.
 
 *Case $x \in S$:* then $x \in S \cup (T \cap R)$ at once.
-*Case $x \notin S$:* from $x \in S \cup T$ and $x \notin S$, disjunctive syllogism gives $x \in T$; likewise $x \in R$. Hence $x \in T \cap R$, so $x \in S \cup (T \cap R)$.
+*Case $x \notin S$:* from $x \in S \cup T$ and $x \notin S$, the *or* leaves only one option, so $x \in T$; likewise $x \in R$. Hence $x \in T \cap R$, so $x \in S \cup (T \cap R)$.
 
 Both inclusions hold.
 </Proof>
 
-Two techniques are worth extracting. **Splitting on excluded middle** ($x \in S$ or not) is always available when the hypothesis offers no natural case division, and it is the standard opening for reverse inclusions of this shape. **Disjunctive syllogism** — from $p \vee q$ and $\neg p$ infer $q$ — is how a union hypothesis is converted into usable information once one side is excluded.
+Two techniques are worth extracting. **Splitting on excluded middle** ($x \in S$ or not) is always available when the hypothesis offers no natural case division, and it is the standard opening for reverse inclusions of this shape. **Ruling out one half of an *or*** — from $p \vee q$ and $\neg p$, infer $q$ — is how a union hypothesis is converted into usable information once one side is excluded.
 
-## Duality makes one proof do
+## The mirror makes one proof do
 
-Complementation is an involution exchanging $\cap$ and $\cup$ (§2.7). Complementing (D1) and applying De Morgan throughout:
+Complementation undoes itself and exchanges $\cap$ and $\cup$ (§2.7). Complementing (D1) and applying De Morgan throughout:
 $$
 \overline{S \cap (T \cup R)} = \overline S \cup (\overline T \cap \overline R),
 \qquad
@@ -71,7 +71,7 @@ $$
 
 so (D1) applied to arbitrary $S,T,R$ yields (D2) for $\overline S, \overline T, \overline R$ — and since complementation is a bijection on $\mathcal{P}(X)$, that is (D2) in full generality. Proving one law proves both.
 
-This is worth internalising as a habit: in any structure with an order-reversing involution, half the theorems are free.
+This is worth internalising as a habit: wherever an operation undoes itself and turns the ordering around, half the theorems are free.
 
 ## What distributivity is doing
 
@@ -93,7 +93,7 @@ So $A \cap (B+C) = A$ while $(A\cap B) + (A\cap C) = \{0\}$. **Distributivity fa
 This is the practical warning to carry into your later matrix work. Subspaces look like sets and behave like sets under $\cap$; they do **not** behave like sets under $+$, and an argument that quietly assumes the distributive law for subspaces is wrong. The counterexample above is two lines long and worth remembering.
 
 <Warning title="The arithmetic analogy has limits">
-$\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for (D1) and a false friend elsewhere. Set operations are **idempotent** — repeating one changes nothing ($S \cup S = S$) and **have no inverses** ($S \cup T = S \cup R$ does not force $T = R$), so pooling has no undo, and the analogy with arithmetic stops here.
+$\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for (D1) and a false friend elsewhere. Set operations **repeat harmlessly** — repeating one changes nothing ($S \cup S = S$) and **have no inverses** ($S \cup T = S \cup R$ does not force $T = R$), so pooling has no undo, and the analogy with arithmetic stops here.
 
 There *is* a repair: swapping $\cup$ for symmetric difference (in-one-but-not-both) restores the missing inverses, since every set is its own inverse under it. The resulting structure does obey the arithmetic laws, and it is the version algebraists reach for.
 </Warning>
@@ -113,7 +113,7 @@ $$
 The proofs are the same element chases, with the case split now running over $n$ possibilities instead of two. Nothing about the argument changes; only the bookkeeping grows.
 
 <Aside>
-(D1) and (D2) are equivalent, and the duality argument above is the quickest route — but it leans on complements. A system with $\cap$ and $\cup$ but no complement still has the equivalence, by a short direct computation instead.
+(D1) and (D2) are equivalent, and the mirror argument above is the quickest route — but it leans on complements. A system with $\cap$ and $\cup$ but no complement still has the equivalence, by a short direct computation instead.
 
 That matters because the subspace example has no complements either: there is no single subspace playing the role of "everything not in $U$". Which is a second reason its failure of distributivity cannot be diagnosed by the methods of this chapter.
 </Aside>

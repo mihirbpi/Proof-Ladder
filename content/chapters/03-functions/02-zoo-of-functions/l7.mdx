@@ -61,7 +61,7 @@ Note that this "formula" presupposes the factorisation of $n$; it is not an eval
 
 ## Functions on products, and currying
 
-$m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$, $m(a,b) = ab$, is a function whose domain is a product set (§2.9). Treating binary operations as functions is what lets §3.5–3.6 apply to them: $m$ fails injectivity ($m(6,4)=m(2,12)$) and satisfies surjectivity ($m(n,1)=n$).
+$m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$, $m(a,b) = ab$, is a function whose domain is a product set (§2.9). Treating a two-input operation as a function is what lets §3.5–3.6 apply to it: $m$ fails injectivity ($m(6,4)=m(2,12)$) and satisfies surjectivity ($m(n,1)=n$).
 
 Equivalently, by currying, $m$ corresponds to $\hat m : \mathbb{Z} \to (\mathbb{Z} \to \mathbb{Z})$ sending $a$ to multiplication-by-$a$. The two views are interchangeable, and the second is how one sees at a glance that $\hat m(0)$ is the constant zero map while $\hat m(a)$ for $a \neq 0$ is injective.
 

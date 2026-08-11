@@ -21,7 +21,7 @@
     "l4": "Prove a *for all* claim by taking an arbitrary element and following it; disprove it with one counterexample. Prove a *there exists* claim by exhibiting a witness; disprove it by proving the denial for everything.",
     "l5": "Each of the four proof tasks has its own template: arbitrary element, counterexample, witness, universal negation — plus the two-part pattern for uniqueness.",
     "l6": "The strategy for a quantified goal is determined by the outermost quantifier and by whether you are proving or refuting; splitting into cases is legitimate whenever the cases exhaust the domain.",
-    "l7": "The four tasks — proving and disproving each of the two quantifiers — have fixed templates determined by the negation laws. The *for all* proof rests on an arbitrary but fixed element, and proof by cases is licensed by any split that covers everything.",
+    "l7": "The four tasks — proving and disproving each of the two quantifiers — have fixed templates determined by the negation laws. The *for all* proof rests on an named at the start and never changed element, and proof by cases is licensed by any split that covers everything.",
     "l8": "Universal generalisation is sound exactly because the element chosen is arbitrary but fixed — free of any hypothesis particular to it; existential instantiation dually introduces a fresh constant, and confusing the two is the standard source of fallacious quantifier reasoning."
   },
   "kernel": "Prove ∀ by arguing about an arbitrary element; disprove ∀ with one counterexample. Prove ∃ by exhibiting a witness; disprove ∃ by proving the universal negation. Prove ∃! by exhibiting and then showing any two candidates coincide.",
