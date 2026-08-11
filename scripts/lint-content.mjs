@@ -1140,7 +1140,6 @@ const PROSE_REGISTER = [
   [/\bestablishes?\b/i, 'proves'],
   [/\bsuffices\b/i, 'is enough'],
   [/\bprecisely\b/i, 'exactly'],
-  [/\bvacuous(ly)?\b/i, 'true because there is nothing to check'],
   [/\bobligation\b/i, 'the thing still to check'],
   [/\bmachinery\b/i, 'the tools, or say what they are'],
   [/\bpedantry\b|\bpedantic\b/i, 'fussiness'],
@@ -1409,7 +1408,11 @@ for (const f of files) {
     // Distinct kinds of mark, not total marks. `$\emptyset \in \{\emptyset\}$`
     // has three marks and two ideas, and reads fine; what defeats a reader is
     // three *different* symbols to hold at once.
-    const n = new Set(m[1].match(INLINE_MARKS) ?? []).size;
+    // All the blackboard-bold number systems count as one kind of mark: a
+    // reader who can read ℕ can read ℤ, and "$\mathbb{N}, \mathbb{Z},
+    // \mathbb{Q}, \mathbb{R}$" is a list of names, not four things to hold.
+    const kinds = (m[1].match(INLINE_MARKS) ?? []).map((x) => (x.startsWith('\\mathbb') ? '\\mathbb' : x));
+    const n = new Set(kinds).size;
     if (n >= 3 && (!worst || n > worst.n)) worst = { n, t: m[0] };
   }
   if (worst) {

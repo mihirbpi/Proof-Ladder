@@ -107,9 +107,9 @@ and this is legitimate **only if every link is genuinely an if-and-only-if state
 <Warning title="Where iff-chains go wrong">
 The failure is writing $\iff$ where only $\Rightarrow$ holds:
 
-- $x = y \Rightarrow x^2 = y^2$, but not conversely;
-- $a = b \Rightarrow ac = bc$, and conversely **only if** $c \neq 0$;
-- $x > 0 \wedge y > 0 \Rightarrow xy > 0$, but not conversely.
+- $x = y \Rightarrow x^2 = y^2$, but not going the other way;
+- $a = b \Rightarrow ac = bc$, and going the other way **only if** $c \neq 0$;
+- $x > 0 \wedge y > 0 \Rightarrow xy > 0$, but not going the other way.
 
 Solving equations is where this bites. "Solve $\sqrt{x+2} = x$": squaring gives $x^2 - x - 2 = 0$, so $x \in \{2,-1\}$ — but $x = -1$ fails the original. The squaring step was $\Rightarrow$, not $\iff$, so the final set is a *superset* of the solution set and must be filtered.
 

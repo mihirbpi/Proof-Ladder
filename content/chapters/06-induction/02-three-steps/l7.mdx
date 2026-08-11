@@ -64,7 +64,7 @@ Independence of the two hypotheses is easy to exhibit:
 
 ## Writing the step so it can be checked
 
-The three obligations of the inductive step are stated the same way every time, and departing from the phrasing is what makes a proof hard to read.
+The three things to check of the inductive step are stated the same way every time, and departing from the phrasing is what makes a proof hard to read.
 
 > **Inductive step.** Let $k \geq n_0$ and assume $A(k)$. … Therefore $A(k+1)$.
 
@@ -94,7 +94,7 @@ So $S = \emptyset$.
 
 This is the **least counterexample** formulation, and it is often the more convenient one to write — particularly for statements where the decomposition of case $n$ is not into case $n-1$.
 
-Conversely the smallest-number principle follows from induction (§6.1), so the two are equivalent over the remaining Peano axioms. Chapter 7 identifies induction as Axiom 9 and shows it is what forces $\mathbb{N}$ to contain nothing beyond $0$ and its successors.
+Going the other way, the smallest-number principle follows from induction (§6.1), so the two are equivalent over the remaining Peano axioms. Chapter 7 identifies induction as Axiom 9 and shows it is what forces $\mathbb{N}$ to contain nothing beyond $0$ and its successors.
 
 <Warning title="Three failure modes">
 **Backwards reasoning.** Starting from $A(k+1)$ and manipulating to something true proves nothing unless every step is reversible. Write the chain forwards from the left-hand side of $A(k+1)$.
