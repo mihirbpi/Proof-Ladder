@@ -57,7 +57,7 @@ Associativity is what lets you write $A \cup B \cup C$ over finitely many sets w
 
 ### Intersection is smaller, union is larger
 
-> **Proposition.** $S \cap T \subseteq S \subseteq S \cup T$.
+> **Proposition.** $S \cap T \subseteq S \subseteq S \cup T$ — *the overlap sits inside $S$, and $S$ sits inside the combination*.
 
 <Proof>
 Let $x \in S \cap T$. Then $x \in S \wedge x \in T$, so for instance $x \in S$. So $S \cap T \subseteq S$.
@@ -69,7 +69,7 @@ The proofs are short because $p \wedge q \Rightarrow p$ and $p \Rightarrow p \ve
 
 ## Disjointness
 
-$S, T$ are **disjoint** when $S \cap T = \emptyset$. This is a universal negative, $\forall x\, \neg(x \in S \wedge x \in T)$, so §1.12 dictates an arbitrary-element argument.
+$S, T$ are **disjoint** when $S \cap T = \emptyset$. This is a universal negative — $\forall x\, \neg(x \in S \wedge x \in T)$, meaning *no $x$ whatsoever lies in both* — so §1.12 dictates an arbitrary-element argument.
 
 > **Proposition.** In $\mathbb{R}$, the zero sets of $\sin$ and $\cos$ are disjoint.
 
@@ -135,7 +135,7 @@ A two-circle diagram takes for granted that all four regions are nonempty. If yo
 <Aside>
 Every identity in this chapter follows from a short list: commutativity, associativity, idempotence, identities, absorption, the distributive laws (§2.8), and De Morgan (§2.7). Nothing else is needed, and everything else is a consequence.
 
-That list is worth knowing as a list, because the same seven properties govern $\wedge, \vee, \neg$ in Chapter 1 and the AND/OR/NOT of a digital circuit. Three subjects, one set of rules — which is why a fact proved in any one of them transfers to the other two without reproof.
+That list is worth knowing as a list, because the same seven properties govern *and*, *or* and *not* — $\wedge, \vee, \neg$ — in Chapter 1 and the AND/OR/NOT of a digital circuit. Three subjects, one set of rules — which is why a fact proved in any one of them transfers to the other two without reproof.
 </Aside>
 
 <WhereThisGoes level="l7">

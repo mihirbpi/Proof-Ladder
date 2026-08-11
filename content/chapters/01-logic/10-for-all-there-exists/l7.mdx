@@ -33,7 +33,9 @@ Both matter more than they look.
 
 **The domain is part of the claim.** $\exists x,\, 3x - 1 = 0$ is true over the rationals, over the real numbers, and over $\mathbb{C}$; false over the integers. $\forall x,\, x^2 \geq 0$ is true over the real numbers and false over $\mathbb{C}$ (where $\geq$ is not even defined, which is a different and worse kind of failure). Writing $\forall x, \ldots$ without a domain is not shorthand; it is an incomplete sentence, and in a proof it is where errors hide.
 
-**Quantifiers are *and* and *or* stretched to infinity.** Over a finite domain $S = \{a_1, \ldots, a_n\}$,
+### Quantifiers are *and* and *or* stretched to infinity
+
+Over a finite domain $S = \{a_1, \ldots, a_n\}$,
 $$
 \forall x \in S,\, p(x) \;\equiv\; p(a_1) \wedge \cdots \wedge p(a_n),
 \qquad
@@ -44,7 +46,7 @@ $$
 
 So $\forall$ is an endless chain of $\wedge$, and $\exists$ an endless chain of $\vee$. Every fact about quantifiers in this chapter — including the negation rules of §1.11 — is the corresponding fact about $\wedge$ and $\vee$ pushed to infinity.
 
-A consequence worth stating: over $S = \emptyset$, $\forall x \in \emptyset,\, p(x)$ is **true** (an empty conjunction) and $\exists x \in \emptyset,\, p(x)$ is **false** (an empty disjunction), for every $p$. The first is vacuous truth (§1.5) in quantifier form.
+A consequence worth stating: over $S = \emptyset$, the claim $\forall x \in \emptyset,\, p(x)$ — *every $x$ in the empty set satisfies $p$* — is **true** for every $p$, since there is no $x$ to check; and $\exists x \in \emptyset,\, p(x)$ — *some $x$ in the empty set satisfies $p$* — is **false**, since there is no $x$ to produce. The first is vacuous truth (§1.5) in quantifier form.
 
 ## Unique existence
 
@@ -58,7 +60,7 @@ $$
 
 Existence and uniqueness are independent things to check, discharged separately.
 
-> **Proposition.** $\exists! x \in \mathbb{R}$ with $3x - 1 = 0$.
+> **Proposition.** $\exists! x \in \mathbb{R}$ with $3x - 1 = 0$ — *exactly one real number satisfies it*.
 
 <Proof>
 *Existence.* Take $x = \tfrac13$. Then $3 \cdot \tfrac13 - 1 = 0$.

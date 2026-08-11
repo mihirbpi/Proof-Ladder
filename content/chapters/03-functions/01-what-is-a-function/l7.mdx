@@ -13,11 +13,11 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 A **function** $f : S \to T$ assigns to each $s \in S$ exactly one $f(s) \in T$. Formally, three conditions:
 
-- **Totality.** $\forall s \in S,\ \exists t \in T,\ f(s) = t$.
+- **Totality.** $\forall s \in S,\ \exists t \in T,\ f(s) = t$ — *every input has at least one output*.
 - **Well-definedness.** $f(s) = t_1 \wedge f(s) = t_2 \Rightarrow t_1 = t_2$.
 - **Codomain.** All values lie in $T$.
 
-Together the first two are $\forall s \in S,\ \exists!\, t \in T,\ f(s) = t$ — §1.10's unique-existence quantifier, and the reason that module preceded this one.
+Together the first two are $\forall s \in S,\ \exists!\, t \in T,\ f(s) = t$ — *every input has exactly one output* — §1.10's unique-existence quantifier, and the reason that module preceded this one.
 
 Note what is *not* required. Nothing constrains the codomain side: distinct inputs may share an output (§3.5 studies its absence), and elements of $T$ may be unhit (§3.6). Beginners routinely import symmetry that is not there.
 

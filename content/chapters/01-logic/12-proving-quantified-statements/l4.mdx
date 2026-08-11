@@ -58,11 +58,11 @@ Note the hypothesis $n \geq 3$ is not decoration: at $n = 2$ the factorisation g
 
 $2$ is prime and even. Refuted. By the negation law, exhibiting one failure *is* a proof of the negation, so this is a complete disproof rather than evidence.
 
-For claims of the form *for every $x$, if the hypothesis holds then so does the conclusion*, the counterexample must satisfy the hypothesis and violate the conclusion — module 1.11 derived this from $\neg(p \Rightarrow q) \equiv p \wedge \neg q$.
+For claims of the form *for every $x$, if the hypothesis holds then so does the conclusion*, the counterexample must satisfy the hypothesis and violate the conclusion — module 1.11 derived this from $\neg(p \Rightarrow q) \equiv p \wedge \neg q$ — denying *if $p$ then $q$* means asserting $p$ and denying $q$.
 
 ## Task 3: witness
 
-> **Claim.** $\exists! x \in \mathbb{R}$ with $3x - 1 = 0$.
+> **Claim.** $\exists! x \in \mathbb{R}$ with $3x - 1 = 0$ — *exactly one real number $x$ satisfies $3x-1=0$*.
 
 <Proof>
 *Existence.* Take $x = \tfrac13$; then $3 \cdot \tfrac13 - 1 = 0$.
@@ -74,9 +74,9 @@ The uniqueness half has a fixed shape worth memorizing: **suppose two objects bo
 
 ## Task 4: disproving an existential, and proof by cases
 
-> **Claim.** $\exists x \in \mathbb{R}$ with $x^2 < 0$.
+> **Claim.** $\exists x \in \mathbb{R}$ with $x^2 < 0$ — *some real number has a negative square*.
 
-To refute this we must prove $\forall x \in \mathbb{R},\, x^2 \geq 0$ — a universal claim, so back to task 1. But no single argument covers all reals here, so we **split into cases**.
+To refute this we must prove $\forall x \in \mathbb{R},\, x^2 \geq 0$ — *every real number squares to at least zero* — a universal claim, so back to task 1. But no single argument covers all reals here, so we **split into cases**.
 
 <Proof>
 Let $x$ be any real number. Exactly one of $x > 0$, $x = 0$, $x < 0$ holds.

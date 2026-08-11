@@ -16,7 +16,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 > $$m = nq + r, \qquad 0 \leq r < n.$$
 
 <Discussion>
-  <div slot="know">$n > 0$. Consider $S = \{m - nk : k \in \mathbb{Z}\} \cap \mathbb{Z}_{\geq 0}$, the non-negative numbers of that form.</div>
+  <div slot="know">$n > 0$. Consider $S = \{m - nk : k \in \mathbb{Z}\} \cap \mathbb{Z}_{\geq 0}$ — *the non-negative numbers you can reach by subtracting whole multiples of $n$ from $m$*.</div>
   <div slot="want">Existence and uniqueness of $(q,r)$.</div>
   <div slot="how">Existence: $S$ is nonempty (take $k$ very negative) and consists of non-negative integers, so because every non-empty collection of non-negative integers has a smallest member — it has a smallest member $r$, and being smallest forces $r < n$. Uniqueness: two representations differ by a multiple of $n$ smaller than $n$ in absolute value, so by $0$.</div>
 </Discussion>

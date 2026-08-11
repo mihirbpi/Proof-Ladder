@@ -20,7 +20,7 @@ $$
 
 *Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and".*
 
-This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$, an if-and-only-if statement decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
+This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$ — *everything is in one exactly when it is in the other* — an if-and-only-if statement decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
 
 Equivalently: **double inclusion is the rule that mutual containment forces equality of $\subseteq$**, the third partial-order axiom whose proof was deferred in §2.3.
 
@@ -86,7 +86,7 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with".*
 
-the last step by the absorption law $p \vee (p \wedge q) \equiv p$. This is legitimate — every step is a genuine if-and-only-if statement — and it proves $S \cup (S \cap T) = S$ in one line.
+the last step by the absorption law $p \vee (p \wedge q) \equiv p$ — *“$p$, or else both $p$ and $q$” says no more than $p$ alone*. This is legitimate — every step is a genuine if-and-only-if statement — and it proves $S \cup (S \cap T) = S$ in one line.
 
 <Warning title="When the chain is not safe">
 An $\iff$ chain replaces two inclusions only if **every** link is reversible. In set theory the links are usually definitional unfoldings, which are if-and-only-if statement, so the technique is generally sound. It stops being sound the moment a step is an implication in disguise — applying a non-injective (no two inputs share an output, §3.5) operation, or using a lemma with a converse you have not proved.

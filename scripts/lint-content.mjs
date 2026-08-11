@@ -1494,15 +1494,65 @@ for (const f of files) {
   if (!through) continue;
   const rel = path.relative(ROOT, f).split(path.sep).join('/');
   if (Math.floor(modPos(rel) / 100) > through) continue;
-  const raw = body(fs.readFileSync(f, 'utf8')).replace(/\$\$[\s\S]*?\$\$/g, ' ');
+  // Three exclusions, all for the reason the density cap already excludes
+  // proofs: inside a proof the symbols *are* the medium, and element-chasing
+  // cannot be de-symbolised without becoming worse. A table of correspondences
+  // is the object under discussion, not prose to parse in passing. And a
+  // display is not an inline span.
+  // Order matters and got this wrong once: body() strips JSX tags, so stripping
+  // <Proof> and <Discussion> *after* it finds nothing left to match. Cut the
+  // blocks out of the raw source first, then normalise.
+  const raw = body(
+    fs
+      .readFileSync(f, 'utf8')
+      .replace(/<Proof[\s\S]*?<\/Proof>/g, ' ')
+      .replace(/<Discussion[\s\S]*?<\/Discussion>/g, ' '),
+  )
+    .replace(/^\s*\|.*$/gm, ' ')
+    .replace(/\$\$[\s\S]*?\$\$/g, ' ');
+  // Wider than RENDERS_IT: for an inline span the question is only whether the
+  // sentence explains it, and "…means *for every real number x*" does.
+  // The house form for reading a span inline is the claim restated in italics
+  // in the same paragraph — "$p \Rightarrow q \equiv \neg q \Rightarrow \neg
+  // p$ — that is, *if p then q* claims exactly what *if not q then not p*
+  // claims". Any italic run of a dozen characters counts, which is loose, but
+  // the alternative measured worse: keying on a dash followed closely by
+  // italics flagged the very sentences written to satisfy the rule, because
+  // the reading usually sits a clause further on than that allows.
+  const READS_INLINE = new RegExp(
+    `${RENDERS_IT.source}|\\bmean(s|ing)?\\b|\\bis read\\b|\\bstands for\\b|(?<!\\*)\\*[^*\n]{12,}\\*(?!\\*)`,
+    'i',
+  );
+  // Proof prose that never got wrapped in <Proof>. A double-inclusion argument
+  // announces itself — "(⊆)", "Case x ∈ T:", "Existence." — and inside one the
+  // symbols are the medium, exactly as they are inside the tag. Glossing every
+  // step of an element chase makes it longer and harder, not easier.
+  const PROOF_PROSE =
+    /^\s*(\*\*)?\(?\s*(\$\\su[bp]seteq\$|⊆|⊇)\s*\)?|^\s*\*?(Case|Existence|Uniqueness|Conversely|Forward|Backward)\b|^\s*\(\s*(⊆|⊇|\$)/;
   let worst = null;
+  // A dense span is fine when the sentence around it already says what it
+  // says — "the contrapositive of $p \Rightarrow q$ is $\neg q \Rightarrow
+  // \neg p$: swap the two halves and deny both" needs no second reading. What
+  // is left after this exclusion is a statement dropped into a sentence that
+  // never tells the reader what it claims.
+  const paraOf = (i) => {
+    const a = raw.lastIndexOf('\n\n', i);
+    const b = raw.indexOf('\n\n', i);
+    return raw.slice(a < 0 ? 0 : a, b < 0 ? raw.length : b);
+  };
   for (const m of raw.matchAll(/(?<!\$)\$([^$\n]+)\$(?!\$)/g)) {
+    const par = paraOf(m.index).trim();
+    if (READS_INLINE.test(par) || PROOF_PROSE.test(par)) continue;
     // Distinct kinds of mark, not total marks. `$\emptyset \in \{\emptyset\}$`
     // has three marks and two ideas, and reads fine; what defeats a reader is
     // three *different* symbols to hold at once.
     // All the blackboard-bold number systems count as one kind of mark: a
     // reader who can read ℕ can read ℤ, and "$\mathbb{N}, \mathbb{Z},
     // \mathbb{Q}, \mathbb{R}$" is a list of names, not four things to hold.
+    // A span that is nothing but marks and separators is a list of names, not a
+    // claim: "$\wedge, \vee, \neg$" names three symbols the sentence is about
+    // and asks the reader to parse nothing.
+    if (!m[1].replace(INLINE_MARKS, '').replace(/[\s,;.\\{}()]/g, '')) continue;
     const kinds = (m[1].match(INLINE_MARKS) ?? []).map((x) => (x.startsWith('\\mathbb') ? '\\mathbb' : x));
     const n = new Set(kinds).size;
     if (n >= 3 && (!worst || n > worst.n)) worst = { n, t: m[0] };

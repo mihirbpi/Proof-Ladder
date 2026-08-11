@@ -63,7 +63,7 @@ If a case assumption is genuinely needed, it must be introduced as one branch of
 
 Proving $\exists x \in S,\, p(x)$ by exhibiting a **witness** is the constructive route and is always preferable when available. It is not always available. Two standard non-constructive patterns — routes that prove existence without producing the object:
 
-- **Contradiction.** Assume $\forall x \in S,\, \neg p(x)$; derive a contradiction. This proves existence without producing anything.
+- **Contradiction.** Assume $\forall x \in S,\, \neg p(x)$ — *that nothing in $S$ satisfies $p$* — and derive a contradiction. This proves existence without producing anything.
 - **Pigeonhole / counting.** Show the set of $x$ with $p(x)$ is nonempty by counting, without ever naming a member of it.
 
 The classic illustration: *there exist irrational $a, b$ with $a^b$ rational.* Consider $\sqrt{2}^{\sqrt{2}}$. Either it is rational — take $a = b = \sqrt2$ — or it is irrational, in which case take $a = \sqrt2^{\sqrt2}$, $b = \sqrt2$, so that $a^b = \sqrt2^{\,2} = 2$. Either way such a pair exists, and the proof does not tell you which pair. Excluded middle (every statement is either true or false, §1.2) is doing the work; a constructivist rejects the argument, though the theorem itself has constructive proofs by other routes.
@@ -84,10 +84,10 @@ The uniqueness template is *suppose two objects have the property; prove they ar
 
 Licensed by any exhaustive disjunction: if $p_1 \vee \cdots \vee p_k$ holds and each $p_i \Rightarrow q$, then $q$.
 
-> **Proposition.** $\neg \exists x \in \mathbb{R}$ with $x^2 < 0$.
+> **Proposition.** $\neg \exists x \in \mathbb{R}$ with $x^2 < 0$ — *no real number has a negative square*.
 
 <Proof>
-We prove the equivalent universal statement $\forall x \in \mathbb{R},\, x^2 \geq 0$. Let $x$ be any real number. Every real is positive, zero, or negative — exactly one of $x > 0$, $x = 0$, $x < 0$ holds.
+We prove the equivalent universal statement $\forall x \in \mathbb{R},\, x^2 \geq 0$ — *every real number squares to at least $0$*. Let $x$ be any real number. Every real is positive, zero, or negative — exactly one of $x > 0$, $x = 0$, $x < 0$ holds.
 
 If $x > 0$, then $x^2 > 0$ as a product of positives. If $x = 0$, then $x^2 = 0$. If $x < 0$, then $-x > 0$ and $x^2 = (-x)(-x) > 0$.
 

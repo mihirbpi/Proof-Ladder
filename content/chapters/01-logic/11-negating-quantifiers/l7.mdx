@@ -30,11 +30,11 @@ Note the domain is inert: negating a claim about every integer produces a claim 
 
 ## Counterexamples
 
-A **counterexample** to $\forall x \in S,\, p(x)$ is an element $c \in S$ with $\neg p(c)$. The negation law is what makes a counterexample a *disproof* rather than mere evidence: producing $c$ proves $\exists x \in S,\, \neg p(x)$, which is exactly the negation of the claim.
+A **counterexample** to $\forall x \in S,\, p(x)$ is an element $c \in S$ with $\neg p(c)$ — *one member of $S$ that fails the property is enough to sink the claim about all of them*. The negation law is what makes a counterexample a *disproof* rather than mere evidence: producing $c$ proves $\exists x \in S,\, \neg p(x)$, which is exactly the negation of the claim.
 
 *A reminder of the symbols in play: $\mathbb{N}$ reads the counting numbers.*
 
-Most theorems have the form $\forall x \in S,\, (p(x) \Rightarrow q(x))$, and since $\neg(p \Rightarrow q) \equiv p \wedge \neg q$ (§1.7), the negation is
+Most theorems have the form $\forall x \in S,\, (p(x) \Rightarrow q(x))$, and since $\neg(p \Rightarrow q) \equiv p \wedge \neg q$ (§1.7) — denying *if $p$ then $q$* means asserting $p$ and denying $q$, the negation is
 $$
 \exists x \in S,\; p(x) \wedge \neg q(x).
 $$
@@ -43,13 +43,13 @@ $$
 
 **A counterexample must satisfy the hypothesis and violate the conclusion.** This is the single most useful consequence of the module. An element that fails the hypothesis makes the conditional vacuously true (§1.5) — true because the case never arose — and refutes nothing.
 
-> *Claim:* $\forall x \in \mathbb{R},\; x^2 > 1 \Rightarrow x > 1$.
+> *Claim:* $\forall x \in \mathbb{R},\; x^2 > 1 \Rightarrow x > 1$ — *every real number whose square exceeds $1$ is itself bigger than $1$*.
 > *Counterexample:* $x = -3$ (satisfies $x^2 = 9 > 1$; violates $x > 1$).
 > *Not a counterexample:* $x = 0$ (fails the hypothesis; the conditional is vacuously true there).
 
 ## Worked negations
 
-**Compound condition.** $\forall x \in \mathbb{R},\, (x > 0) \vee (x < 0)$. Negating:
+**Compound condition.** $\forall x \in \mathbb{R},\, (x > 0) \vee (x < 0)$ — *every real number is either positive or negative*. Negating:
 $$
 \exists x \in \mathbb{R},\; \neg\big((x>0) \vee (x<0)\big)
 \;\equiv\;
@@ -107,7 +107,7 @@ Flip each quantifier in turn and the denial reads: *there is a tolerance so tigh
 Notice what the flip bought you. The original quantifies over infinitely many tolerances and is hard to attack head-on. Its denial asks for **one** tolerance, and then one escaping point per window — a job you can actually begin.
 
 <Warning title="Failure modes">
-**Over-negation.** $\neg \forall x\, p(x) \not\equiv \forall x\, \neg p(x)$. "Not every prime is odd" is not "every prime is even."
+**Over-negation.** $\neg \forall x\, p(x) \not\equiv \forall x\, \neg p(x)$ — *“not all of them do” is not “none of them do”*. "Not every prime is odd" is not "every prime is even."
 
 **Forgetting the *and* or *or* inside.** After flipping the quantifiers you must still negate the part inside, and if it contains $\Rightarrow$, $\wedge$, or $\vee$, further rules apply. A half-pushed negation is a common source of proofs of the wrong statement.
 
