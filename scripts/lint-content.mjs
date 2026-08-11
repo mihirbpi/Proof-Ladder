@@ -1338,7 +1338,17 @@ for (const f of files) {
   // and element-chasing cannot be de-symbolized without becoming worse. What
   // this measures is the exposition around the proofs — the part a reader has
   // to get through before they can even start on the argument.
-  const raw = fs.readFileSync(f, 'utf8').replace(/<Proof[\s\S]*?<\/Proof>/g, '');
+  // Two exclusions, both for the same reason: these are not the reader's
+  // obstacle, they are the help.
+  //   <Proof> — inside a proof the symbols are the medium.
+  //   the symbol key — a line reading '*Symbol by symbol: ∈ is "is in" … So the
+  //   line reads: …*' names marks in order to explain them. Counting it made
+  //   explaining a symbol look identical to using one, so a page that glossed
+  //   every display scored as *denser* than the same page with no help at all.
+  const raw = fs
+    .readFileSync(f, 'utf8')
+    .replace(/<Proof[\s\S]*?<\/Proof>/g, '')
+    .replace(/^\*(Symbol by symbol|A reminder of the symbols)[\s\S]*?\*$/gm, '');
   const text = body(raw);
   const words = text.replace(/[^A-Za-z ]/g, ' ').split(/\s+/).filter(Boolean).length;
   const symbols = (text.match(DENSITY_SYMBOLS) ?? []).length;

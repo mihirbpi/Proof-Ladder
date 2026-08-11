@@ -13,14 +13,14 @@ Module 1.1 noted that $x \geq 1$ is not a statement: the $x$ has not been pinned
 
 ## The *for all* quantifier
 
-The symbol $\forall$ is read "for all" or "for every". The ***for all* quantifier** asserts a property of every element of a stated set:
+The symbol $\forall$ is read "for all" or "for every". A statement built with it claims that something is true of **every** member of a collection you name:
 $$
 \forall x \in \mathbb{R},\; x^2 \geq 0.
 $$
 
 *Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every". So the line reads: every number on the line has a square that is zero or bigger.*
 
-Read: "for all real numbers $x$, $x^2$ is at least $0$." True.
+And it is true: squaring any number on the line gives something at zero or above.
 
 The set matters. Compare:
 $$
@@ -31,18 +31,18 @@ $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every". So the line reads: the first says every integer is at least $1$, which is false because $0$ is not; the second says every integer is at least $1$ or at most $0$, which is true.*
 
-A quantified statement without a stated domain is incomplete. Write the $\in$.
+**A claim of this kind is incomplete until you say what collection it runs over.** The same condition can be true of every integer and false of every fraction; the collection is part of the claim, not decoration around it.
 
 ## The *there exists* quantifier
 
-The symbol $\exists$ is read "there exists". The ***there exists* quantifier** asserts that at least one element has the property:
+The symbol $\exists$ is read "there exists". A statement built with it claims that **at least one** member of the collection has the property:
 $$
 \exists x \in \mathbb{R},\; 3x - 1 = 0.
 $$
 
 *Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\exists$ is "there is some". So the line reads: there is some number on the line for which three times it, minus one, is zero.*
 
-True, with $x = \tfrac{1}{3}$. Contrast
+True — take $x = \tfrac13$. Contrast it with
 $$
 \exists x \in \mathbb{Z},\; 3x - 1 = 0,
 $$
@@ -52,38 +52,38 @@ $$
 which is **false** — no integer works. Same condition, different collection to run it over, different truth value.
 
 <Warning title="There exists never means exactly one">
-$\exists x \in \mathbb{R},\, x^2 = 4$ is true, and there are two such $x$. The *there exists* quantifier says *at least* one; it is completely silent on how many. If you want exactly one, you must say so.
+"There is a number whose square is $4$" is true, and there are two of them. A *there exists* claim says **at least** one, and is completely silent about how many. If you mean exactly one, you have to say so.
 </Warning>
 
 ## Unique existence
 
-The symbol $\exists!$ is read "there exists exactly one" or "there exists a unique". It packs two claims into one symbol:
+The symbol $\exists!$ is read "there exists exactly one". It packs two separate claims into one mark:
 
-- **at least one** element of the set has the property, and
-- **no two different** elements both have it.
+- **at least one** member of the collection has the property, and
+- **no two different** members both have it.
 
-Two obligations, and both must be discharged.
+Two obligations, and a proof owes you both.
 
-> **Claim.** $\exists! x \in \mathbb{R}$ such that $3x - 1 = 0$.
+> **Claim.** Exactly one number on the line satisfies $3x - 1 = 0$.
 
-**Existence.** $x = \tfrac13$ satisfies $3 \cdot \tfrac13 - 1 = 0$.
+**At least one.** Take $x = \tfrac13$. Then $3 \cdot \tfrac13 - 1 = 0$. ✓
 
-**Uniqueness.** Suppose $a$ and $b$ are real numbers both satisfy the equation: $3a - 1 = 0$ and $3b - 1 = 0$. Then $3a = 1 = 3b$, so $3a = 3b$, and dividing by $3$ gives $a = b$. So there are not two distinct solutions.
+**No two.** Suppose $a$ and $b$ both satisfy it: $3a - 1 = 0$ and $3b - 1 = 0$. Then $3a = 1 = 3b$, so $3a = 3b$, and dividing by $3$ gives $a = b$. The two "different" solutions turned out to be the same number.
 
 The uniqueness pattern — *suppose two things both work, then prove they are equal* — is the standard one, and you will reuse it constantly.
 
 ## The evidence each quantifier demands
 
-| Statement | To prove | To disprove |
+| Statement | To prove it | To disprove it |
 |---|---|---|
-| $\forall x \in S$, the property holds | argue for a single $x \in S$ chosen without assumptions | exhibit one $x \in S$ where it fails |
-| $\exists x \in S$, the property holds | exhibit one $x \in S$ where it holds | show it fails for every $x \in S$ |
+| it holds for **every** member | argue about a single member, chosen without assumptions | produce one member where it fails |
+| it holds for **some** member | produce one member where it holds | show it fails for every member |
 
 The two rows are mirror images, and the mirror is negation — which is module 1.11. What matters now is the practical consequence: **you cannot prove a universal claim by examples, and you cannot disprove an existential claim by examples.** In each of those cells the work is a general argument, not a search.
 
 ## Quantifiers are hidden everywhere
 
-Most theorems are if–then claim made about every elements whose $\forall$ is left unwritten:
+Most theorems are if–then claims made about every member of some collection, with the *for every* left unwritten:
 
 > If $x > 1$ then $x^2 > 1$
 
@@ -93,7 +93,7 @@ $$\forall x \in \mathbb{R},\; (x > 1 \Rightarrow x^2 > 1).$$
 
 *Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces". So the line reads: for every number on the line: if it is bigger than $1$, then its square is bigger than $1$.*
 
-That invisible $\forall$ is why the proof in module 1.6 had to reason about a nameless $x$ rather than checking a few values. Making the quantifier visible is often the first useful step on a problem you are stuck on.
+That invisible *for every* is why the proof in module 1.6 had to reason about a nameless number rather than checking a few values. Making the quantifier visible is often the first useful step on a problem you are stuck on.
 
 ## Two quantifiers at once
 
@@ -103,14 +103,16 @@ $$\forall x \in \mathbb{R},\; \exists y \in \mathbb{R},\; x + y = 0$$
 
 *Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: for every number, there is some number you can add to it to get zero.*
 
-says: whatever $x$ you hand me, I can find a $y$ that cancels it. True — take $y = -x$, which is allowed to depend on $x$.
+It says: whatever number you hand me, I can find one that cancels it. **True** — take the negative of whatever you were handed, which the second choice is allowed to depend on.
 
 $$\exists y \in \mathbb{R},\; \forall x \in \mathbb{R},\; x + y = 0$$
 
 *Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: there is one single number that gives zero when added to every number.*
 
-says: there is a single $y$ that cancels *every* $x$ at once. False — no fixed $y$ works for both $x = 1$ and $x = 2$.
+It says: there is one single number that cancels **everything** at once. **False** — no fixed number cancels both $1$ and $2$.
 
-Same symbols, same condition, opposite truth values. The rule of thumb: an inner quantifier may depend on the outer ones; an outer one may not depend on the inner ones.
+Same symbols, same condition, opposite verdicts — and the only difference is which quantifier came first.
 
-This ordering subtlety is not a technicality; it is one of the hardest things in the mathematics ahead of you. Two important definitions in a later course differ by exactly one swap of $\forall$ and $\exists$ — and readers who have not internalised this module cannot see the difference at all.
+The rule of thumb: **a later choice may depend on an earlier one; an earlier choice may not depend on a later one.** Reading the line left to right is reading the order the choices get made in.
+
+This ordering subtlety is not a technicality; it is one of the hardest things in the mathematics ahead of you. Two important definitions in a later course differ by exactly one swap of *for every* and *there is* — and a reader who has not taken this module seriously cannot see the difference at all.
