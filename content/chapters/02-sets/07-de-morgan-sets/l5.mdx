@@ -27,15 +27,11 @@ $$
 
 *Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
 
-**Complementing swaps $\cap$ and $\cup$.** Compare module 1.4:
-$$
-\neg(p \wedge q) \equiv \neg p \vee \neg q, \qquad
-\neg(p \vee q) \equiv \neg p \wedge \neg q.
-$$
+**Taking the outside swaps intersection and union.** Compare module 1.4, where denying an *and* gave an *or*, and denying an *or* gave an *and*.
 
 *Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
 
-These are the same two laws. Under the dictionary of module 2.4 — $\neg$ to complement, $\wedge$ to $\cap$, $\vee$ to $\cup$ — each logic law becomes a set law, and you should expect the proofs to correspond too.
+These are the same two laws. Under the dictionary of module 2.4 — *not* becomes complement, *and* becomes intersection, *or* becomes union — each logic law turns into a set law, and you should expect the proofs to correspond too.
 
 ## Reading DM2 in words
 
@@ -50,7 +46,7 @@ Say it about something concrete. A student is not taking chemistry or physics ex
 ## Proof of DM2
 
 <Discussion>
-  <div slot="know">$x \in \overline{S \cup T}$ unfolds to $\neg(x \in S \vee x \in T)$. $x \in \overline S \cap \overline T$ unfolds to $(x \notin S) \wedge (x \notin T)$.</div>
+  <div slot="know">Being outside the union means it is not the case that you are in $S$ or in $T$. Being in the overlap of the two outsides means you are outside $S$ **and** outside $T$.</div>
   <div slot="want">Double inclusion (module 2.6).</div>
   <div slot="how">Unfold both sides into logic, then apply the logic law of module 1.4 at the pivot. Every other step is bookkeeping.</div>
 </Discussion>
@@ -69,7 +65,7 @@ Suppose $x \in S \cup T$. Then $x \in S$ or $x \in T$, and both have been ruled 
 Both inclusions hold, so $\overline{S \cup T} = \overline S \cap \overline T$.
 </Proof>
 
-The backward direction used **suppose not** (module 2.5) in miniature: the goal $x \notin S \cup T$ is a negative claim, so assuming the positive and finding it impossible was the direct route.
+The backward direction used **suppose not** (module 2.5) in miniature: the goal was a negative one — *not* in the union — so assuming the positive and finding it impossible was the direct route.
 
 ## DM1, for free
 
@@ -95,19 +91,17 @@ which is DM1.
 
 **One law was proved and the other was derived**, using nothing but double complementation. Module 2.8 shows this is not luck: the mirroring is general, and every identity about $\cap$ and $\cup$ comes with a partner obtained by swapping the two.
 
-Note the tool that made it work. $\overline{\overline S} = S$ is the set version of $\neg\neg p \equiv p$ from module 1.2, which looked at the time like a fact too small to bother naming.
+Note the tool that made it work: the outside of the outside is the original set. That is the set version of denying a denial from module 1.2, which looked at the time like a fact too small to bother naming.
 
 <Warning title="The complement of an intersection is not the intersection of complements">
-$$
-\overline{S \cap T} \neq \overline S \cap \overline T \quad\text{in general.}
-$$
+The outside of an intersection is **not** the intersection of the outsides.
 
 *Symbol by symbol: $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: the outside of an overlap is **not** the overlap of the outsides — the operation has to swap.*
 
 The operation swaps; it does not pass through unchanged. Test it. In $U = \{1,2,3\}$ with $S = \{1\}$ and $T = \{2\}$:
 
-- $S \cap T = \emptyset$, so $\overline{S \cap T} = \{1,2,3\}$.
-- $\overline S = \{2,3\}$ and $\overline T = \{1,3\}$, so $\overline S \cap \overline T = \{3\}$.
+- $S$ and $T$ share nothing, so the outside of their intersection is everything: $\{1,2,3\}$.
+- But the outside of $S$ is $\{2,3\}$ and the outside of $T$ is $\{1,3\}$, and those overlap in just $\{3\}$.
 
 Not equal. This is module 1.4's error transplanted, and it appears most often when negating a hypothesis with two conditions: the negation of *$x$ is positive and rational* is *$x$ is not positive **or** not rational*.
 </Warning>

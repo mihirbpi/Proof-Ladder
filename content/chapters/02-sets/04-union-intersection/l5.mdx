@@ -21,7 +21,7 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with", $\cap$ is "overlapped with".*
 
-**Union is $\vee$ and intersection is $\wedge$.** Every fact in this module and the next three is a logic fact from Chapter 1, translated.
+**Union is *or*, and intersection is *and*.** Every fact in this module and the next three is a logic fact from Chapter 1, translated.
 
 <Figure alt="Two overlapping circles labeled S and T inside a rectangle, with the overlap shaded.">
   <VennTwo labelS="S" labelT="T" shade={["both"]} />
@@ -33,7 +33,7 @@ Since the *or* of module 1.3 is inclusive, $S \cup T$ contains the overlap. An e
 
 Your algebra course has been intersecting sets all year without saying so.
 
-The solution set of a single equation is a set-builder set (module 2.2). A **system** asks for the values satisfying *both* equations at once — and "both" is $\wedge$, which is $\cap$:
+The solution set of a single equation is a set-builder set (module 2.2). A **system** asks for the values satisfying *both* equations at once — and "both" is *and*, which is intersection:
 
 $$
 \underbrace{\{(x,y) \mid y = 2x - 1\}}_{\text{a line}} \ \cap\
@@ -61,7 +61,7 @@ $$
 
 ## Disjoint sets
 
-$S$ and $T$ are **disjoint** when $S \cap T = \emptyset$ — no element belongs to both.
+$S$ and $T$ are **disjoint** when their intersection is empty — when no element belongs to both.
 
 $$
 \{x \in \mathbb{Z} \mid x \text{ even}\} \cap \{x \in \mathbb{Z} \mid x \text{ odd}\} = \emptyset,
@@ -77,7 +77,7 @@ Disjointness matters because it licenses counting by addition: if two finite set
 
 *A reminder of the symbols in play: $\subseteq$ reads "is a subset of".*
 
-> **Proposition.** For all sets $S$ and $T$: $\ S \cap T \subseteq S \subseteq S \cup T$.
+> **Proposition.** For any sets $S$ and $T$: the intersection sits inside $S$, and $S$ sits inside the union.
 
 <Proof>
 **$S \cap T \subseteq S$.** Let $x \in S \cap T$ be arbitrary. By definition $x \in S$ and $x \in T$; in particular $x \in S$. As $x$ was arbitrary, $S \cap T \subseteq S$.
@@ -85,14 +85,14 @@ Disjointness matters because it licenses counting by addition: if two finite set
 **$S \subseteq S \cup T$.** Let $x \in S$ be arbitrary. Then "$x \in S$ or $x \in T$" is true, since its first part is. So $x \in S \cup T$, and $S \subseteq S \cup T$.
 </Proof>
 
-Both halves are one line, and each is a logic rule with sets painted on: *from $p \wedge q$ conclude $p$*, and *from $p$ conclude $p \vee q$*. Chasing an arbitrary element through a definition is the whole technique of this chapter, and this is its smallest instance.
+Both halves are one line, and each is a logic rule with sets painted on: *an **and** gives you either half*, and *either half gives you an **or***. Chasing an element through a definition is the whole technique of this chapter, and this is its smallest instance.
 
 **Intersection only shrinks and union only grows.** Worth remembering as a sanity check: if a manipulation ever produces an intersection larger than one of its inputs, something has gone wrong.
 
 <Warning title="Everyday or is not this or">
 "Soup or salad" means one, not both. Mathematical *or* means at least one, and both is allowed — module 1.3's point, now built into $\cup$.
 
-If you genuinely need "exactly one of the two", that set is written $(S \cup T) \setminus (S \cap T)$: in the union, but not in the overlap. It has a name, the *symmetric difference*, and the fact that it takes a formula while $\cup$ gets a symbol tells you which one mathematics needs more often.
+If you genuinely need "exactly one of the two", that set is the union take away the intersection: in one of them, but not in both. It has a name, the *symmetric difference*, and the fact that it takes a formula while $\cup$ gets a symbol tells you which one mathematics needs more often.
 </Warning>
 
 <Aside>
@@ -100,12 +100,12 @@ The dictionary between logic and sets is exact, and it is worth writing down now
 
 | Logic | Sets |
 |---|---|
-| $\wedge$ | $\cap$ |
-| $\vee$ | $\cup$ |
-| $\neg$ | complement (module 2.5) |
-| $\Rightarrow$ | $\subseteq$ |
+| and | intersection |
+| or | union |
+| not | complement (module 2.5) |
+| if–then | subset |
 
-The last row is the surprising one. $A \subseteq S$ *is* the statement $x \in A \Rightarrow x \in S$, quantified over all $x$ — so containment is implication in disguise, which is why proving a containment always feels like proving an if–then.
+The last row is the surprising one. *$A$ is a subset of $S$* just **is** the if–then claim *being in $A$ forces being in $S$*, made about every object at once — so containment is implication in disguise, which is why proving a containment always feels like proving an if–then.
 
-Modules 2.7 and 2.8 exploit the table directly: they take laws proved about $\wedge$ and $\vee$ in Chapter 1 and read them off as laws about $\cap$ and $\cup$, and the proofs are the same proofs.
+Modules 2.7 and 2.8 use the table directly: they take laws proved about *and* and *or* in Chapter 1 and read them off as laws about intersection and union, and the proofs are the same proofs.
 </Aside>

@@ -55,7 +55,7 @@ Everyday English often uses *or* exclusively: "soup or salad" means one, not bot
 
 The convention is not arbitrary. Solving $x^2 \geq 1$ gives $x \leq -1$ **or** $x \geq 1$, and you would not want that statement to become false if some $x$ satisfied both. More sharply: "$x \geq 0$ or $x \leq 0$" is true for every real $x$, including $x = 0$ where both hold. An exclusive reading would make it false at exactly one point, and every theorem quoting it would need a special case.
 
-Exclusive or exists, and it equals $(p \vee q)\wedge\neg(p\wedge q)$. Mathematics uses it rarely and always names it.
+The exclusive kind exists — *one or the other but not both* — and mathematics uses it rarely, always naming it when it does.
 </Warning>
 
 ## Compound statements and three variables
@@ -83,18 +83,13 @@ Two statements are **logically equivalent**, written $\equiv$, when their truth-
 
 This is the key notion, because equivalence licenses substitution: if $p \equiv q$, you may replace one by the other anywhere in a proof.
 
-Quick examples, each checkable in four rows:
-$$
-p \wedge q \equiv q \wedge p, \qquad
-\neg\neg p \equiv p, \qquad
-p \vee (p \wedge q) \equiv p.
-$$
+Quick examples, each checkable in four rows: the order inside an *and* does not matter; denying twice returns you to where you started; and *$p$, or else both $p$ and $q$* says no more than $p$ did on its own.
 
 *Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
 
 That last one is the *absorption law*, and it is worth verifying — it is less obvious than the first two, and it reappears for sets in Chapter 2.
 
-The two genuinely surprising equivalences involving $\wedge$ and $\vee$ are De Morgan's laws, and they are all of module 1.4:
+The two genuinely surprising ones are De Morgan's laws, and they are all of module 1.4:
 $$
 \neg(p\wedge q) \equiv \neg p \vee \neg q, \qquad \neg(p \vee q)\equiv \neg p \wedge \neg q.
 $$
@@ -122,15 +117,15 @@ Neither depends on what $p$ *says*. "$12$ is prime and $12$ is not prime" is fal
 
 Both have jobs ahead of them:
 
-- $p \wedge \neg p$ powers **proof by contradiction** (module 2.5): if assuming $\neg S$ yields a contradiction, then $S$ holds.
-- $p \vee \neg p$ — *excluded middle* — licenses **proof by cases**. Every time you write "either $x$ is rational or it isn't," you are quoting it, and you then owe a proof in each branch.
+- *nothing is both true and false* powers **proof by contradiction** (module 2.5): if assuming a statement false leads to an impossibility, the statement holds.
+- *everything is true or false* — the **excluded middle** — licenses **proof by cases**. Every time you write "either $x$ is rational or it isn't," you are quoting it, and you then owe a proof in each branch.
 
 <Aside>
-Tautologies are exactly the valid inference patterns. Writing $p \Rightarrow q$ for *"$p$ implies $q$"* (module 1.5), that $(p\wedge q)\Rightarrow p$ is a tautology *is* the statement that "from $p$ and $q$, infer $p$" is a sound rule. Every rule of inference you use is a tautology wearing different clothes.
+Tautologies are exactly the valid inference patterns. That *from an **and**, either half follows* is a tautology *is* the statement that "from $p$ and $q$, infer $p$" is a sound rule. Every rule of inference you use is a tautology wearing different clothes.
 </Aside>
 
 ## Looking ahead
 
-Chapter 2 defines $S \cap T$ by "$x \in S$ **and** $x \in T$", and $S \cup T$ by "$x \in S$ **or** $x \in T$". Every fact in this module therefore becomes a fact about sets: commutativity of $\wedge$ becomes commutativity of $\cap$, De Morgan for joining words becomes De Morgan for complements, and the absorption law above becomes $S \cup (S\cap T) = S$.
+Chapter 2 defines the intersection by "in $S$ **and** in $T$", and the union by "in $S$ **or** in $T$". Every fact in this module therefore becomes a fact about sets: commutativity of $\wedge$ becomes commutativity of $\cap$, De Morgan for joining words becomes De Morgan for complements, and the absorption law above becomes $S \cup (S\cap T) = S$.
 
 Nothing new will be discovered there. A translation will be performed.

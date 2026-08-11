@@ -21,7 +21,7 @@ $A$ is a **subset** of $S$ when every element of $A$ is an element of $S$.
 
 Read that definition carefully, because it is a *if–then claim made about every element* — the two constructions of modules 1.5 and 1.10 stacked. And the shape of the definition dictates the shape of every proof about it, with no choices left to make:
 
-> **To prove $A \subseteq S$: take an arbitrary $x \in A$ and follow it until you reach $x \in S$.**
+> **To prove $A \subseteq S$: take any element of $A$, assume nothing else about it, and follow it until you reach $S$.**
 
 That is the named move, **take any one and follow it**. It is Template 1 of module 1.12 with the details filled in.
 
@@ -32,7 +32,7 @@ That is the named move, **take any one and follow it**. It is Template 1 of modu
 Most books assert this. It is provable, and the proof is short.
 
 <Discussion>
-  <div slot="know">$\mathbb{Q} = \{\,a/b \mid a, b \in \mathbb{Z},\ b \neq 0\,\}$ — to be rational is to be *expressible* as such a ratio, not to be written as one.</div>
+  <div slot="know">A rational number is one that *can be written* as a whole number over a non-zero whole number — being expressible that way is the definition, not being written that way already.</div>
   <div slot="want">An arbitrary integer, exhibited in that form.</div>
   <div slot="how">Give the ratio. The only obligation is checking the denominator is nonzero.</div>
 </Discussion>
@@ -51,16 +51,16 @@ The content is the observation that being rational is a matter of being *express
 
 ## Two special cases
 
-**Every set is a subset of itself.** $S \subseteq S$, since $x \in S \Rightarrow x \in S$ is in one step true. This is not a trick; it is what the definition says, and it will matter in module 2.6.
+**Every set is a subset of itself.** Take any element of $S$; it is in $S$. That is the whole proof. It is not a trick, it is what the definition says, and it will matter in module 2.6.
 
-**The empty set is a subset of everything.** $\emptyset \subseteq S$ for every $S$.
+**The empty set is a subset of everything.**
 
 <Warning title="The empty set sits inside everything by vacuous truth, not by decree">
-To prove $\emptyset \subseteq S$ you must show $\forall x\,(x \in \emptyset \Rightarrow x \in S)$.
+To prove it, you have to show that every element of the empty set is in $S$.
 
-Take an arbitrary $x \in \emptyset$. There are none — so the hypothesis $x \in \emptyset$ is false for every $x$, and a conditional with a false hypothesis is true (module 1.5). Every case is vacuously satisfied because there are no cases.
+Take an element of the empty set. There are none — so the *if* part is false whatever you hold up, and an if–then with a false *if* part is true (module 1.5). Every case is vacuously satisfied because there are no cases.
 
-Students often want this to be a convention adopted for tidiness. It is not. It is forced by the definition of $\subseteq$ together with the truth table for $\Rightarrow$, and any other answer would contradict one of them.
+Students often want this to be a convention adopted for tidiness. It is not. It is forced by the definition of *subset* together with the truth table for if–then, and any other answer would contradict one of them.
 </Warning>
 
 ## Proper subsets
@@ -81,7 +81,7 @@ Some authors write $\subset$ for proper containment and others for containment i
 
 **Reflexive.** $S \subseteq S$, shown above.
 
-**Transitive.** If $A \subseteq B$ and $B \subseteq C$ then $A \subseteq C$.
+**Transitive.** If $A$ sits inside $B$ and $B$ sits inside $C$, then $A$ sits inside $C$.
 
 <Proof>
 Assume $A \subseteq B$ and $B \subseteq C$. Let $x \in A$ be arbitrary.
@@ -102,21 +102,21 @@ $$
 
 *Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers, $\subseteq$ is "sits inside".*
 
-mean what you expect: $\mathbb{N} \subseteq \mathbb{R}$ follows, without a separate proof.
+mean what you expect — the counting numbers sit inside the reals, with no separate proof needed.
 
 <Warning title="Being an element and being a subset are different relations">
-$\in$ relates an object to a set. $\subseteq$ relates a set to a set. Mixing them is the most common error in this chapter.
+Membership relates an object to a set. Being a subset relates a set to a set. Mixing them is the most common error in this chapter.
 
 Let $S = \{1, 2\}$. Then:
 
-- $1 \in S$ ✓ but $1 \subseteq S$ ✗ — $1$ is not a set.
-- $\{1\} \subseteq S$ ✓ but $\{1\} \in S$ ✗ — the elements of $S$ are $1$ and $2$, not $\{1\}$.
+- $1$ is an **element** of $S$ ✓, but $1$ is not a **subset** of it ✗ — $1$ is not a set at all.
+- $\{1\}$ is a **subset** of $S$ ✓, but not an **element** of it ✗ — the elements of $S$ are $1$ and $2$, not the set $\{1\}$.
 
 The test is one question: *is the thing on the left an element of $S$, or a collection of them?*
 </Warning>
 
 <Aside>
-$\subseteq$ behaves like $\leq$, and the resemblance is not accidental. Both are reflexive and transitive, and both have the property that two-way comparison forces equality — $a \leq b$ and $b \leq a$ give $a = b$, and module 2.6 proves the same for $\subseteq$.
+Being a subset behaves like $\leq$, and the resemblance is not accidental. Both are reflexive and transitive, and in both, comparison running two ways forces equality — $a \leq b$ and $b \leq a$ give $a = b$, and module 2.6 proves the same for $\subseteq$.
 
 One difference matters. Any two real numbers compare: either $a \leq b$ or $b \leq a$. Sets need not. Take $A = \{1,2\}$ and $B = \{2,3\}$: neither contains the other. **Sets can be genuinely incomparable**, and that is why you cannot line all subsets of a set up in a row the way you can line up numbers.
 </Aside>

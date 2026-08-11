@@ -60,7 +60,7 @@ Conversely, suppose $\neg q \Rightarrow \neg p$, and suppose $p$. If $q$ failed,
 
 $p \Rightarrow q$ asserts that the situation "$p$ true, $q$ false" never occurs.
 
-$\neg q \Rightarrow \neg p$ asserts that "$\neg q$ true, $\neg p$ false" — that is, "$q$ false, $p$ true" — never occurs.
+The contrapositive asserts that the combination *$q$ false with $p$ true* never occurs — which is exactly what the original ruled out.
 
 Same forbidden situation, described from opposite ends. Two statements that forbid exactly the same thing are the same statement.
 
@@ -80,19 +80,13 @@ One number refuted two statements. That economy is a useful check: when you find
 
 This is where module 1.4 pays off.
 
-> **Proposition.** If $x$ is rational and $y$ is irrational, then $x + y \notin \mathbb{Q}$.
+> **Proposition.** If $x$ is rational and $y$ is irrational, then $x + y$ is irrational.
 
-The hypothesis is a conjunction, so De Morgan is required:
-$$
-\neg\big(x\in\mathbb{Q} \wedge y \notin \mathbb{Q}\big) \equiv x \notin \mathbb{Q} \vee y \in \mathbb{Q}.
-$$
+The hypothesis is an *and*, so De Morgan is required: denying *$x$ rational **and** $y$ irrational* gives *$x$ is irrational **or** $y$ is rational*.
 
 *Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\neg$ is "not", $\wedge$ is "and".*
 
-So the contrapositive reads:
-$$
-x+y \in \mathbb{Q} \Rightarrow \big(x \notin \mathbb{Q} \ \vee\ y \in \mathbb{Q}\big).
-$$
+So the contrapositive reads: **if $x+y$ is rational, then either $x$ is irrational or $y$ is rational.**
 
 *Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\Rightarrow$ is "forces", $\vee$ is "or".*
 
@@ -114,13 +108,12 @@ Treating a true conditional as though its converse also held is the most common 
 In mathematics it appears in disguise:
 
 - proving one direction of an if-and-only-if statement and stopping (module 1.9);
-- writing $\Leftrightarrow$ in a chain where only $\Rightarrow$ holds — $x = y \Rightarrow x^2 = y^2$ is not reversible;
+- writing *exactly when* in a chain where only *forces* holds — squaring both sides of $x = y$ is not reversible;
 - squaring both sides of an equation and not checking the answers. Extraneous roots *are* converse failures.
 </Warning>
 
 <Aside>
-Negating a conditional is a different operation from any of these flips:
-$$\neg(p \Rightarrow q) \equiv p \wedge \neg q.$$
+Denying an if–then is a different operation from any of these flips: it gives *the **if** holds and the **then** fails*, which is not an if–then at all.
 
 *Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\wedge$ is "and", $\equiv$ is "says the same as".*
 

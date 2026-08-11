@@ -284,7 +284,13 @@ function sentenceAround(hay, start, end) {
 // investigation before anyone noticed the two had never been reconciled.
 function checkPlanSync() {
   const plan = fs.readFileSync(path.join(ROOT, 'math0-spiral-plan.md'), 'utf8');
-  const table = plan.slice(plan.indexOf('#### A4.2'), plan.indexOf('### A5.'));
+  // Anchor on the permission table's own header, not on the §A4.2 heading. §A4.2
+  // now contains two tables — permissions and the density ramp — and both have
+  // rows beginning `| \`l4\` |`. Slicing from the heading matched whichever came
+  // first, so adding the ramp above the permissions table made every symbol
+  // look like drift.
+  const section = plan.slice(plan.indexOf('#### A4.2'), plan.indexOf('### A5.'));
+  const table = section.slice(section.indexOf('| Level | Newly permitted'));
   const rowFor = (lv) => (table.match(new RegExp(`^\\| \`${lv}\`.*$`, 'm')) ?? [''])[0];
   const TOKENS = {
     '∅': '∅', '≠': '≠', '≤ / ≥': '≤', '√': '√', 'the complement bar': 'complement bar',

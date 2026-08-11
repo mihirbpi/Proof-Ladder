@@ -34,7 +34,7 @@ Note what does *not* change. $S$ is untouched — negating a claim about real nu
 
 The first rule is the license for the named move **one bad apple**.
 
-A **counterexample** to $\forall x \in S,\ p(x)$ is a single element of $S$ where $p$ fails. Producing one is a complete disproof, because the negation of the universal claim is an existential one, and existential claims are settled by exhibiting a single element that works — a **witness** (module 1.12).
+A **counterexample** to a *for every* claim is a single member of the collection where the property fails. Producing one is a complete disproof, because denying a *for every* gives a *there is* — an existential one, and existential claims are settled by exhibiting a single element that works — a **witness** (module 1.12).
 
 > *Every prime number is odd.*
 
@@ -45,7 +45,7 @@ The counterexample is $2$: prime, and not odd. One number, and the claim is fini
 The counterexample is $x^2 = 0$, with the single root $x = 0$. Or $x^2 + 1 = 0$, with none at all. Either alone does the job.
 
 <Warning title="A counterexample must actually be in the set">
-$\forall x \in \mathbb{R},\ x^2 \geq 0$ is true, and $i$ is not a counterexample to it — $i \notin \mathbb{R}$, so it is not a candidate.
+*Every real number has a non-negative square* is true, and $i$ is not a counterexample to it, because $i$ is not a real number and so is not a candidate.
 
 Check membership before checking the property. An element outside $S$ tells you nothing about a claim quantified over $S$, and offering one is the most common way a disproof goes wrong.
 </Warning>
@@ -62,7 +62,7 @@ $$
 
 **Not $x^2 < 4$.** The negation of $>$ is $\leq$, and dropping the boundary leaves a hole exactly at $x = \pm2$.
 
-When a joining word sits inside, De Morgan does the work (module 1.4):
+When a joining word sits inside the quantifier, De Morgan does the work (module 1.4):
 $$
 \neg\big(\forall x,\ p(x) \wedge q(x)\big) \equiv \exists x,\ \neg p(x) \vee \neg q(x).
 $$
@@ -90,7 +90,7 @@ $$
 **Every quantifier flips, in order, and the negation ends up on the inside.**
 
 <Discussion>
-  <div slot="know">The claim *$\forall x \in \mathbb{R},\ \exists y \in \mathbb{R},\ xy = 1$* — every real number has a reciprocal.</div>
+  <div slot="know">The claim that every real number has a reciprocal — for each one, there is a number multiplying with it to give $1$.</div>
   <div slot="want">Its negation, and then a decision about which of the two is true.</div>
   <div slot="how">Flip both quantifiers in order and negate the equation. Then read the result and look for a witness.</div>
 </Discussion>
