@@ -34,13 +34,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       # The grade-level rules are the point of the project, so a page that
-      # breaks one fails the deploy rather than shipping. Figures are checked
-      # too: a malformed inline SVG renders as a blank box, which the build
-      # itself will not complain about.
+      # breaks one fails the deploy rather than shipping.
       - name: Check content
-        run: |
-          node scripts/lint-content.mjs
-          node scripts/check-figures.mjs
+        run: node scripts/lint-content.mjs
 
       # 554 pages of KaTeX. The default heap is not enough — bare `astro build`
       # runs out of memory partway through the level pages.
@@ -48,6 +44,13 @@ jobs:
         run: pnpm build
         env:
           NODE_OPTIONS: --max-old-space-size=8192
+
+      # AFTER the build, not before: this one reads dist/, because what matters
+      # is the geometry of the SVG that actually landed in the HTML once its
+      # props were applied. A malformed figure renders as a blank box, which
+      # the build itself is perfectly happy about.
+      - name: Check figures
+        run: node scripts/check-figures.mjs
 
       - uses: actions/configure-pages@v5
 
