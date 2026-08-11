@@ -345,9 +345,36 @@ spans at `l7`, most of them a bare `$x \in S$` the sentence already reads out),
 but an inline span carrying three or more proof marks is a display that lost its
 nerve, and is flagged.
 
-**5. Forward-looking blocks explain their own vocabulary.** `<WhereThisGoes>`
-and look-ahead boxes may point past the reader's course — that is their job —
-but may not spend unexplained words doing it.
+**5. Forward-looking blocks may not spend vocabulary the reader lacks.**
+`<WhereThisGoes>` used to be *exempt* from `COLLEGE_TERMS`, on the reasoning
+that naming a destination is the box's whole purpose. That was backwards.
+Pointing forward is the purpose; spending unexplained vocabulary is not, and a
+box saying *"this opens into ring theory"* has told a 12th grader nothing
+except that a thing called ring theory exists. **Name the question the next
+course asks, not the noun it answers with** — *"the first question linear
+algebra asks is what the scalars are allowed to be"*, not *"vector spaces are
+defined over a field"*; *"the real line has no gaps"*, not *"the unique
+complete ordered field"*.
+
+**6. Rare English is its own failure mode.** Distinct from both lists above:
+`OFF_REGISTER` holds technical terms, `PROSE_REGISTER` holds ordinary words in
+a textbook cadence, and `OBSCURE` holds words that are simply uncommon. *"The
+regress, and its two termini"* was a section heading — neither word is
+mathematical, both are unknown to essentially every 17-year-old, and the
+section under it says that explanations have to stop somewhere. The test for
+each entry: **would a US high schooler use this word in conversation, or meet
+it in a novel, a news story, or another subject's textbook?** Course
+vocabulary the syllabus teaches on purpose is exempt and stays.
+
+**7. A dense inline span is a display that lost its nerve.** Requiring a
+reading on every inline `$…$` would mean glossing 1500 spans at `l7`, most of
+them a bare `$x \in S$` the sentence already reads out. What earns a flag is
+three or more *different* proof marks between two dollar signs mid-sentence —
+a whole statement dropped into a sentence that never says what it claims.
+Three exclusions, all on the same ground the density cap already excludes
+proofs: inside a proof the symbols are the medium; a table of correspondences
+is the object under discussion; and a span that is nothing but marks and
+separators (`$\wedge, \vee, \neg$`) is a list of names, not a claim.
 
 #### A4.2 Notation gate (binding, and **derived** — do not author directly)
 
