@@ -84,10 +84,10 @@ Therefore no list can contain them all, so the reals are not listable.
 
 The care with trailing nines is not fussiness: $0.4999\ldots = 0.5$, and without excluding one of the two expansions the constructed $x$ might coincide with a listed number.
 
-Cantor's theorem generalizes: $|S| < |\mathcal{P}(S)|$ for every $S$, by the same diagonal applied to $D = \{s : s \notin f(s)\}$ (§2.3). So there is no largest size of infinity — they go up forever.
+The same move proves more. For any set $S$ at all, $|S| < |\mathcal{P}(S)|$: given a proposed matching $f$, collect $D = \{s : s \notin f(s)\}$ and check that nothing is sent to it (§2.3, and §6.7 does it in full). So there is no largest size of infinity — they go up forever.
 
 <Aside>
-The diagonal argument is one construction with three faces. Applied to $\mathcal{P}(S)$ it gives Cantor's theorem; applied to the collection of all sets it gives Russell's paradox (§2.1); applied to programs enumerating computable functions it gives the undecidability of the halting problem and Gödel's incompleteness theorems. Recognizing the pattern is worth more than any one of the results.
+What is worth carrying out of this module is not the theorem but the move: **when someone hands you a list and claims it is complete, build the thing that disagrees with entry $n$ in position $n$.** That one trick is why $\mathbb{R}$ cannot be listed, why no set has as many members as it has subsets (§6.7), and why §2.1 could show there is no set of everything. Three different results, one idea, and the idea is the part that transfers.
 </Aside>
 
 <WhereThisGoes level="l7">

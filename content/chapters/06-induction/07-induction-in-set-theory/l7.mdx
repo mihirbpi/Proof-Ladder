@@ -91,7 +91,7 @@ Let $f : S \to \mathcal{P}(S)$ and put $D = \{x \in S : x \notin f(x)\} \in \mat
 If $D = f(d)$ for some $d \in S$, then $d \in D \iff d \notin f(d) = D$ — a contradiction. So $D \notin \operatorname{im}(f)$ and $f$ is not surjective.
 </Proof>
 
-This is **not** an induction and cannot be made one: no successor structure is available on an arbitrary set. It is a diagonal argument, the same construction as Russell's paradox (§2.1) and the diagonal argument of §3.8), used constructively rather than destructively.
+This is **not** an induction, and it cannot be turned into one: an arbitrary set has no *next*, so there is nothing to induct along. What it is instead is the move from §3.8 — build the one thing the list cannot contain, by disagreeing with every entry in turn. §2.1 used that same move to break something; here it builds something.
 
 The finite theorem says $2^n > n$; the infinite version says it survives at every size of infinity. So there is no largest set and no largest infinity.
 

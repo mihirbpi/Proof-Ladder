@@ -996,7 +996,12 @@ const COLLEGE_TERMS = [
 // full, and elsewhere the idea must be said in words or left out.
 const NAMED_RESULTS = [
   { re: /Russell'?s (paradox|construction|argument)/i, home: 201, what: "Russell's paradox", home_label: '\u00a72.1' },
-  { re: /Cantor'?s (theorem|argument|diagonal\w*)|diagonal(is|iz)ation|diagonal argument/i, home: 308, what: 'the diagonal argument', home_label: '\u00a73.8' },
+  { re: /diagonal(is|iz)ation|diagonal argument|Cantor'?s (argument|diagonal\w*)/i, home: 308, what: 'the diagonal argument', home_label: '\u00a73.8' },
+  // Cantor's *theorem* (a set always has more subsets than members) is a
+  // different object from the diagonal *argument* that proves it, and \u00a76.7 is
+  // where it is stated and proved. Naming it there is fine; naming it in \u00a72.3
+  // as a remark worth carrying is the casual reuse this rule exists to stop.
+  { re: /Cantor'?s theorem/i, home: 607, what: "Cantor's theorem", home_label: '\u00a76.7' },
   { re: /G(\u00f6|oe)del|incompleteness theorem/i, home: 701, what: "G\u00f6del's incompleteness", home_label: '\u00a77.1' },
   { re: /halting problem|undecidab\w*/i, home: 0, what: 'computability', home_label: 'l8' },
 ];

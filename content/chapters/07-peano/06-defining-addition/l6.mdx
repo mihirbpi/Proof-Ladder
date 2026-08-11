@@ -135,5 +135,5 @@ A program computing $x+y$ by this definition would call itself, reducing $y$ eac
 
 The termination guarantee is Axiom 9. A recursion that reduces its argument toward a base case always finishes, because you cannot step down through the counting numbers forever — there is no infinite descending chain to fall down.
 
-Recursions without that guarantee can run forever, and deciding in general which ones do is the halting problem from module 3.2's aside. **A definition-by-steps is guaranteed to finish exactly when its steps cannot go down forever**, which is why this axiom keeps reappearing wherever computation is analyzed.
+Recursions without that guarantee can run forever, and there is no general method for telling in advance which ones will — module 3.2's aside meets that fact. **A definition-by-steps is guaranteed to finish exactly when its steps cannot go down forever**, which is why this axiom keeps reappearing wherever computation is analyzed.
 </Aside>
