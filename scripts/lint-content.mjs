@@ -191,7 +191,7 @@ const LADDER_JARGON = [
   'well-defined', 'vacuously', 'arbitrary but fixed', 'witness',
   'canonical representative', 'canonical embedding',
   'extensionality', 'involution', 'idempotent', 'tautology', 'contrapositive',
-  'element chasing', 'disjunctive syllogism', 'universal generalisation',
+  'element chasing', 'disjunctive syllogism', 'universal generalization',
   'trichotomy', 'non-constructive', 'reductio ad absurdum', 'up to isomorphism',
   'without loss of generality', 'necessary and sufficient', 'antisymmetr',
   'equinumerous', 'absorption law', 'excluded middle',
@@ -458,7 +458,7 @@ for (const file of files) {
         // Using notation before its introducing module is legitimate as a
         // signposted preview — §1.1 must show what closes an open statement,
         // §1.5 must state a quantified theorem — but the preview has to be
-        // labelled, so the reader knows the treatment comes later. Same
+        // labeled, so the reader knows the treatment comes later. Same
         // "gloss or cross-reference" principle as the §A4.2 jargon rule.
         // Scope to the enclosing SECTION: a signpost in the heading ("Negation
         // with quantifiers, previewed") covers the bullets beneath it.
@@ -961,7 +961,7 @@ const COLLEGE_TERMS = [
   // Differential equations, likewise: past the end of the calculus sequence a
   // 12th grader is taking. "A quadratic decides whether it grows or wobbles"
   // carries the same idea without the machinery.
-  [/\bdifferential equations?\b|\bcharacteristic (equation|roots)\b|\bODE\b|\bphasors?\b/i, 'differential equations'],
+  [/\bdifferential equations?\b|\bcharacteriztic (equation|roots)\b|\bODE\b|\bphasors?\b/i, 'differential equations'],
 ];
 // Content a level's own students have not been taught yet. Distinct from
 // COLLEGE_TERMS: trigonometry and e are perfectly ordinary — just not in
@@ -1028,7 +1028,7 @@ const OFF_REGISTER = [
   [/\btruth-functional\w*/i, 'the truth of the result depends only on the inputs'],
   [/\b(unary|binary|n-ary) (connective|operation|function symbol)s?\b/i, 'takes one / takes two'],
   [/\barity\b/i, 'how many inputs it takes'],
-  [/\bfibres?\b/i, 'the pre-image of a single output'],
+  [/\bfibers?\b/i, 'the pre-image of a single output'],
   [/\bfree variables?\b|\bbound variables?\b/i, 'a variable nothing has been said about yet'],
   [/\bwell-formed formula\b/i, 'a properly built formula'],
   [/\buniverse of discourse\b/i, 'the objects under discussion'],
@@ -1046,7 +1046,7 @@ const OFF_REGISTER = [
   [/\bequinumerous\b|\bidempotent\w*\b/i, 'the same size / repeating changes nothing'],
   [/\bdisjunctive syllogism\b|\breductio ad absurdum\b/i, 'say the move in words'],
   [/\bstructural induction\b/i, 'induction on how a thing is built'],
-  [/\buniversal generalisation\b/i, 'the arbitrary-element rule'],
+  [/\buniversal generalization\b/i, 'the arbitrary-element rule'],
   [/\bquotient sets?\b/i, 'the collection of classes'],
   [/\bprimitive recursive\b|\bPresburger\b/i, 'say it in words'],
   [/\binvolutions?\b/i, 'an operation that undoes itself'],
@@ -1330,7 +1330,7 @@ for (const f of files) {
   const cap = DENSITY_CAP[level];
   if (!cap) continue;
   // <Proof> blocks are excluded: inside a proof the symbols *are* the medium,
-  // and element-chasing cannot be de-symbolised without becoming worse. What
+  // and element-chasing cannot be de-symbolized without becoming worse. What
   // this measures is the exposition around the proofs — the part a reader has
   // to get through before they can even start on the argument.
   const raw = fs.readFileSync(f, 'utf8').replace(/<Proof[\s\S]*?<\/Proof>/g, '');
@@ -1542,7 +1542,7 @@ const STATES_IT = /\b(says?|states?|asserts?|claims?|that|which|if|there (is|are
     for (const [name, re] of UNTAUGHT_RESULTS) {
       for (const f of pages) {
         // Bullet items are their own units: a list of conjectures where only
-        // the first is glossed must not be excused by its neighbours.
+        // the first is glossed must not be excused by its neighbors.
         const prose = body(fs.readFileSync(f, 'utf8')).replace(/\n(\s*[-*]\s)/g, '\n\n$1');
         const m = prose.match(re);
         if (!m) continue;
@@ -1554,7 +1554,7 @@ const STATES_IT = /\b(says?|states?|asserts?|claims?|that|which|if|there (is|are
         // easily as follow it, but it does not cross a paragraph break — and a
         // name dropped into a paragraph that nowhere states the result is
         // exactly the failure this check exists for. A fixed character window
-        // was tried first and passed bare mentions whose *neighbours* happened
+        // was tried first and passed bare mentions whose *neighbors* happened
         // to contain a colon.
         const pStart = prose.lastIndexOf('\n\n', i) + 1;
         const pEnd = prose.indexOf('\n\n', i);

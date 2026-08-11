@@ -77,7 +77,7 @@ const alt = `A two-by-two chart. `
         <g>
           <rect x={x + 3} y={y + 3} width={CW - 6} height={CH - 6} rx="6"
                 class={cell.ok ? 'ok' : 'bad'} />
-          {/* A glyph as well as colour, so colour is never the sole carrier (§C8). */}
+          {/* A glyph as well as color, so color is never the sole carrier (§C8). */}
           <text x={x + CW / 2} y={y + CH / 2 - 4} class="mark" text-anchor="middle"
                 aria-hidden="true">{cell.ok ? '✓' : '✗'}</text>
           <text x={x + CW / 2} y={y + CH / 2 + 20} text-anchor="middle"

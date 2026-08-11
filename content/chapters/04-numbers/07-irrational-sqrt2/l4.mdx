@@ -30,7 +30,7 @@ We use the (forward) direction, which was proved there by contrapositive — a d
 ## The proof
 
 <Discussion>
-  <div slot="know">Every nonzero rational has a representation in lowest terms: $r = p/q$ with $p,q \in \mathbb{Z}$, $q \neq 0$, and $\gcd(p,q) = 1$. This follows from cancelling common factors, which terminates because the numerators strictly decrease.</div>
+  <div slot="know">Every nonzero rational has a representation in lowest terms: $r = p/q$ with $p,q \in \mathbb{Z}$, $q \neq 0$, and $\gcd(p,q) = 1$. This follows from canceling common factors, which terminates because the numerators strictly decrease.</div>
   <div slot="want">A contradiction from the assumption $\sqrt2 \in \mathbb{Q}$.</div>
   <div slot="how">Assume $\sqrt2 = p/q$ in lowest terms. Squaring gives $p^2 = 2q^2$, so $p$ is even by the lemma. Substituting $p = 2k$ and simplifying gives $q^2 = 2k^2$, so $q$ is even too. Then $2 \mid \gcd(p,q)$, contradicting $\gcd(p,q)=1$.</div>
 </Discussion>
@@ -61,7 +61,7 @@ Two ways to make the finish rigorous:
 1. **Lowest terms** (used above). The contradiction is immediate.
 2. **Infinite descent.** Without assuming lowest terms, you obtain from $(p,q)$ a strictly smaller pair $(p/2, q/2)$ with the same property, and repeat. This yields an infinite strictly decreasing sequence of positive integers, and no collection of positive whole numbers can decrease forever — there is always a smallest one.
 
-Both are legitimate; the second is Fermat's method and generalises further. What is *not* legitimate is stopping at "both even" and calling it a contradiction.
+Both are legitimate; the second is Fermat's method and generalizes further. What is *not* legitimate is stopping at "both even" and calling it a contradiction.
 </Warning>
 
 ## Tools used
@@ -83,5 +83,5 @@ $\mathbb{Q}$ has a **gap**: the fractions whose square is below $2$ all stay und
 Geometrically: the diagonal of a unit square has length $\sqrt2$, so a perfectly constructible length is not a ratio of whole numbers. The Pythagoreans, who held that all lengths were such ratios, are said to have found this genuinely disturbing.
 
 <Aside>
-The argument generalises. Replacing "even" by "divisible by $p$" shows $\sqrt p$ is irrational for every prime $p$. More generally, $\sqrt m$ is rational iff $m$ is a perfect square, and the rational root theorem extends this to all polynomial roots: any rational root of $x^n + a_{n-1}x^{n-1}+\cdots+a_0$ with integer coefficients must be an integer dividing $a_0$. So $\sqrt[3]{2}$, $\sqrt2+\sqrt3$, and the golden ratio are all irrational by a single mechanism.
+The argument generalizes. Replacing "even" by "divisible by $p$" shows $\sqrt p$ is irrational for every prime $p$. More generally, $\sqrt m$ is rational iff $m$ is a perfect square, and the rational root theorem extends this to all polynomial roots: any rational root of $x^n + a_{n-1}x^{n-1}+\cdots+a_0$ with integer coefficients must be an integer dividing $a_0$. So $\sqrt[3]{2}$, $\sqrt2+\sqrt3$, and the golden ratio are all irrational by a single mechanism.
 </Aside>

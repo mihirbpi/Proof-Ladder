@@ -54,7 +54,7 @@ const H = TOP + rows.length * CH + 20;
 const isHot = (r: number, c: number) => highlight.some(([hr, hc]) => hr === r && hc === c);
 
 const alt = `A grid showing the product set ${labelRows ?? 'the first set'} × ${labelCols ?? 'the second set'}: `
-  + `${rows.length} rows labelled ${rows.join(', ')} and ${cols.length} columns labelled ${cols.join(', ')}, `
+  + `${rows.length} rows labeled ${rows.join(', ')} and ${cols.length} columns labeled ${cols.join(', ')}, `
   + `giving ${rows.length * cols.length} ordered pairs, one per cell.`
   + (highlight.length ? ` Highlighted: ${highlight.map(([r, c]) => `(${rows[r]}, ${cols[c]})`).join(', ')}.` : '');
 ---

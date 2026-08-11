@@ -73,7 +73,7 @@ Consequently a composition of bijections is a bijection (§3.8).
 (3) Take $S = \{a\}$, $T = \{1,2\}$, $R = \{x\}$, $f(a)=1$, $g(1)=g(2)=x$. Then $g\circ f$ is both injective and surjective, while $g$ is not injective and $f$ is not surjective.
 </Proof>
 
-The pattern is worth memorising: **injectivity of a composite constrains the first map; surjectivity constrains the second.** It generalises directly — in any category, if $g\circ f$ is monic then $f$ is monic, and if $g \circ f$ is epic then $g$ is epic — and it is the reason retracts and sections behave the way they do.
+The pattern is worth memorizing: **injectivity of a composite constrains the first map; surjectivity constrains the second.** It generalizes directly — in any category, if $g\circ f$ is monic then $f$ is monic, and if $g \circ f$ is epic then $g$ is epic — and it is the reason retracts and sections behave the way they do.
 
 <Warning title="Domain bookkeeping">
 $g \circ f$ requires $\operatorname{cod}(f) = \operatorname{dom}(g)$ *exactly*, not merely $\operatorname{Im}(f) \subseteq \operatorname{dom}(g)$. In practice people compose whenever the image fits, silently replacing $f$ by its corestriction. This is harmless but worth being conscious of, because it changes the function (§3.1) and can change whether it is surjective.
@@ -99,7 +99,7 @@ The bijections from a set $X$ to itself are closed under composition, contain th
 
 <WhereThisGoes level="l7">
 
-Composition is the operation the next two courses are organised around.
+Composition is the operation the next two courses are organized around.
 
 **The chain rule is a theorem about composition.**
 $$(g\circ f)'(x) = g'\big(f(x)\big)\cdot f'(x).$$
@@ -108,7 +108,7 @@ $$(g\circ f)'(x) = g'\big(f(x)\big)\cdot f'(x).$$
 
 Note where each function is evaluated — $g'$ at $f(x)$, not at $x$ — and note that this is forced by the definition of composition, not a convention. Most chain-rule errors are misreadings of which function acts first, which is the same right-to-left confusion this module flags.
 
-Composition also structures the integration techniques: $u$-substitution is the chain rule run backwards, and recognising an integrand as $g'(f(x))f'(x)$ is recognising a composition.
+Composition also structures the integration techniques: $u$-substitution is the chain rule run backwards, and recognizing an integrand as $g'(f(x))f'(x)$ is recognizing a composition.
 
 - $AB$ is defined only when the dimensions match, because $g\circ f$ requires $\operatorname{codom} f = \operatorname{dom} g$.
 - $AB \neq BA$ in general, because composition is not commutative — and the counterexample in this module is the same phenomenon.

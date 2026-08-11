@@ -17,7 +17,7 @@ That is not enough! Here are two machines that follow both rules and are still w
 
 ## Broken machine 1: the loop
 
-<Figure alt="Two dots labelled 0 and 1, with an arrow from 0 to 1 and an arrow from 1 back to 0." caption="A counting machine that loops back to the start.">
+<Figure alt="Two dots labeled 0 and 1, with an arrow from 0 to 1 and an arrow from 1 back to 0." caption="A counting machine that loops back to the start.">
   <ArrowDiagram labelLeft="numbers" labelRight="next one"
     left={["0", "1"]} right={["0", "1"]}
     edges={[[0,1],[1,0]]} />
@@ -37,7 +37,7 @@ Zero is the start, and nothing points back at it. That kills the loop.
 
 ## Broken machine 2: the squish
 
-<Figure alt="Three dots labelled 0, 1 and 2 on the left, with arrows from both 1 and 2 landing on the same dot." caption="Two different numbers sharing one next one.">
+<Figure alt="Three dots labeled 0, 1 and 2 on the left, with arrows from both 1 and 2 landing on the same dot." caption="Two different numbers sharing one next one.">
   <ArrowDiagram labelLeft="numbers" labelRight="next one"
     left={["0", "1", "2"]} right={["1", "2", "3"]}
     edges={[[0,0],[1,2],[2,2]]} />

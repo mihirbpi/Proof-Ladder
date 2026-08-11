@@ -2,8 +2,8 @@
 // Three overlapping circles with shadeable regions.
 // shade: any subset of the seven regions plus the outside:
 //   "S-only", "T-only", "R-only"      the three lens-free lobes
-//   "ST", "SR", "TR"                  pairwise overlaps excluding the centre
-//   "STR"                             the centre, S ∩ T ∩ R
+//   "ST", "SR", "TR"                  pairwise overlaps excluding the center
+//   "STR"                             the center, S ∩ T ∩ R
 //   "outside"                         complement of S ∪ T ∪ R in the universe box
 // Region names are unordered-pair based, so "ST" and "TS" both work.
 export interface Props {
@@ -30,7 +30,7 @@ const norm = (r: string) => {
 const wanted = new Set(shade.map(norm));
 const on = (r: string) => wanted.has(r);
 
-// Standard three-circle arrangement: two on top, one below centre.
+// Standard three-circle arrangement: two on top, one below center.
 const R = 74;
 const cS = { x: 168, y: 112 };
 const cT = { x: 262, y: 112 };
@@ -104,7 +104,7 @@ const uid = 'v3';
     <circle cx={cR.x} cy={cR.y} r={R} class="fill" mask={`url(#${uid}-notST)`} />
   )}
 
-  {/* Pairwise overlaps, excluding the centre: clip to one, draw the second, mask out the third. */}
+  {/* Pairwise overlaps, excluding the center: clip to one, draw the second, mask out the third. */}
   {on('ST') && (
     <g clip-path={`url(#${uid}-cS)`}>
       <circle cx={cT.x} cy={cT.y} r={R} class="fill" mask={`url(#${uid}-notR)`} />
@@ -121,7 +121,7 @@ const uid = 'v3';
     </g>
   )}
 
-  {/* Centre: clip to two, draw the third. */}
+  {/* Center: clip to two, draw the third. */}
   {on('STR') && (
     <g clip-path={`url(#${uid}-cS)`}>
       <g clip-path={`url(#${uid}-cT)`}>

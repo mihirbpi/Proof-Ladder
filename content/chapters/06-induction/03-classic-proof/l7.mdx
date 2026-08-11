@@ -71,7 +71,7 @@ This is a **bijective proof** in the combinatorial sense: it exhibits an explici
 
 **Algebraic.** $\sum_{j=1}^n (2j-1) = 2\sum j - n = 2\cdot\frac{n(n+1)}{2} - n = n^2$, given the triangular-number formula.
 
-The three are not redundant. The telescoping proof generalises immediately: any identity of the form $\sum (f(j)-f(j-1)) = f(n)-f(0)$ is proved the same way, and it is the discrete analogue of the fundamental theorem of calculus. The bijective proof generalises in a different direction, to combinatorics, where "find a bijection" is the preferred form of explanation.
+The three are not redundant. The telescoping proof generalizes immediately: any identity of the form $\sum (f(j)-f(j-1)) = f(n)-f(0)$ is proved the same way, and it is the discrete analogue of the fundamental theorem of calculus. The bijective proof generalizes in a different direction, to combinatorics, where "find a bijection" is the preferred form of explanation.
 
 ## The geometric sum
 
@@ -105,18 +105,18 @@ Each is a routine induction *once stated*, and none is suggested by induction. F
 
 Note the third identity: $\sum j^3 = (\sum j)^2$. A striking coincidence, provable by induction in four lines, and again with a wordless proof by dissecting a square into gnomons of cubes.
 
-Telescoping is the whole-number ancestor of the theorem tying areas to slopes. Write each term as a difference between consecutive values of something; the sum then collapses to the last value minus the first, with everything between cancelling in pairs. In calculus the same cancellation happens continuously, and it is the reason an area can be computed from two numbers at the ends.
+Telescoping is the whole-number ancestor of the theorem tying areas to slopes. Write each term as a difference between consecutive values of something; the sum then collapses to the last value minus the first, with everything between canceling in pairs. In calculus the same cancellation happens continuously, and it is the reason an area can be computed from two numbers at the ends.
 
 <WhereThisGoes level="l7">
 Having three proofs of one theorem is the normal situation, and choosing among them is a real skill.
 
 **Induction verifies; it rarely explains.** The proof that $\big(1 + 3 + 5 + \cdots + (2n-1)\big) = n^2$ confirms the formula and gives no hint where $n^2$ came from. The picture — each odd number is the L-shaped border growing one square into the next — explains it, and the pairing argument explains $\sum j = \frac{n(n+1)}{2}$ in a way the induction does not.
 
-**Telescoping is the technique to know for long sums.** Writing each term as a difference $b_{j+1} - b_j$ collapses the whole sum to $b_{n+1}-b_1$, with everything in between cancelling in pairs. That is how $\sum \frac{1}{j(j+1)}$ is evaluated, and it is the finite ancestor of the theorem that ties areas to slopes, where the same cancellation happens continuously.
+**Telescoping is the technique to know for long sums.** Writing each term as a difference $b_{j+1} - b_j$ collapses the whole sum to $b_{n+1}-b_1$, with everything in between canceling in pairs. That is how $\sum \frac{1}{j(j+1)}$ is evaluated, and it is the finite ancestor of the theorem that ties areas to slopes, where the same cancellation happens continuously.
 
-Recognising a telescoping sum is usually faster than proving the closed form by induction, and it generalises: partial fractions exist largely to expose telescoping structure.
+Recognizing a telescoping sum is usually faster than proving the closed form by induction, and it generalizes: partial fractions exist largely to expose telescoping structure.
 
 **In calculus, these sums are the ones Riemann integration needs.** $\int_0^b x\,dx$ and $\int_0^b x^2\,dx$ computed from the definition require $\sum j$ and $\sum j^2$, and the limits of the resulting expressions give $\frac{b^2}{2}$ and $\frac{b^3}{3}$ — the antiderivative formulas, derived rather than asserted.
 
-**The habit worth keeping** is to look for an explanatory proof after finding a verifying one. The explanatory version usually generalises, and the induction usually does not.
+**The habit worth keeping** is to look for an explanatory proof after finding a verifying one. The explanatory version usually generalizes, and the induction usually does not.
 </WhereThisGoes>

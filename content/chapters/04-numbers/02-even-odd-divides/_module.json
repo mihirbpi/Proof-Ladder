@@ -22,7 +22,7 @@
     "l5": "Divisibility is an existence claim: m divides n when some integer multiplies m to give n. The integer must be exhibited, and exhibiting it is the whole proof.",
     "l6": "Even, odd, and divides are all existential statements about integers; the quantifier structure is what dictates how they are proved and disproved.",
     "l7": "Parity and divisibility are existence statements about the integers: m divides n when some integer multiplies m to give n. Proving divisibility means exhibiting that integer and confirming it is one.",
-    "l8": "Divisibility is the preorder on ℤ induced by the multiplicative monoid; it is the shadow of the ideal containment (n) ⊆ (m), which is how the notion generalises to arbitrary rings."
+    "l8": "Divisibility is the preorder on ℤ induced by the multiplicative monoid; it is the shadow of the ideal containment (n) ⊆ (m), which is how the notion generalizes to arbitrary rings."
   },
   "kernel": "n is even iff n = 2k for some integer k; odd iff n = 2k+1. Generalizing: m | n iff n = mk for some k ∈ ℤ. Divisibility is an existence statement, so proving it means producing the k.",
   "objectives": [

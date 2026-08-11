@@ -32,7 +32,7 @@ for (let r = 0; r < n; r++) {
 // Precompute every dot. The Astro template parser does not cope with nested
 // ternaries inside JSX attributes, so the branching happens here, not in markup.
 // Alternating the opacity of consecutive shells keeps them distinguishable, and
-// the L outlines below mean colour is never the sole carrier (§C8).
+// the L outlines below mean color is never the sole carrier (§C8).
 const drawn = cells.map(({ r, c, shell }) => {
   const on = shell <= filled;
   return {
@@ -66,7 +66,7 @@ const alt = `A ${n} by ${n} square of dots built from ${n} nested L-shaped shell
     .l-shells .cnt { font-family: var(--font-mono, monospace); font-size: 11px; fill: color-mix(in oklab, var(--color-ink, #14182B) 70%, transparent); }
   </style>
 
-  {/* Alternating shell tint so consecutive Ls are distinguishable without colour alone:
+  {/* Alternating shell tint so consecutive Ls are distinguishable without color alone:
       every other shell also gets a thin outline. */}
   {drawn.map((d) => (
     <circle cx={d.cx} cy={d.cy} r={d.r} class={d.cls} fill-opacity={d.opacity} />

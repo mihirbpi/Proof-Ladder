@@ -2,7 +2,7 @@
 level: l7
 title: Induction in set theory
 readingTimeMin: 7
-newTerms: ["power set", "characteristic function"]
+newTerms: ["power set", "characteriztic function"]
 anchorExample: "the odd numbers add up to a square"
 ---
 
@@ -40,7 +40,7 @@ The step transferred a count along a bijection rather than recounting — §3.8'
 ## Bijective proof
 
 <Proof title="Second proof">
-For $A \subseteq S$ define its **characteristic function** $\mathbf{1}_A : S \to \{0,1\}$ by $\mathbf{1}_A(x) = 1$ iff $x \in A$.
+For $A \subseteq S$ define its **characteriztic function** $\mathbf{1}_A : S \to \{0,1\}$ by $\mathbf{1}_A(x) = 1$ iff $x \in A$.
 
 The map $A \mapsto \mathbf{1}_A$ is a bijection $\mathcal{P}(S)\to\{0,1\}^S$, with inverse $f \mapsto f^{-1}(\{1\})$ — the pre-image, in the sense of §3.3.
 
@@ -103,7 +103,7 @@ Counting arguments are the everyday application of induction, and the two proofs
 
 **The induction verifies; the choice argument explains.** Building a subset by making one yes/no decision per element gives $2^n$ immediately, and it says *why* the base is $2$. The induction confirms the formula and does not.
 
-The explanatory version also generalises: give each element three options instead of two and the count is $3^n$, with no proof to redo. Rewriting the induction would be real work.
+The explanatory version also generalizes: give each element three options instead of two and the count is $3^n$, with no proof to redo. Rewriting the induction would be real work.
 
 **In calculus, the binomial coefficients are what you will actually need.** $\binom nk$ counts $k$-element subsets of an $n$-set, and Pascal's identity
 $$\binom nk + \binom{n}{k-1} = \binom{n+1}{k}$$

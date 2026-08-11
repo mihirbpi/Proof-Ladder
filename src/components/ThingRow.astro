@@ -8,7 +8,7 @@ export interface Props {
   items: Item[];
   caption?: string | null;
   ring?: number | null;
-  groups?: number[] | null;   // split the row into labelled clumps, e.g. [3, 3, 1]
+  groups?: number[] | null;   // split the row into labeled clumps, e.g. [3, 3, 1]
   groupLabels?: string[] | null;
 }
 const { items, caption = null, ring = null, groups = null, groupLabels = null } = Astro.props;
@@ -24,7 +24,7 @@ for (let i = 0; i < items.length; i++) {
   if (groups && g < groups.length && inGroup === groups[g]) { cursor += GROUP_GAP; g++; inGroup = 0; }
 }
 // A caption can easily be wider than the objects it sits under, so the box
-// sizes for whichever is wider and the row is centred inside it.
+// sizes for whichever is wider and the row is centerd inside it.
 const CHW = 6.9;
 const ROW_W = cursor - (groups ? GROUP_GAP : 0) + PAD - STEP + 50;
 const W = Math.max(ROW_W, (caption?.length ?? 0) * CHW + 24);
@@ -36,13 +36,13 @@ const alt = `${items.length} things in a row: ${items.map(name).join(', ')}`
   + (ring !== null ? `. The ${name(items[ring])} is ringed` : '')
   + (caption ? `. ${caption}` : '') + '.';
 
-// centre of each group, for its label
-const groupCentres: number[] = [];
+// center of each group, for its label
+const groupCenters: number[] = [];
 if (groups) {
   let k = 0;
   for (const n of groups) {
     const xs = offsets.slice(k, k + n);
-    if (xs.length) groupCentres.push((xs[0] + xs[xs.length - 1]) / 2 + 20);
+    if (xs.length) groupCenters.push((xs[0] + xs[xs.length - 1]) / 2 + 20);
     k += n;
   }
 }
@@ -63,7 +63,7 @@ if (groups) {
     <circle cx={XOFF + offsets[ring] + 20} cy="36" r="26" class="ring" />
   )}
 
-  {groupLabels && groupCentres.map((cx, i) => (
+  {groupLabels && groupCenters.map((cx, i) => (
     groupLabels[i] ? <text x={XOFF + cx} y="76" class="glbl" text-anchor="middle">{groupLabels[i]}</text> : null
   ))}
 

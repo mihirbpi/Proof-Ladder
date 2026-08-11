@@ -69,19 +69,19 @@ This is impossible, so $\sqrt2$ is irrational.
 
 ## What made it work
 
-**The lowest-terms assumption was the target.** It was chosen not because it was needed for the algebra but because it was something a contradiction could destroy. Recognising which assumption to set up as the victim is the skill this proof teaches.
+**The lowest-terms assumption was the target.** It was chosen not because it was needed for the algebra but because it was something a contradiction could destroy. Recognizing which assumption to set up as the victim is the skill this proof teaches.
 
 **The lemma was used twice, in both directions of the argument.** A small result proved three chapters ago turns out to be the entire engine, which is why module 1.9 bothered with it.
 
 <Warning title="You must justify lowest terms">
 The step "we may take the fraction to be in lowest terms" is doing real work and deserves a reason.
 
-Any fraction can be reduced by cancelling common factors, and the process must stop, because the denominators are positive integers that strictly decrease and cannot do so forever.
+Any fraction can be reduced by canceling common factors, and the process must stop, because the denominators are positive integers that strictly decrease and cannot do so forever.
 
 That last clause is not obvious — it is a genuine property of the integers, and Chapter 7 identifies it as an axiom. For now it is enough to notice that the proof relies on it, and that a system without it would break this argument.
 </Warning>
 
-## The same proof, generalised
+## The same proof, generalized
 
 Nothing about $2$ was special except that it is prime.
 
@@ -89,7 +89,7 @@ Nothing about $2$ was special except that it is prime.
 
 The proof is identical with $2$ replaced by $p$ throughout. The lemma becomes *if $p \mid n^2$ then $p \mid n$* — which is Euclid's lemma from module 4.3, and is exactly the statement that needed primality.
 
-**That is why the generalisation stops at primes.** Try it with $4$: the argument would need *if $4 \mid n^2$ then $4 \mid n$*, and that is false — $n = 2$ has $4 \mid 4$ and $4 \nmid 2$. And indeed $\sqrt4 = 2$ is perfectly rational.
+**That is why the generalization stops at primes.** Try it with $4$: the argument would need *if $4 \mid n^2$ then $4 \mid n$*, and that is false — $n = 2$ has $4 \mid 4$ and $4 \nmid 2$. And indeed $\sqrt4 = 2$ is perfectly rational.
 
 The general statement:
 

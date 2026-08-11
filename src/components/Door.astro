@@ -48,7 +48,7 @@ const alt = both
         <rect x={ox} y={oy} width={PANEL_W} height={PANEL_H} rx="4" class="frame" />
 
         {isOpen ? (
-          // Swung towards us: a narrower panel hinged on the left, seen at an angle.
+          // Swung toward us: a narrower panel hinged on the left, seen at an angle.
           <g>
             <path d={`M ${ox} ${oy} L ${ox - SWING} ${oy + 16}
                       L ${ox - SWING} ${oy + PANEL_H + 16} L ${ox} ${oy + PANEL_H} Z`} class="panel" />

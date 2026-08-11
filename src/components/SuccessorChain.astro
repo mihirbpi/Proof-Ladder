@@ -43,7 +43,7 @@ const nodes = Array.from({ length: n }, (_, i) => ({
 const trailing = mode === 'chain' || mode === 'rogue';
 
 const alt = {
-  chain: `A chain of dots labelled ${nodes.map((d) => d.label).join(', ')}, each with an arrow to the next, continuing to the right without end.`,
+  chain: `A chain of dots labeled ${nodes.map((d) => d.label).join(', ')}, each with an arrow to the next, continuing to the right without end.`,
   loop: `A cycle of ${n} dots, each with an arrow to the next, and the last arrow curving back to 0 — so 0 is the successor of something, which the axioms forbid.`,
   merge: `A chain of dots ${nodes.map((d) => d.label).join(', ')}, each with an arrow to the next, and the last dot also carrying an arrow back to itself — so two different dots have the same successor and the successor operation is not injective.`,
   rogue: `The ordinary chain of dots 0, 1, 2, … continuing to the right, and separately two extra dots ${rogueLabels[0]} and ${rogueLabels[1]} pointing at each other in a two-cycle, unreachable from 0 by counting.`,

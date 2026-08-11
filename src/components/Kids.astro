@@ -2,7 +2,7 @@
 // Sam, Pip and Ada — the children who run through l1 and l2.
 //
 // Each is drawn from the same simple figure with a different hair shape and
-// jumper colour, so they are told apart by silhouette as well as by hue, and
+// jumper color, so they are told apart by silhouette as well as by hue, and
 // each is captioned with their name.
 //
 // wearing   per-child accessories, for §1.4's "hat AND coat" argument:
@@ -16,7 +16,7 @@ const { kids = ['Sam', 'Pip', 'Ada'], wearing = {}, caption = null } = Astro.pro
 
 const CELL = 92;
 // A one-child figure is narrower than its caption, so the box has to size for
-// whichever is wider and the row of children is then centred inside it.
+// whichever is wider and the row of children is then centerd inside it.
 const CHW = 6.9;
 const ROW = kids.length * CELL;
 const W = Math.max(ROW, (caption?.length ?? 0) * CHW + 24);
@@ -34,7 +34,7 @@ const wornWords = (w: string) =>
   w === 'both' ? 'a hat and a coat' : w === 'hat' ? 'a hat' : w === 'coat' ? 'a coat' : 'no hat and no coat';
 
 const alt = kids.map((k) => `${k}, wearing ${wornWords(wornBy(k))}`).join('; ')
-  + '. Each child has differently drawn hair so they can be told apart without relying on colour.';
+  + '. Each child has differently drawn hair so they can be told apart without relying on color.';
 ---
 <svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="kids"
      role="img" aria-label={alt}>

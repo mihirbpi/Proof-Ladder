@@ -24,7 +24,7 @@ The definition is a if–then claim made about every element, and everything in 
 
 > Let $x \in A$ be arbitrary. [Use only what $x \in A$ gives you.] Therefore $x \in S$. Since $x$ was arbitrary, $A \subseteq S$.
 
-The discipline of §1.12 applies verbatim: the element is chosen at the start and never changed, and any assumption about $x$ beyond membership in $A$ invalidates the generalisation.
+The discipline of §1.12 applies verbatim: the element is chosen at the start and never changed, and any assumption about $x$ beyond membership in $A$ invalidates the generalization.
 
 > **Proposition.** $S = (-3,5) \subseteq T = (-6,5]$.
 
@@ -93,7 +93,7 @@ $$
 
 *Symbol by symbol: $\subseteq$ is "sits inside", the bar $\mid$ is "such that". So the line reads: the power set of $X$ is the collection of all collections sitting inside $X$.*
 
-For $X = \{a,b\}$: $\mathcal{P}(X) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$. For finite $X$, $|\mathcal{P}(X)| = 2^{|X|}$ — each element is independently in or out, giving $2^{|X|}$ characteristic functions $X \to \{0,1\}$, whence the notation $2^X$. §6.3 proves the count by induction.
+For $X = \{a,b\}$: $\mathcal{P}(X) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$. For finite $X$, $|\mathcal{P}(X)| = 2^{|X|}$ — each element is independently in or out, giving $2^{|X|}$ characteriztic functions $X \to \{0,1\}$, whence the notation $2^X$. §6.3 proves the count by induction.
 
 Two remarks worth carrying. First, $\mathcal{P}(X)$ is a set whose elements are sets, and keeping track of which level you are on is a real skill: $a \in X$, $\{a\} \in \mathcal{P}(X)$, $\{\{a\}\} \subseteq \mathcal{P}(X)$. Second, **Cantor's theorem**: there is no surjection $X \to \mathcal{P}(X)$, so $|\mathcal{P}(X)| > |X|$ for every set, finite or not. The proof is a diagonal argument — given $f : X \to \mathcal{P}(X)$, the set $D = \{x \in X \mid x \notin f(x)\}$ is not in the image — and it is Russell's construction used constructively rather than destructively. It follows that there is no largest infinity, and no set of all sets.
 

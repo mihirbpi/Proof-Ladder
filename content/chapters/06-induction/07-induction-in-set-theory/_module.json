@@ -22,7 +22,7 @@
     "l5": "The subset count is proved by induction via a membership split, and again by counting one binary choice per element; two proofs of the same theorem is normal.",
     "l6": "|P(S)| = 2^{|S|} for finite S, by induction or by the bijection with functions S → {0,1}, which is why the power set is written 2^S.",
     "l7": "A set with n elements has 2ⁿ subsets, proved by induction with a case split on membership of a chosen element; the bijection with functions S → {0,1} gives a second proof and explains the notation 2^S.",
-    "l8": "The finite count generalises to Cantor’s theorem |P(S)| > |S| for every S, whose diagonal proof is not an induction and cannot be one."
+    "l8": "The finite count generalizes to Cantor’s theorem |P(S)| > |S| for every S, whose diagonal proof is not an induction and cannot be one."
   },
   "kernel": "A set with n elements has 2ⁿ subsets. The step: pick a ∈ S, split subsets into those containing a and those not; each group is in bijection with the subsets of the k-element set S \\ {a}, giving 2ᵏ + 2ᵏ = 2^{k+1}.",
   "objectives": [

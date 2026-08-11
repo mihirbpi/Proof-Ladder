@@ -1,5 +1,5 @@
 ---
-// A number line with tick marks, labelled points, and intervals.
+// A number line with tick marks, labeled points, and intervals.
 //
 // from / to      the visible range
 // ticks          numbers to draw a tick at; defaults to every integer in range
@@ -57,7 +57,7 @@ const defaultTicks = () => {
 };
 const tickList = ticks ?? defaultTicks();
 const labelList = labels ?? tickList;
-const isLabelled = (v: number) => labelList.some((l) => Math.abs(l - v) < 1e-9);
+const isLabeled = (v: number) => labelList.some((l) => Math.abs(l - v) < 1e-9);
 
 // Integers print bare; anything else is trimmed to three decimals with trailing
 // zeros stripped, so an auto-generated label for e.g. 1.41421 reads as 1.414
@@ -65,7 +65,7 @@ const isLabelled = (v: number) => labelList.some((l) => Math.abs(l - v) < 1e-9);
 const fmt = (v: number) =>
   Number.isInteger(v) ? String(v) : String(Number(v.toFixed(3)));
 
-// Labels are centred on their point, so two nearby points collide. Lift each
+// Labels are centerd on their point, so two nearby points collide. Lift each
 // colliding label onto the next tier up and drop a leader line to its dot —
 // §4.6 deliberately plots rationals crowding around a gap, so overlap is the
 // normal case here, not an edge case.
@@ -162,7 +162,7 @@ const alt = [
   {tickList.map((v) => (
     <g>
       <line x1={X(v)} y1={AXIS_Y - 6} x2={X(v)} y2={AXIS_Y + 6} class="tick" />
-      {isLabelled(v) && (
+      {isLabeled(v) && (
         <text x={X(v)} y={AXIS_Y + 24} class="tlbl" text-anchor="middle">{fmt(v)}</text>
       )}
     </g>

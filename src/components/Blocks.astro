@@ -5,7 +5,7 @@
 // colors    one entry per block: "red" | "blue" | "green" | "yellow"
 // spotlight index of a block to ring, for "even one tiny green block would do"
 //
-// Each colour also gets its own PATTERN (plain, dots, stripes, checks), because
+// Each color also gets its own PATTERN (plain, dots, stripes, checks), because
 // the whole argument on those pages turns on telling one block from the others,
 // and a reader who cannot separate the hues must still be able to (§C8).
 export interface Props {
@@ -22,7 +22,7 @@ const W = PAD * 2 + colors.length * SIZE + (colors.length - 1) * GAP;
 const H = PAD * 2 + SIZE + (label ? 26 : 0) + 10;
 
 const fillFor = (c: string) => `var(--color-toy-${c})`;
-// Pattern per colour, so hue is never the only difference.
+// Pattern per color, so hue is never the only difference.
 const patternFor = (c: string) =>
   ({ red: 'plain', blue: 'dots', green: 'stripes', yellow: 'checks' } as const)[c] ?? 'plain';
 
@@ -30,7 +30,7 @@ const counts = colors.reduce<Record<string, number>>((m, c) => ({ ...m, [c]: (m[
 const tally = Object.entries(counts).map(([c, n]) => `${n} ${c}`).join(' and ');
 const alt = `A row of ${colors.length} toy blocks: ${tally}.`
   + (spotlight !== null ? ` The ${colors[spotlight]} one is ringed.` : '')
-  + ' Each colour also has its own pattern, so they can be told apart without relying on colour.';
+  + ' Each color also has its own pattern, so they can be told apart without relying on color.';
 ---
 <svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" class="blocks"
      role="img" aria-label={alt}>

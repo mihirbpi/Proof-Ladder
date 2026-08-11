@@ -9,7 +9,7 @@
 //   * an aria-label exists and says more than "a diagram"
 //
 // The path handling parses SVG path data properly — tracking the current point
-// and honouring relative commands. A previous ad-hoc version scanned the `d`
+// and honoring relative commands. A previous ad-hoc version scanned the `d`
 // attribute for numbers and treated them all as absolute coordinates, which
 // reported Noodle's whiskers ("h -22") as running off the left edge when they
 // do not. A checker that cries wolf is worse than no checker.
@@ -26,7 +26,7 @@ if (!fs.existsSync(DIST)) {
   process.exit(2);
 }
 
-/** Absolute points touched by a path's `d`, honouring relative commands. */
+/** Absolute points touched by a path's `d`, honoring relative commands. */
 function pathPoints(d) {
   const pts = [];
   let x = 0, y = 0, sx = 0, sy = 0;
@@ -117,7 +117,7 @@ function checkFile(file) {
     const bad = [];
 
     // A figure is described either by its own aria-label or by the <Figure>
-    // wrapper's, which renders as a labelled role="img" div immediately around
+    // wrapper's, which renders as a labeled role="img" div immediately around
     // it. Either satisfies the §C8 floor; only having neither is a fault.
     const own = /aria-label="([^"]*)"/.exec(full)?.[1] ?? '';
     const before = html.slice(Math.max(0, m.index - 400), m.index);

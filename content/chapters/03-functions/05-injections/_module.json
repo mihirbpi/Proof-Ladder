@@ -21,7 +21,7 @@
     "l4": "A function is one-to-one when different inputs always give different outputs — equivalently, equal outputs force equal inputs. The second form is the one used in proofs.",
     "l5": "Injectivity says the pre-image of every singleton has at most one element; the contrapositive form is what proofs actually use.",
     "l6": "A function is injective when f(s₁) = f(s₂) forces s₁ = s₂ — distinct inputs never collide. That is the usable form, and it is why an injection can be undone on the elements it actually reaches.",
-    "l7": "f is injective when equal outputs force equal inputs; the contrapositive form is the working definition, and it says every fibre f⁻¹({t}) has at most one point.",
+    "l7": "f is injective when equal outputs force equal inputs; the contrapositive form is the working definition, and it says every fiber f⁻¹({t}) has at most one point.",
     "l8": "Injections are the monomorphisms of Set; injectivity is equivalent to left-cancellability and, for nonempty domains, to the existence of a left inverse."
   },
   "kernel": "f is injective when distinct inputs give distinct outputs; equivalently (contrapositive), f(s₁) = f(s₂) ⇒ s₁ = s₂. Every element of T has at most one pre-image.",

@@ -24,8 +24,8 @@
    * Deliberately separate from the semantic tokens above: these name things in
    * pictures (fur, a wooden block), not meanings, so they must never carry
    * mathematical emphasis or UI state. Muted to sit with the page, not shout.
-   * Colour is never the sole carrier of meaning: the block figures pair each
-   * colour with a distinct pattern, and every picture names its colours in alt text. */
+   * Color is never the sole carrier of meaning: the block figures pair each
+   * color with a distinct pattern, and every picture names its colors in alt text. */
   --color-fur:        #C98A55;
   --color-fur-dark:   #A96F3E;
   --color-pup:        #9A8672;

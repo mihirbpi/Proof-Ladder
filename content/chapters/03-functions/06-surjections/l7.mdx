@@ -39,7 +39,7 @@ The definition is $\forall\exists$, so §1.12 dictates: fix arbitrary $t \in T$,
 Let $t \in \mathbb{R}_{>0}$ be arbitrary. Since $t > 0$, $x := \ln t$ is well defined — the logarithm returns exactly one value, and that value is real — so $x \in \mathbb{R}$. Then $g(x) = e^{\ln t} = t$. As $t$ was arbitrary, $g$ is surjective.
 </Proof>
 
-A construction-free alternative, worth knowing because it generalises: $\exp$ is continuous on $\mathbb{R}$ with $\lim_{x\to-\infty} e^x = 0$ and $\lim_{x\to+\infty} e^x = +\infty$, so by the intermediate value theorem its image contains every $t > 0$. This is non-constructive in flavour — it shows a pre-image exists without producing one — but often the only available route.
+A construction-free alternative, worth knowing because it generalizes: $\exp$ is continuous on $\mathbb{R}$ with $\lim_{x\to-\infty} e^x = 0$ and $\lim_{x\to+\infty} e^x = +\infty$, so by the intermediate value theorem its image contains every $t > 0$. This is non-constructive in flavour — it shows a pre-image exists without producing one — but often the only available route.
 
 ## Codomain dependence
 
@@ -69,7 +69,7 @@ Exhibiting the unhit $t$ is only half; the other half is a *universal* argument 
 > **Proposition.** For $f : S \to T$, the following are equivalent:
 > 1. $f$ is surjective;
 > 2. $f$ has a **right inverse**: some $h : T \to S$ with $f \circ h = \mathrm{id}_T$;
-> 3. $f$ can be cancelled from the right: for all $u, v : T \to R$, $u \circ f = v \circ f \Rightarrow u = v$;
+> 3. $f$ can be canceled from the right: for all $u, v : T \to R$, $u \circ f = v \circ f \Rightarrow u = v$;
 > 4. $f(f^{-1}(U)) = U$ for all $U \subseteq T$.
 
 <Proof title="Proof that (1) and (2) say the same thing">

@@ -31,9 +31,9 @@ It turns out there is exactly one sensible answer, and it is startling.
 
 > **Raising $e$ to an imaginary power lands you on the unit circle.**
 
-Specifically, $e^{i\theta}$ is the point at distance $1$ from the origin, reached by travelling $\theta$ units **along the circle**, counterclockwise from $1$.
+Specifically, $e^{i\theta}$ is the point at distance $1$ from the origin, reached by traveling $\theta$ units **along the circle**, counterclockwise from $1$.
 
-<Figure alt="A grid with points at one, i, minus one and minus i, all on the circle of radius one about the origin." caption="Every e^{iθ} lies on this circle. The exponent measures distance travelled around it.">
+<Figure alt="A grid with points at one, i, minus one and minus i, all on the circle of radius one about the origin." caption="Every e^{iθ} lies on this circle. The exponent measures distance traveled around it.">
   <ComplexPlane points={[
     {re: 1, im: 0, label: "1"},
     {re: 0, im: 1, label: "i"},
@@ -46,7 +46,7 @@ The exponent is an **arc length**, not an angle in degrees. That is all it takes
 
 ## The most famous equation
 
-The unit circle has circumference $2\pi$. So travelling $\pi$ units around it — half the way — starts at $1$ and finishes at $-1$, directly opposite.
+The unit circle has circumference $2\pi$. So traveling $\pi$ units around it — half the way — starts at $1$ and finishes at $-1$, directly opposite.
 
 $$
 \boxed{\ e^{i\pi} = -1\ }
@@ -62,14 +62,14 @@ Two more, by the same reading:
 <Warning title="This is not a coincidence to be admired and forgotten">
 It is tempting to file $e^{i\pi} = -1$ under *surprising facts*. It is better understood as a **definition doing its job**.
 
-Module 5.8 named a point by its distance and its direction, and module 5.9 will prove what multiplication does to those two pieces: the distances multiply, and the angles **add**. Exponents also add: $e^{x}e^{y} = e^{x+y}$. Two operations with the same behaviour, and Euler's formula is the statement that they are the same operation.
+Module 5.8 named a point by its distance and its direction, and module 5.9 will prove what multiplication does to those two pieces: the distances multiply, and the angles **add**. Exponents also add: $e^{x}e^{y} = e^{x+y}$. Two operations with the same behavior, and Euler's formula is the statement that they are the same operation.
 
 That is why the notation is worth having. Writing a rotation as $e^{i\theta}$ makes *"rotate by $\theta_1$, then by $\theta_2$"* into *"multiply $e^{i\theta_1}$ by $e^{i\theta_2}$"*, which the exponent rule turns into $e^{i(\theta_1+\theta_2)}$ — the angles adding, for free.
 </Warning>
 
 ## What the proof needs
 
-The general statement gives the across-and-up coordinates of the landing point in terms of how far you travelled — the conversion of module 5.8 with $r = 1$, written as an equation.
+The general statement gives the across-and-up coordinates of the landing point in terms of how far you traveled — the conversion of module 5.8 with $r = 1$, written as an equation.
 
 Proving it needs two things this course does not assume:
 

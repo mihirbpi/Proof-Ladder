@@ -11,7 +11,7 @@ import Figure from '@/components/Figure.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Every compass-and-straightedge construction you have done works the same way: draw two loci, and take the points they have in common. The centre of a circumscribed circle is where two perpendicular bisectors meet. That "where they meet" has a name.
+Every compass-and-straightedge construction you have done works the same way: draw two loci, and take the points they have in common. The center of a circumscribed circle is where two perpendicular bisectors meet. That "where they meet" has a name.
 
 ## The two operations
 
@@ -31,11 +31,11 @@ $$
 
 $\cap$ is **and**. $\cup$ is **or**. That is the entire definition, and every property in this chapter is a property of $\wedge$ and $\vee$ from Chapter 1, translated.
 
-<Figure alt="Two overlapping circles labelled S and T with only the overlapping lens shaded." caption="S ∩ T: the elements in both.">
+<Figure alt="Two overlapping circles labeled S and T with only the overlapping lens shaded." caption="S ∩ T: the elements in both.">
   <VennTwo labelS="S" labelT="T" shade={["both"]} />
 </Figure>
 
-<Figure alt="Two overlapping circles labelled S and T with the entire area of both circles shaded." caption="S ∪ T: the elements in at least one.">
+<Figure alt="Two overlapping circles labeled S and T with the entire area of both circles shaded." caption="S ∪ T: the elements in at least one.">
   <VennTwo labelS="S" labelT="T" shade={["S-only", "both", "T-only"]} />
 </Figure>
 
@@ -48,7 +48,7 @@ The shaded lens in the second figure is not a mistake, and this is why $|S \cup 
 ## Constructions are intersections
 
 $$
-\text{Circumcentre of } \triangle ABC = \{Q : QA = QB\} \ \cap\ \{Q : QB = QC\}
+\text{Circumcenter of } \triangle ABC = \{Q : QA = QB\} \ \cap\ \{Q : QB = QC\}
 $$
 
 *Symbol by symbol: $\cap$ is "overlapped with".*
@@ -61,7 +61,7 @@ Compass-and-straightedge intersections everywhere:
 
 - **Angle bisector construction:** two arcs of equal radius intersect in a point on the bisector.
 - **Perpendicular through a point:** two arcs intersect in two points; the line through them is perpendicular.
-- **Incentre:** the intersection of the three angle bisectors.
+- **Incenter:** the intersection of the three angle bisectors.
 
 Each arc is a set of points, and each construction step is a $\cap$.
 
@@ -69,7 +69,7 @@ Each arc is a set of points, and each construction step is a $\cap$.
 
 $S$ and $T$ are **disjoint** when $S \cap T = \emptyset$.
 
-<Figure alt="Two separate non-overlapping circles labelled S and T." caption="Disjoint sets: nothing in common.">
+<Figure alt="Two separate non-overlapping circles labeled S and T." caption="Disjoint sets: nothing in common.">
   <VennTwo labelS="S" labelT="T" disjoint={true} />
 </Figure>
 
@@ -136,4 +136,4 @@ In number theory, the common divisors of $12$ and $18$ are $D_{12} \cap D_{18}$,
 
 When a construction fails, the intersection is empty — and that is a fact worth stating rather than an error.
 
-Two circles with radii $2$ and $3$ whose centres are $9$ apart do not meet: their intersection is $\emptyset$. This is precisely why the triangle inequality appears when you construct a triangle from three given lengths. If the two arcs are disjoint, no triangle exists, and the set language lets you say so in the same sentence as the successful case.
+Two circles with radii $2$ and $3$ whose centers are $9$ apart do not meet: their intersection is $\emptyset$. This is precisely why the triangle inequality appears when you construct a triangle from three given lengths. If the two arcs are disjoint, no triangle exists, and the set language lets you say so in the same sentence as the successful case.

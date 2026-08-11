@@ -33,7 +33,7 @@ and $4x+1 \in \mathbb{Z}$ by closure (§4.1). Hence $A(k+1)$.
 <Warning title="Variable hygiene">
 Two unknowns coexist: the induction index $k$ and the leftover factor from the divisibility hypothesis. They must have different names. "$2^{2k}-1 = 3k$" identifies them, which is both false and irreparable.
 
-Also note the rearrangement of (IH) into $2^{2k} = 3x+1$ *before* substituting. Solving the hypothesis for the quantity that actually appears in the target is the standard manoeuvre, and skipping it is where these proofs usually stall.
+Also note the rearrangement of (IH) into $2^{2k} = 3x+1$ *before* substituting. Solving the hypothesis for the quantity that actually appears in the target is the standard maneuver, and skipping it is where these proofs usually stall.
 </Warning>
 
 ## The general fact
@@ -90,12 +90,12 @@ Since $k(k+1)$ is a product of consecutive integers it is even (§1.12), say $2y
 
 The step required an input — evenness of $k(k+1)$ — not obtainable from the inductive hypothesis. **Inductive steps routinely need external lemmas**, and identifying them belongs in the Discussion rather than being discovered mid-proof.
 
-Without induction: $n^3-n = (n-1)n(n+1)$ is a product of three consecutive integers, so it is divisible by $2$ and by $3$, hence by $6$. Shorter and more informative, and it generalises to $k! \mid$ any product of $k$ consecutive integers — a fact about binomial coefficients in disguise.
+Without induction: $n^3-n = (n-1)n(n+1)$ is a product of three consecutive integers, so it is divisible by $2$ and by $3$, hence by $6$. Shorter and more informative, and it generalizes to $k! \mid$ any product of $k$ consecutive integers — a fact about binomial coefficients in disguise.
 
 <Aside>
 The relationship between induction and congruence runs both ways. Modular arithmetic makes many of these results one-liners, but the well-definedness of arithmetic on $\mathbb{Z}/m\mathbb{Z}$ (§3.1's obligation) and the compatibility of $\equiv$ with $+$ and $\times$ are themselves proved by direct computation, and any statement quantified over exponents ultimately rests on an induction.
 
-Euler's theorem $a^{\operatorname{tot}(m)}\equiv 1 \pmod m$ for $\gcd(a,m)=1$ generalises the proposition above, and its proof is a counting argument rather than an induction — an illustration that the elementary method is not always the one that scales.
+Euler's theorem $a^{\operatorname{tot}(m)}\equiv 1 \pmod m$ for $\gcd(a,m)=1$ generalizes the proposition above, and its proof is a counting argument rather than an induction — an illustration that the elementary method is not always the one that scales.
 </Aside>
 
 <WhereThisGoes level="l7">

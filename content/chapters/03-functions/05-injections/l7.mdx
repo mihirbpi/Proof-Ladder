@@ -74,7 +74,7 @@ Since domain and codomain are part of the function (§3.1), this is not a change
 > **Proposition.** For $f : S \to T$ with $S \neq \emptyset$, the following are equivalent:
 > 1. $f$ is injective;
 > 2. $f$ has a **left inverse**: some $g : T \to S$ with $g \circ f = \mathrm{id}_S$;
-> 3. $f$ can be cancelled from the left: for all $h, k : R \to S$, $f \circ h = f \circ k \Rightarrow h = k$;
+> 3. $f$ can be canceled from the left: for all $h, k : R \to S$, $f \circ h = f \circ k \Rightarrow h = k$;
 > 4. $f(A \cap B) = f(A) \cap f(B)$ for all $A, B \subseteq S$;
 > 5. $f^{-1}(f(A)) = A$ for all $A \subseteq S$.
 
@@ -91,7 +91,7 @@ Uniqueness — hence well-definedness of $g$ — is exactly injectivity. For $s 
 (backward) Suppose $g \circ f = \mathrm{id}_S$ and $f(s_1) = f(s_2)$. Applying $g$: $s_1 = g(f(s_1)) = g(f(s_2)) = s_2$.
 </Proof>
 
-Items (4) and (5) were flagged in §3.4: all the misbehaviour of the image operator is exactly the failure of injectivity. Item (3) is the formulation that survives when elements are not available to chase, and it is the version that survives when "elements" are unavailable.
+Items (4) and (5) were flagged in §3.4: all the misbehavior of the image operator is exactly the failure of injectivity. Item (3) is the formulation that survives when elements are not available to chase, and it is the version that survives when "elements" are unavailable.
 
 The hypothesis $S \neq \emptyset$ in (2) is needed only for the trivial reason that a left inverse must be defined somewhere; the empty function $\emptyset \to T$ is injective but has no left inverse when $T \neq \emptyset$.
 

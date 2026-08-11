@@ -113,7 +113,7 @@ Same skeleton, different algebra. Compare the two inductive steps: one used a fa
 Take a convex $(k+1)$-gon and label a vertex $V$. Removing $V$ leaves a convex $k$-gon, which by hypothesis has $\frac{k(k-3)}{2}$ diagonals. Restoring $V$ adds:
 
 - the $k-2$ diagonals from $V$ to the non-adjacent vertices, and
-- one more: the segment joining $V$'s two neighbours, which was a *side* of the $k$-gon and is a *diagonal* of the $(k+1)$-gon.
+- one more: the segment joining $V$'s two neighbors, which was a *side* of the $k$-gon and is a *diagonal* of the $(k+1)$-gon.
 
 So the total is
 $$\frac{k(k-3)}{2} + (k-2)+1 = \frac{k^2-3k+2k-2}{2} = \frac{k^2-k-2}{2} = \frac{(k+1)(k-2)}{2},$$
@@ -142,7 +142,7 @@ Item 5 is the one to check hardest. If your step never uses the inductive hypoth
 <Aside>
 Gauss reportedly found $1+2+\cdots+100$ as a schoolboy by pairing $1$ with $100$, $2$ with $99$, and so on: fifty pairs each summing to $101$, giving $5050$.
 
-That argument generalises to $\frac{n(n+1)}{2}$ and needs no induction. It is also arguably better — it explains *why* the formula has that shape, where the induction proof merely verifies it.
+That argument generalizes to $\frac{n(n+1)}{2}$ and needs no induction. It is also arguably better — it explains *why* the formula has that shape, where the induction proof merely verifies it.
 
 Induction is a verification technique. It confirms a formula you already have; it rarely tells you where the formula came from. Both kinds of argument have their place, and a proof that explains is worth more than one that only checks.
 </Aside>

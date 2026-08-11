@@ -1,12 +1,12 @@
 ---
 // One small drawn object, for the l1/l2 storybook figures.
 //
-// Renders a <g> positioned at (x, y) — its own centre — so it can be dropped
+// Renders a <g> positioned at (x, y) — its own center — so it can be dropped
 // inside any parent <svg>: a box of things, a hoop, a cubby. Every object is
 // drawn inside a nominal 40x40 cell and scaled by `size / 40`.
 //
 // Objects were chosen from what the l1/l2 pages actually name. Each has a
-// distinct SILHOUETTE as well as a distinct colour, because these end up inside
+// distinct SILHOUETTE as well as a distinct color, because these end up inside
 // sorting arguments where telling one from another is the whole point (§C8).
 export interface Props {
   kind: 'ball' | 'sock' | 'hat' | 'apple' | 'cookie' | 'half-cookie' | 'orange' | 'shirt' | 'pea' | 'cat' | 'dog' | 'duck' | 'block' | 'star' | 'book' | 'coat';
@@ -17,7 +17,7 @@ export interface Props {
 }
 const { kind, x = 0, y = 0, size = 40, color = null } = Astro.props;
 
-// Each object has a natural colour; `color` overrides it where a page needs a
+// Each object has a natural color; `color` overrides it where a page needs a
 // red one specifically ("here comes a red ball", "here comes a red sock").
 const natural: Record<string, string> = {
   ball: 'red', sock: 'blue', hat: 'green', apple: 'red', cookie: 'yellow', 'half-cookie': 'yellow', orange: 'orange', shirt: 'red', pea: 'green', cat: 'red', dog: 'yellow', duck: 'yellow',
@@ -67,7 +67,7 @@ const s = size / 40;
   {kind === 'orange' && (
     <g>
       <circle cx="20" cy="21" r="15" fill={hue} class="tk" />
-      {/* dimpled peel, so it is not just a differently coloured ball */}
+      {/* dimpled peel, so it is not just a differently colored ball */}
       <path d="M 20 6 v 4" class="tl" />
       <path d="M 21 9 q 7 -4 8 1 q -5 3 -8 -1 Z" fill="var(--color-toy-green)" class="tk" />
       <g class="tl" opacity="0.45">
@@ -93,7 +93,7 @@ const s = size / 40;
   )}
 
   {/* Three animals, small. Each is a distinct silhouette — pointed ears, a
-      floppy ear, a bill — so they are told apart at 38px without colour. */}
+      floppy ear, a bill — so they are told apart at 38px without color. */}
   {kind === 'cat' && (
     <g>
       <path d="M 9 14 L 8 4 L 17 10 Z" fill={hue} class="tk" />
