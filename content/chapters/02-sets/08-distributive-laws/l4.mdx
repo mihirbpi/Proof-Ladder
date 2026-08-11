@@ -11,87 +11,98 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
+Arithmetic has one distributive law: $3(4+5) = 3\cdot4 + 3\cdot5$. Multiplication spreads across addition.
+
+Sets have **two**, and the second one has no arithmetic version at all.
+
+## The two laws
+
 $$
 S \cap (T \cup R) = (S \cap T) \cup (S \cap R) \tag{D1}
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: meeting $S$ against "$T$ or $R$" gives the same collection as meeting it against each and pooling the results.*
+*Symbol by symbol: $\cap$ is "the overlap of", $\cup$ is "the pool of". So the line reads: **overlapping $S$ with the pool of $T$ and $R$ gives the same collection as overlapping $S$ with each of them separately and then pooling the two results.***
 
 $$
 S \cup (T \cap R) = (S \cup T) \cap (S \cup R) \tag{D2}
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with".*
+*Symbol by symbol: same two marks. So the line reads: **pooling $S$ with the overlap of $T$ and $R$ gives the same collection as pooling $S$ with each of them separately and then taking the overlap of those two results.***
 
-(D1) is the familiar shape, with $\cap$ playing the part of $\times$ and $\cup$ the part of $+$. (D2) has no arithmetic counterpart: $a + bc \neq (a+b)(a+c)$ in general. In sets, **both** operations distribute over the other, and neither is subordinate.
+(D1) is the familiar shape, with overlap playing the part of $\times$ and pool the part of $+$.
 
-Both laws are transcriptions of logical equivalences from module 1.3: *and* distributes over *or*, and *or* distributes over *and*. Each is verifiable by an eight-row truth table.
+(D2) is the one to stare at. Its arithmetic imitation is simply false: $1 + (2\cdot3) = 7$, while $(1+2)(1+3) = 12$. In sets, **both** operations spread across the other, and neither is the outer one.
+
+Both laws come straight from module 1.3: *and* spreads across *or*, and *or* spreads across *and*. Each can be checked with an eight-row truth table.
 
 ## Proof of (D1)
 
 <Discussion>
-  <div slot="know">Being in the left-hand set means being in $S$, and in at least one of $T$ and $R$. Being in the right-hand set means being in both $S$ and $T$, or else in both $S$ and $R$.</div>
-  <div slot="want">Double inclusion.</div>
-  <div slot="how">Both directions carry a disjunction in the hypothesis, so both need a case split (module 1.12). The forward split is on $T$ versus $R$; the backward split is on which of the two intersections $x$ lies in.</div>
+  <div slot="know">Being in the left-hand collection means being in $S$, and in at least one of $T$ and $R$. Being in the right-hand one means being in both $S$ and $T$, or else in both $S$ and $R$.</div>
+  <div slot="want">Each collection sits inside the other.</div>
+  <div slot="how">Both halves hand you an *or*, so both need a case split (module 1.12). Going forward, the split is $T$ against $R$; coming back, it is which of the two overlaps you landed in.</div>
 </Discussion>
 
 <Proof>
-**($\subseteq$)** Take any $x \in S \cap (T \cup R)$. Then $x \in S$, and $x \in T$ or $x \in R$. Split on that disjunction.
+**First half.** Take anything in the left-hand collection. It is in $S$, and it is in $T$ or in $R$. Split on that *or*.
 
-*Case 1: $x \in T$.* With $x \in S$, $x \in S \cap T$.
+*Case 1: it is in $T$.* Being in $S$ as well, it is in the overlap of $S$ and $T$.
 
-*Case 2: $x \in R$.* With $x \in S$, $x \in S \cap R$.
+*Case 2: it is in $R$.* Being in $S$ as well, it is in the overlap of $S$ and $R$.
 
-Either way $x \in (S \cap T) \cup (S \cap R)$, and the cases are exhaustive.
+Either way it is in one of the two overlaps, and so in their pool — the right-hand collection. The cases cover everything.
 
-**($\supseteq$)** Take any $x \in (S \cap T) \cup (S \cap R)$, and split on the outer disjunction. In *Case 1*, $x \in S \cap T$, so $x\in S$ and $x \in T \subseteq T \cup R$. In *Case 2*, $x \in S \cap R$, so $x \in S$ and $x \in R \subseteq T\cup R$. Both give $x \in S \cap (T \cup R)$.
+**Second half.** Take anything in the right-hand collection: it is in the overlap of $S$ and $T$, or in the overlap of $S$ and $R$. Split on that *or*.
 
-Both inclusions hold, so (D1) is proved.
+In *Case 1* it is in $S$ and in $T$, and being in $T$ puts it in the pool of $T$ and $R$. In *Case 2* it is in $S$ and in $R$, and being in $R$ does the same. Either way it is in $S$ and in that pool — the left-hand collection.
+
+Each collection sits inside the other, so (D1) holds.
 </Proof>
 
 ## Proof of (D2)
 
-The reverse inclusion here contains the one genuinely interesting step in the module.
+The second half of this one contains the only genuinely surprising step in the module.
 
 <Proof>
-**($\subseteq$)** Let $x \in S \cup (T \cap R)$; split. If $x \in S$, then $x$ lies in both $S \cup T$ and $S \cup R$. If $x \in T \cap R$, then $x \in T$ puts it in $S \cup T$ and $x \in R$ puts it in $S \cup R$. Either way $x \in (S \cup T) \cap (S \cup R)$.
+**First half.** Take anything in the left-hand collection: it is in $S$, or in the overlap of $T$ and $R$.
 
-**($\supseteq$)** Let $x \in (S \cup T) \cap (S \cup R)$, so $x \in S \cup T$ **and** $x \in S \cup R$. We must show $x \in S$ or $x \in T \cap R$. Split on whether $x \in S$.
+If it is in $S$, then it is in both pools on the right, and we are done. If instead it is in both $T$ and $R$, then being in $T$ puts it in the first pool and being in $R$ puts it in the second. Either way it is in the overlap of the two pools.
 
-*Case 1: $x \in S$.* Then immediately $x \in S \cup (T \cap R)$.
+**Second half.** Now take anything in the right-hand collection. It is in the pool of $S$ and $T$, **and** in the pool of $S$ and $R$. We need: it is in $S$, or it is in both $T$ and $R$.
 
-*Case 2: $x \notin S$.* From $x \in S \cup T$ and $x \notin S$ we get $x \in T$. From $x \in S \cup R$ and $x \notin S$ we get $x \in R$. Hence $x \in T \cap R$, so $x \in S \cup (T \cap R)$.
+Ask one question — is it in $S$?
 
-Both inclusions hold, so (D2) is proved.
+*Case 1: yes.* Then it is certainly in the left-hand collection.
+
+*Case 2: no.* It is in the pool of $S$ and $T$ and not in $S$, so it has to be in $T$. It is in the pool of $S$ and $R$ and not in $S$, so it has to be in $R$. So it is in both, which is the other thing we wanted.
+
+Each collection sits inside the other, so (D2) holds.
 </Proof>
 
-The move in Case 2 — *from $p \vee q$ and $\neg p$, conclude $q$* — is the standard way to get value out of a union hypothesis when one side can be ruled out.
+Two moves in Case 2 are worth naming, because you will use both for the rest of the course.
 
-Note the split itself: $x \in S$ versus $x \notin S$, licensed by $p \vee \neg p$ rather than by anything in the hypothesis. That split is always available, and it is often the right move when nothing else presents itself.
+**Ruling out one half of an *or*.** You knew "in $S$ or in $T$" and you knew "not in $S$", so $T$ was forced. That is how you get value out of an *or* you have been handed.
 
-## The two laws are duals
+**Splitting on a question nothing asked you to ask.** The case split was *is it in $S$, or not?* — and nothing in the hypothesis suggested it. That split is always available, for any statement at all, and it is often the right move when nothing else presents itself.
 
-Swapping $\cap \leftrightarrow \cup$ turns (D1) into (D2), and module 2.7 explains why that is no coincidence: complementing exchanges $\cap$ and $\cup$, so complementing both sides of (D1) and applying De Morgan yields (D2). Concretely:
-$$
-\overline{S \cap (T \cup R)} = \overline S \cup \overline{(T \cup R)} = \overline S \cup (\overline T \cap \overline R),
-$$
+## The two laws are mirror images
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+Swap every overlap with a pool in (D1) and out comes (D2). Module 2.7 explains why that is no accident: taking outsides exchanges the two operations, so the outside of (D1) *is* (D2), with each set replaced by its outside.
 
-and doing the same to the right-hand side of (D1) gives $(\overline S \cup \overline T) \cap (\overline S \cup \overline R)$. So (D1) for $S,T,R$ *is* (D2) for $\overline S, \overline T, \overline R$. One proof, two theorems.
+One proof, two theorems — the first time in this course that a result has come free.
 
 <Warning title="Arithmetic intuition is only half right">
-$\cap$ behaves like $\times$ and $\cup$ like $+$ in (D1), and that analogy will get you through many manipulations. It breaks in three places worth remembering:
+Treating overlap as $\times$ and pool as $+$ will carry you through many manipulations. It breaks in three places worth remembering:
 
-- $S \cup S = S$, but $a + a \neq a$;
-- (D2) holds for sets but not for numbers;
-- there is no subtraction: $S \cup T = S \cup R$ does not imply $T = R$.
+- pooling a collection with itself changes nothing, while $a + a \neq a$;
+- (D2) holds for sets and fails for numbers;
+- there is nothing playing the part of subtraction — knowing the pool of $S$ and $T$ equals the pool of $S$ and $R$ does **not** make $T$ and $R$ equal.
 
-Verify set identities by element chasing (§2.3), not by analogy.
+Check identities about sets by following an element through, not by analogy with numbers.
 </Warning>
 
 <Aside>
-Commutativity, associativity, De Morgan, the complement laws, and these two — that list is complete. Every true identity about $\cup$, $\cap$ and complement follows from it, which is why element chasing always works and why you never need a new trick.
+Commutativity, associativity, De Morgan, the complement laws, and these two — that list is complete. Every true identity about pooling, overlapping and outsides follows from it, which is why following an element through always works, and why you never need a new trick.
 
-The distributive laws are the fragile ones. Systems that satisfy every other law on the list but fail (D1) do exist, and they are studied precisely because that one failure changes everything downstream.
+The distributive laws are the fragile ones. Systems obeying every other law on the list while failing (D1) do exist, and they get studied closely, because that single failure changes everything downstream.
 </Aside>

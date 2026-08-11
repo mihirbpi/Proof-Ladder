@@ -13,28 +13,19 @@ import Warning from '@/components/Warning.astro';
 
 ## Ordered pairs
 
-An **ordered pair** $(a,b)$ is characterized entirely by one property:
-$$
-(a,b) = (c,d) \quad\Leftrightarrow\quad a = c \;\wedge\; b = d. \tag{1}
-$$
+An **ordered pair** $(a,b)$ is pinned down completely by one rule:
 
-*Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\wedge$ is "and".*
+> **(1)** Two pairs are equal exactly when their first entries match **and** their second entries match.
 
-That is what distinguishes pairs from sets: $\{a,b\} = \{b,a\}$ always, while $(a,b) = (b,a)$ only when $a = b$. Sets forget order; pairs remember it, and (1) is the formal content of "remember".
+That is the whole difference between a pair and a set. The set $\{a,b\}$ is the same as $\{b,a\}$, always. The pair $(a,b)$ equals $(b,a)$ only when $a$ and $b$ are the same thing. Sets forget order; pairs remember it, and rule (1) is what "remember" means.
 
 ## The cartesian product
 
-$$
-S \times T = \{\, (s,t) \mid s \in S \wedge t \in T \,\},
-$$
+$S \times T$, said "$S$ cross $T$", is the collection of **every** pair whose first entry comes from $S$ and whose second comes from $T$.
 
-*Symbol by symbol: $\in$ is "is in", $\wedge$ is "and", the bar $\mid$ is "such that", $\times$ pairs things up. So the line reads: $S \times T$ is the collection of all pairs whose first entry comes from $S$ **and** whose second comes from $T$. The bar is "such that"; $\in$ is "is in".*
-so the working form is
-$$
-(x,y) \in S \times T \iff x \in S \wedge y \in T. \tag{2}
-$$
+The working form of that — the line every proof below reaches for — is:
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and".*
+> **(2)** A pair $(x,y)$ is in $S \times T$ exactly when $x$ is in $S$ **and** $y$ is in $T$.
 
 With $S = \{1,2\}$, $T = \{a,b,c\}$:
 $$
@@ -47,20 +38,16 @@ For finite sets $|S \times T| = |S| \cdot |T|$ — the grid has $|S|$ rows and $
 
 $S \times T \neq T \times S$ in general, since $(1,a) \neq (a,1)$ by (1). They are equal only when $S = T$, or when one of them is empty.
 
-$$
-S \times \emptyset = \emptyset \times S = \emptyset.
-$$
+**Crossing anything with the empty set gives the empty set.**
 
-*Symbol by symbol: $\emptyset$ is the empty collection.*
-
-Proof: an element of $S \times \emptyset$ would be a pair $(s,t)$ with $t \in \emptyset$, and $\emptyset$ has no elements, so no such pair exists. (Equivalently: the grid has zero columns.)
+Why: a member of $S \times \{\,\}$ would be a pair whose second entry comes from the empty set — and there is nothing there to take. So there are no such pairs. (Or: the grid has zero columns.)
 
 <Warning title="An element of a product is a pair — name it as one">
 The single most useful habit in this module: whenever you chase one element out of a product set, immediately write it as a pair.
 
-> Let $z \in A \times C$. Then $z = (x,y)$ for some $x \in A$, $y \in C$.
+> Take anything in $A \times C$. It is a pair — call it $(x,y)$, with $x$ from $A$ and $y$ from $C$.
 
-Trying to reason about $z$ without splitting it into coordinates is where these proofs stall. Once it is $(x,y)$, condition (2) converts membership into two ordinary membership statements and Chapter 1 takes over.
+Trying to reason about it without splitting it into two coordinates is where these proofs stall. Once it is a pair, rule (2) turns one membership statement into two ordinary ones, and Chapter 1 takes over.
 </Warning>
 
 ## Products interact with intersection
@@ -69,58 +56,45 @@ Trying to reason about $z$ without splitting it into coordinates is where these 
 > $$(A \cap B) \times (C \cap D) = (A \times C) \cap (B \times D).$$
 
 <Discussion>
-  <div slot="know">$(x,y) \in (A\cap B)\times(C\cap D) \iff (x \in A \wedge x \in B) \wedge (y \in C \wedge y \in D)$. And $(x,y) \in (A\times C)\cap(B\times D) \iff (x \in A \wedge y \in C) \wedge (x \in B \wedge y \in D)$.</div>
-  <div slot="want">Double inclusion.</div>
-  <div slot="how">Both sides unfold to the same four pieces joined by *and*, in a different order. Since $\wedge$ is commutative and associative, the two are equivalent — so the proof is a chain of if-and-only-if statements once every element is named as a pair.</div>
+  <div slot="know">Rule (2), and what an overlap means: being in the overlap of two collections is being in each of them.</div>
+  <div slot="want">The two collections have exactly the same members.</div>
+  <div slot="how">Unfold both sides into plain statements about $x$ and $y$. Each side turns into the same four requirements joined by *and*, listed in a different order — and the order of *and*s never matters.</div>
 </Discussion>
 
 <Proof>
-Take any $z$. Any element of either side is an ordered pair, so write $z = (x,y)$.
+Anything in either collection is a pair, so call it $(x,y)$ and unfold each side in turn.
 
-Then
-$$
-\begin{aligned}
-(x,y) \in (A \cap B) \times (C \cap D)
-&\iff (x \in A \cap B) \wedge (y \in C \cap D) \\
-&\iff (x \in A \wedge x \in B) \wedge (y \in C \wedge y \in D) \\
-&\iff (x \in A \wedge y \in C) \wedge (x \in B \wedge y \in D) \\
-&\iff \big((x,y) \in A \times C\big) \wedge \big((x,y) \in B \times D\big) \\
-&\iff (x,y) \in (A \times C) \cap (B \times D).
-\end{aligned}
-$$
+**Left side.** Being in $(A \cap B) \times (C \cap D)$ means, by rule (2), that $x$ is in the overlap of $A$ and $B$, and $y$ is in the overlap of $C$ and $D$. Written out, that is four requirements at once:
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\cap$ is "overlapped with".*
+> $x$ is in $A$, and $x$ is in $B$, and $y$ is in $C$, and $y$ is in $D$.
 
-The third step is a rearrangement, valid since $\wedge$ is commutative and associative. Every step is an if-and-only-if statement, so both inclusions hold and the sets are equal.
+**Right side.** Being in the overlap of $A \times C$ and $B \times D$ means being in both of those. By rule (2) again, the first says $x$ is in $A$ and $y$ is in $C$; the second says $x$ is in $B$ and $y$ is in $D$. Written out:
+
+> $x$ is in $A$, and $y$ is in $C$, and $x$ is in $B$, and $y$ is in $D$.
+
+**The same four requirements, in a different order.** Since the order of *and*s never matters, each side holds exactly when the other does — so the two collections have the same members.
 </Proof>
 
-Notice what actually happened: the whole theorem is commutativity of $\wedge$. That is the Chapter 1 dictionary doing the work again.
+Notice what actually happened: the entire theorem was *the order of **and**s does not matter*. That is the Chapter 1 dictionary doing the work again.
 
 ## The corresponding union statement is false
 
-$$(A \cup B) \times (C \cup D) \neq (A \times C) \cup (B \times D) \text{ in general.}$$
+Replace both overlaps above by pools and the statement becomes **false**. Crossing two pooled collections gives *more* pairs than pooling the two crossings, and the extras are the mixed pairs.
 
-*Symbol by symbol: $\in$ is "is in", $\emptyset$ is the empty collection, $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\cup$ is "pooled with". So the line reads: pairing up two pooled collections gives more pairs than pooling the two pairings — the mixed pairs are the extras.*
+Take $A = C = \{1\}$ and $B = D = \{2\}$. The left side contains the pair $(1,2)$, since $1$ is in the first pool and $2$ is in the second. The right side is $\{(1,1)\}$ pooled with $\{(2,2)\}$ — no mixed pairs at all. One counterexample settles it (module 1.11).
 
-Take $A = C = \{1\}$, $B = D = \{2\}$. The left side contains $(1,2)$, since $1 \in A \cup B$ and $2 \in C \cup D$. The right side is $\{(1,1)\} \cup \{(2,2)\}$, which does not. One counterexample settles it (module 1.11).
-
-The asymmetry is instructive: products distribute over $\cap$ but not over $\cup$, because the rearrangement step above needs the conjunctions to be independent, and disjunctions do not rearrange the same way.
+The asymmetry is worth understanding rather than memorizing. The proof above worked by rearranging four *and*s, which is always allowed. Rearranging *or*s the same way is not.
 
 ## The coordinate plane and the whole-number grid
 
-$$
-\mathbb{R} \times \mathbb{R} = \mathbb{R}^2, \qquad
-\mathbb{Z} \times \mathbb{Z} = \text{the integer lattice.}
-$$
+Cross the real numbers with themselves and you get every pair of coordinates — which is to say, **the coordinate plane**. Cross the integers with themselves and you get the grid points on it.
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\times$ pairs things up. So the line reads: pairs of reals are the points of the plane; pairs of integers are the grid points on it.*
+So coordinate geometry is the study of collections of pairs. The graph of $y = 3x$ is the collection of pairs whose second entry is three times the first. A circle of radius $r$ about the origin is the collection of pairs at distance $r$ from $(0,0)$. Every graph you have ever drawn was a collection of pairs picked out by a rule.
 
-Coordinate geometry *is* the study of subsets of $\mathbb{R}^2$: the graph of a proportional relationship is $\{(x,y) \in \mathbb{R}^2 \mid y = 3x\}$, a circle of radius $r$ about the origin is $\{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 = r^2\}$. Every graph you have ever drawn was a set-builder subset of a product set.
-
-Products extend: $S \times T \times R$ has ordered triples, $\mathbb{R}^3$ is space, and $\mathbb{R}^n$ — lists of $n$ coordinates — is where most of the mathematics after high school is done.
+Crossing does not stop at two. Cross three collections and members are triples; three copies of the real numbers give space; and $n$ copies — lists of $n$ coordinates — is where most mathematics after high school is done.
 
 <Aside>
-This module is the last piece of scaffolding before Chapter 3. A **function** from $S$ to $T$ will be defined as a particular subset of $S \times T$: the set of pairs whose first entry is an input and whose second is the output it gets sent to. That set of pairs is exactly what you would plot as its graph.
+This module is the last piece of scaffolding before Chapter 3. A **function** from $S$ to $T$ will be defined as a particular collection of pairs inside $S \times T$: the pairs whose first entry is an input and whose second is the output it gets sent to. That set of pairs is exactly what you would plot as its graph.
 
-So functions are not new objects. They are products with a condition attached, and the condition is that each element of $S$ appears in exactly one pair.
+So functions are not new objects. They are crossings with a rule attached, and the rule is that each member of $S$ turns up in exactly one pair.
 </Aside>
