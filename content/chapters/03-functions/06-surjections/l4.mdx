@@ -26,9 +26,9 @@ Compare with injectivity, which said *at most* one pre-image. Injectivity and su
 
 ## The shape of the proof
 
-The definition is $\forall \exists$, so by module 1.12 the proof is: take an arbitrary $t \in T$, then **exhibit a witness** $s$. The witness is almost always built out of $t$, and finding the formula for it is where the work lies.
+The definition is $\forall \exists$, so by module 1.12 the proof is: take any $t \in T$, then **exhibit a witness** $s$. The witness is almost always built out of $t$, and finding the formula for it is where the work lies.
 
-> Let $t \in T$ be arbitrary. Set $s = \ldots$ [built from $t$]. Then $s \in S$, and $f(s) = t$. Hence $f$ is surjective.
+> Take any $t \in T$. Set $s = \ldots$ [built from $t$]. Then $s \in S$, and $f(s) = t$. Hence $f$ is surjective.
 
 Note the small obligation that is easy to skip: you must check the witness actually lies in $S$.
 
@@ -41,11 +41,11 @@ Note the small obligation that is easy to skip: you must check the witness actua
 </Discussion>
 
 <Proof>
-Let $t \in E$ be arbitrary. Since $t$ is even, $t = 2k$ for some integer $k$, so the number $n = t/2 = k$ is an integer — so $n \in \mathbb{Z}$.
+Take any $t \in E$. Since $t$ is even, $t = 2k$ for some integer $k$, so the number $n = t/2 = k$ is an integer — so $n \in \mathbb{Z}$.
 
 Then $g(n) = 2 \cdot \frac{t}{2} = t$.
 
-As $t$ was an arbitrary element of $E$, every element of the codomain is attained, so $g$ is surjective.
+Nothing was assumed about $t$ of $E$, every element of the codomain is attained, so $g$ is surjective.
 </Proof>
 
 ## The codomain decides

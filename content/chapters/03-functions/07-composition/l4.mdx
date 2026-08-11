@@ -80,15 +80,15 @@ Hence $g \circ f$ is injective.
 <Discussion>
   <div slot="know">Every $r \in R$ has a $g$-pre-image in $T$; every $t \in T$ has an $f$-pre-image in $S$.</div>
   <div slot="want">Every $r \in R$ has a $(g\circ f)$-pre-image in $S$.</div>
-  <div slot="how">Start from an arbitrary $r$ and pull back twice. This time the hypotheses are used innermost last: $g$ first to reach $T$, then $f$ to reach $S$ — the reverse of the injectivity proof, which is worth noticing.</div>
+  <div slot="how">Start from a single $r$, assuming nothing about it, and pull back twice. This time the hypotheses are used innermost last: $g$ first to reach $T$, then $f$ to reach $S$ — the reverse of the injectivity proof, which is worth noticing.</div>
 </Discussion>
 
 <Proof>
-Let $r \in R$ be arbitrary. Since $g$ is surjective, there is $t \in T$ with $g(t) = r$. Since $f$ is surjective, there is $s \in S$ with $f(s) = t$.
+Take any $r \in R$. Since $g$ is surjective, there is $t \in T$ with $g(t) = r$. Since $f$ is surjective, there is $s \in S$ with $f(s) = t$.
 
 Then $(g \circ f)(s) = g(f(s)) = g(t) = r$.
 
-As $r$ was arbitrary, $g \circ f$ is surjective.
+Nothing was assumed about $r$, so $g \circ f$ is surjective.
 </Proof>
 
 Combining the two: **a composition of bijections is a bijection** (module 3.8).

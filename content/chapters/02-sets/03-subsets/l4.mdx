@@ -26,7 +26,7 @@ That equivalence is the whole module. $A \subseteq S$ is a if–then claim made 
 
 The technique has a name: **element chasing**. Its shape is fixed.
 
-> Let $x \in A$ be arbitrary. … [reason] … Therefore $x \in S$. Since $x$ was arbitrary, $A \subseteq S$.
+> Take any $x \in A$. … [reason] … Therefore $x \in S$. Since nothing was assumed about $x$, $A \subseteq S$.
 
 Everything between the first and last sentence uses only what $x \in A$ guarantees. If you find yourself assuming more, the proof is broken.
 
@@ -39,13 +39,13 @@ Everything between the first and last sentence uses only what $x \in A$ guarante
 </Discussion>
 
 <Proof>
-Let $x \in S$ be arbitrary, so $-3 < x < 5$.
+Take any $x \in S$, so $-3 < x < 5$.
 
 Since $-6 < -3$ and $-3 < x$, transitivity of $<$ gives $-6 < x$.
 
 Since $x < 5$, in particular $x \leq 5$.
 
-Hence $-6 < x \leq 5$, so $x \in T$. As $x \in S$ was arbitrary, $S \subseteq T$.
+Hence $-6 < x \leq 5$, so $x \in T$. Nothing was assumed about $x \in S$, so $S \subseteq T$.
 </Proof>
 
 Note that the containment is proper: $5 \in T$ but $5 \notin S$. Proper containment requires exhibiting such an element; it is not established by the subset proof alone.
@@ -71,19 +71,19 @@ The distinction sharpens with nested sets. For $A = \{1, \{2,3\}\}$: $1 \in A$ �
 > **Proposition.** For every set $S$, $\emptyset \subseteq S$.
 
 <Proof>
-We must show that every element of $\emptyset$ lies in $S$. Let $x$ be arbitrary. The hypothesis — that $x$ is in $\emptyset$ — is false, since $\emptyset$ has no elements, so the if–then claim is vacuously true (module 1.5). This holds for every $x$, so $\emptyset \subseteq S$.
+We must show that every element of $\emptyset$ lies in $S$. Take any $x$. The hypothesis — that $x$ is in $\emptyset$ — is false, since $\emptyset$ has no elements, so the if–then claim is vacuously true (module 1.5). This holds for every $x$, so $\emptyset \subseteq S$.
 </Proof>
 
 This is the first place vacuous truth does structural work rather than appearing as a curiosity. Reject it and $\emptyset$ becomes an exception to nearly every theorem in the chapter; accept it and everything stays uniform.
 
 ## Reflexivity and transitivity
 
-$S \subseteq S$ holds trivially: anything in $S$ is in $S$.
+$S \subseteq S$ holds for the shortest possible reason: anything in $S$ is in $S$.
 
 > **Proposition.** If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
 
 <Proof>
-Let $x \in A$ be arbitrary. Since $A \subseteq B$, we have $x \in B$. Since $B \subseteq C$, we have $x \in C$. As $x$ was arbitrary, $A \subseteq C$.
+Take any $x \in A$. Since $A \subseteq B$, we have $x \in B$. Since $B \subseteq C$, we have $x \in C$. Nothing was assumed about $x$, so $A \subseteq C$.
 </Proof>
 
 A relation that is reflexive, transitive, and such that mutual containment forces equality ($A \subseteq B$ and $B \subseteq A$ imply $A = B$ — that last one is module 2.6) is called an **ordering**. So $\subseteq$ orders sets the way $\leq$ orders numbers, with one important difference: two numbers are always comparable, but $\{1,2\}$ and $\{2,3\}$ are neither a subset of the other. That is what makes the order *partial*.

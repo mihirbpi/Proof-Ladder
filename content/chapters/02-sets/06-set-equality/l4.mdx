@@ -25,8 +25,8 @@ The definition is not an arbitrary convention. A set is fixed by its members and
 
 ## Template
 
-> **($\subseteq$)** Let $x \in S$ be arbitrary. … Hence $x \in T$.
-> **($\supseteq$)** Let $x \in T$ be arbitrary. … Hence $x \in S$.
+> **($\subseteq$)** Take any $x \in S$. … Hence $x \in T$.
+> **($\supseteq$)** Take any $x \in T$. … Hence $x \in S$.
 > Therefore $S = T$. $\square$
 
 Label the halves. Unlabeled proofs of equalities routinely contain the same direction twice.
@@ -57,7 +57,7 @@ $$
 </Discussion>
 
 <Proof>
-**($\subseteq$)** Let $x \in S \cup T$ be arbitrary. Then $x - 2 = 0$ or $x + 3 = 0$; we split into cases.
+**($\subseteq$)** Take any $x \in S \cup T$. Then $x - 2 = 0$ or $x + 3 = 0$; we split into cases.
 
 *Case 1: $x - 2 = 0$.* Then $(x-2)(x+3) = 0 \cdot (x+3) = 0$.
 
@@ -65,7 +65,7 @@ $$
 
 In both cases $(x-2)(x+3) = 0$, so $x \in R$. The cases are exhaustive.
 
-**($\supseteq$)** Let $x \in R$ be arbitrary, so $(x-2)(x+3) = 0$. In $\mathbb{R}$ a product is zero only if a factor is: $x - 2 = 0$ or $x + 3 = 0$. Hence $x \in S$ or $x \in T$, i.e. $x \in S \cup T$.
+**($\supseteq$)** Take any $x \in R$, so $(x-2)(x+3) = 0$. In $\mathbb{R}$ a product is zero only if a factor is: $x - 2 = 0$ or $x + 3 = 0$. Hence $x \in S$ or $x \in T$, i.e. $x \in S \cup T$.
 
 Both inclusions hold, so $S \cup T = R$.
 </Proof>

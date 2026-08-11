@@ -18,7 +18,7 @@
     "l1": "There are two ways to be right and two ways to be wrong. Which one you need depends on the first word.",
     "l2": "To show an every telling is true, give a reason that works for any one of them. To show it is false, find one bad apple. To show a some telling is true, find one. To show it is false, check them all.",
     "l3": "To prove a for all claim, take any one and follow it: argue about a case you know nothing special about. To disprove it, give one counterexample. To prove a there exists claim, show one example. To disprove it, argue that every case fails.",
-    "l4": "Prove a *for all* claim by taking an arbitrary element and following it; disprove it with one counterexample. Prove a *there exists* claim by exhibiting a witness; disprove it by proving the denial for everything.",
+    "l4": "Prove a *for all* claim by taking an stand-in element and following it; disprove it with one counterexample. Prove a *there exists* claim by exhibiting a witness; disprove it by proving the denial for everything.",
     "l5": "Each of the four proof tasks has its own template: arbitrary element, counterexample, witness, universal negation — plus the two-part pattern for uniqueness.",
     "l6": "The strategy for a quantified goal is determined by the outermost quantifier and by whether you are proving or refuting; splitting into cases is legitimate whenever the cases exhaust the domain.",
     "l7": "The four tasks — proving and disproving each of the two quantifiers — have fixed templates determined by the negation laws. The *for all* proof rests on an named at the start and never changed element, and proof by cases is licensed by any split that covers everything.",

@@ -89,17 +89,17 @@ The justification is module 1.3. If $\neg p$ leads to a contradiction, $\neg p$ 
 > **Proposition.** Let $A, B \subseteq S$. If $A \subseteq B$, then $\overline{B} \subseteq \overline{A}$.
 
 <Discussion>
-  <div slot="know">$A \subseteq B$, i.e. every element of $A$ lies in $B$. To show a subset relation we must chase an arbitrary element of $\overline B$.</div>
+  <div slot="know">$A \subseteq B$, i.e. every element of $A$ lies in $B$. To show a subset relation we must chase one element of $\overline B$, assuming nothing about it.</div>
   <div slot="want">$x \in \overline{B} \Rightarrow x \in \overline{A}$; that is, $x \notin B \Rightarrow x \notin A$.</div>
   <div slot="how">The goal $x \notin A$ is negative, so a direct derivation has nothing to work with. Suppose not: assume $x \in A$ and use the hypothesis to reach $x \in B$, contradicting $x \notin B$.</div>
 </Discussion>
 
 <Proof>
-Let $x \in \overline{B}$ be arbitrary, so $x \in S$ and $x \notin B$. We must show $x \notin A$.
+Take any $x \in \overline{B}$, so $x \in S$ and $x \notin B$. We must show $x \notin A$.
 
 Suppose not: suppose $x \in A$. Since $A \subseteq B$, it follows that $x \in B$. But $x \notin B$. So $x \in B$ and $x \notin B$ both hold, which is a contradiction.
 
-Hence the supposition fails, so $x \notin A$, i.e. $x \in \overline{A}$. As $x$ was arbitrary, $\overline{B} \subseteq \overline{A}$.
+Hence the supposition fails, so $x \notin A$, i.e. $x \in \overline{A}$. Nothing was assumed about $x$, so $\overline{B} \subseteq \overline{A}$.
 </Proof>
 
 Notice that the containment **reverses**. Complementation is order-reversing, and this is the same phenomenon as the contrapositive (module 1.7): $A \subseteq B$ says $x \in A \Rightarrow x \in B$, and $\overline B \subseteq \overline A$ says $x \notin B \Rightarrow x \notin A$. The proposition *is* contraposition, translated.

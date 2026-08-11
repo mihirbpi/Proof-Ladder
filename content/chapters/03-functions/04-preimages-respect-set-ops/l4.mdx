@@ -51,11 +51,11 @@ Everything else is the definitions of $\cup$, $\cap$, complement, and the corres
 <Discussion>
   <div slot="know">(1), and $y \in U \cup V \iff (y \in U) \vee (y \in V)$.</div>
   <div slot="want">Double inclusion (module 2.6).</div>
-  <div slot="how">Chase an arbitrary $x$. Apply (1) to move from $x$-statements to $f(x)$-statements, unfold the union, and apply (1) twice more to move back. Every step is an if-and-only-if statement, so both inclusions come at once — but we will write both directions out, since the case structure is worth seeing.</div>
+  <div slot="how">Chase a single $x$, assuming nothing about it. Apply (1) to move from $x$-statements to $f(x)$-statements, unfold the union, and apply (1) twice more to move back. Every step is an if-and-only-if statement, so both inclusions come at once — but we will write both directions out, since the case structure is worth seeing.</div>
 </Discussion>
 
 <Proof>
-**($\subseteq$)** Let $x \in f^{-1}(U \cup V)$ be arbitrary. By (1), $f(x) \in U \cup V$, so $f(x) \in U$ or $f(x) \in V$. That is a disjunction, so split into cases.
+**($\subseteq$)** Take any $x \in f^{-1}(U \cup V)$. By (1), $f(x) \in U \cup V$, so $f(x) \in U$ or $f(x) \in V$. That is a disjunction, so split into cases.
 
 *Case 1: $f(x) \in U$.* Then by (1), $x \in f^{-1}(U)$, hence $x \in f^{-1}(U) \cup f^{-1}(V)$.
 
@@ -77,7 +77,7 @@ Both inclusions hold, so (P1) is proved.
 ## Proof of (P3)
 
 <Proof>
-Let $x \in S$ be arbitrary. Then
+Take any $x \in S$. Then
 $$
 \begin{aligned}
 x \in f^{-1}\big(\overline{U}\big)

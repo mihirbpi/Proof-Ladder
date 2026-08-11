@@ -2,7 +2,7 @@
 level: l4
 title: Proving divisibility facts
 readingTimeMin: 7
-newTerms: ["without loss of generality"]
+newTerms: []
 anchorExample: "divisibility"
 ---
 
@@ -53,34 +53,41 @@ using commutativity and associativity of multiplication. Since $jk \in \mathbb{Z
 > **Proposition.** If $a \mid b$ and $a \mid c$ then $a \mid (bx + cy)$ for all $x, y \in \mathbb{Z}$.
 
 <Discussion>
-  <div slot="know">$b = aj$, $c = ak$ with $j,k \in \mathbb{Z}$; and $x, y$ arbitrary integers.</div>
+  <div slot="know">$b = aj$, $c = ak$ with $j,k \in \mathbb{Z}$; and $x, y$ any two integers.</div>
   <div slot="want">An integer factor left over for $bx + cy$ over $a$.</div>
   <div slot="how">Substitute and factor out $a$ using distributivity. The leftover factor $jx + ky$ is an integer by closure under both operations.</div>
 </Discussion>
 
 <Proof>
-Let $x, y \in \mathbb{Z}$ be arbitrary. Since $a \mid b$ and $a \mid c$, there are $j,k \in \mathbb{Z}$ with $b = aj$, $c = ak$. Then
+Take any $x, y \in \mathbb{Z}$. Since $a \mid b$ and $a \mid c$, there are $j,k \in \mathbb{Z}$ with $b = aj$, $c = ak$. Then
 $$bx + cy = ajx + aky = a(jx + ky).$$
 As $\mathbb{Z}$ is closed under multiplication and addition, $jx + ky \in \mathbb{Z}$. Hence $a \mid (bx+cy)$.
 </Proof>
 
 Taking $x = y = 1$ gives $a \mid (b+c)$; taking $x = 1, y = -1$ gives $a \mid (b - c)$. This one proposition covers a family of corollaries, and it is the engine of the Euclidean algorithm.
 
-## Or in the hypothesis: without loss of generality
+## When an *or* in the hypothesis costs you only one case
 
 > **Proposition.** If $a \mid b$ or $a \mid c$, then $a \mid bc$.
 
-The hypothesis is a disjunction, so module 1.12 demands cases — but here the two cases are genuinely symmetric.
-
-*A reminder of the symbols in play: $\nmid$ reads "does not divide".*
+The hypothesis is an *or*, so module 1.12 demands cases. But look at the two cases before writing them out: they are the same argument with $b$ and $c$ swapped.
 
 <Proof>
-The hypothesis is a disjunction, so we argue by cases. The two cases differ only by exchanging the names $b$ and $c$, and the conclusion $a \mid bc$ is unchanged by that exchange, since $bc = cb$. So **without loss of generality** we may assume $a \mid b$.
+Suppose first that $a \mid b$. Then $b = ak$ for some integer $k$, so
+$$bc = (ak)c = a(kc),$$
+and $kc$ is an integer by closure. So $a \mid bc$.
 
-Then $b = ak$ for some $k \in \mathbb{Z}$, so $bc = (ak)c = a(kc)$, and $kc \in \mathbb{Z}$ by closure. Hence $a \mid bc$.
+Now suppose instead that $a \mid c$. Swap the names $b$ and $c$ everywhere in the paragraph above and it still reads correctly, because $bc$ and $cb$ are the same number. So that case needs no new work.
 </Proof>
 
-**Without loss of generality** (often *WLOG*) is a legitimate abbreviation with a strict license: you may use it only when the omitted case is obtained from the treated one by a relabeling that leaves the hypotheses and conclusion unchanged. Here the relabeling is $b \leftrightarrow c$, and it works because multiplication is commutative. Say *why* the cases are symmetric, as above; WLOG asserted without justification is the most common way a case gets quietly dropped.
+**Why the second case was free, exactly.** Two conditions had to hold, and both were checked rather than assumed:
+
+- the *hypothesis* turns into the other case's hypothesis when you swap the letters, and
+- the *conclusion* is unchanged by the swap — here because $bc = cb$.
+
+When both hold, one case really does cover the other. When they do not, skipping a case is skipping a case, and that is the most common way a hole gets into a proof quietly.
+
+Mathematicians have a stock phrase for this move — you will meet it in a later course, and this course names it at the next level up. What matters now is the habit: say *why* the two cases are the same, in one sentence, every time you lean on it.
 
 ## The false converse
 

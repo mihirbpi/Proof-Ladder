@@ -58,9 +58,9 @@ Every identity in the rest of this chapter is an identity from Chapter 1 read th
 > **Proposition.** For any sets $S, T$: (i) $S \cap T \subseteq S$, and (ii) $S \subseteq S \cup T$.
 
 <Proof>
-(i) Let $x \in S \cap T$ be arbitrary. By definition $x \in S$ and $x \in T$; in particular $x \in S$. Since $x$ was arbitrary, $S \cap T \subseteq S$.
+(i) Take any $x \in S \cap T$. By definition $x \in S$ and $x \in T$; in particular $x \in S$. Since nothing was assumed about $x$, $S \cap T \subseteq S$.
 
-(ii) Let $x \in S$ be arbitrary. Then "$x \in S$ or $x \in T$" holds, since its left half does. Hence $x \in S \cup T$, and $S \subseteq S \cup T$.
+(ii) Take any $x \in S$. Then "$x \in S$ or $x \in T$" holds, since its left half does. Hence $x \in S \cup T$, and $S \subseteq S \cup T$.
 </Proof>
 
 Both proofs are three lines because the underlying logical facts — $p \wedge q \Rightarrow p$ and $p \Rightarrow p \vee q$ — are tautologies. That is the dictionary at work.
@@ -100,7 +100,7 @@ $S$ and $T$ are **disjoint** when $S \cap T = \emptyset$.
 
 Examples: the even and odd integers; $(-\infty, 0)$ and $[0, \infty)$; the multiples of $6$ and the numbers leaving remainder $2$ on division by $6$ — a fact worth proving, since no number can leave two different remainders.
 
-Proving disjointness is proving a universal negative: $\forall x,\, \neg(x \in S \wedge x \in T)$. Module 1.12 says that means an arbitrary-element argument, and it is often cleanest by contradiction (module 2.5).
+Proving disjointness is proving a universal negative: $\forall x,\, \neg(x \in S \wedge x \in T)$. Module 1.12 says that means the any-element argument, and it is often cleanest by contradiction (module 2.5).
 
 <Warning title="Notation collisions">
 $\cup$ and $\cap$ join *sets*; the joining words of module 1.3 join *statements*. Writing a joining word between two sets, or a set operation between two statements, is a type error — sets are not statements and statements are not sets. Writing them correctly is not pedantry; the distinction is what the dictionary is translating between.
