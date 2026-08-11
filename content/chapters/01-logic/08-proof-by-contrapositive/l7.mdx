@@ -84,7 +84,7 @@ Contradiction gives you a strictly larger set of assumptions to work with, which
 A useful self-check: write your contradiction proof, then look at whether the assumption $p$ was ever used. If it was not, you have written a contrapositive proof inside a contradiction wrapper. Remove the wrapper. Referees notice.
 
 <Aside>
-There is an asymmetry the table hides. $(p \Rightarrow q) \Rightarrow (\neg q \Rightarrow \neg p)$ holds in intuitionistic logic; the converse does not, since recovering $q$ from $\neg\neg q$ needs double-negation elimination. So "proof by contrapositive" in the sense used here — proving $\neg q \Rightarrow \neg p$ in order to conclude $p \Rightarrow q$ — is a classical move. In practice this matters only if you care whether your proof gives an algorithm; but that is exactly what constructive mathematics and dependent type theory do care about.
+There is an asymmetry the table hides. $(p \Rightarrow q) \Rightarrow (\neg q \Rightarrow \neg p)$ needs less to justify it than the reverse direction does, since recovering $q$ from $\neg\neg q$ needs double-negation elimination. So "proof by contrapositive" in the sense used here — proving $\neg q \Rightarrow \neg p$ in order to conclude $p \Rightarrow q$ — is a classical move. In practice this matters only if you care whether your proof gives an algorithm; but that is exactly what constructive mathematics and dependent type theory do care about.
 </Aside>
 
 <WhereThisGoes level="l7">

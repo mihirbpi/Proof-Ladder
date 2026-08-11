@@ -12,11 +12,11 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 *Chapter question: if every proof rests on earlier facts, what do the earliest facts rest on?*
 
-## The regress, and its two termini
+## Where the chain of *why* has to stop
 
-Justification regresses in two directions, and both must terminate.
+Justification goes back and back in two directions, and both must terminate.
 
-**Statements.** Every theorem is derived from earlier ones. An infinite regress anchors nothing, so some statements are assumed: the **axioms**.
+**Statements.** Every theorem is derived from earlier ones. An infinite chain of *why* anchors nothing, so some statements are assumed: the **axioms**.
 
 **Terms.** Every definition is phrased in earlier terms. So some terms are undefined: the **undefined starting words**, whose meaning is exhausted by the axioms governing them.
 
@@ -51,7 +51,7 @@ To prove axiom $A$ independent of $B_1,\ldots,B_n$: construct a structure satisf
 
 Historically decisive instances:
 
-- **Parallel postulate.** The Beltrami–Klein and Poincaré disc models satisfy Euclid's first four axioms and refute the fifth, ending two millennia of failed derivations. Hyperbolic geometry is as consistent as Euclidean.
+- **Parallel postulate.** The Beltrami–Klein and Poincaré disc models satisfy Euclid's first four axioms and refute the fifth, ending two thousands of years of failed derivations. Hyperbolic geometry is as consistent as Euclidean.
 - **Two famous set-theory questions.** Both were settled the same way in the twentieth century: structures were built in which the standard axioms hold and the statement is true, and others in which they hold and it is false. So the axioms decide neither, and that is a theorem rather than an admission of defeat.
 
 §7.4 uses exactly this method on Peano's axioms, exhibiting one- and two-element structures satisfying axioms 1–6 while violating 7 or 8. Independence is not a philosophical remark; it is a construction.
@@ -60,7 +60,7 @@ Historically decisive instances:
 
 Every proof justifies its claims by earlier claims, and following the chain backwards gives three possibilities.
 
-**Infinite regress.** No claim is ever proved, because the justification never completes.
+**Infinite chain of *why*.** No claim is ever proved, because the justification never completes.
 
 **Circularity.** $P$ because $Q$, $Q$ because $P$. Nothing is proved either.
 
@@ -108,10 +108,10 @@ So the foundations of mathematics do not sit on bedrock. They sit on a carefully
 
 The axiomatic method is what both courses ahead are organized by, and recognizing it changes how you read a textbook.
 
-**In calculus the axioms are about $\mathbb{R}$.** It is the unique complete ordered field, and the three parts of that phrase do distinguishable work. The field axioms (§4.5) permit algebra; the order axioms permit inequalities; **completeness** is what makes calculus possible, and it is the axiom every major theorem quietly invokes.
+**In calculus the axioms are about $\mathbb{R}$**, and there are three groups of them doing three different jobs. One group is the arithmetic rules of §4.5, which let you do algebra. One group is the order rules, which let you work with inequalities. And the last one is the one that makes calculus possible: **the real line has no gaps in it.**
 
-The big theorems of calculus are all false over $\mathbb{Q}$, and completeness is exactly what $\mathbb{Q}$ lacks.
+That last one is what $\mathbb{Q}$ does not have, and it is why the big theorems of a calculus course are all false over the fractions. Every one of them quietly leans on it.
 
-**The lesson from geometry transfers.** Changing an axiom changes the subject, and the resulting subject may be perfectly consistent — non-Euclidean geometry, finite-dimensional spaces over finite fields, non-Archimedean number systems. An axiom is a choice with consequences, not a self-evident truth.
+**The lesson from geometry transfers.** Changing an axiom changes the subject, and the subject you get may be perfectly sound — dropping the parallel postulate gives a geometry that works and that physics later needed. An axiom is a choice with consequences, not a truth too obvious to argue with.
 
 </WhereThisGoes>

@@ -97,7 +97,7 @@ $$
 
 The first is true: given $x$, choose $y = -x$. The choice of $y$ is permitted to depend on $x$ because $y$ is introduced *after* $x$ and inside its reach. The second is false: it demands one $y$ that works for all $x$ simultaneously, and $x = 1, x = 2$ already conflict.
 
-The governing principle: **an inner quantifier may depend on the outer ones; an outer one may not depend on the inner ones.** When you read a nested statement, read it as a game — the $\forall$ variables are chosen by an adversary, the $\exists$ variables by you, in the order written, and the statement is true iff you have a winning strategy.
+The governing principle: **an inner quantifier may depend on the outer ones; an outer one may not depend on the inner ones.** When you read a nested statement, read it as a game — the $\forall$ variables are chosen by an opponent, the $\exists$ variables by you, in the order written, and the statement is true iff you have a winning strategy.
 
 Same-kind quantifiers *do* commute: $\forall x \forall y$ is $\forall y \forall x$, and likewise for $\exists$. Mixed ones never do, in general.
 
@@ -111,10 +111,10 @@ Here is a pair of statements that differ only in the order of two quantifiers.
 
 The only change is moving *there is a window* across *for every point*. In (a) the window may depend on where you are; in (b) one window must serve everywhere.
 
-That single transposition separates two genuinely different behaviors. A function can wobble gently in the middle of its domain and wildly near the edge, satisfying (a) and failing (b) — $1/x$ close to zero is the standard example. Readers who find later courses impenetrable are almost always readers for whom quantifier order is not yet load-bearing.
+That single transposition separates two genuinely different behaviors. A function can wobble gently in the middle of its domain and wildly near the edge, satisfying (a) and failing (b) — $1/x$ close to zero is the standard example. Readers who find later courses unreadable are almost always readers for whom quantifier order is not yet load-bearing.
 
 <Aside>
-The game reading is not merely a mnemonic. It is formalized in logic as a two-player game, where the truth of a quantified formula is literally the existence of a winning strategy for the verifier. The number of quantifier alternations in a formula is a genuine complexity measure — it stratifies the arithmetical hierarchy, and it stratifies the polynomial hierarchy in complexity theory.
+The game reading is not merely a mnemonic. It is formalized in logic as a two-player game, where the truth of a quantified formula is literally the existence of a winning strategy for the verifier. The number of quantifier alternations in a formula is a genuine complexity measure — it sorts into layers the arithmetical hierarchy, and it sorts into layers the polynomial hierarchy in complexity theory.
 </Aside>
 
 <WhereThisGoes level="l7">
@@ -123,7 +123,7 @@ The game reading is not merely a mnemonic. It is formalized in logic as a two-pl
 
 The idea, in words: *however close you demand the output be to $L$, there is a window around $a$ narrow enough to deliver it.* Three quantifiers, alternating — for every demand, there is a window, for every point in it — and every one is load-bearing.
 
-The order is the content. Reversed, it would say a single window works for every demand at once, which is a different and much stronger claim. This is exactly the desks-and-students pair from earlier in the module, and it is why that definition looks impenetrable on first meeting. It is not deep; it is three nested quantifiers, and you have now met the pattern.
+The order is the content. Reversed, it would say a single window works for every demand at once, which is a different and much stronger claim. This is exactly the desks-and-students pair from earlier in the module, and it is why that definition looks unreadable on first meeting. It is not deep; it is three nested quantifiers, and you have now met the pattern.
 
 **The same structure runs through everything after it.** *Continuous on an interval* and *the slope settles down as you zoom in* are both built the same way, and each one you decode gets easier once you stop reading it as a formula and start reading it as a challenge and a reply.
 

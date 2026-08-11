@@ -23,7 +23,7 @@ $$
 
 Two lines. The first handles adding zero; the second reduces adding $S(y)$ to adding $y$ and taking one more successor.
 
-This is a **recursive definition**: each case is defined in terms of a smaller case, with a base case to stop the regress. The second line is a step, the first is a base, and the pattern is Chapter 6's exactly.
+This is a **recursive definition**: each case is defined in terms of a smaller case, with a base case to stop the chain of *why*. The second line is a step, the first is a base, and the pattern is Chapter 6's exactly.
 
 **Why it works:** to compute $x + y$, the second rule reduces $y$ by one successor at a time until it reaches $0$, where the first rule applies. Axiom 9 guarantees every $y$ is reachable from $0$ this way, so the computation always terminates — **the induction axiom is what makes the definition legitimate.**
 

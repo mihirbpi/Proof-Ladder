@@ -29,13 +29,13 @@ With A5–A6 giving $V \subseteq\mathbb{N}$, double inclusion (§2.6) gives $\ma
 
 ## A9 is induction
 
-Instantiating $V = \{n : A(n)\}$:
+Filling in $V = \{n : A(n)\}$:
 
 $$
 \underbrace{0 \in V}_{A(0)}\ \wedge\ \underbrace{\forall x (x\in V \Rightarrow S(x)\in V)}_{A(k)\Rightarrow A(S(k))}\ \Rightarrow\ \underbrace{\mathbb{N}\subseteq V}_{\forall n\, A(n)}.
 $$
 
-Chapter 6's technique is this axiom. That answers §6.1's question of why induction cannot be derived from more basic facts: it is constitutive of $\mathbb{N}$, and the rogue model demonstrates its independence from A5–A8 by the method of §7.1.
+Chapter 6's technique is this axiom. That answers §6.1's question of why induction cannot be derived from more basic facts: it is part of what it is of $\mathbb{N}$, and the rogue model demonstrates its independence from A5–A8 by the method of §7.1.
 
 Equivalent over A5–A8: the smallest-number principle, strong induction, and the non-existence of infinite descending sequences. §4.4's division algorithm and §4.7's descent argument were both applications.
 
@@ -91,11 +91,11 @@ Set theory supplies the missing piece from the other end: it *says* that an indu
 
 Axiom 9 is the induction principle of Chapter 6, and knowing it is an **axiom** settles the question §6.2 left open.
 
-Induction is not proved. It is assumed, on the same footing as the completeness axiom for $\mathbb{R}$ and the parallel postulate for Euclidean geometry — and §7.4's method shows why it must be: there are systems satisfying Axioms 1–8 and failing Axiom 9.
+Induction is not proved. It is assumed — standing in the same place as the parallel postulate does in geometry, and as the no-gaps rule does for the real line. §7.4's method shows why it has to be assumed: there are systems that satisfy Axioms 1–8 and fail Axiom 9.
 
 **The smallest-number principle is the equivalent form**, and the equivalence is genuine: assume either and derive the other. Neither follows from the remaining axioms.
 
-**In calculus, the parallel axiom is completeness.** Every major theorem of a first course invokes it, usually through a phrase like *"let $c$ be the least upper bound of the set where…"*. The big theorems of calculus are all false over $\mathbb{Q}$, which satisfies every other axiom of a system whose ordering fits its arithmetic.
+**Calculus has an axiom in exactly this position: the real line has no gaps.** Every major theorem of a first course leans on it, usually through a phrase like *"let $c$ be the smallest number sitting above all of these…"*. Those theorems are all false over $\mathbb{Q}$, and the fractions satisfy every *other* rule you could ask for — they are the standing proof that this one axiom is doing the work.
 
 So calculus is, in a precise sense, the study of one axiom's consequences — and recognizing which theorems depend on it is worth doing as you meet them.
 

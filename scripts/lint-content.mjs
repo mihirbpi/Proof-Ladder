@@ -943,8 +943,7 @@ for (const f of files) {
 // vector spaces, topology and complex analysis appear in no course any of them
 // has taken or will take before university.
 //
-// The <WhereThisGoes> box at l7 is exempt — naming a destination is its whole
-// purpose, and it now carries a standing note saying so. Everywhere else these
+// This applies inside <WhereThisGoes> too, which used to be exempt. These
 // terms are simply unavailable, including in the body of a module that happens
 // to be *about* the underlying idea: §4.1's real content is "these systems obey
 // the same arithmetic rules", which needs no word at all.
@@ -1057,9 +1056,13 @@ for (const f of files) {
   const level = path.basename(f, '.mdx');
   if (!['l4', 'l5', 'l6', 'l7'].includes(level)) continue;
   const rel = path.relative(ROOT, f);
-  const text = body(
-    fs.readFileSync(f, 'utf8').replace(/<WhereThisGoes[\s\S]*?<\/WhereThisGoes>/g, ''),
-  );
+  // <WhereThisGoes> used to be stripped here, on the reasoning that naming a
+  // destination is the box's whole purpose. That was backwards. Pointing
+  // forward is its purpose; spending vocabulary the reader does not have is
+  // not, and a box that says "this opens into ring theory" has told a 12th
+  // grader nothing except that there is a thing called ring theory. Name the
+  // *question* the next course asks, not the noun it answers with.
+  const text = body(fs.readFileSync(f, 'utf8'));
   for (const [re, area] of COLLEGE_TERMS) {
     const m = text.match(re);
     if (m) warn(rel, `${level} uses "${m[0]}" (${area}) — no US high-school course teaches it`);
@@ -1114,6 +1117,90 @@ const OFF_REGISTER = [
   // geometry from those and as nothing at all to a reader who did not.
   [/\bloc(us|i)\b/i, 'the set of points that\u2026'],
 ];
+// Obscure English, as distinct from both of the lists below.
+//
+// OFF_REGISTER catches technical terms; PROSE_REGISTER catches ordinary words
+// used in a textbook cadence. This catches the third thing: words that are
+// simply rare in English. "The regress, and its two termini" is a section
+// heading — neither word is mathematical, both are unknown to essentially
+// every 17-year-old, and the sentence they head is about the fact that
+// explanations have to stop somewhere, which is not a hard idea at all.
+//
+// The test applied to each entry: would a US high schooler use this word in
+// conversation, or meet it in a novel, a news story, or another subject's
+// textbook? Course vocabulary the syllabus teaches on purpose is not here —
+// contrapositive and codomain are taught, glossed, and stay.
+const OBSCURE = [
+  [/\bregress(es|ion)?\b/i, 'going back and back'],
+  [/\btermini\b|\bterminus\b/i, 'ends, or stopping points'],
+  [/\bvacuity\b/i, 'being true because there is nothing to check'],
+  [/\bdesiderat(um|a)\b/i, 'what we want from it'],
+  [/\bpenultimate\b/i, 'second to last'],
+  [/\bconstitutive\b/i, 'part of what it is'],
+  [/\bintensional(ly)?\b/i, 'by the rule rather than by the list'],
+  [/\bnullity\b/i, 'say what is zero'],
+  [/\btautologous\b/i, 'always true'],
+  [/\bsubsum(e|es|ed)\b/i, 'covers, or includes'],
+  [/\btacitly\b/i, 'without saying so'],
+  [/\bmanifestly\b/i, 'plainly'],
+  [/\bconspicuously\b/i, 'noticeably'],
+  [/\bpresupposes?\b/i, 'takes for granted'],
+  [/\bposit(ed|s)?\b/i, 'assumed, or put forward'],
+  [/\bintractable\b/i, 'too hard to do'],
+  [/\bidiosyncratic\b/i, 'peculiar'],
+  [/\bimpenetrable\b/i, 'unreadable'],
+  [/\binsufficiency\b/i, 'not being enough'],
+  [/\bdichotom(y|ies)\b/i, 'a split into two'],
+  [/\bstratifies\b/i, 'sorts into layers'],
+  [/\bdisparag\w*\b/i, 'talk down'],
+  [/\bquibbl\w*\b/i, 'a small complaint'],
+  [/\bbelabors?\b/i, 'goes on about'],
+  [/\benshrin\w*\b/i, 'writes in permanently'],
+  [/\bpromissory\b/i, 'a promise'],
+  [/\bendemic\b/i, 'everywhere'],
+  [/\buntenable\b/i, 'cannot be held'],
+  [/\bperverse\b/i, 'contrary'],
+  [/\bmetaphysic\w*\b/i, 'what really exists'],
+  [/\bdoctrine\b/i, 'a position, or a view'],
+  [/\badversary\b/i, 'opponent'],
+  [/\bannihilat\w*\b/i, 'wipes out'],
+  [/\bblemish\b/i, 'flaw'],
+  [/\bsidling\b|\bsquelch\w*\b|\bnakedly\b/i, 'say it plainly'],
+  [/\bscrutiny\b/i, 'a close look'],
+  [/\bforfeits?\b/i, 'gives up'],
+  [/\bgnomons?\b/i, 'the L-shaped shell'],
+  [/\bantiquity\b/i, 'the ancient world'],
+  [/\bmillennia\b/i, 'thousands of years'],
+  [/\baesthetic\b/i, 'tidiness'],
+  [/\banecdotal\b/i, 'one-off'],
+  [/\badmissible\b/i, 'allowed'],
+  [/\bdegenerac(y|ies)\b/i, 'the collapsed cases'],
+  [/\bcorestriction\b|\bcurrying\b|\bco(var|ntravar)iant\b|\bintuitionistic\b|\bparaconsistent\b/i, 'college vocabulary — cut it'],
+  [/\bdemonstrandum\b/i, 'drop the Latin'],
+  [/\bheuristics?\b/i, 'a rough guide'],
+  [/\binstantiat\w*\b/i, 'fill in, or plug in'],
+  [/\bpropagat\w*\b/i, 'spreads'],
+  [/\btemporal\b/i, 'to do with time'],
+  [/\bimperative\b/i, 'a command'],
+  [/\binterrogative\b/i, 'a question'],
+  [/\bvariable hygiene\b/i, 'keeping the letters straight'],
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (level === 'l8') continue;
+  const rel = path.relative(ROOT, f);
+  const text = body(fs.readFileSync(f, 'utf8'));
+  const seen = new Set();
+  for (const [re, plain] of OBSCURE) {
+    const all = [...text.matchAll(new RegExp(re.source, 'gi'))];
+    if (!all.length) continue;
+    const w = all[0][0].toLowerCase();
+    if (seen.has(w)) continue;
+    seen.add(w);
+    warn(rel, `${level} uses "${all[0][0]}"${all.length > 1 ? ` \u00d7${all.length}` : ''} \u2014 rare in English, not just in maths; say "${plain}"`);
+  }
+}
+
 // Register, as distinct from vocabulary. OFF_REGISTER above is a list of
 // technical terms; this is a list of ordinary English words that a high
 // schooler knows perfectly well and still never meets in this construction

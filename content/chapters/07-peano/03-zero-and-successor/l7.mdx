@@ -28,12 +28,12 @@ $$
 1 := S(0),\quad 2:=S(1),\quad 3:=S(2),\quad\ldots
 $$
 
-Definitions, not theorems. The **numeral** $\overline{n} = S^n(0)$ is a syntactic object; the number is what it denotes. Decimal notation is a further layer of abbreviation with no mathematical content — a fact that becomes important in logic, where the length of $\overline n$ written as $n$ tally marks, versus the length of the same number written in decimal is the difference between tractable and intractable formalizations.
+Definitions, not theorems. The **numeral** $\overline{n} = S^n(0)$ is a syntactic object; the number is what it denotes. Decimal notation is a further layer of abbreviation with no mathematical content — a fact that becomes important in logic, where the length of $\overline n$ written as $n$ tally marks, versus the length of the same number written in decimal is the difference between tractable and too hard to do formalizations.
 
 <Warning title="No addition yet">
 $S(x)$ may not be written $x+1$: addition is defined in §7.6 *by recursion on $S$*, so the notation would be circular.
 
-Afterwards, $x + 1 = x + S(0) = S(x + 0) = S(x)$ is a theorem in three steps. The distinction between what is defined and what is derived is the entire subject of this chapter, and collapsing it here forfeits the exercise.
+Afterwards, $x + 1 = x + S(0) = S(x + 0) = S(x)$ is a theorem in three steps. The distinction between what is defined and what is derived is the entire subject of this chapter, and collapsing it here gives up the exercise.
 </Warning>
 
 ## The structural view
@@ -58,7 +58,7 @@ That is why base-ten arithmetic is absent from this chapter. The fact that $7+5=
 
 **The distinction has a practical use.** When an argument seems to depend on how a number is written — its digits, its last digit, its digit sum — it is an argument about the base representation, and it will need the division algorithm (§4.4) to be made rigorous. Divisibility-by-three tests are the standard example, and they are theorems about base ten specifically.
 
-## Insufficiency of A5–A6
+## Why A5 and A6 are not enough
 
 <Figure alt="Two elements labeled zero and one, with an arrow from zero to one and an arrow from one back to zero." caption="A model of A5–A6 in which counting cycles.">
   <ArrowDiagram labelLeft="M" labelRight="M"
@@ -90,6 +90,6 @@ The routine error is importing $\mathbb{R}^n$ intuition into a proof about an ab
 
 That is not decoration. **The chapter is comprehensible because the earlier chapters supplied the words**, and an axiom system stated without them would look arbitrary.
 
-**In calculus the same restraint applies to the definition of a limit.** The official definition says what it says; a proof may use only that, not the picture of a graph sidling up to a height. When a limit proof goes wrong, it is usually because a step appealed to the picture rather than the definition.
+**In calculus the same restraint applies to the definition of a limit.** The official definition says what it says; a proof may use only that, not the picture of a graph creeping up towards a height. When a limit proof goes wrong, it is usually because a step appealed to the picture rather than the definition.
 
 </WhereThisGoes>

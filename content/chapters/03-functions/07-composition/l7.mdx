@@ -76,7 +76,7 @@ Consequently a composition of bijections is a bijection (§3.8).
 The pattern is worth memorizing: **injectivity of a composite constrains the first map; surjectivity constrains the second.** It generalizes directly — in any category, if $g\circ f$ is monic then $f$ is monic, and if $g \circ f$ is epic then $g$ is epic — and it is the reason retracts and sections behave the way they do.
 
 <Warning title="Domain bookkeeping">
-$g \circ f$ requires $\operatorname{cod}(f) = \operatorname{dom}(g)$ *exactly*, not merely $\operatorname{Im}(f) \subseteq \operatorname{dom}(g)$. In practice people compose whenever the image fits, silently replacing $f$ by its corestriction. This is harmless but worth being conscious of, because it changes the function (§3.1) and can change whether it is surjective.
+$g \circ f$ requires $\operatorname{cod}(f) = \operatorname{dom}(g)$ *exactly*, not merely $\operatorname{Im}(f) \subseteq \operatorname{dom}(g)$. In practice people compose whenever the outputs fit, quietly shrinking the declared target of $f$ to make it work. This is harmless but worth noticing, because it changes the function (§3.1) and can change whether it is surjective.
 </Warning>
 
 ## Composition and pre-images

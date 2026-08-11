@@ -11,17 +11,17 @@ import Warning from '@/components/Warning.astro';
 
 *Chapter question: if every proof rests on earlier facts, what do the earliest facts rest on?*
 
-## The regress
+## Where the chain of *why* stops
 
 Trace any theorem backwards. $\sqrt2\notin\mathbb{Q}$ (module 4.7) rests on "$n^2$ even $\Rightarrow$ $n$ even" (1.9), which rests on the definition of even (4.2) and closure of $\mathbb{Z}$ (4.1), which rests on…
 
-The chain cannot be infinite: an infinite regress justifies nothing, since no link is ever anchored. So it terminates, and what it terminates in are statements accepted without proof.
+The chain cannot be infinite: an infinite chain of *why* justifies nothing, since no link is ever anchored. So it terminates, and what it terminates in are statements accepted without proof.
 
 > An **axiom** is a statement assumed true without proof. A **theorem** is a statement derived from the axioms by valid inference. A theory is the deductive closure of its axioms.
 
 ## Undefined terms too
 
-The regress applies to *definitions* as well as to statements. "A set is a well-defined collection" defines *set* in terms of *collection*, which is a synonym. Every definition uses earlier terms, so some terms must be **undefined starting word** — undefined, with their behavior fixed entirely by the axioms.
+The chain of *why* applies to *definitions* as well as to statements. "A set is a well-defined collection" defines *set* in terms of *collection*, which is a synonym. Every definition uses earlier terms, so some terms must be **undefined starting word** — undefined, with their behavior fixed entirely by the axioms.
 
 | Theory | Primitives | Axioms |
 |---|---|---|
@@ -43,7 +43,7 @@ None was proved. Chapter 7 reduces the arithmetic ones to nine axioms about two 
 
 ## Criteria for an axiom system
 
-**Consistency.** No contradiction is derivable. This is not one desideratum among several — it is the only indispensable one, because from a contradiction everything follows: given $p \wedge \neg p$, module 1.5's conditional makes every statement derivable, so an inconsistent theory proves all statements and distinguishes nothing.
+**Consistency.** No contradiction is derivable. This is not one what we want from it among several — it is the only indispensable one, because from a contradiction everything follows: given $p \wedge \neg p$, module 1.5's conditional makes every statement derivable, so an inconsistent theory proves all statements and distinguishes nothing.
 
 **Independence.** No axiom follows from the others. Demonstrating independence requires exhibiting a model satisfying the others and failing the one in question — which is exactly how non-Euclidean geometry was born.
 
@@ -52,7 +52,7 @@ None was proved. Chapter 7 reduces the arithmetic ones to nine axioms about two 
 **Adequacy.** The axioms generate the mathematics you wanted. A system that proves nothing at all is consistent and useless.
 
 <Warning title="Axioms need not be self-evident">
-The traditional gloss "an axiom is an obvious truth" is wrong and historically damaging. Euclid's parallel postulate was assumed to be obvious for two millennia, and mathematicians wasted enormous effort trying to derive it.
+The traditional gloss "an axiom is an obvious truth" is wrong and historically damaging. Euclid's parallel postulate was assumed to be obvious for two thousands of years, and mathematicians wasted enormous effort trying to derive it.
 
 The truth is stranger and better: assume its negation and you get hyperbolic geometry, entirely consistent. The postulate is not a truth about space at all — it is a choice defining which geometry you are studying. And general relativity says the universe made a different choice.
 
@@ -66,7 +66,7 @@ To show axiom $A$ is independent of $B_1,\ldots,B_n$, build a **model** satisfyi
 Module 7.4 does exactly this: it exhibits small structures satisfying Peano's axioms 1–6 and failing 7 or 8, thereby proving those axioms are not redundant. Independence proofs are model constructions, and it is the technique that settled the parallel postulate — and, much later, several of the deepest open questions about the foundations of mathematics.
 
 <Aside>
-Gödel's incompleteness theorems (1931) show that the limits are real. Any consistent, effectively axiomatised theory strong enough for arithmetic (i) has true statements it cannot prove, and (ii) cannot prove its own consistency.
+In 1931 a logician named Kurt Gödel showed the limits are real. Take any set of rules that is honest — never contradicts itself — and strong enough to describe ordinary arithmetic. Two things follow. There are true statements about numbers those rules cannot prove. And the rules cannot even prove that they will never contradict themselves; to be sure of that you have to step outside them.
 
-So settling every statement is unachievable in principle for arithmetic, and the consistency criterion cannot be verified from inside. This did not end mathematics; it changed what foundations are for. Chapter 7 builds $\mathbb{N}$ from nine axioms knowing in advance that those axioms cannot settle every question about it.
+So no set of rules will ever settle every question about the counting numbers. That sounds like bad news and did not turn out to be. It changed what foundations are *for*. Chapter 7 builds $\mathbb{N}$ from nine axioms knowing in advance that those axioms cannot settle every question about it.
 </Aside>
