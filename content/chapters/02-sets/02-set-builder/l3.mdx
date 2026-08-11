@@ -1,8 +1,8 @@
 ---
 level: l3
-title: Set-builder notation
+title: Describing a set by a rule
 readingTimeMin: 5
-newTerms: ["set-builder notation"]
+newTerms: []
 anchorExample: "multiples of 12"
 ---
 
@@ -16,63 +16,59 @@ $$
 
 It works badly when the set is large, and not at all when it is infinite. You cannot write down the set of all even numbers by listing it. You will run out of paper, and then you will run out of life.
 
-So there is a second way to describe a set: give a **condition** that decides membership. This is **set-builder notation**.
+So there is a second way to describe a set: give a **rule** that decides what is in it. Anything passing the rule is in; anything failing it is out.
 
-## Reading the notation
+## Writing a rule down
 
-$$
-A = \{\, x \mid x \text{ is a whole number, } x \text{ is even, and } 0 < x < 12 \,\}
-$$
+> $A$ is the set of all numbers that are whole, even, and between $0$ and $12$.
 
-The vertical bar $\mid$ is read "**such that**". So the whole thing reads:
+Two parts, and it is worth naming them. **What kind of thing** you are collecting — whole numbers — and **the test** they have to pass — even, and between $0$ and $12$.
 
-> "$A$ is the set of all $x$ such that $x$ is a whole number, $x$ is even, and $x$ is between $0$ and $12$."
-
-The part before the bar says what kind of thing we are collecting. The part after the bar is the test. Anything that passes the test is in; anything that fails is out.
-
-Unpacking this one gives $A = \{2, 4, 6, 8, 10\}$ — the same set as before, described differently.
+Work out which numbers pass and you get $A = \{2, 4, 6, 8, 10\}$: the same set as before, described a different way.
 
 ## Where Chapter 1 comes back
 
-Look carefully at what sits after the bar. It is an **open statement** — a sentence with a variable in it, exactly the kind you met in module 1.1. On its own it is neither true nor false. But feed it a specific $x$ and it becomes a statement you can settle:
+Look carefully at the test. It is an **open statement** — a sentence with a blank in it, exactly the kind you met in module 1.1. On its own it is neither true nor false. Put a particular number in the blank and it becomes a statement you can settle:
 
-- $x = 6$: "6 is a whole number, even, and between 0 and 12." True. So $6 \in A$.
-- $x = 7$: "7 is a whole number, even, …" False at the second clause. So $7 \notin A$.
+- Try $6$: "6 is whole, even, and between 0 and 12." True. So $6$ is in $A$.
+- Try $7$: "7 is whole, even, …" False at the second part. So $7$ is out.
 
-This is the join between the two chapters. **Chapter 1 built the conditions; Chapter 2 turns them into objects.** Every set-builder description is a predicate wearing braces.
+This is where the two chapters join. **Chapter 1 built the tests; Chapter 2 turns them into things.**
 
 ## Sets you could not write any other way
 
-$$
-E = \{\, x \mid x \text{ is a whole number and } x \text{ is even} \,\}
-$$
+> $E$ is the set of all whole numbers that are even.
 
-Infinitely many elements, eleven symbols. There is no list-version of this set.
+Infinitely many members, one short sentence. There is no way to write that set as a list.
 
-$$
-M_{12} = \{\, x \mid x \text{ is a multiple of } 12 \,\} = \{0, 12, 24, 36, 48, \ldots\}
-$$
+> $M_{12}$ is the set of all multiples of $12$ — that is, $\{0, 12, 24, 36, 48, \ldots\}$.
 
-Here the "$\ldots$" is a promise about a pattern; the set-builder version is the precise statement of what that pattern is.
+In the list version, the "$\ldots$" is a promise about a pattern. The rule version is the pattern, stated exactly, with nothing left for the reader to guess.
 
 ## Translating both directions
 
 You will need to move between the two forms constantly.
 
-| Set-builder | List |
+| Rule | List |
 |---|---|
-| $\{x \mid x$ is a counting number less than $5\}$ | $\{0, 1, 2, 3, 4\}$ |
-| $\{x \mid x$ is a counting number and $3$ goes into it, and it is less than $10\}$ | $\{0, 3, 6, 9\}$ |
-| $\{x \mid x$ is a counting number bigger than $0$, less than $5$, that both $2$ and $3$ go into$\}$ | $\{\,\}$ |
+| counting numbers less than $5$ | $\{0, 1, 2, 3, 4\}$ |
+| counting numbers under $10$ that $3$ goes into | $\{0, 3, 6, 9\}$ |
+| counting numbers between $0$ and $5$ that both $2$ and $3$ go into | $\{\,\}$ |
 
 That last row is worth staring at. The condition is perfectly clear, and nothing satisfies it: a number that both $2$ and $3$ go into has to be a multiple of $6$, and there are none between $0$ and $5$.
 
-A condition satisfied by nothing gives the empty set. That is not an error; it is an answer.
+A rule that nothing passes gives the empty set. That is not an error; it is an answer.
 
 <Warning title="Say what x is allowed to be">
-$\{x \mid x$ is less than $1\}$ is ambiguous, and dangerously so. Among counting numbers it holds only $0$. Among all numbers on the number line it holds infinitely many, including every fraction below $1$. Always say what pool you are drawing from — the condition alone does not determine the set.
+"The set of everything less than $1$" is ambiguous, and dangerously so. Among counting numbers it holds only $0$. Among all the numbers on the number line it holds infinitely many, including every fraction below $1$. Always say what you are drawing from — the test alone does not decide the set.
 </Warning>
 
 <Aside>
-The bar $\mid$ is sometimes written as a colon: $\{x : x \text{ is even}\}$. Same meaning. Books that use $\mid$ for "divides" (module 4.2) often switch to the colon here to avoid a collision.
+Mathematicians have a shorthand for all of this. They write the rule inside braces with a bar in the middle, like so:
+
+$$\{\, x \mid x \text{ is even} \,\}$$
+
+and read the bar as "**such that**" — "the set of all $x$ such that $x$ is even". It is called **set-builder notation**, and you will meet it properly in middle school.
+
+Nothing on this page needs it. It is here so that the first time you see those braces in a book, you already know what they are saying.
 </Aside>

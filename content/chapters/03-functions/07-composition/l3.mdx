@@ -34,7 +34,7 @@ Feed $s$ into $f$; take the answer; feed it into $g$.
     edges={[[0,0],[1,1],[2,2]]} />
 </Figure>
 
-Tracing through: $a \to 3 \to z$, so $(g \circ f)(a) = z$. Similarly $(g\circ f)(b) = x$ and $(g\circ f)(c) = y$.
+Tracing through: $a \to 3 \to z$, so *$g$ after $f$* sends $a$ to $z$. Similarly it sends $b$ to $x$ and $c) = y$.
 
 ## Right to left
 
@@ -42,11 +42,11 @@ The notation $g \circ f$ means "**$f$ first, then $g$**." The one that runs firs
 
 This looks backwards and catches everybody out at least once. The reason for it is that it matches how you read $g(f(s))$: you evaluate the inside first, and the inside is $f$.
 
-A phrase that helps: read $g \circ f$ as "$g$ **after** $f$."
+A phrase that helps: read the mark as "**after**". Then $g \circ f$ is "$g$ after $f$", which is exactly the order things happen in.
 
 ## The middle must match
 
-$g \circ f$ only makes sense when the codomain of $f$ is the domain of $g$. Otherwise $g$ is being handed something it cannot accept.
+*$g$ after $f$* only makes sense when the codomain of $f$ is the domain of $g$. Otherwise $g$ is being handed something it cannot accept.
 
 $$
 S \;\to\; T \;\to\; R
@@ -60,24 +60,24 @@ The $T$ has to be the same $T$ on both sides. Check this before you write anythi
 
 Let $f$ send a letter to its position in the alphabet, and let $g$ double a number.
 
-- $(g \circ f)(\text{c}) = g(f(\text{c})) = g(3) = 6$.
-- $(g \circ f)(\text{a}) = g(1) = 2$.
+- *$g$ after $f$* sends c to $g(f(\text{c})) = g(3) = 6$.
+- and it sends a to $g(1) = 2$.
 
 The chain sends letters to even numbers.
 
-Now try to build $f \circ g$ instead. That would mean doubling first, then feeding a *number* into the alphabet machine — but the alphabet machine only takes letters. So $f \circ g$ does not exist at all.
+Now try to build *$f$ after $g$* instead. That would mean doubling first, then feeding a *number* into the alphabet machine — but the alphabet machine only takes letters. So *$f$ after $g$* does not exist at all.
 
 ## Order matters even when both work
 
 Sometimes both compositions exist, and they are still different. Let $f$ add $1$ and let $g$ double, both on numbers.
 
-- $(g \circ f)(5) = g(6) = 12$. (Add first, then double.)
-- $(f \circ g)(5) = f(10) = 11$. (Double first, then add.)
+- *$g$ after $f$* sends $5$ to $g(6) = 12$. (Add first, then double.)
+- *$f$ after $g$* sends $5$ to $f(10) = 11$. (Double first, then add.)
 
 Different answers. Composition is not like addition — you cannot swap the order.
 
 <Warning title="Composition is not multiplication">
-$g \circ f$ has nothing to do with multiplying $g$ and $f$. The circle is not a times sign. $(g\circ f)(x)$ means $g(f(x))$, not $g(x) \times f(x)$.
+The little circle has nothing to do with multiplying $g$ and $f$. The circle is not a times sign: *$g$ after $f$* means $g(f(x))$, not $g(x) \times f(x)$.
 </Warning>
 
 <Aside>

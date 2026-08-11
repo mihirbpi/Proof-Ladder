@@ -11,7 +11,7 @@ import ArrowDiagram from '@/components/ArrowDiagram.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-You now have two chapters' worth of tools. Chapter 2 gave you $\cup$, $\cap$, and complements. Module 3.3 gave you pre-images. What happens when you use them together?
+You now have two chapters' worth of tools. Chapter 2 gave you pooling, overlapping, and outsides. Module 3.3 gave you pre-images. What happens when you use them together?
 
 The answer is: they get along perfectly. That is this module.
 
@@ -19,8 +19,8 @@ The answer is: they get along perfectly. That is this module.
 
 For a function $f : S \to T$ and sets $U$, $V$ inside $T$:
 
-- Trace back from $U \cup V$, and you get exactly what you get by tracing back from each and **uniting** the results.
-- Trace back from $U \cap V$, and you get exactly what you get by tracing back from each and taking what is in **both**.
+- Trace back from the pool of $U$ and $V$, and you get exactly what you get by tracing back from each and **uniting** the results.
+- Trace back from the overlap of $U$ and $V$, and you get exactly what you get by tracing back from each and taking what is in **both**.
 - Trace back from *everything outside $U$*, and you get exactly *everything outside* what you traced back from $U$.
 
 In words: **you can trace back before or after doing the set operation, and you get the same answer.**
@@ -36,10 +36,10 @@ In words: **you can trace back before or after doing the set operation, and you 
 Take $U = \{1\}$ and $V = \{2\}$.
 
 - Tracing back from $U$ gives $\{a\}$, and from $V$ gives $\{b, c\}$.
-- $U \cup V = \{1, 2\}$, and tracing back from it gives $\{a, b, c\}$.
-- And uniting the two traced-back sets gives $\{a\} \cup \{b,c\} = \{a,b,c\}$. ✓
+- the pool of $U$ and $V$ is $\{1, 2\}$, and tracing back from it gives $\{a, b, c\}$.
+- And pooling the two traced-back sets gives $\{a\}$ together with $\{b,c\}$, which is $\{a,b,c\}$. ✓
 
-Now the intersection. $U \cap V = \{\,\}$, so tracing back from it gives $\{\,\}$. And taking what is in both traced-back sets gives $\{a\} \cap \{b,c\} = \{\,\}$. ✓
+Now the overlap. $U$ and $V$ have nothing in common, so tracing back from their overlap gives nothing. And taking what is in both traced-back sets gives nothing either. ✓
 
 ## Why it works
 
@@ -49,12 +49,12 @@ The reason is a single, small fact — and it is worth saying out loud, because 
 
 That is the whole engine. Watch it run on the union rule:
 
-- Something is in the traced-back set for $U \cup V$ when its output lands in $U \cup V$.
-- $f(x) \in U \cup V$ means $f(x) \in U$ **or** $f(x) \in V$.
+- Something is in the traced-back set for the pool when its output lands in the pool.
+- Landing in the pool means landing in $U$ **or** landing in $V$.
 - Landing in $U$ means being in the traced-back set for $U$; landing in $V$ means being in the one for $V$.
 - So it is in one traced-back set **or** the other — which is exactly their union.
 
-Every step was just applying the small fact, or the definition of $\cup$. Nothing clever happened, which is exactly why the rule is so reliable.
+Every step was just applying the small fact, or the meaning of pooling. Nothing clever happened, which is exactly why the rule is so reliable.
 
 ## A worked example
 
@@ -63,7 +63,7 @@ Let $f$ send each letter to its position in the alphabet.
 Take $U = \{1, 2, 3\}$ and $V = \{3, 4, 5\}$.
 
 - Tracing back from $U$ gives $\{\text{a},\text{b},\text{c}\}$; from $V$ gives $\{\text{c},\text{d},\text{e}\}$.
-- $U \cap V = \{3\}$, so tracing back from it gives $\{\text{c}\}$.
+- the overlap of $U$ and $V$ is $\{3\}$, so tracing back from it gives $\{\text{c}\}$.
 - And what is in both traced-back sets is also $\{\text{c}\}$. ✓
 
 <Warning title="Forwards is not so lucky">

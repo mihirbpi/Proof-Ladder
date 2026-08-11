@@ -19,7 +19,7 @@ Union and intersection came from *and* and *or*. There is one joining word left 
 
 Fix a set $S$ to be the whole world for the moment. We call it the **universe**. For a set $A$ inside it, the **complement** of $A$ is everything in $S$ that is not in $A$:
 $$
-\overline{A} = \{\, x \in S \mid x \notin A \,\}.
+\overline{A} = \text{everything in } S \text{ that is not in } A.
 $$
 
 <Figure alt="Two circles inside a dashed rectangle, with the region of the rectangle outside both circles shaded." caption="Complement: everything in the universe outside the set.">
@@ -45,7 +45,7 @@ Inside the real numbers, the complement of the fractions is called the **irratio
 
 ## Suppose not
 
-Complements are naturally *negative*: to say $x \in \overline{A}$ is to say $x$ is **not** something. Negative goals are awkward to attack head-on, because "not" gives you nothing to substitute.
+Complements are naturally *negative*: to say something is in $\overline{A}$ is to say it is **not** in $A$. Negative goals are awkward to attack head-on, because "not" gives you nothing to substitute.
 
 So here is the technique that handles them, and it is one of the great ones. It is called **proof by contradiction**, and the named move is **suppose not**.
 
@@ -88,5 +88,5 @@ Contradiction is powerful, so it is tempting to use it everywhere. Resist. A dir
 </Warning>
 
 <Aside>
-Two facts worth noticing about complements, both easy to see in the picture: $\overline{\overline{A}} = A$ — the outside of the outside is the inside — and $A \cap \overline{A} = \{\,\}$, since nothing can be both in and out. These are the set versions of two things you already know: saying *not* twice gets you back where you started, and nothing can be both true and not true at once.
+Two facts worth noticing about complements, both easy to see in the picture: $\overline{\overline{A}} = A$ — the outside of the outside is the inside — and nothing at all is in both $A$ and $\overline{A}$, since nothing can be both in and out. These are the set versions of two things you already know: saying *not* twice gets you back where you started, and nothing can be both true and not true at once.
 </Aside>

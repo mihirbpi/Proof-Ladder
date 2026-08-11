@@ -15,19 +15,17 @@ What does it mean for two sets to be *equal*? The answer is short, and it determ
 
 ## The definition
 
-$$
-S = T \quad\text{means}\quad S \subseteq T \;\text{ and }\; T \subseteq S.
-$$
+> Two sets are **equal** when each one sits inside the other.
 
-That is it. Two sets are equal exactly when each is a subset of the other. This is called **double inclusion**, and the named move — the same one from module 1.9 — is **check both boxes**.
+That is it. This is called **double inclusion**, and the named move — the same one from module 1.9 — is **check both boxes**.
 
-Why two directions? Because one is not enough. If you only prove $S \subseteq T$, then $T$ might have extra elements you never looked for. Only the second inclusion rules that out.
+Why two directions? Because one is not enough. If you show only that everything in $S$ is in $T$, then $T$ might still have extras you never went looking for. The second direction is what rules those out.
 
 ## The shape of every proof
 
-> **($\subseteq$)** Take any $x \in S$. … Therefore $x \in T$.
-> **($\supseteq$)** Take any $x \in T$. … Therefore $x \in S$.
-> Both inclusions hold, so $S = T$.
+> **First half.** Take any thing in $S$. … So it is in $T$.
+> **Second half.** Take any thing in $T$. … So it is in $S$.
+> Each sits inside the other, so the two sets are equal.
 
 Two element chases (module 2.3), back to back. Label them, so you and your reader can both count to two.
 
@@ -35,30 +33,28 @@ Two element chases (module 2.3), back to back. Label them, so you and your reade
 
 Let $M_{12}$ be the set of positive multiples of $12$, and $M_{18}$ the positive multiples of $18$.
 
-> **Claim.** $M_{12} \cap M_{18} = M_{36}$.
-
-In words: the numbers that are multiples of both $12$ and $18$ are exactly the multiples of $36$.
+> **Claim.** The numbers that are multiples of both $12$ and $18$ are exactly the multiples of $36$.
 
 <Discussion>
-  <div slot="know">$M_{12} \cap M_{18}$ holds the numbers divisible by $12$ and by $18$. And $36$ is the smallest number divisible by both.</div>
+  <div slot="know">The overlap of $M_{12}$ and $M_{18}$ holds the numbers divisible by $12$ and by $18$. And $36$ is the smallest number divisible by both.</div>
   <div slot="want">Both inclusions.</div>
   <div slot="how">One direction is easy: any multiple of $36$ is a multiple of $12$ (since $36 = 12 \times 3$) and of $18$ (since $36 = 18 \times 2$). The other needs a fact about factors: if a number has both a $12$ and an $18$ inside it, it must have a $36$ inside it.</div>
 </Discussion>
 
 <Proof>
-**($\supseteq$)** Take any multiple of $36$ — any one at all.
+**First half.** Take any multiple of $36$ — any one at all.
 
 It is some number of $36$s. Each $36$ splits into three $12$s, so the whole thing splits into $12$s: it is a multiple of $12$. Each $36$ also splits into two $18$s, so it is a multiple of $18$ too.
 
-Being in both, it is in $M_{12} \cap M_{18}$.
+Being a multiple of both, it is in the overlap.
 
-**($\subseteq$)** Now take any number in $M_{12} \cap M_{18}$. Both $12$ and $18$ divide it.
+**Second half.** Now take any number in that overlap. Both $12$ and $18$ divide it.
 
 Split each divisor into its prime factors. Since $12 = 2\times2\times3$ divides our number, the number has **two $2$s and one $3$** inside it. Since $18 = 2\times3\times3$ divides it, the number has **one $2$ and two $3$s** inside it.
 
 To satisfy both at once it must have at least two $2$s *and* at least two $3$s. Those multiply to $4 \times 9 = 36$, so $36$ divides it, and it is in $M_{36}$.
 
-Both inclusions hold, so $M_{12} \cap M_{18} = M_{36}$.
+Each collection sits inside the other, so they are the same collection.
 </Proof>
 
 Notice the two halves needed completely different reasoning. The first was three lines of substitution; the second needed a real fact about factors. That asymmetry is normal.
@@ -69,22 +65,22 @@ Here is a rule that will save you again and again in this chapter.
 
 If somewhere in your proof you are handed a statement of the form "$A$ **or** $B$", you do not get to pick the convenient one. You must handle both. That is **splitting into cases** (module 1.12).
 
-And where do *or* statements come from in set theory? From unions! Since $x \in S \cup T$ means $x \in S$ **or** $x \in T$, any proof that starts by chasing an element of a union will need cases.
+And where do *or* statements come from in set theory? From pooling! Being in the pool of $S$ and $T$ means being in $S$ **or** being in $T$, so any proof that starts by following a thing out of a pooled collection will need cases.
 
-> **Claim.** For any sets $S$ and $T$, $S \cup (S \cap T) = S$.
+> **Claim.** For any sets $S$ and $T$: pooling $S$ with the overlap of $S$ and $T$ gives back $S$, unchanged.
 
 <Proof>
-**($\subseteq$)** Let $x \in S \cup (S \cap T)$. Then $x \in S$ or $x \in S \cap T$ — an *or*, so we split.
+**First half.** Take a thing in the pooled collection. It is in $S$, or it is in the overlap of $S$ and $T$ — an *or*, so we split.
 
-*Case 1: $x \in S$.* Then we are done, since the goal is $x \in S$.
+*Case 1: it is in $S$.* That is what we wanted, so we are done.
 
-*Case 2: $x \in S \cap T$.* Then $x \in S$ and $x \in T$, so in particular $x \in S$.
+*Case 2: it is in the overlap.* Then it is in $S$ and in $T$ — and in particular in $S$.
 
-In both cases $x \in S$.
+Either way it is in $S$.
 
-**($\supseteq$)** Let $x \in S$. Then the statement "$x \in S$ or $x \in S \cap T$" is true, because its first half is. So $x \in S \cup (S \cap T)$.
+**Second half.** Take a thing in $S$. Then "it is in $S$, or it is in the overlap" is a true sentence, because the first half of it is true. So the thing is in the pooled collection.
 
-Both inclusions hold, so the sets are equal.
+Each collection sits inside the other, so they are the same.
 </Proof>
 
 <Warning title='"Plainly equal" is not a proof'>
@@ -92,5 +88,5 @@ Sometimes a set equality is so believable that writing two inclusions feels sill
 </Warning>
 
 <Aside>
-Double inclusion is forced, not chosen. Two sets are equal when they have the same elements — that is, when *being in $S$* and *being in $T$* amount to the same thing, whatever you are holding. And module 1.9 said an *if and only if* is two claims, one each way. So the two inclusions were hiding inside the definition of equality all along.
+Double inclusion is forced, not chosen. Two sets are equal when they have the same members — that is, when *being in $S$* and *being in $T$* amount to the same thing, whatever you are holding. And module 1.9 said an *if and only if* is two claims, one each way. So the two inclusions were hiding inside the definition of equality all along.
 </Aside>

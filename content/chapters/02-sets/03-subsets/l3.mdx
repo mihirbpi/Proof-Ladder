@@ -21,16 +21,16 @@ if every element of $A$ is also an element of $S$.
 
 Examples:
 
-- $\{2, 4\} \subseteq \{1, 2, 3, 4, 5\}$ ✓
-- $\{2, 7\} \subseteq \{1, 2, 3, 4, 5\}$ ✗ — because $7$ is in the first and not the second.
-- (squares) $\subseteq$ (rectangles) ✓ — every square is a rectangle.
-- (rectangles) $\subseteq$ (squares) ✗ — because a $2$-by-$5$ rectangle is a rectangle and not a square.
+- $\{2, 4\}$ sits inside $\{1, 2, 3, 4, 5\}$ ✓
+- $\{2, 7\}$ does **not** sit inside $\{1, 2, 3, 4, 5\}$ ✗ — because $7$ is in the first and not the second.
+- squares sit inside rectangles ✓ — every square is a rectangle.
+- rectangles do **not** sit inside squares ✗ — because a $2$-by-$5$ rectangle is a rectangle and not a square.
 
 Notice that one bad element is enough to destroy a subset claim. That is module 1.11 again: a subset claim is a *for all* claim, so a single counterexample kills it.
 
 ## The proof move: take any one and follow it
 
-Because $A \subseteq S$ says something about *every* element of $A$, you cannot prove it by checking a few. You prove it the way module 1.12 taught: **take any one and follow it.**
+Because *$A$ sits inside $S$* says something about *every* member of $A$, you cannot prove it by checking a few. You prove it the way module 1.12 taught: **take any one and follow it.**
 
 Reach into $A$ and pull out something. Do not pick a favorite — take whatever your hand lands on. Then follow it, using only what being in $A$ guarantees, until it arrives in $S$.
 
@@ -56,7 +56,7 @@ Read that proof again and notice how it starts and ends. It starts with "take an
 
 ## The empty set is a subset of everything
 
-$$\{\,\} \subseteq S \quad \text{for every set } S.$$
+$$\text{the empty set sits inside every set.}$$
 
 This feels wrong the first time. Here is why it is right. To break the claim, you would have to produce something in $\{\,\}$ that is not in $S$. But $\{\,\}$ has nothing in it, so you can never produce one, so you can never break the claim.
 
@@ -64,22 +64,22 @@ It is the umbrella promise from module 1.5 all over again: a promise about rainy
 
 ## Every set is a subset of itself
 
-$S \subseteq S$, always: everything in $S$ is in $S$. True and boring, but it matters — it is why "subset" does not mean "smaller."
+Every set sits inside itself: everything in $S$ is in $S$. True and boring, but it matters — it is why "subset" does not mean "smaller."
 
 If you want to insist that $A$ is inside $S$ *and* different from it, say $A$ is a **proper subset** of $S$.
 
 ## Subsets chain
 
-> **Claim.** If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
+> **Claim.** If $A$ sits inside $B$, and $B$ sits inside $C$, then $A$ sits inside $C$.
 
 <Proof>
 Take any one thing out of $A$ and follow it.
 
-Since $A \subseteq B$, everything in $A$ is in $B$. So the thing you picked is in $B$.
+Since $A$ sits inside $B$, everything in $A$ is in $B$. So the thing you picked is in $B$.
 
-Since $B \subseteq C$, everything in $B$ is in $C$. So the thing you picked is in $C$.
+Since $B$ sits inside $C$, everything in $B$ is in $C$. So the thing you picked is in $C$.
 
-We started in $A$ and arrived in $C$, using nothing special about what we picked. So $A \subseteq C$.
+We started in $A$ and arrived in $C$, using nothing special about what we picked. So $A$ sits inside $C$.
 </Proof>
 
 A relation that chains down the line like this is called **transitive**.
@@ -89,9 +89,9 @@ You use it constantly when sorting shapes: squares are inside rectangles, and re
 <Warning title="Being in a set and being part of a set are different">
 $2 \in \{1,2,3\}$ — the number $2$ is an *element*.
 
-$\{2\} \subseteq \{1,2,3\}$ — the *set* $\{2\}$ is a subset.
+$\{2\}$ sits inside $\{1,2,3\}$ — the *set* $\{2\}$ is a subset.
 
-$2 \subseteq \{1,2,3\}$ is nonsense: $2$ is not a set. $\{2\} \in \{1,2,3\}$ is false: the things inside $\{1,2,3\}$ are numbers, not boxes. Mixing these two symbols up is the most common error in this chapter.
+Saying $2$ *sits inside* $\{1,2,3\}$ is nonsense: $2$ is not a set. $\{2\} \in \{1,2,3\}$ is false: the things inside $\{1,2,3\}$ are numbers, not boxes. Mixing these two symbols up is the most common error in this chapter.
 </Warning>
 
 <Aside>

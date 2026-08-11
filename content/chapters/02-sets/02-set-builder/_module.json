@@ -6,7 +6,7 @@
   "titles": {
     "l1": "A box by a rule",
     "l2": "Rule-boxes and list-boxes",
-    "l3": "Set-builder notation",
+    "l3": "Describing a set by a rule",
     "l4": "Set-builder notation",
     "l5": "Set-builder notation",
     "l6": "Set-builder notation",
@@ -17,7 +17,7 @@
   "kernels": {
     "l1": "You can make a box by naming a rule instead of putting things in one at a time.",
     "l2": "There are two ways to make a box: list what goes in it, or give a rule that decides. The same box can be made both ways.",
-    "l3": "You can describe a set by listing its elements, or by giving a condition: {x | x is a whole number between 0 and 5} means \"the set of all x such that…\". The condition does the choosing for you.",
+    "l3": "A set can be described by a rule instead of a list: say what kind of thing you are collecting and what test it has to pass. The rule does the choosing for you, and it works even when the set is infinite.",
     "l4": "A set can be described by a condition instead of a list: the elements of some collection that satisfy it. That is the only way to describe sets too large to write down.",
     "l5": "Set-builder notation turns an open statement into a set: the elements of a collection satisfying a condition. This is where Chapter 1's conditions become Chapter 2's objects.",
     "l6": "A set may be specified by an extensional list or by an intensional condition on a stated ambient set; the ambient set is not optional.",

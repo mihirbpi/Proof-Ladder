@@ -16,7 +16,7 @@ Four axioms are not enough, and module 7.4 said why: they force $0, 1, 2, 3, \ld
 
 Let the collection be
 $$
-\{0, 1, 2, 3, \ldots\} \cup \{a, b\}
+\{0, 1, 2, 3, \ldots\} \text{ together with two extra objects } a \text{ and } b
 $$
 with the usual successor on the numbers, plus $S(a) = b$ and $S(b) = a$.
 
@@ -33,8 +33,8 @@ All four pass, and $a$ and $b$ are plainly not counting numbers. They sit off to
 
 A set $V$ is **inductive** if:
 
-1. $0 \in V$, and
-2. whenever $x \in V$, also $S(x) \in V$.
+1. $0$ is in $V$, and
+2. whenever something is in $V$, the next number after it is in $V$ too.
 
 In words: it contains the starting point, and it is closed under taking the next one.
 
@@ -49,13 +49,13 @@ That is the whole thing. It says the counting numbers are the *smallest* inducti
 <Proof>
 Let $V = \{0,1,2,3,\ldots\}$ — the numbers reachable from $0$ by pressing next, and nothing else.
 
-**Is $V$ inductive?** $0 \in V$ ✓. And if $x \in V$ then $x$ is reachable, so pressing next once more makes $S(x)$ reachable too, so $S(x)\in V$ ✓.
+**Is $V$ inductive?** $0$ is in it ✓. And anything in it is reachable, so pressing next once more makes the following number reachable too, which puts that in $V$ as well ✓.
 
 Yes, $V$ is inductive.
 
 **So by Axiom 9,** every counting number is in $V$.
 
-But $a \notin V$. So $a$ is not a counting number. Same for $b$.
+But $a$ is not in $V$. So $a$ is not a counting number. Same for $b$.
 </Proof>
 
 The rogues are gone, and now we can say exactly what the counting numbers are:
@@ -70,7 +70,7 @@ Notice the shape of that conclusion. Axioms 5–6 show that everything in $\{0,1
 
 Look at the definition of *inductive* again with Chapter 6 in mind.
 
-$0 \in V$ — that is the **base case**.
+$0$ is in $V$ — that is the **base case**.
 
 whenever something is in $V$, its next one is in $V$ too — that is the **inductive step**.
 

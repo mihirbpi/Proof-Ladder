@@ -11,16 +11,16 @@ import VennTwo from '@/components/VennTwo.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 1.4 gave you a rule about words: saying *not* to a joined statement swaps *and* with *or*. This module says the same thing about sets, because $\cap$ *is* and, $\cup$ *is* or, and complement *is* not.
+Module 1.4 gave you a rule about words: saying *not* to a joined statement swaps *and* with *or*. This module says the same thing about sets, because the overlap *is* and, the pool *is* or, and the outside *is* not.
 
 ## The two laws
 
 Fix a universe. For sets $S$ and $T$:
 
 $$
-\overline{S \cap T} = \overline{S} \cup \overline{T}
+\text{outside(overlap of } S,T) = \text{pool of outside } S \text{ and outside } T
 \qquad\qquad
-\overline{S \cup T} = \overline{S} \cap \overline{T}
+\text{outside(pool of } S,T) = \text{overlap of outside } S \text{ and outside } T
 $$
 
 In words:
@@ -30,13 +30,13 @@ In words:
 
 ## The pictures
 
-<Figure alt="Two overlapping circles S and T inside a dashed universe box, with only the region outside both circles shaded." caption="$\overline{S \cup T}$ — outside everything. It is also $\overline{S} \cap \overline{T}$.">
+<Figure alt="Two overlapping circles S and T inside a dashed universe box, with only the region outside both circles shaded." caption="Outside the pool — which is the same region as the overlap of the two outsides..">
   <VennTwo labelS="S" labelT="T" shade={["outside"]} universe="U" />
 </Figure>
 
-Look at that shaded border and ask: what is true of a point sitting there? It is not in $S$. It is also not in $T$. Both at once. So it belongs to $\overline{S}$ **and** to $\overline{T}$ — that is, to $\overline{S} \cap \overline{T}$.
+Look at that shaded border and ask: what is true of a point sitting there? It is not in $S$. It is also not in $T$. Both at once. So it belongs to the outside of $S$ **and** the outside of $T$ — that is, to the overlap of the two outsides.
 
-For the other law, imagine shading everything *except* the middle lens. A point out there is missing at least one of the two circles — it is not in $S$, **or** it is not in $T$. So it belongs to $\overline{S} \cup \overline{T}$.
+For the other law, imagine shading everything *except* the middle lens. A point out there is missing at least one of the two circles — it is not in $S$, **or** it is not in $T$. So it belongs to the pool of the two outsides.
 
 ## Checking with numbers
 
@@ -47,14 +47,14 @@ S = \{1, 2, 3, 4, 6, 12\} \quad(\text{divisors of } 12),
 T = \{2, 4, 6, 8, 10, 12\} \quad(\text{even numbers}).
 $$
 
-Then $S \cap T = \{2, 4, 6, 12\}$, so
+Then the overlap of $S$ and $T$ is $\{2, 4, 6, 12\}$, so
 $$
-\overline{S \cap T} = \{1, 3, 5, 7, 8, 9, 10, 11\}.
+\text{outside that overlap} = \{1, 3, 5, 7, 8, 9, 10, 11\}.
 $$
 
 Now the other side. $\overline{S} = \{5, 7, 8, 9, 10, 11\}$ and $\overline{T} = \{1, 3, 5, 7, 9, 11\}$, so
 $$
-\overline{S} \cup \overline{T} = \{1, 3, 5, 7, 8, 9, 10, 11\}.
+\text{pool of the two outsides} = \{1, 3, 5, 7, 8, 9, 10, 11\}.
 $$
 
 The same set. That is not a proof — it is one example — but it is a good sanity check, and if the two sides had *differed*, you would have found a counterexample and known something was wrong.
@@ -66,15 +66,15 @@ Here is the table that makes this module almost free.
 | Chapter 1 (words) | Chapter 2 (sets) |
 |---|---|
 | not | complement |
-| and | $\cap$ |
-| or | $\cup$ |
-| if–then, checked for every element | $\subseteq$ |
+| and | overlap |
+| or | pool |
+| if–then, checked for every member | sits inside |
 | if and only if, checked for every element | $=$ |
 
 Read De Morgan's logic laws through this table and you get De Morgan's set laws. Nothing new happened. The same fact was written in a different alphabet.
 
 <Warning title="Do not forget to swap">
-$\overline{S \cap T}$ is **not** $\overline{S} \cap \overline{T}$. Check with the numbers above: $\overline{S} \cap \overline{T} = \{5,7,9,11\}$, which is much smaller than $\overline{S \cap T}$. Keeping the joining word is the same over-negation mistake you met in module 1.4, and the picture makes it obvious once you look.
+The outside of an overlap is **not** the overlap of the outsides. Check it against the numbers above: the overlap of the two outsides is $\{5,7,9,11\}$, which is much smaller than the outside of the overlap, $\{1,3,5,7,8,9,10,11\}$. Keeping the joining word is the same over-negation mistake you met in module 1.4, and the picture makes it obvious once you look.
 </Warning>
 
 <Aside>
