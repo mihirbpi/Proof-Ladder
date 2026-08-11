@@ -13,7 +13,7 @@ import Warning from '@/components/Warning.astro';
 
 ## Definitions
 
-For $n \in \mathbb{Z}$:
+For a whole number $n$:
 $$
 n \text{ is \textbf{even}} \iff \exists k \in \mathbb{Z},\ n = 2k,
 $$
@@ -23,7 +23,7 @@ $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when". So the line reads: a number is even exactly when it is $2$ times some whole number.*So the line reads: a number is odd exactly when it is $2$ times some whole number, plus one.*
 
-And in general, for $m, n \in \mathbb{Z}$:
+And in general, for whole numbers $m$ and $n$:
 $$
 m \mid n \iff \exists k \in \mathbb{Z},\ n = mk.
 $$
@@ -45,13 +45,13 @@ $$
 
 By module 1.12:
 
-- **To prove $m \mid n$:** exhibit a **witness** $k \in \mathbb{Z}$ with $n = mk$. Both halves matter — produce $k$, *and* verify it is an integer.
-- **To disprove $m \mid n$:** prove the universal negation $\forall k \in \mathbb{Z},\ n \neq mk$. This is not a search; it needs an argument.
+- **To prove that $m$ divides $n$:** produce a **witness** — an actual whole number $k$ with $n = mk$. Both halves matter: produce it, *and* check that it really is a whole number.
+- **To disprove it:** show that **no** whole number works. That is a claim about every candidate at once, so it is an argument and not a search — usually a remainder argument (module 4.4).
 
 <Warning title="Verify the witness is an integer">
 $9 = 2 \cdot \tfrac92$ does not make $9$ even, because $\tfrac92 \notin \mathbb{Z}$. The integrality requirement is the entire content of the definition — without it every integer divides every other.
 
-In practice this means every divisibility proof ends by citing closure (module 4.1): "and $3k \in \mathbb{Z}$ since $\mathbb{Z}$ is closed under multiplication."
+In practice this means every divisibility proof ends by citing closure (module 4.1): *"and that factor is a whole number, since whole numbers stay whole when you multiplication."
 </Warning>
 
 <Warning title="Direction and type">
@@ -78,7 +78,7 @@ Substituting, $n = (ak_1)k_2 = a(k_1k_2)$.
 Since $\mathbb{Z}$ is closed under multiplication, $k_1k_2 \in \mathbb{Z}$. So $k_1k_2$ is a witness, and $a \mid n$.
 </Proof>
 
-> **Proposition.** For all $n \in \mathbb{Z}$: $2 \mid n \iff 2 \mid n^2$.
+> **Proposition.** For any whole number $n$: $n$ is even exactly when $n^2$ is even.
 
 This is module 1.9's theorem, restated in divisibility language — a good illustration that new notation often just renames results you already have. Its proof was: forward directly, backward by contrapositive.
 
@@ -88,9 +88,9 @@ Divisibility notation compresses several earlier statements:
 
 | Old phrasing | Divisibility form |
 |---|---|
-| $n$ is even | $2 \mid n$ |
-| $n$ is a multiple of $6$ | $6 \mid n$ |
-| $n^2$ even $\Rightarrow$ $n$ even | $2 \mid n^2 \Rightarrow 2 \mid n$ |
+| $n$ is even | $2$ divides $n$ |
+| $n$ is a multiple of $6$ | $6$ divides $n$ |
+| $n^2$ even forces $n$ even | $2$ divides $n^2$ forces $2$ divides $n$ |
 | $mn$ odd $\Rightarrow$ $m$ and $n$ odd | $2 \nmid mn \Rightarrow 2\nmid m \wedge 2 \nmid n$ |
 
 <Aside>

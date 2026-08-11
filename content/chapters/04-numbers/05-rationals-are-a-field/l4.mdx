@@ -16,7 +16,7 @@ $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the fractions are all the ways of writing one integer over another, so long as the bottom is not zero.*
 
-$\mathbb{Z} \subseteq \mathbb{Q}$ via $n = \tfrac n1$, and the containment is proper since $\tfrac12 \notin \mathbb{Z}$.
+Every integer is a fraction, since $n = \tfrac n1$ — and the fractions have more besides, since $\tfrac12$ is not an integer.
 
 Recall that a rational has many names: $\tfrac{p_1}{q_1} = \tfrac{p_2}{q_2}$ iff $p_1q_2 = p_2q_1$. Any operation defined via representatives must be checked to be well defined — module 3.1's obligation. The formulas below all pass that check, and verifying one of them is a worthwhile exercise.
 
@@ -36,7 +36,7 @@ So the sum has integer numerator and nonzero integer denominator, hence lies in 
 
 Notice the proof does no arithmetic. It verifies that the pieces are of the right *type*. Every closure proof looks like this, and the step that could fail — $bd \neq 0$ — uses one special property of $\mathbb{Z}$: a product of nonzero integers is never zero.
 
-> **(F2) Additive inverses.** $-\dfrac ab = \dfrac{-a}{b} \in \mathbb{Q}$, since $-a \in \mathbb{Z}$ and $b \neq 0$.
+> **(F2) Negatives.** The negative of $\tfrac ab$ is $\tfrac{-a}{b}$, which is again a whole number over a non-zero whole number — so again a fraction.
 
 > **(F3) Multiplication.** $\dfrac ab \cdot \dfrac cd = \dfrac{ac}{bd} \in \mathbb{Q}$, by the same two observations as (F1).
 
@@ -77,12 +77,12 @@ So "you cannot divide by zero" is not a rule imposed from outside. It is what th
 
 $\mathbb{Q}$ fixed division. It did not fix everything.
 
-- $x^2 = 2$ has no solution in $\mathbb{Q}$ (module 4.7). $\mathbb{R}$ fixes this.
-- $x^2 = -1$ has no solution in $\mathbb{R}$. $\mathbb{C}$ fixes this (Chapter 5).
+- $x^2 = 2$ has no solution among the fractions (module 4.7); the full number line fixes that.
+- $x^2 = -1$ has no solution on the number line; the complex numbers fix this (Chapter 5).
 - $\mathbb{Q}$ has **gaps**. You can march along fractions getting closer and closer to a definite spot on the line and find that the spot itself is not a fraction — $\sqrt2$ is one such spot (module 4.7). Filling those gaps is what the real numbers are for, and it is why later mathematics is done over the reals rather than the fractions.
 
 The pattern established in module 4.1 continues: an operation escapes the system, so the system is enlarged.
 
 <Aside>
-$\mathbb{Q}$ is the *smallest* system closed under all four operations containing $\mathbb{Z}$ — any such system containing $\mathbb{Z}$ must contain all quotients $p/q$, hence all of $\mathbb{Q}$. The construction generalizes. Start with any system where a product of nonzero elements is never zero, run the same recipe, and you get the smallest such system containing it. Applied to the expressions of Algebra I, it produces the fractions built from them — one such expression written over another — which is why those behave so much like ordinary fractions.
+The fractions are the *smallest* system closed under all four operations that contains the integers — any such system must contain all quotients $p/q$, hence all of $\mathbb{Q}$. The construction generalizes. Start with any system where a product of nonzero elements is never zero, run the same recipe, and you get the smallest such system containing it. Applied to the expressions of Algebra I, it produces the fractions built from them — one such expression written over another — which is why those behave so much like ordinary fractions.
 </Aside>

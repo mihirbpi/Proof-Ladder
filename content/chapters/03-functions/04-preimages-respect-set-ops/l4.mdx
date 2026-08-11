@@ -11,7 +11,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Let $f : S \to T$, and let $U, V \subseteq T$, with complements taken in $T$ on the right of $f^{-1}$ and in $S$ on the left.
+Throughout, $f$ is a function from $S$ to $T$, and $U$ and $V$ are collections of targets. Outsides on the target side are taken inside $T$; outsides on the input side, inside $S$.
 
 $$
 f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V) \tag{P1}
@@ -35,7 +35,7 @@ The pre-image operator commutes with every Boolean set operation. No hypotheses 
 
 ## The pivot
 
-All three proofs run on one equivalence, from module 3.3:
+All three proofs run on a single sentence from module 3.3:
 $$
 x \in f^{-1}(U) \iff f(x) \in U. \tag{1}
 $$
@@ -44,12 +44,12 @@ $$
 
 (The notation $f(x)$ for the output on input $x$ is §3.1's.)
 
-Everything else is the definitions of $\cup$, $\cap$, complement, and the corresponding logical facts. Nothing about $f$ is used beyond (1), which is why the theorem is so unconditional.
+Everything else is the meaning of pooling, overlapping and outsides, plus the matching facts about *and*, *or* and *not*. **Nothing whatever about $f$ is used beyond (1)** — which is why these hold for every function there is, with no conditions attached.
 
 ## Proof of (P1)
 
 <Discussion>
-  <div slot="know">(1), and $y \in U \cup V \iff (y \in U) \vee (y \in V)$.</div>
+  <div slot="know">Sentence (1), and what pooling means: landing in the pool is landing in one of them **or** the other.</div>
   <div slot="want">Double inclusion (module 2.6).</div>
   <div slot="how">Chase a single $x$, assuming nothing about it. Apply (1) to move from $x$-statements to $f(x)$-statements, unfold the union, and apply (1) twice more to move back. Every step is an if-and-only-if statement, so both inclusions come at once — but we will write both directions out, since the case structure is worth seeing.</div>
 </Discussion>
@@ -72,7 +72,7 @@ The cases are exhaustive.
 Both inclusions hold, so (P1) is proved.
 </Proof>
 
-(P2) is the same argument with $\wedge$ replacing $\vee$ and no case splits needed — conjunctions are cheaper to use than disjunctions (module 2.6).
+(P2) is the same argument with *and* in place of *or*, and it needs no case split at all — an *and* hands you both halves, while an *or* makes you consider each in turn (module 2.6).
 
 ## Proof of (P3)
 
@@ -111,9 +111,11 @@ $$
 
 *Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with". So the line reads: the image of an overlap sits inside the overlap of the images, and it can be strictly smaller.*
 
-**Counterexample.** Let $f : \mathbb{R}\to\mathbb{R}$, $f(x) = x^2$, with $A = \{2\}$ and $B = \{-2\}$. Then $A \cap B = \emptyset$, so $f(A \cap B) = \emptyset$. But $f(A) = f(B) = \{4\}$, so $f(A) \cap f(B) = \{4\}$. Strict.
+**Counterexample.** Take squaring, with $A = \{2\}$ and $B = \{-2\}$.
 
-The reason is visible in the definitions. Membership in a pre-image is $f(x) \in U$ — no quantifier. Membership in an image is $\exists a \in A,\ f(a) = t$ — an existential. Existentials distribute over $\vee$ but not over $\wedge$, so images commute with union and not with intersection.
+Those two collections share nothing, so their overlap is empty, and the image of an empty collection is empty. But each of them has image $\{4\}$ — so the overlap of the images is $\{4\}$, not empty. The two sides genuinely differ.
+
+The reason is visible in the two definitions. Being in a traced-back set says one thing about **your own** output — no searching involved. Being in an image says *there is some input in $A$ that lands here* — a there-is claim, and there-is claims survive an *or* but not an *and*$, so images commute with union and not with intersection.
 
 Complement fails even more badly: $f(\overline{A})$ and $\overline{f(A)}$ are unrelated in general.
 
@@ -122,5 +124,5 @@ When you have a choice, state conditions with pre-images. This is not stylistic 
 </Warning>
 
 <Aside>
-Equality in $f(A \cap B) = f(A) \cap f(B)$ for all $A, B$ holds exactly when $f$ is injective — module 3.5's property, arriving early. All the defects of the image operator are defects of non-injectivity, and all of them vanish for bijections.
+The image of an overlap equals the overlap of the images, for every $A$ and $B$, exactly when $f$ is injective — module 3.5's property, arriving early. All the defects of the image operator are defects of non-injectivity, and all of them vanish for bijections.
 </Aside>

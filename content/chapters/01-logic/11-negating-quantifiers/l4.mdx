@@ -24,28 +24,26 @@ In words: **negation swaps the quantifier and negates the statement inside.** Th
 
 ## Why these are De Morgan
 
-Over a small set — say $S = \{1, 2, 3\}$ — *for all* is just an **and**, and *there exists* is just an **or**:
+Over a small collection — say $S = \{1, 2, 3\}$ — *for every* is just a string of **and**s, and *there is* is a string of **or**s:
 $$
 \forall x \in S,\, x \text{ is even} \;\equiv\; (1 \text{ is even}) \wedge (2 \text{ is even}) \wedge (3 \text{ is even}).
 $$
 
 *Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\wedge$ is "and", $\equiv$ is "says the same as". So the line reads: saying every member of $S$ is even, when $S$ is $\{1,2,3\}$, is the same as saying: $1$ is even, and $2$ is even, and $3$ is even.*
 
-Apply the first De Morgan law of module 1.4. The negation becomes "$1$ is not even **or** $2$ is not even **or** $3$ is not even" — which is exactly $\exists x \in S,\, x \text{ is not even}$. Same law, more terms.
+Apply the first De Morgan law of module 1.4. The denial becomes "$1$ is not even **or** $2$ is not even **or** $3$ is not even" — which says exactly that *some* member of $S$ is not even. Same law, more terms.
 
 ## Counterexamples
 
 > **Claim.** Every prime number is odd.
 
-Negation: $\exists p$ prime with $p$ not odd. A single case settles it — module 1.12 will call such a case a *witness*: $p = 2$. Prime, even. Claim refuted.
+Its denial: *some* prime is not odd. A single example settles it — module 1.12 calls such an example a *witness* — and here it is $2$. Prime, and even. Claim refuted.
 
 A single element refuting a universal claim is a **counterexample**, and the named move is **one bad apple**. Note what the negation rule guarantees: to refute a *for all* claim, exhibiting one $x$ where the property fails is not merely *good evidence* — it is a complete disproof, because the negation rule says that is exactly what the negation asserts.
 
 ## Compound conditions: use De Morgan inside too
 
-*A reminder of the symbols in play: $\mathbb{R}$ reads the reals.*
-
-> **Claim.** $\forall x \in \mathbb{R}$, $x$ is positive or $x$ is negative.
+> **Claim.** Every number on the line is positive or negative.
 
 Negate:
 First the quantifier rule: *not every real is positive or negative* becomes *some real is neither positive nor negative*.
@@ -73,7 +71,7 @@ Example. *For every real $x$, if $x^2 > 1$ then $x > 1$* is false, and the count
 
 ## Nested quantifiers
 
-Push the negation in one quantifier at a time, flipping each as you pass:
+Push the denial inward one quantifier at a time, flipping each as it passes:
 $$
 \neg\big(\forall x\, \exists y,\; x \text{ and } y \text{ fit}\big)
 \equiv \exists x\, \neg\big(\exists y,\; x \text{ and } y \text{ fit}\big)
@@ -82,23 +80,29 @@ $$
 
 *Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: denying *for every $x$ there is a $y$ that fits* gives: there is some $x$ for which no $y$ fits — that is, some $x$ that fails to fit with every single $y$.*
 
-Concretely: the negation of "every real has an additive inverse" is "some real has no additive inverse at all" — the inner $\forall y$ says *no* $y$ works for that particular $x$.
+Concretely: the denial of *every number has something you can add to it to get zero* is *some number has nothing that works* — and that inner *for every* is what says **nothing at all** works for that one number.
 
-The procedure is entirely mechanical, which is the point — you never have to be clever, only careful. Take:
+**Say the two rules out loud and they stop looking like symbol-pushing.**
+
+*Denying "everything has it" gives "something fails it."* If it is not true that every student passed, then some student did not pass. You do not have to know which one — the denial does not tell you, and does not have to.
+
+*Denying "something has it" gives "everything fails it."* If it is not true that some student passed, then every student failed. This is the stronger-sounding of the two, and it is exactly as mechanical.
+
+The procedure is mechanical, which is the point: you never have to be clever here, only careful. Take:
 $$
 \forall x \in \mathbb{Z}\;\; \exists y \in \mathbb{Z},\;\; \big(y > x \wedge y \text{ is prime}\big).
 $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\wedge$ is "and". So the line reads: for every integer there is a bigger integer that is prime.*
 
-This says there is no largest prime. Negate it: flip both quantifiers, then push the negation through the $\wedge$ using De Morgan:
+That says there is no largest prime. To deny it: flip both quantifiers, then push the denial through the *and* using De Morgan:
 $$
 \exists x \in \mathbb{Z}\;\; \forall y \in \mathbb{Z},\;\; \big(y \leq x \vee y \text{ is not prime}\big).
 $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\vee$ is "or". So the line reads: there is some integer such that every integer is either no bigger than it, or not prime.*
 
-Read it: there is some number past which nothing is prime — a largest prime exists. Every symbol in that negation was produced by the two rules of this module plus $\neg(p \wedge q) \equiv \neg p \vee \neg q$. Nothing was invented.
+Read it back: there is some number past which nothing is prime — that is, a largest prime exists. Every mark in that denial was produced by the two rules of this module, plus De Morgan for *and* \neg q$. Nothing was invented.
 
 <Aside>
 Euler conjectured in 1769 that a $k$-th power is never a sum of fewer than $k$ positive $k$-th powers. In 1966 Lander and Parkin refuted the $k = 5$ case with a computer search and published a paper two sentences long, containing $27^5 + 84^5 + 110^5 + 133^5 = 144^5$. Two centuries of a universal claim, ended by one bad apple.

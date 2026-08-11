@@ -40,7 +40,7 @@ $$
 
 The codomain $T$ is **declared**; the image is **computed**. Always $\operatorname{Im}(f) \subseteq T$, and equality is a special property with a name (surjectivity, module 3.6).
 
-Take $f(x) = x^2$, a function from $\mathbb{R}$ to $\mathbb{R}$. A square is never negative, and every non-negative number is a square, so
+Take squaring, as a function from the numbers on the line to themselves. A square is never negative, and every non-negative number is somebody's square, so
 $$
 \operatorname{Im}(f) = \{\, y \in \mathbb{R} \mid y \geq 0 \,\},
 $$
@@ -49,7 +49,7 @@ $$
 
 which is not all of $\mathbb{R}$ — nothing negative is attained.
 
-Take $g(x) = 2^x$, again from $\mathbb{R}$ to $\mathbb{R}$. Powers of $2$ are always positive, so
+Take $g(x) = 2^x$, again on the whole number line. Powers of $2$ are always positive, so
 $$
 \operatorname{Im}(g) = \{\, y \in \mathbb{R} \mid y > 0 \,\},
 $$
@@ -62,7 +62,7 @@ Note the word *range* is best avoided: some authors use it for the image, others
 
 ## Worked pre-images: $f(x) = x^2$
 
-Let $f(x) = x^2$, a function from $\mathbb{R}$ to $\mathbb{R}$.
+Let $f$ be squaring again.
 
 $$
 f^{-1}(\{9\}) = \{-3, 3\}.
@@ -118,7 +118,7 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\emptyset$ is the empty collection. So the line reads: a target is in the image exactly when at least one input lands on it.*
 
-Both sides say "$t$ is attained", one forwards and one backwards. The proof is immediate from the definitions: $t \in \operatorname{Im}(f)$ means some $s$ has $f(s) = t$, and $f^{-1}(\{t\}) \neq \emptyset$ means some $s$ has $f(s) \in \{t\}$ — the same statement.
+Both sides say *something lands on $t$* — one looking forward, one looking back. The proof is immediate from the definitions: being in the image means some input has $f$ of it = t$, and $f^{-1}(\{t\}) \neq \emptyset$ means some $s$ has $f(s) \in \{t\}$ — the same statement.
 
 The pre-image of a **single** output, $f^{-1}(\{t\})$, is worth looking at on its own: it is everything that lands on the one point $t$. The whole of the next three modules can be phrased in terms of those sets:
 
@@ -140,5 +140,5 @@ The notation is unfortunate and universal. Distinguish them by what goes in: a s
 </Warning>
 
 <Aside>
-Images misbehave where pre-images do not. $f(A \cap B) \subseteq f(A) \cap f(B)$, but equality can fail: with $f(x)=x^2$, $A = \{2\}$, $B = \{-2\}$, the left side is $f(\emptyset) = \emptyset$ while the right side is $\{4\}$. Module 3.4 shows pre-images have no such defect, which is why so many later definitions are stated in terms of tracing back rather than going forwards.
+Images misbehave where traced-back sets do not. The image of an overlap always sits inside the overlap of the images, but the two can differ: with squaring, $A = \{2\}$ and $B = \{-2\}$, the left side is $f(\emptyset) = \emptyset$ while the right side is $\{4\}$. Module 3.4 shows pre-images have no such defect, which is why so many later definitions are stated in terms of tracing back rather than going forwards.
 </Aside>

@@ -11,17 +11,17 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-$\mathbb{Q}$ is closed under all four operations (module 4.5). Is $\mathbb{R}\setminus\mathbb{Q}$ anything?
+The fractions are closed under all four operations (module 4.5). Are the irrationals closed under anything at all?
 
 No. And identifying exactly how it fails is the point of the module.
 
 ## Three failures
 
-**No identities.** $0, 1 \in \mathbb{Q}$, so neither lies in $\mathbb{R}\setminus\mathbb{Q}$. A set without an additive or multiplicative identity cannot be a self-contained number system at all.
+**No $0$ and no $1$.** Both are fractions, so neither is irrational. A system missing the number you add to change nothing, and the number you multiply by to change nothing, cannot be a self-contained number system at all.
 
-**Not closed under $+$.** $\sqrt2$ and $-\sqrt2$ are irrational, but $\sqrt2 + (-\sqrt2) = 0 \in \mathbb{Q}$.
+**Not closed under adding.** $\sqrt2$ and $-\sqrt2$ are both irrational, and they add to $0$, which is not.
 
-**Not closed under $\times$.** $\sqrt2 \cdot \sqrt2 = 2 \in \mathbb{Q}$.
+**Not closed under multiplying.** $\sqrt2$ times itself is $2$.
 
 Each is a single counterexample, which suffices (module 1.11).
 
@@ -33,11 +33,11 @@ Never write "irrational + irrational = irrational". Never write the opposite eit
 
 ## What is stable
 
-> **Proposition.** Let $a \in \mathbb{R}\setminus\mathbb{Q}$ and let $r \in \mathbb{Q}$ with $r \neq 0$. Then:
+> **Proposition.** Let $a$ be irrational and let $r$ be a non-zero fraction. Then:
 > (i) $-a$ is irrational; (ii) $1/a$ is irrational; (iii) $ra$ is irrational; (iv) $r + a$ is irrational.
 
 <Discussion>
-  <div slot="know">$a \notin \mathbb{Q}$; $\mathbb{Q}$ is closed under all four operations.</div>
+  <div slot="know">$a$ is not a fraction, and the fractions are closed under all four operations.</div>
   <div slot="want">Four negative statements.</div>
   <div slot="how">Each goal is a negation, so contradiction is indicated (module 2.5). In every case: assume the constructed quantity is rational, apply a closure property of $\mathbb{Q}$ to recover $a$, and contradict $a \notin \mathbb{Q}$. Statement (iii) with $r = -1$ gives (i), so prove the general one.</div>
 </Discussion>
@@ -60,8 +60,8 @@ contradicting the irrationality of $a$. Hence $ra \notin \mathbb{Q}$.
 Every proof has the identical three-step shape:
 
 1. assume the constructed quantity is rational;
-2. apply a closure property of $\mathbb{Q}$ to recover $a$;
-3. contradict $a \notin \mathbb{Q}$.
+2. use a closure property of the fractions to recover $a$ itself;
+3. contradict the fact that $a$ is not one.
 
 The engine is always closure of $\mathbb{Q}$. Irrationality is defined by *non-membership*, so the only handle available is what membership would imply.
 

@@ -13,7 +13,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Fix a universe $U$ and let $S, T \subseteq U$.
+Fix a universe $U$, and let $S$ and $T$ be collections inside it.
 
 $$
 \overline{S \cap T} = \overline{S} \cup \overline{T},
@@ -23,7 +23,7 @@ $$
 
 *Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: outside an overlap is the same as outside one pooled with outside the other; outside a pooled pair is the overlap of the two outsides.*
 
-<Figure alt="Two overlapping circles S and T inside a dashed universe box, with only the region outside both circles shaded." caption="$\overline{S \cup T} = \overline{S} \cap \overline{T}$.">
+<Figure alt="Two overlapping circles S and T inside a dashed universe box, with only the region outside both circles shaded." caption="Outside the union — the same region as the overlap of the two outsides.">
   <VennTwo labelS="S" labelT="T" shade={["outside"]} universe="U" />
 </Figure>
 
@@ -57,16 +57,16 @@ The correspondence is not luck. Sets in this course are specified by conditions 
 
 | Joining word | Set operation | What membership means |
 |---|---|---|
-| and | $\cap$ | in both sets |
-| or | $\cup$ | in at least one of them |
-| not | $\overline{\phantom{S}}$ | in the universe but not in the set |
+| and | intersection | in both sets |
+| or | union | in at least one of them |
+| not | complement | in the universe but not in the set |
 | if–then | $\subseteq$ | being in the first forces being in the second |
 | if and only if | $=$ | the two have exactly the same members |
 
 So every logical identity produces a set identity by mechanical translation, and the proof is always the same three moves: unfold, apply the logic law, fold. Once you have seen it twice, the remaining laws of this chapter are exercises.
 
 <Warning title="The joining word must swap">
-$\overline{S \cap T} \neq \overline{S} \cap \overline{T}$ in general. Concretely, in $U = \{1,\ldots,6\}$ with $S = \{1,2,3\}$, $T = \{3,4\}$:
+The outside of an overlap is **not** the overlap of the outsides. Concretely, in $U = \{1,\ldots,6\}$ with $S = \{1,2,3\}$, $T = \{3,4\}$:
 $$\overline{S \cap T} = \overline{\{3\}} = \{1,2,4,5,6\},$$
 $$\overline{S} \cap \overline{T} = \{4,5,6\} \cap \{1,2,5,6\} = \{5,6\}.$$
 
@@ -77,7 +77,7 @@ Different sets. Keeping the joining word is the same over-negation error as in m
 
 ## Where you will use it
 
-Whenever a proof needs the complement of something built from $\cup$ or $\cap$ — which is often, since complements arise from any hypothesis phrased negatively. Two immediate consequences worth recording:
+Whenever a proof needs the outside of something built by pooling or overlapping — which is often, since any hypothesis phrased negatively produces one. Two immediate consequences worth recording:
 
 $$
 S \setminus (T \cup R) = (S \setminus T) \cap (S \setminus R),
@@ -95,5 +95,5 @@ $$\overline{A_1 \cup \cdots \cup A_n} = \overline{A_1} \cap \cdots \cap \overlin
 
 *Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: the outside of a pool of many collections is the overlap of all their outsides.*
 
-provable by induction (Chapter 6). Pushed to infinite families, the joining words become quantifiers and this becomes $\neg \exists \equiv \forall \neg$ — module 1.11 again. One law, three levels of generality.
+provable by induction (Chapter 6). Push it to infinitely many collections and the joining words turn into quantifiers, and the law becomes *denying a there-is gives a for-every* — module 1.11 again. One law, three levels of generality.
 </Aside>

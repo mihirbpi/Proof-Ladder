@@ -11,11 +11,11 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-> **Proposition.** Let $a, b \in \mathbb{Q}$ with $a < b$. Then $\dfrac{a+b}{2} \in \mathbb{Q}$ and
+> **Proposition.** Take any two fractions $a < b$. Then their midpoint is also a fraction, and
 > $$a < \frac{a+b}{2} < b.$$
 
 <Discussion>
-  <div slot="know">$a, b \in \mathbb{Q}$, $a < b$. Available: closure of $\mathbb{Q}$ under $+$ and $\times$ and under inverses of nonzero elements (module 4.5); and the arithmetic and ordering rules that adding a constant preserves $<$ and multiplying by a positive preserves $<$.</div>
+  <div slot="know">$a$ and $b$ are fractions with $a < b$. Available: fractions stay fractions under adding, multiplying and dividing by anything non-zero (module 4.5); and the arithmetic and ordering rules that adding a constant preserves $<$ and multiplying by a positive preserves $<$.</div>
   <div slot="want">Three claims: membership in $\mathbb{Q}$, and two strict inequalities.</div>
   <div slot="how">Membership is pure closure and must be stated, not assumed. The inequalities come from $a<b$ by adding $a$ to both sides in one case and $b$ in the other, then halving.</div>
 </Discussion>
@@ -29,9 +29,9 @@ import Warning from '@/components/Warning.astro';
 </Proof>
 
 <Warning title="Closure is the load-bearing step">
-The proposition is false in $\mathbb{Z}$: the midpoint of $3$ and $4$ is $\tfrac72 \notin \mathbb{Z}$, and indeed nothing lies strictly between consecutive integers.
+The proposition is false for the integers: the midpoint of $3$ and $4$ is $\tfrac72$, which is not an integer, and indeed nothing lies strictly between consecutive integers.
 
-So the argument cannot merely produce the number $\tfrac{a+b}{2}$; it must certify that the number lies in the system under discussion. Closure (module 4.5) is what supplies that, and it is what $\mathbb{Z}$ lacks.
+So the argument cannot merely produce the midpoint; it has to certify that the midpoint is still in the system under discussion. Closure (module 4.5) is what supplies that, and it is what $\mathbb{Z}$ lacks.
 </Warning>
 
 ## Density
@@ -46,16 +46,16 @@ By the proposition, each $m_k \in \mathbb{Q}$ and $a < m_{k+1} < m_k$. So $m_1 >
 A strictly decreasing sequence has pairwise distinct terms, so this exhibits infinitely many rationals in $(a,b)$.
 </Proof>
 
-A set with this property is **dense in itself**. $\mathbb{Q}$ is also dense in $\mathbb{R}$: every real interval, however short, contains a rational — a fact used constantly later, and provable from the whole numbers climbing past any real.
+A collection with this property is called **dense**. The fractions are dense among all the numbers on the line too: every stretch of the line, however short, contains one — a fact used constantly later, and provable from the whole numbers climbing past any real.
 
-Contrast $\mathbb{Z}$, which is **discrete**: consecutive integers have nothing between them, and every integer has a nearest neighbor. That difference is why $\mathbb{Z}$ supports the division algorithm and induction while $\mathbb{Q}$ does not, and why $\mathbb{Q}$ supports limits and $\mathbb{Z}$ does not.
+Contrast the integers, which are **discrete**: neighboring integers have nothing between them, and every integer has a nearest one on each side. That difference is why the integers supports the division algorithm and induction while $\mathbb{Q}$ does not, and why $\mathbb{Q}$ supports limits and $\mathbb{Z}$ does not.
 
 ## The trap this sets
 
-Density makes $\mathbb{Q}$ *feel* like it fills the number line. No gap can be exhibited by pointing: name any two rationals and infinitely many more sit between them.
+Density makes the fractions *feel* as though they fill the number line. No gap can be exhibited by pointing: name any two rationals and infinitely many more sit between them.
 
 The feeling is wrong. There are gaps — points on the line no rational occupies — and they cannot be found by this kind of local inspection, because locally the rationals look complete. Module 4.7 exhibits one, using a proof that does not look at the line at all.
 
 <Aside>
-The reconciliation is that density and *size* are unrelated. $\mathbb{Q}$ is dense in $\mathbb{R}$, yet listable (module 3.8) while $\mathbb{R}$ is not — so in a precise sense almost every real is irrational. It is even possible to cover all of $\mathbb{Q}$ by intervals of total length as small as you like, which is a way of saying $\mathbb{Q}$ occupies no length at all despite being everywhere. Both facts are true; only intuition objects.
+The reconciliation is that being densely packed and being numerous are unrelated. The fractions are dense, and yet they can be listed one after another (module 3.8) while the full number line cannot — so in a precise sense almost every real is irrational. It is even possible to cover all of $\mathbb{Q}$ by intervals of total length as small as you like, which is a way of saying $\mathbb{Q}$ occupies no length at all despite being everywhere. Both facts are true; only intuition objects.
 </Aside>

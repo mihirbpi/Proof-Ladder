@@ -34,9 +34,9 @@ This is the module where the two chapters join. The condition $p(x)$ is exactly 
 
 Consequently every logical operation on conditions becomes a set operation:
 
-- $p(x) \wedge q(x)$ gives the intersection (module 2.4),
-- $p(x) \vee q(x)$ gives the union,
-- $\neg p(x)$ gives the complement (module 2.5).
+- joining two tests with **and** gives the intersection (module 2.4),
+- joining them with **or** gives the union,
+- denying a test gives the complement (module 2.5).
 
 Chapter 2 is largely Chapter 1 rewritten in a new alphabet, and this notation is the dictionary.
 
@@ -44,7 +44,7 @@ Chapter 2 is largely Chapter 1 rewritten in a new alphabet, and this notation is
 
 *A reminder of the symbols in play: $\mathbb{N}$ reads the counting numbers.*
 
-The commonest use is carving a subset out of a known set:
+The commonest use is carving a smaller collection out of one you already have:
 $$
 \mathbb{N} = \{\, x \in \mathbb{Z} \mid x \geq 0 \,\},
 \qquad
@@ -59,7 +59,7 @@ $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the multiples of $12$ are the integers that $12$ divides — that is, the list shown.*
 
-And the rationals:
+And the fractions:
 $$
 \mathbb{Q} = \left\{\, \frac{p}{q} \;\middle|\; p, q \in \mathbb{Z},\; q \neq 0 \,\right\}.
 $$
@@ -78,7 +78,7 @@ Subsets of $\mathbb{R}$ defined by inequalities are frequent enough to earn thei
 
 | Notation | Set-builder | Endpoints |
 |---|---|---|
-| $(a, b)$ | $\{x \in \mathbb{R} \mid a < x < b\}$ | both excluded |
+| $(a, b)$ | the numbers strictly between $a$ and $b$ | both excluded |
 | $[a, b]$ | $\{x \in \mathbb{R} \mid a \leq x \leq b\}$ | both included |
 | $(a, b]$ | $\{x \in \mathbb{R} \mid a < x \leq b\}$ | left excluded |
 | $[a, \infty)$ | $\{x \in \mathbb{R} \mid x \geq a\}$ | right unbounded |
@@ -86,7 +86,7 @@ Subsets of $\mathbb{R}$ defined by inequalities are frequent enough to earn thei
 A round bracket excludes the endpoint; a square bracket includes it. $\infty$ always gets a round bracket, because it is not a real number and cannot be an element of anything.
 
 <Warning title="The pair notation is overloaded">
-$(1, 5)$ is an interval here. In module 2.9 it will be an ordered pair. The notation is genuinely ambiguous and context is the only guide — if the surrounding discussion is about subsets of $\mathbb{R}$, it is an interval; if it is about $\mathbb{R} \times \mathbb{R}$, it is a point.
+$(1, 5)$ means an interval here. In module 2.9 the same marks will mean an ordered pair. The notation is genuinely ambiguous and context is the only guide — if the surrounding discussion is about subsets of $\mathbb{R}$, it is an interval; if it is about $\mathbb{R} \times \mathbb{R}$, it is a point.
 </Warning>
 
 ## When the condition is satisfied by nothing
@@ -105,9 +105,9 @@ $$
 $$
 
 *Symbol by symbol: the bar $\mid$ is "such that". So the line reads: *Read it as "the things whose square is $2$" — and which things those are depends entirely on what you were allowed to draw from.*
-is $\emptyset$ over $\mathbb{Z}$ and $\{\sqrt2, -\sqrt2\}$ over $\mathbb{R}$. Without the collection you are drawing from, the notation does not denote anything.
+is empty among the integers and is $\{\sqrt2, -\sqrt2\}$ among all the numbers on the line. Without naming the collection you are drawing from, the notation does not denote anything.
 
-There is also a deeper reason to insist on it, beyond ambiguity. Allowing $\{x \mid p(x)\}$ for *any* condition $p$ at all, with no surrounding collection, makes set theory inconsistent: take $p(x)$ to be "$x \notin x$" and ask whether the resulting collection contains itself. Restricting to $\{x \in A \mid p(x)\}$ — separating a subset out of a set you already have — is precisely the repair.
+There is a deeper reason to insist on naming the collection, beyond ambiguity. Allowing *any* test at all to carve out a set, with no collection to carve from, makes set theory inconsistent: take $p(x)$ to be "$x \notin x$" and ask whether the resulting collection contains itself. Restricting to $\{x \in A \mid p(x)\}$ — separating a subset out of a set you already have — is precisely the repair.
 
 <Aside>
 Some authors write a colon instead of a bar, $\{x : p(x)\}$, and it means the same thing. Books that use $\mid$ for divisibility (module 4.2) usually prefer the colon here so that $\{n : 3 \mid n\}$ does not need two different bars.

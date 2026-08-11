@@ -20,19 +20,19 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: for every target in $T$ there is at least one input that hits it.*
 
-equivalently $\operatorname{Im}(f) = T$, equivalently $|f^{-1}(\{t\})| \geq 1$ for every $t \in T$.
+Two other ways to say the same thing: the image of $f$ is the whole of $T$; or, at least one input lands on each target.
 
 Compare with injectivity, which said *at most* one pre-image. Injectivity and surjectivity are the two halves of "exactly one", and having both is module 3.8.
 
 ## The shape of the proof
 
-The definition is $\forall \exists$, so by module 1.12 the proof is: take any $t \in T$, then **exhibit a witness** $s$. The witness is almost always built out of $t$, and finding the formula for it is where the work lies.
+The definition is a *for every … there is …* claim, so module 1.12 fixes the proof shape: take any target, then **produce a witness** — an input that lands on it. The witness is almost always built out of the target, and finding the formula for it is where the work lies.
 
-> Take any $t \in T$. Set $s = \ldots$ [built from $t$]. Then $s \in S$, and $f(s) = t$. Hence $f$ is surjective.
+> Take any target $t$. Set $s = \ldots$ [built from $t$]. Then $s$ is in $S$, and $f(s) = t$. So $f$ is surjective.
 
 Note the small obligation that is easy to skip: you must check the witness actually lies in $S$.
 
-> **Proposition.** $g : \mathbb{Z} \to E$, $g(n) = 2n$, is surjective, where $E$ is the set of even integers.
+> **Proposition.** Doubling, taken as a function from the integers **to the even integers**, is surjective.
 
 <Discussion>
   <div slot="know">$t$ is even. Available: an even number is by definition $2$ times an integer, so $t/2$ is an integer.</div>
@@ -50,7 +50,7 @@ Nothing was assumed about $t$ of $E$, every element of the codomain is attained,
 
 ## The codomain decides
 
-> **The same rule with a different codomain.** $f : \mathbb{Z} \to \mathbb{Z}$, $f(n) = 2n$, is **not** surjective.
+> **The same rule with a different codomain.** Doubling, taken as a function from the integers to *all* the integers, is **not** surjective.
 
 <Proof>
 Take $t = 3 \in \mathbb{Z}$. For every $n \in \mathbb{Z}$ the value $2n$ is even, and $3$ is odd, so no $n$ satisfies $f(n) = 3$. Hence $\operatorname{Im}(f) \neq \mathbb{Z}$.
@@ -66,7 +66,7 @@ Consequently "is $f$ injective?" is a well-posed question once you know the rule
 
 ## Disproving surjectivity
 
-The negation of $\forall t\, \exists s,\ f(s) = t$ is, by module 1.11,
+Denying *every target is hit* gives, by module 1.11:
 $$
 \exists t \in T,\ \forall s \in S,\ f(s) \neq t.
 $$

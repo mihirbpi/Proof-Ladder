@@ -21,19 +21,19 @@ $$
 
 Set equality is **double inclusion**, and the named move is **check both boxes**. Every set-equality proof in mathematics has two halves, and they are usually different in difficulty and technique.
 
-The definition is not an arbitrary convention. A set is fixed by its members and nothing else (module 2.1): $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$. An if-and-only-if statement is two implications (module 1.9), and each implication is a subset claim. So the two inclusions were already inside the definition of equality.
+The definition is not a convention someone picked. A set is fixed by its members and nothing else (module 2.1), so two sets are equal exactly when *being in one* and *being in the other* amount to the same thing, whatever object you hold up. And an if-and-only-if statement is two implications (module 1.9), and each implication is a subset claim. So the two inclusions were already inside the definition of equality.
 
 ## Template
 
-> **($\subseteq$)** Take any $x \in S$. … Hence $x \in T$.
-> **($\supseteq$)** Take any $x \in T$. … Hence $x \in S$.
-> Therefore $S = T$. $\square$
+> **First half.** Take any member of $S$. … So it is in $T$.
+> **Second half.** Take any member of $T$. … So it is in $S$.
+> Each sits inside the other, so the two sets are equal. $\square$
 
 Label the halves. Unlabeled proofs of equalities routinely contain the same direction twice.
 
 ## Disjunction forces cases
 
-Since $x \in S \cup T$ unfolds to $x \in S \vee x \in T$, chasing an element out of a union hands you an *or* — and an *or* in the hypothesis must be handled by **proof by cases** (module 1.12). You do not get to choose whichever half is convenient.
+Being in a union means being in one **or** the other, so following an element out of a union hands you an *or* — and an *or* in the hypothesis must be handled by **proof by cases** (module 1.12). You do not get to choose whichever half is convenient.
 
 This single observation predicts the structure of most proofs in the rest of the chapter.
 
@@ -48,10 +48,10 @@ $$
 
 *Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: $S$ holds the numbers with $x - 2 = 0$, $T$ the numbers with $x + 3 = 0$, and $R$ the numbers where the product of those two is zero.*
 
-> **Proposition.** $S \cup T = R$.
+> **Proposition.** The union of $S$ and $T$ is exactly $R$.
 
 <Discussion>
-  <div slot="know">$x \in S \cup T$ means $x - 2 = 0$ or $x + 3 = 0$. $x \in R$ means the product $(x-2)(x+3)$ is zero. The relevant fact about $\mathbb{R}$: a product of two reals is zero if and only if at least one factor is zero.</div>
+  <div slot="know">Being in the union means $x - 2 = 0$ or $x + 3 = 0$. Being in $R$ means the product $(x-2)(x+3)$ is zero. The relevant fact about numbers: a product of two of them is zero if and only if at least one factor is zero.</div>
   <div slot="want">Both inclusions.</div>
   <div slot="how">($\subseteq$) The hypothesis is a disjunction, so split into cases; in each, one factor is zero and the product is too. ($\supseteq$) The hypothesis is a product being zero, so the zero-product fact hands us a disjunction directly.</div>
 </Discussion>
@@ -76,7 +76,7 @@ Note also that $S$ and $T$ are disjoint (module 2.4), so $R$ is partitioned by t
 
 ## A second example: absorption
 
-> **Proposition.** For all sets $S, T$: $S \cup (S \cap T) = S$.
+> **Proposition.** For any sets $S$ and $T$: pooling $S$ with the overlap of $S$ and $T$ gives back $S$.
 
 <Proof>
 **($\subseteq$)** Let $x \in S \cup (S \cap T)$. Then $x \in S$ or $x \in S \cap T$.
@@ -95,11 +95,11 @@ Observe the asymmetry that recurs throughout: proving membership in a *union* is
 <Warning title="Three failure modes">
 **Proving one direction.** The commonest. Label your halves and count them.
 
-**Reversible-step drift.** Writing a chain $x \in S \Leftrightarrow \cdots \Leftrightarrow x \in T$ is legitimate only if every step is genuinely if-and-only-if statement. It usually is in set theory, since the definitions are if-and-only-if statements — but you must check, and stating two explicit inclusions is safer.
+**Reversible-step drift.** Writing a chain of *exactly whens* from one membership statement to another is legitimate only if every single step really does run both ways. It usually is in set theory, since the definitions are if-and-only-if statements — but you must check, and stating two explicit inclusions is safer.
 
 **Skipping a case.** If the hypothesis is an *or*, both halves need treatment. A missing case is a hole, not a stylistic lapse.
 </Warning>
 
 <Aside>
-Double inclusion also finishes something module 2.3 started. There, $\subseteq$ was shown to behave like $\leq$ does on numbers: every set contains itself, and containment passes along a chain. The one missing piece was that two sets containing each other must be equal — and that is this module's definition, read backwards.
+Double inclusion also finishes something module 2.3 started. There, sitting-inside was shown to behave like $\leq$ on numbers: every set sits inside itself, and the relation passes along a chain. The one missing piece was that two sets containing each other must be equal — and that is this module's definition, read backwards.
 </Aside>
