@@ -1243,7 +1243,6 @@ const PROSE_REGISTER = [
   [/\brespectively\b/i, 'say which is which'],
   [/\bhenceforth\b/i, 'from here on'],
   [/\bnon-?trivial(ly)?\b|\btrivial(ly)?\b/i, 'say what is actually easy or hard about it'],
-  [/\bwithout loss of generality\b|\bWLOG\b/, 'say why the other case is the same'],
   [/\bby inspection\b/i, 'say what you looked at'],
   [/\bup to isomorphism\b/i, 'the same apart from renaming'],
   [/\ba fortiori\b|\bipso facto\b|\bmutatis mutandis\b|\bviz\.|\bcf\./i, 'say it in English'],
@@ -1362,6 +1361,7 @@ const REGLOSS_SIGNAL =
 const BORROWED = [
   ...HEAVY_JARGON,
   /\bexcluded middle\b/i, /\bconverse\b/i, /\binverse statement\b/i,
+  /\bwithout loss of generality\b/i, /\bWLOG\b/,
   /\bnecessary condition\b/i, /\bsufficient condition\b/i,
 ];
 for (const f of files) {

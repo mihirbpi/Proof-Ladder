@@ -75,10 +75,10 @@ State the exhaustive list, then eliminate the impossible ones explicitly. An unm
 > **Proposition.** $a^2 \equiv 0$ or $1 \pmod 3$ for every $a \in \mathbb{Z}$; never $2$.
 
 <Proof>
-With $a = 3k+r$, $r \in \{0,1,2\}$: $a^2 = 9k^2$, $9k^2+6k+1$, $9k^2+12k+4$ respectively, with remainders $0, 1, 1$.
+With $a = 3k+r$, $r \in \{0,1,2\}$: $a^2$ is $9k^2$, then $9k^2+6k+1$, then $9k^2+12k+4$, leaving remainders $0$, $1$, $1$.
 </Proof>
 
-Consequences are immediate and sharp: no integer of the form $3n+2$ is a perfect square; the equation $a^2+b^2 = 3c^2$ has only the trivial solution (reduce mod 3 and use that a sum of two elements of $\{0,1\}$ is $0$ only when both are); and mod $4$, the same technique shows $a^2+b^2 = 4^k(8m+7)$ is unsolvable, which is the negative half of the three-squares theorem.
+Consequences are immediate and sharp: no integer of the form $3n+2$ is a perfect square; the equation $a^2+b^2 = 3c^2$ has only the all-zero solution (reduce mod 3 and use that a sum of two elements of $\{0,1\}$ is $0$ only when both are); and mod $4$, the same technique shows $a^2+b^2 = 4^k(8m+7)$ is unsolvable, which is the negative half of the three-squares theorem.
 
 Squares mod $8$ lie in $\{0,1,4\}$; cubes mod $9$ lie in $\{0,1,8\}$; fourth powers mod $16$ lie in $\{0,1\}$. **Reduce modulo a well-chosen $n$** is the standard first move against a Diophantine equation, and the art is picking $n$.
 

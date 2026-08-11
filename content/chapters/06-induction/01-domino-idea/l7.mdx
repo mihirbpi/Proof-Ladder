@@ -56,7 +56,7 @@ Neither condition alone is enough, and constructing the failures is the fastest 
 
 **Step without base.** Let $A(n)$ be the claim $n = n+1$. The inductive step is immediate: assume $k = k+1$ and add $1$ to both sides to get $k+1 = k+2$, which is $A(k+1)$. The chain is perfect and every case is false, because no base case holds.
 
-That second example is worth remembering, because it is the shape of the error graders actually see. A student proves the step, finds it convincing, and omits the base case as trivial — and "trivial" and "true" are different claims.
+That second example is worth remembering, because it is the shape of the error graders actually see. A student proves the step, finds it convincing, and omits the base case as obvious — and "obvious" and "true" are different claims.
 
 **How many base cases?** As many as the step consumes. If $A(k+1)$ is derived from $A(k)$ alone, one base case is enough. If it reaches back to $A(k-1)$ as well — as every second-order recurrence does — then two are needed, or the chain has no footing.
 
