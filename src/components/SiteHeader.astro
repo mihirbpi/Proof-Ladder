@@ -9,6 +9,7 @@ import {
   chapterTitle,
   modulePath,
   levelHome,
+  withBase,
   type LevelId,
 } from '@/lib/content';
 
@@ -23,7 +24,7 @@ const profile = currentLevel ? LEVELS.find((l) => l.id === currentLevel) : null;
 ---
 <header class="site-header">
   <div class="site-header-inner">
-    <a href="/" class="site-brand" aria-label="Proof Ladder home">
+    <a href={withBase('/')} class="site-brand" aria-label="Proof Ladder home">
       <span class="site-brand-mark" aria-hidden="true">∀</span>
       <span class="site-brand-name">Proof Ladder</span>
     </a>
@@ -74,7 +75,7 @@ const profile = currentLevel ? LEVELS.find((l) => l.id === currentLevel) : null;
           })}
         </div>
         <div class="toc-panel-foot">
-          <a href="/about/">About</a>
+          <a href={withBase('/about/')}>About</a>
           {currentLevel && (
             <>
               {' · '}

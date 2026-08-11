@@ -178,12 +178,24 @@ export function getIntro(level: LevelId): Intro {
 }
 
 // URL helpers
+//
+// The site is served from the repository root in dev and from /Proof-Ladder/ on
+// GitHub Pages, so no internal link may be written from `/` directly. Astro
+// exposes the prefix as BASE_URL — "/" locally, "/Proof-Ladder/" in the built
+// site — and every link on the site goes through `withBase` so the two agree.
+// A hardcoded "/about/" works perfectly in dev and 404s once deployed, which is
+// exactly the sort of breakage that only shows up after the push.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+export function withBase(path: string): string {
+  return `${BASE}${path}`;
+}
 export function levelHome(level: LevelId): string {
-  return `/${level}/`;
+  return withBase(`/${level}/`);
 }
 export function chapterPath(level: LevelId, chapter: string): string {
-  return `/${level}/${chapter}/`;
+  return withBase(`/${level}/${chapter}/`);
 }
 export function modulePath(level: LevelId, chapter: string, mod: string): string {
-  return `/${level}/${chapter}/${mod}/`;
+  return withBase(`/${level}/${chapter}/${mod}/`);
 }

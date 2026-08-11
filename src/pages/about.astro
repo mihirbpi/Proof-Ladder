@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { withBase } from '@/lib/content';
 ---
 <BaseLayout title="About" description="Proof Ladder is an independent adaptation of Caltech's Math 0.">
   <div class="site-grid" style="grid-template-columns: 1fr;">
     <main class="reader" style="max-width: 700px; margin: 0 auto; padding-block: 3rem 1rem;">
-      <p class="module-eyebrow"><a href="/">Proof Ladder</a> · About</p>
+      <p class="module-eyebrow"><a href={withBase('/')}>Proof Ladder</a> · About</p>
       <h1>About Proof Ladder</h1>
       <p>
         Proof Ladder is a spiral curriculum website that teaches the whole of Caltech's

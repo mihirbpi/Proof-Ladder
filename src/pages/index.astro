@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { LEVELS, levelHome } from '@/lib/content';
+import { LEVELS, levelHome, withBase } from '@/lib/content';
 ---
 <BaseLayout title="Home" description="Caltech's Math 0 — Transition to Mathematical Proofs — taught eight times, from kindergarten to college.">
   <div class="site-grid" style="grid-template-columns: 1fr;">
@@ -34,7 +34,7 @@ import { LEVELS, levelHome } from '@/lib/content';
       </div>
 
       <p style="margin-top: 2.5rem;" class="small">
-        <a href="/about/">About the project</a> · Based on the Math 0 notes by Bob Pelayo at Caltech.
+        <a href={withBase('/about/')}>About the project</a> · Based on the Math 0 notes by Bob Pelayo at Caltech.
       </p>
     </main>
   </div>

@@ -11,6 +11,7 @@ import {
   chapterTitle,
   modulePath,
   levelHome,
+  withBase,
   getIntro,
   type LevelId,
 } from '@/lib/content';
@@ -44,7 +45,7 @@ function renderIntroPara(src: string): string {
     <LevelRail currentLevel={level} hrefFor={railHref} />
     <main class="reader">
       <p class="module-eyebrow">
-        <a href="/">Proof Ladder</a> · Level {profile.shortLabel} · {profile.label}
+        <a href={withBase('/')}>Proof Ladder</a> · Level {profile.shortLabel} · {profile.label}
       </p>
       <h1>Math 0 for {profile.readingTarget.toLowerCase()}</h1>
 
