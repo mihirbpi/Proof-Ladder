@@ -54,11 +54,11 @@ Neither condition alone is enough, and constructing the failures is the fastest 
 
 **Base without step.** Verify $A(1)$ and nothing more, and you have verified $A(1)$. Nothing follows about $A(2)$.
 
-**Step without base.** Let $A(n)$ be the claim $n = n+1$. The inductive step is immediate: assume $k = k+1$ and add $1$ to both sides to get $k+1 = k+2$, which is $A(k+1)$. The chain is perfect and every case is false, because no base case holds.
+**Step without base.** Let $A(n)$ be the claim $n = n+1$. The inductive step (§6.2: the part that carries each case to the next) is immediate: assume $k = k+1$ and add $1$ to both sides to get $k+1 = k+2$, which is $A(k+1)$. The chain is perfect and every case is false, because no base case holds.
 
-That second example is worth remembering, because it is the shape of the error graders actually see. A student proves the step, finds it convincing, and omits the base case as obvious — and "obvious" and "true" are different claims.
+That second example is worth remembering, because it is the shape of the error graders actually see. A student proves the step, finds it convincing, and omits the base case (§6.2: the first case, checked on its own) as obvious — and "obvious" and "true" are different claims.
 
-**How many base cases?** As many as the step consumes. If $A(k+1)$ is derived from $A(k)$ alone, one base case is enough. If it reaches back to $A(k-1)$ as well — as every second-order recurrence does — then two are needed, or the chain has no footing.
+**How many base cases?** As many as the step consumes. If $A(k+1)$ is derived from $A(k)$ alone, one base case (§6.2: the first case, checked on its own) is enough. If it reaches back to $A(k-1)$ as well — as every second-order recurrence does — then two are needed, or the chain has no footing.
 
 Counting what the step reaches back for, and verifying that many bases, is a mechanical check worth running before submitting any induction proof.
 
@@ -89,7 +89,7 @@ The step is a conditional, $A(k)\Rightarrow A(k+1)$, so proving it legitimately 
 
 The geometric sum is the one that matters most. Its finite formula is proved by induction, and letting the number of terms grow without bound turns it into a single closed expression — the one endless sum you can evaluate exactly, early on. The induction is what makes that step meaningful.
 
-**Riemann sums use these formulas.** Computing $\int_0^1 x^2\,dx$ from the definition means summing $\sum_{j=1}^n (j/n)^2\cdot\frac1n$ and taking a limit, and the closed form for $\sum j^2$ is what makes the limit computable. Without induction the definition of the integral would produce sums nobody could evaluate.
+**Riemann sums use these formulas.** Computing $\int_0^1 x^2\,dx$ from the definition means summing $\sum_{j=1}^n (j/n)^2\cdot\frac1n$ and taking a limit, and the closed form for $\sum j^2$ is what makes the limit computable. Without induction the definition of the integral — the running total a rate builds up to, the other half of calculus — would produce sums nobody could evaluate.
 
 **The cautionary example matters more than usual here.** $n^2+n+41$ produces primes for forty consecutive values and fails at the forty-first. Numerical evidence about a list of terms is evidence about finitely many of them, and lists are where the temptation to extrapolate is strongest — one can agree with a pattern for a million terms and then walk away from it.
 

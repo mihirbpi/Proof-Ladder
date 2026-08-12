@@ -93,15 +93,15 @@ The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f
 
 **Counterexample.** $f(x)=x^2$ on $\mathbb{R}$, $A = \{2\}$, $B = \{-2\}$: $f(A \cap B) = \emptyset$ but $f(A) \cap f(B) = \{4\}$.
 
-> **Proposition.** $f(A \cap B) = f(A) \cap f(B)$ for all $A, B \subseteq S$ if and only if $f$ is injective.
+> **Proposition.** $f(A \cap B) = f(A) \cap f(B)$ for all $A, B \subseteq S$ if and only if $f$ is injective (§3.5: no two inputs share an output).
 
 <Proof>
-(backward) Suppose $f$ injective. The inclusion $\subseteq$ always holds. For $\supseteq$: let $t \in f(A) \cap f(B)$, so $t = f(a) = f(b)$ with $a \in A$, $b \in B$. Injectivity gives $a = b$, so this common element lies in $A \cap B$ and $t \in f(A \cap B)$.
+(backward) Suppose $f$ injective (§3.5: no two inputs share an output). The inclusion $\subseteq$ always holds. For $\supseteq$: let $t \in f(A) \cap f(B)$, so $t = f(a) = f(b)$ with $a \in A$, $b \in B$. Injectivity gives $a = b$, so this common element lies in $A \cap B$ and $t \in f(A \cap B)$.
 
-(forward) Suppose $f$ is not injective, say $f(a) = f(b) = t$ with $a \neq b$. Take $A = \{a\}$, $B = \{b\}$. Then $f(A \cap B) = f(\emptyset) = \emptyset$ while $f(A)\cap f(B) = \{t\} \neq \emptyset$.
+(forward) Suppose $f$ is not injective (§3.5: no two inputs share an output), say $f(a) = f(b) = t$ with $a \neq b$. Take $A = \{a\}$, $B = \{b\}$. Then $f(A \cap B) = f(\emptyset) = \emptyset$ while $f(A)\cap f(B) = \{t\} \neq \emptyset$.
 </Proof>
 
-So every misbehavior of the image operator is a symptom of non-injectivity, and all of it disappears for bijections.
+So every misbehavior of the image operator is a symptom of non-injectivity, and all of it disappears for bijection (§3.8: a perfect one-to-one matching)s.
 
 ## The one inequality behind all of it
 
@@ -126,7 +126,7 @@ $$
 
 not $f(\text{open})$ open. That second condition defines *open maps*, a genuinely different class: $f(x) = x^2$ is continuous but not open, since $f\big((-1,1)\big) = [0,1)$.
 
-The same choice recurs wherever a definition has to survive composition — pre-images compose cleanly, and that is exactly why the definition is stated with them.
+The same choice recurs wherever a definition has to survive composition (§3.7: doing one rule and then another) — pre-images compose cleanly, and that is exactly why the definition is stated with them.
 </Warning>
 
 *A reminder of the symbols in play: $\circ$ reads "after".*

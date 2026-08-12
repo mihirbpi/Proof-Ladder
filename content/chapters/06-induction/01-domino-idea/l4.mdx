@@ -20,7 +20,7 @@ When the cases are indexed by $\mathbb{N}$ and each is *built from its predecess
 > **(step)** for every $k \geq n_0$, $A(k) \Rightarrow A(k+1)$,
 > then $A(n)$ is true for every $n \geq n_0$.
 
-Both conditions are indispensable. Without the base, nothing starts: the statement "$n = n+1$ for all $n$" satisfies the step ($k = k+1$ certainly implies $k+1 = k+2$) and is false, because it has no base case. Without the step, the chain breaks at the first gap.
+Both conditions are indispensable. Without the base, nothing starts: the statement "$n = n+1$ for all $n$" satisfies the step ($k = k+1$ certainly implies $k+1 = k+2$) and is false, because it has no base case (§6.2: the first case, checked on its own). Without the step, the chain breaks at the first gap.
 
 ## The motivating pattern
 
@@ -46,7 +46,7 @@ $$
 \underbrace{1 + 3 + \cdots + (2k-1)}_{\text{the } k\text{-case}} + \underbrace{(2k+1)}_{\text{new term}}.
 $$
 
-So *if* the $k$-case is $k^2$, the $(k+1)$-case is $k^2 + 2k + 1 = (k+1)^2$. The algebra is a single line, and it is the entire inductive step.
+So *if* the $k$-case is $k^2$, the $(k+1)$-case is $k^2 + 2k + 1 = (k+1)^2$. The algebra is a single line, and it is the entire inductive step (§6.2: the part that carries each case to the next).
 
 This is the linkage requirement: induction works when case $k+1$ is reachable from case $k$. Module 6.4 makes that precise.
 

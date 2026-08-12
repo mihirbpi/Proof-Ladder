@@ -49,7 +49,7 @@ Columns 1–2 agree; columns 3–4 agree. Since a truth table enumerates every a
 
 ### The argument in words
 
-It is worth also seeing the argument in words, because that is the version that generalizes to sets and to quantifiers:
+It is worth also seeing the argument in words, because that is the version that generalizes to sets and to quantifier (§1.10: the *for every* and *there is* words)s:
 
 > Suppose $p \wedge q$ fails. Then it is not the case that both hold, so at least one fails — which is exactly $\neg p \vee \neg q$. In the other direction, if at least one of $p, q$ fails, then certainly not both hold. The two conditions describe the same situations, so the same truth value.
 
@@ -72,14 +72,14 @@ The point of De Morgan's laws in a proof course is negating hypotheses. Consider
 
 > **Proposition.** If $x$ is rational and $y$ is irrational, then $x + y$ is irrational.
 
-To prove this by contrapositive we need the negation of the conclusion implying the negation of the hypothesis. The hypothesis is a conjunction, so:
+To prove this by contrapositive (§1.7: swap the two halves and deny both) we need the negation of the conclusion implying the negation of the hypothesis. The hypothesis is a conjunction, so:
 $$
 \neg\big(x \in \mathbb{Q} \;\wedge\; y \notin \mathbb{Q}\big) \;\equiv\; x \notin \mathbb{Q} \;\vee\; y \in \mathbb{Q}.
 $$
 
 *Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\neg$ is "not", $\wedge$ is "and".*
 
-The contrapositive therefore reads: *if $x + y$ is rational, then $x$ is irrational or $y$ is rational.* That is a strictly weaker — and therefore easier — target than "$x$ is irrational and $y$ is rational," which is what a careless negation produces.
+The contrapositive (§1.7: swap the two halves and deny both) therefore reads: *if $x + y$ is rational, then $x$ is irrational or $y$ is rational.* That is a strictly weaker — and therefore easier — target than "$x$ is irrational and $y$ is rational," which is what a careless negation produces.
 
 <Warning title="Two failures worth naming">
 **Over-negation.** $\neg(p \wedge q) \not\equiv \neg p \wedge \neg q$ — *denying that both hold is not the same as claiming both fail*. Row 2 of the table separates them. The wrong version says that both halves failed; the negation only entitles you to one.

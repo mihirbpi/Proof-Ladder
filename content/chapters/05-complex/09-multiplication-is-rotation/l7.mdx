@@ -34,7 +34,7 @@ $i^2 = -1$ is thereby the identity "two quarter turns make a half turn". Every d
 > **Theorem.** $(\cos\theta+i\sin\theta)^n = \cos n\theta + i \sin n\theta$ for all $n \in \mathbb{Z}$.
 
 <Proof>
-Equivalently $(e^{i\theta})^n = e^{in\theta}$. Induction for $n \geq 0$: the case $n = 0$ is $1 = 1$, and $(e^{i\theta})^{k+1} = (e^{i\theta})^ke^{i\theta} = e^{ik\theta}e^{i\theta} = e^{i(k+1)\theta}$ by the multiplication rule. For $n < 0$, $e^{i\theta}e^{-i\theta} = e^0 = 1$ gives $(e^{i\theta})^{-1} = e^{-i\theta}$, and the positive case applies to $-n$.
+Equivalently $(e^{i\theta})^n = e^{in\theta}$. Induction (§6.1: prove the first case, then that each case forces the next) for $n \geq 0$: the case $n = 0$ is $1 = 1$, and $(e^{i\theta})^{k+1} = (e^{i\theta})^ke^{i\theta} = e^{ik\theta}e^{i\theta} = e^{i(k+1)\theta}$ by the multiplication rule. For $n < 0$, $e^{i\theta}e^{-i\theta} = e^0 = 1$ gives $(e^{i\theta})^{-1} = e^{-i\theta}$, and the positive case applies to $-n$.
 </Proof>
 
 Equating real and imaginary parts gives, for each $n$, a pair of multiple-angle identities:
@@ -117,7 +117,7 @@ This module's technique — **compute one thing two ways and equate real and ima
 
 **Every identity in your precalculus course follows.** Angle addition, double angle, and triple angle all come from expanding $e^{i(\alpha+\beta)} = e^{i\alpha}e^{i\beta}$ or $(e^{i\theta})^n = e^{in\theta}$ and separating parts. The identities are consequences of $i^2=-1$, not facts to be memorized independently, and the minus sign in $\cos(\alpha+\beta)$ is exactly where the $i^2$ went.
 
-**Product-to-sum formulas come the same way**, and they are what make certain integrals tractable: $\int \cos 3x\cos 5x\,dx$ is elementary once the product is converted to a sum, and the conversion is a complex-exponential computation.
+**Product-to-sum formulas come the same way**, and they are what make certain integrals — the running totals that rates build up to, the other half of calculus — tractable: $\int \cos 3x\cos 5x\,dx$ is elementary once the product is converted to a sum, and the conversion is a complex-exponential computation.
 
 **In calculus, complex exponentials shorten integration.** $\int e^{ax}\cos bx\,dx$ is usually done by integrating by parts twice and solving for the integral. Written as $\operatorname{Re}\int e^{(a+bi)x}\,dx$, it is a single antiderivative followed by taking the real part — and the answer, including its awkward $\frac{a\cos bx + b\sin bx}{a^2+b^2}$ coefficient, falls out of dividing by $a+bi$.
 

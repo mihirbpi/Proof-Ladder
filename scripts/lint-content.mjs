@@ -1450,6 +1450,110 @@ for (const f of files) {
   }
 }
 
+// A term may not be used before the module that defines it.
+//
+// The course is read in order and it is the reader's only exposure to proof
+// mathematics, so there is no outside source for a word met early. §2.x
+// referring to a function as *injective* is not a small slip: §3.5 is where
+// injective is defined, and until then the word is furniture.
+//
+// Only genuinely technical vocabulary counts. "theorem", "proof", "hypothesis"
+// and "even" are declared somewhere as newTerms but a high schooler has them
+// already from geometry and arithmetic, and flagging those would bury the
+// signal. What is listed here is vocabulary this course itself is responsible
+// for teaching.
+const COURSE_TERMS = new Set([
+  // functions
+  'injective', 'surjective', 'bijection', 'bijective', 'inverse function',
+  'composition', 'pre-image', 'codomain', 'identity function',
+  // logic and proof
+  'contrapositive', 'converse', 'quantifier', 'counterexample', 'witness',
+  'proof by contradiction', 'proof by cases', 'proof by contrapositive',
+  'direct proof', 'double inclusion', 'arbitrary element', 'logically equivalent',
+  'negation', 'if and only if', 'for all', 'there exists',
+  // induction and Peano
+  'induction', 'base case', 'inductive step', 'strong induction',
+  'recursive definition', 'recursive-definition principle', 'successor',
+  'undefined starting word',
+  // sets, beyond what school gives them
+  'empty set', 'ordered pair', 'power set', 'set-builder notation', 'disjoint',
+  'equivalence relation', 'equivalence class', 'reflexive', 'transitive',
+]);
+// Deliberately absent: midpoint, remainder, divides, interval, irrational,
+// rational number, complex number, conjugate, modulus, polar form, congruence,
+// symmetric, image, subset, union, intersection, distributive law, factorial,
+// reciprocal, dense, diagonal. Each is declared as a newTerm somewhere, and
+// each is school mathematics the reader already has -- grade 4 for remainder,
+// Geometry for midpoint and image, Algebra II for interval and complex number.
+// Flagging them buries the signal, which is proof vocabulary this course is
+// itself responsible for teaching.
+// Where each term is first declared, per level.
+const declaredAt = new Map();
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const here = modPos(path.relative(ROOT, f).split(path.sep).join('/'));
+  const fm = fs.readFileSync(f, 'utf8').match(/^---([\s\S]*?)^---/m)?.[1] ?? '';
+  for (const m of (fm.match(/newTerms:\s*\[([^\]]*)\]/)?.[1] ?? '').matchAll(/"([^"]+)"/g)) {
+    const t = m[1].toLowerCase().trim();
+    if (!COURSE_TERMS.has(t)) continue;
+    const k = `${level}|${t}`;
+    if (!declaredAt.has(k) || here < declaredAt.get(k)) declaredAt.set(k, here);
+  }
+}
+// A signposted preview is allowed: the word may appear early if the sentence
+// says so and points at the module that will define it.
+// A bare "(1.9)" is a signpost too \u2014 the course writes module references
+// both ways \u2014 as is a promise that the word is coming.
+const PREVIEW =
+  /\u00a7\d|\bmodule \d|\bChapter \d|\(\d\.\d+\)|\blater\b|\bahead\b|\bwill (define|meet|prove|come)\b|\bfor now\b|\bcoming\b/i;
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const here = modPos(rel);
+  const prose = body(fs.readFileSync(f, 'utf8')).replace(/\n(\s*[-*]\s)/g, '\n\n$1');
+  const flagged = new Set();
+  for (const para of prose.split(/\n\s*\n/)) {
+    if (/^\s*(import|<|\||#)/.test(para) || PREVIEW.test(para)) continue;
+    const lower = para.toLowerCase();
+    for (const t of COURSE_TERMS) {
+      const at = declaredAt.get(`${level}|${t}`);
+      if (at === undefined || here >= at || flagged.has(t)) continue;
+      if (!new RegExp(`\\b${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`).test(lower)) continue;
+      flagged.add(t);
+      warn(
+        rel,
+        `uses "${t}" at \u00a7${Math.floor(here / 100)}.${here % 100}, but \u00a7${Math.floor(at / 100)}.${at % 100} is where it is defined \u2014 say it plainly here, or signpost it as a preview`,
+      );
+    }
+  }
+}
+
+// Derivatives and integrals must be explained where they are used.
+//
+// An l7 reader has finished 11th grade. Precalculus may brush against limits,
+// and nothing past that: the derivative is not shared ground, and neither is
+// the integral. These may still appear — they are the destination the
+// look-ahead boxes exist to point at, and \u00a76.6 is built on one — but the first
+// time a page reaches for one it has to say in a clause what it is. "The
+// derivative rules are provable from the arithmetic axioms" tells a reader who
+// has met derivatives something and a reader who has not nothing at all.
+const CALCULUS_OBJECT = /\bderivatives?\b|\bdifferentiat\w+|(?<!non-)\bintegrals?\b|\bantiderivatives?\b/i;
+const EXPLAINS_CALC =
+  /how steep\w*|how fast\b|\bsteepness\b|\brate of change\b|\bslope of\b|\brunning totals?\b|\barea under\b|\bhow quickly\b|\bfirst calculus course is built\b/i;
+for (const f of files) {
+  if (path.basename(f, '.mdx') !== 'l7') continue;
+  const rel = path.relative(ROOT, f);
+  const text = body(fs.readFileSync(f, 'utf8'));
+  const m = text.match(CALCULUS_OBJECT);
+  if (!m) continue;
+  // the explanation must come at or before the first use, anywhere on the page
+  if (EXPLAINS_CALC.test(text.slice(0, m.index + 400))) continue;
+  warn(
+    rel,
+    `reaches for "${m[0]}" without saying what it is \u2014 this reader has finished 11th grade, so gloss it in a clause the first time`,
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Kernels carry no proof notation, at any level.
 //

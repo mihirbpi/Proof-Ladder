@@ -49,7 +49,7 @@ $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\equiv$ is "says the same as".*
 
-and the two pairs disagree in rows 2 and 3, so neither pair forces the other. The converse and inverse are the contrapositives of each other, which is why any counterexample to one is automatically a counterexample to the other.
+and the two pairs disagree in rows 2 and 3, so neither pair forces the other. The converse and inverse are the contrapositives of each other, which is why any counterexample (§1.11: one case where the claim fails) to one is automatically a counterexample to the other.
 
 A proof without the table, since the table generalizes poorly to quantified statements:
 
@@ -66,10 +66,10 @@ Note that both halves used the law of excluded middle (§1.3) implicitly, in the
 > **Proposition.** For a real number $x$: $x > 1 \Rightarrow x^2 > 1$. (True, proved in §1.6.)
 
 - **Converse**: $x^2 > 1 \Rightarrow x > 1$. Take $x = -3$: hypothesis true ($9 > 1$), conclusion false. **False.**
-- **Inverse**: $x \leq 1 \Rightarrow x^2 \leq 1$. Same witness — the same single refuting value — $x = -3$. **False**, necessarily, being the converse's contrapositive.
+- **Inverse**: $x \leq 1 \Rightarrow x^2 \leq 1$. Same witness (§1.12: the actual example that makes a *there is* claim true) — the same single refuting value — $x = -3$. **False**, necessarily, being the converse's contrapositive.
 - **Contrapositive**: $x^2 \leq 1 \Rightarrow x \leq 1$. **True**, necessarily.
 
-The single witness $x = -3$ refutes two of the four. That economy is a good diagnostic: when you produce a counterexample to a converse, check that it also refutes the inverse. If it doesn't, one of your three statements is misformed.
+The single witness $x = -3$ refutes two of the four. That economy is a good diagnostic: when you produce a counterexample (§1.11: one case where the claim fails) to a converse, check that it also refutes the inverse. If it doesn't, one of your three statements is misformed.
 
 ## Contrapositives of compound hypotheses
 
@@ -120,7 +120,7 @@ Calculus is full of theorems whose converses fail, and the failures are the inte
 
 **Differentiable $\Rightarrow$ continuous.** True, and the converse is false: $f(x)=|x|$ is continuous at $0$ and not differentiable there. Weierstrass produced a function continuous everywhere and differentiable nowhere, which settles the converse decisively.
 
-**$f$ has a local extremum at an interior point $c$ $\Rightarrow$ $f'(c)=0$** (Fermat's theorem, when $f'(c)$ exists). The converse is false, and $f(x)=x^3$ at $c=0$ is the counterexample every course uses. This is exactly why a critical point requires a *test* rather than a conclusion — the converse's failure is the reason the First and Second Derivative Tests exist.
+**$f$ has a local extremum at an interior point $c$ $\Rightarrow$ $f'(c)=0$** (Fermat's theorem, when $f'(c)$ exists). The converse is false, and $f(x)=x^3$ at $c=0$ is the counterexample (§1.11: one case where the claim fails) every course uses. This is exactly why a critical point requires a *test* rather than a conclusion — the converse's failure is the reason the First and Second Derivative — the number saying how steeply a graph is rising at a point, which is what a first calculus course is built to compute — Tests exist.
 
 **Smooth $\Rightarrow$ unbroken.** A curve with a tangent line at a point certainly has no break there. The converse is the tempting one and it is false: $|x|$ is unbroken at $0$ and has no tangent line, because of the corner. The contrapositive, though, is true and free: *a break means no tangent line* — a usable test you get for nothing, once you know contraposition is safe.
 

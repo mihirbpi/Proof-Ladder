@@ -94,7 +94,7 @@ $s \in (g\circ f)^{-1}(U) \iff g(f(s)) \in U \iff f(s) \in g^{-1}(U) \iff s \in 
 Note the reversal of order: tracing back through a composition undoes the second machine first (§3.4). That single line is why so many good properties survive composition — if each machine separately carries well-behaved collections to well-behaved collections, then so does the pair run in sequence.
 
 <Aside>
-The bijections from a set $X$ to itself are closed under composition, contain the identity, and contain the inverse of each of their members — the three properties this module proved. A collection of transformations with those three properties is the basic object of abstract algebra, and the bijections of a set are the model case.
+The bijection (§3.8: a perfect one-to-one matching)s from a set $X$ to itself are closed under composition, contain the identity, and contain the inverse of each of their members — the three properties this module proved. A collection of transformations with those three properties is the basic object of abstract algebra, and the bijections of a set are the model case.
 </Aside>
 
 <WhereThisGoes level="l7">
@@ -108,7 +108,7 @@ $$(g\circ f)'(x) = g'\big(f(x)\big)\cdot f'(x).$$
 
 Note where each function is evaluated — $g'$ at $f(x)$, not at $x$ — and note that this is forced by the definition of composition, not a convention. Most chain-rule errors are misreadings of which function acts first, which is the same right-to-left confusion this module flags.
 
-The same shape turns up on the other side of the subject too. One of the main techniques for undoing a derivative amounts to spotting that the expression in front of you was built by composing — and spotting the composition is the whole difficulty.
+The same shape turns up on the other side of the subject too. One of the main techniques for undoing a derivative — the number saying how steeply a graph is rising at a point, which is what a first calculus course is built to compute — amounts to spotting that the expression in front of you was built by composing — and spotting the composition is the whole difficulty.
 
 - $AB$ is defined only when the dimensions match, because $g\circ f$ requires $\operatorname{codom} f = \operatorname{dom} g$.
 - $AB \neq BA$ in general, because composition is not commutative — and the counterexample in this module is the same phenomenon.
