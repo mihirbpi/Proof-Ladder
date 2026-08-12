@@ -2,7 +2,7 @@
 level: l7
 title: Induction in calculus
 readingTimeMin: 7
-newTerms: ["factorial"]
+newTerms: ["factorial", "derivative"]
 anchorExample: "the odd numbers add up to a square"
 ---
 
@@ -14,9 +14,28 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
 Every result so far arrived pre-stated. This module runs the full loop: compute data, isolate patterns, conjecture, prove.
 
+**This is the one module in the course that borrows from calculus, and it does so on purpose** — the pattern-finding it demonstrates is hard to show convincingly anywhere else. You are not expected to have taken calculus. Everything the module needs is set out here, and none of it is assumed later.
+
+## What a derivative is, in one paragraph
+
+Take a curve and pick a point on it. The curve has a **steepness** there: how sharply it is climbing or falling at that exact spot, which you can see by laying a ruler against the curve so it just grazes it and reading off the slope of the ruler. That number is the **derivative** of the function at that point, and doing it at every point at once turns the original function $f$ into a new function, written $f'$, whose value at $x$ is the steepness of $f$ at $x$.
+
+Two facts are all this module uses.
+
+**First, one rule for computing them.** For a power of $x$, the derivative is found by bringing the exponent down in front and reducing it by one:
+$$
+\text{the derivative of } x^m \text{ is } m\,x^{m-1}.
+$$
+
+*So the line reads: to differentiate a power, multiply by the old exponent and subtract one from it.* This is the **power rule**, and it is one of the first things a calculus course proves. Here it is simply granted — the module is about the induction, not about where the rule comes from.
+
+**Second, you can do it again.** $f'$ is itself a function, so it has a derivative $f''$, and so on. Write $f^{(n)}$ for the result of differentiating $n$ times, with $f^{(0)} = f$.
+
 ## The problem
 
-Let $f(x) = 1/x$ on $\mathbb{R}\setminus\{0\}$. Find $f^{(n)}(x)$.
+Let $f(x) = 1/x$ on $\mathbb{R}\setminus\{0\}$ — that is, $x^{-1}$. Find $f^{(n)}(x)$: what you get after differentiating $n$ times.
+
+Each row below is the previous one with the power rule applied once.
 
 $$
 \begin{array}{c|c}
@@ -53,7 +72,7 @@ Then verify the conjecture at a value *not used to form it* — here $n=5$: $(-1
 <Discussion>
   <div slot="know">Power rule $\frac{d}{dx}x^m = mx^{m-1}$ for $m \in \mathbb{Z}$, $x \neq 0$; the recursion $(k+1)! = (k+1)k!$; and $f^{(n+1)} = \big(f^{(n)}\big)'$, which is the link making induction applicable (§6.4).</div>
   <div slot="want">$A(n): f^{(n)}(x) = (-1)^n n! x^{-(n+1)}$ for all $n \geq 0$, $x \neq 0$.</div>
-  <div slot="how">Base at $n=0$ using $f^{(0)} = f$. Step: differentiate — measure how steeply its graph is rising — the (IH) expression by the power rule and reassemble the sign and factorial — the same two patterns that produced the conjecture.</div>
+  <div slot="how">Base at $n=0$ using $f^{(0)} = f$. Step: apply the power rule to the (IH) expression and reassemble the sign and factorial — the same two patterns that produced the conjecture.</div>
 </Discussion>
 
 <Proof>
@@ -129,7 +148,7 @@ That growth is why the polynomial approximations of a calculus course divide by 
 
 <WhereThisGoes level="l7">
 
-Induction on the order of differentiation is the standard proof technique for every higher-derivative formula, and you will use it within weeks of starting calculus.
+Induction on the number of times you have differentiated is the standard proof technique for every formula of this kind, and it is waiting for you a few weeks into a calculus course.
 
 **The formulas that need it.** $\frac{d^n}{dx^n}e^{ax} = a^ne^{ax}$, $\frac{d^n}{dx^n}\sin x$ cycling with period four, and $\frac{d^n}{dx^n}x^{-1} = (-1)^n n!\,x^{-(n+1)}$. There is also a rule for the $n$th derivative of a product, and the coefficients in it are the same numbers that appear in the expansion of $(a+b)^n$ from Algebra II — proved, again, by induction.
 

@@ -2191,8 +2191,13 @@ const GRADED_CONCEPTS = [
   { name: 'calculus', from: 'l7', glimpseOK: true,
     re: /\\lim\b|\bderivativ|\\frac\{d\}\{d|\bantiderivativ|\bRiemann sum/ },
 ];
-// §6.6 is "Induction in calculus" — its subject is the exception, as Chapter 5's is.
-const OWN_SUBJECT = /06-induction\/06-/;
+// §6.6 is "Induction in calculus" and used to be exempt at every level, on the
+// grounds that its subject is the exception, as Chapter 5's is. That was too
+// generous: the exemption is only wanted at l7, where the module may borrow
+// from calculus *provided it explains what it borrows*. Below l7 the module has
+// to make its point without calculus at all, and it does — the lower levels run
+// on repeated substitution, factorials and the polygon angle-sum instead. The
+// gate itself stops at l7, so dropping the exemption is all that is needed.
 for (const f of files) {
   const level = path.basename(f, '.mdx');
   if (!LEVEL_ORDER.includes(level) || level === 'l8') continue;
@@ -2204,7 +2209,6 @@ for (const f of files) {
     .replace(/<WhereThisGoes[\s\S]*?<\/WhereThisGoes>/g, '');
   for (const { name, from, re, glimpseOK } of GRADED_CONCEPTS) {
     if (rank(level) >= rank(from)) continue;
-    if (glimpseOK && OWN_SUBJECT.test(rel)) continue;
     const hay = glimpseOK ? outsideGlimpse : full;
     const m = hay.match(re);
     if (!m) continue;

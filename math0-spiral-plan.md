@@ -214,7 +214,14 @@ worked proposition is a zero-product argument rather than a trigonometric one.
 `l7`, and below it they may be named in a body sentence provided the sentence
 says what they are ("square grids of numbers, called *matrices* in Algebra II"),
 or used freely inside the sanctioned glimpse slot. §6.6 *Induction in calculus*
-is its own subject and so is exempt, exactly as Chapter 5 is. A bare
+is its own subject and so is exempt **at `l7` only** (revised 2026-08-12). The
+exemption used to apply at every level, which let calculus sit in a module the
+lower grades read too. Below `l7` the module makes its point without calculus
+at all — repeated substitution, factorials, the polygon angle-sum — and at
+`l7` it may borrow **provided it explains what it borrows**: §6.6 now opens
+with a paragraph saying what a derivative is and granting the power rule
+outright, because the module is about the induction, not about where the rule
+comes from. A bare
 "in matrix terms, multiplication by $i$ is …" at `l4` is the failure this
 catches.
 
