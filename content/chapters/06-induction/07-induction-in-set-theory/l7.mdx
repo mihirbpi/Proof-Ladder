@@ -2,7 +2,7 @@
 level: l7
 title: Induction in set theory
 readingTimeMin: 7
-newTerms: ["power set", "characteriztic function"]
+newTerms: ["power set"]
 anchorExample: "the odd numbers add up to a square"
 ---
 
@@ -40,14 +40,14 @@ The step transferred a count along a bijection rather than recounting — §3.8'
 ## Bijective proof
 
 <Proof title="Second proof">
-For $A \subseteq S$ define its **characteriztic function** $\mathbf{1}_A : S \to \{0,1\}$ by $\mathbf{1}_A(x) = 1$ iff $x \in A$.
+Take any subset $A$ of $S$ and record a yes-or-no answer at every element of $S$: **yes** if that element is in $A$, **no** if it is not.
 
-The map $A \mapsto \mathbf{1}_A$ is a bijection $\mathcal{P}(S)\to\{0,1\}^S$, with inverse $f \mapsto f^{-1}(\{1\})$ — the pre-image, in the sense of §3.3.
+That record pins $A$ down completely, and every possible record comes from exactly one subset — read the subset back off as the elements answered yes. So subsets and records are matched one-for-one.
 
-A function $S \to \{0,1\}$ is specified by an independent yes-or-no choice at each of $n$ points, so $|\{0,1\}^S| = 2^n$.
+A record is $n$ separate yes-or-no answers, each made independently of the others: $2$ ways, $n$ times, so $2^n$ records, and therefore $2^n$ subsets.
 </Proof>
 
-This explains the notation $2^S$ for the power set: it is $\{0,1\}^S$, and the cardinality formula $|Y^X| = |Y|^{|X|}$ makes $|2^S| = 2^{|S|}$ automatic. The bijection also transports structure — $\chi_{A\cap B} = \mathbf{1}_A\chi_B$ and $\chi_{\overline A} = 1 - \mathbf{1}_A$ — so $\mathcal{P}(S)$ and $\{0,1\}^S$ match operation for operation (§2.7), not merely element for element.
+This is where the notation $2^S$ for the power set comes from: two choices at each element of $S$. And the match is better than a count. An element is in $A \cap B$ exactly when it answered yes on both records, and outside $A$ exactly when it answered no on that one — so the set operations of §2.7 correspond to operations on the records, not merely the totals.
 
 <Warning title="Level discipline">
 Elements of $\mathcal{P}(S)$ are *sets*. For $S = \{a,b\}$: $a \in S$, $\{a\}\in\mathcal{P}(S)$, $\{a\}\subseteq S$, $\{\{a\}\}\subseteq \mathcal{P}(S)$ — and $a \notin \mathcal{P}(S)$.

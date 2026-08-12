@@ -49,7 +49,7 @@ Every proof about products opens the same way:
 
 > Let $z \in A \times C$ be arbitrary. Then $z = (x,y)$ with $x \in A$ and $y \in C$.
 
-Until $z$ is decomposed, (2) cannot be applied and the argument has nothing to work with. Failing to decompose is the characteriztic error in this module, as failing to unfold a definition is in the previous ones.
+Until $z$ is decomposed, (2) cannot be applied and the argument has nothing to work with. Failing to decompose is the characteristic error in this module, as failing to unfold a definition is in the previous ones.
 </Warning>
 
 ## Interaction with intersection
@@ -110,16 +110,16 @@ So everything from here forward is a subset of a product set with a condition at
 $\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$ makes this concrete: a line is $\{(x,y) \mid y = mx+c\}$, a circle is $\{(x,y) \mid x^2+y^2 = r^2\}$. Coordinate geometry is set-builder notation applied to a product.
 
 <Aside>
-Infinite products require care. For a family $\{A_i\}_{i \in I}$, $\prod_{i \in I} A_i$ is the set of functions $f$ on $I$ with $f(i) \in A_i$ — note the definition uses functions, so the order of development in this course is a pedagogical convenience rather than a logical necessity. Whether this product is nonempty whenever every $A_i$ is nonempty is a genuine assumption in its own right, independent of the other axioms of set theory.
+Infinite products require care. For a family $\{A_i\}_{i \in I}$, $\prod_{i \in I} A_i$ is the set of functions $f$ on $I$ with $f(i) \in A_i$ — note the definition uses functions, so the order of development in this course is a pedagogical convenience rather than a logical necessity. Whether this product is nonempty whenever every $A_i$ is nonempty is a genuine assumption in its own right, and does not follow from the other rules set theory starts from (§7.1).
 </Aside>
 
 <WhereThisGoes level="l7">
 
 Products are the sets both courses ahead actually work in.
 
-**$\mathbb{R}^n$ is a product.** $\mathbb{R}^2 = \mathbb{R}\times\mathbb{R}$, $\mathbb{R}^3 = \mathbb{R}\times\mathbb{R}\times\mathbb{R}$, and a vector in $\mathbb{R}^n$ *is* an ordered $n$-tuple. The defining property of ordered pairs — equal exactly when the entries match — is what makes coordinates well defined, and it is why $\mathbf{u} = \mathbf{v}$ in $\mathbb{R}^n$ unpacks into $n$ separate scalar equations.
+**$\mathbb{R}^n$ is a product.** $\mathbb{R}^2 = \mathbb{R}\times\mathbb{R}$, $\mathbb{R}^3 = \mathbb{R}\times\mathbb{R}\times\mathbb{R}$, and a point of $\mathbb{R}^n$ *is* an ordered list of $n$ numbers. The defining property of ordered pairs — equal exactly when the entries match — is what makes coordinates work at all, and it is why one point equalling another in $\mathbb{R}^n$ unpacks into $n$ separate equations between ordinary numbers.
 
-**In calculus, a function of two variables has a product for its domain.** $f(x,y)$ is a function $D \to \mathbb{R}$ with $D\subseteq\mathbb{R}^2$, and the graph is a subset of $\mathbb{R}^3 = \mathbb{R}^2\times\mathbb{R}$. Level curves are pre-images (§3.3), and the two ways of differentiating such a function are just ordinary differentiation along one factor at a time, holding the other still.
+**A rule that needs two inputs has a product for its domain.** Anything you feed a pair to — the area of a rectangle from its two sides, the distance between two points on a line — takes its inputs from a product, and §3.1's definition covers it with no change at all. That is worth knowing now, because the moment a later course writes down a rule with two slots, none of this chapter has to be redone.
 
 Even in one variable the product is present: the graph of $f$ is $\{(x, f(x)) : x \in \operatorname{dom} f\}\subseteq \mathbb{R}\times\mathbb{R}$ — *the collection of input-output pairs, sitting inside the plane* — which is §3.1's definition of a function as a set of pairs. **The picture you have been drawing since algebra is a subset of a product**, and the vertical line test is the single-valuedness condition read off that subset.
 

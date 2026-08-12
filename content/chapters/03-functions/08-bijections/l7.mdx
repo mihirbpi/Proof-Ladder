@@ -46,7 +46,7 @@ Define $S \sim T$ ("the same size") when a bijection $S \to T$ exists. This is a
 
 Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this is such that mutual containment forces equality — $|S|\leq|T|$ and $|T|\leq|S|$ imply $|S|=|T|$ — is the **Schröder–Bernstein theorem**, and it is genuinely not obvious: from injections both ways one must *construct* a bijection, and the construction (partitioning by orbits of the two maps) is the standard first surprise of the subject.
 
-## Dedekind infinity
+## An infinite set can match up with part of itself
 
 > **Proposition.** $|\mathbb{N}| = |2\mathbb{N}|$.
 
@@ -54,7 +54,7 @@ Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this 
 $f : \mathbb{N}\to 2\mathbb{N}$, $f(n)=2n$. Injective: $2a=2b \Rightarrow a=b$. Surjective: any even natural is $2k$, and $f(k)=2k$.
 </Proof>
 
-$2\mathbb{N} \subsetneq \mathbb{N}$ yet the two have the same size. Dedekind turned this into a definition: a set is **infinite** iff it admits a bijection with a proper subset of itself. (That this coincides with "not finite" requires a weak form of choice, which is one of the places set theory's subtleties surface early.)
+$2\mathbb{N} \subsetneq \mathbb{N}$ yet the two have the same size. That is not a paradox, it is the definition of infinite doing its job: a set is infinite exactly when it can be matched one-for-one with a part of itself that leaves something out. No finite set can do that, and every infinite one can. It was proposed as *the* definition of infinity in 1888, and it is the places set theory's subtleties surface early.)
 
 <Warning title="Inclusion is not size">
 For infinite sets, $A \subsetneq B$ does not imply $|A| < |B|$. Comparisons must be made by exhibiting functions, never just by looking or by inclusion. Nearly every incorrect claim students make about infinite cardinalities (sizes, §3.8) comes from importing finite intuition here.

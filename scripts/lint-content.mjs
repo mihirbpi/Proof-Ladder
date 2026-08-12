@@ -964,9 +964,9 @@ const COLLEGE_TERMS = [
   // 12th grader can be told there is no set of everything, and why that is
   // worth knowing. The machinery cannot be, because nothing they have taken
   // reaches it, and naming it does not teach it.
-  [/\bZermelo|\bFraenkel|\bZFC\b|\bFrege|\bvon Neumann|\b(unrestricted|naive) comprehension\b|\bseparation axiom\b|\baxiom schema\b|\beffectively axiomatis|\bsecond-order logic\b/i, 'foundations'],
-  [/\bintegral domain|\bGalois|\babelian|\bmonoid|\bBoolean algebra/i, 'abstract algebra'],
-  [/\bcategory theor|\bfunctors?\b|\bnatural transformation/i, 'category theory'],
+  [/\bZermelo|\bFraenkel|\bZFC?\b|\bFrege|\bvon Neumann|\b(unrestricted|naive) comprehension\b|\bseparation axiom\b|\baxiom schema\b|\beffectively axiomatis|\bsecond-order logic\b|\bAxiom of Foundation\b|\bchoice function\b/i, 'foundations'],
+  [/\bintegral domain|\bGalois|\babelian|\bmonoid|\bBoolean algebra|\bmodern algebra\b|\baxiomatic (set theory|method)\b/i, 'abstract algebra'],
+  [/\bcategory theor|\bfunctors?\b|\bnatural transformation|\baxioms of a \*\*category\*\*|\bthe axioms of a category\b/i, 'category theory'],
   [/\bmanifold|\bmultivariable|\bJacobian|\bpartial derivative/i, 'later calculus'],
   // Real analysis. epsilon-delta, suprema and formal convergence are a
   // university course; a 12th grader meets limits informally at best.
@@ -1021,6 +1021,36 @@ for (const f of files) {
         ? `names ${r.what} ("${m[0]}") away from ${r.home_label}, where it is actually shown — say the idea in words or drop it`
         : `names ${r.what} ("${m[0]}") — that belongs at ${r.home_label}`,
     );
+  }
+}
+
+// Mathematics past the reader's course, at l7.
+//
+// COLLEGE_TERMS catches named subjects; this catches the *constructions* that
+// come with them, which is where l7 kept drifting. A 12th grader has finished
+// 11th grade and no more: no linear algebra, so no scalars, subspaces,
+// spanning or vectors-as-objects; no multivariable calculus, so no level sets,
+// contour maps or f(x,y); no set theory course, so no characteristic
+// functions, Dedekind infinity, or countability arguments.
+//
+// The rule is the same inside <WhereThisGoes>. A look-ahead box may name the
+// *question* the next course asks; it may not spend the answer's vocabulary.
+// "One vector's worth of checking" and "let u, v be in W and let c be a
+// scalar" assume a course the reader has not taken, and no amount of context
+// recovers them.
+const PAST_THE_COURSE = [
+  [/\bscalars?\b|\bsubspaces?\b|\bspanning\b|\bvector spaces?\b|\\mathbf\{[uvw]\}|\bvector'?s? (worth|addition)\b|\borthogonal complement\b|\bW\^\\perp|\blinear ordering\b/i, 'linear algebra'],
+  [/\blevel sets?\b|\bcontour maps?\b|\bpartial derivatives?\b|\bconvex combination\b/i, 'multivariable calculus'],
+  [/\bcharacteri[sz]tic functions?\b|\bindicator functions?\b|\bDedekind\b|\buncountab\w*|\bcountab\w*/i, 'set theory'],
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (level !== 'l7') continue;
+  const rel = path.relative(ROOT, f);
+  const text = body(fs.readFileSync(f, 'utf8'));
+  for (const [re, area] of PAST_THE_COURSE) {
+    const m = text.match(re);
+    if (m) warn(rel, `l7 uses "${m[0]}" (${area}) \u2014 past the course this reader has finished`);
   }
 }
 
@@ -1104,7 +1134,7 @@ const OFF_REGISTER = [
   [/\bcofactors?\b/i, 'the other factor'],
   [/\bdualit(y|ies)\b(?! is called \*De Morgan)/i, 'mirror image'],
   [/\bzero divisors?\b/i, 'a product of non-zero numbers is never zero'],
-  [/\bpartial orders?\b/i, 'an ordering'],
+  [/\bpartial[- ]orders?\b/i, 'an ordering'],
   [/\balgebraic(ally)? clos\w*\b/i, 'every polynomial equation has a solution'],
   [/\bsemirings?\b|\bhyperoperation\w*\b/i, 'say the property out'],
   [/\bnonstandard models?\b/i, 'impostor systems'],
@@ -1141,6 +1171,8 @@ const OFF_REGISTER = [
 // textbook? Course vocabulary the syllabus teaches on purpose is not here —
 // contrapositive and codomain are taught, glossed, and stay.
 const OBSCURE = [
+  [/\bfiat\b/i, 'just declaring it so'],
+  [/\bverbatim\b/i, 'word for word, or unchanged'],
   [/\bregress(es|ion)?\b/i, 'going back and back'],
   [/\btermini\b|\bterminus\b/i, 'ends, or stopping points'],
   [/\bvacuity\b/i, 'being true because there is nothing to check'],
@@ -1389,6 +1421,32 @@ for (const f of files) {
       flagged.add(t);
       warn(rel, `borrows "${m[0]}" with nothing to reattach it to \u2014 re-say it in words here, or point at the module that taught it`);
     }
+  }
+}
+
+// "Axiom" before §7.1, which is the module that teaches what one is.
+//
+// The word turns up from §1.6 onward and Chapter 4 is built on it, which is
+// fine — but a reader meeting it in §2.6 as "the third partial-order axiom"
+// has been handed a technical term with no account of what makes something an
+// axiom rather than a theorem. That account is §7.1's whole job. Before then,
+// the first use in a module has to say what it means or send the reader there.
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!['l4', 'l5', 'l6', 'l7'].includes(level)) continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  if (modPos(rel) >= 701) continue;
+  const ch = path.relative(CHAPTERS, f).split(path.sep)[0];
+  const own = (chapterVocab.get(`${ch}/${level}`) ?? '').toLowerCase();
+  if (own.includes('axiom')) continue; // the chapter declares it as its own
+  const prose = body(fs.readFileSync(f, 'utf8')).replace(/\n(\s*[-*]\s)/g, '\n\n$1');
+  for (const para of prose.split(/\n\s*\n/)) {
+    if (/^\s*(import|<|\||#)/.test(para)) continue;
+    const m = para.match(/\baxiom\w*\b/i);
+    if (!m) continue;
+    if (/\u00a77\.1|Chapter 7|module 7\.1/.test(para) || REGLOSS_SIGNAL.test(para)) break;
+    warn(rel, `uses "${m[0]}" before \u00a77.1 explains what an axiom is \u2014 say it in words here, or point at \u00a77.1`);
+    break;
   }
 }
 

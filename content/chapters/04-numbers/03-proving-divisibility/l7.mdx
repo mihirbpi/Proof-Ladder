@@ -81,7 +81,7 @@ So $p \mid c$, and the lemma is proved.
 
 Note that Euclid's lemma is *not* a triviality about primes; its proof consumes Bézout, which consumes the division algorithm (§4.4). The chain is
 $$
-\text{division algorithm} \Rightarrow \text{Euclidean algorithm} \Rightarrow \text{Bézout} \Rightarrow \text{Euclid's lemma} \Rightarrow \text{unique factorisation}.
+\text{division algorithm} \Rightarrow \text{Euclidean algorithm} \Rightarrow \text{Bézout} \Rightarrow \text{Euclid's lemma} \Rightarrow \text{unique factorization}.
 $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces".*
@@ -89,7 +89,7 @@ $$
 Each arrow is short; the sequence is the whole of elementary number theory's foundation, and it is worth being able to recite.
 
 <Aside>
-Unique factorisation is often taught as obvious. It is not. Existence of a factorisation follows by strong induction (Chapter 6); *uniqueness* is exactly where Euclid's lemma is spent, and in number systems where that lemma fails, uniqueness fails with it. In $\mathbb{Z}[\sqrt{-5}]$, $2$ is irreducible but $2 \mid 6 = (1+\sqrt{-5})(1-\sqrt{-5})$ while dividing neither factor — so $2$ is not prime there, and $6$ has two genuinely different factorisations.
+Unique factorization is often taught as obvious. It is not. Existence of a factorization follows by strong induction (Chapter 6); *uniqueness* is exactly where Euclid's lemma is spent, and in number systems where that lemma fails, uniqueness fails with it. In $\mathbb{Z}[\sqrt{-5}]$, $2$ is irreducible but $2 \mid 6 = (1+\sqrt{-5})(1-\sqrt{-5})$ while dividing neither factor — so $2$ is not prime there, and $6$ has two genuinely different factorizations.
 </Aside>
 
 <WhereThisGoes level="l7">
@@ -102,7 +102,7 @@ $$\frac{d}{dx}\big(af + bg\big) = af' + bg', \qquad \int (af+bg) = a\int f + b\i
 
 So a property preserved by differentiation is preserved by any combination of functions having it — which is why, having differentiated $x^n$, you can differentiate every polynomial without further work.
 
-**The same template runs on polynomials.** Everything in this module used only three facts about $\mathbb{Z}$: you can add, you can multiply, and the product of two things stays in the system. Polynomials satisfy all three, so the divisibility template transfers verbatim.
+**The same template runs on polynomials.** Everything in this module used only three facts about $\mathbb{Z}$: you can add, you can multiply, and the product of two things stays in the system. Polynomials satisfy all three, so the divisibility template transfers unchanged.
 
 Say $d(x)$ divides $p(x)$ when $p(x) = d(x)q(x)$ for some polynomial $q(x)$ — the same definition, with polynomials in place of integers. Unpack, compute, factor, and check the leftover factor is a polynomial, and you have proved that if $d$ divides both $p$ and $r$ then it divides $p \cdot a + r \cdot b$ for any polynomials $a$ and $b$.
 

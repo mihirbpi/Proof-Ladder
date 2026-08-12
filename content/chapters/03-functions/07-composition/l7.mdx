@@ -21,7 +21,7 @@ $$
 
 defined exactly when the codomain of $f$ equals the domain of $g$. That $g \circ f$ is a function requires no verification: totality, single-valuedness, and codomain membership are inherited.
 
-Read $g \circ f$ as "$g$ after $f$". The convention matches the nesting in $g(f(s))$ and is universal in mathematics; the opposite convention $f;g$ appears in computer science and in some category-theory texts, and clashes between them are a standard source of sign and order errors when moving between subjects.
+Read $g \circ f$ as "$g$ after $f$". The convention matches the nesting in $g(f(s))$ and is universal in mathematics; the opposite convention $f;g$ appears in computer science, and clashes between the two are a standard source of order errors when moving between subjects.
 
 ## Algebraic structure
 
@@ -38,7 +38,7 @@ so parentheses may be dropped.
 
 **Non-commutativity.** $f(x)=x+1$, $g(x)=2x$ on $\mathbb{R}$ give $g\circ f = 2x+2$ and $f \circ g = 2x+1$. Often only one composite is even defined.
 
-These three facts are exactly the axioms of a **category**: objects (sets), arrows (functions), an associative composition, and identities. Everything proved below uses only those three ingredients, and that is why it recurs verbatim for groups, spaces, and modules.
+Notice how little those three facts assume. Nothing below uses anything about *what* the sets contain — only that functions compose, that composing is associative, and that identity functions exist. That is why the same results come back unchanged in every later subject that has things and maps between them.
 
 ## Preservation theorems
 
@@ -73,7 +73,7 @@ Consequently a composition of bijections is a bijection (§3.8).
 (3) Take $S = \{a\}$, $T = \{1,2\}$, $R = \{x\}$, $f(a)=1$, $g(1)=g(2)=x$. Then $g\circ f$ is both injective and surjective, while $g$ is not injective and $f$ is not surjective.
 </Proof>
 
-The pattern is worth memorizing: **injectivity of a composite constrains the first map; surjectivity constrains the second.** It generalizes directly — in any category, if $g\circ f$ is monic then $f$ is monic, and if $g \circ f$ is epic then $g$ is epic — and it is the reason retracts and sections behave the way they do.
+The pattern is worth memorizing: **injectivity of a composite constrains the first map; surjectivity constrains the second.** It carries over unchanged to every later setting where things get mapped to other things, and it is the reason retracts and sections behave the way they do.
 
 <Warning title="Domain bookkeeping">
 $g \circ f$ requires $\operatorname{cod}(f) = \operatorname{dom}(g)$ *exactly*, not merely $\operatorname{Im}(f) \subseteq \operatorname{dom}(g)$. In practice people compose whenever the outputs fit, quietly shrinking the declared target of $f$ to make it work. This is harmless but worth noticing, because it changes the function (§3.1) and can change whether it is surjective.

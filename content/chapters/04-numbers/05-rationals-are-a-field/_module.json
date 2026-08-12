@@ -22,7 +22,7 @@
     "l5": "The fractions obey every arithmetic rule the integers do, and add one more: every nonzero one has a reciprocal. That extra property is exactly what the integers were missing.",
     "l6": "The fractions are closed under addition, subtraction, multiplication, and division by anything nonzero. The integers fail that last one, having no reciprocals, and every closure proof here is fraction arithmetic checked against the definition.",
     "l7": "The fractions are closed under all four operations, with division defined whenever the denominator is nonzero. The proofs are the standard fraction formulas, read as closure statements.",
-    "l8": "ℚ is the field of fractions of ℤ, the smallest field containing it; finite fields ℤ/pℤ show that fields need not be infinite, and characteriztic distinguishes them."
+    "l8": "ℚ is the field of fractions of ℤ, the smallest field containing it; finite fields ℤ/pℤ show that fields need not be infinite, and characteristic distinguishes them."
   },
   "kernel": "ℚ is closed under addition, additive inverses, multiplication, and multiplicative inverses of nonzero elements — this makes it a field. The closure proofs are just fraction arithmetic checked against the definition.",
   "objectives": [

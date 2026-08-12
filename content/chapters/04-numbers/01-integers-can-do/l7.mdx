@@ -15,6 +15,8 @@ Every integer proof you have written invokes properties of $\mathbb{Z}$ that wer
 
 ## The axioms
 
+An **axiom** is a rule assumed at the start rather than proved from something earlier; §7.1 examines what that really commits you to. For now, take the following as the rules of arithmetic and watch how much comes out of them.
+
 $(\mathbb{Z}, +, \cdot)$ satisfies, for all $a,b,c$:
 
 **Additive.** Associativity $(a+b)+c = a+(b+c)$; commutativity $a+b=b+a$; identity $a + 0 = a$; inverses $a + (-a) = 0$.
@@ -91,7 +93,7 @@ The axioms are satisfied by structures with nothing else in common:
 | the hours on an $n$-hour clock | those sharing no factor with $n$ | yes, unless $n$ is prime |
 | continuous functions on the line | those never equal to zero | yes |
 
-Anything proved from the axioms alone holds in every row. This is the central methodological move of modern algebra, and it is why the vocabulary is worth acquiring before you need it.
+Anything proved from the axioms alone holds in every row. That move — prove it once from the rules, then use it everywhere the rules hold — is what the later algebra courses are built on, and it is why the vocabulary is worth acquiring before you need it.
 
 <Aside>
 The three number systems of Chapter 4 stack, each adding one thing: the integers obey the arithmetic rules, the fractions add reciprocals, and the reals add the no-gaps property of §4.6. Each addition buys theorems and costs generality. $\mathbb{Z}$ additionally has properties $\mathbb{Q}$ lacks — its numbers come in separate steps, any collection of them going down stops somewhere, and it has a division algorithm — which is why number theory is a subject about $\mathbb{Z}$ and not about $\mathbb{Q}$.
@@ -103,8 +105,8 @@ The list of properties in this module is the checklist you will run against ever
 
 **Polynomials obey this same checklist.** You can add, subtract and multiply two polynomials and get a polynomial; you cannot always divide one by another and stay in the family. That is exactly the pattern $\mathbb{Z}$ has. The parallel is close enough that polynomial long division, the Factor Theorem, and the Remainder Theorem are the polynomial versions of §4.2–§4.4, with degree playing the role of size.
 
-**In calculus, the arithmetic rules are what make the derivative rules provable.** Linearity of differentiation is distributivity plus scalar multiplication; and the product rule is a statement about what differentiating does to a product. The surprise there — that it is *not* simply $f'g'$ — is the first sign that taking a derivative does not pass through multiplication the way it passes through addition.
+**In calculus, the arithmetic rules are what make the derivative rules provable.** The rule that the derivative of a sum is the sum of the derivatives is distributivity in disguise; and the product rule is a statement about what differentiating does to a product. The surprise there — that it is *not* simply $f'g'$ — is the first sign that taking a derivative does not pass through multiplication the way it passes through addition.
 
-**And the numbers you multiply by have to be checked first.** When linear algebra sets up its objects, the first question it asks is what the *scalars* are allowed to be — and the answer is a system with every property listed in this module, which is §4.5. The setup is stated as a list of rules, exactly like the list you just read.
+**And the numbers you multiply by have to be checked first.** When the courses ahead set up a new kind of object, the first question they ask is which *numbers* you are allowed to multiply by — and the answer is a system with every property listed in this module, which is §4.5. The setup is stated as a list of rules, exactly like the list you just read.
 
 </WhereThisGoes>

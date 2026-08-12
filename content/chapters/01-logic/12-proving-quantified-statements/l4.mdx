@@ -24,7 +24,7 @@ The two right-hand cells in the disproof column are exactly the negation laws of
 
 ## Task 1: the stand-in element
 
-To prove that every $x$ in $S$ has a property, introduce a **stand-in element** of $S$ — a specific object, fixed for the duration of the argument, about which you assume *nothing beyond membership in $S$*. Then prove the property of it. Since the argument used no special feature, it applies verbatim to every element.
+To prove that every $x$ in $S$ has a property, introduce a **stand-in element** of $S$ — a specific object, fixed for the duration of the argument, about which you assume *nothing beyond membership in $S$*. Then prove the property of it. Since the argument used no special feature, it applies unchanged to every element.
 
 > **Proposition.** For every integer $n \geq 3$, the integer $n^2 - 1$ is composite.
 
@@ -32,7 +32,7 @@ To prove that every $x$ in $S$ has a property, introduce a **stand-in element** 
 
 <Discussion>
   <div slot="know">an integer $n$, $n \geq 3$. Nothing else about $n$.</div>
-  <div slot="want">A factorisation $n^2 - 1 = ab$ with $a, b > 1$.</div>
+  <div slot="want">A factorization $n^2 - 1 = ab$ with $a, b > 1$.</div>
   <div slot="how">$n^2 - 1$ is a difference of squares, so it factors as $(n-1)(n+1)$ identically. Then check both factors exceed $1$, which is where the hypothesis $n \geq 3$ is spent.</div>
 </Discussion>
 
@@ -46,7 +46,7 @@ Since $n \geq 3$, we have $n - 1 \geq 2 > 1$ and $n + 1 \geq 4 > 1$. Then $n^2 -
 Nothing was assumed about $n$ $\geq 3$, the claim holds for all such $n$.
 </Proof>
 
-Note the hypothesis $n \geq 3$ is not decoration: at $n = 2$ the factorisation gives $1 \cdot 3$, and $3$ is prime. Universal claims fail at their boundaries, and the boundary is where you should always test.
+Note the hypothesis $n \geq 3$ is not decoration: at $n = 2$ the factorization gives $1 \cdot 3$, and $3$ is prime. Universal claims fail at their boundaries, and the boundary is where you should always test.
 
 <Warning title="Arbitrary means unchosen">
 "Take any $n$" and "let $n = 5$" are different openings. The moment your proof says something about $n$ that was not given — that it is even, that it is positive, that it is not $0$ — the element has stopped standing in for all the others, and you have proved a restricted claim. If you genuinely need such an assumption, you must split into cases and handle the others.

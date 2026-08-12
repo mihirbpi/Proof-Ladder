@@ -74,7 +74,7 @@ $$
 
 so (D1) applied to arbitrary $S,T,R$ gives (D2) for $\overline S, \overline T, \overline R$ — and since complementation is a bijection on $\mathcal{P}(X)$, that is (D2) in full generality. Proving one law proves both.
 
-This is worth internalising as a habit: wherever an operation undoes itself and turns the ordering around, half the theorems are free.
+This is worth internalizing as a habit: wherever an operation undoes itself and turns the ordering around, half the theorems are free.
 
 ## What distributivity is doing
 
@@ -93,7 +93,7 @@ $$
 
 So $A \cap (B+C) = A$ while $(A\cap B) + (A\cap C) = \{0\}$. **Distributivity fails, and fails badly** — the two sides are as far apart as they could be.
 
-This is the practical warning to carry into your later matrix work. Subspaces look like sets and behave like sets under $\cap$; they do **not** behave like sets under $+$, and an argument that quietly assumes the distributive law for subspaces is wrong. The counterexample above is two lines long and worth remembering.
+The practical warning is general: when a new kind of object arrives with operations that *look* like $\cap$ and $\cup$, you have to check the distributive laws rather than assume them. Plenty of systems satisfy one and fail the other. The counterexample above is two lines long and worth remembering.
 
 <Warning title="The arithmetic analogy has limits">
 $\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for (D1) and a false friend elsewhere. Set operations **repeat harmlessly** — repeating one changes nothing ($S \cup S = S$) and **have no inverses** ($S \cup T = S \cup R$ does not force $T = R$), so pooling has no undo, and the analogy with arithmetic stops here.
@@ -121,7 +121,7 @@ The proofs are the same element chases, with the case split now running over $n$
 <Aside>
 (D1) and (D2) are equivalent, and the mirror argument above is the quickest route — but it leans on complements. A system with $\cap$ and $\cup$ but no complement still has the equivalence, by a short direct computation instead.
 
-That matters because the subspace example has no complements either: there is no single subspace playing the role of "everything not in $U$". Which is a second reason its failure of distributivity cannot be diagnosed by the methods of this chapter.
+That matters because the failing example above has no complements either — there is nothing playing the role of "everything not in $U$" — which is a second reason its failure cannot be diagnosed by the methods of this chapter.
 </Aside>
 
 <WhereThisGoes level="l7">

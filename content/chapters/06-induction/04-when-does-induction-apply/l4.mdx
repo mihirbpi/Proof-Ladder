@@ -57,7 +57,7 @@ Compare with the standard sources of a link, all of which are recursive construc
 
 Sometimes $A(k+1)$ depends on earlier cases, not on $A(k)$.
 
-> **Every integer $n \geq 2$ has a prime factorisation.**
+> **Every integer $n \geq 2$ has a prime factorization.**
 
 If $n+1$ is prime, done. Otherwise $n+1 = ab$ with $2 \leq a, b \leq n$ — and $a$, $b$ may be far below $n$. Assuming only $A(n)$ is useless.
 
@@ -69,7 +69,7 @@ Given $A$, define $B(n) := A(n_0)\wedge A(n_0+1)\wedge\cdots\wedge A(n)$.
 The strong-induction hypothesis for $A$ is exactly $B(k)$, and $B(k) \Rightarrow A(k+1)$ gives $B(k) \Rightarrow B(k+1)$. So ordinary induction applies to $B$, yielding $B(n)$ — so $A(n)$ — for all $n$.
 </Proof>
 
-So strong induction is not a new axiom, only a convenient repackaging. Use it when the decomposition of $n+1$ is not into $n$.
+So strong induction is not a new assumption to add to the list (module 7.1), only a convenient repackaging. Use it when the decomposition of $n+1$ is not into $n$.
 
 ## A checklist
 
