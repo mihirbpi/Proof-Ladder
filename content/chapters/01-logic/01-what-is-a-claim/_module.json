@@ -21,7 +21,7 @@
     "l4": "A statement is a sentence that is either true or false. Whether we know which it is doesn't matter — a conjecture is still a statement.",
     "l5": "A statement is a declarative sentence with a definite truth value. Some statements — conjectures — have a truth value we don't yet know.",
     "l6": "A statement is a sentence that is either true or false. Statements need not be decidable now: Twin Primes is a statement even though nobody has settled it.",
-    "l7": "A statement is a sentence that is either true or false. The task of mathematics is to determine, via proof, which of the two it is.",
+    "l7": "A statement is a sentence that is either true or false. The task of mathematics is to settle which of the two it is, by argument rather than by checking cases.",
     "l8": "A statement is a declarative sentence with a definite truth value; conjectures are statements whose truth value is not known, and Gödel showed there exist statements neither provable nor disprovable from a given axiom system."
   },
   "kernel": "A statement is a sentence that is either true or false; questions, commands, and fragments are not. You do not need to know which it is for it to be a statement.",

@@ -19,7 +19,7 @@
     "l2": "Count the different bags you could pack. With one toy there are two, with two toys four, with three toys eight. Each new toy doubles the count, because it is either in the bag or out.",
     "l3": "A set with n elements has 2ⁿ subsets. Each new element doubles the number, because every subset either contains it or does not — and the domino argument turns that observation into a proof.",
     "l4": "A set with n elements has exactly 2ⁿ subsets. The inductive step fixes an element a and splits the subsets into those containing a and those not; each group is matched with the subsets of the remaining n−1 elements, giving 2ᵏ + 2ᵏ = 2^{k+1}.",
-    "l5": "The subset count is proved by induction via a membership split, and again by counting one binary choice per element; two proofs of the same theorem is normal.",
+    "l5": "The subset count is proved by induction via a membership split, and again by counting one yes-or-no choice per element; having two proofs of the same result is normal, and each shows you something different.",
     "l6": "|P(S)| = 2^{|S|} for finite S, by induction or by the bijection with functions S → {0,1}, which is why the power set is written 2^S.",
     "l7": "A set with n elements has 2ⁿ subsets, proved by induction with a case split on membership of a chosen element; the bijection with functions S → {0,1} gives a second proof and explains the notation 2^S.",
     "l8": "The finite count generalizes to Cantor’s theorem |P(S)| > |S| for every S, whose diagonal proof is not an induction and cannot be one."

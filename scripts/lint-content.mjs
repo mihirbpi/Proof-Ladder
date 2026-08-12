@@ -1801,11 +1801,32 @@ for (const f of files) {
 // School words are exempt for the same reason they are exempt from the
 // forward-reference rule: a geometry student has theorem, proof, hypothesis
 // and axiom already, whatever this course declares about them.
+// Only genuinely ordinary English stays exempt. "theorem", "proof",
+// "hypothesis", "axiom", "conclusion" and "element" came out on 2026-08-12:
+// each is a word this course declares somewhere, and a kernel is the one place
+// with no room to lean on "they probably met it in geometry".
 const KERNEL_EXEMPT = new Set([
-  'theorem', 'proof', 'hypothesis', 'axiom', 'conclusion', 'every', 'element',
-  'argument', 'across', 'groups of', 'the first one', 'left over', 'image',
-  'name', 'next', 'flip', 'some', 'whole', 'press', 'closed', 'direction',
+  'every', 'argument', 'across', 'groups of', 'the first one', 'left over',
+  'image', 'name', 'next', 'flip', 'some', 'whole', 'press', 'closed',
+  'direction', 'same as', 'the count', 'outside', 'two jobs', 'part of',
 ]);
+// declaredAt above is filtered to COURSE_TERMS — the vocabulary this course is
+// responsible for teaching — which deliberately excludes theorem, proof, axiom
+// and hypothesis because a geometry student has those. For a kernel that
+// filter is wrong: the kernel is the first line on the page, and if §7.1 is
+// where the course says what an axiom *is*, §1.6's kernel cannot spend the
+// word. So the kernel check gets its own map, over every declared newTerm.
+const declaredAtAll = new Map();
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const here = modPos(path.relative(ROOT, f).split(path.sep).join('/'));
+  const fm = fs.readFileSync(f, 'utf8').match(/^---([\s\S]*?)^---/m)?.[1] ?? '';
+  for (const m of (fm.match(/newTerms:\s*\[([^\]]*)\]/)?.[1] ?? '').matchAll(/"([^"]+)"/g)) {
+    const t = m[1].toLowerCase().trim();
+    const k = `${level}|${t}`;
+    if (!declaredAtAll.has(k) || here < declaredAtAll.get(k)) declaredAtAll.set(k, here);
+  }
+}
 for (const ch of fs.readdirSync(CHAPTERS)) {
   const chDir = path.join(CHAPTERS, ch);
   if (!fs.statSync(chDir).isDirectory()) continue;
@@ -1822,7 +1843,7 @@ for (const ch of fs.readdirSync(CHAPTERS)) {
   const here = Number(ch.split('-')[0]) * 100 + Number(mod.split('-')[0]);
   for (const [level, kernel] of Object.entries(data.kernels ?? {})) {
     if (typeof kernel !== 'string' || level === 'l8') continue;
-    for (const [key, at] of declaredAt) {
+    for (const [key, at] of declaredAtAll) {
       const [lvl, term] = key.split('|');
       if (lvl !== level || at <= here || term.length < 5) continue;
       if (KERNEL_EXEMPT.has(term)) continue;

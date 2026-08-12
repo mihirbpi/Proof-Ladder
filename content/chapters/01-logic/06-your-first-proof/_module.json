@@ -20,7 +20,7 @@
     "l3": "To prove an if–then claim, start from what you're given: assume the if part is true, then take steps you already know are correct until you reach the then part. Write it in full sentences.",
     "l4": "To prove that p forces q, start from what you are given — assume p — and derive q using definitions and facts already established. The finished proof is prose, not calculation.",
     "l5": "A direct proof assumes the hypothesis and reaches the conclusion by a chain of justified steps. Each step must cite a definition or an established result.",
-    "l6": "A direct proof assumes the hypothesis and derives the conclusion through steps each licensed by a definition, axiom or prior theorem. The Discussion plans it and the Proof presents it.",
+    "l6": "A direct proof assumes the *if* half and works forwards to the *then* half, one step at a time, each step licensed by a definition, by something already proved, or by a rule the subject starts from. The Discussion plans it and the Proof presents it.",
     "l7": "A direct proof assumes the hypothesis and derives the conclusion by a finite chain of justified inferences, eliminating the only row that could falsify the conditional. Proofs are written as prose, in complete sentences.",
     "l8": "A direct proof of p ⇒ q is a finite derivation of q from p together with the ambient axioms and previously proved theorems; the Discussion is scaffolding that published mathematics deletes."
   },

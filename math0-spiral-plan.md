@@ -453,9 +453,19 @@ contrasted the pre-image with an *inverse function*, which arrives at §3.9;
 case* and *inductive step*, which are §6.2's terms; §1.12's leaned on *domain*,
 which is §3.1. Seventeen kernels rewritten.
 
-School words stay exempt, for the reason §A4.1d gives: a geometry student has
-*theorem*, *proof*, *hypothesis* and *axiom* already, whatever this course
-declares about them.
+**No school-word exemption here** (revised 2026-08-12). §A4.1d exempts
+*theorem*, *proof*, *hypothesis* and *axiom* from the forward-reference rule,
+on the grounds that a geometry student has them already. That exemption was
+carried into this rule too, and it was wrong: a kernel is the one place with
+no room to lean on *they probably met it in geometry*. If §7.1 is where the
+course says what an axiom **is**, then §1.6's kernel cannot spend the word six
+chapters earlier. Seven more kernels were rewritten once the exemption came
+out, including §1.6 at `l6`, which had cited both *axiom* and *theorem*.
+
+The check also needed its own map. `declaredAt` is filtered to `COURSE_TERMS`
+— the vocabulary this course is responsible for teaching — which excludes the
+school words by design, so the kernel rule was reusing a map that could never
+contain the terms it most needed to catch.
 
 A kernel that **defines** its own term in the same breath is right, not wrong
 — *"A statement is a sentence that is either true or false"* is exactly what a
