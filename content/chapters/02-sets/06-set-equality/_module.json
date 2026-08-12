@@ -19,7 +19,7 @@
     "l2": "Two boxes are the same when everything in the first is in the second, and everything in the second is in the first. That is two checks, not one, so check both boxes.",
     "l3": "Two sets are equal exactly when each is a subset of the other. So proving a set equality means writing two subset proofs — check both boxes.",
     "l4": "Two sets are equal exactly when each is contained in the other, so every set-equality proof is two element-chasing proofs. When a hypothesis contains an *or*, split into cases.",
-    "l5": "Set equality is double inclusion, hence two arbitrary-element arguments; a disjunctive hypothesis forces a case split in one of them.",
+    "l5": "Set equality is double inclusion, so it takes two arbitrary-element arguments; an *or* in the hypothesis forces a case split in one of them.",
     "l6": "Two sets are equal exactly when each is a subset of the other, because \"the same members\" is an *if and only if*, and an *if and only if* is two implications. So a set equality is two proofs, not one, and the shape is forced rather than chosen.",
     "l7": "Set equality is defined by double inclusion, mirroring the way an if-and-only-if statement splits into two conditionals. An *or* anywhere in a hypothesis dictates proof by cases.",
     "l8": "Extensionality reduces set equality to mutual inclusion, and antisymmetry of ⊆ is exactly that reduction; \"obviously equal\" is never a proof."

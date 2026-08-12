@@ -17,7 +17,7 @@
   "kernels": {
     "l1": "Pick one from here and one from there. Every pairing is its own thing.",
     "l2": "If you pick one thing from each of two groups, you get a pair. Draw a grid and every square is one pair. The number of pairs is the two counts multiplied.",
-    "l3": "S × T is the set of all ordered pairs whose first slot comes from S and whose second comes from T. The slots have different jobs, so (a, b) and (b, a) are different objects.",
+    "l3": "S × T is the set of all ordered pairs whose first entry comes from S and whose second comes from T. The two positions do different jobs, so (a, b) and (b, a) are different objects.",
     "l4": "The product of two sets is the collection of ordered pairs with a first entry from one and a second from the other. Order matters, so the two products differ in general.",
     "l5": "A product set has ordered pairs as elements, so an arbitrary element must be named (x, y) immediately; equality of pairs means equality in each coordinate.",
     "l6": "S × T is the set of ordered pairs; its defining property is that (a,b) = (c,d) iff a = c and b = d, which is what makes coordinates well defined.",

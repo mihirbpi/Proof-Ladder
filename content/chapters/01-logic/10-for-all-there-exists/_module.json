@@ -21,7 +21,7 @@
     "l4": "A *for all* claim says something about every single member of a stated collection; a *there exists* claim says it about at least one. Which one you have decides how you prove it and how you disprove it.",
     "l5": "Quantifiers turn open statements into statements. A *for all* claim demands an argument covering the whole collection; a *there exists* claim is settled by producing one example that works.",
     "l6": "Attaching *for all* or *there exists* to a sentence with a variable turns it into a statement with a definite truth value. The collection you quantify over is part of the claim, and when quantifiers nest, so is their order.",
-    "l7": "Quantifiers convert open statements into statements: one asserts the property throughout a collection, the other at a single member of it. The collection is part of the claim, not decoration.",
+    "l7": "Quantifiers convert open statements into statements: one claims the property throughout a collection, the other at a single member of it. The collection is part of the claim, not decoration.",
     "l8": "∀ and ∃ are the infinitary conjunction and disjunction over a domain; quantifier order is the essential content of ε–δ definitions and the difference between pointwise and uniform properties."
   },
   "kernel": "\"For all\" claims something about every case; \"there exists\" claims at least one case. \"There exists exactly one\" claims existence and uniqueness.",

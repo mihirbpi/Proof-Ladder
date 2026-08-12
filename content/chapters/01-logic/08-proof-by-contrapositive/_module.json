@@ -21,7 +21,7 @@
     "l4": "Because a conditional and its contrapositive say the same thing, proving one proves the other. Choose the contrapositive when the hypothesis you were handed is negative or awkward.",
     "l5": "Proof by contrapositive replaces the goal with its contrapositive, which says the same thing. Choose it when the denial of the conclusion is more usable than the hypothesis you were handed.",
     "l6": "A proof by contrapositive announces the switch, proves the contrapositive directly, and invokes the equivalence to conclude the original.",
-    "l7": "Proof by contrapositive establishes a conditional by proving its contrapositive instead. It is indicated when the hypothesis is a denial, or concerns a composite quantity that the negated conclusion breaks apart.",
+    "l7": "Proof by contrapositive proves a conditional by proving its contrapositive instead. Reach for it when the hypothesis you were handed is a denial, or when the negated conclusion breaks a compound quantity apart.",
     "l8": "Contrapositive proof is a change of goal along a logical equivalence; it differs from proof by contradiction in that it assumes only ¬q, not ¬q together with p, and so remains available in weaker logics."
   },
   "kernel": "Proving ¬q ⇒ ¬p proves p ⇒ q. Choose it when the hypothesis you are handed is awkward to compute with.",

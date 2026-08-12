@@ -20,7 +20,7 @@
     "l3": "Two axioms build the counting numbers: zero is one of them, and every one of them has a next one. We define 1 to be the next after 0, and 2 to be the next after 1 — but we may not write S(x) as x + 1, because addition does not exist yet.",
     "l4": "Two axioms start the counting numbers: zero is one of them, and every one of them has a next one. The next-number machine is a function, and writing \"next\" as \"add one\" is forbidden at this stage — addition has not been defined yet.",
     "l5": "Zero and successor are the only primitives; the numerals are definitions, and no arithmetic may be assumed before it is constructed.",
-    "l6": "The successor rule is a function in the sense of Chapter 3, and the discipline of this chapter is to assume nothing about it beyond the axioms.",
+    "l6": "The successor rule is a function in the sense of Chapter 3, and the rule this chapter works under is to assume nothing about it beyond the axioms.",
     "l7": "Two axioms introduce the only primitives: zero is a counting number, and every counting number has a next. The numerals are definitions, and *next* cannot be written as *add one* until addition has been constructed.",
     "l8": "Zero and successor generate the initial algebra for the functor X ↦ 1 + X; whether ℕ starts at 0 or 1 is a convention with no mathematical content."
   },

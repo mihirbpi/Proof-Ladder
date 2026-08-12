@@ -18,8 +18,8 @@
     "l1": "Trace back from two cubbies at once and you get the two groups of children put together.",
     "l2": "If you trace back from two arrowheads together, you get the same children as tracing back from each one and joining the answers.",
     "l3": "Tracing back respects the hoops: the pre-image of a union is the union of the pre-images, and the same holds for intersections and for outsides.",
-    "l4": "Tracing back respects union, intersection and complement exactly. Every proof pivots on one fact: an input lies in the traced-back set exactly when its output lies in the target.",
-    "l5": "Tracing back commutes with union, intersection and complement, and each proof reduces to one pivot: an input lies in the traced-back set exactly when its output lies in the target.",
+    "l4": "Tracing back respects union, intersection and complement exactly. Every proof turns on one fact: an input traces back from a set exactly when its own output lands in that set.",
+    "l5": "Tracing back passes straight through union, intersection and complement, and each proof reduces to one pivot: an input traces back from a set exactly when its own output lands in that set.",
     "l6": "Tracing back carries union, intersection and complement across unchanged; going forwards carries only union. That asymmetry, and the reason for it, is the content of the module.",
     "l7": "Tracing back commutes with union, intersection and complement, each proof turning on a single equivalence. Going forwards commutes only with union.",
     "l8": "f⁻¹ is a Boolean algebra homomorphism P(T) → P(S) and sits between the two image operators as an adjoint; this is why continuity is stated with pre-images."

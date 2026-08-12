@@ -1857,6 +1857,16 @@ for (const ch of fs.readdirSync(CHAPTERS)) {
 }
 }
 
+// Kernel-ladder coherence (l4 through l7 saying one idea at increasing depth)
+// is checked by review, not by lint. A word-overlap test against `kernelIdea`
+// was tried on 2026-08-12 and produced 40 warnings that were all false: it
+// cannot see that "for all claims" and "quantifiers" are the same idea, or
+// that "successor" and "next number" are. A rule that is wrong forty times out
+// of forty buries the rules that are right, so it was removed rather than
+// tuned. The divergences it was written to catch — §6.3 at l6 stating no
+// result at all, §5.7 pointing at three different ideas across four levels —
+// were found by reading the kernels side by side, which is how to find them.
+
 // ---------------------------------------------------------------------------
 // Kernels carry no proof notation, at any level.
 //

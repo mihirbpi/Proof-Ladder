@@ -18,7 +18,7 @@
     "l1": "In a full machine, every cubby gets used. Nothing is left empty.",
     "l2": "A machine fills up the second list when every thing on that list has at least one arrow landing on it. Change the second list and the answer changes.",
     "l3": "A function is onto when every element of the codomain is actually hit — the image is the whole codomain. Whether a function is onto depends on which codomain you declared.",
-    "l4": "A function is onto when every element of the declared target is actually attained. That makes it a statement about the target, so the same rule can be onto or not depending on what you declared it to be.",
+    "l4": "A function is onto when every element of the collection you declared as its destination is actually reached. That makes it a claim about the destination, so the same rule can be onto or not depending on what you declared.",
     "l5": "Surjectivity means every element of the codomain has a pre-image; it is a property of the pair (rule, codomain), not of the rule alone.",
     "l6": "A function is surjective when every element of the codomain is reached by something. The property depends on the codomain you declared and not on the rule alone — shrink the codomain to the image and any function becomes surjective.",
     "l7": "f is surjective when its image equals its codomain, so every target has at least one pre-image. The property depends on the declared codomain and not on the rule alone.",

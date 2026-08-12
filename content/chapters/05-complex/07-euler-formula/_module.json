@@ -18,8 +18,8 @@
     "l1": "Turn a quarter turn four times and you are facing the way you started.",
     "l2": "Multiplying by i turns you a quarter turn. Do it four times and you are back where you began: i, then −1, then −i, then 1, over and over.",
     "l3": "The powers of i repeat every four steps: i, −1, −i, 1. That repeating pattern is what makes the famous formula linking i to turning work — the four-step cycle sorts the terms into two separate families.",
-    "l4": "The powers of i repeat every four steps — i, −1, −i, 1 — because four quarter turns is a full turn, so i raised to a power depends only on the remainder that power leaves on division by 4.",
-    "l5": "Euler’s formula comes from substituting iθ into the exponential series and separating real and imaginary terms, which the four-fold cycle of powers of i makes possible.",
+    "l4": "Multiplying two points of the unit circle adds their angles. That is the same trade — adding on one side, multiplying on the other — that powers make, which is why turning by an angle gets written as a power. The four-step cycle of i is the simplest case of it.",
+    "l5": "Multiplying two points of the unit circle adds their angles, which is exactly the trade a power makes: add the exponents, multiply the values. That is why cos θ + i sin θ is written as a power of e, and separating the two coordinates of that power is where the formula comes from.",
     "l6": "Multiplying two points of the unit circle adds their angles — the same trade of adding for multiplying that exponents make, which is why the circle points are written as a power.",
     "l7": "Multiplying two points of the unit circle adds their angles, which is exactly the law an exponential obeys. That shared law is what entitles cos θ + i sin θ to be written as a power of e.",
     "l8": "Euler’s formula is the identification of the complex exponential with the solution of y′ = iy, y(0) = 1; the series proof and the ODE proof are the same statement about the exponential map ℂ → ℂˣ."

@@ -21,7 +21,7 @@
     "l4": "The complement of a set is everything in the surrounding universe that is not in it — so the universe must be named. Proof by contradiction: assume the opposite, derive an impossibility, and conclude the original.",
     "l5": "Complement is relative to a stated universe. A proof by contradiction assumes the negation of the goal and derives an impossibility, which is the natural method when the goal is itself a negation.",
     "l6": "A complement depends on the ambient set. *Suppose not* is licensed by the fact that one of a statement and its denial always holds, together with a contradiction refuting whatever was assumed.",
-    "l7": "Complementation is defined relative to a surrounding set and is the set-level image of negation. Proof by contradiction assumes the denial, derives an impossibility, and concludes the original — indicated when the goal is negative or asserts that nothing exists.",
+    "l7": "Complementation is defined relative to a surrounding set and is the set-level mirror of negation. Proof by contradiction assumes the denial, derives an impossibility, and concludes the original — reach for it when the goal is negative or says that nothing exists.",
     "l8": "Complement makes P(X) a Boolean algebra; reductio ad absurdum is classically valid but constructively suspect, and distinguishing it from proof of a negation is the constructive fault line."
   },
   "kernel": "The complement of A in S is everything in S not in A — so it depends on S. Proof by contradiction: assume the negation of what you want, derive an impossibility, conclude.",

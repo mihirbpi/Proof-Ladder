@@ -19,8 +19,8 @@
     "l2": "Adding up odd numbers always gives a square number. You can see why with tiles: each odd number is exactly the L-shaped shell that grows a square by one.",
     "l3": "Adding the first n odd numbers always gives n × n. The reason is that each odd number is the L-shaped shell that turns one square into the next, and the domino argument makes that a proof.",
     "l4": "The sum of the first n odd numbers equals n². The inductive step is the identity k² + (2k+1) = (k+1)², and the L-shell picture is the same fact drawn.",
-    "l5": "The odd-number sum is the model induction proof; the step is a single algebraic identity, and the proof must run forwards from the left-hand side.",
-    "l6": "Writing the proof correctly means starting from A(k+1)’s left side and using A(k), not manipulating A(k+1) until something true appears.",
+    "l5": "The sum of the first n odd numbers is n². Induction proves it, and the whole step is one piece of algebra: k² plus the next odd number is (k+1)². The proof has to run forwards from that left side, not backwards from the answer.",
+    "l6": "The sum of the first n odd numbers is n², and the whole inductive step is the identity k² + (2k+1) = (k+1)². Writing it correctly means starting from the left side of the case you are proving and using the case before it — never manipulating the goal until something true appears.",
     "l7": "The first n odd numbers add up to n squared, proved by induction, where the whole step is the expansion of (k+1) squared. The argument has to run forwards from the case for k+1, never backwards from the goal.",
     "l8": "The identity is the n = 2 case of a family of power sums expressible by Faulhaber’s formula; the L-shell picture is a bijective proof of the same statement."
   },
