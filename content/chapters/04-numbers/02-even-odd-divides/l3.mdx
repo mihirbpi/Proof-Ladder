@@ -1,8 +1,8 @@
 ---
 level: l3
-title: Even, odd, and goes into
+title: Even, odd, and divides
 readingTimeMin: 6
-newTerms: ["even", "odd", "goes into"]
+newTerms: ["even", "odd", "divides"]
 anchorExample: "factors and multiples"
 ---
 
@@ -18,7 +18,7 @@ You have known about even and odd since you were small, and you know how to find
 >
 > A counting number is **odd** when it is some number of $2$s with exactly one left over.
 
-Compare with "even means it pairs up nicely." Both are correct. But if a proof hands you "this number pairs up nicely", you can do nothing with it. If it hands you "this number is a pile of $2$s", you can count the $2$s, split them, group them, and rearrange them.
+Compare with "even means it pairs up nicely." Both are correct. But if a proof hands you "this number pairs up nicely", you can do nothing with it. If it hands you "this number is a multiple of $2$", you can count the $2$s, split them, group them, and rearrange them.
 
 That is why this version wins: it gives you something to hold.
 
@@ -30,23 +30,25 @@ Is $9$ even? You might say $9$ is "four and a half $2$s". But half a $2$ is not 
 That word *whole* is carrying the entire definition. Drop it and every number becomes even.
 </Warning>
 
-## Goes into
+## Divides
 
 Pairing was about $2$. Nothing is special about $2$, so here is the general version.
 
-> One number **goes into** another when the second is some whole number of copies of the first, with nothing left over.
+> One number **divides** another when the second is a whole number of copies of the first, with nothing left over.
 
-So "even" is just "$2$ goes into it."
+You already have two words for this from earlier grades, and they say the same thing from the two ends: if $3$ divides $12$, then $3$ is a **factor** of $12$, and $12$ is a **multiple** of $3$. *Divides* is the word this course will use from here on.
 
-$3$ goes into $12$, because $12$ is four copies of $3$. ✓
-$3$ does not go into $13$, because four copies of $3$ leaves one over and five copies overshoots. ✗
+So "even" is just "$2$ divides it."
 
-You already have two words for this. If $3$ goes into $12$, then $3$ is a **factor** of $12$, and $12$ is a **multiple** of $3$. Three phrases, one idea, and it is worth being able to switch between them freely.
+$3$ divides $12$, because $12 = 4 \times 3$ exactly. ✓
+$3$ does not divide $13$, because $4 \times 3$ leaves one over and $5 \times 3$ overshoots. ✗
+
+Order matters, and it is the commonest slip. If $3$ divides $12$, then $3$ is a **factor** of $12$, and $12$ is a **multiple** of $3$. Three phrases, one idea, and it is worth being able to switch between them freely.
 
 <Warning title="Which way round?">
-"$3$ goes into $12$" is true. "$12$ goes into $3$" is false.
+"$3$ divides $12$" is true. "$12$ divides $3$" is false.
 
-The small one goes into the big one, and saying it backwards changes the claim completely. When you read a divisibility statement, check the direction before anything else.
+The small one divides the big one, and saying it backwards changes the claim completely. When you read a divisibility statement, check the direction before anything else.
 </Warning>
 
 ## Going into is a hunt for a number
@@ -57,14 +59,14 @@ Look again at the definition: *the second number is some whole number of copies 
 
 And module 1.12 told you exactly how to prove one of those: **produce the number.**
 
-So every "goes into" proof has the same ending: *here is how many copies, and here is why that count is a whole number.*
+So every "divides" proof has the same ending: *here is how many copies, and here is why that count is a whole number.*
 
 ## A worked example
 
-> **Claim.** If $6$ goes into a number, then $2$ goes into it too.
+> **Claim.** If $6$ divides a number, then $2$ divides it too.
 
 <Proof>
-Take any number that $6$ goes into, and follow it. Being a multiple of $6$, it is some whole number of copies of $6$.
+Take any number that $6$ divides, and follow it. Being a multiple of $6$, it is some whole number of copies of $6$.
 
 Now look at a single copy of $6$. It is three $2$s.
 
@@ -74,7 +76,7 @@ Now the whole thing is made of $2$s, and there are three times as many of them a
 
 Three times a whole number is a whole number, so the count is fine. And nothing is left over, because nothing was left over before and we only re-grouped.
 
-So the number is a whole number of $2$s, which means $2$ goes into it.
+So the number is a whole number of $2$s, which means $2$ divides it.
 
 And we never said *which* multiple of $6$ we started with — so this works for all of them.
 </Proof>

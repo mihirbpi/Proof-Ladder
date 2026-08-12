@@ -383,6 +383,62 @@ proofs: inside a proof the symbols are the medium; a table of correspondences
 is the object under discussion; and a span that is nothing but marks and
 separators (`$\wedge, \vee, \neg$`) is a list of names, not a claim.
 
+#### A4.1c The CCSSM arithmetic gate at `l1` and `l2` (binding)
+
+Added 2026-08-12. §A4.2 bans fractions at `l2`, but it bans the **notation**,
+and the prose walked straight past it. §4.5 at `l2` added a half to a quarter,
+multiplied a half by a half, divided a half by a quarter and took a reciprocal
+— 4.NF, 5.NF and 6.NS content — while calling every fraction a *piece*.
+**Renaming the object does not lower the operation**, and that is the failure
+this gate exists to catch.
+
+What each grade actually has:
+
+| Grade | Has | Does not have |
+|---|---|---|
+| K (`l1`) | K.CC counting to 100; K.OA adding and subtracting **within 10**; K.NBT composing 11–19 | fractions of any kind (1.G.A.3 is a year later); multiplication |
+| 2 (`l2`) | 2.G.A.3 partitioning shapes into halves, thirds, fourths and **naming** them; 2.NBT to 1000; 2.OA.C.4 equal groups as groundwork | arithmetic **on** fractions (4.NF, 5.NF); multiplication and division as operations (3.OA) |
+
+Two calibrations inside that:
+
+- **Naming a half is allowed at `l1`**, though CCSSM places it in grade 1.
+  "One cookie, two friends, snap" introduces it concretely and with a picture,
+  it is everyday language a five-year-old already uses, and it is §4.5's whole
+  kernel at K. What is banned is arithmetic on them — *"two quarters make a
+  half"* was fraction addition at Kindergarten and is gone.
+- **Chapter 5 and §7.6–§7.7 stay exempt**, as the plan already grants: their
+  subject *is* the operation, and they present it concretely. A quarter turn
+  followed by a quarter turn making a half turn is spatial reasoning a
+  seven-year-old does when told to face west, not fraction arithmetic.
+
+Counting is not arithmetic: "get 12 counters", "16 tiles" are fine at K, since
+K.CC counts to 100 and K.NBT covers 11–19. The bound is on what is *computed*.
+
+#### A4.1d Talking down is a defect too (binding)
+
+Added 2026-08-12. Every other rule in §A4 points one way: is the page too hard
+for its reader. This one points the other way, and the corpus needed it.
+
+A grade-5 reader has had **factor, multiple, prime and composite** by name
+since 4.OA.B.4, and multiplication and division since 3.OA. Writing *"a pile
+of 6s"* and *"6 goes into 12"* for that reader is not kindness — it is another
+page's vocabulary left in place. §4.2 at `l3` had gone further and coined
+*"goes into"* as its own `newTerm`, while admitting one line later that the
+reader already had *factor* and *multiple*; meanwhile `l4`–`l7` all said
+*divides*, so a single idea carried two names down the ladder and broke the
+vertical continuity §B-3 requires.
+
+Fixed: 50 occurrences of *goes into* became *divides*, 20 of *a pile of Ns*
+became *a multiple of N*, and §1.6's proof at `l3` now regroups a multiple of
+$6$ into a multiple of $2$ using $6 = 3\times2$ — a factor argument, which is
+what a fifth grader actually has — instead of splitting a pile into matching
+pairs.
+
+The guard is `TALKING_DOWN`, and it applies from `l3` up; `l1` and `l2` own
+that vocabulary and keep it. Watch for the substitution failure it invites: a
+blanket *pile of 4s → multiple of 4* produced "Being a multiple of $4$ means
+it is a multiple of $4$", which is a tautology and passed every other check.
+
 #### A4.2 Notation gate (binding, and **derived** — do not author directly)
 
 This table is not an independent source. It is **generated from Part B**, filtered

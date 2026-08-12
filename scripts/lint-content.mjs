@@ -1702,6 +1702,93 @@ for (const ch of fs.readdirSync(CHAPTERS)) {
   }
 }
 
+// CCSSM arithmetic gate for Kindergarten and grade 2.
+//
+// §A4.2 already bans fractions at l2, but it bans the *notation*, and the
+// prose walked straight past it: §4.5 at l2 added a half to a quarter,
+// multiplied a half by a half, divided a half by a quarter and took a
+// reciprocal — grade 5 and grade 6 content, dressed as grade 2 by calling
+// every fraction a "piece". Renaming the object does not lower the operation.
+//
+// What each grade actually has:
+//   K      — K.OA adds and subtracts within 10; no fractions of any kind
+//            (halves and fourths first appear in 1.G.A.3); no multiplication.
+//   grade 2 — 2.G.A.3 partitions shapes into halves, thirds and fourths and
+//            *names* them; 2.NBT works to 1000; 2.OA.C.4 meets equal groups as
+//            groundwork. Arithmetic *on* fractions is 4.NF and 5.NF.
+//            Multiplication and division as operations are 3.OA.
+//
+// Chapter 5 and §7.6–§7.7 are the standing exceptions the plan already grants:
+// their subject *is* the operation, and they present it concretely (turns,
+// equal groups) rather than symbolically.
+const OPERATION_SUBJECT = /05-complex|07-peano\/0[67]-/;
+const CCSSM_ARITHMETIC = {
+  // At l1 the *naming* of a half is left alone: "one cookie, two friends, snap"
+  // introduces it concretely with a picture, it is everyday language a
+  // five-year-old has, and it is §4.5's whole kernel at K. What is banned is
+  // arithmetic on them, which is what "two quarters make a half" was.
+  l1: [
+    [/\b(two|three|four)\s+(halves|quarters|thirds)\b[^.\n]{0,30}\bmake\b/i,
+      'adding fractions (4.NF), at Kindergarten'],
+    [/\b(half|quarter|third)s?\b[^.\n]{0,25}\b(plus|times|minus)\b/i,
+      'arithmetic on fractions (4.NF), at Kindergarten'],
+    [/\bmultipl(y|ies|ied|ying|ication)\b/i, 'multiplication (3.OA)'],
+  ],
+  l2: [
+    // arithmetic ON fractions, which is what the naming ban was missing
+    [/\b(half|halves|quarters?|thirds?|pieces?)\b[^.\n]{0,40}\b(plus|times|minus|multiplied|divided)\b/i,
+      'fraction arithmetic (4.NF and 5.NF)'],
+    [/\b(add|multiply|divide|share)\s+(two\s+)?(pieces?|halves|quarters|thirds)\b/i,
+      'fraction arithmetic (4.NF and 5.NF)'],
+    [/\bhow many (quarters|thirds|halves|pieces)[^.\n]{0,25}\b(fit|go) (inside|into)\b/i,
+      'dividing by a fraction (5.NF.B.7)'],
+    [/\bflip (that|the) (piece|fraction)\b|\bupside down\b[^.\n]{0,30}\b(third|quarter|half)/i,
+      'reciprocals (6.NS.A.1)'],
+    [/(?<![\w.$])\d{4,}(?![\w.])/, 'numbers past 1000 (2.NBT)'],
+  ],
+};
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const gates = CCSSM_ARITHMETIC[level];
+  if (!gates) continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const text = body(fs.readFileSync(f, 'utf8'));
+  for (const [re, area] of gates) {
+    if (OPERATION_SUBJECT.test(rel)) continue;
+    const m = text.match(re);
+    if (m) warn(path.relative(ROOT, f), `${level} uses "${m[0]}" \u2014 ${area}`);
+  }
+}
+
+// Talking down: year-2 language at grade 5 and above.
+//
+// Every other check in this file points one way — is the page too hard for its
+// reader. This one points the other. A grade-5 reader has had factors,
+// multiples, primes and composites by name since 4.OA.B.4, and multiplication
+// and division since 3.OA; writing "a pile of 6s" and "6 goes into 12" for
+// that reader is not kindness, it is a different page's vocabulary left in
+// place. §4.2 at l3 had even coined "goes into" as its own newTerm while
+// admitting in the next line that the reader already had *factor* and
+// *multiple* — and l4 through l7 all said "divides", so one idea carried two
+// names down the ladder.
+const TALKING_DOWN = [
+  [/\bgoes into\b|\bgo into\b/i, 'divides — the reader has had factors and multiples since 4.OA.B.4'],
+  [/\bpiles? of \$?\d+\$?s\b/i, 'a multiple of that number'],
+  [/\bgrown-?ups?\b/i, 'name the grade or the course instead'],
+  [/\bnext[- ]button\b/i, 'the successor'],
+  [/\btellings?\b(?! (you|us|them|in advance|apart))/i, 'a statement'],
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (rank(level) < rank('l3')) continue; // l1 and l2 own this vocabulary
+  const rel = path.relative(ROOT, f);
+  const text = body(fs.readFileSync(f, 'utf8'));
+  for (const [re, better] of TALKING_DOWN) {
+    const m = text.match(re);
+    if (m) warn(rel, `${level} says "${m[0]}" \u2014 below this reader's grade; say ${better}`);
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Kernels carry no proof notation, at any level.
 //

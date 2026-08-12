@@ -11,7 +11,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 4.2 gave you a definition you can compute with: one number **goes into** another when the second is a whole number of copies of the first. This module turns that definition into a routine you can follow every time.
+Module 4.2 gave you a definition you can compute with: one number **divides** another when the second is a whole number of copies of the first. This module turns that definition into a routine you can follow every time.
 
 ## The template
 
@@ -26,9 +26,9 @@ That last step is the one people skip, and it is not optional. The definition pr
 
 ## Going into passes along a chain
 
-> **Claim.** If a first number goes into a second, and the second goes into a third, then the first goes into the third.
+> **Claim.** If a first number divides a second, and the second divides a third, then the first divides the third.
 
-Try numbers first. $4$ goes into $24$ (six copies); $24$ goes into $72$ (three copies); and $4$ goes into $72$ — eighteen copies. Notice $18 = 6\times3$. Not a coincidence, and spotting it is most of the proof.
+Try numbers first. $4$ divides $24$ (six copies); $24$ divides $72$ (three copies); and $4$ divides $72$ — eighteen copies. Notice $18 = 6\times3$. Not a coincidence, and spotting it is most of the proof.
 
 <Discussion>
   <div slot="know">The second number is some whole number of copies of the first. The third is some whole number of copies of the second. Two different counts — so keep them apart.</div>
@@ -37,7 +37,7 @@ Try numbers first. $4$ goes into $24$ (six copies); $24$ goes into $72$ (three c
 </Discussion>
 
 <Proof>
-Take any three numbers where the first goes into the second and the second goes into the third. Follow them.
+Take any three numbers where the first divides the second and the second divides the third. Follow them.
 
 The third number is some whole number of copies of the second — call that **the outer count**. Each of those copies is itself some whole number of copies of the first — **the inner count**.
 
@@ -45,7 +45,7 @@ Now break every copy of the second number into its pieces. Nothing is added and 
 
 How many pieces altogether? The outer count, repeated the inner count of times — the two counts multiplied.
 
-Multiplying whole numbers gives a whole number (module 4.1), so the total is a whole number of copies of the first number. That is exactly what it means for the first to go into the third.
+Multiplying whole numbers gives a whole number (module 4.1), so the total is a whole number of copies of the first number. That is exactly what it means for the first to divide the third.
 </Proof>
 
 <Warning title="Two counts, two names">
@@ -58,31 +58,31 @@ Whenever a proof unpacks two things, give each piece its own name.
 
 ## Going into survives adding
 
-> **Claim.** If a number goes into two other numbers, it goes into their sum.
+> **Claim.** If a number divides two other numbers, it divides their sum.
 
-Check it: $5$ goes into $20$ and into $35$. Does $5$ go into $55$? Yes — eleven copies. And $11 = 4 + 7$.
+Check it: $5$ divides $20$ and into $35$. Does $5$ divide $55$? Yes — eleven copies. And $11 = 4 + 7$.
 
 <Proof>
-Take any number that goes into two others, and follow them.
+Take any number that divides two others, and follow them.
 
 Each of the two is some whole number of copies — two different counts.
 
 Push the two piles together. Nothing is broken up; you have put them side by side, so the total is the first count plus the second.
 
-Adding whole numbers gives a whole number (module 4.1). So the sum is a whole number of copies, which means the number goes into the sum.
+Adding whole numbers gives a whole number (module 4.1). So the sum is a whole number of copies, which means the number divides the sum.
 </Proof>
 
 Same four steps. Unpack, regroup, pull out, check the count.
 
 ## Something that looks true and is not
 
-> **Claim?** If a number goes into a product, then it goes into one of the two things being multiplied.
+> **Claim?** If a number divides a product, then it divides one of the two things being multiplied.
 
 This feels reasonable. It is false.
 
-Take $4$, and the product $2 \times 6 = 12$. Does $4$ go into $12$? Yes — three copies. ✓
+Take $4$, and the product $2 \times 6 = 12$. Does $4$ divide $12$? Yes — three copies. ✓
 
-Does $4$ go into $2$? No. Does $4$ go into $6$? No. ✗
+Does $4$ divide $2$? No. Does $4$ divide $6$? No. ✗
 
 One counterexample and the claim is dead (module 1.11).
 

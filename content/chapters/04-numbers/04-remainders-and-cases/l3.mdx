@@ -11,7 +11,7 @@ import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 4.2 told you what it means for $3$ to go into a number. This module is about what happens when it doesn't — and that turns out to be surprisingly useful.
+Module 4.2 told you what it means for $3$ to divide a number. This module is about what happens when it doesn't — and that turns out to be surprisingly useful.
 
 ## Remainders
 
@@ -23,7 +23,7 @@ The key fact is that the remainder is always **smaller** than what you divided b
 
 > Share any counting number among $3$. The leftover is $0$, $1$, or $2$. Nothing else is possible.
 
-And $3$ goes into the number exactly when the remainder is $0$.
+And $3$ divides the number exactly when the remainder is $0$.
 
 ## Three kinds of number
 
@@ -41,7 +41,7 @@ This is why **splitting into cases** works so well here. To prove something abou
 
 ## The showcase proof
 
-> **Claim.** Take any counting number that $3$ does **not** go into. Multiply it by itself and subtract $1$. Then $3$ goes into the answer.
+> **Claim.** Take any counting number that $3$ does **not** divide. Multiply it by itself and subtract $1$. Then $3$ divides the answer.
 
 Check a few first.
 
@@ -50,35 +50,35 @@ $5$: not a multiple of $3$. And $5 \times 5 - 1 = 24$, which is eight $3$s. ✓
 $7$: $7 \times 7 - 1 = 48$, which is sixteen $3$s. ✓
 
 <Discussion>
-  <div slot="know">We are told $3$ does not go into our number. That is a *not* statement, and not-statements give us nothing to compute with — until we remember remainders. Not a multiple of $3$ means the remainder is $1$ or $2$.</div>
-  <div slot="want">$3$ goes into (the number times itself, minus one).</div>
+  <div slot="know">We are told $3$ does not divide our number. That is a *not* statement, and not-statements give us nothing to compute with — until we remember remainders. Not a multiple of $3$ means the remainder is $1$ or $2$.</div>
+  <div slot="want">$3$ divides (the number times itself, minus one).</div>
   <div slot="how">Split into cases. There are only two left, and in each one we can say exactly what the number looks like and just multiply it out.</div>
 </Discussion>
 
 <Proof>
-Take any counting number that $3$ does not go into, and follow it.
+Take any counting number that $3$ does not divide, and follow it.
 
-Sharing it among $3$ leaves a remainder of $0$, $1$, or $2$. The remainder cannot be $0$, because that would mean $3$ goes into it. So two cases remain.
+Sharing it among $3$ leaves a remainder of $0$, $1$, or $2$. The remainder cannot be $0$, because that would mean $3$ divides it. So two cases remain.
 
 **Case 1: the remainder is $1$.** Then the number is some whole number of $3$s, plus one extra.
 
-Multiply it by itself. You get: (that many $3$s) times itself, plus two copies of (that many $3$s), plus one. The first two chunks are built entirely out of $3$s. So the whole answer is a pile of $3$s plus one extra.
+Multiply it by itself. You get: (that many $3$s) times itself, plus two copies of (that many $3$s), plus one. The first two chunks are built entirely out of $3$s. So the whole answer is a multiple of $3$ plus one extra.
 
 Now subtract $1$. The extra goes away, and what is left is made only of $3$s.
 
-So $3$ goes into it. ✓
+So $3$ divides it. ✓
 
 **Case 2: the remainder is $2$.** Then the number is some whole number of $3$s, plus two extra.
 
 Multiply it by itself. You get: (that many $3$s) times itself, plus four copies of (that many $3$s), plus four. The first two chunks are made of $3$s, and $4$ is one $3$ plus one.
 
-So altogether it is a pile of $3$s, plus one extra.
+So altogether it is a multiple of $3$, plus one extra.
 
 Subtract $1$, and again only $3$s are left.
 
-So $3$ goes into it. ✓
+So $3$ divides it. ✓
 
-The two cases cover everything, and both give the conclusion. So the claim holds for every counting number that $3$ does not go into.
+The two cases cover everything, and both give the conclusion. So the claim holds for every counting number that $3$ does not divide.
 </Proof>
 
 ## Look at how much that used
@@ -87,7 +87,7 @@ That one proof pulled in almost everything you have learned:
 
 - **Remainders** (this module) turned an unusable *not* into two usable descriptions.
 - **Splitting into cases** (module 1.12) let two calculations cover all numbers.
-- **Closure** (module 4.1) justified "a pile of $3$s stays a pile of $3$s when you regroup it."
+- **Closure** (module 4.1) justified "a multiple of $3$ stays a multiple of $3$ when you regroup it."
 - **Going into as a hunt for a count** (module 4.2) told us what to produce.
 
 That is what a real proof looks like: not one clever idea, but four ordinary tools used in the right order.
@@ -99,7 +99,7 @@ Do not leave that out. A reader who does not see the exclusion will wonder wheth
 </Warning>
 
 <Aside>
-The trick works in reverse too. If you can show a number is a pile of $3$s plus one extra, you have *proved* that $3$ does not go into it — because only remainder $0$ means it does.
+The trick works in reverse too. If you can show a number is a multiple of $3$ plus one extra, you have *proved* that $3$ does not divide it — because only remainder $0$ means it does.
 
 Describing a number by its remainder is often the fastest way to prove something is *not* a multiple.
 </Aside>
