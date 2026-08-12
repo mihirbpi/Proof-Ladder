@@ -65,6 +65,9 @@ Note that $\leq$ and $\subseteq$ satisfy two of the three and are **orderings** 
 For $n \geq 1$, say that $a$ and $b$ **leave the same remainder on division by $n$** when $n \mid (a-b)$ (module 4.2). Later courses write this $a \equiv b \pmod n$ and call it *congruence modulo $n$*; the notation is theirs, the idea is the one you already have from long division.
 
 <Proof>
+
+*The symbols in this proof: $\equiv$ is "says the same as", $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides". In words, what follows shows: having the same remainder passes all three tests, so it behaves like equality.*
+
 **Reflexive.** $n \mid (a - a) = 0$ for every $n$, so $a \equiv a$.
 
 **Symmetric.** If $n \mid (a-b)$, say $a - b = nk$, then $b - a = n(-k)$ with $-k \in \mathbb{Z}$, so $n \mid (b-a)$.
@@ -88,6 +91,9 @@ $$
 > **Theorem.** The equivalence classes of $\sim$ **partition** $S$ — that is, they divide it into parts with no overlaps and nothing left out: every element lies in exactly one class.
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\subseteq$ is "sits inside", $\emptyset$ is "the empty set". In words, what follows shows: the classes cover everything and never partly overlap — two are either identical or share nothing.*
+
 *Every element is in a class.* $a \in [a]$ by reflexivity.
 
 *Classes are identical or **disjoint** — sharing nothing at all.* Suppose $[a]\cap[b] \neq \emptyset$, say $c \in [a]\cap[b]$, so $c \sim a$ and $c \sim b$.

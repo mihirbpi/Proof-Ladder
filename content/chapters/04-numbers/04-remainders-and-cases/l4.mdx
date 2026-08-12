@@ -44,12 +44,18 @@ These three sets are disjoint and cover $\mathbb{Z}$ — a partition. Exhaustive
 *Symbol by symbol: $\in$ is "is in", $\mathbb{Z}$ is the integers, $\nmid$ is "does not divide", the bar $\mid$ is "divides". So the line reads: for any integer $a$, if $3$ does not divide $a^2-1$, then $3$ does divide $a$.*
 
 <Discussion>
+
+*The symbols in this discussion: the bar $\mid$ is "divides", $\nmid$ is "does not divide". In words, the plan is: the hypothesis is a negative, which is the signal to turn the claim around.*
+
   <div slot="know">$3 \nmid a^2 - 1$: a negative statement about a composite quantity. Module 1.8's rule fires on both counts — negative hypothesis, and hypothesis about $a^2$ while the conclusion is about $a$. Contrapose.</div>
   <div slot="want">$3 \mid a$.</div>
   <div slot="how">The contrapositive is: if $3 \nmid a$ then $3 \mid a^2 - 1$. Its hypothesis is still negative, but division with remainder converts it into two positive cases, $a = 3k+1$ and $a = 3k+2$. Each is a direct computation.</div>
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\Rightarrow$ is "forces", $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides", $\nmid$ is "does not divide". In words, what follows shows: if $3$ misses $a$, then $3$ divides $a^2-1$ — checked on each possible remainder.*
+
 We prove the contrapositive (swap the two halves and deny both, §1.7): if $3 \nmid a$ then $3 \mid a^2 - 1$.
 
 Suppose $3 \nmid a$. By the division algorithm, $a = 3k + r$ with $r \in \{0,1,2\}$; the case $r = 0$ is excluded, since $a = 3k$ would give $3 \mid a$. Two cases remain.

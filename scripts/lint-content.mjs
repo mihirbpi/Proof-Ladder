@@ -660,7 +660,7 @@ for (const file of files) {
       const n = part
         .replace(/<[A-Z][A-Za-z]*\b[^>]*\/>/g, ' ')
         .replace(/<([A-Z][A-Za-z]*)\b[\s\S]*?<\/\1>/g, ' ')
-        .replace(/^\*(Symbol by symbol|A reminder of the symbols)[\s\S]*?\*$/gm, ' ')
+        .replace(/^\*(Symbol by symbol|A reminder of the symbols|The symbols in this)[\s\S]*?\*$/gm, ' ')
         .replace(/\$\$[\s\S]*?\$\$/g, ' ')
         .split(/\s+/).filter(Boolean).length;
       if (n > cap) {
@@ -2285,7 +2285,7 @@ for (const f of files) {
   const raw = fs
     .readFileSync(f, 'utf8')
     .replace(/<Proof[\s\S]*?<\/Proof>/g, '')
-    .replace(/^\*(Symbol by symbol|A reminder of the symbols)[\s\S]*?\*$/gm, '');
+    .replace(/^\*(Symbol by symbol|A reminder of the symbols|The symbols in this)[\s\S]*?\*$/gm, '');
   const text = body(raw);
   const words = text.replace(/[^A-Za-z ]/g, ' ').split(/\s+/).filter(Boolean).length;
   const symbols = (text.match(DENSITY_SYMBOLS) ?? []).length;

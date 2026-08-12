@@ -40,12 +40,18 @@ Underneath, as always, are the logic laws of module 1.3: **and** spreads across 
 ## Proof of D1
 
 <Discussion>
+
+*The symbols in this discussion: $\in$ is "is in", $\cap$ is "overlapped with", $\cup$ is "pooled with". In words, the plan is: both sides unfold to the same and/or sentence, which is the whole proof.*
+
   <div slot="know">$x \in S \cap (T \cup R)$ unfolds to: $x \in S$, and ($x \in T$ or $x \in R$).<br />$x \in (S\cap T) \cup (S \cap R)$ unfolds to: ($x \in S$ and $x \in T$) or ($x \in S$ and $x \in R$).</div>
   <div slot="want">Double inclusion.</div>
   <div slot="how">Both directions carry a disjunction in the hypothesis, so <strong>both</strong> need a case split. Forward, split on $T$ versus $R$; backward, split on which intersection $x$ came from.</div>
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\cup$ is "pooled with", $\subseteq$ is "sits inside". In words, what follows shows: overlapping with a pool gives the pool of the two overlaps.*
+
 **($\subseteq$)** Let $x \in S \cap (T \cup R)$ be arbitrary. Then $x \in S$, and $x \in T$ or $x \in R$. Split on that disjunction.
 
 *Case 1: $x \in T$.* Together with $x \in S$, this gives $x \in S \cap T$.
@@ -70,6 +76,9 @@ Notice that $x \in S$ was available in **every** case of both directions — it 
 The backward direction here contains the one genuinely interesting step in the module.
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\notin$ is "is not in", $\cap$ is "overlapped with", $\cup$ is "pooled with", $\subseteq$ is "sits inside". In words, what follows shows: pooling with an overlap gives the overlap of the two pools.*
+
 **($\subseteq$)** Let $x \in S \cup (T \cap R)$; split. If $x \in S$, then $x$ lies in both $S \cup T$ and $S \cup R$. If $x \in T \cap R$, then $x \in T$ puts it in $S \cup T$ and $x \in R$ puts it in $S \cup R$. Either way $x \in (S \cup T) \cap (S \cup R)$.
 
 **($\supseteq$)** Let $x \in (S \cup T) \cap (S \cup R)$, so $x \in S \cup T$ **and** $x \in S \cup R$. We must reach $x \in S$ or $x \in T \cap R$. Split on whether $x \in S$.

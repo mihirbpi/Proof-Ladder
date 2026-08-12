@@ -41,6 +41,9 @@ Note the small step that is easy to skip: you must check the witness actually li
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Z}$ is the integers. In words, what follows shows: every even number is reached by doubling something.*
+
 Take any $t \in E$. Since $t$ is even, $t = 2k$ for some integer $k$, so the number $n = t/2 = k$ is an integer — so $n \in \mathbb{Z}$.
 
 Then $g(n) = 2 \cdot \frac{t}{2} = t$.
@@ -53,6 +56,9 @@ Nothing was assumed about $t$ of $E$, every element of the codomain is attained,
 > **The same rule with a different codomain.** Doubling, taken as a function from the integers to *all* the integers, is **not** surjective.
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Z}$ is the integers. In words, what follows shows: doubling never reaches $3$, so it misses part of the integers.*
+
 Take $t = 3 \in \mathbb{Z}$. For every $n \in \mathbb{Z}$ the value $2n$ is even, and $3$ is odd, so no $n$ satisfies $f(n) = 3$. So $\operatorname{Im}(f) \neq \mathbb{Z}$.
 </Proof>
 

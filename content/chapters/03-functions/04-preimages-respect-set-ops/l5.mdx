@@ -44,12 +44,18 @@ That is just the definition of pre-image, and it is a **if-and-only-if statement
 ## The union law
 
 <Discussion>
+
+*The symbols in this discussion: $\in$ is "is in", $\cup$ is "pooled with", $\vee$ is "or", $\iff$ is "exactly when". In words, the plan is: unfold the left side one step at a time until it reads as the right.*
+
   <div slot="know">The pivot equivalence, and the definition $x \in A \cup B \iff x \in A \vee x \in B$.</div>
   <div slot="want">Double inclusion (module 2.6).</div>
   <div slot="how">Unfold the left side one step at a time until it reads as a statement about $\vee$, then fold that back up into the right side. Each step is an equivalence, so both directions come out together.</div>
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cup$ is "pooled with", $\subseteq$ is "sits inside". In words, what follows shows: tracing back from a pool gives the pool of the traced-back parts.*
+
 **($\subseteq$)** Let $x \in f^{-1}(U \cup V)$ be arbitrary. By the pivot, $f(x) \in U \cup V$, so $f(x) \in U$ or $f(x) \in V$.
 
 *Case 1: $f(x) \in U$.* Then $x \in f^{-1}(U)$.
@@ -72,6 +78,9 @@ The case splits appeared because a disjunction sat in each hypothesis — module
 This is the one that would fail if pre-images were badly behaved, so it is the one worth doing carefully. Complements are taken in $T$ on the left and in $S$ on the right.
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\notin$ is "is not in", $\subseteq$ is "sits inside". In words, what follows shows: tracing back from the outside of $U$ gives the outside of what traces back from $U$.*
+
 **($\subseteq$)** Let $x \in f^{-1}(\overline{U})$ be arbitrary. By the pivot, $f(x) \in \overline{U}$, so $f(x) \notin U$.
 
 Now suppose $x \in f^{-1}(U)$. That would give $f(x) \in U$, which we just ruled out. So $x \notin f^{-1}(U)$, i.e. $x \in \overline{f^{-1}(U)}$.

@@ -64,6 +64,9 @@ If $n+1$ is prime, done. Otherwise $n+1 = ab$ with $2 \leq a, b \leq n$ — and 
 **Strong induction** repairs this: assume $A(n_0), A(n_0+1), \ldots, A(k)$ and prove $A(k+1)$.
 
 <Proof title="Strong induction is ordinary induction">
+
+*The symbols in this proof: $\Rightarrow$ is "forces", $\wedge$ is "and". In words, what follows shows: strong induction is ordinary induction applied to the statement "all cases so far hold".*
+
 Given $A$, define $B(n) := A(n_0)\wedge A(n_0+1)\wedge\cdots\wedge A(n)$.
 
 The strong-induction hypothesis for $A$ is exactly $B(k)$, and $B(k) \Rightarrow A(k+1)$ gives $B(k) \Rightarrow B(k+1)$. So ordinary induction applies to $B$, yielding $B(n)$ — so $A(n)$ — for all $n$.

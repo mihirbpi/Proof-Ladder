@@ -29,6 +29,9 @@ Step 4 is the one students omit and graders look for. The definition of $\mid$ d
 *Symbol by symbol: $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides". So the line reads: if $a$ divides $b$ and $b$ divides $c$, then $a$ divides $c$.*
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides". In words, what follows shows: dividing passes along a chain.*
+
 Suppose $a \mid b$ and $b \mid c$. Then there exist $j, k \in \mathbb{Z}$ with $b = aj$ and $c = bk$.
 
 Substituting, $c = (aj)k = a(jk)$.
@@ -45,6 +48,9 @@ Writing $b = ak$ and $c = bk$ with the same $k$ says that the two leftover facto
 > **Proposition.** If $a \mid c$ and $b \mid d$ then $ab \mid cd$.
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides". In words, what follows shows: two separate divisions can be multiplied together.*
+
 There exist $j, k \in \mathbb{Z}$ with $c = aj$ and $d = bk$. Then
 $$cd = (aj)(bk) = (ab)(jk),$$
 using commutativity and associativity of multiplication. Since $jk \in \mathbb{Z}$ by closure, $ab \mid cd$.
@@ -57,12 +63,18 @@ using commutativity and associativity of multiplication. Since $jk \in \mathbb{Z
 *Symbol by symbol: the bar $\mid$ is "divides", $\in$ is "is in", $\mathbb{Z}$ is the integers. So the line reads: if $a$ divides both $b$ and $c$, then $a$ divides any whole-number combination of them.*
 
 <Discussion>
+
+*The symbols in this discussion: $\in$ is "is in", $\mathbb{Z}$ is the integers. In words, the plan is: the plan is to substitute both facts in and factor the divisor back out.*
+
   <div slot="know">$b = aj$, $c = ak$ with $j,k \in \mathbb{Z}$; and $x, y$ any two integers.</div>
   <div slot="want">An integer factor left over for $bx + cy$ over $a$.</div>
   <div slot="how">Substitute and factor out $a$ using distributivity. The leftover factor $jx + ky$ is an integer by closure under both operations.</div>
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides". In words, what follows shows: a number dividing two others divides any whole-number combination of them.*
+
 Take any $x, y \in \mathbb{Z}$. Since $a \mid b$ and $a \mid c$, there are $j,k \in \mathbb{Z}$ with $b = aj$, $c = ak$. Then
 $$bx + cy = ajx + aky = a(jx + ky).$$
 As $\mathbb{Z}$ is closed under multiplication and addition, $jx + ky \in \mathbb{Z}$. So $a \mid (bx+cy)$.

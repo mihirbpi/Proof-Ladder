@@ -24,6 +24,9 @@ Data: $2^{2n}-1 = 0, 3, 15, 63, 255, 1023$ for $n = 0,\ldots,5$ — all multiple
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides". In words, what follows shows: check the first case, then show each case forces the next by multiplying through by four.*
+
 Let $A(n)$ be the statement $3 \mid 2^{2n}-1$.
 
 **Base case.** $2^{0}-1 = 0 = 3\cdot 0$, so $3 \mid 0$ and $A(0)$ holds.
@@ -70,6 +73,9 @@ Neither is enough alone: divisibility cannot reach infinitely many $n$, and indu
 *Symbol by symbol: the bar $\mid$ is "divides", $\in$ is "is in", $\mathbb{Z}_{\geq0}$ is the whole numbers from zero up. So the line reads: $6$ divides $n^3-n$ for every whole number $n$.*
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides". In words, what follows shows: check the first case, then show the extra term added each time is itself a multiple of $6$.*
+
 **Base.** $n=0$: $0 - 0 = 0$, and $6\mid 0$. ✓
 
 **Step.** Assume $n^3-n = 6x$ for some $x \in \mathbb{Z}$. Then

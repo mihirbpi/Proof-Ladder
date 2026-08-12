@@ -21,6 +21,9 @@ import Warning from '@/components/Warning.astro';
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Q}$ is the fractions. In words, what follows shows: the midpoint of two fractions is a fraction, and it lies strictly between them.*
+
 **Rationality.** $a + b \in \mathbb{Q}$ by closure under addition. Since $2 \in \mathbb{Q}$ and $2 \neq 0$, its inverse $\tfrac12 \in \mathbb{Q}$, and $\tfrac{a+b}{2} = (a+b)\cdot\tfrac12 \in \mathbb{Q}$ by closure under multiplication.
 
 **Lower bound.** From $a < b$, adding $a$ to both sides gives $2a < a+b$. Multiplying by $\tfrac12 > 0$ preserves the inequality, so $a < \tfrac{a+b}{2}$.
@@ -39,6 +42,9 @@ So the argument cannot merely produce the midpoint; it has to certify that the m
 > **Corollary.** Between any two distinct rationals lie infinitely many rationals.
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Q}$ is the fractions. In words, what follows shows: halving repeatedly produces endlessly many fractions between any two.*
+
 Let $a < b$ in $\mathbb{Q}$. Define $m_1 = \tfrac{a+b}{2}$, and recursively $m_{k+1} = \tfrac{a + m_k}{2}$.
 
 By the proposition, each $m_k \in \mathbb{Q}$ and $a < m_{k+1} < m_k$. So $m_1 > m_2 > m_3 > \cdots$ is a strictly decreasing sequence of rationals, all lying strictly between $a$ and $b$.

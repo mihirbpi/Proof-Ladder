@@ -22,6 +22,9 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\emptyset$ is "the empty set", $\mathbb{Z}$ is the integers, the bar $\mid$ is "such that". In words, what follows shows: among the non-negative leftovers there is a smallest, and that one is the remainder.*
+
 *Existence.* Let $S = \{m - nk \mid k \in \mathbb{Z}\}\cap \mathbb{Z}_{\geq 0}$. Taking $k = -|m|$ gives $m + n|m| \geq m + |m| \geq 0$, so $S \neq \emptyset$. Every non-empty collection of non-negative integers has a smallest member, so $S$ has a smallest member $r = m - nq$ for some $q \in \mathbb{Z}$, and $r \geq 0$.
 
 If $r \geq n$ then $r - n = m - n(q+1) \geq 0$ lies in $S$ and is smaller than $r$, contradicting the fact that $r$ was the smallest. So $0 \leq r < n$.
@@ -52,6 +55,9 @@ Writing $a \equiv b \pmod n$ for $n \mid (a-b)$, the residue classes $[0], \ldot
 *Symbol by symbol: $\in$ is "is in", $\mathbb{Z}$ is the integers, $\nmid$ is "does not divide", $\Rightarrow$ is "forces", the bar $\mid$ is "divides". So the line reads: for any integer $a$, $3$ failing to divide $a^2-1$ forces $3$ to divide $a$.*
 
 <Discussion>
+
+*The symbols in this discussion: $\Rightarrow$ is "forces", $\equiv$ is "says the same as", the bar $\mid$ is "divides", $\nmid$ is "does not divide", $\pmod n$ is "on division by $n$". In words, the plan is: the hypothesis is a negative, so turn the claim around and check each remainder.*
+
   <div slot="know">A negative hypothesis about the composite quantity $a^2 - 1$, with a conclusion about $a$. Both of §1.8's indicators fire.</div>
   <div slot="want">$3 \mid a$.</div>
   <div slot="how">Contrapose to $3 \nmid a \Rightarrow 3 \mid a^2 - 1$, then convert the still-negative hypothesis into the two cases $a \equiv 1$ and $a \equiv 2 \pmod 3$ and compute.</div>

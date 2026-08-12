@@ -60,6 +60,9 @@ Associativity is what lets you write $A \cup B \cup C$ over finitely many sets w
 > **Proposition.** $S \cap T \subseteq S \subseteq S \cup T$ — *the overlap sits inside $S$, and $S$ sits inside the combination*.
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\cup$ is "pooled with", $\subseteq$ is "sits inside", $\wedge$ is "and", $\vee$ is "or". In words, what follows shows: the overlap sits inside each set, and each set sits inside the pool.*
+
 Let $x \in S \cap T$. Then $x \in S \wedge x \in T$, so $x \in S$. So $S \cap T \subseteq S$.
 
 Let $x \in S$. Then $(x \in S) \vee (x \in T)$ holds, its left half being true; so $x \in S \cup T$. So $S \subseteq S \cup T$. Transitivity (first-to-second and second-to-third gives first-to-third, §7.2) of $\subseteq$ chains the two.
@@ -80,6 +83,9 @@ $S, T$ are **disjoint** when $S \cap T = \emptyset$. This is a universal negativ
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\emptyset$ is "the empty set", $\mathbb{R}$ is the real numbers, the bar $\mid$ is "such that". In words, what follows shows: no angle has both sine and cosine zero, so those two solution sets never overlap.*
+
 Suppose, for contradiction, that some $x \in \mathbb{R}$ satisfies $\sin x = 0$ and $\cos x = 0$. Then
 $$1 = \sin^2 x + \cos^2 x = 0 + 0 = 0,$$
 which is false. So no such $x$ exists, and $\{x \mid \sin x = 0\} \cap \{x \mid \cos x = 0\} = \emptyset$.

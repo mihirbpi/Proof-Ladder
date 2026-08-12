@@ -32,12 +32,18 @@ We use the (forward) direction, which was proved there by contrapositive (swap t
 ## The proof
 
 <Discussion>
+
+*The symbols in this discussion: $\in$ is "is in", $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, the bar $\mid$ is "divides". In words, the plan is: every fraction can be written with no common factor left, which is what the proof leans on.*
+
   <div slot="know">Every nonzero rational has a representation in lowest terms: $r = p/q$ with $p,q \in \mathbb{Z}$, $q \neq 0$, and $\gcd(p,q) = 1$. This follows from canceling common factors, which terminates because the numerators strictly decrease.</div>
   <div slot="want">A contradiction from the assumption $\sqrt2 \in \mathbb{Q}$.</div>
   <div slot="how">Assume $\sqrt2 = p/q$ in lowest terms. Squaring gives $p^2 = 2q^2$, so $p$ is even by the lemma. Substituting $p = 2k$ and simplifying gives $q^2 = 2k^2$, so $q$ is even too. Then $2 \mid \gcd(p,q)$, contradicting $\gcd(p,q)=1$.</div>
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\notin$ is "is not in", $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, the bar $\mid$ is "divides". In words, what follows shows: assuming the square root of $2$ is a fraction in lowest terms forces top and bottom both even — which lowest terms forbids.*
+
 Suppose, for contradiction, that $\sqrt2 \in \mathbb{Q}$. Then $\sqrt2 = \tfrac pq$ for some $p, q \in \mathbb{Z}$ with $q \neq 0$ and $\gcd(p,q) = 1$.
 
 Squaring and clearing denominators:
