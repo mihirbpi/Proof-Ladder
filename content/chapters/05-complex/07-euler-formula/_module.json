@@ -17,7 +17,7 @@
   "kernels": {
     "l1": "Turn a quarter turn four times and you are facing the way you started.",
     "l2": "Multiplying by i turns you a quarter turn. Do it four times and you are back where you began: i, then −1, then −i, then 1, over and over.",
-    "l3": "The powers of i repeat every four steps: i, −1, −i, 1. That repeating pattern is exactly what makes Euler’s formula e^{iθ} = cos θ + i sin θ work — it sorts the terms into a cosine part and a sine part.",
+    "l3": "The powers of i repeat every four steps: i, −1, −i, 1. That repeating pattern is what makes the famous formula linking i to turning work — the four-step cycle sorts the terms into two separate families.",
     "l4": "The powers of i repeat every four steps — i, −1, −i, 1 — because four quarter turns is a full turn, so i raised to a power depends only on the remainder that power leaves on division by 4.",
     "l5": "Euler’s formula comes from substituting iθ into the exponential series and separating real and imaginary terms, which the four-fold cycle of powers of i makes possible.",
     "l6": "Multiplying two points of the unit circle adds their angles — the same trade of adding for multiplying that exponents make, which is why the circle points are written as a power.",

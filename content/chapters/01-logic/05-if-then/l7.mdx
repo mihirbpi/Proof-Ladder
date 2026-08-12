@@ -92,13 +92,13 @@ Two of these invert the visual order and are worth memorizing directly.
 
 **"$q$ is necessary for $p$"** is likewise $p\Rightarrow q$, and *"$p$ is sufficient for $q$"* is the same statement read from the other end. An if-and-only-if statement says both roles at once, which is why *necessary and sufficient* means *iff* (§1.9).
 
-The necessary/sufficient vocabulary is worth becoming fluent in now, because calculus states hypotheses that way constantly. *"Continuity is necessary for differentiability"* and *"differentiability is sufficient for continuity"* are the same theorem, and neither says anything about the converse (§1.7: the same statement with its two halves swapped).
+The necessary/sufficient vocabulary is worth becoming fluent in now, because calculus states hypotheses that way constantly. *"Continuity — being unbroken, drawable without lifting the pen — is necessary for differentiability"* and *"differentiability is sufficient for continuity"* are the same theorem, and neither says anything about the converse (§1.7: the same statement with its two halves swapped).
 
 ## Conditionals with false hypotheses are everywhere
 
 Vacuous truth stops looking like a curiosity as soon as the hypothesis is a condition that can fail to be met.
 
-*"If $\{a_n\}$ converges, then it is bounded"* is a true theorem, and applying it to a divergent sequence gives nothing — not a false conclusion, simply no information. Row 3 and row 4 of the table are the cases where a theorem is silent, and recognizing when a theorem is silent is as useful as recognizing when it applies.
+*"If $\{a_n\}$ converges — settles towards a single value — then it is bounded, never exceeding some fixed size"* is a true theorem, and applying it to a divergent sequence gives nothing — not a false conclusion, simply no information. Row 3 and row 4 of the table are the cases where a theorem is silent, and recognizing when a theorem is silent is as useful as recognizing when it applies.
 
 The pattern is sharper in statements quantified over a set that might be empty:
 
@@ -110,7 +110,7 @@ is true, and it is true because the set is empty. Chapter 2 uses exactly this to
 
 ## Where this shows up next
 
-- **Direct proof.** To prove $p \Rightarrow q$, assume $p$ and derive $q$. The whole game reduces to eliminating row 2 of the truth table.
+- **Direct proof** (§1.6). To prove $p \Rightarrow q$, assume $p$ and derive $q$. The whole game reduces to eliminating row 2 of the truth table.
 - **Contrapositive.** The truth table for $\neg q \Rightarrow \neg p$ is identical to that for $p \Rightarrow q$. So the two statements are logically equivalent — we can prove one by proving the other. Module 1.7 makes this precise.
 - **If and only if.** *$p$ if and only if $q$* is the conjunction of $p \Rightarrow q$ and $q \Rightarrow p$. Proving one, therefore, requires two conditional proofs (§1.9).
 - **Vacuous statements everywhere.** Any statement of the form "every element of $\emptyset$ satisfies …" is vacuously true. If you spot it in a proof, do not fight the convention; use it.

@@ -16,7 +16,7 @@
   "kernelIdea": "Some real numbers are not rational. √2 is one: assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms.",
   "kernels": {
     "l1": "Some lengths cannot be written as a piece of a whole.",
-    "l2": "The slanted line across a square is a real length, but no fraction ever fits it exactly. Grown-ups can prove that no fraction ever will.",
+    "l2": "The slanted line across a square is a real length, but no piece ever fits it exactly. Grown-ups can prove that no piece ever will.",
     "l3": "There are numbers that are not fractions at all. The square root of 2 is one: if it were the simplest fraction, both its top and bottom would have to be even, and then it was not the simplest after all.",
     "l4": "No rational number squares to 2. Assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms — so √2 is irrational.",
     "l5": "The irrationality of √2 is proved by contradiction from the lowest-terms assumption, using the lemma that n² even implies n even.",

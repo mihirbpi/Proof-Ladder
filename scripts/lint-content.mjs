@@ -1566,7 +1566,7 @@ const CALCULUS_FAMILIES = [
   {
     what: 'continuity',
     use: /\bcontinuous\w*|\bcontinuity\b|\bdiscontinu\w+/i,
-    explained: /\bunbroken\b|without lifting\b|\bno breaks?\b|\bbreaks? in (the|a) (graph|curve)\b|\bno gaps? or jumps?\b/i,
+    explained: /\bunbroken\b|\bpen\b[^.]{0,25}\blift\w*|\bno breaks?\b|\bbreaks? in (the|a) (graph|curve)\b|\bno gaps? or jumps?\b|\bnearby numbers stay nearby\b/i,
   },
   {
     what: 'convergence',
@@ -1655,6 +1655,50 @@ for (const f of files) {
   for (const [re, area] of EARLY_GATES[level] ?? []) {
     const m = text.match(re);
     if (m) warn(rel, `${level} uses "${m[0]}" \u2014 ${area} comes after this year`);
+  }
+}
+
+// The same gates over frontmatter and _module.json.
+//
+// body() strips frontmatter and the lint never opened the module files at all,
+// so a title, an anchorExample or a kernel could say anything it liked. That is
+// where "fraction" survived at l2 after the prose had been fixed — and a kernel
+// is the first line of the page, which makes it the worst place to hide.
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const gates = EARLY_GATES[level];
+  if (!gates) continue;
+  const rel = path.relative(ROOT, f);
+  const fm = fs.readFileSync(f, 'utf8').match(/^---([\s\S]*?)^---/m)?.[1] ?? '';
+  for (const [re, area] of gates) {
+    const m = fm.replace(/^readingTimeMin:.*$/gm, '').match(re);
+    if (m) warn(rel, `${level} frontmatter uses "${m[0]}" \u2014 ${area} comes after this year`);
+  }
+}
+for (const ch of fs.readdirSync(CHAPTERS)) {
+  const chDir = path.join(CHAPTERS, ch);
+  if (!fs.statSync(chDir).isDirectory()) continue;
+  for (const mod of fs.readdirSync(chDir)) {
+    const jf = path.join(chDir, mod, '_module.json');
+    if (!fs.existsSync(jf)) continue;
+    const rel = path.relative(ROOT, jf);
+    let data;
+    try {
+      data = JSON.parse(fs.readFileSync(jf, 'utf8'));
+    } catch {
+      err(rel, 'is not valid JSON');
+      continue;
+    }
+    for (const [level, gates] of Object.entries(EARLY_GATES)) {
+      for (const field of ['kernels', 'titles', 'anchorExamples']) {
+        const v = data?.[field]?.[level];
+        if (typeof v !== 'string') continue;
+        for (const [re, area] of gates) {
+          const m = v.match(re);
+          if (m) warn(rel, `${field}.${level} uses "${m[0]}" \u2014 ${area} comes after this year`);
+        }
+      }
+    }
   }
 }
 

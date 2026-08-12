@@ -20,7 +20,7 @@
     "l3": "Compute the first few cases of a repeated process, look for a formula covering all of them, then prove the formula by the domino argument. Guessing and proving are two different jobs.",
     "l4": "Repeated application of a step produces data; conjecture a closed formula by spotting each pattern separately, then prove it by induction. The base case is the zeroth application, which is the original object.",
     "l5": "Conjecture-then-prove is the working mathematician’s loop: compute cases, isolate each pattern, assemble a formula, prove by induction.",
-    "l6": "The nth derivative of 1/x follows this pattern: sign, factorial, and exponent are three separate patterns assembled into one formula and proved by induction.",
+    "l6": "Repeating the same operation over and over produces a pattern with three separate parts — a sign, a factorial, and an exponent — and assembling them into one formula and proving it is a job for induction.",
     "l7": "For f(x) = 1/x, f^{(n)}(x) = (−1)ⁿ n! x^{−(n+1)}, conjectured by isolating three patterns in the first few derivatives and proved by induction using (k+1)! = (k+1)·k!.",
     "l8": "Induction on the order of differentiation is the standard route to Leibniz’s rule, Taylor coefficients, and closed forms for higher derivatives generally."
   },

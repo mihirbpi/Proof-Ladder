@@ -16,7 +16,7 @@
   "kernelIdea": "ℚ is closed under addition, additive inverses, multiplication, and multiplicative inverses of nonzero elements — this makes it a field.",
   "kernels": {
     "l1": "Half a cookie is a real amount. Pieces are numbers too.",
-    "l2": "When sharing does not come out whole, the answer is a piece of a whole — a fraction. Adding and multiplying fractions always gives you another fraction.",
+    "l2": "When sharing does not come out whole, the answer is a piece of a whole — a piece. Adding and multiplying pieces always gives you another piece.",
     "l3": "Adding, subtracting, multiplying, and dividing fractions always gives another fraction, as long as you never divide by zero. The reciprocal is exactly what the whole numbers were missing.",
     "l4": "Add, subtract, multiply or divide two fractions — dividing by anything but zero — and the answer is a fraction again. That last one is what the integers could not do, and it is the whole reason fractions were built.",
     "l5": "The fractions obey every arithmetic rule the integers do, and add one more: every nonzero one has a reciprocal. That extra property is exactly what the integers were missing.",

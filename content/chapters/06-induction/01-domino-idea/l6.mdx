@@ -45,9 +45,9 @@ Condition 1 is the first domino. Condition 2 is the chain, and note it is a **co
 
 Let $A(n)$ be: *the interior angles of a convex $n$-gon sum to $(n-2)\cdot180°$.*
 
-**Base case:** $A(3)$ is the triangle angle-sum theorem, which your course proves from the parallel postulate.
+**Base case** — the first case, checked on its own (§6.2 names the three steps): $A(3)$ is the triangle angle-sum theorem, which your course proves from the parallel postulate.
 
-**Inductive step:** assume $A(k)$ for some $k\geq3$. Given a convex $(k+1)$-gon, draw a diagonal cutting off one triangle, leaving a convex $k$-gon. The angles of the $(k+1)$-gon are exactly the angles of the $k$-gon plus the angles of the triangle, so the sum is
+**Inductive step** — the part carrying each case to the next (§6.2): assume $A(k)$ for some $k\geq3$. Given a convex $(k+1)$-gon, draw a diagonal cutting off one triangle, leaving a convex $k$-gon. The angles of the $(k+1)$-gon are exactly the angles of the $k$-gon plus the angles of the triangle, so the sum is
 $$(k-2)\cdot180° + 180° = (k-1)\cdot180° = \big((k+1)-2\big)\cdot180°,$$
 which is $A(k+1)$.
 

@@ -79,11 +79,13 @@ Module 3.9 proved the three properties for congruence of figures, using rigid mo
 
 That correspondence is not a coincidence. **Whenever a relation is defined by "some transformation of a fixed collection carries one thing to the other," it is automatically reflexive, symmetric, and transitive** — provided that collection contains an identity, contains an inverse for each of its members, and is closed under composition. Those three requirements are what produce the three properties, in that order.
 
-## Partitions
+## Splitting a set into parts
 
 Here is what equivalence relations are *for*.
 
-> **Theorem.** An equivalence relation on a set splits it into disjoint classes, with every element in exactly one class. The other way round, every such splitting arises from an equivalence relation.
+> **Theorem.** An equivalence relation on a set splits it into classes that never overlap, with every element in exactly one class. The other way round, every such splitting arises from an equivalence relation.
+
+A division of a set into non-overlapping parts that use up everything is called a **partition**, and that is the word the courses ahead will use for it.
 
 The classes are the groups of mutually related elements.
 
@@ -92,7 +94,7 @@ The classes are the groups of mutually related elements.
 - Similarity splits them more coarsely: each similarity class contains many congruence classes, one for each size.
 - Equality splits a set into singletons, the finest possible splitting.
 
-**Disjoint and exhaustive**, which is module 1.12's requirement for proof by cases. So every case argument that splits by remainder is licensed by this theorem, and the license comes from the three properties.
+**No overlaps, and nothing left out**, which is module 1.12's requirement for proof by cases. So every case argument that splits by remainder is licensed by this theorem, and the license comes from the three properties.
 
 <Warning title="Transitivity needs a genuine middle">
 From $\overline{AB}\cong\overline{CD}$ and $\overline{EF}\cong\overline{CD}$, concluding $\overline{AB}\cong\overline{EF}$ takes **two** steps: symmetry to turn the second into $\overline{CD}\cong\overline{EF}$, then transitivity.

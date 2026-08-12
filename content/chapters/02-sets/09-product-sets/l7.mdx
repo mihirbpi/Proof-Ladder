@@ -99,11 +99,17 @@ which distributes properly — and whose four terms are the cross-terms the naiv
 
 ## Relations
 
-A **relation** from $S$ to $T$ is by definition any subset $R \subseteq S \times T$, with $sRt$ meaning $(s,t) \in R$. This is the definition that makes the rest of the course possible:
+Here is a genuine leap, and it is worth slowing down for. A **relation** from $S$ to $T$ is *defined to be* any subset $R \subseteq S \times T$, with $sRt$ meaning $(s,t) \in R$.
+
+That sounds like a category mistake the first time you read it. Surely "is taller than" is a *description*, not a collection of anything? But look at what a description does: it splits the pairs into the ones where it holds and the ones where it does not. Nothing else about it can ever matter mathematically. Two descriptions that hold for exactly the same pairs are indistinguishable to every proof you could write. So we stop asking what a relation *is* and identify it with the only thing about it that has consequences — **the collection of pairs it holds for.**
+
+### What the definition buys
+
+This is the definition that makes the rest of the course possible:
 
 - **Functions** (Chapter 3) are relations $f \subseteq S \times T$ such that each $s \in S$ occurs as the first coordinate of exactly one pair. A function *is* its graph; there is no separate notion.
 - **Orders** are relations on $S \times S$ that are reflexive, such that mutual containment forces equality, transitive — $\subseteq$ from §2.3 being the example at hand.
-- **Equivalence relations** are reflexive, symmetric, transitive relations, and their quotients construct $\mathbb{Z}$ from $\mathbb{N}$, $\mathbb{Q}$ from $\mathbb{Z}$, and $\mathbb{Z}/n\mathbb{Z}$ from $\mathbb{Z}$.
+- **Equivalence relations** (§7.2) are reflexive, symmetric, transitive relations, and grouping by them is how $\mathbb{Z}$ gets built from $\mathbb{N}$, $\mathbb{Q}$ from $\mathbb{Z}$, and $\mathbb{Z}/n\mathbb{Z}$ from $\mathbb{Z}$.
 
 So everything from here forward is a subset of a product set with a condition attached.
 

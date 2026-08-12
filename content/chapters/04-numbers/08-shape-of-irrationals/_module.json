@@ -16,7 +16,7 @@
   "kernelIdea": "The irrationals are not closed under addition or multiplication and contain neither 0 nor 1 — they are not a field. But if a is irrational so are −a and 1/a, and a nonzero rational times an irrational is irrational.",
   "kernels": {
     "l1": "Two strange numbers can add up to a perfectly ordinary one.",
-    "l2": "Two numbers that are not fractions can add up to a number that is. So the not-fractions do not behave like a tidy number system.",
+    "l2": "Two numbers that are not pieces can add up to a number that is. So the not-piece numbers do not behave like a tidy number system.",
     "l3": "Adding or multiplying two irrational numbers can land you back among the fractions, so the irrationals are not a tidy system. But the opposite of an irrational is irrational, and so is a fraction times an irrational.",
     "l4": "The irrationals are a strange collection: add or multiply two and you can land back among the fractions, and they contain neither 0 nor 1. But the negative and the reciprocal of an irrational are irrational, and a nonzero fraction times an irrational is irrational.",
     "l5": "The irrationals fail closure but are stable under negation, reciprocal, and multiplication by a nonzero fraction. Each proof is a *suppose not* that leans on closure of the fractions.",

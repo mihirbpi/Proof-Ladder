@@ -41,7 +41,9 @@ A4 is the *substitution* property in miniature: equals may be substituted for eq
 
 ## Equivalence relations
 
-A relation $\sim$ on a set $S$ satisfying A1–A3 is an **equivalence relation**. Recall from module 2.9 that a relation on $S$ is formally a subset of $S \times S$, with $a \sim b$ meaning $(a,b)$ belongs to it.
+A relation $\sim$ on a set $S$ satisfying A1–A3 is an **equivalence relation**. Recall the move module 2.9 made, since it is easy to skim past: a relation on $S$ is not treated as a description but as the **collection of ordered pairs it holds for**. So $a \sim b$ is shorthand for *the pair $(a,b)$ is in that collection*. The reason for defining it that way is that two descriptions holding for exactly the same pairs can never be told apart by any proof — so the pairs are the only part that matters.
+
+### Which relations qualify
 
 | Relation | Refl. | Symm. | Trans. | Equivalence? |
 |---|---|---|---|---|
@@ -74,7 +76,7 @@ and $j+k \in \mathbb{Z}$ by closure. So $n \mid (a-c)$.
 
 Each step is the divisibility template of module 4.3.
 
-## Equivalence classes and partitions
+## Equivalence classes, and splitting a set into parts
 
 For $a \in S$, the **equivalence class** of $a$ is
 $$
@@ -83,12 +85,12 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the class of $a$ is everything in $S$ that counts as the same as $a$.*
 
-> **Theorem.** The equivalence classes of $\sim$ partition $S$: every element lies in exactly one class.
+> **Theorem.** The equivalence classes of $\sim$ **partition** $S$ — that is, they divide it into parts with no overlaps and nothing left out: every element lies in exactly one class.
 
 <Proof>
 *Every element is in a class.* $a \in [a]$ by reflexivity.
 
-*Classes are disjoint or identical.* Suppose $[a]\cap[b] \neq \emptyset$, say $c \in [a]\cap[b]$, so $c \sim a$ and $c \sim b$.
+*Classes are identical or **disjoint** — sharing nothing at all.* Suppose $[a]\cap[b] \neq \emptyset$, say $c \in [a]\cap[b]$, so $c \sim a$ and $c \sim b$.
 
 Let $x \in [a]$, so $x \sim a$. From $c \sim a$ and symmetry, $a \sim c$; with transitivity, $x \sim c$; with $c \sim b$ and transitivity again, $x \sim b$, so $x \in [b]$. So $[a]\subseteq[b]$, and by symmetry of the argument $[b]\subseteq[a]$. So $[a]=[b]$ by double inclusion (module 2.6).
 </Proof>
@@ -99,7 +101,7 @@ For congruence mod $3$ the classes are
 $$
 [0] = \{\ldots,-3,0,3,6,\ldots\},\quad [1]=\{\ldots,1,4,7,\ldots\},\quad [2]=\{\ldots,2,5,8,\ldots\},
 $$
-which is exactly the partition module 4.4 produced from the division algorithm. Two routes, one partition.
+which is exactly the division into parts that module 4.4 produced from the division algorithm. Two routes, one answer.
 
 <Warning title="Well-definedness returns">
 Defining operations on classes means checking the answer does not depend on which name you picked — the check module 3.1 introduced.

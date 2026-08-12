@@ -42,7 +42,7 @@ The same identity appears in three costumes later in the course, each time as an
 
 - $\overline{\overline S} = S$ for set complements (§2.5)
 - $\overline{\bar z} = z$ for complex conjugation (§5.4)
-- $(f^{-1})^{-1} = f$ for inverse function (§3.9: the rule that undoes it)s
+- $(f^{-1})^{-1} = f$ for inverse functions (§3.9: the rule that undoes it)
 
 An operation that undoes itself is worth spotting, because it tells you immediately that applying it twice is wasted effort — a small but genuinely useful habit.
 
@@ -55,7 +55,7 @@ $$
 
 *Symbol by symbol: $\neg$ is "not", $\equiv$ is "says the same as".*
 
-**Quantifier alternation.**
+**Quantifier alternation** (the *for every* and *there is* words, §1.10).
 $$
 \neg(\forall x\, p(x)) \equiv \exists x\, \neg p(x), \qquad \neg(\exists x\, p(x)) \equiv \forall x\, \neg p(x).
 $$
@@ -78,7 +78,7 @@ Negation swaps $\wedge$ and $\vee$. Module 1.4 proves this and it is arguably th
 
 The general shape: $\neg(\forall x, p(x))$ is $\exists x, \neg p(x)$, and **not** $\forall x, \neg p(x)$. The second is the *contrary* — a stronger claim that can fail alongside the original.
 
-The error is not confined to quantifier (§1.10: the *for every* and *there is* words)s. $\neg(\text{increasing})$ is not *decreasing*; a function can be neither. $\neg(\text{convergent})$ is not *"tends to infinity"*; $(-1)^n$ does neither. $\neg(x>0)$ is not $x<0$; zero exists. In each case the correct negation is the weakest statement incompatible with the original, and the tempting answer is something stronger.
+The error is not confined to quantifiers (§1.10: the *for every* and *there is* words). $\neg(\text{increasing})$ is not *decreasing*; a function can be neither. $\neg(\text{convergent})$ — *not settling towards any single value* — is not *"tends to infinity"*; $(-1)^n$ does neither. $\neg(x>0)$ is not $x<0$; zero exists. In each case the correct negation is the weakest statement incompatible with the original, and the tempting answer is something stronger.
 
 **Assuming a contrary instead of a negation invalidates an indirect proof**, even when the contradiction you reach is genuine — because you assumed more than the negation gave you.
 </Warning>
@@ -90,7 +90,7 @@ Precalculus already trades in statements whose negations are non-obvious, and th
 | Statement | Negation |
 |---|---|
 | $f$ is even | $f(-x)\neq f(x)$ for **some** $x$ |
-| $f$ is bounded above | for **every** $M$, some $x$ has $f(x)>M$ |
+| $f$ is bounded above (never passes some fixed height) | for **every** $M$, some $x$ has $f(x)>M$ |
 | the sequence is increasing | some consecutive pair fails $a_n \leq a_{n+1}$ |
 | $\theta$ is a solution of $\sin\theta = 1$ | $\sin\theta \neq 1$ |
 

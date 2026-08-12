@@ -25,9 +25,13 @@ The fourth is a special case of **substitution**: if $x = y$ then any statement 
 
 ## Equivalence relations
 
-A relation $\sim\ \subseteq S\times S$ (§2.9) satisfying A1–A3 is an **equivalence relation**.
+A relation satisfying A1–A3 is an **equivalence relation**.
+
+Worth restating what a relation *is*, because §2.9 made a move that is easy to skim past: a relation on $S$ is not a description but a **collection of ordered pairs** — the pairs it holds for, and nothing else. Writing $\sim\ \subseteq S \times S$ says exactly that: $\sim$ is some sub-collection of all the pairs you could form from $S$, and $a \sim b$ is shorthand for *the pair $(a,b)$ is one of them*. Every property below is a property of that collection.
 
 Dropping symmetry and adding the rule that mutual containment forces equality ($a\sim b \wedge b \sim a \Rightarrow a = b$) gives an **ordering** instead — the kind $\leq$ and $\subseteq$ are — $\leq$ on $\mathbb{R}$, $\subseteq$ on $\mathcal{P}(X)$ (§2.3), $\mid$ on $\mathbb{Z}_{>0}$ (§4.2). The two families of structures are the two natural ways to weaken equality, and almost every relation of interest is one or the other.
+
+What follows is a **proposition** — a result worth stating on its own, smaller than the theorem it feeds.
 
 > **Proposition.** $a \equiv b \pmod n :\iff n \mid (a-b)$ is an equivalence relation on $\mathbb{Z}$.
 
@@ -37,14 +41,14 @@ Reflexive: $n \mid 0 = a-a$. Symmetric: $a-b = nk \Rightarrow b-a = n(-k)$. Tran
 
 ## The fundamental theorem
 
-> **Theorem.** The equivalence classes $[a] = \{x \in S : x\sim a\}$ partition $S$. The other way round, every partition of $S$ arises from a unique equivalence relation.
+> **Theorem.** The equivalence classes $[a] = \{x \in S : x\sim a\}$ **partition** $S$ — they divide it into non-overlapping parts that use up everything. The other way round, every such division of $S$ arises from exactly one equivalence relation.
 
 <Proof>
 *Classes cover $S$.* $a \in [a]$ by reflexivity (everything stands in it to itself, §7.2).
 
-*Classes are equal or disjoint.* If $c \in [a]\cap[b]$ then $c\sim a$ and $c\sim b$. For $x \in [a]$: $x \sim a$, and $a \sim c$ by symmetry, so $x \sim c$ by transitivity, so $x \sim b$ by transitivity again. So $[a]\subseteq[b]$, and symmetrically $[b]\subseteq[a]$; so $[a]=[b]$ by double inclusion (§2.6).
+*Classes are equal or **disjoint** — sharing no members at all.* If $c \in [a]\cap[b]$ then $c\sim a$ and $c\sim b$. For $x \in [a]$: $x \sim a$, and $a \sim c$ by symmetry, so $x \sim c$ by transitivity, so $x \sim b$ by transitivity again. So $[a]\subseteq[b]$, and symmetrically $[b]\subseteq[a]$; so $[a]=[b]$ by double inclusion (§2.6).
 
-*Converse.* Given a partition $\mathcal{Q}$, define $x \sim y$ iff $x$ and $y$ lie in the same block. Reflexivity holds since blocks cover $S$; symmetry is immediate; transitivity (first-to-second and second-to-third gives first-to-third, §7.2) holds since blocks are disjoint. Its classes are exactly the blocks.
+*The other way round.* Given such a division of $S$ into non-overlapping parts, define $x \sim y$ to mean that $x$ and $y$ lie in the same part. Reflexivity holds since the parts use up all of $S$; symmetry is immediate; transitivity (first-to-second and second-to-third gives first-to-third, §7.2) holds since blocks are disjoint. Its classes are exactly the blocks.
 </Proof>
 
 Each of the three axioms was used exactly once, which is a compact demonstration of their independence in practice.
