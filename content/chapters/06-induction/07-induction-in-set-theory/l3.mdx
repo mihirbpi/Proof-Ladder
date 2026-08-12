@@ -36,14 +36,14 @@ Now do it for a few sizes.
 
 $1, 2, 4, 8$ — doubling.
 
-> **Claim.** A set with $n$ elements has $2^n$ subsets.
+> **Claim.** Adding one more element to a set doubles how many subsets it has — so the counts run $1, 2, 4, 8, 16, \ldots$, doubling forever.
 
 ## Why it doubles
 
 <Discussion>
   <div slot="know">Every subset either contains a chosen element or does not — and those are the only two options (module 1.3's excluded middle).</div>
   <div slot="want">The count for a set with one more thing in it, given the count for the smaller set.</div>
-  <div slot="how">Pick one element $a$ out of the bigger set. Split the subsets into those containing $a$ and those not. Each group turns out to have exactly as many members as the power set of the elements that are left.</div>
+  <div slot="how">Pick one element $a$ out of the bigger set. Split the subsets into those containing $a$ and those not. Each group turns out to have exactly as many members as there are subsets of what is left.</div>
 </Discussion>
 
 <Proof>
@@ -72,20 +72,18 @@ Line up the elements. To build a subset, walk down the line and, for each one, d
 
 That is $2$ choices, $n$ times. So there are
 $$
-\underbrace{2 \times 2 \times \cdots \times 2}_{n} = 2^n
+\underbrace{2 \times 2 \times \cdots \times 2}_{n \text{ of them}}
 $$
-subsets.
+subsets — a $2$ for every element, all multiplied together.
 
 More exactly: a subset is the same thing as a function from $S$ to $\{\text{in}, \text{out}\}$ — a machine sending each element to one of two answers (Chapter 3). Counting subsets and counting those functions is the same job.
 
 <Warning title="Do not forget the empty set and the whole set">
-The two most-forgotten subsets are the empty one — the set with nothing in it — and the whole set. Both are genuine subsets (module 2.3), and both are needed for the count to come out to $2^n$.
+The two most-forgotten subsets are the empty one — the set with nothing in it — and the whole set. Both are genuine subsets (module 2.3), and both are needed for the doubling count to come out right.
 
 Check: for $|S| = 2$ the answer is $4$. Omitting $\{\,\}$ gives $3$, and the doubling pattern dies immediately.
 </Warning>
 
 <Aside>
-The notation for the power set is sometimes written $2^S$, and now you can see why: its size is $2^{|S|}$. The exponent notation is doing real work rather than being a coincidence.
-
-The doubling continues without limit, and it does something remarkable for infinite sets too — a set always has strictly *more* subsets than elements, even when it is infinite. That is Cantor's theorem, and it is why there is no largest infinity.
+Notice how fast this grows. Ten elements already give $1024$ subsets, and twenty give more than a million. Doubling starts slowly and then runs away from you — which is why a set of any decent size has far too many subsets to list, and why an argument like the one above is the only way to count them.
 </Aside>

@@ -44,9 +44,9 @@ $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", $\nmid$ is "does not divide".*
 
-A negative hypothesis, useless as such, becomes finitely many positive ones. This is the whole method: **residues turn negation into cases**.
+A negative hypothesis, useless as such, becomes finitely many positive ones. This is the whole method: **remainders turn negation into cases**.
 
-Writing $a \equiv b \pmod n$ for $n \mid (a-b)$, the residue classes $[0], \ldots, [n-1]$ partition $\mathbb{Z}$, and congruence is compatible with $+$ and $\times$ — so one may compute with representatives, which is what the case analyzes below do.
+Sorting the integers by the remainder they leave on division by $n$ gives exactly $n$ groups, one for each remainder $0, 1, \ldots, n-1$, with every integer in exactly one. What makes the groups useful is that they survive arithmetic: add or multiply two integers and the remainder of the answer depends only on which groups the two came from, never on which members you picked. So a claim about every integer can be settled by checking one representative from each group, which is what the case analyzes below do.
 
 ## The showcase proposition
 
@@ -56,11 +56,11 @@ Writing $a \equiv b \pmod n$ for $n \mid (a-b)$, the residue classes $[0], \ldot
 
 <Discussion>
 
-*The symbols in this discussion: $\Rightarrow$ is "forces", $\equiv$ is "says the same as", the bar $\mid$ is "divides", $\nmid$ is "does not divide", $\pmod n$ is "on division by $n$". In words, the plan is: the hypothesis is a negative, so turn the claim around and check each remainder.*
+*The symbols in this discussion: $\Rightarrow$ is "forces", $\equiv$ is "says the same as", the bar $\mid$ is "divides", $\nmid$ is "does not divide". In words, the plan is: the hypothesis is a negative, so turn the claim around and check each remainder.*
 
   <div slot="know">A negative hypothesis about the composite quantity $a^2 - 1$, with a conclusion about $a$. Both of §1.8's indicators fire.</div>
   <div slot="want">$3 \mid a$.</div>
-  <div slot="how">Contrapose to $3 \nmid a \Rightarrow 3 \mid a^2 - 1$, then convert the still-negative hypothesis into the two cases $a \equiv 1$ and $a \equiv 2 \pmod 3$ and compute.</div>
+  <div slot="how">Contrapose to $3 \nmid a \Rightarrow 3 \mid a^2 - 1$, then convert the still-negative hypothesis into the two cases *$a$ leaves remainder $1$ on division by $3$* and *$a$ leaves remainder $2$*, and compute.</div>
 </Discussion>
 
 <Proof>
@@ -78,20 +78,20 @@ The proof composes five separate tools — contraposition (§1.8), the division 
 State the exhaustive list, then eliminate the impossible ones explicitly. An unmentioned excluded case is indistinguishable, to a reader, from a forgotten one — and forgotten cases are the commonest structural defect in this style of proof.
 </Warning>
 
-## Residues as an obstruction
+## Remainders as an obstruction
 
-> **Proposition.** $a^2 \equiv 0$ or $1 \pmod 3$ for every $a \in \mathbb{Z}$; never $2$.
+> **Proposition.** Every square leaves remainder $0$ or $1$ on division by $3$. Never $2$.
 
 <Proof>
 With $a = 3k+r$, $r \in \{0,1,2\}$: $a^2$ is $9k^2$, then $9k^2+6k+1$, then $9k^2+12k+4$, leaving remainders $0$, $1$, $1$.
 </Proof>
 
-Consequences are immediate and sharp: no integer of the form $3n+2$ is a perfect square; the equation $a^2+b^2 = 3c^2$ has only the all-zero solution (reduce mod 3 and use that a sum of two elements of $\{0,1\}$ is $0$ only when both are); and mod $4$, the same technique shows $a^2+b^2 = 4^k(8m+7)$ is unsolvable, which is the negative half of the three-squares theorem.
+Consequences are immediate and sharp: no integer of the form $3n+2$ is a perfect square; the equation $a^2+b^2 = 3c^2$ has only the all-zero solution (take remainders on division by $3$ and use that two numbers from $\{0,1\}$ sum to $0$ only when both are $0$); and on division by $4$, the same technique shows $a^2+b^2 = 4^k(8m+7)$ is unsolvable, which is the negative half of the three-squares theorem.
 
-Squares mod $8$ lie in $\{0,1,4\}$; cubes mod $9$ lie in $\{0,1,8\}$; fourth powers mod $16$ lie in $\{0,1\}$. **Reduce modulo a well-chosen $n$** is the standard first move against a Diophantine equation, and the art is picking $n$.
+Squares leave only the remainders $0$, $1$ or $4$ on division by $8$; cubes leave only $0$, $1$ or $8$ on division by $9$; fourth powers leave only $0$ or $1$ on division by $16$. **Take remainders on a well-chosen $n$** is the standard first move against an equation where only whole-number answers count, and the art is picking $n$.
 
 <Aside>
-This method proves non-existence, never existence. An equation solvable modulo every $n$ may still have no whole-number solutions at all. The standard example is $3x^3+4y^3+5z^3=0$: it has solutions modulo every $n$ you try, and none in $\mathbb{Z}$. Congruence obstructions are necessary conditions, not sufficient ones.
+This method proves non-existence, never existence. An equation whose remainders work out for every $n$ may still have no whole-number solutions at all. The standard example is $3x^3+4y^3+5z^3=0$: the remainders come out consistent for every $n$ you try, and there are no solutions in $\mathbb{Z}$. Remainder obstructions are necessary conditions, not sufficient ones.
 </Aside>
 
 <WhereThisGoes level="l7">

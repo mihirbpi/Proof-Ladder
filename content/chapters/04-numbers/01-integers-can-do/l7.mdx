@@ -17,7 +17,7 @@ Every integer proof you have written invokes properties of $\mathbb{Z}$ that wer
 
 An **axiom** is a rule assumed at the start rather than proved from something earlier; §7.1 examines what that really commits you to. For now, take the following as the rules of arithmetic and watch how much comes out of them.
 
-$(\mathbb{Z}, +, \cdot)$ satisfies, for all $a,b,c$:
+The integers, with $+$ and $\cdot$, satisfy the following for all $a,b,c$:
 
 **Additive.** Associativity $(a+b)+c = a+(b+c)$; commutativity $a+b=b+a$; identity $a + 0 = a$; inverses $a + (-a) = 0$.
 
@@ -25,7 +25,7 @@ $(\mathbb{Z}, +, \cdot)$ satisfies, for all $a,b,c$:
 
 **Linking.** Distributivity $a(b+c) = ab+ac$.
 
-A structure satisfying all of these is a **system obeying the standard arithmetic rules with identity**. Closure is implicit in calling $+$ and $\cdot$ operations that take two integers and return one, $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ — which, note, is a statement about functions in the sense of Chapter 3.
+These are the rules — there is no need for a name for the collection of them, and the later courses that give it one are not assuming anything more than this list. Closure is implicit in calling $+$ and $\cdot$ operations that take two integers and return one, $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ — which, note, is a statement about functions in the sense of Chapter 3.
 
 Facts that look primitive are in fact derived, and deriving them is worth doing:
 
@@ -59,14 +59,14 @@ $$
 In words: **a product can only be zero if one of the factors is zero.** Equivalently, cancellation holds: $ab = ac$ with $a \neq 0$ gives $b = c$.
 
 <Warning title="Cancellation is not free">
-In $\mathbb{Z}/12\mathbb{Z}$, $3 \cdot 4 = 0$ with both factors nonzero, and $3 \cdot 4 = 3 \cdot 8 = 0$ while $4 \neq 8$. So canceling a common factor is illegal there.
+On a $12$-hour clock, $3 \cdot 4$ comes back round to $0$ with neither factor zero, and $3 \cdot 4$ and $3 \cdot 8$ both give $0$ while $4 \neq 8$. So canceling a common factor is illegal there.
 
 Every proof that divides both sides by something is using cancellation, so the domain property. In $\mathbb{Z}$ this is safe. In systems where a product of nonzeros can vanish it is not, and knowing which you are in is the difference between a proof and an error.
 </Warning>
 
 ## Consequences of the axioms alone
 
-The $a\cdot0=0$ proof above used nothing about zero except that it is the additive identity. Two more in the same spirit, each a fact people treat as undefined starting word (§7.1: a word deliberately left undefined at the start):
+The $a\cdot0=0$ proof above used nothing about zero except that it is the additive identity. Two more in the same spirit, each a fact most people treat as too basic to need proving:
 
 > **Proposition.** $(-a)b = -(ab)$.
 
@@ -76,9 +76,9 @@ $ab + (-a)b = (a + (-a))b = 0\cdot b = 0$ by distributivity and the previous res
 
 Apply the previous proposition twice. That negative times negative is positive is not a convention adopted for convenience — it is forced, and any system in which it failed would violate distributivity.
 
-Each proof used only the table. That is what makes them theorems about *every* system obeying the standard arithmetic rules, including matrices and polynomials, at once — and it is why a single page of algebra can replace a separate treatment of each system.
+Each proof used only the table — so each is a theorem about *every* system obeying it at once, polynomials and the number grids of Algebra II included. One page replaces a separate treatment of each.
 
-The converse (the same statement with its two halves swapped, §1.7) habit is worth building too: when a familiar identity **fails** in a new system, the failure identifies which axiom is missing. Matrices lose commutativity of multiplication, and with it $(A+B)^2 = A^2+2AB+B^2$; $\mathbb{Z}/12\mathbb{Z}$ loses the domain property, and with it cancellation. In both cases the broken identity points straight at the absent row of the table.
+The converse (the same statement with its two halves swapped, §1.7) habit is worth building too: when a familiar identity **fails** in a new system, the failure identifies which axiom is missing. Matrices lose commutativity of multiplication, and with it $(A+B)^2 = A^2+2AB+B^2$; clock arithmetic on $12$ hours loses the rule that a product of non-zero things is non-zero, and with it cancellation. In both cases the broken identity points straight at the absent row of the table.
 
 ## Why the abstraction pays
 

@@ -24,7 +24,7 @@ In the language of Chapter 3, A8 says $S$ is **injective** (module 3.5), and it 
 
 ## Why each is needed
 
-Module 7.1 described the method: to show an axiom does not follow from the others, build a structure satisfying the others and violating it.
+Module 7.1 described the method: to show an axiom does not follow from the others, build an example obeying the others and breaking it.
 
 **A loop violates A7.** Take $M_1 = \{0, 1\}$ with $S(0) = 1$ and $S(1) = 0$.
 
@@ -90,7 +90,7 @@ Both axioms here are negative — they say something *never* happens — and neg
 
 **Without A7** — the axiom saying nothing steps to zero — the numbers could close into a loop. Picture five beads arranged in a circle: $0, 1, 2, 3, 4$, and then the step from $4$ leads back to $0$. Every bead has a next one, so nothing else in the list of axioms complains. But now "keep stepping and you will eventually pass every number" is false, and so is the idea that a number gets bigger each step.
 
-That structure is a real object rather than a curiosity — it is the remainder arithmetic of module 4.4, where $4 + 1 = 0$ once you work modulo $5$. A7 is the axiom saying the counting numbers are not that.
+That structure is a real object rather than a curiosity — it is the remainder arithmetic of module 4.4, where $4 + 1 = 0$ once you keep only remainders on division by $5$. A7 is the axiom saying the counting numbers are not that.
 
 ### The other one keeps two chains from merging
 

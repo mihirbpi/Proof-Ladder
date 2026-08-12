@@ -13,29 +13,29 @@ import Warning from '@/components/Warning.astro';
 
 ## The cycle of powers of $i$
 
-*A reminder from module 5.3: a dash in front means the backwards side of zero, so $-1$ is one step from $0$ going the other way. And $i^2$ is short for $i \times i$.*
+*A reminder from module 5.3: a dash in front means the backwards side of zero, so $-1$ is one step from $0$ going the other way.*
 
 Start with $i$ and keep multiplying:
 
 $$
-i^1 = i, \qquad
-i^2 = -1, \qquad
-i^3 = i^2 \times i = -i, \qquad
-i^4 = i^3 \times i = -i \times i = 1.
+i = i, \qquad
+i \times i = -1, \qquad
+i \times i \times i = -i, \qquad
+i \times i \times i \times i = 1.
 $$
 
-And then it starts over: $i^5 = i$, $i^6 = -1$, and so on.
+And then it starts over: a fifth $i$ brings you back to $i$, a sixth to $-1$, and so on forever.
 
-<Figure alt="Four points marked at the compass positions one, i, minus one, and minus i around the origin." caption="The powers of $i$ walk around the four compass points and return.">
+<Figure alt="Four points marked at the compass positions one, i, minus one, and minus i around the origin." caption="Multiplying by $i$ again and again walks around the four compass points and returns.">
   <ComplexPlane points={[
-    {re: 1, im: 0, label: "i⁴ = 1"},
-    {re: 0, im: 1, label: "i¹"},
-    {re: -1, im: 0, label: "i²"},
-    {re: 0, im: -1, label: "i³"}
+    {re: 1, im: 0, label: "four i's: 1"},
+    {re: 0, im: 1, label: "one i"},
+    {re: -1, im: 0, label: "two i's"},
+    {re: 0, im: -1, label: "three i's"}
   ]} range={2} />
 </Figure>
 
-So the powers of $i$ take only **four** values, cycling forever. To find $i^{23}$, divide $23$ by $4$: it goes $5$ times with remainder $3$. The five full loops change nothing, so $i^{23} = i^3 = -i$.
+So multiplying $i$ by itself, however many times, lands on only **four** possible answers, cycling forever. To find where $23$ $i$s land, divide $23$ by $4$: it goes $5$ times with remainder $3$. The five full loops change nothing, so the answer is wherever $3$ $i$s land, which is $-i$.
 
 (That is module 4.4's remainder idea, used on turns instead of counters.)
 
@@ -47,14 +47,13 @@ Writing it down properly needs two pieces of notation you have not met, so it is
 
 ### Where the formula comes from
 
-There is a way of writing $e^x$ as an endless sum of powers of $x$. Put $i\theta$ in place of $x$ and you get an endless sum of powers of $i\theta$. Each power of $i$ is one of the four cycle values.
+Getting to it needs a tool from a much later course, and this page will not pretend to hand you one. But the part the cycle does can be described.
 
-- The terms where $i$ came out as $+1$ or $-1$ have no $i$ left. They are the **real** terms.
-- The terms where $i$ came out as $+i$ or $-i$ each carry one $i$. They are the **imaginary** terms.
+That later tool turns the two sides of the formula into two very long strings of additions — one term, then another, then another, going on forever. Every one of those terms carries some number of $i$s, and by the cycle each of them collapses to one of just four things: $1$, $i$, $-1$, $-i$.
 
-Sort them into those two piles. Each pile turns out to be an endless sum that measures something about a point on a circle: the first pile gives how far **across** the point is, and the second gives how far **up**.
+So every term lands in one of two piles: the ones with no $i$ left, and the ones carrying a single $i$. The first pile turns out to measure how far **across** the point is, and the second how far **up**.
 
-**The cycle is what does the sorting.** Without it, the terms would not separate into two clean halves, and the formula would not exist.
+**The cycle is what does the sorting.** Without it the terms would not fall into two clean piles, and the formula would not exist.
 
 ## What the formula says
 
@@ -77,7 +76,7 @@ Euler's formula needs infinite sums and the calculus that handles them safely. I
 </Warning>
 
 <Aside>
-Put $\theta$ = half a turn into the formula. You get $e^{i\pi} = -1$, usually written
-$$e^{i\pi} + 1 = 0.$$
-Five of the most important constants in mathematics — $e$, $i$, $\pi$, $1$, and $0$ — in one short line, and none of them was invented with the others in mind.
+Feed half a turn into the formula and it says: walking halfway around the circle from $1$ lands you exactly on $-1$. You already knew that from the picture — but the formula gets there from the other side, out of the cycle and an endless string of additions, with no circle drawn anywhere.
+
+Written out in the notation of a later course, that single sentence turns into a one-line equation tying together five of the most important numbers in mathematics, none of which was invented with the others in mind. It is regularly voted the most beautiful equation there is, and what it says is the sentence above.
 </Aside>

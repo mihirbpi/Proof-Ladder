@@ -80,13 +80,13 @@ Note that $m \mid 0$ for every $m$, including $m = 0$: $0 = 0\cdot 0$. So $0 \mi
 
 ## Parity as a structure-preserving map
 
-The even/odd arithmetic of this module is more structured than the individual computations suggest. Define the **parity** of $n$ to be its remainder mod $2$. Then
+The even/odd arithmetic of this module is more structured than the individual computations suggest. Define the **parity** of $n$ to be its remainder on division by $2$. Then
 
 $$\operatorname{par}(m+n) = \operatorname{par}(m) + \operatorname{par}(n), \qquad \operatorname{par}(mn) = \operatorname{par}(m)\operatorname{par}(n),$$
 
-with the right-hand arithmetic done mod $2$. A map preserving both operations is called **structure-preserving**, and the five parity facts of this module are its multiplication and addition tables — five separate proofs replaced by one structural statement.
+with the arithmetic on the right also done as remainders on division by $2$. Read that as a single statement: *parity passes through both operations* — work out the parities first or the answer first, and you land in the same place either way. The five parity facts of this module are exactly its addition and multiplication tables, so five separate proofs collapse into one.
 
-This is the pattern that recurs throughout the course: a family of facts first proved individually, then covered by identifying the structure that made them true. §4.4's congruences do the same for general moduli, and the payoff is that the general statement is easier to remember and easier to apply than the list.
+This is the pattern that recurs throughout the course: a family of facts first proved individually, then covered by identifying the structure that made them true. §4.4 does the same for remainders on division by any $n$, and the payoff is that the general statement is easier to remember and easier to apply than the list.
 
 Parity also supplies the fastest route to several classic results. A chessboard with two opposite corners removed cannot be tiled by dominoes, because each domino covers one square of each color and the mutilated board has unequal counts. That argument is a parity argument, and it is complete — no case analysis, no search.
 

@@ -85,13 +85,13 @@ A5 ✓, A6 ✓, A7 ✓ (neither $a$ nor $b$ maps to $0$), A8 ✓ ($S$ is injecti
 
 So a model may contain a full copy of $\mathbb{N}$ *plus* extra components disconnected from $0$. A5–A8 constrain the component of $0$ and say nothing about the rest.
 
-§7.5's Axiom 9 is exactly the smallest-possible condition excluding these. The point worth carrying is that no *finitely many* first-order axioms of this kind can do the job — see below.
+§7.5's Axiom 9 is exactly the smallest-possible condition excluding these.
 </Warning>
 
 <Aside>
-A7 and A8 hold in models with rogue elements, and A9 will exclude them — but only in its **second-order** form, quantifying over all subsets. The weaker version — one induction axiom for each formula you can write down — cannot: by building a model, adding a constant $c$ and the axioms $c \neq \overline n$ for every numeral $\overline n$ gives a consistent theory, so a model containing an element exceeding every numeral.
+It is worth appreciating how little A5–A8 pin down. They force $0$ and everything reachable from it by repeated $S$, and they force that part to be an unending chain with no loops and no merges — but they say nothing whatever about elements sitting off to one side, out of $0$'s reach.
 
-These are arithmetic's **impostors**. They satisfy every theorem expressible in the restricted language of $\mathbb{N}$ and are not the same up to renaming to it — so the notion "natural number" is not first-order definable. Skolem constructed the first in 1934.
+The rogue pair $\{a, b\}$ above is the smallest illustration. Nothing stops you attaching a hundred such pairs, or an entire second chain running alongside the first. Every one of those is a legitimate model of A5–A8, which is exactly why a ninth axiom is needed and why it has to be a statement about *reachability* rather than one more rule about $S$.
 </Aside>
 
 <WhereThisGoes level="l7">

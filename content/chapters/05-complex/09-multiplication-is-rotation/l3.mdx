@@ -13,13 +13,15 @@ import Warning from '@/components/Warning.astro';
 
 Multiplying complex numbers in grid form means expanding brackets and collecting terms (module 5.3). In polar form (module 5.8) it becomes something much simpler.
 
-*Carried over from module 5.8: writing $r$ for how far a point is from the center and $\theta$ for how far round it has turned, $r\,e^{i\theta}$ is the shorthand for that point. Neither the letter $\theta$ nor the $e$ is anything you need to compute with here — the whole rule below is about $r$ and $\theta$ themselves.*
+*Carried over from module 5.8: a point is named by the pair $(r, \theta)$, where $r$ is how far it is from the center and $\theta$ is how far round it has turned. The Greek letter $\theta$ is said "THAY-ta" and is just a name for the turn.*
 
 ## The rule
 
 $$
-\big(r_1 e^{i\theta_1}\big)\big(r_2 e^{i\theta_2}\big) = (r_1 r_2)\, e^{i(\theta_1 + \theta_2)}.
+(r_1, \theta_1) \times (r_2, \theta_2) = (r_1 \times r_2, \;\theta_1 + \theta_2).
 $$
+
+*Symbol by symbol: the little $1$ and $2$ below the letters just say "the first one" and "the second one". So the line reads: to multiply two points, multiply their distances and add their turns.*
 
 In words:
 
@@ -47,28 +49,22 @@ So multiplying by $i$ **rotates by a quarter turn and does nothing else**. That 
 
 And $i \times i$: distances $1 \times 1 = 1$, angles a quarter plus a quarter equals a half. Distance $1$ at a half turn is $-1$. ✓
 
-**So $i^2 = -1$ is a statement about turning.** It was never an arbitrary rule.
+**So $i \times i = -1$ is a statement about turning.** It was never an arbitrary rule.
 
 ## A worked example
 
-Multiply $2e^{i \cdot 60°}$ by $3e^{i\cdot 90°}$.
+Multiply $(2, 60°)$ by $(3, 90°)$.
 
 - Distances: $2 \times 3 = 6$.
 - Angles: $60° + 90° = 150°$.
 
-Answer: $6e^{i\cdot 150°}$.
+Answer: $(6, 150°)$.
 
 Try doing that by expanding brackets and you will appreciate the polar version.
 
 ## Why the rule is true
 
-The reason is a fact about exponents that you already know:
-$$
-e^{A} \times e^{B} = e^{A+B}.
-$$
-Multiplying powers means adding the exponents. Here the exponents are $i\theta_1$ and $i\theta_2$, so they add to $i(\theta_1+\theta_2)$ — and the angles add.
-
-The distances $r_1$ and $r_2$ are just ordinary numbers out front, so they multiply as usual.
+Proving it needs a tool that arrives in a later course, so this page will not pretend otherwise. What can be said now is what the proof comes down to: multiplying by a number at distance $1$ turns the plane without stretching it, and multiplying by a plain number at turn $0°$ stretches the plane without turning it. Every complex number is one of each, done one after the other — so distances stretch and turns add.
 
 ## Checking the rule where you already know the answer
 

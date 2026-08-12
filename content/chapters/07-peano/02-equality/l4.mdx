@@ -2,13 +2,11 @@
 level: l4
 title: The rules for equality
 readingTimeMin: 6
-newTerms: ["reflexive", "symmetric", "transitive", "equivalence relation", "equivalence class"]
+newTerms: ["reflexive", "symmetric", "transitive", "equivalence relation"]
 anchorExample: "successor function"
 ---
 
 import Proof from '@/components/Proof.astro';
-import Aside from '@/components/Aside.astro';
-import Warning from '@/components/Warning.astro';
 
 ## Axioms 1–4
 
@@ -62,13 +60,13 @@ Note that $\leq$ and $\subseteq$ satisfy two of the three and are **orderings** 
 
 ## Same remainder
 
-For $n \geq 1$, say that $a$ and $b$ **leave the same remainder on division by $n$** when $n \mid (a-b)$ (module 4.2). Later courses write this $a \equiv b \pmod n$ and call it *congruence modulo $n$*; the notation is theirs, the idea is the one you already have from long division.
+For $n \geq 1$, say that $a$ and $b$ **leave the same remainder on division by $n$** when $n \mid (a-b)$ (module 4.2). Later courses give this a symbol of its own and a name — *congruence* — but the notation is theirs, and the idea is the one you already have from long division.
 
 <Proof>
 
-*The symbols in this proof: $\equiv$ is "says the same as", $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides". In words, what follows shows: having the same remainder passes all three tests, so it behaves like equality.*
+*The symbols in this proof: $\in$ is "is in", $\mathbb{Z}$ is the integers, the bar $\mid$ is "divides". In words, what follows shows: having the same remainder passes all three tests, so it behaves like equality.*
 
-**Reflexive.** $n \mid (a - a) = 0$ for every $n$, so $a \equiv a$.
+**Reflexive.** $n \mid (a - a) = 0$ for every $n$, so $a$ leaves the same remainder as itself.
 
 **Symmetric.** If $n \mid (a-b)$, say $a - b = nk$, then $b - a = n(-k)$ with $-k \in \mathbb{Z}$, so $n \mid (b-a)$.
 
@@ -79,48 +77,26 @@ and $j+k \in \mathbb{Z}$ by closure. So $n \mid (a-c)$.
 
 Each step is the divisibility template of module 4.3.
 
-## Equivalence classes, and splitting a set into parts
+## Where else the three properties show up
 
-For $a \in S$, the **equivalence class** of $a$ is
-$$
-[a] = \{\, x \in S \mid x \sim a \,\}.
-$$
+The point of naming the three properties is that they turn up constantly, and spotting them saves work.
 
-*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the class of $a$ is everything in $S$ that counts as the same as $a$.*
+| Relation | Reflexive? | Symmetric? | Transitive? |
+|---|---|---|---|
+| *is the same age as* | ✓ | ✓ | ✓ |
+| *leaves the same remainder on division by $3$* | ✓ | ✓ | ✓ |
+| *is the same height as* | ✓ | ✓ | ✓ |
+| *is taller than* | ✗ | ✗ | ✓ |
+| *is a sibling of* | ✗ | ✓ | ✗ |
 
-> **Theorem.** The equivalence classes of $\sim$ **partition** $S$ — that is, they divide it into parts with no overlaps and nothing left out: every element lies in exactly one class.
+The first three behave like equality and can be used like it. The last two cannot, and the table shows exactly which property fails in each case.
 
-<Proof>
+*Is a sibling of* is the one worth doing carefully. It feels like a "same as" relation — same parents, after all — but you are not your own sibling, so it fails reflexivity. Test each property separately, every time, rather than deciding by how the relation sounds.
 
-*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\subseteq$ is "sits inside", $\emptyset$ is "the empty set". In words, what follows shows: the classes cover everything and never partly overlap — two are either identical or share nothing.*
+## What "behaves like equality" buys you
 
-*Every element is in a class.* $a \in [a]$ by reflexivity.
+When a relation passes all three tests, you can reason with it the way you reason with $=$: swap one side for the other, chain statements together, and run the argument in either direction.
 
-*Classes are identical or **disjoint** — sharing nothing at all.* Suppose $[a]\cap[b] \neq \emptyset$, say $c \in [a]\cap[b]$, so $c \sim a$ and $c \sim b$.
+That is the whole reason for the checking. Take *leaves the same remainder on division by $3$*. Because it passes the three tests, you may argue that $17$ and $2$ leave the same remainder, and $2$ and $11$ leave the same remainder, so $17$ and $11$ do — without dividing anything. Transitivity is what licenses that step, and if the relation had failed it the step would be worthless.
 
-Let $x \in [a]$, so $x \sim a$. From $c \sim a$ and symmetry, $a \sim c$; with transitivity, $x \sim c$; with $c \sim b$ and transitivity again, $x \sim b$, so $x \in [b]$. So $[a]\subseteq[b]$, and by symmetry of the argument $[b]\subseteq[a]$. So $[a]=[b]$ by double inclusion (module 2.6).
-</Proof>
-
-All three axioms were used, each exactly once — a good demonstration that none is redundant.
-
-For congruence mod $3$ the classes are
-$$
-[0] = \{\ldots,-3,0,3,6,\ldots\},\quad [1]=\{\ldots,1,4,7,\ldots\},\quad [2]=\{\ldots,2,5,8,\ldots\},
-$$
-which is exactly the division into parts that module 4.4 produced from the division algorithm. Two routes, one answer.
-
-<Warning title="Well-definedness returns">
-Defining operations on classes means checking the answer does not depend on which name you picked — the check module 3.1 introduced.
-
-$[a]+[b] := [a+b]$ is well defined: if $a \equiv a'$ and $b\equiv b'$ then $n \mid (a-a')$ and $n\mid(b-b')$, so $n \mid (a+b)-(a'+b')$ and $[a+b]=[a'+b']$. ✓
-
-the rule sending $[a]$ to $a$ is **not** well defined: $[1] = [4]$ mod $3$, and $1 \neq 4$. No one member of a class is the official one — there is no single standard choice fixed once and for all.
-
-This check is required every time, and it is the step first-year algebra students skip most often.
-</Warning>
-
-<Aside>
-Quotients by equivalence relations are how number systems get built. $\mathbb{Z}$ is pairs of naturals under $(a,b)\sim(c,d) \iff a+d = b+c$, with $(a,b)$ meaning $a - b$. $\mathbb{Q}$ is pairs of integers under $(p,q)\sim(r,s)\iff ps = qr$ (module 4.5). $\mathbb{Z}/n\mathbb{Z}$ is $\mathbb{Z}$ under congruence.
-
-In each case: start with known objects, choose the right notion of *same*, and the classes are the new numbers.
-</Aside>
+Module 4.4 uses this constantly. Splitting a proof into the cases *remainder $0$*, *remainder $1$*, *remainder $2$* is only legitimate because every integer leaves exactly one of those remainders, and that fact is these three properties doing their work.

@@ -40,7 +40,7 @@ Also note the rearrangement of (IH) into $2^{2k} = 3x+1$ *before* substituting. 
 
 The proposition is the case $a=4$, $m=3$ of:
 
-> **Proposition.** If $a \equiv 1 \pmod m$ then $a^n \equiv 1 \pmod m$ for all $n \geq 0$; equivalently $m \mid a^n - 1$.
+> **Proposition.** If $a$ leaves remainder $1$ on division by $m$, then so does $a^n$, for every $n \geq 0$ — equivalently, $m \mid a^n - 1$.
 
 <Proof>
 *Base.* $a^0 - 1 = 0$.
@@ -93,9 +93,9 @@ The step needed something the inductive hypothesis could not supply: that $k(k+1
 Without induction: $n^3-n = (n-1)n(n+1)$ is a product of three consecutive integers, so it is divisible by $2$ and by $3$, so by $6$. Shorter and more informative, and it generalizes to $k! \mid$ any product of $k$ consecutive integers — a fact about binomial coefficients in disguise.
 
 <Aside>
-The relationship between induction and congruence runs both ways. Modular arithmetic makes many of these results one-liners, but the well-definedness of arithmetic on $\mathbb{Z}/m\mathbb{Z}$ (§3.1's thing to check) and the compatibility of $\equiv$ with $+$ and $\times$ are themselves proved by direct computation, and any statement quantified over exponents ultimately rests on an induction.
+The relationship between induction and remainders runs both ways. Working with remainders alone makes many of these results one-liners — but the fact that makes that legal, namely that the remainder of a sum or product depends only on the remainders you started with, is itself proved by direct computation. And any claim made about *every* exponent still rests on an induction underneath, whatever shortcut is used to state it.
 
-Euler's theorem $a^{\operatorname{tot}(m)}\equiv 1 \pmod m$ for $\gcd(a,m)=1$ generalizes the proposition above, and its proof is a counting argument rather than an induction — an illustration that the elementary method is not always the one that scales.
+There is a much more general result of this kind, proved not by induction at all but by a counting argument, and it has the proposition above as one special case. Worth knowing that it exists: the elementary method is not always the one that scales, and a later course will show you a shorter road to the same place.
 </Aside>
 
 <WhereThisGoes level="l7">
@@ -107,9 +107,9 @@ That is §4.2's *different letters for different witnesses*, sharpened by the fa
 
 **The same collision arises in calculus proofs.** An induction on the order of differentiation uses $n$ as the index, so a constant arising from the hypothesis cannot be called $n$. In a proof about a sum of $n$ terms, the index inside the sum and the index of the induction must differ. These are bookkeeping errors, and they are also the errors that make a proof unreadable.
 
-**Congruence notation can make the induction disappear.** $3\mid(2^{2n}-1)$ is an induction; written as $4^n \equiv 1^n \equiv 1 \pmod 3$ it is two lines, because congruences can be raised to powers.
+**The right notation can make an induction disappear.** $3\mid(2^{2n}-1)$ is an induction; said in remainders it is two lines — $4$ leaves remainder $1$ on division by $3$, remainders multiply, so $4^n$ leaves remainder $1$ too.
 
-The induction has not vanished — it is buried in the theorem that congruences multiply — but it has been done once, in general, instead of being redone per problem. **That is the usual trajectory: a family of facts proved individually by induction, then covered by a notation or a structure that proves them all at once.**
+The induction has not vanished — it is buried in the fact that remainders multiply — but it has been done once, in general, instead of being redone per problem. **That is the usual trajectory: a family of facts proved individually by induction, then covered by a notation or a structure that proves them all at once.**
 
 **In calculus the analogous compression is generating functions and closed forms.** Once you know $\sum_{j=0}^{n-1} r^j = \frac{1-r^n}{1-r}$, a whole class of induction problems becomes a substitution. Finding the right general statement is usually worth more than proving the specific one.
 </WhereThisGoes>

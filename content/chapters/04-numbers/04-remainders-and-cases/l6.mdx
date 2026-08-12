@@ -36,9 +36,9 @@ $$
 
 So $n \nmid m$ means the remainder is one of $1, 2, \dots, n-1$ — **finitely many possibilities**, each of which can be examined. The infinite search is gone.
 
-## Residue classes
+## Sorting the integers by remainder
 
-Every integer falls into exactly one of $n$ classes according to its remainder mod $n$. For $n = 3$:
+Every integer falls into exactly one of $n$ groups according to the remainder it leaves on division by $n$. For $n = 3$:
 
 $$\mathbb{Z} = \{3k\} \ \cup\ \{3k+1\}\ \cup\ \{3k+2\}.$$
 
@@ -57,7 +57,7 @@ The number of cases is yours to pick, and picking well is most of the work.
 > **Proposition.** For every integer $n$, $n^2 + n$ is even.
 
 <Discussion>
-  <div slot="know">The conclusion concerns divisibility by $2$, so split on the remainder mod $2$.</div>
+  <div slot="know">The conclusion concerns divisibility by $2$, so split on the remainder on division by $2$.</div>
   <div slot="want">$n^2+n = 2\cdot(\text{integer})$ in each case.</div>
   <div slot="how">Substitute the case form and factor out a $2$. Two cases, and both should be short — if one runs long, the modulus was probably wrong.</div>
 </Discussion>
@@ -94,7 +94,7 @@ $$n^3 - n = 27k^3+54k^2+36k+8-3k-2 = 3(9k^3+18k^2+11k+2).$$
 Each bracket is an integer by closure, and the cases are exhaustive. So $3\mid(n^3-n)$.
 </Proof>
 
-**Three cases because the conclusion was about $3$.** Splitting mod $2$ would have produced two cases neither of which resolved, and the wrong modulus is the usual reason a case proof fails to close.
+**Three cases because the conclusion was about $3$.** Splitting on division by $2$ would have produced two cases neither of which resolved, and splitting on the wrong number is the usual reason a case proof fails to close.
 
 <Warning title="Exhaustive, not merely plausible">
 The claim that the cases cover everything is a thing to check, and the division algorithm is what discharges it. Say so.
@@ -106,7 +106,7 @@ A proof of "$3\mid(n^3-n)$" that checks $n=1,2,3,4,5$ and stops has not proved a
 
 The correspondence runs both directions:
 
-$$m = 3k+1 \text{ for some } k \quad\Leftrightarrow\quad m \text{ has remainder } 1 \text{ mod } 3 \quad\Rightarrow\quad 3\nmid m.$$
+$$m = 3k+1 \text{ for some } k \quad\Leftrightarrow\quad m \text{ leaves remainder } 1 \text{ on division by } 3 \quad\Rightarrow\quad 3\nmid m.$$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists!$ is "there is exactly one", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when". So the line reads: leaving remainder $1$ on division by $3$ is the same as being one more than a multiple of $3$.*
 
@@ -116,9 +116,9 @@ So writing an integer in the form $3k+1$ **proves** it is not divisible by $3$, 
 
 There is a way to pick the modulus before doing any algebra: **look at what the conclusion is about.**
 
-To prove $n^2+n$ is even, the conclusion mentions $2$, so split mod $2$. To prove $3\mid(n^3-n)$, split mod $3$. To prove $4\mid(n^2-1)$ for odd $n$, the hypothesis already restricts you to the odd class mod $2$, and writing $n = 2k+1$ is the whole setup.
+To prove $n^2+n$ is even, the conclusion mentions $2$, so split on division by $2$. To prove $3\mid(n^3-n)$, split on division by $3$. To prove $4\mid(n^2-1)$ for odd $n$, the hypothesis already restricts you to the odd group, and writing $n = 2k+1$ is the whole setup.
 
-Sometimes the right modulus is larger than the number in the conclusion. To prove $24 \mid (n^2-1)$ for $n$ coprime to $6$, splitting mod $6$ gives the useful cases, because the hypothesis is a statement about remainders mod $6$.
+Sometimes the right number to split on is larger than the number in the conclusion. To prove $24 \mid (n^2-1)$ for $n$ sharing no factor with $6$, splitting on division by $6$ gives the useful cases, because the hypothesis is itself a statement about remainders on division by $6$.
 
 **When a case proof produces cases that will not close, the modulus is usually wrong.** Try a different one before trying harder algebra.
 
@@ -128,7 +128,7 @@ The division algorithm also settles non-divisibility in one line.
 
 > **Claim.** $3\nmid 100$.
 >
-> **Proof.** $100 = 3\cdot33+1$, and $0\leq1<3$. By uniqueness of the remainder, the remainder of $100$ mod $3$ is $1$, not $0$. So $3\nmid100$. $\square$
+> **Proof.** $100 = 3\cdot33+1$, and $0\leq1<3$. By uniqueness of the remainder, the remainder of $100$ on division by $3$ is $1$, not $0$. So $3\nmid100$. $\square$
 
 Compare with what module 4.2 left you: ruling out every integer $k$ with $100 = 3k$. The division algorithm replaced an infinite search with an arithmetic fact, and **uniqueness is the part doing the work** — without it, finding *one* representation with non-zero remainder would not exclude another with remainder zero.
 
@@ -136,12 +136,12 @@ That is why the theorem was stated with $\exists!$ rather than $\exists$.
 
 ## Where geometry meets this
 
-Regular polygons supply a natural application. A regular $n$-gon has rotational symmetry through $360°/n$, and its rotations compose by adding angles **mod $n$** — rotating by three steps then two steps gives five steps, and if $n=4$ that is one step.
+Regular polygons supply a natural application. A regular $n$-gon has rotational symmetry through $360°/n$, and its rotations compose by adding step counts and keeping the remainder on division by $n$ — rotating by three steps then two steps gives five steps, and if $n=4$ that is one step.
 
 The symmetries of a regular $n$-gon are therefore built from exactly the remainder classes of this module. Composing rotations *is* addition of remainders, which is why a clock returns to $3$ after twelve hours and why the same arithmetic governs both.
 
 <Aside>
-Writing $a \equiv b \pmod n$ for "$a$ and $b$ have the same remainder mod $n$" turns the case proofs above into one-liners.
+Later courses introduce a symbol meaning "$a$ and $b$ leave the same remainder on division by $n$", and it turns the case proofs above into one-liners.
 
 For $3\mid(n^3-n)$: every $n$ is $\equiv 0$, $1$, or $2$, and cubing gives $0^3\equiv0$, $1^3\equiv1$, $2^3 = 8\equiv 2$. In each case $n^3\equiv n$, so $n^3-n\equiv0$.
 

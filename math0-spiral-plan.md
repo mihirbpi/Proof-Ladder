@@ -472,6 +472,64 @@ A kernel that **defines** its own term in the same breath is right, not wrong
 kernel is for. What the guard catches is a kernel that *uses* a word it has
 not earned.
 
+#### A4.1g Above grade level, whether or not the word was swapped (binding)
+
+Added 2026-08-12. §A4.1b bans undergraduate **subjects** by name and the
+`EARLY_GATES` table bans a handful of named topics per level. Neither catches
+the failure this rule is for: a concept the reader meets *years* later,
+described in words they already have.
+
+The type specimen was at `l2`. A grade-2 page closed with *"one less than any
+power of four always shares fairly among three — that is a real fact of number
+theory"*. No college word appears in that sentence. It still teaches exponents,
+which are 6.EE.A.1, four years out, and names a branch of mathematics besides.
+
+**Renaming an object never lowers the operation, and describing a thing without
+naming it is still teaching the thing.** This is the same principle §A4.1c
+established for fractions at `l1`–`l2` — *"a substitution of a word for the
+more advanced thing still counts"* — generalized to every level and every
+concept, and it runs in both directions with §A4.1d.
+
+**Naming is allowed; using is not.** The distinction is what makes the rule
+workable, and it is already the plan's own prescription for the `touch`
+modules: §5.7–§5.9 are to give the reachable geometric content and *name the
+derivations as what later tools will deliver*. So a page may say "proving this
+needs a tool from a later course, which turns each side into an endless string
+of additions" — and may not then perform the manipulation. `l5`'s §5.7 is the
+model: it introduces $e$ as a number met properly in Algebra II, defines the
+imaginary exponent geometrically, and states outright what the proof would
+need.
+
+**The ladder is per level, keyed to CCSSM and to the module briefs in Part B.**
+Where a brief assigns material to `l8`, the levels below may not carry it, and
+five such violations were found and removed on the day the rule was written:
+
+| Reserved by the brief for | Found at | Module |
+|---|---|---|
+| `l8` — Cantor, stated | `l4`–`l7`, with full proofs | §6.7 |
+| `l8` — countable vs uncountable, the diagonal argument | `l7`, proved in full | §3.8 |
+| `l8` — equivalence classes and quotient sets | `l4`, `l7` | §7.2 |
+| `l8` — first-order vs second-order arithmetic, nonstandard models | `l7` | §7.4 |
+| `l8` — mod-n language | `l4`–`l7`, ~40 sites | §4.4 and throughout |
+
+Remainders on division are grade 4 and stay. The congruence notation that
+compresses them does not, and neither do $\mathbb{Z}/n\mathbb{Z}$, "residue
+class", or bare "mod $n$" in prose — clock arithmetic and "the remainder on
+division by $n$" say the same thing in words the reader has.
+
+Also removed under this rule, none of them assigned anywhere in Part B:
+homotopy type theory and univalence (§7.2 `l7`), Galois groups (§5.2 `l7`),
+field automorphisms and non-measurable sets (§5.4 `l7`), complex
+differentiability (§5.4 `l7`), Euler's totient theorem (§6.5 `l7`), and the
+continuum hypothesis (§6.7 `l7`).
+
+**A gloss on the spot is the alternative to removal, and often the better one.**
+Matrices below `l7` are the worked example: *"the number grids Algebra II calls
+matrices"* tells the reader what the word points at and when it arrives, and
+four of the six mentions in the corpus were already in that form. The lint
+tests proximity rather than adjacency, so the gloss may sit anywhere in the
+sentence.
+
 #### A4.1f Proposition, Discussion and Proof read their notation too (binding)
 
 Added 2026-08-12. §A4.2 already requires every notated **display** to carry a
@@ -1339,7 +1397,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l1` ○ Turning twice adds up the turns. Physical only.
 - `l2` ● Turn-then-turn on a compass; angles add.
 - `l3` ● Multiplying by i as a quarter turn, generalized: multiplying rotates. Verified on examples with degrees.
-- `l4` ● The polar multiplication rule stated and checked against a FOIL computation; modulus of re^{iθ} verified with the Pythagorean identity.
+- `l4` ● The polar multiplication rule stated and checked against a FOIL computation; the distance of a point in polar form verified with the Pythagorean identity. Written as the pair (r, θ), not as re^{iθ} — imaginary exponents are gated below `l7` by §A4.1g, and `l3`, `l4` and `l6` all use the pair form already.
 - `l5`–`l6` ● Double-angle formulas derived by equating real and imaginary parts — the moment where complex numbers *pay off* in a course they've already taken. De Moivre stated.
 - `l7`–`l8` ● Math 0 text in full; `l8` adds nth roots of unity and their geometry.
 

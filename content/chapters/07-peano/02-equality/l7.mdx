@@ -2,7 +2,7 @@
 level: l7
 title: The rules for equality
 readingTimeMin: 7
-newTerms: ["equivalence relation", "equivalence class"]
+newTerms: ["equivalence relation"]
 anchorExample: "successor function"
 ---
 
@@ -33,38 +33,37 @@ Dropping symmetry and adding the rule that mutual containment forces equality ($
 
 What follows is a **proposition** — a result worth stating on its own, smaller than the theorem it feeds.
 
-> **Proposition.** $a \equiv b \pmod n :\iff n \mid (a-b)$ is an equivalence relation on $\mathbb{Z}$.
+> **Proposition.** *Leaving the same remainder on division by $n$* — that is, $n \mid (a-b)$ — is an equivalence relation on $\mathbb{Z}$.
 
 <Proof>
 Reflexive: $n \mid 0 = a-a$. Symmetric: $a-b = nk \Rightarrow b-a = n(-k)$. Transitive: $a-b = nj$, $b-c=nk$ give $a - c = n(j+k)$, with $j+k \in \mathbb{Z}$ by closure (§4.1).
 </Proof>
 
-## The fundamental theorem
+## What an equivalence relation does to a set
 
-> **Theorem.** The equivalence classes $[a] = \{x \in S : x\sim a\}$ **partition** $S$ — they divide it into non-overlapping parts that use up everything. The other way round, every such division of $S$ arises from exactly one equivalence relation.
+> **Theorem.** An equivalence relation on $S$ splits $S$ into non-overlapping families that use up all of it: every element lies in exactly one family, and two elements are related exactly when they share a family. The other way round, every such splitting of $S$ arises from exactly one equivalence relation.
 
 <Proof>
-*Classes cover $S$.* $a \in [a]$ by reflexivity (everything stands in it to itself, §7.2).
 
-*Classes are equal or **disjoint** — sharing no members at all.* If $c \in [a]\cap[b]$ then $c\sim a$ and $c\sim b$. For $x \in [a]$: $x \sim a$, and $a \sim c$ by symmetry, so $x \sim c$ by transitivity, so $x \sim b$ by transitivity again. So $[a]\subseteq[b]$, and symmetrically $[b]\subseteq[a]$; so $[a]=[b]$ by double inclusion (§2.6).
+*The symbols in this proof: $\sim$ is "counts as the same as", $\in$ is "is in". In words, what follows shows: the families cover everything and never partly overlap, so each element has exactly one.*
 
-*The other way round.* Given such a division of $S$ into non-overlapping parts, define $x \sim y$ to mean that $x$ and $y$ lie in the same part. Reflexivity holds since the parts use up all of $S$; symmetry is immediate; transitivity (first-to-second and second-to-third gives first-to-third, §7.2) holds since blocks are disjoint. Its classes are exactly the blocks.
+*Every element is in a family.* Put $x$ and $y$ together exactly when $x \sim y$. Reflexivity — everything stands in the relation to itself (§7.2) — gives $x \sim x$, so $x$ is in its own family and nothing is left out.
+
+*Two families are identical or share nothing.* Suppose some $c$ lies in both $x$'s family and $y$'s, so $c \sim x$ and $c \sim y$. Take any $z$ in $x$'s family, so $z \sim x$. Symmetry turns $c \sim x$ into $x \sim c$; transitivity — first-to-second and second-to-third gives first-to-third (§7.2) — gives $z \sim c$, and applying it again with $c \sim y$ gives $z \sim y$ — so $z$ is in $y$'s family. The same argument runs the other way, so the two families are equal.
+
+*The other way round.* Given any splitting of $S$ into non-overlapping families that use up all of it, define $x \sim y$ to mean *$x$ and $y$ lie in the same family*. Reflexivity holds because the families use up $S$, symmetry is immediate, and transitivity holds because sharing a family with a common element forces the same family throughout.
 </Proof>
 
-Each of the three axioms was used exactly once, which is a compact demonstration of their independence in practice.
+Each of the three axioms was used exactly once, which is a compact demonstration that none of them is redundant.
 
-The set of all the classes is called the **quotient**, and sending each element to its own class is a function onto it. That function is surjective (every possible output is actually hit, §3.6) by construction, and injective exactly when the relation was equality to begin with — so passing to classes is exactly the operation of deliberately forgetting distinctions.
+The pay-off is that this is what *choosing what to ignore* looks like formally. Deciding that two triangles count as the same when they are congruent, or that two integers count as the same when they leave the same remainder, splits the objects into families and lets you argue about the families rather than the individuals — and the three axioms are exactly the price of admission.
 
-<Warning title="Well-definedness on quotients">
-An operation on classes must be checked independent of representatives (§3.1).
+<Warning title="Naming a family by one of its members">
+Once a set is split this way, a family usually gets named by picking one of its members — *the odd numbers*, named by $1$. That is convenient and it carries a hazard: any rule you define by reaching for a member must give the same answer whichever member is reached for.
 
-**Works:** $[a]+[b] := [a+b]$ on $\mathbb{Z}/n\mathbb{Z}$. If $a\equiv a'$, $b\equiv b'$ then $n \mid (a-a')+(b-b')= (a+b)-(a'+b')$.
+Adding works: adding $2$ to an odd number and adding $2$ to any other odd number lands you in the same family both times, so *add $2$* makes sense as an operation on families. Reading off a member does not: there is no official odd number, so *"the number itself"* is not something a family determines.
 
-**Fails:** $[a]\mapsto a$ on $\mathbb{Z}/n\mathbb{Z}$; $[1]=[4]$ mod $3$ but $1 \neq 4$. No representative is the official one — there is no single standard choice.
-
-**Fails:** $[a]\mapsto 2^a$ on $\mathbb{Z}/n\mathbb{Z}$ valued in $\mathbb{Z}$ — same objection.
-
-Every construction of this kind owes you that check, and it is the most frequently skipped step in algebra.
+This check is required every time an operation is defined on families rather than on elements, and it is the step most often skipped.
 </Warning>
 
 ## Relations that fail, and what the failures mean
@@ -75,8 +74,8 @@ The three conditions are independent, and examining what each rules out is more 
 |---|---|---|---|
 | $=$ | ✓ | ✓ | ✓ |
 | congruence of figures | ✓ | ✓ | ✓ |
-| same remainder mod $n$ | ✓ | ✓ | ✓ |
-| row equivalence | ✓ | ✓ | ✓ |
+| same remainder on division by $n$ | ✓ | ✓ | ✓ |
+| *is parallel to* | ✓ | ✓ | ✓ |
 | $\leq$ | ✓ | ✗ | ✓ |
 | $<$ | ✗ | ✗ | ✓ |
 | $\subseteq$ | ✓ | ✗ | ✓ |
@@ -86,16 +85,16 @@ The three conditions are independent, and examining what each rules out is more 
 
 **Failure of transitivity is usually fatal** — transitivity being the rule that first-to-second and second-to-third gives first-to-third (§7.2). Perpendicularity fails it: $\ell_1\perp\ell_2$ and $\ell_2\perp\ell_3$ give $\ell_1 \parallel \ell_3$ in the plane, not $\ell_1\perp\ell_3$. A relation without transitivity supports no chaining, and chaining is what proofs do.
 
-## Quotients build the number systems
+## The same move builds the number systems
 
 The same move builds each number system from the one before it. The integers are pairs of counting numbers with $(a,b)$ standing for $a - b$, and two pairs naming the same integer when $a+d = b+c$. The fractions are pairs of integers with $(p,q)$ standing for $p/q$, and two pairs naming the same fraction when $ps = qr$ (§4.5). In each case the objects are *classes* of pairs, and each operation has to be checked not to depend on which pair you picked.
 
-The pattern is uniform: take known objects, impose the right notion of sameness, and the classes are the new objects. Chapter 7 builds $\mathbb{N}$ from axioms; every system above it is built by quotient.
+The pattern is uniform: take objects you already have, decide which of them should count as the same, and the resulting families are the new objects. Chapter 7 builds $\mathbb{N}$ from axioms outright; every system above it is built by this move instead.
 
 <Aside>
-In some modern foundations, equality is not a single undefined relation but a *type* — $\mathrm{Id}_A(x,y)$ — and A1–A3 become constructions rather than axioms. Reflexivity is a term, symmetry and transitivity (first-to-second and second-to-third gives first-to-third, §7.2) are functions built from it.
+Worth noticing how much of ordinary practice this licenses. Writing $\tfrac{2}{4} = \tfrac{1}{2}$ is not a claim that two *pairs of integers* are the same pair — they plainly are not. It is a claim that they name the same object, because the sameness rule for fractions says so.
 
-The consequences are strange and productive: identifications can carry information, and homotopy type theory reinterprets $\mathrm{Id}_A(x,y)$ as a path space, so that equality proofs get a geometry of their own. Univalence then says that identity of types is equivalence of types — making "equal" mean "the same up to renaming", which is what mathematicians have always meant informally.
+Nearly every equals sign you have written since primary school is of this kind: same number, different name. The axioms above are what make that safe, because they are exactly what guarantees a name can be swapped for an equal one anywhere it appears without changing what is true.
 </Aside>
 
 <WhereThisGoes level="l7">

@@ -108,14 +108,10 @@ The counting argument **explains**: it says why $2$, and why a power, in a way t
 Mathematicians collect proofs of the same theorem for exactly this reason, and it is usually the explanatory one that generalizes.
 </Aside>
 
-## Beyond the finite
+## Where this proof stops
 
-For infinite $S$ the formula has no meaning as written. The underlying comparison still does.
+For an infinite $S$ the formula $2^{|S|}$ has no meaning as written — there is no counting number $|S|$ to put in it.
 
-> **Cantor's theorem.** For every set $S$, no function $S \to \mathcal{P}(S)$ is surjective (every possible output is actually hit, §3.6).
+More than that, the proof could not reach such a set even if the formula made sense. It walks along module 6.4's chain, one rung per counting number, and a set that never runs out is on no rung. So everything proved above is a statement about finite sets and nothing else.
 
-So $\mathcal{P}(S)$ is strictly larger than $S$ — always, including when $S$ is infinite. Applying it to $\mathbb{N}$ gives an infinite set strictly bigger than $\mathbb{N}$; applying it again gives a bigger one still.
-
-**There is no largest infinity.** Module 3.8 found that $\mathbb{R}$ is bigger than $\mathbb{N}$; this says the tower continues forever.
-
-Note what the induction could *not* do. It proved the finite case and stops there, because module 6.4's chain has no rung labeled *infinite*. The finite formula and the infinite theorem are genuinely different results, and only one of them is an induction.
+Say that plainly, because it is easy to slide past: induction proves a claim *for each* counting number. It never proves anything about a case that is not one of them. Comparing infinite collections takes the pairing idea of module 3.8 instead, used directly.

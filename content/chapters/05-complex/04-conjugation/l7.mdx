@@ -92,12 +92,14 @@ The last one is the most useful, and it is the reason the conjugate-root theorem
 
 ## Conjugation does not respect scaling by complex numbers
 
-$z \mapsto \bar z$ is $\mathbb{R}$-linear but not $\mathbb{C}$-linear: $\overline{iz} = -i\bar z \neq i\bar z$ in general. It is therefore not complex-differentiable anywhere, despite being smooth as a map $\mathbb{R}^2\to\mathbb{R}^2$ — the standard first example showing that complex differentiability is far stronger than real differentiability.
+Conjugation passes through $+$ and $\times$, but it does *not* pass through multiplication by $i$: $\overline{iz} = -i\bar z$, and that is not $i \bar z$ except when $z$ is $0$. So the flip respects the arithmetic of $\mathbb{C}$ while reversing its sense of rotation, which is exactly what a reflection should do.
 
-This has a consequence you will meet much later: the operations that pick out a part — real part, imaginary part, distance, conjugate — all behave badly under the calculus of complex numbers, exactly because each of them ignores some of the structure. Recognizing them at a glance saves a great deal of time in that course.
+That single failure matters more than it looks. The operations that read off *a part* of a complex number — the real part, the imaginary part, the distance, the conjugate — all share it, and for the same reason: each throws away some of what the number was carrying. Being able to spot that at a glance is worth having early.
 
 <Aside>
-Conjugation is one of exactly two *unbroken* operation-preserving relabelings of $\mathbb{C}$ — unbroken meaning nearby numbers stay nearby, with no jumps. Dropping continuity there are vastly more, constructed non-constructively; all but the identity and conjugation are non-measurable and unwritable. That $\mathbb{R}$ by contrast has *only* the identity — because its order, so its notion of nearness, is determined algebraically by which elements are squares — is a small and striking asymmetry.
+Ask how many ways there are to relabel $\mathbb{C}$ so that all the arithmetic still comes out right and nearby numbers stay nearby. The answer is exactly two: leave everything alone, or conjugate. There is no third option, and conjugation is not one choice among many but half of everything available.
+
+Now ask the same question of $\mathbb{R}$ and the answer is *one* — leaving everything alone. The reason is that on the real line the order is already fixed by the arithmetic: the numbers you can reach as a square are exactly the ones at or above $0$, so any relabeling respecting $\times$ must respect $<$ too, and nothing is free to move. Adding $i$ costs you that rigidity, and conjugation is what you get in exchange.
 </Aside>
 
 <WhereThisGoes level="l7">

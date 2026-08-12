@@ -113,5 +113,5 @@ Every definition on fractions, or on numbers grouped by the remainder they leave
 </Warning>
 
 <Aside>
-$p$ is easy to compute if you know how $n$ factors and, as far as anyone knows, hard otherwise. That asymmetry is the basis of RSA encryption: publishing $n = pq$ reveals almost nothing about $\operatorname{tot}(n) = (p-1)(q-1)$ unless you can factor $n$, and factoring large integers is believed to be computationally infeasible.
+$p$ is easy to compute if you know how $n$ factors and, as far as anyone knows, hard otherwise. That asymmetry — easy one way, hard the other — is what modern encryption is built on. Publishing a large $n = pq$ gives away almost nothing about $\operatorname{tot}(n) = (p-1)(q-1)$ unless you can find $p$ and $q$, and nobody knows a fast way to do that for large numbers.
 </Aside>

@@ -81,8 +81,8 @@ The excluded points are not conventions. There is no real $y$ with $0 \cdot y = 
 When the domain has elements with several names, a rule must be checked to be name-independent.
 
 - **Not a function.** $f(p/q) = p+q$ on $\mathbb{Q}$: $\tfrac12 = \tfrac24$ but $3 \neq 6$.
-- **A function.** $g : \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$, $g([a]) = [a^2]$, because $a \equiv b \pmod n$ implies $a^2 \equiv b^2 \pmod n$.
-- **Not a function.** $h : \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}$, $h([a]) = a$: no one name is the official one, so the "value" depends on the name.
+- **A function.** Sort the integers by the remainder they leave on division by $n$, and send each pile to the pile its squares land in. This works — but only because two integers with the same remainder always have squares with the same remainder, and that needs proving. It is the whole content of the claim.
+- **Not a function.** Send each such pile to *a number in it*. No member of a pile is the official one, so the answer depends on which name you happened to pick.
 
 Every definition on objects with more than one name — remainder arithmetic, the fractions built as pairs of integers (§4.5), and every later construction that declares two things equal — carries this thing to check, and it is the step first-time provers most often skip.
 </Warning>

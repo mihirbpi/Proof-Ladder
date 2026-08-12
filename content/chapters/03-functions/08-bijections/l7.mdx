@@ -2,11 +2,10 @@
 level: l7
 title: Bijections and size
 readingTimeMin: 10
-newTerms: ["bijection", "identity function", "size", "listable"]
+newTerms: ["bijection", "identity function", "size"]
 anchorExample: "a rule with a declared domain and codomain"
 ---
 
-import Discussion from '@/components/Discussion.astro';
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
@@ -42,7 +41,7 @@ Changing the codomain to $\mathbb{R}$ destroys surjectivity and so bijectivity �
 
 Define $S \sim T$ ("the same size") when a bijection $S \to T$ exists. This is an equivalence relation (§7.2): reflexive by $\mathrm{id}$, symmetric by inverses, transitive by composition — the three facts above, restated.
 
-**Cardinality** $|S|$ is the equivalence class (§7.2: the family of things counted as the same), and $|S| = |T|$ means $S \sim T$. For finite sets this agrees with counting; the content is that it continues to make sense when counting does not.
+**Size** $|S|$ is what all sets pairable with $S$ have in common (§7.2: the family of things counted as the same), and $|S| = |T|$ means $S \sim T$. For finite sets this agrees with counting; the content is that it continues to make sense when counting does not.
 
 Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this is such that mutual containment forces equality — $|S|\leq|T|$ and $|T|\leq|S|$ imply $|S|=|T|$ — is a named theorem in its own right, and it is genuinely not obvious: from injections both ways one must *construct* a bijection, and the construction (partitioning by orbits of the two maps) is the standard first surprise of the subject.
 
@@ -60,38 +59,20 @@ $2\mathbb{N} \subsetneq \mathbb{N}$ yet the two have the same size. That is not 
 For infinite sets, $A \subsetneq B$ does not imply $|A| < |B|$. Comparisons must be made by exhibiting functions, never just by looking or by inclusion. Nearly every incorrect claim students make about infinite cardinalities (sizes, §3.8) comes from importing finite intuition here.
 </Warning>
 
-## Listable and not
+## Comparing what you cannot count
 
-$S$ is **listable** when its members can be written out in a list, one after another. Listable sets include $\mathbb{Z}$ (interleave positives and negatives), $\mathbb{N}\times\mathbb{N}$ (diagonal enumeration), and so $\mathbb{Q}$ — despite $\mathbb{Q}$ being dense in $\mathbb{R}$, which is a good demonstration that counting size and being densely packed measure different things.
+The matching above did real work: it settled a size question about two infinite sets without counting either of them, which counting could not have done at any stage.
 
-> **Theorem (Cantor).** $\mathbb{R}$ is not listable.
+That is the method, and it is the whole method. To claim two infinite collections are the same size, produce a pairing. To claim one is bigger, you must rule out *every* possible pairing — a far harder thing, and not something a picture or an inclusion will give you.
 
-<Discussion>
-  <div slot="know">Every real in $(0,1)$ has a decimal expansion, unique if we forbid trailing nines.</div>
-  <div slot="want">No surjection $\mathbb{N}\to(0,1)$ exists.</div>
-  <div slot="how">Suppose not (§2.5). Given a claimed enumeration, construct a real differing from the $n$-th listed number in its $n$-th digit. It cannot be on the list, contradicting surjectivity.</div>
-</Discussion>
-
-<Proof>
-Suppose, for contradiction, that $f : \mathbb{N}\to(0,1)$ is surjective. Write the decimal expansion of $f(n)$ as $0.a_{n1}a_{n2}a_{n3}\ldots$, choosing the expansion without trailing nines.
-
-Define $b_n = 5$ if $a_{nn} \neq 5$, and $b_n = 4$ if $a_{nn} = 5$, and set $x = 0.b_1b_2b_3\ldots$. Then $x \in (0,1)$, and its expansion contains no nines and is not eventually zero, so it is the unique expansion of $x$.
-
-For each $n$, $x$ differs from $f(n)$ in the $n$-th decimal place, so $x \neq f(n)$. So $x \notin \operatorname{Im}(f)$, contradicting surjectivity.
-
-Therefore no list can contain them all, so the reals are not listable.
-</Proof>
-
-The care with trailing nines is not fussiness: $0.4999\ldots = 0.5$, and without excluding one of the two expansions the constructed $x$ might coincide with a listed number.
-
-The same move proves more. For any set $S$ at all, $|S| < |\mathcal{P}(S)|$: given a proposed matching $f$, collect $D = \{s : s \notin f(s)\}$ and check that nothing is sent to it (§2.3, and §6.7 does it in full). So there is no largest size of infinity — they go up forever.
+Whether that harder job can ever be done — whether some infinite collections are genuinely bigger than others rather than merely harder to pair up — is the question the next course opens with. It has an answer, it is not the answer most people guess, and it is reached by the same move used here: build a function, then reason about what it can and cannot hit.
 
 <Aside>
-What is worth carrying out of this module is not the theorem but the move: **when someone hands you a list and claims it is complete, build the thing that disagrees with entry $n$ in position $n$.** That one trick is why $\mathbb{R}$ cannot be listed, why no set has as many members as it has subsets (§6.7), and why §2.1 could show there is no set of everything. Three different results, one idea, and the idea is the part that transfers.
+What is worth carrying out of this module is the shift in what *size* means. For finite sets, size is a number you arrive at by counting, and pairing is a shortcut. For infinite sets there is no number to arrive at, so the pairing stops being a shortcut and becomes the definition. Everything strange about infinite sets — a set matching a part of itself, §2.1's collection that cannot exist — follows from taking that definition seriously instead of importing the finite picture.
 </Aside>
 
 <WhereThisGoes level="l7">
-**The dimension theorem is a bijection theorem.** Two finite-dimensional spaces are the same up to renaming if and only if they have the same dimension, which is this module's *bijection means same size* with structure added.
+**The dimension theorem is a bijection theorem.** Two spaces of the same finite dimension can be matched up one-for-one in a way that respects addition and scaling — which is this module's *pairing means same size*, with the pairing asked to preserve more than membership.
 
 **In calculus, bijectivity is what makes inverse functions exist** (§3.9). $\ln : (0,\infty)\to\mathbb{R}$ and $e^x : \mathbb{R}\to(0,\infty)$ are mutually inverse bijections, and the domains are exactly what makes them so. So are $\tan$ on $(-\pi/2,\pi/2)$ and $\tan^{-1}$ on $\mathbb{R}$.
 

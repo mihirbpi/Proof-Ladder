@@ -88,9 +88,7 @@ Watch the levels, too. For $S = \{a,b\}$: $a \in S$ but $a \notin \mathcal{P}(S)
 </Warning>
 
 <Aside>
-The theorem extends to infinite sets in a strong form. **Cantor's theorem:** for every set $S$, there is no surjection $S \to \mathcal{P}(S)$, so $|\mathcal{P}(S)| > |S|$ always.
+Notice where this proof stops. It settles every finite size, because module 6.4's chain has a rung for each counting number and the argument walks along them. A set with infinitely many elements is on no rung at all, so the induction says nothing about one.
 
-The proof is not an induction and cannot be. Given any way of matching each element of $S$ with a subset of $S$, collect the elements that are **not** members of the subset they were matched with. That collection is a subset of $S$, and it cannot have been matched with anything — because whichever element you claim it was matched with lands in the collection exactly when it does not.
-
-So $2^n > n$ has an infinite analogue, and there is no largest infinity (module 3.8).
+That is not a defect in the proof. It is a real boundary: a set that never runs out has to be compared with something else by a different method entirely, and induction is not that method.
 </Aside>

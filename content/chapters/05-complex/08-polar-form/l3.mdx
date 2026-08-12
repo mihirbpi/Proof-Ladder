@@ -22,11 +22,11 @@ Every point in the plane is fixed by two facts:
 
 Call the distance $r$ and the angle $\theta$. Then $z$ is written
 $$
-z = r\,e^{i\theta},
+z = (r, \theta),
 $$
-and this is called **polar form**. (The $e^{i\theta}$ notation comes from Euler's formula in module 5.7 — it is the point at angle $\theta$ on the circle of radius $1$, and multiplying by $r$ pushes it out to distance $r$.)
+read **distance $r$, turn $\theta$** — and this is called **polar form**. It is a pair, like the across-and-up pair you plot points with, but the two slots mean different things: the first says how far out, the second says how far round. Later courses write the same pair a shorter way, using the notation module 5.7 pointed at.
 
-<Figure alt="A dashed circle of radius 2 with a point marked on it at the top, and an arrow from the origin to the point." caption="A point at distance 2 and angle a quarter turn: $2e^{i\theta}$ with $\theta$ a quarter turn.">
+<Figure alt="A dashed circle of radius 2 with a point marked on it at the top, and an arrow from the origin to the point." caption="A point at distance 2 and angle a quarter turn: $(2, 90°)$ in polar form.">
   <ComplexPlane circle={2} vectors={[{re: 0, im: 2}]} points={[{re: 0, im: 2, label: "2i"}]} range={3} />
 </Figure>
 
@@ -60,7 +60,7 @@ Example: $3 + 4i$ has $r = 5$, since $3$, $4$ and $5$ make a right triangle. Its
 Here is what makes polar form different from grid form.
 
 $$
-re^{i\theta} = re^{i(\theta + 360°)} = re^{i(\theta + 720°)} = \cdots
+(r, \theta) = (r, \theta + 360°) = (r, \theta + 720°) = \cdots
 $$
 
 Turning an extra full circle leaves you facing the same way. So $i$ can be described as $90°$, or $450°$, or $-270°$ — all correct.
@@ -70,19 +70,16 @@ Grid form has no such freedom: $3+4i$ is $3+4i$, full stop.
 <Warning title="Non-uniqueness is not sloppiness">
 It is tempting to feel that many names for one point is a defect. It is not — it is a fact about turning, and every honest description of angles has it.
 
-What it does mean is that if you need *one* angle, you have to say which range you are picking from (usually $0°$ up to but not including $360°$). Mathematicians call that choice the *principal* value, and it must be stated, not assumed.
+What it does mean is that if you need *one* angle, you have to say which range you are picking from (usually $0°$ up to but not including $360°$). Whichever range you pick, say so out loud — do not leave the reader to guess which of the many correct angles you meant.
 </Warning>
 
 ## Special values
 
 $$
-i = e^{i \cdot 90°}, \qquad -1 = e^{i\cdot 180°}, \qquad -i = e^{i\cdot 270°}, \qquad 1 = e^{i\cdot 0°}.
+i = (1, 90°), \qquad -1 = (1, 180°), \qquad -i = (1, 270°), \qquad 1 = (1, 0°).
 $$
 
-The second one is worth staring at. In the units mathematicians actually use, half a turn is called $\pi$, and the equation becomes
-$$
-e^{i\pi} = -1, \qquad\text{or}\qquad e^{i\pi} + 1 = 0.
-$$
+The second one is worth staring at. Go one step out from the center and turn half a circle, and you land exactly on $-1$. That one sentence, written in the shorter notation and in the angle units mathematicians actually use, becomes an equation often called the most beautiful in mathematics — but it says no more than the sentence does.
 
 <Aside>
 Why bother with a second notation? Because multiplication becomes easy. In grid form, multiplying means expanding brackets and collecting terms. In polar form, you multiply the distances and add the angles — and that is the whole rule. Module 5.9 does exactly this.

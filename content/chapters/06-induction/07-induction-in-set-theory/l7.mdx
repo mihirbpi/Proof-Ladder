@@ -81,21 +81,13 @@ Adding the sizes of overlapping groups double-counts; adding the sizes of groups
 
 **Counting by pairing** — establishing a bijection with something already counted — is more powerful than counting one by one, and it is the only method that survives into the infinite case.
 
-## The infinite case
+## Where the argument stops
 
-> **Cantor's theorem.** For every set $S$, there is no surjection $S \to \mathcal{P}(S)$.
+For infinite $S$ the formula $2^{|S|}$ has no meaning as written: there is no counting number $|S|$ to substitute.
 
-<Proof>
-Let $f : S \to \mathcal{P}(S)$ and put $D = \{x \in S : x \notin f(x)\} \in \mathcal{P}(S)$.
+The deeper point is that the proof could not reach such a set even if the formula did make sense. Induction walks §6.4's chain, one rung per counting number, and a set that never runs out is on no rung — an arbitrary set has no *next*, so there is nothing to induct along. Everything above is a statement about finite sets and nothing else.
 
-If $D = f(d)$ for some $d \in S$, then $d \in D \iff d \notin f(d) = D$ — a contradiction. So $D \notin \operatorname{im}(f)$ and $f$ is not surjective (every possible output is actually hit, §3.6).
-</Proof>
-
-This is **not** an induction, and it cannot be turned into one: an arbitrary set has no *next*, so there is nothing to induct along. What it is instead is the move from §3.8 — build the one thing the list cannot contain, by disagreeing with every entry in turn. §2.1 used that same move to break something; here it builds something.
-
-The finite theorem says $2^n > n$; the infinite version says it survives at every size of infinity. So there is no largest set and no largest infinity.
-
-The power set of the counting numbers turns out to be the same size as the whole real line. Whether any size of infinity sits strictly between those two is a question the standard assumptions of mathematics can neither settle nor refute — one of the more startling discoveries of the last century, and a genuine limit rather than a gap in anyone's cleverness.
+This is worth saying because §6.4's chain is easy to over-trust. Induction proves a claim *for each* counting number; it never proves anything about a case that is not one of them, and "infinitely many cases proved" is not the same as "the infinite case proved". Comparing infinite collections is done by pairing instead — §3.8's method, applied directly — and it is a genuinely different technique, not this one pushed further.
 
 <WhereThisGoes level="l7">
 

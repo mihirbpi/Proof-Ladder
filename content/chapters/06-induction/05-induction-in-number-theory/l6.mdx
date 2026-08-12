@@ -106,9 +106,9 @@ Steps 3 and 7 come from Chapter 4; the rest from Chapter 6. **Neither template a
 
 ## Induction is not always the best route
 
-Module 4.4 proved $3\mid(n^3-n)$ by cases mod $3$: three cases, no induction, and it covered **negative** $n$ too.
+Module 4.4 proved $3\mid(n^3-n)$ by cases on division by $3$: three cases, no induction, and it covered **negative** $n$ too.
 
-The induction proof above of $6\mid(n^3-n)$ only covers $n\geq0$. Extending it to negatives requires a separate argument — or a case proof mod $6$, which handles everything at once.
+The induction proof above of $6\mid(n^3-n)$ only covers $n\geq0$. Extending it to negatives requires a separate argument — or a case proof on division by $6$, which handles everything at once.
 
 **Two methods, different reaches.** Cases work when the divisor is small and the expression is a polynomial. Induction works when the expression involves powers like $2^{2n}$, where no finite case split helps.
 
@@ -117,7 +117,7 @@ Choosing between them is the same judgement as module 1.8's decision rule for co
 <Aside>
 There is a third route to $3\mid(2^{2n}-1)$, and it is shorter than either.
 
-$2^{2n} = 4^n$, and $4 \equiv 1 \pmod 3$. Since congruences can be raised to powers, $4^n\equiv 1^n = 1$, so $4^n - 1\equiv 0$ and $3\mid(4^n-1)$.
+$2^{2n} = 4^n$, and $4$ leaves remainder $1$ on division by $3$. Multiplying numbers multiplies their remainders, so $4^n$ leaves remainder $1^n = 1$ as well. A number leaving remainder $1$ is one more than a multiple of $3$, so $3\mid(4^n-1)$.
 
 Two lines, no induction, no cases. The congruence notation of module 4.4 absorbed the induction into the fact that congruences multiply.
 

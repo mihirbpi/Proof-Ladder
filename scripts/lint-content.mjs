@@ -1083,7 +1083,11 @@ const EARLY_GATES = {
     [/(?<![\w.])\d+\.\d+(?![\w.])/, 'decimals (grade 4)'],
     [/\bfractions?\b|\bnumerator\b|\bdenominator\b/i, 'the word "fraction" (grade 3) — say "pieces"'],
   ],
-  l3: [[/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry']],
+  l3: [
+    [/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry'],
+    [/e\^\{?i/i, 'imaginary exponents (needs calculus)'],
+    [/\bderivatives?\b|\bintegral\b|\bantiderivative/i, 'calculus'],
+  ],
   l4: [
     [/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry (Geometry, next year)'],
     [/\bradians?\b/i, 'radians (Algebra II)'],
@@ -1764,6 +1768,151 @@ for (const f of files) {
     if (OPERATION_SUBJECT.test(rel)) continue;
     const m = text.match(re);
     if (m) warn(path.relative(ROOT, f), `${level} uses "${m[0]}" \u2014 ${area}`);
+  }
+}
+
+// Above grade level, whether or not the word was swapped.
+//
+// COLLEGE_TERMS bans undergraduate subjects; EARLY_GATES bans a handful of
+// named topics per level. Neither catches the failure this table is for: a
+// concept the reader meets *years* later, described in words they do have. The
+// grade-2 page that said "one less than any power of four" was the type
+// specimen — it did not use a college word, it used exponents, which are
+// 6.EE.A.1. Renaming the object never lowers the operation, and describing a
+// thing without naming it is still teaching the thing.
+//
+// Each entry may carry a third element: a path pattern for the module that
+// *owns* the concept. Every module exists at every level, so §4.7 is allowed
+// to say "square root" at grade 5 — that is the module's subject, written down
+// the ladder on purpose. What the table catches is the concept turning up
+// somewhere it is only being borrowed.
+const ABOVE_GRADE = {
+  l2: [
+    [/\bpowers? of (two|three|four|ten|\$?\d)/i, 'exponents (6.EE.A.1)'],
+    [/\braised to the\b|\bto the power\b/i, 'exponents (6.EE.A.1)'],
+    [/\bnumber theory\b|\bcombinatorics\b|\balgebra\b/i, 'the name of a branch of mathematics'],
+  ],
+  l3: [
+    // 5.NBT.A.2 gives powers of ten with exponents, and nothing else.
+    [/\braised to the\b|\bto the power of\b/i, 'general exponents (6.EE.A.1)'],
+    [/(?<!10)(?<!\$)\^\{?\d|\^\{?[a-z]\}?/, 'exponent notation (6.EE.A.1)'],
+    [/\bnumber theory\b|\bcombinatorics\b/i, 'the name of a branch of mathematics'],
+    [/\bnegative numbers?\b/i, 'negative numbers (6.NS.C.5)', /04-numbers|05-complex/],
+    [/\bendless sum\b|\binfinite (sum|series)\b|\bpower series\b/i, 'series (calculus)'],
+    [/\bmodulo\b|\bremainder class|\bcongruent to\b/i, 'modular arithmetic'],
+  ],
+  l4: [
+      [/\bbasis vectors?\b|\brational root theorem\b/i, 'linear algebra and the rational root theorem, both past the 8th-grade course'],
+    // §4.4's plan entry puts mod-n language at l8: "l8 states the Division
+    // Algorithm properly and introduces mod-n language". Remainders on division
+    // are grade 4 and stay; the congruence notation that compresses them does
+    // not. Naming it as a later course's shorthand is fine — using it to carry
+    // an argument is not, and only the second leaves these marks on the page.
+      [/\\pmod|\\bmod\b|\bmod\b|\\equiv[^.\n]{0,40}\\pmod|mathbb\{Z\}\s*\/\s*\d*\s*\\?mathbb\{Z\}/,
+        'modular-arithmetic notation (§4.4 reserves mod-n language for l8)'],
+      [/\bequivalence class(es)?\b|\bquotient (set|group|ring|by)\b|\bpassing to classes\b/i,
+        'equivalence classes and quotients (§7.2 reserves both for l8)'],
+    [/\bmodulo\b|\bmodular arithmetic\b|\bresidue class/i, 'modular arithmetic (not in the 8th-grade course)'],
+    [/\bquadratic formula\b|\bcompleting the square\b/i, 'Algebra I (next year)'],
+  ],
+  l5: [
+      [/\\pmod|\\bmod\b|\bmod\b|\\equiv[^.\n]{0,40}\\pmod|mathbb\{Z\}\s*\/\s*\d*\s*\\?mathbb\{Z\}/,
+        'modular-arithmetic notation (§4.4 reserves mod-n language for l8)'],
+      [/\bequivalence class(es)?\b|\bquotient (set|group|ring|by)\b|\bpassing to classes\b/i,
+        'equivalence classes and quotients (§7.2 reserves both for l8)'],
+    [/\bmodulo\b|\bmodular arithmetic\b|\bresidue class/i, 'modular arithmetic (not in the 9th-grade course)'],
+    // The full geometry theorem set is l6's; l5 has only the opening weeks.
+    [/\bSSS\b|\bSAS\b|\bASA\b|\bsimilar triangles\b|\binscribed angle\b/i,
+      'the Geometry theorem set (reserved for l6)', /02-sets\/0[0-9]/],
+    [/\bstructure satisfying\b|\ba (set|system) with (two|an?) operations?\b/i,
+      'algebraic structures, paraphrased'],
+  ],
+  l6: [
+      [/\\pmod|\\bmod\b|\bmod\b|\\equiv[^.\n]{0,40}\\pmod|mathbb\{Z\}\s*\/\s*\d*\s*\\?mathbb\{Z\}/,
+        'modular-arithmetic notation (§4.4 reserves mod-n language for l8)'],
+      [/\bequivalence class(es)?\b|\bquotient (set|group|ring|by)\b|\bpassing to classes\b/i,
+        'equivalence classes and quotients (§7.2 reserves both for l8)'],
+    [/\bmodulo\b|\bmodular arithmetic\b|\bresidue class/i, 'modular arithmetic (not in the 10th-grade course)'],
+    [/\bpreserves the operations?\b|\boperation-preserving\b|\brespects the operations?\b/i,
+      'homomorphism, paraphrased'],
+    [/\b(the )?same (up to|apart from) renaming\b|\bunique up to renaming\b/i,
+      'isomorphism, paraphrased'],
+    [/\bstructure satisfying\b|\ba (set|system) with (two|an?) operations?\b/i,
+      'algebraic structures, paraphrased'],
+  ],
+  l7: [
+      [/\\pmod|\\bmod\b|\bmod\b|\\equiv[^.\n]{0,40}\\pmod|mathbb\{Z\}\s*\/\s*\d*\s*\\?mathbb\{Z\}/,
+        'modular-arithmetic notation (§4.4 reserves mod-n language for l8)'],
+      [/\bequivalence class(es)?\b|\bquotient (set|group|ring|by)\b|\bpassing to classes\b/i,
+        'equivalence classes and quotients (§7.2 reserves both for l8)'],
+    [/\bmodulo\b|\bmodular arithmetic\b|\bresidue class/i, 'modular arithmetic (not in the precalculus course)'],
+    [/\bpreserves the operations?\b|\boperation-preserving\b|\brespects the operations?\b/i,
+      'homomorphism, paraphrased'],
+    [/\b(the )?same (up to|apart from) renaming\b|\bunique up to renaming\b/i,
+      'isomorphism, paraphrased'],
+    [/\bstructure satisfying\b|\ba (set|system) with (two|an?) operations?\b/i,
+      'algebraic structures, paraphrased'],
+    [/\bfirst-order\b|\bnon-?standard model\b|\bcategorical\b/i, 'mathematical logic'],
+    [/\bno largest infinity\b|\bsizes? of infinit/i, 'cardinal arithmetic, paraphrased'],
+  ],
+};
+// Polynomials are Algebra I and so are a year out at l4; square roots and
+// irrationals are 8.EE.A.2 / 8.NS.A.1 and so are three years out at l3. Both
+// follow the matrices rule below: naming them is fine when the page says on the
+// spot what they are and when they arrive, and the gloss may sit anywhere in
+// the sentence, so proximity is the test.
+// A module that *owns* the concept is exempt: \u00a74.7 at l3 is the proof that
+// \u221a2 is irrational, and \u00a73.9 uses squaring and its inverse as the worked
+// example. Those are the plan's assignments, written down the ladder on purpose.
+const CONCEPT_OWNER = /04-numbers\/07-irrational|03-functions\/09-inverses/;
+const GLOSSED_CONCEPTS = [
+  ['l4', /\bpolynomials?\b/gi, /Algebra I|expressions? like|built from powers/i,
+    'polynomials are Algebra I \u2014 gloss as "an expression built from powers of $x$"'],
+  ['l3', /\bsquare roots?\b|\birrational\b/gi, /middle school|module 4\.7|takes real work|multiplies by itself|later course/i,
+    'square roots and irrationals are years out (8.EE.A.2, 8.NS.A.1) \u2014 gloss or reword'],
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  let text = null;
+  for (const [lv, re, gloss, msg] of GLOSSED_CONCEPTS) {
+    if (level !== lv || CONCEPT_OWNER.test(rel)) continue;
+    text ??= body(fs.readFileSync(f, 'utf8'));
+    for (const m of text.matchAll(re)) {
+      const near = text.slice(Math.max(0, m.index - 280), m.index + 280);
+      if (gloss.test(near)) continue;
+      warn(rel, `${level} uses "${m[0]}" \u2014 ${msg}`);
+    }
+  }
+}
+
+// Matrices are Algebra II. Naming one below l7 is fine *if* it is glossed on
+// the spot — "the number grids Algebra II calls matrices" tells the reader what
+// the word points at and where it comes from. A bare mention does not, and the
+// gloss can sit anywhere in the sentence, so proximity is the test rather than
+// an adjacency the regex could express.
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!['l4', 'l5', 'l6'].includes(level)) continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const text = body(fs.readFileSync(f, 'utf8'));
+  for (const m of text.matchAll(/\bmatri(x|ces)\b|\bvector space\b|\bdeterminant\b/gi)) {
+    const near = text.slice(Math.max(0, m.index - 280), m.index + 280);
+    if (/Algebra II|number grids?|grids? of numbers/i.test(near)) continue;
+    warn(rel, `${level} uses "${m[0]}" without saying what it is \u2014 gloss it as the number grids Algebra II calls matrices`);
+  }
+}
+
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const gates = ABOVE_GRADE[level];
+  if (!gates) continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const text = body(fs.readFileSync(f, 'utf8'));
+  for (const [re, area, owns] of gates) {
+    if (owns && owns.test(rel)) continue;
+    const m = text.match(re);
+    if (m) warn(rel, `${level} uses "${m[0].trim()}" — ${area}`);
   }
 }
 
