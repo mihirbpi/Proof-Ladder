@@ -1866,7 +1866,14 @@ for (const ch of fs.readdirSync(CHAPTERS)) {
 // ℚ a field" asks them to hold five unexplained things before the page starts.
 // The symbols are always available a few paragraphs later, where they are
 // introduced; the kernel says the idea in words.
-const KERNEL_NOTATION = /[ℚℤℝℕℂ∀∃⊆∈∉∪∩¬∧∨⇒⇔≡∅↦∘]|\\mathbb|\\forall|\\exists/;
+// The kernel is rendered by BigIdea.astro as `<p>{sentence}</p>` — escaped
+// plain text, with no markdown and no KaTeX. So anything mathematical in a
+// kernel must survive as literal characters: "2ⁿ" is fine, "2^{2n}" is not,
+// and neither is "Σ_{j=1}^{n}" or "f^{(n)}" or "ℝ_{>0}". Those all shipped
+// and rendered as their own source. Unicode superscripts are allowed; brace
+// notation, sum and product signs, and backslash commands are not.
+const KERNEL_NOTATION =
+  /[ℚℤℝℕℂ∀∃⊆∈∉∪∩¬∧∨⇒⇔≡∅↦∘]|\\mathbb|\\forall|\\exists|\^\{|_\{|[Σ∏≅]|\$|\\[a-zA-Z]+/;
 for (const ch of fs.readdirSync(CHAPTERS)) {
   const chDir = path.join(CHAPTERS, ch);
   if (!fs.statSync(chDir).isDirectory()) continue;

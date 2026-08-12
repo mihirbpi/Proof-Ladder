@@ -21,7 +21,7 @@
     "l4": "The powers of i repeat every four steps — i, −1, −i, 1 — because four quarter turns is a full turn, so i raised to a power depends only on the remainder that power leaves on division by 4.",
     "l5": "Euler’s formula comes from substituting iθ into the exponential series and separating real and imaginary terms, which the four-fold cycle of powers of i makes possible.",
     "l6": "Multiplying two points of the unit circle adds their angles — the same trade of adding for multiplying that exponents make, which is why the circle points are written as a power.",
-    "l7": "Multiplying two points of the unit circle adds their angles, which is exactly the law an exponential obeys; that law is what entitles cos θ + i sin θ to be written e^{iθ}.",
+    "l7": "Multiplying two points of the unit circle adds their angles, which is exactly the law an exponential obeys. That shared law is what entitles cos θ + i sin θ to be written as a power of e.",
     "l8": "Euler’s formula is the identification of the complex exponential with the solution of y′ = iy, y(0) = 1; the series proof and the ODE proof are the same statement about the exponential map ℂ → ℂˣ."
   },
   "kernel": "Substituting iθ into the series for eˣ and using the cycle i, −1, −i, 1 separates into the cosine and sine series, giving e^{iθ} = cos θ + i sin θ.",

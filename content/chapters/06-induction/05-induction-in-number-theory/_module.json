@@ -18,10 +18,10 @@
     "l1": "Dominoes work for sharing questions too.",
     "l2": "You can use the domino idea to show that a sharing rule keeps working forever, not just for the numbers you checked.",
     "l3": "The domino idea works for questions about factors too: check the first case, then show that if one case is a multiple, so is the next.",
-    "l4": "3 | 2^{2n} − 1 for all n ≥ 0. The inductive step names the other factor x, rewrites 2^{2k} = 3x + 1, and computes 2^{2(k+1)} − 1 = 3(4x + 1).",
+    "l4": "Every power of 4, minus 1, is a multiple of 3. The inductive step names the other factor, rewrites the previous power as three times that factor plus one, and multiplies through by four.",
     "l5": "Divisibility claims indexed by n are natural induction targets; the step combines the divisibility template with the inductive hypothesis, and variable naming matters.",
     "l6": "Combining the divisibility template with induction requires a fresh name for the other factor, since k is already the induction variable.",
-    "l7": "3 | 2^{2n} − 1 for all n ≥ 0, proved by induction with the other factor named x rather than k; the step is the divisibility template of §4.3 applied inside the inductive step.",
+    "l7": "Every power of 4, minus 1, is a multiple of 3 — proved by induction with the other factor given a name of its own rather than reusing the index. The step is §4.3’s divisibility template, run inside an induction.",
     "l8": "The result is the case a = 4, m = 3 of a ≡ 1 (mod m) ⇒ aⁿ ≡ 1 (mod m), which modular arithmetic proves in one line — induction is the elementary route to a congruence fact."
   },
   "kernel": "3 | (2^{2n} − 1) for all n ≥ 0. The step: write 2^{2k} − 1 = 3x, so 2^{2k} = 3x + 1, then 2^{2(k+1)} − 1 = 4(3x+1) − 1 = 3(4x+1). Naming the unknown factor x (not k) matters, because k is taken.",
