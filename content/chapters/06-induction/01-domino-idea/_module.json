@@ -20,7 +20,7 @@
     "l3": "If a claim is true for the first case, and being true for one case always makes it true for the next, then it is true for every case. Spotting a pattern is a guess; the domino argument is what turns the guess into knowledge.",
     "l4": "Dominoes: if the first falls and each one knocks over the next, all fall. Applied to statements, this is induction — and it is needed because a pattern holding for many cases is not evidence that it holds for all.",
     "l5": "Induction is the domino principle for statements indexed by integers; pattern-spotting generates conjectures but cannot establish them, as counterexamples appearing only at n = 40 demonstrate.",
-    "l6": "The two domino conditions correspond exactly to the base case and the inductive step; either failing breaks the chain.",
+    "l6": "The two domino conditions correspond exactly to the two halves of an induction proof — getting started, and getting from each case to the next. Either one failing breaks the chain.",
     "l7": "The domino picture — first falls, each knocks the next — is the intuition behind induction. Pattern-spotting suggests; only the two conditions establish, since a pattern can persist for arbitrarily many cases and then fail.",
     "l8": "Induction is equivalent to well-ordering of ℕ and is Peano’s ninth axiom; the domino picture is a faithful rendering of that axiom."
   },

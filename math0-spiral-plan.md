@@ -439,6 +439,29 @@ that vocabulary and keep it. Watch for the substitution failure it invites: a
 blanket *pile of 4s → multiple of 4* produced "Being a multiple of $4$ means
 it is a multiple of $4$", which is a tautology and passed every other check.
 
+#### A4.1e The kernel may not reach forward (binding)
+
+Added 2026-08-12. The kernel renders as **"The big idea, said for you"** above
+everything else on the page, so every word in it has to be one the reader
+already has. Not one the module is about to define, and certainly not one a
+later module defines.
+
+Found by checking each kernel against the position of every `newTerm`: §1.6's
+kernel at `l6` cited *axiom*, which §7.1 introduces six chapters later; §3.3's
+contrasted the pre-image with an *inverse function*, which arrives at §3.9;
+§5.3's divided using the *conjugate*, which is §5.4; §6.1's named the *base
+case* and *inductive step*, which are §6.2's terms; §1.12's leaned on *domain*,
+which is §3.1. Seventeen kernels rewritten.
+
+School words stay exempt, for the reason §A4.1d gives: a geometry student has
+*theorem*, *proof*, *hypothesis* and *axiom* already, whatever this course
+declares about them.
+
+A kernel that **defines** its own term in the same breath is right, not wrong
+— *"A statement is a sentence that is either true or false"* is exactly what a
+kernel is for. What the guard catches is a kernel that *uses* a word it has
+not earned.
+
 #### A4.2 Notation gate (binding, and **derived** — do not author directly)
 
 This table is not an independent source. It is **generated from Part B**, filtered

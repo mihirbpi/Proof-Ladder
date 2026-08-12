@@ -20,7 +20,7 @@
     "l3": "The negation of a statement flips its truth value: the negation of a true statement is false, and the negation of a false one is true.",
     "l4": "For a statement p, its negation is true exactly when p is false. A statement and its negation are never both true, and never both false.",
     "l5": "Negating a statement flips its truth value: the negation is true exactly when the original is false. Negating twice returns you to the start.",
-    "l6": "A statement's negation has the opposite truth value. So a statement and its negation are never both true — a contradiction — and one of the two always holds.",
+    "l6": "A statement’s negation has the opposite truth value. So a statement and its negation are never both true, and never both false — exactly one of the pair holds.",
     "l7": "Negation inverts truth value. A statement and its negation split every situation between them with no overlap and no gap, and negating twice returns the original.",
     "l8": "Negation is the involution on the Boolean algebra {T,F}: it satisfies ¬¬p = p, ¬(T)=F, and gives the law of excluded middle p ∨ ¬p and the law of non-contradiction ¬(p ∧ ¬p)."
   },

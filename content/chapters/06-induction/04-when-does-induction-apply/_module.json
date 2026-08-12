@@ -21,7 +21,7 @@
     "l4": "Induction needs a claim indexed by whole numbers and a link carrying each case to the next. A claim about every real number has no next case, so induction does not apply to it.",
     "l5": "Both requirements matter: an integer index and a usable link between consecutive cases; sums, products, and recursive definitions supply the link naturally.",
     "l6": "Induction applies when the cases come with a first one and each has a next — that is precisely what supplies the base case and the step. Strong induction and structural induction keep that requirement while widening what counts as “next”.",
-    "l7": "Induction applies exactly when the statements are indexed by whole numbers and each case is reachable from the one before. Without that successor structure — as over the reals — the method does not apply at all.",
+    "l7": "Induction applies exactly when the statements are indexed by whole numbers and each case is reachable from the one before. Without that step-by-step structure there is nothing to induct along.",
     "l8": "Induction is available on any well-founded order; strong induction, structural induction, and transfinite induction are the same principle over different orders."
   },
   "kernel": "Induction needs a statement indexed by integers n ≥ n₀ and a way to connect case k+1 back to case k. Statements about all real numbers are not candidates.",

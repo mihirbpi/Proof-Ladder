@@ -20,7 +20,7 @@
     "l3": "Running one machine and then a second gives a new machine, and it only works when the first machine's outputs are things the second knows what to do with.",
     "l4": "Doing one function after another gives a new function, defined whenever the first one's outputs are legal inputs for the second. If both are one-to-one so is the composition, and if both are onto so is the composition.",
     "l5": "Composition is defined when codomain meets domain; it preserves injectivity and surjectivity, and the partial converses are worth knowing.",
-    "l6": "Composition is associative, and composing with the identity function changes nothing on either side. It also preserves injectivity and surjectivity separately, so each has to be checked on its own.",
+    "l6": "Composition is associative, and composing with the do-nothing rule changes nothing on either side. It also preserves injectivity and surjectivity separately.",
     "l7": "Composition is defined when the first function's codomain is the second's domain. It preserves one-to-one and onto, and satisfies partial converses identifying which factor must be well behaved.",
     "l8": "Composition is the associative operation making Set a category; identities are units, and preservation of mono and epi under composition is a categorical fact, not a set-theoretic one."
   },

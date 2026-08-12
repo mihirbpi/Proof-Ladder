@@ -1789,6 +1789,53 @@ for (const f of files) {
   }
 }
 
+// A kernel may not reach forward. It is the first thing on the page.
+//
+// The kernel renders as "The big idea, said for you" above everything else, so
+// a word it leans on has to be one the reader already has — not one this
+// module is about to define, and certainly not one a later module defines.
+// §1.6's kernel at l6 cited "axiom", which §7.1 introduces six chapters later;
+// §3.3's contrasted the pre-image with an "inverse function", which arrives at
+// §3.9; §5.3's divided using the "conjugate", which is §5.4.
+//
+// School words are exempt for the same reason they are exempt from the
+// forward-reference rule: a geometry student has theorem, proof, hypothesis
+// and axiom already, whatever this course declares about them.
+const KERNEL_EXEMPT = new Set([
+  'theorem', 'proof', 'hypothesis', 'axiom', 'conclusion', 'every', 'element',
+  'argument', 'across', 'groups of', 'the first one', 'left over', 'image',
+  'name', 'next', 'flip', 'some', 'whole', 'press', 'closed', 'direction',
+]);
+for (const ch of fs.readdirSync(CHAPTERS)) {
+  const chDir = path.join(CHAPTERS, ch);
+  if (!fs.statSync(chDir).isDirectory()) continue;
+  for (const mod of fs.readdirSync(chDir)) {
+  const jf = path.join(CHAPTERS, ch, mod, '_module.json');
+  if (!fs.existsSync(jf)) continue;
+  const rel = path.relative(ROOT, jf);
+  let data;
+  try {
+    data = JSON.parse(fs.readFileSync(jf, 'utf8'));
+  } catch {
+    continue;
+  }
+  const here = Number(ch.split('-')[0]) * 100 + Number(mod.split('-')[0]);
+  for (const [level, kernel] of Object.entries(data.kernels ?? {})) {
+    if (typeof kernel !== 'string' || level === 'l8') continue;
+    for (const [key, at] of declaredAt) {
+      const [lvl, term] = key.split('|');
+      if (lvl !== level || at <= here || term.length < 5) continue;
+      if (KERNEL_EXEMPT.has(term)) continue;
+      if (!new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(kernel)) continue;
+      warn(
+        rel,
+        `kernels.${level} leans on "${term}", which \u00a7${Math.floor(at / 100)}.${at % 100} introduces \u2014 the kernel is the first thing read`,
+      );
+    }
+  }
+}
+}
+
 // ---------------------------------------------------------------------------
 // Kernels carry no proof notation, at any level.
 //
