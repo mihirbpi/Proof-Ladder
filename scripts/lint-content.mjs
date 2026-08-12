@@ -1062,8 +1062,20 @@ const EARLY_GATES = {
   // it as a coming attraction ("you'll meet this in trig") turned out to read
   // as a warning rather than a promise, and printing \cos in a grade-5 page
   // shows a mark the reader has no way to hear.
-  l1: [[/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry']],
-  l2: [[/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry']],
+  // Decimals are 4.NF.C.6 (grade 4) and the *word* "fraction" is 3.NF (grade 3).
+  // Grades 1 and 2 get halves, thirds and fourths only as equal shares of a
+  // shape or an object (1.G.A.3, 2.G.A.3) — "half a cookie" is fine, "a
+  // fraction" is a year or two early, and "1.41" is two years early.
+  l1: [
+    [/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry'],
+    [/(?<![\w.])\d+\.\d+(?![\w.])/, 'decimals (grade 4)'],
+    [/\bfractions?\b|\bnumerator\b|\bdenominator\b/i, 'the word "fraction" (grade 3) — say "pieces"'],
+  ],
+  l2: [
+    [/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry'],
+    [/(?<![\w.])\d+\.\d+(?![\w.])/, 'decimals (grade 4)'],
+    [/\bfractions?\b|\bnumerator\b|\bdenominator\b/i, 'the word "fraction" (grade 3) — say "pieces"'],
+  ],
   l3: [[/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry']],
   l4: [
     [/\\cos|\\sin|\\tan\b|\btrigonometr|\bcosine\b|\bsines?\b(?! wave)/i, 'trigonometry (Geometry, next year)'],
@@ -1537,21 +1549,113 @@ for (const f of files) {
 // time a page reaches for one it has to say in a clause what it is. "The
 // derivative rules are provable from the arithmetic axioms" tells a reader who
 // has met derivatives something and a reader who has not nothing at all.
-const CALCULUS_OBJECT = /\bderivatives?\b|\bdifferentiat\w+|(?<!non-)\bintegrals?\b|\bantiderivatives?\b/i;
-const EXPLAINS_CALC =
-  /how steep\w*|how fast\b|\bsteepness\b|\brate of change\b|\bslope of\b|\brunning totals?\b|\barea under\b|\bhow quickly\b|\bfirst calculus course is built\b/i;
+// Each family: the vocabulary, and the phrasings that count as explaining it.
+// Limits are absent on purpose — precalculus brushes against them, so the word
+// is available. Everything downstream of a limit is not.
+const CALCULUS_FAMILIES = [
+  {
+    what: 'the derivative',
+    use: /\bderivatives?\b|\bdifferentiat\w+|(?<!non-)\bantiderivatives?\b/i,
+    explained: /how steep\w*|\bsteepness\b|\brate of change\b|\bhow quickly\b|\bfirst calculus course is built\b/i,
+  },
+  {
+    what: 'the integral',
+    use: /(?<!non-)\bintegrals?\b|\bintegrat(e|es|ing|ion)\b|\bRiemann\b|\\int\b/i,
+    explained: /\brunning totals?\b|\barea under\b|\bthin strips?\b|\badding up\b/i,
+  },
+  {
+    what: 'continuity',
+    use: /\bcontinuous\w*|\bcontinuity\b|\bdiscontinu\w+/i,
+    explained: /\bunbroken\b|without lifting\b|\bno breaks?\b|\bbreaks? in (the|a) (graph|curve)\b|\bno gaps? or jumps?\b/i,
+  },
+  {
+    what: 'convergence',
+    use: /\bconverg\w+|\bdiverg\w+/i,
+    explained: /\bsettl\w+ (towards|down|on)\b|\bhomes? in on\b|\bgets? arbitrarily close\b|\bcloser and closer\b/i,
+  },
+  {
+    what: 'a tangent line',
+    use: /\btangent lines?\b/i,
+    explained: /\bjust graz\w+|\btouch\w+ the curve\b|\bmatches the curve'?s? direction\b|\bskims\b/i,
+  },
+  {
+    what: 'a bounded or monotone sequence',
+    use: /\bmonotone\w*|\bbounded\b(?! above by a set)/i,
+    explained: /\bnever exceed\w*|\bnever pass\w*|\bstays? (below|within)\b|\balways heading\b|\bnever turns back\b|\bkeeps? going the same way\b/i,
+  },
+];
 for (const f of files) {
   if (path.basename(f, '.mdx') !== 'l7') continue;
   const rel = path.relative(ROOT, f);
   const text = body(fs.readFileSync(f, 'utf8'));
-  const m = text.match(CALCULUS_OBJECT);
-  if (!m) continue;
-  // the explanation must come at or before the first use, anywhere on the page
-  if (EXPLAINS_CALC.test(text.slice(0, m.index + 400))) continue;
-  warn(
-    rel,
-    `reaches for "${m[0]}" without saying what it is \u2014 this reader has finished 11th grade, so gloss it in a clause the first time`,
-  );
+  for (const fam of CALCULUS_FAMILIES) {
+    const m = text.match(fam.use);
+    if (!m) continue;
+    if (fam.explained.test(text.slice(0, m.index + 400))) continue;
+    warn(
+      rel,
+      `reaches for ${fam.what} ("${m[0]}") without saying what it is \u2014 this reader has finished 11th grade and has limits at best, so gloss it in a clause on first use`,
+    );
+  }
+}
+
+// Named results nobody in high school has met.
+//
+// History is fine and is not this: telling the reader that Cardano and
+// Bombelli were solving cubics, or that Wiles closed Fermat in 1995, hands
+// them a story and asks nothing. What this catches is a name used as
+// *furniture* — "with Bernoulli-number coefficients", "by the
+// Gelfond–Schneider theorem", "Ackermann's function terminates" — where the
+// reader is expected to already know what the name refers to and gets no
+// account of it. Either say what the thing is, or cut it.
+const UNKNOWN_NAMED = [
+  /\bBernoulli[- ]numbers?\b/i,
+  /\bFaulhaber'?s?\b/i,
+  /\b(Cantor[–-])?Schr(ö|o)der[–-]Bernstein\b/i,
+  /\bAckermann'?s?\b/i,
+  /\bGelfond[–-]?\s?(and\s)?Schneider\b/i,
+  /\bWeierstrass function\b/i,
+  /\bHasse principle\b|\bSelmer'?s?\b/i,
+  /\bKaratsuba'?s?\b/i,
+  /\bKuratowski'?s?\b/i,
+  /\bGrothendieck\b/i,
+  /\bApollonius circle\b/i,
+  /\bHurwitz\b/i,
+  /\bPascal'?s rule\b/i,
+  /\bDiophantus'?s'? identity\b/i,
+  /\bBeltrami\b|\bPoincar(é|e) disc\b/i,
+  /\bLiouville\b/i,
+  /\bBoolean function\b|\bNOR gates?\b/i,
+];
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (level === 'l8') continue;
+  const rel = path.relative(ROOT, f);
+  const text = body(fs.readFileSync(f, 'utf8'));
+  for (const re of UNKNOWN_NAMED) {
+    const m = text.match(re);
+    if (m) {
+      warn(rel, `names "${m[0]}" as though the reader knew it \u2014 say what it is, or cut it`);
+      break;
+    }
+  }
+}
+
+// EARLY_GATES for the early grades. The loop above runs only over l4-l7,
+// because COLLEGE_TERMS has nothing to say to a second grader — but the gates
+// themselves very much do, and l1-l3 were never being checked against them.
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!['l1', 'l2', 'l3'].includes(level)) continue;
+  const rel = path.relative(ROOT, f);
+  const text = body(fs.readFileSync(f, 'utf8'))
+    // module and section references are not decimals
+    .replace(/(modules?|Modules?|chapters?|Chapters?|\u00a7)\s*\d+\.\d+(\s*(and|,|&)\s*\d+\.\d+)*/g, ' ')
+    .replace(/\((?:\d+\.\d+(?:\s*(?:and|,)\s*)?)+\)/g, ' ');
+  for (const [re, area] of EARLY_GATES[level] ?? []) {
+    const m = text.match(re);
+    if (m) warn(rel, `${level} uses "${m[0]}" \u2014 ${area} comes after this year`);
+  }
 }
 
 // ---------------------------------------------------------------------------

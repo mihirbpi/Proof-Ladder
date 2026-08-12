@@ -101,11 +101,11 @@ $$
 (1 + 2 + \cdots + n)^3 = \left(\frac{n(n+1)}{2}\right)^2.
 $$
 
-Each is a routine induction *once stated*, and none is suggested by induction. Finding them is the hard part, and the general answer — **Faulhaber's formula**, expressing $(1 + 2 + \cdots + n)^p$ as a degree-$(p+1)$ polynomial in $n$ with Bernoulli-number coefficients — is a genuinely different kind of result.
+Each is a routine induction *once stated*, and none is suggested by induction. Finding them is the hard part, and the general answer — a single formula covering every power at once, whose coefficients form a famous and thoroughly strange sequence of fractions — is a genuinely different kind of result.
 
 Note the third identity: $\sum j^3 = (\sum j)^2$. A striking coincidence, provable by induction in four lines, and again with a wordless proof by dissecting a square into L-shaped shells of cubes.
 
-Telescoping is the whole-number ancestor of the theorem tying areas to slopes. Write each term as a difference between consecutive values of something; the sum then collapses to the last value minus the first, with everything between canceling in pairs. In calculus the same cancellation happens continuously, and it is the reason an area can be computed from two numbers at the ends.
+Telescoping is the whole-number ancestor of the theorem tying areas to slopes. Write each term as a difference between consecutive values of something; the sum then collapses to the last value minus the first, with everything between canceling in pairs. In calculus the same cancellation happens continuously — with no breaks in the curve —, and it is the reason an area can be computed from two numbers at the ends.
 
 <WhereThisGoes level="l7">
 Having three proofs of one theorem is the normal situation, and choosing among them is a real skill.
@@ -116,7 +116,7 @@ Having three proofs of one theorem is the normal situation, and choosing among t
 
 Recognizing a telescoping sum is usually faster than proving the closed form by induction, and it generalizes: partial fractions exist largely to expose telescoping structure.
 
-**In calculus, these sums are the ones Riemann integration needs.** $\int_0^b x\,dx$ and $\int_0^b x^2\,dx$ computed from the definition require $\sum j$ and $\sum j^2$, and the limits of the resulting expressions give $\frac{b^2}{2}$ and $\frac{b^3}{3}$ — the antiderivative — a rule whose steepness is the one you started with — formulas, derived rather than asserted.
+**In calculus, these sums are the ones that give areas.** The area under a curve is defined by slicing the region into thin strips, adding the strips up, and letting them get thinner — and adding the strips up is exactly a sum of the kind proved here. Working out the area under $x$ and under $x^2$ straight from that definition require $\sum j$ and $\sum j^2$, and the limits of the resulting expressions give $\frac{b^2}{2}$ and $\frac{b^3}{3}$ — the antiderivative — a rule whose steepness is the one you started with — formulas, derived rather than asserted.
 
 **The habit worth keeping** is to look for an explanatory proof after finding a verifying one. The explanatory version usually generalizes, and the induction usually does not.
 </WhereThisGoes>

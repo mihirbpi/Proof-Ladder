@@ -89,7 +89,7 @@ The step is a conditional, $A(k)\Rightarrow A(k+1)$, so proving it legitimately 
 
 The geometric sum is the one that matters most. Its finite formula is proved by induction, and letting the number of terms grow without bound turns it into a single closed expression — the one endless sum you can evaluate exactly, early on. The induction is what makes that step meaningful.
 
-**Riemann sums use these formulas.** Computing $\int_0^1 x^2\,dx$ from the definition means summing $\sum_{j=1}^n (j/n)^2\cdot\frac1n$ and taking a limit, and the closed form for $\sum j^2$ is what makes the limit computable. Without induction the definition of the integral — the running total a rate builds up to, the other half of calculus — would produce sums nobody could evaluate.
+**Area calculations use these formulas.** Calculus defines the area under a curve by slicing it into $n$ thin strips and letting $n$ grow. Getting the area under $x^2$ that way means summing $\sum_{j=1}^n (j/n)^2\cdot\frac1n$ and taking a limit, and the closed form for $\sum j^2$ is what makes the limit computable. Without induction the definition of the integral — the running total a rate builds up to, the other half of calculus — would produce sums nobody could evaluate.
 
 **The cautionary example matters more than usual here.** $n^2+n+41$ produces primes for forty consecutive values and fails at the forty-first. Numerical evidence about a list of terms is evidence about finitely many of them, and lists are where the temptation to extrapolate is strongest — one can agree with a pattern for a million terms and then walk away from it.
 

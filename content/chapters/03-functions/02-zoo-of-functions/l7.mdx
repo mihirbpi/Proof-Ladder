@@ -21,7 +21,7 @@ $$
 
 *Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that", the arrow says what goes in and what comes out. So the line reads: floor takes a real number and returns the largest integer not above it.*
 
-That the maximum exists — that $\{n \in \mathbb{Z} \mid n \leq x\}$ is nonempty and bounded above, and that a nonempty set of integers bounded above has a greatest element — is the fact that the whole numbers climb past any real, together with there always being a smallest one. Floor is not a triviality; it depends on the reals having no gaps.
+That the maximum exists — that $\{n \in \mathbb{Z} \mid n \leq x\}$ is nonempty and bounded — never exceeding some fixed size — above, and that a nonempty set of integers bounded above has a greatest element — is the fact that the whole numbers climb past any real, together with there always being a smallest one. Floor is not a triviality; it depends on the reals having no gaps.
 
 The working characterization:
 $$
@@ -32,7 +32,7 @@ $$
 
 From it: $\lfloor x + m \rfloor = \lfloor x \rfloor + m$ for $m \in \mathbb{Z}$; $x - 1 < \lfloor x \rfloor \leq x$; and $\lfloor -2.3 \rfloor = -3$, not $-2$. Floor is not truncation, and conflating them is a standard source of off-by-one errors.
 
-Floor is neither injective ($\lfloor 3.1 \rfloor = \lfloor 3.9 \rfloor$) nor continuous, but it is surjective (§3.6: every possible output is hit) onto $\mathbb{Z}$ and monotone — an illustration that useful functions need not be well behaved.
+Floor is neither injective ($\lfloor 3.1 \rfloor = \lfloor 3.9 \rfloor$) nor continuous — unbroken, drawable without lifting the pen —, but it is surjective (§3.6: every possible output is hit) onto $\mathbb{Z}$ and monotone — an illustration that useful functions need not be well behaved.
 
 ## Euler's totient
 
@@ -88,7 +88,7 @@ Every definition on objects with more than one name — remainder arithmetic, th
 </Warning>
 
 <Aside>
-Functions can act on functions. Differentiation — the operation that measures how steeply a graph is rising — $D : C^1(\mathbb{R}) \to C^0(\mathbb{R})$ and definite integration $I : C^0([a,b]) \to \mathbb{R}$ are functions whose domains are sets of functions. Nothing in §3.1 forbids this, and the whole of functional analysis lives there.
+Functions can act on functions. Differentiation — the operation that measures how steeply a graph is rising — $D : C^1(\mathbb{R}) \to C^0(\mathbb{R})$ and definite integration — adding up thin strips to get a total — $I : C^0([a,b]) \to \mathbb{R}$ are functions whose domains are sets of functions. Nothing in §3.1 forbids this, and the whole of functional analysis lives there.
 </Aside>
 
 <WhereThisGoes level="l7">
@@ -96,7 +96,7 @@ Functions can act on functions. Differentiation — the operation that measures 
 
 **Piecewise definitions are the norm, not the exception.** $|x|$, the floor function, and every function defined by cases require the two things to check this module names: exhaustive cases and agreement where they overlap. Continuity at a boundary between pieces is then a genuine question, and it is exactly where the standard exam problems live.
 
-**Functions with no formula are common in calculus.** $F(x) = \int_0^x e^{-t^2}\,dt$ is a perfectly good function, differentiable everywhere, with no expression in terms of elementary functions. So is the answer to a problem that only says how a quantity is changing, when no formula for it exists. Insisting a function be a formula would exclude both, and much of the subject with them.
+**Functions with no formula are common in calculus.** The running total that a rate builds up to is a perfectly good function of where you stop, even when no formula for it exerywhere, with no expression in terms of elementary functions. So is the answer to a problem that only says how a quantity is changing, when no formula for it exists. Insisting a function be a formula would exclude both, and much of the subject with them.
 
 That last example is where the abstraction pays. **Nothing in §3.1 required inputs to be numbers**, so the whole of Chapters 3's toolkit — injective, surjective, invertible, composition — applies to differentiation, and it is genuinely useful there.
 

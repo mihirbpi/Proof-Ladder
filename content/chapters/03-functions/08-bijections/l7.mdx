@@ -31,9 +31,9 @@ $\mathrm{id}_S$ is a bijection, and by §3.7 a composite of bijections is a bije
 > **Proposition.** $\exp : \mathbb{R}\to\mathbb{R}_{>0}$ is a bijection.
 
 <Proof>
-*Injective.* $\exp$ is strictly increasing (as $\exp' = \exp > 0$), and strictly monotone functions are injective (§3.5).
+*Injective.* $\exp$ is strictly increasing (as $\exp' = \exp > 0$), and strictly monotone — always heading the same way, never turning back — functions are injective (§3.5).
 
-*Surjective.* Given $t > 0$, $x = \ln t \in \mathbb{R}$ satisfies $e^x = t$. Alternatively, $\exp$ is continuous with $\lim_{x\to-\infty}e^x = 0$, $\lim_{x\to\infty}e^x=\infty$, so the intermediate value theorem gives every positive value.
+*Surjective.* Given $t > 0$, $x = \ln t \in \mathbb{R}$ satisfies $e^x = t$. Alternatively, $\exp$ is continuous — unbroken, drawable without lifting the pen — with $\lim_{x\to-\infty}e^x = 0$, $\lim_{x\to\infty}e^x=\infty$, so the intermediate value theorem gives every positive value.
 </Proof>
 
 Changing the codomain to $\mathbb{R}$ destroys surjectivity and so bijectivity — the same rule, a different function (§3.1).
@@ -44,7 +44,7 @@ Define $S \sim T$ ("the same size") when a bijection $S \to T$ exists. This is a
 
 **Cardinality** $|S|$ is the equivalence class (§7.2: the family of things counted as the same), and $|S| = |T|$ means $S \sim T$. For finite sets this agrees with counting; the content is that it continues to make sense when counting does not.
 
-Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this is such that mutual containment forces equality — $|S|\leq|T|$ and $|T|\leq|S|$ imply $|S|=|T|$ — is the **Schröder–Bernstein theorem**, and it is genuinely not obvious: from injections both ways one must *construct* a bijection, and the construction (partitioning by orbits of the two maps) is the standard first surprise of the subject.
+Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this is such that mutual containment forces equality — $|S|\leq|T|$ and $|T|\leq|S|$ imply $|S|=|T|$ — is a named theorem in its own right, and it is genuinely not obvious: from injections both ways one must *construct* a bijection, and the construction (partitioning by orbits of the two maps) is the standard first surprise of the subject.
 
 ## An infinite set can match up with part of itself
 
