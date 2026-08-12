@@ -80,7 +80,7 @@ The three conditions are independent, and examining what each rules out is more 
 
 **Failure of symmetry is what makes a relation an order.** $\leq$ and $\subseteq$ are reflexive and transitive and not symmetric, and that is exactly what makes them orderings rather than notions of sameness. Orders and equivalences are the two natural weakenings of equality, distinguished by exactly this condition.
 
-**Failure of transitivity (first-to-second and second-to-third gives first-to-third, §7.2) is usually fatal.** Perpendicularity fails it: $\ell_1\perp\ell_2$ and $\ell_2\perp\ell_3$ give $\ell_1 \parallel \ell_3$ in the plane, not $\ell_1\perp\ell_3$. A relation without transitivity supports no chaining, and chaining is what proofs do.
+**Failure of transitivity is usually fatal** — transitivity being the rule that first-to-second and second-to-third gives first-to-third (§7.2). Perpendicularity fails it: $\ell_1\perp\ell_2$ and $\ell_2\perp\ell_3$ give $\ell_1 \parallel \ell_3$ in the plane, not $\ell_1\perp\ell_3$. A relation without transitivity supports no chaining, and chaining is what proofs do.
 
 ## Quotients build the number systems
 
@@ -89,7 +89,7 @@ The same move builds each number system from the one before it. The integers are
 The pattern is uniform: take known objects, impose the right notion of sameness, and the classes are the new objects. Chapter 7 builds $\mathbb{N}$ from axioms; every system above it is built by quotient.
 
 <Aside>
-In rule-based type theory, equality is not a single undefined relation but a *type* — $\mathrm{Id}_A(x,y)$ — and A1–A3 become constructions rather than axioms. Reflexivity is a term, symmetry and transitivity (first-to-second and second-to-third gives first-to-third, §7.2) are functions built from it.
+In some modern foundations, equality is not a single undefined relation but a *type* — $\mathrm{Id}_A(x,y)$ — and A1–A3 become constructions rather than axioms. Reflexivity is a term, symmetry and transitivity (first-to-second and second-to-third gives first-to-third, §7.2) are functions built from it.
 
 The consequences are strange and productive: identifications can carry information, and homotopy type theory reinterprets $\mathrm{Id}_A(x,y)$ as a path space, so that equality proofs get a geometry of their own. Univalence then says that identity of types is equivalence of types — making "equal" mean "the same up to renaming", which is what mathematicians have always meant informally.
 </Aside>

@@ -87,7 +87,7 @@ The diagonal structure is the reason mathematics is asymmetric in difficulty. A 
 
 ## Nested quantifiers: order is content
 
-Quantifiers of different kinds do not commute.
+Quantifiers of different kinds cannot be swapped.
 
 $$
 \forall x \in \mathbb{R}\; \exists y \in \mathbb{R},\; x + y = 0
@@ -101,7 +101,7 @@ The first is true: given $x$, choose $y = -x$. The choice of $y$ is permitted to
 
 The governing principle: **an inner quantifier may depend on the outer ones; an outer one may not depend on the inner ones.** When you read a nested statement, read it as a game — the $\forall$ variables are chosen by an opponent, the $\exists$ variables by you, in the order written, and the statement is true iff you have a winning strategy.
 
-Same-kind quantifiers *do* commute: $\forall x \forall y$ is $\forall y \forall x$, and likewise for $\exists$. Mixed ones never do, in general.
+Two of the *same* kind can be swapped freely: $\forall x \forall y$ says what $\forall y \forall x$ says, and likewise for two $\exists$. Mixed ones cannot, in general.
 
 ## Why quantifier order decides so much later
 

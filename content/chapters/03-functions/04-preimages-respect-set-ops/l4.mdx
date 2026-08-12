@@ -31,7 +31,7 @@ $$
 
 *Symbol by symbol: the bar on top is "everything outside".*
 
-The pre-image operator commutes with every Boolean set operation. No hypotheses on $f$ are needed — not injectivity, not surjectivity, nothing.
+Tracing back passes straight through every one of the set operations — pooling, overlapping, outsides. Nothing has to be true of $f$ for this to work — not injectivity, not surjectivity, nothing.
 
 ## The pivot
 
@@ -117,7 +117,7 @@ Take squaring, with $A = \{2\}$ and $B = \{-2\}$.
 
 Those two collections share nothing, so their overlap is empty, and the image of an empty collection is empty. But each of them has image $\{4\}$ — so the overlap of the images is $\{4\}$, not empty. The two sides genuinely differ.
 
-The reason is visible in the two definitions. Being in a traced-back set says one thing about **your own** output — no searching involved. Being in an image says *there is some input in $A$ that lands here* — a there-is claim, and there-is claims survive an *or* but not an *and*$, so images commute with union and not with intersection.
+The reason is visible in the two definitions. Being in a traced-back set says one thing about **your own** output — no searching involved. Being in an image says *there is some input in $A$ that lands here* — a there-is claim, and there-is claims survive an *or* but not an *and*, so images pass through union and not through intersection.
 
 Complement fails even more badly: $f(\overline{A})$ and $\overline{f(A)}$ are unrelated in general.
 

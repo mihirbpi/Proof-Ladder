@@ -1117,6 +1117,11 @@ const OFF_REGISTER = [
   [/\binvolutions?\b/i, 'an operation that undoes itself'],
   [/\bschema\b/i, 'one axiom for each formula'],
   [/\bentail(s|ed|ment)\b/i, 'forces, or follows from'],
+  // The verb, not the property. CCSSM names *commutative* from grade 3
+  // (3.OA.B.5), so commutativity stays; "X commutes with Y", meaning the two
+  // can be done in either order, is a different word doing a different job and
+  // no school course uses it.
+  [/\bcommut(e|es|ing)\b/i, 'passes through, or can be done in either order'],
   // Dropped from CCSSM geometry. It survives in older textbooks and in
   // competition writing, so it reads as ordinary to anyone who learned
   // geometry from those and as nothing at all to a reader who did not.
