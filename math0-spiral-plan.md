@@ -472,6 +472,34 @@ A kernel that **defines** its own term in the same breath is right, not wrong
 kernel is for. What the guard catches is a kernel that *uses* a word it has
 not earned.
 
+#### A4.1f Proposition, Discussion and Proof read their notation too (binding)
+
+Added 2026-08-12. §A4.2 already requires every notated **display** to carry a
+plain reading, and those come out clean. What was never checked is the
+**block**: a Proof carrying six different proof symbols across a dozen inline
+spans, with no reading anywhere in it. Measured before the rule: **206 of 239
+such blocks gave the reader nothing**, and proof blocks ran at 102–165 marks
+per 1000 words against prose caps of 45–105.
+
+The threshold tapers, which is the point — a grade-8 reader meeting this
+notation for the first time gets a reading as soon as **two** different symbols
+appear together; by grade 12 it takes **five**:
+
+| | `l4` | `l5` | `l6` | `l7` |
+|---|---|---|---|---|
+| distinct symbols before a reading is required | 2 | 3 | 4 | 5 |
+
+Chapter scope tapers as well, on the same schedule as
+`GLOSS_THROUGH_CHAPTER`, so `l7` stops after Chapter 5.
+
+**A key is not a reading.** §A4.2 already says so — *"a symbol key on its own
+is a dictionary, and a dictionary is not a translation"* — and the rule
+enforces it: the block needs *"So the line reads: …"*, or an em-dash italic
+restatement, not merely a list of what each mark means. The house form is one
+italic line carrying **both**, and the corpus currently has 177 in that form
+against **304 that are key-only** — those are in scope for the same treatment
+and are not yet done.
+
 #### A4.2 Notation gate (binding, and **derived** — do not author directly)
 
 This table is not an independent source. It is **generated from Part B**, filtered

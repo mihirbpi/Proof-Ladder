@@ -651,9 +651,16 @@ for (const file of files) {
       // over the cap for carrying a picture. Self-closing tags are stripped
       // first so the paired pattern cannot run from one of them to a later
       // closing tag of the same name.
+      // Symbol keys are excluded for the same reason components are: a line
+      // reading '*Symbol by symbol: ∈ is "is in" …*' is help placed beside the
+      // notation, not prose the reader has to wade through. The density cap
+      // has always excluded them; the length cap had not, so adding the
+      // readings this reader needs pushed four sections over the limit for
+      // being more explanatory.
       const n = part
         .replace(/<[A-Z][A-Za-z]*\b[^>]*\/>/g, ' ')
         .replace(/<([A-Z][A-Za-z]*)\b[\s\S]*?<\/\1>/g, ' ')
+        .replace(/^\*(Symbol by symbol|A reminder of the symbols)[\s\S]*?\*$/gm, ' ')
         .replace(/\$\$[\s\S]*?\$\$/g, ' ')
         .split(/\s+/).filter(Boolean).length;
       if (n > cap) {
@@ -1866,6 +1873,59 @@ for (const ch of fs.readdirSync(CHAPTERS)) {
 // tuned. The divergences it was written to catch — §6.3 at l6 stating no
 // result at all, §5.7 pointing at three different ideas across four levels —
 // were found by reading the kernels side by side, which is how to find them.
+
+// Proposition, Discussion and Proof blocks must read their notation too.
+//
+// The display-gloss rule covers `$$…$$` wherever it sits, and those came out
+// clean. What was never checked is the *block* — a Proof carrying six
+// different proof symbols across a dozen inline spans, with no reading
+// anywhere in it. Measured before this rule: 206 of 239 such blocks gave the
+// reader nothing, and proof blocks ran at 102–165 marks per 1000 words
+// against prose caps of 45–105.
+//
+// The threshold tapers, which is the point: a grade-8 reader meeting this
+// notation for the first time gets a reading as soon as two different symbols
+// appear together; by grade 12 it takes five. Chapter scope tapers too, by
+// GLOSS_THROUGH_CHAPTER, so l7 stops after Chapter 5.
+const BLOCK_SYMBOLS =
+  /\\forall|\\exists|\\Rightarrow|\\Leftrightarrow|\\iff|\\neg|\\wedge|\\vee(?!r)|\\in\b|\\notin|\\subseteq|\\mathbb\{[NZQRC]\}|\\equiv|\\cup\b|\\cap\b|\\emptyset|\\mid\b|\\nmid|\\pmod|\\sum|\\prod/g;
+// A reading, not a key. §A4.2 is explicit that "a symbol key on its own is a
+// dictionary, and a dictionary is not a translation" — so an em-dash italic
+// restatement of the statement counts, and so does "So the line reads".
+const BLOCK_READS =
+  /the line reads|reads?:|in words|which says|that is,|\bmeans?\b|unpack|translat|[—-]\s*\*[^*\n]{15,}\*/i;
+const BLOCK_THRESHOLD = { l4: 2, l5: 3, l6: 4, l7: 5 };
+// Same chapter scope as GLOSS_THROUGH_CHAPTER, repeated rather than referenced:
+// that constant is declared further down the file, and reaching for it here
+// silently skipped every block instead of checking one.
+const BLOCK_THROUGH = { l4: 7, l5: 7, l6: 6, l7: 5 };
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  const need = BLOCK_THRESHOLD[level];
+  const through = BLOCK_THROUGH[level];
+  if (!need || !through) continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  if (Math.floor(modPos(rel) / 100) > through) continue;
+  const raw = fs.readFileSync(f, 'utf8');
+  const blocks = [
+    ...raw.matchAll(/<Proof[\s\S]*?<\/Proof>/g),
+    ...raw.matchAll(/<Discussion[\s\S]*?<\/Discussion>/g),
+    // include the paragraph after the blockquote: the house convention puts a
+    // proposition's reading there, just as it does for a display.
+    ...raw.matchAll(/^>[^\n]*\*\*(?:Proposition|Theorem|Claim|Lemma)\.?\*\*[\s\S]*?\n\n[^\n]*/gm),
+  ];
+  for (const b of blocks) {
+    const text = body(b[0]);
+    const kinds = new Set(text.match(BLOCK_SYMBOLS) ?? []);
+    if (kinds.size < need) continue;
+    if (BLOCK_READS.test(text)) continue;
+    const kind = b[0].startsWith('<Proof') ? 'Proof' : b[0].startsWith('<Discussion') ? 'Discussion' : 'Proposition';
+    warn(
+      path.relative(ROOT, f),
+      `${kind} block carries ${kinds.size} different proof symbols and never reads any of them \u2014 at ${level} the limit is ${need}`,
+    );
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Kernels carry no proof notation, at any level.
