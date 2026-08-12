@@ -1643,6 +1643,15 @@ const LOOKAHEAD_LATE =
   /\bseries\b|\bconverges?\b|\bconvergence\b|\bdiverges?\b|\bdivergence\b|Ratio Test|\bTaylor\b|radius of convergence|varepsilon|\bpartial sums?\b/i;
 const LOOKAHEAD_NAMED =
   /\b(Mean|Intermediate|Extreme) Value Theorem\b|\bRolle'?s? theorem\b|\bFundamental Theorem of Calculus\b/i;
+// 3. Recite a calculus technique's mechanics. Naming a destination is the box's
+//    job — "the chain rule is a theorem about composition" lands for a reader
+//    who has met it and for one who has not. Describing how the technique goes
+//    ("adding and subtracting a term for the product rule, rationalising for
+//    the quotient rule", "u-substitution is the chain rule run backwards")
+//    lands only for the first, and this reader has finished 11th grade and no
+//    more. §6.6 is exempt: the plan makes it its own subject, gated to l7.
+const LOOKAHEAD_TECHNIQUE =
+  /\bu-substitution\b|\bintegration by parts\b|\bimplicit differentiation\b|\bl'?H(o|\u00f4)pital\b|(adding and subtracting|rationali[sz]ing)[^.]{0,40}\b(product|quotient) rule\b|\b(product|quotient|chain) rule run backwards\b/i;
 for (const f of files) {
   if (path.basename(f, '.mdx') !== 'l7') continue;
   const box = fs.readFileSync(f, 'utf8').match(/<WhereThisGoes[\s\S]*?<\/WhereThisGoes>/)?.[0];
@@ -1655,6 +1664,17 @@ for (const f of files) {
   const named = box.match(LOOKAHEAD_NAMED);
   if (named) {
     warn(rel, `look-ahead box names "${named[0]}" — say what it claims instead; the reader has not met it`);
+  }
+  // Technique recital is checked over the whole page, not just the box: it is
+  // no better in the body. §6.6 is exempt — the plan makes it its own subject.
+  if (modPos(path.relative(ROOT, f).split(path.sep).join('/')) !== 606) {
+    const tech = body(fs.readFileSync(f, 'utf8')).match(LOOKAHEAD_TECHNIQUE);
+    if (tech) {
+      warn(
+        rel,
+        `recites how "${tech[0]}" goes — this reader has finished 11th grade, so name the destination, do not walk through the method`,
+      );
+    }
   }
   // Bare initialisms are worse than the full name: IVT, FTC and MVT are what
   // you write for someone who already knows the theorem.
