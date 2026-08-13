@@ -16,13 +16,17 @@ $$
 \textbf{(M1)}\ a\cdot 0 = 0, \qquad \textbf{(M2)}\ a\cdot S(b) = a + (a\cdot b).
 $$
 
-Recursion on the second argument, iterating $+$ exactly as $+$ iterates $S$. In each case the base is the identity of the iterated operation:
+*Symbol by symbol: $a \cdot 0$ is $a$ times zero, and $S(b)$ is the next number after $b$. So the line reads: anything times zero is zero, and to multiply by the next number, multiply by the number itself and then add one more copy of $a$.*
+
+Recursion on the second slot again, and the shape is the same one step up: addition repeats *next*, and multiplication repeats *addition*.
 
 $$
-a + b = S^b(a), \qquad a\cdot b = \underbrace{a + \cdots + a}_{b}.
+a + b = \underbrace{S(S(\cdots S}_{b}(a)\cdots)), \qquad a\cdot b = \underbrace{a + \cdots + a}_{b}.
 $$
 
-Legitimacy comes from the recursive-definition principle (§7.6), so from A9.
+*So the line reads: adding $b$ means applying the successor $b$ times starting from $a$; multiplying by $b$ means adding $b$ copies of $a$.*
+
+Both are legitimate definitions for the reason §7.6 gave — a base value plus a rule for getting to the next case pins down exactly one function, and that is Axiom 9 doing the work.
 
 ## Basic derivations
 
@@ -45,15 +49,26 @@ Assumed as an arithmetic rule in §4.1; derivable here.
 </Discussion>
 
 <Proof>
+
+*The symbols in this proof: $S(k)$ is the next number after $k$, and (A1), (A2), (M1), (M2) are the four defining rules — two for addition, two for multiplication. In words, what follows shows: the identity holds when $c$ is zero, and holding at $k$ forces it at the next one.*
+
 Induct on $c$.
 
-*Base.* $a(b+0) = ab$ by (A1); $ab + a\cdot0 = ab+0 = ab$ by (M1), (A1).
+*Base.* $a(b+0) = ab$ by (A1), and $ab + a\cdot0 = ab + 0 = ab$ by (M1) then (A1). Both sides give $ab$. ✓
 
-*Step.* Assuming $a(b+k) = ab+ak$,
+*Step.* Assume $a(b+k) = ab+ak$. Then, one step at a time:
+
 $$
-a\big(b+S(k)\big) \overset{\text{(A2)}}{=} a\,S(b+k) \overset{\text{(M2)}}{=} a + a(b+k) = a + (ab+ak) = ab + (a + ak) \overset{\text{(M2)}}{=} ab + a\,S(k),
+\begin{aligned}
+a\big(b+S(k)\big) &= a\,S(b+k)      && \text{by (A2)}\\
+                   &= a + a(b+k)      && \text{by (M2)}\\
+                   &= a + (ab+ak)     && \text{by the assumption}\\
+                   &= ab + (a + ak)   && \text{rearranging, using §7.6}\\
+                   &= ab + a\,S(k)   && \text{by (M2) again}
+\end{aligned}
 $$
-the second-to-last step by associativity and commutativity of $+$.
+
+which is the claim at $S(k)$. Note the fourth line: reordering a sum is not free here, and it spends the associativity and commutativity proved in §7.6. $\blacksquare$
 </Proof>
 
 Right-distributivity $(a+b)c = ac+bc$ requires a separate induction — or follows from commutativity of $\cdot$, which itself needs distributivity, so the order of proof matters.

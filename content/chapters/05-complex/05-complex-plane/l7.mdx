@@ -30,21 +30,24 @@ The bijection $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ identifies 
 
 **Multiplication** is where $\mathbb{C}$ departs from $\mathbb{R}^2$.
 
-> **Proposition.** Multiplication by $z = a+bi$ is the $\mathbb{R}$-linear map with matrix
-> $$M_z = \begin{pmatrix} a & -b \\ b & a\end{pmatrix},$$
-> a rotation by $\arg z$ composed with a scaling by $|z|$.
+> **Proposition.** Multiplication by $z = a+bi$ moves the point $(x,y)$ to $(ax-by,\ bx+ay)$ — and that motion is a rotation by $\arg z$ followed by a scaling by $|z|$.
 
 <Proof>
-For $w = x+yi$, $zw = (ax - by) + (bx + ay)i$, so in coordinates $(x,y) \mapsto (ax-by,\ bx+ay)$, which is $M_z$ applied to $(x,y)^T$.
 
-Writing $r = \sqrt{a^2+b^2}$ and, for $z \neq 0$, $\cos\theta = a/r$, $\sin\theta = b/r$,
+*The symbols in this proof: $\arg z$ is the angle $z$ points at, $|z|$ is its distance from the origin. In words, what follows shows: the coordinate rule for multiplying by $z$ is exactly the rule for turning a point and then stretching it.*
+
+For $w = x+yi$, $zw = (ax - by) + (bx + ay)i$, so in coordinates the rule is $(x,y) \mapsto (ax-by,\ bx+ay)$.
+
+Writing $r = \sqrt{a^2+b^2}$ and, for $z \neq 0$, $\cos\theta = a/r$ and $\sin\theta = b/r$, that rule becomes
 $$
-M_z = r\begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix},
+(x,y) \;\mapsto\; r\,(x\cos\theta - y\sin\theta,\ \ x\sin\theta + y\cos\theta),
 $$
-the product of a scaling by $r$ and the standard rotation matrix through $\theta$.
+and the pair inside the brackets is exactly the formula from your trigonometry for turning $(x,y)$ counterclockwise through $\theta$. So the whole rule is: turn by $\theta$, then stretch by $r$.
 </Proof>
 
-Taking $z = i$ gives $M_i = \begin{pmatrix}0&-1\\1&0\end{pmatrix}$, rotation by $\pi/2$, and $M_i^2 = -I$ is the matrix form of $i^2 = -1$. That grid also scales every area by $a^2+b^2 = |z|^2$, so multiplication by $z$ scales areas by $|z|^2$ — a fact that reappears in the change-of-variables formula for complex integrals — the running totals that rates build up to, the other half of calculus —.
+Taking $z = i$ makes the rule $(x,y)\mapsto(-y,x)$: a quarter turn counterclockwise. Apply it twice and $(x,y)\mapsto(-x,-y)$, which is multiplication by $-1$ — so $i^2 = -1$, read off the plane.
+
+The same rule stretches every length by $|z|$ in both directions at once, so it scales every **area** by $|z|^2$. That fact returns in calculus, when a change of variable has to account for how much the substitution stretches the region being measured.
 
 <Figure alt="Four points marked at the compass positions one, i, minus one, and minus i." caption="Multiplication by $i$ cycles the compass points counterclockwise.">
   <ComplexPlane points={[

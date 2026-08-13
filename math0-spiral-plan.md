@@ -472,6 +472,41 @@ A kernel that **defines** its own term in the same breath is right, not wrong
 kernel is for. What the guard catches is a kernel that *uses* a word it has
 not earned.
 
+#### A4.1h Chapter 7 is never past the gloss taper (binding)
+
+Added 2026-08-12, after a read-through found grade 12's Peano chapter using
+notation "like it is second nature to them, but they just learned it in earlier
+chapters."
+
+The taper in `GLOSS_THROUGH_CHAPTER` stopped glossing after Chapter 6 at `l6`
+and after Chapter 5 at `l7`, on the premise that a reader grows fluent as the
+book goes on. That premise fails for exactly one chapter. Chapter 7 introduces
+$S$, a numbered axiom list, and iterated-successor shorthand **of its own**,
+*and* leans on Chapters 1–6 harder than anything before it — so the single most
+notation-dense chapter in the book was the one chapter nobody was checking.
+Chapter 7 is now always in scope, at every level.
+
+Three specific habits were found and are now barred there:
+
+**Stacked justifications.** `a \overset{\text{(A2)}}{=} b \overset{\text{(A1)}}{=} c`
+asks a first-course reader to decode a labelled equals sign mid-chain. Twelve of
+these sat at `l4`. Write an aligned derivation with a reasons column instead —
+one step per line, the reason to its right, in words rather than by label where
+the level is low.
+
+**Shorthand introduced by use.** $S^m(0)$, $\mathbb{N}_{\text{meta}}$, the
+hook-arrow for an injection, and $S^{-1}(\{0\})$ all appeared with no
+introduction. Say what the mark means at its first appearance in the chapter —
+*"write $S^m(0)$ for step $m$ times starting from $0$; the little number counts
+steps, it is not a power"* — or drop the mark and say it in words.
+
+**Borrowed vocabulary glossed by repetition.** *Injective*, *surjective* and
+*bijection* are Chapter 3's and are new to this reader. The corpus had the same
+parenthetical — *"(no two inputs share an output, §3.5)"* — repeated three times
+in a single file while the chapter's **first** use of the word was bare. Invert
+that: explain it properly where the chapter first needs it, tied to what it says
+about $S$, then carry a bare §-pointer afterwards.
+
 #### A4.1g Above grade level, whether or not the word was swapped (binding)
 
 Added 2026-08-12. §A4.1b bans undergraduate **subjects** by name and the
@@ -678,6 +713,28 @@ reader is *in* assumes knowledge they are in the middle of acquiring.
 | `l6` | 10 | Algebra II | Geometry |
 | `l7` | 12 | Calculus | Precalculus |
 | `l8` | college | — | — |
+
+**1a. Matrices and vectors are hedged, and determinants are barred outright.**
+Added 2026-08-12, after `\det A` was found on the first page of `l7` being used
+as an ordinary example of an expression.
+
+Matrices and vectors sit under CCSSM **N-VM**, which is a **`+` standard** — a
+good many precalculus courses never reach it. So they are neither assumed nor
+banned: they may be used as far as precalculus takes them (adding, multiplying,
+holding a transformation of the plane, and the failure of commutativity), and
+must be phrased as something the reader *may* have met — *"grids of numbers, you
+may have met these as matrices"* — never as vocabulary an argument leans on. An
+equally good option is to make the point **without the term at all**.
+
+**Prefer a coordinate rule wherever one exists.** *"Multiplying by $a+bi$ moves
+$(x,y)$ to $(ax-by,\ bx+ay)$"* needs nothing from linear algebra and says more
+than the $2\times2$ array does. §5.5, §5.9 and §5.3 at `l7` were rewritten this
+way, and the proofs got shorter.
+
+**Determinants are barred at every level, `l8` excepted.** They are past every
+high-school course, `+` standards included. Note the gate below stops *at* the
+level named in its `from` field, so nothing was checking `l7` — that hole is why
+the `\det` reached the page, and it is now closed by a separate check.
 
 **2. No proof notation may be used before it is introduced, at any level.**
 `∀ ∃ ⇒ ⇔ ¬ ∧ ∨ ∈ ⊆ ∪ ∩ ∅ ≡ ∘ ↦ ∤` and the blackboard-bold sets are **not
@@ -1274,7 +1331,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● Term *irrational*. The proof told as a story: suppose you had the simplest fraction; discover both top and bottom are even; but then it wasn't the simplest. Contradiction, in words, no algebra.
 - `l4` ● The full proof with algebra, with the lowest-terms assumption flagged as the load-bearing step and the even-square lemma cited from Chapter 1.
 - `l5`–`l6` ● Same; adds √p irrational for prime p, and √m rational iff m is a perfect square (stated, sketched).
-- `l7`–`l8` ● Math 0 text in full; `l8` notes e and π are irrational and transcendental, and that the proofs are genuinely harder.
+- `l7`–`l8` ● Math 0 text in full; `l8` proves what it can of them. *Transcendental* itself is fine from `l6`, where polynomials are already in hand and the page defines it on the spot as a number that is the root of no whole-number polynomial (revised 2026-08-12).
 
 ---
 
@@ -1286,7 +1343,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● The two failures of closure stated with those examples, and the "suppose not" proof that −a is irrational told in words.
 - `l4` ● Full proofs of −a and 1/a irrational.
 - `l5`–`l6` ● Math 0's proposition on a·b for nonzero rational a, with the observation that it generalizes the −a case.
-- `l7`–`l8` ● Math 0 text in full; `l8` notes irrational^irrational can be rational (the √2^√2 argument) as a famous nonconstructive proof.
+- `l7`–`l8` ● Math 0 text in full; the √2^√2 argument runs from `l4`, and at `l3` as a flagged aside in words (revised 2026-08-12) — it needs only radicals and exponent rules, and its point, that a proof can show something exists without saying which, is the module's best example of that. The 1934 theorem settling which case actually holds is named but not named-after.
 
 ### Chapter 5 — Complex numbers: the number that turns
 
@@ -1304,7 +1361,8 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● The equation x² = −1 stated and shown unsolvable with the two-case argument from 1.12. The invention framed honestly.
 - `l4` ● Adds the polynomial-root motivation and the parallel to earlier extensions (ℕ→ℤ to subtract, ℤ→ℚ to divide).
 - `l5`–`l6` ● Adds the quadratic formula's discriminant as the everyday place this gap shows up.
-- `l7`–`l8` ● Math 0 text; `l8` states the Fundamental Theorem of Algebra as the payoff.
+- `l4`–`l7` ● **The Fundamental Theorem of Algebra is stated at every level from `l4`** (revised 2026-08-12). It is this module's payoff — the chapter opens by asking whether extending the numbers ever ends — so withholding it leaves the question hanging. It is *stated*, never proved, and the wording tapers: `l4` gets *"every equation built from powers of $x$, with complex numbers in front of them, has a complex solution"*, and only `l6`–`l7` use the word *polynomial*, which is Algebra I.
+- `l7`–`l8` ● Math 0 text; `l8` adds the algebraic-closure framing and why no purely algebraic proof exists.
 
 ---
 
@@ -1399,7 +1457,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● Multiplying by i as a quarter turn, generalized: multiplying rotates. Verified on examples with degrees.
 - `l4` ● The polar multiplication rule stated and checked against a FOIL computation; the distance of a point in polar form verified with the Pythagorean identity. Written as the pair (r, θ), not as re^{iθ} — imaginary exponents are gated below `l7` by §A4.1g, and `l3`, `l4` and `l6` all use the pair form already.
 - `l5`–`l6` ● Double-angle formulas derived by equating real and imaginary parts — the moment where complex numbers *pay off* in a course they've already taken. De Moivre stated.
-- `l7`–`l8` ● Math 0 text in full; `l8` adds nth roots of unity and their geometry.
+- `l7`–`l8` ● Math 0 text in full; roots of unity are `l7` material (revised 2026-08-12): the grade-12 row already carries De Moivre, and they fall straight out of it. `l8` adds the group structure.
 
 ---
 
@@ -1452,7 +1510,8 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l2` ● Claims about "every number, one after another" vs claims about everything at once.
 - `l3` ● Two example claims, one suitable and one not (x² ≥ 0 for all real x), with the reason.
 - `l4`–`l6` ● Adds the second requirement: the (k+1) case must be reachable from the k case. Sums, products, and recursive definitions are the natural fits.
-- `l7`–`l8` ● Math 0 text in full; `l8` adds strong induction and structural induction, each in a short paragraph with one example.
+- `l4`–`l7` ● **Strong induction belongs here**, not at `l8` (revised 2026-08-12). The kernel asks what it takes for case $k+1$ to be reachable from case $k$; strong induction is the answer when it is not, so the module cannot state its own question and withhold the answer. Every level motivates it the same way — $n+1 = ab$ with $a,b$ far below $n$, so assuming $A(n)$ alone is useless — and every level says outright that it is not a new axiom, only ordinary induction applied to *"all cases so far hold"*.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds structural induction in a short paragraph with one example.
 
 ---
 

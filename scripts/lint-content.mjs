@@ -1898,7 +1898,7 @@ for (const f of files) {
   const text = body(fs.readFileSync(f, 'utf8'));
   for (const m of text.matchAll(/\bmatri(x|ces)\b|\bvector space\b|\bdeterminant\b/gi)) {
     const near = text.slice(Math.max(0, m.index - 280), m.index + 280);
-    if (/Algebra II|number grids?|grids? of numbers/i.test(near)) continue;
+    if (/Algebra II|may have met|number grids?|grids? of (numbers|coefficients)/i.test(near)) continue;
     warn(rel, `${level} uses "${m[0]}" without saying what it is \u2014 gloss it as the number grids Algebra II calls matrices`);
   }
 }
@@ -2043,6 +2043,14 @@ const BLOCK_SYMBOLS =
 // restatement of the statement counts, and so does "So the line reads".
 const BLOCK_READS =
   /the line reads|reads?:|in words|which says|that is,|\bmeans?\b|unpack|translat|[—-]\s*\*[^*\n]{15,}\*/i;
+// Chapter 7 is always in scope, whatever the taper says. The taper's premise
+// is that a reader grows fluent as the book goes on, and that holds for
+// chapters that reuse notation. Chapter 7 does something else: it introduces
+// $S$ and a numbered axiom list of its own *and* leans harder on chapters 1-6
+// than anything before it. At l6 the taper stopped after chapter 6 and at l7
+// after chapter 5, so the single most notation-dense chapter in the book was
+// the one chapter nobody was checking.
+const ALWAYS_GLOSSED_CHAPTER = 7;
 const BLOCK_THRESHOLD = { l4: 2, l5: 3, l6: 4, l7: 5 };
 // Same chapter scope as GLOSS_THROUGH_CHAPTER, repeated rather than referenced:
 // that constant is declared further down the file, and reaching for it here
@@ -2054,7 +2062,8 @@ for (const f of files) {
   const through = BLOCK_THROUGH[level];
   if (!need || !through) continue;
   const rel = path.relative(ROOT, f).split(path.sep).join('/');
-  if (Math.floor(modPos(rel) / 100) > through) continue;
+  const chNo = Math.floor(modPos(rel) / 100);
+  if (chNo > through && chNo !== ALWAYS_GLOSSED_CHAPTER) continue;
   const raw = fs.readFileSync(f, 'utf8');
   const blocks = [
     ...raw.matchAll(/<Proof[\s\S]*?<\/Proof>/g),
@@ -2141,7 +2150,7 @@ for (const f of files) {
   if (!through) continue;
   const rel = path.relative(ROOT, f).split(path.sep).join('/');
   const chapterNo = Math.floor(modPos(rel) / 100);
-  if (chapterNo > through) continue;
+  if (chapterNo > through && chapterNo !== ALWAYS_GLOSSED_CHAPTER) continue;
   // Every display, wherever it sits. The old version tested
   // `p.trim().startsWith('$$')`, which only sees a display that is a paragraph
   // of its own — so a display inside a list item, inside a <Warning>, or
@@ -2189,7 +2198,8 @@ for (const f of files) {
   const through = GLOSS_THROUGH_CHAPTER[level];
   if (!through) continue;
   const rel = path.relative(ROOT, f).split(path.sep).join('/');
-  if (Math.floor(modPos(rel) / 100) > through) continue;
+  const chNum = Math.floor(modPos(rel) / 100);
+  if (chNum > through && chNum !== ALWAYS_GLOSSED_CHAPTER) continue;
   // Three exclusions, all for the reason the density cap already excludes
   // proofs: inside a proof the symbols *are* the medium, and element-chasing
   // cannot be de-symbolised without becoming worse. A table of correspondences
@@ -2559,6 +2569,20 @@ for (const f of files) {
 // Pythagoras. Everywhere else they are a convenience with an easy substitute,
 // which is what this check removes.
 const CH5 = /05-complex\/0[6-9]-/;
+// Determinants are barred at every level, l7 included. The GRADED_CONCEPTS
+// gate below stops at the level named in `from`, so nothing checked l7 at
+// all — which is how \det reached the first page of grade 12. Matrices and
+// vectors themselves are allowed as far as precalculus takes them, but only
+// hedged as something the reader *may* have met: N-VM is a "+" standard and a
+// good many courses never reach it, so no argument may depend on having had it.
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!LEVEL_ORDER.includes(level) || level === 'l8') continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const m = body(fs.readFileSync(f, 'utf8')).match(/\\det\b|\bdeterminants?\b/i);
+  if (m) warn(rel, `${level} uses "${m[0]}" — determinants are past every high-school course (§A5.0 rule 1)`);
+}
+
 const GRADED_CONCEPTS = [
   // Ordinary school mathematics from a later grade. No glimpse exemption: an
   // Aside full of trigonometry at l3 is still trigonometry.
@@ -2600,7 +2624,7 @@ for (const f of files) {
       const pStart = hay.lastIndexOf('\n\n', m.index) + 1;
       const pEnd = hay.indexOf('\n\n', m.index);
       const para = hay.slice(pStart, pEnd < 0 ? hay.length : pEnd);
-      if (/\b(called|which|rows and columns|grids? of numbers|Algebra II|Precalculus|later|you will meet|introduces|a tool from)\b/i.test(para)) continue;
+      if (/\b(called|which|rows and columns|grids? of (numbers|coefficients)|may have met|may have learned|Algebra II|Precalculus|later|you will meet|introduces|a tool from)\b/i.test(para)) continue;
     }
     warn(rel, `${level} uses ${name} ("${m[0]}") — not available until ${from} (§A5.0 rule 1)`);
   }

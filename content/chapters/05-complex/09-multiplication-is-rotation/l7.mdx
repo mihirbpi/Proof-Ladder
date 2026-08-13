@@ -25,7 +25,7 @@ Consequences: $|zw| = |z||w|$ (§5.6), $\overline{re^{i\theta}} = re^{-i\theta}$
 
 ## Geometric content
 
-Multiplication by $z = re^{i\theta}$ is rotation by $\theta$ composed with scaling by $r$ — the map with matrix $r\begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix}$ from §5.5. The numbers with $|z|=1$ act by pure rotations, changing no distance — so the unit circle *is* the set of rotations of the plane about the origin.
+Multiplication by $z = re^{i\theta}$ is rotation by $\theta$ composed with scaling by $r$ — the coordinate rule $(x,y)\mapsto r\,(x\cos\theta - y\sin\theta,\ x\sin\theta+y\cos\theta)$ of §5.5. The numbers with $|z|=1$ act by pure rotations, changing no distance — so the unit circle *is* the set of rotations of the plane about the origin.
 
 $i^2 = -1$ is thereby the identity "two quarter turns make a half turn". Every distinctive fact about $\mathbb{C}$ descends from this single geometric statement.
 
@@ -80,7 +80,7 @@ $$z \longmapsto w(z - c) + c.$$
 
 That is a composition of three transformations, applied right to left in the order §3.7 requires — and it is the general form of a rotation-with-scaling in the plane.
 
-Written in real coordinates the same map needs a $2\times2$ matrix, two vector additions, and four multiplications. In $\mathbb{C}$ it is one line, and the reason is that complex multiplication already encodes the rotation.
+Written out in real coordinates the same map takes four multiplications and two additions, with the four coefficients tracked by hand. In $\mathbb{C}$ it is one line, and the reason is that complex multiplication already encodes the rotation.
 
 The fixed point is $c$ itself, and it is the **only** fixed point when $w \neq 1$: solving $w(z-c)+c = z$ gives $(w-1)(z-c) = 0$, so $z = c$. That matches the classification of plane isometries — a not obvious rotation has exactly one fixed point — and here it is an algebraic consequence rather than something assumed at the start, as geometry would have it.
 

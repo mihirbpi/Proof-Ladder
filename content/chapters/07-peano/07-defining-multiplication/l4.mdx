@@ -6,7 +6,6 @@ newTerms: []
 anchorExample: "successor function"
 ---
 
-import Discussion from '@/components/Discussion.astro';
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
@@ -39,7 +38,14 @@ $$
 > **Proposition.** $a \cdot 1 = a$.
 
 <Proof>
-$a\cdot1 = a\cdot S(0) \overset{\text{(M2)}}{=} a + (a\cdot0) \overset{\text{(M1)}}{=} a + 0 \overset{\text{(A1)}}{=} a$.
+$$
+\begin{aligned}
+a\cdot 1 &= a\cdot S(0)   && \text{since } 1 = S(0)\\
+         &= a + (a\cdot0) && \text{by the second multiplication rule}\\
+         &= a + 0         && \text{by the first multiplication rule}\\
+         &= a             && \text{by the first addition rule}
+\end{aligned}
+$$
 </Proof>
 
 The proof consumed both definitions, which is the tower doing its work.
@@ -50,30 +56,15 @@ Module 4.1 presented distributivity as an axiom of $\mathbb{Z}$ — a rule to be
 
 > **Theorem.** $a\cdot(b+c) = a\cdot b + a\cdot c$.
 
-<Discussion>
-  <div slot="know">(M1), (M2), and the addition results of module 7.6 — associativity and commutativity of $+$.</div>
-  <div slot="want">The identity for all $a,b,c$.</div>
-  <div slot="how">Induct on $c$, since (M2) peels the second argument of $\cdot$ and (A2) peels the second of $+$. The step needs commutativity and associativity of addition to rearrange terms — so the previous module is a genuine prerequisite, not a warm-up.</div>
-</Discussion>
+**It is provable from here, and the shape is worth seeing even without the full derivation.**
 
-<Proof>
-Induct on $c$, with $a$ and $b$ named at the start and nothing assumed about them (§1.12).
+Induct on $c$. The choice of $c$ is forced: the second multiplication rule peels the second slot of $\cdot$, and the second addition rule peels the second slot of $+$, so $c$ is the slot both definitions can reach.
 
-**Base.** $a\cdot(b+0) = a\cdot b$ by (A1); and $a\cdot b + a\cdot 0 = a\cdot b + 0 = a\cdot b$ by (M1) and (A1). Equal. ✓
+At $c = 0$ both sides come to $a\cdot b$, one by the first addition rule and the other by the first multiplication rule.
 
-**Step.** Assume $a\cdot(b+k) = a\cdot b + a\cdot k$. Then
-$$
-\begin{aligned}
-a\cdot\big(b+S(k)\big) &= a\cdot S(b+k) && \text{by (A2)}\\
-&= a + a\cdot(b+k) && \text{by (M2)}\\
-&= a + \big(a\cdot b + a\cdot k\big) && \text{by (IH)}\\
-&= a\cdot b + \big(a + a\cdot k\big) && \text{assoc. and comm. of } +\\
-&= a\cdot b + a\cdot S(k) && \text{by (M2)}.
-\end{aligned}
-$$
-</Proof>
+For the step, assume the identity holds at $k$ and push to $S(k)$. The two defining rules move you from $a\cdot(b+S(k))$ to $a + a\cdot(b+k)$; the assumption rewrites that as $a + (a\cdot b + a\cdot k)$; and then the terms have to be **reordered** to reach $a\cdot b + a\cdot S(k)$.
 
-The fourth line is where module 7.6's theorems are spent. Without commutativity of addition — itself three inductions — the rearrangement is unjustified.
+That reordering is the interesting step, because it is not free. It spends the commutativity and associativity of addition — which module 7.6 had to prove by three separate inductions. Without those, the rearrangement would be unjustified, and the whole derivation would stall there.
 
 ## The rest
 

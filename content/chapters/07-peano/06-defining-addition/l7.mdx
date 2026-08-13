@@ -6,7 +6,6 @@ newTerms: ["recursive definition", "recursive-definition principle"]
 anchorExample: "successor function"
 ---
 
-import Discussion from '@/components/Discussion.astro';
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
@@ -16,26 +15,24 @@ $$
 \textbf{(A1)}\ a+0 = a, \qquad \textbf{(A2)}\ a + S(b) = S(a+b).
 $$
 
+*Symbol by symbol: $S(b)$ is the next number after $b$, and the bold labels are names for the two rules so later proofs can point at them. So the line reads: (A1) adding zero changes nothing, and (A2) adding the next number after $b$ gives the next number after $a+b$.*
+
 Recursion on the **second** argument, with the first held fixed. Every asymmetry below traces to that choice.
 
-## Why the definition is legitimate
+## Is a recursion allowed to define anything?
 
-Writing down a recursion does not by itself define anything: one must know that a function satisfying the clauses exists and is unique.
+Writing down two rules does not by itself create a function. Something has to guarantee that exactly one function obeys them — no fewer, no more.
 
-> **The recursive-definition principle.** Let $A$ be a set, $c \in A$, $f : A \to A$. Then there is a **unique** $h : \mathbb{N}\to A$ with $h(0) = c$ and $h(S(n)) = f(h(n))$.
+Something does. There is a theorem, proved by induction from Axiom 9, saying that a base value plus a rule for getting from each case to the next always pins down exactly one function on $\mathbb{N}$. Uniqueness is the easy half: if two functions obeyed the rules, the set where they agree contains $0$ and is closed under *next*, so by Axiom 9 it is everything.
 
-Uniqueness is an induction: if $h_1, h_2$ both satisfy the clauses, $\{n : h_1(n)=h_2(n)\}$ is inductive, so is all of $\mathbb{N}$ by A9. Existence requires constructing $h$ as a set of pairs and verifying it is a function — also by induction.
-
-Addition is then $a + {-} := h_a$ where $h_a(0) = a$ and $h_a(S(n)) = S(h_a(n))$, i.e. $A = \mathbb{N}$, $c = a$, $f = S$.
-
-So the ninth axiom underwrites not only inductive *proof* but recursive *definition*. Both directions of §6.4's observation — recursion and induction are one structure — are theorems here.
+So the ninth axiom does double duty. It licenses proof by induction, and it licenses definition by recursion — the two halves of §6.4's observation that recursion and induction are one structure.
 
 ## Derivations
 
 <Proof>
 $1+1 = 1+S(0) = S(1+0) = S(1) = 2$.
 
-$2+3 = 2+S(2) = S(2+2) = S(S(2+1)) = S(S(S(2+0))) = S^3(2) = 5$.
+$2+3 = 2+S(2) = S(2+2) = S(S(2+1)) = S(S(S(2+0))) = 5$.
 </Proof>
 
 > **Proposition.** $a+1 = S(a)$.
@@ -44,67 +41,66 @@ $2+3 = 2+S(2) = S(2+2) = S(S(2+1)) = S(S(S(2+0))) = S^3(2) = 5$.
 $a+1 = a+S(0) = S(a+0) = S(a)$.
 </Proof>
 
-This is the theorem §7.3 promised. The notational identification of $S(a)$ with $a+1$, forbidden until addition existed, is now licensed.
+This is the theorem §7.3 promised. Writing $a+1$ for $S(a)$ — forbidden until addition existed — is now licensed.
 
-## Why $0 + x = x$ needs proof
+## The surprise: $0 + a = a$ has to be proved
 
-The definition gives $x + 0 = x$ — zero on the **right**. Zero on the left is a different statement, with no rule producing it, and it must be proved.
+Rule (A1) gives $a + 0 = a$: zero on the **right**. Zero on the **left** is a different statement, and no rule produces it. The recursion peels the second slot, so it has nothing to say about the first.
 
-**Base case.** $0+0 = 0$ by the first rule with $x=0$. ✓
-
-**Inductive step.** Assume $0+k = k$. Then
-$$0 + S(k) = S(0+k) = S(k),$$
-using the second rule and then the hypothesis. That is the claim at $S(k)$.
-
-By Axiom 9, $0 + x = x$ for every $x$.
-
-**Four lines to prove that adding zero on the left does nothing.** The proof is short, and the fact that it is needed at all is the point: **the definition is asymmetric**, recursing on the second argument only, so every symmetric-looking fact requires its own argument.
-
-The companion lemma $S(x)+y = S(x+y)$ has the same character — the definition supplies $x + S(y) = S(x+y)$, and the mirror image is a separate induction. Both lemmas are consumed by the proof of commutativity, which is why that proof costs three inductions rather than one.
-
-## The laws, each needing its own induction
-
-None of these is an axiom; each requires induction.
-
-> **Lemma 1.** $0 + a = a$.
-
-<Discussion>
-  <div slot="know">(A1) gives $a+0=a$; it says nothing about $0+a$, since the recursion peels the second argument.</div>
-  <div slot="want">$0+a = a$.</div>
-  <div slot="how">Induct on $a$.</div>
-</Discussion>
+> **Lemma 1.** $0 + a = a$ for every $a$.
 
 <Proof>
-*Base.* $0+0=0$ by (A1). *Step.* $0+S(k) = S(0+k) = S(k)$ by (A2) and (IH).
+
+*The symbols in this proof: $S(k)$ is the next number after $k$. In words, what follows shows: adding zero on the left does nothing — checked at $0$, then passed up the chain.*
+
+*Base.* $0+0 = 0$, by (A1) with $a = 0$.
+
+*Step.* Assume $0+k = k$. Then
+$$
+0 + S(k) \;=\; S(0+k) \;=\; S(k),
+$$
+the first equality by (A2), the second by the assumption. That is the claim at $S(k)$, so Axiom 9 gives it for every $a$.
 </Proof>
+
+**Four lines to prove that adding zero on the left does nothing.** That it needs proving at all is the point: **the definition is asymmetric**, so every symmetric-looking fact costs its own argument.
+
+## Commutativity, worked
+
+This is the one worth doing in full, because it is the fact everyone assumes and nobody proves.
+
+It needs one more lemma, of the same character as the first: the definition gives $a + S(b) = S(a+b)$, and the mirror image is a separate induction on $b$.
 
 > **Lemma 2.** $S(a)+b = S(a+b)$.
 
-<Proof>
-Induct on $b$. *Base.* $S(a)+0 = S(a) = S(a+0)$. *Step.* $S(a)+S(k) = S(S(a)+k) = S(S(a+k)) = S(a+S(k))$, using (A2), (IH), (A2).
-</Proof>
-
-> **Theorem (commutativity).** $a+b = b+a$.
+> **Theorem.** $a+b = b+a$ for all $a$ and $b$.
 
 <Proof>
-Induct on $b$. *Base.* $a+0 = a = 0+a$ by (A1) and Lemma 1. *Step.* $a+S(k) = S(a+k) = S(k+a) = S(k)+a$, using (A2), (IH), Lemma 2.
+
+*The symbols in this proof: $S(k)$ is the next number after $k$. In words, what follows shows: the two orders agree at $b = 0$, and agreeing at $k$ forces agreeing at the next one.*
+
+Induct on $b$, holding $a$ fixed.
+
+*Base.* $a + 0 = a$ by (A1), and $0 + a = a$ by Lemma 1. So both orders give $a$.
+
+*Step.* Assume $a + k = k + a$. Then
+$$
+a + S(k) \;=\; S(a+k) \;=\; S(k+a) \;=\; S(k) + a,
+$$
+the first equality by (A2), the second by the assumption, the third by Lemma 2 read right to left. That is the claim at $S(k)$.
+
+By Axiom 9, it holds for every $b$. $\blacksquare$
 </Proof>
 
-> **Theorem (associativity).** $(a+b)+c = a+(b+c)$.
+**Three inductions for one familiar fact** — Lemma 1, Lemma 2, and the theorem itself.
 
-<Proof>
-Induct on $c$. *Base.* $(a+b)+0 = a+b = a+(b+0)$. *Step.*
-$$(a+b)+S(k) = S\big((a+b)+k\big) = S\big(a+(b+k)\big) = a + S(b+k) = a+(b+S(k)),$$
-by (A2), (IH), (A2) twice.
-</Proof>
+## The rest of the arithmetic
 
-> **Theorem (cancellation).** $a + c = b + c \Rightarrow a = b$.
+The same method delivers the remaining laws, each by an induction on one slot with the others held fixed:
 
-<Proof>
-Induct on $c$. *Base.* Immediate from (A1). *Step.* $a+S(k) = b+S(k)$ gives $S(a+k) = S(b+k)$, so $a+k = b+k$ by **A8** (injectivity (no two inputs share an output, §3.5) of $S$), and (IH) gives $a=b$.
-</Proof>
+- **Associativity**, $(a+b)+c = a+(b+c)$ — induct on $c$; the step is (A2) applied twice with the hypothesis in between.
+- **Cancellation**, $a + c = b + c \Rightarrow a = b$ — induct on $c$; the step strips an $S$ from both sides, which is legal exactly because **A8** says $S$ never sends two numbers to the same place.
 
-So $+$ on $\mathbb{N}$ is commutative and associative, has $0$ as identity, and permits cancellation — and note that cancellation is where A8 is finally spent. Every axiom now has a job.
+Cancellation is where A8 is finally spent, and with it every axiom has now done a job.
 
 <Warning title="Familiarity is not derivation">
 Nothing in (A1)–(A2) gives $a+b=b+a$; the definition is plainly asymmetric. Three inductions were required.

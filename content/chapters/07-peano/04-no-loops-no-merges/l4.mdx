@@ -29,9 +29,9 @@ $$
 In Chapter 3's language:
 
 - **A7:** $0 \notin \operatorname{Im}(S)$; equivalently nothing at all lands on $0$ (module 3.3).
-- **A8:** $S$ is **injective** (module 3.5) — and note it is stated in the contrapositive form, which module 3.5 identified as the usable one.
+- **A8:** $S$ is **injective**. That word is module 3.5's, and it is worth re-saying here rather than looked up: a rule is injective when it never sends two different inputs to the same output. For $S$ that means no two numbers share a next number — counting never merges two strands into one. Note also that A8 is written in the contrapositive form, which module 3.5 identified as the usable one.
 
-Together, $S : \mathbb{N}\to\mathbb{N}\setminus\{0\}$ is injective (no two inputs share an output, §3.5).
+Together: $S$ takes any counting number to a counting number other than $0$, and never repeats an output.
 
 Read informally, A7 says counting never comes back to the start and A8 says counting never merges two numbers into one. Those are exactly the two ways a chain of arrows can fail to be a line: it can close into a loop, or two strands can join. Rule both out and what is left has no choice but to run forever in one direction.
 
@@ -47,7 +47,7 @@ To show an axiom is independent of the others, exhibit a structure satisfying th
     edges={[[0,1],[1,0]]} />
 </Figure>
 
-A5 ✓, A6 ✓. A8 ✓ — $S$ is injective (no two inputs share an output, §3.5), being a bijection of a two-element set. A7 ✗: $0 = S(1)$.
+A5 ✓, A6 ✓. A8 ✓ — $S$ is injective (§3.5), being a bijection of a two-element set. A7 ✗: $0 = S(1)$.
 
 So A7 is not derivable from A5, A6, A8.
 
@@ -73,14 +73,19 @@ The method generalizes, and it is the only method available. You cannot show an 
 
 What follows is labelled a **proposition** — a result worth stating on its own, smaller than the theorems a chapter is built around.
 
-> **Proposition.** Under A5–A8, the elements $0, S(0), S^2(0), S^3(0), \ldots$ are pairwise distinct.
+A shorthand first: write $S^m(0)$ for *take $m$ steps starting from $0$*. So $S^2(0)$ means $S(S(0))$, and $S^3(0)$ means $S(S(S(0)))$. The little number counts steps; it is not a power.
+
+> **Proposition.** Under A5–A8, the numbers $0,\ S(0),\ S^2(0),\ S^3(0), \ldots$ are all different from one another.
 
 <Proof>
-Suppose $S^m(0) = S^n(0)$ with $m < n$. Applying A8 repeatedly $m$ times cancels $m$ successors from each side, giving
-$$0 = S^{\,n-m}(0),$$
-with $n - m \geq 1$. But then $0 = S\big(S^{\,n-m-1}(0)\big)$ is a successor, contradicting A7.
 
-So no two are equal.
+*The symbols in this proof: $S^m(0)$ means take $m$ steps from $0$. In words, what follows shows: if two different step-counts landed on the same number, you could peel steps off both sides until one side was $0$ — and nothing ever steps onto $0$.*
+
+Suppose two step-counts did land on the same number — say $m$ steps and $n$ steps, with $m$ the smaller.
+
+Now peel one step off each side. A8 licenses that: if two numbers have the same next number, they were the same number already. Peel $m$ times. The left side is worn down to $0$, and the right side still has $n-m$ steps on it — at least one, since $n$ was bigger.
+
+So $0$ is what you get by taking at least one step. A7 says nothing ever steps onto $0$. Contradiction, so no two step-counts collide.
 </Proof>
 
 Note what the two axioms contributed: A8 supplied the cancellation and A7 supplied the contradiction. Remove either and the argument fails — as the models above show it must.
@@ -94,7 +99,7 @@ A5–A8 force $\mathbb{N}$ to *contain* $0,1,2,\ldots$ distinctly. They do not f
 
 Consider $\mathbb{N}' = \{0,1,2,\ldots\}\cup\{a, b\}$ with the usual successor on the numerals, plus $S(a)=b$ and $S(b)=a$.
 
-A5 ✓. A6 ✓. A7 ✓ — neither $a$ nor $b$ maps to $0$. A8 ✓ — $S$ is still injective (no two inputs share an output, §3.5) on the whole thing.
+A5 ✓. A6 ✓. A7 ✓ — neither $a$ nor $b$ maps to $0$. A8 ✓ — $S$ is still injective (§3.5) on the whole thing.
 
 All four axioms hold, and the structure has two rogue elements cycling forever off to one side, unreachable from $0$.
 
@@ -102,7 +107,7 @@ Module 7.5's Axiom 9 is exactly what excludes this.
 </Warning>
 
 <Aside>
-A7 and A8 together say $S$ is a bijection from $\mathbb{N}$ onto $\mathbb{N}\setminus\{0\}$ — injective by A8, and surjective (every possible output is actually hit, §3.6) onto that set once A9 rules out elements outside the chain.
+A7 and A8 together say $S$ is a bijection (§3.8) from $\mathbb{N}$ onto $\mathbb{N}\setminus\{0\}$ — injective (§3.5) by A8, and surjective onto that set once A9 rules out elements outside the chain.
 
 So $\mathbb{N}$ is in bijection with a **proper subset** of itself, which module 3.8 gave as Dedekind's definition of an infinite set. The infinitude of $\mathbb{N}$ is not an extra assumption; it is a consequence of these two axioms.
 </Aside>

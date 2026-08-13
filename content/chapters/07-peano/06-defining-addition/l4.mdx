@@ -26,7 +26,12 @@ Recursion is on the **second** argument; the first is a spectator. That asymmetr
 <Proof>
 $1+1$: using $1 = S(0)$ and $2 = S(1)$,
 $$
-1 + 1 = 1 + S(0) \overset{\text{(A2)}}{=} S(1+0) \overset{\text{(A1)}}{=} S(1) = 2.
+\begin{aligned}
+1 + 1 &= 1 + S(0)  && \text{since } 1 = S(0)\\
+      &= S(1+0)   && \text{by the second rule}\\
+      &= S(1)     && \text{by the first rule}\\
+      &= 2        && \text{since } 2 = S(1)
+\end{aligned}
 $$
 
 $2+3$: unwind, then rebuild.
@@ -44,7 +49,13 @@ Every closed sum reduces to a stack of successors over $0$ in finitely many step
 *Symbol by symbol: $\in$ is "is in", $\mathbb{N}$ is the counting numbers, $S$ is the successor. So the line reads: adding $1$ to a counting number gives the very next one.*
 
 <Proof>
-$a + 1 = a + S(0) \overset{\text{(A2)}}{=} S(a+0) \overset{\text{(A1)}}{=} S(a)$.
+$$
+\begin{aligned}
+a + 1 &= a + S(0) && \text{since } 1 = S(0)\\
+      &= S(a+0)  && \text{by the second rule}\\
+      &= S(a)    && \text{by the first rule}
+\end{aligned}
+$$
 </Proof>
 
 Module 7.3 forbade writing $S(a)$ as $a+1$; this is the theorem that finally licenses it. Two lines, no induction — but it had to wait until addition existed.
@@ -68,34 +79,27 @@ is **not** an axiom and does not follow from (A1)–(A2) just by looking: the de
 *Base.* $0 + 0 = 0$ by (A1).
 
 *Step.* Assume $0 + k = k$. Then
-$$0 + S(k) \overset{\text{(A2)}}{=} S(0+k) = S(k).$$
+$$
+\begin{aligned}
+0 + S(k) &= S(0+k) && \text{by the second rule}\\
+         &= S(k)   && \text{by the assumption}
+\end{aligned}
+$$
 </Proof>
 
 > **Lemma 2.** $S(a) + b = S(a+b)$ for all $a,b$.
 
-<Proof>
-Induct on $b$.
+This one is proved the same way — induct on $b$, and the step uses the second rule twice with the assumption sandwiched between. Nothing new happens in it, so take it as read.
 
-*Base.* $S(a)+0 = S(a) = S(a+0)$, both by (A1).
-
-*Step.* Assume $S(a)+k = S(a+k)$. Then
-$$
-S(a)+S(k) \overset{\text{(A2)}}{=} S\big(S(a)+k\big) = S\big(S(a+k)\big) \overset{\text{(A2)}}{=} S\big(a+S(k)\big).
-$$
-</Proof>
+## Commutativity, in outline
 
 > **Theorem.** $a + b = b + a$.
 
-<Proof>
-Induct on $b$, with $a$ named at the start and never changed (§1.12) — and with nothing assumed about it.
+What follows is **the shape of the argument**, rather than the argument itself. Induct on $b$, holding $a$ fixed.
 
-*Base.* $a + 0 = a$ by (A1), and $0 + a = a$ by Lemma 1. Equal.
+At $b = 0$ the two sides are $a + 0$ and $0 + a$. The first rule gives the one, and Lemma 1 — which took an induction of its own — gives the other. Both come to $a$, so the base case holds.
 
-*Step.* Assume $a + k = k + a$. Then
-$$
-a + S(k) \overset{\text{(A2)}}{=} S(a+k) = S(k+a) \overset{\text{Lem 2}}{=} S(k)+a.
-$$
-</Proof>
+For the step, assume $a + k = k + a$ and look at $a + S(k)$. The second rule turns it into $S(a+k)$; the assumption swaps the inside to $S(k+a)$; and Lemma 2, read backwards, turns that into $S(k) + a$. That is the claim at $S(k)$, so Axiom 9 finishes it.
 
 Three inductions for a fact you have used since childhood. Associativity $(a+b)+c = a+(b+c)$ is a fourth, by induction on $c$ — and it is the easiest of them, since the recursion already peels the last argument.
 

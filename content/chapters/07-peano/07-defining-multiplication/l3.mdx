@@ -48,9 +48,13 @@ Just as with addition, every product unwinds to the base case and then rebuilds.
 
 <Proof>
 $$
-a \cdot 1 = a \cdot S(0) \overset{\text{(M2)}}{=} a + (a\cdot 0) \overset{\text{(M1)}}{=} a + 0 = a,
+\begin{aligned}
+a \cdot 1 &= a \cdot S(0)   && \text{because } 1 \text{ is the next number after } 0\\
+          &= a + (a\cdot 0) && \text{by the second times-rule}\\
+          &= a + 0          && \text{by the first times-rule}\\
+          &= a              && \text{by the first plus-rule}
+\end{aligned}
 $$
-the last step by addition's rule (A1).
 </Proof>
 
 Three lines. Notice that the proof used *both* definitions — multiplication's rules to unwind, and addition's rule to finish. The tower is load-bearing.

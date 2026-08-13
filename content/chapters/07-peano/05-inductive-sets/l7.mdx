@@ -8,32 +8,40 @@ anchorExample: "successor function"
 
 import Proof from '@/components/Proof.astro';
 import Aside from '@/components/Aside.astro';
-import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
 
-A5–A8 are *closure* conditions: they say what $\mathbb{N}$ must contain. The rogue model $\{0,1,2,\ldots\}\sqcup\{a,b\}$ with $S(a)=b$, $S(b)=a$ satisfies all four (§7.4). What is missing is a **smallest-possible** condition.
+A5–A8 are *closure* conditions: they say what $\mathbb{N}$ must **contain**. They never say what it must leave out, and §7.4 exploited exactly that — take the ordinary counting numbers and set two strangers $a$ and $b$ off to one side, each one's next number being the other. All four axioms hold. What is missing is a **smallest-possible** condition.
 
 ## Axiom 9
 
-> $V$ is **inductive** if $0 \in V$ and $\forall x\,(x \in V \Rightarrow S(x)\in V)$.
+> A set $V$ is **inductive** if it contains $0$, and whenever it contains a number it also contains that number's next one.
 >
 > $$\textbf{A9}\quad V \text{ inductive} \Rightarrow \mathbb{N}\subseteq V.$$
 
-$\mathbb{N}$ is the intersection of all inductive sets — the smallest one.
+*Symbol by symbol: $\Rightarrow$ is "forces", $\subseteq$ is "sits inside". So the line reads: any set that contains $0$ and always contains the next one must already contain every counting number.*
+
+Put the other way round: $\mathbb{N}$ is the **smallest** inductive set. Every other one has it as a part.
 
 <Proof title="Exclusion of rogue elements">
-In the rogue model, $V = \{S^m(0) : m \geq 0\}$ is inductive. By A9, $\mathbb{N}\subseteq V$, and $a \notin V$, so $a \notin\mathbb{N}$.
 
-With A5–A6 giving $V \subseteq\mathbb{N}$, double inclusion (§2.6) gives $\mathbb{N} = \{S^m(0) : m\geq 0\}$.
+*The symbols in this proof: $\subseteq$ is "sits inside", $\notin$ is "is not in". In words, what follows shows: the strangers cannot be counting numbers, because the numbers you can actually count to already form an inductive set.*
+
+Let $V$ be everything you can reach from $0$ by stepping: $0$, then $S(0)$, then $S(S(0))$, and so on. $V$ contains $0$ and contains the next one after anything in it, so $V$ is inductive.
+
+A9 then gives $\mathbb{N}\subseteq V$. The stranger $a$ is in no step of that chain, so $a \notin V$, and therefore $a \notin\mathbb{N}$.
+
+A5 and A6 give the other inclusion, $V \subseteq\mathbb{N}$, so double inclusion (§2.6) gives $\mathbb{N} = V$ exactly: the counting numbers are the chain from $0$ and nothing besides.
 </Proof>
 
 ## A9 is induction
 
-Filling in $V = \{n : A(n)\}$:
+Take $V$ to be the set of numbers for which a claim $A$ holds. Then A9 turns into Chapter 6's induction, term for term:
 
 $$
 \underbrace{0 \in V}_{A(0)}\ \wedge\ \underbrace{\forall x (x\in V \Rightarrow S(x)\in V)}_{A(k)\Rightarrow A(S(k))}\ \Rightarrow\ \underbrace{\mathbb{N}\subseteq V}_{\forall n\, A(n)}.
 $$
+
+*Symbol by symbol: $\wedge$ is "and", $\forall$ is "for every", $\Rightarrow$ is "forces", and each brace names what that piece is called in Chapter 6. So the line reads: the base case, and the step from each case to the next, together force the claim for every counting number.*
 
 Chapter 6's technique is this axiom. That answers §6.1's question of why induction cannot be derived from more basic facts: it is part of what $\mathbb{N}$ *is*, and the rogue model demonstrates its independence from A5–A8 by the method of §7.1.
 
@@ -53,6 +61,8 @@ The resulting set equality is proved by double inclusion, with a clean division 
 
 $$\mathbb{N} = \{0, S(0), S(S(0)), \dots\}$$
 
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers and $S(x)$ is the next one after $x$. So the line reads: the counting numbers are exactly $0$, and the next one, and the next one after that, going on forever — with nothing else allowed in.*
+
 **($\supseteq$)** Axioms 5 and 6 put the whole chain inside $\mathbb{N}$. **($\subseteq$)** The chain is inductive, so Axiom 9 gives equality. Each direction uses different axioms, which is the normal situation for an if-and-only-if statement (§1.9).
 
 ## The axioms pin down the counting numbers exactly
@@ -61,23 +71,26 @@ Notice what A9 quantifies over: **subsets** of $\mathbb{N}$, not just elements. 
 
 > **Theorem (1888).** Any two systems obeying A5–A9 can be matched up one-for-one, in a way that lines up their zeros and their successor rules exactly.
 
-<Proof title="Proof sketch">
-Let $(\mathbb{N},0,S)$ and $(\mathbb{N}',0',S')$ both satisfy the axioms. Define $h(0) = 0'$ and $h(S(n)) = S'(h(n))$; the recursive definition of §7.6 supplies exactly one such $h$.
+<Proof title="How the matching is built">
 
-$h$ is injective (no two inputs share an output, §3.5): the set $\{n : \forall m\,(h(n)=h(m)\Rightarrow n=m)\}$ is inductive, using A7 and A8 in both structures.
+*The symbols in this proof: primes mark the second system — $0'$ is its zero and $S'$ its next-number rule. In words, what follows shows: pair up the two systems by matching zero to zero and then stepping in lockstep, and check that nothing is missed and nothing is doubled up.*
 
-$h$ is surjective (every possible output is actually hit, §3.6): $\operatorname{Im}(h)$ contains $0'$ and is closed under $S'$, so is inductive in $\mathbb{N}'$, so A9 for $\mathbb{N}'$ gives $\mathbb{N}'\subseteq\operatorname{Im}(h)$.
+Say the two systems are $(\mathbb{N},0,S)$ and $(\mathbb{N}',0',S')$.
+
+**Build the matching.** Send $0$ to $0'$, and once $n$ has been matched, send the next one after $n$ to the next one after $n$'s partner. That is a recursive definition, so §7.6 says there is exactly one such matching.
+
+**Nothing is doubled up.** Two different numbers cannot be sent to the same partner. Checking it is an induction, and it uses A7 and A8 in *both* systems — A7 to keep zero out of the range of the step, A8 to keep the step from merging.
+
+**Nothing is missed.** The set of partners actually used contains $0'$, and contains the next one after anything it contains. So it is inductive, and Axiom 9 *in the second system* says an inductive set already holds every number there. So every element of the second system is somebody's partner. $\blacksquare$
 </Proof>
 
-So the axioms determine $\mathbb{N}$ **up to renaming**. Whatever "the natural numbers" are made of is irrelevant — sets, tally marks, anything — because only the structure is pinned down, which is the same lesson as §2.9's ordered pairs.
+So the axioms fix the counting numbers completely: any two systems obeying them are the same system with the names changed. Whatever "the natural numbers" are built out of — sets, tally marks, anything at all — is irrelevant, because only the shape is pinned down. That is the lesson of §2.9's ordered pairs again, one level up.
 
-<Warning title="Weaken A9 and uniqueness is lost">
-The uniqueness proof leaned hard on A9 being about *all* subsets. Weaken it — allow induction only for properties you can actually write down in a formula — and the theorem fails.
+<Aside>
+Notice which axiom did the heavy lifting, and how. A5–A8 talk about *elements* — there is a zero, each thing has a next, nothing steps back to zero, nothing merges. A9 talks about *subsets*, and that is a different order of assumption.
 
-The weakened system admits **impostors**: systems obeying every axiom, agreeing with $\mathbb{N}$ on every statement expressible in the restricted language, and yet containing an element larger than $0, 1, 2, 3, \dots$ and every other ordinary number.
-
-Such a system is not $\mathbb{N}$ renamed. It is genuinely different, and it exists — so "is a natural number" turns out not to be expressible in the restricted language at all.
-</Warning>
+That difference is exactly what buys the theorem above. The proof used A9 twice, once in each system, and each time it was used to say *"an inductive set is already everything"* — a statement about a whole collection at once, which none of the first eight axioms can express.
+</Aside>
 
 The trade-off is exact, and it is a theorem rather than a limitation of anyone's ingenuity. The strong form of A9 pins down $\mathbb{N}$ uniquely but admits no mechanical procedure that generates all its consequences. The weakened form has such a procedure and admits models that are not $\mathbb{N}$. **You cannot have both.**
 

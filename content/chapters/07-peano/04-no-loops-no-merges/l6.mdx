@@ -53,11 +53,14 @@ In the language of Chapter 3, Axiom 8 is the **contrapositive form of injectivit
 
 $$S(x)=S(y) \Rightarrow x=y$$
 
+*Symbol by symbol: $\Rightarrow$ is "forces". So the line reads: if two numbers have the same next number, they were the same number all along.*
+
 which is exactly module 3.5's working definition. **Axiom 8 says the successor function is injective.**
 
-And Axiom 7 says the pre-image of $0$ is empty:
+And Axiom 7 says nothing at all is sent to $0$ — in module 3.3's notation, the pre-image of $0$ is empty:
 $$S^{-1}(\{0\}) = \emptyset,$$
-which is module 3.3's notation. Both axioms are statements about $S$ as a function, using vocabulary the course proved four chapters ago.
+
+*Symbol by symbol: $S^{-1}(\{0\})$ is the collection of inputs $S$ sends to $0$, and $\emptyset$ is the empty set. So the line reads: there is nothing whose next number is $0$.* Both axioms are statements about $S$ as a function, using vocabulary the course proved four chapters ago.
 
 <Warning title="No two inputs share a next, and nothing is everyone's next">
 $S$ is injective by Axiom 8. It is **not surjective** — not every possible output is hit (§3.6) — by Axiom 7: nothing maps to $0$.
@@ -97,9 +100,9 @@ The same argument gives $3\neq2$, $4\neq3$, and so on. **All the numbers are dis
 
 Neither implies the other, and the way to see it is to build a system satisfying one and failing the other.
 
-**Axiom 7 without Axiom 8.** Take $\{0,1,2,3\}$ with $S(0)=1$, $S(1)=2$, $S(2)=3$, $S(3)=3$. Nothing maps to $0$ ✓, so Axiom 7 holds. But $S(2)=S(3)$, so $S$ is not injective (no two inputs share an output, §3.5) — Axiom 8 fails, and the chain runs into a fixed point and stops.
+**Axiom 7 without Axiom 8.** Take $\{0,1,2,3\}$ with $S(0)=1$, $S(1)=2$, $S(2)=3$, $S(3)=3$. Nothing maps to $0$ ✓, so Axiom 7 holds. But $S(2)=S(3)$, so $S$ is not injective (§3.5) — Axiom 8 fails, and the chain runs into a fixed point and stops.
 
-**Axiom 8 without Axiom 7.** Take the clock $\{0,1,\dots,11\}$ with $S(x)$ the next hour, wrapping. $S$ is injective (no two inputs share an output, §3.5) ✓, so Axiom 8 holds. But $S(11)=0$, so Axiom 7 fails.
+**Axiom 8 without Axiom 7.** Take the clock $\{0,1,\dots,11\}$ with $S(x)$ the next hour, wrapping. $S$ is injective (§3.5) ✓, so Axiom 8 holds. But $S(11)=0$, so Axiom 7 fails.
 
 **Two independent axioms, two independent failures.** That is how you show an axiom is not redundant: exhibit a system where everything else holds and it does not.
 
@@ -113,7 +116,7 @@ Consider a system containing $0, 1, 2, 3, \dots$ **and** a second, separate chai
 $$a,\ S(a),\ S(S(a)),\ \dots$$
 that never touches the first, with $a$ not a successor of anything in either chain.
 
-Check the axioms. $0$ is there ✓. Every element has a successor ✓. Nothing has $0$ as its successor ✓. $S$ is injective (no two inputs share an output, §3.5) ✓.
+Check the axioms. $0$ is there ✓. Every element has a successor ✓. Nothing has $0$ as its successor ✓. $S$ is injective (§3.5) ✓.
 
 **Every axiom holds, and the system is not $\mathbb{N}$.** The elements of the second chain are unreachable by counting from $0$, and no axiom so far forbids them.
 
