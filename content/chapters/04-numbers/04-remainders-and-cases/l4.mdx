@@ -23,7 +23,13 @@ $$
 
 *Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\nmid$ is "does not divide". So the line reads: $n$ fails to divide $m$ exactly when dividing leaves a remainder somewhere between $1$ and $n-1$.*
 
-That equivalence is the point of the module. A negative hypothesis — $n \nmid m$ — is useless as it stands (module 1.8's diagnostic). Division with remainder converts it into a **finite disjunction** of positive, usable forms. And a disjunction means **split into cases** (module 1.12).
+That equivalence is the point of the module, and it is worth spelling out why.
+
+A hypothesis like $n \nmid m$ tells you what is **not** true, and there is nothing to grab hold of in it. You cannot write down an equation from *"$n$ does not divide $m$"*, because it names no number to work with. Module 1.8 called that the signal to look for a positive restatement.
+
+The line above is that restatement. It trades the negative for a short list of positive possibilities — $m = nk+1$, or $m = nk+2$, and so on up to $m = nk+(n-1)$ — and each one *does* give you an equation to work with.
+
+The list is finite, and *this or this or this* is exactly the setup module 1.12 handles: prove the claim in each case separately, and since the cases cover everything, the claim holds throughout.
 
 ## Sorting the integers by remainder
 

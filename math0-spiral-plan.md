@@ -472,6 +472,40 @@ A kernel that **defines** its own term in the same breath is right, not wrong
 kernel is for. What the guard catches is a kernel that *uses* a word it has
 not earned.
 
+#### A4.1i An evaluative claim owes a reason on the spot (binding)
+
+Added 2026-08-12, from a read-through of §4.4 at `l4`:
+
+> *"A negative hypothesis — $n \nmid m$ — is useless as it stands (module 1.8's
+> diagnostic). Division with remainder converts it into a **finite disjunction**
+> of positive, usable forms. And a disjunction means **split into cases**
+> (module 1.12)."*
+
+Four faults in three sentences. *Useless* is asserted and never justified; the
+parenthetical cross-reference stands in for the reason instead of supplying it;
+*finite disjunction* is jargon dropped unglossed; and the last sentence explains
+one piece of jargon with another. A reader who does not already know the answer
+gets nothing from any of it.
+
+**The rule: a judgement about a statement — that it is useless, unusable, free,
+not free, doing real work, the whole game — must carry its reason in the same
+breath.** A section pointer may say *where the idea was established*; it may
+never be the reason itself. The repaired passage says what is actually wrong
+with a negative hypothesis — *"it names no number to work with, so you cannot
+write down an equation from it"* — and then shows the positive restatement doing
+the job.
+
+Sweeping the corpus for the same shape found this to be the **only** instance:
+every other *useless / worthless / not free / doing real work* gives its reason
+in the same sentence or the next one. The systematic gap was elsewhere.
+
+**`disjunction` and `conjunction` were missing from `HEAVY_JARGON`.** §1.3 teaches
+both, and Chapters 2, 3 and 4 then spent them freely — *"the hypothesis is a
+disjunction, so split into cases"* — with no reattachment, which is exactly the
+§A4.2 borrowing rule going unenforced for two words. Added to the list; the seven
+sites it surfaced now say *or* and *and* in plain words, keeping the technical
+name as an aside rather than as the carrier of the sentence.
+
 #### A4.1h Chapter 7 is never past the gloss taper (binding)
 
 Added 2026-08-12, after a read-through found grade 12's Peano chapter using

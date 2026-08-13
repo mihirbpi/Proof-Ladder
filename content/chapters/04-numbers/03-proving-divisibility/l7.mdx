@@ -44,7 +44,7 @@ Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides ev
 
 (iii) $b = aj$, $c = ak$ give $bx + cy = a(jx + ky)$ with $jx+ky \in \mathbb{Z}$.
 
-(iv) The hypothesis is a disjunction; the two cases are interchanged by swapping the names $b$ and $c$, which leaves the conclusion $a \mid bc$ invariant since $bc = cb$. **Without loss of generality**, assume $a \mid b$; then $b = ak$ and $bc = a(kc)$ with $kc \in \mathbb{Z}$.
+(iv) The hypothesis is an *or* — a disjunction, §1.3 — so it splits; the two cases are interchanged by swapping the names $b$ and $c$, which leaves the conclusion $a \mid bc$ invariant since $bc = cb$. **Without loss of generality**, assume $a \mid b$; then $b = ak$ and $bc = a(kc)$ with $kc \in \mathbb{Z}$.
 </Proof>
 
 Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{Z}$ is closed under integer linear combinations, i.e. is closed under adding its own members and under multiplying by anything outside. That single structural fact drives the Euclidean algorithm and, with it, **Bézout's identity**: for any $a,b$ there are integers $x,y$ with $ax + by = \gcd(a,b)$. Everything downstream rests on it.

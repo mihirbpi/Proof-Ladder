@@ -904,6 +904,11 @@ const HEAVY_JARGON = [
   /\btautolog\w*\b/i, /\bpredicate\b/i, /\bcodomain\b/i, /\bBoolean ring\b/i,
   /\bcommutative ring\b/i, /\bintegral domain\b/i, /\bequinumerous\b/i,
   /\bpreorder\b/i, /\bpartial order\b/i, /\bantisymmetr\w*\b/i,
+  // Added 2026-08-12. \u00a71.3 teaches these and then chapters 2, 3 and 4 spend
+  // them freely — "the hypothesis is a disjunction, so split into cases" explains
+  // one piece of jargon with another. They are taught words, so the rule is the
+  // usual one: reattach at first use in a later chapter, then use them plainly.
+  /\bdisjunct\w*\b/i, /\bconjunct\w*\b/i,
 ];
 // Vocabulary belonging to a chapter at a level: every newTerm and title the
 // chapter declares. Scoped to the chapter, not the module, because Chapter 3 may
