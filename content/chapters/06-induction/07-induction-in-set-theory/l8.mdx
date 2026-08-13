@@ -89,31 +89,6 @@ The deeper point is that the proof could not reach such a set even if the formul
 
 This is worth saying because §6.4's chain is easy to over-trust. Induction proves a claim *for each* counting number; it never proves anything about a case that is not one of them, and "infinitely many cases proved" is not the same as "the infinite case proved". Comparing infinite collections is done by pairing instead — §3.8's method, applied directly — and it is a genuinely different technique, not this one pushed further.
 
-## Past the finite
-
-§6.7 was careful to say that the doubling argument settles finite sets and nothing else. The comparison it makes does extend, and the extension is one of the most consequential theorems in the subject.
-
-> **Theorem (Cantor).** For every set $S$, no function from $S$ to its collection of subsets hits everything.
-
-<Proof>
-
-*The symbols in this proof: $\mathcal{P}(S)$ is the collection of all subsets of $S$, $\in$ is "is in", $\notin$ is "is not in". In words, what follows shows: given any attempt to match elements with subsets, one subset is provably missed.*
-
-Let $f$ send each element of $S$ to some subset of $S$. Build
-
-$$D = \{\, s \in S \mid s \notin f(s) \,\},$$
-
-*So the line reads: $D$ collects exactly those elements left out of the subset they were matched with.*
-
-which is a subset of $S$, so it is a candidate value for $f$.
-
-Suppose $D = f(d)$ for some $d$. Ask whether $d$ lies in $D$. If it does, then by $D$'s defining condition $d \notin f(d) = D$. If it does not, then $d$ satisfies the condition, so $d \in D$. Either answer produces the other, so no such $d$ exists and $D$ is missed. $\blacksquare$
-</Proof>
-
-So a set never has as many elements as it has subsets, however large it is — which means there is no largest infinity, since $\mathcal{P}$ can always be applied again.
-
-**Note what this is not.** It is not an induction and cannot be made into one: an arbitrary set has no *next*, so there is nothing to walk along. It is §3.8's diagonal move in general form — build the one thing that disagrees with every entry — and §2.1 used the same move to show there is no set of everything.
-
 <WhereThisGoes level="l8">
 
 Counting arguments are the everyday application of induction, and the two proofs in this module illustrate the choice this chapter keeps returning to.

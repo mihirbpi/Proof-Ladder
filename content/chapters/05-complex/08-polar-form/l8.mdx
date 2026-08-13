@@ -123,26 +123,6 @@ More generally, the solutions of $z^n = 1$ are the $n$ points $e^{2\pi ik/n}$ fo
 Gauss proved at nineteen that a regular $17$-gon can be built with compass and straightedge, by working out which of these vertices can be reached using square roots alone — a result that ties construction, algebra and number theory together in one theorem, and which he asked to have carved on his gravestone.
 </Aside>
 
-## The argument, and why the logarithm splits
-
-§5.8 noted that a point has many angles, differing by whole turns, and that pinning one down means choosing a range. That choice has a name and a consequence worth following.
-
-The **argument** of a non-zero $z$, written $\arg z$, is any angle $\theta$ with $z = |z|(\cos\theta + i\sin\theta)$. It is not a single number but a whole family, each differing from the next by $2\pi$. Choosing the one in $(-\pi, \pi]$ gives the **principal** argument, written $\operatorname{Arg} z$, and the capital letter is the standard signal that a choice has been imposed.
-
-## Why the logarithm splits
-
-Now try to define a logarithm. You would want $\log z$ to satisfy $e^{\log z} = z$, and Euler's formula hands you a candidate:
-
-$$\log z = \ln|z| + i\arg z.$$
-
-*Symbol by symbol: $\ln|z|$ is the ordinary real logarithm of the distance, and $\arg z$ is the angle. So the line reads: the logarithm of a complex number records its distance and its angle separately.*
-
-The distance part is fine — $|z|$ is a positive real and $\ln$ handles it. The angle part is not, because $\arg z$ was never a single number. Add a full turn to the angle and you get a different value with an equally good claim to being the logarithm.
-
-**So the complex logarithm is genuinely many-valued**, and no choice of range repairs it without introducing a jump. Follow $z$ once around a circle enclosing the origin and the angle increases by $2\pi$, so the value you return to is not the value you left with — while $z$ itself has come home. Any single-valued choice must therefore break somewhere, and where you put the break is a convention rather than a discovery.
-
-This is the first place in mathematics where a function is honestly multi-valued, and it is worth meeting as a feature rather than a defect.
-
 <WhereThisGoes level="l8">
 
 Polar form is the representation that makes multiplication easy, and choosing a representation to suit the operation is a habit both of your remaining courses reward.

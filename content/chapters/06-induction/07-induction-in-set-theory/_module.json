@@ -22,7 +22,7 @@
     "l5": "A set with n elements has 2ⁿ subsets. One proof is by induction, splitting the subsets by whether they contain a chosen element; another counts one yes-or-no choice per element. Having two proofs of the same result is normal, and each shows you something different.",
     "l6": "A finite set with n members has 2ⁿ subsets, by induction or by matching each subset with a yes-or-no answer at every member. That second view is where the alternative notation for the power set comes from.",
     "l7": "A set with n elements has 2ⁿ subsets, proved by induction with a case split on whether a chosen element is in or out. Matching each subset with one yes-or-no answer per element gives a second proof and explains the alternative notation for the power set.",
-    "l8": "The finite count generalizes to Cantor’s theorem |P(S)| > |S| for every S, whose diagonal proof is not an induction and cannot be one."
+    "l8": "A set with n elements has two to the n subsets, because each element is independently in or out. The argument settles every finite case and no infinite one — Cantor's theorem needs a different method entirely."
   },
   "kernel": "A set with n elements has 2ⁿ subsets. The step: pick a ∈ S, split subsets into those containing a and those not; each group is in bijection with the subsets of the k-element set S \\ {a}, giving 2ᵏ + 2ᵏ = 2^{k+1}.",
   "objectives": [

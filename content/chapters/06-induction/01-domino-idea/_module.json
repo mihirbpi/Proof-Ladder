@@ -22,7 +22,7 @@
     "l5": "Induction is the domino idea applied to a claim made about every whole number in turn. Spotting a pattern suggests a claim but never settles it — some patterns hold for the first thirty-nine cases and fail at the fortieth.",
     "l6": "The two domino conditions correspond exactly to the two halves of an induction proof — getting started, and getting from each case to the next. Either one failing breaks the chain.",
     "l7": "The domino picture — first falls, each knocks the next — is the intuition behind induction. Pattern-spotting suggests; only the two conditions establish, since a pattern can persist for arbitrarily many cases and then fail.",
-    "l8": "Induction is equivalent to well-ordering of ℕ and is Peano’s ninth axiom; the domino picture is a faithful rendering of that axiom."
+    "l8": "Prove the first case, and prove each case forces the next; then every case follows. The chain is not a shortcut for checking them all — it is Peano's ninth axiom, and §7.5 shows it cannot be derived."
   },
   "kernel": "If the first domino falls, and every domino knocks over the next, then all of them fall. Pattern-spotting suggests a claim; induction is what turns the guess into knowledge.",
   "objectives": [

@@ -144,26 +144,6 @@ Every identity in this chapter follows from a short list: commutativity, associa
 That list is worth knowing as a list, because the same seven properties govern *and*, *or* and *not* — $\wedge, \vee, \neg$ — in Chapter 1 and the AND/OR/NOT of a digital circuit. Three subjects, one set of rules — which is why a fact proved in any one of them transfers to the other two without reproof.
 </Aside>
 
-## Pooling and overlapping over a whole family
-
-Everything above pools or overlaps finitely many sets. Nothing in the ideas requires that, and the general form is what later courses actually use.
-
-Suppose a set $A_i$ has been specified for each $i$ drawn from some **index set** $I$ — which may be finite, may be the counting numbers, may be the whole real line. Write
-
-$$\bigcup_{i \in I} A_i = \{\, x \mid x \in A_i \text{ for at least one } i \,\}, \qquad \bigcap_{i \in I} A_i = \{\, x \mid x \in A_i \text{ for every } i \,\}.$$
-
-*Symbol by symbol: the large $\bigcup$ and $\bigcap$ are the two-set signs stretched over a whole family, and $I$ is the set labelling the family. So the line reads: the pooled set collects anything lying in at least one member, and the overlapped set collects what lies in all of them at once.*
-
-The definitions have not changed at all — *at least one* and *every* are the same two conditions as before. What has changed is that the family may be infinite, and the two conditions have become an *exists* and a *for all* over $I$ rather than a chain of *or*s and *and*s.
-
-That is why §1.10's quantifiers had to come first. With finitely many sets you could unfold a union into $x \in A_1$ or $x \in A_2$ or … and stop; with infinitely many there is no such unfolding, and the quantifier is the only way to say it.
-
-<Aside>
-A worked case worth carrying. Take $A_n = (-\tfrac1n, \tfrac1n)$ for each counting number $n \geq 1$. Every one of these is an interval of positive width, and each contains the next. Their overlap is $\{0\}$ — a single point, of no width at all.
-
-Infinitely many overlapping steps can therefore produce something categorically unlike any of the sets going in. Nothing similar can happen with finitely many, and that difference is where analysis begins.
-</Aside>
-
 <WhereThisGoes level="l8">
 
 Union and intersection are what you compute when a problem imposes more than one condition.

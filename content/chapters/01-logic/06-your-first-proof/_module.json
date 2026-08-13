@@ -22,7 +22,7 @@
     "l5": "A direct proof assumes the hypothesis and reaches the conclusion by a chain of justified steps. Each step must cite a definition or an established result.",
     "l6": "A direct proof assumes the *if* half and works forwards to the *then* half, one step at a time, each step licensed by a definition, by something already proved, or by a rule the subject starts from. The Discussion plans it and the Proof presents it.",
     "l7": "A direct proof assumes the hypothesis and derives the conclusion by a finite chain of justified inferences, eliminating the only row that could falsify the conditional. Proofs are written as prose, in complete sentences.",
-    "l8": "A direct proof of p ⇒ q is a finite derivation of q from p together with the ambient axioms and previously proved theorems; the Discussion is scaffolding that published mathematics deletes."
+    "l8": "A direct proof is a finite chain from the hypothesis to the conclusion, each step licensed by an axiom or an earlier theorem. The Discussion is planning, and published mathematics deletes it."
   },
   "kernel": "To prove \"if p then q\", assume p and reason to q using facts already established. A proof is written in full sentences.",
   "objectives": [

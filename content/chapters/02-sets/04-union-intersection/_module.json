@@ -22,7 +22,7 @@
     "l5": "Union and intersection are the set-level versions of *or* and *and*. The intersection sits inside each set, and each set sits inside the union.",
     "l6": "Union collects what lies in at least one of the sets, intersection what lies in both — the set versions of *or* and *and*. The intersection is always inside each set, and each set is always inside the union.",
     "l7": "Union and intersection are defined by *or* and *and* on membership conditions. The intersection always sits inside each set and each sits inside the union; disjoint means the intersection is empty.",
-    "l8": "∪ and ∩ are the join and meet in the Boolean lattice P(X), and they extend to arbitrary indexed families, where the quantifier form ∃i / ∀i replaces ∨ / ∧."
+    "l8": "Union collects what is in at least one; intersection collects what is in all. Both extend from two sets to a whole family, where *at least one* and *all* become §1.10's two quantifier words."
   },
   "kernel": "S ∪ T holds anything in at least one; S ∩ T holds things in both. S ⊆ S∪T and S∩T ⊆ S always. Disjoint means empty intersection.",
   "objectives": [

@@ -22,7 +22,7 @@
     "l5": "Multiplying a real by itself never gives a negative, so nothing on the number line squares to −1. The discriminant in the quadratic formula is where this gap shows up in practice.",
     "l6": "The reals fall short in the simplest possible case: nothing squares to −1. Extending the number system is the standard response to a failure like that.",
     "l7": "Since every real square is non-negative, nothing on the number line squares to −1. Extending the number system rather than accepting the gap is the same move that produced the integers, the fractions and the reals.",
-    "l8": "ℝ is not algebraically closed; ℂ is its algebraic closure, and the Fundamental Theorem of Algebra says one extension suffices for every polynomial at once."
+    "l8": "No real number squares to −1, so that equation has no real solution. Adding one solution turns out to supply solutions for every equation built from powers of x at once."
   },
   "kernel": "x² ≥ 0 for every real x, so x² + 1 = 0 has no real solution and the polynomial x² + 1 has no real root. Roots of polynomials matter enough that mathematicians extended the number system rather than accept the gap.",
   "objectives": [

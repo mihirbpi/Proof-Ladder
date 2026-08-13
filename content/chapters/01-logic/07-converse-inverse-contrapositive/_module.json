@@ -22,7 +22,7 @@
     "l5": "The converse and inverse of a conditional may fail even when the conditional holds. Only the contrapositive says the same thing as the original.",
     "l6": "Flipping a conditional gives three relatives; only the contrapositive shares its truth table. The converse and inverse match each other, and neither follows from the original.",
     "l7": "Of the three conditionals built by exchanging and negating the parts, only the contrapositive says the same thing. Converse and inverse match each other and are independent of the original.",
-    "l8": "Contraposition is an equivalence of the material conditional with itself under the involution ¬; assuming the converse is the formal shape of the fallacy of affirming the consequent."
+    "l8": "A conditional and its contrapositive always agree; a conditional and its converse need not. Believing the converse of a true statement is the most common reasoning error there is."
   },
   "kernel": "From p ⇒ q you can form q ⇒ p (converse), ¬p ⇒ ¬q (inverse), and ¬q ⇒ ¬p (contrapositive). Only the contrapositive is logically equivalent to the original.",
   "objectives": [

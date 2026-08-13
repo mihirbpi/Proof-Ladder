@@ -627,10 +627,9 @@ for (const file of files) {
     .replace(/^\*(Symbol by symbol|A reminder of the symbols|The symbols in this)[\s\S]*?\*$/gm, ' ')
     .split(/\s+/).filter(Boolean).length;
   // l8 is now calibrated like every other level: all 61 pages exist, and the
-  // budget was reset from their interquartile range (1156-1507, median 1315),
-  // rounded to 1150-1550 so that \u00a77.1 — the longest page at every level, and
-  // the one carrying the Godel material at l8 — sits inside the \u00b120% band
-  // rather than being trimmed for the sake of the check.
+  // budget is their interquartile range, 1100-1370 (median 1225). It sits close
+  // to l7's own range by design: l8 is l7 plus calculus and mod-n notation, and
+  // nothing else, so most pages differ from their l7 only by dropped hedges.
   // The old 1200-2000 estimate was set under the previous l8 profile, which
   // promised "the Math 0 experience as intended"; the current profile makes l8
   // a year on from l7 rather than a different book, so the pages land close to
@@ -2131,10 +2130,12 @@ for (const ch of fs.readdirSync(CHAPTERS)) {
     const j = JSON.parse(fs.readFileSync(p, 'utf8'));
     const rel = path.relative(ROOT, p);
     for (const [lvl, k] of Object.entries(j.kernels ?? {})) {
-      // l8 is exempt: its reader is a university student who has met this
-      // notation, and its modules are still unwritten — its kernels get
-      // rewritten alongside the bodies rather than twice.
-      if (lvl === 'l8') continue;
+      // l8 was exempt here until 2026-08-13, on the grounds that a university
+      // reader has met this notation and the modules were unwritten anyway.
+      // Both halves were wrong. <BigIdea> renders escaped plain text with no
+      // KaTeX at any level, so a kernel containing $...$ shows the dollar signs
+      // to the reader — a rendering bug, not a reading-level judgement. And the
+      // l8 modules are now written.
       const m = String(k).match(KERNEL_NOTATION);
       if (m) warn(rel, `kernels.${lvl} uses "${m[0]}" — the kernel is read before anything explains it`);
     }

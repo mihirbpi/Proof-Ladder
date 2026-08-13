@@ -22,7 +22,7 @@
     "l5": "A complex number is fixed by two ordinary reals — its real part and its imaginary part. The reals sit inside the complex numbers as the ones whose imaginary part is zero.",
     "l6": "A complex number is a pair of reals with a multiplication attached. The real part and the imaginary part are both ordinary real numbers, and the pair determines the number.",
     "l7": "A complex number is a real part plus i times an imaginary part, both real, with i squaring to −1. The reals sit inside as the numbers whose imaginary part is zero.",
-    "l8": "ℂ is ℝ[x]/(x² + 1), a two-dimensional real algebra; the tower ℕ ⊆ ℤ ⊆ ℚ ⊆ ℝ ⊆ ℂ is a chain of canonical embeddings, each fixing a defect of the previous system."
+    "l8": "A complex number is an across part and an up part, and two are equal exactly when both parts match. The system can be built honestly from ordered pairs, so i squaring to −1 is a calculation rather than a decree."
   },
   "kernel": "ℂ = {a + bi | a,b ∈ ℝ} with i² = −1. Re(z) = a, Im(z) = b, and both are real. ℝ ⊆ ℂ via a = a + 0i, giving ℕ ⊆ ℤ ⊆ ℚ ⊆ ℝ ⊆ ℂ.",
   "objectives": [

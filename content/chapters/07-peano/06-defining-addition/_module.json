@@ -22,7 +22,7 @@
     "l5": "The recursive definition determines addition completely; commutativity is not built in and must be proved by induction.",
     "l6": "Addition is defined by two rules: a + 0 = a, and adding a successor gives the successor of the sum. Commutativity and associativity are then theorems proved by induction rather than assumptions — which is genuinely surprising.",
     "l7": "a + 0 = a and a + S(b) = S(a + b) define addition recursively; every sum unwinds to the base case, and commutativity and associativity are theorems proved by induction, not axioms.",
-    "l8": "Recursion is justified by the recursion theorem, itself a consequence of the induction axiom; that a + b = b + a requires proof is the clearest sign that familiarity is not justification."
+    "l8": "Addition is defined by two rules recursing on the second slot, so one plus one becomes a derivation. That a plus b equals b plus a needs three inductions is the clearest sign that familiarity is not justification."
   },
   "kernel": "a + 0 = a and a + S(b) = S(a + b). Every sum is computed by unwinding to the base case. 1 + 1 = 2 becomes a derivation, not a fact.",
   "objectives": [

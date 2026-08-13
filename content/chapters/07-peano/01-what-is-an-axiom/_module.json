@@ -22,7 +22,7 @@
     "l5": "Axioms are chosen, not discovered; a good system is small, independent, consistent, and strong enough to produce what you want.",
     "l6": "Changing the axioms changes the mathematics — dropping the parallel postulate gives geometries as consistent as Euclid’s.",
     "l7": "Because the backward chain of justification must terminate, some statements are accepted without proof; these axioms are chosen, and the criteria are independence, consistency, and adequacy.",
-    "l8": "Axiom systems are judged by consistency, independence, and completeness; Gödel showed that for any sufficiently strong consistent system the last is unattainable."
+    "l8": "Axioms are where the chain of *why* stops, not truths too obvious to argue with. They are judged by consistency and independence, and Gödel showed that settling every question is not on offer."
   },
   "kernel": "Tracing proofs backwards must terminate. Axioms are the statements taken as true without proof; a mathematical theory is its axioms plus everything derivable from them.",
   "objectives": [

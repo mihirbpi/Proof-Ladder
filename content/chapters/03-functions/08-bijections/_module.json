@@ -22,7 +22,7 @@
     "l5": "A bijection pairs two sets perfectly. Sameness of size is *defined* by the existence of one, which is why the counting numbers and the even numbers turn out to be the same size.",
     "l6": "A bijection is a perfect pairing: the do-nothing function is one, and composing two bijections gives another. Perfect pairings are the maps that lose no information in either direction.",
     "l7": "A bijection is simultaneously injective and surjective, so every element of the codomain has exactly one pre-image. Equinumerosity is defined by the existence of a bijection, which extends the notion of size to infinite sets.",
-    "l8": "Bijections are the isomorphisms of Set and define cardinality; the diagonal argument shows no bijection ℕ → ℝ exists, so infinities come in different sizes."
+    "l8": "A bijection pairs two sets off perfectly, and for infinite sets that pairing replaces counting as the definition of same size. The diagonal argument shows the reals cannot be paired with the counting numbers, so infinities come in different sizes."
   },
   "kernel": "A bijection is both injective and surjective: every t has exactly one pre-image. For finite sets, injection ⇒ |S| ≤ |T|, surjection ⇒ |S| ≥ |T|, bijection ⇒ |S| = |T|. Bijections are how mathematicians compare infinite sets.",
   "objectives": [

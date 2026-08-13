@@ -22,7 +22,7 @@
     "l5": "Multiplying two points of the unit circle adds their angles, which is exactly the trade a power makes: add the exponents, multiply the values. That is why cos θ + i sin θ is written as a power of e, and separating the two coordinates of that power is where the formula comes from.",
     "l6": "Multiplying two points of the unit circle adds their angles — the same trade of adding for multiplying that exponents make, which is why the circle points are written as a power.",
     "l7": "Multiplying two points of the unit circle adds their angles, which is exactly the law an exponential obeys. That shared law is what entitles cos θ + i sin θ to be written as a power of e.",
-    "l8": "Euler’s formula is the identification of the complex exponential with the solution of y′ = iy, y(0) = 1; the series proof and the ODE proof are the same statement about the exponential map ℂ → ℂˣ."
+    "l8": "Raising e to an imaginary power lands on the unit circle, at the point reached by travelling that far around it. The four-step cycle of powers of i is what sorts the series into the across and up parts."
   },
   "kernel": "Substituting iθ into the series for eˣ and using the cycle i, −1, −i, 1 separates into the cosine and sine series, giving e^{iθ} = cos θ + i sin θ.",
   "objectives": [

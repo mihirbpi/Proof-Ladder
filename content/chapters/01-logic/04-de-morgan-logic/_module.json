@@ -22,7 +22,7 @@
     "l5": "De Morgan's laws: denying an *and* gives an *or* of the denials, and denying an *or* gives an *and* of them. A denial passes through a joining word only by swapping it.",
     "l6": "A denial does not pass through *and* and *or* unchanged — it swaps them. Getting that swap wrong is the standard error on the first line of an argument that begins by assuming the opposite.",
     "l7": "De Morgan’s laws: a denial exchanges *and* with *or* as it passes through. They are what let you correctly deny a claim with two parts joined by *and* or *or*, which is the first line of most arguments that begin from the opposite.",
-    "l8": "De Morgan duality is the involution of the Boolean algebra that swaps meet and join; the same statement recurs for ∩/∪ on sets and for ∀/∃ on quantifiers."
+    "l8": "Denying an *and* gives an *or*, and denying an *or* gives an *and* — the joining word always flips. The identical law reappears for sets in §2.7 and for *for every* and *there is* in §1.11."
   },
   "kernel": "¬(p ∧ q) is the same as ¬p ∨ ¬q, and ¬(p ∨ q) is the same as ¬p ∧ ¬q. Negation swaps and with or.",
   "objectives": [

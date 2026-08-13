@@ -86,29 +86,6 @@ The no-infinite-descent condition is exactly what rules out circular justificati
 A practical corollary: to prove termination of a recursive procedure, find a strictly decreasing measure that strictly decreases. There is a famous rule that always finishes despite growing enormously fast, because its arguments decrease in the lexicographic order on $\mathbb{N}^2$ — which also admits no infinite descent, though it does not look like $\mathbb{N}$.
 </Aside>
 
-## Induction on things that are not numbers
-
-Every induction so far has walked the counting numbers. The pattern needs less than that, and seeing what it actually needs is worth a page.
-
-What §6.4 required was a way to reach each object from simpler ones, with the chain of *simpler* eventually bottoming out. The counting numbers supply that — each is the next after one below, and the descent stops at $0$ — but so do many things built by rules.
-
-Take the logical statements of Chapter 1. Each is either a bare letter, or built from shorter ones by $\neg$, $\wedge$, $\vee$ or $\Rightarrow$. To prove every statement has some property, it is enough to check the bare letters and to show that each construction preserves the property. Nothing is left out, because every statement was built in finitely many steps from letters.
-
-**Worked instance.** Every statement of Chapter 1 has equally many left and right brackets.
-
-<Proof>
-
-*The symbols in this proof: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or". In words, what follows shows: the property holds of the simplest statements and survives every way of building bigger ones.*
-
-*Base.* A bare letter has no brackets at all — zero of each. ✓
-
-*Step.* Suppose $p$ and $q$ each have matching counts. Then $\neg p$ adds none, and $(p \wedge q)$ adds exactly one of each, as do the other two constructions. So the counts stay matched.
-
-Every statement is built from letters in finitely many such steps, so every statement has matching counts. $\blacksquare$
-</Proof>
-
-This is called **structural induction**, and it is the form used constantly once objects are defined by construction rules rather than counted. The counting-number version is the special case where the only rule is *add one*.
-
 <WhereThisGoes level="l8">
 
 The two conditions — an integer index and a link between cases — are what determine whether induction is even the right tool, and calculus is full of claims that fail the first.

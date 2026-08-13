@@ -22,7 +22,7 @@
     "l5": "Each of the four jobs has its own shape: name one member and use nothing special about it, produce a single failing case, exhibit one example that works, or rule out every candidate — plus the two-part pattern for uniqueness.",
     "l6": "There are four jobs — proving and disproving each of the two quantifiers — and each has its own shape: name one member and use nothing special about it, produce a single failing case, exhibit one example that works, or rule out every candidate. Which one you face is decided by the outermost quantifier and by whether you are proving or refuting.",
     "l7": "The four tasks — proving and disproving each of the two quantifiers — have fixed templates determined by the negation laws. The *for all* proof rests on naming one unnamed member and using nothing special about it.",
-    "l8": "Universal generalization is sound exactly because the element chosen is arbitrary but fixed — free of any hypothesis particular to it; existential instantiation dually introduces a fresh constant, and confusing the two is the standard source of fallacious quantifier reasoning."
+    "l8": "To prove something of every element, take one that is *arbitrary but fixed* — assume nothing particular about it, and do not let it move mid-proof. To prove something exists, produce it."
   },
   "kernel": "Prove ∀ by arguing about an arbitrary element; disprove ∀ with one counterexample. Prove ∃ by exhibiting a witness; disprove ∃ by proving the universal negation. Prove ∃! by exhibiting and then showing any two candidates coincide.",
   "objectives": [

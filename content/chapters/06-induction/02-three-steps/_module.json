@@ -22,7 +22,7 @@
     "l5": "The step is a claim about every case at once — *if this one holds, the next does* — which is why you are allowed to assume the case you are working from. The first case anchors the chain.",
     "l6": "Induction is valid because the counting numbers have no infinite descent: a least counterexample would contradict either the base case or the step.",
     "l7": "An induction proof states the claim and where it starts, proves the first case, and shows that any one case forces the next. That last part is a conditional, which is why assuming the case you are working from is not circular.",
-    "l8": "Induction and well-ordering are equivalent over the other Peano axioms; the least-counterexample formulation is the contrapositive of the induction scheme."
+    "l8": "Base case, inductive hypothesis, inductive step — and the step must run from the assumed case toward the next one, not backwards from what is to be shown. Assuming the conclusion and reaching something true proves nothing."
   },
   "kernel": "(1) State A(n) and the starting value n₀. (2) Prove the base case A(n₀). (3) Prove the inductive step: assume A(k) for some k ≥ n₀, deduce A(k+1). The inductive step is a conditional, so assuming A(k) is not circular.",
   "objectives": [

@@ -73,7 +73,7 @@ Notice also where the minus sign in the cosine identity went. It came out of $i^
 <Warning title="This is a definition doing work, not a theorem out of nowhere">
 Nothing above proves that $e$ — the number $2.718\ldots$ — is somehow secretly involved. What is proved is that the circle points obey the exponential law, and that fact earns them exponential *notation*.
 
-A later course closes the loop: it defines $e^z$ for complex $z$ by a single formula that agrees with $e^x$ on the real numbers, and then $e^{i\theta} = \cos\theta+i\sin\theta$ becomes a theorem rather than a naming decision. Nothing in this chapter depends on that step.
+The section below closes the loop: taking the series for $e^x$ as the *definition* of $e^z$ for complex $z$ — which agrees with the old one on the reals — turns $e^{i\theta} = \cos\theta+i\sin\theta$ into a theorem rather than a naming decision.
 
 Keeping straight which lines are definitions and which are theorems is not fussiness. It is the difference between a derivation and a circle.
 </Warning>
@@ -114,6 +114,40 @@ $e^{i\pi} + 1 = 0$ is Euler's identity, regularly voted the most beautiful formu
 The tidiness reputation is deserved, but the mathematical content is the repetition: $e^{i\pi} = -1$ says half a turn is a reflection through the origin, and $e^{2\pi i} = 1$ says a full turn is doing nothing. The identity is the statement that the exponential wraps the line around the circle.
 </Aside>
 
+## The proof from the series
+
+Calculus supplies three expansions, each valid for every real $x$:
+
+$$
+e^{x} = \sum_{n\ge0}\frac{x^n}{n!}, \qquad
+\cos x = \sum_{n\ge0}\frac{(-1)^n x^{2n}}{(2n)!}, \qquad
+\sin x = \sum_{n\ge0}\frac{(-1)^n x^{2n+1}}{(2n+1)!}.
+$$
+
+*Symbol by symbol: $\sum_{n\ge0}$ adds a term for each whole number $n$ from $0$ upward, and $n!$ is the product of the whole numbers up to $n$. So the line reads: each of the three is an endless sum of powers, with a fixed rule for the coefficients.*
+
+Substitute $i\theta$ for $x$ in the first. Each term carries a power of $i$, and §5.3's four-step cycle collapses every one of them to $1$, $i$, $-1$ or $-i$:
+
+$$
+e^{i\theta} = \sum_{n\ge0}\frac{(i\theta)^n}{n!} = \sum_{n\ge0}\frac{i^n\theta^n}{n!}.
+$$
+
+Now sort by whether $n$ is even or odd. For even $n = 2k$, $i^{n} = (i^2)^k = (-1)^k$, so those terms carry no $i$ at all. For odd $n = 2k+1$, $i^{n} = (-1)^k i$, so each carries exactly one $i$. Collecting the two families:
+
+$$
+e^{i\theta} = \underbrace{\sum_{k\ge0}\frac{(-1)^k\theta^{2k}}{(2k)!}}_{\cos\theta} \;+\; i\underbrace{\sum_{k\ge0}\frac{(-1)^k\theta^{2k+1}}{(2k+1)!}}_{\sin\theta},
+$$
+
+*So the line reads: the terms with no $i$ assemble into exactly the cosine series, and the terms carrying one $i$ assemble into the sine series — giving $e^{i\theta} = \cos\theta + i\sin\theta$.*
+
+**The cycle is what does the sorting.** Without $i^4 = 1$ the powers would not fall into two families, and there would be nothing to collect.
+
+<Warning title="The rearrangement needs justifying">
+Splitting one endless sum into two and collecting terms out of order is not free. There are sums whose terms can be reordered to give any answer you like, so a step like this needs a licence.
+
+The licence is **absolute convergence**: when the sum of the sizes of the terms converges, any reordering gives the same total. Here the sizes are $|\theta|^n/n!$, whose sum is $e^{|\theta|}$ — finite for every $\theta$. So the rearrangement is legitimate, and noticing that it needed checking at all is the habit worth taking from this.
+</Warning>
+
 ## A second proof, with no series at all
 
 The derivation above rearranges an endless sum, and §5.7 flagged that rearranging infinitely many terms needs justification. Here is an argument avoiding the issue entirely, using only the derivative rules of a first calculus course.
@@ -138,8 +172,6 @@ Euler's formula is the identity that unifies the families of functions you have 
 
 That is not a curiosity. Problems about springs, circuits and populations turn out to reduce to the same handful of equations, and the reason one technique solves all of them is the identity in this module.
 
-**There is a second route to the formula.** Late in a calculus course you meet a way of writing $e^x$, $\cos x$ and $\sin x$ as sums that never stop. Substitute an imaginary quantity into the first, sort the terms by the cycle $i, -1, -i, 1$, and the other two fall out of it — which is how Euler himself came at it in the 1740s.
-
-That route needs care of a kind worth naming: rearranging a sum with endlessly many terms is *not* always allowed, and there are sums whose terms can be reordered to give any answer you like. A condition rules out the bad cases, these sums satisfy it, and noticing when such a condition is needed is a large part of what a later course trains.
+**Both proofs above are worth keeping.** The series route is how Euler came at it in the 1740s, and it shows *why* the two trigonometric functions appear at all — they are what the even and odd halves of one exponential sum happen to be. The derivative route shows something the series hides: both sides change at $i$ times their current value, and that alone forces them to agree.
 
 </WhereThisGoes>

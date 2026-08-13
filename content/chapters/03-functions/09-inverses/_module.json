@@ -22,7 +22,7 @@
     "l5": "Invertibility is equivalent to bijectivity, and the two halves of the definition of function correspond exactly to the two halves of bijectivity.",
     "l6": "A function has a two-sided inverse under composition exactly when it is a bijection. Note that the symbol f⁻¹ is also used for pre-images, and those are a different object — a set rather than a value.",
     "l7": "A function is invertible exactly when it is bijective — surjectivity gives totality of the inverse, injectivity gives well-definedness. The inverse is itself a bijection with inverse f, and f⁻¹(t) as a value must not be confused with f⁻¹({t}) as a set.",
-    "l8": "Invertibility is being an isomorphism in Set; f⁻¹ as inverse function and f⁻¹ as pre-image operator coincide notationally but not conceptually, the latter existing always."
+    "l8": "A function has an undoing rule exactly when it is a bijection, and that rule is unique. The same inverse symbol also means the pre-image, which always exists — two different things sharing one notation."
   },
   "kernel": "f⁻¹ exists exactly when f is a bijection: surjectivity makes it total, injectivity makes it well-defined. The inverse of a bijection is a bijection, and its inverse is f again.",
   "objectives": [

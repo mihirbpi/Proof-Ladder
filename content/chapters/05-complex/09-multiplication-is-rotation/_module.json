@@ -22,7 +22,7 @@
     "l5": "Multiplication in polar form multiplies the distances and adds the turns. Raising a point of the unit circle to a whole power multiplies its turn by that power, and reading off the two coordinates gives the multiple-angle identities.",
     "l6": "Multiplication is rotation composed with scaling; De Moivre’s formula (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ is the special case of modulus one.",
     "l7": "Multiplying complex numbers multiplies moduli and adds arguments; De Moivre’s formula follows, and equating real and imaginary parts derives the multiple-angle identities of trigonometry.",
-    "l8": "Multiplication makes ℂˣ ≅ ℝ_{>0} × S¹ as topological groups; the nth roots of unity are the finite subgroups of S¹, and their geometry is the cyclic group made visible."
+    "l8": "Multiplying multiplies the distances and adds the turns, so multiplying by a number of absolute value one is a pure rotation. De Moivre's formula and the double-angle identities fall straight out."
   },
   "kernel": "r₁e^{iθ₁} · r₂e^{iθ₂} = (r₁r₂)e^{i(θ₁+θ₂)}: multiply lengths, add angles. Comparing e^{i(2θ)} with (e^{iθ})² yields the double-angle formulas; the general version is De Moivre's formula.",
   "objectives": [

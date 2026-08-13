@@ -85,23 +85,6 @@ Cutting the domain down is unavoidable rather than lazy, and the convention is o
 The same thing happens in §5.8 with angles in the plane, and there the situation is sharper: any single choice of angle has to break somewhere, so the convention is not just customary but *forced to leave a seam*. A restriction that manufactures uniqueness always costs something, and knowing what it cost is part of knowing the function.
 </Aside>
 
-## The one-sided converses
-
-§3.9 proved that a bijection has a two-sided inverse. The one-sided statements are true too, and they are worth separating because each pins down exactly one of the two conditions.
-
-> **Proposition.** Let $f : S \to T$ with $S$ non-empty. Then $f$ is injective exactly when some $g : T \to S$ satisfies $g \circ f = \mathrm{id}_S$.
-
-<Proof>
-
-*The symbols in this proof: $\circ$ is "after", and $\mathrm{id}_S$ is the rule leaving every element of $S$ alone. In words, what follows shows: a left-undoing rule exists precisely when no two inputs collide.*
-
-If such a $g$ exists and $f(s_1) = f(s_2)$, apply $g$ to both sides: $s_1 = s_2$. So $f$ is injective.
-
-Conversely, suppose $f$ is injective. Fix any $s_0 \in S$, which is available since $S$ is non-empty. Define $g(t)$ to be the unique $s$ with $f(s) = t$ when $t$ is hit at all, and $s_0$ otherwise. Injectivity is exactly what makes *the unique $s$* a legitimate description, and $g(f(s)) = s$ by construction. $\blacksquare$
-</Proof>
-
-The mirror statement holds on the other side: $f$ is surjective exactly when some $h$ satisfies $f \circ h = \mathrm{id}_T$. The forward direction is the same one-line argument. The reverse asks you to pick, for each $t$, some $s$ landing on it — and when $T$ is infinite that is infinitely many independent choices at once, which is the contested axiom §2.9 mentioned. Worth knowing that the two directions are not equally cheap.
-
 <WhereThisGoes level="l8">
 And $(AB)^{-1} = B^{-1}A^{-1}$ is the order-reversal proved above, with no new argument.
 

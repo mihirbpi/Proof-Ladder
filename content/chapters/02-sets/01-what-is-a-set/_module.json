@@ -22,7 +22,7 @@
     "l5": "A set is determined entirely by which objects belong to it: {a,b} = {b,a} = {a,a,b}. Well-definedness means membership is unambiguous for every candidate object.",
     "l6": "Sets are extensional objects: two sets are equal exactly when they have the same members, so order and multiplicity are invisible. \"Set\" is deliberately left undefined in naive set theory.",
     "l7": "A set is a collection with no doubt about what is in it, determined by its members and nothing else. Membership is the one undefined idea everything else is built from, the empty set is a set, and the standard number systems are the working examples.",
-    "l8": "Set is an undefined primitive constrained by axioms; extensionality makes membership the whole content of a set, and the well-definedness requirement is what Russell's paradox forces us to take seriously."
+    "l8": "*Set* is left undefined on purpose; what pins it down is that a set is determined by its members and nothing else. The requirement that membership be definite is not fussiness — Russell's paradox is what happens without it."
   },
   "kernel": "A set is a well-defined collection; x ∈ S says x belongs. Sets are unordered and repetition is irrelevant. The empty set is a set. ℕ, ℤ, ℝ are the standard number sets.",
   "objectives": [

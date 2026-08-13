@@ -22,7 +22,7 @@
     "l5": "The irrationality of √2 is proved by contradiction from the lowest-terms assumption, using the lemma that n² even implies n even.",
     "l6": "The square root of 2 is not a fraction; the same argument works for the square root of any prime, and a square root is a fraction exactly when the number under it is a perfect square.",
     "l7": "No fraction squares to 2: assume lowest terms, use that an even square forces an even root, and a contradiction follows. The argument generalizes to the square root of any prime.",
-    "l8": "Irrationality of √2 is the failure of ℚ to be integrally closed in ℝ at that point; the rational root theorem generalizes it, and e and π are irrational for genuinely harder reasons."
+    "l8": "The classic proof assumes a fraction in lowest terms and derives that both parts are even. The same argument settles every prime, and e and pi are irrational for genuinely harder reasons."
   },
   "kernel": "Some real numbers are not rational. √2 is one: assuming √2 = p/q in lowest terms forces p and q both even, contradicting lowest terms. Uses \"n² even ⇒ n even\" from 1.9.",
   "objectives": [

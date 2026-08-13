@@ -22,7 +22,7 @@
     "l5": "A complex number can be described by how far out it is and how far round it has turned, instead of by across-and-up. Converting between the two descriptions needs the angle facts of the geometry course, and the turn is only ever pinned down to within a whole number of full turns.",
     "l6": "A point is named by its distance and its angle. The angle is only pinned down to within whole turns, and that is what forces a convention.",
     "l7": "Writing a point as r times a unit-circle point at angle θ makes multiplication easy; the angle is fixed only to within whole turns, so naming one official angle always costs a jump somewhere.",
-    "l8": "Polar form is the polar decomposition ℂˣ ≅ ℝ_{>0} × S¹; the multivaluedness of arg is the reason log has branch cuts and the beginning of covering space theory."
+    "l8": "A point is named by how far out and how far round, and the second is only fixed once you choose a range. That freedom is why the complex logarithm is genuinely many-valued."
   },
   "kernel": "re^{iθ} is the point at distance r from the origin at counterclockwise angle θ. Polar form is non-unique: re^{iθ} = re^{i(θ+2πk)}. Special values: i = e^{iπ/2}, −1 = e^{iπ}, and e^{iπ} + 1 = 0.",
   "objectives": [

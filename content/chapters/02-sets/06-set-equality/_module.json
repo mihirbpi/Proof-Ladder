@@ -22,7 +22,7 @@
     "l5": "Set equality is double inclusion, so it takes two arbitrary-element arguments; an *or* in the hypothesis forces a case split in one of them.",
     "l6": "Two sets are equal exactly when each is a subset of the other, because \"the same members\" is an *if and only if*, and an *if and only if* is two implications. So a set equality is two proofs, not one, and the shape is forced rather than chosen.",
     "l7": "Set equality is defined by double inclusion, mirroring the way an if-and-only-if statement splits into two conditionals. An *or* anywhere in a hypothesis dictates proof by cases.",
-    "l8": "Extensionality reduces set equality to mutual inclusion, and antisymmetry of ⊆ is exactly that reduction; \"obviously equal\" is never a proof."
+    "l8": "Two sets are equal exactly when each sits inside the other, so one equality costs two containment proofs. *Obviously the same* is never one of them."
   },
   "kernel": "S = T is defined as S ⊆ T and T ⊆ S. Every set-equality proof is therefore two proofs. When a hypothesis is an or, split into cases.",
   "objectives": [

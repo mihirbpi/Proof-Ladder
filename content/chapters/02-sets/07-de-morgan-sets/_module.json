@@ -22,7 +22,7 @@
     "l5": "Taking complements exchanges intersection with union. Each law is proved by double inclusion, with the logic law of §1.4 doing the work at the pivot.",
     "l6": "Taking complements swaps intersection with union and reverses containment. These are Chapter 1's De Morgan laws carried over to sets, with the same proof underneath.",
     "l7": "Complementation exchanges intersection and union in both directions. The proof is a double inclusion whose pivot step is the logic law of §1.4.",
-    "l8": "De Morgan for sets is the same identity as for connectives, because P(X) and the two-element Boolean algebra satisfy the same equational theory; the laws extend verbatim to indexed families via ¬∀ ≡ ∃¬."
+    "l8": "The outside of a union is the intersection of the outsides, and the outside of an intersection is the union of the outsides. This is §1.4 with membership unfolded — one law, two subjects."
   },
   "kernel": "S ∩ T = S̄ ∪ T̄ and S ∪ T = S̄ ∩ T̄. These are the logic laws of 1.4 with ¬ ↔ complement, ∧ ↔ ∩, ∨ ↔ ∪.",
   "objectives": [

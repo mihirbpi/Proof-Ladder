@@ -22,7 +22,7 @@
     "l5": "Containment is a conditional claimed about every element, so its proof is an arbitrary-element argument. The empty set is contained in everything, vacuously, and containment is transitive.",
     "l6": "Containment says every element of the first set lies in the second — a conditional claimed about every element. Element chasing is the technique that dictates, and containment partially orders any collection of sets.",
     "l7": "Containment says every element of one set lies in the other, so proving it means taking an arbitrary element of the first and following it into the second. Vacuous truth puts the empty set inside everything, and containment is a partial order.",
-    "l8": "⊆ is the partial order underlying the Boolean algebra of subsets; element chasing is the proof technique that all of naive set theory reduces to, and ∅ ⊆ S is vacuous truth in action."
+    "l8": "A is a subset of S when every element of A is an element of S, so proving it starts \"let x be in A\". The empty set sits inside everything, by an if–then with no cases to check."
   },
   "kernel": "A ⊆ S means every element of A is in S. To prove it, take an arbitrary x ∈ A and show x ∈ S. ∅ is a subset of everything (vacuously). Subset is transitive.",
   "objectives": [

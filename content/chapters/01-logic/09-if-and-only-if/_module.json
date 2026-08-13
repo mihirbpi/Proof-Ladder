@@ -22,7 +22,7 @@
     "l5": "An if-and-only-if statement says two statements are true in exactly the same cases. Proving it means proving both directions separately.",
     "l6": "An if-and-only-if statement holds exactly when both statements have identical truth values. Proof requires both directions, and definitions are almost always if-and-only-if statements in disguise.",
     "l7": "An if-and-only-if statement is two conditionals at once. Proving it means supplying two independent proofs, and each direction may need a different technique.",
-    "l8": "p ⇔ q asserts logical equivalence inside the object language; iff-chains are legitimate only when every link is genuinely reversible, and definitions are stipulative if-and-only-if statements."
+    "l8": "*If and only if* is two one-way claims at once, and proving it means proving both. A chain of *exactly when* steps is legitimate only when every single link runs in both directions."
   },
   "kernel": "p ⇔ q means both p ⇒ q and q ⇒ p. Proving it means writing two proofs.",
   "objectives": [

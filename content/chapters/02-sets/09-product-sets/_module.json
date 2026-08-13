@@ -22,7 +22,7 @@
     "l5": "A product set has ordered pairs as elements, so an arbitrary element must be named (x, y) immediately; equality of pairs means equality in each coordinate.",
     "l6": "S × T is the set of ordered pairs; its defining property is that (a,b) = (c,d) iff a = c and b = d, which is what makes coordinates well defined.",
     "l7": "A product consists of ordered pairs, one coordinate drawn from each set. The defining property is coordinatewise equality, order matters, and any product with the empty set is empty.",
-    "l8": "The cartesian product is characterized up to isomorphism by its projections and the universal property of the categorical product; relations and functions are then defined as subsets of it."
+    "l8": "An ordered pair is determined by its two entries in order, and the product of two sets is the set of all such pairs. Relations and functions are then simply subsets of a product."
   },
   "kernel": "S × T is the set of ordered pairs (s,t) with s ∈ S and t ∈ T. Order matters, so S × T ≠ T × S in general. Anything × ∅ is ∅. Products interact cleanly with intersection.",
   "objectives": [

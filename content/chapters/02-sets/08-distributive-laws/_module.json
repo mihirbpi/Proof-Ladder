@@ -22,7 +22,7 @@
     "l5": "Both distributive laws hold for sets, each proved by double inclusion with a case split in one direction; the symmetry has no arithmetic analogue.",
     "l6": "Intersection and union each distribute over the other, which arithmetic never manages — only multiplication distributes over addition. The two laws are duals: complement one, apply De Morgan, and the other drops out.",
     "l7": "Intersection distributes over union and union distributes over intersection; the two laws are De Morgan duals, and that mutual symmetry has no counterpart in the arithmetic of + and ×.",
-    "l8": "Mutual distributivity makes P(X) a distributive lattice; failure of one law characterizes non-distributive lattices such as the subspace lattice of a vector space, which is where quantum logic departs from classical."
+    "l8": "Each of union and intersection spreads across the other, which is a stronger symmetry than arithmetic has: multiplication spreads across addition, but addition does not spread across multiplication."
   },
   "kernel": "S ∪ (T ∩ R) = (S∪T) ∩ (S∪R) and S ∩ (T ∪ R) = (S∩T) ∪ (S∩R). Unlike arithmetic, distribution works both ways.",
   "objectives": [

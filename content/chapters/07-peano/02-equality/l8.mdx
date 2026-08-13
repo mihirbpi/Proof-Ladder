@@ -101,38 +101,6 @@ Worth noticing how much of ordinary practice this licenses. Writing $\tfrac{2}{4
 Nearly every equals sign you have written since primary school is of this kind: same number, different name. The axioms above are what make that safe, because they are exactly what guarantees a name can be swapped for an equal one anywhere it appears without changing what is true.
 </Aside>
 
-## Classes, and the sets they build
-
-§7.2 showed that a relation behaving like equality splits its set into families. Those families have a name and a use, and the use is how every number system above $\mathbb{N}$ gets built.
-
-For $a$ in $S$, the **equivalence class** of $a$ is
-
-$$[a] = \{\, x \in S \mid x \sim a \,\},$$
-
-*Symbol by symbol: $\sim$ is the sameness relation, $\in$ is "is in", the bar is "such that". So the line reads: the class of $a$ collects everything counting as the same as $a$.*
-
-and §7.2's theorem says these classes cover $S$ without overlapping. The set whose *elements are the classes* is the **quotient**, written $S/\sim$.
-
-That is the construction. Take objects you have, decide which count as the same, and the classes become the new objects.
-
-- $\mathbb{Z}$ is pairs of counting numbers, with $(a,b)$ standing for $a - b$, and $(a,b) \sim (c,d)$ when $a + d = b + c$.
-- $\mathbb{Q}$ is pairs of integers with $(p,q) \sim (r,s)$ when $ps = qr$ — which is why $\tfrac24$ and $\tfrac12$ are one number written twice.
-- Remainder arithmetic on division by $n$ is $\mathbb{Z}$ under §4.4's congruence.
-
-<Warning title="Every operation on classes owes a check">
-Define an operation by reaching for a member of a class, and you must show the answer does not depend on which member you reached for.
-
-Addition survives: if $a \sim a'$ and $b \sim b'$ then $a + b \sim a' + b'$, so $[a] + [b] := [a+b]$ makes sense. Reading off a member does **not** survive: there is no official representative, so *the number itself* is not something a class determines.
-
-This is §3.1's well-definedness in its natural home, and it is the step most often skipped.
-</Warning>
-
-<Aside>
-A footnote on the axioms themselves. Many presentations of Peano arithmetic omit A1–A4 entirely, on the grounds that the properties of equality belong to the underlying logic rather than to arithmetic — every theory uses them, so they need not be restated for this one.
-
-That is a defensible choice and a common one. This course states them because seeing what equality is *assumed* to do is worth more, at this stage, than the economy of leaving them out.
-</Aside>
-
 <WhereThisGoes level="l8">
 
 Equivalence relations are how mathematics decides what to ignore, and both courses ahead use them constantly.

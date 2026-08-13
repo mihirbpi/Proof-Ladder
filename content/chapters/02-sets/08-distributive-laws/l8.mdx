@@ -127,26 +127,6 @@ The proofs are the same element chases, with the case split now running over $n$
 That matters because the failing example above has no complements either — there is nothing playing the role of "everything not in $U$" — which is a second reason its failure cannot be diagnosed by the methods of this chapter.
 </Aside>
 
-## The same two laws, in three places
-
-The pair of distributive laws you have just proved for sets is not a fact about sets. It is a fact about any two operations standing in this relationship, and you have now met three instances of it.
-
-| | one operation | the other | the flip that swaps them |
-|---|---|---|---|
-| Logic (§1.3) | *and* | *or* | denial |
-| Sets (this module) | intersection | union | complement |
-| Circuits | the AND gate | the OR gate | an inverter |
-
-In each row, both distributive laws hold, and so do both of De Morgan's. The proofs in the second row were the proofs in the first row with membership unfolded; an engineer simplifying a circuit is running the third row.
-
-The mathematics worth taking from this is not any one of the rows. It is that a short list of rules can be satisfied by things with nothing else in common, and that everything derivable from the list holds for all of them at once. Chapter 4 makes the same point about arithmetic, and it is the single most economical idea in the subject.
-
-<Aside>
-Worth noticing which familiar operation does **not** behave this way. Ordinary multiplication spreads across addition — $a(b+c) = ab+ac$ — but addition does not spread across multiplication: $a + bc$ is not $(a+b)(a+c)$.
-
-So the symmetry above, where *both* operations distribute over the other, is a stronger condition than school algebra prepares you for. Sets and logic have it; the integers do not.
-</Aside>
-
 <WhereThisGoes level="l8">
 **In calculus the distributive law is used and rarely named.** Differentiation — the operation that measures how steeply a graph is rising — and integration — adding up thin strips to get a total — are linear — $\frac{d}{dx}(af+bg) = af'+bg'$ — and that is a distributive law over sums. It holds for finite sums always, and for endless ones only under conditions — exactly the finite/infinite asymmetry §2.4 flagged. Doing it to an endless sum is legitimate in the right circumstances and needs a theorem to say when.
 

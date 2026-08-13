@@ -22,7 +22,7 @@
     "l5": "Zero and successor are the only primitives; the numerals are definitions, and no arithmetic may be assumed before it is constructed.",
     "l6": "The successor rule is a function in the sense of Chapter 3, and the rule this chapter works under is to assume nothing about it beyond the axioms.",
     "l7": "Two axioms introduce the only primitives: zero is a counting number, and every counting number has a next. The numerals are definitions, and *next* cannot be written as *add one* until addition has been constructed.",
-    "l8": "Zero and successor generate the initial algebra for the functor X ↦ 1 + X; whether ℕ starts at 0 or 1 is a convention with no mathematical content."
+    "l8": "Two axioms introduce the only undefined words: zero is a counting number, and every counting number has a next. The numerals are definitions, and *next* cannot be written as *add one* until addition exists."
   },
   "kernel": "Axiom 5: 0 ∈ ℕ. Axiom 6: if x ∈ ℕ then S(x) ∈ ℕ. S is the \"next\" function. We cannot yet call S(x) \"x + 1\" because + is not defined.",
   "objectives": [

@@ -806,22 +806,33 @@ voice.
 
 **Three things `l8` may use that `l7` may not.**
 
-1. **Calculus, through integrals and series.** `l7` gets limits informally and
-   must name derivatives when it borrows them. `l8` has the first-year course
-   in hand: limits, derivatives, integrals, and convergence of series are all
-   fair examples. §5.7's exponential series and §6.6's induction on derivatives
-   can finally be done rather than pointed at.
+1. **Calculus, through integrals and Taylor series.** `l7` gets limits
+   informally and must gloss derivatives whenever it borrows them. `l8` has the
+   first-year course in hand, so **the glosses come out** — a page that writes
+   *"the derivative — the number saying how steeply a graph rises —"* is
+   assuming a reader who has not met one, and this reader has. §5.7's series
+   proof of Euler's formula is now **done**, absolute convergence and all,
+   rather than deferred to "a later course".
 2. **Modular arithmetic, with its notation.** §4.4's brief always reserved
    mod-n language for `l8`. It is available — *but it must be introduced before
    it is spent.* The first module to use it states what $a \equiv b \pmod n$
    means, in words, before any argument leans on it; after that it may be used
    plainly. Introducing notation by using it is the failure §A4.1h documents,
    and it is not licensed here just because the reader is older.
-3. **The per-module additions Part B already lists.** Cantor at §3.8 and §6.7,
-   equivalence classes and quotient sets at §7.2, first-order versus
-   second-order arithmetic at §7.4, Euclid's lemma and unique factorization at
-   §4.3. These were written into the briefs from the start and were the reason
-   for removing the same material from `l4`–`l7`.
+3. **Nothing else.** Revised 2026-08-13 after a first pass added far too much.
+   Calculus and mod-n notation are the *whole* of what `l8` gains. Cantor's
+   diagonal argument, equivalence classes and quotient sets, Gödel, structural
+   induction, indexed families, the constructive objection, Euclid's lemma,
+   completeness, the multi-valued complex logarithm — all were added, all are
+   neither calculus nor modular arithmetic, and all came back out. Part B's
+   briefs still list several of them as `l8` additions; **this profile
+   overrides them**, and the entries are stale rather than authoritative.
+
+   What a page *may* do beyond `l7` is go deeper on `l7`'s own material without
+   introducing anything new: why the vacuous case is the honest convention
+   (§1.5), why the Discussion disappears from published work (§1.6), the trap in
+   a chain of *exactly when* (§1.9), the two containment-sign conventions (§2.3),
+   the notational trap in $f^{-1}$ (§3.3). Those add no mathematics.
 
 **Linear algebra is not available, at any strength.** It is not in the US K–12
 sequence, so a reader who has finished 12th grade has not had it — the same

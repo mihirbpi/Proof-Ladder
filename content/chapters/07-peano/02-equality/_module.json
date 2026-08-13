@@ -22,7 +22,7 @@
     "l5": "Reflexive, symmetric and transitive together define an equivalence relation. Having the same remainder is the standard example, and its classes carve the integers into disjoint families.",
     "l6": "An equivalence relation splits its set into non-overlapping classes, and every such splitting comes from one. That is the machinery behind building one number system out of another.",
     "l7": "The equality axioms are reflexivity, symmetry, transitivity and closure. The first three define an equivalence relation, whose classes divide the underlying set into non-overlapping parts — which is how each number system gets built from the one below.",
-    "l8": "Equivalence relations correspond exactly to partitions, and quotient sets construct ℤ from ℕ, ℚ from ℤ, and ℤ/nℤ from ℤ; many Peano presentations relegate these axioms to logic."
+    "l8": "Reflexive, symmetric and transitive together make a relation behave like equality, which is what licenses swapping one side for the other. Such a relation splits its set into families, and those families are how every number system above the counting numbers gets built."
   },
   "kernel": "Axioms 1–4: reflexivity (x = x), symmetry, transitivity, and closure of equality (if x ∈ ℕ and x = y then y ∈ ℕ). Reflexive + symmetric + transitive = an equivalence relation.",
   "objectives": [

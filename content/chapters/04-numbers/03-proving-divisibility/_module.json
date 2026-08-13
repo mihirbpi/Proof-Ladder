@@ -22,7 +22,7 @@
     "l5": "To prove one number divides another, write what \"divides\" means as an equation, do the algebra, pull the divisor out as a factor, and check the other factor is a whole number. Claims like *a divides bc, so a divides b or c* are false in general and true when a is prime.",
     "l6": "Divisibility proofs are existence proofs whose witnesses are built by algebra; closure of the integers is what licenses the final step.",
     "l7": "Divisibility proofs run the same four steps every time: write what \"divides\" means as an equation with named whole numbers, manipulate, pull the divisor out as a factor, and cite closure for what is left. Where those steps break is exactly where being prime starts to matter.",
-    "l8": "The template is the computation of ideal containments; the failure of a | bc ⇒ a | b ∨ a | c for composite a is exactly the statement that (a) is not prime, and Euclid’s lemma repairs it."
+    "l8": "Unpack each divisibility hypothesis into an equation, combine, factor out the divisor, and cite closure. Dividing a product does not force dividing a factor — unless the divisor is prime, which is Euclid's lemma."
   },
   "kernel": "Divisibility proofs follow one template: unpack each hypothesis into an equation with a named integer, do algebra, factor out the divisor, and confirm the other factor is an integer using closure.",
   "objectives": [

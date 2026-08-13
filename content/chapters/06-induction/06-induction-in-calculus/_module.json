@@ -22,7 +22,7 @@
     "l5": "Conjecture-then-prove is the working mathematician’s loop: compute cases, isolate each pattern, assemble a formula, prove by induction.",
     "l6": "Repeating the same operation over and over produces a pattern with three separate parts — a sign, a factorial, and an exponent — and assembling them into one formula and proving it is a job for induction.",
     "l7": "Differentiating 1/x over and over produces a pattern with three parts — an alternating sign, a factorial, and a falling exponent — conjectured from the first few and proved by induction, using that each factorial is the previous one times the next whole number.",
-    "l8": "Induction on the order of differentiation is the standard route to Leibniz’s rule, Taylor coefficients, and closed forms for higher derivatives generally."
+    "l8": "Induction reaches statements about the nth derivative, the nth term of a series, and closed forms for repeated differentiation. The index is the order of the operation rather than a count of objects."
   },
   "kernel": "For f(x) = 1/x, f^{(n)}(x) = (−1)ⁿ n! x^{−(n+1)}. Found by computing the first few derivatives and spotting three patterns (sign, factorial, exponent); proved by induction using (k+1)! = (k+1)·k!.",
   "objectives": [

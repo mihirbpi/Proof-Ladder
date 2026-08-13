@@ -22,7 +22,7 @@
     "l5": "Dividing leaves a quotient and a remainder smaller than the divisor. That splits the integers into finitely many remainder classes, which is what makes case analysis exhaustive.",
     "l6": "Division with remainder splits the integers into finitely many remainder classes, which is what makes proof by cases a complete method.",
     "l7": "Division with remainder writes every integer as a multiple plus a remainder smaller than the divisor, splitting the integers into finitely many classes. Divisibility statements are therefore settled by finitely many cases.",
-    "l8": "The division algorithm makes ℤ a Euclidean domain; the residue classes are the elements of ℤ/nℤ, and proof by cases is computation in that quotient ring."
+    "l8": "Not dividing splits into finitely many positive cases, one per possible remainder, and the division algorithm says that remainder is unique. Congruence notation compresses the whole method into a symbol."
   },
   "kernel": "If n ∤ m then m = nk + r for some r with 1 ≤ r ≤ n − 1 — so \"not divisible\" splits into n − 1 cases. This makes proof by cases the standard tool for divisibility.",
   "objectives": [

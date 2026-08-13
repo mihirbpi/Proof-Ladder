@@ -22,7 +22,7 @@
     "l5": "The image may be a proper subset of the codomain; the pre-image of a subset is defined for any function whatsoever, invertible or not.",
     "l6": "Image and pre-image are operations on subsets, not on elements. Tracing back is defined for every function, whether or not the function can be undone.",
     "l7": "The image is the set of values actually attained and may sit strictly inside the codomain. Tracing back is defined for every function and every target set, whether or not the function can be undone.",
-    "l8": "Image and pre-image are the direct and inverse image operators between P(S) and P(T); the pre-image operator is the well-behaved one, and it is the basis of the topological definition of continuity."
+    "l8": "The image is what a function actually produces; the pre-image is the set of inputs landing in a given target. Pulling back is the better-behaved direction, and §3.4 shows why."
   },
   "kernel": "Im(f) ⊆ T is the set of outputs actually hit. f⁻¹(U) is the set of inputs landing in U; it may be empty. f⁻¹({t}) ≠ ∅ exactly when t ∈ Im(f). Pre-images exist for any function, invertible or not.",
   "objectives": [

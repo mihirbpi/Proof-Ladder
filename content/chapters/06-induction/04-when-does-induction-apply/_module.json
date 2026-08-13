@@ -22,7 +22,7 @@
     "l5": "Induction needs two things: a claim made about the whole numbers one at a time, and a usable link from each case to the next. Sums, products and step-by-step definitions supply that link; a claim about every real number has no next case at all.",
     "l6": "Induction applies when the cases come with a first one and each has a next — exactly what supplies the two halves of the proof. Strong induction and induction on how a thing is built keep that requirement while widening what \"next\" is allowed to mean.",
     "l7": "Induction applies exactly when the statements come one per whole number and each case is reachable from the one before. Without that step-by-step structure there is nothing to walk along.",
-    "l8": "Induction is available on any well-founded order; strong induction, structural induction, and transfinite induction are the same principle over different orders."
+    "l8": "Induction needs a claim indexed by the counting numbers *and* a link from each case to the next. When the link reaches further back, strong induction supplies it; when the objects are built by rules rather than counted, structural induction does."
   },
   "kernel": "Induction needs a statement indexed by integers n ≥ n₀ and a way to connect case k+1 back to case k. Statements about all real numbers are not candidates.",
   "objectives": [

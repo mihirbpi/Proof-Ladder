@@ -22,7 +22,7 @@
     "l5": "Surjectivity means every element of the codomain has a pre-image; it is a property of the pair (rule, codomain), not of the rule alone.",
     "l6": "A function is surjective when every element of the codomain is reached by something. The property depends on the codomain you declared and not on the rule alone — shrink the codomain to the image and any function becomes surjective.",
     "l7": "f is surjective when its image equals its codomain, so every target has at least one pre-image. The property depends on the declared codomain and not on the rule alone.",
-    "l8": "Surjections are the epimorphisms of Set; the existence of a right inverse for every surjection is equivalent to the Axiom of Choice."
+    "l8": "A function is surjective when nothing in the codomain is missed. Whether it holds depends on the codomain you declared, so surjectivity is a fact about the declaration as much as about the rule."
   },
   "kernel": "f is surjective when Im(f) = T: every t ∈ T has at least one pre-image. Surjectivity depends on the declared codomain.",
   "objectives": [

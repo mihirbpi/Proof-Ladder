@@ -22,7 +22,7 @@
     "l5": "A function is a rule that is total on its domain, single-valued, and lands inside its declared codomain; changing the domain or codomain changes the function.",
     "l6": "A function f: S → T assigns to every element of S exactly one element of T. Three conditions do the work: every input is used, no input gets two outputs, and every output lands in T. The vertical line test is a picture of the second one, not the definition.",
     "l7": "A function f: S → T assigns to each element of its domain exactly one element of its codomain — totality, well-definedness, and codomain membership. The domain and codomain are part of the function, not annotations on it.",
-    "l8": "A function is a subset f ⊆ S × T such that each s ∈ S is the first coordinate of exactly one pair; domain and codomain are data, and \"range\" is ambiguous between image and codomain."
+    "l8": "A function is a set of input–output pairs in which every input appears exactly once — so the function *is* its graph. Domain and codomain are part of the data, and the word *range* is ambiguous between codomain and image."
   },
   "kernel": "f: S → T assigns to every s ∈ S exactly one f(s) ∈ T. Three conditions: totality (everything gets sent), well-definedness (one output each), and codomain (outputs land in T). S is the domain, T the codomain.",
   "objectives": [

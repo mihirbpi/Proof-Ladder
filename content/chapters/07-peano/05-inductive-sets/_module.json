@@ -22,7 +22,7 @@
     "l5": "The last axiom is mathematical induction in disguise: holding zero is the base case, and being closed under *next* is the inductive step.",
     "l6": "The final identification of the counting numbers is obtained by double inclusion, with the last axiom supplying one direction and the first two the other.",
     "l7": "The last axiom says every inductive collection contains the counting numbers. It is mathematical induction in set form, it excludes models with rogue extra elements, and with the earlier axioms it pins the counting numbers down exactly.",
-    "l8": "Second-order Peano arithmetic determines ℕ up to isomorphism; the first-order induction schema does not, and the resulting nonstandard models are the subject of model theory."
+    "l8": "The ninth axiom says nothing is a counting number but what counting reaches, and it is Chapter 6's induction. Stated over all subsets it pins the counting numbers down completely; stated over writable formulas it does not."
   },
   "kernel": "V is inductive if 0 ∈ V and x ∈ V ⇒ S(x) ∈ V. Axiom 9: if V is inductive then ℕ ⊆ V. This rules out \"too big\" models and, combined with axioms 1–8, gives ℕ = {0,1,2,…} exactly. It is the same principle as Chapter 6.",
   "objectives": [

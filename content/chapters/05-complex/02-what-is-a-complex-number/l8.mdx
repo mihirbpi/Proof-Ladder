@@ -59,45 +59,12 @@ Strictly these are **standard identifications** rather than literal containments
 > **Proposition.** There is no order on $\mathbb{C}$ making it a system whose ordering fits its arithmetic.
 
 <Proof>
-
-*The symbols in this proof: $\geq$ is "is at least". In words, what follows shows: any ordering that respects the arithmetic would force $0$ and $1$ to be the same number.*
-
-Suppose such an order existed. In any system whose order fits its arithmetic, every square is at least $0$ — each element is positive, zero or negative, and squaring any of the three gives something non-negative.
-
-Apply that to $i$: since $i^2 = -1$, we get $-1 \geq 0$. Add $1$ to both sides: $0 \geq 1$.
-
-Apply it to $1$: since $1^2 = 1$, we get $1 \geq 0$.
-
-Both $0 \geq 1$ and $1 \geq 0$ hold, so $0 = 1$ — and that contradicts $1 \neq 0$. $\blacksquare$
+Suppose such an order existed. In any such system $x^2 \geq 0$ for all $x$: every element is positive, zero, or negative, and squaring any of the three gives something non-negative. Then $-1 = i^2 \geq 0$ and $1 = 1^2 \geq 0$, so adding, $0 = (-1) + 1 \geq 0 + 0$ gives nothing — instead argue directly: $-1 \geq 0$ implies $0 \geq 1$ by adding $1$, while $1 \geq 0$; so $0 = 1$, contradicting $1 \neq 0$.
 </Proof>
 
 This is a genuine loss, and the trade is explicit: $\mathbb{C}$ buys a solution to every polynomial equation at the cost of order. Practically, comparisons in $\mathbb{C}$ go through the absolute value $|z|$ (§5.6), which is real-valued and ordered — and $|z| < |w|$ is a statement about sizes, not an ordering of $\mathbb{C}$ that respects multiplication.
 
 Note there *are* orders on $\mathbb{C}$ as a set (lexicographic, say). The proposition says none of them respects the arithmetic, which is the only kind worth having.
-
-## Building the complex numbers honestly
-
-The definition above declares $i$ into existence and checks afterwards that nothing breaks. That is how the subject actually developed, and it leaves a fair objection open: how do you know there *is* anything satisfying the description?
-
-The answer is to build one out of material you already have, and §2.9 supplied it. Take $\mathbb{C}$ to be the set of ordered pairs of real numbers, and *define* the two operations:
-
-$$(a,b) + (c,d) = (a+c,\ b+d), \qquad (a,b)\cdot(c,d) = (ac - bd,\ ad + bc).$$
-
-*Symbol by symbol: each pair is an ordered pair of reals in the sense of §2.9. So the line reads: add pairs slot by slot, and multiply them by that second rule — which is what expanding $(a+bi)(c+di)$ and collecting terms produces.*
-
-Nothing has been assumed into existence. The pairs are there, the operations are formulas in real arithmetic, and every rule of §4.1 can be checked directly, if tediously.
-
-Now identify the real number $a$ with the pair $(a, 0)$, and check that the identification respects both operations. Write $i$ for the pair $(0,1)$ and compute:
-
-$$(0,1)\cdot(0,1) = (0\cdot 0 - 1\cdot 1,\ 0\cdot 1 + 1\cdot 0) = (-1, 0),$$
-
-which is the pair standing for $-1$. So $i^2 = -1$ is not a decree but a **calculation**, and the object whose existence was assumed has been produced.
-
-<Aside>
-This is the same move Chapter 7 makes for $\mathbb{N}$, and §7.2 makes for $\mathbb{Z}$ and $\mathbb{Q}$: build the new objects out of the old ones, define the operations, check the rules, then forget the construction and work with the properties.
-
-The construction is scaffolding. Nobody thinks of $3+2i$ as an ordered pair while calculating with it, and nobody should — but knowing it can be built that way is what makes the declaration in the first section legitimate rather than hopeful.
-</Aside>
 
 ## Equating parts, and why it is legitimate
 

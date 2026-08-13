@@ -22,7 +22,7 @@
     "l5": "Complex arithmetic is real arithmetic in two components with one extra rule, i² = −1. Dividing works by clearing the bottom of the fraction, which module 5.4 explains properly.",
     "l6": "The complex numbers obey every arithmetic rule the reals do. Dividing works by clearing the bottom of the fraction — the trick module 5.4 names — and checking that it is never zero is the one thing that needs an argument.",
     "l7": "Addition works coordinate by coordinate; multiplication expands the brackets and uses that the turn unit squares to −1; division clears the bottom of the fraction, which module 5.4 explains. Every arithmetic rule of §4.1 survives.",
-    "l8": "ℂ is a field because ℝ[x]/(x²+1) is a quotient by a maximal ideal; the inversion formula is the standard rationalisation in a quadratic extension."
+    "l8": "Add and multiply as with ordinary algebra, replacing i squared by −1 whenever it appears. Dividing works by multiplying top and bottom by the conjugate, which makes the bottom real."
   },
   "kernel": "Add componentwise; multiply by FOIL with i² = −1, giving (ac − bd) + (ad + bc)i; invert by multiplying by the conjugate over itself; divide as z · (1/w). ℂ is a field.",
   "objectives": [

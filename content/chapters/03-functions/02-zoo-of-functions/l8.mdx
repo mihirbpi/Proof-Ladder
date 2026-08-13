@@ -91,16 +91,6 @@ Every definition on objects with more than one name — remainder arithmetic, th
 Functions can act on functions. Differentiation — the operation that measures how steeply a graph is rising — $D : C^1(\mathbb{R}) \to C^0(\mathbb{R})$ and definite integration — adding up thin strips to get a total — $I : C^0([a,b]) \to \mathbb{R}$ are functions whose domains are sets of functions. Nothing in §3.1 forbids this, and the whole of functional analysis lives there.
 </Aside>
 
-## Where the totient earns its keep
-
-§3.2 introduced $\operatorname{tot}(n)$ as a function worth having. Here is the one sentence about why anyone outside number theory cares.
-
-Take two large primes $p$ and $q$ and publish their product $n = pq$, keeping the primes to yourself. Anyone can see $n$. Almost nobody can recover $p$ and $q$ from it, because no fast way of factoring large numbers is known — and without them, $\operatorname{tot}(n) = (p-1)(q-1)$ stays hidden too.
-
-That asymmetry between multiplying (easy) and factoring (hard) is what public-key cryptography is built on, and the totient is the quantity the whole scheme turns on. Every encrypted connection you open today runs on the gap between those two costs.
-
-Worth noticing what is *not* being claimed: nobody has proved factoring is hard. The security rests on nobody having found a fast method, which is a weaker statement than a theorem and is exactly why the subject stays interesting.
-
 <WhereThisGoes level="l8">
 **A sequence is a function $\mathbb{N}\to\mathbb{R}$.** Writing $a_n$ instead of $a(n)$ is notation, not a different kind of object — which is why sequences have limits, why they can be monotone or bounded, and why the theorems about sequences and about functions look so alike. Recognizing the identification early saves relearning the same material twice.
 

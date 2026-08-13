@@ -22,7 +22,7 @@
     "l5": "A conditional is false in exactly one case: hypothesis true, conclusion false. When the hypothesis fails, the conditional is vacuously true.",
     "l6": "A conditional is false only in the row where the hypothesis holds and the conclusion fails. Every other row — including both with the hypothesis false — makes it vacuously true.",
     "l7": "A conditional is false only when the hypothesis holds and the conclusion fails; the two rows with a false hypothesis make it vacuously true. So proving one reduces to ruling out that single row.",
-    "l8": "The material conditional p ⇒ q is defined to be false only when p is true and q is false; every other case, including both in which p is false, makes it (vacuously) true, which is what makes universally quantified statements over empty domains automatically true."
+    "l8": "*If p then q* is false only when p holds and q fails, so an if–then with a false hypothesis counts as true. That convention is what lets a universal claim be checked one case at a time."
   },
   "kernel": "\"If p then q\" claims only that q holds whenever p does. It is false only when p is true and q is false, so it is automatically true when p is false — this is vacuous truth.",
   "objectives": [

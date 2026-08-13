@@ -22,7 +22,7 @@
     "l5": "The irrationals fail closure but are stable under negation, reciprocal, and multiplication by a nonzero fraction. Each proof is a *suppose not* that leans on closure of the fractions.",
     "l6": "The irrationals are a collection, not a self-contained number system. Their stability properties all follow by contradiction from closure of the fractions.",
     "l7": "The irrationals fail closure under addition and multiplication and contain neither identity, so they form no self-contained number system. Stability under negation, reciprocal and scaling is proved by contradiction from closure of the fractions.",
-    "l8": "The irrationals are the complement of a subfield and hence not a subfield; that irrational^irrational can be rational is a famous nonconstructive existence proof."
+    "l8": "Sums and products of irrationals can land anywhere, so the irrationals are not closed under arithmetic. That an irrational raised to an irrational can be rational is proved without ever saying which pair works."
   },
   "kernel": "The irrationals are not closed under addition or multiplication and contain neither 0 nor 1 — they are not a field. But: if a is irrational so are −a and 1/a, and a nonzero rational times an irrational is irrational.",
   "objectives": [

@@ -22,7 +22,7 @@
     "l5": "The absolute value is straight-line distance to the origin. Distances, circles and discs are all described by inequalities in the distance between two complex numbers.",
     "l6": "The absolute value is the distance from a complex number to the origin. It multiplies through products and obeys the triangle inequality, so it measures distance exactly the way length does in coordinate geometry.",
     "l7": "The absolute value is the straight-line distance from the origin. It extends absolute value on the number line, multiplies through products, obeys the triangle inequality, and turns a fixed distance into a circle.",
-    "l8": "Modulus is the norm making ℂ a complete normed field; multiplicativity is the norm of the quadratic extension, and completeness is what makes complex analysis possible."
+    "l8": "The absolute value of a complex number is its distance from the origin, found by the right-triangle rule. It multiplies through products, and that is what lets limits be defined there exactly as on the line."
   },
   "kernel": "|z| = √(a² + b²) is the distance from 0; |z| = √(z·z̄); it is absolute value extended to ℂ; |z − w| is the distance between z and w; |z − w| = r describes a circle.",
   "objectives": [

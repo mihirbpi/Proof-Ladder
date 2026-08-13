@@ -22,7 +22,7 @@
     "l5": "Two axioms rule out looping and merging: nothing has zero as its next number, and no two numbers share a next one. Stated in Chapter 3's language, the successor rule is one-to-one and misses zero.",
     "l6": "Axioms 7 and 8 are exactly the statements that 0 is outside the image of S and that S is injective — a direct reuse of Chapter 3.",
     "l7": "One axiom puts zero outside the range of the successor rule and another makes that rule one-to-one. Together they exclude the looping and merging models that satisfy everything earlier.",
-    "l8": "Axioms 7 and 8 say S is injective with 0 ∉ im(S), i.e. ℕ is a Dedekind-infinite set with a distinguished point; this is Dedekind’s definition of infinity."
+    "l8": "Two axioms stop the counting from looping back to zero and from merging two numbers into one. Dropping either leaves a perfectly consistent system that simply is not the counting numbers."
   },
   "kernel": "Axiom 7: 0 is not the successor of anything, so counting never returns to the start. Axiom 8: S is injective, so counting never merges two numbers into one.",
   "objectives": [

@@ -22,7 +22,7 @@
     "l5": "Negating a quantified statement swaps *for all* with *there exists* and negates what follows. With nested quantifiers the swap happens at every level.",
     "l6": "Pushing a denial inward through a quantified statement flips each quantifier in turn and negates what is left at the end. The *there exists* it produces is exactly the one bad apple you go hunting.",
     "l7": "Negation exchanges the two quantifiers and passes to the negated property — De Morgan's laws with the chain run out forever. So refuting a *for all* statement means exhibiting a single counterexample.",
-    "l8": "The quantifier duality ¬∀ ≡ ∃¬ is De Morgan duality for the infinitary meet and join; pushing negations inward to prenex normal form is the routine that makes quantified statements computable with."
+    "l8": "Denying *for every* gives *there is*, and denying *there is* gives *for every*, with the denial pushed inward. That is why one counterexample refutes a universal claim and why refuting an existence claim takes an argument about everything."
   },
   "kernel": "¬(∀x p(x)) is the same as ∃x ¬p(x), and ¬(∃x p(x)) is the same as ∀x ¬p(x). A single counterexample destroys a universal claim.",
   "objectives": [

@@ -22,7 +22,7 @@
     "l5": "Tracing back passes straight through union, intersection and complement, and each proof reduces to one pivot: an input traces back from a set exactly when its own output lands in that set.",
     "l6": "Tracing back carries union, intersection and complement across unchanged; going forwards carries only union. That asymmetry, and the reason for it, is the content of the module.",
     "l7": "Tracing back commutes with union, intersection and complement, each proof turning on a single equivalence. Going forwards commutes only with union.",
-    "l8": "f⁻¹ is a Boolean algebra homomorphism P(T) → P(S) and sits between the two image operators as an adjoint; this is why continuity is stated with pre-images."
+    "l8": "Pre-images respect union, intersection and complement exactly; images respect only union. The reason is a single quantifier — membership in an image is an existence claim, and existence survives *or* but not *and*."
   },
   "kernel": "f⁻¹(Ū) = f⁻¹(U)‾, f⁻¹(U ∪ V) = f⁻¹(U) ∪ f⁻¹(V), and f⁻¹(U ∩ V) = f⁻¹(U) ∩ f⁻¹(V). The pivot in every proof is x ∈ f⁻¹(U) ⇔ f(x) ∈ U.",
   "objectives": [

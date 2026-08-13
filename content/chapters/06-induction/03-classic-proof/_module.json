@@ -22,7 +22,7 @@
     "l5": "The sum of the first n odd numbers is n². Induction proves it, and the whole step is one piece of algebra: k² plus the next odd number is (k+1)². The proof has to run forwards from that left side, not backwards from the answer.",
     "l6": "The sum of the first n odd numbers is n², and the whole inductive step is the identity k² + (2k+1) = (k+1)². Writing it correctly means starting from the left side of the case you are proving and using the case before it — never manipulating the goal until something true appears.",
     "l7": "The first n odd numbers add up to n squared, proved by induction, where the whole step is the expansion of (k+1) squared. The argument has to run forwards from the case for k+1, never backwards from the goal.",
-    "l8": "The identity is the n = 2 case of a family of power sums expressible by Faulhaber’s formula; the L-shell picture is a bijective proof of the same statement."
+    "l8": "The sum of the first n counting numbers is n times n plus one, all over two — proved by induction and again by pairing the ends. Two proofs of one statement, and the second explains while the first only certifies."
   },
   "kernel": "Σ from j = 1 to n of (2j − 1) equals n², proved by induction, written in the house style. The algebra k² + 2k + 1 = (k+1)² is the entire inductive step.",
   "objectives": [

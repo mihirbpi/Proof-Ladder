@@ -71,35 +71,6 @@ Whether that harder job can ever be done — whether some infinite collections a
 What is worth carrying out of this module is the shift in what *size* means. For finite sets, size is a number you arrive at by counting, and pairing is a shortcut. For infinite sets there is no number to arrive at, so the pairing stops being a shortcut and becomes the definition. Everything strange about infinite sets — a set matching a part of itself, §2.1's collection that cannot exist — follows from taking that definition seriously instead of importing the finite picture.
 </Aside>
 
-## Listable, and not
-
-§3.8 left a question open: whether every pair of infinite sets can be paired off. It cannot, and here is the answer in full.
-
-Call a set **listable** when its members can be written in a sequence — a first, a second, a third — with every member appearing somewhere. Equivalently, when it can be paired off with the counting numbers.
-
-Surprisingly many sets are listable. The integers are: interleave them, $0, 1, -1, 2, -2, \ldots$. The fractions are too, which is genuinely strange, since between any two of them lie infinitely many more. Walk the grid of numerator-denominator pairs along its diagonals, skipping anything already seen in lower terms, and every fraction is reached at some finite stage.
-
-> **Theorem (Cantor).** The real numbers are not listable.
-
-<Proof>
-
-*The symbols in this proof: $(0,1)$ is the reals strictly between $0$ and $1$. In words, what follows shows: given any list claiming to hold every real, you can build a real it has missed.*
-
-Suppose some list $r_1, r_2, r_3, \ldots$ contained every real between $0$ and $1$. Write each in decimal, forbidding trailing nines so that each number has one expansion only.
-
-Now build $x$ digit by digit: let its $n$th decimal digit be $5$, unless $r_n$'s $n$th digit is already $5$, in which case take $4$. Then $x$ lies between $0$ and $1$, and its expansion has no nines and is not eventually zero, so it is that number's only expansion.
-
-For each $n$, $x$ differs from $r_n$ in the $n$th place, so $x$ is not $r_n$. That holds for every $n$, so $x$ is on no rung of the list — contradicting the assumption that the list held everything. $\blacksquare$
-</Proof>
-
-So there are at least two sizes of infinity, and the reals outnumber the fractions despite the fractions being packed everywhere along the line.
-
-<Aside>
-The move is worth more than the theorem. **When handed a list claimed to be complete, build the thing that disagrees with entry $n$ in position $n$.**
-
-That single trick shows the reals are not listable, shows in §6.7 that no set can be paired with its own subsets, and shows in §2.1 that there is no set of everything. Three results, one idea, and the idea is the transferable part.
-</Aside>
-
 <WhereThisGoes level="l8">
 **Pairing is how later courses compare things that are not sets of numbers.** Two collections that each need the same number of coordinates to describe a point can be matched up one-for-one in a way that respects adding and scaling — this module's *pairing means same size*, with the pairing asked to preserve more than just membership.
 

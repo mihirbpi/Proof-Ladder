@@ -22,7 +22,7 @@
     "l5": "Functions are rules, not expressions; domain restrictions on 1/x and ln x are consequences of the three conditions, not conventions.",
     "l6": "Whether a rule is a function depends on the stated domain and codomain, which is why 1/x and √x need their domains declared.",
     "l7": "A function is determined by its rule together with its domain and codomain, not by having a closed-form expression; floor, φ, and multiplication on a product set are standard examples.",
-    "l8": "Functions are arbitrary total single-valued assignments; requiring a formula is a category error, and φ in particular underlies RSA."
+    "l8": "A function need not be given by a formula; any assignment of one output to each input qualifies. The counting function of §3.2 is the quantity public-key cryptography is built on."
   },
   "kernel": "Functions need not be formulas or numeric. The floor function, Euler's totient φ, multiplication ℤ×ℤ → ℤ, and letter-to-position are all functions.",
   "objectives": [

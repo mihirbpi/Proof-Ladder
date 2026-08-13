@@ -22,7 +22,7 @@
     "l5": "Every power of 4, minus 1, is a multiple of 3. Induction proves it: check the first case, then show that if one power works, so does the next. The step needs a name for the leftover factor, and it must be a new letter, not the one already counting the cases.",
     "l6": "Every power of 4, minus 1, is a multiple of 3. The step multiplies the previous case by four and re-groups — and it needs a fresh letter for the leftover factor, since the obvious one is already being used to count the cases.",
     "l7": "Every power of 4, minus 1, is a multiple of 3, proved by induction. The step is §4.3’s divisibility argument run inside an induction, and the leftover factor needs a name of its own rather than reusing the counter.",
-    "l8": "The result is the case a = 4, m = 3 of a ≡ 1 (mod m) ⇒ aⁿ ≡ 1 (mod m), which modular arithmetic proves in one line — induction is the elementary route to a congruence fact."
+    "l8": "Divisibility claims about every n are natural induction targets: the step factors the new case into the old one plus a multiple of the divisor. Congruence notation shortens the same argument to two lines."
   },
   "kernel": "3 | (2^{2n} − 1) for all n ≥ 0. The step: write 2^{2k} − 1 = 3x, so 2^{2k} = 3x + 1, then 2^{2(k+1)} − 1 = 4(3x+1) − 1 = 3(4x+1). Naming the unknown factor x (not k) matters, because k is taken.",
   "objectives": [

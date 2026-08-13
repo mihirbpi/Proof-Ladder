@@ -22,7 +22,7 @@
     "l5": "Set-builder notation turns an open statement into a set: the elements of a collection satisfying a condition. This is where Chapter 1's conditions become Chapter 2's objects.",
     "l6": "A set may be specified by an extensional list or by an intensional condition on a stated ambient set; the ambient set is not optional.",
     "l7": "Set-builder notation converts a condition into a set by separating out the elements of an existing set that satisfy it. The condition is a statement in the sense of Chapter 1, which is where Chapter 1 becomes a tool.",
-    "l8": "Set-builder is the Axiom Schema of Separation in notation; unrestricted comprehension {x | p(x)} is inconsistent, which is why the ambient set may not be dropped."
+    "l8": "Set-builder notation carves a subset out of a set you already have. Dropping the containing set and writing a set from a bare property is exactly the move that produces a contradiction."
   },
   "kernel": "{x | p(x)} is the set of all x making p(x) true — a set defined by a condition rather than a list.",
   "objectives": [

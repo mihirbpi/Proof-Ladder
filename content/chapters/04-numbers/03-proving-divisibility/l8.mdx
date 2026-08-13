@@ -98,27 +98,6 @@ Each arrow is short; the sequence is the whole of elementary number theory's fou
 Unique factorization is often taught as obvious. It is not. Existence of a factorization follows by strong induction (Chapter 6); *uniqueness* is exactly where Euclid's lemma is spent, and in number systems where that lemma fails, uniqueness fails with it. There are number systems where it fails. Enlarge the integers by throwing in a square root of $-5$, so that numbers look like $a + b\sqrt{-5}$. In that system $6$ factors two genuinely different ways — as $2 \times 3$, and as $(1+\sqrt{-5})(1-\sqrt{-5})$ — and neither factorization can be broken down further. So $2$ divides that second product without dividing either factor, which is exactly Euclid's lemma failing.
 </Aside>
 
-## Euclid's lemma, and what rests on it
-
-§4.3 showed that dividing a product does not force dividing a factor. For **primes** it does, and that single exception carries most of elementary number theory.
-
-> **Euclid's lemma.** If $p$ is prime and $p \mid bc$, then $(p \mid b)$ or $(p \mid c)$.
-
-The proof needs one input from outside this module: for any $a$ and $b$ there are integers $x, y$ with $ax + by = \gcd(a,b)$ — a fact obtained by running the division algorithm backwards. Granting that:
-
-<Proof>
-
-*The symbols in this proof: the bar $\mid$ is "divides", and $\gcd$ is the greatest common divisor. In words, what follows shows: if $p$ misses one factor entirely, it must catch the other.*
-
-Suppose $p \nmid b$. Since $p$ is prime its only positive divisors are $1$ and $p$, so $\gcd(p, b) = 1$, and there are integers $x, y$ with $px + by = 1$.
-
-Multiply through by $c$: $pcx + bcy = c$. Now $p$ divides $pcx$ outright, and $p$ divides $bcy$ because $p \mid bc$ by hypothesis. A number dividing both terms divides their sum, so $p \mid c$. $\blacksquare$
-</Proof>
-
-**Where it is spent.** Every integer above $1$ factors into primes — that much follows by the chain argument of Chapter 6, in the variant §6.4 calls *strong induction*, and needs nothing clever. What needs Euclid's lemma is that the factorization is **unique** up to order.
-
-That uniqueness is so familiar it is hard to see as a theorem, and the way to see it is to visit a system where it fails. Enlarge the integers by throwing in a square root of $-5$, so numbers look like $a + b\sqrt{-5}$. There $6$ factors two genuinely different ways — as $2 \times 3$, and as $(1+\sqrt{-5})(1-\sqrt{-5})$ — with none of the four factors breaking down further. Euclid's lemma fails there, and unique factorization goes with it.
-
 <WhereThisGoes level="l8">
 
 The linear-combination theorem — *if $a$ divides $b$ and $c$, then $a$ divides $bx+cy$* — has a shape you will meet again immediately, and recognizing it saves relearning.
