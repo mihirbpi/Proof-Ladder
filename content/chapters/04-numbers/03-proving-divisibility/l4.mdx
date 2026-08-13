@@ -84,7 +84,7 @@ Taking $x = y = 1$ gives $a \mid (b+c)$; taking $x = 1, y = -1$ gives $a \mid (b
 
 ## When an *or* in the hypothesis costs you only one case
 
-> **Proposition.** If $a \mid b$ or $a \mid c$, then $a \mid bc$.
+> **Proposition.** If $(a \mid b)$ or $(a \mid c)$, then $a \mid bc$.
 
 The hypothesis is an *or*, so module 1.12 demands cases. But look at the two cases before writing them out: they are the same argument with $b$ and $c$ swapped.
 
@@ -107,12 +107,12 @@ Mathematicians have a stock phrase for this move — you will meet it in a later
 
 ## Turning it around gives something false
 
-> **Claim?** If $a \mid bc$ then $a \mid b$ or $a \mid c$.
+> **Claim?** If $a \mid bc$ then $(a \mid b)$ or $(a \mid c)$.
 
 **False.** Take $a = 4$, $b = 2$, $c = 6$: $4 \mid 12$ but $4 \nmid 2$ and $4 \nmid 6$.
 
 The mechanism: $4 = 2^2$, and $12$ collects one factor of $2$ from each of $b$ and $c$. A composite divisor can be assembled from pieces spread across the two factors.
 
 <Aside>
-The claim becomes true when $a$ is prime — a prime has no proper factorization to spread out. That is **Euclid's lemma**: if $p$ is prime and $p \mid bc$ then $p \mid b$ or $p \mid c$. It is not obvious. The standard proof goes through a result called *Bézout's identity*: for any two whole numbers there are multiples of them that add to their greatest common factor — for instance $2\cdot 12 + (-1)\cdot 21 = 3$. That result is a descendant of the linear-combination proposition above. Euclid's lemma is in turn what makes prime factorization unique — and the uniqueness proof is exactly where it gets used.
+The claim becomes true when $a$ is prime — a prime has no proper factorization to spread out. That is **Euclid's lemma**: if $p$ is prime and $p \mid bc$ then $(p \mid b)$ or $(p \mid c)$. It is not obvious. The standard proof goes through a result called *Bézout's identity*: for any two whole numbers there are multiples of them that add to their greatest common factor — for instance $2\cdot 12 + (-1)\cdot 21 = 3$. That result is a descendant of the linear-combination proposition above. Euclid's lemma is in turn what makes prime factorization unique — and the uniqueness proof is exactly where it gets used.
 </Aside>

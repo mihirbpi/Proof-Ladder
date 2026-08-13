@@ -1,8 +1,8 @@
 ---
 level: l6
-title: Modulus
+title: How far from zero
 readingTimeMin: 8
-newTerms: ["modulus", "absolute value"]
+newTerms: ["absolute value"]
 anchorExample: "rotations of the coordinate plane"
 ---
 
@@ -17,7 +17,7 @@ $\mathbb{C}$ has no order (module 5.2), so complex numbers cannot be compared di
 
 ## Definition
 
-For $z = a+bi$, the **modulus** is
+For $z = a+bi$, the **absolute value** is
 $$|z| = \sqrt{a^2+b^2}.$$
 
 That is the distance from the origin to the point $(a,b)$ — **the distance formula**, which is the Pythagorean theorem in coordinates.
@@ -32,7 +32,7 @@ That is the distance from the origin to the point $(a,b)$ — **the distance for
 
 $$|3+4i| = \sqrt{9+16} = 5.$$
 
-The $3$–$4$–$5$ triangle from your first geometry unit, appearing as a complex modulus.
+The $3$–$4$–$5$ triangle from your first geometry unit, appearing as a complex absolute value.
 
 ## It extends absolute value
 
@@ -80,7 +80,7 @@ Taking non-negative square roots, $|zw| = |z||w|$.
 
 That is half of module 5.9's result. The other half is what happens to angles.
 
-<Warning title="Modulus does not distribute over sums">
+<Warning title="Absolute value does not distribute over sums">
 $$|z+w| \neq |z|+|w| \quad\text{in general.}$$
 
 Take $z = 3$ and $w = -3$: the left side is $0$ and the right is $6$.
@@ -102,7 +102,7 @@ The distance between two complex numbers is
 $$d(z,w) = |z-w|,$$
 and in components this is $\sqrt{(a-c)^2+(b-d)^2}$ — the distance formula, unchanged. Complex notation has not introduced a new geometry; it has compressed the one you have.
 
-## Sets of points, by modulus
+## Sets of points, by absolute value
 
 $$|z| = r \quad\text{— circle, radius } r, \text{ center } 0$$
 $$|z - c| = r \quad\text{— circle, radius } r, \text{ center } c$$
@@ -142,12 +142,12 @@ This set is closed under multiplication: if $|z|=|w|=1$ then $|zw| = 1\cdot1 = 1
 
 So $U$ is closed under multiplication, contains $1$, and contains an inverse for each of its members. Those three properties are exactly what module 3.7's aside called a **group**.
 
-**And this one is the rotations of the plane.** Multiplying by a number of modulus $1$ changes no distance, so it is a rigid motion fixing the origin, which by your course's classification is a rotation. Module 5.9 makes the correspondence exact.
+**And this one is the rotations of the plane.** Multiplying by a number of absolute value $1$ changes no distance, so it is a rigid motion fixing the origin, which by your course's classification is a rotation. Module 5.9 makes the correspondence exact.
 
 <Aside>
 The properties proved here — $|z|\geq0$ with equality only at $0$, $|zw|=|z||w|$, and the triangle inequality — are exactly what any sensible notion of *size* has to satisfy, and they come back in every later subject that measures anything.
 
 Once a system has a notion of size, it has distances; once it has distances, closeness can be defined; and once closeness is available, calculus becomes possible. That is the route by which the complex numbers get a calculus of their own — and it turns out to be a good deal better behaved than the real one.
 
-The modulus is what makes any of it possible, and it is nothing but the distance formula you proved from the Pythagorean theorem.
+The absolute value is what makes any of it possible, and it is nothing but the distance formula you proved from the Pythagorean theorem.
 </Aside>

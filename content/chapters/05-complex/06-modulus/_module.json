@@ -8,31 +8,30 @@
     "l2": "Measuring how far",
     "l3": "How far from zero",
     "l4": "How far from zero",
-    "l5": "Modulus",
-    "l6": "Modulus",
-    "l7": "Modulus",
+    "l5": "How far from zero",
+    "l6": "How far from zero",
+    "l7": "How far from zero",
     "l8": "Modulus"
   },
-  "kernelIdea": "|z| = √(a² + b²) is the distance from 0; |z| = √(z z̄); it extends absolute value on ℝ; |z − w| is the distance between z and w, and |z − w| = r describes a circle.",
+  "kernelIdea": "|z| = √(a² + b²) is the distance from 0; |z| = √(z z̄); it is the absolute value, extended from ℝ to ℂ; |z − w| is the distance between z and w, and |z − w| = r describes a circle.",
   "kernels": {
     "l1": "How far from home? Measure it with a piece of string.",
     "l2": "To find how far a spot is from the start, use the across part and the up part and make a right triangle. The slanted side is the distance.",
-    "l3": "The modulus |z| is the distance from 0 to z, and Pythagoras gives |a + bi| = √(a² + b²). For ordinary numbers it is just the usual distance from zero.",
-    "l4": "The modulus of a complex number is its straight-line distance from the origin, found from the two parts by the right-triangle rule. It agrees with absolute value on the number line, and the distance between two complex numbers describes circles.",
-    "l5": "The modulus is straight-line distance to the origin. Distances, circles and discs are all described by inequalities in the distance between two complex numbers.",
-    "l6": "The modulus is the distance from a complex number to the origin. It multiplies through products and obeys the triangle inequality, so it measures distance exactly the way length does in coordinate geometry.",
-    "l7": "The modulus is the straight-line distance from the origin. It extends absolute value on the number line, multiplies through products, obeys the triangle inequality, and turns a fixed distance into a circle.",
+    "l3": "The absolute value |z| is the distance from 0 to z, and Pythagoras gives |a + bi| = √(a² + b²). For ordinary numbers it is just the usual distance from zero.",
+    "l4": "The absolute value of a complex number is its straight-line distance from the origin, found from the two parts by the right-triangle rule. It agrees with absolute value on the number line, and the distance between two complex numbers describes circles.",
+    "l5": "The absolute value is straight-line distance to the origin. Distances, circles and discs are all described by inequalities in the distance between two complex numbers.",
+    "l6": "The absolute value is the distance from a complex number to the origin. It multiplies through products and obeys the triangle inequality, so it measures distance exactly the way length does in coordinate geometry.",
+    "l7": "The absolute value is the straight-line distance from the origin. It extends absolute value on the number line, multiplies through products, obeys the triangle inequality, and turns a fixed distance into a circle.",
     "l8": "Modulus is the norm making ℂ a complete normed field; multiplicativity is the norm of the quadratic extension, and completeness is what makes complex analysis possible."
   },
-  "kernel": "|z| = √(a² + b²) is the distance from 0; |z| = √(z·z̄); it extends absolute value; |z − w| is the distance between z and w; |z − w| = r describes a circle.",
+  "kernel": "|z| = √(a² + b²) is the distance from 0; |z| = √(z·z̄); it is absolute value extended to ℂ; |z − w| is the distance between z and w; |z − w| = r describes a circle.",
   "objectives": [
-    "Compute modulus",
-    "Connect to Pythagoras and to absolute value",
+    "Compute the absolute value of a complex number",
+    "Connect it to Pythagoras and to absolute value on the line",
     "Sketch the locus |z − w| = r"
   ],
   "sourceRef": "Math 0 §5.3.2",
   "vocabulary": [
-    "modulus",
     "absolute value"
   ],
   "prerequisites": [

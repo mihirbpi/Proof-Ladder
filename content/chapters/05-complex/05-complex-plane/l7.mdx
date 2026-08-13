@@ -73,7 +73,7 @@ $$\left|\frac{z-a}{z-b}\right| = k \quad\text{a circle (or a line when } k=1)$$
 
 Each needs one complex variable where rectangular coordinates need two, and each condition is a single equation where the real version needs expanding and collecting.
 
-The last is worth noting: the set of points whose distances to two fixed points have a constant ratio is a circle, and proving it in rectangular coordinates takes half a page. In complex notation it is a short manipulation of moduli.
+The last is worth noting: the set of points whose distances to two fixed points have a constant ratio is a circle, and proving it in rectangular coordinates takes half a page. In complex notation it is a short manipulation of absolute values.
 
 That economy is why complex notation is standard in electrical engineering and fluid dynamics, where plane geometry is done constantly and the objects are naturally rotational.
 
@@ -97,7 +97,7 @@ $$
 is a two-line computation with conjugates and a genuine theorem of Euclidean geometry. This translation in both directions is what makes complex numbers a standard tool in plane geometry.
 
 <Warning title="The plane is the domain, not a graph">
-A graph of $f : \mathbb{C}\to\mathbb{C}$ lives in $\mathbb{R}^4$. Standard substitutes are domain coloring (hue = argument, brightness = modulus), plotting $|f|$ as a surface, and drawing source and target planes side by side with the images of a grid.
+A graph of $f : \mathbb{C}\to\mathbb{C}$ would need four axes — two for the input pair and two for the output pair — so it cannot be drawn. Standard substitutes are colouring the input plane by where each point is sent (hue for the angle, brightness for the distance), plotting $|f|$ as a surface, and drawing source and target planes side by side with the images of a grid.
 
 Relatedly: nearness in $\mathbb{C}$ means nearness in the *plane*, not along a line. A sequence settling towards a value — the settling of a running value towards a single number — $z_n \to z$ means $|z_n - z| \to 0$, and approach may occur along any path — which is exactly why complex differentiability is so restrictive.
 </Warning>
@@ -112,7 +112,7 @@ The plane picture is what makes complex arithmetic usable rather than merely for
 
 **Multiplication is where the plane earns its keep.** $\mathbb{R}^2$ has no useful multiplication; $\mathbb{C}$ has one, and §5.9 shows it is rotation combined with scaling. That single fact makes complex numbers the natural language for anything rotating.
 
-**That is why engineers describe oscillation with complex numbers.** A quantity that rises and falls like $A\cos(\omega t+\phi)$ is the real part of a fixed complex number multiplied by a rotating one, and the rotation is the turning of §5.9 happening as time passes. Amplitude sits in the modulus and timing sits in the angle, so questions about two waves reinforcing or canceling become questions about multiplying two complex numbers.
+**That is why engineers describe oscillation with complex numbers.** A quantity that rises and falls like $A\cos(\omega t+\phi)$ is the real part of a fixed complex number multiplied by a rotating one, and the rotation is the turning of §5.9 happening as time passes. Amplitude sits in the absolute value and timing sits in the angle, so questions about two waves reinforcing or canceling become questions about multiplying two complex numbers.
 
 The technique is standard wherever things oscillate, from AC circuits to the description of waves, and it works for the reason this chapter has been building toward: turning is multiplication.
 

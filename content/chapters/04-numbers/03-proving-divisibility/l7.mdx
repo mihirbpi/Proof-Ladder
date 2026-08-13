@@ -27,13 +27,13 @@ Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides ev
 
 > **Proposition.** For $a,b,c,d \in \mathbb{Z}$:
 >
-> (i) $a \mid b \wedge b \mid c \Rightarrow a \mid c$;
+> (i) $(a \mid b) \wedge (b \mid c) \;\Rightarrow\; a \mid c$;
 >
-> (ii) $a \mid c \wedge b \mid d \Rightarrow ab \mid cd$;
+> (ii) $(a \mid c) \wedge (b \mid d) \;\Rightarrow\; ab \mid cd$;
 >
-> (iii) $a \mid b \wedge a \mid c \Rightarrow a \mid (bx + cy)$ for all $x,y \in \mathbb{Z}$;
+> (iii) $(a \mid b) \wedge (a \mid c) \;\Rightarrow\; a \mid (bx + cy)$ for all $x,y \in \mathbb{Z}$;
 >
-> (iv) $a \mid b \vee a \mid c \Rightarrow a \mid bc$.
+> (iv) $(a \mid b) \vee (a \mid c) \;\Rightarrow\; a \mid bc$.
 
 *Symbol by symbol: the bar $\mid$ is "divides", $\wedge$ is "and", $\vee$ is "or", $\Rightarrow$ is "forces", $\in$ is "is in", $\mathbb{Z}$ is the integers. So the four lines read: dividing passes along a chain; two divisions can be multiplied together; a common divisor divides any whole-number combination; and a divisor of either factor divides the product.*
 
@@ -60,14 +60,14 @@ Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{
 *A reminder of the symbols in play: $\nmid$ reads "does not divide".*
 
 $$
-a \mid bc \;\not\Rightarrow\; a \mid b \ \vee\ a\mid c.
+(a \mid bc) \;\not\Rightarrow\; (a \mid b) \ \vee\ (a\mid c).
 $$
 
 *Symbol by symbol: $\Rightarrow$ is "forces", $\vee$ is "or", the bar $\mid$ is "such that".*
 
 Counterexample: $4 \mid 12 = 2\cdot 6$, yet $4 \nmid 2$ and $4 \nmid 6$. The divisor $4 = 2^2$ draws one factor of $2$ from each of $b, c$.
 
-> **Euclid's lemma.** If $p$ is prime and $p \mid bc$, then $p \mid b$ or $p \mid c$.
+> **Euclid's lemma.** If $p$ is prime and $p \mid bc$, then $(p \mid b)$ or $(p \mid c)$.
 
 <Discussion>
   <div slot="know">$p$ prime, $p \mid bc$. Suppose $p \nmid b$ — we must reach $p \mid c$. Since $p$ is prime and does not divide $b$, we have $\gcd(p,b) = 1$, as the only divisors of $p$ are $1$ and $p$.</div>
@@ -80,7 +80,7 @@ Suppose $p \mid bc$ and $p \nmid b$. The divisors of $p$ are $\pm1, \pm p$, and 
 $$px + by = 1.$$
 Multiplying by $c$:
 $$pcx + bcy = c.$$
-Now $p \mid pcx$ in one step, and $p \mid bcy$ since $p \mid bc$. By (iii), $p$ divides the linear combination $pcx + bcy = c$.
+Now $p \mid pcx$ in one step, and $p \mid bcy$ since $p \mid bc$. By (iii), $p$ divides any whole-number multiple of each added together — so it divides $pcx + bcy$, which is exactly $c$.
 
 So $p \mid c$, and the lemma is proved.
 </Proof>
@@ -95,7 +95,7 @@ $$
 Each arrow is short; the sequence is the whole of elementary number theory's foundation, and it is worth being able to recite.
 
 <Aside>
-Unique factorization is often taught as obvious. It is not. Existence of a factorization follows by strong induction (Chapter 6); *uniqueness* is exactly where Euclid's lemma is spent, and in number systems where that lemma fails, uniqueness fails with it. In $\mathbb{Z}[\sqrt{-5}]$, $2$ is irreducible but $2 \mid 6 = (1+\sqrt{-5})(1-\sqrt{-5})$ while dividing neither factor — so $2$ is not prime there, and $6$ has two genuinely different factorizations.
+Unique factorization is often taught as obvious. It is not. Existence of a factorization follows by strong induction (Chapter 6); *uniqueness* is exactly where Euclid's lemma is spent, and in number systems where that lemma fails, uniqueness fails with it. There are number systems where it fails. Enlarge the integers by throwing in a square root of $-5$, so that numbers look like $a + b\sqrt{-5}$. In that system $6$ factors two genuinely different ways — as $2 \times 3$, and as $(1+\sqrt{-5})(1-\sqrt{-5})$ — and neither factorization can be broken down further. So $2$ divides that second product without dividing either factor, which is exactly Euclid's lemma failing.
 </Aside>
 
 <WhereThisGoes level="l7">

@@ -11,7 +11,7 @@ import ComplexPlane from '@/components/ComplexPlane.astro';
 import Aside from '@/components/Aside.astro';
 import Warning from '@/components/Warning.astro';
 
-Module 5.6 ended on a complaint: the modulus tells you how far $z$ is from the origin and nothing about which direction. This module supplies the missing half.
+Module 5.6 ended on a complaint: the absolute value tells you how far $z$ is from the origin and nothing about which direction. This module supplies the missing half.
 
 ## Two numbers, a different pair
 
@@ -23,7 +23,7 @@ $$
 z \ \leftrightarrow\ (\underbrace{r}_{\text{how far}},\ \underbrace{\theta}_{\text{which way}})
 $$
 
-This is **polar form**. The distance $r$ is the modulus $|z|$ from module 5.6, and $\theta$ — the angle measured counterclockwise from the positive real axis — is called the **argument** of $z$.
+This is **polar form**. The distance $r$ is the absolute value $|z|$ from module 5.6, and $\theta$ — the angle measured counterclockwise from the positive real axis — is called the **argument** of $z$.
 
 <Figure alt="A grid with four points marked at distance one from the origin: 1, i, minus 1 and minus i." caption="All four have r = 1. What distinguishes them is direction.">
   <ComplexPlane points={[
@@ -55,7 +55,7 @@ So the argument of a complex number is only determined **up to whole turns.** Ev
 
 Books usually pick one, most often the value in $[0°, 360°)$ or in $(-180°, 180°]$, and call it *the* argument. That is a choice made for tidiness, and different books choose differently.
 
-And $z = 0$ has **no** argument at all: it sits at the origin, so no direction points to it. Its modulus is $0$, which is all there is to say.
+And $z = 0$ has **no** argument at all: it sits at the origin, so no direction points to it. Its absolute value is $0$, which is all there is to say.
 </Warning>
 
 ## Converting between the two forms

@@ -2569,6 +2569,35 @@ for (const f of files) {
 // Pythagoras. Everywhere else they are a convenience with an easy substitute,
 // which is what this check removes.
 const CH5 = /05-complex\/0[6-9]-/;
+// Set-superscript shorthand that no module ever introduces. \mathbb{R}^\times
+// for the non-zero reals appeared in two l7 modules having been defined
+// nowhere in the book, and \mathbb{R}^n turned up inside <WhereThisGoes> with
+// no word about what the superscript counts. \mathbb{R}^2 and \mathbb{R}^3 are
+// fine — §2.9 builds them as products and says so.
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!LEVEL_ORDER.includes(level) || level === 'l8') continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const text = body(fs.readFileSync(f, 'utf8'));
+  for (const m of text.matchAll(/\\mathbb\{[RCQZN]\}\^(?:\\times|\{?[a-wyz]\}?|4)/g)) {
+    const near = text.slice(Math.max(0, m.index - 260), m.index + 260);
+    if (/superscript|ordered list|non-?zero|write \$?\\mathbb|slots?|counting how many/i.test(near)) continue;
+    warn(rel, `${level} uses "${m[0]}" with nothing saying what the superscript means`);
+  }
+}
+
+// Ring-adjunction brackets — \mathbb{Z}[\sqrt{-5}], \mathbb{R}[x] — are
+// abstract-algebra notation. \mathbb{R}[x] in particular reads as "R times x"
+// to anyone who has not met it. Say "a polynomial with real coefficients", or
+// "throw a square root of -5 in among the integers", and drop the bracket.
+for (const f of files) {
+  const level = path.basename(f, '.mdx');
+  if (!LEVEL_ORDER.includes(level) || level === 'l8') continue;
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const m = body(fs.readFileSync(f, 'utf8')).match(/\\mathbb\{[A-Z]\}\s*\[/);
+  if (m) warn(rel, `${level} uses ring-adjunction brackets ("${m[0]}") — say it in words instead`);
+}
+
 // Determinants are barred at every level, l7 included. The GRADED_CONCEPTS
 // gate below stops at the level named in `from`, so nothing checked l7 at
 // all — which is how \det reached the first page of grade 12. Matrices and

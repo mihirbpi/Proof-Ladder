@@ -50,7 +50,7 @@ Three sets, pairwise disjoint, covering everything — a **partition** in the se
 
 The named move is **split into cases**.
 
-## Choosing the modulus
+## Choosing what to divide by
 
 The number of cases is yours to pick, and picking well is most of the work.
 
@@ -59,7 +59,7 @@ The number of cases is yours to pick, and picking well is most of the work.
 <Discussion>
   <div slot="know">The conclusion concerns divisibility by $2$, so split on the remainder on division by $2$.</div>
   <div slot="want">$n^2+n = 2\cdot(\text{integer})$ in each case.</div>
-  <div slot="how">Substitute the case form and factor out a $2$. Two cases, and both should be short — if one runs long, the modulus was probably wrong.</div>
+  <div slot="how">Substitute the case form and factor out a $2$. Two cases, and both should be short — if one runs long, you probably split on the wrong number.</div>
 </Discussion>
 
 <Proof>
@@ -76,7 +76,7 @@ and $2k^2+3k+1\in\mathbb{Z}$ by closure.
 The cases are exhaustive, so $n^2+n$ is even for every integer $n$.
 </Proof>
 
-Now a harder one, where the modulus is not the number in the conclusion.
+Now a harder one, where the number you split on is not the number in the conclusion.
 
 > **Proposition.** For every integer $n$, $3 \mid (n^3 - n)$.
 
@@ -112,15 +112,15 @@ $$m = 3k+1 \text{ for some } k \quad\Leftrightarrow\quad m \text{ leaves remaind
 
 So writing an integer in the form $3k+1$ **proves** it is not divisible by $3$, by uniqueness of the remainder. This is how non-divisibility gets proved without an infinite search, and it is the tool module 4.7 will need.
 
-## Choosing the modulus, in practice
+## Choosing what to divide by, in practice
 
-There is a way to pick the modulus before doing any algebra: **look at what the conclusion is about.**
+There is a way to pick that number before doing any algebra: **look at what the conclusion is about.**
 
 To prove $n^2+n$ is even, the conclusion mentions $2$, so split on division by $2$. To prove $3\mid(n^3-n)$, split on division by $3$. To prove $4\mid(n^2-1)$ for odd $n$, the hypothesis already restricts you to the odd group, and writing $n = 2k+1$ is the whole setup.
 
 Sometimes the right number to split on is larger than the number in the conclusion. To prove $24 \mid (n^2-1)$ for $n$ sharing no factor with $6$, splitting on division by $6$ gives the useful cases, because the hypothesis is itself a statement about remainders on division by $6$.
 
-**When a case proof produces cases that will not close, the modulus is usually wrong.** Try a different one before trying harder algebra.
+**When a case proof produces cases that will not close, you probably split on the wrong number.** Try a different one before trying harder algebra.
 
 ## Refuting divisibility
 

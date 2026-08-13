@@ -18,7 +18,7 @@ Unpacked, "exactly one, to every" is three separate requirements.
 | Condition | Statement | Failure looks like |
 |---|---|---|
 | **Totality** | $\forall s \in S,\ \exists t \in T,\ f(s) = t$ | an input with no output |
-| **Well-definedness** | $f(s) = t_1 \wedge f(s) = t_2 \Rightarrow t_1 = t_2$ | an input with two outputs |
+| **Well-definedness** | $\big(f(s) = t_1\big) \wedge \big(f(s) = t_2\big) \;\Rightarrow\; t_1 = t_2$ | an input with two outputs |
 | **Codomain** | every output lies in $T$ | an output escaping $T$ |
 
 Combining the first two: $\forall s \in S,\ \exists!\, t \in T,\ f(s) = t$ — the unique-existence quantifier of module 1.10, which is exactly what "exactly one" means.

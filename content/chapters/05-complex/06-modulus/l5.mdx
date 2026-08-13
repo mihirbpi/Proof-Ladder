@@ -1,8 +1,8 @@
 ---
 level: l5
-title: Modulus
+title: How far from zero
 readingTimeMin: 8
-newTerms: ["modulus", "absolute value"]
+newTerms: ["absolute value"]
 anchorExample: "|3 + 4i| = 5"
 ---
 
@@ -15,7 +15,7 @@ import Warning from '@/components/Warning.astro';
 
 Module 5.2 removed the ordering: there is no sensible way to say one complex number is *less than* another. But you can still ask how **big** one is.
 
-> For $z = a+bi$, the **modulus** is
+> For $z = a+bi$, the **absolute value** is
 > $$ |z| = \sqrt{a^2+b^2}. $$
 
 On the plane this is the distance from $z$ to the origin, by the Pythagorean theorem: the legs are $a$ and $b$, and $|z|$ is the hypotenuse.
@@ -41,7 +41,7 @@ $$
 |z|^2 = z\bar z.
 $$
 
-**This is the working form.** Proofs about moduli should almost always square first and use conjugates, rather than manipulating square roots — the algebra of $\bar z$ is easy, and the algebra of $\sqrt{\ }$ is not.
+**This is the working form.** Proofs about absolute values should almost always square first and use conjugates, rather than manipulating square roots — the algebra of $\bar z$ is easy, and the algebra of $\sqrt{\ }$ is not.
 
 ## Distance between two points
 
@@ -61,7 +61,7 @@ $$
 |z| < 1 \quad\text{is the open disk inside the unit circle.}
 $$
 
-<Figure alt="A grid with the origin marked and points at 1, i, minus 1 and minus i, all at distance one from the origin." caption="The four compass points all have modulus 1.">
+<Figure alt="A grid with the origin marked and points at 1, i, minus 1 and minus i, all at distance one from the origin." caption="The four compass points all have absolute value 1.">
   <ComplexPlane points={[
     {re: 1, im: 0, label: "1"},
     {re: 0, im: 1, label: "i"},
@@ -72,7 +72,7 @@ $$
 
 Compare your geometry course, which defines a circle as the set of points at a fixed distance from a center. **That is the same definition**, written with $|z - w|$ instead of the word *distance*.
 
-## Modulus is multiplicative
+## Absolute value is multiplicative
 
 > **Theorem.** For all $z, w \in \mathbb{C}$: $\ |zw| = |z|\,|w|$.
 
@@ -108,18 +108,18 @@ The direct route from $z$ to $z + w$ is never longer than going via $z$'s head �
 
 Equality holds exactly when the two arrows point the same way, so the "triangle" is flat.
 
-<Warning title="Modulus is not an ordering">
+<Warning title="Absolute value is not an ordering">
 $|z| \leq |w|$ compares two **real numbers**, the sizes. It does not order $z$ and $w$ themselves, and module 5.2's obstruction is untouched.
 
-Two different complex numbers can have the same modulus — $3$, $-3$, $3i$ and $-3i$ all have modulus $3$ — so the modulus loses information. It tells you how far from the origin a number sits and nothing at all about which direction.
+Two different complex numbers can have the same absolute value — $3$, $-3$, $3i$ and $-3i$ all have absolute value $3$ — so the absolute value loses information. It tells you how far from the origin a number sits and nothing at all about which direction.
 
 Module 5.8 supplies the missing half.
 </Warning>
 
 <Aside>
-Numbers of modulus $1$ form the unit circle, and they are closed under multiplication: if $|z| = |w| = 1$ then $|zw| = 1 \cdot 1 = 1$.
+Numbers of absolute value $1$ form the unit circle, and they are closed under multiplication: if $|z| = |w| = 1$ then $|zw| = 1 \cdot 1 = 1$.
 
 Multiplying by such a number therefore changes no distance from the origin. A transformation that fixes the origin and preserves all distances is, by your geometry course's classification, a **rotation**.
 
-So the numbers of modulus $1$ are exactly the rotations of the plane — and module 5.5 already showed one case of this, when multiplying by $i$ turned out to be a quarter turn. Module 5.9 makes the general statement precise.
+So the numbers of absolute value $1$ are exactly the rotations of the plane — and module 5.5 already showed one case of this, when multiplying by $i$ turned out to be a quarter turn. Module 5.9 makes the general statement precise.
 </Aside>

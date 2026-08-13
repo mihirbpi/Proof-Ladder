@@ -39,7 +39,7 @@ Similarly $(-a)b = -(ab)$ and $(-a)(-b) = ab$ follow from the axioms alone. "A n
 
 $u \in \mathbb{Z}$ is a **unit** if $uv = 1$ for some $v \in \mathbb{Z}$.
 
-> **Proposition.** $\mathbb{Z}^\times = \{1, -1\}$.
+> **Proposition.** The only units in $\mathbb{Z}$ are $1$ and $-1$.
 
 <Proof>
 Let $uv = 1$. Then $u, v \neq 0$, so $|u|, |v| \geq 1$, and $|u||v| = |uv| = 1$. If $|u| \geq 2$ then $|u||v| \geq 2$, contradiction. So $|u| = 1$, i.e. $u = \pm 1$; and both are units, being self-inverse.
@@ -59,7 +59,7 @@ $$
 In words: **a product can only be zero if one of the factors is zero.** Equivalently, cancellation holds: $ab = ac$ with $a \neq 0$ gives $b = c$.
 
 <Warning title="Cancellation is not free">
-On a $12$-hour clock, $3 \cdot 4$ comes back round to $0$ with neither factor zero, and $3 \cdot 4$ and $3 \cdot 8$ both give $0$ while $4 \neq 8$. So canceling a common factor is illegal there.
+Keep only remainders on division by $12$. Then $3 \cdot 4 = 12$ leaves remainder $0$ though neither factor is $0$; and $3\cdot4$ and $3\cdot8$ both leave remainder $0$ while $4 \neq 8$. So canceling a common factor is illegal there.
 
 Every proof that divides both sides by something is using cancellation, so the domain property. In $\mathbb{Z}$ this is safe. In systems where a product of nonzeros can vanish it is not, and knowing which you are in is the difference between a proof and an error.
 </Warning>
@@ -90,7 +90,7 @@ The axioms are satisfied by structures with nothing else in common:
 | the rationals, reals and complex numbers | every nonzero one — §4.5 shows this is what makes division work | no |
 | polynomials with integer coefficients | only $1$ and $-1$ | no |
 | square grids of real numbers | the ones that can be undone | yes, and the order of multiplication matters |
-| the hours on an $n$-hour clock | those sharing no factor with $n$ | yes, unless $n$ is prime |
+| remainders on division by $n$ | those sharing no factor with $n$ | yes, unless $n$ is prime |
 | continuous functions on the line (unbroken graphs) | those never equal to zero | yes |
 
 Anything proved from the axioms alone holds in every row. That move — prove it once from the rules, then use it everywhere the rules hold — is what the later algebra courses are built on, and it is why the vocabulary is worth acquiring before you need it.

@@ -1,8 +1,8 @@
 ---
 level: l7
-title: Modulus
+title: How far from zero
 readingTimeMin: 8
-newTerms: ["modulus", "triangle inequality", "norm"]
+newTerms: ["absolute value", "triangle inequality", "norm"]
 anchorExample: "e^{iθ} = cos θ + i sin θ"
 ---
 
@@ -16,9 +16,9 @@ $$
 |z| = \sqrt{a^2+b^2} = \sqrt{z\bar z} \in \mathbb{R}_{\geq0}, \qquad z = a+bi.
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in". So the line reads: the modulus is straight-line distance from the origin, always an ordinary non-negative real.*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in". So the line reads: the absolute value is straight-line distance from the origin, always an ordinary non-negative real.*
 
-Geometrically the Euclidean distance from $0$ to $z$; algebraically the square root of $z\bar z$ (§5.4). The identity $|z|^2 = z\bar z$ is the working form — proofs about moduli should almost always square first and use conjugates, never manipulate radicals.
+Geometrically the Euclidean distance from $0$ to $z$; algebraically the square root of $z\bar z$ (§5.4). The identity $|z|^2 = z\bar z$ is the working form — proofs about absolute values should almost always square first and use conjugates, never manipulate radicals.
 
 ## Three properties that do all the work
 
@@ -81,7 +81,7 @@ $$|zw|^2 = (zw)\overline{(zw)} = zw\,\bar z\bar w = (z\bar z)(w\bar w) = |z|^2|w
 
 using $\overline{zw} = \bar z\bar w$ from §5.4 and commutativity. Taking non-negative square roots gives the result.
 
-**Note the strategy.** Squaring removed the square roots, and the conjugate identity $|z|^2 = z\bar z$ converted a statement about moduli into a statement about products. Expanding in components would have worked and taken three times as long — the conjugate is the right tool because it turns a size into an arithmetic expression.
+**Note the strategy.** Squaring removed the square roots, and the conjugate identity $|z|^2 = z\bar z$ converted a statement about absolute values into a statement about products. Expanding in components would have worked and taken three times as long — the conjugate is the right tool because it turns a size into an arithmetic expression.
 
 Geometrically the theorem says multiplication scales all distances from the origin by $|w|$, which is the definition of a dilation and half of §5.9's result.
 
@@ -104,12 +104,10 @@ The triangle inequality $|z+w| \leq |z|+|w|$ resists the same trick, because add
 The unit circle is a *group* under multiplication, by (ii): if $|z| = |w| = 1$ then $|zw| = 1$, and $|z^{-1}| = 1$. This group is $S^1$, and §5.8–5.9 identify it with $\{e^{i\theta}\}$ and show it acts on $\mathbb{C}$ by rotation.
 
 <Warning title="Square first">
-Modulus identities are proved by squaring and using $|u|^2 = u\bar u$. Attempting $|zw| = |z||w|$ by expanding $\sqrt{(ac-bd)^2+(ad+bc)^2}$ is a page of algebra; the conjugate proof is one line.
+Absolute value identities are proved by squaring and using $|u|^2 = u\bar u$. Attempting $|zw| = |z||w|$ by expanding $\sqrt{(ac-bd)^2+(ad+bc)^2}$ is a page of algebra; the conjugate proof is one line.
 
 Also: $|z|$ is real. Expressions like $|z| = 5i$ or $\operatorname{Re}|z|$ are type errors: the left side is an ordinary real number and the right side is not.
 </Warning>
-
-*A reminder of the symbols in play: $\sum$ reads "the sum of".*
 
 Expanding (ii) in coordinates gives the identity
 $$(a^2+b^2)(c^2+d^2) = (ac-bd)^2+(ad+bc)^2,$$
@@ -117,12 +115,12 @@ so a product of two sums of squares is itself a sum of squares. That is a fact a
 
 <WhereThisGoes level="l7">
 
-The modulus is the real-valued measure that replaces the missing order on $\mathbb{C}$, and it is what lets the methods of calculus cross over to complex numbers at all.
+The absolute value is the real-valued measure that replaces the missing order on $\mathbb{C}$, and it is what lets the methods of calculus cross over to complex numbers at all.
 
 **Distance is the bridge.** You cannot say one complex number is *less than* another, so nothing phrased with $<$ transfers directly. But $|z - w|$ is an ordinary non-negative real number, and every statement about closeness can be phrased with it. That single move — measure distance, then argue about real numbers — is what makes the whole subject possible.
 
 The triangle inequality is the workhorse. It says the direct route is never longer than a detour, and it is what lets you bound a complicated distance by two simpler ones.
 
-**A concrete surprise waits at the end of that road.** The function $\frac{1}{1+x^2}$ is perfectly well behaved for every real $x$, yet the polynomial approximations to it stop working past $|x| = 1$. Nothing on the real line explains why. Something *does* go wrong at distance $1$ from the origin — just not on the line, which is where the modulus is looking.
+**A concrete surprise waits at the end of that road.** The function $\frac{1}{1+x^2}$ is perfectly well behaved for every real $x$, yet the polynomial approximations to it stop working past $|x| = 1$. Nothing on the real line explains why. Something *does* go wrong at distance $1$ from the origin — just not on the line, which is where the absolute value is looking.
 
 </WhereThisGoes>

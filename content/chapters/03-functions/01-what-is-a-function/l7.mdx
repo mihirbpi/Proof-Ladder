@@ -14,7 +14,7 @@ import WhereThisGoes from '@/components/WhereThisGoes.astro';
 A **function** $f : S \to T$ assigns to each $s \in S$ exactly one $f(s) \in T$. Formally, three conditions:
 
 - **Totality.** $\forall s \in S,\ \exists t \in T,\ f(s) = t$ — *every input has at least one output*.
-- **Well-definedness.** $f(s) = t_1 \wedge f(s) = t_2 \Rightarrow t_1 = t_2$.
+- **Well-definedness.** $\big(f(s) = t_1\big) \wedge \big(f(s) = t_2\big) \;\Rightarrow\; t_1 = t_2$.
 - **Codomain.** All values lie in $T$.
 
 Together the first two are $\forall s \in S,\ \exists!\, t \in T,\ f(s) = t$ — *every input has exactly one output* — §1.10's unique-existence quantifier, and the reason that module preceded this one.

@@ -110,10 +110,14 @@ Note where each function is evaluated — $g'$ at $f(x)$, not at $x$ — and not
 
 The same shape turns up on the other side of the subject too. One of the main techniques for undoing a derivative — the number saying how steeply a graph is rising at a point, which is what a first calculus course is built to compute — amounts to spotting that the expression in front of you was built by composing — and spotting the composition is the whole difficulty.
 
-- $AB$ is defined only when the dimensions match, because $g\circ f$ requires $\operatorname{codom} f = \operatorname{dom} g$.
-- $AB \neq BA$ in general, because composition is not commutative — and the counterexample in this module is the same phenomenon.
-- $(AB)C = A(BC)$, because composition is associative, proved above in four lines.
-- $AI = IA = A$, because the identity is a unit for composition.
-- $(AB)^{-1} = B^{-1}A^{-1}$, reversing the order, because inverses of compositions reverse.
+**One more place it shows up, if you have met it.** Some courses pack a transformation of the plane into a grid of numbers — you may have met these as *matrices* — and multiplying two grids means doing one transformation after the other. If you have, every rule you were given about them is a composition fact wearing a disguise:
+
+- Two grids can only be multiplied when their sizes match up, because $g \circ f$ needs $f$'s outputs to be the things $g$ accepts.
+- Order matters: doing $A$ then $B$ is generally not doing $B$ then $A$, which is this module's non-commutativity with the same counterexample behind it.
+- Regrouping does *not* matter, because composition is associative — proved above in four lines.
+- Multiplying by the do-nothing grid changes nothing, because the identity function is a unit for composition.
+- Undoing two grids reverses their order, because undoing two composed functions reverses theirs (§3.9).
+
+If you have not met them, nothing above is lost — the composition facts are the content, and the grids are one place they surface.
 
 </WhereThisGoes>

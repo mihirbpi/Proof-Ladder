@@ -2,7 +2,7 @@
 level: l3
 title: How far from zero
 readingTimeMin: 5
-newTerms: ["modulus"]
+newTerms: ["absolute value"]
 anchorExample: "the number that turns"
 ---
 
@@ -13,11 +13,11 @@ import Warning from '@/components/Warning.astro';
 
 Module 5.2 noted that complex numbers cannot be put in order — you cannot ask whether $i$ is bigger than $1$. But you *can* ask how far each is from zero, and that question does have an answer.
 
-The **modulus** of a complex number, written with two upright bars around it, is its distance from the origin on the complex plane.
+The **absolute value** of a complex number, written with two upright bars around it, is its distance from the origin on the complex plane.
 
 ## A rule about right triangles gives the formula
 
-<Figure alt="A grid with an arrow from the origin to the point three across and four up, forming a right triangle with the axes." caption="The modulus is the hypotenuse of a right triangle with legs $a$ and $b$.">
+<Figure alt="A grid with an arrow from the origin to the point three across and four up, forming a right triangle with the axes." caption="The absolute value is the hypotenuse of a right triangle with legs $a$ and $b$.">
   <ComplexPlane vectors={[{re: 3, im: 4}]} points={[{re: 3, im: 4, label: "3+4i"}]} range={5} />
 </Figure>
 
@@ -34,11 +34,11 @@ If the number is an ordinary one, its turn part is zero. So the recipe says: mul
 
 That is exactly the distance-from-zero you already know from the number line.
 
-So the modulus is not a new idea replacing an old one — it is the *same* idea, working on more numbers. Good extensions always do this.
+So the absolute value is not a new idea replacing an old one — it is the *same* idea, working on more numbers. Good extensions always do this.
 
 ## The link to conjugates
 
-Module 5.4 showed that multiplying a number by its conjugate gives the across part times itself, plus the up part times itself. And by the right-triangle rule above, that is exactly the modulus times itself. So:
+Module 5.4 showed that multiplying a number by its conjugate gives the across part times itself, plus the up part times itself. And by the right-triangle rule above, that is exactly the absolute value times itself. So:
 $$
 z \times \overline{z} = |z| \times |z|.
 $$
@@ -56,7 +56,7 @@ $$
 |z - w|.
 $$
 
-Why: their difference is the arrow *from* $w$ *to* $z$ (do the walk $z$, undo the walk $w$), and the modulus of that arrow is its length.
+Why: their difference is the arrow *from* $w$ *to* $z$ (do the walk $z$, undo the walk $w$), and the absolute value of that arrow is its length.
 
 Example: the distance from $1+i$ to $4+5i$ is
 $$
@@ -75,12 +75,12 @@ This gives a neat way to describe circles.
 
 So $|z| = 1$ describes the unit circle, and $|z| < 1$ describes everything inside it. Whole regions of the plane get described by a single short inequality — which is why complex notation is so convenient in geometry.
 
-<Warning title="Modulus is a real number">
+<Warning title="Absolute value is a real number">
 $|z|$ is always an ordinary, non-negative number, even though $z$ is not. $|3+4i| = 5$, not $5i$ or $5+0i$-something-complicated.
 
 And $|z| = 0$ happens only for $z = 0$: a sum of two squares is zero only when both are.
 </Warning>
 
 <Aside>
-Modulus is what lets you do analysis with complex numbers. Saying two complex numbers are *close* means $|z-w|$ is small — and since that is an ordinary number, all the usual language of limits works. You cannot put complex numbers in order, but you can measure them, and measuring turns out to be enough.
+Absolute value is what lets you do analysis with complex numbers. Saying two complex numbers are *close* means $|z-w|$ is small — and since that is an ordinary number, all the usual language of limits works. You cannot put complex numbers in order, but you can measure them, and measuring turns out to be enough.
 </Aside>
