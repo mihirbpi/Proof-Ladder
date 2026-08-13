@@ -617,10 +617,25 @@ for (const file of files) {
   }
 
   // word budget
-  const words = text.split(/\s+/).filter(Boolean).length;
-  // l8's budget is still an a-priori estimate — too few pages exist to calibrate
-  // it from the corpus, so measuring against it is not meaningful.
-  const CALIBRATED = new Set(['l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7']);
+  //
+  // Symbol keys and their readings are excluded, exactly as SECTION_CAP and
+  // DENSITY_CAP already exclude them. They are an accessibility layer required
+  // by \u00a7A4.2, not authored prose, and counting them means a page is
+  // penalised for complying — \u00a71.10 and \u00a71.11 at l7 both tipped over
+  // the moment their key-only glosses were given the readings the rule asks for.
+  const words = text
+    .replace(/^\*(Symbol by symbol|A reminder of the symbols|The symbols in this)[\s\S]*?\*$/gm, ' ')
+    .split(/\s+/).filter(Boolean).length;
+  // l8 is now calibrated like every other level: all 61 pages exist, and the
+  // budget was reset from their interquartile range (1156-1507, median 1315),
+  // rounded to 1150-1550 so that \u00a77.1 — the longest page at every level, and
+  // the one carrying the Godel material at l8 — sits inside the \u00b120% band
+  // rather than being trimmed for the sake of the check.
+  // The old 1200-2000 estimate was set under the previous l8 profile, which
+  // promised "the Math 0 experience as intended"; the current profile makes l8
+  // a year on from l7 rather than a different book, so the pages land close to
+  // l7's own range and the estimate was too generous at the top.
+  const CALIBRATED = new Set(['l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8']);
   // A `touch` module is deliberately lighter than the level's core pages, so the
   // core budget is the wrong yardstick for it. Added when l5 §5.7–5.9 were
   // written as touch (they need trig, which a grade-9 reader has not met) and
@@ -2056,11 +2071,11 @@ const BLOCK_READS =
 // after chapter 5, so the single most notation-dense chapter in the book was
 // the one chapter nobody was checking.
 const ALWAYS_GLOSSED_CHAPTER = 7;
-const BLOCK_THRESHOLD = { l4: 2, l5: 3, l6: 4, l7: 5 };
+const BLOCK_THRESHOLD = { l4: 2, l5: 3, l6: 4, l7: 5, l8: 5 };
 // Same chapter scope as GLOSS_THROUGH_CHAPTER, repeated rather than referenced:
 // that constant is declared further down the file, and reaching for it here
 // silently skipped every block instead of checking one.
-const BLOCK_THROUGH = { l4: 7, l5: 7, l6: 6, l7: 5 };
+const BLOCK_THROUGH = { l4: 7, l5: 7, l6: 6, l7: 5, l8: 5 };
 for (const f of files) {
   const level = path.basename(f, '.mdx');
   const need = BLOCK_THRESHOLD[level];
@@ -2139,7 +2154,9 @@ for (const ch of fs.readdirSync(CHAPTERS)) {
 // chapter carries the requirement; a 9th grader has had a year of the course
 // before Chapter 5, so l5 stops after Chapter 4; l6 after Chapter 2; l7 keeps
 // it only for Chapter 1, where the reader is still finding their feet.
-const GLOSS_THROUGH_CHAPTER = { l4: 7, l5: 7, l6: 6, l7: 5 };
+// l8 is l7 plus one year, not l7 plus a degree (\u00a7A5 profile), so it carries
+// l7's thresholds unchanged rather than being left unchecked.
+const GLOSS_THROUGH_CHAPTER = { l4: 7, l5: 7, l6: 6, l7: 5, l8: 5 };
 const DISPLAY_SYMBOLS =
   /\\forall|\\exists|\\Rightarrow|\\Leftrightarrow|\\iff|\\neg|\\wedge|\\vee(?!r)|\\in\b|\\subseteq|\\mathbb\{[NZQRC]\}|\\equiv|\\cup\b|\\cap\b/;
 // What counts as a rendering. The earlier list included bare "that is",

@@ -1,0 +1,177 @@
+---
+level: l8
+title: Union and intersection
+readingTimeMin: 10
+newTerms: ["union", "intersection", "disjoint", "indexed family"]
+anchorExample: "roots of sin x and cos x"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+S \cup T = \{x \mid x \in S \vee x \in T\},
+\qquad
+S \cap T = \{x \mid x \in S \wedge x \in T\}.
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: the union of $S$ and $T$ is everything lying in $S$ or in $T$; the intersection is everything lying in $S$ and in $T$*
+
+The definitions are transcriptions of $\vee$ and $\wedge$, and the working forms — the ones every proof in Chapter 2 unfolds to — are
+$$
+x \in S \cup T \iff (x \in S) \vee (x \in T),
+\qquad
+x \in S \cap T \iff (x \in S) \wedge (x \in T). \tag{1}
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with". So the line reads: being in the union is being in at least one of them, and being in the intersection is being in both. These two lines are what every later proof about unions and intersections unfolds to*
+
+<Figure alt="Two overlapping circles S and T, fully shaded: the union." caption="$S \cup T$">
+  <VennTwo labelS="S" labelT="T" shade={["S-only", "T-only", "both"]} />
+</Figure>
+
+<Figure alt="Two overlapping circles S and T with only the lens-shaped overlap shaded: the intersection." caption="$S \cap T$">
+  <VennTwo labelS="S" labelT="T" shade={["both"]} />
+</Figure>
+
+Since $\vee$ is inclusive, the union contains the intersection. Venn diagrams are legitimate for building intuition and for checking whether a proposed identity is plausible; they are not proofs, because a diagram of two or three sets encodes an assumption about which regions are nonempty that a general argument may not make.
+
+## Basic algebra
+
+All of the following are immediate from (1) plus the corresponding fact about the joining word:
+
+| Property | Statement | Logical source |
+|---|---|---|
+| Commutativity | $S \cup T = T \cup S$ | $\vee$ symmetric |
+| Associativity | $(S \cup T) \cup R = S \cup (T \cup R)$ | $\vee$ associative |
+| Idempotence | $S \cup S = S$ | $p \vee p \equiv p$ |
+| Identity | $S \cup \emptyset = S$, $S \cap X = S$ for $S \subseteq X$ | $p \vee F \equiv p$ |
+| Absorption | $S \cup (S \cap T) = S$ | $p \vee (p \wedge q) \equiv p$ |
+
+Associativity is what lets you write $A \cup B \cup C$ over finitely many sets without parentheses.
+
+### Intersection is smaller, union is larger
+
+> **Proposition.** $S \cap T \subseteq S \subseteq S \cup T$ — *the overlap sits inside $S$, and $S$ sits inside the combination*.
+
+<Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\cup$ is "pooled with", $\subseteq$ is "sits inside", $\wedge$ is "and", $\vee$ is "or". In words, what follows shows: the overlap sits inside each set, and each set sits inside the pool.*
+
+Let $x \in S \cap T$. Then $x \in S \wedge x \in T$, so $x \in S$. So $S \cap T \subseteq S$.
+
+Let $x \in S$. Then $(x \in S) \vee (x \in T)$ holds, its left half being true; so $x \in S \cup T$. So $S \subseteq S \cup T$. Transitivity (first-to-second and second-to-third gives first-to-third, §7.2) of $\subseteq$ chains the two.
+</Proof>
+
+The proofs are short because $p \wedge q \Rightarrow p$ and $p \Rightarrow p \vee q$ are tautologies (statements true no matter what, §1.3). Read as an order statement: $S \cap T$ is the **largest** set contained in both $S$ and $T$, and $S \cup T$ is the **smallest** set containing both. The two propositions above are half of that characterization; the other half is that any set contained in both $S$ and $T$ is contained in $S \cap T$, which is equally quick.
+
+## Disjointness
+
+$S, T$ are **disjoint** when $S \cap T = \emptyset$. This is a universal negative — $\forall x\, \neg(x \in S \wedge x \in T)$, meaning *no $x$ whatsoever lies in both* — so §1.12 dictates an arbitrary-element argument.
+
+> **Proposition.** In $\mathbb{R}$, the zero sets of $\sin$ and $\cos$ are disjoint.
+
+<Discussion>
+  <div slot="know">$\sin^2 x + \cos^2 x = 1$ for every real number $x$.</div>
+  <div slot="want">No $x$ satisfies both $\sin x = 0$ and $\cos x = 0$.</div>
+  <div slot="how">Suppose some $x$ did. Substituting into the Pythagorean identity forces $0 = 1$. This is *suppose not* (§2.5) in its shortest possible form.</div>
+</Discussion>
+
+<Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\emptyset$ is "the empty set", $\mathbb{R}$ is the real numbers, the bar $\mid$ is "such that". In words, what follows shows: no angle has both sine and cosine zero, so those two solution sets never overlap.*
+
+Suppose, for contradiction, that some $x \in \mathbb{R}$ satisfies $\sin x = 0$ and $\cos x = 0$. Then
+$$1 = \sin^2 x + \cos^2 x = 0 + 0 = 0,$$
+which is false. So no such $x$ exists, and $\{x \mid \sin x = 0\} \cap \{x \mid \cos x = 0\} = \emptyset$.
+</Proof>
+
+Their union, by contrast, is not all of $\mathbb{R}$ — $x = \pi/4$ lies in neither. It *is* the zero set of $\sin x \cos x$, i.e. of $\tfrac12 \sin 2x$, giving $\{n\pi/2 \mid n \in \mathbb{Z}\}$; proving that equality is a double inclusion (§2.6).
+
+## gcd and lcm are meets and joins
+
+With $D_n$ the positive divisors and $M_n$ the positive multiples of $n$:
+$$
+D_{20} \cap D_{24} = \{1,2,4\}, \quad \max = 4 = \gcd(20,24),
+$$
+
+*So the line reads: the divisors shared by $20$ and $24$ are $1$, $2$ and $4$; the biggest of them is $4$, which is what "greatest common divisor" means.*
+
+$$
+M_{12} \cap M_{18} = \{36,72,\ldots\} = M_{36}, \quad \min = 36 = \operatorname{lcm}(12,18).
+$$
+
+*Symbol by symbol: $\cap$ is "overlapped with". So the line reads: the numbers that are multiples of both $12$ and $18$ are exactly the multiples of $36$, and the smallest of them is $36$ — the least common multiple*
+
+The second display contains a genuine theorem: the common multiples of $a$ and $b$ are exactly the multiples of $\operatorname{lcm}(a,b)$. Dually, $D_a \cap D_b = D_{\gcd(a,b)}$. These say that $\gcd$ and $\operatorname{lcm}$ play exactly the roles $\cap$ and $\cup$ play for sets, now for the divisibility order on $\mathbb{Z}_{>0}$ — the same pattern a second time, and the reason gcd/lcm identities mirror $\cap$/$\cup$ identities so exactly. Both distributive laws hold there too, and for the same structural reason.
+
+## More than two sets
+
+Nothing restricts the operations to two sets:
+$$
+A_1 \cup A_2 \cup \cdots \cup A_n = \{x \mid x \text{ lies in at least one } A_i\},
+$$
+
+*Symbol by symbol: $\cup$ is "pooled with", the bar $\mid$ is "such that". So the line reads: pooling any number of sets gives everything lying in at least one of them*
+
+$$
+A_1 \cap A_2 \cap \cdots \cap A_n = \{x \mid x \text{ lies in every } A_i\}.
+$$
+
+*Symbol by symbol: $\cap$ is "overlapped with", the bar $\mid$ is "such that". So the line reads: overlapping any number of sets gives everything lying in every one of them*
+
+The two-set operations were *or* and *and*; the long ones are *there exists an $i$* and *for every $i$*. This is the escalation §1.11 described, and it is why De Morgan for many sets,
+$$
+\overline{A_1 \cup \cdots \cup A_n} = \overline{A_1} \cap \cdots \cap \overline{A_n},
+$$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: everything outside a pool of sets is exactly what lies outside all of them at once — the pooling turns into overlapping when you step outside*
+
+is proved by exactly the argument that turns *not there exists* into *for all not*.
+
+<Warning title="Venn diagrams are heuristics">
+A two-circle diagram takes for granted that all four regions are nonempty. If you are proving an identity, the diagram may still guide you, but the proof must be element chasing (§2.3). For three or more sets the diagrams stop being reliable anyway: no arrangement of circles produces all $2^n$ regions for $n \geq 4$.
+</Warning>
+
+<Aside>
+Every identity in this chapter follows from a short list: commutativity, associativity, idempotence, identities, absorption, the distributive laws (§2.8), and De Morgan (§2.7). Nothing else is needed, and everything else is a consequence.
+
+That list is worth knowing as a list, because the same seven properties govern *and*, *or* and *not* — $\wedge, \vee, \neg$ — in Chapter 1 and the AND/OR/NOT of a digital circuit. Three subjects, one set of rules — which is why a fact proved in any one of them transfers to the other two without reproof.
+</Aside>
+
+## Pooling and overlapping over a whole family
+
+Everything above pools or overlaps finitely many sets. Nothing in the ideas requires that, and the general form is what later courses actually use.
+
+Suppose a set $A_i$ has been specified for each $i$ drawn from some **index set** $I$ — which may be finite, may be the counting numbers, may be the whole real line. Write
+
+$$\bigcup_{i \in I} A_i = \{\, x \mid x \in A_i \text{ for at least one } i \,\}, \qquad \bigcap_{i \in I} A_i = \{\, x \mid x \in A_i \text{ for every } i \,\}.$$
+
+*Symbol by symbol: the large $\bigcup$ and $\bigcap$ are the two-set signs stretched over a whole family, and $I$ is the set labelling the family. So the line reads: the pooled set collects anything lying in at least one member, and the overlapped set collects what lies in all of them at once.*
+
+The definitions have not changed at all — *at least one* and *every* are the same two conditions as before. What has changed is that the family may be infinite, and the two conditions have become an *exists* and a *for all* over $I$ rather than a chain of *or*s and *and*s.
+
+That is why §1.10's quantifiers had to come first. With finitely many sets you could unfold a union into $x \in A_1$ or $x \in A_2$ or … and stop; with infinitely many there is no such unfolding, and the quantifier is the only way to say it.
+
+<Aside>
+A worked case worth carrying. Take $A_n = (-\tfrac1n, \tfrac1n)$ for each counting number $n \geq 1$. Every one of these is an interval of positive width, and each contains the next. Their overlap is $\{0\}$ — a single point, of no width at all.
+
+Infinitely many overlapping steps can therefore produce something categorically unlike any of the sets going in. Nothing similar can happen with finitely many, and that difference is where analysis begins.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+Union and intersection are what you compute when a problem imposes more than one condition.
+
+**Domains intersect.** The domain of $f+g$ is the intersection of the two domains, and the domain of $f/g$ is that intersection minus the zeros of $g$. Composite functions intersect too: the symbol $\circ$ is read *"after"*, so $g \circ f$ means do $f$ first and feed the result to $g$ (§3.7); its domain is $\{x \in \operatorname{dom} f : f(x)\in\operatorname{dom} g\}$, a pre-image, and §3.3's subject.
+
+Solution sets of systems intersect; solution sets of factored equations unite. That is the entire logic of solving $(x-1)(x^2-4)>0$: factor, find where each factor changes sign, and assemble the answer as a union of intervals.
+
+**The asymmetry between finitely and infinitely many intersections has a calculus face.** Each interval $(-1/n, 1/n)$ is open, and yet intersecting *all* of them — for every $n = 1, 2, 3, \ldots$ — leaves only the single point $0$, which is not an open interval. Infinitely many intersections can destroy a property that finitely many preserve — which is exactly why theorems about limits require care that theorems about finite sums do not, and why "the limit of a sum is the sum of the limits" holds for two terms and fails for infinitely many.
+
+</WhereThisGoes>

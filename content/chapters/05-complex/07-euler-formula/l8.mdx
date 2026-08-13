@@ -1,0 +1,145 @@
+---
+level: l8
+title: Euler's formula
+readingTimeMin: 8
+newTerms: []
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import Discussion from '@/components/Discussion.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+e^{i\theta} = \cos\theta + i\sin\theta \qquad (\theta \text{ in radians}).
+$$
+
+An exponential on the left, trigonometry on the right, and nothing in either subject suggests the two should ever meet.
+
+## What the left-hand side even means
+
+You know what $e^x$ means for a real exponent. Nothing you have met says what $e$ raised to an **imaginary** power should mean — there is no "multiply $e$ by itself $i\theta$ times".
+
+So the formula is not a fact waiting to be checked. The right-hand side is the definition, and the real question is the one behind it:
+
+> **Why is $\cos\theta + i\sin\theta$ entitled to be called an exponential at all?**
+
+That question has a sharp answer, and it is the content of this module.
+
+## What makes something an exponential
+
+Strip $e^x$ down to its one essential habit and this is what is left:
+
+$$
+e^{x}e^{y} = e^{x+y}.
+$$
+
+**An exponential turns adding into multiplying.** Everything else about $e^x$ — its graph, its rate of change, its decimal expansion — is downstream of that one law.
+
+So the claim to test is whether the circle points obey it. Write $C(\theta) = \cos\theta+i\sin\theta$ for the point at angle $\theta$ on the unit circle, and ask whether $C(\alpha)C(\beta) = C(\alpha+\beta)$.
+
+<Discussion>
+  <div slot="know">The angle-sum identities from trigonometry, and the fact that two complex numbers are equal exactly when their real parts and imaginary parts agree (§5.2).</div>
+  <div slot="want">$C(\alpha)C(\beta) = C(\alpha+\beta)$ — multiplying circle points adds their angles.</div>
+  <div slot="how">Multiply the two out, use $i^2 = -1$ to collect the real and imaginary parts, and recognize what appears.</div>
+</Discussion>
+
+<Proof>
+Expand the product:
+$$
+C(\alpha)C(\beta) = (\cos\alpha + i\sin\alpha)(\cos\beta+i\sin\beta)
+$$
+$$
+= \cos\alpha\cos\beta + i\cos\alpha\sin\beta + i\sin\alpha\cos\beta + i^2\sin\alpha\sin\beta.
+$$
+
+The last term carries $i^2 = -1$, so it joins the real part with a minus sign:
+$$
+= \big(\cos\alpha\cos\beta - \sin\alpha\sin\beta\big) + i\big(\sin\alpha\cos\beta + \cos\alpha\sin\beta\big).
+$$
+
+The two brackets are exactly the angle-sum identities: the first is $\cos(\alpha+\beta)$, the second is $\sin(\alpha+\beta)$. So
+$$
+C(\alpha)C(\beta) = \cos(\alpha+\beta) + i\sin(\alpha+\beta) = C(\alpha+\beta). \qquad\blacksquare
+$$
+</Proof>
+
+**That is the whole justification.** $C$ converts addition into multiplication, which is what an exponential does and what nothing else does. Writing it $e^{i\theta}$ is not a coincidence being celebrated; it is a law being recorded.
+
+Notice also where the minus sign in the cosine identity went. It came out of $i^2 = -1$ — the one place a minus sign can come from here. The identity everybody misremembers is bookkeeping for a single fact about $i$.
+
+<Warning title="This is a definition doing work, not a theorem out of nowhere">
+Nothing above proves that $e$ — the number $2.718\ldots$ — is somehow secretly involved. What is proved is that the circle points obey the exponential law, and that fact earns them exponential *notation*.
+
+A later course closes the loop: it defines $e^z$ for complex $z$ by a single formula that agrees with $e^x$ on the real numbers, and then $e^{i\theta} = \cos\theta+i\sin\theta$ becomes a theorem rather than a naming decision. Nothing in this chapter depends on that step.
+
+Keeping straight which lines are definitions and which are theorems is not fussiness. It is the difference between a derivation and a circle.
+</Warning>
+
+## Reading the formula geometrically
+
+$$|e^{i\theta}| = \sqrt{\cos^2\theta+\sin^2\theta} = 1$$
+
+by the Pythagorean identity, so $e^{i\theta}$ lies on the unit circle for every real $\theta$, with coordinates $(\cos\theta, \sin\theta)$.
+
+**$e^{i\theta}$ is the point reached by traveling $\theta$ radians counterclockwise from $1$.** The formula is a dictionary between arc length and a complex number, and the radian requirement is what makes it exact: an arc of $\theta$ radians on the unit circle *has length* $\theta$, with no conversion factor anywhere.
+
+The special values then read as geometry rather than algebra:
+
+$$e^{i\pi/2} = i \quad\text{— a quarter turn}$$
+$$e^{i\pi} = -1 \quad\text{— a half turn}$$
+$$e^{2\pi i} = 1 \quad\text{— a full turn}$$
+
+And the law just proved becomes a statement about composing rotations: $e^{i\alpha}e^{i\beta} = e^{i(\alpha+\beta)}$ says turning by $\alpha$ and then by $\beta$ is turning by $\alpha+\beta$. That is §5.9, and it makes $i^2 = -1$ the statement that two quarter turns make a half turn.
+
+**Trigonometry and exponentials looked unrelated because you met them on the real line**, where one oscillates and the other grows. In the plane they are one function seen along two different directions, and the line was simply too small a stage to see the connection on.
+
+## Consequences
+
+Since $\cos$ is even and $\sin$ is odd, $e^{-i\theta} = \cos\theta - i\sin\theta$, which is the conjugate of $e^{i\theta}$. Adding and subtracting the two:
+
+$$
+\cos\theta = \frac{e^{i\theta}+e^{-i\theta}}{2}, \qquad \sin\theta = \frac{e^{i\theta}-e^{-i\theta}}{2i}.
+$$
+
+These are §5.4's formulas for the real and imaginary parts, applied to $e^{i\theta}$. They turn every trigonometric identity into a statement about products of circle points, which is usually the easier form — §5.9 exploits it.
+
+One more consequence worth having: a full turn changes nothing, so $e^{i(\theta+2\pi)} = e^{i\theta}$. The complex exponential **repeats**, which the real one never does. That single fact is behind everything awkward in §5.8.
+
+<Aside>
+$e^{i\pi} + 1 = 0$ is Euler's identity, regularly voted the most beautiful formula in mathematics — five constants from five different corners of the subject, in one equation with no room to spare.
+
+The tidiness reputation is deserved, but the mathematical content is the repetition: $e^{i\pi} = -1$ says half a turn is a reflection through the origin, and $e^{2\pi i} = 1$ says a full turn is doing nothing. The identity is the statement that the exponential wraps the line around the circle.
+</Aside>
+
+## A second proof, with no series at all
+
+The derivation above rearranges an endless sum, and §5.7 flagged that rearranging infinitely many terms needs justification. Here is an argument avoiding the issue entirely, using only the derivative rules of a first calculus course.
+
+Fix $\theta$ and consider
+
+$$g(\theta) = \frac{\cos\theta + i\sin\theta}{e^{i\theta}}.$$
+
+*Symbol by symbol: $g$ is a rule taking a real number $\theta$ to a complex number. So the line reads: compare the point at angle $\theta$ on the circle against the exponential, by dividing one by the other.*
+
+Differentiate the top and bottom by the usual rules, treating $i$ as the constant it is. The top has derivative $-\sin\theta + i\cos\theta$, which is $i$ times the top itself; the bottom has derivative $i e^{i\theta}$, which is $i$ times the bottom. Feed both into the quotient rule and the numerator cancels to zero.
+
+So $g' = 0$ everywhere, meaning $g$ is constant. Evaluate at $\theta = 0$: the top is $1$, the bottom is $1$, so the constant is $1$. Therefore the two agree for every $\theta$, which is the formula.
+
+**What this costs and what it buys.** It assumes the derivative rules apply to a complex-valued rule of a real variable — true, and provable by treating the two real parts separately. In exchange it never rearranges an infinite sum, and it explains *why* the two sides agree: both change at exactly $i$ times their current value, and two quantities that grow at the same proportional rate from the same start stay equal.
+
+<WhereThisGoes level="l8">
+
+Euler's formula is the identity that unifies the families of functions you have studied separately.
+
+**It explains why one technique handles both growth and oscillation.** Exponentials grow; sines and cosines wobble. They look like different animals, and every method you learn for one seems to need a rebuild for the other. Euler's formula says they are the same animal seen from two angles — and once you know that, a single method covers both, with the real direction giving growth and the imaginary one giving the wobble.
+
+That is not a curiosity. Problems about springs, circuits and populations turn out to reduce to the same handful of equations, and the reason one technique solves all of them is the identity in this module.
+
+**There is a second route to the formula.** Late in a calculus course you meet a way of writing $e^x$, $\cos x$ and $\sin x$ as sums that never stop. Substitute an imaginary quantity into the first, sort the terms by the cycle $i, -1, -i, 1$, and the other two fall out of it — which is how Euler himself came at it in the 1740s.
+
+That route needs care of a kind worth naming: rearranging a sum with endlessly many terms is *not* always allowed, and there are sums whose terms can be reordered to give any answer you like. A condition rules out the bad cases, these sums satisfy it, and noticing when such a condition is needed is a large part of what a later course trains.
+
+</WhereThisGoes>

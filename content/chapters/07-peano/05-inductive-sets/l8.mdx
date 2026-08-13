@@ -1,0 +1,117 @@
+---
+level: l8
+title: Inductive sets and the last axiom
+readingTimeMin: 8
+newTerms: ["inductive set"]
+anchorExample: "successor function"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+A5–A8 are *closure* conditions: they say what $\mathbb{N}$ must **contain**. They never say what it must leave out, and §7.4 exploited exactly that — take the ordinary counting numbers and set two strangers $a$ and $b$ off to one side, each one's next number being the other. All four axioms hold. What is missing is a **smallest-possible** condition.
+
+## Axiom 9
+
+> A set $V$ is **inductive** if it contains $0$, and whenever it contains a number it also contains that number's next one.
+>
+> $$\textbf{A9}\quad V \text{ inductive} \Rightarrow \mathbb{N}\subseteq V.$$
+
+*Symbol by symbol: $\Rightarrow$ is "forces", $\subseteq$ is "sits inside". So the line reads: any set that contains $0$ and always contains the next one must already contain every counting number.*
+
+Put the other way round: $\mathbb{N}$ is the **smallest** inductive set. Every other one has it as a part.
+
+<Proof title="Exclusion of rogue elements">
+
+*The symbols in this proof: $\subseteq$ is "sits inside", $\notin$ is "is not in". In words, what follows shows: the strangers cannot be counting numbers, because the numbers you can actually count to already form an inductive set.*
+
+Let $V$ be everything you can reach from $0$ by stepping: $0$, then $S(0)$, then $S(S(0))$, and so on. $V$ contains $0$ and contains the next one after anything in it, so $V$ is inductive.
+
+A9 then gives $\mathbb{N}\subseteq V$. The stranger $a$ is in no step of that chain, so $a \notin V$, and therefore $a \notin\mathbb{N}$.
+
+A5 and A6 give the other inclusion, $V \subseteq\mathbb{N}$, so double inclusion (§2.6) gives $\mathbb{N} = V$ exactly: the counting numbers are the chain from $0$ and nothing besides.
+</Proof>
+
+## A9 is induction
+
+Take $V$ to be the set of numbers for which a claim $A$ holds. Then A9 turns into Chapter 6's induction, term for term:
+
+$$
+\underbrace{0 \in V}_{A(0)}\ \wedge\ \underbrace{\forall x (x\in V \Rightarrow S(x)\in V)}_{A(k)\Rightarrow A(S(k))}\ \Rightarrow\ \underbrace{\mathbb{N}\subseteq V}_{\forall n\, A(n)}.
+$$
+
+*Symbol by symbol: $\wedge$ is "and", $\forall$ is "for every", $\Rightarrow$ is "forces", and each brace names what that piece is called in Chapter 6. So the line reads: the base case, and the step from each case to the next, together force the claim for every counting number.*
+
+Chapter 6's technique is this axiom. That answers §6.1's question of why induction cannot be derived from more basic facts: it is part of what $\mathbb{N}$ *is*, and the rogue model demonstrates its independence from A5–A8 by the method of §7.1.
+
+Equivalent over A5–A8: the smallest-number principle, strong induction, and the non-existence of infinite descending sequences. §4.4's division algorithm and §4.7's descent argument were both applications.
+
+## Killing the rogue model
+
+The remaining unwanted system from §7.4 is $R = \{0,1,2,\dots\}\cup\{a, S(a), \dots\}$, with the second chain disjoint from the first.
+
+Suppose $R$ satisfied all nine axioms. Let $A = \{0,1,2,\dots\}$ be the first chain alone. Then $0 \in A$, and $A$ is closed under $S$ — the successor of anything in the first chain stays in the first chain. So $A$ is inductive.
+
+By Axiom 9, $A = R$. But $a \in R$ and $a \notin A$. Contradiction.
+
+**Axiom 9 is exactly the statement that everything is reachable by counting from $0$.** The first eight axioms describe local behavior — a start, a step, no loops, no merges. This one is global, and it says the chain from $0$ is all there is.
+
+The resulting set equality is proved by double inclusion, with a clean division of labor:
+
+$$\mathbb{N} = \{0, S(0), S(S(0)), \dots\}$$
+
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers and $S(x)$ is the next one after $x$. So the line reads: the counting numbers are exactly $0$, and the next one, and the next one after that, going on forever — with nothing else allowed in.*
+
+**($\supseteq$)** Axioms 5 and 6 put the whole chain inside $\mathbb{N}$. **($\subseteq$)** The chain is inductive, so Axiom 9 gives equality. Each direction uses different axioms, which is the normal situation for an if-and-only-if statement (§1.9).
+
+## The axioms pin down the counting numbers exactly
+
+Notice what A9 quantifies over: **subsets** of $\mathbb{N}$, not just elements. That is a stronger kind of assumption than the other eight, and it buys a correspondingly strong result.
+
+> **Theorem (1888).** Any two systems obeying A5–A9 can be matched up one-for-one, in a way that lines up their zeros and their successor rules exactly.
+
+<Proof title="How the matching is built">
+
+*The symbols in this proof: primes mark the second system — $0'$ is its zero and $S'$ its next-number rule. In words, what follows shows: pair up the two systems by matching zero to zero and then stepping in lockstep, and check that nothing is missed and nothing is doubled up.*
+
+Say the two systems are $(\mathbb{N},0,S)$ and $(\mathbb{N}',0',S')$.
+
+**Build the matching.** Send $0$ to $0'$, and once $n$ has been matched, send the next one after $n$ to the next one after $n$'s partner. That is a recursive definition, so §7.6 says there is exactly one such matching.
+
+**Nothing is doubled up.** Two different numbers cannot be sent to the same partner. Checking it is an induction, and it uses A7 and A8 in *both* systems — A7 to keep zero out of the range of the step, A8 to keep the step from merging.
+
+**Nothing is missed.** The set of partners actually used contains $0'$, and contains the next one after anything it contains. So it is inductive, and Axiom 9 *in the second system* says an inductive set already holds every number there. So every element of the second system is somebody's partner. $\blacksquare$
+</Proof>
+
+So the axioms fix the counting numbers completely: any two systems obeying them are the same system with the names changed. Whatever "the natural numbers" are built out of — sets, tally marks, anything at all — is irrelevant, because only the shape is pinned down. That is the lesson of §2.9's ordered pairs again, one level up.
+
+<Aside>
+Notice which axiom did the heavy lifting, and how. A5–A8 talk about *elements* — there is a zero, each thing has a next, nothing steps back to zero, nothing merges. A9 talks about *subsets*, and that is a different order of assumption.
+
+That difference is exactly what buys the theorem above. The proof used A9 twice, once in each system, and each time it was used to say *"an inductive set is already everything"* — a statement about a whole collection at once, which none of the first eight axioms can express.
+</Aside>
+
+The trade-off is exact, and it is a theorem rather than a limitation of anyone's ingenuity. The strong form of A9 pins down $\mathbb{N}$ uniquely but admits no mechanical procedure that generates all its consequences. The weakened form has such a procedure and admits models that are not $\mathbb{N}$. **You cannot have both.**
+
+<Aside>
+There is a catch in the uniqueness argument worth noticing. A9 speaks of "all subsets" of $\mathbb{N}$ — but what counts as a subset is itself a question, answered by whatever theory of sets you are working in. So the argument does not fix $\mathbb{N}$ absolutely; it passes the question up a level.
+
+Set theory supplies the missing piece from the other end: it *says* that an inductive set exists, then defines $\mathbb{N}$ as the smallest one. That the result satisfies A5–A9 is then a theorem, so arithmetic sits inside set theory and inherits whatever consistency set theory has (§7.1).
+</Aside>
+
+<WhereThisGoes level="l8">
+
+Axiom 9 is the induction principle of Chapter 6, and knowing it is an **axiom** settles the question §6.2 left open.
+
+Induction is not proved. It is assumed — standing in the same place as the parallel postulate does in geometry, and as the no-gaps rule does for the real line. §7.4's method shows why it has to be assumed: there are systems that satisfy Axioms 1–8 and fail Axiom 9.
+
+**The smallest-number principle is the equivalent form**, and the equivalence is genuine: assume either and derive the other. Neither follows from the remaining axioms.
+
+**Calculus has an axiom in exactly this position: the real line has no gaps.** Every major theorem of a first course leans on it, usually through a phrase like *"let $c$ be the smallest number sitting above all of these…"*. Those theorems are all false over $\mathbb{Q}$, and the fractions satisfy every *other* rule you could ask for — they are the standing proof that this one axiom is doing the work.
+
+So calculus is, in a precise sense, the study of one axiom's consequences — and recognizing which theorems depend on it is worth doing as you meet them.
+
+**The chapter's method is the transferable part.** Each axiom was justified by exhibiting the unwanted system it rules out — loops, merges, unreachable extras. That is how you find out which axioms you need: construct the models you want to exclude, and add exactly the assumptions that exclude them.
+
+</WhereThisGoes>

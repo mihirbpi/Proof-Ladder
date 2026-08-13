@@ -1,16 +1,20 @@
 ---
 level: l8
 title: Negation
-readingTimeMin: 8
+readingTimeMin: 7
 newTerms: ["negation"]
 anchorExample: "x ≥ 1"
 ---
 
 import TruthTable from '@/components/TruthTable.astro';
-import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
+import Warning from '@/components/Warning.astro';
 
-Negation, written $\neg p$ and read *"not $p$"*, is the unary connective on the Boolean algebra $\{T, F\}$ that swaps the two values. It is defined by the truth table
+For a statement $p$, its **negation** — written $\neg p$ and read *"not $p$"* — is the statement whose truth value is the opposite of $p$'s. Negation is the simplest joining word in propositional logic and, exactly because it is simple, the source of most first-year proof errors.
+
+Two more symbols arrive in this module and are worth naming before they appear. $\wedge$ is read *"and"*, $\vee$ is read *"or"*, and $p \equiv q$ says the two statements have **identical truth tables** — not that they are the same sentence, but that they are true in exactly the same situations. §1.3 and §1.4 develop all three.
+
+## Truth table
 
 <TruthTable
   variables={["p"]}
@@ -21,37 +25,102 @@ Negation, written $\neg p$ and read *"not $p$"*, is the unary connective on the 
   ]}
 />
 
-and it satisfies
+Two consequences follow immediately:
 
-- **involution:** $\neg\neg p \equiv p$,
-- **law of excluded middle:** $p \vee \neg p$ is a tautology,
-- **law of non-contradiction:** $p \wedge \neg p$ is a contradiction,
-- **De Morgan (§1.4):** $\neg(p \wedge q) \equiv \neg p \vee \neg q$; $\neg(p \vee q) \equiv \neg p \wedge \neg q$,
-- **quantifier alternation (§1.11):** $\neg \forall x\, p(x) \equiv \exists x\, \neg p(x)$; $\neg \exists x\, p(x) \equiv \forall x\, \neg p(x)$.
+- **Law of non-contradiction.** $p \wedge \neg p$ is always false.
+- **Law of excluded middle** (§1.2). $p \vee \neg p$ is always true — every statement either holds or its negation does.
 
-## Common errors
+Both look obvious in this setting; both stop being obvious in systems of logic that decline to assume every statement is either true or false. Classical mathematics, and this course, assumes both.
 
-**Boundary flips on inequalities.**
+## Double negation
+
+$\neg\neg p \equiv p$: negating twice returns you to the original. In a proof by contradiction (§2.1.6) one assumes $\neg q$, derives an impossibility, and concludes $\neg\neg q$, which is silently rewritten as $q$.
+
+That rewrite is the step most often left unmarked in a written proof, and it is worth knowing it is there. It is also the step that distinguishes proof by contradiction from proof by contrapositive (§1.8): the contrapositive route never introduces a double negation, and is correspondingly easier to check.
+
+The same identity appears in three costumes later in the course, each time as an operation that undoes itself:
+
+- $\overline{\overline S} = S$ for set complements (§2.5)
+- $\overline{\bar z} = z$ for complex conjugation (§5.4)
+- $(f^{-1})^{-1} = f$ for inverse functions (§3.9: the rule that undoes it)
+
+An operation that undoes itself is worth spotting, because it tells you immediately that applying it twice is wasted effort — a small but genuinely useful habit.
+
+## Errors, catalogued
+
+**Inequality boundaries flip.**
 $$
-\neg(x \geq 1) \equiv x < 1, \quad \neg(x > 1) \equiv x \leq 1.
+\neg(x \geq 1) \equiv (x < 1), \quad \neg(x > 1) \equiv (x \leq 1), \quad \neg(x \neq 0) \equiv (x = 0).
 $$
 
-**"Opposite" confused with negation.**
-"All A are B" and "no A is B" are not negations. Their common negation is "there is an A that is not B."
+*Symbol by symbol: $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: denying that $x$ is at least $1$ leaves *$x$ is below $1$*; denying that $x$ is more than $1$ leaves *$x$ is at most $1$*; and denying that $x$ differs from $0$ leaves *$x$ is $0$*. Each denial flips the boundary and keeps it*
 
-**Negating a conditional.** The negation of $p \Rightarrow q$ is $p \wedge \neg q$, not "$p \Rightarrow \neg q$." This confuses students constantly; the truth-table check makes it obvious.
+**Quantifier alternation** (the *for every* and *there is* words, §1.10).
+$$
+\neg(\forall x\, p(x)) \equiv \exists x\, \neg p(x), \qquad \neg(\exists x\, p(x)) \equiv \forall x\, \neg p(x).
+$$
 
-<Warning title="Negating a conditional">
-$\neg(p \Rightarrow q) \equiv p \wedge \neg q$: the hypothesis holds and the conclusion fails. This is exactly the single false row of the conditional's table (§1.5).
+*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: *not every $x$ has the property* says the same as *some $x$ lacks it*, and *no $x$ has it* says the same as *every $x$ lacks it*. Denying one of the two *for every* / *there is* words turns it into the other, and pushes the denial inward*
+
+Module 1.11 will prove these; they underwrite the entire practice of disproving universal claims by counterexample and existential claims by exhaustive negation.
+
+**De Morgan (previewed).**
+$$
+\neg(p \wedge q) \equiv \neg p \vee \neg q, \quad \neg(p \vee q) \equiv \neg p \wedge \neg q.
+$$
+
+*Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as". So the line reads: denying that both hold says the same as *at least one fails*, and denying that either holds says the same as *both fail**
+
+Negation swaps $\wedge$ and $\vee$. Module 1.4 proves this and it is arguably the most-used logical identity in the course.
+
+<Warning title="Not the same as opposite">
+"All primes are odd" and "no primes are odd" are both false. The negation of the first is "some prime is not odd" — and $2$ settles it.
+
+The general shape: $\neg(\forall x, p(x))$ is $\exists x, \neg p(x)$, and **not** $\forall x, \neg p(x)$. The second is the *contrary* — a stronger claim that can fail alongside the original.
+
+The error is not confined to quantifiers (§1.10: the *for every* and *there is* words). $\neg(\text{increasing})$ is not *decreasing*; a function can be neither. $\neg(\text{convergent})$ — *not settling towards any single value* — is not *"tends to infinity"*; $(-1)^n$ does neither. $\neg(x>0)$ is not $x<0$; zero exists. In each case the correct negation is the weakest statement incompatible with the original, and the tempting answer is something stronger.
+
+**Assuming a contrary instead of a negation invalidates an indirect proof**, even when the contradiction you reach is genuine — because you assumed more than the negation gave you.
 </Warning>
 
-## Negating live conjectures
+## Negation in the definitions ahead
 
-- **Twin Primes.** Denying that infinitely many primes $p$ have $p+2$ prime gives: past some bound $N$, every prime $p$ has $p+2$ composite.
-- **Goldbach.** $\neg\bigl(\forall n \in 2\mathbb{Z}_{\geq 2},\, \exists p,q \text{ prime},\, n = p+q\bigr) \equiv \exists n \in 2\mathbb{Z}_{\geq 2},\, \forall p, q \text{ prime},\, n \neq p+q$.
+Precalculus already trades in statements whose negations are non-obvious, and the pattern is worth seeing before the definitions get longer.
 
-Note how the negation of Goldbach is a *single-case* claim: one bad $n$ suffices. This is why exhaustive numerical checking would settle Goldbach *if* the conjecture were false; the difficulty is that no such $n$ has been found even at $n = 4 \times 10^{18}$, and finite checking cannot verify the positive direction.
+| Statement | Negation |
+|---|---|
+| $f$ is even | $f(-x)\neq f(x)$ for **some** $x$ |
+| $f$ is bounded above (never passes some fixed height) | for **every** $M$, some $x$ has $f(x)>M$ |
+| the sequence is increasing | some consecutive pair fails $a_n \leq a_{n+1}$ |
+| $\theta$ is a solution of $\sin\theta = 1$ | $\sin\theta \neq 1$ |
+
+The first three all convert a universal into an existential, and in each case the refutation is therefore a single witness — one $x$, one $M$-and-$x$ pair, one index. That asymmetry is the practical content of negation, and module 1.11 states it in general.
+
+Note the second row especially: negating *bounded above* does not give *bounded below*, and it does not give *tends to infinity*. It gives an alternating $\forall\exists$ statement, and reading it off correctly is what module 1.11 exists for.
+
+## Twin Primes, negated
+
+The Twin Primes conjecture,
+$$
+\exists^\infty p \text{ prime with } p + 2 \text{ prime},
+$$
+
+*Symbol by symbol: $\exists$ is "there is some". So the line reads: there are infinitely many primes $p$ for which $p+2$ is prime as well*
+
+has negation
+$$
+\text{there exists } N \text{ such that for all primes } p > N,\; p + 2 \text{ is not prime}.
+$$
+A proof of either would settle the conjecture. Notice the shape: negating a "$\exists^\infty$" produces an "eventually always not"; negating a $\forall$ produces an $\exists$.
 
 <WhereThisGoes level="l8">
-The neat two-value picture here is one point on a much larger map. **Intuitionistic logic** — motivated by constructive mathematics and the Curry–Howard correspondence — refuses the law of excluded middle unless a witness for one side can be exhibited. **Paraconsistent logics** allow contradictions without triviality (useful for reasoning about inconsistent databases). **Modal logics** add operators $\Box$ and $\Diamond$ for necessity and possibility, with negation interacting not obviously. In categorical logic, negation of a subobject is complementation in the subobject classifier's internal Heyting algebra, which is not Boolean in general — an entire alternative universe hides behind a single connective.
+
+Negation is what turns a definition into a test you can apply.
+
+**In calculus, the negated definitions are the working ones.** Definitions there are usually *for every … there is a …* claims, and you will rarely show one fails by staring at it. You negate it, mechanically, and read off what you now have to produce.
+
+The classification of the ways a graph can break is a negation, expanded. Being unbroken at a point requires three things to hold and agree; negating that *and* — §1.3 calls it a conjunction — gives one case per thing that can go wrong, and the number of cases is exactly the number of conditions.
+
+The lesson generalizes: **when a definition is a universal, its negation is an existential, and existentials are what proofs can hold onto.** A universal asks you to handle every case; its denial asks you to exhibit one. Getting that negation right is most of the work.
+
 </WhereThisGoes>

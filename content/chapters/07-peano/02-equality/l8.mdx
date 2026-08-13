@@ -1,0 +1,142 @@
+---
+level: l8
+title: The rules for equality
+readingTimeMin: 7
+newTerms: ["equivalence relation"]
+anchorExample: "successor function"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+## Axioms 1–4
+
+For all $x,y,z$:
+$$
+x = x; \qquad x=y\Rightarrow y=x; \qquad (x=y\wedge y=z)\Rightarrow x=z;
+$$
+
+*Symbol by symbol: $\Rightarrow$ is "forces", $\wedge$ is "and". So the line reads: everything equals itself; if $x$ equals $y$ then $y$ equals $x$; and if $x$ equals $y$ and $y$ equals $z$, then $x$ equals $z$.*
+$$
+(x \in \mathbb{N}\wedge x=y)\Rightarrow y\in\mathbb{N}.
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\mathbb{N}$ is the counting numbers, $\wedge$ is "and", $\Rightarrow$ is "forces". So the line reads: if $x$ is a counting number and $x$ equals $y$, then $y$ is a counting number too.*
+
+The fourth is a special case of **substitution**: if $x = y$ then any statement true of $x$ is true of $y$. Peano isolates the instance he needs; a modern treatment states substitution in full, or — more commonly — declines to set down rules for equality at all, treating it as a logical symbol with fixed interpretation. On that view A1–A4 belong to the underlying logic rather than to arithmetic, and many presentations of Peano arithmetic omit them for exactly that reason.
+
+## Equivalence relations
+
+A relation satisfying A1–A3 is an **equivalence relation**.
+
+Worth restating what a relation *is*, because §2.9 made a move that is easy to skim past: a relation on $S$ is not a description but a **collection of ordered pairs** — the pairs it holds for, and nothing else. Writing $\sim\ \subseteq S \times S$ says exactly that: $\sim$ is some sub-collection of all the pairs you could form from $S$, and $a \sim b$ is shorthand for *the pair $(a,b)$ is one of them*. Every property below is a property of that collection.
+
+Dropping symmetry and adding the rule that mutual containment forces equality ($(a\sim b) \wedge (b \sim a) \;\Rightarrow\; a = b$) gives an **ordering** instead — the kind $\leq$ and $\subseteq$ are — $\leq$ on $\mathbb{R}$, $\subseteq$ on $\mathcal{P}(X)$ (§2.3), $\mid$ on $\mathbb{Z}_{>0}$ (§4.2). The two families of structures are the two natural ways to weaken equality, and almost every relation of interest is one or the other.
+
+What follows is a **proposition** — a result worth stating on its own, smaller than the theorem it feeds.
+
+> **Proposition.** *Leaving the same remainder on division by $n$* — that is, $n \mid (a-b)$ — is an equivalence relation on $\mathbb{Z}$.
+
+<Proof>
+Reflexive: $n \mid 0 = a-a$. Symmetric: $a-b = nk \Rightarrow b-a = n(-k)$. Transitive: $a-b = nj$, $b-c=nk$ give $a - c = n(j+k)$, with $j+k \in \mathbb{Z}$ by closure (§4.1).
+</Proof>
+
+## What an equivalence relation does to a set
+
+> **Theorem.** An equivalence relation on $S$ splits $S$ into non-overlapping families that use up all of it: every element lies in exactly one family, and two elements are related exactly when they share a family. The other way round, every such splitting of $S$ arises from exactly one equivalence relation.
+
+<Proof>
+
+*The symbols in this proof: $\sim$ is "counts as the same as", $\in$ is "is in". In words, what follows shows: the families cover everything and never partly overlap, so each element has exactly one.*
+
+*Every element is in a family.* Put $x$ and $y$ together exactly when $x \sim y$. Reflexivity — everything stands in the relation to itself (§7.2) — gives $x \sim x$, so $x$ is in its own family and nothing is left out.
+
+*Two families are identical or share nothing.* Suppose some $c$ lies in both $x$'s family and $y$'s, so $c \sim x$ and $c \sim y$. Take any $z$ in $x$'s family, so $z \sim x$. Symmetry turns $c \sim x$ into $x \sim c$; transitivity — first-to-second and second-to-third gives first-to-third (§7.2) — gives $z \sim c$, and applying it again with $c \sim y$ gives $z \sim y$ — so $z$ is in $y$'s family. The same argument runs the other way, so the two families are equal.
+
+*The other way round.* Given any splitting of $S$ into non-overlapping families that use up all of it, define $x \sim y$ to mean *$x$ and $y$ lie in the same family*. Reflexivity holds because the families use up $S$, symmetry is immediate, and transitivity holds because sharing a family with a common element forces the same family throughout.
+</Proof>
+
+Each of the three axioms was used exactly once, which is a compact demonstration that none of them is redundant.
+
+The pay-off is that this is what *choosing what to ignore* looks like formally. Deciding that two triangles count as the same when they are congruent, or that two integers count as the same when they leave the same remainder, splits the objects into families and lets you argue about the families rather than the individuals — and the three axioms are exactly the price of admission.
+
+<Warning title="Naming a family by one of its members">
+Once a set is split this way, a family usually gets named by picking one of its members — *the odd numbers*, named by $1$. That is convenient and it carries a hazard: any rule you define by reaching for a member must give the same answer whichever member is reached for.
+
+Adding works: adding $2$ to an odd number and adding $2$ to any other odd number lands you in the same family both times, so *add $2$* makes sense as an operation on families. Reading off a member does not: there is no official odd number, so *"the number itself"* is not something a family determines.
+
+This check is required every time an operation is defined on families rather than on elements, and it is the step most often skipped.
+</Warning>
+
+## Relations that fail, and what the failures mean
+
+The three conditions are independent, and examining what each rules out is more informative than the definition.
+
+| Relation | Reflexive | Symmetric | Transitive |
+|---|---|---|---|
+| $=$ | ✓ | ✓ | ✓ |
+| congruence of figures | ✓ | ✓ | ✓ |
+| same remainder on division by $n$ | ✓ | ✓ | ✓ |
+| *is parallel to* | ✓ | ✓ | ✓ |
+| $\leq$ | ✓ | ✗ | ✓ |
+| $<$ | ✗ | ✗ | ✓ |
+| $\subseteq$ | ✓ | ✗ | ✓ |
+| $\perp$ | ✗ | ✓ | ✗ |
+
+**Failure of symmetry is what makes a relation an order.** $\leq$ and $\subseteq$ are reflexive and transitive and not symmetric, and that is exactly what makes them orderings rather than notions of sameness. Orders and equivalences are the two natural weakenings of equality, distinguished by exactly this condition.
+
+**Failure of transitivity is usually fatal** — transitivity being the rule that first-to-second and second-to-third gives first-to-third (§7.2). Perpendicularity fails it: $\ell_1\perp\ell_2$ and $\ell_2\perp\ell_3$ give $\ell_1 \parallel \ell_3$ in the plane, not $\ell_1\perp\ell_3$. A relation without transitivity supports no chaining, and chaining is what proofs do.
+
+## The same move builds the number systems
+
+The same move builds each number system from the one before it. The integers are pairs of counting numbers with $(a,b)$ standing for $a - b$, and two pairs naming the same integer when $a+d = b+c$. The fractions are pairs of integers with $(p,q)$ standing for $p/q$, and two pairs naming the same fraction when $ps = qr$ (§4.5). In each case the objects are *classes* of pairs, and each operation has to be checked not to depend on which pair you picked.
+
+The pattern is uniform: take objects you already have, decide which of them should count as the same, and the resulting families are the new objects. Chapter 7 builds $\mathbb{N}$ from axioms outright; every system above it is built by this move instead.
+
+<Aside>
+Worth noticing how much of ordinary practice this licenses. Writing $\tfrac{2}{4} = \tfrac{1}{2}$ is not a claim that two *pairs of integers* are the same pair — they plainly are not. It is a claim that they name the same object, because the sameness rule for fractions says so.
+
+Nearly every equals sign you have written since primary school is of this kind: same number, different name. The axioms above are what make that safe, because they are exactly what guarantees a name can be swapped for an equal one anywhere it appears without changing what is true.
+</Aside>
+
+## Classes, and the sets they build
+
+§7.2 showed that a relation behaving like equality splits its set into families. Those families have a name and a use, and the use is how every number system above $\mathbb{N}$ gets built.
+
+For $a$ in $S$, the **equivalence class** of $a$ is
+
+$$[a] = \{\, x \in S \mid x \sim a \,\},$$
+
+*Symbol by symbol: $\sim$ is the sameness relation, $\in$ is "is in", the bar is "such that". So the line reads: the class of $a$ collects everything counting as the same as $a$.*
+
+and §7.2's theorem says these classes cover $S$ without overlapping. The set whose *elements are the classes* is the **quotient**, written $S/\sim$.
+
+That is the construction. Take objects you have, decide which count as the same, and the classes become the new objects.
+
+- $\mathbb{Z}$ is pairs of counting numbers, with $(a,b)$ standing for $a - b$, and $(a,b) \sim (c,d)$ when $a + d = b + c$.
+- $\mathbb{Q}$ is pairs of integers with $(p,q) \sim (r,s)$ when $ps = qr$ — which is why $\tfrac24$ and $\tfrac12$ are one number written twice.
+- Remainder arithmetic on division by $n$ is $\mathbb{Z}$ under §4.4's congruence.
+
+<Warning title="Every operation on classes owes a check">
+Define an operation by reaching for a member of a class, and you must show the answer does not depend on which member you reached for.
+
+Addition survives: if $a \sim a'$ and $b \sim b'$ then $a + b \sim a' + b'$, so $[a] + [b] := [a+b]$ makes sense. Reading off a member does **not** survive: there is no official representative, so *the number itself* is not something a class determines.
+
+This is §3.1's well-definedness in its natural home, and it is the step most often skipped.
+</Warning>
+
+<Aside>
+A footnote on the axioms themselves. Many presentations of Peano arithmetic omit A1–A4 entirely, on the grounds that the properties of equality belong to the underlying logic rather than to arithmetic — every theory uses them, so they need not be restated for this one.
+
+That is a defensible choice and a common one. This course states them because seeing what equality is *assumed* to do is worth more, at this stage, than the economy of leaving them out.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+Equivalence relations are how mathematics decides what to ignore, and both courses ahead use them constantly.
+
+**In calculus the important one is "differ by a constant."** Two rules with the same steepness everywhere on an interval — two antiderivatives of one function — differ by a constant — reflexive, symmetric, transitive — and the classes are what $+\,C$ denotes. The indefinite integral does not name one function — it names a whole family of them, all differing by a constant, and any two members of that family count as the same answer. That is why the $+C$ is not optional.
+
+</WhereThisGoes>

@@ -1,0 +1,129 @@
+---
+level: l8
+title: Even, odd, and divides
+readingTimeMin: 8
+newTerms: ["even", "odd", "divides"]
+anchorExample: "the integers "
+---
+
+import Proof from '@/components/Proof.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+For $m, n \in \mathbb{Z}$:
+$$
+m \mid n \;:\iff\; \exists k \in \mathbb{Z},\ n = mk,
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", the bar $\mid$ is "such that". So the line reads: $m$ divides $n$ is *defined* to mean that some integer $k$ multiplies $m$ up to $n$. Every proof about divisibility starts by producing that $k$ or by using one you were given*
+
+with $n$ **even** meaning $2 \mid n$ and **odd** meaning $n = 2k+1$ for some $k \in \mathbb{Z}$.
+
+## The *there is* out front is the method
+
+$m \mid n$ is an existential statement over $\mathbb{Z}$, and §1.12 fixes what follows:
+
+- **Proving $m \mid n$** means exhibiting a witness $k$ and verifying $k \in \mathbb{Z}$. The verification is not decoration: it is where closure (§4.1) is cited, and it is the step that fails in the wrong system.
+- **Disproving $m \mid n$** means proving $\forall k \in \mathbb{Z},\ n \neq mk$ — a universal claim requiring an argument, typically supplied by the division algorithm (§4.4) or by a size bound.
+
+<Warning title="Three standard slips">
+**A witness that is not a whole number.** $9 = 2\cdot\tfrac92$ proves nothing; $\tfrac92 \notin \mathbb{Z}$.
+
+**Name collision.** From $a \mid b$ and $b \mid c$, write $b = ak_1$ and $c = bk_2$ with *distinct* names. Reusing $k$ silently says the leftover factors are equal — a hypothesis never given, and a genuinely common error.
+
+**Type confusion.** $m \mid n$ is a proposition; $m/n$ is a number. "$3 \mid 12 = 4$" is ill-formed.
+</Warning>
+
+## Elementary properties
+
+For all $a,b,c,m,n \in \mathbb{Z}$:
+
+$$
+m \mid 0, \qquad 1 \mid n, \qquad n \mid n,
+$$
+
+*Symbol by symbol: the bar $\mid$ is "such that". So the line reads: every number divides zero, one divides every number, and every number divides itself*
+
+$$
+(a \mid b) \wedge (b \mid c) \;\Rightarrow\; a \mid c \quad (\text{it passes along a chain}),
+$$
+
+*Symbol by symbol: $\Rightarrow$ is "forces", $\wedge$ is "and", the bar $\mid$ is "such that". So the line reads: if $a$ divides $b$ and $b$ divides $c$, then $a$ divides $c$*
+
+$$
+(a \mid b) \wedge (a \mid c) \;\Rightarrow\; a \mid (bx + cy) \ \ \forall x,y \in \mathbb{Z},
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces", $\wedge$ is "and". So the line reads: a number dividing two others divides every whole-number combination you can build from the pair*
+
+$$
+(a \mid b) \wedge (b \mid a) \;\Rightarrow\; a = \pm b,
+$$
+
+*So the line reads: if each of $a$ and $b$ divides the other, they can only differ by a sign.*
+
+$$
+(a \mid b) \wedge (b \neq 0) \;\Rightarrow\; |a| \leq |b|.
+$$
+
+*Symbol by symbol: $\Rightarrow$ is "forces", $\wedge$ is "and", the bar $\mid$ is "such that". So the line reads: a divisor of a non-zero number can never be larger than it in size*
+
+<Proof title="Proof of the linear-combination property">
+Suppose $a \mid b$ and $a \mid c$, say $b = ak_1$ and $c = ak_2$ with $k_1,k_2 \in \mathbb{Z}$. For any $x, y \in \mathbb{Z}$,
+$$bx + cy = ak_1x + ak_2y = a(k_1x + k_2y),$$
+and $k_1x + k_2y \in \mathbb{Z}$ by closure of $\mathbb{Z}$ under multiplication and addition. So $a \mid bx+cy$.
+</Proof>
+
+That property is the workhorse of elementary number theory — it is what makes the Euclidean algorithm terminate correctly and what proves Bézout's identity — and its proof is four lines of closure.
+
+Note that $m \mid 0$ for every $m$, including $m = 0$: $0 = 0\cdot 0$. So $0 \mid 0$ is *true*, while $0 \mid n$ is false for $n \neq 0$. This is consistent and occasionally surprising; it is also why the last property above needs $b \neq 0$.
+
+## Parity as a structure-preserving map
+
+The even/odd arithmetic of this module is more structured than the individual computations suggest. Define the **parity** of $n$ to be its remainder on division by $2$. Then
+
+$$\operatorname{par}(m+n) = \operatorname{par}(m) + \operatorname{par}(n), \qquad \operatorname{par}(mn) = \operatorname{par}(m)\operatorname{par}(n),$$
+
+with the arithmetic on the right also done as remainders on division by $2$. Read that as a single statement: *parity passes through both operations* — work out the parities first or the answer first, and you land in the same place either way. The five parity facts of this module are exactly its addition and multiplication tables, so five separate proofs collapse into one.
+
+This is the pattern that recurs throughout the course: a family of facts first proved individually, then covered by identifying the structure that made them true. §4.4 does the same for remainders on division by any $n$, and the payoff is that the general statement is easier to remember and easier to apply than the list.
+
+Parity also supplies the fastest route to several classic results. A chessboard with two opposite corners removed cannot be tiled by dominoes, because each domino covers one square of each color and the mutilated board has unequal counts. That argument is a parity argument, and it is complete — no case analysis, no search.
+
+## Divisibility as an order
+
+Transitivity and reflexivity make $\mid$ behave like an ordering on $\mathbb{Z}_{>0}$ — much as $\leq$ does, and much as $\subseteq$ does on sets (§2.3). It is a *partial* ordering only: given two numbers, neither need divide the other, so unlike $\leq$ it does not line everything up in a row. The structure is rich:
+
+- $\gcd$ plays the role of $\cap$ and $\operatorname{lcm}$ the role of $\cup$ (§2.4 identified these as intersections of divisor and multiple sets);
+- smallest member $1$, and $0$ is the greatest element if included, since everything divides $0$;
+- the building blocks — the numbers with nothing strictly between them and $1$ — are exactly the primes.
+
+So divisibility on $\mathbb{Z}_{>0}$ has the same shape as inclusion on subsets in §2.3, with $\gcd$ and $\operatorname{lcm}$ playing $\cap$ and $\cup$ — including both distributive laws.
+
+## Reading it structurally
+
+Write $m\mathbb{Z}$ for the set of all multiples of $m$. Then
+
+$$
+m \mid n \iff n \in m\mathbb{Z} \iff n\mathbb{Z} \subseteq m\mathbb{Z},
+$$
+
+*Symbol by symbol: the bar $\mid$ is "divides", $\in$ is "is in", $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when". So the line reads: $m$ divides $n$ exactly when $n$ is one of $m$'s multiples, which happens exactly when every multiple of $n$ is also a multiple of $m$.* Divisibility is reverse inclusion of these sets — "to divide is to contain" — and that reformulation is the one that survives into settings where factorization itself misbehaves.
+
+Units divide everything, which is why $\pm 1 \mid n$ always, and why divisibility can only ever be well defined up to units.
+
+In other number systems it behaves quite differently. There are systems obeying all the arithmetic rules in which a number can factor in two genuinely different ways — the unique factorization you take for granted over the integers simply fails — and repairing that failure was one of the driving problems of nineteenth-century number theory.
+
+<WhereThisGoes level="l8">
+
+The move this module trains — **replace a descriptive word by an algebraic condition you can compute with** — is the one that makes the definitions ahead usable.
+
+"Even" became $n = 2k$; "divides" became $b = ak$. Neither description supported algebra, and both existential forms do.
+
+**The same move is what makes limit proofs possible.** "Close to $L$" is a description; *the gap between them is smaller than this* is an inequality you can manipulate. "Approaches" is a description; the official definition is a condition. The reason the definition of a limit looks so unlike the intuition is that the intuition cannot be computed with, and the definition can.
+
+**Divisibility itself reappears in calculus,** in the trigonometric solution sets. The equation $\sin\theta = 0$ has solution set $\{\theta : \theta = k\pi,\ k\in\mathbb{Z}\}$ — an existential condition of exactly the form this module defines, and the parameter $k$ is the witness. Periodicity statements are divisibility statements: $f$ has period $p$ when $f(x+kp) = f(x)$ for every integer $k$.
+
+Every one of these is an **existential statement**, so the rules of §1.12 apply unchanged: to prove one, exhibit the witness; to use one, name it; to refute one, rule out every candidate — which is the hard direction, and the reason "there is one" claims are cheap to prove and expensive to refute.
+
+</WhereThisGoes>

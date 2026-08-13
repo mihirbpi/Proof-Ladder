@@ -1,0 +1,151 @@
+---
+level: l8
+title: Product sets
+readingTimeMin: 9
+newTerms: ["ordered pair", "product set", "relation"]
+anchorExample: "the grid of whole-number points"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+## Ordered pairs
+
+The ordered pair is characterized by a single property:
+$$
+(a,b) = (c,d) \iff a = c \wedge b = d. \tag{1}
+$$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\wedge$ is "and". So the line reads: two ordered pairs are equal exactly when their first entries agree and their second entries agree. That single line is the whole defining property of an ordered pair*
+
+Anything satisfying (1) will do; the standard way of building one out of sets is
+$$
+(a,b) := \{\{a\}, \{a,b\}\},
+$$
+from which (1) is a short exercise in being fixed by its members. The implementation is deliberately forgettable — what matters is (1), and a different encoding satisfying it would serve equally well. This is the first appearance of a pattern that dominates modern mathematics: objects are characterized by the properties they satisfy, not by what they are made of.
+
+## The cartesian product
+
+$$
+S \times T = \{(s,t) \mid s \in S \wedge t \in T\},
+\qquad
+(x,y) \in S \times T \iff x \in S \wedge y \in T. \tag{2}
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that", $\times$ pairs things up. So the line reads: the pairs with first entry from $S$ and second from $T$ — and a pair belongs exactly when each entry belongs where it should.*
+
+Basic facts, all immediate:
+
+- $|S \times T| = |S|\,|T|$ for finite sets — multiplication as the size of a grid.
+- $S \times T \neq T \times S$ unless $S = T$ or one is empty; (1) is what obstructs the identification. There is, all the same, a standard matching $S \times T \to T \times S$, and much of the time that is all one needs.
+- $S \times \emptyset = \emptyset$: the second coordinate has nothing to be.
+- $\times$ is not associative on the nose either — $(a,(b,c))$, $((a,b),c)$ and $(a,b,c)$ are formally distinct — but the standard matchings between them are so routine that everyone writes $S \times T \times R$ and moves on.
+
+<Warning title="Name an arbitrary element as a pair, immediately">
+Every proof about products opens the same way:
+
+> Let $z \in A \times C$ be arbitrary. Then $z = (x,y)$ with $x \in A$ and $y \in C$.
+
+Until $z$ is decomposed, (2) cannot be applied and the argument has nothing to work with. Failing to decompose is the characteristic error in this module, as failing to unfold a definition is in the previous ones.
+</Warning>
+
+## Interaction with intersection
+
+> **Proposition.** $(A \cap B) \times (C \cap D) = (A \times C) \cap (B \times D)$.
+
+<Discussion>
+  <div slot="know">Both sides unfold, via (2) and the definition of $\cap$, to the same four statements joined by <em>and</em> — a conjunction, §1.3.</div>
+  <div slot="want">Set equality.</div>
+  <div slot="how">Decompose an arbitrary element into coordinates, unfold both sides, and observe that they differ only in the order of the pieces joined by *and*. Commutativity and associativity of $\wedge$ finish it, and since every step is if-and-only-if statement the two inclusions come together.</div>
+</Discussion>
+
+<Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\wedge$ is "and", $\iff$ is "exactly when", $\Leftrightarrow$ is "exactly when". In words, what follows shows: both sides unfold to the same pair of "and" conditions, one per coordinate.*
+
+Every element of either side is an ordered pair, so let $(x,y)$ be arbitrary. Then
+$$
+\begin{aligned}
+(x,y) \in (A\cap B)\times(C\cap D)
+&\iff (x \in A \wedge x \in B)\wedge(y \in C \wedge y \in D)\\
+&\iff (x \in A \wedge y \in C)\wedge(x \in B \wedge y \in D)\\
+&\iff (x,y) \in (A\times C)\cap(B\times D),
+\end{aligned}
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\cap$ is "overlapped with". So the line reads: membership on either side unfolds to the same four conditions on $x$ and $y$; only the order in which they are grouped differs, and regrouping *and*s changes nothing*
+
+the middle step by commutativity and associativity of $\wedge$.
+</Proof>
+
+The theorem is nothing but the fact that *and* can be read in either order, in costume. Recognizing that is more valuable than the theorem.
+
+## Why the union analogue fails
+
+$$
+(A \cup B)\times(C \cup D) \;\supsetneq\; (A \times C)\cup(B\times D) \quad\text{in general.}
+$$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\times$ pairs things up. So the line reads: pairing two pooled collections gives strictly more pairs than pooling the two pairings; the mixed pairs are the extras.*
+
+With $A = C = \{1\}$, $B = D = \{2\}$: the left contains $(1,2)$; the right is $\{(1,1),(2,2)\}$. The containment $\supseteq$ always holds, and the failure of $\subseteq$ is exactly that a pair may draw its coordinates from different summands. The correct identity is
+$$
+(A\cup B)\times(C\cup D) = (A\times C)\cup(A\times D)\cup(B\times C)\cup(B\times D),
+$$
+
+*Symbol by symbol: $\cup$ is "pooled with". So the line reads: pooling before multiplying gives all four combinations — which is why the product does not distribute over pooling as neatly as it does over overlapping*
+
+which distributes properly — and whose four terms are the cross-terms the naive version omits. Meanwhile $A \times (C \cup D) = (A\times C)\cup(A\times D)$ does hold, so $\times$ distributes over $\cup$ in each variable separately; it is only the simultaneous version that fails.
+
+## Relations
+
+Here is a genuine leap, and it is worth slowing down for. A **relation** from $S$ to $T$ is *defined to be* any subset $R \subseteq S \times T$, with $sRt$ meaning $(s,t) \in R$.
+
+That sounds like a category mistake the first time you read it. Surely "is taller than" is a *description*, not a collection of anything? But look at what a description does: it splits the pairs into the ones where it holds and the ones where it does not. Nothing else about it can ever matter mathematically. Two descriptions that hold for exactly the same pairs are indistinguishable to every proof you could write. So we stop asking what a relation *is* and identify it with the only thing about it that has consequences — **the collection of pairs it holds for.**
+
+### What the definition buys
+
+This is the definition that makes the rest of the course possible:
+
+- **Functions** (Chapter 3) are relations $f \subseteq S \times T$ such that each $s \in S$ occurs as the first coordinate of exactly one pair. A function *is* its graph; there is no separate notion.
+- **Orders** are relations on $S \times S$ that are reflexive, such that mutual containment forces equality, transitive — $\subseteq$ from §2.3 being the example at hand.
+- **Equivalence relations** (§7.2) are reflexive, symmetric, transitive relations, and grouping by them is how $\mathbb{Z}$ gets built from $\mathbb{N}$ and $\mathbb{Q}$ from $\mathbb{Z}$.
+
+So everything from here forward is a subset of a product set with a condition attached.
+
+$\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$ makes this concrete: a line is $\{(x,y) \mid y = mx+c\}$, a circle is $\{(x,y) \mid x^2+y^2 = r^2\}$. Coordinate geometry is set-builder notation applied to a product.
+
+<Aside>
+Infinite products require care. For a family $\{A_i\}_{i \in I}$, $\prod_{i \in I} A_i$ is the set of functions $f$ on $I$ with $f(i) \in A_i$ — note the definition uses functions, so the order of development in this course is a pedagogical convenience rather than a logical necessity. Whether this product is nonempty whenever every $A_i$ is nonempty is a genuine assumption in its own right, and does not follow from the other rules set theory starts from (§7.1).
+</Aside>
+
+## Products of more than two, and relations
+
+Nothing in the construction stops at two factors. Write $S_1 \times S_2 \times \cdots \times S_n$ for the set of ordered lists $(s_1, \ldots, s_n)$ with each $s_i$ drawn from its own $S_i$, and the defining property is the one you already have: two such lists are equal exactly when they agree in every slot.
+
+That is what a coordinate system is. A point of the plane *is* an ordered pair; a point of space *is* an ordered triple; and a claim that two points coincide unpacks into one equation per coordinate.
+
+The construction also runs over an infinite index set, though the notation has to change — an element of an infinite product is a choice of one member from each factor, which is a function rather than a list. That is worth flagging now because it is where a genuinely contested axiom enters mathematics, and §2.5's constructive objection is one of the places it bites.
+
+## Relations are subsets of a product
+
+Here is the payoff the chapter has been building toward, and it is worth stating even though Chapter 3 does the work.
+
+A **relation** on $S$ is a subset of $S \times S$: the set of pairs for which the relation holds, and nothing else. *Less than* on the integers is the set of pairs $(a,b)$ with $a < b$. *Divides* is the set of pairs $(m,n)$ with $m \mid n$.
+
+That definition looks like a dodge and is not. It says a relation carries no content beyond which pairs it holds for — the same move §2.1 made for sets, one level up. Chapter 7 uses it to say precisely what makes a relation behave like equality, and §3.1 uses it to say precisely what a function is.
+
+<WhereThisGoes level="l8">
+
+Products are the sets both courses ahead actually work in.
+
+**Coordinates are products.** The plane is $\mathbb{R}\times\mathbb{R}$, space is $\mathbb{R}\times\mathbb{R}\times\mathbb{R}$, and in general a point described by $n$ numbers *is* an ordered list of $n$ numbers — written $\mathbb{R}^n$, the superscript counting how many slots the list has. The defining property of ordered pairs — equal exactly when the entries match — is what makes coordinates work at all, and it is why one point equalling another in $\mathbb{R}^n$ unpacks into $n$ separate equations between ordinary numbers.
+
+**A rule that needs two inputs has a product for its domain.** Anything you feed a pair to — the area of a rectangle from its two sides, the distance between two points on a line — takes its inputs from a product, and §3.1's definition covers it with no change at all. That is worth knowing now, because the moment a later course writes down a rule with two slots, none of this chapter has to be redone.
+
+Even in one variable the product is present: the graph of $f$ is $\{(x, f(x)) : x \in \operatorname{dom} f\}\subseteq \mathbb{R}\times\mathbb{R}$ — *the collection of input-output pairs, sitting inside the plane* — which is §3.1's definition of a function as a set of pairs. **The picture you have been drawing since algebra is a subset of a product**, and the vertical line test is the single-valuedness condition read off that subset.
+
+</WhereThisGoes>

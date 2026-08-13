@@ -17,14 +17,14 @@ $$
 \forall s_1, s_2 \in S,\ s_1 \neq s_2 \Rightarrow f(s_1) \neq f(s_2),
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces".*
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces". So the line reads: for any two inputs in $S$, being different forces their outputs to be different*
 
 equivalently, by contraposition,
 $$
 \forall s_1, s_2 \in S,\ f(s_1) = f(s_2) \Rightarrow s_1 = s_2. \tag{I}
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces".*
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces". So the line reads: the same claim contraposed: matching outputs force the inputs to have been the same. This is the version you actually use, because it starts from an equation rather than from a difference*
 
 Form (I) is the working definition. The reason is §1.8's decision rule: the first version has a negation as hypothesis and supplies nothing to compute with, while (I) hands you an equation. Every injectivity proof in mathematics opens by assuming $f(s_1) = f(s_2)$.
 
@@ -84,7 +84,7 @@ $$
 g(t) = \begin{cases} \text{the unique } s \text{ with } f(s) = t, & t \in \operatorname{Im}(f),\\ s_0, & \text{otherwise.}\end{cases}
 $$
 
-*Symbol by symbol: $\in$ is "is in".*
+*Symbol by symbol: $\in$ is "is in". So the line reads: send $t$ back to the one input that produced it whenever $t$ is hit at all, and to a fixed spare input otherwise. Injectivity is what makes *the one input* well defined*
 
 Uniqueness — so well-definedness of $g$ — is exactly injectivity. For $s \in S$ we have $g(f(s)) = s$, so $g \circ f = \mathrm{id}_S$.
 

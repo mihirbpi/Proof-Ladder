@@ -62,7 +62,7 @@ $$
 \neg(\neg p \wedge \neg q) \equiv \neg\neg p \vee \neg \neg q \equiv p \vee q,
 $$
 
-*Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
+*Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as". So the line reads: denying that both fail says the same as *at least one holds* — the two double negations cancel, leaving plain *$p$ or $q$**
 
 and negating gives $\neg(p \vee q) \equiv \neg p \wedge \neg q$ — *denying “$p$ or $q$” is claiming that neither one holds*. So negation undoes itself and exchanges $\wedge$ and $\vee$ — it keeps the structure and flips it. Each law is the other one seen in a mirror, and the mirroring holds wherever the laws do.
 
@@ -77,7 +77,7 @@ $$
 \neg\big(x \in \mathbb{Q} \;\wedge\; y \notin \mathbb{Q}\big) \;\equiv\; x \notin \mathbb{Q} \;\vee\; y \in \mathbb{Q}.
 $$
 
-*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\neg$ is "not", $\wedge$ is "and".*
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\neg$ is "not", $\wedge$ is "and". So the line reads: denying *$x$ is a fraction and $y$ is not* says the same as *either $x$ is not a fraction, or $y$ is one**
 
 The contrapositive (§1.7: swap the two halves and deny both) therefore reads: *if $x + y$ is rational, then $x$ is irrational or $y$ is rational.* That is a strictly weaker — and therefore easier — target than "$x$ is irrational and $y$ is rational," which is what a careless negation produces.
 
@@ -100,14 +100,14 @@ $$
 \neg(p_1 \vee p_2 \vee \cdots \vee p_n) \equiv \neg p_1 \wedge \neg p_2 \wedge \cdots \wedge \neg p_n,
 $$
 
-*Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
+*Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as". So the line reads: for *at least one of the list holds* to fail, every single entry on the list must fail*
 
 by induction on $n$ (Chapter 6 supplies the induction; the base case $n = 2$ is what we proved). Now let the list run on without end — replacing the chain of *and*s by "for all $x$" and the chain of *or*s by "there exists $x$" — and you get exactly the quantifier negation rules of §1.11:
 $$
 \neg \forall x\, p(x) \equiv \exists x\, \neg p(x), \qquad \neg \exists x\, p(x) \equiv \forall x\, \neg p(x).
 $$
 
-*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
+*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: *not every $x$ has the property* says the same as *some $x$ lacks it*, and *no $x$ has it* says the same as *every $x$ lacks it**
 
 Universal quantification really is an endless chain of *ands*, and *there exists* an endless chain of *ors*. The analogy is not decorative; it is the reason the rules look the same.
 

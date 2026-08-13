@@ -17,7 +17,7 @@ $$
 (g\circ f)(s) = g(f(s)),
 $$
 
-*Symbol by symbol: $\circ$ is "after".*
+*Symbol by symbol: $\circ$ is "after". So the line reads: applying $g$ after $f$ means feeding $s$ to $f$ first, then handing the result to $g$*
 
 defined exactly when the codomain of $f$ equals the domain of $g$. That $g \circ f$ is a function requires no verification: totality, single-valuedness, and codomain membership are inherited.
 
@@ -30,7 +30,7 @@ $$
 \big(h \circ (g\circ f)\big)(s) = h(g(f(s))) = \big((h\circ g)\circ f\big)(s),
 $$
 
-*Symbol by symbol: $\circ$ is "after".*
+*Symbol by symbol: $\circ$ is "after". So the line reads: grouping three functions either way gives the same recipe — feed to $f$, then $g$, then $h$ — so composition is associative and the brackets can be dropped*
 
 so parentheses may be dropped.
 
@@ -104,7 +104,7 @@ Composition is the operation the next two courses are organized around.
 **The chain rule is a theorem about composition.**
 $$(g\circ f)'(x) = g'\big(f(x)\big)\cdot f'(x).$$
 
-*Symbol by symbol: $\circ$ is "after".*
+*Symbol by symbol: $\circ$ is "after". So the line reads: the steepness of a composite — its derivative, the number saying how steeply a graph rises at a point — is the outer rule's steepness, measured at the inner rule's output, times the inner rule's steepness. Note where each is measured: that placement is forced by the composition, not a convention*
 
 Note where each function is evaluated — $g'$ at $f(x)$, not at $x$ — and note that this is forced by the definition of composition, not a convention. Most chain-rule errors are misreadings of which function acts first, which is the same right-to-left confusion this module flags.
 

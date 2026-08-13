@@ -1,0 +1,123 @@
+---
+level: l8
+title: Composition
+readingTimeMin: 9
+newTerms: ["composition", "identity function"]
+anchorExample: "a rule with a declared domain and codomain"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+For $f : S \to T$ and $g : T \to R$, the **composition** $g \circ f : S \to R$ is
+$$
+(g\circ f)(s) = g(f(s)),
+$$
+
+*Symbol by symbol: $\circ$ is "after". So the line reads: applying $g$ after $f$ means feeding $s$ to $f$ first, then handing the result to $g$*
+
+defined exactly when the codomain of $f$ equals the domain of $g$. That $g \circ f$ is a function requires no verification: totality, single-valuedness, and codomain membership are inherited.
+
+Read $g \circ f$ as "$g$ after $f$". The convention matches the nesting in $g(f(s))$ and is universal in mathematics; the opposite convention $f;g$ appears in computer science, and clashes between the two are a standard source of order errors when moving between subjects.
+
+## Algebraic structure
+
+**Associativity.** For $f : S\to T$, $g : T \to R$, $h : R \to Q$,
+$$
+\big(h \circ (g\circ f)\big)(s) = h(g(f(s))) = \big((h\circ g)\circ f\big)(s),
+$$
+
+*Symbol by symbol: $\circ$ is "after". So the line reads: grouping three functions either way gives the same recipe — feed to $f$, then $g$, then $h$ — so composition is associative and the brackets can be dropped*
+
+so parentheses may be dropped.
+
+**Identities.** $\mathrm{id}_S : S \to S$, $\mathrm{id}_S(s) = s$, satisfies $f \circ \mathrm{id}_S = f = \mathrm{id}_T \circ f$.
+
+**Non-commutativity.** $f(x)=x+1$, $g(x)=2x$ on $\mathbb{R}$ give $g\circ f = 2x+2$ and $f \circ g = 2x+1$. Often only one composite is even defined.
+
+Notice how little those three facts assume. Nothing below uses anything about *what* the sets contain — only that functions compose, that composing is associative, and that identity functions exist. That is why the same results come back unchanged in every later subject that has things and maps between them.
+
+## Preservation theorems
+
+> **Proposition.** If $f, g$ are injective, so is $g \circ f$. If $f, g$ are surjective, so is $g\circ f$.
+
+<Discussion>
+  <div slot="know">Injectivity in the form $f(a)=f(b) \Rightarrow a=b$; surjectivity in the form $\forall t\,\exists s$.</div>
+  <div slot="want">The same properties for the composite.</div>
+  <div slot="how">The injectivity argument peels the hypotheses from the outside in — $g$ first, then $f$. The surjectivity argument pulls back from the outside in as well — $g$ first, then $f$. In both, the *outer* function is used first, which is a useful mnemonic.</div>
+</Discussion>
+
+<Proof>
+*Injectivity.* Suppose $(g\circ f)(s_1) = (g\circ f)(s_2)$, i.e. $g(f(s_1)) = g(f(s_2))$. As $g$ is injective, $f(s_1) = f(s_2)$; as $f$ is injective, $s_1 = s_2$.
+
+*Surjectivity.* Let $r \in R$. As $g$ is surjective, there is $t \in T$ with $g(t) = r$. As $f$ is surjective, there is $s \in S$ with $f(s) = t$. Then $(g\circ f)(s) = g(t) = r$.
+</Proof>
+
+Consequently a composition of bijections is a bijection (§3.8).
+
+## Partial converses
+
+> **Proposition.** Let $f : S \to T$, $g : T \to R$.
+> 1. If $g \circ f$ is injective, then $f$ is injective.
+> 2. If $g \circ f$ is surjective, then $g$ is surjective.
+> 3. Neither conclusion can be strengthened to the other factor.
+
+<Proof>
+(1) Suppose $f(s_1) = f(s_2)$. Applying $g$, $(g\circ f)(s_1) = (g\circ f)(s_2)$, so injectivity of the composite gives $s_1 = s_2$.
+
+(2) Let $r \in R$. By surjectivity of $g \circ f$ there is $s \in S$ with $g(f(s)) = r$; then $t := f(s) \in T$ satisfies $g(t) = r$.
+
+(3) Take $S = \{a\}$, $T = \{1,2\}$, $R = \{x\}$, $f(a)=1$, $g(1)=g(2)=x$. Then $g\circ f$ is both injective and surjective, while $g$ is not injective and $f$ is not surjective.
+</Proof>
+
+The pattern is worth memorizing: **injectivity of a composite constrains the first map; surjectivity constrains the second.** It carries over unchanged to every later setting where things get mapped to other things, and it is the reason retracts and sections behave the way they do.
+
+<Warning title="Domain bookkeeping">
+$g \circ f$ requires $\operatorname{cod}(f) = \operatorname{dom}(g)$ *exactly*, not merely $\operatorname{Im}(f) \subseteq \operatorname{dom}(g)$. In practice people compose whenever the outputs fit, quietly shrinking the declared target of $f$ to make it work. This is harmless but worth noticing, because it changes the function (§3.1) and can change whether it is surjective.
+</Warning>
+
+## Composition and pre-images
+
+$$
+(g\circ f)^{-1}(U) = f^{-1}\big(g^{-1}(U)\big) \quad\text{for } U \subseteq R.
+$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\circ$ is "after". So the line reads: tracing back through both machines at once is the same as tracing back through the second, then the first.*
+
+<Proof>
+$s \in (g\circ f)^{-1}(U) \iff g(f(s)) \in U \iff f(s) \in g^{-1}(U) \iff s \in f^{-1}(g^{-1}(U))$, each step being the pivot equivalence of §3.3.
+</Proof>
+
+Note the reversal of order: tracing back through a composition undoes the second machine first (§3.4). That single line is why so many good properties survive composition — if each machine separately carries well-behaved collections to well-behaved collections, then so does the pair run in sequence.
+
+<Aside>
+The bijections (§3.8: a perfect one-to-one matching) from a set $X$ to itself are closed under composition, contain the identity, and contain the inverse of each of their members — the three properties this module proved. A collection of transformations with those three properties is the basic object of abstract algebra, and the bijections of a set are the model case.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+Composition is the operation the next two courses are organized around.
+
+**The chain rule is a theorem about composition.**
+$$(g\circ f)'(x) = g'\big(f(x)\big)\cdot f'(x).$$
+
+*Symbol by symbol: $\circ$ is "after". So the line reads: the steepness of a composite — its derivative, the number saying how steeply a graph rises at a point — is the outer rule's steepness, measured at the inner rule's output, times the inner rule's steepness. Note where each is measured: that placement is forced by the composition, not a convention*
+
+Note where each function is evaluated — $g'$ at $f(x)$, not at $x$ — and note that this is forced by the definition of composition, not a convention. Most chain-rule errors are misreadings of which function acts first, which is the same right-to-left confusion this module flags.
+
+The same shape turns up on the other side of the subject too. One of the main techniques for undoing a derivative amounts to spotting that the expression in front of you was built by composing — and spotting the composition is the whole difficulty.
+
+**One more place it shows up, if you have met it.** Some courses pack a transformation of the plane into a grid of numbers — you may have met these as *matrices* — and multiplying two grids means doing one transformation after the other. If you have, every rule you were given about them is a composition fact wearing a disguise:
+
+- Two grids can only be multiplied when their sizes match up, because $g \circ f$ needs $f$'s outputs to be the things $g$ accepts.
+- Order matters: doing $A$ then $B$ is generally not doing $B$ then $A$, which is this module's non-commutativity with the same counterexample behind it.
+- Regrouping does *not* matter, because composition is associative — proved above in four lines.
+- Multiplying by the do-nothing grid changes nothing, because the identity function is a unit for composition.
+- Undoing two grids reverses their order, because undoing two composed functions reverses theirs (§3.9).
+
+If you have not met them, nothing above is lost — the composition facts are the content, and the grids are one place they surface.
+
+</WhereThisGoes>

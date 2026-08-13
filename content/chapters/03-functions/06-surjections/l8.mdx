@@ -1,0 +1,115 @@
+---
+level: l8
+title: Onto (surjections)
+readingTimeMin: 9
+newTerms: ["surjective", "onto", "right inverse"]
+anchorExample: "a rule with a declared domain and codomain"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$f : S \to T$ is **surjective** when
+$$
+\forall t \in T,\ \exists s \in S,\ f(s) = t,
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: for every target $t$ there is some input $s$ landing on it. Nothing in the codomain is missed*
+
+equivalently $\operatorname{Im}(f) = T$, equivalently $f^{-1}(\{t\})$ is nonempty for every output $t$.
+
+Injectivity capped each of those sets at one element; surjectivity puts a floor under them. §3.8 imposes both.
+
+## Proof shape: arbitrary target, exhibited witness
+
+The definition is $\forall\exists$, so §1.12 dictates: fix arbitrary $t \in T$, construct $s \in S$ depending on $t$, verify $f(s) = t$. Two things to check are routinely skipped — that the construction is *defined* for every $t \in T$, and that the result *lies in $S$*.
+
+> **Proposition.** $g : \mathbb{R} \to \mathbb{R}_{>0}$, $g(x) = e^x$, is surjective.
+
+<Discussion>
+  <div slot="know">$t > 0$; $\ln : \mathbb{R}_{>0} \to \mathbb{R}$ exists and satisfies $e^{\ln t} = t$.</div>
+  <div slot="want">A real $x$ with $e^x = t$.</div>
+  <div slot="how">Take $x = \ln t$. The hypothesis $t > 0$ is exactly the condition under which $\ln t$ is defined — so the choice of codomain is not incidental to the proof, it is what makes the proof possible.</div>
+</Discussion>
+
+<Proof>
+Let $t \in \mathbb{R}_{>0}$ be arbitrary. Since $t > 0$, $x := \ln t$ is well defined — the logarithm returns exactly one value, and that value is real — so $x \in \mathbb{R}$. Then $g(x) = e^{\ln t} = t$. Since $t$ could have been any of them, $g$ is surjective.
+</Proof>
+
+A construction-free alternative, worth knowing because it generalizes: $\exp$ is continuous — unbroken, drawable without lifting the pen — on $\mathbb{R}$ with $\lim_{x\to-\infty} e^x = 0$ and $\lim_{x\to+\infty} e^x = +\infty$, so by the intermediate value theorem its image contains every $t > 0$. This is non-constructive in flavour — it shows a pre-image exists without producing one — but often the only available route.
+
+## Codomain dependence
+
+> $f : \mathbb{R}\to\mathbb{R}$, $f(x) = e^x$, is **not** surjective: $e^x > 0$ for all $x$, so $-1$ is unattained.
+
+Same rule, same domain as $g$; only the codomain differs, and the answer flips. Since the domain and codomain are part of what a function *is* (§3.1), $f$ and $g$ are different functions, and this is the cleanest demonstration of why that convention is not fussiness.
+
+<Warning title="An asymmetry between the two properties">
+Injectivity depends on the rule and the domain only — enlarging the codomain cannot create collisions. Surjectivity depends essentially on the codomain.
+
+So "is $f$ injective?" is well-posed given rule and domain; "is $f$ surjective?" is not well-posed until the codomain is declared. Students who report that surjectivity is the harder notion are usually reporting this asymmetry.
+</Warning>
+
+## Refutation
+
+By §1.11 the negation is
+$$
+\exists t \in T,\ \forall s \in S,\ f(s) \neq t.
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: the denial: there is a target that no input reaches at all — one unhit element is the whole of what it takes*
+
+Exhibiting the unhit $t$ is only half; the other half is a *universal* argument that nothing reaches it. In the example, $t = -1$ with the universal fact $e^x > 0$.
+
+## Equivalent formulations
+
+> **Proposition.** For $f : S \to T$, the following are equivalent:
+> 1. $f$ is surjective;
+> 2. $f$ has a **right inverse**: some $h : T \to S$ with $f \circ h = \mathrm{id}_T$;
+> 3. $f$ can be canceled from the right: for all $u, v : T \to R$, $u \circ f = v \circ f \Rightarrow u = v$;
+> 4. $f(f^{-1}(U)) = U$ for all $U \subseteq T$.
+
+<Proof title="Proof that (1) and (2) say the same thing">
+(forward) Suppose $f$ is surjective. For each $t \in T$ the set $f^{-1}(\{t\})$ is nonempty; **choose** an element $h(t)$ from each. Then $f(h(t)) = t$ for all $t$, so $f \circ h = \mathrm{id}_T$.
+
+(backward) Suppose $f \circ h = \mathrm{id}_T$ and let $t \in T$. Then $f(h(t)) = t$ with $h(t) \in S$, so $t \in \operatorname{Im}(f)$.
+</Proof>
+
+<Aside>
+The word **choose** in that proof is doing more work than it looks. Picking one element out of each of infinitely many sets, with no rule saying which to pick, is a real assumption and not a free move — and mathematicians argued about whether it was allowed for decades. The thing to notice is only that the word hides a step. Contrast the matching fact for injections (§3.5), where the inverse was *built* explicitly and no choosing was needed. The difference is real and it is worth feeling: one proof hands you the thing, the other only promises it exists.
+</Aside>
+
+## Surjectivity by adjusting the codomain
+
+Every $f : S \to T$ restricts to a surjection $S \to \operatorname{Im}(f)$, giving the standard factorization
+$$
+S \to \operatorname{Im}(f) \to T
+$$
+of any function as a surjection followed by an injection. This split — hitting everything first, then no collisions — is the standard way to take a function apart into its two possible failures, and it comes back repeatedly in the courses ahead.
+
+## Table
+
+| $f$ | Surjective? | Witness or obstruction |
+|---|---|---|
+| $\lfloor\cdot\rfloor : \mathbb{R}\to\mathbb{Z}$ | yes | $n \mapsto n$ |
+| $m : \mathbb{Z}^2 \to \mathbb{Z}$, $(a,b)\mapsto ab$ | yes | $n \mapsto (n,1)$ |
+| $x^2 : \mathbb{R}\to\mathbb{R}$ | no | $-1$ unhit, $x^2 \geq 0$ |
+| $x^2 : \mathbb{R}\to[0,\infty)$ | yes | $t \mapsto \sqrt t$ |
+| $1/x : \mathbb{R}\setminus\{0\} \to \mathbb{R}$ | no | $0$ unhit |
+| $1/x : \mathbb{R}\setminus\{0\} \to \mathbb{R}\setminus\{0\}$ | yes | $t \mapsto 1/t$ |
+| $\sin : \mathbb{R}\to[-1,1]$ | yes | an unbroken curve hits every value in between |
+
+<WhereThisGoes level="l8">
+
+**Surjectivity is the existence half of solving equations.** "$f$ is surjective" says $f(x)=t$ is solvable for every $t$; injectivity says the solution is unique. Nearly every existence-and-uniqueness theorem ahead is one of these two claims wearing different clothes.
+
+**One of the first theorems in calculus is an onto statement.** It says an unbroken curve takes *every* value between its starting height and its finishing height — in this module's language, it maps onto the stretch joining them. Every root-existence argument you will run is an application: to show $x^3 - x - 1$ has a root, note the polynomial is negative at $1$ and positive at $2$, and surjectivity onto $[f(1),f(2)]$ supplies a $c$ with $f(c)=0$.
+
+**The existence is non-constructive**, which §1.12 flagged. The theorem promises a root and produces none, and that gap is why bisection and Newton's method exist as separate topics.
+
+**And surjectivity remains a fact about the declared codomain.** $e^x$ is surjective onto $(0,\infty)$ and not onto $\mathbb{R}$ — which is exactly why $\ln$ has domain $(0,\infty)$, and why $\ln$ of a negative number is undefined rather than merely awkward.
+
+</WhereThisGoes>

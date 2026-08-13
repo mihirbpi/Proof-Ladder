@@ -1,0 +1,96 @@
+---
+level: l8
+title: The domino idea
+readingTimeMin: 8
+newTerms: ["induction"]
+anchorExample: "the odd numbers add up to a square"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Principle of Mathematical Induction.** Let $A(n)$ be a statement for each integer $n \geq n_0$. If $A(n_0)$ holds, and $A(k)\Rightarrow A(k+1)$ for every $k \geq n_0$, then $A(n)$ holds for all $n \geq n_0$.
+
+The domino picture is faithful: the base is the push, the step is the spacing. Both are load-bearing.
+
+- **No base.** "$n = n+1$ for all $n$" satisfies the step — $k = k+1$ does imply $k+1 = k+2$ — and is false throughout. The step holds vacuously (§1.5): a false hypothesis makes the conditional true.
+- **No step.** $A(n)$: "$n < 5$" has base $A(1)$ true and is false for $n \geq 5$.
+
+## Induction does not describe the counting numbers; it defines them
+
+Induction cannot be proved from "more basic" facts about the integers, because it *is* one of the basic facts. Chapter 7 identifies it as Peano's ninth axiom: $\mathbb{N}$ is the smallest set containing $0$ and closed under successor. Everything above $0$ is reachable by finitely many successor steps, and induction is the formal expression of that.
+
+Equivalently:
+
+> **The smallest-number principle.** Every non-empty collection of integers at or above $n_0$ has a smallest member.
+
+<Proof title="Induction gives the smallest-element principle">
+Suppose $S \subseteq \mathbb{Z}_{\geq n_0}$ is nonempty with no smallest member. Let $A(n)$ be "no element of $S$ is $\leq n$".
+
+$A(n_0)$ holds: otherwise $n_0 \in S$ would be least. If $A(k)$ holds and $k+1 \in S$, then $k+1$ would be least in $S$; so $A(k+1)$ holds.
+
+By induction $A(n)$ holds for all $n$, so $S = \emptyset$ — contradiction.
+</Proof>
+
+The converse also holds, so induction, the smallest-number principle, and the smallest-counterexample method are three presentations of one principle. Module 4.4 used the smallest-number principle to prove the division algorithm; that proof could equally have been written as an induction.
+
+## The motivating example
+
+$$\sum_{j=1}^n (2j-1) = n^2.$$
+
+Data: $1, 4, 9, 16, 25$. The structural observation licensing induction is that
+$$
+\sum_{j=1}^{k+1}(2j-1) = \left(\big(1 + 3 + \cdots + (2k-1)\big)\right) + (2k+1),
+$$
+so the $(k+1)$-case decomposes into the $k$-case plus a computable increment. Module 6.4 identifies this decomposability as the second requirement for induction to apply.
+
+Given it, the step is one line: $k^2 + (2k+1) = (k+1)^2$.
+
+## The two conditions, separately
+
+Neither condition alone is enough, and constructing the failures is the fastest way to see why both are stated.
+
+**Base without step.** Verify $A(1)$ and nothing more, and you have verified $A(1)$. Nothing follows about $A(2)$.
+
+**Step without base.** Let $A(n)$ be the claim $n = n+1$. The inductive step (§6.2: the part that carries each case to the next) is immediate: assume $k = k+1$ and add $1$ to both sides to get $k+1 = k+2$, which is $A(k+1)$. The chain is perfect and every case is false, because no base case holds.
+
+That second example is worth remembering, because it is the shape of the error graders actually see. A student proves the step, finds it convincing, and omits the base case (§6.2: the first case, checked on its own) as obvious — and "obvious" and "true" are different claims.
+
+**How many base cases?** As many as the step consumes. If $A(k+1)$ is derived from $A(k)$ alone, one base case (§6.2: the first case, checked on its own) is enough. If it reaches back to $A(k-1)$ as well — as every second-order recurrence does — then two are needed, or the chain has no footing.
+
+Counting what the step reaches back for, and verifying that many bases, is a mechanical check worth running before submitting any induction proof.
+
+## Why conjecture is not proof
+
+<Warning title="Long-lived false patterns">
+| Claim | Holds up to | Fails at |
+|---|---|---|
+| $n^2+n+41$ is prime | $n = 39$ | $n=40$ |
+| among $1,\ldots,n$, at least half the numbers have an odd number of prime factors | $\sim 9\times10^8$ | $906{,}150{,}257$ |
+| $n^{17}+9$ and $(n+1)^{17}+9$ share no factor above $1$ | $\sim 8\times10^{51}$ | first counterexample has 52 digits |
+
+Two of these had been checked past $10^8$ — the third past $10^{51}$ — and all three are false. There are worse cases still: one famous guess about how the prime numbers are spread out was disproved in 1985 without anyone ever exhibiting a single number that breaks it, so the counterexample is known to exist and remains unseen.
+
+Computational evidence and truth are genuinely different things.
+</Warning>
+
+By §1.11 this is structural, not one-off: $\forall n\,A(n)$ is refuted by one witness and confirmed by none. Verification is how conjectures are generated and how false ones are killed; it is never how true ones are proved.
+
+The practical discipline runs both ways. Compute cases first — to find the right statement, and to avoid attempting to prove something false — then prove.
+
+<Aside>
+The step is a conditional, $A(k)\Rightarrow A(k+1)$, so proving it legitimately assumes $A(k)$ (§1.5). This is not circularity, and the worry that it is dissolves once the quantifier structure is written out: what is proved is $\forall k\,\big(A(k)\Rightarrow A(k+1)\big)$, and nothing in that says $A(k)$ for any particular $k$. §6.2 goes on about this because it is the sticking point for essentially every student.
+</Aside>
+
+<WhereThisGoes level="l8">
+**Closed forms for sums are proved by induction.** $(1 + 2 + \cdots + n) = \frac{n(n+1)}{2}$, $(1 + 2 + \cdots + n)^2 = \frac{n(n+1)(2n+1)}{6}$, and the geometric sum $\sum_{j=0}^{n-1} ar^j = a\frac{1-r^n}{1-r}$ are all indexed by $n$ with a visible link between consecutive cases, and all are proved the same way.
+
+The geometric sum is the one that matters most. Its finite formula is proved by induction, and letting the number of terms grow without bound turns it into a single closed expression — the one endless sum you can evaluate exactly, early on. The induction is what makes that step meaningful.
+
+**Area calculations use these formulas.** Calculus defines the area under a curve by slicing it into $n$ thin strips and letting $n$ grow. Getting the area under $x^2$ that way means summing $\sum_{j=1}^n (j/n)^2\cdot\frac1n$ and taking a limit, and the closed form for $\sum j^2$ is what makes the limit computable. Without induction the definition of the integral would produce sums nobody could evaluate.
+
+**The cautionary example matters more than usual here.** $n^2+n+41$ produces primes for forty consecutive values and fails at the forty-first. Numerical evidence about a list of terms is evidence about finitely many of them, and lists are where the temptation to extrapolate is strongest — one can agree with a pattern for a million terms and then walk away from it.
+
+</WhereThisGoes>

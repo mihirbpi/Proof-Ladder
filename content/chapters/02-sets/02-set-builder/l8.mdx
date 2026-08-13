@@ -1,0 +1,127 @@
+---
+level: l8
+title: Set-builder notation
+readingTimeMin: 9
+newTerms: ["set-builder notation", "interval", "separation"]
+anchorExample: "roots of sin x and cos x"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Extensional description — listing — is available only for small finite sets. **Set-builder notation** describes a set by a rule rather than by a list:
+$$
+\{\, x \in A \mid p(x) \,\},
+$$
+
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the collection of those $x$ drawn from $A$ for which $p(x)$ is true*
+
+"the set of $x$ in $A$ such that $p(x)$", with defining property
+$$
+y \in \{x \in A \mid p(x)\} \;\Leftrightarrow\; y \in A \wedge p(y). \tag{1}
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that". So the line reads: $y$ belongs to that collection exactly when two things hold at once — $y$ was in $A$ to begin with, and $y$ satisfies $p$*
+
+Equation (1) is the workhorse of the entire chapter. Every proof about a set-builder set begins by applying it, converting a membership claim into a logical one where Chapter 1 applies, and ends by applying it in reverse.
+
+## The interface between the chapters
+
+The condition $p$ is an **open statement** — a sentence with an unpinned variable in it, the object §1.1 declined to call a statement. Set-builder notation does not close it with a quantifier; it uses it as a sorting device on $A$. The consequence is a systematic dictionary:
+
+| Logic (Ch. 1) | Sets (Ch. 2) |
+|---|---|
+| $p(x) \wedge q(x)$ | $\cap$ |
+| $p(x) \vee q(x)$ | $\cup$ |
+| $\neg p(x)$ | complement |
+| $p(x) \Rightarrow q(x)$ for all $x$ | $\subseteq$ |
+| $p(x) \Leftrightarrow q(x)$ for all $x$ | $=$ |
+
+Every theorem in the rest of this chapter is a theorem of Chapter 1 read through this table. De Morgan for sets (§2.7) is De Morgan for joining words; distributivity of $\cap$ over $\cup$ (§2.8) is distributivity of $\wedge$ over $\vee$; double inclusion (§2.6) is the decomposition of $\Leftrightarrow$ into two implications.
+
+## Why you must always say what you are drawing from
+
+Suppose you allowed $\{x \mid p(x)\}$ for *any* condition $p$ at all, with nothing said about where the $x$ come from. §2.1 showed what happens: take the condition "$x$ is not in itself" and the whole thing collapses. The rule that keeps it standing is to start from a set you already have and pick out part of it, so only
+$$
+\{\, x \in A \mid p(x) \,\} \quad\text{for $A$ already known to be a set,}
+$$
+
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the same filter, with the reminder that $A$ has to be a set you already have. That is what stops the construction from building anything out of nothing*
+
+is allowed — which is exactly the notation above. So writing down what you are drawing from is not just good manners for the reader. It is the thing that keeps the notation safe to use at all.
+
+And once the rule is in place, the argument that broke everything in §2.1 turns useful instead. Start from any set $A$ and collect the members of $A$ that are not in themselves. That collection cannot itself be a member of $A$ — the same question, *is it in itself?*, has the same two bad answers. Since $A$ was any set at all, no set has everything in it. What was a disaster is now a small theorem you can prove in three lines.
+
+<Warning title="Dropping the collection you are drawing from changes the object">
+$\{x \mid x^2 = 2\}$ is $\emptyset$ over $\mathbb{Q}$ and $\{\pm\sqrt2\}$ over $\mathbb{R}$. $\{x \mid x^2 = -1\}$ is $\emptyset$ over $\mathbb{R}$ and $\{\pm i\}$ over $\mathbb{C}$. Writers do omit the collection you are drawing from when it is fixed by context, and that is acceptable; writing it is safer, and inside a proof it is close to mandatory.
+</Warning>
+
+## Image-style notation
+
+A second common form describes elements by a formula rather than a filter:
+$$
+\{\, f(x) \mid x \in A \,\},
+\qquad\text{e.g.}\qquad
+\{\, n\pi \mid n \in \mathbb{Z} \,\},
+\quad
+\{\, 2k \mid k \in \mathbb{Z} \,\}.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the collection of values $f(x)$ as $x$ runs through $A$ — for instance every whole multiple of $\pi$, or every even integer*
+
+Here the bar separates a *term* from the range of its parameter, so
+$$
+y \in \{f(x) \mid x \in A\} \;\Leftrightarrow\; \exists x \in A,\; y = f(x).
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", the bar $\mid$ is "such that". So the line reads: $y$ belongs to that collection exactly when some $x$ in $A$ is sent to it. Membership here is an existence claim, which is why proving it means exhibiting a witness*
+
+Note the *there exists* quantifier — it is what makes this form behave differently in proofs from the filter form, whose unfolding is a conjunction. Formally this is Replacement rather than Separation, and it is the notation for the image of a function (§3.3).
+
+The two forms often describe the same set, and proving that they do is real work:
+$$
+\{\, x \in \mathbb{R} \mid \sin x = 0 \,\} \;=\; \{\, n\pi \mid n \in \mathbb{Z} \,\}.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the real numbers whose sine is zero are exactly the whole multiples of $\pi$ — two very different descriptions naming one set*
+
+The left is a filter; the right is an image. Extensionality says they are equal iff each contains the other, so the proof is a double inclusion (§2.6) — one direction needs the fact that $\sin$ vanishes only at integer multiples of $\pi$, the other only that $\sin(n\pi) = 0$.
+
+## Intervals
+
+For subsets of $\mathbb{R}$ defined by inequalities:
+$$
+(a,b) = \{x \in \mathbb{R} \mid a < x < b\}, \quad
+[a,b] = \{x \in \mathbb{R} \mid a \leq x \leq b\},
+$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the open interval is the reals strictly between $a$ and $b$; the closed interval is the reals from $a$ to $b$ with both ends included*
+
+with half-open variants, and $\infty$ always taking a round bracket since it is not an element of $\mathbb{R}$. Note that $(a,b) = \emptyset$ whenever $a \geq b$, and $[a,a] = \{a\}$ — degenerate cases that a careful proof must handle rather than dismiss.
+
+## Sets that are empty for a reason
+
+$$
+\{\, x \in \mathbb{R} \mid x^2 < 0 \,\} = \emptyset,
+\qquad
+\{\, n \in \mathbb{Z} \mid 2n = 1 \,\} = \emptyset.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\emptyset$ is the empty collection, the bar $\mid$ is "such that". So the line reads: no real squares to a negative and no integer doubles to $1$, so both collections are empty.*
+
+Both are legitimate descriptions selecting nothing. A set-builder expression is not required to be inhabited, and proving that one is empty is proving a universal negative — a $\forall x,\, \neg p(x)$ statement, with all the work §1.12 assigns to that task.
+
+<Aside>
+$\mathbb{Q} = \{p/q \mid p,q \in \mathbb{Z},\, q \neq 0\}$ hides a subtlety: the map $(p,q) \mapsto p/q$ is not injective (no two inputs share an output, §3.5), since $p_1/q_1$ and $p_2/q_2$ name the same rational exactly when $p_1q_2 = p_2q_1$. Constructed properly, $\mathbb{Q}$ is built by taking $\mathbb{Z} \times (\mathbb{Z}\setminus\{0\})$ and treating any two pairs related this way as one object. Extensionality is why the sloppy description still denotes the right set: repeated names of an element are invisible to a set.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+Set-builder notation is how the objects of both courses ahead are defined, and the collection you are drawing from is never decoration.
+
+**In calculus, the collection you are drawing from is what determines the answer.** The solution set of $x^2 = 2$ is $\{\pm\sqrt2\}$ over $\mathbb{R}$ and empty over $\mathbb{Q}$ (§4.7). The set $\{x : \sin x = 0\}$ is $\{k\pi : k \in\mathbb{Z}\}$ — an infinite set described by a parameter, which is how every trigonometric solution set is written, and the $k\in\mathbb{Z}$ is the collection you are drawing from doing its job.
+
+Domains are set-builder objects too. The set of $x$ for which $\sqrt{x^2-4}$ makes sense is $\{x \in \mathbb{R} : x^2 \geq 4\}$, and writing it that way says *why* each endpoint belongs — which the name of an interval never does.
+
+</WhereThisGoes>

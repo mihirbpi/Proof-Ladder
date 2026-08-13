@@ -1,0 +1,170 @@
+---
+level: l8
+title: Pre-images respect set operations
+readingTimeMin: 9
+newTerms: []
+anchorExample: "f(x) = x²"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Theorem.** Let $f : S \to T$. For all $U, V \subseteq T$ and every family $\{U_i\}_{i \in I}$ of subsets of $T$:
+> $$
+> f^{-1}\Big(U_1 \cup \cdots \cup U_n\Big) = f^{-1}(U_1) \cup \cdots \cup f^{-1}(U_n),
+> \quad
+> f^{-1}\Big(U_1 \cap \cdots \cap U_n\Big) = f^{-1}(U_1) \cap \cdots \cap f^{-1}(U_n),
+> \quad
+> f^{-1}\big(\overline U\big) = \overline{f^{-1}(U)}.
+> $$
+>
+> *So the three lines read: tracing back from a union gives the union of the traced-back pieces; tracing back from an overlap gives the overlap of them; and tracing back from everything-outside-$U$ gives everything outside the traced-back $U$.*
+
+No hypotheses on $f$. The pre-image operator $f^{-1} : \mathcal{P}(T) \to \mathcal{P}(S)$ preserves every operation of the chapter — union, intersection, complement — and it also preserves $\emptyset$, $T \mapsto S$, and inclusions.
+
+## The pivot
+
+Every proof reduces to
+$$
+x \in f^{-1}(U) \iff f(x) \in U, \tag{1}
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when". So the line reads: $x$ is in the pre-image of $U$ exactly when $f$ sends $x$ into $U$. Every proof in this module unfolds membership with this one line and then works in the target*
+
+which is the definition. (1) contains **no quantifier**, and that is the entire reason the theorem holds unconditionally.
+
+<Discussion>
+  <div slot="know">(1); and that union, intersection and complement unfold into *there exists*, *for all* and *not*.</div>
+  <div slot="want">Three set equalities.</div>
+  <div slot="how">Chase an arbitrary $x \in S$ through a chain of if-and-only-if statements: apply (1), unfold the set operation into a logical one, then apply (1) pointwise to move back. Because every link is an equivalence, one chain proves both inclusions.</div>
+</Discussion>
+
+<Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cup$ is "pooled with", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\iff$ and $\Leftrightarrow$ are "exactly when". In words, what follows shows: each chain unfolds "traces back from" into a condition on the output, then reassembles it.*
+
+Let $x \in S$ be arbitrary.
+
+*Unions.*
+$$
+x \in f^{-1}\Big(U_1 \cup \cdots \cup U_n\Big)
+\iff f(x) \in U_1 \cup \cdots \cup U_n
+\iff \exists i,\ f(x) \in U_i
+\iff \exists i,\ x \in f^{-1}(U_i)
+\iff x \in f^{-1}(U_1) \cup \cdots \cup f^{-1}(U_n).
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", $\cup$ is "pooled with". So the line reads: landing in a pool means landing in at least one piece, which means $x$ is in at least one of the pre-images — so the pre-image of a pool is the pool of the pre-images*
+
+*Intersections.* Identical with $\forall$ in place of $\exists$.
+
+*Complements.*
+$$
+x \in f^{-1}(\overline U)
+\iff f(x) \in \overline U
+\iff \neg\big(f(x) \in U\big)
+\iff \neg\big(x \in f^{-1}(U)\big)
+\iff x \in \overline{f^{-1}(U)}.
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", the bar on top is "everything outside". So the line reads: landing outside $U$ is exactly failing to land in $U$, which is exactly failing to be in the pre-image — so the pre-image of an outside is the outside of the pre-image*
+
+Each chain consists of if-and-only-if statements, so each proves both inclusions.
+</Proof>
+
+Two features worth noting. The proofs work for arbitrary index sets $I$, since the quantifiers $\exists i$ and $\forall i$ never had to be finite. And the complements are taken in different universes — $T$ inside, $S$ outside — which is exactly why §2.5 insisted the universe be named.
+
+## The image operator, and its failures
+
+$$
+f\Big(A_1 \cup \cdots \cup A_n\Big) = f(A_1) \cup \cdots \cup f(A_n) \quad\text{always},
+$$
+
+*Symbol by symbol: $\cup$ is "pooled with". So the line reads: images do respect pooling, with no condition attached*
+
+$$
+f(A \cap B) \subseteq f(A) \cap f(B),\qquad
+f\big(\overline A\big) \text{ and } \overline{f(A)} \text{ unrelated.}
+$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: but images only sit inside the overlap, not equal to it; and an image of an outside has no fixed relation to the outside of an image*
+
+The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f(a) = t$. A *there is* out front (§1.10) can be swapped past an $\vee$ (so past unions) but not with $\wedge$: from $\exists a \in A,\ f(a)=t$ and $\exists b \in B,\ f(b)=t$ one cannot conclude that a *single* element of $A \cap B$ maps to $t$.
+
+**Counterexample.** $f(x)=x^2$ on $\mathbb{R}$, $A = \{2\}$, $B = \{-2\}$: $f(A \cap B) = \emptyset$ but $f(A) \cap f(B) = \{4\}$.
+
+> **Proposition.** $f(A \cap B) = f(A) \cap f(B)$ for all $A, B \subseteq S$ if and only if $f$ is injective (§3.5: no two inputs share an output).
+
+<Proof>
+(backward) Suppose $f$ injective (§3.5: no two inputs share an output). The inclusion $\subseteq$ always holds. For $\supseteq$: let $t \in f(A) \cap f(B)$, so $t = f(a) = f(b)$ with $a \in A$, $b \in B$. Injectivity gives $a = b$, so this common element lies in $A \cap B$ and $t \in f(A \cap B)$.
+
+(forward) Suppose $f$ is not injective (§3.5: no two inputs share an output), say $f(a) = f(b) = t$ with $a \neq b$. Take $A = \{a\}$, $B = \{b\}$. Then $f(A \cap B) = f(\emptyset) = \emptyset$ while $f(A)\cap f(B) = \{t\} \neq \emptyset$.
+</Proof>
+
+So every misbehavior of the image operator is a symptom of non-injectivity, and all of it disappears for bijections (§3.8: a perfect one-to-one matching).
+
+## The one inequality behind all of it
+
+For all $A \subseteq S$, $U \subseteq T$:
+$$
+f(A) \subseteq U \iff A \subseteq f^{-1}(U).
+$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when". So the line reads: the image of $A$ landing inside $U$ says the same thing as $A$ sitting inside the pre-image of $U$*
+
+Read left to right, it says an image is constrained *from above* by $U$; read right to left, a pre-image is constrained *from below* by $A$. The two operators are locked together by that one statement.
+
+This single fact explains the whole module. The operator standing on the **left** of such a pairing always preserves unions and may fail on intersections — which is exactly the behavior of $f$. The operator standing on the **right** always preserves intersections. And $f^{-1}$ stands on the right here, while standing on the left in a second such pairing — so it preserves both. Being on both sides at once is a strong condition, and it is why $f^{-1}$ is the well-behaved operator.
+
+<Warning title="State conditions with pre-images">
+This is why continuity reads
+$$
+f \text{ continuous} \iff f^{-1}(\text{open}) \text{ is open},
+$$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when". So the line reads: a function counts as unbroken exactly when pulling any *gap-free stretch* of the target back through $f$ gives a gap-free stretch of the source. The point is not the condition itself but that it is stated by pulling **back**, which is the direction that behaves*
+
+not $f(\text{open})$ open. That second condition defines *open maps*, a genuinely different class: $f(x) = x^2$ is continuous but not open, since $f\big((-1,1)\big) = [0,1)$.
+
+The same choice recurs wherever a definition has to survive composition (§3.7: doing one rule and then another) — pre-images compose cleanly, and that is exactly why the definition is stated with them.
+</Warning>
+
+*A reminder of the symbols in play: $\circ$ reads "after".*
+
+<Aside>
+Because $f^{-1}$ reverses direction — a map $S \to T$ induces $\mathcal{P}(T) \to \mathcal{P}(S)$ — the assignment reverses direction. That reversal is the whole story of this module. It is worth noticing how often the backwards direction is the better behaved one — tracing back from the outputs respects everything, while pushing forward from the inputs does not.
+</Aside>
+
+## Why the asymmetry is the point
+
+Gather what this module proved. Pre-images respect **everything**: union, intersection, complement, all with equality. Images respect union only, and for intersection give containment in one direction with no reverse.
+
+That imbalance is not an accident of the proofs, and it is worth seeing exactly where it comes from.
+
+Membership in a pre-image unfolds to a statement about **one** element: $x \in f^{-1}(U)$ says $f(x) \in U$, full stop. Every set operation is defined by a logical connective applied to statements like that, and the unfolding passes straight through.
+
+Membership in an image unfolds to an **existence** claim: $t \in f(A)$ says *some* $a$ in $A$ has $f(a) = t$. Existence claims survive *or* — a witness for either side is a witness — but they do not survive *and*. A witness in $A$ and a witness in $B$ need not be the same witness, and when they are different the intersection is empty while both images contain $t$.
+
+**One quantifier is the whole explanation.** Every failure of images in this module traces to it, and so does the fact that continuity is defined by pulling back rather than pushing forward: the well-behaved direction is the one with no existence claim in it.
+
+<WhereThisGoes level="l8">
+
+The asymmetry proved here is the reason several later definitions are stated with $f^{-1}$ rather than $f$, and it is worth recognizing when you meet them.
+
+**Solving systems with several conditions.** The set of $\mathbf{x}$ satisfying $A\mathbf{x}\in B$ **and** $A\mathbf{x}\in C$ is
+$$A^{-1}(B\cap C) = A^{-1}(B)\cap A^{-1}(C),$$
+
+*Symbol by symbol: $\cap$ is "overlapped with". So the line reads: the same pattern one subject over: pulling back an overlap gives the overlap of the pull-backs*
+
+so the conditions may be handled separately and intersected. Attempting the same split on the output side fails, for the counterexample this module gives.
+
+That identity is what licenses solving a system one equation at a time and intersecting the solution sets — a procedure so familiar it is easy to miss that it needs justifying.
+
+**In calculus, the pre-image formulation is what makes domain computations composable.** The domain of the composite $g\circ f$ (§3.7) is $\{x\in\operatorname{dom} f : f(x)\in\operatorname{dom} g\} = \operatorname{dom} f \cap f^{-1}(\operatorname{dom} g)$, and computing it for a three-fold composition is a matter of intersecting pre-images — which works exactly because pre-images distribute.
+
+**The general lesson:** when a definition could be stated with images or with pre-images, it will be stated with pre-images, and this module is why.
+
+</WhereThisGoes>

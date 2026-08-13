@@ -20,7 +20,7 @@ S \cup T = \{x \mid x \in S \vee x \in T\},
 S \cap T = \{x \mid x \in S \wedge x \in T\}.
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with", $\cap$ is "overlapped with".*
+*Symbol by symbol: $\in$ is "is in", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: the union of $S$ and $T$ is everything lying in $S$ or in $T$; the intersection is everything lying in $S$ and in $T$*
 
 The definitions are transcriptions of $\vee$ and $\wedge$, and the working forms — the ones every proof in Chapter 2 unfolds to — are
 $$
@@ -29,7 +29,7 @@ x \in S \cup T \iff (x \in S) \vee (x \in T),
 x \in S \cap T \iff (x \in S) \wedge (x \in T). \tag{1}
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with".*
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with". So the line reads: being in the union is being in at least one of them, and being in the intersection is being in both. These two lines are what every later proof about unions and intersections unfolds to*
 
 <Figure alt="Two overlapping circles S and T, fully shaded: the union." caption="$S \cup T$">
   <VennTwo labelS="S" labelT="T" shade={["S-only", "T-only", "both"]} />
@@ -106,7 +106,7 @@ $$
 M_{12} \cap M_{18} = \{36,72,\ldots\} = M_{36}, \quad \min = 36 = \operatorname{lcm}(12,18).
 $$
 
-*Symbol by symbol: $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cap$ is "overlapped with". So the line reads: the numbers that are multiples of both $12$ and $18$ are exactly the multiples of $36$, and the smallest of them is $36$ — the least common multiple*
 
 The second display contains a genuine theorem: the common multiples of $a$ and $b$ are exactly the multiples of $\operatorname{lcm}(a,b)$. Dually, $D_a \cap D_b = D_{\gcd(a,b)}$. These say that $\gcd$ and $\operatorname{lcm}$ play exactly the roles $\cap$ and $\cup$ play for sets, now for the divisibility order on $\mathbb{Z}_{>0}$ — the same pattern a second time, and the reason gcd/lcm identities mirror $\cap$/$\cup$ identities so exactly. Both distributive laws hold there too, and for the same structural reason.
 
@@ -117,20 +117,20 @@ $$
 A_1 \cup A_2 \cup \cdots \cup A_n = \{x \mid x \text{ lies in at least one } A_i\},
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\cup$ is "pooled with", the bar $\mid$ is "such that". So the line reads: pooling any number of sets gives everything lying in at least one of them*
 
 $$
 A_1 \cap A_2 \cap \cdots \cap A_n = \{x \mid x \text{ lies in every } A_i\}.
 $$
 
-*Symbol by symbol: $\cap$ is "overlapped with", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\cap$ is "overlapped with", the bar $\mid$ is "such that". So the line reads: overlapping any number of sets gives everything lying in every one of them*
 
 The two-set operations were *or* and *and*; the long ones are *there exists an $i$* and *for every $i$*. This is the escalation §1.11 described, and it is why De Morgan for many sets,
 $$
 \overline{A_1 \cup \cdots \cup A_n} = \overline{A_1} \cap \cdots \cap \overline{A_n},
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: everything outside a pool of sets is exactly what lies outside all of them at once — the pooling turns into overlapping when you step outside*
 
 is proved by exactly the argument that turns *not there exists* into *for all not*.
 

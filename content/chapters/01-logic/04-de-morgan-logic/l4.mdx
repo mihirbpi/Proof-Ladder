@@ -80,6 +80,26 @@ The single most common error with De Morgan is negating both parts and keeping t
 Check row 2 of the first table: $p$ true, $q$ false. The left side is T, the right side is F. Different columns, so not equivalent. Keeping the joining word makes the negation *too strong* — it claims both parts failed when only one had to.
 </Warning>
 
+## Reading the laws in everyday language
+
+The two laws are not mathematical curiosities; you already use them, and hearing them in ordinary sentences makes them hard to forget.
+
+Suppose a sign reads **"you must be tall enough and have a ticket."** What does it take to be turned away? Not failing both — failing *either* is enough. Denial of an *and* is an *or*.
+
+Now a sign reading **"we accept cash or card."** What does it take for a payment to be refused? It must fail on cash **and** fail on card. One failure is not enough. Denial of an *or* is an *and*.
+
+Notice how the strength moves. The first denial is easy to satisfy — one failure does it. The second is hard — everything must fail. That is exactly the pattern the truth tables recorded, and it is why the joining word has to flip: keeping it would make one denial too strong and the other too weak.
+
+## A test you can run on yourself
+
+Here is a check worth doing whenever a denial feels uncertain. Take the statement, imagine the single cheapest way for it to fail, and see whether your denial covers that case.
+
+For *"$n$ is even and $n > 2$"*, the cheapest failure is $n = 3$: odd, but comfortably above $2$. A denial reading *"$n$ is odd and $n \leq 2$"* does not cover $n = 3$ — so that denial is wrong, and the cheapest case exposed it in one line.
+
+For *"$n$ is even or $n > 2$"*, the cheapest failure has to defeat both halves at once, and $n = 1$ does it. A denial reading *"$n$ is odd or $n \leq 2$"* would count $n = 4$ as a failure, which it plainly is not.
+
+One well-chosen number settles it either way, and choosing the number is faster than staring at the symbols.
+
 ## Why this matters more than it looks
 
 Almost every theorem you will meet has a compound hypothesis: "if $n$ is even **and** $n > 2$, then …". To prove such a theorem by contrapositive (module 1.8) you must deny that hypothesis — and if you deny it wrongly, you will spend an afternoon proving the wrong statement. De Morgan keeps you honest: the denial is *$n$ is odd **or** $n \leq 2$*, not both at once.

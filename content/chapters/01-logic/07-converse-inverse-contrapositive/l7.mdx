@@ -47,7 +47,7 @@ p \Rightarrow q \;\equiv\; \neg q \Rightarrow \neg p,
 q \Rightarrow p \;\equiv\; \neg p \Rightarrow \neg q,
 $$
 
-*Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\equiv$ is "says the same as".*
+*Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: *$p$ forces $q$* says the same as *$q$ failing forces $p$ to fail*; and the converse says the same as the inverse. The original pairs with the contrapositive, and the converse pairs with the inverse*
 
 and the two pairs disagree in rows 2 and 3, so neither pair forces the other. The converse and inverse are the contrapositives of each other, which is why any counterexample (§1.11: one case where the claim fails) to one is automatically a counterexample to the other.
 
@@ -82,14 +82,14 @@ $$
 \neg\big(x \in \mathbb{Q} \wedge y \notin \mathbb{Q}\big) \equiv x \notin \mathbb{Q} \vee y \in \mathbb{Q},
 $$
 
-*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\neg$ is "not", $\wedge$ is "and".*
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\neg$ is "not", $\wedge$ is "and". So the line reads: denying *$x$ is a fraction and $y$ is not* says the same as *either $x$ is not a fraction, or $y$ is one**
 
 so the contrapositive reads
 $$
 x + y \in \mathbb{Q} \;\Rightarrow\; \big(x \notin \mathbb{Q} \;\vee\; y \in \mathbb{Q}\big).
 $$
 
-*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\Rightarrow$ is "forces", $\vee$ is "or".*
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\notin$ is "is not in", $\in$ is "is in", $\Rightarrow$ is "forces", $\vee$ is "or". So the line reads: if $x+y$ is a fraction, then either $x$ is not a fraction or $y$ is one*
 
 A disjunctive conclusion is proved by the standard maneuver: assume one half of the *or* fails and prove the other holds. Then: assume $x + y$ rational and $x$ rational; then $y = (x+y) - x$ is a difference of rationals, so rational — which is the other half of the *or*. Notice that the correct De Morgan negation was essential; the naive negation "$x$ is irrational **and** $y$ rational" is a strictly stronger conclusion, and it is not provable from the hypothesis.
 

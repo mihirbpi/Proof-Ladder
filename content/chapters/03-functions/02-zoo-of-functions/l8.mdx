@@ -1,0 +1,114 @@
+---
+level: l8
+title: A zoo of functions
+readingTimeMin: 9
+newTerms: ["floor function", "Euler's totient", "well-defined"]
+anchorExample: "the floor function"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+§3.1's definition mentions neither formulas nor numbers. This module exercises that generality, because the tacit identification of *function* with *expression* is the single most limiting misconception a student brings into a proofs course.
+
+## Floor
+
+$$
+\lfloor \cdot \rfloor : \mathbb{R} \to \mathbb{Z}, \qquad \lfloor x \rfloor = \max\{ n \in \mathbb{Z} \mid n \leq x \}.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that", the arrow says what goes in and what comes out. So the line reads: floor takes a real number and returns the largest integer not above it.*
+
+That the maximum exists — that $\{n \in \mathbb{Z} \mid n \leq x\}$ is nonempty and bounded — never exceeding some fixed size — above, and that a nonempty set of integers bounded above has a greatest element — is the fact that the whole numbers climb past any real, together with there always being a smallest one. Floor is not a triviality; it depends on the reals having no gaps.
+
+The working characterization:
+$$
+\lfloor x \rfloor = n \iff n \in \mathbb{Z} \text{ and } n \leq x < n+1.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\Leftrightarrow$ is "exactly when". So the line reads: the floor of $x$ is the integer $n$ sitting at or just below $x$, with the next integer already past it*
+
+From it: $\lfloor x + m \rfloor = \lfloor x \rfloor + m$ for $m \in \mathbb{Z}$; $x - 1 < \lfloor x \rfloor \leq x$; and $\lfloor -2.3 \rfloor = -3$, not $-2$. Floor is not truncation, and conflating them is a standard source of off-by-one errors.
+
+Floor is neither injective ($\lfloor 3.1 \rfloor = \lfloor 3.9 \rfloor$) nor continuous — unbroken, drawable without lifting the pen —, but it is surjective (§3.6: every possible output is hit) onto $\mathbb{Z}$ and monotone — an illustration that useful functions need not be well behaved.
+
+## Euler's totient
+
+$$
+\operatorname{tot}(n) = \big|\{ k \in \mathbb{Z} \mid 1 \leq k \leq n,\ \gcd(k,n)=1 \}\big|.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: count how many of $1$ through $n$ share no factor with $n$.*
+
+Values: $\operatorname{tot}(1)=1$, $\operatorname{tot}(6)=2$, $\operatorname{tot}(8)=4$, $\operatorname{tot}(9)=6$, $\operatorname{tot}(12)=4$.
+
+> **Proposition.** $\operatorname{tot}(p) = p-1$ for $p$ prime.
+
+<Proof>
+Let $p$ be prime and let $1 \leq k \leq p$. If $k < p$ then $\gcd(k,p)$ divides $p$, so it is $1$ or $p$; it cannot be $p$ since $p \nmid k$ — read *"$p$ does not divide $k$"* — for $0 < k < p$. So $\gcd(k,p) = 1$, and all $p-1$ such $k$ are counted. Finally $\gcd(p,p) = p \neq 1$, so $k = p$ is not counted. Therefore $\operatorname{tot}(p) = p-1$.
+</Proof>
+
+$\operatorname{tot}$ is *multiplicative*: $\operatorname{tot}(mn) = \operatorname{tot}(m)\operatorname{tot}(n)$ when $\gcd(m,n)=1$, which with $\operatorname{tot}(p^k) = p^k - p^{k-1}$ gives
+$$
+\operatorname{tot}(n) = n \prod_{p \mid n}\left(1 - \frac1p\right).
+$$
+
+*Symbol by symbol: the bar $\mid$ is "such that". So the line reads: the count is $n$ scaled down once for each distinct prime dividing $n$*
+
+Note that this "formula" takes for granted the factorization of $n$; it is not an evaluation procedure. The gap between *characterized* and *computable* is exactly where cryptography lives.
+
+## Functions of two inputs, two ways
+
+$m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$, $m(a,b) = ab$, is a function whose domain is a product set (§2.9). Treating a two-input operation as a function is what lets §3.5–3.6 apply to it: $m$ fails injectivity ($m(6,4)=m(2,12)$) and satisfies surjectivity ($m(n,1)=n$).
+
+There is a second way to see the same thing: $m$ corresponds to $\hat m : \mathbb{Z} \to (\mathbb{Z} \to \mathbb{Z})$, which takes $a$ and hands back the machine *multiply by $a$*. The two views are interchangeable, and the second is how one sees at a glance that $\hat m(0)$ is the constant zero map while $\hat m(a)$ for $a \neq 0$ is injective (§3.5: no two inputs share an output).
+
+## Domain restrictions are theorems
+
+$$
+r : \mathbb{R}\setminus\{0\} \to \mathbb{R},\ r(x)=1/x;
+\qquad
+\ell : \mathbb{R}_{>0} \to \mathbb{R},\ \ell(x) = \ln x.
+$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, the arrow says what goes in and what comes out. So the line reads: each excludes exactly the inputs where its rule would fail.*
+
+The excluded points are not conventions. There is no real $y$ with $0 \cdot y = 1$, so $1/0$ names nothing; and $\exp(\mathbb{R}) = \mathbb{R}_{>0}$, so $\ln x$ has no value for $x \leq 0$. In each case the domain is the largest set on which totality holds, and identifying it is a small theorem.
+
+<Warning title="Well-definedness on quotients">
+When the domain has elements with several names, a rule must be checked to be name-independent.
+
+- **Not a function.** $f(p/q) = p+q$ on $\mathbb{Q}$: $\tfrac12 = \tfrac24$ but $3 \neq 6$.
+- **A function.** Sort the integers by the remainder they leave on division by $n$, and send each pile to the pile its squares land in. This works — but only because two integers with the same remainder always have squares with the same remainder, and that needs proving. It is the whole content of the claim.
+- **Not a function.** Send each such pile to *a number in it*. No member of a pile is the official one, so the answer depends on which name you happened to pick.
+
+Every definition on objects with more than one name — remainder arithmetic, the fractions built as pairs of integers (§4.5), and every later construction that declares two things equal — carries this thing to check, and it is the step first-time provers most often skip.
+</Warning>
+
+<Aside>
+Functions can act on functions. Differentiation — the operation that measures how steeply a graph is rising — $D : C^1(\mathbb{R}) \to C^0(\mathbb{R})$ and definite integration — adding up thin strips to get a total — $I : C^0([a,b]) \to \mathbb{R}$ are functions whose domains are sets of functions. Nothing in §3.1 forbids this, and the whole of functional analysis lives there.
+</Aside>
+
+## Where the totient earns its keep
+
+§3.2 introduced $\operatorname{tot}(n)$ as a function worth having. Here is the one sentence about why anyone outside number theory cares.
+
+Take two large primes $p$ and $q$ and publish their product $n = pq$, keeping the primes to yourself. Anyone can see $n$. Almost nobody can recover $p$ and $q$ from it, because no fast way of factoring large numbers is known — and without them, $\operatorname{tot}(n) = (p-1)(q-1)$ stays hidden too.
+
+That asymmetry between multiplying (easy) and factoring (hard) is what public-key cryptography is built on, and the totient is the quantity the whole scheme turns on. Every encrypted connection you open today runs on the gap between those two costs.
+
+Worth noticing what is *not* being claimed: nobody has proved factoring is hard. The security rests on nobody having found a fast method, which is a weaker statement than a theorem and is exactly why the subject stays interesting.
+
+<WhereThisGoes level="l8">
+**A sequence is a function $\mathbb{N}\to\mathbb{R}$.** Writing $a_n$ instead of $a(n)$ is notation, not a different kind of object — which is why sequences have limits, why they can be monotone or bounded, and why the theorems about sequences and about functions look so alike. Recognizing the identification early saves relearning the same material twice.
+
+**Piecewise definitions are the norm, not the exception.** $|x|$, the floor function, and every function defined by cases require the two things to check this module names: exhaustive cases and agreement where they overlap. Continuity at a boundary between pieces is then a genuine question, and it is exactly where the standard exam problems live.
+
+**Functions with no formula are common in calculus.** The running total that a rate builds up to is a perfectly good function of where you stop, even when no formula for it exerywhere, with no expression in terms of elementary functions. So is the answer to a problem that only says how a quantity is changing, when no formula for it exists. Insisting a function be a formula would exclude both, and much of the subject with them.
+
+That last example is where the abstraction pays. **Nothing in §3.1 required inputs to be numbers**, so the whole of Chapters 3's toolkit — injective, surjective, invertible, composition — applies to differentiation, and it is genuinely useful there.
+
+
+</WhereThisGoes>

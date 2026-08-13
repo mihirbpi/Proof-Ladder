@@ -1,0 +1,126 @@
+---
+level: l8
+title: Modulus
+readingTimeMin: 8
+newTerms: ["absolute value", "triangle inequality", "norm"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+|z| = \sqrt{a^2+b^2} = \sqrt{z\bar z} \in \mathbb{R}_{\geq0}, \qquad z = a+bi.
+$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in". So the line reads: the absolute value is straight-line distance from the origin, always an ordinary non-negative real.*
+
+Geometrically the Euclidean distance from $0$ to $z$; algebraically the square root of $z\bar z$ (§5.4). The identity $|z|^2 = z\bar z$ is the working form — proofs about absolute values should almost always square first and use conjugates, never manipulate radicals.
+
+## Three properties that do all the work
+
+> **Proposition.** For all $z,w \in \mathbb{C}$:
+>
+> (i) $|z| \geq 0$, with equality iff $z = 0$;
+>
+> (ii) $|zw| = |z||w|$;
+>
+> (iii) $|z+w| \leq |z| + |w|$.
+
+<Proof>
+(i) $|z|^2 = a^2+b^2$ is a sum of real squares, zero iff both vanish.
+
+(ii) $|zw|^2 = zw\overline{zw} = z\bar z\, w\bar w = |z|^2|w|^2$, using multiplicativity of conjugation. Both sides are non-negative reals with equal squares.
+
+(iii) First, $\operatorname{Re}(u) \leq |u|$ for any $u$, since $\operatorname{Re}(u)^2 \leq \operatorname{Re}(u)^2 + \operatorname{Im}(u)^2$. Then
+$$
+|z+w|^2 = (z+w)\overline{(z+w)} = |z|^2 + z\bar w + \bar z w + |w|^2 = |z|^2 + 2\operatorname{Re}(z\bar w) + |w|^2,
+$$
+
+*Symbol by symbol: the bar on top means the **conjugate** — the same number with the sign of its up part flipped. So the line reads: expanding the square of a sum leaves a middle term that is not $2|z||w|$ but twice the across part of $z\bar w$ — and that is exactly where the triangle inequality's slack comes from*
+
+using $\bar z w = \overline{z\bar w}$ and $u + \bar u = 2\operatorname{Re}(u)$. So
+$$
+|z+w|^2 \leq |z|^2 + 2|z\bar w| + |w|^2 = |z|^2 + 2|z||w| + |w|^2 = (|z|+|w|)^2,
+$$
+and taking non-negative square roots gives the result.
+</Proof>
+
+These three properties are exactly what a sensible notion of distance has to satisfy, and they are the ones every later argument about $|z|$ will cite.
+
+Property (ii) is the unusual one. Size behaving multiplicatively is a genuine feature of $\mathbb{C}$ and not a formal consequence of the other two — a notion of distance on a system with no multiplication in it could not state (ii) at all.
+
+Equality in (iii) holds iff $\operatorname{Re}(z\bar w) = |z\bar w|$, i.e. iff $z\bar w \geq 0$, i.e. iff $z$ and $w$ have the same argument — the geometric statement that the triangle degenerates.
+
+Useful consequences: the reverse triangle inequality $\big||z|-|w|\big| \leq |z-w|$, and $|z^n| = |z|^n$ by induction (§6.1: prove the first case, then that each case forces the next) from (ii).
+
+## Metric structure
+
+Setting $d(z,w) = |z-w|$ gives $\mathbb{C}$ the same notion of distance as the Euclidean plane, and that is what makes analysis possible in the absence of an order (§5.2): a sequence settling towards a value, continuity and derivatives — the numbers saying how steeply a graph is rising at each point, which is what a first calculus course is built to compute — all require only a way of measuring how far apart two points are, not a way of saying which is larger.
+
+$$
+z_n \to z \iff |z_n - z| \to 0 \iff \operatorname{Re}z_n \to \operatorname{Re}z \text{ and } \operatorname{Im}z_n \to \operatorname{Im}z.
+$$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when". So the line reads: a sequence of complex numbers approaches $z$ exactly when the distance between them shrinks to nothing, which happens exactly when the across parts and the up parts each converge separately*
+
+The no-gaps property carries over from the reals coordinate by coordinate, and it is what makes the endless sums of §5.7 add up to anything at all.
+
+## Multiplicativity, proved with the conjugate
+
+> **Theorem.** $|zw| = |z|\,|w|$.
+
+Both sides are non-negative reals, so it is enough to compare squares.
+
+$$|zw|^2 = (zw)\overline{(zw)} = zw\,\bar z\bar w = (z\bar z)(w\bar w) = |z|^2|w|^2,$$
+
+*Symbol by symbol: the bar on top means the **conjugate** — the same number with the sign of its up part flipped. So the line reads: the square of the distance of a product is the product of the squares of the distances, so distance multiplies through multiplication*
+
+using $\overline{zw} = \bar z\bar w$ from §5.4 and commutativity. Taking non-negative square roots gives the result.
+
+**Note the strategy.** Squaring removed the square roots, and the conjugate identity $|z|^2 = z\bar z$ converted a statement about absolute values into a statement about products. Expanding in components would have worked and taken three times as long — the conjugate is the right tool because it turns a size into an arithmetic expression.
+
+Geometrically the theorem says multiplication scales all distances from the origin by $|w|$, which is the definition of a dilation and half of §5.9's result.
+
+The triangle inequality $|z+w| \leq |z|+|w|$ resists the same trick, because addition does not interact with conjugation the way multiplication does. Its proof needs $\operatorname{Re}(z) \leq |z|$ and a short expansion — a reminder that additive and multiplicative properties of a norm are genuinely different in difficulty.
+
+## Sets of points
+
+| Equation | Set of points |
+|---|---|
+| $\lvert z - w\rvert = r$ | circle, center $w$, radius $r$ |
+| $\lvert z - w\rvert < r$ | open disc |
+| $\lvert z - p\rvert = \lvert z-q\rvert$ | perpendicular bisector of $pq$ |
+| $\lvert z-p\rvert + \lvert z-q\rvert = 2a$ | ellipse with foci $p,q$ |
+| $\lvert z \rvert = 1$ | unit circle, the unit circle $S^1$ |
+
+<Figure alt="A grid with a dashed circle of radius 2 centerd at the origin." caption="$|z| = 2$.">
+  <ComplexPlane circle={2} range={4} />
+</Figure>
+
+The unit circle is a *group* under multiplication, by (ii): if $|z| = |w| = 1$ then $|zw| = 1$, and $|z^{-1}| = 1$. This group is $S^1$, and §5.8–5.9 identify it with $\{e^{i\theta}\}$ and show it acts on $\mathbb{C}$ by rotation.
+
+<Warning title="Square first">
+Absolute value identities are proved by squaring and using $|u|^2 = u\bar u$. Attempting $|zw| = |z||w|$ by expanding $\sqrt{(ac-bd)^2+(ad+bc)^2}$ is a page of algebra; the conjugate proof is one line.
+
+Also: $|z|$ is real. Expressions like $|z| = 5i$ or $\operatorname{Re}|z|$ are type errors: the left side is an ordinary real number and the right side is not.
+</Warning>
+
+Expanding (ii) in coordinates gives the identity
+$$(a^2+b^2)(c^2+d^2) = (ac-bd)^2+(ad+bc)^2,$$
+so a product of two sums of squares is itself a sum of squares. That is a fact about ordinary whole numbers, discovered long before complex numbers existed, and it falls out here in one line — which is a fair sample of what the subject is for.
+
+<WhereThisGoes level="l8">
+
+The absolute value is the real-valued measure that replaces the missing order on $\mathbb{C}$, and it is what lets the methods of calculus cross over to complex numbers at all.
+
+**Distance is the bridge.** You cannot say one complex number is *less than* another, so nothing phrased with $<$ transfers directly. But $|z - w|$ is an ordinary non-negative real number, and every statement about closeness can be phrased with it. That single move — measure distance, then argue about real numbers — is what makes the whole subject possible.
+
+The triangle inequality is the workhorse. It says the direct route is never longer than a detour, and it is what lets you bound a complicated distance by two simpler ones.
+
+**A concrete surprise waits at the end of that road.** The function $\frac{1}{1+x^2}$ is perfectly well behaved for every real $x$, yet the polynomial approximations to it stop working past $|x| = 1$. Nothing on the real line explains why. Something *does* go wrong at distance $1$ from the origin — just not on the line, which is where the absolute value is looking.
+
+</WhereThisGoes>

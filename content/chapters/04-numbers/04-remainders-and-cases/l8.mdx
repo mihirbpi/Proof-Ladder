@@ -1,0 +1,143 @@
+---
+level: l8
+title: Remainders and proof by cases
+readingTimeMin: 9
+newTerms: ["remainder", "division algorithm", "congruence"]
+anchorExample: "the integers "
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Theorem (Division algorithm).** For $m \in \mathbb{Z}$, $n \in \mathbb{Z}_{>0}$, there exist **unique** $q, r \in \mathbb{Z}$ with
+> $$m = nq + r, \qquad 0 \leq r < n.$$
+
+<Discussion>
+  <div slot="know">$n > 0$. Consider $S = \{m - nk : k \in \mathbb{Z}\} \cap \mathbb{Z}_{\geq 0}$ — *the non-negative numbers you can reach by subtracting whole multiples of $n$ from $m$*.</div>
+  <div slot="want">Existence and uniqueness of $(q,r)$.</div>
+  <div slot="how">Existence: $S$ is nonempty (take $k$ very negative) and consists of non-negative integers, so because every non-empty collection of non-negative integers has a smallest member — it has a smallest member $r$, and being smallest forces $r < n$. Uniqueness: two representations differ by a multiple of $n$ smaller than $n$ in absolute value, so by $0$.</div>
+</Discussion>
+
+<Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\cap$ is "overlapped with", $\emptyset$ is "the empty set", $\mathbb{Z}$ is the integers, the bar $\mid$ is "such that". In words, what follows shows: among the non-negative leftovers there is a smallest, and that one is the remainder.*
+
+*Existence.* Let $S = \{m - nk \mid k \in \mathbb{Z}\}\cap \mathbb{Z}_{\geq 0}$. Taking $k = -|m|$ gives $m + n|m| \geq m + |m| \geq 0$, so $S \neq \emptyset$. Every non-empty collection of non-negative integers has a smallest member, so $S$ has a smallest member $r = m - nq$ for some $q \in \mathbb{Z}$, and $r \geq 0$.
+
+If $r \geq n$ then $r - n = m - n(q+1) \geq 0$ lies in $S$ and is smaller than $r$, contradicting the fact that $r$ was the smallest. So $0 \leq r < n$.
+
+*Uniqueness.* Suppose $m = nq_1 + r_1 = nq_2 + r_2$ with $0 \leq r_1, r_2 < n$. Then $n(q_1 - q_2) = r_2 - r_1$, so $n \mid (r_2 - r_1)$. But $|r_2 - r_1| < n$, and the only multiple of $n$ of absolute value less than $n$ is $0$. So $r_1 = r_2$, and then $n(q_1-q_2)=0$ with $n \neq 0$ gives $q_1 = q_2$.
+</Proof>
+
+The proof rests on one fact — **every non-empty set of non-negative integers has a smallest member** — which is equivalent to induction (Chapter 6) and is the property distinguishing $\mathbb{Z}$ from $\mathbb{Q}$. Note also that uniqueness used the fact that a product of non-zero integers is never zero (§4.1).
+
+## Non-divisibility becomes a short list of *or*s
+
+*A reminder of the symbols in play: $\nmid$ reads "does not divide".*
+
+$$
+n \nmid m \iff \exists r \in \{1,\ldots,n-1\},\ \exists q \in \mathbb{Z},\ m = nq + r.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", $\nmid$ is "does not divide". So the line reads: $n$ fails to divide $m$ exactly when dividing leaves a remainder strictly between $0$ and $n$ — so a negative fact becomes a short list of positive ones*
+
+A negative hypothesis, useless as such, becomes finitely many positive ones. This is the whole method: **remainders turn negation into cases**.
+
+Sorting the integers by the remainder they leave on division by $n$ gives exactly $n$ groups, one for each remainder $0, 1, \ldots, n-1$, with every integer in exactly one. What makes the groups useful is that they survive arithmetic: add or multiply two integers and the remainder of the answer depends only on which groups the two came from, never on which members you picked. So a claim about every integer can be settled by checking one representative from each group, which is what the case analyzes below do.
+
+## The showcase proposition
+
+> **Proposition.** For all $a \in \mathbb{Z}$: $3 \nmid a^2 - 1 \Rightarrow 3 \mid a$.
+
+*Symbol by symbol: $\in$ is "is in", $\mathbb{Z}$ is the integers, $\nmid$ is "does not divide", $\Rightarrow$ is "forces", the bar $\mid$ is "divides". So the line reads: for any integer $a$, $3$ failing to divide $a^2-1$ forces $3$ to divide $a$.*
+
+<Discussion>
+
+*The symbols in this discussion: $\Rightarrow$ is "forces", the bar $\mid$ is "divides", $\nmid$ is "does not divide". In words, the plan is: the hypothesis is a negative, so turn the claim around and check each remainder.*
+
+  <div slot="know">A negative hypothesis about the composite quantity $a^2 - 1$, with a conclusion about $a$. Both of §1.8's indicators fire.</div>
+  <div slot="want">$3 \mid a$.</div>
+  <div slot="how">Contrapose to $3 \nmid a \Rightarrow 3 \mid a^2 - 1$, then convert the still-negative hypothesis into the two cases *$a$ leaves remainder $1$ on division by $3$* and *$a$ leaves remainder $2$*, and compute.</div>
+</Discussion>
+
+<Proof>
+We prove the contrapositive (§1.7). Suppose $3 \nmid a$. By the division algorithm $a = 3k+r$ with $r \in \{0,1,2\}$, and $r = 0$ is excluded since it gives $3 \mid a$.
+
+If $r=1$: $a^2 - 1 = 9k^2+6k = 3(3k^2+2k)$.
+If $r=2$: $a^2 - 1 = 9k^2+12k+3 = 3(3k^2+4k+1)$.
+
+In both cases the factor left over is an integer by closure, so $3 \mid a^2-1$. The cases are exhaustive, so the contrapositive (swap the two halves and deny both, §1.7) holds, and so does the proposition.
+</Proof>
+
+The proof composes five separate tools — contraposition (§1.8), the division algorithm, case analysis (§1.12), closure (§4.1), and divisibility-as-existence (§4.2). None is clever; the skill is selection and order.
+
+<Warning title="Case discipline">
+State the exhaustive list, then eliminate the impossible ones explicitly. An unmentioned excluded case is indistinguishable, to a reader, from a forgotten one — and forgotten cases are the commonest structural defect in this style of proof.
+</Warning>
+
+## Remainders as an obstruction
+
+> **Proposition.** Every square leaves remainder $0$ or $1$ on division by $3$. Never $2$.
+
+<Proof>
+With $a = 3k+r$, $r \in \{0,1,2\}$: $a^2$ is $9k^2$, then $9k^2+6k+1$, then $9k^2+12k+4$, leaving remainders $0$, $1$, $1$.
+</Proof>
+
+Consequences are immediate and sharp: no integer of the form $3n+2$ is a perfect square; the equation $a^2+b^2 = 3c^2$ has only the all-zero solution (take remainders on division by $3$ and use that two numbers from $\{0,1\}$ sum to $0$ only when both are $0$); and on division by $4$, the same technique shows $a^2+b^2 = 4^k(8m+7)$ is unsolvable, which is the negative half of the three-squares theorem.
+
+Squares leave only the remainders $0$, $1$ or $4$ on division by $8$; cubes leave only $0$, $1$ or $8$ on division by $9$; fourth powers leave only $0$ or $1$ on division by $16$. **Take remainders on a well-chosen $n$** is the standard first move against an equation where only whole-number answers count, and the art is picking $n$.
+
+<Aside>
+This method proves non-existence, never existence. An equation whose remainders work out for every $n$ may still have no whole-number solutions at all. The standard example is $3x^3+4y^3+5z^3=0$: the remainders come out consistent for every $n$ you try, and there are no solutions in $\mathbb{Z}$. Remainder obstructions are necessary conditions, not sufficient ones.
+</Aside>
+
+## The division algorithm, stated properly
+
+Everything in this module has leaned on dividing with remainder. It deserves a precise statement, because the uniqueness half is what makes the case split legitimate.
+
+> **Theorem (division algorithm).** Let $n \geq 1$. For every integer $m$ there are integers $q$ and $r$ with
+> $$m = nq + r, \qquad 0 \leq r < n,$$
+> and the pair $(q, r)$ is the only one that works.
+
+*Symbol by symbol: $q$ is the quotient and $r$ the remainder. So the line reads: every integer sits a whole number of steps of size $n$ above a remainder, and that remainder is pinned into a window of exactly $n$ values.*
+
+**Existence** comes from stepping: subtract $n$ from $m$ repeatedly until what is left is below $n$ but not negative. **Uniqueness** is the half that does the work. If $nq_1 + r_1 = nq_2 + r_2$ with both remainders in the window, then $n$ divides $r_1 - r_2$; but the two remainders differ by less than $n$, so that difference is $0$.
+
+Uniqueness is why *split into cases on the remainder* is exhaustive **and** non-overlapping. Every integer lands in exactly one case, and neither half of that is free.
+
+## Congruence notation
+
+Later courses compress all of this into a symbol, and it is worth introducing here because everything after this module will use it.
+
+> Write $a \equiv b \pmod n$ to mean **$a$ and $b$ leave the same remainder on division by $n$** — equivalently, $n \mid (a - b)$.
+
+*Symbol by symbol: $\equiv$ is read "is congruent to", and $\pmod n$ says which number you are dividing by. So the whole line reads: $a$ and $b$ sit at the same place in the cycle of length $n$.*
+
+Read it as *sameness of remainder* and nothing more. It is not a new operation; it is a shorthand for a sentence you have been writing out longhand all module.
+
+Three facts make the shorthand worth having, and each is a short check from the definition:
+
+- **It behaves like equality.** It is reflexive, symmetric and transitive (§7.2 proves this), so you may chain congruences the way you chain equations.
+- **It survives addition and multiplication.** If $a \equiv b$ and $c \equiv d$, then $a + c \equiv b + d$ and $ac \equiv bd$. So you may reduce at any point in a calculation rather than at the end.
+- **It does not survive division.** $6 \equiv 0 \pmod 6$ and $2 \equiv 2$, but you cannot cancel a common factor of $2$ to get $3 \equiv 0$. Cancellation needs the factor to share nothing with $n$.
+
+With that in hand, the proposition above becomes one line: $a^2 \equiv 0$ or $1 \pmod 3$, never $2$.
+
+<WhereThisGoes level="l8">
+
+Division with remainder has a polynomial twin you already use, and the parallel is exact.
+
+**Polynomial division.** For polynomials $f$ and $g \neq 0$ there exist unique $q$ and $r$ with
+$$f = gq + r, \qquad \deg r < \deg g,$$
+where the degree plays the role the size $|r| < n$ played here. Uniqueness is what makes "the remainder" a legitimate phrase, exactly as above.
+
+The consequences are the ones you know. The **Remainder Theorem** says the remainder on dividing by $x - a$ is $f(a)$ — a one-line corollary, since $r$ is constant and evaluating at $a$ kills the $gq$ term. The **Factor Theorem** follows: $(x-a)$ divides $f$ exactly when $f(a) = 0$, which is the polynomial statement of *remainder zero means divides*.
+
+Partial fractions is division with remainder plus factoring, and it is the reason every rational function can be integrated: reduce until the numerator has smaller degree, decompose, and integrate the pieces.
+
+**Proof by cases is the technique behind every piecewise argument in calculus.** Absolute values force it — a running total of $|x|$ has to be worked out separately on each side of zero, and so does $\lim_{x\to0}\frac{|x|}{x}$, and every one-sided limit at a corner — and the thing to check is the one this module states: the cases must be exhaustive, and saying so is part of the proof.
+
+</WhereThisGoes>

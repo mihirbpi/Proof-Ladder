@@ -15,7 +15,7 @@ $$
 m \mid n \;:\iff\; \exists k \in \mathbb{Z},\ n = mk,
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", the bar $\mid$ is "such that". So the line reads: $m$ divides $n$ is *defined* to mean that some integer $k$ multiplies $m$ up to $n$. Every proof about divisibility starts by producing that $k$ or by using one you were given*
 
 with $n$ **even** meaning $2 \mid n$ and **odd** meaning $n = 2k+1$ for some $k \in \mathbb{Z}$.
 
@@ -42,19 +42,19 @@ $$
 m \mid 0, \qquad 1 \mid n, \qquad n \mid n,
 $$
 
-*Symbol by symbol: the bar $\mid$ is "such that".*
+*Symbol by symbol: the bar $\mid$ is "such that". So the line reads: every number divides zero, one divides every number, and every number divides itself*
 
 $$
 (a \mid b) \wedge (b \mid c) \;\Rightarrow\; a \mid c \quad (\text{it passes along a chain}),
 $$
 
-*Symbol by symbol: $\Rightarrow$ is "forces", $\wedge$ is "and", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\Rightarrow$ is "forces", $\wedge$ is "and", the bar $\mid$ is "such that". So the line reads: if $a$ divides $b$ and $b$ divides $c$, then $a$ divides $c$*
 
 $$
 (a \mid b) \wedge (a \mid c) \;\Rightarrow\; a \mid (bx + cy) \ \ \forall x,y \in \mathbb{Z},
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces", $\wedge$ is "and".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces", $\wedge$ is "and". So the line reads: a number dividing two others divides every whole-number combination you can build from the pair*
 
 $$
 (a \mid b) \wedge (b \mid a) \;\Rightarrow\; a = \pm b,
@@ -66,7 +66,7 @@ $$
 (a \mid b) \wedge (b \neq 0) \;\Rightarrow\; |a| \leq |b|.
 $$
 
-*Symbol by symbol: $\Rightarrow$ is "forces", $\wedge$ is "and", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\Rightarrow$ is "forces", $\wedge$ is "and", the bar $\mid$ is "such that". So the line reads: a divisor of a non-zero number can never be larger than it in size*
 
 <Proof title="Proof of the linear-combination property">
 Suppose $a \mid b$ and $a \mid c$, say $b = ak_1$ and $c = ak_2$ with $k_1,k_2 \in \mathbb{Z}$. For any $x, y \in \mathbb{Z}$,
@@ -102,13 +102,13 @@ So divisibility on $\mathbb{Z}_{>0}$ has the same shape as inclusion on subsets 
 
 ## Reading it structurally
 
+Write $m\mathbb{Z}$ for the set of all multiples of $m$. Then
+
 $$
-m \mid n \iff n \in (m) \iff (n) \subseteq (m),
+m \mid n \iff n \in m\mathbb{Z} \iff n\mathbb{Z} \subseteq m\mathbb{Z},
 $$
 
-*Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", the bar $\mid$ is "such that".*
-
-where $(m) = m\mathbb{Z}$ is the set of multiples of $m$. Divisibility is reverse inclusion of these sets — "to divide is to contain" — and that reformulation is the one that survives into settings where factorization itself misbehaves.
+*Symbol by symbol: the bar $\mid$ is "divides", $\in$ is "is in", $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when". So the line reads: $m$ divides $n$ exactly when $n$ is one of $m$'s multiples, which happens exactly when every multiple of $n$ is also a multiple of $m$.* Divisibility is reverse inclusion of these sets — "to divide is to contain" — and that reformulation is the one that survives into settings where factorization itself misbehaves.
 
 Units divide everything, which is why $\pm 1 \mid n$ always, and why divisibility can only ever be well defined up to units.
 

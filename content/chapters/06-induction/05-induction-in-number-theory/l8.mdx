@@ -1,0 +1,115 @@
+---
+level: l8
+title: Induction in number theory
+readingTimeMin: 7
+newTerms: []
+anchorExample: "the odd numbers add up to a square"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Proposition.** $3 \mid 2^{2n}-1$ for all $n \geq 0$.
+
+<Discussion>
+  <div slot="know">$m \mid p \iff \exists c \in \mathbb{Z},\ p = mc$ (§4.2). Link: $2^{2(k+1)} = 4\cdot2^{2k}$.</div>
+  <div slot="want">$A(n)$ for all $n \geq 0$.</div>
+  <div slot="how">Unpack (IH) with a fresh name for the other factor, solve for $2^{2k}$, substitute, factor out $3$, cite closure.</div>
+</Discussion>
+
+<Proof>
+*Base.* $2^0 - 1 = 0 = 3\cdot0$.
+
+*Step.* Fix $k \geq 0$ and assume $2^{2k}-1 = 3x$ with $x \in \mathbb{Z}$, so $2^{2k} = 3x+1$. Then
+$$
+2^{2(k+1)} - 1 = 4\cdot 2^{2k} - 1 = 4(3x+1)-1 = 12x+3 = 3(4x+1),
+$$
+and $4x+1 \in \mathbb{Z}$ by closure (§4.1). So $A(k+1)$.
+</Proof>
+
+<Warning title="Variable hygiene">
+Two unknowns coexist: the induction index $k$ and the leftover factor from the divisibility hypothesis. They must have different names. "$2^{2k}-1 = 3k$" identifies them, which is both false and irreparable.
+
+Also note the rearrangement of (IH) into $2^{2k} = 3x+1$ *before* substituting. Solving the hypothesis for the quantity that actually appears in the target is the standard maneuver, and skipping it is where these proofs usually stall.
+</Warning>
+
+## The general fact
+
+The proposition is the case $a=4$, $m=3$ of:
+
+> **Proposition.** If $a$ leaves remainder $1$ on division by $m$, then so does $a^n$, for every $n \geq 0$ — equivalently, $m \mid a^n - 1$.
+
+<Proof>
+*Base.* $a^0 - 1 = 0$.
+
+*Step.* Suppose $a^k - 1 = mx$, i.e. $a^k = mx+1$, and $a = my+1$. Then
+$$
+a^{k+1} - 1 = a\cdot a^k - 1 = (my+1)(mx+1) - 1 = m(mxy + x + y),
+$$
+with $mxy+x+y \in \mathbb{Z}$.
+</Proof>
+
+More cleanly: congruence is compatible with multiplication (§4.4), so $a \equiv 1$ gives $a^n \equiv 1^n = 1$ by induction on $n$ — the induction now being hidden inside "compatible with multiplication", where it belongs.
+
+This is the shape of most elementary results here. $m \mid a^n - b^n$ whenever $m \mid a - b$, from the factorization
+$$
+a^n - b^n = (a-b)\sum_{j=0}^{n-1}a^{j}b^{n-1-j},
+$$
+which is itself proved by induction or by telescoping.
+
+## Getting the hypothesis into usable form
+
+The inductive hypothesis $3 \mid (2^{2k}-1)$ unpacks to $2^{2k}-1 = 3x$. That equation is true and hard to substitute into, because the expression appearing in the $(k+1)$ case is $2^{2k+2}$, not $2^{2k}-1$.
+
+Rearranging first is what makes the step work:
+
+$$2^{2k} = 3x + 1.$$
+
+Now $2^{2(k+1)} - 1 = 4\cdot 2^{2k} - 1 = 4(3x+1) - 1 = 12x + 3 = 3(4x+1)$, and the factor of $3$ appears without effort.
+
+**The general move: write the hypothesis so that the quantity occurring in the next case is isolated on one side.** Most stalled induction steps in this chapter are stalled because the hypothesis was left in its raw form.
+
+The same applies in calculus. An induction on $\frac{d^n}{dx^n}f$ should have the hypothesis written as an explicit formula for the $k$th derivative, ready to be differentiated — not as a claim about it.
+
+## A second, with an external lemma
+
+> **Proposition.** $6 \mid n^3 - n$ for all $n \geq 0$.
+
+<Proof>
+*Base.* $0$.
+
+*Step.* Assume $k^3 - k = 6x$. Then
+$$
+(k+1)^3-(k+1) = (k^3-k) + 3k(k+1) = 6x + 3k(k+1).
+$$
+Since $k(k+1)$ is a product of consecutive integers it is even (§1.12), say $2y$; so the total is $6(x+y)$.
+</Proof>
+
+The step needed something the inductive hypothesis could not supply: that $k(k+1)$ is even. **Inductive steps routinely need external lemmas**, and identifying them belongs in the Discussion rather than being discovered mid-proof.
+
+Without induction: $n^3-n = (n-1)n(n+1)$ is a product of three consecutive integers, so it is divisible by $2$ and by $3$, so by $6$. Shorter and more informative, and it generalizes to $k! \mid$ any product of $k$ consecutive integers — a fact about binomial coefficients in disguise.
+
+<Aside>
+The relationship between induction and remainders runs both ways. Working with remainders alone makes many of these results one-liners — but the fact that makes that legal, namely that the remainder of a sum or product depends only on the remainders you started with, is itself proved by direct computation. And any claim made about *every* exponent still rests on an induction underneath, whatever shortcut is used to state it.
+
+There is a much more general result of this kind, proved not by induction at all but by a counting argument, and it has the proposition above as one special case. Worth knowing that it exists: the elementary method is not always the one that scales, and a later course will show you a shorter road to the same place.
+</Aside>
+
+<WhereThisGoes level="l8">
+Combining two templates is the general situation, and the naming discipline this module drills is what prevents the standard collision.
+
+**The rule: the induction variable is taken.** When the inductive hypothesis unpacks an existential, its witness needs a fresh letter — never $k$, which is already the induction index. Writing $2^{2k}-1 = 3k$ says something specific and false.
+
+That is §4.2's *different letters for different witnesses*, sharpened by the fact that induction has already consumed the obvious one.
+
+**The same collision arises in calculus proofs.** An induction on the order of differentiation uses $n$ as the index, so a constant arising from the hypothesis cannot be called $n$. In a proof about a sum of $n$ terms, the index inside the sum and the index of the induction must differ. These are bookkeeping errors, and they are also the errors that make a proof unreadable.
+
+**The right notation can make an induction disappear.** $3\mid(2^{2n}-1)$ is an induction; said in remainders it is two lines — $4$ leaves remainder $1$ on division by $3$, remainders multiply, so $4^n$ leaves remainder $1$ too.
+
+The induction has not vanished — it is buried in the fact that remainders multiply — but it has been done once, in general, instead of being redone per problem. **That is the usual trajectory: a family of facts proved individually by induction, then covered by a notation or a structure that proves them all at once.**
+
+**In calculus the analogous compression is generating functions and closed forms.** Once you know $\sum_{j=0}^{n-1} r^j = \frac{1-r^n}{1-r}$, a whole class of induction problems becomes a substitution. Finding the right general statement is usually worth more than proving the specific one.
+</WhereThisGoes>

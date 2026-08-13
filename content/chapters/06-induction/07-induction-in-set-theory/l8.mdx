@@ -1,0 +1,131 @@
+---
+level: l8
+title: Induction in set theory
+readingTimeMin: 7
+newTerms: ["power set"]
+anchorExample: "the odd numbers add up to a square"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Theorem.** For finite $S$ with $|S| = n$, $\ |\mathcal{P}(S)| = 2^n$.
+
+## Inductive proof
+
+<Discussion>
+  <div slot="know">Membership of a fixed $a$ partitions $\mathcal{P}(S)$ into two blocks — an exhaustive, disjoint split by excluded middle (every statement is either true or false, §1.2).</div>
+  <div slot="want">$|\mathcal{P}(S)| = 2^{k+1}$ when $|S|=k+1$.</div>
+  <div slot="how">Remove $a$. Subsets avoiding $a$ *are* $\mathcal{P}(S\setminus\{a\})$; subsets containing $a$ biject with it via $A \mapsto A\setminus\{a\}$. Add the two counts.</div>
+</Discussion>
+
+<Proof>
+*Base.* $|\mathcal{P}(\emptyset)| = |\{\emptyset\}| = 1 = 2^0$.
+
+*Step.* Assume the result for sets of size $k$. Let $|S| = k+1$, fix $a \in S$, $S' = S\setminus\{a\}$.
+
+Partition $\mathcal{P}(S) = \mathcal{U}\cup\mathcal{V}$ with $\mathcal{U} = \{A : a\notin A\}$, $\mathcal{V} = \{A : a \in A\}$.
+
+$\mathcal{U} = \mathcal{P}(S')$, so $|\mathcal{U}| = 2^k$ by (IH).
+
+$p : \mathcal{V}\to\mathcal{P}(S')$, $A \mapsto A\setminus\{a\}$, has two-sided inverse $B \mapsto B\cup\{a\}$, so is a bijection (§3.9); so $|\mathcal{V}| = 2^k$.
+
+So $|\mathcal{P}(S)| = 2^k+2^k = 2^{k+1}$.
+</Proof>
+
+The step transferred a count along a bijection rather than recounting — §3.8's principle in use.
+
+## Bijective proof
+
+<Proof title="Second proof">
+Take any subset $A$ of $S$ and record a yes-or-no answer at every element of $S$: **yes** if that element is in $A$, **no** if it is not.
+
+That record pins $A$ down completely, and every possible record comes from exactly one subset — read the subset back off as the elements answered yes. So subsets and records are matched one-for-one.
+
+A record is $n$ separate yes-or-no answers, each made independently of the others: $2$ ways, $n$ times, so $2^n$ records, and therefore $2^n$ subsets.
+</Proof>
+
+This is where the notation $2^S$ for the power set comes from: two choices at each element of $S$. And the match is better than a count. An element is in $A \cap B$ exactly when it answered yes on both records, and outside $A$ exactly when it answered no on that one — so the set operations of §2.7 correspond to operations on the records, not merely the totals.
+
+<Warning title="Level discipline">
+Elements of $\mathcal{P}(S)$ are *sets*. For $S = \{a,b\}$: $a \in S$, $\{a\}\in\mathcal{P}(S)$, $\{a\}\subseteq S$, $\{\{a\}\}\subseteq \mathcal{P}(S)$ — and $a \notin \mathcal{P}(S)$.
+
+Both $\emptyset$ and $S$ belong to $\mathcal{P}(S)$; omitting either destroys the count. And $\mathcal{P}(\emptyset) = \{\emptyset\}$ has one element, not zero — the distinction §2.1 insisted on.
+</Warning>
+
+## Refinement by size
+
+Splitting by cardinality (size, §3.8) gives
+$$
+2^n = \sum_{k=0}^{n}\binom nk,
+$$
+since $\binom nk$ counts the $k$-element subsets. The same partition argument used above, applied to $k$-element subsets, gives the rule behind Pascal's triangle
+$$
+\binom{n}{k} = \binom{n-1}{k-1}+\binom{n-1}{k}
+$$
+— subsets containing $a$ versus not — and so the binomial theorem by induction. The theorem of this module is the binomial theorem evaluated at $x=y=1$.
+
+## Why the split is legitimate
+
+The inductive step divided the subsets of $S$ into those containing a fixed $a$ and those not, then claimed each group has $2^k$ members. Two conditions had to hold for the final addition, and both were checked.
+
+**Disjoint.** No subset is in both groups, since a subset either contains $a$ or does not — the excluded middle of §1.3, and the reason the two counts do not overlap.
+
+**Exhaustive.** Every subset is in one group, for the same reason.
+
+Adding the sizes of overlapping groups double-counts; adding the sizes of groups with a gap undercounts. Neither check is automatic, and stating them is part of the proof.
+
+**The bijection also needed verifying.** The map $T \mapsto T\cup\{a\}$ from Group 1 to Group 2 is injective because $T$ is recovered by removing $a$, and surjective (every possible output is actually hit, §3.6) because every subset containing $a$ arises this way. Only then does "each group has $2^k$ members" follow from the hypothesis, which was a statement about the subsets of a $k$-element set.
+
+**Counting by pairing** — establishing a bijection with something already counted — is more powerful than counting one by one, and it is the only method that survives into the infinite case.
+
+## Where the argument stops
+
+For infinite $S$ the formula $2^{|S|}$ has no meaning as written: there is no counting number $|S|$ to substitute.
+
+The deeper point is that the proof could not reach such a set even if the formula did make sense. Induction walks §6.4's chain, one rung per counting number, and a set that never runs out is on no rung — an arbitrary set has no *next*, so there is nothing to induct along. Everything above is a statement about finite sets and nothing else.
+
+This is worth saying because §6.4's chain is easy to over-trust. Induction proves a claim *for each* counting number; it never proves anything about a case that is not one of them, and "infinitely many cases proved" is not the same as "the infinite case proved". Comparing infinite collections is done by pairing instead — §3.8's method, applied directly — and it is a genuinely different technique, not this one pushed further.
+
+## Past the finite
+
+§6.7 was careful to say that the doubling argument settles finite sets and nothing else. The comparison it makes does extend, and the extension is one of the most consequential theorems in the subject.
+
+> **Theorem (Cantor).** For every set $S$, no function from $S$ to its collection of subsets hits everything.
+
+<Proof>
+
+*The symbols in this proof: $\mathcal{P}(S)$ is the collection of all subsets of $S$, $\in$ is "is in", $\notin$ is "is not in". In words, what follows shows: given any attempt to match elements with subsets, one subset is provably missed.*
+
+Let $f$ send each element of $S$ to some subset of $S$. Build
+
+$$D = \{\, s \in S \mid s \notin f(s) \,\},$$
+
+*So the line reads: $D$ collects exactly those elements left out of the subset they were matched with.*
+
+which is a subset of $S$, so it is a candidate value for $f$.
+
+Suppose $D = f(d)$ for some $d$. Ask whether $d$ lies in $D$. If it does, then by $D$'s defining condition $d \notin f(d) = D$. If it does not, then $d$ satisfies the condition, so $d \in D$. Either answer produces the other, so no such $d$ exists and $D$ is missed. $\blacksquare$
+</Proof>
+
+So a set never has as many elements as it has subsets, however large it is — which means there is no largest infinity, since $\mathcal{P}$ can always be applied again.
+
+**Note what this is not.** It is not an induction and cannot be made into one: an arbitrary set has no *next*, so there is nothing to walk along. It is §3.8's diagonal move in general form — build the one thing that disagrees with every entry — and §2.1 used the same move to show there is no set of everything.
+
+<WhereThisGoes level="l8">
+
+Counting arguments are the everyday application of induction, and the two proofs in this module illustrate the choice this chapter keeps returning to.
+
+**The induction verifies; the choice argument explains.** Building a subset by making one yes/no decision per element gives $2^n$ immediately, and it says *why* the base is $2$. The induction confirms the formula and does not.
+
+The explanatory version also generalizes: give each element three options instead of two and the count is $3^n$, with no proof to redo. Rewriting the induction would be real work.
+
+**In calculus, the binomial coefficients are what you will actually need.** $\binom nk$ counts $k$-element subsets of an $n$-set, and Pascal's identity
+$$\binom nk + \binom{n}{k-1} = \binom{n+1}{k}$$
+has exactly this module's proof: split the subsets of an $(n+1)$-set according to whether they contain a chosen element.
+
+That identity is the inductive step of the binomial theorem, which in turn gives the expansion of $(1+x)^n$, and the derivative of $x^n$ worked out from the definition.
+
+</WhereThisGoes>

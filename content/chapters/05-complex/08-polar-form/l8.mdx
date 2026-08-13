@@ -1,0 +1,156 @@
+---
+level: l8
+title: Polar form
+readingTimeMin: 8
+newTerms: ["polar form", "argument"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+There are two ways to say where a point is: **across and up**, or **how far and which way**.
+
+$$a+bi \qquad\text{versus}\qquad re^{i\theta}$$
+
+Both name the same point. Every complex number except $0$ can be written the second way, with $r = |z| > 0$ the distance from the origin and $\theta$ a real angle in radians, and by §5.7 the second unpacks as
+
+$$re^{i\theta} = r\cos\theta + ir\sin\theta, \qquad\text{so}\qquad a = r\cos\theta,\quad b = r\sin\theta.$$
+
+$r$ is the absolute value. $\theta$ is the **argument**, written $\arg z$.
+
+Angles are in **radians** throughout, and not as a matter of taste: an arc of $\theta$ radians on the unit circle has length $\theta$ exactly, which is what makes every formula below free of conversion factors.
+
+<Figure alt="A dashed circle of radius 2 with a vector from the origin to 2i." caption="$2e^{i\pi/2} = 2i$.">
+  <ComplexPlane circle={2} vectors={[{re: 0, im: 2}]} points={[{re: 0, im: 2, label: "2e^{iπ/2}"}]} range={3} />
+</Figure>
+
+## Every non-zero point has an angle
+
+> **Proposition.** For $z \neq 0$ there is a real $\theta$ with $z = |z|e^{i\theta}$, and any two such angles differ by a whole number of full turns.
+
+<Proof>
+*There is one.* Put $w = z/|z|$. Then $|w| = 1$, so writing $w = u+iv$ gives $u^2+v^2 = 1$ — the point $(u,v)$ is on the unit circle. Going once round the circle, $\theta \mapsto (\cos\theta, \sin\theta)$ passes through every point of it, so some $\theta$ in $[0,2\pi)$ has $\cos\theta = u$ and $\sin\theta = v$. For that $\theta$, $w = e^{i\theta}$ and so $z = |z|e^{i\theta}$.
+
+*Any two differ by full turns.* Suppose $e^{i\theta_1} = e^{i\theta_2}$. Dividing, $e^{i(\theta_1-\theta_2)} = 1$, so $\cos(\theta_1-\theta_2) = 1$ and $\sin(\theta_1-\theta_2) = 0$. The only angles with cosine $1$ are the whole multiples of $2\pi$, so $\theta_1 - \theta_2$ is a whole number of full turns. $\blacksquare$
+</Proof>
+
+Read the second half again, because it is the point of the module. **The angle is not quite determined by the point.** Turning all the way around returns you to where you started, so
+
+$$
+re^{i\theta} = re^{i(\theta+2\pi k)} \quad\text{for every integer } k,
+$$
+
+and $1$ has angle $0$, and $2\pi$, and $-2\pi$, and infinitely many others.
+
+So $\arg$ is not a function in the sense of §3.1: one input, many outputs. This is not sloppiness in the notation. It is a fact about circles, and no cleverer notation removes it.
+
+## Picking one angle, and what it costs
+
+The usual repair is to name one of them official: take the angle in $(-\pi, \pi]$ — half a turn each way from the positive real axis — and call that *the* argument.
+
+That makes $\arg$ a genuine function, and it costs exactly one thing: a jump. Points just above the negative real axis have angles near $\pi$; points just below have angles near $-\pi$. Cross that ray and the answer leaps by a full turn, even though the points barely moved.
+
+**The jump cannot be designed away.** Put it somewhere else — measure from $[0,2\pi)$ instead — and the jump moves to the positive real axis; it does not vanish. Any single choice has to break somewhere, because walking once around the origin brings you back to the same point having gained a full turn, and no single-valued angle can both track the walk and return to its starting value.
+
+This is the same repair, with the same side effect, as restricting sine's domain to define $\sin^{-1}$ (§3.9): shrink things until the answer is unique, and accept the seam that leaves.
+
+<Warning title="Three practical hazards">
+**$\tan^{-1}(b/a)$ is not the argument.** Tangent repeats every half turn, so it cannot tell $z$ from $-z$; the quadrant has to be checked separately. Programming languages provide a two-argument `atan2(b, a)` exactly because of this, and its existence is an admission that the one-argument version is wrong half the time.
+
+**$z = 0$ has no argument.** Polar form covers every complex number *except* zero. There is no direction to a point sitting at the origin.
+
+**Angles add only up to full turns.** Multiplying $-1$ by $-1$ gives $1$, whose official angle is $0$ — but the two official angles being added are $\pi$ and $\pi$, totalling $2\pi$. The two answers describe the same point and differ by a full turn, which is all the rule ever promised.
+</Warning>
+
+## Converting, and the quadrant trap
+
+$$r = |z| = \sqrt{a^2+b^2}, \qquad \tan\theta = \frac ba.$$
+
+The first is the distance formula. The second follows from dividing $b = r\sin\theta$ by $a = r\cos\theta$.
+
+<Warning title="The tangent does not determine the argument">
+$\tan\theta = b/a$ has two solutions in a full turn, half a revolution apart, and $\tan^{-1}$ returns only the one between $-\pi/2$ and $\pi/2$.
+
+For $z = -1-i$: $b/a = 1$ and $\tan^{-1}(1) = \pi/4$ — first quadrant. But $z$ is in the **third**, so the argument is $\pi/4 - \pi = -3\pi/4$.
+
+The correction is $\pm\pi$ whenever $a < 0$, and it is required, not optional.
+
+The underlying cause is §3.5: $\tan$ is not injective, and $\tan^{-1}$ exists only because the domain was cut down — which threw the other solution away.
+</Warning>
+
+> **Example.** Convert $-1+i\sqrt3$ to polar form.
+>
+> $r = \sqrt{1+3} = 2$. And $b/a = -\sqrt3$, so $\tan^{-1}$ gives $-\pi/3$ — fourth quadrant. The point is in the second, so add $\pi$:
+> $$\theta = -\tfrac\pi3 + \pi = \tfrac{2\pi}{3}, \qquad z = 2e^{2\pi i/3}.$$
+>
+> Check: $2\cos(2\pi/3) = -1$ ✓ and $2\sin(2\pi/3) = \sqrt3$ ✓.
+
+## Which form for which job
+
+| Task | Better form |
+|---|---|
+| add, subtract | rectangular |
+| multiply, divide | polar |
+| raise to a power | polar |
+| take roots | polar |
+| read off real and imaginary parts | rectangular |
+| read off distance and direction | polar |
+
+Adding in polar form is miserable: there is no usable formula relating $\arg(z+w)$ to $\arg z$ and $\arg w$. Multiplying in rectangular form works, and is fiddly.
+
+Choosing the representation to suit the operation is a habit worth building — the same instinct that puts a figure on the axes for one geometry problem and leaves it off for another.
+
+## Special values
+
+$$
+1 = e^{0},\quad i = e^{i\pi/2},\quad -1 = e^{i\pi},\quad -i = e^{-i\pi/2},\quad 1+i = \sqrt2\,e^{i\pi/4}.
+$$
+
+$$
+e^{i\pi} + 1 = 0.
+$$
+
+<Aside>
+The first four are quarter turns, evenly spaced round the unit circle, and multiplying by $i$ steps once around — §5.5's rotation, now read off the angle.
+
+More generally, the solutions of $z^n = 1$ are the $n$ points $e^{2\pi ik/n}$ for $k = 0, 1, \dots, n-1$: the vertices of a **regular $n$-gon** inscribed in the unit circle, one vertex sitting at $1$. So the regular polygons of your geometry course are the solution sets of the simplest equations there are.
+
+Gauss proved at nineteen that a regular $17$-gon can be built with compass and straightedge, by working out which of these vertices can be reached using square roots alone — a result that ties construction, algebra and number theory together in one theorem, and which he asked to have carved on his gravestone.
+</Aside>
+
+## The argument, and why the logarithm splits
+
+§5.8 noted that a point has many angles, differing by whole turns, and that pinning one down means choosing a range. That choice has a name and a consequence worth following.
+
+The **argument** of a non-zero $z$, written $\arg z$, is any angle $\theta$ with $z = |z|(\cos\theta + i\sin\theta)$. It is not a single number but a whole family, each differing from the next by $2\pi$. Choosing the one in $(-\pi, \pi]$ gives the **principal** argument, written $\operatorname{Arg} z$, and the capital letter is the standard signal that a choice has been imposed.
+
+## Why the logarithm splits
+
+Now try to define a logarithm. You would want $\log z$ to satisfy $e^{\log z} = z$, and Euler's formula hands you a candidate:
+
+$$\log z = \ln|z| + i\arg z.$$
+
+*Symbol by symbol: $\ln|z|$ is the ordinary real logarithm of the distance, and $\arg z$ is the angle. So the line reads: the logarithm of a complex number records its distance and its angle separately.*
+
+The distance part is fine — $|z|$ is a positive real and $\ln$ handles it. The angle part is not, because $\arg z$ was never a single number. Add a full turn to the angle and you get a different value with an equally good claim to being the logarithm.
+
+**So the complex logarithm is genuinely many-valued**, and no choice of range repairs it without introducing a jump. Follow $z$ once around a circle enclosing the origin and the angle increases by $2\pi$, so the value you return to is not the value you left with — while $z$ itself has come home. Any single-valued choice must therefore break somewhere, and where you put the break is a convention rather than a discovery.
+
+This is the first place in mathematics where a function is honestly multi-valued, and it is worth meeting as a feature rather than a defect.
+
+<WhereThisGoes level="l8">
+
+Polar form is the representation that makes multiplication easy, and choosing a representation to suit the operation is a habit both of your remaining courses reward.
+
+**The non-uniqueness of the angle is the same phenomenon as the restricted range of $\tan^{-1}$.** The argument is made single-valued by confining it to half a turn each way, which introduces a jump across the negative real axis; $\tan^{-1}$ is made single-valued by cutting tangent's domain down, which is why $\tan^{-1}(y/x)$ gives the wrong quadrant half the time. Both are the §3.9 repair, and both leave the same residue: a formula that is correct only after a quadrant check.
+
+**In calculus, polar coordinates are this same idea for the plane.** $x = r\cos\theta$, $y = r\sin\theta$ is exactly the conversion above. Curves that are ugly in $x$ and $y$ — circles, spirals, the cardioid — become short in $r$ and $\theta$, for the reason this module is about: the description should match the symmetry of the thing described.
+
+The many-angles problem follows you there. A point has coordinates $(r,\theta)$ and $(r,\theta+2\pi)$, which is why a polar curve can trace the same points more than once, and why the endpoints in a polar area calculation need checking rather than guessing.
+
+</WhereThisGoes>

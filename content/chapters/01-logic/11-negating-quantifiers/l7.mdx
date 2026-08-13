@@ -39,7 +39,7 @@ $$
 \exists x \in S,\; p(x) \wedge \neg q(x).
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and".*
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and". So the line reads: there is some $x$ in $S$ that has property $p$ and fails property $q$ — which is exactly what a counterexample to *$p$ forces $q$* looks like*
 
 **A counterexample must satisfy the hypothesis and violate the conclusion.** This is the single most useful consequence of the module. An element that fails the hypothesis makes the conditional vacuously true (§1.5) — true because the case never arose — and refutes nothing.
 
@@ -56,7 +56,7 @@ $$
 \exists x \in \mathbb{R},\; (x \leq 0) \wedge (x \geq 0),
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and". So the line reads: there is a real number that is neither positive nor negative — which unpacks to a real number that is both at most $0$ and at least $0$, namely $0$ itself*
 
 satisfied uniquely by $x = 0$. Two rules were used in sequence — the quantifier law, then De Morgan — because negation is pushed inward one joining word at a time.
 
@@ -67,14 +67,14 @@ $$
 \forall N \in \mathbb{N}\; \exists p > N,\; p \text{ and } p+2 \text{ both prime}.
 $$
 
-*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some".*
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: however far out you go, there is a prime beyond that point with a prime two above it. That is the twin-prime conjecture written out*
 
 Its negation:
 $$
 \exists N \in \mathbb{N}\; \forall p > N,\; \neg(p \text{ and } p+2 \text{ both prime}),
 $$
 
-*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not".*
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not". So the line reads: there is a cut-off beyond which no prime has a prime two above it — the denial of the line before*
 
 i.e. there is a threshold past which no twin prime pair occurs. Note what a refutation of Twin Primes would have to look like: not a computation, but an exhibited $N$ together with a *universal* proof about everything above it. This is why extensive computation neither proves nor disproves the conjecture, and why Zhang's 2013 theorem — bounded — never exceeding some fixed size — gaps infinitely often — was a genuine advance in the right direction without settling gap $2$.
 
@@ -83,7 +83,7 @@ $$
 \big(\forall x \in S,\, \neg p(x)\big) \;\vee\; \big(\exists x, y \in S,\; p(x) \wedge p(y) \wedge x \neq y\big):
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and".*
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and". So the line reads: either nothing in $S$ has the property, or two different things in $S$ both have it. Those are the two ways *exactly one* can fail*
 
 either nothing works, or two distinct things do. Both failure modes must be excluded to prove uniqueness, and both are available when refuting it.
 
@@ -96,7 +96,7 @@ $$
 \exists x\, \forall y\, \exists z\; \neg p(x,y,z).
 $$
 
-*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as".*
+*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: denying a three-deep stack of *for every* and *there is* flips each word to the other, in order, and pushes the denial all the way inside*
 
 A statement with all its quantifiers gathered at the front is the easiest kind to negate, because the flipping is purely mechanical: work left to right, flip each quantifier as the negation passes it, and finish by negating what remains.
 

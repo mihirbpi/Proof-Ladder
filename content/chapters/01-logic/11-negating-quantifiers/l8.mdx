@@ -1,0 +1,133 @@
+---
+level: l8
+title: Negating quantifiers and counterexamples
+readingTimeMin: 10
+newTerms: ["counterexample"]
+anchorExample: "every prime is odd"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\neg\big(\forall x \in S,\; p(x)\big) \;\equiv\; \exists x \in S,\; \neg p(x),
+\qquad
+\neg\big(\exists x \in S,\; p(x)\big) \;\equiv\; \forall x \in S,\; \neg p(x).
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: denying "every element has it" gives "some element lacks it", and denying "some element has it" gives "every element lacks it".*
+
+These are the De Morgan laws of §1.4 stretched over infinitely many statements at once, and they are the mechanical heart of working with quantified statements. Everything in this module is an application.
+
+## Justification
+
+Semantically: a *for all* claim is true exactly when the property holds at every element, so it fails exactly when some element escapes — and that is a *there exists* claim about the denial. Dually, a *there exists* claim fails exactly when no element qualifies, which is to say every element fails.
+
+For finite $S = \{a_1, \ldots, a_n\}$ this is literally §1.4 iterated, since $\forall$ contracts to $\wedge$ and $\exists$ to $\vee$; induction on $n$ (Chapter 6) supplies the general finite case. For infinite $S$ the finitary argument does not apply, and the laws come from what the quantifiers *mean* rather than from §1.4 — but the analogy is exact, and it is the right thing to remember.
+
+Note the domain is inert: negating a claim about every integer produces a claim about some integer, never a claim over a different set.
+
+## Counterexamples
+
+A **counterexample** to $\forall x \in S,\, p(x)$ is an element $c \in S$ with $\neg p(c)$ — *one member of $S$ that fails the property is enough to sink the claim about all of them*. The negation law is what makes a counterexample a *disproof* rather than mere evidence: producing $c$ proves $\exists x \in S,\, \neg p(x)$, which is exactly the negation of the claim.
+
+*A reminder of the symbols in play: $\mathbb{N}$ reads the counting numbers.*
+
+Most theorems have the form $\forall x \in S,\, (p(x) \Rightarrow q(x))$, and since $\neg(p \Rightarrow q) \equiv p \wedge \neg q$ (§1.7) — denying *if $p$ then $q$* means asserting $p$ and denying $q$, the negation is
+$$
+\exists x \in S,\; p(x) \wedge \neg q(x).
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and". So the line reads: there is some $x$ in $S$ that has property $p$ and fails property $q$ — which is exactly what a counterexample to *$p$ forces $q$* looks like*
+
+**A counterexample must satisfy the hypothesis and violate the conclusion.** This is the single most useful consequence of the module. An element that fails the hypothesis makes the conditional vacuously true (§1.5) — true because the case never arose — and refutes nothing.
+
+> *Claim:* $\forall x \in \mathbb{R},\; x^2 > 1 \Rightarrow x > 1$ — *every real number whose square exceeds $1$ is itself bigger than $1$*.
+> *Counterexample:* $x = -3$ (satisfies $x^2 = 9 > 1$; violates $x > 1$).
+> *Not a counterexample:* $x = 0$ (fails the hypothesis; the conditional is vacuously true there).
+
+## Worked negations
+
+**Compound condition.** $\forall x \in \mathbb{R},\, (x > 0) \vee (x < 0)$ — *every real number is either positive or negative*. Negating:
+$$
+\exists x \in \mathbb{R},\; \neg\big((x>0) \vee (x<0)\big)
+\;\equiv\;
+\exists x \in \mathbb{R},\; (x \leq 0) \wedge (x \geq 0),
+$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and". So the line reads: there is a real number that is neither positive nor negative — which unpacks to a real number that is both at most $0$ and at least $0$, namely $0$ itself*
+
+satisfied uniquely by $x = 0$. Two rules were used in sequence — the quantifier law, then De Morgan — because negation is pushed inward one joining word at a time.
+
+### Twin primes
+
+The conjecture is
+$$
+\forall N \in \mathbb{N}\; \exists p > N,\; p \text{ and } p+2 \text{ both prime}.
+$$
+
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some". So the line reads: however far out you go, there is a prime beyond that point with a prime two above it. That is the twin-prime conjecture written out*
+
+Its negation:
+$$
+\exists N \in \mathbb{N}\; \forall p > N,\; \neg(p \text{ and } p+2 \text{ both prime}),
+$$
+
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not". So the line reads: there is a cut-off beyond which no prime has a prime two above it — the denial of the line before*
+
+i.e. there is a threshold past which no twin prime pair occurs. Note what a refutation of Twin Primes would have to look like: not a computation, but an exhibited $N$ together with a *universal* proof about everything above it. This is why extensive computation neither proves nor disproves the conjecture, and why Zhang's 2013 theorem — bounded — never exceeding some fixed size — gaps infinitely often — was a genuine advance in the right direction without settling gap $2$.
+
+**Unique existence.** $\exists! x \in S,\, p(x)$ unfolds to $\big(\exists x, p(x)\big) \wedge \big(\forall x, y,\, (p(x) \wedge p(y)) \Rightarrow x = y\big)$, so its negation is
+$$
+\big(\forall x \in S,\, \neg p(x)\big) \;\vee\; \big(\exists x, y \in S,\; p(x) \wedge p(y) \wedge x \neq y\big):
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\wedge$ is "and". So the line reads: either nothing in $S$ has the property, or two different things in $S$ both have it. Those are the two ways *exactly one* can fail*
+
+either nothing works, or two distinct things do. Both failure modes must be excluded to prove uniqueness, and both are available when refuting it.
+
+## Nested quantifiers, negated in order
+
+Negation passes through a run of quantifiers by flipping each in turn:
+$$
+\neg\big(\forall x\, \exists y\, \forall z\; p(x,y,z)\big)
+\;\equiv\;
+\exists x\, \forall y\, \exists z\; \neg p(x,y,z).
+$$
+
+*Symbol by symbol: $\forall$ is "for every", $\exists$ is "there is some", $\neg$ is "not", $\equiv$ is "says the same as". So the line reads: denying a three-deep stack of *for every* and *there is* flips each word to the other, in order, and pushes the denial all the way inside*
+
+A statement with all its quantifiers gathered at the front is the easiest kind to negate, because the flipping is purely mechanical: work left to right, flip each quantifier as the negation passes it, and finish by negating what remains.
+
+**The standard exercise.** Take a claim of the shape *for every tolerance, there is a window such that every point in the window stays inside the tolerance* — the shape most definitions in later courses have.
+
+Flip each quantifier in turn and the denial reads: *there is a tolerance so tight that for every window, however small, some point in it escapes.*
+
+Notice what the flip bought you. The original quantifies over infinitely many tolerances and is hard to attack head-on. Its denial asks for **one** tolerance, and then one escaping point per window — a job you can actually begin.
+
+<Warning title="Failure modes">
+**Over-negation.** $\neg \forall x\, p(x) \not\equiv \forall x\, \neg p(x)$ — *“not all of them do” is not “none of them do”*. "Not every prime is odd" is not "every prime is even."
+
+**Forgetting the *and* or *or* inside.** After flipping the quantifiers you must still negate the part inside, and if it contains $\Rightarrow$, $\wedge$, or $\vee$, further rules apply. A half-pushed negation is a common source of proofs of the wrong statement.
+
+**Changing the domain.** A quantifier with a restriction attached — *for every positive $t$* — is shorthand for *for every $t$, if $t$ is positive then …*. Negating gives *there is a $t$ that is positive **and** …*. The restriction survives the flip; it does not turn into its opposite.
+</Warning>
+
+<Aside>
+Euler conjectured (1769) that no $k$-th power is a sum of fewer than $k$ positive $k$-th powers. Lander and Parkin refuted the case $k=5$ in 1966 with a two-sentence paper containing $27^5 + 84^5 + 110^5 + 133^5 = 144^5$. Elkies later refuted $k = 4$ using elliptic curves, producing infinitely many counterexamples where a search had found none. The asymmetry is stark: two centuries of accumulated belief, undone by one element of the domain.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+The first real payoff is being able to say what it means for something to **fail**.
+
+Calculus states most of its ideas as *for every … there is a …* claims. "The graph gets as close to $L$ as you like, provided you look close enough to $a$" has that shape: for every tolerance you name, there is a window that meets it. You will meet the precise version early in the course.
+
+**The negation is where the work is.** To show a limit does *not* exist, flip both quantifiers by the rules of this module: some tolerance is so tight that **no** window meets it. That single sentence is the proof strategy — it tells you to produce one tolerance, and then, for each window someone proposes, one point that escapes.
+
+Notice what the flip bought you. The original claim quantifies over infinitely many tolerances and is hard to attack directly. Its negation asks you for *one* tolerance and then a point per window — a job you can actually start.
+
+**The same flip runs everywhere in the course.** *Not continuous* (not unbroken), *not bounded* (not staying under any fixed size), *not increasing on an interval* are all negations of *for every … there is a …* claims, and each unfolds into a recipe the same way. Getting the flip right is the difference between a proof strategy and a blank page.
+
+</WhereThisGoes>

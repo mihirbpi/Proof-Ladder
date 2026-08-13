@@ -18,7 +18,7 @@ $$
 S = T \quad\Leftrightarrow\quad S \subseteq T \;\wedge\; T \subseteq S.
 $$
 
-*Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and".*
+*Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and". So the line reads: two sets are equal exactly when each sits inside the other. That is what turns one equality into two containment proofs*
 
 This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$ — *everything is in one exactly when it is in the other* — an if-and-only-if statement decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
 
@@ -87,7 +87,7 @@ x \in S \cup (S \cap T)
 \iff x \in S,
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with".*
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with". So the line reads: being in $S$ pooled with the overlap of $S$ and $T$ is the same as being in $S$ or being in both — and either way you are in $S$. So the whole expression collapses to $S$*
 
 the last step by the absorption law $p \vee (p \wedge q) \equiv p$ — *“$p$, or else both $p$ and $q$” says no more than $p$ alone*. This is legitimate — every step is a genuine if-and-only-if statement — and it proves $S \cup (S \cap T) = S$ in one line.
 
@@ -108,7 +108,7 @@ $$
 \{n \in \mathbb{Z} \mid 12 \mid n \text{ and } 18 \mid n\} = \{n \in \mathbb{Z} \mid 36 \mid n\}.
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the reals whose sine is zero are exactly the whole multiples of $\pi$; and the integers divisible by both $12$ and $18$ are exactly those divisible by $36$*
 
 Each is a theorem with two halves, and in each case one half is substantially harder than the other. The value of double inclusion is exactly that it does not consult your intuition about whether two descriptions "look the same".
 

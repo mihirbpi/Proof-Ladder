@@ -1,0 +1,168 @@
+---
+level: l8
+title: Defining multiplication
+readingTimeMin: 8
+newTerms: []
+anchorExample: "successor function"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\textbf{(M1)}\ a\cdot 0 = 0, \qquad \textbf{(M2)}\ a\cdot S(b) = a + (a\cdot b).
+$$
+
+*Symbol by symbol: $a \cdot 0$ is $a$ times zero, and $S(b)$ is the next number after $b$. So the line reads: anything times zero is zero, and to multiply by the next number, multiply by the number itself and then add one more copy of $a$.*
+
+Recursion on the second slot again, and the shape is the same one step up: addition repeats *next*, and multiplication repeats *addition*.
+
+$$
+a + b = \underbrace{S(S(\cdots S}_{b}(a)\cdots)), \qquad a\cdot b = \underbrace{a + \cdots + a}_{b}.
+$$
+
+*So the line reads: adding $b$ means applying the successor $b$ times starting from $a$; multiplying by $b$ means adding $b$ copies of $a$.*
+
+Both are legitimate definitions for the reason §7.6 gave — a base value plus a rule for getting to the next case pins down exactly one function, and that is Axiom 9 doing the work.
+
+## Basic derivations
+
+<Proof>
+$3\cdot2 = 3 + (3\cdot1) = 3 + (3 + (3\cdot0)) = 3 + (3+0) = 6$.
+
+$a\cdot1 = a\cdot S(0) = a + (a\cdot0) = a + 0 = a$.
+</Proof>
+
+## Distributivity
+
+Assumed as an arithmetic rule in §4.1; derivable here.
+
+> **Theorem.** $a(b+c) = ab + ac$.
+
+<Discussion>
+  <div slot="know">(M1), (M2), (A1), (A2), plus associativity and commutativity of $+$ from §7.6.</div>
+  <div slot="want">The identity for all $a,b,c \in \mathbb{N}$.</div>
+  <div slot="how">Induct on $c$, matching the recursion variable of both definitions. The rearrangement in the step consumes §7.6's theorems — so the previous module is a prerequisite in substance, not merely in sequence.</div>
+</Discussion>
+
+<Proof>
+
+*The symbols in this proof: $S(k)$ is the next number after $k$, and (A1), (A2), (M1), (M2) are the four defining rules — two for addition, two for multiplication. In words, what follows shows: the identity holds when $c$ is zero, and holding at $k$ forces it at the next one.*
+
+Induct on $c$.
+
+*Base.* $a(b+0) = ab$ by (A1), and $ab + a\cdot0 = ab + 0 = ab$ by (M1) then (A1). Both sides give $ab$. ✓
+
+*Step.* Assume $a(b+k) = ab+ak$. Then, one step at a time:
+
+$$
+\begin{aligned}
+a\big(b+S(k)\big) &= a\,S(b+k)      && \text{by (A2)}\\
+                   &= a + a(b+k)      && \text{by (M2)}\\
+                   &= a + (ab+ak)     && \text{by the assumption}\\
+                   &= ab + (a + ak)   && \text{rearranging, using §7.6}\\
+                   &= ab + a\,S(k)   && \text{by (M2) again}
+\end{aligned}
+$$
+
+which is the claim at $S(k)$. Note the fourth line: reordering a sum is not free here, and it spends the associativity and commutativity proved in §7.6. $\blacksquare$
+</Proof>
+
+Right-distributivity $(a+b)c = ac+bc$ requires a separate induction — or follows from commutativity of $\cdot$, which itself needs distributivity, so the order of proof matters.
+
+## The remaining laws
+
+By further inductions, in this order:
+
+$$
+0\cdot a = 0, \qquad S(a)\cdot b = b + a\cdot b, \qquad a\cdot b = b\cdot a, \qquad (ab)c = a(bc).
+$$
+
+Commutativity of $\cdot$ needs the middle lemma exactly as commutativity of $+$ needed $S(a)+b = S(a+b)$ (§7.6) — the same proof shape one level up. Associativity needs distributivity.
+
+Result: the counting numbers obey every arithmetic rule of §4.1 except the one giving negatives. $\mathbb{Z}$ is built from it by the standard trick of §7.2 — take pairs $(a,b)$, read them as $a - b$, and count $(a,b)$ and $(c,d)$ as the same when $a+d=b+c$ — and the arithmetic laws proved here are exactly what makes that construction's operations well defined.
+
+<Warning title="What the course assumed, now discharged">
+| Assumed | Source |
+|---|---|
+| closure, associativity, commutativity, distributivity (§4.1) | (A1)–(A2), (M1)–(M2) + induction |
+| every collection has a smallest member (§4.4) | A9 |
+| induction as technique (Ch. 6) | A9 |
+| parity and divisibility (§4.2) | definitions of $+$, $\cdot$ |
+
+Nine axioms, two recursive definitions. That is the answer to the chapter question: the earliest facts rest on definition, and everything above them is derived.
+</Warning>
+
+## What the course proved
+
+Chapter 1 supplied the language: statements, joining words, conditionals, quantifiers, and the moves that prove each.
+
+Chapter 2 supplied sets, and showed the logic reappearing as set operations under a systematic translation.
+
+Chapter 3 supplied functions — and the vocabulary that this chapter's axioms are stated in. Axiom 8 *is* injectivity; Axiom 7 *is* emptiness of a pre-image.
+
+Chapter 4 built the number systems and the divisibility template.
+
+Chapter 5 completed them, and found plane geometry inside the algebra.
+
+Chapter 6 supplied induction, the tool for infinitely many cases at once.
+
+Chapter 7 went to the bottom and found nine assumptions.
+
+**The techniques were the same throughout.** Double inclusion in Chapter 2 is check-both-boxes from Chapter 1. Transitivity of $\subseteq$, of $\mid$, and of $\leq$ are one argument written three times. De Morgan appeared for joining words, for sets, and for quantifiers.
+
+There are not many techniques. There are many places to use them, and recognizing a familiar shape in unfamiliar notation is most of what fluency consists of.
+
+## Where the tower stops
+
+Iterating once more gives exponentiation, $a^0 = 1$, $a^{S(b)} = a\cdot a^b$, and the tower keeps climbing: repeated exponentiation, then repeated repeated exponentiation, and so on without end. Growth is explosive. Climb the tower and read off the $n$th operation applied to $n$ and $n$, and you get a function whose values are computable in principle and astronomically large almost immediately — large enough that the nine axioms of this chapter cannot prove it never runs forever.
+
+Note also that the hierarchy loses structure as it climbs. Addition is commutative and associative; multiplication is too; exponentiation is neither. The good behavior of $+$ and $\cdot$ is not typical of iterated operations — it is special, and the theorems above are where that specialness is proved.
+
+<Aside>
+Arithmetic with addition alone — the counting numbers, $+$, and no multiplication at all — is perfectly well behaved: consistent, and every question in its language can be settled. Adding multiplication changes everything, because $+$ and $\cdot$ together are enough to encode statements *about* arithmetic inside arithmetic itself, and that is exactly what the argument in §7.1 needs.
+
+Multiplication is what makes arithmetic strong enough to be incomplete. §7.7 is therefore also the module where the limits proved in §7.1 become inevitable.
+</Aside>
+
+## What the whole course now rests on
+
+This is the last module, and it is worth looking back at what has actually been established.
+
+Chapters 1 through 6 proved a great many things about the counting numbers. Every one of them used arithmetic freely: that addition commutes, that multiplication distributes over it, that every integer is even or odd. Those were assumed, reasonably, because they are true and familiar.
+
+Chapter 7 discharged the debt. Everything now rests on:
+
+- **Nine axioms** — zero exists, every number has a next, counting never returns to the start, never merges two into one, and nothing is in $\mathbb{N}$ but what counting reaches.
+- **Two recursive definitions** — one for addition, one for multiplication, each two lines long.
+
+From that, and nothing else, came: $1+1=2$ as a derivation rather than a fact; commutativity and associativity of addition, at the cost of three inductions; distributivity; cancellation; and the order relation.
+
+## Two words left undefined
+
+**Two undefined words remain, and they are meant to.** *Zero* and *next* are never defined, because §7.1 showed definitions must bottom out somewhere. What pins them down is not a definition but the nine axioms they satisfy.
+
+That is what a foundation looks like. Not a proof that arithmetic is true — that would need somewhere firmer to stand, and §7.1 explains why there is no such place — but an exact account of how much has to be assumed, and a demonstration that everything else follows.
+
+<Aside>
+Worth noticing what the chapter did **not** do. It did not make arithmetic more certain than it was on the first page. Nobody doubted $1+1=2$ before Chapter 7 and nobody should doubt it more now.
+
+What changed is that the dependency is now visible. You can point at any theorem in this book and trace it back to a numbered axiom, and you can say exactly which axiom a step consumed. That traceability, rather than certainty, is what the exercise buys — and it is the same thing §4.1 bought by listing the rules instead of the numbers.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+This is where the course closes, and the closing observation is that everything in Chapters 1–6 concerning $\mathbb{N}$ now rests on nine axioms.
+
+**The tower, in order.** Successor is undefined and constrained by axioms. Addition is defined recursively from it. Multiplication is defined recursively from addition. $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are each built from the previous system to repair a specific closure failure. Nothing is assumed twice, and nothing circles.
+
+**Every arithmetic law is a theorem.** Commutativity, associativity, and distributivity — the arithmetic rules of §4.1, used freely there — are proved here by induction. What one chapter assumes, another proves, and the direction of that dependency is worth tracing once.
+
+**In calculus, the same tower is what the rules for steepness rest on.** The derivativeobeys rules, and those rules are theorems. Linearity of differentiation is distributivity applied to the limit definition; the product rule is a statement about what differentiating does to a product; and the fact that $(fg)' \neq f'g'$ says that differentiating does not simply pass through a multiplication. Each is provable, and each depends on the arithmetic being what this chapter says it is.
+
+**And the exponentiation pattern continues.** $x^0 := 1$, $x^{S(y)} := x^y\cdot x$ — repeated multiplication, defined from multiplication exactly as multiplication was defined from addition. The sequence does not stop, and the operations grow fast enough that the fifth one on small inputs already exceeds any quantity in the physical universe.
+
+</WhereThisGoes>

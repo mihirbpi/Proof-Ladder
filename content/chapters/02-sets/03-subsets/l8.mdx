@@ -1,0 +1,126 @@
+---
+level: l8
+title: Subsets
+readingTimeMin: 10
+newTerms: ["subset", "proper subset", "element chasing", "power set"]
+anchorExample: "intervals on the number line"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+A \subseteq S \quad:\Leftrightarrow\quad \forall x\;(x \in A \Rightarrow x \in S).
+$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in", $\forall$ is "for every", $\Leftrightarrow$ is "exactly when", $\Rightarrow$ is "forces". So the line reads: $A$ sits inside $S$ exactly when being in $A$ forces being in $S$, for every $x$.*
+
+The definition is a if–then claim made about every element, and everything in this module is a consequence of that single observation. §1.12 fixed the proof template for such statements; applied to sets it gets the name **element chasing**, and it is the technique on which essentially all of naive set theory runs.
+
+## The template
+
+> Let $x \in A$ be arbitrary. [Use only what $x \in A$ gives you.] Therefore $x \in S$. Since $x$ was arbitrary, $A \subseteq S$.
+
+The discipline of §1.12 applies unchanged: the element is chosen at the start and never changed, and any assumption about $x$ beyond membership in $A$ invalidates the generalization.
+
+> **Proposition.** $S = (-3,5) \subseteq T = (-6,5]$.
+
+<Discussion>
+  <div slot="know">$x \in S \iff -3 < x < 5$; $x \in T \iff -6 < x \leq 5$. Available: transitivity (first-to-second and second-to-third gives first-to-third, §7.2) of $<$, and that $a < b$ implies $a \leq b$.</div>
+  <div slot="want">$-6 < x$ and $x \leq 5$.</div>
+  <div slot="how">Both halves of the goal follow from the two halves of the hypothesis by a single step each. Note $T$ is the weaker constraint on both ends, so the containment should be immediate — and it should be *proper*, witnessed by the endpoint $5$.</div>
+</Discussion>
+
+<Proof>
+Let $x \in S$ be arbitrary; then $-3 < x < 5$.
+
+From $-6 < -3$ and $-3 < x$, transitivity (first-to-second and second-to-third gives first-to-third, §7.2) gives $-6 < x$. From $x < 5$ we get $x \leq 5$.
+
+So $-6 < x \leq 5$, i.e. $x \in T$. Since $x$ was arbitrary, $S \subseteq T$.
+</Proof>
+
+The containment is proper: $5 \in T \setminus S$. Properness is a separate claim requiring a separate witness (§1.12), and a subset proof never proves it.
+
+## Refutation
+
+$\neg(A \subseteq S)$ is, by §1.11,
+$$
+\exists x\;(x \in A \wedge x \notin S),
+$$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\exists$ is "there is some", $\wedge$ is "and". So the line reads: there is some object that lies in $A$ and yet outside $S$ — a single such object is the whole of what it takes to show $A$ is not contained in $S$*
+
+so refuting a containment means exhibiting one element of $A$ outside $S$ — and nothing less. Here $5 \in T$, $5 \notin S$ refutes $T \subseteq S$.
+
+<Warning title="Membership and inclusion are different relations">
+$\in$ relates an object to a set; $\subseteq$ relates two sets. With $A = \{1, \{2,3\}, \emptyset\}$:
+
+$1 \in A$ ✓ · $\{2,3\} \in A$ ✓ · $2 \in A$ ✗ · $\emptyset \in A$ ✓ (it was listed) · $\emptyset \subseteq A$ ✓ (always) · $\{1\} \subseteq A$ ✓ · $\{2,3\} \subseteq A$ ✗ (since $2 \notin A$).
+
+Note that $\emptyset \in A$ and $\emptyset \subseteq A$ are both true here for entirely different reasons. Note also that $\in$ is *not* transitive: $2 \in \{2,3\}$ and $\{2,3\} \in A$, but $2 \notin A$. Inclusion is transitive; membership is not, and conflating them is the standard source of nonsense in early set-theoretic writing.
+</Warning>
+
+## True because there is nothing to check
+
+> **Proposition.** $\emptyset \subseteq S$ for every set $S$.
+
+<Proof>
+Pick any $x$ you like. The hypothesis of $x \in \emptyset \Rightarrow x \in S$ is false, so the conditional is true (§1.5). Since $x$ was arbitrary, $\forall x\,(x \in \emptyset \Rightarrow x \in S)$ — *anything in the empty set is in $S$* — i.e. $\emptyset \subseteq S$.
+</Proof>
+
+This is vacuous truth — true because there is nothing to check, §1.5 — carrying real structural weight. Every distributive, De Morgan, and product identity in this chapter holds without exception for $\emptyset$ exactly because of it; a convention that made $\emptyset \subseteq S$ fail would introduce a special case into every theorem that follows.
+
+## Containment behaves like $\leq$
+
+*A reminder of the symbols in play: $\cap$ reads "intersection".*
+
+Three properties:
+
+- **Reflexive.** $S \subseteq S$, since $x \in S \Rightarrow x \in S$.
+- **Transitive.** If $A \subseteq B$ and $B \subseteq C$ then $A \subseteq C$: chase $x \in A$ into $B$, then into $C$.
+- **Antisymmetric.** If $A \subseteq B$ and $B \subseteq A$ then $A = B$ — this is being fixed by its members, and it is the content of §2.6.
+
+Those are the three properties $\leq$ has on the numbers, so containment orders the subsets of $X$ much as $\leq$ orders numbers — with one difference. Some pairs simply cannot be compared: $\{1,2\}$ and $\{2,3\}$ are incomparable. That failure of comparability is not a defect — it is the reason set containment carries more information than ordering numbers on a line does, and it is why the language of *greatest* and *least* ($\cap$ as the largest set inside both, $\cup$ as the smallest containing both) is the right one for §2.4.
+
+## The power set
+
+$$
+\mathcal{P}(X) = \{\, A \mid A \subseteq X \,\}.
+$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", the bar $\mid$ is "such that". So the line reads: the power set of $X$ is the collection of all collections sitting inside $X$.*
+
+For $X = \{a,b\}$: $\mathcal{P}(X) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$. For finite $X$, $|\mathcal{P}(X)| = 2^{|X|}$ — each element is either in or out, independently of the rest, which is where the alternative notation $2^X$ comes from. §6.3 proves the count by induction.
+
+One remark worth carrying: $\mathcal{P}(X)$ is a set whose *elements are themselves sets*, and keeping track of which level you are on is a real skill. $a \in X$, but $\{a\} \in \mathcal{P}(X)$, and $\{\{a\}\} \subseteq \mathcal{P}(X)$. Those three say different things, and mixing them up is the commonest error in this chapter.
+
+The power set is also always bigger than the set it came from — strictly bigger, even when the set is infinite. That is module 6.7's business, and the proof there is worth waiting for.
+
+<Aside>
+The relation $\subseteq$ is definable from $\in$ alone, which is why a set theory built from a list of rules needs only one undefined relation. Everything in this chapter — union, intersection, complement, product, function — is likewise built from $\in$ by explicit definition. That economy is the point of taking sets as the foundation.
+</Aside>
+
+## A word on the two containment signs
+
+This course writes $A \subseteq S$ for containment that allows $A = S$, and $A \subsetneq S$ when the containment is strict. That is unambiguous, and it is worth keeping.
+
+You will meet books that write $A \subset S$ instead, and here the profession has not settled on one convention:
+
+- Many authors use $\subset$ exactly as this course uses $\subseteq$ — equality allowed. On that reading $A \subset A$ is true.
+- Others use $\subset$ for strict containment, in analogy with $<$. On that reading $A \subset A$ is false.
+
+Both are in current use, and neither is wrong. The practical consequence is that **$\subset$ on its own tells you nothing until you have checked the book's convention**, usually stated once in the first chapter and never again.
+
+The habit worth building is not memorising which author does what. It is noticing, when a proof turns on whether a containment is strict, that you should go and check — because a theorem that is true under one reading can be false under the other.
+
+<WhereThisGoes level="l8">
+The element-chasing habit of this module is the one the courses ahead run on. Whenever a later subject asks you to show that some collection is closed under its operations, the proof has this exact shape: take any members you like, use *only* the fact that they belong, and show the result belongs too. Nothing about the particular members may be used — that is what makes the argument cover all of them.
+
+**In calculus the containments are between domains and intervals.** A theorem may hold on the inside of a stretch while the endpoints need a separate argument — the statement is trapped between an open interval and the closed one, and the two endpoints are exactly what is left undecided. That is why endpoints get checked on their own, every time.
+
+And the vacuous (true because there is nothing to check, §1.5) containment $\emptyset\subseteq S$ is not a curiosity there either: the set where a function fails a condition is often empty, and "every point of that set has property $P$" is then true by the argument given above.
+
+</WhereThisGoes>

@@ -54,7 +54,7 @@ x \in \overline{S \cup T}
 \end{aligned}
 $$
 
-*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", $\wedge$ is "and".*
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", $\wedge$ is "and". So the line reads: being outside a pool means not being in either one, which means being outside the first and outside the second — so the outside of a pool is the overlap of the outsides*
 
 Every step is an if-and-only-if statement, so both inclusions are proved simultaneously. Since $x \in U$ was arbitrary, the sets are equal.
 </Proof>
@@ -86,7 +86,7 @@ $$
 \overline{A_1 \cap A_2 \cap \cdots \cap A_n} = \overline{A_1} \cup \cdots \cup \overline{A_n}.
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: the outside of a pool of any number of sets is the overlap of their outsides, and the outside of an overlap is the pool of the outsides. Stepping outside swaps the two operations*
 
 The proof is the same three moves, with the quantifier rule of §1.11 at the pivot instead of the joining word rule:
 $$
@@ -96,7 +96,7 @@ x \in \overline{A_1 \cup \cdots \cup A_n}
 \iff x \in \textstyle\overline{A_1} \cap \cdots \cap \overline{A_n}.
 $$
 
-*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when".*
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\forall$ is "for every", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when". So the line reads: being outside every one of the sets means no $i$ puts you inside $A_i$, which means every $i$ leaves you outside it — which is exactly membership in the overlap of the outsides*
 
 No induction (§6.1: prove the first case, then that each case forces the next) is needed, and the family may be larger than any list — which is the point of proving it this way rather than by repeating the two-set case over and over.
 
@@ -104,7 +104,7 @@ No induction (§6.1: prove the first case, then that each case forces the next) 
 In $U = \{1,\ldots,6\}$ with $S = \{1,2,3\}$, $T = \{3,4\}$:
 $$\overline{S \cap T} = \{1,2,4,5,6\}, \qquad \overline S \cap \overline T = \{5,6\}.$$
 
-*Symbol by symbol: $\cap$ is "overlapped with", the bar on top is "everything outside".*
+*Symbol by symbol: $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: a worked instance where the two sides differ, showing the outside of an overlap is *not* the overlap of the outsides*
 
 A single counterexample settles that $\overline{S \cap T} \neq \overline S \cap \overline T$. In practice the error appears not as a bare identity but inside a proof, when a negated hypothesis about a union or intersection is expanded carelessly.
 </Warning>

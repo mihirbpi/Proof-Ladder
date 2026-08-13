@@ -69,6 +69,28 @@ $S : \mathbb{N}\to\mathbb{N}$ is a function in the sense of module 3.1:
 
 Later axioms constrain it further in Chapter 3's vocabulary: A7 will say $0 \notin \operatorname{Im}(S)$, and A8 will say $S$ is injective (module 3.5). Chapter 3 is not merely a prerequisite here; it is the language the axioms are best stated in.
 
+## Why build the numbers this way at all
+
+It is fair to ask what the point is. You have counted since you were four, and nobody was confused. Why replace something that works with two undefined words and a list of rules?
+
+Three reasons, and none of them is that counting was broken.
+
+**To make the assumptions visible.** Chapters 1 to 6 used arithmetic constantly — that addition can be done in either order, that every number is even or odd. Those were taken on trust. Building the numbers from a stated list turns each of them into something you can point at and trace, and shows exactly how much has to be assumed before the rest follows.
+
+**To find out what depends on what.** Once the rules are separated, you can ask which results need which rule. Module 7.4 shows that dropping a single axiom leaves you with clock arithmetic — a perfectly consistent system that simply is not the counting numbers. You cannot ask that question at all until the rules are apart.
+
+## The method travels
+
+**The same move works elsewhere.** Every system in mathematics gets built this way in the end: name the undefined words, state the rules, derive the rest. Doing it once on something you already know is far easier than meeting the method for the first time on something you do not.
+
+## What the two axioms leave open
+
+Notice how little A5 and A6 actually say. They say $0$ is there, and that every number has a next one. That is all.
+
+They do not say the next one is *new*. Nothing yet stops $S(0)$ from being $0$ itself, or the counting from looping back on itself after a while. They do not say two different numbers have different next ones. And they do not say that everything in $\mathbb{N}$ is reachable by counting from $0$ — there could be extra numbers sitting off to one side, never reached.
+
+Each of those holes gets plugged by a later axiom, and the next module builds the broken systems that show why each is needed.
+
 ## Why A5–A6 are insufficient
 
 <Figure alt="Two elements labeled zero and one on the left, with arrows showing zero going to one and one going back to zero, forming a loop." caption="A structure satisfying A5 and A6 in which counting loops after two steps.">

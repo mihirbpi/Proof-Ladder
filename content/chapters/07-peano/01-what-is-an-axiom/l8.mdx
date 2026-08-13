@@ -1,0 +1,135 @@
+---
+level: l8
+title: What is an axiom?
+readingTimeMin: 8
+newTerms: ["axiom", "theorem", "undefined starting word", "model", "independence"]
+anchorExample: "successor function"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+*Chapter question: if every proof rests on earlier facts, what do the earliest facts rest on?*
+
+## Where the chain of *why* has to stop
+
+Justification goes back and back in two directions, and both must terminate.
+
+**Statements.** Every theorem is derived from earlier ones. An infinite chain of *why* anchors nothing, so some statements are assumed: the **axioms**.
+
+**Terms.** Every definition is phrased in earlier terms. So some terms are undefined: the **undefined starting words**, whose meaning is exhausted by the axioms governing them.
+
+A theory is then three things: a language (the undefined starting words, plus the logical symbols), a set of axioms, and everything you can derive from them by a fixed set of steps. Nothing else is in it.
+
+| Theory | Primitives |
+|---|---|
+| Set theory | set, $\in$ |
+| Euclidean geometry | point, line, incidence, betweenness |
+| The counting numbers | zero, and *next* |
+| The study of symmetry | a collection of objects, and a way of combining two of them |
+
+A famous remark makes the point: one should be able to substitute "table, chair, beer mug" for "point, line, plane" throughout Euclid with no proof affected. All content lives in the axioms; none in the names. It is also why one short list of rules about combining things can describe symmetries of a shape, shufflings of a deck, and objects you have not met yet, all at the same time.
+
+## Two meanings of "follows from"
+
+There are two different things "follows from the axioms" can mean, and this chapter leans on both.
+
+**Provable.** You can get from the axioms to the statement by a chain of justified steps. This is the one you have been doing all course.
+
+**True in every case.** Take anything at all that obeys the axioms — any system, however strange, so long as the rules hold in it. The statement is true there too.
+
+These sound like different questions, and it is not obvious they have the same answer. For the logic used here, they do: whatever is true in every case is provable, and the other way round. That was settled in 1929, and it is what makes the following method legal, which is the method this whole chapter runs on:
+
+**To show a statement cannot be proved from a set of axioms, build one system where the axioms hold and the statement fails.**
+
+That is worth pausing on, because it turns an impossible job into a possible one. Showing something is unprovable by searching through proofs would never finish — there are infinitely many proofs to try, and failing to find one proves nothing. Building a single system where the axioms hold and the claim fails is a finite piece of work you can actually do, and §7.4 does it.
+
+## Independence
+
+To prove axiom $A$ independent of $B_1,\ldots,B_n$: construct an example obeying every $B_i$ and refuting $A$.
+
+Historically decisive instances:
+
+- **Parallel postulate.** There are geometries — built inside a disc, with "line" redefined — that satisfy Euclid's first four axioms and break the fifth. Building one ended two thousand years of failed attempts to derive it. Hyperbolic geometry is as consistent as Euclidean.
+- **Two famous set-theory questions.** Both were settled the same way in the twentieth century: examples were built in which the standard axioms hold and the statement is true, and other examples in which they hold and it is false. So the axioms decide neither, and that is a theorem rather than an admission of defeat.
+
+§7.4 uses exactly this method on Peano's axioms, exhibiting one- and two-element structures satisfying axioms 1–6 while violating 7 or 8. Independence is not a philosophical remark; it is a construction.
+
+## Why proofs must terminate
+
+Every proof justifies its claims by earlier claims, and following the chain backwards gives three possibilities.
+
+**Infinite chain of *why*.** No claim is ever proved, because the justification never completes.
+
+**Circularity.** $P$ because $Q$, $Q$ because $P$. Nothing is proved either.
+
+**Termination.** Some statements are accepted without proof, and everything else is derived from them.
+
+Only the third produces knowledge, so **axioms exist because proof requires a starting point** — not because anyone believes they are self-evident. That distinction matters, because the self-evidence reading is what makes the discovery of non-Euclidean geometry look paradoxical, and the termination reading makes it routine.
+
+Undefined terms are the same phenomenon for definitions. *Point*, *line*, and *plane* in geometry; *set* and *membership* in set theory; $0$ and *successor* — the *next* one, §7.3 — here. Definitions must bottom out or circle, and what replaces the definition is a list of properties assumed to hold.
+
+**The practical consequence:** when a subject is built this way — from a list of rules — the first question to ask is which words are left undefined and which statements are assumed. Everything else is derived, and the derivation is checkable.
+
+## Criteria
+
+**Consistency** is not one good quality among several. It is the one the others depend on. If a set of axioms proves both $p$ and *not* $p$, then §1.5 lets you prove *everything* from there, true or false alike — and a system that proves everything has told you nothing. Consistency is what makes the rest worth having.
+
+**Independence** is tidiness. If one axiom can be proved from the others, it was never an axiom; it was a theorem filed in the wrong place.
+
+### Settling every question — the one you cannot have
+
+In 1931 a logician named Kurt Gödel proved that any set of axioms honest enough to describe ordinary arithmetic — consistent, and with a list of axioms you could actually write down — leaves questions it cannot answer. Not questions nobody has cracked yet: questions that system can neither prove nor disprove, ever. And adding the missing statement as a new axiom does not rescue you, because the larger system then has unanswerable questions of its own.
+
+He proved a second thing in the same paper, which is stranger. Such a system cannot prove its own consistency. To be sure the rules will never contradict themselves, you have to step outside them.
+
+Notice this does *not* contradict the 1929 result above. That one says the **logic** misses nothing — anything true in every case can be proved. This one says a **theory strong enough for arithmetic** does miss things. Different questions, different answers, no conflict.
+
+### Adequacy
+
+Last, the axioms have to actually generate the mathematics you wanted. A system that assumes almost nothing is safely consistent and proves almost nothing, which is no use to anybody. Strength and safety pull against each other, and Gödel's second result says exactly how far that tension goes: the stronger the system, the less it can vouch for itself.
+
+<Warning title="Self-evidence is not a criterion">
+The old line — an axiom is a truth too obvious to argue with — is false, and believing it cost mathematics two thousand years. The parallel postulate looked obvious to everyone who read it, and turned out to be optional: drop it and you get a different geometry that is perfectly consistent, and that physics later needed.
+
+It cuts the other way too. There is a standard assumption about sets that sounds completely reasonable and implies that a solid ball can be cut into a few pieces and reassembled into *two* balls the same size as the original. Nothing is wrong with the proof. Obviousness turns out to be a fact about us, not about the statement.
+
+What actually matters is the list from this module: clear, consistent, independent, adequate. A statement feeling reasonable is a kindness to the reader, not a mathematical property of it.
+</Warning>
+
+<Aside>
+Because no system strong enough for arithmetic can vouch for itself, every consistency result comes with an *if* attached: *if* this weaker set of rules never contradicts itself, then neither does that stronger one. Someone did prove the arithmetic axioms consistent, in 1936 — but only by assuming something the axioms themselves do not give you.
+
+So the foundations of mathematics do not sit on bedrock. They sit on a carefully drawn map of which systems rest on which others. In 1900 people hoped for certainty and expected to get it. What they got instead was the map, and the map has turned out to be worth more.
+</Aside>
+
+## Consistency and completeness, as questions
+
+§7.1 listed consistency and independence among the things axioms should have. There is a third property people wanted, and the story of what happened to it is the most important episode in the foundations of the subject.
+
+**Consistency** asks whether the axioms can prove a contradiction. If they can, §1.3 shows they prove everything, and the system is worthless.
+
+**Completeness** asks: can the axioms settle every statement in their language, proving it or disproving it? A complete and consistent system would decide every arithmetic question there is.
+
+That was the hope, stated as a programme in the 1920s.
+
+## What Gödel showed
+
+**The programme cannot be carried out.** Any consistent set of axioms strong enough for arithmetic, with a list you could actually write down, leaves statements it can neither prove nor disprove — and adding one as a new axiom does not help, since the enlarged system has its own.
+
+A second result in the same paper is stranger still: such a system cannot prove its own consistency. To be sure the rules never contradict themselves you must step outside them, into a stronger system whose own consistency is then open.
+
+**What this does not say.** It does not say some arithmetic statements lack truth values; §1.1 stands. Nor does it stop anyone proving theorems. It says *provable from a fixed list* and *true* are different properties, and no list closes the gap. Chapter 7 builds $\mathbb{N}$ knowing this in advance, and the axioms are no less useful for it.
+
+<WhereThisGoes level="l8">
+
+Both courses ahead are organized this way — a few things assumed, everything else derived — and recognizing it changes how you read a textbook.
+
+**In calculus the axioms are about $\mathbb{R}$**, and there are three groups of them doing three different jobs. One group is the arithmetic rules of §4.5, which let you do algebra. One group is the order rules, which let you work with inequalities. And the last one is the one that makes calculus possible: **the real line has no gaps in it.**
+
+That last one is what $\mathbb{Q}$ does not have, and it is why the big theorems of a calculus course are all false over the fractions. Every one of them quietly leans on it.
+
+**The lesson from geometry transfers.** Changing an axiom changes the subject, and the subject you get may be perfectly sound — dropping the parallel postulate gives a geometry that works and that physics later needed. An axiom is a choice with consequences, not a truth too obvious to argue with.
+
+</WhereThisGoes>

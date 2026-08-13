@@ -16,7 +16,7 @@ $$
 \{\, x \in A \mid p(x) \,\}
 $$
 
-*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the things in $A$ for which $p$ is true — read the bar as *such that**
 
 read *the set of $x$ in $A$ such that $p(x)$*. The bar means *such that*; some books use a colon, $\{x \in A : p(x)\}$, and it means the same thing.
 
@@ -25,7 +25,7 @@ $$
 x \in \{\, y \in A \mid p(y)\,\} \iff x \in A \ \wedge\ p(x).
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that". So the line reads: $x$ belongs to that set exactly when both things hold: $x$ came from $A$, and $x$ satisfies $p$*
 
 **This equivalence is the whole module.** Every proof about a set-builder set runs through it — you unfold membership into a statement, work with the statement, and fold it back up.
 
@@ -52,19 +52,19 @@ $$
 \{\, x \in \mathbb{R} \mid x^2 - 1 = 0 \,\} = \{-1, 1\}
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the reals whose square is $1$ are exactly $-1$ and $1$*
 
 $$
 \{\, x \in \mathbb{R} \mid x^2 + 1 = 0 \,\} = \emptyset
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\emptyset$ is the empty collection, the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\emptyset$ is the empty collection, the bar $\mid$ is "such that". So the line reads: no real number has square $-1$, so this filter catches nothing and the set is empty*
 
 $$
 \{\, x \in \mathbb{R} \mid x^2 \geq 0 \,\} = \mathbb{R}
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: every real number has square at least $0$, so this filter catches everything and the set is all of $\mathbb{R}$*
 
 The middle one is worth pausing on. Solving an equation and getting no answers does not mean the notation broke — it means the set is empty, which is a perfectly good value. And the third shows the other extreme: a condition every element satisfies picks out the whole source set.
 
@@ -97,7 +97,7 @@ $$
 \{\, 2k \mid k \in \mathbb{Z} \,\} \quad\text{is the set of even integers,}
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the doubles of the integers — a set described by a recipe rather than by a filter*
 
 and here the variable before the bar carries a formula rather than standing alone. Read it as *all things of the form $2k$, as $k$ ranges over $\mathbb{Z}$*.
 
@@ -106,7 +106,7 @@ $$
 \{\, n \in \mathbb{Z} \mid n \text{ is even} \,\} = \{\, 2k \mid k \in \mathbb{Z} \,\}.
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the same set written both ways: filter the integers for evenness, or list the doubles. Two descriptions, one set*
 
 The left **filters** — it starts with all integers and keeps some. The right **generates** — it starts with all integers and transforms them. Proving two such descriptions equal takes an argument in both directions, and module 2.6 supplies the method.
 
@@ -116,7 +116,7 @@ $$
 \mathbb{C} = \{\, a + bi \mid a, b \in \mathbb{R} \,\}.
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the complex numbers are the expressions $a+bi$ built from two real numbers*
 
 This is the generating style: every complex number is *of the form* $a + bi$ for real $a$ and $b$. Nothing mysterious is being asserted about $i$ — the set is simply being described by the shape of its elements, which is what generating notation does.
 </Aside>

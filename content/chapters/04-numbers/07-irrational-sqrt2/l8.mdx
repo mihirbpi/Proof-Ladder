@@ -1,0 +1,98 @@
+---
+level: l8
+title: Irrational numbers and the square root of 2
+readingTimeMin: 9
+newTerms: ["irrational", "infinite descent", "transcendental"]
+anchorExample: "√2 irrational"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$x \in \mathbb{R}$ is **irrational** when $x \notin \mathbb{Q}$. The irrationals are the complement $\mathbb{R}\setminus\mathbb{Q}$ — defined negatively, which is why every theorem about them is proved by contradiction (§2.5).
+
+> **Theorem.** $\sqrt 2 \notin \mathbb{Q}$.
+
+## Setup
+
+The statement is a universal negative — $\forall p,q \in \mathbb{Z},\ q\neq0 \Rightarrow p^2 \neq 2q^2$, *no whole numbers $p$ and $q$ with $q$ non-zero have $p^2 = 2q^2$* — so there is nothing to construct and §2.5's diagnostic applies.
+
+The lemma, from §1.9, is $n^2$ even $\iff$ $n$ even, whose forward direction was itself proved by contraposition (§1.8) because "$n^2 = 2k$" gives no handle on $n$.
+
+We also need: every nonzero rational has a representation in lowest terms. This is not free — it follows from there being a smallest one, since among all representations $p/q$ with $q > 0$ there is one with least $q$, and that one has $\gcd(p,q)=1$.
+
+<Discussion>
+  <div slot="know">$\sqrt2 = p/q$ with $\gcd(p,q)=1$, $q \neq 0$.</div>
+  <div slot="want">A contradiction.</div>
+  <div slot="how">Square, apply the parity lemma to $p$, substitute, apply it again to $q$, and observe that $2$ divides both — contradicting coprimality. The lemma is used twice, symmetrically.</div>
+</Discussion>
+
+<Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\notin$ is "is not in", $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, the bar $\mid$ is "divides". In words, what follows shows: lowest terms forces top and bottom both even, which lowest terms forbids.*
+
+Suppose for contradiction $\sqrt2 \in \mathbb{Q}$, say $\sqrt2 = p/q$ with $p,q\in\mathbb{Z}$, $q\neq0$, $\gcd(p,q)=1$.
+
+Squaring: $p^2 = 2q^2$. Then $p^2$ is even, so $p$ is even by the lemma; write $p = 2k$, $k \in \mathbb{Z}$.
+
+Substituting: $4k^2 = 2q^2$, so $q^2 = 2k^2$. Then $q^2$ is even, so $q$ is even.
+
+Then $2 \mid p$ and $2 \mid q$, so $2 \mid \gcd(p,q) = 1$ — impossible.
+
+Therefore $\sqrt2 \notin \mathbb{Q}$.
+</Proof>
+
+<Warning title="Where the contradiction actually lives">
+Deducing "$p$ and $q$ are both even" is not by itself absurd. It contradicts something only because coprimality was assumed *in advance*. A proof that omits the lowest-terms hypothesis and stops at "both even" has proved nothing.
+
+The alternative finish is **infinite descent**: from any solution $(p,q)$ in positive integers, construct the strictly smaller solution $(p/2, q/2)$; iterating gives an infinite strictly decreasing sequence of positive integers, contradicting the smallest-number principle. Both routes are valid, and both ultimately rest on the smallest-number principle — the lowest-terms version simply front-loads it.
+</Warning>
+
+## Generality
+
+**$\sqrt p$ for prime $p$.** Replace "even" by "divisible by $p$"; the lemma becomes $p \mid n^2 \Rightarrow p \mid n$, which is Euclid's lemma (§4.3)— and note that primality is essential, since $4 \mid 6^2$ but $4 \nmid 6$.
+
+**Rational root theorem.** If $x = a/b$ in lowest terms satisfies $c_nx^n + \cdots + c_0 = 0$ with $c_i \in \mathbb{Z}$, then $a \mid c_0$ and $b \mid c_n$. For monic polynomials $b = \pm1$, so **any rational root of a monic integer polynomial is an integer**. Since $\sqrt2$ is a root of $x^2 - 2$ and neither $\pm1$ nor $\pm2$ works, $\sqrt2 \notin \mathbb{Q}$ — a second proof, and one that immediately gives $\sqrt[3]2$, $\sqrt2+\sqrt3$, and the golden ratio.
+
+**$\sqrt m$ is rational iff $m$ is a perfect square**, by the same theorem.
+
+## Consequences for the rationals
+
+$$
+S = \{x \in \mathbb{Q} : x > 0,\ x^2 < 2\}
+$$
+
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\in$ is "is in". So the line reads: the positive fractions whose square is below $2$.*
+
+That collection stays below $2$, and yet **no smallest fraction sits above all of it**. Given any fraction that sits above the whole collection, you can always find a smaller one that still does; given any fraction in the collection, you can always find a larger one still inside. The number that ought to serve as the boundary is $\sqrt2$, and this module has just shown it is not a fraction.
+
+So the fractions have a gap where a boundary should be, and the real numbers are exactly what you get by filling every such gap. §4.6 showed the fractions are crowded — between any two lies another — and being crowded turns out not to prevent this. Crowding is something you can check by looking nearby; a missing boundary is not.
+
+## Beyond algebraic irrationality
+
+$\sqrt2$ is **algebraic**: a root of a nonzero integer polynomial. A real number that is not is **transcendental**.
+
+- $e$ is irrational (Euler, 1737; the proof via the series for $e$ is short and elegant) and transcendental (Hermite, 1873).
+- $\pi$ is irrational (Lambert, 1761) and transcendental (Lindemann, 1882) — which settles the impossibility of squaring the circle, since constructible lengths are algebraic.
+- Almost every real number is transcendental. The reason is a counting argument: the roots of whole-number polynomials can be arranged in one long list, and §3.8 shows the real numbers cannot be. So the transcendentals are the overwhelming majority — and yet the first single example anyone could actually write down was not built until 1844 — an unusually stark case of a property being generic and hard to verify.
+
+<Aside>
+Irrationality proofs remain hard. the number $1 + \tfrac1{2^3} + \tfrac1{3^3} + \cdots$ was only shown irrational in 1978 (Apéry), to general astonishment; the same question with cubes replaced by fifth powers is still open, as are the irrationality of $e + \pi$, $\pi e$, and the Euler–Mascheroni constant $\gamma$. That $e+\pi$ and $e\pi$ cannot *both* be algebraic is easy — they are the coefficients of $(x-e)(x-\pi)$ — but no one knows which.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+This theorem is where the tower of number systems reveals its logic, and where calculus gets the number line it needs.
+
+**$\mathbb{Q}$ has holes and calculus cannot tolerate them.** A curve running from below zero to above it must cross zero — that is one of the first theorems you will meet. Take $f(x) = x^2-2$ between $0$ and $2$: it starts negative, ends positive, and crosses at $\sqrt2$. Over $\mathbb{Q}$ that crossing point is simply missing, so the theorem is false there. The same hole breaks the others.
+
+Filling the holes is what $\mathbb{R}$ *is*, and the property that sets it apart is this: whenever a set of numbers has a ceiling above it, there is a **lowest** ceiling, and that lowest ceiling is itself a real number. Over $\mathbb{Q}$ that fails — the fractions below $\sqrt2$ have plenty of ceilings and no lowest one, because the number that should be it is missing. Nearly every big theorem in a first calculus course leans on that property, and a proof that starts "let $c$ be the smallest number sitting above all of these" is leaning on it directly.
+
+**The tower continues.** $\mathbb{R}$ has no gaps and still cannot solve everything, since $x^2+1$ has no real root (§5.1). $\mathbb{C}$ repairs that, at the cost of the order. Each system is built to fix a specific, identifiable failure of the one below.
+
+**And the lemma is the interesting part.** *$a^2$ even implies $a$ even* required a contrapositive (swap the two halves and deny both, §1.7), and the general version — *$p \mid a^2$ implies $p \mid a$ for prime $p$* — is what makes the argument work for $\sqrt3$, $\sqrt5$, and every non-square.
+
+</WhereThisGoes>

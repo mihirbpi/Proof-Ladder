@@ -1,0 +1,121 @@
+---
+level: l8
+title: Your first proof
+readingTimeMin: 10
+newTerms: ["proof", "Discussion", "direct proof"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Everything so far has been about what statements *mean*. This module is about what it takes to prove one — and, just as importantly, about what a written proof is for.
+
+A **proof** of a statement $S$ is a finite sequence of claims, ending in $S$, in which each claim is either an axiom, a previously proved theorem, a hypothesis of $S$, or a consequence of earlier claims by a rule of inference. That is the definition a logician gives. It is correct, and it is not how anybody writes. What people actually write is prose, in which the logical skeleton is carried by joining word words — *since*, *so*, *because*, *so*, *therefore* — and the reader is trusted to reconstruct the skeleton. Learning to write proofs is learning how much of the skeleton to leave to the reader.
+
+## Direct proof of a conditional
+
+*A reminder of the symbols in play: $\Rightarrow$ reads "implies".*
+
+Nearly every theorem has the form $p \Rightarrow q$, and §1.5 proved that $p \Rightarrow q$ is false in exactly one case: $p$ true, $q$ false. To prove the conditional is therefore to rule that case out. The **direct proof** does so head-on: assume $p$, and derive $q$.
+
+The named move is **start from what you're given**.
+
+## The proposition
+
+> **Proposition.** For every real number $x$, if $x > 1$ then $x^2 > 1$.
+
+The statement is a if–then claim made about every element, so a proof must handle an arbitrary $x$ — we may not choose a convenient one. (Module 1.12 makes the arbitrary-element discipline precise.)
+
+We will use two facts about how the real numbers's arithmetic interacts with its ordering — §4.5 collects rules of this kind under a single name — and it is worth stating them rather than letting them pass unremarked:
+
+- **(O1)** If $a > b$ and $c > 0$ then $ac > bc$.
+- **(O2)** $>$ is transitive: $a > b$ and $b > c$ imply $a > c$.
+
+## Discussion
+
+<Discussion>
+  <div slot="know">$x$ is a real number greater than $1$. Available tools: (O1) and (O2), and the fact that $1 > 0$.</div>
+  <div slot="want">$x^2 > 1$.</div>
+  <div slot="how">The goal involves $x^2 = x \cdot x$, and the hypothesis is a statement about $x$ alone. The natural bridge is to multiply the hypothesis by $x$ — legal by (O1) provided $x > 0$, which follows from $x > 1 > 0$ by (O2). That gives $x^2 > x$; combining with $x > 1$ by (O2) again finishes.</div>
+</Discussion>
+
+The Discussion is where the *choice* happens: we noticed the mismatch between what the hypothesis is about ($x$) and what the goal is about ($x^2$), and we picked the operation that closes the gap. The proof records the route; the Discussion records why that route.
+
+## Proof
+
+<Proof>
+Let a real number $x$ satisfy $x > 1$.
+
+Since $x > 1$ and $1 > 0$, transitivity (first-to-second and second-to-third gives first-to-third, §7.2) (O2) gives $x > 0$.
+
+Applying (O1) to the inequality $x > 1$ with the positive multiplier $x$, we get $x \cdot x > 1 \cdot x$, i.e.
+$$x^2 > x.$$
+
+Combining $x^2 > x$ with the hypothesis $x > 1$, transitivity (first-to-second and second-to-third gives first-to-third, §7.2) (O2) gives $x^2 > 1$, as required.
+</Proof>
+
+## Why the Discussion is separate — and why it disappears
+
+Open any research paper and you will find no Discussion sections. Published proofs present the route and suppress the search. This is not secrecy; it is compression. A referee needs to verify correctness, and the shortest correct presentation is the easiest to verify.
+
+The cost is real, though: a student reading a published proof sees a sequence of steps each of which is *checkable* but none of which is *motivated*, and concludes that mathematicians simply know which step to take. They do not. They tried three things that failed. The Discussion section is a pedagogical restoration of the deleted search, and Math 0 keeps it for exactly that reason. Write one for every proof you produce this year; you will stop needing to write them down long before you stop needing to do them.
+
+<Warning title="Three ways a proof goes wrong at the level of structure">
+**Assuming the conclusion.** Any proof that begins "Suppose $x^2 > 1$" is not proving $x > 1 \Rightarrow x^2 > 1$.
+
+**Reversible-step drift.** Starting from the goal and manipulating until you reach something true proves nothing unless every step is reversible *and you say so*. (The symbol $\Leftrightarrow$ below is the if-and-only-if statement, §1.9.) "$x^2 > 1 \Leftrightarrow x^2 - 1 > 0 \Leftrightarrow \ldots$" is legitimate only if each $\Leftrightarrow$ is genuinely an if-and-only-if statement; students frequently write $\Leftrightarrow$ where only $\Rightarrow$ holds. Safer: run the chain forwards.
+
+**Unchecked side conditions.** (O1) requires $c > 0$. A proof that multiplies an inequality by $x$ without establishing $x > 0$ has a hole, even if the conclusion happens to be true. Most incorrect proofs die here rather than at a spectacular logical error.
+</Warning>
+
+## A second proof, for the shape
+
+> **Proposition.** If $m$ and $n$ are even integers, then $m + n$ is even.
+
+<Proof>
+Suppose $m$ and $n$ are even. By definition, there exist integers $j, k$ with $m = 2j$ and $n = 2k$.
+
+Then
+$$m + n = 2j + 2k = 2(j + k).$$
+Since $j + k$ is an integer, $m + n$ is twice an integer, so even by definition.
+</Proof>
+
+Both proofs share a rhythm worth naming explicitly:
+
+1. Assume the hypothesis and **immediately translate it into usable form** via the relevant definition ("even" becomes "$= 2j$ for some integer $j$").
+2. Manipulate.
+3. **Recognize the target form** and cite the definition in the other direction.
+
+A very large fraction of introductory proofs are exactly this: unfold definitions, do algebra, refold definitions. If a proof feels impossible, check first whether you have actually written down what the words in it mean.
+
+<Aside>
+The *there exists* quantifier in "there exist integers $j,k$" is doing quiet work. Because $j$ and $k$ are *fixed but unknown* after we name them, we may compute with them freely; because they came from the hypothesis rather than chosen by us, the argument applies to every even $m, n$. §1.12 names this move.
+</Aside>
+
+## Why the Discussion disappears
+
+Every proof in this course comes with a Discussion: what you know, what you want, how to get from one to the other. Open any published paper and you will not find one. The proofs there begin at *Proof.* and end at the square, with the planning nowhere in sight.
+
+That is not because the planning did not happen. It is because the two blocks answer different questions. The Proof answers *is this correct*, and a reader checking correctness needs only the steps. The Discussion answers *how would anyone have found this*, and a professional reader is assumed to be able to reconstruct it — often wrongly, which is why so much mathematics is harder to read than it needs to be.
+
+Keep writing the Discussion for as long as it helps, and understand what you are doing when you eventually stop: you are not becoming more rigorous, you are dropping a courtesy. The planning is still there in the finished proof, folded into the order the steps come in.
+
+<Aside>
+There is a practical test for whether a Discussion is doing its job. Cover the Proof and read only the Discussion. If you could now write the proof yourself, it is a good one. If it reads as a summary of the proof rather than a plan for it, it was written backwards — after the fact, describing what was done rather than what to try.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+Direct proof is the default mode of both courses ahead, and the Discussion-then-proof discipline is what makes their hardest arguments readable.
+
+**In calculus, the pattern is visible in every limit proof.** The goal is *the output is within the tolerance we were handed*; the scratch work runs that requirement backwards until it turns into a requirement on the input; the written proof then states the input window up front and runs forwards. Textbooks print only the second half, which is why the window always looks pulled from nowhere. It is not — it is a deleted Discussion, and knowing that is the difference between copying such proofs and writing them.
+
+The same thing happens all through the calculus course ahead. Its proofs almost always turn on one algebraic step that makes an expression collapse, and that step is never obvious and never explained — it is scratch work someone deleted before printing. When a line seems to come from nowhere, the question to ask is not *how would I have thought of that* but *what was the author trying to make cancel*.
+
+The judgement this module trains — which reasons are load-bearing and which are noise — is what lets you read a textbook proof at speed. The steps that need checking are few, and they are never the algebra.
+
+</WhereThisGoes>

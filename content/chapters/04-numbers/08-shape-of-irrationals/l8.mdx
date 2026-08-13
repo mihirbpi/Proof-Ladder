@@ -1,0 +1,112 @@
+---
+level: l8
+title: The shape of the irrationals
+readingTimeMin: 8
+newTerms: []
+anchorExample: "√2 irrational"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+the fractions support all four operations; $\mathbb{R}\setminus\mathbb{Q}$ is not, and cataloguing exactly how it fails is more informative than the failure itself.
+
+## Failures
+
+$0, 1 \in \mathbb{Q}$, so the irrationals contain neither identity. They are closed under neither operation:
+$$
+\sqrt2 + (-\sqrt2) = 0, \qquad \sqrt2\cdot\sqrt2 = 2.
+$$
+
+The general statement: **the complement of a subfield is never a subfield**, since it omits $0$ and $1$. So the question was answered before it was asked; what remains is which weaker properties survive.
+
+<Warning title="No rule of thumb">
+$\sqrt2+\sqrt3 \notin \mathbb{Q}$ but $\sqrt2 + (2-\sqrt2) = 2 \in \mathbb{Q}$. Sums and products of irrationals may be either, and deciding requires work — even $\sqrt2+\sqrt3$ needs an argument (square twice, or use the rational root theorem on its minimal polynomial $x^4-10x^2+1$).
+
+Statements like "irrational plus irrational is irrational" are false, and their negations are equally false.
+</Warning>
+
+## Stability under rational operations
+
+> **Proposition.** Let $a \in \mathbb{R}\setminus\mathbb{Q}$, $r \in \mathbb{Q}$. Then $r + a$ is irrational, and if $r \neq 0$ so is $ra$. For instance $-a$ and (since $a \neq 0$) $1/a$ are irrational.
+
+<Discussion>
+  <div slot="know">$a \notin \mathbb{Q}$ and $\mathbb{Q}$ is closed under all four operations.</div>
+  <div slot="want">Negative statements about constructed quantities.</div>
+  <div slot="how">Contradiction (§2.5): assume the construction is rational and use closure of $\mathbb{Q}$ to recover $a$. All four cases are the same three lines with a different operation.</div>
+</Discussion>
+
+<Proof>
+Suppose $r + a \in \mathbb{Q}$. Since $\mathbb{Q}$ is closed under subtraction, $(r+a) - r = a \in \mathbb{Q}$ — contradiction.
+
+Suppose $r \neq 0$ and $ra \in \mathbb{Q}$. Then $r^{-1} \in \mathbb{Q}$, and by closure under multiplication $r^{-1}(ra) = a \in \mathbb{Q}$ — contradiction.
+
+Taking $r = -1$ gives $-a$; and $a \neq 0$ since $0 \in \mathbb{Q}$, so applying the argument to $1/a$ (whose inverse is $a$) gives the last claim.
+</Proof>
+
+Each proof is the same three steps: assume rational, apply closure to recover $a$, contradict. Irrationality is *non-membership*, so the only available handle is what membership would force — which is why every theorem in this module is a contradiction proof.
+
+## The structural statement
+
+Group the reals into families: put $x$ and $y$ in the same family exactly when $x-y$ is rational. This is an equivalence relation (§7.2), so the families partition $\mathbb{R}$. One family is $\mathbb{Q}$ itself; every other is a shifted copy $a+\mathbb{Q}$. The proposition says exactly:
+
+- $\mathbb{R}\setminus\mathbb{Q}$ is everything outside the single family $\mathbb{Q}$;
+- adding a rational moves you **within** a family, so preserves irrationality;
+- multiplying by a non-zero rational permutes the families, so also preserves irrationality;
+- adding two irrationals combines two families neither of which is $\mathbb{Q}$ — and the result may land back in $\mathbb{Q}$, which is exactly why no theorem is available.
+
+Viewed this way, none of the results is surprising. The failures and the stabilities are both consequences of $\mathbb{Q}$ being a closed sub-collection and a subfield, not facts about $\sqrt2$.
+
+## Why the method stalls on sums of two irrationals
+
+The stability proofs all worked the same way: assume the result is rational, and use closure of $\mathbb{Q}$ to recover the irrational hypothesis inside $\mathbb{Q}$.
+
+Attempt the same on $\sqrt2 + \sqrt3$. Suppose it equals a rational $q$. Then $\sqrt3 = q - \sqrt2$, and the right side is a rational minus an irrational — which is irrational, by the results above, and therefore consistent with $\sqrt3$ being irrational. **Nothing is contradicted**, and the method genuinely stops.
+
+The repair is to square. From $\sqrt2+\sqrt3 = q$,
+$$q^2 = 2 + 2\sqrt6 + 3 = 5 + 2\sqrt6,$$
+so $\sqrt6 = \frac{q^2-5}{2}$, which is rational by closure. But $6$ is not a perfect square, so $\sqrt6$ is irrational by §4.7 — contradiction.
+
+Two lessons. **Squaring converted a sum of two irrationals into one**, which the stability results can then handle. And **a stalled proof is information**: the point where the argument fails identifies what extra input is needed, which here was the irrationality of $\sqrt6$ rather than any new technique.
+
+## Size, and a non-constructive classic
+
+The irrationals are the *larger* part of the line in every sense: the fractions can be written out in a list and the reals cannot (§3.8), so the irrationals cannot be listed either — and in the sense of length, the fractions take up none of the line while the irrationals take up all of it. A "random" real is irrational with probability $1$, and indeed transcendental with probability $1$.
+
+> **Proposition.** There exist irrational $a, b$ with $a^b \in \mathbb{Q}$.
+
+<Proof>
+Consider $t = \sqrt2^{\sqrt2}$. Either $t \in \mathbb{Q}$ or not.
+
+If $t \in \mathbb{Q}$, take $a = b = \sqrt2$; both are irrational (§4.7) and $a^b = t \in \mathbb{Q}$.
+
+If $t \notin \mathbb{Q}$, take $a = t$ and $b = \sqrt2$; both are irrational, and
+$$a^b = \left(\sqrt2^{\sqrt2}\right)^{\sqrt2} = \sqrt2^{\,2} = 2 \in \mathbb{Q}.$$
+
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\in$ is "is in". So the line reads: raising that number to the power $\sqrt2$ collapses the two exponents into $2$, giving plain $2$ — which is a fraction. So this branch produces the pair being sought*
+
+In either case such a pair exists.
+</Proof>
+
+The proof proves existence without identifying a witness, because it never decides which branch holds. It is the standard illustration of non-constructive reasoning (§1.12), and a constructivist rejects it — the excluded middle applied to an undecided statement is doing all the work.
+
+<Aside>
+As it happens $\sqrt2^{\sqrt2}$ *is* irrational, indeed transcendental, by a deep theorem from 1934 about raising one such number to the power of another — the point being that the argument above needed none of it, and still settled the question. The theorem says $\alpha^\beta$ goes beyond the roots of whole-number polynomials whenever $\alpha$ is such a root, $\alpha \neq 0,1$, and $\beta$ is such a root and irrational. So the second branch is the true one. But the point of the proof above is exactly that it needs none of that — which is why an elementary argument can reach a conclusion whose direct verification requires a deep theorem.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+The lesson generalizes past the irrationals: **the complement of a well-behaved set is usually not well-behaved**, and expecting closure to survive complementation is a mistake worth naming.
+
+Confusing the two is a real error: "everything not in $W$" and "everything at right angles to $W$" are different collections, and only one of them behaves well.
+
+**In calculus, the corresponding fact is that the non-differentiable functions are not closed under anything.** The sum of two nowhere-differentiable functions can be differentiable, exactly as $\sqrt2 + (2-\sqrt2)$ is rational. And the "rational plus irrational is irrational" result has a direct analogue: **differentiable plus non-differentiable is non-differentiable**, proved the same way — assume the sum is differentiable, subtract off the differentiable part, and contradict.
+
+That proof is worth doing once. It is four lines, it uses only closure of the differentiable functions under subtraction, and it is the reason $x^2 + |x|$ is not differentiable at $0$ without any computation.
+
+**The pattern across the chapter:** identify what a set is closed under, and let that dictate the proof. Closure gives you constructions; its absence gives you counterexamples, and knowing which you are dealing with before starting saves the wasted attempt.
+
+</WhereThisGoes>

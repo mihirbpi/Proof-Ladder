@@ -7,51 +7,118 @@ anchorExample: "the cat has four legs"
 ---
 
 import Aside from '@/components/Aside.astro';
-import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
+import Warning from '@/components/Warning.astro';
 
-Mathematics is the systematic assignment of truth values to statements. This module sets the object of that discipline — the statement — and does so with enough care that Chapter 1's machinery has something to bite on. The subtleties (unknown truth values, open statements, undecidable propositions) are all foreshadowed here and revisited in their natural chapters.
+Mathematics is, at its core, the systematic assignment of truth values to statements. Before any of the tools of proof is worth writing down, we need to be precise about what counts as a "statement" — because a great deal of the discipline consists of not letting the wrong thing sneak into that category.
+
+<Aside>
+**Notation used from here on.** Proof writing has a shorthand that no school course teaches, so each piece is introduced where it first appears. Two families arrive immediately:
+
+The number systems get single letters, written in a doubled-up typeface so they cannot be mistaken for ordinary variables. $\mathbb{N}$ is the counting numbers $0, 1, 2, \ldots$; $\mathbb{Z}$ the integers (from German *Zahlen*, "numbers"); $\mathbb{Q}$ the rationals (for *quotient*); $\mathbb{R}$ the reals; $\mathbb{C}$ the complex numbers. None of these five letters appears in a school course — they are proof-writing shorthand, and they are worth learning because every university text uses them.
+
+The second family is membership: $x \in S$ is read *"$x$ is in $S$"*, and $x \notin S$ is its denial.
+
+Nothing here is new mathematics. It is a compression of things you already have, and it earns its keep once statements get long.
+</Aside>
 
 ## Definition
 
-A **statement** is a declarative sentence to which exactly one of the truth values T or F attaches. Equivalently, in the language of Chapter 2, a statement is an element of a two-element Boolean algebra $\{T, F\}$. Non-declarative sentences (interrogatives, imperatives, exclamations), phrases without verbs, and definite descriptions without asserted content are not statements.
-
-Statements need not be presently *known* by us to be true or false — that would confuse the object with our access to it. Nor do they need to be *decidable* in the technical sense of computability theory. The definition is austere on purpose.
+A **statement** is a declarative sentence that is either true or false. Every statement has exactly one **truth value**, denoted T or F. There is no third possibility, though there are three related things worth *not* confusing with a third possibility: (i) our not yet knowing which of T or F holds, (ii) truth values depending on unspecified variables (open statements), and (iii) statements a given set of rules can neither prove nor disprove — every set of rules strong enough to describe arithmetic has some of those, which is §7.1.
 
 Examples:
 
-- $\sqrt{2} \notin \mathbb{Q}$ — read *"$\sqrt2$ is not in the rationals"*, where the rationals names the rationals and $\in$ denotes membership. (T, §4.7.)
-- $\pi \in \overline{\mathbb{Q}}$. (F: $\pi$ is transcendental, Lindemann 1882.)
-- Every even integer $\geq 4$ is the sum of two primes. (unknown; Goldbach.)
-- $\mathrm{P} = \mathrm{NP}$. (unknown; Clay Millennium problem.)
-- The continuum hypothesis. (independent of ZFC — see below.)
+- $7$ is prime. (T)
+- $\sqrt{2}$ is irrational. (T, proved in §4.7 by contradiction.)
+- $\pi$ is a root of the polynomial $x^2 - 3$. (F.)
+- Every even integer greater than $2$ is the sum of two primes. (unknown to us; T or F in the mathematical universe.)
+- The real numbers can be listed in a sequence, one after another. (F — §3.8 shows why not.)
 
-## Open statements and predicates
+Non-statements:
 
-A sentence $p(x_1, \dots, x_n)$ containing free variables is an **open statement**, or a *predicate*. It denotes not a truth value but a function from an assignment of variables to truth values. Closed statements are obtained by (i) substitution, or (ii) quantification: $\forall x \in S,\, p(x)$ and $\exists x \in S,\, p(x)$ are closed even when $p$ is open. Module 1.10 formalizes the quantifiers; module 1.12 handles their proofs.
+- *Is $7$ prime?* (question)
+- *Solve $x^3 = 27$.* (command)
+- $x + 1$ (expression, no verb)
+- The definite description "the largest prime" (a noun phrase whose referent doesn't exist)
+
+## Open statements
+
+The sentence $p(x)$ = "$x^2 \geq 0$" has a variable nothing has been said about, so as written it has no fixed truth value. Such sentences are called **open statements**. They become bona fide statements once every variable is either filled in ($p(3)$ is T) or quantified.
+
+### Quantifiers, introduced
+
+The symbol $\forall$ is read *"for all"* and $\exists$ is read *"there exists"*. So $\forall x \in \mathbb{R},\ p(x)$ means *for every real number $x$, $p(x)$ holds* — which for $p(x) = $ "$x^2 \geq 0$" is true. §1.10 develops them properly.
+
+Everything in Chapter 1 will assume statements are closed unless they explicitly involve $\forall$ or $\exists$.
+
+The distinction is not bookkeeping. Almost every identity you have used in precalculus is an open statement with a suppressed *for all* quantifier (§1.10: the *for every* and *there is* words), and the suppression hides a genuine difference:
+
+$$\sin^2\theta + \cos^2\theta = 1 \qquad\text{(true for every } \theta)$$
+$$\sin\theta = \tfrac12 \qquad\text{(true for some } \theta)$$
+
+Both look like equations. The first is an **identity** — a claim made about every element, and a theorem. The second is an **equation to be solved** — an open statement whose solution set you are asked to compute, and which is neither true nor false until $\theta$ is fixed or quantified.
+
+Your algebra course has been quietly teaching you to read the quantifier (§1.10: the *for every* and *there is* words) off the context. Making it explicit is what allows the two to be treated differently: an identity is proved, an equation is solved, and the difference is exactly which quantifier is in front.
+
+<Warning title="An expression is not a statement">
+$x + 1$, $\displaystyle\lim_{x\to0}\frac{\sin x}{x}$, $\displaystyle\left(1 + \tfrac1{4} + \tfrac1{9} + \cdots\right)$, and $\log_2 8$ are all **expressions**. Each denotes a number (when it denotes anything at all); none says anything, and none has a truth value.
+
+The corresponding statements attach a verb:
+
+$$\lim_{x\to0}\frac{\sin x}{x} = 1, \qquad \left(1 + \tfrac1{4} + \tfrac1{9} + \cdots\right) = \frac{\pi^2}{6}, \qquad \log_2 8 = 3.$$
+
+The distinction matters more than it sounds. A line of a proof consisting of an expression has asserted nothing, and cannot be justified by anything or used to justify anything. When a written argument feels stuck, checking that every line is a sentence is worth doing first.
+
+Note also that $(a_1 + a_2 + a_3 + \cdots)$ takes for granted that the running total settles towards a single value; the expression may fail to name anything at all, exactly as "the largest prime" does. Statements about it are therefore doing two jobs at once, and Chapter 6 separates them.
+</Warning>
 
 ## Conjectures
 
-A **conjecture** is a closed statement widely believed true but unproved. Some notable ones:
+Two live examples:
 
-- **Riemann Hypothesis** (Riemann, 1859): all not obvious zeros of $\zeta$ lie on $\operatorname{Re}(s) = 1/2$.
-- **Twin Primes** (attributed to de Polignac, 1849): $\exists^\infty p$ prime with $p + 2$ prime.
-- **Goldbach** (1742): every even integer $\geq 4$ is a sum of two primes.
+- **Twin Primes.** The claim that there are infinitely many primes $p$ for which $p + 2$ is also prime — $(11,13)$, $(17,19)$, and so on forever. Recent work (Zhang 2013; Maynard 2014) proves infinitely many prime pairs at some bounded — never exceeding some fixed size — gap; the gap $2$ remains open.
+- **Goldbach.** The claim that every even number from $4$ up is a sum of two primes — $4 = 2+2$, $100 = 3 + 97$. Verified by computer past $4 \times 10^{18}$; unproved.
 
-Conjectures graduate: Fermat's Last Theorem (Wiles 1995), the Poincaré conjecture (Perelman 2003), Kepler's conjecture (Hales 1998). Others are disproved by a single instance that breaks them — a *counterexample*, in the vocabulary of §1.11: Pólya's conjecture (Haselgrove 1958), Euler's sum-of-powers conjecture (Lander & Parkin 1966), Mertens conjecture (Odlyzko & te Riele 1985).
+A **conjecture** is a statement believed true but not yet proved. Some conjectures graduate to theorems (Fermat's Last, proved by Wiles 1995); others get disproved (Euler's sum-of-powers conjecture, disproved by Lander and Parkin 1966 with a single counterexample (§1.11: one case where the claim fails)).
 
-<Warning title="Provability and truth are different notions">
-By Gödel's incompleteness theorems, any consistent axiomatic system containing Peano arithmetic admits statements that are true but not provable in that system. This does not weaken the definition of statement — it is a fact *about* the definition: truth is a semantic property, provability a syntactic one.
+<Warning title="Truth is not knowability">
+"Nobody has proved $P$" and "$P$ is not true" are different sentences. Muddling them is a common source of student errors. Nothing in the definition of a statement requires that its truth value be presently accessible to us.
 </Warning>
 
 <Aside>
-The **continuum hypothesis** — $|\mathbb{R}|$ is the smallest uncountable cardinal — is famously *independent* of ZFC. Both it and its negation (§1.2: the denial of a statement) are consistent with the axioms (Gödel 1940; Cohen 1963). Nonetheless it is a statement.
+Statements about infinitely many cases can't in general be checked by example. Any amount of numerical verification of Goldbach is consistent with the conjecture being false; a proof is qualitatively different information.
 </Aside>
 
-## Statements over infinite domains
+## The mathematician's job, restated
 
-A claim made about every element over an infinite domain — for example, "every even integer $\geq 4$ is a sum of two primes" — cannot be established by exhaustive checking. Any finite computation is consistent with the statement's negation (§1.2: the denial of a statement). A proof is a qualitatively different kind of evidence and is what the rest of this course is about producing.
+- Every theorem is a statement that has been assigned a truth value by proof.
+- Every open problem is a statement whose truth value has not yet been assigned by proof.
+- Every axiom is a statement we simply decide to treat as true (Chapter 7).
+
+Every other object in the course — the joining words of §1.3, the quantifiers of §1.10, proofs, functions, sets — is a tool for constructing more statements out of existing ones, or for establishing their truth values. Fixing the definition here is the necessary first step.
+
+## Statements a system cannot settle
+
+The definition above says every statement is true or false. It does not say that any *particular* method can tell you which, and those are different claims.
+
+Take a fixed list of axioms — the nine of Chapter 7, say — and ask which statements about the counting numbers can be settled by proof from them. In the 1930s Gödel showed the answer is: not all of them. Any honest list of axioms strong enough to describe arithmetic leaves statements it can neither prove nor disprove, and adding the missing statement as a tenth axiom does not rescue the situation, because the enlarged list has its own unsettled statements.
+
+Read that carefully, because it is easy to overstate. It does **not** say such a statement lacks a truth value; §1.1's definition stands. It says the *proof system* cannot reach it. Truth and provability come apart, and the gap between them is what a course in logic is for.
+
+<Aside>
+There is a related question worth separating from that one: not *is it provable* but *is there a procedure that decides it*. For some families of statements there is — you can check in finite time whether a given integer is prime. For others there provably is not, and *decidability* is the name for the difference.
+
+Both questions are about method rather than about truth, and both are invisible from inside §1.1's definition. That definition is about what a statement *is*; these are about what we can do with one.
+</Aside>
 
 <WhereThisGoes level="l8">
-The object called a "statement" in this module is the base object of *classical propositional and predicate logic*. Alternative logics reject or modify parts of the setup: intuitionistic logic denies the law of excluded middle (§1.3), rejecting the categorical partition into T and F, paraconsistent logics allow contradictions without triviality, and modal logics enrich statements with operators for necessity and possibility. Model theory studies the relationships between formal languages and their interpretations; proof theory studies the formal derivations themselves. The apparent simplicity here is the entrance to a large and living subject.
+
+The discipline of asking *is this a statement, and what exactly does it say* is the one that makes the definitions in calculus survivable.
+
+$$\lim_{x\to a}f(x) = L$$
+
+looks like an equation between two numbers. It is not — it is an abbreviation for a three-quantifier statement (module 1.10), and the left side may denote nothing at all. Reading it as an equation is what makes limit laws feel like arithmetic and then fail: $\lim(f\cdot g) = \lim f\cdot\lim g$ holds **only when both limits exist**, a hypothesis invisible in the notation.
+
+The same trap waits in calculus. *The slope of $|x|$ at $0$* is a perfectly well-formed phrase that names nothing at all — the graph has a corner there, and no single slope. Write it down anyway, treat it as though it were a number, and you can derive whatever you like. What fails is not the algebra but the assumption that the expression named something.
+
 </WhereThisGoes>

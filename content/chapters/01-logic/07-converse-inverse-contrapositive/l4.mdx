@@ -63,6 +63,31 @@ The most common reasoning error in the world is treating a true conditional as t
 In mathematics this shows up as a proof that proves the wrong direction and stops. If the problem says *prove that $p$ forces $q$* and your argument begins by assuming $q$, you have proved the converse. Check which direction you are traveling before you write the last line.
 </Warning>
 
+## The converse error, in the wild
+
+Believing the converse of a true statement is the single most common reasoning mistake there is, and it is worth seeing outside mathematics before meeting it inside.
+
+*If it is raining, the pavement is wet.* True. Its converse — *if the pavement is wet, it is raining* — is not: someone may have washed a car. The original rules out one situation, dry pavement during rain, and says nothing whatever about wet pavement on a clear day.
+
+*If a number is a multiple of $4$, it is even.* True. Converse: *if a number is even, it is a multiple of $4$*. False, and $6$ says so.
+
+*If two angles are vertical, they are congruent.* True, and you will prove it in geometry. Converse: *if two angles are congruent, they are vertical*. False — draw two separate squares and pick a corner from each.
+
+In every case the original is a one-way promise. Reading it backwards is not a small slip; it is a different claim, which may be true or false for reasons of its own.
+
+## Which flips preserve truth, and which do not
+
+Four statements, and the table is worth committing to memory because two of the four are traps.
+
+| | shape | same truth value as the original? |
+|---|---|---|
+| Original | if $A$ then $B$ | — |
+| Converse | if $B$ then $A$ | **not in general** |
+| Inverse | if not $A$ then not $B$ | **not in general** |
+| Contrapositive | if not $B$ then not $A$ | **always** |
+
+Two things are worth noticing. The converse and the inverse are each other's contrapositives, so they always match *each other* — they are simply not tied to the original. And exactly one of the three flips is safe, which is why the contrapositive is the one with a proof technique named after it in module 1.8.
+
 ## Why the contrapositive equivalence is believable
 
 The truth table proves it, but here is the reason it *feels* right. The original says: the situation "$p$ true, $q$ false" never occurs. The contrapositive says: the situation "$q$ false, $p$ true" never occurs. Those are the same forbidden situation, described from opposite ends. Two statements that forbid exactly the same thing are the same statement.

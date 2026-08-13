@@ -31,7 +31,7 @@ p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r),
 p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r),
 $$
 
-*Symbol by symbol: $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as".*
+*Symbol by symbol: $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as". So the line reads: *$p$ and either $q$ or $r$* says the same as *either both $p$ and $q$, or both $p$ and $r$* — and the same trade works with *and* and *or* swapped throughout*
 
 each checkable on eight rows. The mathematically notable feature is that **both** hold. In arithmetic, multiplication spreads across addition and not the other way round; here the two operations are on equal footing, and neither one is playing the part of addition.
 
@@ -73,7 +73,7 @@ $$
 \overline{(S\cap T) \cup (S \cap R)} = (\overline S \cup \overline T) \cap (\overline S \cup \overline R),
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: the outside of each of the two distributive arrangements, worked out by the swapping rule of module 2.7*
 
 so (D1) applied to arbitrary $S,T,R$ gives (D2) for $\overline S, \overline T, \overline R$ — and since complementation is a bijection (§3.8: a perfect one-to-one matching) on $\mathcal{P}(X)$, that is (D2) in full generality. Proving one law proves both.
 
@@ -85,14 +85,14 @@ The two laws hold together or not at all — each implies the other. And they ar
 
 The same pair of laws turns up wherever two ways of combining things sit side by side — in logic as *and* and *or*, in sets as overlap and pooling, and in several structures you will meet later. Recognizing the pattern once means recognizing it every time.
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\cap$ is "overlapped with".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\cap$ is "overlapped with". So the line reads: a worked instance in the real numbers, showing the two sides come out the same*
 
 but
 $$
 (A \cap B) + (A \cap C) = \{0\} + \{0\} = \{0\}.
 $$
 
-*Symbol by symbol: $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cap$ is "overlapped with". So the line reads: overlapping first and adding afterwards gives only zero, though adding first would not have*
 
 So $A \cap (B+C) = A$ while $(A\cap B) + (A\cap C) = \{0\}$. **Distributivity fails, and fails badly** — the two sides are as far apart as they could be.
 
@@ -117,7 +117,7 @@ $$
 S \cup (A_1 \cap \cdots \cap A_n) = (S \cup A_1) \cap \cdots \cap (S \cup A_n).
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: pooling $S$ with the overlap of any number of sets is the same as pooling it with each of them and then overlapping*
 
 The proofs are the same element chases, with the case split now running over $n$ possibilities instead of two. Nothing about the argument changes; only the bookkeeping grows.
 

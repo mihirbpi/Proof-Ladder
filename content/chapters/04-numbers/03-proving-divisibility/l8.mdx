@@ -1,0 +1,138 @@
+---
+level: l8
+title: Proving divisibility facts
+readingTimeMin: 9
+newTerms: ["without loss of generality", "Euclid's lemma"]
+anchorExample: "the integers "
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Divisibility is existential, so every proof follows one template. What is worth attention is not the template but the two places it can go wrong: the integrality check, and the plausible statements that turn out to be false.
+
+## Template
+
+1. **Unpack** each hypothesis $a \mid b$ as $b = ak$, with a fresh name for the other factor.
+2. **Compute.**
+3. **Factor** out the target divisor.
+4. **Verify** the factor left over is an integer, citing closure (§4.1).
+
+Step 4 is the load-bearing one. In $\mathbb{Q}$ every nonzero element divides every element, so the entire subject rests on the leftover factor being required to be an *integer*.
+
+## The core propositions
+
+> **Proposition.** For $a,b,c,d \in \mathbb{Z}$:
+>
+> (i) $(a \mid b) \wedge (b \mid c) \;\Rightarrow\; a \mid c$;
+>
+> (ii) $(a \mid c) \wedge (b \mid d) \;\Rightarrow\; ab \mid cd$;
+>
+> (iii) $(a \mid b) \wedge (a \mid c) \;\Rightarrow\; a \mid (bx + cy)$ for all $x,y \in \mathbb{Z}$;
+>
+> (iv) $(a \mid b) \vee (a \mid c) \;\Rightarrow\; a \mid bc$.
+
+*Symbol by symbol: the bar $\mid$ is "divides", $\wedge$ is "and", $\vee$ is "or", $\Rightarrow$ is "forces", $\in$ is "is in", $\mathbb{Z}$ is the integers. So the four lines read: dividing passes along a chain; two divisions can be multiplied together; a common divisor divides any whole-number combination; and a divisor of either factor divides the product. So the line reads: dividing passes along a chain; two divisions can be multiplied together; a common divisor divides any whole-number combination; and a divisor of either factor divides the product*
+
+<Proof>
+(i) $b = aj$, $c = bk$ give $c = a(jk)$ with $jk \in \mathbb{Z}$.
+
+(ii) $c = aj$, $d = bk$ give $cd = (ab)(jk)$ with $jk \in \mathbb{Z}$.
+
+(iii) $b = aj$, $c = ak$ give $bx + cy = a(jx + ky)$ with $jx+ky \in \mathbb{Z}$.
+
+(iv) The hypothesis is an *or* — a disjunction, §1.3 — so it splits; the two cases are interchanged by swapping the names $b$ and $c$, which leaves the conclusion $a \mid bc$ invariant since $bc = cb$. **Without loss of generality**, assume $a \mid b$; then $b = ak$ and $bc = a(kc)$ with $kc \in \mathbb{Z}$.
+</Proof>
+
+Statement (iii) deserves emphasis: it says the set $\{n : a \mid n\} = a\mathbb{Z}$ is closed under integer linear combinations, i.e. is closed under adding its own members and under multiplying by anything outside. That single structural fact drives the Euclidean algorithm and, with it, **Bézout's identity**: for any $a,b$ there are integers $x,y$ with $ax + by = \gcd(a,b)$. Everything downstream rests on it.
+
+<Warning title="Two disciplines">
+**Fresh names.** From $a \mid b$ and $b \mid c$, the two leftover factors have nothing to do with each other; reusing one letter says they are equal and proves a weaker statement.
+
+**"Without loss of generality" has a license.** It is legitimate exactly when the omitted case follows from the treated one by a relabeling under which hypotheses and conclusion are invariant — and you must say what the relabeling is. Claimed without that justification, the phrase is how a case gets silently dropped, and it is the most common structural defect in submitted proofs.
+</Warning>
+
+## Turned around it is false — and how to repair it
+
+*A reminder of the symbols in play: $\nmid$ reads "does not divide".*
+
+$$
+(a \mid bc) \;\not\Rightarrow\; (a \mid b) \ \vee\ (a\mid c).
+$$
+
+*Symbol by symbol: $\Rightarrow$ is "forces", $\vee$ is "or", the bar $\mid$ is "such that". So the line reads: dividing a product does **not** force dividing one of the factors — the arrow is crossed out because this is the implication that fails*
+
+Counterexample: $4 \mid 12 = 2\cdot 6$, yet $4 \nmid 2$ and $4 \nmid 6$. The divisor $4 = 2^2$ draws one factor of $2$ from each of $b, c$.
+
+> **Euclid's lemma.** If $p$ is prime and $p \mid bc$, then $(p \mid b)$ or $(p \mid c)$.
+
+<Discussion>
+  <div slot="know">$p$ prime, $p \mid bc$. Suppose $p \nmid b$ — we must reach $p \mid c$. Since $p$ is prime and does not divide $b$, we have $\gcd(p,b) = 1$, as the only divisors of $p$ are $1$ and $p$.</div>
+  <div slot="want">$p \mid c$.</div>
+  <div slot="how">Bézout: $\gcd(p,b) = 1$ gives integers $x,y$ with $px + by = 1$. Multiply by $c$ and apply (iii) to the two terms, each of which $p$ divides.</div>
+</Discussion>
+
+<Proof>
+Suppose $p \mid bc$ and $p \nmid b$. The divisors of $p$ are $\pm1, \pm p$, and $p \nmid b$, so $\gcd(p,b) = 1$. By Bézout's identity there exist $x,y \in \mathbb{Z}$ with
+$$px + by = 1.$$
+Multiplying by $c$:
+$$pcx + bcy = c.$$
+Now $p \mid pcx$ in one step, and $p \mid bcy$ since $p \mid bc$. By (iii), $p$ divides any whole-number multiple of each added together — so it divides $pcx + bcy$, which is exactly $c$.
+
+So $p \mid c$, and the lemma is proved.
+</Proof>
+
+Note that Euclid's lemma is *not* a triviality about primes; its proof consumes Bézout, which consumes the division algorithm (§4.4). The chain is
+$$
+\text{division algorithm} \Rightarrow \text{Euclidean algorithm} \Rightarrow \text{Bézout} \Rightarrow \text{Euclid's lemma} \Rightarrow \text{unique factorization}.
+$$
+
+*Symbol by symbol: $\Rightarrow$ is "forces". So the line reads: each result here is what makes the next one available, and unique factorization sits at the end of that chain rather than at the start*
+
+Each arrow is short; the sequence is the whole of elementary number theory's foundation, and it is worth being able to recite.
+
+<Aside>
+Unique factorization is often taught as obvious. It is not. Existence of a factorization follows by strong induction (Chapter 6); *uniqueness* is exactly where Euclid's lemma is spent, and in number systems where that lemma fails, uniqueness fails with it. There are number systems where it fails. Enlarge the integers by throwing in a square root of $-5$, so that numbers look like $a + b\sqrt{-5}$. In that system $6$ factors two genuinely different ways — as $2 \times 3$, and as $(1+\sqrt{-5})(1-\sqrt{-5})$ — and neither factorization can be broken down further. So $2$ divides that second product without dividing either factor, which is exactly Euclid's lemma failing.
+</Aside>
+
+## Euclid's lemma, and what rests on it
+
+§4.3 showed that dividing a product does not force dividing a factor. For **primes** it does, and that single exception carries most of elementary number theory.
+
+> **Euclid's lemma.** If $p$ is prime and $p \mid bc$, then $(p \mid b)$ or $(p \mid c)$.
+
+The proof needs one input from outside this module: for any $a$ and $b$ there are integers $x, y$ with $ax + by = \gcd(a,b)$ — a fact obtained by running the division algorithm backwards. Granting that:
+
+<Proof>
+
+*The symbols in this proof: the bar $\mid$ is "divides", and $\gcd$ is the greatest common divisor. In words, what follows shows: if $p$ misses one factor entirely, it must catch the other.*
+
+Suppose $p \nmid b$. Since $p$ is prime its only positive divisors are $1$ and $p$, so $\gcd(p, b) = 1$, and there are integers $x, y$ with $px + by = 1$.
+
+Multiply through by $c$: $pcx + bcy = c$. Now $p$ divides $pcx$ outright, and $p$ divides $bcy$ because $p \mid bc$ by hypothesis. A number dividing both terms divides their sum, so $p \mid c$. $\blacksquare$
+</Proof>
+
+**Where it is spent.** Every integer above $1$ factors into primes — that much follows by the chain argument of Chapter 6, in the variant §6.4 calls *strong induction*, and needs nothing clever. What needs Euclid's lemma is that the factorization is **unique** up to order.
+
+That uniqueness is so familiar it is hard to see as a theorem, and the way to see it is to visit a system where it fails. Enlarge the integers by throwing in a square root of $-5$, so numbers look like $a + b\sqrt{-5}$. There $6$ factors two genuinely different ways — as $2 \times 3$, and as $(1+\sqrt{-5})(1-\sqrt{-5})$ — with none of the four factors breaking down further. Euclid's lemma fails there, and unique factorization goes with it.
+
+<WhereThisGoes level="l8">
+
+The linear-combination theorem — *if $a$ divides $b$ and $c$, then $a$ divides $bx+cy$* — has a shape you will meet again immediately, and recognizing it saves relearning.
+
+**In calculus, the same shape shows up twice.** The derivativeand the integral both obey it.
+The same shape governs both halves of calculus. Writing $f'$ for the steepness of $f$, and using the sign $\int$ for the running total a rate builds up to — the two operations that course is built around:
+$$\frac{d}{dx}\big(af + bg\big) = af' + bg', \qquad \int (af+bg) = a\int f + b\int g.$$
+
+So a property preserved by differentiation is preserved by any combination of functions having it — which is why, having differentiated $x^n$, you can differentiate every polynomial without further work.
+
+**The same template runs on polynomials.** Everything in this module used only three facts about $\mathbb{Z}$: you can add, you can multiply, and the product of two things stays in the system. Polynomials satisfy all three, so the divisibility template transfers unchanged.
+
+Say $d(x)$ divides $p(x)$ when $p(x) = d(x)q(x)$ for some polynomial $q(x)$ — the same definition, with polynomials in place of integers. Unpack, compute, factor, and check the leftover factor is a polynomial, and you have proved that if $d$ divides both $p$ and $r$ then it divides $p \cdot a + r \cdot b$ for any polynomials $a$ and $b$.
+
+The Factor Theorem you met in precalculus is one instance: $(x - c)$ divides $p(x)$ exactly when $p(c) = 0$. Long division of polynomials is the division algorithm of §4.4 in the same disguise, remainder and all.
+
+</WhereThisGoes>

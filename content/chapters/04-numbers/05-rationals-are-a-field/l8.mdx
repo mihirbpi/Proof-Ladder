@@ -1,0 +1,108 @@
+---
+level: l8
+title: The rationals are a field
+readingTimeMin: 9
+newTerms: ["rational number", "characteristic"]
+anchorExample: "all four operations on fractions"
+---
+
+import Proof from '@/components/Proof.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\mathbb{Q} = \left\{ \frac pq \;\middle|\; p,q \in \mathbb{Z},\ q \neq 0 \right\},
+\qquad
+\frac{p_1}{q_1} = \frac{p_2}{q_2} \iff p_1q_2 = p_2q_1.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\in$ is "is in", $\Leftrightarrow$ is "exactly when", the bar $\mid$ is "such that". So the line reads: the fractions are one integer over a nonzero integer, and two name the same number exactly when their cross-products agree.*
+
+The equality condition is the first thing to take seriously: elements of $\mathbb{Q}$ have infinitely many names, so any rule that works from a name owes you one check: that a different name for the same number gives the same answer. §3.1 called this being well defined.
+
+> **Lemma.** Addition is well defined on $\mathbb{Q}$.
+
+<Proof>
+Suppose $\tfrac{a_1}{b_1} = \tfrac{a_2}{b_2}$, i.e. $a_1b_2 = a_2b_1$. We must show $\tfrac{a_1d + b_1c}{b_1d} = \tfrac{a_2d+b_2c}{b_2d}$, i.e.
+$$(a_1d+b_1c)(b_2d) = (a_2d+b_2c)(b_1d).$$
+Expanding, the left is $a_1b_2d^2 + b_1b_2cd$ and the right is $a_2b_1d^2 + b_1b_2cd$. These agree exactly because $a_1b_2 = a_2b_1$.
+</Proof>
+
+The point underneath is that a fraction has many names — $\tfrac12$ and $\tfrac24$ are the same number — so any rule written in terms of a name owes you a check that it does not depend on which name you picked. That check is the argument above, and it is the model for every one like it.
+
+## Checking every rule
+
+For fractions $\tfrac ab$ and $\tfrac cd$:
+
+$$
+\frac ab + \frac cd = \frac{ad+bc}{bd}, \quad
+-\frac ab = \frac{-a}{b}, \quad
+\frac ab \cdot \frac cd = \frac{ac}{bd}, \quad
+\left(\frac ab\right)^{-1} = \frac ba \ (a \neq 0).
+$$
+
+Each closure check has two steps: the numerator and denominator are integers by closure of $\mathbb{Z}$ (§4.1), and the denominator is nonzero because **a product of nonzero integers is never zero**.
+
+For the reciprocal: $\tfrac ab \neq 0$ exactly when $a \neq 0$, so $\tfrac ba$ is a fraction and $\tfrac ab \cdot \tfrac ba = 1$.
+
+So the fractions do everything the integers do, and one thing more: **every nonzero one can be divided by**. That single extra property is what the whole chapter has been building toward.
+
+<Warning title="There is no reciprocal of zero">
+Suppose $0x = 1$. But $0x = 0$ is a theorem (§4.1), so $0 = 1$ — and then $y = 1\cdot y = 0\cdot y = 0$ for every $y$, collapsing the entire system to a single element.
+
+"You cannot divide by zero" is therefore a theorem, not a prohibition.
+</Warning>
+
+## The same construction, in general
+
+Nothing above used anything about $\mathbb{Z}$ except that a product of nonzeros is nonzero.
+
+That is worth noticing, because it means the construction is reusable. Any system obeying the arithmetic rules in which products of nonzeros stay nonzero can be enlarged the same way — build pairs, declare $(a,b)$ and $(c,d)$ to name the same thing when $ad = bc$, and you get a system in which you can divide.
+
+The no-zero-divisors condition is doing real work. Among remainders on division by $6$ you would want $\tfrac13$ to exist, but $3 \times 2 = 6$ leaves remainder $0$ there, and the construction breaks.
+
+## Why the closure proofs look like fraction arithmetic
+
+Each check above was the fraction rule you learned in primary school, verified against a definition rather than asserted. That is worth pausing on, because it is the first place the course does something subtle.
+
+$$\frac ab + \frac cd = \frac{ad+bc}{bd}$$
+
+is a **definition**, not a discovery. What needs proving is that it is *well defined*: replacing $\tfrac ab$ by an equal fraction $\tfrac{a'}{b'}$ must give an equal answer.
+
+The check is a computation: from $ab' = a'b$ and $cd' = c'd$, verify that $(ad+bc)(b'd') = (a'd'+b'c')(bd)$. It works, and it is the reason the rule is legitimate rather than merely traditional.
+
+**This is the first time in the course that a definition has owed you that check**, and it will not be the last. Whenever the things you are working with have more than one name, a rule that reads the name has to give the same answer for every name.
+
+## Order, and what is still missing
+
+The fractions carry an ordering that fits their arithmetic: adding the same thing to both sides preserves $<$, and multiplying both sides by something positive does too. §4.6 proves they are dense — between any two lies another.
+
+But something is still absent. The fractions $x$ with $x^2 < 2$ have no *smallest* fraction sitting above all of them, because the number that ought to serve, $\sqrt2$, is not one. **That gap is what §4.7 exhibits and what the real numbers exist to fill** — and it, rather than any arithmetic rule, is the property calculus cannot do without.
+
+## Remainder arithmetic where every non-zero thing has a reciprocal
+
+§4.5 built the fractions by insisting every non-zero number get a reciprocal. There is a much smaller system with the same property, and it is worth meeting because it shows the property is not about infinitude.
+
+Fix a prime $p$ and work with remainders on division by $p$ — the numbers $0, 1, \ldots, p-1$, with addition and multiplication carried out and then reduced. Take $p = 5$ and look at what each non-zero remainder multiplies with:
+
+$$1 \cdot 1 = 1, \qquad 2 \cdot 3 = 6 \equiv 1, \qquad 4 \cdot 4 = 16 \equiv 1 \pmod 5.$$
+
+*Symbol by symbol: $\equiv \ldots \pmod 5$ is §4.4's shorthand for leaving the same remainder on division by $5$. So the line reads: each non-zero remainder has a partner multiplying with it to $1$.*
+
+Every non-zero remainder has a reciprocal, so division is available throughout — in a system of five elements.
+
+**Why the prime matters.** Try $p = 6$ and it breaks: $2 \cdot 3 = 6 \equiv 0$, so two non-zero things multiply to zero, and neither can have a reciprocal — multiplying $2 \cdot 3 = 0$ by a reciprocal of $2$ would give $3 = 0$. That is precisely the no-zero-divisors condition §4.5 needed, and it holds exactly when the number you divide by is prime, since a composite factors into two smaller pieces that multiply back to it.
+
+So the property the fractions were built for is not about being infinite or about being dense. It is about having no way to multiply two non-zero things down to zero, and a five-element system can manage it while the integers cannot.
+
+<WhereThisGoes level="l8">
+
+Being able to divide is what makes ordinary algebra work, and you will feel its absence the moment it is missing.
+
+**Over the integers, none of it works.** Solving $2x = 1$ has no integer answer, so the whole "solve and substitute back" method stops at the first step. Every technique you use without thinking assumes you are allowed to divide.
+
+**In calculus, the ordering rules are what inequality work rests on.** Every limit argument multiplies and divides inequalities, and the rules — adding preserves the direction, multiplying by a positive preserves it, multiplying by a negative reverses it — are exactly the ones stated in this module. Getting the last one wrong is the standard error in a limit proof, and it is a rule violation rather than an algebra slip.
+
+**The gap that remains matters more than any of them.** A collection of fractions can be bounded — never exceeding some fixed size — above and still have no *smallest* upper bound among the fractions — the fractions whose square is below $2$ are the example, since the number that should serve, $\sqrt2$, is not a fraction. Filling that gap is what the real numbers are for, and it is the property calculus genuinely cannot do without. A curve running from below zero to above it must cross zero somewhere: that is false over the fractions, where $x^2 - 2$ changes sign and never lands on zero.
+
+</WhereThisGoes>

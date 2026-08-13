@@ -1,0 +1,133 @@
+---
+level: l8
+title: Conjugation
+readingTimeMin: 8
+newTerms: ["conjugate"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\overline{a+bi} = a - bi.
+$$
+
+*Symbol by symbol: the bar on top means the **conjugate** — the same number with the sign of its up part flipped. So the line reads: conjugating $a+bi$ leaves the across part alone and flips the sign of the up part*
+
+Geometrically, reflection in the real axis (§5.5).
+
+## Properties
+
+> **Proposition.** For $z, w \in \mathbb{C}$:
+> $$\overline{\bar z} = z, \quad \overline{z+w} = \bar z + \bar w, \quad \overline{zw} = \bar z \bar w, \quad z\bar z = |z|^2 \in \mathbb{R}_{\geq0},$$
+
+*So the line reads: conjugating twice gets you back; conjugating passes straight through addition and multiplication; and a number times its own conjugate is a real number, never negative.*
+
+> $$\operatorname{Re} z = \tfrac{z+\bar z}{2}, \quad \operatorname{Im} z = \tfrac{z-\bar z}{2i}, \quad z \in \mathbb{R} \iff z = \bar z.$$
+
+*So the line reads: adding $z$ to its conjugate and halving recovers the real part; subtracting and dividing by $2i$ recovers the imaginary part; and $z$ is real exactly when conjugating changes nothing.*
+
+<Proof>
+Write $z = a+bi$, $w = c+di$.
+
+*Conjugating twice.* $\overline{\bar z} = \overline{a-bi} = a+bi = z$.
+
+*Additive.* $\overline{z+w} = \overline{(a+c)+(b+d)i} = (a+c)-(b+d)i = \bar z + \bar w$.
+
+*Multiplicative.* $zw = (ac-bd)+(ad+bc)i$, so $\overline{zw} = (ac-bd)-(ad+bc)i$. And $\bar z\bar w = (a-bi)(c-di) = (ac-bd)-(ad+bc)i$. Equal.
+
+*Norm.* $z\bar z = a^2 - (bi)^2 = a^2+b^2 \geq 0$, vanishing iff $z = 0$.
+
+*Parts.* $z+\bar z = 2a$ and $z - \bar z = 2bi$.
+
+*Fixed points.* If $z \in \mathbb{R}$ then $b = 0$ and $\bar z = z$. Going the other way, $z = \bar z$ gives $b = -b$, so $b = 0$ and $z \in \mathbb{R}$.
+</Proof>
+
+The first three properties say conjugation **preserves both operations** — it is a relabeling of $\mathbb{C}$ that arithmetic cannot detect; the last says the numbers it leaves fixed are exactly the reals. Those two facts together are stronger than they look: conjugation and doing nothing are the *only* two relabelings with that property, which is why complex roots of real polynomials pair up and never come in threes.
+
+There is a philosophical point in this. Nothing algebraic distinguishes $i$ from $-i$: both are roots of $x^2+1$, and conjugation is exactly the symmetry that exchanges them. The choice of which to call $i$ is a labeling convention with no mathematical content, and conjugation is the record of that fact.
+
+## The conjugate root theorem
+
+> **Theorem.** Let $p$ be a polynomial whose coefficients are all real, and let $z$ be a complex number with $p(z) = 0$. Then $p(\bar z) = 0$ as well.
+
+<Proof>
+Write $p(x) = \sum_{k=0}^n c_kx^k$ with $c_k \in \mathbb{R}$. Since conjugation preserves sums and products and fixes reals,
+$$
+p(\bar z) = \sum c_k \bar z^{\,k} = \sum \overline{c_k} \,\overline{z^k} = \overline{\sum c_k z^k} = \overline{p(z)} = \bar 0 = 0.
+$$
+
+*Symbol by symbol: the bar on top means the **conjugate** — the same number with the sign of its up part flipped. So the line reads: conjugation passes through the whole sum term by term, so applying it to a root gives a root again — the coefficients being real is what lets each $\overline{c_k}$ turn back into $c_k$*
+
+</Proof>
+
+Consequences: non-real roots of real polynomials occur in conjugate pairs; so every real polynomial of odd degree has a real root; so every real polynomial factors over $\mathbb{R}$ into linear and irreducible quadratic factors — the quadratics being $(x-z)(x-\bar z) = x^2 - 2\operatorname{Re}(z)x + |z|^2$, which has real coefficients by the proposition.
+
+That last factorization is what makes partial fractions work over $\mathbb{R}$, and so what makes every rational function integrable in closed form.
+
+<Warning title="Real coefficients are essential">
+$p(x) = x - i$ has root $i$ but not $\bar i = -i$. The theorem uses $\overline{c_k} = c_k$, which holds only for real coefficients.
+
+Relatedly, $\overline{f(z)} = f(\bar z)$ fails for functions in general. It holds when the rule is built out of real numbers and the arithmetic operations — a polynomial with real coefficients, say — and fails as soon as it is not: for $f(z) = iz$, conjugating the input and conjugating the output give opposite answers.
+</Warning>
+
+## Conjugation as reflection
+
+Plotting $z = a+bi$ at $(a,b)$ (§5.5), the conjugate $\bar z$ is at $(a,-b)$: **reflection in the real axis.**
+
+That reading explains the algebra rather than merely illustrating it.
+
+**Why $\overline{\bar z} = z$.** Reflecting twice returns every point. That it undoes itself is a geometric fact, and the same fact holds for set complements and for logical negation.
+
+**Why $z = \bar z$ exactly for real $z$.** The fixed points of a reflection are the points of the mirror, and the mirror is the real axis. The six-line algebraic proof and the one-line geometric observation prove the same thing, and the second explains it.
+
+**Why $|\bar z| = |z|$.** A reflection is a rigid motion; it preserves distance from the origin.
+
+**Why conjugation preserves products.** Reflecting both factors and multiplying gives the same result as multiplying and then reflecting — because multiplication adds arguments (§5.9), and reflection negates them. $-(\theta_1+\theta_2) = (-\theta_1)+(-\theta_2)$, which is the whole content.
+
+The last one is the most useful, and it is the reason the conjugate-root theorem holds: conjugating a polynomial identity term by term is legitimate exactly because conjugation respects both operations.
+
+## Conjugation does not respect scaling by complex numbers
+
+Conjugation passes through $+$ and $\times$, but it does *not* pass through multiplication by $i$: $\overline{iz} = -i\bar z$, and that is not $i \bar z$ except when $z$ is $0$. So the flip respects the arithmetic of $\mathbb{C}$ while reversing its sense of rotation, which is exactly what a reflection should do.
+
+That single failure matters more than it looks. The operations that read off *a part* of a complex number — the real part, the imaginary part, the distance, the conjugate — all share it, and for the same reason: each throws away some of what the number was carrying. Being able to spot that at a glance is worth having early.
+
+<Aside>
+Ask how many ways there are to relabel $\mathbb{C}$ so that all the arithmetic still comes out right and nearby numbers stay nearby. The answer is exactly two: leave everything alone, or conjugate. There is no third option, and conjugation is not one choice among many but half of everything available.
+
+Now ask the same question of $\mathbb{R}$ and the answer is *one* — leaving everything alone. The reason is that on the real line the order is already fixed by the arithmetic: the numbers you can reach as a square are exactly the ones at or above $0$, so any relabeling respecting $\times$ must respect $<$ too, and nothing is free to move. Adding $i$ costs you that rigidity, and conjugation is what you get in exchange.
+</Aside>
+
+## Only two ways to relabel the complex numbers
+
+Conjugation has two properties worth putting side by side: it passes through addition and multiplication, and it leaves every real number exactly where it is.
+
+Ask which *other* relabellings of $\mathbb{C}$ do both. Suppose $\sigma$ sends complex numbers to complex numbers, respects both operations, and fixes every real. Then
+
+$$\sigma(i)^2 = \sigma(i^2) = \sigma(-1) = -1,$$
+
+*Symbol by symbol: $\sigma(i)$ is wherever the relabelling sends $i$. So the line reads: the image of $i$ must square to $-1$, because squaring happens before or after relabelling with the same result.*
+
+so $\sigma(i)$ is a square root of $-1$, of which there are exactly two: $i$ and $-i$. Sending $i$ to $i$ and respecting the operations forces $\sigma$ to leave everything alone. Sending $i$ to $-i$ forces $\sigma$ to be conjugation.
+
+**Two, and no more.** Conjugation is not one option among many; it is half of everything available.
+
+Ask the same question of $\mathbb{R}$ and the answer is *one* — leaving everything alone. The reason is that on the real line the order is already determined by the arithmetic: the numbers reachable as squares are exactly those at or above zero, so any relabelling respecting multiplication must respect $<$ as well, and nothing is free to move. Adding $i$ costs that rigidity, and conjugation is what you get in exchange.
+
+<WhereThisGoes level="l8">
+
+Conjugation is the operation that keeps real answers real, and both courses ahead rely on it.
+
+**Complex roots of real polynomials come in conjugate pairs.** If $p$ has real coefficients and $p(z)=0$, then conjugating term by term gives $p(\bar z) = 0$, since each real coefficient is its own conjugate.
+
+Three consequences you will use:
+
+- **A real polynomial of odd degree has a real root**, because the non-real roots pair up and an odd count cannot pair evenly. That is why every real cubic crosses the $x$-axis.
+- **Real quadratic factors come from conjugate pairs.** Multiplying $(x - z)(x-\bar z)$ gives $x^2 - 2\operatorname{Re}(z)x + |z|^2$, with real coefficients — which is exactly the irreducible quadratic block in a partial-fraction decomposition.
+- **Real answers get extracted from conjugate pairs.** Later courses routinely take a detour through complex numbers to answer a question that was about real ones all along, and the return trip is the pair of formulas proved in this module: $\operatorname{Re}(z) = \frac{z+\bar z}{2}$ and $\operatorname{Im}(z) = \frac{z-\bar z}{2i}$. Average a number with its conjugate and the imaginary parts cancel — which is why the detour is safe.
+
+</WhereThisGoes>

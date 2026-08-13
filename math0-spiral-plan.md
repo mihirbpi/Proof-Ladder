@@ -673,7 +673,7 @@ since inside a proof the symbols are the medium) and enforces a ramp:
 | `l5` | 9 | ≤ 70 | notation in statements and in short steps; longer arguments still in words |
 | `l6` | 10 | ≤ 85 | symbolic argument normal; glossed through Chapter 6 |
 | `l7` | 12 | ≤ 105 | reads like a textbook; glossed through Chapter 5 |
-| `l8` | college | ≤ 130 | unrestricted |
+| `l8` | college | ≤ 130 | reads like `l7`; glossed through Chapter 5, and all of Chapter 7 |
 
 The earlier caps were each level's own 90th percentile, which ratified whatever
 the level happened to look like — and left `l4` (110) heavier than `l6` (90),
@@ -746,7 +746,7 @@ reader is *in* assumes knowledge they are in the middle of acquiring.
 | `l5` | 9 | **Geometry** | Algebra I |
 | `l6` | 10 | Algebra II | Geometry |
 | `l7` | 12 | Calculus | Precalculus |
-| `l8` | college | — | — |
+| `l8` | college | first-year calculus | **all of grade 12**, plus calculus through integrals and series |
 
 **1a. Matrices and vectors are hedged, and determinants are barred outright.**
 Added 2026-08-12, after `\det A` was found on the first page of `l7` being used
@@ -791,7 +791,49 @@ Every module should be explicit about the correspondence — a two-column proof'
 
 **`l7` 12th grade.** *Reader's course: Precalculus — trig identities, sequences and series with Σ, complex numbers in polar form, informal limits, vectors, conics.* On the accelerated track this reader is in Calculus instead, so assume precalculus as the **floor** rather than the ceiling: draw examples from it, and let calculus references land as either preview or reinforcement. Very close to the Math 0 text in rigor; differs by explaining the moves the notes leave implicit. **Draw examples from precalculus, not from later subjects.** The double-angle identities falling out of De Moivre (module 5.9), telescoping sums (6.3), and the exponential series (5.7) are on-grade and land hard. Forward references to abstract algebra, topology, and analysis belong at `l8`, not here — at `l7`, a `<WhereThisGoes>` should point at calculus and linear algebra, the courses this reader is at or near. Phrase those blocks so they work for a reader who has already started calculus — *"the chain rule is a theorem about composition"* rather than *"when you get to calculus you will meet…"*. Complete proofs with full Discussion sections.
 
-**`l8` College.** The Math 0 experience as intended: complete, unhedged, with a **"Where this goes"** closer naming the field each module opens (rings and fields → abstract algebra; pre-images → topology; equivalence relations → quotient constructions; Peano → logic and foundations).
+**`l8` College.** *Reader: someone who has just finished 12th grade.* Rewritten
+2026-08-12; the previous profile promised "the Math 0 experience as intended"
+with closers naming abstract algebra, topology and quotient constructions, and
+that is wrong about who this reader is.
+
+**`l8` is `l7` plus one year, not `l7` plus a degree.** The reader finished high
+school a few months ago. They are not a graduate student, they have not met a
+ring, and they will not know what a quotient construction is. Everything §A4.1b
+bars at `l7` stays barred here, for the same reason: it is material nobody has
+taught them yet. **Do not raise the mathiness.** Register, sentence length and
+proof style stay essentially `l7`'s; what changes is the *material*, not the
+voice.
+
+**Three things `l8` may use that `l7` may not.**
+
+1. **Calculus, through integrals and series.** `l7` gets limits informally and
+   must name derivatives when it borrows them. `l8` has the first-year course
+   in hand: limits, derivatives, integrals, and convergence of series are all
+   fair examples. §5.7's exponential series and §6.6's induction on derivatives
+   can finally be done rather than pointed at.
+2. **Modular arithmetic, with its notation.** §4.4's brief always reserved
+   mod-n language for `l8`. It is available — *but it must be introduced before
+   it is spent.* The first module to use it states what $a \equiv b \pmod n$
+   means, in words, before any argument leans on it; after that it may be used
+   plainly. Introducing notation by using it is the failure §A4.1h documents,
+   and it is not licensed here just because the reader is older.
+3. **The per-module additions Part B already lists.** Cantor at §3.8 and §6.7,
+   equivalence classes and quotient sets at §7.2, first-order versus
+   second-order arithmetic at §7.4, Euclid's lemma and unique factorization at
+   §4.3. These were written into the briefs from the start and were the reason
+   for removing the same material from `l4`–`l7`.
+
+**Linear algebra is not available, at any strength.** It is not in the US K–12
+sequence, so a reader who has finished 12th grade has not had it — the same
+argument that governs everything else here. §A5.0 rule 1a already hedges
+matrices and vectors as something the reader *may* have met and bars
+determinants outright; that rule applies unchanged at `l8`. Prefer a coordinate
+rule wherever one exists.
+
+**`<WhereThisGoes>` points at the courses actually next**: real analysis for the
+reader who liked Chapter 6, discrete mathematics for the reader who liked
+Chapters 1–2, number theory for Chapter 4. Name the *question* each field opens,
+never the machinery it answers with — §A4.1b's rule, unchanged.
 
 ### A6. Anchor examples
 
@@ -1138,7 +1180,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● Both laws stated with Venn diagrams as evidence, plus the explicit table mapping ¬↔complement, and↔∩, or↔∪.
 - `l4` ● Proof of `S ∪ T = S̄ ∩ T̄` by double inclusion, using the logic law at the pivot — the first proof where Chapter 1 is a *tool*.
 - `l5`–`l6` ● Both proved; reader asked to notice that the set proof is the logic proof wearing different clothes.
-- `l7`–`l8` ● Math 0 text in full; `l8` names the structure (Boolean algebra) and points to lattices.
+- `l7`–`l8` ● Math 0 text in full; `l8` notes that the same two laws govern *and*/*or*, union/intersection, and the AND/OR of a logic circuit — one pattern, three subjects (revised 2026-08-12: the structure is described, not named, since a reader fresh out of grade 12 has met no abstract algebra).
 
 ---
 
@@ -1292,7 +1334,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● Closure listed as four rules, with negative numbers included. Distributive law verified on examples and stated in letters.
 - `l4` ● Formal statements with variables. The multiplicative-inverse failure investigated: which integers have integer reciprocals, and why only ±1.
 - `l5`–`l6` ● Term *ring* introduced as a label for "a number system with these rules," with the note that the same rules govern polynomials and matrices.
-- `l7`–`l8` ● Math 0 text in full; `l8` gives the full ring axioms and names units, integral domains, and the forward path to abstract algebra.
+- `l7`–`l8` ● Math 0 text in full; `l8` gives the full rule table and works the consequences that follow from it alone, including cancellation and the units ±1 (revised 2026-08-12: the rules are listed and used, but not named as ring axioms and not pointed at abstract algebra — see the `l8` profile in §A5).
 
 ---
 
@@ -1341,7 +1383,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● Fraction arithmetic re-read as closure statements: adding two fractions gives a fraction, and here's the formula that proves it. The reciprocal as the missing piece ℤ lacked.
 - `l4` ● All four properties stated and verified symbolically, with the q ≠ 0 conditions tracked. Term *field*.
 - `l5`–`l6` ● Ring vs field compared in a table; ℤ, ℚ, ℝ classified.
-- `l7`–`l8` ● Math 0 text in full; `l8` adds ℤ/pℤ as a finite field in one paragraph.
+- `l7`–`l8` ● Math 0 text in full; `l8` adds remainder arithmetic on division by a prime, where every non-zero remainder has a reciprocal — shown by example, not named as a finite field (revised 2026-08-12).
 
 ---
 
@@ -1353,7 +1395,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● Midpoint formula, checked to be a fraction, and both inequalities argued from a < b. The infinite-repetition consequence stated.
 - `l4` ● Math 0's proposition with the full Discussion, including *why* closure of ℚ is what makes the midpoint legal.
 - `l5`–`l6` ● Same, with the observation that this makes ℚ feel like it fills the line — setting the trap that 4.7 springs.
-- `l7`–`l8` ● Math 0 text in full; `l8` adds that ℚ is dense yet measure zero, and previews completeness.
+- `l7`–`l8` ● Math 0 text in full; `l8` previews completeness — that the reals have no gaps and the fractions do — which is the property a first analysis course is built on (revised 2026-08-12: measure zero needs measure theory and is dropped).
 
 ---
 
@@ -1396,7 +1438,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l4` ● Adds the polynomial-root motivation and the parallel to earlier extensions (ℕ→ℤ to subtract, ℤ→ℚ to divide).
 - `l5`–`l6` ● Adds the quadratic formula's discriminant as the everyday place this gap shows up.
 - `l4`–`l7` ● **The Fundamental Theorem of Algebra is stated at every level from `l4`** (revised 2026-08-12). It is this module's payoff — the chapter opens by asking whether extending the numbers ever ends — so withholding it leaves the question hanging. It is *stated*, never proved, and the wording tapers: `l4` gets *"every equation built from powers of $x$, with complex numbers in front of them, has a complex solution"*, and only `l6`–`l7` use the word *polynomial*, which is Algebra I.
-- `l7`–`l8` ● Math 0 text; `l8` adds the algebraic-closure framing and why no purely algebraic proof exists.
+- `l7`–`l8` ● Math 0 text; `l8` adds why no purely algebraic proof exists: the reals are pinned down by having no gaps, so every proof has to reach for that somewhere (revised 2026-08-12: the algebraic-closure framing is dropped).
 
 ---
 
@@ -1432,7 +1474,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● Term *conjugate*; the involution property and z·z̄ computed on examples and noticed to be real.
 - `l4` ● All four properties verified algebraically; the biconditional proved in both directions (Math 0's proposition) — a clean payoff for 1.9.
 - `l5`–`l6` ● Adds conjugation distributing over sums and products (stated, one proved).
-- `l7`–`l8` ● Math 0 text in full; `l8` notes conjugation as a field automorphism and the conjugate-root theorem.
+- `l7`–`l8` ● Math 0 text in full; `l8` proves the conjugate-root theorem, and notes that conjugation and doing nothing are the only two relabellings of ℂ that keep the arithmetic working and leave every real fixed (revised 2026-08-12: not named as a field automorphism).
 
 ---
 
@@ -1455,7 +1497,7 @@ Legend: ● = core treatment, ○ = touch treatment.
 - `l3` ● the Pythagorean theorem applied on the complex plane; |z| defined; the absolute-value connection for real z.
 - `l4` ● |z| = √(z z̄); distance between two complex numbers; the circle equation derived by squaring.
 - `l5`–`l6` ● Circles centered anywhere; regions like |z| < 1 sketched; the triangle inequality stated.
-- `l7`–`l8` ● Math 0 text in full; `l8` proves |zw| = |z||w| and points to normed spaces.
+- `l7`–`l8` ● Math 0 text in full; `l8` proves |zw| = |z||w| and notes that distance behaving this way is what lets limits and convergence be defined in ℂ exactly as on the line (revised 2026-08-12: normed spaces dropped).
 
 ---
 

@@ -9,14 +9,20 @@ anchorExample: "x > 1 implies x² > 1"
 import TruthTable from '@/components/TruthTable.astro';
 import Figure from '@/components/Figure.astro';
 import UmbrellaCases from '@/components/UmbrellaCases.astro';
-import Warning from '@/components/Warning.astro';
 import WhereThisGoes from '@/components/WhereThisGoes.astro';
+import Warning from '@/components/Warning.astro';
 
-Almost every mathematical assertion of interest — from group axioms to the mean value theorem — is a **conditional**. Writing them, reading them, proving them: this is much of what we do. The definition looks trivial at first glance and turns out to shape all of first-order logic.
+Every theorem in this course, and nearly every theorem you will meet afterwards, has the same shape:
 
-## Definition
+> Whenever this holds, that holds too.
 
-For statements $p$ and $q$, the conditional $p \Rightarrow q$ is a new statement whose truth values are given by
+Symbolically, $p \Rightarrow q$ — read *"$p$ implies $q$"*, or *"if $p$ then $q$"* — the **conditional** with **hypothesis** $p$ and **conclusion** $q$. Understanding what the conditional actually means, including its behavior on the cases where the hypothesis does not hold, is the entire point of this module.
+
+Two set symbols also make their first appearance below. $A \subseteq S$ is read *"$A$ is a subset of $S$"*, meaning every element of $A$ is in $S$; and $\emptyset$ denotes the **empty set**, the set with no elements at all. Chapter 2 builds both properly.
+
+## Definition via truth table
+
+$p \Rightarrow q$ is defined to be true in three of the four possible cases, and false in one:
 
 <TruthTable
   variables={["p", "q"]}
@@ -29,45 +35,104 @@ For statements $p$ and $q$, the conditional $p \Rightarrow q$ is a new statement
   ]}
 />
 
-$p$ is called the **hypothesis** or *antecedent*; $q$ is the **conclusion** or *consequent*. The distinctive rows are the bottom two, in which the hypothesis is false and the conditional is nonetheless true. We call such conditionals **vacuously true**.
+The single false row — hypothesis true, conclusion false — is the only case that would count as a broken promise. Every other case is *true* by definition.
 
-## Why vacuous truth is the sensible choice
+### Vacuous truth
 
-An informal argument. Consider the promise "if it rains, I bring my umbrella." On a sunny day, no one would say the promise was broken, and there is no natural reason to say it was fulfilled either. Mathematics forces a choice — trinary logic is prohibitively expensive — and the productive choice is to call the promise *kept*. Any other convention breaks claim made about every elements.
+The last two rows, where the hypothesis fails, are said to make the conditional **vacuously true**. The word is not making a claim about what is really true out there: it is a labeling rule that keeps the truth table tidy. If we had chosen instead to leave those cases undefined, we would need three-valued logic and the rest of mathematics would become much clumsier to state.
 
-<Figure alt="Four cases of the umbrella promise. Only rain-with-no-umbrella breaks it.">
+<Figure alt="Four cases of the umbrella promise: only rain with no umbrella breaks it.">
   <UmbrellaCases />
 </Figure>
 
-A formal argument. Consider a claim like "for every a real number $x$, if $x^2 < 0$ then …". The hypothesis has no witnesses. We would like every such statement to be automatically true, regardless of what follows the "then." The definition above delivers exactly that: at every $x$, the hypothesis is false, so the conditional is (vacuously) true, so the claim made about every element is true.
+The umbrella promise is the pedagogical trick that makes vacuous truth land. On a sunny day, no one thinks I broke my promise about rainy days. So on a sunny day, my promise is intact — that is, still true. When the truth table declares row 4 true, it is writing in permanently the same intuition.
 
-The definition is compact: $p \Rightarrow q$ is logically equivalent to $\neg p \vee q$, and to $\neg(p \wedge \neg q)$. Verify by comparing truth tables — the two representations are useful for different manipulations, especially when combining with De Morgan's laws (§1.4).
+## A conditional in mathematics: if $x > 1$ then $x^2 > 1$
 
-## Worked example: if $x > 1$ then $x^2 > 1$
+*A reminder of the symbols in play: $\in$ reads "is in", $\mathbb{R}$ reads the reals.*
 
-The claim made about every element — the $\forall$ notation is previewed here and introduced in §1.10 —
+Let us pick apart a small theorem you already believe:
 $$
-\forall\, x \in \mathbb{R},\; x > 1 \Rightarrow x^2 > 1
+\forall\, x \in \mathbb{R},\; x > 1 \Rightarrow x^2 > 1.
 $$
-becomes a small game of eliminating the second row of the table over every $x$. A proof consists of assuming an arbitrary $x$ with $x > 1$ and deriving $x^2 > 1$; the next module carries it out with a specific inequality lemma. Note that we do *not* need to argue anything about $x \le 1$: those values instantiate rows 3 and 4, which are true by definition.
 
-<Warning title="Live confusion 1: the conditional and its hypothesis are distinct assertions">
-"$p \Rightarrow q$ is true" and "$p$ is true" are unrelated propositions. A common student mistake is to derive "$p$ therefore $q$" from a theorem stating "$p \Rightarrow q$." The theorem does say $q$ *if* you already know $p$; it does not say $p$.
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", $\forall$ is "for every", $\Rightarrow$ is "forces". So the line reads: for every real number $x$, being bigger than $1$ forces its square to be bigger than $1$*
+
+The claim is a if–then claim made about every element. For each individual $x$, we get a conditional $p(x) \Rightarrow q(x)$ where $p(x)$ is "$x > 1$" and $q(x)$ is "$x^2 > 1$." Sample:
+
+| $x$ | $p(x)$ | $q(x)$ | $p(x) \Rightarrow q(x)$ | row |
+|---|---|---|---|---|
+| $3$   | T | T | T | 1 |
+| $0.4$ | F | F | T | 4 |
+| $-2$  | F | T | T | 3 |
+| ??    | T | F | F | 2 |
+
+The claim made about every element is true exactly when the fourth row of the table is *empty* — that is, when no $x$ produces the "hypothesis true, conclusion false" case. Proving the theorem means ruling out that row. That is exactly what a direct proof does, and the next module (§1.1.5) shows how.
+
+<Warning title="Common confusion, worth fixing early">
+Note carefully the difference between three statements:
+
+- "$p$ is true."
+- "$q$ is true."
+- "$p \Rightarrow q$ is true."
+
+The third can hold without either of the first two. For instance, if $p$ is false then $p \Rightarrow q$ is true regardless of $q$. This is not a bug; it is the shape of the definition that makes the whole logical system run.
 </Warning>
 
-<Warning title="Live confusion 2: material vs indicative conditional in English">
-Natural language conditionals frequently carry a causal or temporal reading — "if it rains, the streets get wet" implies a mechanism. The mathematical (material) conditional is stripped of causation. "If $2+2=5$ then I am the Pope" is mathematically true, in a way it never is conversationally. This is not something to argue with; it is a piece of translation you eventually get used to.
-</Warning>
+## The phrasings, and the two that trip people
 
-## Consequences we will lean on
+All of the following denote $p \Rightarrow q$:
 
-The conditional's truth table underwrites four techniques you will meet repeatedly:
+$$\text{if } p \text{ then } q \quad\bullet\quad p \text{ implies } q \quad\bullet\quad q \text{ if } p \quad\bullet\quad p \text{ only if } q$$
+$$p \text{ is \textbf{sufficient} for } q \quad\bullet\quad q \text{ is \textbf{necessary} for } p \quad\bullet\quad q \text{ whenever } p$$
 
-- **Direct proof.** Assume the hypothesis; deduce the conclusion (§1.1.5).
-- **Proof by contrapositive.** $p \Rightarrow q$ and $\neg q \Rightarrow \neg p$ have the same truth table (§1.2.2 – §1.2.3).
-- **Proof by contradiction.** Assume $p \wedge \neg q$; derive an impossibility. This works precisely because $p \Rightarrow q$ is $\neg(p \wedge \neg q)$ (§2.1.6).
-- **The biconditional.** $p \Leftrightarrow q$ is $p \Rightarrow q$ and $q \Rightarrow p$, so proving it means writing two proofs (§1.2.4).
+Two of these invert the visual order and are worth memorizing directly.
+
+**"$p$ only if $q$"** is $p\Rightarrow q$. The *only* signals necessity: $q$ is required for $p$, so $p$ cannot hold without it. Reading it as $q \Rightarrow p$ — which the word order invites — is the standard error.
+
+**"$q$ is necessary for $p$"** is likewise $p\Rightarrow q$, and *"$p$ is sufficient for $q$"* is the same statement read from the other end. An if-and-only-if statement says both roles at once, which is why *necessary and sufficient* means *iff* (§1.9).
+
+The necessary/sufficient vocabulary is worth becoming fluent in now, because calculus states hypotheses that way constantly. *"Continuity is necessary for differentiability"* and *"differentiability is sufficient for continuity"* are the same theorem, and neither says anything about the converse (§1.7: the same statement with its two halves swapped).
+
+## Conditionals with false hypotheses are everywhere
+
+Vacuous truth stops looking like a curiosity as soon as the hypothesis is a condition that can fail to be met.
+
+*"If $\{a_n\}$ converges — settles towards a single value — then it is bounded, never exceeding some fixed size"* is a true theorem, and applying it to a divergent sequence gives nothing — not a false conclusion, simply no information. Row 3 and row 4 of the table are the cases where a theorem is silent, and recognizing when a theorem is silent is as useful as recognizing when it applies.
+
+The pattern is sharper in statements quantified over a set that might be empty:
+
+$$\text{every element of } \{x \in \mathbb{R} : x^2 < 0\} \text{ is rational}$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in". So the line reads: every element of the collection of real numbers whose square is negative is rational — and since no real number has a negative square, that collection is empty, so the claim holds with nothing to check*
+
+is true, and it is true because the set is empty. Chapter 2 uses exactly this to prove $\emptyset\subseteq S$ for every $S$ — a fact that would be false under any other convention, and that is needed constantly.
+
+## Where this shows up next
+
+- **Direct proof** (§1.6). To prove $p \Rightarrow q$, assume $p$ and derive $q$. The whole game reduces to eliminating row 2 of the truth table.
+- **Contrapositive.** The truth table for $\neg q \Rightarrow \neg p$ is identical to that for $p \Rightarrow q$. So the two statements are logically equivalent — we can prove one by proving the other. Module 1.7 makes this precise.
+- **If and only if.** *$p$ if and only if $q$* is the conjunction of $p \Rightarrow q$ and $q \Rightarrow p$. Proving one, therefore, requires two conditional proofs (§1.9).
+- **Vacuous statements everywhere.** Any statement of the form "every element of $\emptyset$ satisfies …" is vacuously true. If you spot it in a proof, do not fight the convention; use it.
+
+## Why the vacuous case is the honest choice
+
+The truth table calls *if $p$ then $q$* true whenever $p$ is false, and that decision bothers almost everyone the first time. *"If the moon is made of cheese then $2+2=5$"* comes out **true**, which is not how the words behave in conversation.
+
+The mismatch is real and worth naming rather than explaining away. Ordinary English *if* carries a suggestion of connection — that the first thing has something to do with the second. The arrow of §1.5 carries no such suggestion. It records only a promise about truth values, and a promise whose condition never arises has not been broken.
+
+The reason to accept the trade is that the alternative is worse. Suppose you insisted that an if–then be false when its parts are unconnected. Then *"for every real $x$, if $x > 1$ then $x^2 > 1$"* could no longer be checked one number at a time, because settling the case $x = 0$ would require deciding whether $0 > 1$ is *relevantly* connected to $0 > 1$ — a question with no mathematical content and no agreed answer.
+
+The convention is what lets a universal claim be verified case by case. That is the whole of its justification, and it is enough.
 
 <WhereThisGoes level="l8">
-The material conditional is only one of many possible implication connectives. Modal logics (necessary implication) and intuitionistic logic (constructive implication) reject the vacuous-truth convention or embed it in stronger settings. In topos theory the conditional becomes an internal $\Rightarrow$-map that satisfies exactly the identities you would want. For now: the shape of $\Rightarrow$ set here is what a mathematician means by "if–then" unless flagged otherwise.
+
+Reading conditionals exactly is what makes the theorems of calculus usable rather than merely memorable.
+
+**Almost every theorem you meet will be a conditional with a checkable hypothesis.** *If the graph has no break here, then …*; *if the curve is smooth on this stretch, then …*. The conclusions are the memorable part and the hypotheses are the part that decides whether you may use the theorem at all.
+
+The routine failure in a first course is applying a theorem whose hypothesis was never checked — and it is a failure to read a conditional, not a failure of calculus. A theorem says **nothing whatever** when its hypothesis is false; it does not say the conclusion fails, it simply declines to speak.
+
+**The habit to build now.** Whenever you meet a theorem, write its hypothesis and its conclusion on separate lines, then ask what the theorem tells you when the hypothesis is false. Usually the answer is *nothing*, and knowing that is what stops you claiming more than you have.
+
 </WhereThisGoes>

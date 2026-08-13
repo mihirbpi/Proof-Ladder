@@ -32,7 +32,7 @@ t \in f(A) \iff \exists s \in A,\ f(s) = t,
 s \in f^{-1}(U) \iff f(s) \in U. \tag{1}
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when".*
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when". So the line reads: $t$ is in the image of $A$ exactly when something in $A$ is sent to it; and $s$ is in the pre-image of $U$ exactly when $s$ is sent into $U$. The first is an existence claim, the second is a direct check*
 
 The asymmetry is already visible. Membership in an image carries an *there exists* quantifier; membership in a pre-image carries none. That single fact explains everything in §3.4 about why pre-images are better behaved.
 
@@ -53,13 +53,13 @@ $$
 \exp : \mathbb{R}\to\mathbb{R} \Rightarrow \operatorname{Im}(\exp) = (0,\infty);
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\Rightarrow$ is "forces".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\Rightarrow$ is "forces". So the line reads: the exponential function, taken on all the reals, has image the strictly positive reals — it never reaches $0$ or below*
 
 $$
 \lfloor\cdot\rfloor : \mathbb{R}\to\mathbb{Z} \Rightarrow \operatorname{Im} = \mathbb{Z}.
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\Rightarrow$ is "forces".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\Rightarrow$ is "forces". So the line reads: the floor function, taken on all the reals, has image the whole of the integers*
 
 ## The pre-image of a single point
 
@@ -83,7 +83,7 @@ f^{-1}(\{-5\}) = \emptyset,\quad
 f^{-1}\big((-2,6)\big) = (-\sqrt6,\sqrt6).
 $$
 
-*Symbol by symbol: $\emptyset$ is the empty collection.*
+*Symbol by symbol: $\emptyset$ is the empty collection. So the line reads: squaring sends two numbers to $3$, one number to $0$, nothing at all to $-5$, and the interval from $-2$ to $6$ back to the interval between $\pm\sqrt6$*
 
 In the last, the constraint $-2 < x^2$ is vacuous and only $x^2 < 6$ bites. Note that the pre-image of an open interval is an open interval here. That is not a coincidence: it is the property that continuity — being unbroken, drawable without lifting the pen — is eventually *defined* by, and it is stated with pre-images rather than images for exactly the reasons this module gives.
 
@@ -98,7 +98,7 @@ A \subseteq f^{-1}(f(A)),
 f(f^{-1}(U)) \subseteq U,
 $$
 
-*Symbol by symbol: $\subseteq$ is "sits inside".*
+*Symbol by symbol: $\subseteq$ is "sits inside". So the line reads: a set sits inside the pre-image of its own image, and the image of a pre-image sits inside the original — but neither containment can be reversed in general*
 
 with equality in the first iff $f$ is injective (§3.5: no two inputs share an output) on the relevant part, and in the second iff $U \subseteq \operatorname{Im}(f)$.
 
@@ -117,7 +117,7 @@ $$
 f(A) \subseteq U \quad\text{exactly when}\quad A \subseteq f^{-1}(U),
 $$
 
-*Symbol by symbol: $\subseteq$ is "sits inside".*
+*Symbol by symbol: $\subseteq$ is "sits inside". So the line reads: the image of $A$ landing inside $U$ says exactly the same thing as $A$ sitting inside the pre-image of $U$ — the two are two views of one fact*
 
 which is worth checking against the two proofs above — each is one direction of it.
 

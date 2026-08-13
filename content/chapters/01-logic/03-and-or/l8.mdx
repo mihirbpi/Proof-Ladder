@@ -1,0 +1,147 @@
+---
+level: l8
+title: And, or
+readingTimeMin: 9
+newTerms: ["conjunction", "disjunction", "contradiction", "tautology", "logically equivalent"]
+anchorExample: "x > 1 implies x² > 1"
+---
+
+import TruthTable from '@/components/TruthTable.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Statements alone are inert. What makes logic a subject is the small set of operations that build new statements from old ones, together with the rule that the truth value of the result depends on nothing but the truth values of the inputs. That is why a table of a few rows can define a joining word completely.
+
+Negation (§1.2) took one statement and returned another. Here are the two that take two.
+
+Three further symbols occur below before their own modules reach them. $p \Rightarrow q$ is read *"$p$ implies $q$"* (§1.5); and for sets, $S \cup T$ is the **union**, read *"$S$ union $T$"* and meaning everything in at least one of them, while $S \cap T$ is the **intersection**, everything in both (§2.4).
+
+## Conjunction
+
+For statements $p, q$, the **conjunction** $p \wedge q$ — read *"$p$ and $q$"* — is the statement asserting both. Its definition is its truth table:
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∧ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∧ q": true  },
+    { p: true,  q: false, "p ∧ q": false },
+    { p: false, q: true,  "p ∧ q": false },
+    { p: false, q: false, "p ∧ q": false }
+  ]}
+/>
+
+Conjunction matches English "and" almost perfectly, with one caveat: English "and" sometimes carries an order in time, or a sense of cause ("she got dressed and left" is not the same story as "she left and got dressed"), while $\wedge$ is symmetric — $p \wedge q$ and $q \wedge p$ have identical columns, so they are **logically equivalent**.
+
+## Disjunction
+
+*A reminder of the symbols in play: $\vee$ reads "or".*
+
+The **disjunction** $p \vee q$ says at least one:
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∨ q"]}
+  rows={[
+    { p: true,  q: true,  "p ∨ q": true  },
+    { p: true,  q: false, "p ∨ q": true  },
+    { p: false, q: true,  "p ∨ q": true  },
+    { p: false, q: false, "p ∨ q": false }
+  ]}
+/>
+
+<Warning title="Inclusive by convention, and by necessity">
+$\vee$ is inclusive. Row 1 — both true — evaluates to true. The convention is not arbitrary: almost every disjunction that arises naturally in mathematics is inclusive. "$x \geq 0$ or $x \leq 0$" is true for every real $x$, including $x = 0$, where both halves of the *or* hold. If $\vee$ were exclusive, that statement would be false at exactly one point, and every theorem quoting it would need a special case.
+
+Exclusive or exists and is written $\oplus$; it equals $(p \vee q) \wedge \neg(p \wedge q)$ — *one or the other, but not both*. Mathematics uses it rarely and always names it.
+</Warning>
+
+## Contradictions and tautologies
+
+A statement whose truth-table column is identically F is a **contradiction**; identically T, a **tautology**.
+
+<TruthTable
+  variables={["p", "q"]}
+  expressions={["p ∧ ¬p", "p ∨ ¬p", "(p ∧ q) ⇒ p"]}
+  rows={[
+    { p: true,  q: true,  "p ∧ ¬p": false, "p ∨ ¬p": true, "(p ∧ q) ⇒ p": true },
+    { p: true,  q: false, "p ∧ ¬p": false, "p ∨ ¬p": true, "(p ∧ q) ⇒ p": true },
+    { p: false, q: true,  "p ∧ ¬p": false, "p ∨ ¬p": true, "(p ∧ q) ⇒ p": true },
+    { p: false, q: false, "p ∧ ¬p": false, "p ∨ ¬p": true, "(p ∧ q) ⇒ p": true }
+  ]}
+/>
+
+### Three consequences
+
+Worth carrying forward:
+
+1. **$p \wedge \neg p$ is the engine of proof by contradiction.** If assuming $\neg S$ lets you derive some statement of the form $r \wedge \neg r$, then $\neg S$ cannot hold, so $S$ does. Chapter 2 §2.5 makes this a technique.
+2. **$p \vee \neg p$ — excluded middle — licenses proof by cases.** Whenever you write "either $x$ is rational or it is not," you are quoting this tautology, and then you are entitled to prove your goal separately in each branch.
+3. **Tautologies are exactly the valid inference patterns.** $(p \wedge q) \Rightarrow p$ being a tautology is exactly the statement that "from $p$ and $q$, infer $p$" is a sound rule. Every rule of inference you use is a tautology in disguise.
+
+## Two statements, same column
+
+$p \wedge q$ and $q \wedge p$ have identical columns; so do $\neg(\neg p)$ and $p$. Two statements are **logically equivalent**, written $\equiv$, when their truth-table columns agree in every row. Equivalence is what licenses substitution: anywhere one appears in a proof, you may put the other.
+
+The two most important non-obvious equivalences involving $\wedge$ and $\vee$ are De Morgan's laws, and they are the whole of §1.4:
+$$
+\neg(p \wedge q) \equiv \neg p \vee \neg q, \qquad
+\neg(p \vee q) \equiv \neg p \wedge \neg q.
+$$
+
+*Symbol by symbol: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as". So the line reads: denying that both hold says the same as *at least one fails*, and denying that either holds says the same as *both fail**
+
+Both can be checked by writing out four rows, which is what §1.4 does. Notice already that negation does not distribute quietly over these joining words — it *swaps* them.
+
+<Aside>
+There are exactly $16$ possible two-statement joining words, since such a word is nothing more than a choice of true or false for each of four input rows. Remarkably, every one of the sixteen can be written using $\neg$ and $\wedge$ alone (or $\neg$ and $\vee$ alone). Even more remarkably, a single joining word is enough: NAND, $\neg(p \wedge q)$, generates all sixteen by itself.
+</Aside>
+
+## Precedence, so that parentheses stay honest
+
+By convention $\neg$ binds tightest, then $\wedge$, then $\vee$, then $\Rightarrow$ and $\Leftrightarrow$ (the if-and-only-if statement, §1.9). So $\neg p \wedge q$ means $(\neg p) \wedge q$, not $\neg(p \wedge q)$ — a distinction with different truth tables and, in a proof, different consequences. When in doubt, parenthesize. Published mathematics does.
+
+## Joining words inside solution sets
+
+Precalculus already computes with $\wedge$ and $\vee$ constantly, under the heading of solving inequalities, and the two joining words correspond to the two things you do with intervals.
+
+$$|x - 3| < 2 \quad\Leftrightarrow\quad -2 < x - 3 < 2 \quad\Leftrightarrow\quad x > 1 \ \wedge\ x < 5,$$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\Rightarrow$ is "forces", $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or". So the line reads: being within $2$ of $3$ means being above $1$ **and** below $5$.*
+
+a conjunction, whose solution set is the **intersection** $(1,5)$. Whereas
+
+$$|x-3| > 2 \quad\Leftrightarrow\quad x < 1 \ \vee\ x > 5,$$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\vee$ is "or". So the line reads: being further than $2$ from $3$ means being below $1$ **or** above $5$.*
+
+a disjunction, whose solution set is the **union** $(-\infty,1)\cup(5,\infty)$.
+
+The reason absolute-value inequalities split into these two shapes is exactly the reason of this module: $|u|<c$ unpacks to a conjunction and $|u|>c$ to a disjunction, and De Morgan (§1.4) is what converts one into the other. Chapter 2 will make the correspondence between $\wedge/\vee$ and $\cap/\cup$ formal, but you have been using it since your first inequality.
+
+### Systems, and factored equations
+
+The same reading applies to a system of equations — the solution set is the intersection of the individual solution sets, because a solution must satisfy the first equation **and** the second — and to a factored equation, where $(x-2)(x+5)=0$ gives $x=2$ **or** $x=-5$ because a product vanishes when at least one factor does.
+
+That last inference is worth naming, since it is used more than any other in algebra: **a product of reals is zero if and only if some factor is zero** — an *if and only if* claiming both directions at once, which §1.9 takes up properly. The forward direction is a disjunction, and it is what turns every polynomial equation into a list of cases.
+
+## One pattern, three subjects
+
+The two laws you have just checked are not a fact about logic in particular. The same shape shows up wherever there are two operations that trade places under a flip.
+
+- In **logic**, they are *and* and *or*, and the flip is denial: §1.4's laws.
+- In **sets**, they are intersection and union, and the flip is taking the complement: §2.7 proves them again, and the proofs are line-for-line the same once membership is unfolded.
+- In a **logic circuit**, they are the AND gate and the OR gate, and the flip is an inverter. An engineer rebuilding a circuit with fewer gates is applying exactly these laws.
+
+Three subjects, one pattern. Noticing it once means you never have to learn it a second time — and the habit of asking *where else does this shape occur* is worth more than any single instance of it.
+
+<WhereThisGoes level="l8">
+
+Conjunction and disjunction are how calculus states its hypotheses, and reading them exactly is what makes the theorems usable.
+
+**Its major theorems nearly all have an *and* in the hypothesis.** One says that a curve with no breaks, drawn over a stretch that includes both its endpoints, must actually reach a highest point somewhere. That is three conditions joined by *and* — no breaks, both endpoints included, stretch doesn't run off forever — and dropping any one of them makes it false. When a calculus theorem fails to apply, it is almost always because one part of an *and* quietly failed, and the habit of listing the parts is what catches it.
+
+**Disjunction is where case analysis enters.** A test you will meet concludes that a point is a peak, **or** a valley, **or** neither — a three-way *or*, and the "neither" branch is not an oversight. Solving $|x-3|<2$ produces an *or* of intervals too, and the inclusive reading is what keeps the endpoints honest.
+
+</WhereThisGoes>

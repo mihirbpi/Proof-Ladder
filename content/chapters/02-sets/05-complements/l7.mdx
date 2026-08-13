@@ -23,7 +23,7 @@ $$
 x \in \overline A \iff x \in S \wedge x \notin A.
 $$
 
-*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that". So the line reads: the complement of $A$ is everything in $S$ left outside $A$ — so being in the complement means being in $S$ and not in $A$. Both halves matter: the complement is always taken relative to some containing set*
 
 <Figure alt="Two circles inside a dashed rectangle labeled S, with the region of the rectangle outside both circles shaded." caption="Complementation is relative to the dashed universe $S$.">
   <VennTwo labelS="A" labelT="B" shade={["outside"]} universe="S" />
@@ -36,7 +36,7 @@ $$
 \text{the irrationals} \;=\; \mathbb{R} \setminus \mathbb{Q},
 $$
 
-*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers.*
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers. So the line reads: the irrationals are what is left of the real line once every fraction is removed*
 
 a set defined negatively, which is exactly why every theorem about it is proved by contradiction.
 
@@ -49,7 +49,7 @@ A \cup \overline A = S, \qquad
 \overline{\emptyset} = S, \qquad \overline S = \emptyset,
 $$
 
-*Symbol by symbol: $\emptyset$ is the empty collection, $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+*Symbol by symbol: $\emptyset$ is the empty collection, $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: taking the outside twice returns you to where you started; nothing is both inside and outside; everything is one or the other; and the outside of nothing is everything, while the outside of everything is nothing*
 
 each transcribing a logical fact ($\neg\neg p \equiv p$; $p \wedge \neg p$ contradictory; $p \vee \neg p$ always true). The middle two say $\{A, \overline A\}$ partitions $S$ — the set-theoretic form of excluded middle (every statement is either true or false, §1.2), and the reason **proof by cases on membership** is always available.
 
@@ -62,7 +62,7 @@ $$
 \big(\neg p \Rightarrow (r \wedge \neg r)\big) \;\Rightarrow\; p,
 $$
 
-*Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\wedge$ is "and".*
+*Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\wedge$ is "and". So the line reads: if assuming $p$ fails drives you to something that is both true and false at once, then $p$ holds. That is proof by contradiction written in one line*
 
 valid since $\neg p \Rightarrow F$ forces $\neg p$ false, and excluded middle (every statement is either true or false, §1.2) then gives $p$.
 

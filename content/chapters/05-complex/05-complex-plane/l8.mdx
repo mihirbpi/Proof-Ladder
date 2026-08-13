@@ -1,0 +1,121 @@
+---
+level: l8
+title: The complex plane
+readingTimeMin: 8
+newTerms: ["complex plane", "real axis", "imaginary axis"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Figure from '@/components/Figure.astro';
+import ComplexPlane from '@/components/ComplexPlane.astro';
+import Proof from '@/components/Proof.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+The bijection $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ identifies $\mathbb{C}$ with $\mathbb{R}^2$, both as sets and for the purposes of addition (§5.2). Drawing that identification is the **complex plane** or Argand diagram.
+
+<Figure alt="A grid with axes crossing at the origin and points plotted at 3 plus 2i, minus 2 plus i, and 4." caption="Real axis horizontal, imaginary axis vertical.">
+  <ComplexPlane points={[
+    {re: 3, im: 2, label: "3+2i"},
+    {re: -2, im: 1, label: "-2+i"},
+    {re: 4, im: 0, label: "4"}
+  ]} range={5} />
+</Figure>
+
+## The three operations, geometrically
+
+**Addition** is componentwise, so it is the tip-to-tail arrow addition you met in physics — the parallelogram rule. Nothing about $\mathbb{C}$ beyond its additive group structure is involved.
+
+**Conjugation** negates the second coordinate: reflection in the real axis. Its fixed set is the mirror line, which recovers §5.4's theorem $z = \bar z \iff z \in \mathbb{R}$ — *a number equals its own conjugate exactly when it is real* — without computation, and $\overline{\bar z} = z$ becomes "reflecting twice is the identity."
+
+**Multiplication** is where $\mathbb{C}$ departs from $\mathbb{R}^2$.
+
+> **Proposition.** Multiplication by $z = a+bi$ moves the point $(x,y)$ to $(ax-by,\ bx+ay)$ — and that motion is a rotation by $\arg z$ followed by a scaling by $|z|$.
+
+<Proof>
+
+*The symbols in this proof: $\arg z$ is the angle $z$ points at, $|z|$ is its distance from the origin. In words, what follows shows: the coordinate rule for multiplying by $z$ is exactly the rule for turning a point and then stretching it.*
+
+For $w = x+yi$, $zw = (ax - by) + (bx + ay)i$, so in coordinates the rule is $(x,y) \mapsto (ax-by,\ bx+ay)$.
+
+Writing $r = \sqrt{a^2+b^2}$ and, for $z \neq 0$, $\cos\theta = a/r$ and $\sin\theta = b/r$, that rule becomes
+$$
+(x,y) \;\mapsto\; r\,(x\cos\theta - y\sin\theta,\ \ x\sin\theta + y\cos\theta),
+$$
+and the pair inside the brackets is exactly the formula from your trigonometry for turning $(x,y)$ counterclockwise through $\theta$. So the whole rule is: turn by $\theta$, then stretch by $r$.
+</Proof>
+
+Taking $z = i$ makes the rule $(x,y)\mapsto(-y,x)$: a quarter turn counterclockwise. Apply it twice and $(x,y)\mapsto(-x,-y)$, which is multiplication by $-1$ — so $i^2 = -1$, read off the plane.
+
+The same rule stretches every length by $|z|$ in both directions at once, so it scales every **area** by $|z|^2$. That fact returns in calculus, when a change of variable has to account for how much the substitution stretches the region being measured.
+
+<Figure alt="Four points marked at the compass positions one, i, minus one, and minus i." caption="Multiplication by $i$ cycles the compass points counterclockwise.">
+  <ComplexPlane points={[
+    {re: 1, im: 0, label: "1"},
+    {re: 0, im: 1, label: "i"},
+    {re: -1, im: 0, label: "-1"},
+    {re: 0, im: -1, label: "-i"}
+  ]} range={2} />
+</Figure>
+
+This proposition is the geometric content of the whole chapter, and §5.8–5.9 develop it into polar form and De Moivre.
+
+## Sets of points, in one variable
+
+Complex notation compresses plane geometry substantially, and the compression is not cosmetic.
+
+$$|z| = r \quad\text{circle, radius } r, \text{ center } 0$$
+$$|z - c| = r \quad\text{circle, radius } r, \text{ center } c$$
+$$|z - c| < r \quad\text{open disc}$$
+$$|z - w| = |z - v| \quad\text{perpendicular bisector of the segment } wv$$
+$$\operatorname{Im}(z) = 0 \quad\text{the real axis}$$
+$$\left|\frac{z-a}{z-b}\right| = k \quad\text{a circle (or a line when } k=1)$$
+
+Each needs one complex variable where rectangular coordinates need two, and each condition is a single equation where the real version needs expanding and collecting.
+
+The last is worth noting: the set of points whose distances to two fixed points have a constant ratio is a circle, and proving it in rectangular coordinates takes half a page. In complex notation it is a short manipulation of absolute values.
+
+That economy is why complex notation is standard in electrical engineering and fluid dynamics, where plane geometry is done constantly and the objects are naturally rotational.
+
+## What the plane makes visible
+
+Sets defined by algebraic conditions become curves and regions:
+
+| Condition | Set of points |
+|---|---|
+| $\operatorname{Im} z = 0$ | real axis |
+| $\lvert z\rvert = r$ | circle of radius $r$ about $0$ |
+| $\lvert z - w\rvert = r$ | circle of radius $r$ about $w$ |
+| $\lvert z - p\rvert = \lvert z - q\rvert$ | perpendicular bisector of $pq$ |
+| $\lvert z\rvert < 1$ | open unit disc |
+| $z\bar z = 1$ | unit circle (§5.6) |
+
+The other way round, geometric theorems become algebraic identities. The parallelogram law
+$$
+|z+w|^2 + |z-w|^2 = 2|z|^2 + 2|w|^2
+$$
+is a two-line computation with conjugates and a genuine theorem of Euclidean geometry. This translation in both directions is what makes complex numbers a standard tool in plane geometry.
+
+<Warning title="The plane is the domain, not a graph">
+A graph of $f : \mathbb{C}\to\mathbb{C}$ would need four axes — two for the input pair and two for the output pair — so it cannot be drawn. Standard substitutes are colouring the input plane by where each point is sent (hue for the angle, brightness for the distance), plotting $|f|$ as a surface, and drawing source and target planes side by side with the images of a grid.
+
+Relatedly: nearness in $\mathbb{C}$ means nearness in the *plane*, not along a line. A sequence settling towards a value — the settling of a running value towards a single number — $z_n \to z$ means $|z_n - z| \to 0$, and approach may occur along any path — which is exactly why complex differentiability is so restrictive.
+</Warning>
+
+Adding a single extra point — a point "at infinity" — turns the plane into a **sphere**. Picture a globe resting on the plane at the origin, and a line drawn from the north pole through any point of the plane: it meets the globe exactly once. Every point of the plane gets a point of the sphere, and the north pole itself is the new point. On that sphere, division by zero stops being a special case: it simply sends you to the pole.
+
+<WhereThisGoes level="l8">
+
+The plane picture is what makes complex arithmetic usable rather than merely formal.
+
+**Complex addition is arrow addition**, so everything you know about the parallelogram rule transfers unchanged. That identification is exact: for addition alone, $\mathbb{C}$ *is* $\mathbb{R}^2$, and the two only differ once multiplication is introduced.
+
+**Multiplication is where the plane earns its keep.** $\mathbb{R}^2$ has no useful multiplication; $\mathbb{C}$ has one, and §5.9 shows it is rotation combined with scaling. That single fact makes complex numbers the natural language for anything rotating.
+
+**That is why engineers describe oscillation with complex numbers.** A quantity that rises and falls like $A\cos(\omega t+\phi)$ is the real part of a fixed complex number multiplied by a rotating one, and the rotation is the turning of §5.9 happening as time passes. Amplitude sits in the absolute value and timing sits in the angle, so questions about two waves reinforcing or canceling become questions about multiplying two complex numbers.
+
+The technique is standard wherever things oscillate, from AC circuits to the description of waves, and it works for the reason this chapter has been building toward: turning is multiplication.
+
+**Sets of points become one-variable equations.** $|z - c| = r$ is a circle, $|z-w| = |z-v|$ a perpendicular bisector, $\operatorname{Im} z = 0$ the real axis. Each needs two real variables and two real equations otherwise, and the compression is why complex notation is standard in plane geometry problems.
+
+</WhereThisGoes>

@@ -1,0 +1,125 @@
+---
+level: l8
+title: What is a set?
+readingTimeMin: 10
+newTerms: ["set", "element", "empty set", "being fixed by its members"]
+anchorExample: "roots of sin x and cos x"
+---
+
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Chapter 1 supplied a language for making claims. This chapter supplies the objects the claims are about. The organizing fact is that mathematics has settled on a single kind of object — the set — from which numbers, functions, relations, spaces, and groups are all constructed.
+
+A **set** is a collection of objects, its **elements**, with no doubt about what is in it. The membership relation is written
+$$
+x \in S, \qquad x \notin S,
+$$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in". So the line reads: $x$ belongs to $S$, and $x$ does not belong to $S$*
+
+and for every object $x$ and set $S$, "$x \in S$" is a statement in the sense of §1.1: it has a definite truth value.
+
+## Extensionality
+
+The governing principle is that **a set is determined by its elements and nothing else**:
+$$
+S = T \quad\Leftrightarrow\quad \forall x\;(x \in S \Leftrightarrow x \in T).
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\forall$ is "for every", $\Leftrightarrow$ is "exactly when". So the line reads: two sets are equal exactly when, for every object whatever, being in one is the same as being in the other. Nothing but the membership matters*
+
+Everything peculiar about sets follows:
+
+- $\{1,2,3\} = \{3,2,1\}$: sets carry no order.
+- $\{1,1,2\} = \{1,2\}$: sets carry no multiplicity.
+- $\{x \in \mathbb{R} \mid x^2 = 1\} = \{1, -1\}$: how a set is *described* is irrelevant to what it *is*.
+
+The last point deserves emphasis. Two wildly different descriptions may denote the same set, and proving that they do is often the entire content of a theorem. The trigonometric identity $\{x \mid \sin x = 0\} = \{n\pi \mid n \in \mathbb{Z}\}$ is such a statement.
+
+Note also that being fixed by its members is what makes §2.6's double-inclusion method correct: since $S = T$ means the two membership conditions are equivalent, and an equivalence is two implications (§1.9), a set equality is exactly two subset proofs.
+
+## Why "no doubt about what is in it" is the whole game
+
+A collection counts as a set only when, handed any object, you can say yes or no. "The set of large integers" fails at once: "$10^6$ is large" is not a statement, because *large* has not been pinned down, so there is nothing to prove about the collection.
+
+Ruling out vague adjectives is the easy half. The harder half is that the rule is what stops the whole subject collapsing. Suppose any collection you can describe were a set. Then describe this one:
+$$
+R = \{x \mid x \notin x\}.
+$$
+
+*Symbol by symbol: $\notin$ is "is not in", the bar $\mid$ is "such that". So the line reads: $R$ is the collection of all objects that are not members of themselves*
+
+## The question with no good answer
+
+Now ask the one question there is to ask: is $R$ in $R$?
+
+If it is, then by its own description it is not. If it is not, then by its own description it is. Either answer gives the other one, and there is no third option and no way out. So $R$ cannot be a set at all, and the collection of everything cannot be either — if it were, you could pick $R$ out of it. This is **Russell's paradox**, found in 1901, and it is the reason set-builder notation (§2.2: writing a set by a condition rather than a list) is written the way it is.
+
+The fix mathematicians settled on is a single rule, and you have been following it since §2.2 without being told why: **you never build a set out of nothing.** You start with a set you already have and pick out the part of it you want. Write
+$$
+\{x \in A \mid p(x)\},
+$$
+
+*So the line reads: the collection of those $x$ in $A$ for which $p(x)$ is true.*
+
+never $\{x \mid p(x)\}$ on its own. The starting set $A$ is what keeps the paradox out, because $R$ has nowhere to be built from.
+
+<Warning title="Distinguish three objects">
+$0$ is a number. $\emptyset$ is the set with no elements. $\{\emptyset\}$ is a set with exactly one element, that element being $\emptyset$. So $|\emptyset| = 0$ but $|\{\emptyset\}| = 1$, and $\emptyset \in \{\emptyset\}$ while $\emptyset \notin \emptyset$.
+
+This is not fussiness. A box with nothing in it is not the same thing as nothing, and it is not the number zero either — you can pick the box up. Chapter 7 builds the counting numbers out of nothing but empty boxes nested inside each other, and that only reads as anything if these three stay apart.
+</Warning>
+
+## The empty set is unique
+
+There is exactly one empty set. Suppose $\emptyset_1$ and $\emptyset_2$ both have no elements. A set is fixed by its members, so the two are equal exactly when every $x$ is in one if and only if it is in the other. Take any $x$. It is in neither, so both halves of the "if and only if" are false — and an "if and only if" with two false halves is true, since it only ever claims the two sides match, and here they match by both failing (§1.5). That holds for every $x$, so the sets are equal.
+
+So "*the* empty set" earns its *the*. Notice what did the work: an argument about a case that never comes up, which is exactly the kind of reasoning §1.5 warned would feel like cheating and is not.
+
+## The standard number systems
+
+*A reminder of the symbols in play: $\subseteq$ reads "is a subset of", $\mathbb{N}$ reads the counting numbers, $\mathbb{C}$ reads the complex numbers.*
+
+$$
+\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}
+$$
+
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers. So the line reads: each of these number systems sits inside the next: every counting number is an integer, every integer a fraction, every fraction a real number, and every real number a complex one*
+
+Each one is built to fix something the one before it could not do. In the counting numbers you cannot always subtract, so the integers were built. In the integers you cannot always divide, so the fractions were built. The fractions leave gaps on the line — $\sqrt 2$ sits in one of them (§4.7) — so the real numbers filled them. And in the real numbers $x^2 = -1$ has no answer, so the complex numbers were built. Chapter 4 treats the algebraic structure of these; Chapter 5 builds $\mathbb{C}$; Chapter 7 builds $\mathbb{N}$ from nothing.
+
+Strictly speaking those $\subseteq$ signs are a convenient lie. The integer $3$, the fraction $3/1$ and the real number $3.000\ldots$ are built as three different objects; what is really true is that each system contains a perfect copy of the one before it. Everyone writes $\subseteq$ anyway and treats the copy as the original. That is fine, and worth knowing you are doing.
+
+<Aside>
+Whether $0 \in \mathbb{N}$ is a convention that splits by discipline: set theory, logic, and computer science include it; much of number theory does not. This course includes it. The convention affects statements, never content — but it affects enough statements that checking a book's first page is a habit worth having.
+</Aside>
+
+## "Set" is a word we never define
+
+Look again at the opening line of this module. "A collection of objects" is not a definition of *set* — *collection* is just another word for the same thing, and if you chased it you would find *group of things*, and then you would be going in circles.
+
+This is deliberate, and it is unavoidable. Every subject built from rules has to start somewhere, with a few words left undefined on purpose. For sets the undefined words are *set* and $\in$; what pins them down is not a definition but the rules they obey. Chapter 7 does the same thing to the counting numbers: *zero* and *next* are never defined, and the rules do the work instead.
+
+So what a set *is* matters less than what you can prove about it. That is not a dodge; it is how the subject is built.
+
+## Why "no doubt about what is in it" had to be a rule
+
+§2.1 asked that a set have a definite answer for every candidate member, and the paradox above shows what the requirement is buying. It is worth stating the cost as plainly as the benefit.
+
+The tempting principle — *any property whatever determines a set* — is the one that fails. It fails for a single property, $x \notin x$, and one failure is enough: from a contradiction everything follows (§1.3), so a system containing $R$ proves every statement and settles nothing.
+
+The repair is the one §2.2 already had you using. You do not conjure a set from a property; you take a set you already possess and carve out the part satisfying the property. Everything in this book is built that way, and the discipline costs almost nothing in practice because the containing set is nearly always obvious.
+
+What it costs in principle is the assumption that there is a set of everything. There is not, and §3.8's argument shows why no single set could contain all sets even if the paradox were somehow patched.
+
+<WhereThisGoes level="l8">
+
+Set language is the notation both of the courses ahead are written in, and the fluency built here is what makes their definitions short.
+
+**In calculus, every domain is a set and every domain matters.** The domain of $\ln x$ is $(0,\infty)$; the domain of $\sqrt{x^2-4}$ is $(-\infty,-2]\cup[2,\infty)$; the set where a rule is defined at all is often an interval with a fiddly decision at each endpoint. Theorems are stated over sets too — the theorem that a curve must reach a highest point needs the stretch to include its endpoints and not run off forever — both conditions on a set rather than on the function.
+
+The solution set of an inequality, the set of inputs where a curve levels off, the set where a curve sits above the axis: each is an object you compute, and each is described by a membership condition.
+
+</WhereThisGoes>

@@ -41,7 +41,7 @@ $$
 s \in f^{-1}(B) \quad\Leftrightarrow\quad f(s)\in B.
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when".*
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when". So the line reads: $s$ is in the pre-image of $B$ exactly when $f$ sends $s$ into $B$ — the one line every proof here unfolds*
 
 Membership in a pre-image is *directly* a condition on $f(s)$ — no quantifier (the *for every* and *there is* words, §1.10), no search. Because of that, whatever $\cup$, $\cap$, and complement do to $B$ transfers unchanged, and the proofs are short.
 
@@ -75,13 +75,13 @@ $$
 f(A\cup A') = f(A)\cup f(A') \qquad \checkmark
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with".*
+*Symbol by symbol: $\cup$ is "pooled with". So the line reads: images do respect pooling exactly, with no condition attached*
 
 $$
 f(A\cap A') \subseteq f(A)\cap f(A') \qquad \text{— containment only}
 $$
 
-*Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with".*
+*Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with". So the line reads: but with overlapping only containment holds: the image of an overlap can be smaller than the overlap of the images*
 
 **Counterexample.** Let $f(x)=x^2$, $A = \{2\}$, $A'=\{-2\}$.
 
@@ -89,7 +89,7 @@ Then $A \cap A' = \emptyset$, so $f(A\cap A') = \emptyset$. But $f(A) = \{4\}$ a
 
 $$\emptyset \subsetneq \{4\}.$$
 
-*Symbol by symbol: $\subsetneq$ is "sits strictly inside", $\emptyset$ is the empty collection.*
+*Symbol by symbol: $\subsetneq$ is "sits strictly inside", $\emptyset$ is the empty collection. So the line reads: the empty set sits strictly inside $\{4\}$ — the two differ, which is what makes this a genuine counterexample to equality*
 
 The right side found $4$ in both images, from *different* sources. The left side needed one source in both sets, and there was none.
 
@@ -118,7 +118,7 @@ If $f$ is **injective** (§3.5 — no two inputs share an output), all three ima
 Rigid motions are injective (§3.5: no two inputs share an output) — a reflection cannot send two distinct points to the same place — so for a reflection $\sigma$:
 $$\sigma(A\cap A') = \sigma(A)\cap\sigma(A').$$
 
-*Symbol by symbol: $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cap$ is "overlapped with". So the line reads: for a rigid motion the two sides do agree, because a rigid motion never sends two points to the same place*
 
 **This is why transformation proofs work.** When your course says "the image of the intersection of two figures is the intersection of their images," it is relying on a property that holds for rigid motions and fails for functions in general. Dilations preserve it too; projections do not, and that is why projecting a three-dimensional figure onto a plane loses information.
 
@@ -139,7 +139,7 @@ The identities let you rewrite conditions before working with them.
 Suppose $T$ is a transformation of the plane and you want the set of points whose image lies inside the unit circle **and** above the $x$-axis. That set is
 $$T^{-1}(D \cap H) = T^{-1}(D)\cap T^{-1}(H),$$
 
-*Symbol by symbol: $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cap$ is "overlapped with". So the line reads: pulling back an overlap gives the overlap of the pull-backs — the same good behaviour, in the language of transformations*
 
 so you may handle the two conditions separately and intersect at the end. The identity guarantees the two routes agree.
 

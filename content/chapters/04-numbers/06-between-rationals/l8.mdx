@@ -1,0 +1,124 @@
+---
+level: l8
+title: Between any two rationals
+readingTimeMin: 8
+newTerms: ["midpoint", "dense"]
+anchorExample: "the rationals "
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Proposition.** For $a,b \in \mathbb{Q}$ with $a<b$: $\tfrac{a+b}{2} \in \mathbb{Q}$ and $a < \tfrac{a+b}{2} < b$.
+
+<Discussion>
+  <div slot="know">Closure of $\mathbb{Q}$ under the four operations (§4.5); the arithmetic and ordering rules: $a<b \Rightarrow a+c<b+c$, and $a<b$, $c>0 \Rightarrow ac<bc$.</div>
+  <div slot="want">Membership and two strict inequalities.</div>
+  <div slot="how">Membership is closure and must be asserted — the proposition is false in $\mathbb{Z}$ for exactly that reason. Each inequality follows from $a<b$ by adding one endpoint and scaling by $\tfrac12 > 0$.</div>
+</Discussion>
+
+<Proof>
+$a+b \in \mathbb{Q}$ and $\tfrac12 \in \mathbb{Q}$, so $\tfrac{a+b}{2} \in \mathbb{Q}$ by closure.
+
+Adding $a$ to $a<b$ gives $2a < a+b$; scaling by $\tfrac12>0$ gives $a < \tfrac{a+b}{2}$.
+
+Adding $b$ to $a<b$ gives $a+b < 2b$; scaling by $\tfrac12>0$ gives $\tfrac{a+b}{2}<b$.
+</Proof>
+
+Note that the argument uses nothing specific to $\mathbb{Q}$ beyond its being a system whose ordering fits its arithmetic in which $2$ is invertible. So **any number system that can divide and is ordered is dense in itself** — and $\mathbb{Z}$, which cannot divide, is the counterexample.
+
+<Warning title="Where the hypothesis is spent">
+In $\mathbb{Z}$: the midpoint of $3$ and $4$ is $\tfrac72 \notin \mathbb{Z}$, and nothing lies strictly between consecutive integers. The invertibility of $2$ is exactly the hypothesis $\mathbb{Z}$ fails.
+
+Note also that the argument leans on the ordering: it needs $1 > 0$, and so $1+1 > 0$, so that halving genuinely produces something between.
+</Warning>
+
+## Density
+
+> **Corollary.** $(a,b)\cap\mathbb{Q}$ is infinite for any rationals $a<b$.
+
+Iterating the midpoint construction toward $a$ gives a strictly decreasing sequence in $(a,b)$, so infinitely many distinct elements.
+
+A stronger and more useful statement:
+
+> **Theorem.** $\mathbb{Q}$ is dense in $\mathbb{R}$: for all $x < y$ in $\mathbb{R}$ there is $q \in \mathbb{Q}$ with $x < q < y$.
+
+<Proof>
+Because $y > x$, the gap $y - x$ is positive. The whole numbers climb past any real number, so some $n$ has $\tfrac1n$ smaller than that gap.
+
+Now walk up the number line in steps of $\tfrac1n$ starting from below $x$. The steps are shorter than the gap, so you cannot jump clean over the interval from $x$ to $y$ — some step lands strictly inside it. That landing point is a whole number of $n$ths, which is a fraction.
+</Proof>
+
+Two ingredients are doing the work. The first is that the whole numbers climb past every real, which is what guarantees $\tfrac1n$ can be made smaller than any gap you name. The second is the floor function, which converts that estimate into an actual fraction sitting in the interval.
+
+## Any interior point, not only the midpoint
+
+The midpoint is the obvious witness (§1.12) and far from the only one. For rational $t$ with $0<t<1$,
+$$c = a + t(b-a) = (1-t)a + tb$$
+is rational by closure and lies strictly between $a$ and $b$. Taking $t = \tfrac12$ recovers the midpoint.
+
+Producing the general witness costs no more than the specific one, and it gives a stronger theorem: **between any two distinct rationals lie infinitely many rationals**, one for each allowed $t$.
+
+The expression $(1-t)a + tb$ is worth recognizing. As $t$ runs from $0$ to $1$ it slides steadily from $a$ to $b$, sweeping out every point between them and nothing else. The same formula gives the section formula in coordinate geometry, the parametric equation of a line segment, in the plane or in space or in any number of coordinates at once, and the blending a computer does whenever it has to find values between two it already knows — one expression, appearing under three names.
+
+That the interior of a segment is exactly the set of such combinations with $0<t<1$ is a statement you will prove again when you meet convex sets, where convexity becomes a definition rather than an observation.
+
+## The irrationals are dense too
+
+> **Proposition.** Between any two rationals $a < b$ there is an irrational.
+
+Take $c = a + \dfrac{b-a}{\sqrt2}$. Since $0 < \tfrac{1}{\sqrt2} < 1$, this lies strictly between $a$ and $b$. And it is irrational: if $c$ were rational then $\tfrac{b-a}{\sqrt2} = c - a$ would be rational, so $\sqrt2 = \tfrac{b-a}{c-a}$ would be a quotient of rationals — contradicting §4.7.
+
+So both sets are dense, and each is riddled with members of the other. **Every interval of the number line, however short, contains infinitely many rationals and infinitely many irrationals**, thoroughly interleaved, with no interval belonging entirely to either.
+
+That interleaving has consequences worth anticipating. The function equal to $1$ on the rationals and $0$ on the irrationals is discontinuous — broken, so the pen has to lift — at every point, because every neighborhood of every point contains both kinds. It is the standard first example of a function that is nowhere continuous, and density is the entire reason it works.
+
+## Being crowded is not the same as having no gaps
+
+$\mathbb{Q}$ leaves no gap that can be exhibited by naming two rationals with nothing between them. Even so $\mathbb{Q}$ has gaps in the order-theoretic sense: the set
+$$
+S = \{x \in \mathbb{Q} : x > 0,\ x^2 < 2\}
+$$
+
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\in$ is "is in". So the line reads: $S$ is the set of positive fractions whose square is under $2$ — the fractions sitting below $\sqrt2$, which is the set used to expose the gap in $\mathbb{Q}$*
+
+is nonempty and stays below $2$, yet there is **no smallest fraction sitting above all of it**. Given any rational upper bound one can produce a smaller one, and given any fraction in $S$ one can produce a larger one — the number that ought to serve is $\sqrt2$, which §4.7 proves is not rational.
+
+**Having no gaps of that kind is exactly what the real numbers add.** It is the property the fractions lack, and it is why calculus is done over the reals rather than the fractions.
+
+<Aside>
+Being crowded and being *large* are different things, and it is worth seeing that they come apart.
+
+The fractions sit everywhere along the line — between any two reals, however close, there is one. Yet in a sense that a later course makes precise, they take up no room at all: you can cover every fraction on the line with a collection of tiny intervals whose total length is as small as you please. Crowded everywhere, and negligible in total.
+
+The irrationals are the opposite: harder to point at individually, and yet they are almost all of the line.
+</Aside>
+
+## The gap, named
+
+§4.6 showed the fractions are packed everywhere along the line and yet miss $\sqrt2$. Those two facts together are worth stating as one property, because it is the property a first course in analysis is built on.
+
+Consider the set $S$ of positive fractions whose square is below $2$. It is bounded above — $2$ is an upper bound, so is $1.5$, so is $1.42$. Now ask for the **least** upper bound, the smallest number that is still above everything in $S$.
+
+Among the reals there is one: $\sqrt2$. Among the fractions there is not. Every fraction above $S$ has a smaller fraction still above it, and the descent never reaches a stopping place, because the place it is heading for is not a fraction.
+
+> **Completeness.** Every non-empty set of reals with an upper bound has a least upper bound.
+
+That is the axiom distinguishing $\mathbb{R}$ from $\mathbb{Q}$, and it is the whole of the difference. Every theorem in analysis that feels obvious from a picture — that a continuous function crossing from negative to positive must hit zero, that a rising bounded sequence must settle somewhere — is completeness in disguise, and every one of them is **false** over the fractions.
+
+Density and completeness are independent, and §4.6 has now shown you a system with the first and without the second. Holding those apart is the point of the module.
+
+<WhereThisGoes level="l8">
+
+Density is the property that makes approximation possible, and calculus is a subject about approximation.
+
+**Every limit is an approximation argument.** The definition asks the output to come within whatever tolerance you name, provided the input is close enough — and the input window can be taken as small as you like exactly because $\mathbb{R}$ has no smallest positive number. Density is what guarantees the shrinking never terminates, and a number system where it did would have no limits worth the name.
+
+**The same property underwrites the way calculus computes areas.** Slicing $[a,b]$ into $n$ thin strips and letting $n$ grow relies on being able to subdivide indefinitely — which is this module's *repeat forever*, applied to intervals rather than pairs of rationals. Newton's method and bisection — two ways of hunting a solution by repeatedly narrowing the search — depend on the same structure.
+
+**And being crowded is exactly what having no gaps is not.** This module's closing warning is the one that matters most for calculus: $\mathbb{Q}$ is dense and full of holes. Every theorem you will meet whose proof reaches for "the smallest number sitting above this whole set" is using the no-gaps property, not crowding, and the distinction is why those theorems are false over $\mathbb{Q}$ even though $\mathbb{Q}$ looks like it fills the line.
+
+</WhereThisGoes>

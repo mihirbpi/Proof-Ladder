@@ -1,0 +1,135 @@
+---
+level: l8
+title: What the integers can do
+readingTimeMin: 9
+newTerms: ["closed"]
+anchorExample: "the integers "
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Every integer proof you have written invokes properties of $\mathbb{Z}$ that were never stated. Stating them serves two purposes: it closes the gaps, and it reveals that the properties, not the integers, are what the proofs are really about.
+
+## The axioms
+
+An **axiom** is a rule assumed at the start rather than proved from something earlier; §7.1 examines what that really commits you to. For now, take the following as the rules of arithmetic and watch how much comes out of them.
+
+The integers, with $+$ and $\cdot$, satisfy the following for all $a,b,c$:
+
+**Additive.** Associativity $(a+b)+c = a+(b+c)$; commutativity $a+b=b+a$; identity $a + 0 = a$; inverses $a + (-a) = 0$.
+
+**Multiplicative.** Associativity $(ab)c = a(bc)$; commutativity $ab = ba$; identity $a\cdot 1 = a$.
+
+**Linking.** Distributivity $a(b+c) = ab+ac$.
+
+These are the rules — there is no need for a name for the collection of them, and the later courses that give it one are not assuming anything more than this list. Closure is implicit in calling $+$ and $\cdot$ operations that take two integers and return one, $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$ — which, note, is a statement about functions in the sense of Chapter 3.
+
+Facts that look primitive are in fact derived, and deriving them is worth doing:
+
+<Proof title="Proof that a · 0 = 0">
+$a\cdot 0 = a\cdot(0+0) = a\cdot 0 + a\cdot 0$ by distributivity. Adding $-(a\cdot 0)$ to both sides gives $0 = a\cdot 0$.
+</Proof>
+
+Similarly $(-a)b = -(ab)$ and $(-a)(-b) = ab$ follow from the axioms alone. "A negative times a negative is a positive" is a *theorem*, not a convention — a fact worth knowing, since it is usually taught as a rule to memorize.
+
+## Units
+
+$u \in \mathbb{Z}$ is a **unit** if $uv = 1$ for some $v \in \mathbb{Z}$.
+
+> **Proposition.** The only units in $\mathbb{Z}$ are $1$ and $-1$.
+
+<Proof>
+Let $uv = 1$. Then $u, v \neq 0$, so $|u|, |v| \geq 1$, and $|u||v| = |uv| = 1$. If $|u| \geq 2$ then $|u||v| \geq 2$, contradiction. So $|u| = 1$, i.e. $u = \pm 1$; and both are units, being self-inverse.
+</Proof>
+
+The argument used the order on $\mathbb{Z}$ and the fact that no integer lies strictly between $0$ and $1$ — the discreteness of $\mathbb{Z}$, not an arithmetic one. This is worth noticing: some properties of $\mathbb{Z}$ are algebraic and some are order-theoretic, and separating them is what makes the general theory possible.
+
+## A product of non-zero integers is never zero
+
+$\mathbb{Z}$ satisfies more than the arithmetic rules:
+$$
+ab = 0 \Rightarrow a = 0 \text{ or } b = 0,
+$$
+
+*Symbol by symbol: $\Rightarrow$ is "forces". So the line reads: if a product comes out zero, one of the two factors was already zero. That is the rule that lets you solve an equation by factoring*
+
+In words: **a product can only be zero if one of the factors is zero.** Equivalently, cancellation holds: $ab = ac$ with $a \neq 0$ gives $b = c$.
+
+<Warning title="Cancellation is not free">
+Keep only remainders on division by $12$. Then $3 \cdot 4 = 12$ leaves remainder $0$ though neither factor is $0$; and $3\cdot4$ and $3\cdot8$ both leave remainder $0$ while $4 \neq 8$. So canceling a common factor is illegal there.
+
+Every proof that divides both sides by something is using cancellation, so the domain property. In $\mathbb{Z}$ this is safe. In systems where a product of nonzeros can vanish it is not, and knowing which you are in is the difference between a proof and an error.
+</Warning>
+
+## Consequences of the axioms alone
+
+The $a\cdot0=0$ proof above used nothing about zero except that it is the additive identity. Two more in the same spirit, each a fact most people treat as too basic to need proving:
+
+> **Proposition.** $(-a)b = -(ab)$.
+
+$ab + (-a)b = (a + (-a))b = 0\cdot b = 0$ by distributivity and the previous result, so $(-a)b$ is the additive inverse of $ab$. The "rule of signs" is a theorem.
+
+> **Proposition.** $(-a)(-b) = ab$.
+
+Apply the previous proposition twice. That negative times negative is positive is not a convention adopted for convenience — it is forced, and any system in which it failed would violate distributivity.
+
+Each proof used only the table — so each is a theorem about *every* system obeying it at once — polynomials, and the square grids of numbers you may have met as matrices. One page replaces a separate treatment of each.
+
+The converse (the same statement with its two halves swapped, §1.7) habit is worth building too: when a familiar identity **fails** in a new system, the failure identifies which axiom is missing. Those grids lose commutativity of multiplication, and with it $(A+B)^2 = A^2+2AB+B^2$; clock arithmetic on $12$ hours loses the rule that a product of non-zero things is non-zero, and with it cancellation. In both cases the broken identity points straight at the absent row of the table.
+
+## Why the abstraction pays
+
+The axioms are satisfied by structures with nothing else in common:
+
+| System | Which elements have reciprocals | Can a product of two nonzeros be zero? |
+|---|---|---|
+| the integers | only $1$ and $-1$ | no |
+| the rationals, reals and complex numbers | every nonzero one — §4.5 shows this is what makes division work | no |
+| polynomials with integer coefficients | only $1$ and $-1$ | no |
+| square grids of real numbers | the ones that can be undone | yes, and the order of multiplication matters |
+| remainders on division by $n$ | those sharing no factor with $n$ | yes, unless $n$ is prime |
+| continuous functions on the line (unbroken graphs) | those never equal to zero | yes |
+
+Anything proved from the axioms alone holds in every row. That move — prove it once from the rules, then use it everywhere the rules hold — is what the later algebra courses are built on, and it is why the vocabulary is worth acquiring before you need it.
+
+<Aside>
+The three number systems of Chapter 4 stack, each adding one thing: the integers obey the arithmetic rules, the fractions add reciprocals, and the reals add the no-gaps property of §4.6. Each addition buys theorems and costs generality. $\mathbb{Z}$ additionally has properties $\mathbb{Q}$ lacks — its numbers come in separate steps, any collection of them going down stops somewhere, and it has a division algorithm — which is why number theory is a subject about $\mathbb{Z}$ and not about $\mathbb{Q}$.
+</Aside>
+
+## What the table alone will buy you
+
+Every proof in this module used the rule table and nothing else — no picture of a number line, no fact about size or order. It is worth collecting what that discipline yields, because the list is longer than it looks.
+
+**Cancellation.** From $ac = bc$ with $c \neq 0$, conclude $a = b$. The derivation is short: $ac - bc = 0$, so $(a-b)c = 0$ by distributivity, and since a product of non-zero integers is never zero, $a - b = 0$.
+
+Note what that leaned on. Not the table alone — the step *a product of non-zero things is non-zero* is an extra property, and §4.5 shows it is exactly what fails in remainder arithmetic. Cancellation is a **consequence** of that property, not a rule in its own right.
+
+## The units
+
+Call $u$ a *unit* when $uv = 1$ for some integer $v$ — when it has a multiplicative partner inside $\mathbb{Z}$. The only units are $1$ and $-1$.
+
+<Proof>
+
+*The symbols in this proof: $|u|$ is the size of $u$, ignoring sign. In words, what follows shows: nothing but $\pm 1$ can multiply up to $1$ and stay whole.*
+
+Suppose $uv = 1$. Neither is zero, so both have size at least $1$, and $|u||v| = 1$. If $|u|$ were $2$ or more the product would be $2$ or more. So $|u| = 1$, giving $u = \pm 1$; and both of those are units, each being its own partner. $\blacksquare$
+</Proof>
+
+That argument used the order on $\mathbb{Z}$ and the fact that no integer lies strictly between $0$ and $1$ — properties of how the integers are *spaced*, not of the table. Worth noticing which tool each result actually costs.
+
+**The general lesson.** A proof that uses only the table is automatically a proof about every system obeying it. That is why the same page covers the integers, polynomials, and remainder arithmetic at once, and why identifying which rule a step consumed tells you exactly how far the result travels.
+
+<WhereThisGoes level="l8">
+
+The list of properties in this module is the checklist you will run against every new system in the courses ahead — and the interesting entries are the ones that fail.
+
+**Polynomials obey this same checklist.** You can add, subtract and multiply two polynomials and get a polynomial; you cannot always divide one by another and stay in the family. That is exactly the pattern $\mathbb{Z}$ has. The parallel is close enough that polynomial long division, the Factor Theorem, and the Remainder Theorem are the polynomial versions of §4.2–§4.4, with degree playing the role of size.
+
+**In calculus, the arithmetic rules are what make the derivative rules provable.** The rule that the derivative of a sum is the sum of the derivatives is distributivity in disguise; and the product rule is a statement about what differentiating does to a product. The surprise there — that it is *not* simply $f'g'$ — is the first sign that taking a derivative does not pass through multiplication the way it passes through addition.
+
+**And the numbers you multiply by have to be checked first.** When the courses ahead set up a new kind of object, the first question they ask is which *numbers* you are allowed to multiply by — and the answer is a system with every property listed in this module, which is §4.5. The setup is stated as a list of rules, exactly like the list you just read.
+
+</WhereThisGoes>

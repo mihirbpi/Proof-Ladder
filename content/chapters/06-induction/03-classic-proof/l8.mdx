@@ -1,0 +1,122 @@
+---
+level: l8
+title: The classic proof
+readingTimeMin: 7
+newTerms: ["bijective proof"]
+anchorExample: "the odd numbers add up to a square"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Proposition.** $\displaystyle\big(1 + 3 + 5 + \cdots + (2n-1)\big) = n^2$ for all $n \geq 1$.
+
+<Discussion>
+  <div slot="know">$\sum_{j=1}^{k+1} = \sum_{j=1}^k + a_{k+1}$ with $a_{k+1} = 2k+1$; and $(k+1)^2 = k^2 + 2k+1$.</div>
+  <div slot="want">$A(n)$ for all $n \geq 1$.</div>
+  <div slot="how">Standard three steps. The only substantive content is the algebraic identity in the step; everything else is form.</div>
+</Discussion>
+
+<Proof>
+Let $A(n)$ be $\big(1 + 3 + 5 + \cdots + (2n-1)\big) = n^2$.
+
+*Base.* $A(1)$: both sides are $1$.
+
+*Step.* Fix $k \geq 1$, assume $A(k)$. Then
+$$
+\sum_{j=1}^{k+1}(2j-1) = \big(1 + 3 + \cdots + (2k-1)\big) + (2k+1) = k^2+2k+1 = (k+1)^2.
+$$
+
+By induction, $A(n)$ for all $n \geq 1$.
+</Proof>
+
+<Warning title="Forward direction only">
+The step must run from the left-hand side of $A(k+1)$ to its right-hand side. Manipulating both sides of the target — "subtract $2k+1$ from both sides and get (IH)" — assumes the conclusion, and is valid only if reversibility is separately proved (§1.9). The forward chain has no such thing to check.
+
+The related failure is an unused (IH): if the step never invokes it, the argument is not an induction, and is either a direct proof or wrong.
+</Warning>
+
+## The proof
+
+> **Theorem.** For every integer $n\geq1$: $\ 1+3+5+\cdots+(2n-1) = n^2$.
+
+**Base case.** $n=1$: the left side is $1$, and $1^2 = 1$. ✓
+
+**Inductive step.** Let $k\geq1$ and assume $1+3+\cdots+(2k-1) = k^2$. The $(k+1)$-st odd number is $2(k+1)-1 = 2k+1$, so
+
+$$
+\begin{aligned}
+1+3+\cdots+(2k-1) + (2k+1) &= \underbrace{\big(1+3+\cdots+(2k-1)\big)}_{=\,k^2 \text{ by hypothesis}} + (2k+1)\\
+&= k^2+2k+1 = (k+1)^2,
+\end{aligned}
+$$
+
+which is the claim at $k+1$. By induction the formula holds for every $n\geq1$.
+
+**The step was one factorization.** That is typical: the algebra in an inductive step is usually short, and the work lies in setting the step up so that only the algebra remains.
+
+Note also where the hypothesis entered, and that the argument ran from the left side of the $(k+1)$ claim to its right side — the two habits §6.2 insists on.
+
+## Three proofs, three kinds of information
+
+**Induction**, above: certifies the identity, explains nothing about why it is true.
+
+**Bijective / geometric.** Odd numbers are the L-shaped shells between consecutive squares: an $(k+1)\times(k+1)$ square minus a $k\times k$ square is $k + k + 1 = 2k+1$ cells. Telescoping,
+$$
+\big(1 + 3 + 5 + \cdots + (2n-1)\big) = \sum_{j=1}^{n}\big(j^2 - (j-1)^2\big) = n^2 - 0^2 = n^2.
+$$
+This is a **bijective proof** in the combinatorial sense: it exhibits an explicit decomposition of the $n\times n$ square into the pieces being summed, so the identity becomes a statement that two ways of counting the same set agree.
+
+**Algebraic.** $\sum_{j=1}^n (2j-1) = 2\sum j - n = 2\cdot\frac{n(n+1)}{2} - n = n^2$, given the triangular-number formula.
+
+The three are not redundant. The telescoping proof generalizes immediately: any identity of the form $\sum (f(j)-f(j-1)) = f(n)-f(0)$ is proved the same way, and it is the discrete analogue of the fundamental theorem of calculus. The bijective proof generalizes in a different direction, to combinatorics, where "find a bijection" is the preferred form of explanation.
+
+## The geometric sum
+
+> **Proposition.** For $r \neq 1$ and $n \geq 1$: $\ 1 + r + r^2 + \cdots + r^{n-1} = \dfrac{1-r^n}{1-r}$.
+
+**Base case.** $n=1$: the left side is $1$ and the right is $\frac{1-r}{1-r}=1$. ✓
+
+**Inductive step.** Assume the formula at $k$. Then
+
+$$1+r+\cdots+r^{k-1}+r^{k} = \frac{1-r^k}{1-r} + r^k = \frac{1-r^k + r^k(1-r)}{1-r} = \frac{1-r^{k+1}}{1-r},$$
+
+which is the formula at $k+1$.
+
+**This is the most consequential of the standard sums.** Letting $n\to\infty$ with $|r|<1$ gives $r^n \to 0$ and so
+
+$$\sum_{j=0}^{\infty} r^j = \frac{1}{1-r},$$
+
+the one endless sum whose value you can pin down early in a calculus course, and the one most others get compared against.
+
+The finite formula is what makes the limit meaningful. Without it, the infinite sum would be a symbol with no computed value.
+
+## Power sums
+
+$$
+(1 + 2 + \cdots + n) = \frac{n(n+1)}{2},\quad
+(1 + 2 + \cdots + n)^2 = \frac{n(n+1)(2n+1)}{6},\quad
+(1 + 2 + \cdots + n)^3 = \left(\frac{n(n+1)}{2}\right)^2.
+$$
+
+Each is a routine induction *once stated*, and none is suggested by induction. Finding them is the hard part, and the general answer — a single formula covering every power at once, whose coefficients form a famous and thoroughly strange sequence of fractions — is a genuinely different kind of result.
+
+Note the third identity: $\sum j^3 = (\sum j)^2$. A striking coincidence, provable by induction in four lines, and again with a wordless proof by dissecting a square into L-shaped shells of cubes.
+
+Telescoping is the whole-number ancestor of the theorem tying areas to slopes. Write each term as a difference between consecutive values of something; the sum then collapses to the last value minus the first, with everything between canceling in pairs. In calculus the same cancellation happens continuously — with no breaks in the curve —, and it is the reason an area can be computed from two numbers at the ends.
+
+<WhereThisGoes level="l8">
+Having three proofs of one theorem is the normal situation, and choosing among them is a real skill.
+
+**Induction verifies; it rarely explains.** The proof that $\big(1 + 3 + 5 + \cdots + (2n-1)\big) = n^2$ confirms the formula and gives no hint where $n^2$ came from. The picture — each odd number is the L-shaped border growing one square into the next — explains it, and the pairing argument explains $\sum j = \frac{n(n+1)}{2}$ in a way the induction does not.
+
+**Telescoping is the technique to know for long sums.** Writing each term as a difference $b_{j+1} - b_j$ collapses the whole sum to $b_{n+1}-b_1$, with everything in between canceling in pairs. That is how $\sum \frac{1}{j(j+1)}$ is evaluated, and it is the finite ancestor of the theorem that ties areas to slopes, where the same cancellation happens continuously.
+
+Recognizing a telescoping sum is usually faster than proving the closed form by induction, and it generalizes: partial fractions exist largely to expose telescoping structure.
+
+**In calculus, these sums are the ones that give areas.** The area under a curve is defined by slicing the region into thin strips, adding the strips up, and letting them get thinner — and adding the strips up is exactly a sum of the kind proved here. Working out the area under $x$ and under $x^2$ straight from that definition require $\sum j$ and $\sum j^2$, and the limits of the resulting expressions give $\frac{b^2}{2}$ and $\frac{b^3}{3}$ — the antiderivative formulas, derived rather than asserted.
+
+**The habit worth keeping** is to look for an explanatory proof after finding a verifying one. The explanatory version usually generalizes, and the induction usually does not.
+</WhereThisGoes>

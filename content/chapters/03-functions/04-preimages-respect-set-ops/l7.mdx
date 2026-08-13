@@ -32,7 +32,7 @@ $$
 x \in f^{-1}(U) \iff f(x) \in U, \tag{1}
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when".*
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when". So the line reads: $x$ is in the pre-image of $U$ exactly when $f$ sends $x$ into $U$. Every proof in this module unfolds membership with this one line and then works in the target*
 
 which is the definition. (1) contains **no quantifier**, and that is the entire reason the theorem holds unconditionally.
 
@@ -57,7 +57,7 @@ x \in f^{-1}\Big(U_1 \cup \cdots \cup U_n\Big)
 \iff x \in f^{-1}(U_1) \cup \cdots \cup f^{-1}(U_n).
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", $\cup$ is "pooled with".*
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", $\cup$ is "pooled with". So the line reads: landing in a pool means landing in at least one piece, which means $x$ is in at least one of the pre-images — so the pre-image of a pool is the pool of the pre-images*
 
 *Intersections.* Identical with $\forall$ in place of $\exists$.
 
@@ -70,7 +70,7 @@ x \in f^{-1}(\overline U)
 \iff x \in \overline{f^{-1}(U)}.
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", the bar on top is "everything outside".*
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\neg$ is "not", the bar on top is "everything outside". So the line reads: landing outside $U$ is exactly failing to land in $U$, which is exactly failing to be in the pre-image — so the pre-image of an outside is the outside of the pre-image*
 
 Each chain consists of if-and-only-if statements, so each proves both inclusions.
 </Proof>
@@ -83,14 +83,14 @@ $$
 f\Big(A_1 \cup \cdots \cup A_n\Big) = f(A_1) \cup \cdots \cup f(A_n) \quad\text{always},
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with".*
+*Symbol by symbol: $\cup$ is "pooled with". So the line reads: images do respect pooling, with no condition attached*
 
 $$
 f(A \cap B) \subseteq f(A) \cap f(B),\qquad
 f\big(\overline A\big) \text{ and } \overline{f(A)} \text{ unrelated.}
 $$
 
-*Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+*Symbol by symbol: $\subseteq$ is "sits inside", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: but images only sit inside the overlap, not equal to it; and an image of an outside has no fixed relation to the outside of an image*
 
 The mechanism is visible in the unfoldings. $t \in f(A) \iff \exists a \in A,\ f(a) = t$. A *there is* out front (§1.10) can be swapped past an $\vee$ (so past unions) but not with $\wedge$: from $\exists a \in A,\ f(a)=t$ and $\exists b \in B,\ f(b)=t$ one cannot conclude that a *single* element of $A \cap B$ maps to $t$.
 
@@ -113,7 +113,7 @@ $$
 f(A) \subseteq U \iff A \subseteq f^{-1}(U).
 $$
 
-*Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when".*
+*Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when". So the line reads: the image of $A$ landing inside $U$ says the same thing as $A$ sitting inside the pre-image of $U$*
 
 Read left to right, it says an image is constrained *from above* by $U$; read right to left, a pre-image is constrained *from below* by $A$. The two operators are locked together by that one statement.
 
@@ -125,7 +125,7 @@ $$
 f \text{ continuous} \iff f^{-1}(\text{open}) \text{ is open},
 $$
 
-*Symbol by symbol: $\Leftrightarrow$ is "exactly when".*
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when". So the line reads: a function counts as unbroken exactly when pulling any *gap-free stretch* of the target back through $f$ gives a gap-free stretch of the source. The point is not the condition itself but that it is stated by pulling **back**, which is the direction that behaves*
 
 not $f(\text{open})$ open. That second condition defines *open maps*, a genuinely different class: $f(x) = x^2$ is continuous but not open, since $f\big((-1,1)\big) = [0,1)$.
 
@@ -145,7 +145,7 @@ The asymmetry proved here is the reason several later definitions are stated wit
 **Solving systems with several conditions.** The set of $\mathbf{x}$ satisfying $A\mathbf{x}\in B$ **and** $A\mathbf{x}\in C$ is
 $$A^{-1}(B\cap C) = A^{-1}(B)\cap A^{-1}(C),$$
 
-*Symbol by symbol: $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cap$ is "overlapped with". So the line reads: the same pattern one subject over: pulling back an overlap gives the overlap of the pull-backs*
 
 so the conditions may be handled separately and intersected. Attempting the same split on the output side fails, for the counterexample this module gives.
 

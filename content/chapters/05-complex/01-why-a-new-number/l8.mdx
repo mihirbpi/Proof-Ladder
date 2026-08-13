@@ -1,0 +1,94 @@
+---
+level: l8
+title: Why we needed a new number
+readingTimeMin: 8
+newTerms: []
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+> **Proposition.** $x^2 \geq 0$ for all $x \in \mathbb{R}$; so $x^2 + 1$ has no real root.
+
+<Proof>
+Let $x \in \mathbb{R}$. Every real is positive, zero, or negative, so $x>0$, $x=0$, or $x<0$. In the first case $x^2 > 0$ as a product of positives; in the second $x^2 = 0$; in the third $-x > 0$ and $x^2 = (-x)(-x) > 0$. The cases are exhaustive, so $x^2 \geq 0$ and $x^2 + 1 \geq 1 > 0$.
+</Proof>
+
+The proof used only the arithmetic and ordering rules, and that is the substantive point: the obstruction is not about $\mathbb{R}$ specifically but about order. In any such system, squares are non-negative, so $x^2+1$ has no root. Consequently **$\mathbb{C}$ cannot be ordered compatibly with its arithmetic** — the price of adjoining $i$ is the loss of $<$, and it is unavoidable rather than an oversight.
+
+## The extension sequence
+
+| System | Defect | Repair |
+|---|---|---|
+| $\mathbb{N}$ | no additive inverses | $\mathbb{Z}$ |
+| $\mathbb{Z}$ | cannot divide | $\mathbb{Q}$ |
+| $\mathbb{Q}$ | not order-complete | $\mathbb{R}$ |
+| $\mathbb{R}$ | some equations still have no solution | $\mathbb{C}$ |
+
+Each step adds what is missing and checks that the arithmetic rules of §4.1 survive. Note the last two failures are of different kinds — one about gaps, one about equations — and correspondingly $\mathbb{R}$ is built by filling gaps and $\mathbb{C}$ by adjoining a root.
+
+## The construction, done properly
+
+Declaring "let $i$ be a number with $i^2 = -1$" is *just declaring it so*, and by itself it guarantees nothing: one may equally declare a number $j$ with $j \cdot 0 = 1$, and that declaration is inconsistent. What legitimizes $i$ is a construction inside existing mathematics.
+
+Two standard ones:
+
+**As polynomials, with $x^2+1$ counted as zero.** Take real polynomials and agree to treat two of them as the same whenever they differ by a multiple of $x^2+1$. Under that agreement $x^2$ *is* $-1$, so the polynomial $x$ plays the part of $i$, and every polynomial reduces to the form $a + bx$. All four operations work, and it is the construction that generalizes: the same trick adjoins a root of any polynomial you like.
+
+**As pairs.** $\mathbb{C} := \mathbb{R}^2$ with
+$$(a,b)+(c,d) = (a+c, b+d), \qquad (a,b)(c,d) = (ac-bd,\ ad+bc).$$
+Verifying the arithmetic rules is a finite computation; $i := (0,1)$ satisfies $i^2 = (-1,0)$.
+
+Either way $\mathbb{C}$ exists as an object built from $\mathbb{R}$, so no new consistency assumption is made. **If $\mathbb{R}$ is consistent, so is $\mathbb{C}$** — and that, not the declaration, is what makes $i$ legitimate.
+
+<Warning title="Two persistent misstatements">
+**"Imaginary numbers aren't real."** A pun on terminology Descartes coined dismissively. Every extension in the table above was resisted in its time; negative numbers were called "absurd" into the eighteenth century.
+
+**"You can't take the square root of a negative number."** The correct statement is that no element of a system whose ordering fits its arithmetic has negative square. In $\mathbb{C}$, every element has exactly two square roots, including $-1$.
+
+**A real caution, though:** $\sqrt{ab} = \sqrt a \sqrt b$ **fails** on $\mathbb{C}$. The classic trap is
+$$-1 = i^2 = \sqrt{-1}\sqrt{-1} = \sqrt{(-1)(-1)} = \sqrt1 = 1.$$
+The identity holds for non-negative reals and not in general. The reason is §5.8: a complex number has two square roots and no single rule picks one of them consistently across the whole plane, so the two sides of the identity can quietly pick different ones. Write $i$, never $\sqrt{-1}$.
+</Warning>
+
+## What the extension costs
+
+Every extension in Chapter 4 was a pure gain: $\mathbb{Z}$ kept everything $\mathbb{N}$ had, $\mathbb{Q}$ kept everything $\mathbb{Z}$ had. This one is not.
+
+The reals carry an ordering that fits their arithmetic. The complex numbers support all four operations and carry no such ordering whatsoever. The proof is the three-case argument above: in a system whose ordering fits its arithmetic every square is non-negative, and $i^2 = -1$ makes that impossible.
+
+So the following are not false but **meaningless**:
+$$i > 0, \qquad 3+4i < 5+2i, \qquad \sup\{z : |z|<1\}.$$
+
+The loss is real. Every theorem that mentions increasing functions, or boundaries of collections, or the guarantee that an unbroken curve running from below a value to above it must cross it, refers to the ordering — and none of them transfers.
+
+What replaces the order is the **absolute value** (§5.6): a real-valued measure of size, so that $|z|<|w|$ is a comparison of reals and therefore legitimate. Every statement about one complex number being close to another is phrased that way, for exactly this reason.
+
+**This is the general pattern of extensions.** Each new system buys a property and usually sells one, and knowing which was sold tells you which theorems will not survive the move.
+
+## Where the search stops
+
+The question this chapter opened with was whether extending the numbers ever ends. It does, and here is the statement that ends it.
+
+> **Fundamental Theorem of Algebra.** Every polynomial equation with complex coefficients has a complex solution.
+
+The striking content is not that $x^2+1$ gets a root but that adding *one* solution of *one* equation is enough for all of them, complex coefficients included. Compare what happens inside the fractions: throw in $\sqrt2$ and $\sqrt3$ is still missing, throw that in too and $\sqrt5$ is missing, and the process never finishes. Adding $i$ to the reals finishes in one step.
+
+No purely algebraic proof exists, and this is not a gap in knowledge — it cannot exist. The reals are pinned down by their no-gaps property, so any proof of this has to appeal to that somewhere. Every standard proof reaches for something about the plane rather than about algebra — the simplest of them argues that $|p(z)|$ has to bottom out somewhere, and shows the bottom must be zero.
+
+<Aside>
+Historically, quadratics were not the motivation. Cardano's formula for $x^3 = 15x + 4$ passes through $\sqrt{-121}$ and emerges at $x = 4$ — an integer answer reachable only via a detour outside $\mathbb{R}$. Bombelli's 1572 analysis of that computation is where complex numbers were first taken seriously, exactly because they could not be dismissed as answers to unanswerable questions: here they were intermediate steps toward answers everyone accepted.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+The extension to $\mathbb{C}$ is what makes the algebra of the next two courses uniform.
+
+**In calculus, complex roots explain the shape of partial fractions.** Every polynomial with real coefficients breaks into linear factors and quadratic ones that will not break any further while you stay among the reals — and those quadratics are stuck exactly because their roots are complex. That is why partial-fraction decomposition has two cases, one producing $\frac{A}{x-a}$ and one producing $\frac{Bx+C}{x^2+px+q}$, and why the two kinds behave quite differently when you go on to compute a running total from them.
+
+**Later, the sign of the discriminant decides between growth and oscillation.** Courses that model springs, circuits and populations reach a stage where a quadratic decides the answer's shape: real roots give growth or decay, complex roots give something that wobbles. It is the same $b^2-4ac$ from your quadratic formula, and the switch from one behavior to the other is Euler's formula (§5.7) doing its work.
+
+</WhereThisGoes>

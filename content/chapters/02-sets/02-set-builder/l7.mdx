@@ -15,14 +15,14 @@ $$
 \{\, x \in A \mid p(x) \,\},
 $$
 
-*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the collection of those $x$ drawn from $A$ for which $p(x)$ is true*
 
 "the set of $x$ in $A$ such that $p(x)$", with defining property
 $$
 y \in \{x \in A \mid p(x)\} \;\Leftrightarrow\; y \in A \wedge p(y). \tag{1}
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that". So the line reads: $y$ belongs to that collection exactly when two things hold at once — $y$ was in $A$ to begin with, and $y$ satisfies $p$*
 
 Equation (1) is the workhorse of the entire chapter. Every proof about a set-builder set begins by applying it, converting a membership claim into a logical one where Chapter 1 applies, and ends by applying it in reverse.
 
@@ -47,7 +47,7 @@ $$
 \{\, x \in A \mid p(x) \,\} \quad\text{for $A$ already known to be a set,}
 $$
 
-*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the same filter, with the reminder that $A$ has to be a set you already have. That is what stops the construction from building anything out of nothing*
 
 is allowed — which is exactly the notation above. So writing down what you are drawing from is not just good manners for the reader. It is the thing that keeps the notation safe to use at all.
 
@@ -68,14 +68,14 @@ $$
 \{\, 2k \mid k \in \mathbb{Z} \,\}.
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the collection of values $f(x)$ as $x$ runs through $A$ — for instance every whole multiple of $\pi$, or every even integer*
 
 Here the bar separates a *term* from the range of its parameter, so
 $$
 y \in \{f(x) \mid x \in A\} \;\Leftrightarrow\; \exists x \in A,\; y = f(x).
 $$
 
-*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when", the bar $\mid$ is "such that". So the line reads: $y$ belongs to that collection exactly when some $x$ in $A$ is sent to it. Membership here is an existence claim, which is why proving it means exhibiting a witness*
 
 Note the *there exists* quantifier — it is what makes this form behave differently in proofs from the filter form, whose unfolding is a conjunction. Formally this is Replacement rather than Separation, and it is the notation for the image of a function (§3.3).
 
@@ -84,7 +84,7 @@ $$
 \{\, x \in \mathbb{R} \mid \sin x = 0 \,\} \;=\; \{\, n\pi \mid n \in \mathbb{Z} \,\}.
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the real numbers whose sine is zero are exactly the whole multiples of $\pi$ — two very different descriptions naming one set*
 
 The left is a filter; the right is an image. Extensionality says they are equal iff each contains the other, so the proof is a double inclusion (§2.6) — one direction needs the fact that $\sin$ vanishes only at integer multiples of $\pi$, the other only that $\sin(n\pi) = 0$.
 
@@ -96,7 +96,7 @@ $$
 [a,b] = \{x \in \mathbb{R} \mid a \leq x \leq b\},
 $$
 
-*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that".*
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the open interval is the reals strictly between $a$ and $b$; the closed interval is the reals from $a$ to $b$ with both ends included*
 
 with half-open variants, and $\infty$ always taking a round bracket since it is not an element of $\mathbb{R}$. Note that $(a,b) = \emptyset$ whenever $a \geq b$, and $[a,a] = \{a\}$ — degenerate cases that a careful proof must handle rather than dismiss.
 

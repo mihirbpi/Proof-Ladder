@@ -1,0 +1,124 @@
+---
+level: l8
+title: When does induction apply?
+readingTimeMin: 8
+newTerms: ["strong induction"]
+anchorExample: "the odd numbers add up to a square"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Two requirements, both substantive.
+
+## An index with a successor
+
+The statements must be indexed by $\{n \in \mathbb{Z} : n \geq n_0\}$. What is being used is not merely that the index set is infinite. Two things are needed: **every entry has an immediate next one**, and **every non-empty collection of entries has a smallest member**.
+
+$\mathbb{R}$ has neither, by density (§4.6). So $\forall x \in \mathbb{R},\ x^2 \geq 0$ is not an induction candidate; it is an arbitrary-element argument with a case split (§1.12).
+
+<Warning title="Look for a hidden integer parameter">
+Bernoulli's inequality $\forall x \geq -1,\ (1+x)^n \geq 1+nx$ *is* proved by induction — on $n$, with $x$ fixed but arbitrary throughout. The presence of a real variable is irrelevant; what matters is whether some integer indexes the family.
+
+The other way round, a statement may have an integer index and still resist: see below.
+</Warning>
+
+## A usable link
+
+$A(k)$ must materially assist $A(k+1)$. The link is present exactly when the object indexed by $n+1$ is *constructed* from the object indexed by $n$:
+$$
+\sum^{n+1} = \sum^n + a_{n+1},\quad a^{n+1} = a\cdot a^n,\quad (n+1)! = (n+1)n!,\quad f^{(n+1)} = \big(f^{(n)}\big)'.
+$$
+
+**Recursive definition and inductive proof are the same structure viewed from opposite ends.** Chapter 7 makes this exact: $+$ and $\times$ are *defined* by recursion on the successor, and every property of them is *proved* by induction on the same successor. The recursive-definition principle, which licenses definition by recursion, is itself proved from the induction axiom.
+
+Where the link fails, the index does not help. "The $n$th prime is odd" has an integer index and no usable relation between $p_k$ and $p_{k+1}$; assuming $A(k)$ contributes nothing, and no amount of cleverness in the step will fix that.
+
+## Strong induction
+
+> Assume $A(n_0),\ldots,A(k)$; prove $A(k+1)$.
+
+<Proof title="Equivalence with ordinary induction">
+Let $B(n)$ be the statement *"$A(m)$ holds for every $m$ from $n_0$ up to $n$"*. The strong hypothesis is exactly $B(k)$, and $B(k)\Rightarrow A(k+1)$ gives $B(k)\Rightarrow B(k+1)$. Ordinary induction on $B$ gives $\forall n\, B(n)$, so $\forall n\, A(n)$.
+</Proof>
+
+Indicated when $n+1$ decomposes into cases far below $k$:
+
+> **Existence of prime factorization.** Every $n \geq 2$ is a product of primes. If $n$ is prime, done. Otherwise $n = ab$ with $2 \leq a,b < n$; both have factorizations by the strong hypothesis, and concatenating them factors $n$.
+
+Ordinary induction cannot do this, since $a$ and $b$ bear no relation to $n-1$. Note that *uniqueness* of the factorization is a separate matter requiring Euclid's lemma (§4.3), not induction.
+
+The Fibonacci recurrence $F_{n+1} = F_n + F_{n-1}$ likewise needs two previous cases, so two base cases — an easy and common oversight.
+
+## Choosing what to induct on
+
+A problem often offers several candidate indices, and the choice determines whether the proof is short or impossible.
+
+**A claim about pairs.** For a statement $A(m,n)$, you may induct on $m$ with $n$ fixed, on $n$ with $m$ fixed, or on $m+n$. The last reduces a two-dimensional family to a single chain and is often the only one that works, because each step decreases the total and both coordinates are free to move.
+
+**A claim about a construction.** For polygons, induct on the number of sides; for grids of numbers, on their size; for expressions, on the number of operations. The index should be whatever decreases when you remove one piece.
+
+**When an induction stalls, change the index before changing the algebra.** A step that will not close is usually a sign that the wrong quantity is being decreased, and no amount of manipulation repairs that.
+
+<Warning title="The link must be constructed, not assumed">
+The most common failure is asserting a link that does not exist. *"Remove a vertex from an $(n+1)$-gon to get an $n$-gon"* is true for convex polygons and false in general — a non-convex polygon can lose its polygon status under the same operation.
+
+Establishing the link is frequently the whole difficulty of the proof, and a step that begins "plainly the $(k+1)$ case contains the $k$ case" deserves a close look.
+</Warning>
+
+## The single principle underneath
+
+Both forms are instances of a single principle.
+
+> **General induction.** Suppose the objects in $S$ come with a notion of *simpler than*, and that no object can be simplified forever — every chain of simplifications stops. If, for every $x$ in $S$, $A$ holding at everything simpler than $x$ forces $A$ at $x$, then $A$ holds throughout $S$.
+
+Note there is **no separate base case**. The simplest objects have nothing below them, so the hypothesis is vacuously satisfied for them (§1.5) and the implication delivers $A$ directly. Ordinary induction is the case where *simpler than* means *the previous integer*; strong induction is the case where it means *any smaller integer*.
+
+**Induction on how a thing is built** is the case where the objects are assembled from smaller ones, and *simpler than* means *is a piece of*. To prove a property of every expression, verify it for the atoms and check that each way of building preserves it. Termination arguments for recursive programs are the same principle: exhibit a quantity that strictly decreases at each call and cannot decrease forever.
+
+The same principle extends past $\mathbb{N}$ to longer collections that still have that smallest-member property, which is how induction reaches beyond the counting numbers.
+
+<Aside>
+The no-infinite-descent condition is exactly what rules out circular justification. Set theory assumes a rule of the same shape — you can never have an endless chain of sets each inside the last — and that rule is what forbids a set from being a member of itself.
+
+A practical corollary: to prove termination of a recursive procedure, find a strictly decreasing measure that strictly decreases. There is a famous rule that always finishes despite growing enormously fast, because its arguments decrease in the lexicographic order on $\mathbb{N}^2$ — which also admits no infinite descent, though it does not look like $\mathbb{N}$.
+</Aside>
+
+## Induction on things that are not numbers
+
+Every induction so far has walked the counting numbers. The pattern needs less than that, and seeing what it actually needs is worth a page.
+
+What §6.4 required was a way to reach each object from simpler ones, with the chain of *simpler* eventually bottoming out. The counting numbers supply that — each is the next after one below, and the descent stops at $0$ — but so do many things built by rules.
+
+Take the logical statements of Chapter 1. Each is either a bare letter, or built from shorter ones by $\neg$, $\wedge$, $\vee$ or $\Rightarrow$. To prove every statement has some property, it is enough to check the bare letters and to show that each construction preserves the property. Nothing is left out, because every statement was built in finitely many steps from letters.
+
+**Worked instance.** Every statement of Chapter 1 has equally many left and right brackets.
+
+<Proof>
+
+*The symbols in this proof: $\neg$ is "not", $\wedge$ is "and", $\vee$ is "or". In words, what follows shows: the property holds of the simplest statements and survives every way of building bigger ones.*
+
+*Base.* A bare letter has no brackets at all — zero of each. ✓
+
+*Step.* Suppose $p$ and $q$ each have matching counts. Then $\neg p$ adds none, and $(p \wedge q)$ adds exactly one of each, as do the other two constructions. So the counts stay matched.
+
+Every statement is built from letters in finitely many such steps, so every statement has matching counts. $\blacksquare$
+</Proof>
+
+This is called **structural induction**, and it is the form used constantly once objects are defined by construction rules rather than counted. The counting-number version is the special case where the only rule is *add one*.
+
+<WhereThisGoes level="l8">
+
+The two conditions — an integer index and a link between cases — are what determine whether induction is even the right tool, and calculus is full of claims that fail the first.
+
+**Claims about all real numbers are not induction candidates.** *For all $x$, $\sin^2 x + \cos^2 x = 1$* has infinitely many cases and no chain to run: $\mathbb{R}$ has no smallest member and no next element (§4.6). Attempting induction there is a category error, and the correct technique is a direct proof from the definitions.
+
+**Claims about all $n$ usually are.** Formulas for $\frac{d^n}{dx^n}$, closed forms for $\sum_{j=1}^n$, statements about the $n$th term of a recursively defined sequence, and inequalities like $2^n > n^2$ for $n\geq5$ all carry an integer index and a visible link.
+
+**The link is where the difficulty lives.** For $\frac{d^n}{dx^n}$, the link is *differentiate once more* — take the steepness of the steepness. For a sum, the link is *add the next term*. For a recursively defined sequence, the recursion **is** the link — which is why recursive definitions and induction go together, and why §7.6 defines addition recursively and then proves its properties inductively.
+
+**Strong induction handles irregular links.** Some claims about $n$ need several earlier cases rather than the immediately preceding one. Fibonacci-type recurrences reach back two steps and need two base cases; the fact that every integer above $1$ has a prime factor reaches back an unpredictable distance and needs strong induction.
+
+</WhereThisGoes>

@@ -21,7 +21,7 @@ $$
 S \cup (T \cap V) = (S \cup T) \cap (S \cup V)
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: pooling $S$ with an overlap is the same as pooling with each and then overlapping — the outer operation gets pushed inside*
 
 Two laws, and the second one has no arithmetic analogue. That asymmetry is what makes this module worth a page.
 
@@ -74,13 +74,13 @@ Therefore the two sets are equal.
 <Warning title="Parentheses are load-bearing">
 $$S \cap T \cup V$$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: this expression is ambiguous as written: without brackets there is no rule saying which of the two operations binds first*
 
 is meaningless. Unlike $\times$ and $+$, the operations $\cap$ and $\cup$ have **no** precedence convention, and
 
 $$(S\cap T)\cup V \quad\text{and}\quad S\cap(T\cup V)$$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: and the two readings are genuinely different sets, which is why the brackets are not optional*
 
 *These two differ: the brackets decide which operation happens first, exactly as in arithmetic.*
 
@@ -104,7 +104,7 @@ $$
 \overline{(S\cap T)\cup(S\cap V)} = \overline{S\cap T} \cap \overline{S \cap V} = (\overline S \cup \overline T)\cap(\overline S \cup \overline V).
 $$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside".*
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: taking the outside of the right-hand side, twice by the swapping rule, lands on the distributed form*
 
 The two left sides are equal by the first law, so the right sides are too — which is the second law, written in $\overline S, \overline T, \overline V$. Since every set is the complement of *something*, that proves it in general.
 
@@ -117,7 +117,7 @@ The two left sides are equal by the first law, so the right sides are too — wh
 **Probability.** With events instead of sets, the same identity is the reason
 $$P\big(A \cap (B \cup C)\big)$$
 
-*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with".*
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: the probability of $A$ together with either $B$ or $C$ — the same shape, with sets standing for events*
 
 can be computed by splitting into $A\cap B$ and $A \cap C$ and correcting for the overlap. The inclusion–exclusion rule is distributivity plus counting.
 

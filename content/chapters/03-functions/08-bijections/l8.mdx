@@ -1,0 +1,110 @@
+---
+level: l8
+title: Bijections and size
+readingTimeMin: 10
+newTerms: ["bijection", "identity function", "size"]
+anchorExample: "a rule with a declared domain and codomain"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$f : S \to T$ is a **bijection** when it is injective and surjective, equivalently when every $f^{-1}(\{t\})$ is a singleton.
+
+| | $\lvert f^{-1}(\{t\})\rvert$ |
+|---|---|
+| injective | $\leq 1$ |
+| surjective | $\geq 1$ |
+| bijective | $=1$ |
+
+## Bijections as a renaming that preserves all the structures
+
+> **Proposition.** $f : S \to T$ is a bijection iff there exists $g : T \to S$ with $g \circ f = \mathrm{id}_S$ and $f \circ g = \mathrm{id}_T$.
+
+This is §3.9's theorem, but it is worth stating here because it is the *right* definition: a bijection is a function with a two-sided inverse, i.e. an **a renaming that preserves all the structure** in the category of sets. Under this reading the facts below are automatic — identities are a renaming that preserves all the structures, composites of a renaming that preserves all the structures are a renaming that preserves all the structures, and a renaming that preserves all the structure is an equivalence relation.
+
+$\mathrm{id}_S$ is a bijection, and by §3.7 a composite of bijections is a bijection.
+
+> **Proposition.** $\exp : \mathbb{R}\to\mathbb{R}_{>0}$ is a bijection.
+
+<Proof>
+*Injective.* $\exp$ is strictly increasing (as $\exp' = \exp > 0$), and strictly monotone — always heading the same way, never turning back — functions are injective (§3.5).
+
+*Surjective.* Given $t > 0$, $x = \ln t \in \mathbb{R}$ satisfies $e^x = t$. Alternatively, $\exp$ is continuous — unbroken, drawable without lifting the pen — with $\lim_{x\to-\infty}e^x = 0$, $\lim_{x\to\infty}e^x=\infty$, so the intermediate value theorem gives every positive value.
+</Proof>
+
+Changing the codomain to $\mathbb{R}$ destroys surjectivity and so bijectivity — the same rule, a different function (§3.1).
+
+## Comparing sizes
+
+Define $S \sim T$ ("the same size") when a bijection $S \to T$ exists. This is an equivalence relation (§7.2): reflexive by $\mathrm{id}$, symmetric by inverses, transitive by composition — the three facts above, restated.
+
+**Size** $|S|$ is what all sets pairable with $S$ have in common (§7.2: the family of things counted as the same), and $|S| = |T|$ means $S \sim T$. For finite sets this agrees with counting; the content is that it continues to make sense when counting does not.
+
+Order is defined by $|S| \leq |T|$ iff an injection $S \to T$ exists. That this is such that mutual containment forces equality — $|S|\leq|T|$ and $|T|\leq|S|$ imply $|S|=|T|$ — is a named theorem in its own right, and it is genuinely not obvious: from injections both ways one must *construct* a bijection, and the construction (partitioning by orbits of the two maps) is the standard first surprise of the subject.
+
+## An infinite set can match up with part of itself
+
+> **Proposition.** $|\mathbb{N}| = |2\mathbb{N}|$.
+
+<Proof>
+$f : \mathbb{N}\to 2\mathbb{N}$, $f(n)=2n$. Injective: $2a=2b \Rightarrow a=b$. Surjective: any even natural is $2k$, and $f(k)=2k$.
+</Proof>
+
+$2\mathbb{N} \subsetneq \mathbb{N}$ yet the two have the same size. That is not a paradox, it is the definition of infinite doing its job: a set is infinite exactly when it can be matched one-for-one with a part of itself that leaves something out. No finite set can do that, and every infinite one can. It was proposed as *the* definition of infinity in 1888, and it is the places set theory's subtleties surface early.)
+
+<Warning title="Inclusion is not size">
+For infinite sets, $A \subsetneq B$ does not imply $|A| < |B|$. Comparisons must be made by exhibiting functions, never just by looking or by inclusion. Nearly every incorrect claim students make about infinite cardinalities (sizes, §3.8) comes from importing finite intuition here.
+</Warning>
+
+## Comparing what you cannot count
+
+The matching above did real work: it settled a size question about two infinite sets without counting either of them, which counting could not have done at any stage.
+
+That is the method, and it is the whole method. To claim two infinite collections are the same size, produce a pairing. To claim one is bigger, you must rule out *every* possible pairing — a far harder thing, and not something a picture or an inclusion will give you.
+
+Whether that harder job can ever be done — whether some infinite collections are genuinely bigger than others rather than merely harder to pair up — is the question the next course opens with. It has an answer, it is not the answer most people guess, and it is reached by the same move used here: build a function, then reason about what it can and cannot hit.
+
+<Aside>
+What is worth carrying out of this module is the shift in what *size* means. For finite sets, size is a number you arrive at by counting, and pairing is a shortcut. For infinite sets there is no number to arrive at, so the pairing stops being a shortcut and becomes the definition. Everything strange about infinite sets — a set matching a part of itself, §2.1's collection that cannot exist — follows from taking that definition seriously instead of importing the finite picture.
+</Aside>
+
+## Listable, and not
+
+§3.8 left a question open: whether every pair of infinite sets can be paired off. It cannot, and here is the answer in full.
+
+Call a set **listable** when its members can be written in a sequence — a first, a second, a third — with every member appearing somewhere. Equivalently, when it can be paired off with the counting numbers.
+
+Surprisingly many sets are listable. The integers are: interleave them, $0, 1, -1, 2, -2, \ldots$. The fractions are too, which is genuinely strange, since between any two of them lie infinitely many more. Walk the grid of numerator-denominator pairs along its diagonals, skipping anything already seen in lower terms, and every fraction is reached at some finite stage.
+
+> **Theorem (Cantor).** The real numbers are not listable.
+
+<Proof>
+
+*The symbols in this proof: $(0,1)$ is the reals strictly between $0$ and $1$. In words, what follows shows: given any list claiming to hold every real, you can build a real it has missed.*
+
+Suppose some list $r_1, r_2, r_3, \ldots$ contained every real between $0$ and $1$. Write each in decimal, forbidding trailing nines so that each number has one expansion only.
+
+Now build $x$ digit by digit: let its $n$th decimal digit be $5$, unless $r_n$'s $n$th digit is already $5$, in which case take $4$. Then $x$ lies between $0$ and $1$, and its expansion has no nines and is not eventually zero, so it is that number's only expansion.
+
+For each $n$, $x$ differs from $r_n$ in the $n$th place, so $x$ is not $r_n$. That holds for every $n$, so $x$ is on no rung of the list — contradicting the assumption that the list held everything. $\blacksquare$
+</Proof>
+
+So there are at least two sizes of infinity, and the reals outnumber the fractions despite the fractions being packed everywhere along the line.
+
+<Aside>
+The move is worth more than the theorem. **When handed a list claimed to be complete, build the thing that disagrees with entry $n$ in position $n$.**
+
+That single trick shows the reals are not listable, shows in §6.7 that no set can be paired with its own subsets, and shows in §2.1 that there is no set of everything. Three results, one idea, and the idea is the transferable part.
+</Aside>
+
+<WhereThisGoes level="l8">
+**Pairing is how later courses compare things that are not sets of numbers.** Two collections that each need the same number of coordinates to describe a point can be matched up one-for-one in a way that respects adding and scaling — this module's *pairing means same size*, with the pairing asked to preserve more than just membership.
+
+**In calculus, bijectivity is what makes inverse functions exist** (§3.9). $\ln : (0,\infty)\to\mathbb{R}$ and $e^x : \mathbb{R}\to(0,\infty)$ are mutually inverse bijections, and the domains are exactly what makes them so. So are $\tan$ on $(-\pi/2,\pi/2)$ and $\tan^{-1}$ on $\mathbb{R}$.
+
+Each of those restrictions was chosen to manufacture a bijection out of a function that was not one, which is the standard repair and the reason inverse trigonometric functions come with ranges you have to memorize.
+
+</WhereThisGoes>

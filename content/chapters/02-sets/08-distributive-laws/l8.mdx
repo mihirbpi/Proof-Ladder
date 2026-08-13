@@ -1,0 +1,155 @@
+---
+level: l8
+title: Distributive laws
+readingTimeMin: 9
+newTerms: ["distributive law"]
+anchorExample: "complements inside the reals"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+S \cap (T \cup R) = (S \cap T) \cup (S \cap R), \tag{D1}
+$$
+
+*So the line reads: being in $S$ and in at least one of $T$, $R$ is the same as being in both $S$ and $T$, or in both $S$ and $R$.*
+
+$$
+S \cup (T \cap R) = (S \cup T) \cap (S \cup R). \tag{D2}
+$$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: each operation spreads across the other, which arithmetic manages in only one direction.*
+
+Both are transcriptions of logical equivalences,
+$$
+p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r),
+\qquad
+p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r),
+$$
+
+*Symbol by symbol: $\wedge$ is "and", $\vee$ is "or", $\equiv$ is "says the same as". So the line reads: *$p$ and either $q$ or $r$* says the same as *either both $p$ and $q$, or both $p$ and $r$* — and the same trade works with *and* and *or* swapped throughout*
+
+each checkable on eight rows. The mathematically notable feature is that **both** hold. In arithmetic, multiplication spreads across addition and not the other way round; here the two operations are on equal footing, and neither one is playing the part of addition.
+
+## Proof of (D2)
+
+(D1) is the routine one; (D2)'s reverse inclusion contains the only step worth slowing down for.
+
+<Discussion>
+  <div slot="know">$x \in (S\cup T) \cap (S \cup R)$ gives two disjunctions simultaneously.</div>
+  <div slot="want">$x \in S$ or $x \in T \cap R$.</div>
+  <div slot="how">Nothing in the hypothesis suggests a case split, so split on excluded middle (§1.3): either $x \in S$ or not. If not, then from *p or q* together with *not p* we may infer *q*, which extracts $T$ from the first disjunction and $R$ from the second.</div>
+</Discussion>
+
+<Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\notin$ is "is not in", $\cap$ is "overlapped with", $\cup$ is "pooled with", $\subseteq$ is "sits inside". In words, what follows shows: pooling with an overlap gives the overlap of the two pools.*
+
+($\subseteq$) Let $x \in S \cup (T \cap R)$.
+
+*Case $x \in S$:* then $x \in S \cup T$ and $x \in S \cup R$, so $x$ lies in their intersection.
+*Case $x \in T \cap R$:* then $x \in T \subseteq S \cup T$ and $x \in R \subseteq S \cup R$, same conclusion.
+
+($\supseteq$) Let $x \in (S \cup T) \cap (S \cup R)$, so $x \in S \cup T$ and $x \in S \cup R$. Either $x \in S$ or $x \notin S$.
+
+*Case $x \in S$:* then $x \in S \cup (T \cap R)$ at once.
+*Case $x \notin S$:* from $x \in S \cup T$ and $x \notin S$, the *or* leaves only one option, so $x \in T$; likewise $x \in R$. Then $x \in T \cap R$, so $x \in S \cup (T \cap R)$.
+
+Both inclusions hold.
+</Proof>
+
+Two techniques are worth extracting. **Splitting on excluded middle** — every statement is either true or false (§1.2), so either $x \in S$ or it is not — is always available when the hypothesis offers no natural case division, and it is the standard opening for reverse inclusions of this shape. **Ruling out one half of an *or*** — from $p \vee q$ and $\neg p$, infer $q$ — is how a union hypothesis is converted into usable information once one side is excluded.
+
+## The mirror makes one proof do
+
+Complementation undoes itself and exchanges $\cap$ and $\cup$ (§2.7). Complementing (D1) and applying De Morgan throughout:
+$$
+\overline{S \cap (T \cup R)} = \overline S \cup (\overline T \cap \overline R),
+\qquad
+\overline{(S\cap T) \cup (S \cap R)} = (\overline S \cup \overline T) \cap (\overline S \cup \overline R),
+$$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: the outside of each of the two distributive arrangements, worked out by the swapping rule of module 2.7*
+
+so (D1) applied to arbitrary $S,T,R$ gives (D2) for $\overline S, \overline T, \overline R$ — and since complementation is a bijection (§3.8: a perfect one-to-one matching) on $\mathcal{P}(X)$, that is (D2) in full generality. Proving one law proves both.
+
+This is worth internalizing as a habit: wherever an operation undoes itself and turns the ordering around, half the theorems are free.
+
+## What distributivity is doing
+
+The two laws hold together or not at all — each implies the other. And they are worth proving carefully rather than assuming, because the most important system you will meet next term **fails** them.
+
+The same pair of laws turns up wherever two ways of combining things sit side by side — in logic as *and* and *or*, in sets as overlap and pooling, and in several structures you will meet later. Recognizing the pattern once means recognizing it every time.
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\cap$ is "overlapped with". So the line reads: a worked instance in the real numbers, showing the two sides come out the same*
+
+but
+$$
+(A \cap B) + (A \cap C) = \{0\} + \{0\} = \{0\}.
+$$
+
+*Symbol by symbol: $\cap$ is "overlapped with". So the line reads: overlapping first and adding afterwards gives only zero, though adding first would not have*
+
+So $A \cap (B+C) = A$ while $(A\cap B) + (A\cap C) = \{0\}$. **Distributivity fails, and fails badly** — the two sides are as far apart as they could be.
+
+The practical warning is general: when a new kind of object arrives with operations that *look* like $\cap$ and $\cup$, you have to check the distributive laws rather than assume them. Plenty of systems satisfy one and fail the other. The counterexample above is two lines long and worth remembering.
+
+<Warning title="The arithmetic analogy has limits">
+$\cap \leftrightarrow \times$, $\cup \leftrightarrow +$ is a useful mnemonic for (D1) and a false friend elsewhere. Set operations **repeat harmlessly** — repeating one changes nothing ($S \cup S = S$) and **have no inverses** ($S \cup T = S \cup R$ does not force $T = R$), so pooling has no undo, and the analogy with arithmetic stops here.
+
+There *is* a repair: swapping $\cup$ for symmetric difference (in-one-but-not-both) restores the missing inverses, since every set is its own inverse under it. The resulting structure does obey the arithmetic laws, and it is the version algebraists reach for.
+</Warning>
+
+## More than two sets
+
+Both laws extend to any number of sets:
+$$
+S \cap (A_1 \cup \cdots \cup A_n) = (S \cap A_1) \cup \cdots \cup (S \cap A_n),
+$$
+
+*So the line reads: the same swap works however many sets you spread across, not just two.*
+
+$$
+S \cup (A_1 \cap \cdots \cap A_n) = (S \cup A_1) \cap \cdots \cap (S \cup A_n).
+$$
+
+*Symbol by symbol: $\cup$ is "pooled with", $\cap$ is "overlapped with". So the line reads: pooling $S$ with the overlap of any number of sets is the same as pooling it with each of them and then overlapping*
+
+The proofs are the same element chases, with the case split now running over $n$ possibilities instead of two. Nothing about the argument changes; only the bookkeeping grows.
+
+<Aside>
+(D1) and (D2) are equivalent, and the mirror argument above is the quickest route — but it leans on complements. A system with $\cap$ and $\cup$ but no complement still has the equivalence, by a short direct computation instead.
+
+That matters because the failing example above has no complements either — there is nothing playing the role of "everything not in $U$" — which is a second reason its failure cannot be diagnosed by the methods of this chapter.
+</Aside>
+
+## The same two laws, in three places
+
+The pair of distributive laws you have just proved for sets is not a fact about sets. It is a fact about any two operations standing in this relationship, and you have now met three instances of it.
+
+| | one operation | the other | the flip that swaps them |
+|---|---|---|---|
+| Logic (§1.3) | *and* | *or* | denial |
+| Sets (this module) | intersection | union | complement |
+| Circuits | the AND gate | the OR gate | an inverter |
+
+In each row, both distributive laws hold, and so do both of De Morgan's. The proofs in the second row were the proofs in the first row with membership unfolded; an engineer simplifying a circuit is running the third row.
+
+The mathematics worth taking from this is not any one of the rows. It is that a short list of rules can be satisfied by things with nothing else in common, and that everything derivable from the list holds for all of them at once. Chapter 4 makes the same point about arithmetic, and it is the single most economical idea in the subject.
+
+<Aside>
+Worth noticing which familiar operation does **not** behave this way. Ordinary multiplication spreads across addition — $a(b+c) = ab+ac$ — but addition does not spread across multiplication: $a + bc$ is not $(a+b)(a+c)$.
+
+So the symmetry above, where *both* operations distribute over the other, is a stronger condition than school algebra prepares you for. Sets and logic have it; the integers do not.
+</Aside>
+
+<WhereThisGoes level="l8">
+**In calculus the distributive law is used and rarely named.** Differentiation — the operation that measures how steeply a graph is rising — and integration — adding up thin strips to get a total — are linear — $\frac{d}{dx}(af+bg) = af'+bg'$ — and that is a distributive law over sums. It holds for finite sums always, and for endless ones only under conditions — exactly the finite/infinite asymmetry §2.4 flagged. Doing it to an endless sum is legitimate in the right circumstances and needs a theorem to say when.
+
+**The general lesson closes the chapter.** An identity proved for $\cap$ and $\cup$ is a theorem about those operations, not a law of thought. When a new pair of operations appears, the identity must be re-proved or refuted — and refuting takes one small example, as it did here.
+
+</WhereThisGoes>

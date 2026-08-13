@@ -1,0 +1,129 @@
+---
+level: l8
+title: Defining addition
+readingTimeMin: 8
+newTerms: ["recursive definition", "recursive-definition principle"]
+anchorExample: "successor function"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\textbf{(A1)}\ a+0 = a, \qquad \textbf{(A2)}\ a + S(b) = S(a+b).
+$$
+
+*Symbol by symbol: $S(b)$ is the next number after $b$, and the bold labels are names for the two rules so later proofs can point at them. So the line reads: (A1) adding zero changes nothing, and (A2) adding the next number after $b$ gives the next number after $a+b$.*
+
+Recursion on the **second** argument, with the first held fixed. Every asymmetry below traces to that choice.
+
+## Is a recursion allowed to define anything?
+
+Writing down two rules does not by itself create a function. Something has to guarantee that exactly one function obeys them — no fewer, no more.
+
+Something does. There is a theorem, proved by induction from Axiom 9, saying that a base value plus a rule for getting from each case to the next always pins down exactly one function on $\mathbb{N}$. Uniqueness is the easy half: if two functions obeyed the rules, the set where they agree contains $0$ and is closed under *next*, so by Axiom 9 it is everything.
+
+So the ninth axiom does double duty. It licenses proof by induction, and it licenses definition by recursion — the two halves of §6.4's observation that recursion and induction are one structure.
+
+## Derivations
+
+<Proof>
+$1+1 = 1+S(0) = S(1+0) = S(1) = 2$.
+
+$2+3 = 2+S(2) = S(2+2) = S(S(2+1)) = S(S(S(2+0))) = 5$.
+</Proof>
+
+> **Proposition.** $a+1 = S(a)$.
+
+<Proof>
+$a+1 = a+S(0) = S(a+0) = S(a)$.
+</Proof>
+
+This is the theorem §7.3 promised. Writing $a+1$ for $S(a)$ — forbidden until addition existed — is now licensed.
+
+## The surprise: $0 + a = a$ has to be proved
+
+Rule (A1) gives $a + 0 = a$: zero on the **right**. Zero on the **left** is a different statement, and no rule produces it. The recursion peels the second slot, so it has nothing to say about the first.
+
+> **Lemma 1.** $0 + a = a$ for every $a$.
+
+<Proof>
+
+*The symbols in this proof: $S(k)$ is the next number after $k$. In words, what follows shows: adding zero on the left does nothing — checked at $0$, then passed up the chain.*
+
+*Base.* $0+0 = 0$, by (A1) with $a = 0$.
+
+*Step.* Assume $0+k = k$. Then
+$$
+0 + S(k) \;=\; S(0+k) \;=\; S(k),
+$$
+the first equality by (A2), the second by the assumption. That is the claim at $S(k)$, so Axiom 9 gives it for every $a$.
+</Proof>
+
+**Four lines to prove that adding zero on the left does nothing.** That it needs proving at all is the point: **the definition is asymmetric**, so every symmetric-looking fact costs its own argument.
+
+## Commutativity, worked
+
+This is the one worth doing in full, because it is the fact everyone assumes and nobody proves.
+
+It needs one more lemma, of the same character as the first: the definition gives $a + S(b) = S(a+b)$, and the mirror image is a separate induction on $b$.
+
+> **Lemma 2.** $S(a)+b = S(a+b)$.
+
+> **Theorem.** $a+b = b+a$ for all $a$ and $b$.
+
+<Proof>
+
+*The symbols in this proof: $S(k)$ is the next number after $k$. In words, what follows shows: the two orders agree at $b = 0$, and agreeing at $k$ forces agreeing at the next one.*
+
+Induct on $b$, holding $a$ fixed.
+
+*Base.* $a + 0 = a$ by (A1), and $0 + a = a$ by Lemma 1. So both orders give $a$.
+
+*Step.* Assume $a + k = k + a$. Then
+$$
+a + S(k) \;=\; S(a+k) \;=\; S(k+a) \;=\; S(k) + a,
+$$
+the first equality by (A2), the second by the assumption, the third by Lemma 2 read right to left. That is the claim at $S(k)$.
+
+By Axiom 9, it holds for every $b$. $\blacksquare$
+</Proof>
+
+**Three inductions for one familiar fact** — Lemma 1, Lemma 2, and the theorem itself.
+
+## The rest of the arithmetic
+
+The same method delivers the remaining laws, each by an induction on one slot with the others held fixed:
+
+- **Associativity**, $(a+b)+c = a+(b+c)$ — induct on $c$; the step is (A2) applied twice with the hypothesis in between.
+- **Cancellation**, $a + c = b + c \Rightarrow a = b$ — induct on $c$; the step strips an $S$ from both sides, which is legal exactly because **A8** says $S$ never sends two numbers to the same place.
+
+Cancellation is where A8 is finally spent, and with it every axiom has now done a job.
+
+<Warning title="Familiarity is not derivation">
+Nothing in (A1)–(A2) gives $a+b=b+a$; the definition is plainly asymmetric. Three inductions were required.
+
+The general discipline: when a subject is built from a stated list of rules, the question is never whether a statement is obvious but whether it has been derived. Chapters 1–6 used commutativity freely, and were — strictly — incomplete until this module.
+</Warning>
+
+<Aside>
+Had addition been defined by recursion on the first argument, Lemma 1 would be immediate and (A1) would need proof. The asymmetry lives entirely in the definition, and commutativity is exactly the theorem that the operation does not inherit it.
+
+Chapter 4's assumptions are now discharged for $\mathbb{N}$: closure under $+$ is (A1)–(A2), associativity and commutativity are above, and the distributive law follows in §7.7. The arithmetic rules of §4.1 are theorems here.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+Defining a thing by saying what it does at the first step and how each step follows from the last is a pattern you will use constantly, and the guarantee that it terminates is always the same one.
+
+**Sequences given by a rule from the previous term are everywhere.** Start at $1$ and repeatedly replace $a$ by $\tfrac12(a + \tfrac2a)$ and the numbers close in on $\sqrt2$ fast — that is how a calculator does it. Every such definition is legitimate for the reason this module gives: each step reaches back to a smaller index, and the counting numbers cannot descend forever.
+
+**Proofs about them are inductions**, and the proof mirrors the definition exactly. To show the terms stay below some bound, you show the first one does and that each step preserves it.
+
+**The commutativity result is the module's real lesson.** The definition builds on the second slot only, so $x + y = y + x$ is not free — it is a theorem, and it takes a proof by induction. A fact this obvious needing an argument is the point: *obvious* and *proved from the definition* are different things.
+
+**Order was defined, not assumed.** Saying $x\leq y$ means *you can get from $x$ to $y$ by adding something*, and every property of $\leq$ follows from that. Getting the ordering free from the arithmetic is one of the tidier surprises here.
+
+</WhereThisGoes>

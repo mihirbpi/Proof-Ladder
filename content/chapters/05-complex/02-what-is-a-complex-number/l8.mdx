@@ -1,0 +1,138 @@
+---
+level: l8
+title: What a complex number is
+readingTimeMin: 8
+newTerms: ["complex number", "real part", "imaginary part", "purely imaginary"]
+anchorExample: "e^{iθ} = cos θ + i sin θ"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+$$
+\mathbb{C} = \{a + bi : a,b \in \mathbb{R}\}, \qquad i^2 = -1,
+$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers, $\in$ is "is in". So the line reads: the complex numbers are every expression $a+bi$ with $a$ and $b$ both real, where $i$ multiplied by itself gives $-1$.*
+
+with $\operatorname{Re}(a+bi) = a$ and $\operatorname{Im}(a+bi) = b$, both **real-valued**. So $\operatorname{Re}, \operatorname{Im} : \mathbb{C}\to\mathbb{R}$ are functions in the sense of Chapter 3, and $z = \operatorname{Re}(z) + i \operatorname{Im}(z)$.
+
+$$
+a+bi = c+di \iff a = c \wedge b = d.
+$$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when", $\wedge$ is "and". So the line reads: two complex numbers are equal exactly when their real parts match and their imaginary parts match.*
+
+The representation is unique, which is what makes $\operatorname{Re}$ and $\operatorname{Im}$ well defined (§3.1) — and it is the source of the chapter's most productive technique: **one complex equation is two real equations**, extracted by comparing parts.
+
+<Warning title="The imaginary part is itself a real number">
+$\operatorname{Im}(3+4i) = 4$, not $4i$. This is not a small complaint: $\operatorname{Im}$ appears in $|z|^2 = \operatorname{Re}(z)^2 + \operatorname{Im}(z)^2$ and in $\operatorname{Im}(z) = (z-\bar z)/(2i)$, and both formulas are wrong by a factor of $i$ under the other convention.
+</Warning>
+
+## The tower
+
+> **Proposition.** $\mathbb{R} \subsetneq \mathbb{C}$.
+
+<Proof>
+
+*The symbols in this proof: $\in$ is "is in", $\notin$ is "is not in", $\subseteq$ is "sits inside", $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers. In words, what follows shows: the reals sit inside the complex numbers, and $i$ shows the containment is strict.*
+
+Let $a \in \mathbb{R}$. Then $a = a + 0i \in \mathbb{C}$, so $\mathbb{R}\subseteq\mathbb{C}$.
+
+$i \in \mathbb{C}$, and $i \notin \mathbb{R}$: if $i$ were real then $i^2 \geq 0$, contradicting $i^2 = -1$.
+</Proof>
+
+$$
+\mathbb{N} \subsetneq \mathbb{Z} \subsetneq \mathbb{Q} \subsetneq \mathbb{R} \subsetneq \mathbb{C},
+$$
+
+*Symbol by symbol: $\mathbb{N}$ is the counting numbers, $\mathbb{Z}$ is the integers, $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers, $\mathbb{C}$ is the complex numbers. So the line reads: each system sits strictly inside the next, and each was built because the one before could not do something.*
+
+each inclusion a one-line element chase and each properness a single witness ($-1$, $\tfrac12$, $\sqrt2$, $i$), with only $\sqrt2$ requiring real work (§4.7).
+
+Strictly these are **standard identifications** rather than literal containments: constructed carefully, the integer $3$, the fraction $3/1$, the real number $3$, and the pair $(3,0)$ are four distinct objects. What holds is that each system embeds injectively (without two inputs sharing an output, §3.5) and operation-preservingly in the next, and everyone identifies along the embeddings.
+
+## The complex numbers cannot be ordered
+
+> **Proposition.** There is no order on $\mathbb{C}$ making it a system whose ordering fits its arithmetic.
+
+<Proof>
+
+*The symbols in this proof: $\geq$ is "is at least". In words, what follows shows: any ordering that respects the arithmetic would force $0$ and $1$ to be the same number.*
+
+Suppose such an order existed. In any system whose order fits its arithmetic, every square is at least $0$ — each element is positive, zero or negative, and squaring any of the three gives something non-negative.
+
+Apply that to $i$: since $i^2 = -1$, we get $-1 \geq 0$. Add $1$ to both sides: $0 \geq 1$.
+
+Apply it to $1$: since $1^2 = 1$, we get $1 \geq 0$.
+
+Both $0 \geq 1$ and $1 \geq 0$ hold, so $0 = 1$ — and that contradicts $1 \neq 0$. $\blacksquare$
+</Proof>
+
+This is a genuine loss, and the trade is explicit: $\mathbb{C}$ buys a solution to every polynomial equation at the cost of order. Practically, comparisons in $\mathbb{C}$ go through the absolute value $|z|$ (§5.6), which is real-valued and ordered — and $|z| < |w|$ is a statement about sizes, not an ordering of $\mathbb{C}$ that respects multiplication.
+
+Note there *are* orders on $\mathbb{C}$ as a set (lexicographic, say). The proposition says none of them respects the arithmetic, which is the only kind worth having.
+
+## Building the complex numbers honestly
+
+The definition above declares $i$ into existence and checks afterwards that nothing breaks. That is how the subject actually developed, and it leaves a fair objection open: how do you know there *is* anything satisfying the description?
+
+The answer is to build one out of material you already have, and §2.9 supplied it. Take $\mathbb{C}$ to be the set of ordered pairs of real numbers, and *define* the two operations:
+
+$$(a,b) + (c,d) = (a+c,\ b+d), \qquad (a,b)\cdot(c,d) = (ac - bd,\ ad + bc).$$
+
+*Symbol by symbol: each pair is an ordered pair of reals in the sense of §2.9. So the line reads: add pairs slot by slot, and multiply them by that second rule — which is what expanding $(a+bi)(c+di)$ and collecting terms produces.*
+
+Nothing has been assumed into existence. The pairs are there, the operations are formulas in real arithmetic, and every rule of §4.1 can be checked directly, if tediously.
+
+Now identify the real number $a$ with the pair $(a, 0)$, and check that the identification respects both operations. Write $i$ for the pair $(0,1)$ and compute:
+
+$$(0,1)\cdot(0,1) = (0\cdot 0 - 1\cdot 1,\ 0\cdot 1 + 1\cdot 0) = (-1, 0),$$
+
+which is the pair standing for $-1$. So $i^2 = -1$ is not a decree but a **calculation**, and the object whose existence was assumed has been produced.
+
+<Aside>
+This is the same move Chapter 7 makes for $\mathbb{N}$, and §7.2 makes for $\mathbb{Z}$ and $\mathbb{Q}$: build the new objects out of the old ones, define the operations, check the rules, then forget the construction and work with the properties.
+
+The construction is scaffolding. Nobody thinks of $3+2i$ as an ordered pair while calculating with it, and nobody should — but knowing it can be built that way is what makes the declaration in the first section legitimate rather than hopeful.
+</Aside>
+
+## Equating parts, and why it is legitimate
+
+$$a+bi = c+di \iff a = c \ \text{ and }\ b = d.$$
+
+*Symbol by symbol: $\Leftrightarrow$ is "exactly when". So the line reads: two complex numbers are equal exactly when their across parts agree and their up parts agree — one complex equation carries two real ones*
+
+One complex equation is two real equations. The technique this licenses — *equate real and imaginary parts* — is used constantly, and §5.9 derives the double-angle formulas from it in three lines.
+
+The justification is worth stating. Every complex number has *exactly one* real part and *exactly one* imaginary part — that was the uniqueness proved earlier in this module. So $\operatorname{Re}$ and $\operatorname{Im}$ are genuine functions $\mathbb{C}\to\mathbb{R}$, and equal inputs give equal outputs.
+
+<Warning title="Only for real coefficients">
+The technique requires $a, b, c, d$ to be **real**. From $z_1 = z_2$ with $z_1, z_2$ complex expressions, you may equate parts only after each side has been written in the form (real) $+$ (real)$\,i$.
+
+Writing $zw = 1$ and "equating parts" to get $z = 1$ and $w = 1$ is nonsense — neither side has been separated, and the conclusion is plainly false at $z = i$, $w = -i$.
+
+The step that is easy to skip is the separation, and it is where the algebra lives.
+</Warning>
+
+## Complex numbers versus plain coordinate pairs
+
+The map $z \mapsto (\operatorname{Re} z, \operatorname{Im} z)$ is a bijection $\mathbb{C}\to\mathbb{R}^2$, and it respects addition exactly: adding complex numbers is adding the pairs coordinate by coordinate. As far as *addition* is concerned, the two systems are the same thing.
+
+What is new is the **multiplication**. $\mathbb{R}^2$ has no natural one; $\mathbb{C}$ has one making all four operations work, and it is essentially the only such multiplication there is. Every distinctive fact in this chapter (rotation, Euler, De Moivre, the Fundamental Theorem of Algebra) comes from that multiplication.
+
+<Aside>
+There are exactly two ways to relabel $\mathbb{C}$ that keep both operations working and leave every real number where it is: do nothing, and conjugate (§5.4). Two, and no more. There is no way to distinguish $i$ from $-i$ by any algebraic property — both satisfy $x^2 = -1$ and nothing separates them. The choice of which root to call $i$ is a labeling convention, and conjugation is the symmetry that swaps the two labels.
+
+Without continuity the situation is wilder: there are vastly more such relabelings, all but two of them badly behaved and requiring a non-constructive choice — one that proves the relabeling exists without exhibiting it — to build.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+**$\mathbb{C}$ is $\mathbb{R}^2$ with a multiplication**, and both halves of that sentence get used.
+
+**And the lack of an order matters in calculus.** Inequalities are the currency of the subject, and $\mathbb{C}$ has none — which is why closeness between complex numbers has to be measured by $|z - w|$, an ordinary real number, and why everything later is phrased that way.
+
+</WhereThisGoes>

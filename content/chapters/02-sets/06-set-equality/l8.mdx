@@ -1,0 +1,129 @@
+---
+level: l8
+title: Set equality by double inclusion
+readingTimeMin: 10
+newTerms: ["double inclusion", "being fixed by its members"]
+anchorExample: "roots of sin x and cos x"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+## Equality is mutual inclusion
+
+$$
+S = T \quad\Leftrightarrow\quad S \subseteq T \;\wedge\; T \subseteq S.
+$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and". So the line reads: two sets are equal exactly when each sits inside the other. That is what turns one equality into two containment proofs*
+
+This is not a convention adopted for convenience; it is forced. Extensionality (§2.1) says $S = T$ iff $\forall x\,(x \in S \Leftrightarrow x \in T)$ — *everything is in one exactly when it is in the other* — an if-and-only-if statement decomposes into two implications (§1.9), and each implication is a subset claim (§2.3). Three earlier modules compose into one method.
+
+Equivalently: **double inclusion is the rule that mutual containment forces equality of $\subseteq$**, the third of the three ordering rules from §2.3, whose proof was deferred there.
+
+The named move is **check both boxes**. The template:
+
+> ($\subseteq$) Let $x \in S$ be arbitrary; … ; so $x \in T$.
+> ($\supseteq$) Let $x \in T$ be arbitrary; … ; so $x \in S$.
+
+## An *or* in the hypothesis dictates cases
+
+$x \in S \cup T$ unfolds to a disjunction, and a disjunctive hypothesis must be discharged by cases (§1.12). This is the structural fact that shapes nearly every proof remaining in the chapter, and it comes with a useful asymmetry:
+
+| | Proving membership | Using membership |
+|---|---|---|
+| $S \cup T$ | cheap — prove either half | expensive — case split |
+| $S \cap T$ | expensive — prove both halves | cheap — take whichever half you want |
+
+Reading a goal in this light usually tells you in advance which direction of a double inclusion will be the hard one.
+
+## The proposition
+
+$$
+S = \{x \in \mathbb{R} \mid \sin x = 0\},\quad
+T = \{x \in \mathbb{R} \mid \cos x = 0\},\quad
+R = \{x \in \mathbb{R} \mid \sin x \cos x = 0\}.
+$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the reals where the first expression vanishes, where the second does, and where their product does.*
+
+> **Proposition.** $S \cup T = R$.
+
+<Discussion>
+
+*The symbols in this discussion: $\Rightarrow$ is "forces", $\cup$ is "pooled with", $\subseteq$ is "sits inside", $\vee$ is "or", $\mathbb{R}$ is the real numbers. In words, the plan is: the bridge is that a product of reals is zero only when a factor is.*
+
+  <div slot="know">Membership in $S \cup T$ is a disjunction; membership in $R$ is a single equation. The bridge is the zero-product property of the reals: $ab = 0 \;\Rightarrow\; (a = 0) \vee (b = 0)$.</div>
+  <div slot="want">Both inclusions.</div>
+  <div slot="how">($\subseteq$) hypothesis is a disjunction — split, and use only $0 \cdot a = 0$, which holds in every number system obeying the arithmetic rules of §4.1. ($\supseteq$) hypothesis is a vanishing product, and in $\mathbb{R}$ a product is zero only if a factor is — that produces the disjunction directly. The two halves therefore consume different amounts of structure.</div>
+</Discussion>
+
+<Proof>
+($\subseteq$) Let $x \in S \cup T$, so $\sin x = 0$ or $\cos x = 0$.
+
+*Case 1: $\sin x = 0$.* Then $\sin x \cos x = 0 \cdot \cos x = 0$.
+*Case 2: $\cos x = 0$.* Then $\sin x \cos x = \sin x \cdot 0 = 0$.
+
+The cases are exhaustive, and in each $x \in R$.
+
+($\supseteq$) Let $x \in R$, so $\sin x \cos x = 0$. By the zero-product property, a product of reals vanishes only if a factor does, so $\sin x = 0$ or $\cos x = 0$; that is, $x \in S \cup T$.
+
+Both inclusions hold, so $S \cup T = R$.
+</Proof>
+
+The dependence of the reverse inclusion on *a product of non-zero numbers never being zero* is the mathematically interesting feature. Among remainders on division by $6$ the analogous statement fails: $2 \cdot 3 = 6$, which leaves remainder $0$, and neither factor was $0$ to begin with. Tracking which half of a proof consumes which hypothesis is how one learns the natural generality of a theorem.
+
+One may also identify $R$ explicitly: $\sin x \cos x = \tfrac12 \sin 2x$, so $R = \{n\pi/2 \mid n \in \mathbb{Z}\}$. Proving *that* equality is another double inclusion, and it is where $S = \{n\pi\}$ and $T = \{\pi/2 + n\pi\}$ get identified individually.
+
+## A chain of equivalences, done carefully
+
+Sometimes both inclusions can be run simultaneously:
+$$
+x \in S \cup (S \cap T)
+\iff (x \in S) \vee \big((x \in S) \wedge (x \in T)\big)
+\iff x \in S,
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", $\vee$ is "or", $\cup$ is "pooled with". So the line reads: being in $S$ pooled with the overlap of $S$ and $T$ is the same as being in $S$ or being in both — and either way you are in $S$. So the whole expression collapses to $S$*
+
+the last step by the absorption law $p \vee (p \wedge q) \equiv p$ — *“$p$, or else both $p$ and $q$” says no more than $p$ alone*. This is legitimate — every step is a genuine if-and-only-if statement — and it proves $S \cup (S \cap T) = S$ in one line.
+
+<Warning title="When the chain is not safe">
+An $\iff$ chain replaces two inclusions only if **every** link is reversible. In set theory the links are usually definitional unfoldings, which are if-and-only-if statement, so the technique is generally sound. It stops being sound the moment a step is an implication in disguise — applying a non-injective (no two inputs share an output, §3.5) operation, or using a lemma with a converse you have not proved.
+
+Two further failure modes, both common:
+- **Proving one direction.** Label ($\subseteq$) and ($\supseteq$) and count.
+- **Omitting a case.** A hypothesis with an *or* in it needs every case treated. "Similarly" is acceptable only when the argument really is symmetric.
+</Warning>
+
+## Why "plainly equal" is never enough
+
+Two descriptions may pick out exactly the same set while looking nothing alike:
+$$
+\{x \in \mathbb{R} \mid \sin x = 0\} = \{n\pi \mid n \in \mathbb{Z}\},
+\qquad
+\{n \in \mathbb{Z} \mid 12 \mid n \text{ and } 18 \mid n\} = \{n \in \mathbb{Z} \mid 36 \mid n\}.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the reals whose sine is zero are exactly the whole multiples of $\pi$; and the integers divisible by both $12$ and $18$ are exactly those divisible by $36$*
+
+Each is a theorem with two halves, and in each case one half is substantially harder than the other. The value of double inclusion is exactly that it does not consult your intuition about whether two descriptions "look the same".
+
+<Aside>
+The method reaches far beyond sets. Proving two solution sets equal is mutual inclusion, and so is proving that two different descriptions of the same collection of points describe the same collection. Proving two functions equal is the pointwise analogue: same domain, same codomain, and $f(x) = g(x)$ for every $x$ — which is being fixed by its members one level up (§3.1).
+</Aside>
+
+<WhereThisGoes level="l8">
+
+Double inclusion is how you prove that two differently-described objects are the same one, and both courses ahead are full of such claims.
+
+**In calculus the equalities are between solution sets and between domains.** *The set where $f'>0$ equals the set where $f$ is increasing* is an if-and-only-if statement needing two arguments — one from a theorem about slopes, one directly — and the fact that the two halves need different tools is the normal case, not an exception.
+
+Domain computations are double inclusions too. One argument shows every point you want is included; a second shows nothing else sneaks in. Skipping the second leaves the answer proved only halfway.
+
+**The habit worth keeping is counting the things to check before starting.** An equality of sets is two proofs; an if-and-only-if statement is two proofs; and knowing which direction will be hard, from the shape of the definitions, is what lets you plan rather than flail.
+
+</WhereThisGoes>

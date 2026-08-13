@@ -1,0 +1,100 @@
+---
+level: l8
+title: Proof by contrapositive
+readingTimeMin: 10
+newTerms: ["proof by contrapositive"]
+anchorExample: "x³ < 0 implies x < 0"
+---
+
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+Since $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$ (§1.7) — *if $p$ then $q$* claiming exactly what *if not $q$ then not $p$* claims — the two conditionals stand or fall together, and a proof of one is a proof of the other. **Proof by contrapositive** is the deliberate exercise of that choice. The interesting content of this module is not the equivalence — that is already proved — but the judgement of when to invoke it.
+
+## The proposition
+
+> **Proposition.** For every real number $x$, if $x^3 < 0$ then $x < 0$.
+
+<Discussion>
+  <div slot="know">Directly: the hypothesis $x^3 < 0$ tells us about a cube. To extract information about $x$ we would need to know that cubing preserves order — that bigger inputs give bigger outputs — for $t \mapsto t^{1/3}$ — the arrow $\mapsto$ is read *"maps to"*, naming a function by what it does to a typical input — which is either the proposition itself or a fact requiring its own proof. Factoring $x^3 = x \cdot x^2$ works but forces a case split on $x^2 = 0$ versus $x^2 > 0$.</div>
+  <div slot="want">$x < 0$.</div>
+  <div slot="how">Contrapose. The negation of the conclusion is $x \geq 0$ — a positive, usable hypothesis — and the negation of the hypothesis is $x^3 \geq 0$, reachable by two applications of the fact that a product of non-negatives is non-negative.</div>
+</Discussion>
+
+<Proof>
+We prove the contrapositive: for every real number $x$, if $x \geq 0$ then $x^3 \geq 0$.
+
+Let $x \geq 0$. Since the real numbers's ordering is compatible with its arithmetic, the product of two non-negative elements is non-negative; applying this to $x$ and $x$ gives $x^2 \geq 0$, and applying it to $x^2$ and $x$ gives $x^3 \geq 0$.
+
+So $x \geq 0 \Rightarrow x^3 \geq 0$. By contraposition, $x^3 < 0 \Rightarrow x < 0$, which is the proposition.
+</Proof>
+
+Observe what the switch bought: no case analysis, no appeal to the behavior of cube roots, and a hypothesis ($x \geq 0$) that could be fed directly into a known lemma. That is the general pattern — contraposition trades an uninformative hypothesis for an informative one.
+
+## When to contrapose
+
+Three reliable indicators. Each is a statement about *usability of information*, which is the right way to think about proof strategy generally.
+
+**1. The hypothesis is a negation.** "$x$ is irrational", "$n$ is odd" (i.e. not even), "$f$ is not injective (§3.5: no two inputs share an output)", "$S \neq \emptyset$". A negation licenses no substitution. You cannot write down what an irrational number *is*; you can only write down what it is not. Contraposition moves the negation to the conclusion, where "prove $\neg P$" is a manageable goal.
+
+**2. The hypothesis concerns a composite quantity, the conclusion a simple one.** In "$n^2$ odd $\Rightarrow$ $n$ odd", the hypothesis constrains $n^2$; you want a constraint on $n$. Inverting the squaring is the difficulty. Flip and the hypothesis constrains $n$, from which $n^2$ is computed forwards.
+
+**3. Both parts are negations.** Then the contrapositive has none, and is almost certainly easier.
+
+Contraposition is not a default. When the hypothesis is already a positive existence statement ("there is a $k$ with $n = 2k$"), direct proof is shorter and reads better.
+
+## The worked classic
+
+*A reminder of the symbols in play: $\mathbb{Z}$ reads the integers.*
+
+> **Theorem.** For an integer $n$: $n^2$ is even $\iff$ $n$ is even.
+
+This is an if-and-only-if statement, so it needs two proofs (§1.9). One direction is direct; the other wants contraposition. That asymmetry is the whole lesson.
+
+<Proof>
+(forward) We prove the contrapositive: if $n$ is odd then $n^2$ is odd. Suppose $n$ is odd, so $n = 2k+1$ for some integer $k$. Then
+$$n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1,$$
+and $2k^2 + 2k \in \mathbb{Z}$, so $n^2$ is odd.
+
+(backward) Directly: suppose $n$ is even, so $n = 2k$ with $k$ an integer. Then $n^2 = 4k^2 = 2(2k^2)$ with $2k^2 \in \mathbb{Z}$, so $n^2$ is even.
+</Proof>
+
+The forward direction has hypothesis "$n^2$ even" — composite quantity, so indicator 2 applies, and contraposition converts it into the tractable "$n$ odd". The backward direction has hypothesis "$n$ even" — already the easy one, so direct proof wins. Recognizing which direction needs which is what a Discussion section is for.
+
+This theorem is not an exercise: it is the lemma on which the irrationality of $\sqrt{2}$ turns (§4.7), and the contrapositive step here is the step that makes that proof possible.
+
+<Warning title="Negations of inequalities and of quantified statements">
+$\neg(x < 0)$ is $x \geq 0$, not $x > 0$. $\neg(x \leq 5)$ is $x > 5$. $\neg(\forall x\, P(x))$ is $\exists x\, \neg P(x)$ (§1.11), not $\forall x\, \neg P(x)$. A contrapositive built on a mis-negation is a proof of a different proposition — usually a strictly weaker one, which is why the error survives casual checking.
+</Warning>
+
+## Contraposition versus contradiction
+
+These are routinely conflated. The distinction:
+
+| | assume | derive | conclude |
+|---|---|---|---|
+| Contrapositive | $\neg q$ | $\neg p$ | $p \Rightarrow q$ |
+| Contradiction | $p \wedge \neg q$ | some $r \wedge \neg r$ | $p \Rightarrow q$ |
+
+Contradiction gives you a strictly larger set of assumptions to work with, which is occasionally decisive — but it costs clarity, because the reader must hold a false hypothesis in mind for the length of the proof, and because the contradiction reached may be far from where the trouble originated.
+
+A useful self-check: write your contradiction proof, then look at whether the assumption $p$ was ever used. If it was not, you have written a contrapositive proof inside a contradiction wrapper. Remove the wrapper. Referees notice.
+
+<Aside>
+There is an asymmetry the table hides. $(p \Rightarrow q) \Rightarrow (\neg q \Rightarrow \neg p)$ needs less to justify it than the reverse direction does, since recovering $q$ from $\neg\neg q$ needs double-negation elimination. So "proof by contrapositive" in the sense used here — proving $\neg q \Rightarrow \neg p$ in order to conclude $p \Rightarrow q$ — is a classical move. In practice this matters only if you care whether your proof gives an algorithm; but that is exactly what constructive mathematics and dependent type theory do care about.
+</Aside>
+
+<WhereThisGoes level="l8">
+
+The judgement being trained here — *which form of a statement gives me the most usable hypothesis* — is the core skill of proof strategy, and calculus rewards it immediately.
+
+**Tests that show something fails are contrapositives.** Calculus proves plenty of theorems of the form *if this well-behaved thing happens, then that follows*. The version you actually reach for is the flipped one: *that did not follow, so the thing is not well behaved.* One theorem, two forms, and the flipped form is the useful one — because in practice you are handed an object and asked whether it is well behaved, so a hypothesis you can check is what you need.
+
+**A concrete case.** A curve with a corner or a break has no tangent line — the straight line that just grazes the curve at that point — there. Proved directly that is awkward; contraposing *has a tangent line $\Rightarrow$ no break* gives *break $\Rightarrow$ no tangent line*, and spotting a break is far easier than examining slopes. A good share of the "not differentiable here" arguments in a first course are exactly this move.
+
+**The pattern to carry.** Whenever the hypothesis you are handed is negative — *not continuous*, *not equal*, *not a whole number* — check whether the contrapositive hands you a positive one instead. It usually does, and positive hypotheses are the ones you can compute with.
+
+</WhereThisGoes>

@@ -1,0 +1,159 @@
+---
+level: l8
+title: Images and pre-images
+readingTimeMin: 9
+newTerms: ["image", "pre-image"]
+anchorExample: "f(x) = x²"
+---
+
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+For $f : S \to T$ and $A \subseteq S$, $U \subseteq T$:
+
+$$
+f(A) = \{ f(s) \mid s \in A \} \subseteq T,
+\qquad
+f^{-1}(U) = \{ s \in S \mid f(s) \in U \} \subseteq S,
+$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in", the bar $\mid$ is "such that". So the line reads: the image is everything actually produced; tracing back collects every input landing in the target.*
+
+and $\operatorname{Im}(f) = f(S)$.
+
+These are operators $\mathcal{P}(S) \to \mathcal{P}(T)$ for the first and $\mathcal{P}(T) \to \mathcal{P}(S)$ for the second. The distinction matters: they act on *subsets*, not on elements, and the pre-image operator exists for every $f$ whatsoever.
+
+Two unfoldings, of which the second is the one that does all the work:
+$$
+t \in f(A) \iff \exists s \in A,\ f(s) = t,
+\qquad
+s \in f^{-1}(U) \iff f(s) \in U. \tag{1}
+$$
+
+*Symbol by symbol: $\in$ is "is in", $\exists$ is "there is some", $\Leftrightarrow$ is "exactly when". So the line reads: $t$ is in the image of $A$ exactly when something in $A$ is sent to it; and $s$ is in the pre-image of $U$ exactly when $s$ is sent into $U$. The first is an existence claim, the second is a direct check*
+
+The asymmetry is already visible. Membership in an image carries an *there exists* quantifier; membership in a pre-image carries none. That single fact explains everything in §3.4 about why pre-images are better behaved.
+
+## Image and codomain
+
+$\operatorname{Im}(f) \subseteq T$, with equality iff $f$ is surjective (§3.6). The codomain is part of the data of $f$; the image is determined by $f$.
+
+The word **range** is genuinely ambiguous — some authors mean image, others codomain — and should be avoided in careful writing.
+
+Examples:
+$$
+f : \mathbb{R}\to\mathbb{R},\ f(x)=x^2 \Rightarrow \operatorname{Im}(f) = [0,\infty);
+$$
+
+*So the line reads: squaring every real number produces exactly the numbers from $0$ upward — the outputs it actually reaches.*
+
+$$
+\exp : \mathbb{R}\to\mathbb{R} \Rightarrow \operatorname{Im}(\exp) = (0,\infty);
+$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, $\Rightarrow$ is "forces". So the line reads: the exponential function, taken on all the reals, has image the strictly positive reals — it never reaches $0$ or below*
+
+$$
+\lfloor\cdot\rfloor : \mathbb{R}\to\mathbb{Z} \Rightarrow \operatorname{Im} = \mathbb{Z}.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\mathbb{R}$ is the real numbers, $\Rightarrow$ is "forces". So the line reads: the floor function, taken on all the reals, has image the whole of the integers*
+
+## The pre-image of a single point
+
+Worth naming separately: $f^{-1}(\{t\})$, the pre-image of a **single** output, is everything in the domain that lands on that one point. These sets split the domain into non-overlapping pieces, one for each value the function actually takes, and together they use up all of $S$ — because each $s$ has exactly one value $f(s)$ — which is exactly well-definedness. So a function *is* a partition of its domain, labeled by elements of its codomain, and the entire remaining chapter is a study of how big those sets are:
+
+| Property | Condition on $f^{-1}(\{t\})$, for each output $t$ |
+|---|---|
+| injective | $\lvert f^{-1}(\{t\})\rvert \leq 1$ |
+| surjective | $\lvert f^{-1}(\{t\})\rvert \geq 1$ |
+| bijective | $\lvert f^{-1}(\{t\})\rvert = 1$ |
+
+That $\operatorname{Im}(f)$ is exactly $\{t : f^{-1}(\{t\}) \neq \emptyset\}$ is immediate from (1).
+
+## Worked computations
+
+$f(x) = x^2$ on $\mathbb{R}$:
+$$
+f^{-1}(\{3\}) = \{\pm\sqrt3\},\quad
+f^{-1}(\{0\}) = \{0\},\quad
+f^{-1}(\{-5\}) = \emptyset,\quad
+f^{-1}\big((-2,6)\big) = (-\sqrt6,\sqrt6).
+$$
+
+*Symbol by symbol: $\emptyset$ is the empty collection. So the line reads: squaring sends two numbers to $3$, one number to $0$, nothing at all to $-5$, and the interval from $-2$ to $6$ back to the interval between $\pm\sqrt6$*
+
+In the last, the constraint $-2 < x^2$ is vacuous and only $x^2 < 6$ bites. Note that the pre-image of an open interval is an open interval here. That is not a coincidence: it is the property that continuity is eventually *defined* by, and it is stated with pre-images rather than images for exactly the reasons this module gives.
+
+Floor: $\lfloor\cdot\rfloor^{-1}(\{n\}) = [n, n+1)$. Each of those pre-images is an interval; infinitely many inputs share each output.
+
+## The two round trips
+
+The two operators are not inverse but they are related, for all $A \subseteq S$, $U \subseteq T$:
+$$
+A \subseteq f^{-1}(f(A)),
+\qquad
+f(f^{-1}(U)) \subseteq U,
+$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside". So the line reads: a set sits inside the pre-image of its own image, and the image of a pre-image sits inside the original — but neither containment can be reversed in general*
+
+with equality in the first iff $f$ is injective (§3.5: no two inputs share an output) on the relevant part, and in the second iff $U \subseteq \operatorname{Im}(f)$.
+
+<Proof>
+For the first: let $a \in A$. Then $f(a) \in f(A)$, so by (1), $a \in f^{-1}(f(A))$.
+
+For the second: let $t \in f(f^{-1}(U))$. Then $t = f(s)$ for some $s \in f^{-1}(U)$, and $s \in f^{-1}(U)$ means $f(s) \in U$; so $t \in U$.
+</Proof>
+
+Strictness in the first: $f(x)=x^2$, $A = \{2\}$ gives $f^{-1}(f(A)) = \{\pm2\} \supsetneq A$. In the second: $U = \{-5\}$ gives $f(f^{-1}(U)) = \emptyset \subsetneq U$.
+
+Both round trips can fail, and they fail for opposite reasons. $A \subseteq f^{-1}(f(A))$ is strict when $f$ **merges** — two inputs sharing an output, so tracing back picks up a companion that was never in $A$. $f(f^{-1}(U)) \subseteq U$ is strict when $f$ **misses** — some target has no source, so it cannot survive the round trip out and back.
+
+Merging and missing are the only two ways a function fails to be undoable, and §3.5 and §3.6 study them one at a time. The single statement underneath both inclusions is
+$$
+f(A) \subseteq U \quad\text{exactly when}\quad A \subseteq f^{-1}(U),
+$$
+
+*Symbol by symbol: $\subseteq$ is "sits inside". So the line reads: the image of $A$ landing inside $U$ says exactly the same thing as $A$ sitting inside the pre-image of $U$ — the two are two views of one fact*
+
+which is worth checking against the two proofs above — each is one direction of it.
+
+<Warning title="Two meanings of f⁻¹">
+$f^{-1}(U)$ for $U \subseteq T$ — the pre-image — exists for every function. $f^{-1} : T \to S$ — the inverse function — exists only for bijections (§3.9).
+
+With $f(x) = x^2$ on $\mathbb{R}$: $f^{-1}(\{9\}) = \{-3,3\}$ is defined; $f^{-1}(9)$ is not, since $f$ is not injective (§3.5: no two inputs share an output).
+
+The notational clash is universal and permanent. Read the argument: a set means pre-image, an element means inverse function (§3.9: the rule that undoes it).
+</Warning>
+
+<Aside>
+Images do not pass through intersection: $f(A \cap B) \subseteq f(A) \cap f(B)$ always, and $f(x)=x^2$ with $A=\{2\}$, $B=\{-2\}$ gives $\emptyset \subsetneq \{4\}$. Equality for all $A, B$ holds exactly when $f$ is injective. Pre-images have no such defect, and §3.4 proves it.
+</Aside>
+
+## The notational trap in $f^{-1}$
+
+The symbol $f^{-1}$ has been used in this module for the pre-image. It will be used again in §3.9 for something else entirely — the rule that undoes $f$, which that module calls the *inverse function* and defines there. These are **different things**, and the notation does not distinguish them.
+
+- $f^{-1}(U)$, the **pre-image**, takes a *subset* of the codomain and returns a *subset* of the domain. It is defined for every function whatever — no injectivity, no surjectivity, nothing.
+- $f^{-1}(t)$, the undoing rule of §3.9, takes an *element* and returns an *element*. It exists only when $f$ pairs the two sets off perfectly — one output for each input and every output used, which §3.8 calls a *bijection* — and most functions do not.
+
+So the same three characters denote an operation that always exists and one that usually does not. What tells them apart is only what you feed in — a set or an element — and in careless writing even that is ambiguous, because $f^{-1}(\{3\})$ and $f^{-1}(3)$ differ by two braces.
+
+The habit worth building: when you meet $f^{-1}$, ask first whether $f$ was ever shown to pair the two sets off perfectly. If it was not, the only reading available is the pre-image, and any argument treating it as an inverse function is broken. §3.9 returns to this once inverses exist.
+
+<WhereThisGoes level="l8">
+
+Pre-images are the objects both courses ahead are actually built on, and images are the ones that behave badly.
+
+**In calculus the images are the interesting sets.** Two of the first theorems you meet are both statements about the image of a stretch under an unbroken curve. One says the curve actually reaches a highest and a lowest value on that stretch — its image includes its own endpoints. The other says the image has no gaps: every height in between is hit. Together they say the image of an unbroken stretch is itself an unbroken stretch, endpoints included.
+
+**The two round-trip inequalities have calculus meaning.** $A \subseteq f^{-1}(f(A))$ is strict exactly when $f$ merges — which for $f(x)=x^2$ on $\mathbb{R}$ is why $f^{-1}(f([1,2])) = [-2,-1]\cup[1,2]$, and why squaring both sides of an equation introduces extraneous roots. The extra solutions are the ones the pre-image picked up, and checking them is undoing the merge by hand.
+
+$f(f^{-1}(B)) \subseteq B$ is strict exactly when $f$ misses, which is why $\sin(\sin^{-1} x) = x$ holds on $[-1,1]$ and $\sin^{-1}(\sin x) = x$ fails outside $[-\pi/2,\pi/2]$. The two identities are not symmetric, and the asymmetry is exactly the one this module proved.
+
+**"Where does this rule give the answer $c$?" is a pre-image.** Solving $f(x) = c$ is computing $f^{-1}(\{c\})$, and a map drawn with height lines is a picture of a family of pre-images. So is a solution set of any equation — which means the objects you have been graphing since algebra are pre-images of single points.
+
+</WhereThisGoes>

@@ -1,0 +1,126 @@
+---
+level: l8
+title: What is a function?
+readingTimeMin: 10
+newTerms: ["function", "domain", "codomain", "well-defined", "graph"]
+anchorExample: "a rule with a declared domain and codomain"
+---
+
+import Figure from '@/components/Figure.astro';
+import ArrowDiagram from '@/components/ArrowDiagram.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+A **function** $f : S \to T$ assigns to each $s \in S$ exactly one $f(s) \in T$. Formally, three conditions:
+
+- **Totality.** $\forall s \in S,\ \exists t \in T,\ f(s) = t$ — *every input has at least one output*.
+- **Well-definedness.** $\big(f(s) = t_1\big) \wedge \big(f(s) = t_2\big) \;\Rightarrow\; t_1 = t_2$.
+- **Codomain.** All values lie in $T$.
+
+Together the first two are $\forall s \in S,\ \exists!\, t \in T,\ f(s) = t$ — *every input has exactly one output* — §1.10's unique-existence quantifier, and the reason that module preceded this one.
+
+Note what is *not* required. Nothing constrains the codomain side: distinct inputs may share an output (§3.5 studies its absence), and elements of $T$ may be unhit (§3.6). Beginners routinely import symmetry that is not there.
+
+<Figure alt="Three elements on the left with exactly one arrow leaving each; two of the arrows land on the same element on the right." caption="A function. Sharing an output is permitted; sharing an input is not.">
+  <ArrowDiagram labelLeft="S" labelRight="T"
+    left={["a", "b", "c"]} right={["1", "2", "3"]}
+    edges={[[0,1],[1,1],[2,0]]} />
+</Figure>
+
+## The graph definition
+
+The description above uses "assigns", which is no more defined than "function". The set-theoretic definition removes the circularity, using §2.9:
+
+> A **function** from $S$ to $T$ is a triple $(S, T, G)$ where $G \subseteq S \times T$ satisfies
+> $$\forall s \in S,\ \exists!\, t \in T,\ (s,t) \in G.$$
+
+*So the line reads: for every $s$ in $S$ there is exactly one $t$ in $T$ with the pair $(s,t)$ in $G$ — one output per input, and never none.*
+
+> One writes $f(s)$ for that unique $t$, and $G$ is the **graph** of $f$.
+
+So a function *is* its graph, together with its domain and codomain. Three consequences worth stating:
+
+1. **Functions are equal when their graphs and their domains and codomains are equal.** So $f = g$ iff they agree pointwise and have the same domain and codomain — being fixed by its members one level up from §2.6.
+2. **The codomain is data, not derivable.** $G$ determines the image but not $T$, which is why $T$ must be carried in the triple. Authors who define a function as just $G$ cannot state surjectivity, and this is a real defect.
+3. **The vertical line test is this definition drawn on axes.** Not a separate criterion.
+
+## Domain and codomain are part of what it is
+
+$$
+f : \mathbb{R} \to \mathbb{R},\ f(x) = e^x
+\qquad\text{and}\qquad
+g : \mathbb{R} \to \mathbb{R}_{>0},\ g(x) = e^x
+$$
+
+*Symbol by symbol: $\mathbb{R}$ is the real numbers, the arrow says what goes in and what comes out. So the line reads: same rule, different promise about where the outputs land.*
+
+are different functions with the same graph. $g$ is surjective and $f$ is not (§3.6); $g$ is invertible and $f$ is not (§3.9). Same rule, genuinely different mathematical objects.
+
+The habit to get: never write down a rule without writing down its domain and codomain. Most of the confusion students report about injectivity and surjectivity dissolves once this is automatic.
+
+<Warning title="Being well defined is something you prove, not a formality">
+When elements of the domain admit multiple names, a rule must be checked to give the same answer for all of them.
+
+$f : \mathbb{Q} \to \mathbb{Z}$, $f(p/q) = p + q$ is **not** a function: $\tfrac12 = \tfrac24$ but $1+2 \neq 2+4$.
+
+Grouping the integers by the remainder they leave on division by $n$, the rule $[a] \mapsto [a^2]$ **is** a function — but proving it requires showing that if $a$ and $b$ leave the same remainder then so do $a^2$ and $b^2$. Later courses give that relation a symbol and a name of its own; the idea is the one you already have from long division. That is a genuine argument, not an observation.
+
+Every construction of this kind owes you that check, and it is the step most often skipped.
+</Warning>
+
+## Functions on product sets
+
+A function of two variables is a function whose domain is a product:
+$$
+m : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}, \qquad m(a,b) = ab.
+$$
+
+*Symbol by symbol: $\mathbb{Z}$ is the integers. So the line reads: multiplication is a function taking a *pair* of integers and returning one integer. Writing it this way makes the two-inputs-one-output shape explicit*
+
+The notation $m(a,b)$ abbreviates $m\big((a,b)\big)$; the argument is a single element of $\mathbb{Z} \times \mathbb{Z}$. This viewpoint makes §3.5 and §3.6 apply unchanged to functions of two inputs — for instance $m$ is not injective, since $m(6,4) = m(2,12) = 24$, but it is surjective, since $m(n,1) = n$.
+
+There is a second way of looking at this worth meeting: a function of two inputs corresponds exactly to a function of one input that *hands back another function*. Feed it the first input and you get back a machine waiting for the second. It is the default way of handling several inputs in functional programming, and the correspondence is itself a perfect pairing between two collections of functions.
+
+## Partial functions, and why they are a different thing
+
+$x \mapsto 1/x$ is not a function $\mathbb{R} \to \mathbb{R}$; totality fails at $0$. Two standard responses:
+
+- **Restrict the domain.** $f : \mathbb{R}\setminus\{0\} \to \mathbb{R}$ is a genuine function. This is what mathematics does.
+- **Allow partiality.** A *partial function* from $S$ to $T$ is a function defined on some subset of $S$. This is what the study of computation does, because it cannot avoid it: the function "output of program $p$ on input $n$" is genuinely undefined when the program does not halt, and there is no way to shrink the domain effectively.
+
+Ordinary mathematics takes the first road, and "the domain of $1/x$" means the largest set on which the formula makes sense.
+
+## A function is its graph
+
+§2.9 defined a relation as a subset of a product, and a function is a relation of a particular shape. Here is the definition with nothing left informal:
+
+> A **function** from $S$ to $T$ is a subset $f \subseteq S \times T$ such that every $s \in S$ occurs as the first entry of exactly one pair.
+
+*Symbol by symbol: $\subseteq$ is "sits inside", $\in$ is "is in", and $S \times T$ is the set of pairs with first entry from $S$ and second from $T$. So the line reads: a function is a set of input-output pairs in which every input appears once and only once.*
+
+Then $f(s)$ is a name for the second entry of that one pair. The rule, the machine, the arrow diagram — all of them were pictures of this set.
+
+**The two conditions of §3.1 are visible in the definition.** *Every $s$ occurs* is totality: nothing in the domain is left without an output. *Exactly one pair* is well-definedness: nothing gets two. Neither is an extra requirement bolted on; both are read straight off the shape of the subset.
+
+This is also why a function *is* its graph rather than merely having one. There is no separate object hiding behind the picture.
+
+## Why "range" is a word to avoid
+
+You have met three sets attached to a function: the domain, the codomain, and the image. The word **range** is used in the wild for two of them.
+
+- In many school books, *range* means the set of values actually produced — this course's **image**.
+- In many university books, *range* means the declared target — this course's **codomain**.
+
+Since §3.6 turns entirely on the difference between those two, a word that might mean either is worse than useless. This course does not use it, and neither should you in anything you write. Say *image* when you mean what comes out, and *codomain* when you mean what was declared.
+
+<WhereThisGoes level="l8">
+
+Calculus is a course about functions, and almost every difficulty in it is a domain question in disguise.
+
+**Totality is why domains must be stated.** $f(x) = 1/x$ is not a function on $\mathbb{R}$, and neither is $\tan x$, and neither is $\ln x$. Every one of the standard examples arrives with a restriction, and the restriction is not fussiness — it is the difference between a function and a rule that sometimes fails.
+
+The consequence is immediate and practical. The theorems ahead assume the function is defined *everywhere* on the stretch you apply them to. Apply one across a point where the rule breaks down — $1/x$ straddling $0$ is the classic — and it produces nonsense. The failure is a failure of totality, and it is the single commonest way a correct theorem gives a wrong answer.
+
+**Single-valuedness is why the inverse trigonometric functions have restricted ranges.** An inverse must return *one* angle, so the original has to be cut down before it can be inverted at all — which is why solving $\sin\theta = \frac12$ over all angles needs more than pressing a button.
+
+</WhereThisGoes>

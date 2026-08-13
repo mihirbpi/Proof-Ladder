@@ -17,7 +17,7 @@ $$
 g \circ f = \mathrm{id}_S \quad\text{and}\quad f \circ g = \mathrm{id}_T.
 $$
 
-*Symbol by symbol: $\circ$ is "after".*
+*Symbol by symbol: $\circ$ is "after". So the line reads: doing $f$ then $g$ leaves every input of $S$ where it started, and doing $g$ then $f$ leaves every element of $T$ where it started. Both directions are needed*
 
 > **Theorem.** $f$ admits a two-sided inverse if and only if $f$ is a bijection. The inverse is then unique and is denoted $f^{-1}$.
 
@@ -37,7 +37,7 @@ By construction $f(g(t)) = t$. For $s \in S$, $g(f(s))$ is the unique pre-image 
 **Uniqueness.** If $g, h$ both invert $f$, then by associativity (§3.7)
 $$g = g \circ \mathrm{id}_T = g \circ (f \circ h) = (g\circ f)\circ h = \mathrm{id}_S \circ h = h.$$
 
-*Symbol by symbol: $\circ$ is "after".*
+*Symbol by symbol: $\circ$ is "after". So the line reads: if $g$ undoes $f$ on one side and $h$ on the other, the chain forces $g$ and $h$ to be the same function — so an inverse, when it exists, is unique*
 
 </Proof>
 

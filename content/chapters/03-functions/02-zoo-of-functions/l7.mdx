@@ -28,7 +28,7 @@ $$
 \lfloor x \rfloor = n \iff n \in \mathbb{Z} \text{ and } n \leq x < n+1.
 $$
 
-*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\Leftrightarrow$ is "exactly when".*
+*Symbol by symbol: $\mathbb{Z}$ is the integers, $\in$ is "is in", $\Leftrightarrow$ is "exactly when". So the line reads: the floor of $x$ is the integer $n$ sitting at or just below $x$, with the next integer already past it*
 
 From it: $\lfloor x + m \rfloor = \lfloor x \rfloor + m$ for $m \in \mathbb{Z}$; $x - 1 < \lfloor x \rfloor \leq x$; and $\lfloor -2.3 \rfloor = -3$, not $-2$. Floor is not truncation, and conflating them is a standard source of off-by-one errors.
 
@@ -55,7 +55,7 @@ $$
 \operatorname{tot}(n) = n \prod_{p \mid n}\left(1 - \frac1p\right).
 $$
 
-*Symbol by symbol: the bar $\mid$ is "such that".*
+*Symbol by symbol: the bar $\mid$ is "such that". So the line reads: the count is $n$ scaled down once for each distinct prime dividing $n$*
 
 Note that this "formula" takes for granted the factorization of $n$; it is not an evaluation procedure. The gap between *characterized* and *computable* is exactly where cryptography lives.
 

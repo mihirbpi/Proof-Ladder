@@ -1,0 +1,144 @@
+---
+level: l8
+title: Complements and suppose not
+readingTimeMin: 10
+newTerms: ["complement", "universe", "proof by contradiction", "set difference"]
+anchorExample: "the irrationals are what is left over from the fractions"
+---
+
+import Figure from '@/components/Figure.astro';
+import VennTwo from '@/components/VennTwo.astro';
+import Discussion from '@/components/Discussion.astro';
+import Proof from '@/components/Proof.astro';
+import Aside from '@/components/Aside.astro';
+import Warning from '@/components/Warning.astro';
+import WhereThisGoes from '@/components/WhereThisGoes.astro';
+
+## Complementation
+
+Relative to a fixed **universe** $S$ and for $A \subseteq S$,
+$$
+\overline{A} \;=\; S \setminus A \;=\; \{\, x \in S \mid x \notin A \,\},
+\qquad
+x \in \overline A \iff x \in S \wedge x \notin A.
+$$
+
+*Symbol by symbol: $\notin$ is "is not in", $\in$ is "is in", $\Leftrightarrow$ is "exactly when", $\wedge$ is "and", the bar $\mid$ is "such that". So the line reads: the complement of $A$ is everything in $S$ left outside $A$ — so being in the complement means being in $S$ and not in $A$. Both halves matter: the complement is always taken relative to some containing set*
+
+<Figure alt="Two circles inside a dashed rectangle labeled S, with the region of the rectangle outside both circles shaded." caption="Complementation is relative to the dashed universe $S$.">
+  <VennTwo labelS="A" labelT="B" shade={["outside"]} universe="S" />
+</Figure>
+
+Complement is the set-level image of $\neg$, completing the dictionary begun in §2.4. It takes a single set as input, but only once a universe has been fixed; the two-set **set difference** $S \setminus A$ carries its universe with it and is preferable whenever the collection you are drawing from is not standing constant.
+
+The relativity is not a technicality. $\{0,1\}$ has complement $\{2,3,\ldots\}$ in $\mathbb{N}$, and $\mathbb{R} \setminus \{0,1\}$ in $\mathbb{R}$. Most importantly:
+$$
+\text{the irrationals} \;=\; \mathbb{R} \setminus \mathbb{Q},
+$$
+
+*Symbol by symbol: $\mathbb{Q}$ is the fractions, $\mathbb{R}$ is the real numbers. So the line reads: the irrationals are what is left of the real line once every fraction is removed*
+
+a set defined negatively, which is exactly why every theorem about it is proved by contradiction.
+
+## Identities
+
+$$
+\overline{\overline A} = A, \qquad
+A \cap \overline A = \emptyset, \qquad
+A \cup \overline A = S, \qquad
+\overline{\emptyset} = S, \qquad \overline S = \emptyset,
+$$
+
+*Symbol by symbol: $\emptyset$ is the empty collection, $\cup$ is "pooled with", $\cap$ is "overlapped with", the bar on top is "everything outside". So the line reads: taking the outside twice returns you to where you started; nothing is both inside and outside; everything is one or the other; and the outside of nothing is everything, while the outside of everything is nothing*
+
+each transcribing a logical fact ($\neg\neg p \equiv p$; $p \wedge \neg p$ contradictory; $p \vee \neg p$ always true). The middle two say $\{A, \overline A\}$ partitions $S$ — the set-theoretic form of excluded middle (every statement is either true or false, §1.2), and the reason **proof by cases on membership** is always available.
+
+§2.7 supplies the interaction with $\cup$ and $\cap$ (De Morgan).
+
+## Assuming the opposite
+
+**Proof by contradiction**, named move **suppose not**: to prove $p$, assume $\neg p$, derive a contradiction $r \wedge \neg r$, and conclude $p$. Formally the rule is
+$$
+\big(\neg p \Rightarrow (r \wedge \neg r)\big) \;\Rightarrow\; p,
+$$
+
+*Symbol by symbol: $\Rightarrow$ is "forces", $\neg$ is "not", $\wedge$ is "and". So the line reads: if assuming $p$ fails drives you to something that is both true and false at once, then $p$ holds. That is proof by contradiction written in one line*
+
+valid since $\neg p \Rightarrow F$ forces $\neg p$ false, and excluded middle (every statement is either true or false, §1.2) then gives $p$.
+
+It is worth separating two things that both get called contradiction:
+
+- **Proof of a negation.** To prove $\neg p$, assume $p$ and derive absurdity. This is just the definition of negation in use, and it is constructively valid.
+- **The full-strength version.** To prove $p$ (not a negation), assume $\neg p$ and derive absurdity. This concludes $p$ from $\neg\neg p$, and requires double-negation elimination.
+
+Under the rules this course uses, both are fine. There are systems of logic that accept only the first, because they decline to assume in advance that every statement is either true or false — and this is exactly the point where those systems part company with the one here.
+
+## The proposition
+
+> **Proposition.** For $A, B \subseteq S$: $A \subseteq B \Rightarrow \overline B \subseteq \overline A$.
+
+<Discussion>
+  <div slot="know">$\forall x\,(x \in A \Rightarrow x \in B)$. Goal is a subset claim, so element chasing (§2.3).</div>
+  <div slot="want">$\forall x\,(x \in \overline B \Rightarrow x \in \overline A)$, i.e. $x \notin B \Rightarrow x \notin A$.</div>
+  <div slot="how">The target $x \notin A$ is a negation; there is nothing to construct. Assume $x \in A$ and use the hypothesis to contradict $x \notin B$. Note this is a proof *of a negation*, so it is constructively unproblematic.</div>
+</Discussion>
+
+<Proof>
+Let $x \in \overline B$ be arbitrary; then $x \in S$ and $x \notin B$.
+
+Suppose, for contradiction, that $x \in A$. Since $A \subseteq B$, we get $x \in B$, contradicting $x \notin B$.
+
+Then $x \notin A$, so $x \in \overline A$. Since $x$ could have been any of them, $\overline B \subseteq \overline A$.
+</Proof>
+
+Complementation **reverses inclusion**: it undoes itself, and it turns every containment around. The proposition is contraposition (§1.7) translated by the dictionary, and the converse holds too, so in fact $A \subseteq B \iff \overline B \subseteq \overline A$.
+
+## When contradiction is the right tool
+
+Reach for it when the goal is a **nonexistence** or **impossibility** claim, where a direct proof has nothing to build:
+
+- $\sqrt 2 \notin \mathbb{Q}$ (§4.7). Assume $\sqrt2 = a/b$ in lowest terms; derive that $a$ and $b$ are both even.
+- There are infinitely many primes. Assume finitely many $p_1, \ldots, p_n$; consider $p_1\cdots p_n + 1$.
+- $\{x \mid \sin x = 0\} \cap \{x \mid \cos x = 0\} = \emptyset$ (§2.4). Assume a common zero; contradict $\sin^2 + \cos^2 = 1$.
+
+In every case the theorem says that something is *not there*, so there is nothing for a direct argument to construct, and the assumption of existence is the only handle available.
+
+<Warning title="Symptoms of misuse">
+**The unused assumption.** If the contradictory hypothesis never appears in the derivation, you wrote a direct proof and wrapped it. Unwrap it.
+
+**The disguised contrapositive.** Assuming $p \wedge \neg q$ and deriving $\neg p$ is a contrapositive proof (§1.8). It reads better stated as one, since the reader need not carry a false assumption.
+
+**The mis-negation.** The assumption must be the exact negation of the goal, computed by §1.11. "Suppose $f$ is not continuous — unbroken, drawable without lifting the pen —" is useless until it is unfolded into what that actually asks you to produce.
+
+**Hidden circularity.** Under a false assumption, everything is derivable — including your goal, by a route that quietly assumes it. Contradiction proofs need more care than direct ones, not less.
+</Warning>
+
+<Aside>
+Complementation is what probability calls the *complement rule*. For an event $A$ inside a sample space $S$,
+$$P(\overline A) = 1 - P(A),$$
+which is $A \cup \overline A = S$ and $A \cap \overline A = \emptyset$ converted into arithmetic: the two pieces cover everything and overlap in nothing, so their probabilities sum to $1$.
+
+That is why "at least one" problems are almost always solved by complementing. The probability of at least one head in ten tosses is a ten-term sum computed directly, and $1 - P(\text{no heads})$ computed by complement. The set identity is doing the work, and the saving is the same one this module describes: a negative condition is often the easier one to count.
+</Aside>
+
+## An objection some mathematicians take seriously
+
+Proof by contradiction, as §2.5 uses it, rests on a step worth naming: from *not-not-$p$* you conclude $p$. That is §1.2's double-negation law, and it looks unarguable.
+
+A minority tradition does argue with it. On the **constructive** reading, proving a statement means producing the thing it asserts. Under that standard, showing that *no object fails to exist* is not the same as producing one, and the two are allowed to come apart. Excluded middle — every statement is true or false, with no third option — is not assumed, and proofs by contradiction of existence claims are not accepted.
+
+This is not scepticism about mathematics. It is a different and stricter standard of evidence, and a great deal of ordinary mathematics survives it unchanged. What does not survive is exactly the kind of argument §4.8 flags: the $\sqrt2^{\sqrt2}$ proof shows a pair exists without saying which pair, and a constructive reading rejects it for that reason.
+
+You will meet this again if you go near computer science, where a constructive proof is one you can run as a program and one that merely rules out failure — a *non-constructive* proof — is not.
+
+<WhereThisGoes level="l8">
+
+Contradiction is the technique that settles the impossibility results in both courses ahead — and there are more of them than a first look suggests.
+
+**In calculus, "suppose not" proves the uniqueness theorems.** A function has only one slope at a given point; a curve has only one tangent line — the straight line that just grazes the curve at that point — there. Each is proved by supposing there were two, and squeezing until the difference between them has to be zero — which contradicts their being different. The shape is exactly this module's.
+
+**It also proves the results that say something cannot happen.** A function that jumps cannot have a tangent line at the jump. A curve cannot be at two heights at once. In each case the direct route offers nothing to build with, and assuming the opposite hands you a concrete object to push on.
+
+That is the tell worth carrying forward: when the goal is a *negative* — no such thing exists, this cannot happen, only one of these can be true — the direct proof has nothing to start from, and the denial does.
+
+</WhereThisGoes>
